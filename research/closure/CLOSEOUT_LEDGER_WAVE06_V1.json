@@ -41,8 +41,9 @@
     },
     {
       "gate": "G2_PAPER_CONTRACTION",
-      "status": "PORTFOLIO_CONTRACTION_FROZEN_PUBLICATION_OPEN",
+      "status": "PORTFOLIO_CONTRACTION_FROZEN_DRAFTS_AND_VENUE_LADDER_BOUND_PUBLICATION_OPEN",
       "artifact": "papers/PAPER_CONTRACTION_LEDGER_WAVE06_V1.json",
+      "publication_strategy": "papers/PUBLICATION_TARGETS_AND_FALLBACKS_V1.md",
       "core": ["P-A", "P-B", "P-C", "P-D"],
       "contingent": ["P-E"],
       "programme_blocker_closed": true,
@@ -54,7 +55,8 @@
         "papers/drafts/P_D_DEPENDENCE_AWARE_EVIDENCE_MANUSCRIPT_V0.md",
         "papers/drafts/P_E_FRONTIER_OPPORTUNITY_DISCOVERY_MANUSCRIPT_V0.md"
       ],
-      "programme_synthesis_draft": "papers/drafts/FLAGSHIP_COMPUTATIONAL_SCIENTIFIC_CONTROL_MANUSCRIPT_V0.md"
+      "preferred_programme_synthesis_draft": "papers/drafts/FLAGSHIP_MACHINE_EPISTEMICS_MANUSCRIPT_V1.md",
+      "historical_programme_synthesis_draft": "papers/drafts/FLAGSHIP_COMPUTATIONAL_SCIENTIFIC_CONTROL_MANUSCRIPT_V0.md"
     },
     {
       "gate": "G3_MINIMAL_KERNEL",
@@ -113,17 +115,22 @@
     }
   ],
   "field_hypothesis": {
-    "working_name": "Computational Scientific Control",
+    "preferred_working_name": "Machine Epistemics",
+    "tagline": "The control science of AI-driven discovery",
+    "historical_working_name": "Computational Scientific Control",
     "status": "FIELD_HYPOTHESIS_WORTH_PROTECTED_TESTING",
-    "field_synthesis": "research/field/COMPUTATIONAL_SCIENTIFIC_CONTROL_FIELD_SYNTHESIS_V0.md",
-    "basic_knowledge": "research/field/COMPUTATIONAL_SCIENTIFIC_CONTROL_BASIC_KNOWLEDGE_V0.md",
-    "flagship_draft": "papers/drafts/FLAGSHIP_COMPUTATIONAL_SCIENTIFIC_CONTROL_MANUSCRIPT_V0.md",
+    "naming_and_demarcation": "research/field/MACHINE_EPISTEMICS_NAMING_AND_DEMARCATION_V1.md",
+    "field_synthesis": "research/field/MACHINE_EPISTEMICS_FIELD_SYNTHESIS_V1.md",
+    "historical_field_synthesis": "research/field/COMPUTATIONAL_SCIENTIFIC_CONTROL_FIELD_SYNTHESIS_V0.md",
+    "flagship_draft": "papers/drafts/FLAGSHIP_MACHINE_EPISTEMICS_MANUSCRIPT_V1.md",
     "established_new_scientific_field": false
   },
+  "all_frontiers_closeout_matrix": "research/closure/ALL_FRONTIERS_CLOSEOUT_MATRIX_V1.md",
   "closed_internal_contraction_blockers": [
     "stacked research PR proliferation",
     "parallel Wave-03/06 generalization ownership collision",
     "candidate paper proliferation / merge ambiguity",
+    "paper venue ladder ambiguity",
     "kernel duplicate-owner ambiguity",
     "V2 parity subject identity ambiguity",
     "V1-native parity source provenance ambiguity",
@@ -137,7 +144,8 @@
     "parent-comparator thin-adapter authority ambiguity",
     "parity preflight ordering ambiguity",
     "two-pass post-contraction saturation requirement",
-    "known local critical correctness/integrity/authority defects"
+    "known local critical correctness/integrity/authority defects",
+    "provisional field naming ambiguity"
   ],
   "current_first_machine_blocker": "BLOCKED_V1_PARITY",
   "current_parity_subblocker": "BLOCKED_EVALUATOR_CUSTODY",
