@@ -1,0 +1,36 @@
+{
+  "schema_version": "orion.v2.jump-known-answers.v1",
+  "cases": [
+    {
+      "case_id": "poor-score-only",
+      "trigger": "POOR_SCORE",
+      "expected": "INCUMBENT_INSUFFICIENCY_NOT_IDENTIFIED"
+    },
+    {
+      "case_id": "censored-route",
+      "trigger": "EXPRESSIVE_CEILING",
+      "route_censored": true,
+      "expected": "INCUMBENT_INSUFFICIENCY_NOT_IDENTIFIED"
+    },
+    {
+      "case_id": "local-repair-sufficient",
+      "trigger": "REPEATED_PROTECTED_RESIDUAL",
+      "lower_level_sufficient": true,
+      "expected": "NO_JUMP_NEEDED_LOWER_LEVEL_SUFFICIENT"
+    },
+    {
+      "case_id": "verified-regime-transition",
+      "trigger": "EXPRESSIVE_CEILING",
+      "lower_levels_refuted": true,
+      "correspondence_bound": true,
+      "preservation_bound": true,
+      "expected": "CANDIDATE_FOR_PROTECTED_EVALUATION"
+    },
+    {
+      "case_id": "donor-product-tie",
+      "trigger": "EXPRESSIVE_CEILING",
+      "donor_product_ties": true,
+      "expected": "DONOR_SUBSUMES_JUMP"
+    }
+  ]
+}
