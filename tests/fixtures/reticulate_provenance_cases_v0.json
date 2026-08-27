@@ -1,0 +1,62 @@
+{
+  "schema_id": "orion-v2.reticulate-provenance-cases.v0",
+  "authority": "NON_AUTHORIZING_RESEARCH_FIXTURES",
+  "artifact": {
+    "artifact_id": "child:C",
+    "declared_single_parent": "parent:A",
+    "components": [
+      {"component_id": "code", "parent_id": "parent:A", "contribution_kind": "IMPLEMENTATION"},
+      {"component_id": "data", "parent_id": "parent:B", "contribution_kind": "EVIDENCE"},
+      {"component_id": "semantics", "parent_id": "parent:C", "contribution_kind": "SEMANTICS"},
+      {"component_id": "evaluator", "parent_id": "parent:D", "contribution_kind": "VALIDATION"}
+    ],
+    "expected_single_parent_complete": false,
+    "expected_parent_ids": ["parent:A", "parent:B", "parent:C", "parent:D"]
+  },
+  "claims": [
+    {
+      "claim_id": "claim:primary",
+      "support_families": [
+        ["parent:A", "parent:B", "parent:C", "parent:D"],
+        ["parent:E", "parent:F", "parent:C", "parent:D"]
+      ]
+    },
+    {
+      "claim_id": "claim:code-only",
+      "support_families": [["parent:A"]]
+    },
+    {
+      "claim_id": "claim:independent",
+      "support_families": [["parent:X"]]
+    }
+  ],
+  "revocation_cases": [
+    {
+      "case_id": "revoke-one-alternative-code-parent",
+      "revoked_parent_ids": ["parent:A"],
+      "expected": {
+        "claim:primary": "VALID_ALTERNATIVE_SUPPORT",
+        "claim:code-only": "INVALIDATED",
+        "claim:independent": "UNAFFECTED"
+      }
+    },
+    {
+      "case_id": "revoke-shared-semantic-parent",
+      "revoked_parent_ids": ["parent:C"],
+      "expected": {
+        "claim:primary": "INVALIDATED",
+        "claim:code-only": "UNAFFECTED",
+        "claim:independent": "UNAFFECTED"
+      }
+    },
+    {
+      "case_id": "revoke-unrelated-parent",
+      "revoked_parent_ids": ["parent:Z"],
+      "expected": {
+        "claim:primary": "UNAFFECTED",
+        "claim:code-only": "UNAFFECTED",
+        "claim:independent": "UNAFFECTED"
+      }
+    }
+  ]
+}
