@@ -5,7 +5,7 @@ from enum import Enum
 from typing import Mapping
 
 
-class InheritanceRelation(str, Enum):
+class ComponentInheritanceRelation(str, Enum):
     COPY = "COPY"
     TRANSFORM = "TRANSFORM"
     CALIBRATE = "CALIBRATE"
@@ -52,12 +52,16 @@ class ComponentNode:
 class ComponentInheritanceEdge:
     parent_component_id: str
     child_component_id: str
-    relation: InheritanceRelation
+    relation: ComponentInheritanceRelation
     transport_validated: bool
     source_ids: tuple[str, ...]
 
     def __post_init__(self) -> None:
-        object.__setattr__(self, "relation", InheritanceRelation(self.relation))
+        object.__setattr__(
+            self,
+            "relation",
+            ComponentInheritanceRelation(self.relation),
+        )
         if (
             not self.parent_component_id.strip()
             or not self.child_component_id.strip()
@@ -155,7 +159,7 @@ def assess_inheritance(
                 affected_descendants((child.component_id,), edges),
             )
         if (
-            edge.relation is not InheritanceRelation.COPY
+            edge.relation is not ComponentInheritanceRelation.COPY
             and not edge.transport_validated
         ):
             return InheritanceAssessment(
