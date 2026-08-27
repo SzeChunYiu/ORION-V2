@@ -1,7 +1,7 @@
 {
   "schema_version": "orion.v2.closeout-ledger.v1",
   "wave": "06",
-  "programme_status": "CONVERGENCE_ACTIVE",
+  "programme_status": "CONVERGENCE_ACTIVE_WITH_MATERIAL_SATURATION_REOPEN",
   "v1_handoff": {
     "status": "BOUND_FOR_LOCAL_REFERENCE_AND_PROSPECTIVE_PROTOCOLS",
     "receipt": "provenance/ORION_V1_HANDOFF_RECEIPT_V1.json",
@@ -55,17 +55,20 @@
         "papers/drafts/P_D_DEPENDENCE_AWARE_EVIDENCE_MANUSCRIPT_V0.md",
         "papers/drafts/P_E_FRONTIER_OPPORTUNITY_DISCOVERY_MANUSCRIPT_V0.md"
       ],
-      "preferred_programme_synthesis_draft": "papers/drafts/FLAGSHIP_MACHINE_EPISTEMICS_MANUSCRIPT_V1.md",
-      "historical_programme_synthesis_draft": "papers/drafts/FLAGSHIP_COMPUTATIONAL_SCIENTIFIC_CONTROL_MANUSCRIPT_V0.md"
+      "preferred_programme_synthesis_draft": "papers/drafts/FLAGSHIP_MACHINE_EPISTEMICS_MANUSCRIPT_V4.md",
+      "historical_programme_synthesis_draft": "papers/drafts/FLAGSHIP_COMPUTATIONAL_SCIENTIFIC_CONTROL_MANUSCRIPT_V0.md",
+      "paper_pipeline_skill_source": "SzeChunYiu/academic-paper-skills@d9466ca770d5864d60318c8220c58478b640c50f",
+      "flagship_internal_pipeline_terminal": "READY_FOR_CITATION_FIGURE_SURFACE_HARDENING_AND_INDEPENDENT_DEMARCATION",
+      "flagship_external_demarcation_issue": 38
     },
     {
       "gate": "G3_MINIMAL_KERNEL",
-      "status": "INTERFACE_CONTRACTION_COMPLETE_PARITY_FREEZE_REQUIRED",
+      "status": "INTERFACE_CONTRACTION_COMPLETE_PARITY_FREEZE_REQUIRED_AND_SATURATION_REOPEN_REVIEW_REQUIRED",
       "facade": "src/orion_v2/kernel.py",
       "component_disposition": "research/framework/KERNEL_COMPONENT_DISPOSITION_WAVE06_V1.json",
       "candidate_subject_commit": "f33d2f45554583f9e612f7a186b7d92e6bc8d01a",
       "duplicate_owner_groups_open": 0,
-      "remaining": "issue separate kernel-freeze receipt only after protected V1 parity/non-regression"
+      "remaining": "final kernel freeze requires protected V1 parity plus disposition of any genuinely surviving coordinates from saturation reopen issue #40"
     },
     {
       "gate": "G4_PARENT_BASELINES",
@@ -87,18 +90,23 @@
     },
     {
       "gate": "G5_PROTECTED_EVALUATION",
-      "status": "CASES_SCORING_BUDGETS_BOUND_SEMANTIC_REVIEWERS_AND_PROSPECTIVE_VALUE_OPEN",
-      "reason": "case identities, deterministic scoring and matched offline budgets are frozen; independent semantic reviewer identities for PARITY-C/D and broader protected prospective/naturalistic evaluation remain open"
+      "status": "CASES_SCORING_BUDGETS_BOUND_SEMANTIC_REVIEWERS_PROSPECTIVE_VALUE_AND_NEW_COGNITION_COORDINATES_OPEN",
+      "reason": "case identities, deterministic scoring and matched offline budgets are frozen; independent semantic reviewer identities for PARITY-C/D, broader protected prospective/naturalistic evaluation, and any benchmarkable residual from the human-thinking/lived-knowledge reopen remain open"
     },
     {
       "gate": "G6_POST_CONTRACTION_SATURATION",
-      "status": "LOCALLY_SATISFIED_TWO_COMPLETE_CHANGED_VOCABULARY_PASSES",
-      "receipt": "research/closure/POST_CONTRACTION_SATURATION_RECEIPT_WAVE06_V1.json",
-      "required_no_material_change_passes": 2,
-      "completed_no_material_change_passes": 2,
-      "all_declared_routes_dispositioned": true,
-      "no_new_wave_rule": true,
-      "grants_global_literature_completeness": false
+      "status": "REOPENED_NEW_MATERIAL_KNOWLEDGE_SOURCE_AND_COGNITION_COORDINATES",
+      "previous_receipt": "research/closure/POST_CONTRACTION_SATURATION_RECEIPT_WAVE06_V1.json",
+      "previous_scope": "academic disciplines and changed academic vocabulary",
+      "reopen_issue": 40,
+      "reopen_research": "research/human-cognition-lived-knowledge/HUMAN_THINKING_AND_LIVED_KNOWLEDGE_REOPEN_V1.md",
+      "ml_implications": "research/human-cognition-lived-knowledge/MACHINE_LEARNING_IMPLICATIONS_V1.md",
+      "material_new_axes": ["SourceMode", "KnowledgeForm", "AcquisitionMode", "ObserverReflexivity"],
+      "expanded_coverage_tensor": "Discipline × SourceMode × KnowledgeForm × AcquisitionMode × Context × HistoricalEpoch",
+      "required_new_no_material_change_passes": 2,
+      "completed_new_no_material_change_passes": 0,
+      "grants_global_human_knowledge_completeness": false,
+      "reason": "the previous bounded search universe over-represented codified academic knowledge and did not adequately traverse tacit/procedural/embodied/situated/serendipitous/everyday knowledge modes"
     },
     {
       "gate": "G7_CRITICAL_FAILURES",
@@ -118,37 +126,18 @@
     "preferred_working_name": "Machine Epistemics",
     "tagline": "The control science of AI-driven discovery",
     "historical_working_name": "Computational Scientific Control",
-    "status": "FIELD_HYPOTHESIS_WORTH_PROTECTED_TESTING",
-    "naming_and_demarcation": "research/field/MACHINE_EPISTEMICS_NAMING_AND_DEMARCATION_V1.md",
+    "status": "FIELD_HYPOTHESIS_WORTH_PROTECTED_TESTING_AND_HUMAN_COGNITION_REDUCTION",
+    "naming_and_demarcation": "research/field/MACHINE_EPISTEMICS_NAMING_AND_DEMARCATION_V2.md",
     "field_synthesis": "research/field/MACHINE_EPISTEMICS_FIELD_SYNTHESIS_V1.md",
     "historical_field_synthesis": "research/field/COMPUTATIONAL_SCIENTIFIC_CONTROL_FIELD_SYNTHESIS_V0.md",
-    "flagship_draft": "papers/drafts/FLAGSHIP_MACHINE_EPISTEMICS_MANUSCRIPT_V1.md",
+    "flagship_draft": "papers/drafts/FLAGSHIP_MACHINE_EPISTEMICS_MANUSCRIPT_V4.md",
+    "external_demarcation_issue": 38,
     "established_new_scientific_field": false
   },
   "all_frontiers_closeout_matrix": "research/closure/ALL_FRONTIERS_CLOSEOUT_MATRIX_V1.md",
-  "closed_internal_contraction_blockers": [
-    "stacked research PR proliferation",
-    "parallel Wave-03/06 generalization ownership collision",
-    "candidate paper proliferation / merge ambiguity",
-    "paper venue ladder ambiguity",
-    "kernel duplicate-owner ambiguity",
-    "V2 parity subject identity ambiguity",
-    "V1-native parity source provenance ambiguity",
-    "protected parity case selection ambiguity",
-    "parity scoring/adjudication-rule ambiguity",
-    "matched parity resource-budget ambiguity",
-    "parity resource-matching rule ambiguity",
-    "parity custody-rule ambiguity",
-    "parent-comparator role ambiguity",
-    "parent-comparator current version identity ambiguity for the frozen candidate set",
-    "parent-comparator thin-adapter authority ambiguity",
-    "parity preflight ordering ambiguity",
-    "two-pass post-contraction saturation requirement",
-    "known local critical correctness/integrity/authority defects",
-    "provisional field naming ambiguity"
-  ],
   "current_first_machine_blocker": "BLOCKED_V1_PARITY",
   "current_parity_subblocker": "BLOCKED_EVALUATOR_CUSTODY",
+  "additional_material_closeout_blocker": "G6_REOPENED_HUMAN_THINKING_AND_LIVED_KNOWLEDGE",
   "current_parity_subblockers_in_order": [
     "INDEPENDENT_SEMANTIC_EVALUATOR_CUSTODY_FOR_PARITY_C_AND_D",
     "STRONGEST_PARENT_BASELINE_CONFIGURATION_AND_FIT_BINDING",
