@@ -23,6 +23,7 @@ It does not run protected external scientific evaluations and grants no claim or
 ### Generalization compiler
 
 - coarsest current-decision and transition-preserving envelope;
+- states with the same present decision but different successor structure must split;
 - future query distinguishes a merged block;
 - target adaptation blocked by missing roles, calibration, tests, authority or epoch.
 
@@ -45,7 +46,9 @@ It does not run protected external scientific evaluations and grants no claim or
 
 - validated multi-parent component lineage;
 - authority amplification rejected;
-- invalidation reaches descendants but not unrelated components.
+- component-level cycles rejected;
+- invalidation reaches descendants but not unrelated components;
+- original provenance `InheritanceRelation` API preserved separately from the Wave-03 component transport vocabulary.
 
 ### Performative dynamics
 
@@ -57,15 +60,50 @@ It does not run protected external scientific evaluations and grants no claim or
 - incomparable importance- and information-heavy opportunities remain separate Pareto choices;
 - high-interest but unfalsifiable opportunity is rejected.
 
-## Local isolated verification
+## Verification
 
-The seven new modules and their isolated test suite were executed in a clean Python environment with no network or model dependency:
+### Isolated pre-integration check
+
+The first seven Wave-03 modules and initial isolated suite were executed with no network or model dependency:
 
 ```text
 16 passed
 ```
 
-Repository-wide CI is still required after integration with the Wave 02 branch.
+This was an intermediate check and did not cover the full Wave-01/02 branch.
+
+### Repository-integrated CI
+
+GitHub Actions workflow:
+
+```text
+wave3-generalization-reference
+run_id = 33071418266
+head_sha = 00eb2790d849c89e3d4026bbb60307cbc6d8846b
+runner = ubuntu-24.04
+python = 3.12.14
+```
+
+The workflow checked out the complete Wave-03 branch over Wave 02 and ran:
+
+```text
+python -m compileall -q src/orion_v2
+python -m pytest -q
+research/test JSON parse
+non-authorizing source boundary check
+```
+
+Observed result:
+
+```text
+86 tests passed
+0 failures
+JSON_PARSE_PASS
+AUTHORITY_BOUNDARY_PASS
+workflow conclusion = success
+```
+
+The 86-test denominator includes prior Wave-01/02 unit and known-answer tests plus Wave-03 tests. This is an integrated reference-semantics result, not an empirical scientific result.
 
 ## Principal findings
 
@@ -94,9 +132,10 @@ Repository-wide CI is still required after integration with the Wave 02 branch.
 ## Honest terminal
 
 ```text
-WAVE_03_REFERENCE_IMPLEMENTATION = LOCALLY_GREEN_16_TESTS
-REPOSITORY_INTEGRATION_CI = PENDING
+WAVE_03_REFERENCE_IMPLEMENTATION = INTEGRATED_GREEN_86_TESTS
+REPOSITORY_INTEGRATION_CI = PASS
 PARENT_SUBSUMPTION = HIGH
 PROTECTED_TRANSFER_VALUE = CANNOT_CHECK
 SCIENTIFIC_AUTHORITY = NONE
+NOVELTY_AUTHORITY = NONE
 ```
