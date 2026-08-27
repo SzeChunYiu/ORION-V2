@@ -1,6 +1,6 @@
 {
   "schema_version": "orion.v2.kernel-component-disposition.v1",
-  "status": "CANDIDATE_MAPPED_DUPLICATE_REDUCTION_OPEN",
+  "status": "CANDIDATE_DUPLICATES_DISPOSITIONED_PARITY_REQUIRED",
   "design_rule": "A module belongs in the stable kernel only when removing its interface changes a protected downstream scientific decision. Parent algorithms and transparent reference methods remain adapters/baselines.",
   "families": [
     {
@@ -22,8 +22,9 @@
     {
       "family_id": "K2",
       "name": "context_relative_relations_and_transport",
-      "interface_candidates": ["structural", "correspondence", "comparability"],
+      "interface_candidates": ["structural", "correspondence"],
       "supporting_modules": [
+        "comparability",
         "generalization",
         "generalization_compiler",
         "theory_transport",
@@ -85,26 +86,35 @@
     {"module":"frontier_portfolio","owner":"portfolio/R&D/open-ended search parents","role":"K5 reference policy component"},
     {"module":"donors","owner":"ORION-V2 research governance","role":"K6 research infrastructure"}
   ],
-  "unresolved_duplicate_groups": [
+  "unresolved_duplicate_groups": [],
+  "resolved_duplicate_groups": [
     {
       "group_id":"DUP-K2-RELATION-TRANSPORT",
-      "modules":["structural","comparability","correspondence","generalization","generalization_compiler","theory_transport","meta_formalization","unified_generalization","stochastic_transport"],
-      "required_disposition":"one stable request/receipt interface; parent/reference implementations remain namespaced adapters"
+      "disposition":"RESOLVED_BY_INTERFACE_SPECIALIZATION",
+      "stable_interfaces":["structural","correspondence"],
+      "supporting_or_reference":["comparability","generalization","generalization_compiler","theory_transport","meta_formalization","unified_generalization","stochastic_transport"],
+      "reason":"structural owns single-context relation claims; correspondence owns cross-epoch chain transport; comparability is compatibility/reference and the generalization stack remains adapter/reference machinery"
     },
     {
       "group_id":"DUP-K3-LINEAGE-DEPENDENCE",
-      "modules":["evidence","evidence_network","provenance","inheritance","reopening"],
-      "required_disposition":"separate evidence dependence from provenance lineage while sharing one invalidation/revalidation contract"
+      "disposition":"RESOLVED_BY_SEPARATE_SCIENTIFIC_ROLES",
+      "stable_interfaces":["evidence","provenance","reopening"],
+      "supporting_or_reference":["evidence_network","inheritance"],
+      "reason":"dependence, component lineage and revalidation are distinct decisions; weighted network and inheritance validators are richer reference implementations behind those interfaces"
     },
     {
       "group_id":"DUP-K4-CONTROL-DIAGNOSIS",
-      "modules":["solver","policy","probes","responsibility","workflow","process_network"],
-      "required_disposition":"one action/diagnosis/recovery interface; parent algorithms remain replaceable"
+      "disposition":"RESOLVED_BY_REPLACEABLE_PARENT_ALGORITHMS",
+      "stable_interfaces":["policy","responsibility","workflow"],
+      "supporting_or_reference":["probes","process_network"],
+      "reason":"action selection, plural responsibility and workflow constraints are distinct interfaces; separating-probe search and process-net soundness are replaceable parent/reference algorithms"
     },
     {
       "group_id":"DUP-K5-OPPORTUNITY-ESCALATION",
-      "modules":["opportunity","frontier_portfolio","jump"],
-      "required_disposition":"keep opportunity proposal, portfolio selection and escalation as distinct states but avoid duplicate authority/score semantics"
+      "disposition":"RESOLVED_BY_STATE_SEPARATION",
+      "stable_interfaces":["opportunity","jump"],
+      "supporting_or_reference":["frontier_portfolio"],
+      "reason":"opportunity proposal and escalation are different authority states; portfolio selection is a parent-owned policy component and not a stable authority primitive"
     }
   ],
   "freeze_requirements": [
@@ -116,6 +126,11 @@
     "no kernel interface self-grants scientific truth, novelty or adoption"
   ],
   "kernel_frozen": false,
+  "next_required_evidence": [
+    "bind this contracted candidate as the V2 parity subject before outcome access",
+    "run per-cell V1 parity with simple-control overreach penalties",
+    "issue a separate protected kernel-freeze receipt only if parity/non-regression is earned"
+  ],
   "grants_architecture_authority": false,
   "grants_scientific_truth": false,
   "grants_novelty": false
