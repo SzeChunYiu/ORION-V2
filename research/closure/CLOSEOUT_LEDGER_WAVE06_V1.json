@@ -1,0 +1,90 @@
+{
+  "schema_version": "orion.v2.closeout-ledger.v1",
+  "wave": "06",
+  "programme_status": "CONVERGENCE_ACTIVE",
+  "v1_handoff": {
+    "status": "BOUND_FOR_LOCAL_REFERENCE_AND_PROSPECTIVE_PROTOCOLS",
+    "receipt": "provenance/ORION_V1_HANDOFF_RECEIPT_V1.json",
+    "terminal": "V1_FREEZE_HANDOFF_BOUND_AND_NON_RETROACTIVE"
+  },
+  "gates": [
+    {
+      "gate": "G1_V1_PARITY",
+      "status": "SUBJECT_BOUND_SOURCE_AUDITED_RUN_NOT_AUTHORIZED",
+      "protocol": "research/evaluation/V1_PARITY_CAMPAIGN_PROTOCOL_WAVE06_V1.json",
+      "subject_binding": "research/evaluation/V1_PARITY_SUBJECT_BINDING_WAVE06_V1.json",
+      "case_source_audit": "research/evaluation/V1_PARITY_CASE_SOURCE_AUDIT_WAVE06_V1.json",
+      "subject_commit": "f33d2f45554583f9e612f7a186b7d92e6bc8d01a",
+      "remaining": [
+        "freeze protected held-out case identities",
+        "bind protected evaluator/custody identities",
+        "freeze strongest parent-composed comparator identities",
+        "freeze matched provider/tool/time/compute budgets",
+        "run per-cell non-compensatory parity and simple-control non-regression"
+      ]
+    },
+    {
+      "gate": "G2_PAPER_CONTRACTION",
+      "status": "PORTFOLIO_CONTRACTION_FROZEN_PUBLICATION_OPEN",
+      "artifact": "papers/PAPER_CONTRACTION_LEDGER_WAVE06_V1.json",
+      "core": ["P-A", "P-B", "P-C", "P-D"],
+      "contingent": ["P-E"],
+      "programme_blocker_closed": true,
+      "publication_authority_closed": false
+    },
+    {
+      "gate": "G3_MINIMAL_KERNEL",
+      "status": "INTERFACE_CONTRACTION_COMPLETE_PARITY_FREEZE_REQUIRED",
+      "facade": "src/orion_v2/kernel.py",
+      "component_disposition": "research/framework/KERNEL_COMPONENT_DISPOSITION_WAVE06_V1.json",
+      "candidate_subject_commit": "f33d2f45554583f9e612f7a186b7d92e6bc8d01a",
+      "remaining": "issue separate kernel-freeze receipt only after protected V1 parity/non-regression"
+    },
+    {
+      "gate": "G4_PARENT_BASELINES",
+      "status": "OPEN",
+      "reason": "transparent parent/reference methods are classified behind adapters; strongest production/native parent-composed comparator identities are not frozen"
+    },
+    {
+      "gate": "G5_PROTECTED_EVALUATION",
+      "status": "OPEN",
+      "reason": "local known-answer/reference suites and V1-native case-source audit are green; protected naturalistic/held-out evaluation remains open"
+    },
+    {
+      "gate": "G6_POST_CONTRACTION_SATURATION",
+      "status": "NOT_RUN_AFTER_LATEST_CONTRACTION",
+      "required_no_material_change_passes": 2,
+      "no_new_wave_rule": true
+    },
+    {
+      "gate": "G7_CRITICAL_FAILURES",
+      "status": "REVIEW_REQUIRED",
+      "reason": "preterminal defects and ownership collision are retained; closure review must distinguish repaired defects, valid negatives/CANNOT_CHECK and any critical open correctness/integrity/authority defects"
+    },
+    {
+      "gate": "G8_EXTERNAL_AUTHORITY",
+      "status": "NONE",
+      "reason": "scientific novelty/publication authority remains external"
+    }
+  ],
+  "closed_internal_contraction_blockers": [
+    "stacked research PR proliferation",
+    "parallel Wave-03/06 generalization ownership collision",
+    "candidate paper proliferation / merge ambiguity",
+    "kernel duplicate-owner ambiguity",
+    "V2 parity subject identity ambiguity",
+    "V1-native parity source provenance ambiguity"
+  ],
+  "current_first_machine_blocker": "BLOCKED_V1_PARITY",
+  "current_parity_subblockers": [
+    "PROTECTED_CASE_SELECTION",
+    "PROTECTED_EVALUATOR_CUSTODY",
+    "STRONGEST_PARENT_BASELINE_BINDING",
+    "MATCHED_RESOURCE_BUDGET_BINDING",
+    "OUTCOME_EXECUTION"
+  ],
+  "grants_v2_closeout": false,
+  "grants_scientific_truth": false,
+  "grants_novelty": false,
+  "grants_publication_authority": false
+}
