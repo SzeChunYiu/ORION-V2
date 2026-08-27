@@ -10,30 +10,32 @@
   "gates": [
     {
       "gate": "G1_V1_PARITY",
-      "status": "PREFLIGHT_FROZEN_BLOCKED_PROTECTED_CASE_SELECTION",
+      "status": "CASES_SCORING_BUDGETS_BOUND_BLOCKED_SEMANTIC_EVALUATOR_CUSTODY",
       "protocol": "research/evaluation/V1_PARITY_CAMPAIGN_PROTOCOL_WAVE06_V1.json",
       "subject_binding": "research/evaluation/V1_PARITY_SUBJECT_BINDING_WAVE06_V1.json",
       "case_source_audit": "research/evaluation/V1_PARITY_CASE_SOURCE_AUDIT_WAVE06_V1.json",
+      "case_registry": "research/evaluation/V1_PARITY_CASE_REGISTRY_WAVE06_V1.json",
+      "case_selection_receipt": "research/evaluation/V1_PARITY_CASE_SELECTION_RECEIPT_WAVE06_V1.json",
+      "scoring_spec": "research/evaluation/V1_PARITY_SCORING_ADJUDICATION_WAVE06_V1.json",
+      "evaluator_registry": "research/evaluation/V1_PARITY_EVALUATOR_REGISTRY_WAVE06_V1.json",
       "resource_matching_protocol": "research/evaluation/V1_PARITY_RESOURCE_MATCHING_PROTOCOL_WAVE06_V1.json",
+      "case_budget_manifest": "research/evaluation/V1_PARITY_CASE_BUDGETS_WAVE06_V1.json",
       "custody_protocol": "research/evaluation/V1_PARITY_CUSTODY_PROTOCOL_WAVE06_V1.json",
       "baseline_registry": "research/evaluation/V1_PARITY_BASELINE_REGISTRY_WAVE06_V1.json",
       "execution_gate": "src/orion_v2/parity_execution_gate.py",
       "subject_commit": "f33d2f45554583f9e612f7a186b7d92e6bc8d01a",
-      "current_preflight_terminal": "BLOCKED_PROTECTED_CASE_SELECTION",
-      "preflight_ci_head": "71967eb16d2e1df29589d56bed7467e612f1e813",
-      "preflight_ci": {
-        "reference-tests": "success",
-        "native-recovery": "success",
-        "stochastic-reference": "success",
-        "unified-reference": "success"
-      },
+      "current_preflight_terminal": "BLOCKED_EVALUATOR_CUSTODY",
+      "case_selection_bound_before_paired_outcomes": true,
+      "deterministic_scoring_bound_before_paired_outcomes": true,
+      "matched_case_budgets_bound_before_paired_outcomes": true,
+      "semantic_source_gaps": ["PARITY-C", "PARITY-D"],
       "remaining_in_order": [
-        "freeze protected held-out case identities and selection receipt",
-        "bind protected evaluator/custody identities and scorer/adjudicator digests",
-        "bind strongest parent-composed comparator implementation identities/configurations",
-        "bind matched per-case provider/tool/time/compute budgets",
-        "run per-cell non-compensatory V1/V2 parity and simple-control non-regression"
-      ]
+        "bind independent blinded semantic reviewer identities for PARITY-C and PARITY-D under the frozen scoring rubric",
+        "bind strongest parent-composed comparator implementation/version/configuration identities",
+        "execute per-cell non-compensatory V1/V2 parity and simple-control non-regression under frozen budgets/custody"
+      ],
+      "last_fully_green_governance_ci_head_before_latest_custody_and_saturation_hardening": "71967eb16d2e1df29589d56bed7467e612f1e813",
+      "latest_ci_verification": "PENDING_AT_LEDGER_UPDATE"
     },
     {
       "gate": "G2_PAPER_CONTRACTION",
@@ -42,7 +44,15 @@
       "core": ["P-A", "P-B", "P-C", "P-D"],
       "contingent": ["P-E"],
       "programme_blocker_closed": true,
-      "publication_authority_closed": false
+      "publication_authority_closed": false,
+      "drafts": [
+        "papers/drafts/P_A_STRUCTURAL_DONOR_DISCOVERY_MANUSCRIPT_V0.md",
+        "papers/drafts/P_B_CONTEXT_RELATIVE_RELATIONS_MANUSCRIPT_V0.md",
+        "papers/drafts/P_C_OBLIGATION_DRIVEN_SOLVER_MANUSCRIPT_V0.md",
+        "papers/drafts/P_D_DEPENDENCE_AWARE_EVIDENCE_MANUSCRIPT_V0.md",
+        "papers/drafts/P_E_FRONTIER_OPPORTUNITY_DISCOVERY_MANUSCRIPT_V0.md"
+      ],
+      "programme_synthesis_draft": "papers/drafts/FLAGSHIP_COMPUTATIONAL_SCIENTIFIC_CONTROL_MANUSCRIPT_V0.md"
     },
     {
       "gate": "G3_MINIMAL_KERNEL",
@@ -55,32 +65,45 @@
     },
     {
       "gate": "G4_PARENT_BASELINES",
-      "status": "ROLES_FROZEN_IMPLEMENTATIONS_UNBOUND",
-      "artifact": "research/evaluation/V1_PARITY_BASELINE_REGISTRY_WAVE06_V1.json",
-      "reason": "comparator roles are frozen per campaign, but strongest production/native parent-composed implementation/version/configuration identities remain unbound"
+      "status": "ROLES_AND_CANDIDATE_AUDIT_FROZEN_IMPLEMENTATION_IDENTITIES_UNBOUND",
+      "role_artifact": "research/evaluation/V1_PARITY_BASELINE_REGISTRY_WAVE06_V1.json",
+      "candidate_audit": "research/evaluation/PARENT_BASELINE_CANDIDATE_AUDIT_WAVE06_V1.json",
+      "hostile_parent_addendum": "papers/drafts/HOSTILE_PARENT_OWNERSHIP_ADDENDUM_WAVE06_V1.md",
+      "reason": "campaign-specific parent roles and candidate implementations are frozen, but strongest production/native implementation/version/configuration identities remain unbound"
     },
     {
       "gate": "G5_PROTECTED_EVALUATION",
-      "status": "CUSTODY_RULE_FROZEN_CASES_AND_EVALUATORS_UNBOUND",
-      "reason": "local known-answer/reference suites and V1-native source audit are green; protected held-out/naturalistic case and evaluator identities remain unbound"
+      "status": "CASES_SCORING_BUDGETS_BOUND_SEMANTIC_REVIEWERS_AND_PROSPECTIVE_VALUE_OPEN",
+      "reason": "case identities, deterministic scoring and matched offline budgets are frozen; independent semantic reviewer identities for PARITY-C/D and broader protected prospective/naturalistic evaluation remain open"
     },
     {
       "gate": "G6_POST_CONTRACTION_SATURATION",
-      "status": "NOT_RUN_AFTER_LATEST_CONTRACTION",
+      "status": "LOCALLY_SATISFIED_TWO_COMPLETE_CHANGED_VOCABULARY_PASSES",
+      "receipt": "research/closure/POST_CONTRACTION_SATURATION_RECEIPT_WAVE06_V1.json",
       "required_no_material_change_passes": 2,
-      "no_new_wave_rule": true
+      "completed_no_material_change_passes": 2,
+      "all_declared_routes_dispositioned": true,
+      "no_new_wave_rule": true,
+      "grants_global_literature_completeness": false
     },
     {
       "gate": "G7_CRITICAL_FAILURES",
       "status": "REVIEW_REQUIRED",
-      "reason": "preterminal defects and ownership collision are retained; closure review must distinguish repaired defects, valid negatives/CANNOT_CHECK and any critical open correctness/integrity/authority defects"
+      "reason": "preterminal defects and historical ownership collisions are retained; closure review must distinguish repaired defects, valid negatives/CANNOT_CHECK, and any critical open correctness/integrity/authority defects"
     },
     {
       "gate": "G8_EXTERNAL_AUTHORITY",
       "status": "NONE",
-      "reason": "scientific novelty/publication authority remains external"
+      "reason": "scientific novelty, field acceptance and publication authority remain external"
     }
   ],
+  "field_hypothesis": {
+    "working_name": "Computational Scientific Control",
+    "status": "FIELD_HYPOTHESIS_WORTH_PROTECTED_TESTING",
+    "field_synthesis": "research/field/COMPUTATIONAL_SCIENTIFIC_CONTROL_FIELD_SYNTHESIS_V0.md",
+    "basic_knowledge": "research/field/COMPUTATIONAL_SCIENTIFIC_CONTROL_BASIC_KNOWLEDGE_V0.md",
+    "established_new_scientific_field": false
+  },
   "closed_internal_contraction_blockers": [
     "stacked research PR proliferation",
     "parallel Wave-03/06 generalization ownership collision",
@@ -88,22 +111,25 @@
     "kernel duplicate-owner ambiguity",
     "V2 parity subject identity ambiguity",
     "V1-native parity source provenance ambiguity",
+    "protected parity case selection ambiguity",
+    "parity scoring/adjudication-rule ambiguity",
+    "matched parity resource-budget ambiguity",
     "parity resource-matching rule ambiguity",
     "parity custody-rule ambiguity",
     "parent-comparator role ambiguity",
-    "parity preflight ordering ambiguity"
+    "parity preflight ordering ambiguity",
+    "two-pass post-contraction saturation requirement"
   ],
   "current_first_machine_blocker": "BLOCKED_V1_PARITY",
-  "current_parity_subblocker": "BLOCKED_PROTECTED_CASE_SELECTION",
+  "current_parity_subblocker": "BLOCKED_EVALUATOR_CUSTODY",
   "current_parity_subblockers_in_order": [
-    "PROTECTED_CASE_SELECTION",
-    "PROTECTED_EVALUATOR_CUSTODY",
+    "INDEPENDENT_SEMANTIC_EVALUATOR_CUSTODY_FOR_PARITY_C_AND_D",
     "STRONGEST_PARENT_BASELINE_BINDING",
-    "MATCHED_RESOURCE_BUDGET_BINDING",
     "OUTCOME_EXECUTION"
   ],
   "grants_v2_closeout": false,
   "grants_scientific_truth": false,
   "grants_novelty": false,
-  "grants_publication_authority": false
+  "grants_publication_authority": false,
+  "grants_new_field_authority": false
 }
