@@ -38,6 +38,31 @@ def test_compiler_builds_coarsest_decision_and_transition_preserving_envelope() 
     assert frozenset({"c"}) in envelope.blocks
 
 
+def test_transition_refinement_splits_same_label_states_with_different_futures() -> None:
+    theory = Theory(
+        frozenset({"a", "b", "good", "bad"}),
+        frozenset({"step"}),
+        frozenset(
+            {
+                ("a", "step", "good"),
+                ("b", "step", "bad"),
+                ("good", "step", "good"),
+                ("bad", "step", "bad"),
+            }
+        ),
+        {
+            "decision": {
+                "a": "open",
+                "b": "open",
+                "good": "success",
+                "bad": "failure",
+            }
+        },
+    )
+    envelope = compile_decision_envelope(theory, ("decision",))
+    assert envelope.state_to_block["a"] != envelope.state_to_block["b"]
+
+
 def test_future_query_exposes_loss_hidden_by_current_decision() -> None:
     theory = Theory(
         frozenset({"a", "b"}),
