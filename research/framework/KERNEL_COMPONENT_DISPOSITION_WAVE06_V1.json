@@ -1,0 +1,122 @@
+{
+  "schema_version": "orion.v2.kernel-component-disposition.v1",
+  "status": "CANDIDATE_MAPPED_DUPLICATE_REDUCTION_OPEN",
+  "design_rule": "A module belongs in the stable kernel only when removing its interface changes a protected downstream scientific decision. Parent algorithms and transparent reference methods remain adapters/baselines.",
+  "families": [
+    {
+      "family_id": "K0",
+      "name": "identity_contracts_receipts",
+      "interface_candidates": ["contracts"],
+      "supporting_modules": ["handoff"],
+      "v1_capability_families": ["FRAME", "CROSS.EXECUTION", "CROSS.AUTHORITY"],
+      "downstream_role": "bind problem, scope, obligations, resources, authority and immutable identities before scientific actions"
+    },
+    {
+      "family_id": "K1",
+      "name": "plural_scientific_state",
+      "interface_candidates": ["solver"],
+      "supporting_modules": ["native_recovery"],
+      "v1_capability_families": ["ORION_SOLVE", "RECONSTRUCT", "DETECT"],
+      "downstream_role": "retain live obligations, alternatives, uncertainty and typed non-success without premature collapse"
+    },
+    {
+      "family_id": "K2",
+      "name": "context_relative_relations_and_transport",
+      "interface_candidates": ["structural", "correspondence", "comparability"],
+      "supporting_modules": [
+        "generalization",
+        "generalization_compiler",
+        "theory_transport",
+        "meta_formalization",
+        "unified_generalization",
+        "stochastic_transport"
+      ],
+      "v1_capability_families": ["ABSORB.REPRESENTATION_MAP", "RECONSTRUCT.GLUE", "REFRAME.REPRESENTATION"],
+      "downstream_role": "state which relation/transport is claimed, under which context/probes/epoch/tolerance, with witnesses, losses and expiry"
+    },
+    {
+      "family_id": "K3",
+      "name": "evidence_dependence_provenance_revalidation",
+      "interface_candidates": ["evidence", "provenance", "reopening"],
+      "supporting_modules": ["evidence_network", "inheritance"],
+      "v1_capability_families": ["ABSORB.EVIDENCE_BIND", "REOPEN", "CROSS.AUTHORITY"],
+      "downstream_role": "preserve evidence identity, dependence, multi-parent lineage, assumptions, authority ceilings and selective invalidation reach"
+    },
+    {
+      "family_id": "K4",
+      "name": "solver_action_diagnosis_recovery",
+      "interface_candidates": ["policy", "responsibility", "workflow"],
+      "supporting_modules": ["probes", "process_network"],
+      "v1_capability_families": ["SEARCH", "DIAGNOSE", "REFRAME", "CROSS.EXPERIMENT_SELECTION", "CROSS.EXECUTION"],
+      "downstream_role": "generate/select admissible actions, diagnose plural responsibility, execute under constraints, repair/compensate/retry and preserve non-compensatory gates"
+    },
+    {
+      "family_id": "K5",
+      "name": "frontier_and_escalation",
+      "interface_candidates": ["opportunity", "jump", "frontier_portfolio"],
+      "supporting_modules": [],
+      "v1_capability_families": ["REFRAME", "ORION_SOLVE"],
+      "downstream_role": "propose frontier opportunities and change solving level only after witnessed incumbent insufficiency and with external agenda/adoption authority"
+    },
+    {
+      "family_id": "K6",
+      "name": "evaluation_parity_saturation_authority",
+      "interface_candidates": ["evaluation", "parity", "closure"],
+      "supporting_modules": ["parity_closeout", "donors"],
+      "v1_capability_families": ["SATURATE", "CROSS.REVIEW", "CROSS.BENCHMARK", "CROSS.AUTHORITY"],
+      "downstream_role": "bind protected evaluators, V1 parity, donor-product comparison, saturation, failures and closeout without minting scientific authority"
+    }
+  ],
+  "parent_or_reference_modules": [
+    {"module":"information_order","owner":"Blackwell/decision-theoretic experiment comparison","role":"reference baseline / adapter"},
+    {"module":"viability","owner":"viability theory/control","role":"reference baseline / adapter"},
+    {"module":"process_network","owner":"workflow/process-net theory","role":"reference baseline / K4 supporting adapter"},
+    {"module":"performative","owner":"performative/strategic evaluation","role":"reference assessment / P-D method"},
+    {"module":"performative_dynamics","owner":"performative prediction/dynamic response","role":"reference baseline / P-D method"},
+    {"module":"scale_gluing","owner":"scale/local-global/abstraction parents","role":"reference baseline / K2 adapter"},
+    {"module":"native_recovery","owner":"V2 donor-fidelity protocol","role":"research validation, not a universal kernel primitive"},
+    {"module":"native_corpus_strict","owner":"Wave-04 fixtures","role":"research fixture"},
+    {"module":"generalization","owner":"Wave-03 finite generalization reference","role":"K2 research/reference"},
+    {"module":"generalization_compiler","owner":"Wave-03 conservative compiler","role":"K2 research/reference"},
+    {"module":"theory_transport","owner":"finite-model/abstract-interpretation/bidirectional-law parents","role":"K2 parent-facing reference"},
+    {"module":"meta_formalization","owner":"formalization/transport law reconciliation","role":"K2 research/reference"},
+    {"module":"unified_generalization","owner":"Wave-06 layer-chain reconciliation","role":"K2 research control"},
+    {"module":"stochastic_transport","owner":"probabilistic abstraction/robust-control/metrology parents","role":"K2 reference adapter"},
+    {"module":"frontier_portfolio","owner":"portfolio/R&D/open-ended search parents","role":"K5 reference policy component"},
+    {"module":"donors","owner":"ORION-V2 research governance","role":"K6 research infrastructure"}
+  ],
+  "unresolved_duplicate_groups": [
+    {
+      "group_id":"DUP-K2-RELATION-TRANSPORT",
+      "modules":["structural","comparability","correspondence","generalization","generalization_compiler","theory_transport","meta_formalization","unified_generalization","stochastic_transport"],
+      "required_disposition":"one stable request/receipt interface; parent/reference implementations remain namespaced adapters"
+    },
+    {
+      "group_id":"DUP-K3-LINEAGE-DEPENDENCE",
+      "modules":["evidence","evidence_network","provenance","inheritance","reopening"],
+      "required_disposition":"separate evidence dependence from provenance lineage while sharing one invalidation/revalidation contract"
+    },
+    {
+      "group_id":"DUP-K4-CONTROL-DIAGNOSIS",
+      "modules":["solver","policy","probes","responsibility","workflow","process_network"],
+      "required_disposition":"one action/diagnosis/recovery interface; parent algorithms remain replaceable"
+    },
+    {
+      "group_id":"DUP-K5-OPPORTUNITY-ESCALATION",
+      "modules":["opportunity","frontier_portfolio","jump"],
+      "required_disposition":"keep opportunity proposal, portfolio selection and escalation as distinct states but avoid duplicate authority/score semantics"
+    }
+  ],
+  "freeze_requirements": [
+    "all seven kernel families have a protected downstream role",
+    "all 59 frozen V1 capabilities map to at least one kernel or registered parent adapter",
+    "duplicate semantic owners are dispositioned",
+    "reference-only parent methods are not exported as universal V2 primitives",
+    "simple-control parity penalizes unnecessary kernel complexity",
+    "no kernel interface self-grants scientific truth, novelty or adoption"
+  ],
+  "kernel_frozen": false,
+  "grants_architecture_authority": false,
+  "grants_scientific_truth": false,
+  "grants_novelty": false
+}
