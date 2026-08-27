@@ -13,7 +13,11 @@ from orion_v2.stochastic_transport import (
 )
 
 
-def _exact_pair() -> tuple[FiniteStochasticTheory, FiniteStochasticTheory, StochasticTransport]:
+def _exact_pair() -> tuple[
+    FiniteStochasticTheory,
+    FiniteStochasticTheory,
+    StochasticTransport,
+]:
     source = FiniteStochasticTheory(
         "source",
         frozenset({"a", "b"}),
@@ -50,7 +54,11 @@ def _exact_pair() -> tuple[FiniteStochasticTheory, FiniteStochasticTheory, Stoch
     return source, target, transport
 
 
-def _approximate_pair() -> tuple[FiniteStochasticTheory, FiniteStochasticTheory, StochasticTransport]:
+def _approximate_pair() -> tuple[
+    FiniteStochasticTheory,
+    FiniteStochasticTheory,
+    StochasticTransport,
+]:
     source = FiniteStochasticTheory(
         "micro",
         frozenset({"a1", "a2", "b"}),
@@ -88,14 +96,46 @@ def _approximate_pair() -> tuple[FiniteStochasticTheory, FiniteStochasticTheory,
     return source, target, transport
 
 
+def _link(
+    identifier: str,
+    source: str,
+    target: str,
+    source_epoch: str,
+    target_epoch: str,
+    transition: float,
+    observable: float,
+    authority: int,
+    assumptions: tuple[str, ...] = (),
+    *,
+    dependence_declared: bool = True,
+) -> StochasticTransportLink:
+    return StochasticTransportLink(
+        identifier,
+        source,
+        target,
+        source_epoch,
+        target_epoch,
+        transition,
+        observable,
+        authority,
+        assumptions,
+        dependence_declared,
+    )
+
+
 def test_total_variation_is_exact_on_finite_support() -> None:
-    assert total_variation({"a": 0.8, "b": 0.2}, {"a": 0.75, "b": 0.25}) == pytest.approx(0.05)
+    assert total_variation(
+        {"a": 0.8, "b": 0.2}, {"a": 0.75, "b": 0.25}
+    ) == pytest.approx(0.05)
 
 
 def test_exact_stochastic_transport() -> None:
     source, target, transport = _exact_pair()
     result = assess_stochastic_transport(source, target, transport)
-    assert result.status is StochasticTransportStatus.EXACT_STOCHASTIC_TRANSPORT
+    assert (
+        result.status
+        is StochasticTransportStatus.EXACT_STOCHASTIC_TRANSPORT
+    )
     assert result.observed_transition_error == 0
     assert result.observed_observable_error == 0
 
@@ -103,7 +143,10 @@ def test_exact_stochastic_transport() -> None:
 def test_epsilon_bounded_stochastic_transport() -> None:
     source, target, transport = _approximate_pair()
     result = assess_stochastic_transport(source, target, transport)
-    assert result.status is StochasticTransportStatus.EPSILON_BOUNDED_STOCHASTIC_TRANSPORT
+    assert (
+        result.status
+        is StochasticTransportStatus.EPSILON_BOUNDED_STOCHASTIC_TRANSPORT
+    )
     assert result.observed_transition_error == pytest.approx(0.05)
     assert result.observed_observable_error == pytest.approx(0.04)
 
@@ -127,11 +170,40 @@ def test_declared_transition_bound_cannot_be_exceeded() -> None:
     )
 
 
+def test_transport_epoch_must_match_bound_theories() -> None:
+    source, target, transport = _exact_pair()
+    stale = StochasticTransport(
+        transport.transport_id,
+        transport.state_map,
+        transport.action_map,
+        transport.registered_observable_ids,
+        transport.transition_epsilon,
+        transport.observable_epsilon,
+        "wrong-source-epoch",
+        transport.target_epoch,
+        transport.authority_ceiling,
+    )
+    assert (
+        assess_stochastic_transport(source, target, stale).status
+        is StochasticTransportStatus.INVALID_EPOCH
+    )
+
+
 def test_decision_margin_can_certify_or_refuse_preservation() -> None:
-    preserved = assess_decision_robustness({"A": 1.0, "B": 0.7}, error_bound=0.1)
-    boundary = assess_decision_robustness({"A": 1.0, "B": 0.8}, error_bound=0.1)
-    assert preserved.status is DecisionRobustnessStatus.DECISION_PRESERVED_BY_MARGIN
-    assert boundary.status is DecisionRobustnessStatus.DECISION_NOT_CERTIFIED_MARGIN_TOO_SMALL
+    preserved = assess_decision_robustness(
+        {"A": 1.0, "B": 0.7}, error_bound=0.1
+    )
+    boundary = assess_decision_robustness(
+        {"A": 1.0, "B": 0.8}, error_bound=0.1
+    )
+    assert (
+        preserved.status
+        is DecisionRobustnessStatus.DECISION_PRESERVED_BY_MARGIN
+    )
+    assert (
+        boundary.status
+        is DecisionRobustnessStatus.DECISION_NOT_CERTIFIED_MARGIN_TOO_SMALL
+    )
 
 
 def test_small_error_can_still_change_the_best_action() -> None:
@@ -146,8 +218,8 @@ def test_small_error_can_still_change_the_best_action() -> None:
 def test_chain_bounds_accumulate_and_authority_can_only_decrease() -> None:
     result = compose_stochastic_transport_bounds(
         (
-            StochasticTransportLink("l1", 0.1, 0.2, 3, ("a",)),
-            StochasticTransportLink("l2", 0.15, 0.1, 1, ("b",)),
+            _link("l1", "t0", "t1", "e0", "e1", 0.1, 0.2, 3, ("a",)),
+            _link("l2", "t1", "t2", "e1", "e2", 0.15, 0.1, 1, ("b",)),
         )
     )
     assert result.transition_error_bound == pytest.approx(0.25)
@@ -157,9 +229,38 @@ def test_chain_bounds_accumulate_and_authority_can_only_decrease() -> None:
     assert result.exact is False
 
 
+def test_disconnected_or_epoch_mismatched_chain_is_rejected() -> None:
+    disconnected = compose_stochastic_transport_bounds(
+        (
+            _link("l1", "t0", "t1", "e0", "e1", 0.1, 0.1, 2),
+            _link("l2", "other", "t2", "e1", "e2", 0.1, 0.1, 2),
+        )
+    )
+    epoch_mismatch = compose_stochastic_transport_bounds(
+        (
+            _link("l1", "t0", "t1", "e0", "e1", 0.1, 0.1, 2),
+            _link("l2", "t1", "t2", "wrong", "e2", 0.1, 0.1, 2),
+        )
+    )
+    assert disconnected.cannot_check is True
+    assert epoch_mismatch.cannot_check is True
+
+
 def test_undeclared_dependence_blocks_chain_composition() -> None:
     result = compose_stochastic_transport_bounds(
-        (StochasticTransportLink("l1", 0.1, 0.1, 1, dependence_declared=False),)
+        (
+            _link(
+                "l1",
+                "t0",
+                "t1",
+                "e0",
+                "e1",
+                0.1,
+                0.1,
+                1,
+                dependence_declared=False,
+            ),
+        )
     )
     assert result.cannot_check is True
     assert result.transition_error_bound is None
