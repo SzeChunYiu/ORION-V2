@@ -1,0 +1,101 @@
+{
+  "schema_id": "orion-v2.comparability-cases.v0",
+  "authority": "NON_AUTHORIZING_RESEARCH_FIXTURES",
+  "cases": [
+    {
+      "case_id": "exact-stable-regime-link",
+      "input": {
+        "semantic_relation": "EQUIVALENT",
+        "mapping_recoverable": true,
+        "anchors_required": true,
+        "anchors_complete": true,
+        "invariance_required": true,
+        "invariance_passed": true,
+        "uncertainty": 0.0,
+        "tolerance": 0.01,
+        "obligation_meaning_preserved": true,
+        "evidence_content_preserved": true
+      },
+      "expected": "COMPARABLE"
+    },
+    {
+      "case_id": "partial-link-with-bounded-uncertainty",
+      "input": {
+        "semantic_relation": "CONTEXTUAL",
+        "mapping_recoverable": true,
+        "anchors_required": true,
+        "anchors_complete": false,
+        "partial_anchor_evidence": true,
+        "invariance_required": true,
+        "invariance_passed": false,
+        "partial_invariance_evidence": true,
+        "uncertainty": 0.05,
+        "tolerance": 0.1,
+        "obligation_meaning_preserved": true,
+        "evidence_content_preserved": true
+      },
+      "expected": "PARTIALLY_COMPARABLE"
+    },
+    {
+      "case_id": "persistent-id-with-construct-drift",
+      "input": {
+        "same_identifier": true,
+        "semantic_relation": "INCOMPATIBLE",
+        "mapping_recoverable": false,
+        "anchors_required": false,
+        "invariance_required": false,
+        "uncertainty": 0.0,
+        "tolerance": 0.1,
+        "obligation_meaning_preserved": false,
+        "evidence_content_preserved": false
+      },
+      "expected": "NONCOMPARABLE"
+    },
+    {
+      "case_id": "evidence-content-survives-but-closure-meaning-changes",
+      "input": {
+        "semantic_relation": "EQUIVALENT",
+        "mapping_recoverable": true,
+        "anchors_required": false,
+        "invariance_required": false,
+        "uncertainty": 0.0,
+        "tolerance": 0.01,
+        "obligation_meaning_preserved": false,
+        "evidence_content_preserved": true
+      },
+      "expected": "CONTENT_COMPARABLE_CLOSURE_REOPEN"
+    },
+    {
+      "case_id": "missing-required-anchor-and-no-partial-evidence",
+      "input": {
+        "semantic_relation": "CONTEXTUAL",
+        "mapping_recoverable": true,
+        "anchors_required": true,
+        "anchors_complete": false,
+        "partial_anchor_evidence": false,
+        "invariance_required": false,
+        "uncertainty": 0.01,
+        "tolerance": 0.1,
+        "obligation_meaning_preserved": true,
+        "evidence_content_preserved": true
+      },
+      "expected": "CANNOT_CHECK"
+    },
+    {
+      "case_id": "uncertainty-exceeds-protected-tolerance",
+      "input": {
+        "semantic_relation": "EQUIVALENT",
+        "mapping_recoverable": true,
+        "anchors_required": true,
+        "anchors_complete": true,
+        "invariance_required": true,
+        "invariance_passed": true,
+        "uncertainty": 0.3,
+        "tolerance": 0.1,
+        "obligation_meaning_preserved": true,
+        "evidence_content_preserved": true
+      },
+      "expected": "NONCOMPARABLE_UNDER_TOLERANCE"
+    }
+  ]
+}
