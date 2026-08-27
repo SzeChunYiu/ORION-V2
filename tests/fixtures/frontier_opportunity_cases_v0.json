@@ -1,0 +1,107 @@
+{
+  "schema_id": "orion-v2.frontier-opportunity-cases.v0",
+  "authority": "NON_AUTHORIZING_RESEARCH_FIXTURES",
+  "budget": {"cost": 1.0, "risk": 1.0},
+  "cases": [
+    {
+      "id": "surprising-without-decisive-probe",
+      "importance": 0.4,
+      "expected_information": 0.0,
+      "unmet_need": 0.3,
+      "novelty": 0.95,
+      "cost": 0.2,
+      "risk": 0.1,
+      "falsifiable": false,
+      "decisive_probe_available": false,
+      "ethically_admissible": true,
+      "authority_state": "PROPOSAL_ALLOWED",
+      "expected_status": "INTERESTINGNESS_WITHOUT_SCIENTIFIC_TEST"
+    },
+    {
+      "id": "important-tractable-opportunity",
+      "importance": 0.9,
+      "expected_information": 0.8,
+      "unmet_need": 0.9,
+      "novelty": 0.5,
+      "cost": 0.5,
+      "risk": 0.2,
+      "falsifiable": true,
+      "decisive_probe_available": true,
+      "ethically_admissible": true,
+      "authority_state": "PROPOSAL_ALLOWED",
+      "expected_status": "OPPORTUNITY_CANDIDATE"
+    },
+    {
+      "id": "novel-but-ethically-blocked",
+      "importance": 0.8,
+      "expected_information": 0.9,
+      "unmet_need": 0.7,
+      "novelty": 1.0,
+      "cost": 0.3,
+      "risk": 0.8,
+      "falsifiable": true,
+      "decisive_probe_available": true,
+      "ethically_admissible": false,
+      "authority_state": "PROPOSAL_ALLOWED",
+      "expected_status": "HARD_CONSTRAINT_BLOCKED"
+    },
+    {
+      "id": "resource-infeasible-opportunity",
+      "importance": 1.0,
+      "expected_information": 1.0,
+      "unmet_need": 1.0,
+      "novelty": 0.8,
+      "cost": 1.2,
+      "risk": 0.2,
+      "falsifiable": true,
+      "decisive_probe_available": true,
+      "ethically_admissible": true,
+      "authority_state": "PROPOSAL_ALLOWED",
+      "expected_status": "RESOURCE_INFEASIBLE"
+    },
+    {
+      "id": "agenda-authority-pending",
+      "importance": 0.7,
+      "expected_information": 0.7,
+      "unmet_need": 0.8,
+      "novelty": 0.6,
+      "cost": 0.4,
+      "risk": 0.2,
+      "falsifiable": true,
+      "decisive_probe_available": true,
+      "ethically_admissible": true,
+      "authority_state": "EXTERNAL_AGENDA_AUTHORITY_REQUIRED",
+      "expected_status": "AGENDA_AUTHORITY_REQUIRED"
+    }
+  ],
+  "pareto_candidates": [
+    {
+      "id": "high-importance-expensive",
+      "importance": 0.95,
+      "expected_information": 0.55,
+      "unmet_need": 0.9,
+      "novelty": 0.4,
+      "cost": 0.8,
+      "risk": 0.2
+    },
+    {
+      "id": "high-information-cheap",
+      "importance": 0.65,
+      "expected_information": 0.95,
+      "unmet_need": 0.7,
+      "novelty": 0.5,
+      "cost": 0.35,
+      "risk": 0.25
+    },
+    {
+      "id": "dominated-middle",
+      "importance": 0.6,
+      "expected_information": 0.5,
+      "unmet_need": 0.6,
+      "novelty": 0.3,
+      "cost": 0.85,
+      "risk": 0.3
+    }
+  ],
+  "expected_pareto_ids": ["high-importance-expensive", "high-information-cheap"]
+}
