@@ -1,0 +1,39 @@
+name: extended-reference-checks
+
+on:
+  pull_request:
+    paths:
+      - "research/reference_models/**"
+      - "tests/fixtures/**"
+      - "tests/reference_models/**"
+      - ".github/workflows/extended-reference-checks.yml"
+  push:
+    branches:
+      - "research/**"
+    paths:
+      - "research/reference_models/**"
+      - "tests/fixtures/**"
+      - "tests/reference_models/**"
+      - ".github/workflows/extended-reference-checks.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  extended-reference-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile all V0 reference models
+        run: python -m py_compile research/reference_models/*.py
+      - name: Run all V0 reference-model tests
+        run: |
+          python -m pip install --disable-pip-version-check pytest
+          python -m pytest -q tests/reference_models
+
+# This workflow checks only transparent V0 research specifications. It grants
+# no scientific, novelty, V2-admission, implementation or V1-freeze authority.
