@@ -1,0 +1,125 @@
+{
+  "schema_id": "orion-v2.known-answer-structural-cases.v0",
+  "authority": "NON_AUTHORIZING_RESEARCH_FIXTURES",
+  "cases": [
+    {
+      "case_id": "local-global-parity-obstruction",
+      "family": "LOCAL_GLOBAL_GLUING",
+      "variables": ["x", "y", "z"],
+      "domains": [0, 1],
+      "constraints": [
+        {"variables": ["x", "y"], "xor": 0},
+        {"variables": ["y", "z"], "xor": 0},
+        {"variables": ["x", "z"], "xor": 1}
+      ],
+      "expected": {
+        "each_constraint_satisfiable": true,
+        "global_satisfiable": false,
+        "relation": "LOCALLY_COMPATIBLE_GLOBALLY_OBSTRUCTED"
+      }
+    },
+    {
+      "case_id": "causal-observational-tie-direction-difference",
+      "family": "CAUSAL_MARKOV_EQUIVALENCE",
+      "nodes": ["a", "b", "c"],
+      "left_edges": [["a", "b"], ["b", "c"]],
+      "right_edges": [["b", "a"], ["b", "c"]],
+      "expected": {
+        "same_skeleton": true,
+        "same_unshielded_colliders": true,
+        "observationally_markov_equivalent": true,
+        "structurally_identical": false,
+        "relation": "OBSERVATIONALLY_INDISTINGUISHABLE"
+      }
+    },
+    {
+      "case_id": "same-vocabulary-different-transition-behaviour",
+      "family": "BEHAVIORAL_EQUIVALENCE_NEGATIVE",
+      "left": {
+        "start": "s0",
+        "states": {
+          "s0": {"label": "open", "transitions": {"advance": ["s1"]}},
+          "s1": {"label": "closed", "transitions": {}}
+        }
+      },
+      "right": {
+        "start": "s0",
+        "states": {
+          "s0": {"label": "open", "transitions": {"advance": ["s0"]}},
+          "s1": {"label": "closed", "transitions": {}}
+        }
+      },
+      "expected": {
+        "bisimilar": false,
+        "relation": "DISTINGUISHED"
+      }
+    },
+    {
+      "case_id": "different-vocabulary-same-relational-role",
+      "family": "ROLE_EQUIVALENCE_POSITIVE",
+      "left_role_profile": {
+        "incoming_role_multiset": ["source", "source"],
+        "outgoing_role_multiset": ["sink"],
+        "control_scope": "local",
+        "decision_kind": "aggregate-and-forward"
+      },
+      "right_role_profile": {
+        "incoming_role_multiset": ["source", "source"],
+        "outgoing_role_multiset": ["sink"],
+        "control_scope": "local",
+        "decision_kind": "aggregate-and-forward"
+      },
+      "surface_labels": ["legislative-whip", "quantum-parity-check"],
+      "expected": {
+        "role_equivalent": true,
+        "semantic_identity": false,
+        "relation": "ROLE_EQUIVALENT"
+      }
+    },
+    {
+      "case_id": "safe-current-quotient-unsafe-future-query",
+      "family": "SAFE_QUOTIENT_CONTEXT_CHANGE",
+      "states": {
+        "u1": {"current_score": 1, "future_revocation": 0},
+        "u2": {"current_score": 1, "future_revocation": 1},
+        "v": {"current_score": 0, "future_revocation": 0}
+      },
+      "partition": [["u1", "u2"], ["v"]],
+      "expected": {
+        "safe_for_targets": {
+          "current_score": true,
+          "future_revocation": false
+        },
+        "current_relation": "SAFE_QUOTIENT",
+        "future_relation": "DISTINGUISHED"
+      }
+    },
+    {
+      "case_id": "minimum-distinguishing-probe",
+      "family": "IDENTIFIABILITY",
+      "hypothesis_signatures": {
+        "h1": {"q1": 0, "q2": 1, "q3": 0},
+        "h2": {"q1": 0, "q2": 1, "q3": 1},
+        "h3": {"q1": 1, "q2": 1, "q3": 1}
+      },
+      "expected": {
+        "minimum_probe_count": 2,
+        "minimum_probe_sets": [["q1", "q3"]]
+      }
+    },
+    {
+      "case_id": "censored-route-not-nonidentifiability",
+      "family": "TERMINAL_SEPARATION",
+      "live_hypotheses": ["h1", "h2"],
+      "registered_probe_classes": ["literature-index-a", "literature-index-b"],
+      "provider_status": {
+        "literature-index-a": "OBSERVED_NO_SEPARATOR",
+        "literature-index-b": "CENSORED"
+      },
+      "expected": {
+        "terminal": "SEARCH_ROUTE_CENSORED",
+        "must_not_return": "STRUCTURALLY_NONIDENTIFIABLE"
+      }
+    }
+  ]
+}
