@@ -1,0 +1,55 @@
+{
+  "schema_version": "orion.v2.v1-parity-resource-matching.v1",
+  "protocol_id": "ORION-V2-V1-PARITY-RESOURCE-MATCHING-WAVE06-V1",
+  "status": "MATCHING_RULE_FROZEN_CASE_BUDGETS_UNBOUND",
+  "subject_commit": "f33d2f45554583f9e612f7a186b7d92e6bc8d01a",
+  "frozen_v1_commit": "8f250fc3e55d6d6a28fb1fb33d9932ef1a8760b5",
+  "principles": [
+    "V1 and V2 receive the same public problem information, source corpus, provider/tool classes, authority permissions, random seed and held-out case identity",
+    "per-case ceilings are frozen before either paired outcome is observed",
+    "provider/tool failures and timeout/resource exhaustion remain execution outcomes and cannot be converted into scientific negatives",
+    "V2 may not receive a larger search, model-call, compute, time or output budget merely because its architecture is more complex",
+    "if an architecture cannot operate within the frozen matched budget, the result is an observed cost/overreach outcome rather than a post-hoc budget increase",
+    "simple controls explicitly measure unnecessary work/escalation in addition to scientific terminal parity",
+    "any unavoidable asymmetric capability is disclosed before run and forces CANNOT_CHECK_MATCHING_OR_CUSTODY unless an externally approved equivalence rule is frozen"
+  ],
+  "required_case_budget_coordinates": [
+    "wall_clock_ceiling_seconds",
+    "provider_call_ceiling_by_capability",
+    "retrieval_query_ceiling",
+    "retrieved_item_or_byte_ceiling",
+    "local_process_timeout_ceiling_seconds",
+    "local_process_output_ceiling_bytes",
+    "max_solver_or_control_iterations",
+    "retry_ceiling_by_failure_class",
+    "context_or_input_byte_ceiling",
+    "random_seed_or_determinism_binding",
+    "network_access_policy",
+    "side_effect_permission_policy"
+  ],
+  "campaign_specific_matching": [
+    {"campaign_id":"PARITY-A","must_match":["framing inputs","decomposition opportunity count","solver/control iteration ceiling"]},
+    {"campaign_id":"PARITY-B","must_match":["route families available","query ceiling","retrieval limit/bytes","source access"]},
+    {"campaign_id":"PARITY-C","must_match":["source passages/documents","model/parser access","input/context ceiling"]},
+    {"campaign_id":"PARITY-D","must_match":["evidence/representation inputs","reconstruction iteration ceiling","memory/state input availability"]},
+    {"campaign_id":"PARITY-E","must_match":["fault evidence","probe/experiment opportunity set","discriminator budget"]},
+    {"campaign_id":"PARITY-F","must_match":["repair/reframe opportunity set","reopen inputs","escalation opportunity ceiling"]},
+    {"campaign_id":"PARITY-G","must_match":["declared search routes","changed-vocabulary challenge routes","saturation pass budget"]},
+    {"campaign_id":"PARITY-H","must_match":["review/benchmark/experiment candidates","evaluator access","authority roots and permissions"]},
+    {"campaign_id":"PARITY-I","must_match":["memory/experience inputs","provider/tool identities","process timeout/output limits","retry policy","mandatory context material"]}
+  ],
+  "case_budget_manifest": {
+    "bound": false,
+    "digest": "TO_BIND_WITH_PROTECTED_CASE_MANIFEST_BEFORE_RUN"
+  },
+  "run_gate": {
+    "allowed_now": false,
+    "reason": "matching rule is frozen but per-case budgets are unbound until protected case identities are frozen"
+  },
+  "authority": {
+    "grants_v1_parity": false,
+    "grants_v2_closeout": false,
+    "grants_scientific_truth": false,
+    "grants_novelty": false
+  }
+}
