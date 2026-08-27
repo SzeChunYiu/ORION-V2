@@ -1,7 +1,25 @@
 """Non-authorizing reference objects for the ORION-V2 research programme."""
 
 from .comparability import Anchor, ComparabilityCertificate, ComparabilityStatus
+from .constitutional import (
+    CollectiveDecisionAssessment,
+    CollectiveDecisionConstitution,
+    CollectiveDecisionStatus,
+    PreferenceProfile,
+    ProposalOwnership,
+    assess_collective_decision,
+    sequential_agenda_winner,
+)
 from .contracts import EvidenceRef, Obligation, ObligationStatus, ProblemContract, Terminal
+from .conversion import (
+    ConstrainedConversionSystem,
+    ConversionAssessment,
+    ConversionStatus,
+    ConversionTransition,
+    MonotoneDirection as ConversionMonotoneDirection,
+    MonotoneSpec,
+    assess_conversion_path,
+)
 from .correspondence import (
     CorrespondenceChainAssessment,
     CorrespondenceLink,
@@ -35,6 +53,31 @@ from .generalization import (
     TheoryTransport,
     assess_shared_envelope,
     assess_theory_transport,
+)
+from .identifiability import (
+    DiagnosticProbe as IdentifiabilityProbe,
+    IdentifiabilityAndProbeSystem,
+    IdentifiabilityAssessment,
+    IdentifiabilityStatus,
+    ProbeKind as IdentifiabilityProbeKind,
+    assess_identifiability,
+    equivalence_classes as identifiability_equivalence_classes,
+    minimum_separating_probe_set as minimum_identifying_probe_set,
+    structural_information_gain_of_repetition,
+)
+from .inheritance import (
+    ComponentContribution,
+    ComponentRevalidationRecord,
+    ComponentSupportFamily,
+    ComponentValidityStatus,
+    InheritanceAssessment,
+    InheritanceRelation as ComponentInheritanceRelation,
+    InheritanceRevalidationReceipt,
+    InheritanceStatus,
+    InheritedCommitment,
+    ReticulateInheritanceSystem,
+    assess_reticulate_inheritance,
+    revalidate_inheritance,
 )
 from .jump import JumpAssessment, JumpLevel, JumpProposal, JumpTrigger, assess_jump
 from .meta_formalization import (
@@ -98,6 +141,20 @@ from .responsibility import (
     ResponsibilityTopology,
     assess_responsibility,
     minimum_diagnostic_probe_set,
+)
+from .responsive_evaluation import (
+    CandidateResponseRecord,
+    ResponsiveEvaluationAssessment,
+    ResponsiveEvaluationStatus,
+    ResponsiveEvaluationSystem,
+    assess_responsive_evaluation,
+)
+from .scale_abstraction import (
+    ScaleAbstractionAssessment,
+    ScaleAbstractionStatus,
+    ScaleContext,
+    ScaleIndexedAbstraction,
+    assess_scale_abstraction,
 )
 from .solver import SolverState, StepReceipt, apply_step, infer_terminal
 from .structural import (
