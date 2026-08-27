@@ -1,0 +1,283 @@
+{
+  "schema_version": "orion.v2.v1-parity-case-registry.v1",
+  "registry_id": "ORION-V2-V1-PARITY-CASES-WAVE06-V1",
+  "status": "CASE_IDENTITIES_FROZEN_EVALUATOR_CUSTODY_OPEN",
+  "selection_stage": "AFTER_V2_SUBJECT_FREEZE_BEFORE_PAIRED_OUTCOME_ACCESS",
+  "v1_commit": "8f250fc3e55d6d6a28fb1fb33d9932ef1a8760b5",
+  "v2_subject_commit": "f33d2f45554583f9e612f7a186b7d92e6bc8d01a",
+  "source_audit": "research/evaluation/V1_PARITY_CASE_SOURCE_AUDIT_WAVE06_V1.json",
+  "paired_outcomes_accessed": false,
+  "rules": [
+    "case identity and expected invariant are frozen before paired outcome access",
+    "public V1-native sources seed cases but do not by themselves constitute protected custody",
+    "V2-authored semantic supplements may expose missing coverage but may not replace a V1-native capability outcome",
+    "each capability cell is scored non-compensatorily inside its campaign even when one case exercises several cells",
+    "negative, blocked and CANNOT_CHECK terminals are admissible",
+    "changing a case after subject-output access creates a new parity run identity"
+  ],
+  "campaigns": [
+    {
+      "campaign_id": "PARITY-A",
+      "cases": [
+        {
+          "case_id": "A1_CRITERION_CONSERVATION",
+          "source_id": "V1-CRITERION-BINDING",
+          "source_anchor": "test_a_change_cannot_be_concealed_by_claiming_sameness + test_pass_under_a_changed_criterion_needs_a_deviation",
+          "capability_ids": ["ORION_SOLVE.v1", "FRAME.v1", "FRAME.QUESTION.v0", "FRAME.CONTEXT.v0", "FRAME.AUTHORITY_TARGET.v0", "FRAME.RESOURCES.v0"],
+          "expected_invariants": ["hidden criterion change is refused", "negative/indeterminate correction is not laundered into a pass"]
+        },
+        {
+          "case_id": "A2_DECOMPOSITION_COUPLING",
+          "source_id": "V1-EXECUTION-COVERAGE",
+          "source_anchor": "test_recursive_decomposition_receives_mechanical_and_fibre_context",
+          "capability_ids": ["FRAME.DECOMPOSE.v0"],
+          "expected_invariants": ["decomposition receives the required scientific/mechanical context", "missing context cannot be silently replaced by a context-free decomposition"]
+        },
+        {
+          "case_id": "A3_DIRECT_BLOCKED_CONTROL",
+          "source_id": "V1-HARNESS-CORE",
+          "source_anchor": "test_canonical_orion_runtime_can_be_replayed_across_pending_host_requests",
+          "capability_ids": ["ORION_SOLVE.v1", "FRAME.v1"],
+          "expected_invariants": ["no verified evidence can terminate BLOCKED/CANNOT_CHECK", "simple control does not require unnecessary escalation"]
+        }
+      ]
+    },
+    {
+      "campaign_id": "PARITY-B",
+      "cases": [
+        {
+          "case_id": "B1_RETRIEVAL_REPLAY_IDENTITY",
+          "source_id": "V1-HARNESS-CORE",
+          "source_anchor": "test_broker_llm_and_web_requests_replay_ingested_results",
+          "capability_ids": ["SEARCH.v1", "SEARCH.ROUTE.v0", "SEARCH.QUERY.v0", "SEARCH.SOURCE.v0", "SEARCH.RETRIEVE.v0"],
+          "expected_invariants": ["retrieval is replayed against exact request identity", "source URI/identity survives retrieval"]
+        },
+        {
+          "case_id": "B2_CENSORED_NOVELTY_CONTROL",
+          "source_id": "V1-DONOR-SEARCH",
+          "source_anchor": "test_cannot_assess_may_not_carry_a_novelty_claim",
+          "capability_ids": ["SEARCH.ROUTE_STOP.v0", "SEARCH.SOURCE.v0"],
+          "expected_invariants": ["CANNOT_ASSESS cannot become novelty", "route incompleteness remains visible"]
+        },
+        {
+          "case_id": "B3_SOURCE_PASSAGE_BINDING",
+          "source_id": "V1-DONOR-SEARCH",
+          "source_anchor": "test_passage_must_occur_in_the_supplied_query_log",
+          "capability_ids": ["SEARCH.QUERY.v0", "SEARCH.RETRIEVE.v0"],
+          "expected_invariants": ["reported evidence passage occurs in the bound log", "naming a query family is not proof it executed"]
+        }
+      ]
+    },
+    {
+      "campaign_id": "PARITY-C",
+      "source_status": "PARTIAL_V1_NATIVE_PLUS_FROZEN_SEMANTIC_SUPPLEMENTS",
+      "cases": [
+        {
+          "case_id": "C1_PROVENANCE_NOT_CORROBORATION",
+          "source_id": "V1-CORROBORATION-CUSTODY",
+          "source_anchor": "test_digest_custody_cannot_claim_scientific_corroboration",
+          "capability_ids": ["ABSORB.v1", "ABSORB.EVIDENCE_BIND.v0", "ABSORB.REFERENCE_IDENTITY.v0"],
+          "expected_invariants": ["digest/provenance integrity is not scientific correctness", "evidence binding cannot be inferred from receipt validity alone"]
+        },
+        {
+          "case_id": "C2_SAME_WORDS_DIFFERENT_NATIVE_STRUCTURE",
+          "source_id": "V2_HOSTILE_SUPPLEMENT_AFTER_SUBJECT_FREEZE",
+          "capability_ids": ["ABSORB.SCIENTIFIC_LANGUAGE.v0", "ABSORB.CLAIM.v0", "ABSORB.CONTEXT.v0", "ABSORB.REPRESENTATION_MAP.v0"],
+          "expected_invariants": ["lexical identity does not force scientific-structure identity", "source projection remains recoverable", "ambiguous mapping is unresolved rather than normalized"]
+        },
+        {
+          "case_id": "C3_DIFFERENT_WORDS_SAME_REGISTERED_STRUCTURE",
+          "source_id": "V2_HOSTILE_SUPPLEMENT_AFTER_SUBJECT_FREEZE",
+          "capability_ids": ["ABSORB.SCIENTIFIC_LANGUAGE.v0", "ABSORB.CLAIM.v0", "ABSORB.REPRESENTATION_MAP.v0"],
+          "expected_invariants": ["different vocabulary may map to the same registered structure when witnessed", "mapping does not grant stronger identity than its context"]
+        }
+      ],
+      "non_substitution_rule": "C2/C3 can falsify V2 absorption but cannot alone establish V1-native PARITY-C non-regression. Independent native semantic adjudication remains required."
+    },
+    {
+      "campaign_id": "PARITY-D",
+      "source_status": "PARTIAL_V1_NATIVE_PLUS_FROZEN_SEMANTIC_SUPPLEMENTS",
+      "cases": [
+        {
+          "case_id": "D1_SEMANTIC_PROJECTION_HISTORY",
+          "source_id": "V1-EPISTEMIC-MECHANICS",
+          "source_anchor": "test_semantically_separated_mechanics_commute_current_state_but_preserve_history_order",
+          "capability_ids": ["RECONSTRUCT.v1", "RECONSTRUCT.ATLAS_UPDATE.v0", "RECONSTRUCT.PORTRAIT.v0"],
+          "expected_invariants": ["equivalent current scientific projection need not erase distinct execution history", "plural histories remain distinguishable"]
+        },
+        {
+          "case_id": "D2_LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION",
+          "source_id": "V2_HOSTILE_SUPPLEMENT_AFTER_SUBJECT_FREEZE",
+          "capability_ids": ["RECONSTRUCT.GLUE.v0", "RECONSTRUCT.PORTRAIT.v0"],
+          "expected_invariants": ["pairwise local compatibility does not imply a globally valid reconstruction", "global obstruction is surfaced rather than forced into one portrait"]
+        },
+        {
+          "case_id": "D3_NEW_REPRESENTATION_OPENS_ROUTE",
+          "source_id": "V2_HOSTILE_SUPPLEMENT_AFTER_SUBJECT_FREEZE",
+          "capability_ids": ["RECONSTRUCT.SEARCH_UNIVERSE.v0", "RECONSTRUCT.ATLAS_UPDATE.v0"],
+          "expected_invariants": ["a valid new representation can expand the search universe", "prior search absence is not retroactively converted into complete coverage"]
+        }
+      ],
+      "non_substitution_rule": "D2/D3 can falsify V2 reconstruction but cannot alone establish V1-native PARITY-D non-regression. Independent native reconstruction/gluing adjudication remains required."
+    },
+    {
+      "campaign_id": "PARITY-E",
+      "cases": [
+        {
+          "case_id": "E1_NONIDENTIFYING_FAILURE_DISCRIMINATOR",
+          "source_id": "V1-NEGATIVE-RECOVERY",
+          "source_anchor": "test_nonidentifying_failure_requires_discriminator_before_repair",
+          "capability_ids": ["DETECT.v1", "DETECT.FAILURE.v0", "DIAGNOSE.v1", "DIAGNOSE.HYPOTHESES.v0", "DIAGNOSE.DISCRIMINATOR.v0", "DIAGNOSE.ATTRIBUTION.v0"],
+          "expected_invariants": ["non-identifying failure triggers a discriminator before repair", "one visible failure is not forced into one responsibility"]
+        },
+        {
+          "case_id": "E2_MISSING_EVIDENCE_NOT_CONTRADICTION",
+          "source_id": "V1-HARNESS-CORE",
+          "source_anchor": "test_canonical_orion_runtime_can_be_replayed_across_pending_host_requests",
+          "capability_ids": ["DETECT.CONTRADICTION.v0", "DETECT.GAP.v0", "DETECT.COVERAGE.v0"],
+          "expected_invariants": ["no verified evidence remains a gap/blocked state rather than contradiction", "coverage uncertainty remains explicit"]
+        },
+        {
+          "case_id": "E3_EXPERIENCE_CONTEXT_FOR_DIAGNOSIS",
+          "source_id": "V1-EXECUTION-COVERAGE",
+          "source_anchor": "test_recursive_decomposition_receives_mechanical_and_fibre_context",
+          "capability_ids": ["DIAGNOSE.EXPERIENCE_RETRIEVAL.v0"],
+          "expected_invariants": ["diagnosis/decomposition may use bound experience/fibre context", "context identity remains visible"]
+        }
+      ]
+    },
+    {
+      "campaign_id": "PARITY-F",
+      "cases": [
+        {
+          "case_id": "F1_ROOT_INCLUSIVE_SELECTIVE_REOPEN",
+          "source_id": "V1-EPISTEMIC-MECHANICS",
+          "source_anchor": "test_root_inclusive_reopen_reopens_changed_certified_root_and_descendant + test_external_exact_change_certificate_can_preserve_unchanged_descendant",
+          "capability_ids": ["REOPEN.v1", "REOPEN.DEPENDENCY.v0", "REOPEN.CLOSURE.v0", "REOPEN.FIBRE.v0"],
+          "expected_invariants": ["changed certified root reopens", "unchanged descendant may remain certified only with valid external preservation", "self-preservation of changed root is refused"]
+        },
+        {
+          "case_id": "F2_ALTERNATIVE_SUPPORT_SURVIVES",
+          "source_id": "V1-EPISTEMIC-AUTHORITY",
+          "source_anchor": "test_revocation_preserves_certificate_when_independent_complete_alternate_support_survives",
+          "capability_ids": ["REOPEN.DEPENDENCY.v0", "REOPEN.CLOSURE.v0"],
+          "expected_invariants": ["revoking one premise does not invalidate a claim with an independent complete support family"]
+        },
+        {
+          "case_id": "F3_LOWER_LEVEL_SUFFICIENCY",
+          "source_id": "V1-NEGATIVE-RECOVERY",
+          "source_anchor": "test_exact_sufficiency_control_blocks_unnecessary_escalation",
+          "capability_ids": ["REFRAME.v1", "REFRAME.REPRESENTATION.v0", "REFRAME.DECOMPOSITION.v0", "REFRAME.SEARCH_POLICY.v0", "REFRAME.METHOD.v0", "REFRAME.OBJECTIVE.v0"],
+          "expected_invariants": ["exact lower-level sufficiency blocks unnecessary reframe/escalation", "successful local repair is not evidence for higher-level change"]
+        }
+      ]
+    },
+    {
+      "campaign_id": "PARITY-G",
+      "cases": [
+        {
+          "case_id": "G1_BOUNDED_MULTIAXIS_SATURATION",
+          "source_id": "V1-MECHANICS-BRIDGE",
+          "source_anchor": "test_saturation_surface_exposes_runtime_growth_and_multi_axis_development_flatness",
+          "capability_ids": ["SATURATE_BOUNDED.v3", "SATURATE.KNOWLEDGE_FLATNESS.v0", "SATURATE.FORMULATION_FLATNESS.v0", "SATURATE.ROUTE_COVERAGE.v0"],
+          "expected_invariants": ["saturation is bounded and multi-axis", "knowledge flatness does not imply universal completeness"]
+        },
+        {
+          "case_id": "G2_OMISSION_CHALLENGE_AND_STOP",
+          "source_id": "V1-MECHANICS-BRIDGE",
+          "source_anchor": "test_catalog_exposes_atomization_fibre_and_saturation_cells",
+          "capability_ids": ["SATURATE.OMISSION_CHALLENGE.v0", "SATURATE.STOP.v0"],
+          "expected_invariants": ["omission challenge remains a distinct required capability", "stop is distinct from local route stopping"]
+        },
+        {
+          "case_id": "G3_BOUNDED_RESULT_NO_SCOPE_LAUNDERING",
+          "source_id": "V1-SATURATION-DEFECT-NEGATIVE",
+          "source_anchor": "test_nonquantum_m2_saved_result_preserves_authority_boundary",
+          "capability_ids": ["SATURATE_BOUNDED.v3", "SATURATE.STOP.v0"],
+          "expected_invariants": ["bounded positive result does not imply wider theorem/prospective/novelty authority"]
+        }
+      ]
+    },
+    {
+      "campaign_id": "PARITY-H",
+      "cases": [
+        {
+          "case_id": "H1_TYPED_AUTHORITY_NONCOMPENSATION",
+          "source_id": "V1-EPISTEMIC-AUTHORITY",
+          "source_anchor": "test_generic_pass_confidence_and_utility_do_not_authorize_without_typed_support + test_established_blocker_is_denied_and_positive_evidence_cannot_compensate",
+          "capability_ids": ["CROSS.AUTHORITY.v0"],
+          "expected_invariants": ["confidence/utility cannot replace typed authority", "established blocker remains DENIED"]
+        },
+        {
+          "case_id": "H2_EXTERNAL_REVIEW_NONAUTHORIZING",
+          "source_id": "V1-EXECUTION-COVERAGE",
+          "source_anchor": "test_review_and_benchmark_are_replayable_non_authorizing_capabilities + test_external_governance_rejects_authority_escalation",
+          "capability_ids": ["CROSS.REVIEW.v0", "CROSS.BENCHMARK.v0"],
+          "expected_invariants": ["review/benchmark are replayable evidence processes", "authority-bearing external output is rejected"]
+        },
+        {
+          "case_id": "H3_CRITERION_CHURN",
+          "source_id": "V1-CRITERION-BINDING",
+          "source_anchor": "test_the_qg24_case_a_loosened_rule_must_be_shown_to_still_reject",
+          "capability_ids": ["CROSS.BENCHMARK.v0"],
+          "expected_invariants": ["changed easier criterion cannot yield an unqualified pass without counterfactual/rejection evidence"]
+        },
+        {
+          "case_id": "H4_EXPERIMENT_SELECTION_AUTHORITY",
+          "source_id": "V1-EXECUTION-COVERAGE",
+          "source_anchor": "request_benchmark/request_independent_review governance surface plus frozen campaign protocol hostile control",
+          "capability_ids": ["CROSS.EXPERIMENT_SELECTION.v0"],
+          "expected_invariants": ["experiment selection may choose an information action but cannot manufacture scientific authority", "unexercised selection arms are not reported as safe"]
+        }
+      ]
+    },
+    {
+      "campaign_id": "PARITY-I",
+      "cases": [
+        {
+          "case_id": "I1_EXECUTION_FAILURE_NOT_SCIENCE",
+          "source_id": "V1-HARNESS-CORE",
+          "source_anchor": "test_host_execution_failure_is_not_scientific_failure_evidence",
+          "capability_ids": ["CROSS.EXECUTION.v0"],
+          "expected_invariants": ["host failure is HOST_CAPABILITY_FAILED/EXECUTION_FAILED rather than scientific refutation", "failed execution does not create a scientific run receipt"]
+        },
+        {
+          "case_id": "I2_MANDATORY_CONTEXT_BUDGET",
+          "source_id": "V1-EXECUTION-COVERAGE",
+          "source_anchor": "test_context_policy_never_drops_mandatory_material",
+          "capability_ids": ["CROSS.CONTEXT_POLICY.v0"],
+          "expected_invariants": ["mandatory context is never silently dropped to fit budget", "over-budget mandatory context fails closed"]
+        },
+        {
+          "case_id": "I3_PROCESS_AND_PAYLOAD_SAFETY",
+          "source_id": "V1-LOCAL-EXECUTION-LIMITS",
+          "source_anchor": "test_descendant_holding_output_pipe_cannot_hang_completed_process + test_local_capability_rejects_unsupported_payload_keys + test_payload_vocabulary_matches_what_the_executor_reads",
+          "capability_ids": ["CROSS.EXECUTION.v0"],
+          "expected_invariants": ["completed process cannot hang on descendant-held output pipe", "unsupported request semantics fail closed", "declared execution vocabulary matches consumed fields"]
+        },
+        {
+          "case_id": "I4_MEMORY_EXPERIENCE_RETENTION",
+          "source_id": "V1-NEGATIVE-RECOVERY",
+          "source_anchor": "candidate payload / learned atomic-history / recursive composite recovery controls",
+          "capability_ids": ["CROSS.MEMORY.v0", "CROSS.EXPERIENCE.v0"],
+          "expected_invariants": ["negative experience remains available to future control", "successful successor does not erase failure history", "hidden gold is excluded from candidate-visible memory"]
+        }
+      ]
+    }
+  ],
+  "coverage_assertions": {
+    "campaign_count": 9,
+    "frozen_v1_capability_count": 59,
+    "all_protocol_capability_ids_referenced": true,
+    "semantic_source_gaps_retained": ["PARITY-C", "PARITY-D"],
+    "protected_independent_evaluator_required": true
+  },
+  "next_gate": "BIND_EVALUATOR_REGISTRY_AND_SCORING_ADJUDICATION",
+  "authority": {
+    "grants_protected_custody": false,
+    "grants_v1_parity": false,
+    "grants_v2_closeout": false,
+    "grants_scientific_truth": false,
+    "grants_novelty": false
+  }
+}
