@@ -1,0 +1,44 @@
+name: research-spec-checks
+
+on:
+  pull_request:
+    paths:
+      - "research/reference_models/**"
+      - "research/machine-specs/**"
+      - "tests/fixtures/**"
+      - "tests/reference_models/**"
+      - ".github/workflows/research-spec-checks.yml"
+  push:
+    branches:
+      - "research/**"
+    paths:
+      - "research/reference_models/**"
+      - "research/machine-specs/**"
+      - "tests/fixtures/**"
+      - "tests/reference_models/**"
+      - ".github/workflows/research-spec-checks.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  reference-known-answer-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile research reference model
+        run: python -m py_compile research/reference_models/structural_relations_v0.py research/reference_models/run_known_answer_checks_v0.py
+      - name: Run standard-library known-answer checks
+        run: python research/reference_models/run_known_answer_checks_v0.py
+      - name: Run pytest reference checks
+        run: |
+          python -m pip install --disable-pip-version-check pytest
+          python -m pytest -q tests/reference_models/test_structural_relations_v0.py
+
+# Passing this workflow establishes only local consistency of the V0 research
+# specifications. It grants no scientific, novelty, V2-admission or V1-freeze
+# authority.
