@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://orion-v2.invalid/schemas/generalization-compiler-v0.json",
+  "title": "ORION-V2 Generalization Compiler Research Schema V0",
+  "type": "object",
+  "required": ["native_theory", "decision_registry", "compiled_envelope", "adaptation_contract", "authority"],
+  "properties": {
+    "native_theory": {
+      "type": "object",
+      "required": ["theory_id", "domain_id", "states", "actions", "transitions", "judgments", "assumptions", "epoch", "source_ids"],
+      "properties": {
+        "theory_id": {"type": "string", "minLength": 1},
+        "domain_id": {"type": "string", "minLength": 1},
+        "states": {"type": "array", "minItems": 1, "uniqueItems": true},
+        "actions": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "transitions": {"type": "array", "items": {"type": "array", "prefixItems": [{}, {"type": "string"}, {}], "minItems": 3, "maxItems": 3}},
+        "judgments": {"type": "object", "minProperties": 1},
+        "assumptions": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "epoch": {"type": "string", "minLength": 1},
+        "source_ids": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+      }
+    },
+    "decision_registry": {
+      "type": "object",
+      "required": ["registered_judgment_ids", "registered_action_ids", "future_query_challenge_ids"],
+      "properties": {
+        "registered_judgment_ids": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "registered_action_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "future_query_challenge_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+      }
+    },
+    "compiled_envelope": {
+      "type": "object",
+      "required": ["envelope_id", "blocks", "status", "preserves_transitions", "loss_disclosures"],
+      "properties": {
+        "envelope_id": {"type": "string", "minLength": 1},
+        "blocks": {"type": "array", "items": {"type": "array", "minItems": 1, "uniqueItems": true}},
+        "status": {"enum": ["COMPILED_EXACT", "COMPILED_DECISION_RELATIVE", "CANNOT_CHECK_MISSING_JUDGMENT", "CANNOT_CHECK_EMPTY_REGISTRY"]},
+        "preserves_transitions": {"type": "boolean"},
+        "loss_disclosures": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "adaptation_contract": {
+      "type": "object",
+      "required": ["contract_id", "source_roles", "target_role_map", "required_calibration_ids", "bound_calibration_ids", "target_native_test_ids", "authority_binding_id", "source_epoch", "target_epoch", "status"],
+      "properties": {
+        "contract_id": {"type": "string", "minLength": 1},
+        "source_roles": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "target_role_map": {"type": "object"},
+        "required_calibration_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "bound_calibration_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "target_native_test_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "authority_binding_id": {"type": "string"},
+        "source_epoch": {"type": "string"},
+        "target_epoch": {"type": "string"},
+        "status": {"enum": ["READY_FOR_TARGET_NATIVE_VALIDATION", "BLOCKED_ROLE_MAP", "BLOCKED_CALIBRATION", "BLOCKED_TARGET_TESTS", "BLOCKED_AUTHORITY", "BLOCKED_EPOCH"]}
+      }
+    },
+    "authority": {
+      "type": "object",
+      "required": ["grants_scientific_truth", "grants_novelty", "grants_v2_admission", "grants_target_adoption"],
+      "properties": {
+        "grants_scientific_truth": {"const": false},
+        "grants_novelty": {"const": false},
+        "grants_v2_admission": {"const": false},
+        "grants_target_adoption": {"const": false}
+      }
+    }
+  }
+}
