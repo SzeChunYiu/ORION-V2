@@ -1,0 +1,46 @@
+{
+  "schema_id": "orion-v2.performative-evaluation-cases.v0",
+  "authority": "NON_AUTHORIZING_RESEARCH_FIXTURES",
+  "cases": [
+    {
+      "case_id": "static-winner-reverses-after-response",
+      "baseline_distribution": [0.8, 0.2],
+      "policies": {
+        "A": {
+          "losses": [0.0, 1.0],
+          "induced_distribution": [0.2, 0.8]
+        },
+        "B": {
+          "losses": [0.3, 0.3],
+          "induced_distribution": [0.8, 0.2]
+        }
+      },
+      "expected": {
+        "static_winner": "A",
+        "performative_winner": "B",
+        "transportable_A_at_0_1": false,
+        "transportable_B_at_0_1": true
+      }
+    },
+    {
+      "case_id": "stable-negative-control",
+      "baseline_distribution": [0.6, 0.4],
+      "policies": {
+        "A": {
+          "losses": [0.2, 0.8],
+          "induced_distribution": [0.6, 0.4]
+        },
+        "B": {
+          "losses": [0.5, 0.5],
+          "induced_distribution": [0.6, 0.4]
+        }
+      },
+      "expected": {
+        "static_winner": "A",
+        "performative_winner": "A",
+        "transportable_A_at_0_01": true,
+        "transportable_B_at_0_01": true
+      }
+    }
+  ]
+}
