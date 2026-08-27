@@ -1,0 +1,135 @@
+{
+  "schema_id": "orion-v2.solver-lifecycle-cases.v0",
+  "authority": "NON_AUTHORIZING_RESEARCH_FIXTURES",
+  "cases": [
+    {
+      "case_id": "direct-method-discharges-all-obligations",
+      "state": {
+        "all_mandatory_obligations_discharged": true,
+        "support_bound": true,
+        "authority_state": "AUTHORIZED",
+        "contradiction": false,
+        "open_material_routes": false
+      },
+      "expected": {"action": "STOP", "terminal": "JUSTIFIED_SOLUTION"}
+    },
+    {
+      "case_id": "ranking-is-not-responsible-when-candidate-generation-total-fails",
+      "state": {
+        "all_mandatory_obligations_discharged": false,
+        "serial_pipeline": true,
+        "candidate_generation_total_failure": true,
+        "ranking_tested": false,
+        "local_repair_available": true,
+        "coverage_censored": false
+      },
+      "expected": {"action": "REPAIR", "responsibility": "SERIAL_UPSTREAM"}
+    },
+    {
+      "case_id": "censored-provider-cannot-support-nonidentifiability",
+      "state": {
+        "all_mandatory_obligations_discharged": false,
+        "coverage_censored": true,
+        "all_registered_probes_observed": false,
+        "separator_found": false
+      },
+      "expected": {"action": "STOP", "terminal": "SEARCH_ROUTE_CENSORED"}
+    },
+    {
+      "case_id": "same-information-family-exhausted-with-no-separator",
+      "state": {
+        "all_mandatory_obligations_discharged": false,
+        "coverage_censored": false,
+        "all_registered_probes_observed": true,
+        "same_information_family_exhausted": true,
+        "separator_found": false,
+        "live_hypothesis_count": 2
+      },
+      "expected": {"action": "STOP", "terminal": "STRUCTURALLY_NONIDENTIFIABLE"}
+    },
+    {
+      "case_id": "observational-tie-with-available-intervention",
+      "state": {
+        "all_mandatory_obligations_discharged": false,
+        "live_hypothesis_count": 2,
+        "observationally_tied": true,
+        "discriminating_intervention_available": true,
+        "resource_remaining": 1
+      },
+      "expected": {"action": "DISCRIMINATE"}
+    },
+    {
+      "case_id": "model-expansion-before-representation-jump",
+      "state": {
+        "all_mandatory_obligations_discharged": false,
+        "incumbent_model_inadequacy_witnessed": true,
+        "model_expansion_available": true,
+        "representation_insufficiency_witnessed": false,
+        "resource_remaining": 1
+      },
+      "expected": {"action": "REMODEL_REABSTRACT", "jump_level": 2}
+    },
+    {
+      "case_id": "representation-transition-after-model-expansion-fails",
+      "state": {
+        "all_mandatory_obligations_discharged": false,
+        "incumbent_model_inadequacy_witnessed": true,
+        "model_expansion_tested_and_insufficient": true,
+        "representation_insufficiency_witnessed": true,
+        "resource_remaining": 1
+      },
+      "expected": {"action": "ESCALATE", "jump_level": 3}
+    },
+    {
+      "case_id": "local-repair-beats-framework-escalation",
+      "state": {
+        "all_mandatory_obligations_discharged": false,
+        "local_repair_available": true,
+        "local_repair_discriminator_passed": true,
+        "framework_failure_hypothesis": true,
+        "resource_remaining": 1
+      },
+      "expected": {"action": "REPAIR", "jump_level": 1}
+    },
+    {
+      "case_id": "correct-content-without-adoption-authority",
+      "state": {
+        "all_mandatory_obligations_discharged": true,
+        "support_bound": true,
+        "authority_state": "PENDING_EXTERNAL",
+        "contradiction": false
+      },
+      "expected": {"action": "ASK_EXTERNAL", "terminal": "AUTHORITY_REQUIRED"}
+    },
+    {
+      "case_id": "local-solutions-global-obstruction",
+      "state": {
+        "all_mandatory_obligations_discharged": false,
+        "subproblems_locally_solved": true,
+        "global_gluing_obstruction": true,
+        "contradiction": true
+      },
+      "expected": {"action": "STOP", "terminal": "CONTRADICTION_OR_OBSTRUCTION"}
+    },
+    {
+      "case_id": "work-remains-but-budget-is-exhausted",
+      "state": {
+        "all_mandatory_obligations_discharged": false,
+        "admissible_work_remains": true,
+        "resource_remaining": 0,
+        "coverage_censored": false
+      },
+      "expected": {"action": "STOP", "terminal": "RESOURCE_BOUND"}
+    },
+    {
+      "case_id": "plural-justified-alternatives",
+      "state": {
+        "all_mandatory_obligations_discharged": false,
+        "multiple_justified_alternatives": true,
+        "further_separator_available": false,
+        "coverage_censored": false
+      },
+      "expected": {"action": "STOP", "terminal": "MULTIPLE_JUSTIFIED_ALTERNATIVES"}
+    }
+  ]
+}
