@@ -1,63 +1,112 @@
 # ORION-V2
 
-**Status:** pre-implementation research programme.
+**Status:** Wave-06 convergence and protected-closeout programme.
 
-**Hard gate:** ORION-V2 may perform literature research, donor reconstruction, theory reduction, schema design, protocol design, issue planning, known-answer fixture design and paper planning before ORION V1 is formally frozen. It must not begin V2 implementation, mutate V1, or run outcome-generating V2 experiments until an exact V1 freeze identity and handoff receipt are bound.
+**Preferred field hypothesis:** **Machine Epistemics — the control science of AI-driven discovery.**
 
-ORION-V2 is not defined as “ORION V1 plus features.” It will be re-derived from:
+ORION-V2 is an experimental framework and research programme for re-deriving scientific problem solving from frozen ORION V1 evidence plus the strongest relevant structures across human knowledge. It is not “ORION V1 plus features,” and Machine Epistemics is not defined as ORION-V2 itself.
 
-1. the frozen capabilities, results, negative results and `CANNOT_CHECK` history of ORION V1;
-2. systematic all-domain reconstruction of the strongest relevant human knowledge;
-3. explicit reduction against native donors and strongest donor-composed parents;
-4. quantitative or formal models that machines can execute and falsify;
-5. protected fresh evaluation under independent scientific authority.
+## Current constitutional state
 
-## Core research questions
-
-- Which knowledge structures from remote disciplines occupy the same structural role under a declared context, probe, decision or reachability class?
-- Which V1 atoms, functions and workflows survive all-domain re-derivation, and which should be split, merged, replaced or removed?
-- What is the minimal complete end-to-end scientific problem-solving architecture?
-- How can a solver identify when ordinary search is sufficient and when a witnessed change of model, representation, method, workflow or framework is required?
-- How can frontier “Jump” capability be quantitative, falsifiable, provenance-preserving and externally governed rather than a vague creativity operator?
-- Which genuinely new publications survive the existing ORION papers and the strongest external parents?
-
-## Repository shape
-
-ORION-V2 follows the major programme structure of ORION:
+The exact ORION V1 handoff is now bound and non-retroactive for local reference implementation and prospective protocols. The contracted V2 parity subject is separately frozen at:
 
 ```text
-.github/       issue and contribution templates
-
-development/   bounded implementation packets after the V1 freeze gate
-
-docs/          public programme and architecture documentation
-
-examples/      replayable examples after protocols are frozen
-
-packages/      independently versioned packages after admission
-
-papers/        V2-only publication candidates and evidence packages
-
-provenance/    source, donor, mapping and decision identities
-
-research/      domain studies, theory, solver, Jump and evaluation programmes
-
-scripts/       deterministic research and publication tooling after admission
-
-src/           admitted implementation only after V1 freeze
-
-tests/         known-answer, hostile and protected test specifications
+f33d2f45554583f9e612f7a186b7d92e6bc8d01a
 ```
 
-Empty directories are not used; each subtree begins only when it contains a real research or governance artifact.
+Later convergence commits contain governance, research, paper, baseline and evaluation artifacts and do not silently mutate that parity subject.
 
-## Constitutional rule
+Current programme terminal:
+
+```text
+CONVERGENCE_ACTIVE
+```
+
+not `V2_CLOSED`.
+
+The exact remaining closure frontier is maintained in:
+
+- `research/closure/CLOSEOUT_LEDGER_WAVE06_V1.json`
+- `research/closure/ALL_FRONTIERS_CLOSEOUT_MATRIX_V1.md`
+
+## What has converged
+
+- one active convergence PR (#36) replaces the historical stacked research PR surface;
+- the paper programme is contracted to four core papers (P-A–P-D) plus contingent P-E;
+- the candidate kernel is contracted to seven stable interface families K0–K6 with zero unresolved duplicate-owner groups;
+- all 59 frozen V1 capability cells are assigned to non-compensatory parity campaigns;
+- parity case identities, deterministic scoring and matched offline budgets are frozen before paired outcome access;
+- current parent-comparator versions, roles and thin-adapter authority boundaries are frozen, while strongest configuration/fit binding remains open;
+- two post-contraction changed-vocabulary passes satisfy the local bounded-saturation requirement;
+- historical defects remain append-only and no currently known critical local correctness/integrity/authority defect is open;
+- V0 specialist paper drafts exist, with a Tier-1 target and Tier-2 fallback strategy;
+- Machine Epistemics has a naming/demarcation audit, provisional field synthesis and flagship Perspective draft.
+
+## Current first blocker
+
+Overall closeout is still blocked on protected V1 parity.
+
+The parity preflight currently stops at:
+
+```text
+BLOCKED_EVALUATOR_CUSTODY
+```
+
+Issue #37 owns the independent semantic reviewer binding required for PARITY-C absorption semantics and PARITY-D reconstruction/gluing. After that, the strongest parent-composed configurations/adapters must be frozen from parent-only fit tests before paired V1/V2 outcomes may be opened.
+
+## Machine Epistemics
+
+Preferred working definition:
+
+> Machine Epistemics studies and engineers how AI and hybrid human–machine research systems acquire, transform, compare, test, preserve, revise, reopen, and close scientific commitments under explicit evidence, uncertainty, provenance, resource, and authority constraints.
+
+Canonical artifacts:
+
+- `research/field/MACHINE_EPISTEMICS_NAMING_AND_DEMARCATION_V1.md`
+- `research/field/MACHINE_EPISTEMICS_FIELD_SYNTHESIS_V1.md`
+- `papers/drafts/FLAGSHIP_MACHINE_EPISTEMICS_MANUSCRIPT_V1.md`
+
+The earlier **Computational Scientific Control (CSC)** documents are retained as historical derivation/provenance. Machine Epistemics is a **field hypothesis worth protected testing**, not a self-declared discipline.
+
+## Publication programme
+
+The programme shape is frozen to:
+
+- **P-A:** structural donor discovery, reduction and conservative generalization;
+- **P-B:** context-relative relations, comparability and transport;
+- **P-C:** obligation-driven scientific problem solving with witnessed minimum escalation;
+- **P-D:** dependence-aware evidence and dynamic/performative evaluation;
+- **P-E:** frontier opportunity discovery, contingent and otherwise merged into P-C.
+
+Submission strategy:
+
+- `papers/PUBLICATION_TARGETS_AND_FALLBACKS_V1.md`
+
+Every surviving paper is developed first to a Tier-1 journal standard and has a predeclared Tier-2 fallback. Venue fallback may change framing/length but cannot change frozen evidence, baselines, negative outcomes or scientific claims to evade criticism.
+
+The Machine Epistemics flagship is a synthesis/Perspective, not a sixth primary-results paper.
+
+## Candidate kernel
+
+The stable interface families are currently:
+
+1. **K0** — contracts, identities, obligations and typed terminal boundary;
+2. **K1** — plural scientific state;
+3. **K2** — context-relative relations and cross-epoch/chain transport;
+4. **K3** — evidence dependence, provenance and selective revalidation;
+5. **K4** — admissible action selection and plural responsibility/diagnosis;
+6. **K5** — frontier opportunity and witnessed minimum escalation;
+7. **K6** — evaluation, parity, saturation and authority boundaries.
+
+Parent-owned algorithms remain behind adapters/reference modules wherever possible. The final kernel cannot freeze until protected V1 parity/non-regression earns a terminal.
+
+## Constitutional reduction rule
 
 ```text
 V2 = Reduce(
     candidate scientific obligations
     | frozen V1 evidence
-    + all-domain donor saturation
+    + all-domain donor reconstruction
     + strongest donor products
     + protected quantitative evaluation
 )
@@ -69,14 +118,19 @@ not
 V2 = V1 + a feature list
 ```
 
-## Initial research lanes
+## No-new-wave rule
 
-- all-human-knowledge structural donor atlas;
-- context-relative structural knowledge space;
-- end-to-end obligation-driven scientific solver;
-- witnessed frontier Jump and multi-level escalation;
-- machine-executable donor reduction and remote-neighbour discovery;
-- V1 capability-parity and non-regression programme;
-- new V2 publication programme.
+No new research wave is opened after Wave 06 unless a named closeout blocker cannot be discharged inside convergence. New literature that only improves parent ownership is absorbed without creating a new kernel component or paper.
 
-All claims remain prospective and non-authorizing until their exact protocols and evidence close.
+## Authority boundary
+
+Local tests, code, manuscripts, CI, provenance and closeout receipts can establish integrity and bounded internal results. They cannot self-grant:
+
+- scientific truth;
+- novelty;
+- final publication identity;
+- journal acceptance;
+- Machine Epistemics field recognition;
+- external adoption.
+
+Those remain external scientific decisions.
