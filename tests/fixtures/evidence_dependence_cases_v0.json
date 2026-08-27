@@ -1,0 +1,57 @@
+{
+  "schema_id": "orion-v2.evidence-dependence-cases.v0",
+  "authority": "NON_AUTHORIZING_RESEARCH_FIXTURES",
+  "cases": [
+    {
+      "case_id": "three-independent-measurements",
+      "evidence": [
+        {"id": "e1", "dependence_ids": []},
+        {"id": "e2", "dependence_ids": []},
+        {"id": "e3", "dependence_ids": []}
+      ],
+      "expected_components": 3
+    },
+    {
+      "case_id": "three-copied-sources-one-lineage",
+      "evidence": [
+        {"id": "e1", "dependence_ids": ["lineage:L"]},
+        {"id": "e2", "dependence_ids": ["lineage:L"]},
+        {"id": "e3", "dependence_ids": ["lineage:L"]}
+      ],
+      "expected_components": 1
+    },
+    {
+      "case_id": "validators-share-model-and-data",
+      "evidence": [
+        {"id": "v1", "dependence_ids": ["model:M", "data:D"]},
+        {"id": "v2", "dependence_ids": ["model:M", "data:D"]},
+        {"id": "v3", "dependence_ids": ["model:M", "data:D"]}
+      ],
+      "expected_components": 1
+    },
+    {
+      "case_id": "two-independent-clusters",
+      "evidence": [
+        {"id": "a1", "dependence_ids": ["lineage:A"]},
+        {"id": "a2", "dependence_ids": ["lineage:A"]},
+        {"id": "b1", "dependence_ids": ["lineage:B"]},
+        {"id": "b2", "dependence_ids": ["lineage:B"]}
+      ],
+      "expected_components": 2
+    },
+    {
+      "case_id": "bridge-dependence-merges-two-apparent-clusters",
+      "evidence": [
+        {"id": "a", "dependence_ids": ["source:A"]},
+        {"id": "bridge", "dependence_ids": ["source:A", "instrument:I"]},
+        {"id": "c", "dependence_ids": ["instrument:I"]}
+      ],
+      "expected_components": 1
+    }
+  ],
+  "equicorrelation_cases": [
+    {"case_id": "rho-zero", "n": 3, "rho": 0.0, "expected_effective_n": 3.0},
+    {"case_id": "rho-half", "n": 3, "rho": 0.5, "expected_effective_n": 1.5},
+    {"case_id": "rho-one", "n": 3, "rho": 1.0, "expected_effective_n": 1.0}
+  ]
+}
