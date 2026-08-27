@@ -1,0 +1,56 @@
+{
+  "schema_version": "orion.v2.v1-parity-subject-binding.v1",
+  "binding_id": "ORION-V2-V1-PARITY-SUBJECT-WAVE06-V1",
+  "protocol": {
+    "protocol_id": "ORION-V2-V1-PARITY-WAVE06-V1",
+    "path": "research/evaluation/V1_PARITY_CAMPAIGN_PROTOCOL_WAVE06_V1.json",
+    "blob_sha": "e0c250e1ca8d205eca98297f8054b5207f47a1ec",
+    "design_status": "DESIGN_FROZEN_V2_SUBJECT_UNBOUND"
+  },
+  "frozen_v1": {
+    "repository": "SzeChunYiu/ORION",
+    "freeze_commit": "8f250fc3e55d6d6a28fb1fb33d9932ef1a8760b5",
+    "capability_count": 59
+  },
+  "v2_subject": {
+    "repository": "SzeChunYiu/ORION-V2",
+    "commit": "f33d2f45554583f9e612f7a186b7d92e6bc8d01a",
+    "kernel_api_version": "wave06-candidate-v2",
+    "kernel_facade_blob_sha": "1fde5735eba67dc19cd9c94a2962f55811269e98",
+    "kernel_disposition_blob_sha": "0a6f969ec1f99181b3535116765e49fb60dd3a94",
+    "package_root_blob_sha": "bd011d026d5a7b353f32fba2dd484504322522ef",
+    "rule": "All V2 parity execution must checkout this exact commit. Any stable-kernel change creates a new subject-binding identity."
+  },
+  "pre_binding_ci": [
+    {"check_name":"reference-tests","check_run_id":98549977187,"conclusion":"success"},
+    {"check_name":"unified-reference","check_run_id":98549977143,"conclusion":"success"},
+    {"check_name":"stochastic-reference","check_run_id":98549977076,"conclusion":"success"},
+    {"check_name":"native-recovery","check_run_id":98549977054,"conclusion":"success"}
+  ],
+  "custody": {
+    "outcome_access_before_binding": false,
+    "parity_outcomes_observed": false,
+    "binding_mutable": false,
+    "protected_case_manifests_bound": false,
+    "protected_evaluator_manifests_bound": false,
+    "matched_resource_budgets_bound": false,
+    "strongest_parent_baselines_frozen": false
+  },
+  "run_gate": {
+    "allowed_now": false,
+    "blocked_on": [
+      "bind per-campaign protected case manifests",
+      "bind protected evaluator/custody manifests",
+      "freeze strongest parent-composed baselines",
+      "freeze matched resource/time/provider/tool budgets"
+    ]
+  },
+  "terminal": "PARITY_SUBJECT_BOUND_RUN_NOT_AUTHORIZED",
+  "authority": {
+    "grants_v2_closeout": false,
+    "grants_architecture_authority": false,
+    "grants_scientific_truth": false,
+    "grants_novelty": false,
+    "grants_publication_authority": false
+  }
+}
