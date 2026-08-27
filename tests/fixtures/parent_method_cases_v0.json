@@ -1,0 +1,75 @@
+{
+  "schema_id": "orion-v2.parent-method-cases.v0",
+  "authority": "NON_AUTHORIZING_PARENT_REFERENCE_FIXTURES",
+  "blackwell": {
+    "states": ["theta0", "theta1"],
+    "exact_experiment": [[1.0, 0.0], [0.0, 1.0]],
+    "noisy_experiment": [[0.8, 0.2], [0.2, 0.8]],
+    "garbling_kernel": [[0.8, 0.2], [0.2, 0.8]],
+    "bad_kernel": [[1.0, 0.0], [1.0, 0.0]],
+    "prior": [0.5, 0.5],
+    "utility": [[1.0, 0.0], [0.0, 1.0]],
+    "expected": {
+      "exact_dominates_noisy_with_witness": true,
+      "bad_witness_rejected": true,
+      "exact_optimal_value": 1.0,
+      "noisy_optimal_value": 0.8
+    }
+  },
+  "rough_set": {
+    "objects": ["a", "b", "c", "d"],
+    "attributes": {
+      "a": {"q1": 0, "q2": 0},
+      "b": {"q1": 0, "q2": 1},
+      "c": {"q1": 1, "q2": 0},
+      "d": {"q1": 1, "q2": 1}
+    },
+    "target": ["a", "c"],
+    "expected": {
+      "q1_lower": [],
+      "q1_upper": ["a", "b", "c", "d"],
+      "q1_q2_lower": ["a", "c"],
+      "q1_q2_upper": ["a", "c"]
+    }
+  },
+  "viability": {
+    "constraint_states": ["s0", "s1"],
+    "transitions": {
+      "s0": {"safe": ["s1"], "unsafe": ["bad"]},
+      "s1": {"stay": ["s1"]},
+      "bad": {"stay": ["bad"]}
+    },
+    "expected_kernel": ["s0", "s1"]
+  },
+  "diagnosis": {
+    "components": ["A", "B"],
+    "predictions": {
+      "": "normal",
+      "A": "alarm-one",
+      "B": "alarm-one",
+      "A+B": "alarm-two"
+    },
+    "expected": {
+      "alarm-one": [["A"], ["B"]],
+      "alarm-two": [["A", "B"]]
+    }
+  },
+  "workflow": {
+    "sound_graph": {
+      "start": ["a", "b"],
+      "a": ["end"],
+      "b": ["end"],
+      "end": []
+    },
+    "unsound_graph": {
+      "start": ["a", "dead"],
+      "a": ["end"],
+      "dead": ["dead"],
+      "end": []
+    },
+    "expected": {
+      "sound_option_to_complete": true,
+      "unsound_option_to_complete": false
+    }
+  }
+}
