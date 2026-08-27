@@ -1,0 +1,72 @@
+name: wave6-unified-generalization
+
+on:
+  pull_request:
+    paths:
+      - "src/orion_v2/**"
+      - "tests/unit/**"
+      - "research/generalization/**"
+      - "research/machine-specs/**"
+      - "research/wave6/**"
+      - ".github/workflows/wave6-unified-generalization.yml"
+  push:
+    branches:
+      - "research/wave6-unified-generalization-calculus-20260827"
+
+permissions:
+  contents: read
+
+jobs:
+  unified-reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PYTHONPATH: src
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pytest
+        run: python -m pip install pytest
+      - name: Compile package
+        run: python -m compileall -q src/orion_v2
+      - name: Run all integrated tests
+        run: python -m pytest -q
+      - name: Parse machine schemas
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for path in Path('research/machine-specs').glob('*.json'):
+              json.loads(path.read_text(encoding='utf-8'))
+          print('MACHINE_SCHEMAS_PARSE_PASS')
+          PY
+      - name: Unified non-authority check
+        run: |
+          python - <<'PY'
+          from orion_v2.unified_generalization import *
+          layers = []
+          previous = None
+          statuses = {
+              GeneralizationLayer.NATIVE_THEORY: 'SOURCE_BOUND',
+              GeneralizationLayer.MINIMAL_ENVELOPE: 'COMPILED_EXACT',
+              GeneralizationLayer.INTERPRETATION_LAWS: 'EXACT_INTERPRETATION',
+              GeneralizationLayer.NATIVE_RECOVERY: 'EXACT_NATIVE_RECOVERY',
+              GeneralizationLayer.APPROXIMATE_TRANSPORT: 'NOT_REQUIRED_EXACT',
+              GeneralizationLayer.TARGET_REALIZATION: 'READY_FOR_PROTECTED_TARGET_EVALUATION',
+          }
+          for index, layer in enumerate(GeneralizationLayer):
+              receipt = GeneralizationLayerReceipt(
+                  f'r{index}', layer, f'subject:{index}', statuses[layer],
+                  () if previous is None else (previous,), source_ids=('source',)
+              )
+              layers.append(receipt)
+              previous = receipt.receipt_id
+          result = assess_unified_generalization_stack(tuple(layers))
+          assert result.status is UnifiedGeneralizationStatus.READY_FOR_PROTECTED_TARGET_EVALUATION
+          assert not result.authority_granted
+          assert not result.novelty_granted
+          assert not result.target_adoption_granted
+          print('UNIFIED_AUTHORITY_BOUNDARY_PASS')
+          PY
