@@ -19,6 +19,8 @@ jobs:
   native-recovery:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      PYTHONPATH: src
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -45,14 +47,18 @@ jobs:
           python - <<'PY'
           from orion_v2.native_corpus import built_in_native_recovery_cases as raw
           from orion_v2.native_corpus_strict import built_in_native_recovery_cases as strict
+          from orion_v2.native_recovery import assess_native_recovery_suite
+
           raw_cases = raw()
           strict_cases = strict()
           assert [c.case_id for c in raw_cases] == [c.case_id for c in strict_cases]
           for raw_case, strict_case in zip(raw_cases, strict_cases, strict=True):
               expected = strict_case.native_to_generalized[strict_case.native_judgment]
               assert expected is not None
-              # The strict answer key is sourced from the independent registry.
               assert strict_case.generalized_judgment == raw_case.generalized_judgment
+          _, summary = assess_native_recovery_suite(strict_cases)
+          assert summary.exact_count == 17
+          assert summary.all_valid
           print('INDEPENDENT_EXPECTATION_REGISTRY_BOUND')
           PY
       - name: Non-authority boundary
