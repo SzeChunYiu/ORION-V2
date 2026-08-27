@@ -1,0 +1,35 @@
+name: Research programme
+about: Create a donor-first ORION-V2 research issue
+title: "[RESEARCH][BLOCKED BY V1 FREEZE] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Pre-freeze issues may define research, theory, schemas, fixtures and protocols only. No V2 implementation or outcome-generating experiment is authorized.
+  - type: textarea
+    id: question
+    attributes:
+      label: Scientific question
+      description: State the bounded question and why V1 or known donors do not already settle it.
+    validations:
+      required: true
+  - type: textarea
+    id: parents
+    attributes:
+      label: Native parent fields and strongest donors
+      description: Include repository collision checks and changed-vocabulary routes.
+    validations:
+      required: true
+  - type: textarea
+    id: quantitative
+    attributes:
+      label: Quantitative/formal object and falsifiers
+    validations:
+      required: true
+  - type: textarea
+    id: gate
+    attributes:
+      label: V1 freeze and authority boundary
+    validations:
+      required: true
