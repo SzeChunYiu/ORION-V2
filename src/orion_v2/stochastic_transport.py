@@ -32,6 +32,7 @@ class StochasticTransportStatus(str, Enum):
     )
     INVALID_TRANSITION_ERROR = "INVALID_TRANSITION_ERROR"
     INVALID_OBSERVABLE_ERROR = "INVALID_OBSERVABLE_ERROR"
+    INVALID_EPOCH = "INVALID_EPOCH"
     CANNOT_CHECK = "CANNOT_CHECK"
 
 
@@ -58,9 +59,13 @@ class FiniteStochasticTheory:
             raise ValueError("theory identity, states and actions are required")
         if not self.epoch.strip():
             raise ValueError("theory epoch is required")
-        expected = {(state, action) for state in self.states for action in self.actions}
+        expected = {
+            (state, action) for state in self.states for action in self.actions
+        }
         if set(self.transition_kernel) != expected:
-            raise ValueError("transition kernel must define every state-action pair")
+            raise ValueError(
+                "transition kernel must define every state-action pair"
+            )
         for distribution in self.transition_kernel.values():
             _validate_distribution(distribution, self.states)
         for table in self.observables.values():
@@ -86,7 +91,9 @@ class StochasticTransport:
         if not 0 <= self.transition_epsilon <= 1:
             raise ValueError("transition epsilon must lie in [0,1]")
         if self.observable_epsilon < 0 or self.authority_ceiling < 0:
-            raise ValueError("observable epsilon and authority ceiling must be non-negative")
+            raise ValueError(
+                "observable epsilon and authority ceiling must be non-negative"
+            )
 
 
 @dataclass(frozen=True, slots=True)
@@ -101,8 +108,14 @@ class StochasticTransportAssessment:
     grants_target_adoption: bool = False
 
     def __post_init__(self) -> None:
-        if self.grants_scientific_truth or self.grants_novelty or self.grants_target_adoption:
-            raise ValueError("stochastic transport assessment is non-authorizing")
+        if (
+            self.grants_scientific_truth
+            or self.grants_novelty
+            or self.grants_target_adoption
+        ):
+            raise ValueError(
+                "stochastic transport assessment is non-authorizing"
+            )
 
 
 def _pushforward(
@@ -126,13 +139,32 @@ def assess_stochastic_transport(
     if (
         set(transport.state_map) != set(source.states)
         or set(transport.action_map) != set(source.actions)
-        or any(state not in target.states for state in transport.state_map.values())
-        or any(action not in target.actions for action in transport.action_map.values())
-        or not transport.source_epoch.strip()
-        or not transport.target_epoch.strip()
+        or any(
+            state not in target.states for state in transport.state_map.values()
+        )
+        or any(
+            action not in target.actions
+            for action in transport.action_map.values()
+        )
     ):
         return StochasticTransportAssessment(
-            StochasticTransportStatus.CANNOT_CHECK, None, None, transport.authority_ceiling
+            StochasticTransportStatus.CANNOT_CHECK,
+            None,
+            None,
+            transport.authority_ceiling,
+        )
+    if (
+        transport.source_epoch != source.epoch
+        or transport.target_epoch != target.epoch
+    ):
+        return StochasticTransportAssessment(
+            StochasticTransportStatus.INVALID_EPOCH,
+            None,
+            None,
+            transport.authority_ceiling,
+            (
+                "transport epochs do not match the bound source/target theories",
+            ),
         )
     transition_error = 0.0
     for source_state in source.states:
@@ -143,14 +175,21 @@ def assess_stochastic_transport(
                 target.states,
             )
             target_distribution = target.transition_kernel[
-                (transport.state_map[source_state], transport.action_map[source_action])
+                (
+                    transport.state_map[source_state],
+                    transport.action_map[source_action],
+                )
             ]
             transition_error = max(
-                transition_error, total_variation(pushed, target_distribution)
+                transition_error,
+                total_variation(pushed, target_distribution),
             )
     observable_error = 0.0
     for observable_id in transport.registered_observable_ids:
-        if observable_id not in source.observables or observable_id not in target.observables:
+        if (
+            observable_id not in source.observables
+            or observable_id not in target.observables
+        ):
             return StochasticTransportAssessment(
                 StochasticTransportStatus.CANNOT_CHECK,
                 transition_error,
@@ -163,7 +202,9 @@ def assess_stochastic_transport(
                 observable_error,
                 abs(
                     source.observables[observable_id][source_state]
-                    - target.observables[observable_id][transport.state_map[source_state]]
+                    - target.observables[observable_id][
+                        transport.state_map[source_state]
+                    ]
                 ),
             )
     if transition_error > transport.transition_epsilon + tolerance:
@@ -204,7 +245,13 @@ def _best_actions(values: Mapping[str, float]) -> tuple[str, ...]:
     if not values:
         return ()
     best = max(values.values())
-    return tuple(sorted(action for action, value in values.items() if abs(value - best) <= 1e-12))
+    return tuple(
+        sorted(
+            action
+            for action, value in values.items()
+            if abs(value - best) <= 1e-12
+        )
+    )
 
 
 def assess_decision_robustness(
@@ -215,11 +262,19 @@ def assess_decision_robustness(
 ) -> DecisionRobustnessAssessment:
     if error_bound < 0 or not nominal_values:
         return DecisionRobustnessAssessment(
-            DecisionRobustnessStatus.CANNOT_CHECK, (), (), None, error_bound
+            DecisionRobustnessStatus.CANNOT_CHECK,
+            (),
+            (),
+            None,
+            error_bound,
         )
     nominal_best = _best_actions(nominal_values)
-    observed_best = _best_actions(observed_values) if observed_values is not None else ()
-    if observed_values is not None and set(observed_values) != set(nominal_values):
+    observed_best = (
+        _best_actions(observed_values) if observed_values is not None else ()
+    )
+    if observed_values is not None and set(observed_values) != set(
+        nominal_values
+    ):
         return DecisionRobustnessAssessment(
             DecisionRobustnessStatus.CANNOT_CHECK,
             nominal_best,
@@ -236,7 +291,11 @@ def assess_decision_robustness(
             error_bound,
         )
     ordered = sorted(nominal_values.values(), reverse=True)
-    margin = None if len(ordered) < 2 or len(nominal_best) != 1 else ordered[0] - ordered[1]
+    margin = (
+        None
+        if len(ordered) < 2 or len(nominal_best) != 1
+        else ordered[0] - ordered[1]
+    )
     if margin is not None and margin > 2 * error_bound:
         return DecisionRobustnessAssessment(
             DecisionRobustnessStatus.DECISION_PRESERVED_BY_MARGIN,
@@ -257,6 +316,10 @@ def assess_decision_robustness(
 @dataclass(frozen=True, slots=True)
 class StochasticTransportLink:
     link_id: str
+    source_theory_id: str
+    target_theory_id: str
+    source_epoch: str
+    target_epoch: str
     transition_error_bound: float
     observable_error_bound: float
     authority_ceiling: int
@@ -264,12 +327,23 @@ class StochasticTransportLink:
     dependence_declared: bool = True
 
     def __post_init__(self) -> None:
-        if not self.link_id.strip():
-            raise ValueError("link identity is required")
+        if any(
+            not value.strip()
+            for value in (
+                self.link_id,
+                self.source_theory_id,
+                self.target_theory_id,
+                self.source_epoch,
+                self.target_epoch,
+            )
+        ):
+            raise ValueError("link identities and epochs are required")
         if not 0 <= self.transition_error_bound <= 1:
             raise ValueError("transition error bound must lie in [0,1]")
         if self.observable_error_bound < 0 or self.authority_ceiling < 0:
-            raise ValueError("observable error and authority must be non-negative")
+            raise ValueError(
+                "observable error and authority must be non-negative"
+            )
 
 
 @dataclass(frozen=True, slots=True)
@@ -280,17 +354,58 @@ class StochasticChainBound:
     unresolved_assumption_ids: tuple[str, ...]
     exact: bool
     cannot_check: bool
+    warnings: tuple[str, ...] = ()
 
 
 def compose_stochastic_transport_bounds(
     links: tuple[StochasticTransportLink, ...],
 ) -> StochasticChainBound:
-    if not links or any(not link.dependence_declared for link in links):
-        return StochasticChainBound(None, None, None, (), False, True)
-    transition = min(1.0, sum(link.transition_error_bound for link in links))
+    if not links:
+        return StochasticChainBound(
+            None,
+            None,
+            None,
+            (),
+            False,
+            True,
+            ("at least one transport link is required",),
+        )
+    if any(not link.dependence_declared for link in links):
+        return StochasticChainBound(
+            None,
+            None,
+            None,
+            (),
+            False,
+            True,
+            ("link dependence/propagation rule is not declared",),
+        )
+    for left, right in zip(links, links[1:], strict=False):
+        if (
+            left.target_theory_id != right.source_theory_id
+            or left.target_epoch != right.source_epoch
+        ):
+            return StochasticChainBound(
+                None,
+                None,
+                None,
+                (),
+                False,
+                True,
+                ("transport chain endpoints or epochs do not compose",),
+            )
+    transition = min(
+        1.0, sum(link.transition_error_bound for link in links)
+    )
     observable = sum(link.observable_error_bound for link in links)
     assumptions = tuple(
-        sorted({item for link in links for item in link.unresolved_assumption_ids})
+        sorted(
+            {
+                item
+                for link in links
+                for item in link.unresolved_assumption_ids
+            }
+        )
     )
     authority = min(link.authority_ceiling for link in links)
     return StochasticChainBound(
