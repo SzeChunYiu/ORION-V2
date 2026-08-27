@@ -1,0 +1,95 @@
+{
+  "schema_version": "orion.v2.v1-parity-scoring-adjudication.v1",
+  "scoring_id": "ORION-V2-V1-PARITY-SCORING-WAVE06-V1",
+  "status": "SCORING_LOGIC_FROZEN_SEMANTIC_REVIEWER_IDENTITIES_UNBOUND",
+  "v1_commit": "8f250fc3e55d6d6a28fb1fb33d9932ef1a8760b5",
+  "v2_subject_commit": "f33d2f45554583f9e612f7a186b7d92e6bc8d01a",
+  "case_registry_path": "research/evaluation/V1_PARITY_CASE_REGISTRY_WAVE06_V1.json",
+  "case_registry_git_blob_sha": "79f5e9d47d65994bae77695f37718c0c86079257",
+  "mandatory_coordinates": [
+    "scientific_validity_or_known_answer",
+    "false_completion",
+    "authority_and_integrity",
+    "semantic_and_provenance_preservation",
+    "cannot_check_calibration",
+    "replay_identity"
+  ],
+  "conditional_coordinates": [
+    "selective_reopen_correctness",
+    "responsibility_correctness",
+    "coverage_and_censoring_correctness",
+    "execution_side_effect_correctness"
+  ],
+  "secondary_coordinates": [
+    "resource_cost",
+    "latency",
+    "unnecessary_work",
+    "unnecessary_escalation",
+    "justified_reachability_gain"
+  ],
+  "invariant_labels": ["PASS", "FAIL", "CANNOT_CHECK"],
+  "case_rule": {
+    "deterministic_case_pass": "PASS only when every frozen expected invariant is PASS, replay/case identity matches, and no mandatory-coordinate or resource-matching violation exists.",
+    "deterministic_case_fail": "FAIL when any frozen expected invariant or mandatory coordinate is violated by the subject under a matched valid run.",
+    "deterministic_case_cannot_check": "CANNOT_CHECK when required identity, execution, evidence, mapping, or matching cannot be established; CANNOT_CHECK is not a pass.",
+    "secondary_noncompensation": "Secondary improvements never compensate a FAIL or CANNOT_CHECK on a mandatory coordinate."
+  },
+  "capability_cell_rule": {
+    "aggregation": "PER_CELL_WORST_REQUIRED_CASE_NONCOMPENSATORY",
+    "pass": "A capability cell is PASS for a subject only if every frozen required case that references the cell is resolved PASS for that cell's applicable invariants.",
+    "fail": "A capability cell is FAIL if any required matched case establishes a mandatory invariant violation attributable to that cell.",
+    "cannot_check": "A capability cell is CANNOT_CHECK if no matched case establishes FAIL but at least one required case remains unresolved or unmatched.",
+    "no_family_average": true
+  },
+  "paired_rule": {
+    "v2_noninferior": "No frozen V1 capability cell may be worse for V2 on any mandatory/conditional applicable coordinate. Secondary cost/reach comparisons are reported separately.",
+    "v2_strict_gain": "At least one capability cell or registered secondary endpoint improves for V2 while every mandatory/conditional applicable cell remains noninferior.",
+    "v1_noninferior": "V2 shows no protected gain and/or V1 is better on at least one applicable endpoint without V1 mandatory regression.",
+    "v2_regression": "Any V1 capability cell that is validly PASS for V1 but FAIL or unjustifiably CANNOT_CHECK for V2 on a mandatory/conditional applicable coordinate is a V2 capability regression.",
+    "overreach": "A simple-control case in which V2 performs unnecessary higher-level work/escalation without scientific gain is reported as V2_COMPLEXITY_OR_ESCALATION_OVERREACH even if the final answer is correct."
+  },
+  "deterministic_case_ids": [
+    "A1_CRITERION_CONSERVATION", "A2_DECOMPOSITION_COUPLING", "A3_DIRECT_BLOCKED_CONTROL",
+    "B1_RETRIEVAL_REPLAY_IDENTITY", "B2_CENSORED_NOVELTY_CONTROL", "B3_SOURCE_PASSAGE_BINDING",
+    "C1_PROVENANCE_NOT_CORROBORATION", "D1_SEMANTIC_PROJECTION_HISTORY",
+    "E1_NONIDENTIFYING_FAILURE_DISCRIMINATOR", "E2_MISSING_EVIDENCE_NOT_CONTRADICTION", "E3_EXPERIENCE_CONTEXT_FOR_DIAGNOSIS",
+    "F1_ROOT_INCLUSIVE_SELECTIVE_REOPEN", "F2_ALTERNATIVE_SUPPORT_SURVIVES", "F3_LOWER_LEVEL_SUFFICIENCY",
+    "G1_BOUNDED_MULTIAXIS_SATURATION", "G2_OMISSION_CHALLENGE_AND_STOP", "G3_BOUNDED_RESULT_NO_SCOPE_LAUNDERING",
+    "H1_TYPED_AUTHORITY_NONCOMPENSATION", "H2_EXTERNAL_REVIEW_NONAUTHORIZING", "H3_CRITERION_CHURN", "H4_EXPERIMENT_SELECTION_AUTHORITY",
+    "I1_EXECUTION_FAILURE_NOT_SCIENCE", "I2_MANDATORY_CONTEXT_BUDGET", "I3_PROCESS_AND_PAYLOAD_SAFETY", "I4_MEMORY_EXPERIENCE_RETENTION"
+  ],
+  "semantic_case_ids": [
+    "C2_SAME_WORDS_DIFFERENT_NATIVE_STRUCTURE",
+    "C3_DIFFERENT_WORDS_SAME_REGISTERED_STRUCTURE",
+    "D2_LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION",
+    "D3_NEW_REPRESENTATION_OPENS_ROUTE"
+  ],
+  "semantic_adjudication": {
+    "presentation": "V1/V2 or comparator outputs are stripped of subject labels and presented in randomized order with the frozen case/criterion and evidence needed to judge the invariant.",
+    "reviewer_minimum": 2,
+    "independence": "The first two reviewers may not be the sole case authors, V2 subject authors, or dependent through the same declared model/data/source when that dependence is material to the criterion.",
+    "labels": ["PASS", "FAIL", "CANNOT_CHECK"],
+    "agreement": "Two agreeing independent labels decide the invariant.",
+    "disagreement": "A third independently bound adjudicator receives the same blinded packet. Majority decides; absence of a valid majority is CANNOT_CHECK.",
+    "confidence": "Reviewer confidence is descriptive only and cannot convert FAIL/CANNOT_CHECK to PASS.",
+    "rationale": "Each semantic label must cite the exact source span, graph relation, or obstruction/witness supporting the judgment.",
+    "authority": "Adjudication establishes an evaluator result under this frozen criterion only; it grants no scientific truth, architecture, novelty, adoption, or publication authority."
+  },
+  "output_terminals": [
+    "V2_PARITY_NONINFERIOR",
+    "V2_PARITY_STRICT_GAIN_WITH_NO_MANDATORY_REGRESSION",
+    "V1_NONINFERIOR",
+    "V2_CAPABILITY_REGRESSION",
+    "V2_COMPLEXITY_OR_ESCALATION_OVERREACH",
+    "CANNOT_CHECK_MATCHING_OR_CUSTODY",
+    "PROTOCOL_INVALID"
+  ],
+  "mutation_rule": "Any scoring, adjudication, coordinate, aggregation, or semantic rubric change after paired output access creates a new protocol/run identity.",
+  "authority": {
+    "grants_v1_parity": false,
+    "grants_v2_closeout": false,
+    "grants_scientific_truth": false,
+    "grants_novelty": false,
+    "grants_publication_authority": false
+  }
+}
