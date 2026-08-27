@@ -4,6 +4,12 @@
 
 The Wave-06 paper-contraction gate freezes the publication **programme shape** to four core papers plus one contingent paper. Manuscript survival still depends on protected evidence over strongest parent-composed baselines.
 
+Publication targets and predeclared fallbacks are frozen in:
+
+- `papers/PUBLICATION_TARGETS_AND_FALLBACKS_V1.md`
+
+Every surviving paper is prepared first to its Tier-1 target standard; a fallback venue cannot be used to evade a scientific defect, lost baseline comparison, or negative result.
+
 ## Core drafts
 
 - `P_A_STRUCTURAL_DONOR_DISCOVERY_MANUSCRIPT_V0.md` — donor discovery, reduction, conservative generalization and novelty contraction. Absorbs C01 + C03 + C11.
@@ -17,9 +23,20 @@ The Wave-06 paper-contraction gate freezes the publication **programme shape** t
 
 ## Programme synthesis / field-hypothesis draft
 
-- `FLAGSHIP_COMPUTATIONAL_SCIENTIFIC_CONTROL_MANUSCRIPT_V0.md` — capstone synthesis for the provisional field hypothesis **Computational Scientific Control (CSC)**.
+Preferred V1 flagship:
 
-The flagship is not a sixth paper slot. It may remain an overview/monograph, or a later publication decision may choose a single flagship that absorbs specialist material. That decision cannot bypass the frozen contraction/protected-evidence gate.
+- `FLAGSHIP_MACHINE_EPISTEMICS_MANUSCRIPT_V1.md` — **Machine Epistemics: The Control Science of AI-Driven Discovery**.
+
+Historical derivation draft:
+
+- `FLAGSHIP_COMPUTATIONAL_SCIENTIFIC_CONTROL_MANUSCRIPT_V0.md` — earlier CSC working-label synthesis, retained as provenance rather than deleted.
+
+Canonical field documents:
+
+- `research/field/MACHINE_EPISTEMICS_NAMING_AND_DEMARCATION_V1.md`
+- `research/field/MACHINE_EPISTEMICS_FIELD_SYNTHESIS_V1.md`
+
+The flagship is not a sixth primary-results slot. Specialist papers carry the original formal/empirical evidence; the flagship is a field-defining Perspective/Review asking whether those surviving results and the neighboring literature justify a coherent new subject.
 
 ## Parent-ownership correction
 
