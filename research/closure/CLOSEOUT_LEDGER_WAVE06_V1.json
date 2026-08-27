@@ -10,17 +10,29 @@
   "gates": [
     {
       "gate": "G1_V1_PARITY",
-      "status": "SUBJECT_BOUND_SOURCE_AUDITED_RUN_NOT_AUTHORIZED",
+      "status": "PREFLIGHT_FROZEN_BLOCKED_PROTECTED_CASE_SELECTION",
       "protocol": "research/evaluation/V1_PARITY_CAMPAIGN_PROTOCOL_WAVE06_V1.json",
       "subject_binding": "research/evaluation/V1_PARITY_SUBJECT_BINDING_WAVE06_V1.json",
       "case_source_audit": "research/evaluation/V1_PARITY_CASE_SOURCE_AUDIT_WAVE06_V1.json",
+      "resource_matching_protocol": "research/evaluation/V1_PARITY_RESOURCE_MATCHING_PROTOCOL_WAVE06_V1.json",
+      "custody_protocol": "research/evaluation/V1_PARITY_CUSTODY_PROTOCOL_WAVE06_V1.json",
+      "baseline_registry": "research/evaluation/V1_PARITY_BASELINE_REGISTRY_WAVE06_V1.json",
+      "execution_gate": "src/orion_v2/parity_execution_gate.py",
       "subject_commit": "f33d2f45554583f9e612f7a186b7d92e6bc8d01a",
-      "remaining": [
-        "freeze protected held-out case identities",
-        "bind protected evaluator/custody identities",
-        "freeze strongest parent-composed comparator identities",
-        "freeze matched provider/tool/time/compute budgets",
-        "run per-cell non-compensatory parity and simple-control non-regression"
+      "current_preflight_terminal": "BLOCKED_PROTECTED_CASE_SELECTION",
+      "preflight_ci_head": "71967eb16d2e1df29589d56bed7467e612f1e813",
+      "preflight_ci": {
+        "reference-tests": "success",
+        "native-recovery": "success",
+        "stochastic-reference": "success",
+        "unified-reference": "success"
+      },
+      "remaining_in_order": [
+        "freeze protected held-out case identities and selection receipt",
+        "bind protected evaluator/custody identities and scorer/adjudicator digests",
+        "bind strongest parent-composed comparator implementation identities/configurations",
+        "bind matched per-case provider/tool/time/compute budgets",
+        "run per-cell non-compensatory V1/V2 parity and simple-control non-regression"
       ]
     },
     {
@@ -38,17 +50,19 @@
       "facade": "src/orion_v2/kernel.py",
       "component_disposition": "research/framework/KERNEL_COMPONENT_DISPOSITION_WAVE06_V1.json",
       "candidate_subject_commit": "f33d2f45554583f9e612f7a186b7d92e6bc8d01a",
+      "duplicate_owner_groups_open": 0,
       "remaining": "issue separate kernel-freeze receipt only after protected V1 parity/non-regression"
     },
     {
       "gate": "G4_PARENT_BASELINES",
-      "status": "OPEN",
-      "reason": "transparent parent/reference methods are classified behind adapters; strongest production/native parent-composed comparator identities are not frozen"
+      "status": "ROLES_FROZEN_IMPLEMENTATIONS_UNBOUND",
+      "artifact": "research/evaluation/V1_PARITY_BASELINE_REGISTRY_WAVE06_V1.json",
+      "reason": "comparator roles are frozen per campaign, but strongest production/native parent-composed implementation/version/configuration identities remain unbound"
     },
     {
       "gate": "G5_PROTECTED_EVALUATION",
-      "status": "OPEN",
-      "reason": "local known-answer/reference suites and V1-native case-source audit are green; protected naturalistic/held-out evaluation remains open"
+      "status": "CUSTODY_RULE_FROZEN_CASES_AND_EVALUATORS_UNBOUND",
+      "reason": "local known-answer/reference suites and V1-native source audit are green; protected held-out/naturalistic case and evaluator identities remain unbound"
     },
     {
       "gate": "G6_POST_CONTRACTION_SATURATION",
@@ -73,10 +87,15 @@
     "candidate paper proliferation / merge ambiguity",
     "kernel duplicate-owner ambiguity",
     "V2 parity subject identity ambiguity",
-    "V1-native parity source provenance ambiguity"
+    "V1-native parity source provenance ambiguity",
+    "parity resource-matching rule ambiguity",
+    "parity custody-rule ambiguity",
+    "parent-comparator role ambiguity",
+    "parity preflight ordering ambiguity"
   ],
   "current_first_machine_blocker": "BLOCKED_V1_PARITY",
-  "current_parity_subblockers": [
+  "current_parity_subblocker": "BLOCKED_PROTECTED_CASE_SELECTION",
+  "current_parity_subblockers_in_order": [
     "PROTECTED_CASE_SELECTION",
     "PROTECTED_EVALUATOR_CUSTODY",
     "STRONGEST_PARENT_BASELINE_BINDING",
