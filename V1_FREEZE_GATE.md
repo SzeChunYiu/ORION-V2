@@ -1,34 +1,57 @@
-# ORION V1 Freeze Handoff Gate
+# ORION V1 Freeze and Non-Retroactive Handoff Gate
 
-**Current terminal:** `BLOCKED_BY_V1_FREEZE`.
+**Gate status:** `V1_FREEZE_HANDOFF_BOUND_AND_NON_RETROACTIVE`.
 
-ORION-V2 may not begin implementation or outcome-generating V2 experiments until a handoff receipt binds:
+**Bound receipt:** `provenance/ORION_V1_HANDOFF_RECEIPT_V1.json`.
 
-- the exact ORION V1 freeze commit/digest;
-- immutable P1–P15 paper/result identities;
-- the V1 component and capability census;
-- all protected positive, null, harmful and `CANNOT_CHECK` terminals;
-- the V1 failure and negative-history ledgers;
-- exact execution/harness identities relevant to V2 parity;
-- a statement that V2 cannot retroactively alter V1 claims or terminals.
+## Exact gate
 
-## Allowed before the gate
+ORION V1 is bound at freeze commit:
 
-- literature and domain coverage research;
-- source-bound donor cards and independent reconstructions;
-- mathematical/formal candidate definitions;
-- structural-signature and receipt schemas;
-- issue and paper-programme planning;
-- known-answer, hostile and protected benchmark specifications;
-- V1 capability-parity census design.
+`8f250fc3e55d6d6a28fb1fb33d9932ef1a8760b5`
 
-## Forbidden before the gate
+with frozen subject/base commit:
 
-- V2 runtime or solver implementation;
-- V2 framework/core mutation;
-- outcome-generating V2 benchmark runs;
-- V1 code or paper mutation to anticipate V2;
-- declaring V2 scientific superiority or novelty;
-- assigning final V2 paper identities from planning alone.
+`ef51b7b9263a72c725dc9d2045627b934b772a92`
 
-The gate may only move through an exact, reviewable receipt. A date, branch name, merged PR or green local test is not a V1 freeze identity.
+and base tree:
+
+`5d5ff0985551b0a94453ea6eaa9925bda3e10fa2`.
+
+The declared V1 terminal is:
+
+`ORION_V1_ARCHITECTURE_AND_LOCAL_FORMALISM_FROZEN`.
+
+The exact moving-head observation and all control-plane Git object identities are recorded in the machine receipt. `main` is not itself used as an immutable identifier.
+
+## What is now authorized
+
+- reference implementation of non-authorizing V2 research objects;
+- deterministic schemas, checkers and known-answer/hostile tests;
+- V1 capability-parity instrumentation;
+- local prospective pilots whose own protocols are frozen before outcomes;
+- continued donor research, paper protocols and falsifier design.
+
+## What remains unauthorized
+
+- retroactive V1 mutation or reinterpretation;
+- protected external evaluation without separately bound custody/protocol;
+- scientific truth, superiority or novelty terminals from local tests;
+- final V2 core, framework adoption or constitution change;
+- final paper identity or publication claims.
+
+## Non-retroactivity
+
+V1 results remain immutable external evidence. ORION-V2 additions may only create successor objects with explicit correspondence, preservation/reopening and changed-scope records.
+
+## Machine check
+
+```bash
+python scripts/check_v1_handoff.py
+```
+
+Expected terminal:
+
+`V1_HANDOFF_VALID`
+
+Any mismatch reopens issue #2 and returns the repository to a fail-closed implementation gate.
