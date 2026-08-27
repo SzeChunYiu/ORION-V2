@@ -1,0 +1,69 @@
+{
+  "schema_version": "orion.v2.post-contraction-saturation-receipt.v1",
+  "receipt_id": "ORION-V2-POST-CONTRACTION-SATURATION-WAVE06-V1",
+  "status": "TWO_PASS_BOUNDED_SATURATION_REACHED",
+  "date": "2026-08-27",
+  "v1_freeze_commit": "8f250fc3e55d6d6a28fb1fb33d9932ef1a8760b5",
+  "contracted_v2_subject_commit": "f33d2f45554583f9e612f7a186b7d92e6bc8d01a",
+  "required_qualifying_passes": 2,
+  "qualifying_passes": 2,
+  "passes": [
+    {
+      "pass_id": "WAVE06-SATURATION-A-FRONTIER-APPLICATION-2026-08-27",
+      "path": "research/closure/SATURATION_PASS_A_FRONTIER_APPLICATION_VOCABULARY_2026-08-27_V1.json",
+      "git_blob_sha": "ee97d01f3b4ccad09bb23674e205d936366669ae",
+      "status": "COMPLETE_NO_MATERIAL_CHANGE",
+      "declared_routes": 8,
+      "completed_routes": 8,
+      "censored_routes": 0,
+      "vocabulary": "contemporary frontier/application"
+    },
+    {
+      "pass_id": "WAVE06-SATURATION-B-FORMAL-HISTORICAL-2026-08-27",
+      "path": "research/closure/SATURATION_PASS_B_FORMAL_HISTORICAL_VOCABULARY_2026-08-27_V1.json",
+      "git_blob_sha": "feb88af2212e9e48b74218001f13cf04d91f3ff9",
+      "status": "COMPLETE_NO_MATERIAL_CHANGE",
+      "declared_routes": 8,
+      "completed_routes": 8,
+      "censored_routes": 0,
+      "vocabulary": "formal/historical orthogonal parents"
+    }
+  ],
+  "qualifying_rule": "A pass qualifies only when every declared route is completed or explicitly censored/dispositioned and the pass adds no material kernel coordinate, relation type, obstruction, failure mode, parent contraction, benchmark family, or paper identity.",
+  "combined_findings": {
+    "new_kernel_coordinate": false,
+    "new_relation_type": false,
+    "new_obstruction": false,
+    "new_failure_mode": false,
+    "new_parent_contraction": false,
+    "new_benchmark_family": false,
+    "new_paper_identity": false,
+    "material_architecture_change": false,
+    "material_paper_portfolio_change": false,
+    "parent_ownership_refinement_only": true
+  },
+  "absorbed_parent_refinements": [
+    "truth-maintenance/ATMS own generic reason maintenance and dependency revision",
+    "iterated belief revision owns generic sequential epistemic update",
+    "rational metareasoning owns generic value-of-computation/action-selection theory",
+    "sequential model-based diagnosis owns generic multi-hypothesis discriminating diagnosis",
+    "causal transportability and probabilistic bisimulation own parent-specific transport/approximation theory",
+    "W3C PROV owns generic provenance representation",
+    "systematic-review active-learning literature owns route-level statistical stopping"
+  ],
+  "scope": "This receipt establishes only the frozen Wave-06 requirement of two complete changed-vocabulary no-material-change passes over the declared routes. It does not establish universal literature completeness, future invariance, novelty, scientific truth, or protected V1 parity.",
+  "gate_disposition": {
+    "G6_POST_CONTRACTION_SATURATION": "LOCALLY_SATISFIED",
+    "all_declared_routes_dispositioned": true,
+    "no_material_change_passes": 2,
+    "no_new_wave_rule_remains_active": true
+  },
+  "authority": {
+    "grants_global_literature_completeness": false,
+    "grants_v1_parity": false,
+    "grants_v2_closeout": false,
+    "grants_scientific_truth": false,
+    "grants_novelty": false,
+    "grants_publication_authority": false
+  }
+}
