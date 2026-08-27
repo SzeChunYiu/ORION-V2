@@ -1,0 +1,113 @@
+{
+  "schema_version": "orion.v2.parent-baseline-fit-audit.v1",
+  "audit_id": "ORION-V2-PARENT-BASELINE-FIT-AUDIT-WAVE06-V1",
+  "audit_date": "2026-08-27",
+  "status": "CAMPAIGN_FIT_HYPOTHESES_FROZEN_CONFIGURATION_AND_STRONGEST_BINDING_OPEN",
+  "role_registry": "research/evaluation/V1_PARITY_BASELINE_REGISTRY_WAVE06_V1.json",
+  "candidate_audit": "research/evaluation/PARENT_BASELINE_CANDIDATE_AUDIT_WAVE06_V1.json",
+  "version_audit": "research/evaluation/PARENT_BASELINE_VERSION_AUDIT_WAVE06_V1.json",
+  "principles": [
+    "The comparator is composed per campaign rather than forcing one agent/workflow product across all scientific roles.",
+    "Parent-native capabilities remain parent-owned; ORION-specific adapters may expose a common frozen case interface but may not add scientific capability unavailable to the parent composition.",
+    "A candidate is rejected rather than padded if it cannot satisfy the frozen parent-comparator role under matched resources.",
+    "Scientific hard coordinates such as criterion binding, source identity, authority and CANNOT_CHECK cannot be invented by a post-hoc scorer to make a weak parent look stronger or weaker.",
+    "No candidate is declared strongest until its exact configuration and adapter pass the relevant known-answer/hostile fit checks before paired V1/V2 outcome access."
+  ],
+  "campaigns": [
+    {
+      "campaign_id": "PARITY-A",
+      "candidate_composition": ["LangGraph 1.2.9", "Temporal Python SDK 1.31.0"],
+      "native_strengths": ["explicit state/control graph", "durable deterministic workflow history", "bounded retry/timing mechanics"],
+      "required_adapter_semantics": ["map frozen framing/decomposition opportunities without adding ORION reasoning", "preserve coupled/global constraints as immutable case data", "record direct-control overwork when decomposition is unnecessary", "authority remains a frozen case predicate, not a workflow success flag"],
+      "known_gap": "Neither product supplies scientific framing/decomposition correctness or epistemic authority semantics natively.",
+      "fit_disposition": "STRONG_ORCHESTRATION_PARENT_CANDIDATE_NOT_YET_BOUND"
+    },
+    {
+      "campaign_id": "PARITY-B",
+      "candidate_composition": ["Haystack 2.29.0"],
+      "native_strengths": ["retrieval pipelines", "routing", "document/source handling", "component composition"],
+      "required_adapter_semantics": ["freeze route families and query ceilings", "preserve source URI/lineage", "represent CENSORED/FAILED/UNSEARCHED separately from zero results", "separate local route stop from global scientific stop"],
+      "known_gap": "General retrieval orchestration does not by itself make censoring or route-stop semantics scientific evidence.",
+      "fit_disposition": "STRONG_RETRIEVAL_PARENT_CANDIDATE_NOT_YET_BOUND"
+    },
+    {
+      "campaign_id": "PARITY-C",
+      "candidate_composition": ["GROBID 0.9.0", "scispaCy 0.6.2"],
+      "native_strengths": ["scientific document structure/reference extraction", "scientific entity/language processing"],
+      "required_adapter_semantics": ["bind exact source spans and reference identities", "preserve native context rather than normalize ambiguous referents", "emit unresolved mappings as CANNOT_CHECK", "expose recoverable source projection"],
+      "known_gap": "Extraction quality is not equivalent to scientific semantic equivalence; C2/C3 require independent blinded semantic adjudication.",
+      "fit_disposition": "STRONG_EXTRACTION_PARENT_CANDIDATE_SEMANTIC_FIT_REVIEW_REQUIRED"
+    },
+    {
+      "campaign_id": "PARITY-D",
+      "candidate_composition": ["NetworkX 3.6.1", "RDFLib 7.6.0", "pySHACL 0.40.1"],
+      "native_strengths": ["graph algorithms", "typed graph representation", "constraint validation"],
+      "required_adapter_semantics": ["construct all locally justified portraits rather than select one by convenience", "detect global obstruction beyond pairwise compatibility", "preserve distinct history/provenance when scientific projections coincide", "allow a new representation to expand search state without rewriting prior coverage"],
+      "known_gap": "Graph and constraint libraries do not define the scientific meaning of plural portraits or gluing; D2/D3 require independent blinded reconstruction adjudication.",
+      "fit_disposition": "STRONG_GRAPH_CONSTRAINT_PARENT_CANDIDATE_SEMANTIC_FIT_REVIEW_REQUIRED"
+    },
+    {
+      "campaign_id": "PARITY-E",
+      "candidate_composition": ["pyAgrum 3.1.0", "Ax 1.3.1", "BoTorch 0.18.1"],
+      "native_strengths": ["probabilistic graphical models and influence diagrams", "adaptive experiment/optimization policy", "Bayesian acquisition functions"],
+      "required_adapter_semantics": ["encode multiple and interaction-only responsibility hypotheses without hidden gold", "select discriminating probes over the frozen opportunity set", "preserve non-identifiability as a terminal/control state", "do not infer scientific authority from acquisition utility"],
+      "known_gap": "Optimization/PGM tools do not natively separate scientific responsibility classes from model state or authority.",
+      "fit_disposition": "STRONG_DIAGNOSIS_EXPERIMENT_PARENT_CANDIDATE_NOT_YET_BOUND"
+    },
+    {
+      "campaign_id": "PARITY-F",
+      "candidate_composition": ["W3C PROV / PROV-O", "DVC 3.67.1"],
+      "native_strengths": ["generic provenance/derivation representation", "versioned data and pipeline artifacts"],
+      "required_adapter_semantics": ["represent complete alternative support families separately from provenance ancestry", "compute selective invalidation/reopen from frozen support relations", "distinguish local repair from representation/method escalation", "preserve authority and exact/approximate transport obligations"],
+      "known_gap": "Provenance/versioning alone does not establish scientific support or minimal repair; TMS/ATMS and belief-revision methods remain additional theoretical parents rather than hidden ORION capability.",
+      "fit_disposition": "STRONG_PROVENANCE_PARENT_CANDIDATE_SUPPORT_REOPEN_ADAPTER_REVIEW_REQUIRED"
+    },
+    {
+      "campaign_id": "PARITY-G",
+      "candidate_composition": ["ASReview LAB 3.0", "SAFE/statistical stopping published methods"],
+      "native_strengths": ["active-learning screening", "recall/stopping controls", "bounded route-level review"],
+      "required_adapter_semantics": ["freeze the same heterogeneous route set as the case", "keep route-level stop distinct from task/global saturation", "expose censored routes", "include changed-vocabulary omission challenge and multiple flatness coordinates"],
+      "known_gap": "Systematic-review stopping is a strong route-level parent but does not natively cover multi-representation scientific saturation.",
+      "fit_disposition": "STRONG_STOPPING_PARENT_CANDIDATE_GLOBAL_SATURATION_ADAPTER_REVIEW_REQUIRED"
+    },
+    {
+      "campaign_id": "PARITY-H",
+      "candidate_composition": ["Inspect AI 0.3.260", "DVC 3.67.1"],
+      "native_strengths": ["evaluation task/scorer infrastructure", "reproducible evaluation artifacts", "versioned case/evaluator files"],
+      "required_adapter_semantics": ["bind case/criterion/evaluator identities before outcome access", "blind/randomize semantic review packets", "screen evaluator dependence/independence", "refuse authority amplification from scores", "preserve changed-criterion counterfactual rules"],
+      "known_gap": "Evaluation frameworks can run scorers but do not by themselves establish reviewer independence, scientific correctness or publication/adoption authority.",
+      "fit_disposition": "STRONG_EVALUATION_INFRASTRUCTURE_PARENT_CANDIDATE_CUSTODY_AUTHORITY_ADAPTER_REVIEW_REQUIRED"
+    },
+    {
+      "campaign_id": "PARITY-I",
+      "candidate_composition": ["Temporal Python SDK 1.31.0", "LangGraph 1.2.9", "Inspect AI 0.3.260"],
+      "native_strengths": ["durable replayable execution", "stateful control/memory graph", "tool/evaluation harness"],
+      "required_adapter_semantics": ["retain negative experience append-only", "never silently drop mandatory context to fit budget", "make process timeout/output/retry identity explicit", "separate execution failure from scientific negative", "fail closed on unsupported request semantics"],
+      "known_gap": "Durable workflow/state infrastructure does not make host failure scientifically evidential or define scientific memory retention policy.",
+      "fit_disposition": "STRONG_EXECUTION_MEMORY_PARENT_CANDIDATE_NOT_YET_BOUND"
+    }
+  ],
+  "cross_campaign_findings": {
+    "single_universal_parent_product_supported": false,
+    "campaign_specific_composition_required": true,
+    "parent_native_scientific_semantics_must_be_preserved": true,
+    "orion_adapter_may_add_scientific_capability": false,
+    "semantic_independent_review_required_for": ["PARITY-C", "PARITY-D"]
+  },
+  "binding_requirements_remaining": [
+    "instantiate each candidate composition against the frozen case fixtures without subject outcome access",
+    "freeze exact configuration files and their digests",
+    "freeze thin matched-resource adapter code and digest; adapter must not add unavailable scientific intelligence",
+    "run parent-only known-answer/hostile fit checks and record failures/limitations",
+    "justify or revise the strongest-practical choice before viewing paired V1/V2 outcomes",
+    "bind the final per-campaign implementation/configuration/adapter identities in V1_PARITY_BASELINE_REGISTRY_WAVE06_V1.json"
+  ],
+  "authority": {
+    "grants_strongest_parent_binding": false,
+    "grants_parent_supremacy": false,
+    "grants_v1_parity": false,
+    "grants_v2_closeout": false,
+    "grants_scientific_truth": false,
+    "grants_novelty": false
+  }
+}
