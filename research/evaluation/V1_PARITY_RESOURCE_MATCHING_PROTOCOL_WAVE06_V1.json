@@ -1,7 +1,7 @@
 {
   "schema_version": "orion.v2.v1-parity-resource-matching.v1",
   "protocol_id": "ORION-V2-V1-PARITY-RESOURCE-MATCHING-WAVE06-V1",
-  "status": "MATCHING_RULE_FROZEN_CASE_BUDGETS_UNBOUND",
+  "status": "MATCHING_RULE_AND_CASE_BUDGETS_FROZEN",
   "subject_commit": "f33d2f45554583f9e612f7a186b7d92e6bc8d01a",
   "frozen_v1_commit": "8f250fc3e55d6d6a28fb1fb33d9932ef1a8760b5",
   "principles": [
@@ -39,12 +39,15 @@
     {"campaign_id":"PARITY-I","must_match":["memory/experience inputs","provider/tool identities","process timeout/output limits","retry policy","mandatory context material"]}
   ],
   "case_budget_manifest": {
-    "bound": false,
-    "digest": "TO_BIND_WITH_PROTECTED_CASE_MANIFEST_BEFORE_RUN"
+    "bound": true,
+    "path": "research/evaluation/V1_PARITY_CASE_BUDGETS_WAVE06_V1.json",
+    "digest": "git-sha1:46f0bade0735d1cdc793b530631d1728ac45cdcc",
+    "status": "MATCHED_CASE_BUDGETS_FROZEN",
+    "live_network_or_external_model_access": false
   },
   "run_gate": {
     "allowed_now": false,
-    "reason": "matching rule is frozen but per-case budgets are unbound until protected case identities are frozen"
+    "reason": "matching rule and per-case budgets are frozen; evaluator and strongest-parent comparator identities remain separate blockers"
   },
   "authority": {
     "grants_v1_parity": false,
