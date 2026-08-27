@@ -1,0 +1,216 @@
+{
+  "schema_version": "orion.v2.component-value-ledger.v1",
+  "status": "PROTOCOL_BOUND_PROTECTED_ABLATIONS_OPEN",
+  "reference_protocol": "research/evaluation/COMPONENT_VALUE_AND_EFFICIENCY_PROTOCOL_WAVE06_V1.md",
+  "reference_implementation": "src/orion_v2/component_value.py",
+  "design_rule": "Every component must change a protected decision or improve a declared cost coordinate after strongest-parent replacement and interaction audits; otherwise it is gated, merged, demoted or removed.",
+  "stable_interface_candidates": [
+    {
+      "component_id": "K0_IDENTITY_CONTRACTS",
+      "current_role": "kernel_candidate",
+      "hypothesized_value": [
+        "prevents criterion drift",
+        "binds source/run/epoch/authority identity",
+        "separates frame revision from comparison identity"
+      ],
+      "primary_costs": ["receipt_serialization", "identity_checks", "implementation_surface"],
+      "hostile_ablation_cases": ["changed_criterion_apparent_pass", "source_identity_collision", "adapted_procedure_laundered_as_canonical"],
+      "parent_replacements": ["typed_contract_system", "workflow_precondition_and_provenance_parent"],
+      "protected_status": "CANNOT_CHECK"
+    },
+    {
+      "component_id": "K1_PLURAL_SCIENTIFIC_STATE",
+      "current_role": "kernel_candidate",
+      "hypothesized_value": [
+        "prevents premature winner collapse",
+        "preserves alternatives and negative history",
+        "separates immutable archive from adaptive working state"
+      ],
+      "primary_costs": ["memory_growth", "retrieval_cost", "state_complexity"],
+      "hostile_ablation_cases": ["unresolved_alternatives_deleted", "history_rewrite_after_memory_revision", "high_confidence_error_recurrence"],
+      "parent_replacements": ["truth_maintenance_system", "belief_revision_and_versioned_state_parent"],
+      "protected_status": "CANNOT_CHECK"
+    },
+    {
+      "component_id": "K2_TYPED_RELATION_TRANSPORT",
+      "current_role": "kernel_candidate",
+      "hypothesized_value": [
+        "prevents context-free equivalence",
+        "preserves native relation verdicts",
+        "distinguishes text, causal, procedural and authority transport"
+      ],
+      "primary_costs": ["certificate_generation", "counterprobe_cost", "expert_adjudication"],
+      "hostile_ablation_cases": ["same_identifier_changed_meaning", "text_equivalent_competence_not_transferred", "approximate_chain_laundered_as_exact"],
+      "parent_replacements": ["native_bisimulation_or_experiment_comparison", "causal_transport", "measurement_invariance", "metrology"],
+      "protected_status": "CANNOT_CHECK"
+    },
+    {
+      "component_id": "K3_EVIDENCE_DEPENDENCE_REVALIDATION",
+      "current_role": "kernel_candidate",
+      "hypothesized_value": [
+        "prevents dependent evidence amplification",
+        "supports selective reopening",
+        "tracks criticism uptake and distributed source state"
+      ],
+      "primary_costs": ["graph_memory", "dependence_annotation", "revalidation_latency"],
+      "hostile_ablation_cases": ["same_model_multi_reviewer_vote", "alternative_support_survives", "calibration_warning_lost_at_handoff"],
+      "parent_replacements": ["dependent_meta_analysis", "provenance_graph", "support_hypergraph_and_social_epistemology_parent"],
+      "protected_status": "CANNOT_CHECK"
+    },
+    {
+      "component_id": "K4_ACTION_DIAGNOSIS_RECOVERY",
+      "current_role": "kernel_candidate",
+      "hypothesized_value": [
+        "selects obligation-relevant actions",
+        "keeps plural failure causes",
+        "prevents self-reflection from self-validating",
+        "turns reproduced failures into scoped lessons"
+      ],
+      "primary_costs": ["planning_latency", "probe_cost", "self_model_training", "extra_actions"],
+      "hostile_ablation_cases": ["execution_failure_misread_as_science", "nonidentifying_failure_repaired_without_probe", "uncalibrated_self_confidence", "failure_lesson_overgeneralization"],
+      "parent_replacements": ["rational_metareasoning", "model_based_diagnosis", "Bayesian_experiment_design", "CEGAR_CEGIS", "continual_learning"],
+      "protected_status": "CANNOT_CHECK"
+    },
+    {
+      "component_id": "K5_FRONTIER_ESCALATION_EXPLORATION",
+      "current_role": "kernel_candidate",
+      "hypothesized_value": [
+        "prevents false and missed escalation",
+        "retains useful off_query anomalies",
+        "separates surprise from evidence and agenda authority"
+      ],
+      "primary_costs": ["exploration_budget", "encounter_buffer", "representation_change_cost"],
+      "hostile_ablation_cases": ["false_jump_lure", "representation_insufficiency", "noisy_tv_serendipity", "instruction_induced_search_suppression"],
+      "parent_replacements": ["metareasoning", "intrinsic_motivation", "open_ended_learning", "problem_finding_and_portfolio_parent"],
+      "protected_status": "CANNOT_CHECK"
+    },
+    {
+      "component_id": "K6_EVALUATION_SATURATION_AUTHORITY",
+      "current_role": "kernel_candidate",
+      "hypothesized_value": [
+        "prevents local tests from minting scientific authority",
+        "binds evaluator identity and parity",
+        "prevents censored search from becoming completeness"
+      ],
+      "primary_costs": ["evaluation_budget", "independent_review", "coverage_documentation"],
+      "hostile_ablation_cases": ["benchmark_mutation_after_output", "academic_only_saturation", "parent_baseline_underresourced", "postcommunication_consensus_counted_as_independent"],
+      "parent_replacements": ["registered_reports", "systematic_review_stopping", "benchmark_governance", "external_audit"],
+      "protected_status": "CANNOT_CHECK"
+    }
+  ],
+  "research_only_candidates": [
+    {
+      "component_id": "INQUIRY_SELF_MODEL",
+      "owner": "K4_research_adapter",
+      "survival_test": "improves effort_review_method_or_stop decisions beyond calibrated uncertainty and rational_metareasoning parents",
+      "likely_costs": ["training", "calibration_data", "review_latency"],
+      "current_disposition": "REFERENCE_ONLY"
+    },
+    {
+      "component_id": "FAILURE_LESSON",
+      "owner": "K1_K3_K4_research_adapter",
+      "survival_test": "reduces recurrence or improves scoped transfer beyond raw replay and case_based_reasoning parents",
+      "likely_costs": ["causal_attribution", "regression_tests", "retrieval"],
+      "current_disposition": "REFERENCE_ONLY"
+    },
+    {
+      "component_id": "SURPRISE_VECTOR_AND_ENCOUNTER_BUFFER",
+      "owner": "K5_research_adapter",
+      "survival_test": "recognizes prospectively useful anomalies without noise fixation beyond curiosity_information_gain_parents",
+      "likely_costs": ["retention", "cross_problem_matching", "followup_budget"],
+      "current_disposition": "REFERENCE_ONLY"
+    },
+    {
+      "component_id": "COMPETENCE_RECEIPT",
+      "owner": "K2_K4_research_adapter",
+      "survival_test": "predicts changed_context procedural failure beyond ordinary context_tool variables",
+      "likely_costs": ["demonstrations", "state_annotation", "perturbation_tests"],
+      "current_disposition": "REFERENCE_ONLY"
+    },
+    {
+      "component_id": "CRITICISM_RECEIPT",
+      "owner": "K3_K6_research_adapter",
+      "survival_test": "improves defect correction and exposes review_theatre beyond vote_count and freeform_critique",
+      "likely_costs": ["assumption_targeting", "response_evidence", "reviewer_burden"],
+      "current_disposition": "REFERENCE_ONLY"
+    },
+    {
+      "component_id": "DISTRIBUTED_EPISODE_STATE",
+      "owner": "K3_K4_research_adapter",
+      "survival_test": "detects support_or_state loss at human_tool_model boundaries beyond ordinary provenance",
+      "likely_costs": ["topology_annotation", "state_sync", "interface_instrumentation"],
+      "current_disposition": "REFERENCE_ONLY"
+    },
+    {
+      "component_id": "PEDAGOGICAL_SAMPLE_RECEIPT",
+      "owner": "K3_K4_K5_research_adapter",
+      "survival_test": "prevents false exhaustiveness and search suppression without violating safety_bounded instruction",
+      "likely_costs": ["teacher_scope_metadata", "extra_exploration"],
+      "current_disposition": "REFERENCE_ONLY"
+    },
+    {
+      "component_id": "MEMORY_REVISION_RECEIPT",
+      "owner": "K1_K3_research_adapter",
+      "survival_test": "allows adaptive retrieval and consolidation while preventing archive_history mutation",
+      "likely_costs": ["dual_memory_storage", "digest_checks", "revalidation"],
+      "current_disposition": "REFERENCE_ONLY"
+    },
+    {
+      "component_id": "INCUBATION_RECEIPT",
+      "owner": "K4_research_adapter",
+      "survival_test": "generates externally testable candidates beyond ordinary search without self_confirmation or protected_state drift",
+      "likely_costs": ["offline_compute", "candidate_storage", "external_testing"],
+      "current_disposition": "REFERENCE_ONLY"
+    },
+    {
+      "component_id": "POLICY_HABIT_RECEIPT",
+      "owner": "K4_K6_research_adapter",
+      "survival_test": "detects cached policy failure after criterion_or_outcome revaluation beyond epoch_checks alone",
+      "likely_costs": ["periodic_revaluation", "policy_churn"],
+      "current_disposition": "REFERENCE_ONLY"
+    },
+    {
+      "component_id": "COUNTERFACTUAL_PROPOSAL",
+      "owner": "K1_K2_K3_K4_research_adapter",
+      "survival_test": "prevents model_generated predictions from entering observation evidence while preserving planning value",
+      "likely_costs": ["assumption_binding", "simulation_compute", "external_test"],
+      "current_disposition": "REFERENCE_ONLY"
+    },
+    {
+      "component_id": "OBSERVER_COUPLING_RECEIPT",
+      "owner": "K3_K6_research_adapter",
+      "survival_test": "detects target_specific evaluator_response with stable_negative_controls and avoids performativity_everywhere",
+      "likely_costs": ["matched_controls", "longitudinal_measurement", "revalidation"],
+      "current_disposition": "REFERENCE_ONLY"
+    }
+  ],
+  "required_global_arms": [
+    "FULL_ORION",
+    "CONTRACTED_ORION",
+    "SIMPLE_DIRECT_CONTROL",
+    "STRONGEST_PARENT_COMPOSITION",
+    "LEAVE_ONE_COMPONENT_OUT",
+    "PARENT_REPLACEMENT",
+    "PAIR_INTERACTION_WHERE_MATERIAL"
+  ],
+  "hard_failures": [
+    "FALSE_COMPLETION",
+    "UNSAFE_TRANSPORT",
+    "AUTHORITY_VIOLATION",
+    "EVIDENCE_CORRUPTION",
+    "CRITERION_DRIFT",
+    "PROTECTED_CAPABILITY_LOSS"
+  ],
+  "cost_coordinates": [
+    "latency",
+    "compute",
+    "memory",
+    "annotation",
+    "implementation_and_failure_surface"
+  ],
+  "freeze_rule": "No component receives universal kernel status from conceptual plausibility, local tests or author judgement alone.",
+  "kernel_frozen": false,
+  "grants_architecture_authority": false,
+  "grants_scientific_truth": false,
+  "grants_novelty": false
+}
