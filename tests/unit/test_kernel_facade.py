@@ -4,7 +4,7 @@ import orion_v2.kernel as kernel
 
 
 def test_kernel_facade_is_explicitly_non_authorizing_and_unfrozen() -> None:
-    assert kernel.KERNEL_API_VERSION == "wave06-candidate-v1"
+    assert kernel.KERNEL_API_VERSION == "wave06-candidate-v2"
     assert kernel.KERNEL_FROZEN is False
     assert kernel.GRANTS_ARCHITECTURE_AUTHORITY is False
     assert kernel.GRANTS_SCIENTIFIC_TRUTH is False
@@ -31,7 +31,6 @@ def test_kernel_facade_covers_all_seven_interface_families() -> None:
         # K4
         "ActionProposal",
         "ResponsibilityHypothesis",
-        "WorkflowSpec",
         # K5
         "ResearchOpportunityCandidate",
         "JumpProposal",
@@ -43,7 +42,7 @@ def test_kernel_facade_covers_all_seven_interface_families() -> None:
     assert required <= set(kernel.__all__)
 
 
-def test_parent_reference_algorithms_are_not_universal_kernel_exports() -> None:
+def test_parent_reference_algorithms_and_workflow_are_not_universal_kernel_exports() -> None:
     forbidden = {
         "are_bisimilar",
         "bisimulation_relation",
@@ -61,6 +60,9 @@ def test_parent_reference_algorithms_are_not_universal_kernel_exports() -> None:
         "pareto_frontier_portfolios",
         "select_actions",
         "minimum_separating_probe_set",
+        "WorkflowSpec",
+        "WorkflowTask",
+        "WorkflowConformanceReceipt",
     }
     assert forbidden.isdisjoint(kernel.__all__)
     for name in forbidden:
