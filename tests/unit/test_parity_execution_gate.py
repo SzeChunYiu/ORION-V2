@@ -54,7 +54,7 @@ def test_evaluator_binding_advances_to_parent_baseline_binding() -> None:
     assert result.status is ParityExecutionStatus.BLOCKED_PARENT_BASELINE_BINDING
 
 
-def test_baseline_binding_advances_to_resource_budget_binding() -> None:
+def test_baseline_binding_with_current_frozen_resources_authorizes_run_only() -> None:
     artifacts = _artifacts()
     custody = copy.deepcopy(artifacts["custody_protocol"])
     custody["evaluator_registry"]["bound"] = True
@@ -62,21 +62,6 @@ def test_baseline_binding_advances_to_resource_budget_binding() -> None:
     baselines["implementation_bindings"]["bound"] = True
     artifacts["custody_protocol"] = custody
     artifacts["baseline_registry"] = baselines
-    result = assess_parity_execution_readiness(**artifacts)
-    assert result.status is ParityExecutionStatus.BLOCKED_RESOURCE_BUDGET_BINDING
-
-
-def test_all_bindings_only_authorize_run_not_parity_or_scientific_truth() -> None:
-    artifacts = _artifacts()
-    custody = copy.deepcopy(artifacts["custody_protocol"])
-    custody["evaluator_registry"]["bound"] = True
-    baselines = copy.deepcopy(artifacts["baseline_registry"])
-    baselines["implementation_bindings"]["bound"] = True
-    resources = copy.deepcopy(artifacts["resource_protocol"])
-    resources["case_budget_manifest"]["bound"] = True
-    artifacts["custody_protocol"] = custody
-    artifacts["baseline_registry"] = baselines
-    artifacts["resource_protocol"] = resources
     result = assess_parity_execution_readiness(**artifacts)
     assert result.status is ParityExecutionStatus.READY_FOR_PROTECTED_PARITY_RUN
     assert result.run_authorized is True
@@ -84,6 +69,22 @@ def test_all_bindings_only_authorize_run_not_parity_or_scientific_truth() -> Non
     assert result.grants_v2_closeout is False
     assert result.grants_scientific_truth is False
     assert result.grants_novelty is False
+
+
+def test_unbound_resource_budget_still_fails_closed_after_other_bindings() -> None:
+    artifacts = _artifacts()
+    custody = copy.deepcopy(artifacts["custody_protocol"])
+    custody["evaluator_registry"]["bound"] = True
+    baselines = copy.deepcopy(artifacts["baseline_registry"])
+    baselines["implementation_bindings"]["bound"] = True
+    resources = copy.deepcopy(artifacts["resource_protocol"])
+    resources["case_budget_manifest"]["bound"] = False
+    artifacts["custody_protocol"] = custody
+    artifacts["baseline_registry"] = baselines
+    artifacts["resource_protocol"] = resources
+    result = assess_parity_execution_readiness(**artifacts)
+    assert result.status is ParityExecutionStatus.BLOCKED_RESOURCE_BUDGET_BINDING
+    assert result.run_authorized is False
 
 
 def test_invalid_or_self_authorizing_design_fails_before_all_other_gates() -> None:
