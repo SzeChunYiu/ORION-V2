@@ -16,12 +16,12 @@ def _load() -> dict:
     return json.loads(MANIFEST.read_text(encoding="utf-8"))
 
 
-def test_current_kernel_candidate_is_coherent_but_not_frozen() -> None:
+def test_current_kernel_candidate_is_coherent_and_ready_for_parity_not_frozen() -> None:
     result = validate_kernel_disposition(_load(), source_root=SRC)
     assert result.valid, result.errors
     assert result.family_count == 7
-    assert result.unresolved_duplicate_count == 4
-    assert result.terminal == "KERNEL_CANDIDATE_VALID_DUPLICATE_REDUCTION_OPEN"
+    assert result.unresolved_duplicate_count == 0
+    assert result.terminal == "KERNEL_CANDIDATE_READY_FOR_PROTECTED_FREEZE_RECEIPT"
 
 
 def test_missing_kernel_family_fails_closed() -> None:
@@ -51,15 +51,21 @@ def test_parent_reference_implementation_cannot_masquerade_as_stable_interface()
 
 def test_open_duplicate_groups_prevent_kernel_freeze() -> None:
     mutated = _load()
+    mutated["unresolved_duplicate_groups"] = [
+        {
+            "group_id": "FORGED-DUPLICATE",
+            "modules": ["structural", "correspondence"],
+            "required_disposition": "choose one stable owner",
+        }
+    ]
     mutated["kernel_frozen"] = True
     result = validate_kernel_disposition(mutated, source_root=SRC)
     assert not result.valid
     assert any("cannot be frozen" in error for error in result.errors)
 
 
-def test_planning_manifest_cannot_self_freeze_even_after_duplicates_removed() -> None:
+def test_planning_manifest_cannot_self_freeze_after_duplicates_are_dispositioned() -> None:
     mutated = _load()
-    mutated["unresolved_duplicate_groups"] = []
     mutated["kernel_frozen"] = True
     result = validate_kernel_disposition(mutated, source_root=SRC)
     assert not result.valid
