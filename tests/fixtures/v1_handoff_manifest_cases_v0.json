@@ -1,0 +1,75 @@
+{
+  "schema_id": "orion-v2.v1-handoff-manifest-cases.v0",
+  "authority": "NON_AUTHORIZING_RESEARCH_FIXTURES",
+  "required_classes": [
+    "COMPONENT_GRAPH",
+    "CAPABILITY_GRAPH",
+    "THEOREM_CENSUS",
+    "CLAIM_RESULT_LEDGER",
+    "RUNTIME_HARNESS_IDENTITY",
+    "FAILURE_NEGATIVE_HISTORY",
+    "ISSUE_DISPOSITION_LEDGER",
+    "NON_RETROACTIVITY",
+    "INDEPENDENT_REVIEW",
+    "UNLOCK_DECISION"
+  ],
+  "valid_manifest": {
+    "schema_id": "orion-v2.v1-handoff-manifest.v0",
+    "source_repository": "SzeChunYiu/ORION",
+    "subject_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "non_retroactivity": true,
+    "independent_review_id": "review:independent:1",
+    "unlock_decision": "UNLOCK_RESEARCH_IMPLEMENTATION_ONLY",
+    "artifacts": [
+      {"class": "COMPONENT_GRAPH", "path": "v1/component.json", "sha256": "1111111111111111111111111111111111111111111111111111111111111111", "subject_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      {"class": "CAPABILITY_GRAPH", "path": "v1/capability.json", "sha256": "2222222222222222222222222222222222222222222222222222222222222222", "subject_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      {"class": "THEOREM_CENSUS", "path": "v1/theorems.json", "sha256": "3333333333333333333333333333333333333333333333333333333333333333", "subject_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      {"class": "CLAIM_RESULT_LEDGER", "path": "v1/claims.json", "sha256": "4444444444444444444444444444444444444444444444444444444444444444", "subject_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      {"class": "RUNTIME_HARNESS_IDENTITY", "path": "v1/runtime.json", "sha256": "5555555555555555555555555555555555555555555555555555555555555555", "subject_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      {"class": "FAILURE_NEGATIVE_HISTORY", "path": "v1/failures.json", "sha256": "6666666666666666666666666666666666666666666666666666666666666666", "subject_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      {"class": "ISSUE_DISPOSITION_LEDGER", "path": "v1/issues.json", "sha256": "7777777777777777777777777777777777777777777777777777777777777777", "subject_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      {"class": "NON_RETROACTIVITY", "path": "v1/nonretro.md", "sha256": "8888888888888888888888888888888888888888888888888888888888888888", "subject_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      {"class": "INDEPENDENT_REVIEW", "path": "v1/review.json", "sha256": "9999999999999999999999999999999999999999999999999999999999999999", "subject_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      {"class": "UNLOCK_DECISION", "path": "v1/unlock.json", "sha256": "abcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcd", "subject_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}
+    ]
+  },
+  "invalid_cases": [
+    {
+      "case_id": "missing-runtime-class",
+      "remove_class": "RUNTIME_HARNESS_IDENTITY",
+      "expected_terminal": "MISSING_REQUIRED_CLASS"
+    },
+    {
+      "case_id": "mixed-subject-commit",
+      "mutate_path": "v1/claims.json",
+      "field": "subject_commit",
+      "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "expected_terminal": "MIXED_SUBJECT_COMMITS"
+    },
+    {
+      "case_id": "invalid-digest",
+      "mutate_path": "v1/theorems.json",
+      "field": "sha256",
+      "value": "not-a-digest",
+      "expected_terminal": "INVALID_ARTIFACT_IDENTITY"
+    },
+    {
+      "case_id": "nonretroactivity-false",
+      "manifest_field": "non_retroactivity",
+      "value": false,
+      "expected_terminal": "NON_RETROACTIVITY_NOT_BOUND"
+    },
+    {
+      "case_id": "missing-independent-review",
+      "manifest_field": "independent_review_id",
+      "value": "",
+      "expected_terminal": "INDEPENDENT_REVIEW_NOT_BOUND"
+    },
+    {
+      "case_id": "no-unlock-decision",
+      "manifest_field": "unlock_decision",
+      "value": "",
+      "expected_terminal": "UNLOCK_DECISION_NOT_BOUND"
+    }
+  ]
+}
