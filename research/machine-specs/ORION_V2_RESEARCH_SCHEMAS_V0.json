@@ -1,0 +1,508 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/SzeChunYiu/ORION-V2/research/machine-specs/ORION_V2_RESEARCH_SCHEMAS_V0.json",
+  "title": "ORION-V2 research schema bundle V0",
+  "description": "Non-authorizing pre-freeze schemas for research records, known-answer fixtures and protocol design. These schemas do not implement a V2 solver or authorize scientific claims.",
+  "$defs": {
+    "NonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "IdArray": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/NonEmptyString" },
+      "uniqueItems": true
+    },
+    "Status": {
+      "type": "string",
+      "enum": [
+        "PROPOSAL_ONLY",
+        "RESEARCH_INPUT_ONLY",
+        "FROZEN_PROTOCOL",
+        "VERIFIED_INTERNAL",
+        "SUPPORTED_PROTECTED",
+        "REFUTED",
+        "CANNOT_CHECK"
+      ]
+    },
+    "ProblemContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "problem_id",
+        "request_identity",
+        "target_decisions",
+        "scope",
+        "success_obligations",
+        "hard_blockers",
+        "admissible_evidence_classes",
+        "admissible_action_classes",
+        "resource_budget",
+        "authority_requirements",
+        "terminal_policy",
+        "status"
+      ],
+      "properties": {
+        "schema_id": { "const": "orion-v2.problem-contract.v0" },
+        "problem_id": { "$ref": "#/$defs/NonEmptyString" },
+        "request_identity": { "$ref": "#/$defs/NonEmptyString" },
+        "request_epoch": { "$ref": "#/$defs/NonEmptyString" },
+        "target_decisions": { "$ref": "#/$defs/IdArray" },
+        "scope": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["included", "excluded"],
+          "properties": {
+            "included": { "$ref": "#/$defs/IdArray" },
+            "excluded": { "$ref": "#/$defs/IdArray" }
+          }
+        },
+        "initial_representation_ids": { "$ref": "#/$defs/IdArray" },
+        "source_identity_ids": { "$ref": "#/$defs/IdArray" },
+        "success_obligations": { "$ref": "#/$defs/IdArray" },
+        "hard_blockers": { "$ref": "#/$defs/IdArray" },
+        "admissible_evidence_classes": { "$ref": "#/$defs/IdArray" },
+        "admissible_action_classes": { "$ref": "#/$defs/IdArray" },
+        "resource_budget": {
+          "type": "object",
+          "additionalProperties": { "type": "number", "minimum": 0 }
+        },
+        "capacity_budget": {
+          "type": "object",
+          "additionalProperties": { "type": "number", "minimum": 0 }
+        },
+        "authority_requirements": { "$ref": "#/$defs/IdArray" },
+        "freshness_requirements": { "$ref": "#/$defs/IdArray" },
+        "acceptable_partial_results": { "$ref": "#/$defs/IdArray" },
+        "terminal_policy": { "$ref": "#/$defs/IdArray" },
+        "audit_replay_requirements": { "$ref": "#/$defs/IdArray" },
+        "status": { "$ref": "#/$defs/Status" }
+      }
+    },
+    "ContextProbe": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "context_id",
+        "query_classes",
+        "intervention_classes",
+        "decision_classes",
+        "target_consequences",
+        "resource_bound",
+        "constitution_id",
+        "epoch",
+        "status"
+      ],
+      "properties": {
+        "schema_id": { "const": "orion-v2.context-probe.v0" },
+        "context_id": { "$ref": "#/$defs/NonEmptyString" },
+        "query_classes": { "$ref": "#/$defs/IdArray" },
+        "intervention_classes": { "$ref": "#/$defs/IdArray" },
+        "decision_classes": { "$ref": "#/$defs/IdArray" },
+        "target_consequences": { "$ref": "#/$defs/IdArray" },
+        "resource_bound": {
+          "type": "object",
+          "additionalProperties": { "type": "number", "minimum": 0 }
+        },
+        "constitution_id": { "$ref": "#/$defs/NonEmptyString" },
+        "tolerances": {
+          "type": "object",
+          "additionalProperties": { "type": "number", "minimum": 0 }
+        },
+        "epoch": { "$ref": "#/$defs/NonEmptyString" },
+        "status": { "$ref": "#/$defs/Status" }
+      }
+    },
+    "StructuralSignature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "structure_id",
+        "domain_ids",
+        "native_problem",
+        "objects",
+        "relations",
+        "probes",
+        "transitions",
+        "invariants",
+        "obstructions",
+        "source_ids",
+        "status"
+      ],
+      "properties": {
+        "schema_id": { "const": "orion-v2.structural-signature.v0" },
+        "structure_id": { "$ref": "#/$defs/NonEmptyString" },
+        "domain_ids": { "$ref": "#/$defs/IdArray" },
+        "native_problem": { "$ref": "#/$defs/NonEmptyString" },
+        "objects": { "$ref": "#/$defs/IdArray" },
+        "relations": { "$ref": "#/$defs/IdArray" },
+        "probes": { "$ref": "#/$defs/IdArray" },
+        "transitions": { "$ref": "#/$defs/IdArray" },
+        "invariants": { "$ref": "#/$defs/IdArray" },
+        "obstructions": { "$ref": "#/$defs/IdArray" },
+        "identifiability_coordinates": { "$ref": "#/$defs/IdArray" },
+        "scale_coordinates": { "$ref": "#/$defs/IdArray" },
+        "uncertainty_coordinates": { "$ref": "#/$defs/IdArray" },
+        "dependence_coordinates": { "$ref": "#/$defs/IdArray" },
+        "resource_coordinates": { "$ref": "#/$defs/IdArray" },
+        "capacity_coordinates": { "$ref": "#/$defs/IdArray" },
+        "authority_coordinates": { "$ref": "#/$defs/IdArray" },
+        "provenance_coordinates": { "$ref": "#/$defs/IdArray" },
+        "history_coordinates": { "$ref": "#/$defs/IdArray" },
+        "cost_coordinates": { "$ref": "#/$defs/IdArray" },
+        "unknown_coordinates": { "$ref": "#/$defs/IdArray" },
+        "not_applicable_coordinates": { "$ref": "#/$defs/IdArray" },
+        "source_ids": { "$ref": "#/$defs/IdArray" },
+        "status": { "$ref": "#/$defs/Status" }
+      }
+    },
+    "StructuralRelationReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "receipt_id",
+        "left_structure_id",
+        "right_structure_id",
+        "context_id",
+        "relation",
+        "witness_ids",
+        "lost_information_ids",
+        "counter_probe_ids",
+        "native_judgment_preservation",
+        "status"
+      ],
+      "properties": {
+        "schema_id": { "const": "orion-v2.structural-relation-receipt.v0" },
+        "receipt_id": { "$ref": "#/$defs/NonEmptyString" },
+        "left_structure_id": { "$ref": "#/$defs/NonEmptyString" },
+        "right_structure_id": { "$ref": "#/$defs/NonEmptyString" },
+        "context_id": { "$ref": "#/$defs/NonEmptyString" },
+        "relation": {
+          "type": "string",
+          "enum": [
+            "ISOMORPHIC",
+            "ROLE_EQUIVALENT",
+            "BEHAVIORALLY_EQUIVALENT",
+            "INTERFACE_EQUIVALENT",
+            "OBSERVATIONALLY_INDISTINGUISHABLE",
+            "PREDICTIVELY_EQUIVALENT",
+            "DECISION_EQUIVALENT",
+            "LEFT_DECISION_DOMINATES",
+            "RIGHT_DECISION_DOMINATES",
+            "SAFE_QUOTIENT",
+            "VIABILITY_EQUIVALENT",
+            "LOCALLY_COMPATIBLE_GLOBALLY_OBSTRUCTED",
+            "APPROXIMATELY_EQUIVALENT",
+            "DISTINGUISHED",
+            "INCOMPARABLE",
+            "CANNOT_CHECK"
+          ]
+        },
+        "mapping_ids": { "$ref": "#/$defs/IdArray" },
+        "witness_ids": { "$ref": "#/$defs/IdArray" },
+        "quantitative_bounds": {
+          "type": "object",
+          "additionalProperties": { "type": "number" }
+        },
+        "lost_information_ids": { "$ref": "#/$defs/IdArray" },
+        "counter_probe_ids": { "$ref": "#/$defs/IdArray" },
+        "native_judgment_preservation": {
+          "type": "string",
+          "enum": ["PRESERVED", "VIOLATED", "CANNOT_CHECK"]
+        },
+        "expiration_conditions": { "$ref": "#/$defs/IdArray" },
+        "status": { "$ref": "#/$defs/Status" }
+      }
+    },
+    "SolverState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "state_id",
+        "problem_id",
+        "epoch",
+        "scientific_state_ids",
+        "open_obligation_ids",
+        "history_ids",
+        "model_hypothesis_ids",
+        "query_experiment_ids",
+        "admissible_action_ids",
+        "uncertainty_identifiability_ids",
+        "resource_state",
+        "capacity_queue_state",
+        "responsibility_hypothesis_ids",
+        "regime_stack_ids",
+        "validation_state_ids",
+        "constitution_id",
+        "status"
+      ],
+      "properties": {
+        "schema_id": { "const": "orion-v2.solver-state.v0" },
+        "state_id": { "$ref": "#/$defs/NonEmptyString" },
+        "problem_id": { "$ref": "#/$defs/NonEmptyString" },
+        "epoch": { "$ref": "#/$defs/NonEmptyString" },
+        "scientific_state_ids": { "$ref": "#/$defs/IdArray" },
+        "open_obligation_ids": { "$ref": "#/$defs/IdArray" },
+        "blocker_ids": { "$ref": "#/$defs/IdArray" },
+        "history_ids": { "$ref": "#/$defs/IdArray" },
+        "model_hypothesis_ids": { "$ref": "#/$defs/IdArray" },
+        "query_experiment_ids": { "$ref": "#/$defs/IdArray" },
+        "admissible_action_ids": { "$ref": "#/$defs/IdArray" },
+        "uncertainty_identifiability_ids": { "$ref": "#/$defs/IdArray" },
+        "dependence_graph_ids": { "$ref": "#/$defs/IdArray" },
+        "resource_state": {
+          "type": "object",
+          "additionalProperties": { "type": "number", "minimum": 0 }
+        },
+        "capacity_queue_state": {
+          "type": "object",
+          "additionalProperties": { "type": "number", "minimum": 0 }
+        },
+        "responsibility_hypothesis_ids": { "$ref": "#/$defs/IdArray" },
+        "responsibility_topology": {
+          "type": "string",
+          "enum": [
+            "SINGLE",
+            "SERIAL_UPSTREAM",
+            "MULTIPLE_INDEPENDENT",
+            "DISTRIBUTED_CONTROL",
+            "INTERACTION_ONLY",
+            "SHARED_LATENT_CAUSE",
+            "UNRESOLVED"
+          ]
+        },
+        "regime_stack_ids": { "$ref": "#/$defs/IdArray" },
+        "validation_state_ids": { "$ref": "#/$defs/IdArray" },
+        "constitution_id": { "$ref": "#/$defs/NonEmptyString" },
+        "status": { "$ref": "#/$defs/Status" }
+      }
+    },
+    "ActionProposal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "action_id",
+        "base_state_id",
+        "action_family",
+        "precondition_ids",
+        "expected_effect_ids",
+        "expected_value_vector",
+        "cost_vector",
+        "risk_ids",
+        "authority_requirement_ids",
+        "status"
+      ],
+      "properties": {
+        "schema_id": { "const": "orion-v2.action-proposal.v0" },
+        "action_id": { "$ref": "#/$defs/NonEmptyString" },
+        "base_state_id": { "$ref": "#/$defs/NonEmptyString" },
+        "action_family": {
+          "type": "string",
+          "enum": [
+            "ORIENT",
+            "ACQUIRE",
+            "REPRESENT",
+            "COMPARE",
+            "DISCRIMINATE",
+            "INFER",
+            "SYNTHESIZE",
+            "VERIFY",
+            "DIAGNOSE",
+            "REPAIR",
+            "REFRAME",
+            "REMODEL_REABSTRACT",
+            "REOPEN",
+            "ESCALATE",
+            "ASK_EXTERNAL",
+            "ADOPT_COMMIT",
+            "STOP"
+          ]
+        },
+        "precondition_ids": { "$ref": "#/$defs/IdArray" },
+        "expected_effect_ids": { "$ref": "#/$defs/IdArray" },
+        "expected_value_vector": {
+          "type": "object",
+          "additionalProperties": { "type": ["number", "boolean", "string"] }
+        },
+        "cost_vector": {
+          "type": "object",
+          "additionalProperties": { "type": "number", "minimum": 0 }
+        },
+        "risk_ids": { "$ref": "#/$defs/IdArray" },
+        "authority_requirement_ids": { "$ref": "#/$defs/IdArray" },
+        "concurrency_class": {
+          "type": "string",
+          "enum": [
+            "REQUIRED_ORDER",
+            "CONDITIONALLY_ORDERED",
+            "COMMUTATIVE_ON_PROJECTION",
+            "SAFE_PARALLEL",
+            "MERGEABLE",
+            "CANNOT_CHECK"
+          ]
+        },
+        "status": { "$ref": "#/$defs/Status" }
+      }
+    },
+    "JumpTrigger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "trigger_id",
+        "base_state_id",
+        "current_level",
+        "incumbent_closure_id",
+        "trigger_kind",
+        "witness_ids",
+        "lower_level_hypothesis_ids",
+        "coverage_status",
+        "status"
+      ],
+      "properties": {
+        "schema_id": { "const": "orion-v2.jump-trigger.v0" },
+        "trigger_id": { "$ref": "#/$defs/NonEmptyString" },
+        "base_state_id": { "$ref": "#/$defs/NonEmptyString" },
+        "current_level": { "type": "integer", "minimum": 0, "maximum": 8 },
+        "incumbent_closure_id": { "$ref": "#/$defs/NonEmptyString" },
+        "trigger_kind": {
+          "type": "string",
+          "enum": [
+            "EXPRESSIVE_CEILING",
+            "STRUCTURAL_NONIDENTIFIABILITY",
+            "MODEL_FAMILY_INADEQUACY",
+            "GENUINE_COUNTEREXAMPLE",
+            "GLOBAL_GLUING_OBSTRUCTION",
+            "REPEATED_PROTECTED_RESIDUAL",
+            "RESPONSIBILITY_ASSIGNED_TO_HIGHER_LEVEL",
+            "REMOTE_DONOR_OUTSIDE_CLOSURE",
+            "EXPLORATION_COLLAPSE",
+            "PERFORMATIVE_RESPONSE",
+            "SEMANTIC_OR_SCALE_DRIFT"
+          ]
+        },
+        "witness_ids": { "$ref": "#/$defs/IdArray" },
+        "lower_level_hypothesis_ids": { "$ref": "#/$defs/IdArray" },
+        "discriminator_ids": { "$ref": "#/$defs/IdArray" },
+        "coverage_status": {
+          "type": "string",
+          "enum": ["OBSERVED", "PARTIAL", "CENSORED", "CANNOT_CHECK"]
+        },
+        "status": { "const": "PROPOSAL_ONLY" }
+      }
+    },
+    "JumpProposal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "proposal_id",
+        "trigger_id",
+        "base_state_id",
+        "jump_level",
+        "transformation_family",
+        "donor_ids",
+        "old_ceiling_witness_ids",
+        "new_object_operator_ids",
+        "correspondence_map_ids",
+        "affected_commitment_ids",
+        "preservation_obligation_ids",
+        "reopen_obligation_ids",
+        "predicted_new_contract_ids",
+        "falsifier_ids",
+        "rollback_plan_ids",
+        "status"
+      ],
+      "properties": {
+        "schema_id": { "const": "orion-v2.jump-proposal.v0" },
+        "proposal_id": { "$ref": "#/$defs/NonEmptyString" },
+        "trigger_id": { "$ref": "#/$defs/NonEmptyString" },
+        "base_state_id": { "$ref": "#/$defs/NonEmptyString" },
+        "jump_level": { "type": "integer", "minimum": 0, "maximum": 8 },
+        "transformation_family": { "$ref": "#/$defs/NonEmptyString" },
+        "donor_ids": { "$ref": "#/$defs/IdArray" },
+        "old_ceiling_witness_ids": { "$ref": "#/$defs/IdArray" },
+        "new_object_operator_ids": { "$ref": "#/$defs/IdArray" },
+        "correspondence_map_ids": { "$ref": "#/$defs/IdArray" },
+        "affected_commitment_ids": { "$ref": "#/$defs/IdArray" },
+        "preservation_obligation_ids": { "$ref": "#/$defs/IdArray" },
+        "reopen_obligation_ids": { "$ref": "#/$defs/IdArray" },
+        "predicted_new_contract_ids": { "$ref": "#/$defs/IdArray" },
+        "negative_history_migration_ids": { "$ref": "#/$defs/IdArray" },
+        "resource_risk_ids": { "$ref": "#/$defs/IdArray" },
+        "falsifier_ids": { "$ref": "#/$defs/IdArray" },
+        "rollback_plan_ids": { "$ref": "#/$defs/IdArray" },
+        "status": { "const": "PROPOSAL_ONLY" }
+      }
+    },
+    "SolverTerminal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "terminal_id",
+        "problem_id",
+        "state_id",
+        "terminal_kind",
+        "reason_ids",
+        "support_ids",
+        "open_obligation_ids",
+        "reopen_condition_ids",
+        "authority_state",
+        "status"
+      ],
+      "properties": {
+        "schema_id": { "const": "orion-v2.solver-terminal.v0" },
+        "terminal_id": { "$ref": "#/$defs/NonEmptyString" },
+        "problem_id": { "$ref": "#/$defs/NonEmptyString" },
+        "state_id": { "$ref": "#/$defs/NonEmptyString" },
+        "terminal_kind": {
+          "type": "string",
+          "enum": [
+            "JUSTIFIED_SOLUTION",
+            "JUSTIFIED_PARTIAL_RESULT",
+            "MULTIPLE_JUSTIFIED_ALTERNATIVES",
+            "OBSERVATIONALLY_INDETERMINATE",
+            "STRUCTURALLY_NONIDENTIFIABLE",
+            "REPRESENTATION_INSUFFICIENT",
+            "METHOD_FAMILY_INSUFFICIENT",
+            "COVERAGE_INCOMPLETE",
+            "SEARCH_ROUTE_CENSORED",
+            "RESOURCE_BOUND",
+            "AUTHORITY_REQUIRED",
+            "CONTRADICTION_OR_OBSTRUCTION",
+            "FRAMEWORK_REVISION_CANDIDATE",
+            "REFUTED",
+            "CANNOT_CHECK"
+          ]
+        },
+        "reason_ids": { "$ref": "#/$defs/IdArray" },
+        "support_ids": { "$ref": "#/$defs/IdArray" },
+        "open_obligation_ids": { "$ref": "#/$defs/IdArray" },
+        "reopen_condition_ids": { "$ref": "#/$defs/IdArray" },
+        "authority_state": {
+          "type": "string",
+          "enum": ["NOT_REQUIRED", "PENDING", "AUTHORIZED", "DENIED", "CANNOT_CHECK"]
+        },
+        "status": { "$ref": "#/$defs/Status" }
+      }
+    }
+  },
+  "oneOf": [
+    { "$ref": "#/$defs/ProblemContract" },
+    { "$ref": "#/$defs/ContextProbe" },
+    { "$ref": "#/$defs/StructuralSignature" },
+    { "$ref": "#/$defs/StructuralRelationReceipt" },
+    { "$ref": "#/$defs/SolverState" },
+    { "$ref": "#/$defs/ActionProposal" },
+    { "$ref": "#/$defs/JumpTrigger" },
+    { "$ref": "#/$defs/JumpProposal" },
+    { "$ref": "#/$defs/SolverTerminal" }
+  ]
+}
