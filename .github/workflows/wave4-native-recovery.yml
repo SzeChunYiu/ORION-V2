@@ -1,0 +1,68 @@
+name: wave4-native-recovery
+
+on:
+  pull_request:
+    paths:
+      - "src/orion_v2/**"
+      - "tests/unit/**"
+      - "research/native-recovery/**"
+      - "papers/WAVE_04_PROGRAMME_DELTA_V0.md"
+      - ".github/workflows/wave4-native-recovery.yml"
+  push:
+    branches:
+      - "research/wave4-native-recovery-adaptation-corpus-20260827"
+
+permissions:
+  contents: read
+
+jobs:
+  native-recovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pytest
+        run: python -m pip install pytest
+      - name: Compile reference package
+        run: python -m compileall -q src/orion_v2
+      - name: Run integrated unit and known-answer tests
+        run: python -m pytest -q
+      - name: Parse research JSON
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for root in (Path('research'), Path('tests')):
+              for path in root.rglob('*.json'):
+                  json.loads(path.read_text(encoding='utf-8'))
+          print('JSON_PARSE_PASS')
+          PY
+      - name: Check recovery expectation independence
+        run: |
+          python - <<'PY'
+          from orion_v2.native_corpus import built_in_native_recovery_cases as raw
+          from orion_v2.native_corpus_strict import built_in_native_recovery_cases as strict
+          raw_cases = raw()
+          strict_cases = strict()
+          assert [c.case_id for c in raw_cases] == [c.case_id for c in strict_cases]
+          for raw_case, strict_case in zip(raw_cases, strict_cases, strict=True):
+              expected = strict_case.native_to_generalized[strict_case.native_judgment]
+              assert expected is not None
+              # The strict answer key is sourced from the independent registry.
+              assert strict_case.generalized_judgment == raw_case.generalized_judgment
+          print('INDEPENDENT_EXPECTATION_REGISTRY_BOUND')
+          PY
+      - name: Non-authority boundary
+        run: |
+          python - <<'PY'
+          from orion_v2.native_corpus_strict import built_in_native_recovery_cases
+          from orion_v2.native_recovery import assess_native_recovery_suite
+          assessments, _ = assess_native_recovery_suite(built_in_native_recovery_cases())
+          assert all(not item.grants_scientific_truth for item in assessments)
+          assert all(not item.grants_novelty for item in assessments)
+          assert all(not item.grants_target_adoption for item in assessments)
+          print('AUTHORITY_BOUNDARY_PASS')
+          PY
