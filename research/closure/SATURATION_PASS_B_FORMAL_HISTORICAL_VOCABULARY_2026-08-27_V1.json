@@ -1,0 +1,118 @@
+{
+  "schema_version": "orion.v2.changed-vocabulary-saturation-pass.v1",
+  "pass_id": "WAVE06-SATURATION-B-FORMAL-HISTORICAL-2026-08-27",
+  "status": "COMPLETE_NO_MATERIAL_CHANGE",
+  "date": "2026-08-27",
+  "start_state_commit": "94166846dfce5abcf92052883d658b6666741bc4",
+  "v1_freeze_commit": "8f250fc3e55d6d6a28fb1fb33d9932ef1a8760b5",
+  "contracted_v2_subject_commit": "f33d2f45554583f9e612f7a186b7d92e6bc8d01a",
+  "vocabulary_strategy": "orthogonal formal/historical parent terminology selected to avoid AI-agent and ORION wording",
+  "routes": [
+    {
+      "route_id": "B1_REASON_MAINTENANCE",
+      "queries": ["truth maintenance system dependency-directed backtracking", "assumption-based truth maintenance system multiple contexts"],
+      "sources": [
+        "Doyle, Artificial Intelligence 12 (1979), DOI 10.1016/0004-3702(79)90008-0 — A truth maintenance system",
+        "de Kleer, Artificial Intelligence 28 (1986), DOI 10.1016/0004-3702(86)90080-9 — An assumption-based TMS",
+        "de Kleer, Artificial Intelligence 28 (1986), DOI 10.1016/0004-3702(86)90082-2 — Problem solving with the ATMS"
+      ],
+      "disposition": "STRONG_PARENT_OWNERSHIP",
+      "effect": "reason maintenance/dependency revision remain parent mechanisms behind K3; no new coordinate or standalone P-D claim"
+    },
+    {
+      "route_id": "B2_BELIEF_REVISION_AND_EPISTEMIC_UPDATE",
+      "queries": ["iterated belief revision epistemic states", "dynamic epistemic logic belief update action models"],
+      "sources": [
+        "Darwiche & Pearl, Artificial Intelligence 89 (1997), DOI 10.1016/S0004-3702(96)00038-0 — On the logic of iterated belief revision",
+        "van Ditmarsch, van der Hoek & Kooi, Dynamic Epistemic Logic, Springer 2007"
+      ],
+      "disposition": "STRONG_PARENT_OWNERSHIP",
+      "effect": "generic rational belief change is not CSC/P-D novelty; residual concerns scientific evidence/provenance/dependence/authority predicates"
+    },
+    {
+      "route_id": "B3_METAREASONING",
+      "queries": ["principles of metareasoning value of computation resource bounded rationality"],
+      "sources": [
+        "Russell & Wefald, Artificial Intelligence 49 (1991), DOI 10.1016/0004-3702(91)90015-C — Principles of metareasoning"
+      ],
+      "disposition": "STRONG_PARENT_OWNERSHIP",
+      "effect": "generic meta-level action selection/resource-bounded control remains parent-owned; P-C residual is scientific hard-obligation and escalation semantics"
+    },
+    {
+      "route_id": "B4_MODEL_BASED_DIAGNOSIS",
+      "queries": ["model-based diagnosis multiple faults discriminating queries sequential diagnosis"],
+      "sources": [
+        "Rodler, Artificial Intelligence 323 (2023), DOI 10.1016/j.artint.2023.103988 — Sequential model-based diagnosis by systematic search",
+        "Artificial Intelligence in Engineering 12 (1998), DOI 10.1016/S0954-1810(97)00007-1 — Selecting tools and techniques for model-based diagnosis"
+      ],
+      "disposition": "STRONG_PARENT_OWNERSHIP",
+      "effect": "plural diagnostic hypotheses and discriminating probes remain parent-owned; K4/P-C must demonstrate scientific cross-cause consequences beyond MBD"
+    },
+    {
+      "route_id": "B5_CAUSAL_TRANSPORT",
+      "queries": ["causal transportability heterogeneous environments", "meta-transportability multiple environments limited experiments"],
+      "sources": [
+        "Pearl & Bareinboim, AAAI 2011 DOI 10.1609/aaai.v25i1.7861 — Transportability of Causal and Statistical Relations",
+        "Bareinboim & Pearl, AISTATS 2013 PMLR 31:135-143 — Meta-Transportability of Causal Effects",
+        "Bareinboim & Pearl, AAAI 2013 DOI 10.1609/aaai.v27i1.8692 — Causal Transportability with Limited Experiments"
+      ],
+      "disposition": "STRONG_PARENT_OWNERSHIP",
+      "effect": "causal transportability and experiment-selection conditions remain parent theory behind P-B"
+    },
+    {
+      "route_id": "B6_APPROXIMATE_RELATION",
+      "queries": ["probabilistic bisimulation approximation metrics stochastic processes"],
+      "sources": [
+        "Abate, Electronic Notes in Theoretical Computer Science 297 (2013), DOI 10.1016/j.entcs.2013.12.002"
+      ],
+      "disposition": "STRONG_PARENT_OWNERSHIP",
+      "effect": "approximate stochastic relation metrics remain parent theory; P-B residual remains cross-family coordination and scientific consequence"
+    },
+    {
+      "route_id": "B7_PROVENANCE_MODEL",
+      "queries": ["W3C PROV data model entities activities agents derivations", "PROV-O provenance ontology"],
+      "sources": [
+        "W3C PROV-DM Recommendation family (2013)",
+        "W3C PROV-O Recommendation 30 April 2013"
+      ],
+      "disposition": "STRONG_PARENT_OWNERSHIP",
+      "effect": "generic provenance and responsibility graphing remain external parents; K3 does not reproduce a provenance ontology"
+    },
+    {
+      "route_id": "B8_STOPPING_RULES",
+      "queries": ["statistical stopping criteria automated screening systematic reviews", "active learning screening stopping confidence recall"],
+      "sources": [
+        "Callaghan & Müller-Hansen et al., Systematic Reviews 2020 DOI 10.1186/s13643-020-01521-4",
+        "Boetje & van de Schoot, Systematic Reviews 2024 DOI 10.1186/s13643-024-02502-7"
+      ],
+      "disposition": "STRONG_PARENT_OWNERSHIP",
+      "effect": "screening/recall stopping is parent-owned; K6 bounded saturation remains broader and must compare against these controls"
+    }
+  ],
+  "route_completion": {
+    "declared_routes": 8,
+    "completed_routes": 8,
+    "censored_routes": [],
+    "failed_routes": [],
+    "all_declared_routes_dispositioned": true
+  },
+  "absorbed_refinement_artifact": "papers/drafts/HOSTILE_PARENT_OWNERSHIP_ADDENDUM_WAVE06_V1.md",
+  "material_change_check": {
+    "new_kernel_coordinate": false,
+    "new_relation_type": false,
+    "new_obstruction": false,
+    "new_failure_mode": false,
+    "new_parent_contraction": false,
+    "new_benchmark_family": false,
+    "new_paper_identity": false,
+    "bibliographic_or_parent_ownership_refinement_only": true
+  },
+  "terminal": "NO_MATERIAL_CHANGE_PASS",
+  "authority": {
+    "grants_global_literature_completeness": false,
+    "grants_scientific_truth": false,
+    "grants_novelty": false,
+    "grants_publication_authority": false,
+    "grants_v2_closeout": false
+  }
+}
