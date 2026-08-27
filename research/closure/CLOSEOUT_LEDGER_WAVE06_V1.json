@@ -18,6 +18,8 @@
       "case_selection_receipt": "research/evaluation/V1_PARITY_CASE_SELECTION_RECEIPT_WAVE06_V1.json",
       "scoring_spec": "research/evaluation/V1_PARITY_SCORING_ADJUDICATION_WAVE06_V1.json",
       "evaluator_registry": "research/evaluation/V1_PARITY_EVALUATOR_REGISTRY_WAVE06_V1.json",
+      "semantic_reviewer_brief": "research/evaluation/PARITY_CD_SEMANTIC_REVIEWER_BRIEF_WAVE06_V1.md",
+      "semantic_reviewer_binding_issue": 37,
       "resource_matching_protocol": "research/evaluation/V1_PARITY_RESOURCE_MATCHING_PROTOCOL_WAVE06_V1.json",
       "case_budget_manifest": "research/evaluation/V1_PARITY_CASE_BUDGETS_WAVE06_V1.json",
       "custody_protocol": "research/evaluation/V1_PARITY_CUSTODY_PROTOCOL_WAVE06_V1.json",
@@ -31,11 +33,11 @@
       "semantic_source_gaps": ["PARITY-C", "PARITY-D"],
       "remaining_in_order": [
         "bind independent blinded semantic reviewer identities for PARITY-C and PARITY-D under the frozen scoring rubric",
-        "bind strongest parent-composed comparator implementation/version/configuration identities",
+        "bind strongest parent-composed comparator configurations/adapters after parent-only fit checks",
         "execute per-cell non-compensatory V1/V2 parity and simple-control non-regression under frozen budgets/custody"
       ],
-      "last_fully_green_governance_ci_head": "37573dea7a901f38bf43b2babfe7ec49f0dc1527",
-      "latest_post_g7_ci_verification": "PENDING_AT_LEDGER_UPDATE"
+      "last_fully_green_governance_ci_head": "fe93b88f37190a0bf9e6ea79f0a2c742847a527e",
+      "latest_ci_after_version_fit_adapter_and_reviewer-brief_changes": "PENDING_AT_LEDGER_UPDATE"
     },
     {
       "gate": "G2_PAPER_CONTRACTION",
@@ -65,11 +67,21 @@
     },
     {
       "gate": "G4_PARENT_BASELINES",
-      "status": "ROLES_AND_CANDIDATE_AUDIT_FROZEN_IMPLEMENTATION_IDENTITIES_UNBOUND",
+      "status": "CURRENT_CANDIDATE_VERSIONS_AND_ADAPTER_BOUNDARY_FROZEN_STRONGEST_CONFIGURATION_BINDING_OPEN",
       "role_artifact": "research/evaluation/V1_PARITY_BASELINE_REGISTRY_WAVE06_V1.json",
       "candidate_audit": "research/evaluation/PARENT_BASELINE_CANDIDATE_AUDIT_WAVE06_V1.json",
+      "version_audit": "research/evaluation/PARENT_BASELINE_VERSION_AUDIT_WAVE06_V1.json",
+      "fit_audit": "research/evaluation/PARENT_BASELINE_FIT_AUDIT_WAVE06_V1.json",
+      "adapter_contract": "research/evaluation/PARENT_BASELINE_ADAPTER_CONTRACT_WAVE06_V1.json",
       "hostile_parent_addendum": "papers/drafts/HOSTILE_PARENT_OWNERSHIP_ADDENDUM_WAVE06_V1.md",
-      "reason": "campaign-specific parent roles and candidate implementations are frozen, but strongest production/native implementation/version/configuration identities remain unbound"
+      "version_identity_progress": "COMPLETE_FOR_CURRENT_CANDIDATE_SET",
+      "remaining": [
+        "instantiate candidate compositions against frozen fixtures without paired V1/V2 outcome access",
+        "freeze exact parent configuration and thin adapter source digests",
+        "run parent-only known-answer/hostile fit checks and retain limitations/failures",
+        "justify or revise strongest-practical per-campaign selections before outcome access",
+        "set implementation_bindings.bound only after those receipts are immutable"
+      ]
     },
     {
       "gate": "G5_PROTECTED_EVALUATION",
@@ -105,6 +117,7 @@
     "status": "FIELD_HYPOTHESIS_WORTH_PROTECTED_TESTING",
     "field_synthesis": "research/field/COMPUTATIONAL_SCIENTIFIC_CONTROL_FIELD_SYNTHESIS_V0.md",
     "basic_knowledge": "research/field/COMPUTATIONAL_SCIENTIFIC_CONTROL_BASIC_KNOWLEDGE_V0.md",
+    "flagship_draft": "papers/drafts/FLAGSHIP_COMPUTATIONAL_SCIENTIFIC_CONTROL_MANUSCRIPT_V0.md",
     "established_new_scientific_field": false
   },
   "closed_internal_contraction_blockers": [
@@ -120,6 +133,8 @@
     "parity resource-matching rule ambiguity",
     "parity custody-rule ambiguity",
     "parent-comparator role ambiguity",
+    "parent-comparator current version identity ambiguity for the frozen candidate set",
+    "parent-comparator thin-adapter authority ambiguity",
     "parity preflight ordering ambiguity",
     "two-pass post-contraction saturation requirement",
     "known local critical correctness/integrity/authority defects"
@@ -128,7 +143,7 @@
   "current_parity_subblocker": "BLOCKED_EVALUATOR_CUSTODY",
   "current_parity_subblockers_in_order": [
     "INDEPENDENT_SEMANTIC_EVALUATOR_CUSTODY_FOR_PARITY_C_AND_D",
-    "STRONGEST_PARENT_BASELINE_BINDING",
+    "STRONGEST_PARENT_BASELINE_CONFIGURATION_AND_FIT_BINDING",
     "OUTCOME_EXECUTION"
   ],
   "grants_v2_closeout": false,
