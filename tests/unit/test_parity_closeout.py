@@ -1,15 +1,30 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 from pathlib import Path
 
-from orion_v2.parity_closeout import validate_parity_protocol
+from orion_v2.parity_closeout import (
+    validate_parity_protocol,
+    validate_parity_subject_binding,
+)
 
 
 ROOT = Path(__file__).resolve().parents[2]
 PROTOCOL = ROOT / "research" / "evaluation" / "V1_PARITY_CAMPAIGN_PROTOCOL_WAVE06_V1.json"
+BINDING = ROOT / "research" / "evaluation" / "V1_PARITY_SUBJECT_BINDING_WAVE06_V1.json"
 CENSUS = ROOT / "provenance" / "V1_CAPABILITY_CENSUS_V1.json"
+KERNEL = ROOT / "src" / "orion_v2" / "kernel.py"
+KERNEL_DISPOSITION = ROOT / "research" / "framework" / "KERNEL_COMPONENT_DISPOSITION_WAVE06_V1.json"
+PACKAGE_ROOT = ROOT / "src" / "orion_v2" / "__init__.py"
+EXPECTED_SUBJECT = "f33d2f45554583f9e612f7a186b7d92e6bc8d01a"
+
+
+def _git_blob_sha(path: Path) -> str:
+    payload = path.read_bytes()
+    header = f"blob {len(payload)}\0".encode("ascii")
+    return hashlib.sha1(header + payload).hexdigest()
 
 
 def _load() -> tuple[dict, dict]:
@@ -19,6 +34,10 @@ def _load() -> tuple[dict, dict]:
     )
 
 
+def _load_binding() -> dict:
+    return json.loads(BINDING.read_text(encoding="utf-8"))
+
+
 def test_frozen_parity_design_covers_all_59_capabilities_exactly_once() -> None:
     protocol, census = _load()
     result = validate_parity_protocol(protocol, census)
@@ -26,6 +45,72 @@ def test_frozen_parity_design_covers_all_59_capabilities_exactly_once() -> None:
     assert result.campaign_count == 9
     assert result.capability_count == 59
     assert result.terminal == "PARITY_PROTOCOL_READY_TO_BIND_V2_SUBJECT"
+
+
+def test_subject_binding_is_valid_but_cannot_authorize_run() -> None:
+    protocol, _ = _load()
+    binding = _load_binding()
+    result = validate_parity_subject_binding(
+        binding,
+        protocol,
+        expected_subject_commit=EXPECTED_SUBJECT,
+        expected_protocol_blob_sha=_git_blob_sha(PROTOCOL),
+    )
+    assert result.valid, result.errors
+    assert result.subject_commit == EXPECTED_SUBJECT
+    assert result.ci_check_count == 4
+    assert result.run_authorized is False
+    assert result.terminal == "PARITY_SUBJECT_BINDING_VALID_RUN_NOT_AUTHORIZED"
+
+
+def test_subject_binding_blobs_match_current_contracted_boundary() -> None:
+    binding = _load_binding()
+    subject = binding["v2_subject"]
+    assert subject["kernel_facade_blob_sha"] == _git_blob_sha(KERNEL)
+    assert subject["kernel_disposition_blob_sha"] == _git_blob_sha(KERNEL_DISPOSITION)
+    assert subject["package_root_blob_sha"] == _git_blob_sha(PACKAGE_ROOT)
+
+
+def test_subject_drift_is_rejected() -> None:
+    protocol, _ = _load()
+    mutated = copy.deepcopy(_load_binding())
+    mutated["v2_subject"]["commit"] = "0" * 40
+    result = validate_parity_subject_binding(
+        mutated,
+        protocol,
+        expected_subject_commit=EXPECTED_SUBJECT,
+        expected_protocol_blob_sha=_git_blob_sha(PROTOCOL),
+    )
+    assert not result.valid
+    assert any("subject commit differs" in error for error in result.errors)
+
+
+def test_outcome_access_before_binding_is_rejected() -> None:
+    protocol, _ = _load()
+    mutated = copy.deepcopy(_load_binding())
+    mutated["custody"]["outcome_access_before_binding"] = True
+    result = validate_parity_subject_binding(
+        mutated,
+        protocol,
+        expected_subject_commit=EXPECTED_SUBJECT,
+        expected_protocol_blob_sha=_git_blob_sha(PROTOCOL),
+    )
+    assert not result.valid
+    assert any("outcome_access_before_binding=false" in error for error in result.errors)
+
+
+def test_binding_cannot_self_authorize_execution() -> None:
+    protocol, _ = _load()
+    mutated = copy.deepcopy(_load_binding())
+    mutated["run_gate"]["allowed_now"] = True
+    result = validate_parity_subject_binding(
+        mutated,
+        protocol,
+        expected_subject_commit=EXPECTED_SUBJECT,
+        expected_protocol_blob_sha=_git_blob_sha(PROTOCOL),
+    )
+    assert not result.valid
+    assert any("cannot authorize" in error for error in result.errors)
 
 
 def test_missing_capability_fails_closed() -> None:
