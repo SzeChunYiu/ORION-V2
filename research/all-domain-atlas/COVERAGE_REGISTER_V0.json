@@ -1,0 +1,491 @@
+{
+  "schema_id": "orion-v2.all-domain-coverage-register.v0",
+  "authority": "RESEARCH_COVERAGE_ONLY",
+  "status_values": [
+    "UNOPENED",
+    "SEARCH_SEED",
+    "NATIVE_ROUTE_STARTED",
+    "WAVE_01_SYNTHESIZED",
+    "PRIMARY_IDENTITIES_SEEDED",
+    "FULLTEXT_RECONSTRUCTION_OPEN",
+    "KNOWN_ANSWER_OPEN",
+    "V1_COLLISION_OPEN",
+    "DONOR_PRODUCT_OPEN",
+    "NO_MATERIAL_CHANGE_ROUND_1",
+    "NO_MATERIAL_CHANGE_ROUND_2",
+    "BOUNDED_SATURATED",
+    "CENSORED",
+    "CANNOT_CHECK"
+  ],
+  "gate": {
+    "v1_handoff_bound": false,
+    "v2_core_implementation_unlocked": false,
+    "outcome_generating_experiments_unlocked": false
+  },
+  "cells": [
+    {
+      "cell_id": "MATH-LOGIC-FORMAL",
+      "division": "mathematics-statistics",
+      "field": "logic, formal methods, theorem proving and semantics",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "FULLTEXT_RECONSTRUCTION_OPEN", "V1_COLLISION_OPEN", "DONOR_PRODUCT_OPEN"],
+      "neighbourhoods": ["N02", "N04", "N05", "N13", "N15"]
+    },
+    {
+      "cell_id": "MATH-PROB-STAT",
+      "division": "mathematics-statistics",
+      "field": "probability, mathematical statistics and uncertainty",
+      "priority": "P0",
+      "statuses": ["NATIVE_ROUTE_STARTED", "PRIMARY_IDENTITIES_SEEDED", "FULLTEXT_RECONSTRUCTION_OPEN", "DONOR_PRODUCT_OPEN"],
+      "neighbourhoods": ["N01", "N03", "N07", "N12"]
+    },
+    {
+      "cell_id": "MATH-DECISION-OR",
+      "division": "mathematics-statistics",
+      "field": "decision theory, operations research and optimization",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "KNOWN_ANSWER_OPEN", "V1_COLLISION_OPEN", "DONOR_PRODUCT_OPEN"],
+      "neighbourhoods": ["N02", "N06", "N11", "N13"]
+    },
+    {
+      "cell_id": "MATH-MEASUREMENT",
+      "division": "mathematics-statistics",
+      "field": "measurement science, psychometrics and test theory",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "FULLTEXT_RECONSTRUCTION_OPEN", "KNOWN_ANSWER_OPEN", "V1_COLLISION_OPEN"],
+      "neighbourhoods": ["N01", "N03", "N12"]
+    },
+    {
+      "cell_id": "MATH-CAUSAL-DESIGN",
+      "division": "mathematics-statistics",
+      "field": "causal inference, experimental design and active learning",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "KNOWN_ANSWER_OPEN", "DONOR_PRODUCT_OPEN"],
+      "neighbourhoods": ["N02", "N03", "N06", "N09", "N10"]
+    },
+    {
+      "cell_id": "MATH-INVERSE",
+      "division": "mathematics-statistics",
+      "field": "inverse problems, system identification and equifinality",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "FULLTEXT_RECONSTRUCTION_OPEN", "KNOWN_ANSWER_OPEN"],
+      "neighbourhoods": ["N02", "N03", "N05"]
+    },
+    {
+      "cell_id": "MATH-CONTROL-VIABILITY",
+      "division": "mathematics-statistics",
+      "field": "control, dynamical systems, viability and model reduction",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "KNOWN_ANSWER_OPEN", "DONOR_PRODUCT_OPEN"],
+      "neighbourhoods": ["N02", "N05", "N06", "N10", "N11"]
+    },
+    {
+      "cell_id": "MATH-INFO-COMPUTATION",
+      "division": "mathematics-statistics",
+      "field": "information theory, sufficient state and computational mechanics",
+      "priority": "P1",
+      "statuses": ["NATIVE_ROUTE_STARTED", "PRIMARY_IDENTITIES_SEEDED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N02", "N03", "N05", "N06"]
+    },
+    {
+      "cell_id": "MATH-NETWORKS",
+      "division": "mathematics-statistics",
+      "field": "network science, structural roles and diffusion",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "KNOWN_ANSWER_OPEN"],
+      "neighbourhoods": ["N02", "N07", "N08", "N10"]
+    },
+    {
+      "cell_id": "MATH-LOCAL-GLOBAL",
+      "division": "mathematics-statistics",
+      "field": "category, sheaf, topology and local-global methods",
+      "priority": "P1",
+      "statuses": ["WAVE_01_SYNTHESIZED", "V1_COLLISION_OPEN", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N02", "N04", "N05"]
+    },
+    {
+      "cell_id": "PHYS-QUANTUM",
+      "division": "natural-sciences",
+      "field": "quantum foundations, contextuality and resource theories",
+      "priority": "P1",
+      "statuses": ["NATIVE_ROUTE_STARTED", "V1_COLLISION_OPEN", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N02", "N04", "N05", "N15"]
+    },
+    {
+      "cell_id": "PHYS-STAT-RG",
+      "division": "natural-sciences",
+      "field": "statistical physics, renormalization and phase/regime geometry",
+      "priority": "P1",
+      "statuses": ["NATIVE_ROUTE_STARTED", "V1_COLLISION_OPEN", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N05", "N06", "N13"]
+    },
+    {
+      "cell_id": "PHYS-CHEMISTRY",
+      "division": "natural-sciences",
+      "field": "chemistry, synthesis and reaction discovery",
+      "priority": "P1",
+      "statuses": ["SEARCH_SEED", "PRIMARY_IDENTITIES_SEEDED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N06", "N11", "N12", "N13", "N14"]
+    },
+    {
+      "cell_id": "PHYS-ASTRONOMY",
+      "division": "natural-sciences",
+      "field": "astronomy and observational inference",
+      "priority": "P2",
+      "statuses": ["SEARCH_SEED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N03", "N05", "N07", "N12"]
+    },
+    {
+      "cell_id": "EARTH-GEOPHYS-HYDRO",
+      "division": "natural-sciences",
+      "field": "Earth science, geophysics, hydrology and inverse models",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "KNOWN_ANSWER_OPEN"],
+      "neighbourhoods": ["N03", "N05", "N12"]
+    },
+    {
+      "cell_id": "EARTH-CLIMATE",
+      "division": "natural-sciences",
+      "field": "climate, multiscale models and scenario ensembles",
+      "priority": "P1",
+      "statuses": ["SEARCH_SEED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N03", "N05", "N07", "N09"]
+    },
+    {
+      "cell_id": "BIO-EVOLUTION",
+      "division": "life-sciences",
+      "field": "evolution, phylogenetics and horizontal inheritance",
+      "priority": "P1",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N08", "N13"]
+    },
+    {
+      "cell_id": "BIO-ECOLOGY",
+      "division": "life-sciences",
+      "field": "ecology, resilience, regime shifts and population systems",
+      "priority": "P1",
+      "statuses": ["NATIVE_ROUTE_STARTED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N05", "N06", "N09", "N10"]
+    },
+    {
+      "cell_id": "BIO-SYSTEMS-CONTROL",
+      "division": "life-sciences",
+      "field": "systems biology, metabolic control and distributed causation",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "FULLTEXT_RECONSTRUCTION_OPEN", "KNOWN_ANSWER_OPEN"],
+      "neighbourhoods": ["N06", "N10"]
+    },
+    {
+      "cell_id": "BIO-NEURO-COGNITION",
+      "division": "life-sciences",
+      "field": "neuroscience and cognitive mechanisms",
+      "priority": "P1",
+      "statuses": ["SEARCH_SEED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N02", "N03", "N13", "N14"]
+    },
+    {
+      "cell_id": "MED-DIAGNOSIS",
+      "division": "medical-health",
+      "field": "clinical diagnosis, differential testing and decision support",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "KNOWN_ANSWER_OPEN", "DONOR_PRODUCT_OPEN"],
+      "neighbourhoods": ["N03", "N06", "N07", "N10", "N11", "N12"]
+    },
+    {
+      "cell_id": "MED-EPIDEMIOLOGY",
+      "division": "medical-health",
+      "field": "epidemiology, public health and interference",
+      "priority": "P0",
+      "statuses": ["NATIVE_ROUTE_STARTED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N03", "N07", "N09", "N12"]
+    },
+    {
+      "cell_id": "BIO-GENOMICS",
+      "division": "life-sciences",
+      "field": "genetics, genomics and multi-omics integration",
+      "priority": "P2",
+      "statuses": ["SEARCH_SEED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N03", "N07", "N08", "N12"]
+    },
+    {
+      "cell_id": "AGRI-VET",
+      "division": "agricultural-veterinary",
+      "field": "agriculture, food systems and veterinary science",
+      "priority": "P2",
+      "statuses": ["SEARCH_SEED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N06", "N09", "N11", "N12", "N14"]
+    },
+    {
+      "cell_id": "ENG-SYSTEMS",
+      "division": "engineering-technology",
+      "field": "systems engineering and lifecycle assurance",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "KNOWN_ANSWER_OPEN", "DONOR_PRODUCT_OPEN"],
+      "neighbourhoods": ["N01", "N06", "N11", "N12", "N15"]
+    },
+    {
+      "cell_id": "ENG-RELIABILITY-SAFETY",
+      "division": "engineering-technology",
+      "field": "reliability, safety, hazards and multiple faults",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "KNOWN_ANSWER_OPEN", "DONOR_PRODUCT_OPEN"],
+      "neighbourhoods": ["N07", "N10", "N11", "N12"]
+    },
+    {
+      "cell_id": "ENG-CONTROL-ROBOTICS",
+      "division": "engineering-technology",
+      "field": "control, robotics, estimation and autonomous systems",
+      "priority": "P0",
+      "statuses": ["NATIVE_ROUTE_STARTED", "PRIMARY_IDENTITIES_SEEDED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N02", "N05", "N06", "N10", "N11"]
+    },
+    {
+      "cell_id": "ENG-ELECTRICAL",
+      "division": "engineering-technology",
+      "field": "electrical/electronic systems and interface equivalence",
+      "priority": "P1",
+      "statuses": ["SEARCH_SEED", "KNOWN_ANSWER_OPEN"],
+      "neighbourhoods": ["N02", "N05", "N11", "N12"]
+    },
+    {
+      "cell_id": "ENG-MECHANICAL-CIVIL-CHEMICAL-MATERIALS",
+      "division": "engineering-technology",
+      "field": "mechanical, civil, chemical and materials engineering",
+      "priority": "P1",
+      "statuses": ["SEARCH_SEED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N05", "N06", "N11", "N12", "N13"]
+    },
+    {
+      "cell_id": "ENG-MANUFACTURING-QUALITY",
+      "division": "engineering-technology",
+      "field": "manufacturing, process engineering and quality",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "KNOWN_ANSWER_OPEN"],
+      "neighbourhoods": ["N10", "N11", "N12", "N13"]
+    },
+    {
+      "cell_id": "CS-SOFTWARE-DISTRIBUTED",
+      "division": "engineering-technology",
+      "field": "software engineering, distributed systems and durable execution",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "V1_COLLISION_OPEN", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N02", "N07", "N08", "N10", "N11", "N15"]
+    },
+    {
+      "cell_id": "ENG-HUMAN-FACTORS",
+      "division": "engineering-technology",
+      "field": "human factors, ergonomics and socio-technical systems",
+      "priority": "P1",
+      "statuses": ["SEARCH_SEED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N09", "N10", "N11", "N12", "N15"]
+    },
+    {
+      "cell_id": "SOC-ECON-FINANCE",
+      "division": "social-sciences",
+      "field": "economics, finance, policy and mechanism design",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N02", "N06", "N09", "N11", "N15"]
+    },
+    {
+      "cell_id": "SOC-MANAGEMENT-ORGANIZATION",
+      "division": "social-sciences",
+      "field": "management, organization, innovation and strategy",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "KNOWN_ANSWER_OPEN", "DONOR_PRODUCT_OPEN"],
+      "neighbourhoods": ["N06", "N09", "N10", "N11", "N13", "N15"]
+    },
+    {
+      "cell_id": "SOC-OPS-SUPPLY-PROJECT",
+      "division": "social-sciences",
+      "field": "operations, supply chains, projects and portfolios",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "FULLTEXT_RECONSTRUCTION_OPEN", "KNOWN_ANSWER_OPEN"],
+      "neighbourhoods": ["N06", "N08", "N10", "N11"]
+    },
+    {
+      "cell_id": "SOC-POLITICS-ADMIN",
+      "division": "social-sciences",
+      "field": "political science, public administration and institutions",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N01", "N02", "N09", "N15"]
+    },
+    {
+      "cell_id": "SOC-LAW-EVIDENCE",
+      "division": "social-sciences",
+      "field": "law, evidence, precedent, standing and procedure",
+      "priority": "P0",
+      "statuses": ["NATIVE_ROUTE_STARTED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N02", "N07", "N11", "N12", "N15"]
+    },
+    {
+      "cell_id": "SOC-SOCIOLOGY-DEMOGRAPHY",
+      "division": "social-sciences",
+      "field": "sociology, demography, networks and institutions",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "KNOWN_ANSWER_OPEN"],
+      "neighbourhoods": ["N02", "N03", "N07", "N10", "N15"]
+    },
+    {
+      "cell_id": "SOC-ANTHROPOLOGY",
+      "division": "social-sciences",
+      "field": "anthropology and cultural transmission",
+      "priority": "P1",
+      "statuses": ["SEARCH_SEED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N01", "N08", "N13", "N14"]
+    },
+    {
+      "cell_id": "SOC-GEOGRAPHY",
+      "division": "social-sciences",
+      "field": "human/quantitative geography and spatial aggregation",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "KNOWN_ANSWER_OPEN"],
+      "neighbourhoods": ["N03", "N05", "N09", "N12"]
+    },
+    {
+      "cell_id": "SOC-PSYCHOLOGY-COGNITION",
+      "division": "social-sciences",
+      "field": "psychology, cognition, insight and problem solving",
+      "priority": "P0",
+      "statuses": ["NATIVE_ROUTE_STARTED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N01", "N02", "N03", "N13", "N14"]
+    },
+    {
+      "cell_id": "SOC-EDUCATION",
+      "division": "social-sciences",
+      "field": "education, learning sciences and knowledge spaces",
+      "priority": "P1",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "KNOWN_ANSWER_OPEN"],
+      "neighbourhoods": ["N01", "N02", "N06", "N12"]
+    },
+    {
+      "cell_id": "SOC-COMMUNICATION-MEDIA",
+      "division": "social-sciences",
+      "field": "communication, media and information diffusion",
+      "priority": "P1",
+      "statuses": ["SEARCH_SEED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N07", "N09", "N14", "N15"]
+    },
+    {
+      "cell_id": "HUM-LINGUISTICS",
+      "division": "humanities-arts",
+      "field": "linguistics, semantics, pragmatics and language change",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "V1_COLLISION_OPEN", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N01", "N02", "N03", "N08", "N12"]
+    },
+    {
+      "cell_id": "HUM-HISTORY",
+      "division": "humanities-arts",
+      "field": "history, chronology and historical inference",
+      "priority": "P1",
+      "statuses": ["SEARCH_SEED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N01", "N03", "N08", "N14"]
+    },
+    {
+      "cell_id": "HUM-ARCHAEOLOGY",
+      "division": "humanities-arts",
+      "field": "archaeology, seriation and inference from incomplete traces",
+      "priority": "P1",
+      "statuses": ["SEARCH_SEED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N03", "N05", "N08", "N12"]
+    },
+    {
+      "cell_id": "HUM-PHILOSOPHY",
+      "division": "humanities-arts",
+      "field": "philosophy, epistemology and philosophy of science",
+      "priority": "P0",
+      "statuses": ["NATIVE_ROUTE_STARTED", "V1_COLLISION_OPEN", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N02", "N03", "N04", "N12", "N14", "N15"]
+    },
+    {
+      "cell_id": "HUM-RELIGION-THEOLOGY",
+      "division": "humanities-arts",
+      "field": "religion, theology and interpretive traditions",
+      "priority": "P2",
+      "statuses": ["SEARCH_SEED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N02", "N08", "N14", "N15"]
+    },
+    {
+      "cell_id": "HUM-LITERATURE-TEXTUAL",
+      "division": "humanities-arts",
+      "field": "literature, philology, textual criticism and stemmatology",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N01", "N02", "N08"]
+    },
+    {
+      "cell_id": "ART-DESIGN-ARCH-MUSIC",
+      "division": "humanities-arts",
+      "field": "arts, design, architecture, music and creative practice",
+      "priority": "P0",
+      "statuses": ["NATIVE_ROUTE_STARTED", "PRIMARY_IDENTITIES_SEEDED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N02", "N05", "N13", "N14"]
+    },
+    {
+      "cell_id": "CROSS-SCIENCE-OF-SCIENCE",
+      "division": "cross-cutting",
+      "field": "science of science, scientometrics and research portfolios",
+      "priority": "P0",
+      "statuses": ["NATIVE_ROUTE_STARTED", "FULLTEXT_RECONSTRUCTION_OPEN", "DONOR_PRODUCT_OPEN"],
+      "neighbourhoods": ["N07", "N09", "N13", "N14"]
+    },
+    {
+      "cell_id": "CROSS-LIBRARY-INFO",
+      "division": "cross-cutting",
+      "field": "library/information science, systematic review and literature-based discovery",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "V1_COLLISION_OPEN", "DONOR_PRODUCT_OPEN"],
+      "neighbourhoods": ["N03", "N07", "N14"]
+    },
+    {
+      "cell_id": "CROSS-DESIGN-TRIZ",
+      "division": "cross-cutting",
+      "field": "design science, TRIZ, analogy and morphological analysis",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "PRIMARY_IDENTITIES_SEEDED", "DONOR_PRODUCT_OPEN"],
+      "neighbourhoods": ["N02", "N13", "N14"]
+    },
+    {
+      "cell_id": "CROSS-ACCOUNTING-AUDIT",
+      "division": "cross-cutting",
+      "field": "accounting, audit and internal control",
+      "priority": "P0",
+      "statuses": ["WAVE_01_SYNTHESIZED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N07", "N08", "N11", "N12", "N15"]
+    },
+    {
+      "cell_id": "CROSS-AUTONOMOUS-SCIENCE",
+      "division": "cross-cutting",
+      "field": "autonomous laboratories, AI scientists and scientific agents",
+      "priority": "P0",
+      "statuses": ["NATIVE_ROUTE_STARTED", "PRIMARY_IDENTITIES_SEEDED", "V1_COLLISION_OPEN", "DONOR_PRODUCT_OPEN"],
+      "neighbourhoods": ["N06", "N11", "N12", "N13", "N14", "N15"]
+    },
+    {
+      "cell_id": "CROSS-SECURITY-PRIVACY",
+      "division": "cross-cutting",
+      "field": "security, privacy, authorization and adversarial systems",
+      "priority": "P0",
+      "statuses": ["NATIVE_ROUTE_STARTED", "PRIMARY_IDENTITIES_SEEDED", "V1_COLLISION_OPEN"],
+      "neighbourhoods": ["N07", "N09", "N10", "N11", "N15"]
+    },
+    {
+      "cell_id": "CROSS-ETHICS-RESPONSIBLE-RESEARCH",
+      "division": "cross-cutting",
+      "field": "ethics, responsible research and societal governance",
+      "priority": "P0",
+      "statuses": ["SEARCH_SEED", "FULLTEXT_RECONSTRUCTION_OPEN"],
+      "neighbourhoods": ["N09", "N14", "N15"]
+    }
+  ],
+  "bounded_saturation_rule": {
+    "taxonomy_traversal_required": true,
+    "native_and_changed_vocabulary_required": true,
+    "repo_collision_audit_required": true,
+    "strongest_donor_product_required": true,
+    "complete_no_material_change_passes_required": 2,
+    "censored_routes_count_as_negative_evidence": false
+  }
+}
