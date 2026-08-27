@@ -3,6 +3,7 @@ from __future__ import annotations
 from collections import deque
 from dataclasses import dataclass
 from enum import Enum
+from typing import Mapping
 
 
 class ProcessSoundnessStatus(str, Enum):
@@ -130,15 +131,40 @@ def apply_task(
     )
 
 
+def reachable_process_graph(
+    network: ObligationProcessNetwork,
+) -> tuple[
+    frozenset[ProcessMarking],
+    Mapping[ProcessMarking, tuple[tuple[str, ProcessMarking], ...]],
+]:
+    initial = network.initial_marking
+    queue: deque[ProcessMarking] = deque([initial])
+    seen = {initial}
+    edges: dict[ProcessMarking, tuple[tuple[str, ProcessMarking], ...]] = {}
+    while queue:
+        marking = queue.popleft()
+        outgoing: list[tuple[str, ProcessMarking]] = []
+        for task in network.tasks:
+            if _enabled(network, marking, task):
+                successor = apply_task(network, marking, task)
+                if successor != marking:
+                    outgoing.append((task.task_id, successor))
+                    if successor not in seen:
+                        seen.add(successor)
+                        queue.append(successor)
+        edges[marking] = tuple(outgoing)
+    return frozenset(seen), edges
+
+
 @dataclass(frozen=True, slots=True)
 class ProcessSoundnessAssessment:
     network_id: str
     status: ProcessSoundnessStatus
     reachable_state_count: int
     completion_state_count: int
-    deadlock_states: tuple[str, ...]
+    deadlock_states: tuple[ProcessMarking, ...]
     dead_required_task_ids: tuple[str, ...]
-    states_without_completion_path: tuple[str, ...]
+    states_without_completion_path: tuple[ProcessMarking, ...]
     authority_granted: bool = False
 
     def __post_init__(self) -> None:
@@ -146,75 +172,51 @@ class ProcessSoundnessAssessment:
             raise ValueError("process soundness does not grant scientific authority")
 
 
-def _marking_label(marking: ProcessMarking) -> str:
-    return repr(
-        (
-            tuple(sorted(marking.fulfilled)),
-            marking.resources,
-            tuple(sorted(marking.executed_task_ids)),
-        )
-    )
-
-
 def assess_process_soundness(
     network: ObligationProcessNetwork,
-    *,
-    state_limit: int = 10_000,
 ) -> ProcessSoundnessAssessment:
-    if state_limit < 1:
-        raise ValueError("state_limit must be positive")
-    queue = deque([network.initial_marking])
-    states = {network.initial_marking}
-    edges: dict[ProcessMarking, set[ProcessMarking]] = {}
-    fired_tasks: set[str] = set()
-    while queue:
-        marking = queue.popleft()
-        outgoing: set[ProcessMarking] = set()
-        for task in network.tasks:
-            if not _enabled(network, marking, task):
-                continue
-            successor = apply_task(network, marking, task)
-            outgoing.add(successor)
-            fired_tasks.add(task.task_id)
-            if successor not in states:
-                if len(states) >= state_limit:
-                    return ProcessSoundnessAssessment(
-                        network.network_id,
-                        ProcessSoundnessStatus.CANNOT_CHECK,
-                        len(states),
-                        0,
-                        (),
-                        (),
-                        (),
-                    )
-                states.add(successor)
-                queue.append(successor)
-        edges[marking] = outgoing
-
+    states, graph = reachable_process_graph(network)
     completion_states = {
-        state for state in states if network.terminal_obligations <= state.fulfilled
+        state
+        for state in states
+        if network.terminal_obligations <= state.fulfilled
     }
-    deadlocks = tuple(
-        sorted(
-            _marking_label(state)
-            for state in states
-            if not edges.get(state) and state not in completion_states
+    if not completion_states:
+        return ProcessSoundnessAssessment(
+            network.network_id,
+            ProcessSoundnessStatus.CANNOT_CHECK,
+            len(states),
+            0,
+            (),
+            (),
+            tuple(sorted(states, key=repr)),
         )
-    )
     reverse: dict[ProcessMarking, set[ProcessMarking]] = {
         state: set() for state in states
     }
-    for source, successors in edges.items():
-        for target in successors:
+    fired_tasks: set[str] = set()
+    for source, outgoing in graph.items():
+        for task_id, target in outgoing:
             reverse[target].add(source)
+            fired_tasks.add(task_id)
     can_complete = set(completion_states)
-    frontier = list(completion_states)
-    while frontier:
-        target = frontier.pop()
-        for predecessor in reverse[target]:
+    queue: deque[ProcessMarking] = deque(completion_states)
+    while queue:
+        state = queue.popleft()
+        for predecessor in reverse[state]:
             if predecessor not in can_complete:
                 can_complete.add(predecessor)
-                frontier.append(predecessor)
+                queue.append(predecessor)
+    deadlocks = tuple(
+        sorted(
+            (
+                state
+                for state in states
+                if state not in completion_states and not graph[state]
+            ),
+            key=repr,
+        )
+    )
     dead_required = tuple(
         sorted(
             task.task_id
@@ -222,7 +224,7 @@ def assess_process_soundness(
             if task.required_live and task.task_id not in fired_tasks
         )
     )
-    no_completion = tuple(sorted((_marking_label(state) for state in states - can_complete)))
+    no_completion = tuple(sorted(states - can_complete, key=repr))
     if deadlocks:
         status = ProcessSoundnessStatus.DEADLOCK
     elif no_completion:
