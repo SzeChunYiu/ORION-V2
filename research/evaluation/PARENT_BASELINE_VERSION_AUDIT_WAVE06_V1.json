@@ -2,7 +2,7 @@
   "schema_version": "orion.v2.parent-baseline-version-audit.v1",
   "audit_id": "ORION-V2-PARENT-BASELINE-VERSION-AUDIT-WAVE06-V1",
   "audit_date": "2026-08-27",
-  "status": "CURRENT_IMPLEMENTATION_VERSIONS_AUDITED_STRONGEST_BINDING_NOT_YET_GRANTED",
+  "status": "CURRENT_IMPLEMENTATION_VERSION_IDENTITIES_PINNED_STRONGEST_BINDING_NOT_YET_GRANTED",
   "purpose": "Pin maintained candidate implementation identities before protected paired outcomes. This audit establishes current versions/roles, not that each candidate is the strongest scientific comparator.",
   "campaign_candidates": [
     {
@@ -11,14 +11,14 @@
         {"implementation": "LangGraph", "version": "1.2.9", "role": "stateful agent/control graph", "status": "CURRENT_MAINTAINED_CANDIDATE"},
         {"implementation": "Temporal Python SDK", "version": "1.31.0", "role": "durable execution/control history", "status": "CURRENT_MAINTAINED_CANDIDATE"}
       ],
-      "binding": "OPEN_FIT_AND_ADAPTER_AUDIT"
+      "binding": "OPEN_FIT_CONFIGURATION_AND_ADAPTER_AUDIT"
     },
     {
       "campaign_id": "PARITY-B",
       "candidates": [
         {"implementation": "Haystack", "version": "2.29.0", "release_commit": "63929e0", "role": "heterogeneous retrieval/routing/orchestration", "status": "CURRENT_MAINTAINED_CANDIDATE"}
       ],
-      "binding": "OPEN_ROUTE_STOP_AND_CENSORING_ADAPTER_AUDIT"
+      "binding": "OPEN_ROUTE_STOP_CENSORING_FIT_AND_ADAPTER_AUDIT"
     },
     {
       "campaign_id": "PARITY-C",
@@ -26,33 +26,33 @@
         {"implementation": "GROBID", "version": "0.9.0", "role": "scientific-document structure/reference extraction", "status": "CURRENT_STABLE_CANDIDATE"},
         {"implementation": "scispaCy", "version": "0.6.2", "role": "scientific/biomedical entity and linguistic processing", "status": "CURRENT_RELEASE_CANDIDATE"}
       ],
-      "binding": "OPEN_NATIVE_SEMANTICS_AND_SOURCE_PROJECTION_AUDIT"
+      "binding": "OPEN_NATIVE_SEMANTICS_SOURCE_PROJECTION_FIT_AND_ADAPTER_AUDIT"
     },
     {
       "campaign_id": "PARITY-D",
       "candidates": [
-        {"implementation": "NetworkX", "version": "stable release to pin; 3.7rc0.dev0 is development documentation as of 2026-08-26", "role": "graph reconstruction/consistency algorithms", "status": "VERSION_PIN_OPEN_STABLE_ONLY"},
+        {"implementation": "NetworkX", "version": "3.6.1", "release_commit": "7530809bfa1ea7ed6fdf918a4d1431488953cb1f", "role": "graph reconstruction/consistency algorithms", "status": "CURRENT_STABLE_CANDIDATE"},
         {"implementation": "RDFLib", "version": "7.6.0", "release_commit": "8b32146", "role": "typed graph/state representation", "status": "CURRENT_STABLE_CANDIDATE"},
         {"implementation": "pySHACL", "version": "0.40.1", "release_commit": "469cca7", "role": "constraint validation", "status": "CURRENT_STABLE_CANDIDATE"}
       ],
-      "binding": "OPEN_GLOBAL_OBSTRUCTION_AND_PLURAL_PORTRAIT_ADAPTER_AUDIT"
+      "binding": "OPEN_GLOBAL_OBSTRUCTION_PLURAL_PORTRAIT_FIT_AND_ADAPTER_AUDIT"
     },
     {
       "campaign_id": "PARITY-E",
       "candidates": [
         {"implementation": "Ax", "version": "1.3.1", "release_commit": "93b6c7d", "role": "adaptive experiment/optimization policy", "status": "CURRENT_STABLE_CANDIDATE"},
         {"implementation": "BoTorch", "version": "0.18.1 required by Ax 1.3.1", "role": "Bayesian optimization/acquisition functions", "status": "CURRENT_AX_COMPATIBLE_CANDIDATE"},
-        {"implementation": "pyAgrum", "version": "TO_PIN_FROM_OFFICIAL_STABLE_RELEASE", "role": "probabilistic graphical/model-based diagnosis support", "status": "CURRENT_VERSION_IDENTITY_STILL_OPEN"}
+        {"implementation": "pyAgrum", "version": "3.1.0", "release_date": "2026-08-19", "role": "probabilistic graphical/model-based diagnosis support", "status": "CURRENT_STABLE_CANDIDATE"}
       ],
-      "binding": "OPEN_MULTI_FAULT_NONIDENTIFIABILITY_FIT_AUDIT"
+      "binding": "OPEN_MULTI_FAULT_NONIDENTIFIABILITY_FIT_AND_ADAPTER_AUDIT"
     },
     {
       "campaign_id": "PARITY-F",
       "candidates": [
         {"implementation": "W3C PROV / PROV-O", "version": "W3C Recommendations 2013", "role": "generic provenance model", "status": "STABLE_STANDARD_PARENT"},
-        {"implementation": "DVC", "version": "TO_PIN_CORE_RELEASE", "role": "versioned data/pipeline provenance", "status": "CURRENT_VERSION_IDENTITY_STILL_OPEN"}
+        {"implementation": "DVC", "version": "3.67.1", "release_commit": "356dfa03278058b02df42124f243c2c345329dae", "role": "versioned data/pipeline provenance", "status": "GITHUB_LATEST_RELEASE_CANDIDATE"}
       ],
-      "binding": "OPEN_SELECTIVE_INVALIDATION_AND_MINIMAL_REPAIR_ADAPTER_AUDIT"
+      "binding": "OPEN_SELECTIVE_INVALIDATION_MINIMAL_REPAIR_FIT_AND_ADAPTER_AUDIT"
     },
     {
       "campaign_id": "PARITY-G",
@@ -60,45 +60,48 @@
         {"implementation": "ASReview LAB", "version": "3.0", "role": "active-learning systematic screening and stopping", "status": "CURRENT_RELEASE_CANDIDATE"},
         {"implementation": "SAFE/statistical stopping literature", "version": "frozen published methods", "role": "route-level recall/stopping controls", "status": "PUBLISHED_METHOD_PARENT"}
       ],
-      "binding": "OPEN_GLOBAL_SATURATION_VS_ROUTE_STOPPING_FIT_AUDIT"
+      "binding": "OPEN_GLOBAL_SATURATION_VS_ROUTE_STOPPING_FIT_AND_ADAPTER_AUDIT"
     },
     {
       "campaign_id": "PARITY-H",
       "candidates": [
-        {"implementation": "Inspect AI", "version": "0.3.258 observed as latest release on 2026-08-11 in Inspect Evals dependency audit; exact final pin must be rechecked before binding", "role": "evaluation/scoring/task infrastructure", "status": "RAPIDLY_MOVING_VERSION_RECHECK_REQUIRED"},
-        {"implementation": "DVC", "version": "TO_PIN_CORE_RELEASE", "role": "evaluator/case artifact versioning", "status": "CURRENT_VERSION_IDENTITY_STILL_OPEN"}
+        {"implementation": "Inspect AI", "version": "0.3.260", "release_date": "2026-08-21", "pypi_sdist_sha256": "5f6fbd7bc1fae0a770dc04e208daa9275de71f6d6b85b5fb68c162a1c4e0496f", "pypi_wheel_sha256": "3da1dd4e4cbaec248b507799beb71eb9917eee1062eab1d9aeb6a8b5a03a386a", "role": "evaluation/scoring/task infrastructure", "status": "CURRENT_PYPI_RELEASE_CANDIDATE"},
+        {"implementation": "DVC", "version": "3.67.1", "release_commit": "356dfa03278058b02df42124f243c2c345329dae", "role": "evaluator/case artifact versioning", "status": "GITHUB_LATEST_RELEASE_CANDIDATE"}
       ],
-      "binding": "OPEN_INDEPENDENCE_AUTHORITY_AND_CRITERION_CUSTODY_FIT_AUDIT"
+      "binding": "OPEN_INDEPENDENCE_AUTHORITY_CRITERION_CUSTODY_FIT_AND_ADAPTER_AUDIT"
     },
     {
       "campaign_id": "PARITY-I",
       "candidates": [
         {"implementation": "Temporal Python SDK", "version": "1.31.0", "role": "durable replayable execution", "status": "CURRENT_MAINTAINED_CANDIDATE"},
         {"implementation": "LangGraph", "version": "1.2.9", "role": "stateful control/memory graph", "status": "CURRENT_MAINTAINED_CANDIDATE"},
-        {"implementation": "Inspect AI", "version": "0.3.258 observed on 2026-08-11; exact final pin must be rechecked before binding", "role": "tool/provider evaluation harness", "status": "RAPIDLY_MOVING_VERSION_RECHECK_REQUIRED"}
+        {"implementation": "Inspect AI", "version": "0.3.260", "release_date": "2026-08-21", "pypi_sdist_sha256": "5f6fbd7bc1fae0a770dc04e208daa9275de71f6d6b85b5fb68c162a1c4e0496f", "pypi_wheel_sha256": "3da1dd4e4cbaec248b507799beb71eb9917eee1062eab1d9aeb6a8b5a03a386a", "role": "tool/provider evaluation harness", "status": "CURRENT_PYPI_RELEASE_CANDIDATE"}
       ],
-      "binding": "OPEN_PROCESS_SAFETY_MEMORY_AND_CONTEXT_FIT_AUDIT"
+      "binding": "OPEN_PROCESS_SAFETY_MEMORY_CONTEXT_FIT_AND_ADAPTER_AUDIT"
     }
   ],
   "version_evidence": [
     "Haystack GitHub releases: v2.29.0 on 2026-05-12, release commit 63929e0",
     "GROBID 0.9.0 stable release on 2026-04-07",
     "scispaCy GitHub latest release v0.6.2",
+    "NetworkX GitHub latest stable release 3.6.1; signed tag resolves to commit 7530809bfa1ea7ed6fdf918a4d1431488953cb1f",
     "RDFLib GitHub release 7.6.0 on 2026-02-13, commit 8b32146",
     "pySHACL GitHub release 0.40.1 on 2026-07-28, commit 469cca7",
     "Ax GitHub release 1.3.1 on 2026-06-09, commit 93b6c7d, requiring BoTorch 0.18.1",
+    "pyAgrum official site reports aGrUM/pyAgrum 3.1.0 released 2026-08-19",
     "Temporal Python SDK CHANGELOG version 1.31.0 on 2026-07-29",
     "LangGraph GitHub release 1.2.9 on 2026-07-10",
-    "Inspect Evals issue on 2026-08-13 reports Inspect AI 0.3.258 as latest release on 2026-08-11",
-    "ASReview GitHub release v3.0 current in 2026 search results"
+    "DVC GitHub latest release endpoint identifies 3.67.1; tag resolves to commit 356dfa03278058b02df42124f243c2c345329dae",
+    "Inspect AI PyPI latest release 0.3.260 on 2026-08-21 with bound distribution SHA256 digests",
+    "ASReview GitHub/release materials identify v3.0 as the current major release candidate for this audit"
   ],
-  "selection_rule": "An implementation can be promoted from candidate to bound strongest practical comparator only after the campaign-specific known-answer/hostile fit audit, exact version or commit, source/package identity, configuration digest, matched-resource adapter digest and known limitations are all frozen before paired subject outcome access.",
+  "selection_rule": "An implementation can be promoted from candidate to bound strongest practical comparator only after the campaign-specific known-answer/hostile fit audit, exact version or commit/package digest, source/package identity, configuration digest, why-it-is-strongest rationale, known limitations and matched-resource adapter digest are all frozen before paired subject outcome access.",
   "no_strawman_rule": "A candidate may be rejected in favor of a stronger implementation or parent composition before paired outcome access. After output access, comparator replacement creates a new parity run identity.",
   "current_result": {
-    "version_identity_progress": "SUBSTANTIAL_BUT_INCOMPLETE",
+    "version_identity_progress": "COMPLETE_FOR_CURRENT_CANDIDATE_SET",
     "strongest_parent_binding": false,
-    "remaining_version_pins": ["NetworkX stable release", "pyAgrum stable release", "DVC core stable release", "Inspect AI final pre-run release/commit recheck"],
-    "remaining_scientific_work": "campaign-specific fit/limitation/adaptation audit and protected comparator freezing"
+    "remaining_version_pins": [],
+    "remaining_scientific_work": "campaign-specific known-answer/hostile fit, strongest-practical-comparator rationale, exact configuration and matched-resource adapter binding"
   },
   "authority": {
     "grants_parent_supremacy": false,
