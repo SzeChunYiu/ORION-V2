@@ -37,7 +37,7 @@ research/wave2-generalized-domain-theories-20260827
 - old-language conservative-extension checker;
 - Wave-02 finite-theory migration helper.
 
-## Local isolated execution
+## Isolated development execution
 
 ```text
 38 passed
@@ -45,6 +45,20 @@ research/wave2-generalized-domain-theories-20260827
 runtime approximately 0.12 seconds
 network/model dependencies: none
 ```
+
+## Full repository CI
+
+GitHub Actions run `33073364546` executed the PR merge subject under CPython 3.12.14.
+
+```text
+compileall src/orion_v2 = PASS
+pytest tests/unit = 106 passed in 0.32s
+GENERALIZATION_RECEIPT_SCHEMA_V0.json = PARSED
+THEORY_ADAPTATION_CERTIFICATE_SCHEMA_V1.json = PARSED
+workflow conclusion = SUCCESS
+```
+
+This is package and finite-reference evidence. It is not a protected scientific transfer result.
 
 The execution covered:
 
@@ -110,8 +124,9 @@ Correction: exactness now requires bijective judgment correspondence, exact assu
 ## Honest terminal
 
 ```text
-WAVE_03_REFERENCE_LAWS = 38_PASS
-FULL_REPOSITORY_REGRESSION = PENDING_CI
+WAVE_03_REFERENCE_LAWS = 38_ISOLATED_PASS
+FULL_REPOSITORY_REGRESSION = 106_PASS
+MACHINE_SCHEMA_PARSE = 2_OF_2_PASS
 PROTECTED_TARGET_TRANSFER = NOT_EXECUTED
 C11_STANDALONE_STATUS = MERGE_UNLESS_SEPARATED
 STRICT_ORION_RESIDUAL = CANNOT_CHECK
