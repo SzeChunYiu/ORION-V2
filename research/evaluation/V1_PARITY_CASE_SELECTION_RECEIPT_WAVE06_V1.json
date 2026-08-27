@@ -1,0 +1,35 @@
+{
+  "schema_version": "orion.v2.v1-parity-case-selection-receipt.v1",
+  "receipt_id": "ORION-V2-V1-PARITY-CASE-SELECTION-WAVE06-V1",
+  "status": "CASE_SELECTION_BOUND_EVALUATOR_CUSTODY_OPEN",
+  "selection_date": "2026-08-27",
+  "v1_commit": "8f250fc3e55d6d6a28fb1fb33d9932ef1a8760b5",
+  "v2_subject_commit": "f33d2f45554583f9e612f7a186b7d92e6bc8d01a",
+  "source_audit_path": "research/evaluation/V1_PARITY_CASE_SOURCE_AUDIT_WAVE06_V1.json",
+  "source_audit_git_blob_sha": "2a7ba5a3620786451c5c06a337f6b5cc16d2cfaa",
+  "case_registry_path": "research/evaluation/V1_PARITY_CASE_REGISTRY_WAVE06_V1.json",
+  "protected_case_manifest_digest": "git-sha1:79f5e9d47d65994bae77695f37718c0c86079257",
+  "case_registry_creation_commit": "2243ba528840211838442bf6f26b87f46fa8e427",
+  "selection_timing": "V2 subject was frozen before detailed V1-native case-source audit and before this case selection; no paired subject outcomes were accessed before binding this receipt.",
+  "paired_outcomes_accessed_before_binding": false,
+  "campaign_count": 9,
+  "frozen_v1_capability_count": 59,
+  "semantic_source_gaps_retained": ["PARITY-C", "PARITY-D"],
+  "custody_disposition": {
+    "case_identity_integrity_bound": true,
+    "public_source_availability_counts_as_protected_custody": false,
+    "independent_evaluator_authority_bound": false,
+    "scoring_or_adjudication_logic_bound": false,
+    "resource_budget_manifest_bound": false
+  },
+  "mutation_rule": "Any case-registry mutation after V1/V2 output access creates a new case-selection receipt and new parity run identity; the current receipt may not be retroactively edited to preserve a favorable outcome.",
+  "next_gate": "BIND_EVALUATOR_REGISTRY_AND_SCORING_ADJUDICATION",
+  "authority": {
+    "grants_protected_custody": false,
+    "grants_v1_parity": false,
+    "grants_v2_closeout": false,
+    "grants_scientific_truth": false,
+    "grants_novelty": false,
+    "grants_publication_authority": false
+  }
+}
