@@ -28,27 +28,26 @@ def _artifacts() -> dict[str, dict]:
     }
 
 
-def test_current_preflight_stops_at_protected_case_selection() -> None:
+def test_current_preflight_stops_at_evaluator_custody() -> None:
     result = assess_parity_execution_readiness(**_artifacts())
-    assert result.status is ParityExecutionStatus.BLOCKED_PROTECTED_CASE_SELECTION
+    assert result.status is ParityExecutionStatus.BLOCKED_EVALUATOR_CUSTODY
     assert result.run_authorized is False
     assert result.grants_v1_parity is False
     assert result.grants_v2_closeout is False
 
 
-def test_case_binding_advances_to_evaluator_custody_not_directly_to_run() -> None:
+def test_removing_case_binding_regresses_to_protected_case_selection() -> None:
     artifacts = _artifacts()
     custody = copy.deepcopy(artifacts["custody_protocol"])
-    custody["protected_case_registry"]["bound"] = True
+    custody["protected_case_registry"]["bound"] = False
     artifacts["custody_protocol"] = custody
     result = assess_parity_execution_readiness(**artifacts)
-    assert result.status is ParityExecutionStatus.BLOCKED_EVALUATOR_CUSTODY
+    assert result.status is ParityExecutionStatus.BLOCKED_PROTECTED_CASE_SELECTION
 
 
 def test_evaluator_binding_advances_to_parent_baseline_binding() -> None:
     artifacts = _artifacts()
     custody = copy.deepcopy(artifacts["custody_protocol"])
-    custody["protected_case_registry"]["bound"] = True
     custody["evaluator_registry"]["bound"] = True
     artifacts["custody_protocol"] = custody
     result = assess_parity_execution_readiness(**artifacts)
@@ -58,7 +57,6 @@ def test_evaluator_binding_advances_to_parent_baseline_binding() -> None:
 def test_baseline_binding_advances_to_resource_budget_binding() -> None:
     artifacts = _artifacts()
     custody = copy.deepcopy(artifacts["custody_protocol"])
-    custody["protected_case_registry"]["bound"] = True
     custody["evaluator_registry"]["bound"] = True
     baselines = copy.deepcopy(artifacts["baseline_registry"])
     baselines["implementation_bindings"]["bound"] = True
@@ -71,7 +69,6 @@ def test_baseline_binding_advances_to_resource_budget_binding() -> None:
 def test_all_bindings_only_authorize_run_not_parity_or_scientific_truth() -> None:
     artifacts = _artifacts()
     custody = copy.deepcopy(artifacts["custody_protocol"])
-    custody["protected_case_registry"]["bound"] = True
     custody["evaluator_registry"]["bound"] = True
     baselines = copy.deepcopy(artifacts["baseline_registry"])
     baselines["implementation_bindings"]["bound"] = True
