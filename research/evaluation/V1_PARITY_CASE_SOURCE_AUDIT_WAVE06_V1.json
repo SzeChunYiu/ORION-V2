@@ -1,0 +1,196 @@
+{
+  "schema_version": "orion.v2.v1-parity-case-source-audit.v1",
+  "audit_id": "ORION-V2-V1-PARITY-CASE-SOURCE-AUDIT-WAVE06-V1",
+  "status": "V1_NATIVE_SOURCES_BOUND_PROTECTED_CASE_SELECTION_OPEN",
+  "purpose": "Bind outcome-blind V1-native source artifacts from which protected parity cases may be selected. This audit is provenance and falsifier discovery only; it is not itself the protected held-out case manifest.",
+  "frozen_v1": {
+    "repository": "SzeChunYiu/ORION",
+    "freeze_commit": "8f250fc3e55d6d6a28fb1fb33d9932ef1a8760b5",
+    "harness_package": "packages/orion-research-harness",
+    "harness_readme_blob_sha": "4ebd12f2a2af7d7ceff93abf520ad017a045572b",
+    "harness_tests_tree_sha": "40782314fe88cc00c0bc71aec8556a165af78fb1",
+    "capability_count": 59
+  },
+  "selection_rules": [
+    "protected cases must be selected from or mechanically derived from frozen V1-native artifacts before any V2 outcome is observed",
+    "existing V1 test success is not a V2 parity success criterion; cases must be translated into capability-level inputs, expected invariants and honest terminals",
+    "a source file may seed multiple campaigns only when the mapped invariant is explicit; one observed V2 success may not compensate for another capability cell",
+    "hidden/held-out selection identity and evaluator custody must be frozen separately",
+    "V2-authored cases may be added only as hostile supplements and may never replace missing V1-native parity coverage"
+  ],
+  "audited_sources": [
+    {
+      "source_id": "V1-HARNESS-CORE",
+      "path": "packages/orion-research-harness/tests/test_harness.py",
+      "blob_sha": "45125abf14faecfa5fb83202ae5b8c7f778d0805",
+      "campaign_ids": ["PARITY-A", "PARITY-B", "PARITY-I"],
+      "falsifiers": [
+        "request/result receipt tamper evidence",
+        "path confinement for local tools",
+        "host capability replay for LLM and retrieval",
+        "host execution failure must not become scientific failure evidence",
+        "root runtime must preserve blocked/CANNOT_CHECK uncertainty"
+      ]
+    },
+    {
+      "source_id": "V1-CRITERION-BINDING",
+      "path": "packages/orion-research-harness/tests/test_criterion_binding.py",
+      "blob_sha": "865b7fc3e92bb14801f0a6b4b6cd60bf55275da7",
+      "campaign_ids": ["PARITY-A", "PARITY-H"],
+      "falsifiers": [
+        "criterion digest drift",
+        "concealed criterion change",
+        "positive result under changed criterion without counterfactual disclosure",
+        "negative/indeterminate result must not be penalized for honest criterion correction"
+      ]
+    },
+    {
+      "source_id": "V1-DONOR-SEARCH",
+      "path": "packages/orion-research-harness/tests/test_donor_search.py",
+      "blob_sha": "9ebeb4fe3d2fd86f9be2eaf6a46e6b0d40e9ed22",
+      "campaign_ids": ["PARITY-B", "PARITY-H"],
+      "falsifiers": [
+        "novelty assertion without executed donor search",
+        "missing mandatory query family",
+        "source verdict without quoted/log-bound evidence",
+        "CANNOT_ASSESS laundering into novelty",
+        "reported passage absent from the bound query log"
+      ]
+    },
+    {
+      "source_id": "V1-CORROBORATION-CUSTODY",
+      "path": "packages/orion-research-harness/tests/test_corroboration.py",
+      "blob_sha": "011c0309cda95c6819855a342ee4b43b5700aa5a",
+      "campaign_ids": ["PARITY-C", "PARITY-H"],
+      "falsifiers": [
+        "digest/provenance custody cannot establish scientific correctness",
+        "scientific corroboration requires an independently evidential corroboration kind"
+      ]
+    },
+    {
+      "source_id": "V1-EPISTEMIC-MECHANICS",
+      "path": "packages/orion-research-harness/tests/test_epistemic_mechanics_p6.py",
+      "blob_sha": "5dace771be06c9c63af300b1abc6a79e4de97b0f",
+      "campaign_ids": ["PARITY-D", "PARITY-F", "PARITY-H"],
+      "falsifiers": [
+        "changed certified root and descendants reopen unless independently preserved",
+        "self-issued preservation cannot preserve the changed root",
+        "hard obligations persist until evidence-backed discharge",
+        "writes outside declared footprint fail without state mutation",
+        "unrooted authority widening is denied",
+        "semantic commutation may preserve current projection while history order remains distinct",
+        "recursive self-call without rank decrease is denied"
+      ]
+    },
+    {
+      "source_id": "V1-EPISTEMIC-AUTHORITY",
+      "path": "packages/orion-research-harness/tests/test_epistemic_authority_p8.py",
+      "blob_sha": "157066786481505eb961a40cd9a89a2a47288347",
+      "campaign_ids": ["PARITY-F", "PARITY-H"],
+      "falsifiers": [
+        "confidence/utility cannot compensate for missing typed authority",
+        "foreign-domain judgment cannot discharge without registered coercion",
+        "stale or scope-widening coercion is denied",
+        "undetermined blocker is CANNOT_CHECK",
+        "established blocker is non-compensatory DENIED",
+        "revocation breaks only support families whose complete support is lost and preserves append-only history"
+      ]
+    },
+    {
+      "source_id": "V1-EXECUTION-COVERAGE",
+      "path": "packages/orion-research-harness/tests/test_execution_coverage.py",
+      "blob_sha": "7d984832378125bad229e92978cf866c0b61df0c",
+      "campaign_ids": ["PARITY-A", "PARITY-E", "PARITY-F", "PARITY-G", "PARITY-H", "PARITY-I"],
+      "falsifiers": [
+        "all 59 mechanics require resolvable execution owners",
+        "mandatory context cannot be dropped to fit budget",
+        "independent review and benchmark are replayable but non-authorizing external capabilities",
+        "external governance rejects authority-bearing review output",
+        "recursive decomposition receives mechanical and development-fibre context"
+      ]
+    },
+    {
+      "source_id": "V1-NEGATIVE-RECOVERY",
+      "path": "packages/orion-research-harness/tests/test_negative_recovery.py",
+      "blob_sha": "b37eb8432acf50d33b9c28b70f56686369ea045f",
+      "campaign_ids": ["PARITY-E", "PARITY-F"],
+      "falsifiers": [
+        "hidden recovery gold excluded from candidate payload",
+        "non-identifying failure requires discriminator before repair",
+        "exact sufficiency blocks unnecessary escalation",
+        "unseen composite failures require recursive rather than single-shot recovery",
+        "different valid repair order cannot be laundered into a false failure"
+      ]
+    },
+    {
+      "source_id": "V1-LOCAL-EXECUTION-LIMITS",
+      "path": "packages/orion-research-harness/tests/test_local_limits.py",
+      "blob_sha": "6db2552a158c26b0cfb2543a901e4d0c4a42cf80",
+      "campaign_ids": ["PARITY-I"],
+      "falsifiers": [
+        "directory listing overflow fails closed",
+        "process timeout is bounded without silently truncating legitimate long research runs",
+        "completed parent process cannot hang on descendant-held pipe",
+        "shell execution avoids shell interpolation",
+        "output budgets stay explicit and bounded",
+        "unsupported capability payload keys fail closed",
+        "declared payload vocabulary must match keys actually consumed by executor"
+      ]
+    },
+    {
+      "source_id": "V1-MECHANICS-BRIDGE",
+      "path": "packages/orion-research-harness/tests/test_mechanics_bridge.py",
+      "blob_sha": "5a19848e05a8fc73d4f3965c0ae1c1682766f1a8",
+      "campaign_ids": ["PARITY-A", "PARITY-D", "PARITY-G", "PARITY-I"],
+      "falsifiers": [
+        "full 59-cell mechanic graph is discoverable with no containment/dependency cycles",
+        "decomposition, fibre reopen and bounded-saturation anchors remain distinct and discoverable",
+        "method fibre must remain distinct from development fibre",
+        "development fibre is a derived working view with snapshot identity",
+        "saturation remains bounded flatness across multiple axes rather than universal completeness"
+      ]
+    },
+    {
+      "source_id": "V1-SATURATION-DEFECT-NEGATIVE",
+      "path": "packages/orion-research-harness/tests/test_nonquantum_m2_saturation_defect.py",
+      "blob_sha": "8e17f74d1429830d5203197bbaf9b3e538c5d54b",
+      "campaign_ids": ["PARITY-G", "PARITY-H"],
+      "falsifiers": [
+        "bounded positive result does not imply wider theorem/external/prospective/novelty authority",
+        "native decision must reject a refuted source instead of preserving a prior positive terminal"
+      ]
+    }
+  ],
+  "campaign_source_status": [
+    {"campaign_id":"PARITY-A","status":"V1_NATIVE_SOURCE_ANCHORS_BOUND","remaining":"select held-out contract/decomposition cells and freeze expected invariants"},
+    {"campaign_id":"PARITY-B","status":"V1_NATIVE_SOURCE_ANCHORS_BOUND","remaining":"freeze heterogeneous route/query/source/retrieval cases with matched host access"},
+    {"campaign_id":"PARITY-C","status":"PARTIAL_V1_NATIVE_SOURCE_ANCHORS","remaining":"need stronger claim/language/context absorption cases; provenance custody alone is insufficient"},
+    {"campaign_id":"PARITY-D","status":"PARTIAL_V1_NATIVE_SOURCE_ANCHORS","remaining":"need held-out reconstruction/gluing/search-universe cases beyond graph discoverability and reopen semantics"},
+    {"campaign_id":"PARITY-E","status":"V1_NATIVE_SOURCE_ANCHORS_BOUND","remaining":"freeze contradiction/gap/failure and diagnosis-discriminator cases per exact capability cells"},
+    {"campaign_id":"PARITY-F","status":"V1_NATIVE_SOURCE_ANCHORS_BOUND","remaining":"freeze representation/decomposition/search-policy/method/objective reframe plus dependency/fibre/history reopen cells"},
+    {"campaign_id":"PARITY-G","status":"V1_NATIVE_SOURCE_ANCHORS_BOUND","remaining":"freeze all bounded-saturation children including omission challenge and stop cases without completeness laundering"},
+    {"campaign_id":"PARITY-H","status":"V1_NATIVE_SOURCE_ANCHORS_BOUND_EXTERNAL_CUSTODY_OPEN","remaining":"independent reviewer/evaluator identities and held-out benchmark custody remain external/unbound"},
+    {"campaign_id":"PARITY-I","status":"V1_NATIVE_SOURCE_ANCHORS_BOUND","remaining":"freeze execution/memory/experience/context cases with matched tool/provider/resource budgets"}
+  ],
+  "global_gaps": [
+    "protected held-out case identities are not frozen",
+    "protected evaluator/custody identities are not frozen",
+    "PARITY-C native scientific-language and atomic-claim extraction coverage is incomplete",
+    "PARITY-D reconstruction/gluing naturalistic cases are incomplete",
+    "memory/experience cases require explicit V1-native source binding beyond execution coverage",
+    "strongest parent-composed baselines are not frozen",
+    "matched provider/tool/time/compute budgets are not frozen"
+  ],
+  "run_gate": {
+    "allowed_now": false,
+    "reason": "source provenance is bound but protected held-out case selection, evaluator custody, baselines and matched budgets remain open"
+  },
+  "authority": {
+    "grants_v1_parity": false,
+    "grants_v2_closeout": false,
+    "grants_architecture_authority": false,
+    "grants_scientific_truth": false,
+    "grants_novelty": false,
+    "grants_publication_authority": false
+  }
+}
