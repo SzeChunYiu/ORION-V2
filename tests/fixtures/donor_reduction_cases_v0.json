@@ -1,0 +1,181 @@
+{
+  "schema_id": "orion-v2.donor-reduction-known-answer-cases.v0",
+  "authority": "NON_AUTHORIZING_RESEARCH_FIXTURES",
+  "defaults": {
+    "schema_id": "orion-v2.donor-reduction-case.v0",
+    "candidate_claim_id": "claim:v2:candidate",
+    "donor_ids": ["donor:A"],
+    "absorption_receipt_ids": [],
+    "donor_claim_ids": [],
+    "donor_assumption_ids": [],
+    "donor_coordinate_ids": [],
+    "donor_reconstruction_ids": [],
+    "embedding_map_id": "",
+    "preservation_obligation_ids": [],
+    "added_coordinate_ids": [],
+    "strict_separation_witness_ids": [],
+    "ideal_donor_product_relation": "UNTESTED",
+    "ideal_donor_product_evidence_ids": [],
+    "open_route_ids": [],
+    "falsifier_ids": [],
+    "fresh_evaluation_ids": [],
+    "v1_collision_status": "NO_COLLISION_FOUND",
+    "negative_history_ids": [],
+    "status": "RESEARCH_INPUT_ONLY"
+  },
+  "cases": [
+    {
+      "case_id": "v1-audit-not-run",
+      "overrides": {"v1_collision_status": "NOT_CHECKED"},
+      "expected": "BLOCKED_V1_COLLISION_AUDIT"
+    },
+    {
+      "case_id": "fully-v1-owned",
+      "overrides": {"v1_collision_status": "FULLY_V1_OWNED"},
+      "expected": "FULLY_OWNED_BY_V1"
+    },
+    {
+      "case_id": "absorption-incomplete",
+      "overrides": {},
+      "expected": "BLOCKED_ABSORPTION_INCOMPLETE"
+    },
+    {
+      "case_id": "donor-reconstruction-incomplete",
+      "overrides": {"absorption_receipt_ids": ["absorb:1"]},
+      "expected": "BLOCKED_DONOR_RECONSTRUCTION"
+    },
+    {
+      "case_id": "embedding-incomplete",
+      "overrides": {
+        "absorption_receipt_ids": ["absorb:1"],
+        "donor_claim_ids": ["d:claim"],
+        "donor_assumption_ids": ["d:assumption"],
+        "donor_reconstruction_ids": ["d:reconstruction"]
+      },
+      "expected": "BLOCKED_CONSERVATIVE_EMBEDDING"
+    },
+    {
+      "case_id": "absorbed-special-case",
+      "overrides": {
+        "absorption_receipt_ids": ["absorb:1"],
+        "donor_claim_ids": ["d:claim"],
+        "donor_assumption_ids": ["d:assumption"],
+        "donor_reconstruction_ids": ["d:reconstruction"],
+        "embedding_map_id": "map:1",
+        "preservation_obligation_ids": ["preserve:1"]
+      },
+      "expected": "ABSORBED_SPECIAL_CASE"
+    },
+    {
+      "case_id": "conservative-envelope",
+      "overrides": {
+        "absorption_receipt_ids": ["absorb:1"],
+        "donor_claim_ids": ["d:claim"],
+        "donor_assumption_ids": ["d:assumption"],
+        "donor_reconstruction_ids": ["d:reconstruction"],
+        "embedding_map_id": "map:1",
+        "preservation_obligation_ids": ["preserve:1"],
+        "added_coordinate_ids": ["coord:new"]
+      },
+      "expected": "CONSERVATIVE_ENVELOPE"
+    },
+    {
+      "case_id": "ideal-product-not-tested",
+      "overrides": {
+        "absorption_receipt_ids": ["absorb:1"],
+        "donor_claim_ids": ["d:claim"],
+        "donor_assumption_ids": ["d:assumption"],
+        "donor_reconstruction_ids": ["d:reconstruction"],
+        "embedding_map_id": "map:1",
+        "preservation_obligation_ids": ["preserve:1"],
+        "added_coordinate_ids": ["coord:new"],
+        "strict_separation_witness_ids": ["witness:1"]
+      },
+      "expected": "BLOCKED_IDEAL_DONOR_PRODUCT"
+    },
+    {
+      "case_id": "ideal-product-ties",
+      "overrides": {
+        "absorption_receipt_ids": ["absorb:1"],
+        "donor_claim_ids": ["d:claim"],
+        "donor_assumption_ids": ["d:assumption"],
+        "donor_reconstruction_ids": ["d:reconstruction"],
+        "embedding_map_id": "map:1",
+        "preservation_obligation_ids": ["preserve:1"],
+        "added_coordinate_ids": ["coord:new"],
+        "strict_separation_witness_ids": ["witness:1"],
+        "ideal_donor_product_relation": "TIES_CANDIDATE",
+        "ideal_donor_product_evidence_ids": ["product:evidence"]
+      },
+      "expected": "IDEAL_DONOR_PRODUCT_EQUIVALENCE"
+    },
+    {
+      "case_id": "open-routes-block",
+      "overrides": {
+        "absorption_receipt_ids": ["absorb:1"],
+        "donor_claim_ids": ["d:claim"],
+        "donor_assumption_ids": ["d:assumption"],
+        "donor_reconstruction_ids": ["d:reconstruction"],
+        "embedding_map_id": "map:1",
+        "preservation_obligation_ids": ["preserve:1"],
+        "added_coordinate_ids": ["coord:new"],
+        "strict_separation_witness_ids": ["witness:1"],
+        "ideal_donor_product_relation": "CANDIDATE_SEPARATES",
+        "ideal_donor_product_evidence_ids": ["product:evidence"],
+        "open_route_ids": ["route:open"]
+      },
+      "expected": "BLOCKED_OPEN_ROUTES"
+    },
+    {
+      "case_id": "no-falsifier-block",
+      "overrides": {
+        "absorption_receipt_ids": ["absorb:1"],
+        "donor_claim_ids": ["d:claim"],
+        "donor_assumption_ids": ["d:assumption"],
+        "donor_reconstruction_ids": ["d:reconstruction"],
+        "embedding_map_id": "map:1",
+        "preservation_obligation_ids": ["preserve:1"],
+        "added_coordinate_ids": ["coord:new"],
+        "strict_separation_witness_ids": ["witness:1"],
+        "ideal_donor_product_relation": "CANDIDATE_SEPARATES",
+        "ideal_donor_product_evidence_ids": ["product:evidence"]
+      },
+      "expected": "BLOCKED_NO_FALSIFIER"
+    },
+    {
+      "case_id": "no-fresh-evaluation-block",
+      "overrides": {
+        "absorption_receipt_ids": ["absorb:1"],
+        "donor_claim_ids": ["d:claim"],
+        "donor_assumption_ids": ["d:assumption"],
+        "donor_reconstruction_ids": ["d:reconstruction"],
+        "embedding_map_id": "map:1",
+        "preservation_obligation_ids": ["preserve:1"],
+        "added_coordinate_ids": ["coord:new"],
+        "strict_separation_witness_ids": ["witness:1"],
+        "ideal_donor_product_relation": "CANDIDATE_SEPARATES",
+        "ideal_donor_product_evidence_ids": ["product:evidence"],
+        "falsifier_ids": ["falsifier:1"]
+      },
+      "expected": "BLOCKED_NO_FRESH_EVALUATION"
+    },
+    {
+      "case_id": "candidate-strict-envelope",
+      "overrides": {
+        "absorption_receipt_ids": ["absorb:1"],
+        "donor_claim_ids": ["d:claim"],
+        "donor_assumption_ids": ["d:assumption"],
+        "donor_reconstruction_ids": ["d:reconstruction"],
+        "embedding_map_id": "map:1",
+        "preservation_obligation_ids": ["preserve:1"],
+        "added_coordinate_ids": ["coord:new"],
+        "strict_separation_witness_ids": ["witness:1"],
+        "ideal_donor_product_relation": "CANDIDATE_SEPARATES",
+        "ideal_donor_product_evidence_ids": ["product:evidence"],
+        "falsifier_ids": ["falsifier:1"],
+        "fresh_evaluation_ids": ["fresh:1"]
+      },
+      "expected": "CANDIDATE_STRICT_ENVELOPE"
+    }
+  ]
+}
