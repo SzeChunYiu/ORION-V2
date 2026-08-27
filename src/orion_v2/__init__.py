@@ -69,6 +69,7 @@ from .information_order import (
 )
 from .inheritance import (
     ComponentInheritanceEdge,
+    ComponentInheritanceRelation,
     ComponentNode,
     InheritanceAssessment,
     InheritanceStatus,
@@ -113,7 +114,12 @@ from .process_network import (
     apply_task,
     assess_process_soundness,
 )
-from .provenance import ProvenanceEdge, ProvenanceNode, ReticulateProvenance
+from .provenance import (
+    InheritanceRelation,
+    ProvenanceEdge,
+    ProvenanceNode,
+    ReticulateProvenance,
+)
 from .reopening import (
     Commitment,
     CommitmentDisposition,
