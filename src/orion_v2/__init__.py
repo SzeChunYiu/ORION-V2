@@ -1,186 +1,28 @@
-"""Non-authorizing reference objects for the ORION-V2 research programme."""
+"""ORION-V2 research package.
 
-from .comparability import Anchor, ComparabilityCertificate, ComparabilityStatus
-from .contracts import EvidenceRef, Obligation, ObligationStatus, ProblemContract, Terminal
-from .correspondence import (
-    CorrespondenceChainAssessment,
-    CorrespondenceLink,
-    CorrespondenceStatus,
-    assess_correspondence_chain,
-)
-from .donors import (
-    DomainProblem,
-    DonorDisposition,
-    DonorReductionCase,
-    DonorReductionReceipt,
-    reduce_donors,
-)
-from .evaluation import CapabilityParityRecord, ParityDisposition, SaturationVector
-from .evidence import (
-    DependenceEdge,
-    DependenceKind,
-    EvidenceDependenceAssessment,
-    EvidenceUnit,
-    assess_evidence_dependence,
-)
-from .evidence_network import (
-    DependenceCluster,
-    EvidenceItem,
-    EvidenceNetworkAssessment,
-    EvidenceNetworkStatus,
-    assess_evidence_network,
-)
-from .frontier_portfolio import (
-    FrontierOpportunity,
-    FrontierPortfolio,
-    FrontierStatus,
-    assess_frontier_portfolio,
-    pareto_frontier_portfolios,
-)
-from .generalization import (
-    AssumptionDisposition,
-    AssumptionRecord,
-    FiniteTheory,
-    GeneralizationAssessment,
-    GeneralizationStatus,
-    PreservationMode,
-    SharedEnvelopeAssessment,
-    SharedEnvelopeStatus,
-    TheoryTransport,
-    assess_shared_envelope,
-    assess_theory_transport,
-)
-from .generalization_compiler import (
-    AdaptationContract,
-    AdaptationStatus,
-    DecisionEnvelope,
-    EnvelopeStatus,
-    assess_adaptation_contract,
-    compile_decision_envelope,
-    judgment_preserved_by_envelope,
-)
-from .information_order import (
-    DecisionProblem,
-    ExperimentComparison,
-    FiniteExperiment,
-    compare_experiments,
-    decision_value,
-    validates_garbling,
-)
-from .inheritance import (
-    ComponentInheritanceEdge,
-    ComponentInheritanceRelation,
-    ComponentNode,
-    InheritanceAssessment,
-    InheritanceStatus,
-    affected_descendants,
-    assess_inheritance,
-)
-from .jump import JumpAssessment, JumpLevel, JumpProposal, JumpTrigger, assess_jump
-from .native_corpus_strict import (
-    built_in_native_recovery_cases,
-    built_in_target_adaptation_contracts,
-)
-from .native_recovery import (
-    NativeRecoveryAssessment,
-    NativeRecoveryCase,
-    NativeRecoveryStatus,
-    NativeRecoverySuiteAssessment,
-    RecoveryMode,
-    assess_native_recovery,
-    assess_native_recovery_suite,
-)
-from .opportunity import OpportunityStatus, ResearchOpportunityCandidate, assess_opportunity
-from .parity import (
-    CapabilityCensusValidation,
-    load_and_validate_capability_census,
-    validate_capability_census,
-)
-from .performative import (
-    EvaluationDeployment,
-    PerformativeAssessment,
-    assess_performative_evaluation,
-)
-from .performative_dynamics import (
-    FinitePerformativeSystem,
-    PerformativeDynamicsStatus,
-    assess_performative_dynamics,
-    performative_optima,
-    retraining_trajectory,
-    stable_policies,
-    static_optima,
-)
-from .policy import ActionProposal, ActionValue, SelectionReceipt, select_actions
-from .probes import (
-    Hypothesis,
-    Probe,
-    ProbeDesignReceipt,
-    ProbeDesignStatus,
-    minimum_separating_probe_set,
-)
-from .process_network import (
-    ObligationProcessNetwork,
-    ProcessMarking,
-    ProcessSoundnessAssessment,
-    ProcessSoundnessStatus,
-    ProcessTask,
-    apply_task,
-    assess_process_soundness,
-)
-from .provenance import (
-    InheritanceRelation,
-    ProvenanceEdge,
-    ProvenanceNode,
-    ReticulateProvenance,
-)
-from .reopening import (
-    Commitment,
-    CommitmentDisposition,
-    SelectiveReopenReceipt,
-    SupportFamily,
-    selective_reopen,
-)
-from .responsibility import (
-    DiagnosisStatus,
-    DiagnosticProbe,
-    ResponsibilityAssessment,
-    ResponsibilityHypothesis,
-    ResponsibilityTopology,
-    assess_responsibility,
-    minimum_diagnostic_probe_set,
-)
-from .scale_gluing import (
-    ContextualModel,
-    FiniteScaleModel,
-    GluingStatus,
-    ScaleMap,
-    ScaleStatus,
-    assess_gluing,
-    assess_scale_map,
-    global_sections,
-)
-from .solver import SolverState, StepReceipt, apply_step, infer_terminal
-from .structural import (
-    ContextProbe,
-    FiniteTransitionSystem,
-    RelationType,
-    StructuralRelationReceipt,
-    are_bisimilar,
-    indiscernibility_classes,
-    safe_quotient,
-)
-from .viability import (
-    FiniteViabilitySystem,
-    ViabilityMode,
-    justified_capture_kernel,
-    viability_kernel,
-)
-from .workflow import (
-    PrecedenceConstraint,
-    WorkflowConformanceReceipt,
-    WorkflowConformanceStatus,
-    WorkflowSpec,
-    WorkflowTask,
+The candidate stable public boundary is :mod:`orion_v2.kernel`. Research,
+compatibility and parent/reference modules remain available through explicit
+module imports, but are intentionally not re-exported from the package root.
+This prevents transparent reference implementations from becoming accidental
+universal V2 primitives before protected parity and kernel freeze.
+"""
+
+from . import kernel
+from .kernel import (
+    GRANTS_ARCHITECTURE_AUTHORITY,
+    GRANTS_NOVELTY,
+    GRANTS_PUBLICATION_AUTHORITY,
+    GRANTS_SCIENTIFIC_TRUTH,
+    KERNEL_API_VERSION,
+    KERNEL_FROZEN,
 )
 
-__all__ = [name for name in globals() if not name.startswith("_")]
+__all__ = (
+    "kernel",
+    "KERNEL_API_VERSION",
+    "KERNEL_FROZEN",
+    "GRANTS_ARCHITECTURE_AUTHORITY",
+    "GRANTS_SCIENTIFIC_TRUTH",
+    "GRANTS_NOVELTY",
+    "GRANTS_PUBLICATION_AUTHORITY",
+)
