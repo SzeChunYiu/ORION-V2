@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import orion_v2
 import orion_v2.kernel as kernel
 
 
@@ -72,6 +73,28 @@ def test_parent_reference_algorithms_and_workflow_are_not_universal_kernel_expor
 def test_legacy_comparability_certificate_is_not_a_third_k2_owner() -> None:
     assert "ComparabilityCertificate" not in kernel.__all__
     assert not hasattr(kernel, "ComparabilityCertificate")
+
+
+def test_package_root_cannot_reexpand_reference_implementations() -> None:
+    expected_root = {
+        "kernel",
+        "KERNEL_API_VERSION",
+        "KERNEL_FROZEN",
+        "GRANTS_ARCHITECTURE_AUTHORITY",
+        "GRANTS_SCIENTIFIC_TRUTH",
+        "GRANTS_NOVELTY",
+        "GRANTS_PUBLICATION_AUTHORITY",
+    }
+    assert set(orion_v2.__all__) == expected_root
+    for name in (
+        "FiniteTheory",
+        "ComparabilityCertificate",
+        "FrontierPortfolio",
+        "WorkflowSpec",
+        "FiniteViabilitySystem",
+        "TheoryTransport",
+    ):
+        assert not hasattr(orion_v2, name)
 
 
 def test_facade_exports_only_declared_symbols() -> None:
