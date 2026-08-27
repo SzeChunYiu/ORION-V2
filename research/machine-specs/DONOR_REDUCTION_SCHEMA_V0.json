@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/SzeChunYiu/ORION-V2/research/machine-specs/DONOR_REDUCTION_SCHEMA_V0.json",
+  "title": "ORION-V2 donor reduction schema V0",
+  "$defs": {
+    "Ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "DonorReductionCase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "case_id",
+        "candidate_claim_id",
+        "donor_ids",
+        "status"
+      ],
+      "properties": {
+        "schema_id": {"const": "orion-v2.donor-reduction-case.v0"},
+        "case_id": {"type": "string", "minLength": 1},
+        "candidate_claim_id": {"type": "string", "minLength": 1},
+        "donor_ids": {"$ref": "#/$defs/Ids"},
+        "absorption_receipt_ids": {"$ref": "#/$defs/Ids"},
+        "donor_claim_ids": {"$ref": "#/$defs/Ids"},
+        "donor_assumption_ids": {"$ref": "#/$defs/Ids"},
+        "donor_coordinate_ids": {"$ref": "#/$defs/Ids"},
+        "donor_reconstruction_ids": {"$ref": "#/$defs/Ids"},
+        "embedding_map_id": {"type": "string"},
+        "preservation_obligation_ids": {"$ref": "#/$defs/Ids"},
+        "added_coordinate_ids": {"$ref": "#/$defs/Ids"},
+        "strict_separation_witness_ids": {"$ref": "#/$defs/Ids"},
+        "ideal_donor_product_relation": {
+          "type": "string",
+          "enum": ["UNTESTED", "TIES_CANDIDATE", "CANDIDATE_SEPARATES"]
+        },
+        "ideal_donor_product_evidence_ids": {"$ref": "#/$defs/Ids"},
+        "open_route_ids": {"$ref": "#/$defs/Ids"},
+        "falsifier_ids": {"$ref": "#/$defs/Ids"},
+        "fresh_evaluation_ids": {"$ref": "#/$defs/Ids"},
+        "v1_collision_status": {
+          "type": "string",
+          "enum": ["NOT_CHECKED", "NO_COLLISION_FOUND", "PARTIAL_V1_OWNERSHIP", "FULLY_V1_OWNED", "CANNOT_CHECK"]
+        },
+        "negative_history_ids": {"$ref": "#/$defs/Ids"},
+        "status": {"const": "RESEARCH_INPUT_ONLY"}
+      }
+    },
+    "DonorReductionReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "case_id",
+        "verdict",
+        "reasons",
+        "grants_scientific_truth",
+        "grants_novelty",
+        "grants_v2_admission"
+      ],
+      "properties": {
+        "schema_id": {"const": "orion-v2.donor-reduction-receipt.v0"},
+        "case_id": {"type": "string", "minLength": 1},
+        "verdict": {
+          "type": "string",
+          "enum": [
+            "BLOCKED_V1_COLLISION_AUDIT",
+            "FULLY_OWNED_BY_V1",
+            "BLOCKED_ABSORPTION_INCOMPLETE",
+            "BLOCKED_DONOR_RECONSTRUCTION",
+            "BLOCKED_CONSERVATIVE_EMBEDDING",
+            "ABSORBED_SPECIAL_CASE",
+            "CONSERVATIVE_ENVELOPE",
+            "BLOCKED_IDEAL_DONOR_PRODUCT",
+            "IDEAL_DONOR_PRODUCT_EQUIVALENCE",
+            "BLOCKED_OPEN_ROUTES",
+            "BLOCKED_NO_FALSIFIER",
+            "BLOCKED_NO_FRESH_EVALUATION",
+            "CANDIDATE_STRICT_ENVELOPE",
+            "CANNOT_CHECK"
+          ]
+        },
+        "reasons": {"$ref": "#/$defs/Ids"},
+        "surviving_residual_ids": {"$ref": "#/$defs/Ids"},
+        "grants_scientific_truth": {"const": false},
+        "grants_novelty": {"const": false},
+        "grants_v2_admission": {"const": false}
+      }
+    }
+  },
+  "oneOf": [
+    {"$ref": "#/$defs/DonorReductionCase"},
+    {"$ref": "#/$defs/DonorReductionReceipt"}
+  ]
+}
