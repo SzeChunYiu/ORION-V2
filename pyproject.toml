@@ -1,0 +1,15 @@
+[project]
+name = "orion-v2-research"
+version = "0.0.0"
+description = "Pre-implementation ORION-V2 research, theory, protocol and publication programme"
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.orion_v2]
+status = "BLOCKED_BY_V1_FREEZE"
+implementation_authorized = false
+outcome_generating_experiments_authorized = false
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
