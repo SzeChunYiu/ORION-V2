@@ -77,6 +77,19 @@ from .inheritance import (
     assess_inheritance,
 )
 from .jump import JumpAssessment, JumpLevel, JumpProposal, JumpTrigger, assess_jump
+from .native_corpus_strict import (
+    built_in_native_recovery_cases,
+    built_in_target_adaptation_contracts,
+)
+from .native_recovery import (
+    NativeRecoveryAssessment,
+    NativeRecoveryCase,
+    NativeRecoveryStatus,
+    NativeRecoverySuiteAssessment,
+    RecoveryMode,
+    assess_native_recovery,
+    assess_native_recovery_suite,
+)
 from .opportunity import OpportunityStatus, ResearchOpportunityCandidate, assess_opportunity
 from .parity import (
     CapabilityCensusValidation,
