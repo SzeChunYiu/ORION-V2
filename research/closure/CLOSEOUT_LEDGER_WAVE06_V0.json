@@ -1,0 +1,62 @@
+{
+  "schema_version": "orion.v2.closeout-ledger.v0",
+  "wave": "06",
+  "programme_status": "CONVERGENCE_ACTIVE",
+  "v1_handoff": {
+    "status": "BOUND_FOR_LOCAL_REFERENCE_AND_PROSPECTIVE_PROTOCOLS",
+    "receipt": "provenance/ORION_V1_HANDOFF_RECEIPT_V1.json",
+    "terminal": "V1_FREEZE_HANDOFF_BOUND_AND_NON_RETROACTIVE"
+  },
+  "gates": [
+    {
+      "gate": "G1_V1_PARITY",
+      "status": "OPEN",
+      "reason": "59-cell capability census exists, but protected non-regression/parity evaluation is not complete"
+    },
+    {
+      "gate": "G2_PAPER_CONTRACTION",
+      "status": "CANDIDATE_CONTRACTION_DEFINED",
+      "artifact": "papers/CLOSURE_PORTFOLIO_WAVE06_V0.md",
+      "reason": "merge/keep/drop dispositions require review and protected evidence"
+    },
+    {
+      "gate": "G3_MINIMAL_KERNEL",
+      "status": "CANDIDATE_NOT_FROZEN",
+      "artifact": "research/framework/MINIMAL_KERNEL_WAVE06_V0.md"
+    },
+    {
+      "gate": "G4_PARENT_BASELINES",
+      "status": "OPEN",
+      "reason": "transparent finite parent reference methods exist; strongest production/native donor products are incomplete"
+    },
+    {
+      "gate": "G5_PROTECTED_EVALUATION",
+      "status": "OPEN",
+      "reason": "local known-answer/reference suites are green; protected naturalistic cross-domain evaluation remains open"
+    },
+    {
+      "gate": "G6_POST_CONTRACTION_SATURATION",
+      "status": "NOT_RUN",
+      "required_no_material_change_passes": 2
+    },
+    {
+      "gate": "G7_CRITICAL_FAILURES",
+      "status": "REVIEW_REQUIRED",
+      "reason": "preterminal defects are retained; closure review must distinguish repaired defects, valid negatives, and critical open correctness/authority defects"
+    },
+    {
+      "gate": "G8_EXTERNAL_AUTHORITY",
+      "status": "NONE",
+      "reason": "scientific novelty/publication authority remains external"
+    }
+  ],
+  "paper_target": {
+    "core": ["P-A", "P-B", "P-C", "P-D"],
+    "contingent": ["P-E"],
+    "merge_by_default": ["C03", "C05", "C06", "C08", "C09", "C11", "C12"]
+  },
+  "current_first_machine_blocker": "BLOCKED_V1_PARITY",
+  "grants_scientific_truth": false,
+  "grants_novelty": false,
+  "grants_publication_authority": false
+}
