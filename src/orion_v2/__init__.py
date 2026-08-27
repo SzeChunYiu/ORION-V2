@@ -37,6 +37,23 @@ from .generalization import (
     assess_theory_transport,
 )
 from .jump import JumpAssessment, JumpLevel, JumpProposal, JumpTrigger, assess_jump
+from .meta_formalization import (
+    ConservativeExtensionAssessment,
+    ConservativeExtensionStatus,
+    FiniteConsequenceTheory,
+    FiniteGaloisConnection,
+    FiniteLens,
+    FiniteLogic,
+    FinitePoset,
+    LawAssessment,
+    LawStatus,
+    SignatureMorphism,
+    assess_abstract_transformer_soundness,
+    assess_conservative_extension,
+    assess_galois_connection,
+    assess_lens_laws,
+    assess_satisfaction_condition,
+)
 from .opportunity import OpportunityStatus, ResearchOpportunityCandidate, assess_opportunity
 from .parity import (
     CapabilityCensusValidation,
@@ -91,6 +108,33 @@ from .structural import (
     are_bisimilar,
     indiscernibility_classes,
     safe_quotient,
+)
+from .theory_transport import (
+    AdaptationStatus,
+    AssumptionDisposition as TransportAssumptionDisposition,
+    AssumptionTreatment,
+    CompositionAssessment,
+    CompositionStatus,
+    CounterexampleWitness,
+    GeneralizationContext,
+    InterpretationAssessment,
+    InterpretationKind,
+    InterpretationStatus,
+    ResourceCalibration,
+    ResourceInterval,
+    ScientificTheory,
+    TargetAdaptation,
+    TargetAdaptationAssessment,
+    TheoryInterpretation,
+    TransportCertificate,
+    TransportValidityBinding,
+    ValidityAssessment,
+    ValidityStatus,
+    assess_interpretation,
+    assess_target_adaptation,
+    assess_transport_validity,
+    compose_transport_certificates,
+    upgrade_wave2_finite_theory,
 )
 from .viability import (
     FiniteViabilitySystem,
