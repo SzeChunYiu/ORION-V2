@@ -34,8 +34,8 @@
         "bind strongest parent-composed comparator implementation/version/configuration identities",
         "execute per-cell non-compensatory V1/V2 parity and simple-control non-regression under frozen budgets/custody"
       ],
-      "last_fully_green_governance_ci_head_before_latest_custody_and_saturation_hardening": "71967eb16d2e1df29589d56bed7467e612f1e813",
-      "latest_ci_verification": "PENDING_AT_LEDGER_UPDATE"
+      "last_fully_green_governance_ci_head": "37573dea7a901f38bf43b2babfe7ec49f0dc1527",
+      "latest_post_g7_ci_verification": "PENDING_AT_LEDGER_UPDATE"
     },
     {
       "gate": "G2_PAPER_CONTRACTION",
@@ -88,8 +88,11 @@
     },
     {
       "gate": "G7_CRITICAL_FAILURES",
-      "status": "REVIEW_REQUIRED",
-      "reason": "preterminal defects and historical ownership collisions are retained; closure review must distinguish repaired defects, valid negatives/CANNOT_CHECK, and any critical open correctness/integrity/authority defects"
+      "status": "LOCALLY_SATISFIED_NO_KNOWN_OPEN_CRITICAL_DEFECTS",
+      "receipt": "research/closure/CRITICAL_FAILURE_DISPOSITION_WAVE06_V1.json",
+      "open_critical_failures": 0,
+      "historical_failures_retained": true,
+      "reopen_on_new_correctness_integrity_authority_defect": true
     },
     {
       "gate": "G8_EXTERNAL_AUTHORITY",
@@ -118,7 +121,8 @@
     "parity custody-rule ambiguity",
     "parent-comparator role ambiguity",
     "parity preflight ordering ambiguity",
-    "two-pass post-contraction saturation requirement"
+    "two-pass post-contraction saturation requirement",
+    "known local critical correctness/integrity/authority defects"
   ],
   "current_first_machine_blocker": "BLOCKED_V1_PARITY",
   "current_parity_subblocker": "BLOCKED_EVALUATOR_CUSTODY",
