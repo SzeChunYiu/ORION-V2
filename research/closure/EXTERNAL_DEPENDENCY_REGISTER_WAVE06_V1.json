@@ -1,0 +1,72 @@
+{
+  "schema_version": "orion.v2.external-dependency-register.wave06.v1",
+  "status": "OPEN_EXTERNAL_ONLY",
+  "purpose": "Track the dependencies that cannot be discharged by internal prose or unreviewed ORION execution.",
+  "dependencies": [
+    {
+      "id": "X01_PARITY_SEMANTIC_REVIEWERS",
+      "owner_issues": [8, 37],
+      "required_roles": ["PARITY-C blinded reviewer A", "PARITY-C blinded reviewer B", "PARITY-D blinded reviewer A", "PARITY-D blinded reviewer B", "independent tiebreaker if needed"],
+      "cannot_be_substituted_by": ["same-model self-review", "subject authors", "case authors", "undisclosed dependent evaluator"],
+      "unlocks": ["V1/V2 semantic parity execution", "final kernel non-regression disposition"],
+      "state": "OPEN"
+    },
+    {
+      "id": "X02_CAUSAL_DOMAIN_ADJUDICATOR",
+      "owner_issues": [45, 46],
+      "required_roles": ["independent causal-inference/domain scientist"],
+      "unlocks": ["CausalBench semantic/native interpretation", "cross-domain R3 evidence where claimed"],
+      "state": "OPEN"
+    },
+    {
+      "id": "X03_MATERIALS_DOMAIN_ADJUDICATOR",
+      "owner_issues": [45, 46],
+      "required_roles": ["independent materials-science/domain scientist"],
+      "unlocks": ["Matbench Discovery semantic/native interpretation", "cross-domain R3 evidence where claimed"],
+      "state": "OPEN"
+    },
+    {
+      "id": "X04_HUMAN_EXPERT_CONTROL",
+      "owner_issues": [45],
+      "required_roles": ["domain expert participants for any human-control comparison actually reported"],
+      "cannot_be_substituted_by": ["LLM instructed to role-play an expert"],
+      "unlocks": ["human-vs-machine comparison claims"],
+      "state": "CONDITIONAL_OPEN"
+    },
+    {
+      "id": "X05_FIELD_DEMARCATION",
+      "owner_issues": [38, 46],
+      "required_roles": ["formal/computational epistemology or philosophy-of-science reviewer", "AI-for-Science/autonomous-science reviewer", "systems/control/formal-methods/assurance reviewer"],
+      "unlocks": ["field-vs-integration disposition", "name/boundary confidence", "flagship R4 field-level language"],
+      "state": "OPEN"
+    },
+    {
+      "id": "X06_HOSTILE_EDITORIAL_REVIEW",
+      "owner_issues": [7, 46],
+      "required_roles": ["independent hostile editor/reviewer appropriate to target venue"],
+      "prerequisite": "paper has reached R3 with frozen results",
+      "unlocks": ["R4 hostile-editor clearance"],
+      "state": "WAITING_ON_R3"
+    },
+    {
+      "id": "X07_EXTERNAL_REPLICATION",
+      "owner_issues": [46],
+      "required_roles": ["independent analyst, implementation, dataset/problem family, domain, or external group depending claim breadth"],
+      "unlocks": ["S4 scientificity for broad claims", "strong field-level credibility"],
+      "state": "OPEN_AFTER_PRIMARY_RESULTS"
+    }
+  ],
+  "rules": {
+    "missing_external_resource_terminal": "CANNOT_CHECK",
+    "external_disagreement_is_retained": true,
+    "vote_count_does_not_select_scientific_terminal": true,
+    "internal_ai_cannot_self_grant_external_authority": true,
+    "journal_acceptance_is_external_only": true
+  },
+  "authority": {
+    "grants_field_status": false,
+    "grants_scientific_truth": false,
+    "grants_submission_readiness": false,
+    "grants_publication_authority": false
+  }
+}
