@@ -1,0 +1,63 @@
+name: wave6-scientificity-gate
+
+on:
+  push:
+    branches:
+      - research/wave6-contraction-closure-20260827
+    paths:
+      - "src/orion_v2/scientificity_gate.py"
+      - "tests/unit/test_scientificity_gate_wave6.py"
+      - "research/evaluation/SCIENTIFICITY_AND_SCEPTICAL_REVIEW_PROTOCOL_WAVE06_V1.md"
+      - "research/evaluation/SCIENTIFICITY_REGISTRY_WAVE06_V1.json"
+      - ".github/workflows/wave6-scientificity-gate.yml"
+  pull_request:
+    paths:
+      - "src/orion_v2/scientificity_gate.py"
+      - "tests/unit/test_scientificity_gate_wave6.py"
+      - "research/evaluation/SCIENTIFICITY_AND_SCEPTICAL_REVIEW_PROTOCOL_WAVE06_V1.md"
+      - "research/evaluation/SCIENTIFICITY_REGISTRY_WAVE06_V1.json"
+      - ".github/workflows/wave6-scientificity-gate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scientificity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ORION and test tooling
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e . pytest
+
+      - name: Compile scientificity gate
+        run: python -m py_compile src/orion_v2/scientificity_gate.py
+
+      - name: Run scientificity tests
+        run: python -m pytest -q tests/unit/test_scientificity_gate_wave6.py
+
+      - name: Validate concept registry remains non-authorizing
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          registry = json.loads(
+              Path("research/evaluation/SCIENTIFICITY_REGISTRY_WAVE06_V1.json").read_text()
+          )
+          assert registry["status"] == "BINDING_NO_AUTHORITY"
+          assert registry["promotion_rules"]["metaphor_can_directly_promote"] is False
+          assert registry["promotion_rules"]["same_model_self_review_counts_as_independent_replication"] is False
+          assert registry["promotion_rules"]["field_status_internal_grant_allowed"] is False
+          assert all(value is False for value in registry["authority"].values())
+          assert all(item["scientificity_level"].startswith(("S0_", "S1_", "S2_", "S3_", "S4_", "S5_")) for item in registry["concepts"])
+          assert not any(item["allowed_wording"] == "established field" for item in registry["concepts"])
+          PY
