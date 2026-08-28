@@ -1,0 +1,97 @@
+{
+  "schema_version": "orion.v2.portfolio-claim-evidence-delta.v2",
+  "predecessor": "papers/pipeline/PORTFOLIO_CLAIM_EVIDENCE_LEDGER_V1.json",
+  "status": "POST_E20_E40_E50_EVIDENCE_BOUND__CONFIRMATORY_RESULTS_OPEN",
+  "execution_issue": 45,
+  "scientificity_issue": 46,
+  "adaptive_revision_issue": 47,
+  "evidence_bound": {
+    "E20": {
+      "classification": "PROTECTED_VALID_UNDERPOWERED_PILOT",
+      "tasks": 3,
+      "arms": {
+        "SIMPLE_DIRECT": {"successes": 2, "tasks": 3, "patch_apply_failures": 1},
+        "SAME_MODEL_REFLECTION": {"successes": 2, "tasks": 3, "patch_apply_failures": 1},
+        "F0_PARENT_FEDERATION": {"successes": 1, "tasks": 3, "patch_apply_failures": 2},
+        "F2_ORION_METABOLIC_FULL": {"successes": 1, "tasks": 3, "patch_apply_failures": 2}
+      },
+      "comparisons": {
+        "F2_minus_F0_success_risk_difference": 0.0,
+        "F2_minus_SIMPLE_success_risk_difference": -0.3333333333333333,
+        "F2_minus_REFLECTION_success_risk_difference": -0.3333333333333333,
+        "exact_discordant_p": 1.0,
+        "interpretation": "NO_F2_SUPERIORITY_PILOT_UNDERPOWERED"
+      },
+      "serialization_confound_audit": "research/evaluation/E20_PATCH_SERIALIZATION_CONFOUND_AUDIT_V1.md",
+      "primary_result_changed_by_audit": false
+    },
+    "E40": {
+      "classification": "NATIVE_COMPUTE_COMPLETE_WITH_ADVERSE_PARTIAL_INTERVENTIONAL_RESULT",
+      "orion_vs_F0_complete": false,
+      "independent_domain_adjudication_complete": false
+    },
+    "E50": {
+      "classification": "NATIVE_MODEL_CHARACTERIZATION_COMPLETE_DESCRIPTIVE",
+      "strongest_of_three_evaluated_native_models": "ORB v2",
+      "orion_vs_F0_complete": false,
+      "independent_domain_adjudication_complete": false
+    }
+  },
+  "claim_deltas": [
+    {
+      "paper_id": "FLAGSHIP",
+      "claim_id": "FL-C2",
+      "previous_evidence": "OPEN",
+      "current_evidence": "PROTECTED_ADVERSE_PILOT_PLUS_NATIVE_DOMAIN_INPUTS",
+      "disposition": "RETAIN_HYPOTHESIS_NO_PROMOTION",
+      "required_manuscript_change": "State that the first valid real-problem pilot did not show F2 superiority: F2 tied F0 and was below SIMPLE/reflection on observed success. Preserve underpowered uncertainty and serialization-confound decomposition."
+    },
+    {
+      "paper_id": "P-C",
+      "claim_id": "PC-C1",
+      "previous_evidence": "REFERENCE_ONLY",
+      "current_evidence": "PROTECTED_ADVERSE_UNDERPOWERED_PILOT",
+      "disposition": "NO_PROMOTION_E30_REQUIRED",
+      "required_manuscript_change": "Add E20 as a pilot boundary result. Do not claim improved justified terminals until E30/F0 and naturalistic studies support it."
+    },
+    {
+      "paper_id": "P-C",
+      "claim_id": "PC-C3",
+      "previous_evidence": "OPEN",
+      "current_evidence": "PILOT_PRESSURE_AGAINST_UNIVERSAL_ACTIVATION",
+      "disposition": "CONTEXT_GATING_THESIS_STRENGTHENED_AS_FALSIFIABLE_BOUNDARY_NOT_AS_POSITIVE_RESULT",
+      "required_manuscript_change": "Report that SIMPLE/reflection had 2/3 observed native successes versus 1/3 for F2/F0. Confirmatory analysis must determine whether structure is useful only in harder strata or is redundant drag."
+    },
+    {
+      "paper_id": "P-D",
+      "claim_id": "PD-C2",
+      "previous_evidence": "OPEN",
+      "current_evidence": "NATIVE_FAILURE_CASE_INPUT_ONLY",
+      "disposition": "NO_PROMOTION",
+      "required_manuscript_change": "Use E40 partial-interventional empty-network outcomes only as a native oracle/evaluator adequacy stress case. Do not attribute successful diagnosis or assurance to ORION until matched controls run."
+    },
+    {
+      "paper_id": "P-F",
+      "claim_id": "PF-C1",
+      "previous_evidence": "OPEN",
+      "current_evidence": "NATIVE_BASELINE_INPUT_ONLY",
+      "disposition": "NO_PROMOTION",
+      "required_manuscript_change": "ORB v2 strengthens the materials parent/native lower bound; no machine-native mechanism credit follows."
+    }
+  ],
+  "unchanged_open_papers": ["P-A", "P-B", "P-E", "P-G"],
+  "portfolio_terminal": {
+    "manuscripts_scientifically_complete_R3": [],
+    "submission_ready_R4": [],
+    "top_tier_submission_ready": [],
+    "field_founded": false,
+    "first_valid_F2_vs_controls_pilot_exists": true,
+    "confirmatory_F2_over_F0_gain_established": false
+  },
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_field_status": false,
+    "grants_submission_readiness": false,
+    "grants_journal_acceptance": false
+  }
+}
