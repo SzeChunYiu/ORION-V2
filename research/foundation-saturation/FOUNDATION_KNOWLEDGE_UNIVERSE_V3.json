@@ -1,0 +1,194 @@
+{
+  "schema_version": "orion.v2.foundation-knowledge-universe.v3",
+  "canonical_issue": 41,
+  "material_pass_issue": 44,
+  "inherits_from": "research/foundation-saturation/FOUNDATION_KNOWLEDGE_UNIVERSE_V2.json",
+  "status": "REOPENED_AFTER_MATERIAL_PASS_I",
+  "coverage_axes": [
+    "ProblemClass",
+    "EpistemicFunction",
+    "Representation",
+    "SourceMode",
+    "AcquisitionMode",
+    "ActorTopology",
+    "TemporalScale",
+    "FailureMode",
+    "EvaluationMode",
+    "AuthorityRegime",
+    "Domain",
+    "HistoricalEpoch",
+    "EpistemicPractice",
+    "MachineAffordance",
+    "AdversarialCondition"
+  ],
+  "required_routes": [
+    "native_primary",
+    "canonical_reconstruction",
+    "changed_vocabulary",
+    "historical_ancestry",
+    "hostile_parent",
+    "remote_practice",
+    "implementation_artifact",
+    "cross_domain_contradiction"
+  ],
+  "inherited_family_ids": [
+    "F01",
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07",
+    "F08",
+    "F09",
+    "F10",
+    "F11",
+    "F12",
+    "F13",
+    "F14",
+    "F15",
+    "F16",
+    "F17",
+    "F18"
+  ],
+  "new_families": [
+    {
+      "family_id": "F19",
+      "name": "numerical_computation_scientific_software_validity",
+      "native_questions": [
+        "How do conditioning, discretization, rounding, algorithmic stability and implementation affect a computed scientific result?",
+        "What can validate scientific software when an exact test oracle is unavailable?",
+        "When can a numerical enclosure, error bound or metamorphic relation support the scientific claim being made?"
+      ],
+      "parent_examples": [
+        "numerical analysis",
+        "forward and backward error analysis",
+        "condition numbers",
+        "IEEE floating-point arithmetic",
+        "interval and validated numerics",
+        "scientific-software verification and validation",
+        "metamorphic and differential testing",
+        "computer-assisted proof"
+      ],
+      "status": "OPEN_AFTER_MATERIAL_RECONSTRUCTION",
+      "open_routes": [
+        "native_primary",
+        "canonical_reconstruction",
+        "changed_vocabulary",
+        "historical_ancestry",
+        "hostile_parent",
+        "remote_practice",
+        "implementation_artifact",
+        "cross_domain_contradiction"
+      ]
+    },
+    {
+      "family_id": "F20",
+      "name": "uncertainty_forms_imprecise_probability_ignorance_conflict",
+      "native_questions": [
+        "When is a single precise probability distribution warranted?",
+        "How should partial ignorance, model sets, intervals, conflicting sources and semantic ambiguity be represented and propagated?",
+        "Which conditioning, independence and decision rules are valid for each uncertainty form?"
+      ],
+      "parent_examples": [
+        "imprecise probability",
+        "credal sets",
+        "lower and upper previsions",
+        "Dempster-Shafer belief functions",
+        "interval uncertainty",
+        "robust Bayesian analysis",
+        "possibility theory",
+        "deep uncertainty and robust decision making"
+      ],
+      "status": "OPEN_AFTER_MATERIAL_RECONSTRUCTION",
+      "open_routes": [
+        "native_primary",
+        "canonical_reconstruction",
+        "changed_vocabulary",
+        "historical_ancestry",
+        "hostile_parent",
+        "remote_practice",
+        "implementation_artifact",
+        "cross_domain_contradiction"
+      ]
+    }
+  ],
+  "strengthened_families": [
+    {
+      "family_id": "F08",
+      "additions": [
+        "conflicting evidence and non-scalar uncertainty",
+        "oracle dependence/common-mode failure"
+      ]
+    },
+    {
+      "family_id": "F11",
+      "additions": [
+        "credibility allocation",
+        "source exclusion before evidence aggregation",
+        "participation and criticism uptake"
+      ]
+    },
+    {
+      "family_id": "F12",
+      "additions": [
+        "CARE principles",
+        "collective authority to control data",
+        "community protocol and future-use restrictions"
+      ]
+    },
+    {
+      "family_id": "F15",
+      "additions": [
+        "benchmark underspecification",
+        "weak-baseline and selective-reporting inflation",
+        "data leakage/cascades"
+      ]
+    },
+    {
+      "family_id": "F16",
+      "additions": [
+        "machine accessibility versus legitimate reuse",
+        "collective benefit and group harm",
+        "question-setting and interpretation authority"
+      ]
+    },
+    {
+      "family_id": "F17",
+      "additions": [
+        "ontology/context incompleteness",
+        "semantic interoperability with external background knowledge",
+        "FAIR machine-actionability"
+      ]
+    }
+  ],
+  "pass_i_material_findings": [
+    "COMPUTATIONAL_VALIDITY_RECEIPT",
+    "ORACLE_ADEQUACY_PROFILE",
+    "UNCERTAINTY_FORM_RECEIPT",
+    "SEMANTIC_CONTEXT_RECEIPT_SPECIALIZATION",
+    "GOVERNED_DATA_RECEIPT",
+    "EPISTEMIC_PARTICIPATION_RECEIPT",
+    "PIPELINE_UNDERSPECIFICATION_PROFILE"
+  ],
+  "declared_family_count": 20,
+  "closure": {
+    "post_material_clean_full_passes_required": 3,
+    "post_pass_i_clean_full_passes": 0,
+    "all_lanes_reconstructed_or_censored": false,
+    "primitive_ownership_cards_complete": false,
+    "strongest_parent_products_complete": false,
+    "source_dependence_ledger_complete": false,
+    "contradiction_ledger_complete": false,
+    "leave_one_family_out_complete": false,
+    "external_hostile_review_complete": false
+  },
+  "authority": {
+    "internal_synthesis_allowed": false,
+    "foundation_frozen": false,
+    "field_authority": false,
+    "scientific_truth": false,
+    "novelty": false,
+    "publication_authority": false
+  }
+}

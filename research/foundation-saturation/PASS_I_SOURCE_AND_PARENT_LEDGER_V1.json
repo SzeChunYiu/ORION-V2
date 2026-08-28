@@ -1,0 +1,286 @@
+{
+  "schema_version": "orion.v2.pass-i-source-parent-ledger.v1",
+  "pass_id": "PASS_I_COMPUTATIONAL_VALIDITY_UNCERTAINTY_SEMANTICS_GOVERNANCE",
+  "issue_number": 44,
+  "status": "MATERIAL_PARENT_RECONSTRUCTION_COMPLETE_FIRST_TRANCHE",
+  "source_groups": [
+    {
+      "group_id": "I1_NUMERICAL_VALIDITY",
+      "candidate_objects": ["ComputationalValidityReceipt"],
+      "native_owners": [
+        "numerical analysis",
+        "floating-point standards",
+        "interval/validated numerics",
+        "verification-validation-uncertainty-quantification"
+      ],
+      "anchors": [
+        {
+          "id": "HIGHAM_ASNA_2002",
+          "citation": "Higham, Accuracy and Stability of Numerical Algorithms, 2nd ed., SIAM, 2002",
+          "doi": "10.1137/1.9780898718027",
+          "role": "conditioning, finite precision, forward/backward error and stability"
+        },
+        {
+          "id": "IEEE754_2019",
+          "citation": "IEEE Standard for Floating-Point Arithmetic, IEEE 754-2019",
+          "role": "arithmetic formats, operations and exception semantics"
+        },
+        {
+          "id": "NEHER_JACKSON_NEDIALKOV_2007",
+          "citation": "On Taylor Model Based Integration of ODEs, SIAM Journal on Numerical Analysis",
+          "doi": "10.1137/050638448",
+          "role": "verified ODE integration, interval bounds and overestimation limits"
+        },
+        {
+          "id": "JOHANSSON_MEZZAROBBA_2018",
+          "citation": "Fast and Rigorous Arbitrary-Precision Computation of Gauss-Legendre Quadrature Nodes and Weights, SIAM JSC",
+          "doi": "10.1137/18M1170133",
+          "role": "rigorous numerical enclosures and implementation evidence"
+        },
+        {
+          "id": "NASA_STD_7009B",
+          "citation": "NASA-STD-7009B, Standard for Models and Simulations",
+          "role": "model/simulation lifecycle credibility, V&V and UQ"
+        }
+      ],
+      "dependence_notes": [
+        "Higham and later numerical sources share the numerical-analysis tradition but address different validity levels.",
+        "IEEE 754 standardizes arithmetic behavior; it does not establish algorithm or model adequacy.",
+        "Validated numerics examples prove bounded mathematical statements for encoded problems, not target-world validity."
+      ],
+      "disposition": "PARENT_OWNED_RECEIPT_AND_BENCHMARK_PRESSURE"
+    },
+    {
+      "group_id": "I2_ORACLE_ADEQUACY",
+      "candidate_objects": ["OracleAdequacyProfile"],
+      "native_owners": [
+        "software testing",
+        "scientific-software V&V",
+        "metamorphic testing",
+        "differential and property-based testing"
+      ],
+      "anchors": [
+        {
+          "id": "CHEN_CHEUNG_YIU_MT",
+          "citation": "Chen, Cheung and Yiu, Metamorphic Testing: A New Approach for Generating Next Test Cases",
+          "role": "original metamorphic-testing formulation for absent or impractical oracles"
+        },
+        {
+          "id": "LIU_KUO_TOWEY_CHEN_2014",
+          "citation": "How Effectively Does Metamorphic Testing Alleviate the Oracle Problem?, IEEE TSE 40, 4-22",
+          "doi": "10.1109/TSE.2013.46",
+          "role": "empirical adequacy and relation-identification evidence"
+        },
+        {
+          "id": "CHEN_ET_AL_ML_2011",
+          "citation": "Testing and Validating Machine Learning Classifiers by Metamorphic Testing, Journal of Systems and Software",
+          "doi": "10.1016/j.jss.2010.11.920",
+          "role": "ML scientific-software application and oracle limitations"
+        },
+        {
+          "id": "BIOINFORMATICS_MT_2014",
+          "citation": "Verification and Validation of Bioinformatics Software without a Gold Standard, BMC Bioinformatics",
+          "doi": "10.1186/1471-2105-15-S16-S15",
+          "role": "naturalistic scientific-software oracle case"
+        }
+      ],
+      "dependence_notes": [
+        "The sources share the metamorphic-testing lineage and are not independent demonstrations of universal adequacy.",
+        "Metamorphic relations are necessary properties, not complete specifications, unless completeness is separately shown."
+      ],
+      "disposition": "SPECIALIZATION_OF_TEST_SENSITIVITY_PARENT_OWNED"
+    },
+    {
+      "group_id": "I3_UNCERTAINTY_FORMS",
+      "candidate_objects": ["UncertaintyFormReceipt"],
+      "native_owners": [
+        "imprecise probability",
+        "lower and upper probabilities",
+        "belief functions",
+        "robust Bayesian analysis",
+        "interval uncertainty",
+        "decision making under deep uncertainty"
+      ],
+      "anchors": [
+        {
+          "id": "DEMPSTER_1967",
+          "citation": "Upper and Lower Probabilities Induced by a Multivalued Mapping",
+          "doi": "10.1214/aoms/1177698950",
+          "role": "upper/lower probability and information combination foundation"
+        },
+        {
+          "id": "SHAFER_1976",
+          "citation": "A Mathematical Theory of Evidence, Princeton University Press",
+          "role": "belief-function/evidence-theory parent"
+        },
+        {
+          "id": "WALLEY_1991",
+          "citation": "Statistical Reasoning with Imprecise Probabilities",
+          "role": "coherent lower previsions and partial ignorance"
+        },
+        {
+          "id": "WALLEY_2000",
+          "citation": "Towards a Unified Theory of Imprecise Probability, International Journal of Approximate Reasoning",
+          "doi": "10.1016/S0888-613X(00)00031-1",
+          "role": "comparison and limitations of uncertainty models"
+        }
+      ],
+      "dependence_notes": [
+        "These sources are historically and conceptually related rather than independent competing confirmations.",
+        "Different formalisms have different conditioning, independence and decision semantics and cannot be merged by labels."
+      ],
+      "disposition": "PARENT_OWNED_TYPED_INTERFACE_PRESSURE"
+    },
+    {
+      "group_id": "I4_SEMANTIC_CONTEXT",
+      "candidate_objects": ["SemanticContextReceipt"],
+      "native_owners": [
+        "ontology matching",
+        "semantic interoperability",
+        "knowledge representation",
+        "boundary-object and epistemic-culture studies"
+      ],
+      "anchors": [
+        {
+          "id": "PORTISCH_HLADIK_PAULHEIM",
+          "citation": "Background Knowledge in Ontology Matching: A Survey",
+          "doi": "10.3233/SW-223085",
+          "role": "semantic heterogeneity, incomplete context and external background knowledge"
+        },
+        {
+          "id": "PASS_H_BOUNDARY_OBJECTS",
+          "citation": "Pass H reconstruction of boundary objects and epistemic cultures",
+          "role": "local projections and prohibited cross-practice inferences"
+        }
+      ],
+      "dependence_notes": [
+        "Ontology matching and boundary-object traditions approach interoperability from computational and sociological directions; their convergence is structural, not identity."
+      ],
+      "disposition": "ABSORBED_AS_BOUNDARY_INTERFACE_SPECIALIZATION"
+    },
+    {
+      "group_id": "I5_GOVERNED_DATA",
+      "candidate_objects": ["GovernedDataReceipt"],
+      "native_owners": [
+        "FAIR data stewardship",
+        "CARE principles",
+        "Indigenous data sovereignty",
+        "research ethics and law"
+      ],
+      "anchors": [
+        {
+          "id": "FAIR_2016",
+          "citation": "The FAIR Guiding Principles for Scientific Data Management and Stewardship",
+          "doi": "10.1038/sdata.2016.18",
+          "role": "findability, accessibility, interoperability, reuse and machine actionability"
+        },
+        {
+          "id": "CARE_2020",
+          "citation": "The CARE Principles for Indigenous Data Governance",
+          "doi": "10.5334/dsj-2020-043",
+          "role": "collective benefit, authority to control, responsibility and ethics"
+        },
+        {
+          "id": "CARE_FAIR_OPERATIONAL_2021",
+          "citation": "Operationalizing the CARE and FAIR Principles for Indigenous Data Futures",
+          "doi": "10.1038/s41597-021-00892-0",
+          "role": "operational interaction of machine-oriented stewardship and rights/governance"
+        }
+      ],
+      "dependence_notes": [
+        "CARE publications share community and author networks; they are authoritative practice/governance sources, not independent empirical proof of every implementation effect.",
+        "FAIR and CARE answer different questions and must not be scored on one axis."
+      ],
+      "disposition": "EXTERNAL_AUTHORITY_AND_CUSTODY_INTERFACE_PRESSURE"
+    },
+    {
+      "group_id": "I6_EPISTEMIC_PARTICIPATION",
+      "candidate_objects": ["EpistemicParticipationReceipt"],
+      "native_owners": [
+        "epistemic injustice",
+        "feminist/social epistemology",
+        "participatory action research",
+        "citizen-science quality governance"
+      ],
+      "anchors": [
+        {
+          "id": "FRICKER_2007",
+          "citation": "Epistemic Injustice: Power and the Ethics of Knowing, Oxford University Press",
+          "role": "testimonial and hermeneutical injustice"
+        },
+        {
+          "id": "FEMINIST_EPISTEMOLOGY_SEP",
+          "citation": "Feminist Epistemology and Philosophy of Science, Stanford Encyclopedia of Philosophy",
+          "role": "situated knowledge, standpoint, plural critical objectivity and social power"
+        },
+        {
+          "id": "HEIGL_ET_AL_2020",
+          "citation": "Co-Creating and Implementing Quality Criteria for Citizen Science",
+          "doi": "10.5334/cstp.294",
+          "role": "co-created contextual quality criteria and transparent implementation"
+        },
+        {
+          "id": "WHITMAN_PAIN_MILLEDGE_2015",
+          "citation": "Going with the Flow? Using Participatory Action Research in Physical Geography",
+          "doi": "10.1177/0309133315589707",
+          "role": "participation from question definition through outcomes"
+        }
+      ],
+      "dependence_notes": [
+        "Philosophical, participatory and citizen-science sources provide different evidence types and should not be pooled as one empirical effect.",
+        "Participation quality remains context-dependent and requires negative controls."
+      ],
+      "disposition": "SOCIAL_EPISTEMOLOGY_AND_GOVERNANCE_BENCHMARK_PRESSURE"
+    },
+    {
+      "group_id": "I7_PIPELINE_UNDERSPECIFICATION",
+      "candidate_objects": ["PipelineUnderspecificationProfile"],
+      "native_owners": [
+        "ML credibility",
+        "data-centric AI",
+        "statistical workflow",
+        "domain-native numerical methods",
+        "metascience/reporting-bias research"
+      ],
+      "anchors": [
+        {
+          "id": "DAMOUR_ET_AL_2022",
+          "citation": "Underspecification Presents Challenges for Credibility in Modern Machine Learning, JMLR 23",
+          "role": "equally scoring pipelines with divergent deployment behavior"
+        },
+        {
+          "id": "SAMBASIVAN_ET_AL_2021",
+          "citation": "Data Cascades in High-Stakes AI, CHI 2021",
+          "doi": "10.1145/3411764.3445518",
+          "role": "compounding downstream data-work failures"
+        },
+        {
+          "id": "MCGREIVY_HAKIM_2024",
+          "citation": "Weak Baselines and Reporting Biases Lead to Overoptimism in ML for Fluid-Related PDEs",
+          "doi": "10.1038/s42256-024-00897-5",
+          "role": "strong numerical baselines, resource/accuracy matching and selective reporting"
+        },
+        {
+          "id": "ROSENBLATT_ET_AL_2024",
+          "citation": "Data Leakage Inflates Prediction Performance in Connectome-Based ML Models",
+          "doi": "10.1038/s41467-024-46150-w",
+          "role": "pipeline leakage and inflated held-out performance"
+        }
+      ],
+      "dependence_notes": [
+        "The studies cover different domains and failure mechanisms, but all concern the credibility of the pipeline rather than isolated model architecture.",
+        "The PDE review is domain-specific and does not imply the same weak-baseline rate elsewhere."
+      ],
+      "disposition": "K6_COMPONENT_VALUE_AND_NATURALISTIC_STRESS_BENCHMARK"
+    }
+  ],
+  "authority": {
+    "grants_new_family": true,
+    "new_family_ids": ["F19", "F20"],
+    "grants_kernel_change": false,
+    "grants_foundation_law": false,
+    "grants_field_status": false,
+    "grants_publication_readiness": false
+  },
+  "current_terminal": "PASS_I_MATERIAL_FINDING_RESETS_CLEAN_PASS_COUNTER"
+}
