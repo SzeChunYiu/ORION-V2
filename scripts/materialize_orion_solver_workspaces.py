@@ -20,6 +20,11 @@ import sys
 from pathlib import Path
 from typing import Any
 
+try:
+    from scripts.bugsinpy_runtime import compile_environment
+except ModuleNotFoundError:  # Direct execution from the scripts directory.
+    from bugsinpy_runtime import compile_environment
+
 
 class MaterializationError(RuntimeError):
     pass
@@ -158,7 +163,11 @@ def main(argv: list[str] | None = None) -> int:
             ["git", "rev-parse", "HEAD"], cwd=project_workspace, timeout=60
         ).stdout.strip()
         project_python_bin = os.environ.get("BUGSINPY_PROJECT_PYTHON_BIN", "").strip()
+        compiler_compat_cflags = os.environ.get(
+            "BUGSINPY_COMPILER_COMPAT_CFLAGS", ""
+        ).strip()
         task["project_python_bin"] = project_python_bin or None
+        task["compiler_compat_cflags"] = compiler_compat_cflags or None
 
         baseline: dict[str, Any] = {
             "task_id": task_id,
@@ -166,12 +175,13 @@ def main(argv: list[str] | None = None) -> int:
             "gold_visible": False,
         }
         if args.verify_baseline:
-            compile_environment = os.environ.copy()
-            if project_python_bin:
-                compile_environment["PATH"] = project_python_bin + os.pathsep + compile_environment.get("PATH", "")
+            compile_environment_bound = compile_environment(
+                project_python_bin=project_python_bin,
+                compiler_compat_cflags=compiler_compat_cflags,
+            )
             compile_result = run(
                 [str(compile_command)], cwd=project_workspace,
-                timeout=args.timeout_seconds, env=compile_environment,
+                timeout=args.timeout_seconds, env=compile_environment_bound,
             )
             test_result = None
             if compile_result.returncode == 0:

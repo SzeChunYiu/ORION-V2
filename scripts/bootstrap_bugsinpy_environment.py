@@ -71,7 +71,7 @@ def wrapper_text(repository: Path, venv: Path, source: Path) -> str:
         "#!/usr/bin/env bash\n"
         "set -euo pipefail\n"
         f"export BUGSINPY_HOME={str(repository)!r}\n"
-        f"export PATH={str(venv_bin(venv))!r}:$PATH\n"
+        f"export PATH=\"$PATH\":{str(venv_bin(venv))!r}\n"
         f"exec {str(source)!r} \"$@\"\n"
     )
 

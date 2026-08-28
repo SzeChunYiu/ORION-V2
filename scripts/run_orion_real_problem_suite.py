@@ -31,6 +31,11 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, Iterable
 
+try:
+    from scripts.bugsinpy_runtime import compile_environment
+except ModuleNotFoundError:  # Direct execution from the scripts directory.
+    from bugsinpy_runtime import compile_environment
+
 
 DEFAULT_MANIFEST = Path("research/experiments/ORION_REAL_PROBLEM_SUITE_V1.json")
 
@@ -549,11 +554,14 @@ def _evaluate_bugsinpy(
     test_result: subprocess.CompletedProcess[str] | None = None
     start = time.perf_counter()
     if checkout_result.returncode == 0 and patch_result and patch_result.returncode == 0:
-        compile_environment = os.environ.copy()
-        if project_python_bin := str(task.get("project_python_bin") or "").strip():
-            compile_environment["PATH"] = project_python_bin + os.pathsep + compile_environment.get("PATH", "")
+        compile_environment_bound = compile_environment(
+            project_python_bin=str(task.get("project_python_bin") or "").strip(),
+            compiler_compat_cflags=str(
+                task.get("compiler_compat_cflags") or ""
+            ).strip(),
+        )
         compile_result = _run(
-            [compile_command], cwd=project_workspace, env=compile_environment,
+            [compile_command], cwd=project_workspace, env=compile_environment_bound,
             timeout=timeout_seconds,
         )
         if compile_result.returncode == 0:
