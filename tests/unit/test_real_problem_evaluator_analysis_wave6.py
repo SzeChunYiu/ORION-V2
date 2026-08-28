@@ -4,7 +4,6 @@ import importlib.util
 import json
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[2]
 
 
@@ -113,6 +112,8 @@ def test_analyzer_computes_paired_effects_without_authority_promotion(
     assert result["field_status"] == "NOT_ESTABLISHED"
     assert result["supertheory_status"] == "NOT_ESTABLISHED"
     assert result["publication_readiness"] == "NOT_ESTABLISHED"
+    assert result["repetition_layout"] == "SINGLE_REPETITION_COMPATIBILITY"
+    assert result["expected_repetition_ids"] == ["1"]
     component = result["component_effects"]["F2_MINUS_DECOMPOSITION"]
     assert component["paired_task_count"] == 20
     assert component["component_disposition"] in {
@@ -122,5 +123,115 @@ def test_analyzer_computes_paired_effects_without_authority_promotion(
 
 
 def test_exact_discordant_pair_probability_is_symmetric() -> None:
-    assert analyzer.exact_two_sided_discordant_p(3, 1) == analyzer.exact_two_sided_discordant_p(1, 3)
+    assert analyzer.exact_two_sided_discordant_p(
+        3, 1
+    ) == analyzer.exact_two_sided_discordant_p(1, 3)
     assert analyzer.exact_two_sided_discordant_p(0, 0) is None
+    cannot_check = {
+        "status": "CANNOT_CHECK_EVALUATOR_INFRASTRUCTURE",
+        "native_success": False,
+        "critical_new_failure_count": None,
+    }
+    assert analyzer.success(cannot_check) is None
+    assert analyzer.critical_failure(cannot_check) is None
+
+
+def test_confirmatory_repetitions_are_nested_then_holm_adjusted(tmp_path: Path) -> None:
+    tasks = [
+        {
+            "task_id": f"bugsinpy-{'pandas' if index <= 4 else 'scrapy'}-{index}",
+            "benchmark_id": "bugsinpy",
+            "project": "pandas" if index <= 4 else "scrapy",
+        }
+        for index in range(1, 9)
+    ]
+    write_json(tmp_path / "RUN_IDENTITY.json", {"repetitions": 3})
+    arms = (
+        "F2_ORION_METABOLIC_FULL",
+        "SIMPLE_DIRECT",
+        "SAME_MODEL_REFLECTION",
+        "F0_PARENT_FEDERATION",
+    )
+    for repetition in range(1, 4):
+        lane = tmp_path / f"confirmatory-r{repetition}"
+        write_json(lane / "frozen_tasks.json", {"tasks": tasks})
+        for arm in arms:
+            for task in tasks:
+                task_id = task["task_id"]
+                if arm == "F2_ORION_METABOLIC_FULL":
+                    native_success = (
+                        repetition < 3
+                    )  # 2/3 strict majority -> task success
+                    elapsed = {1: 1.0, 2: 2.0, 3: 100.0}[repetition]
+                elif arm == "SAME_MODEL_REFLECTION":
+                    native_success = repetition == 1  # 1/3 -> task failure
+                    elapsed = 1.0
+                elif arm == "F0_PARENT_FEDERATION" and task_id.endswith("-8"):
+                    if repetition == 3:
+                        continue  # T/F/missing -> CANNOT_CHECK, not a loss
+                    native_success = repetition == 1
+                    elapsed = 1.0
+                else:
+                    native_success = False
+                    elapsed = 1.0
+                write_json(
+                    lane / "evaluations" / arm / f"{task_id}.json",
+                    {
+                        "task_id": task_id,
+                        "arm_id": arm,
+                        "benchmark_id": "bugsinpy",
+                        "native_success": native_success,
+                        "critical_new_failure_count": 0,
+                        "wall_time_seconds": elapsed,
+                        "status": (
+                            "NATIVE_SUCCESS" if native_success else "NATIVE_FAILURE"
+                        ),
+                    },
+                )
+
+    result = analyzer.analyze(tmp_path)
+    assert result["repetition_layout"] == "NESTED_WITHIN_TASK"
+    assert result["expected_repetition_ids"] == ["1", "2", "3"]
+    assert result["independent_task_count"] == 8
+    assert result["arm_summaries"]["F2_ORION_METABOLIC_FULL"]["task_count"] == 8
+    assert result["arm_summaries"]["F2_ORION_METABOLIC_FULL"]["success_count"] == 8
+    assert (
+        result["arm_summaries"]["F2_ORION_METABOLIC_FULL"][
+            "success_instability_task_count"
+        ]
+        == 8
+    )
+    assert (
+        result["repetition_audit"]["F2_ORION_METABOLIC_FULL"]["evaluation_count"] == 24
+    )
+
+    comparisons = result["primary_comparisons"]
+    assert [item["right_arm"] for item in comparisons] == [
+        "SIMPLE_DIRECT",
+        "SAME_MODEL_REFLECTION",
+        "F0_PARENT_FEDERATION",
+    ]
+    simple = comparisons[0]
+    assert simple["paired_task_count"] == 8  # never 24 repetitions
+    assert simple["success"]["paired_table"]["left_only"] == 8
+    assert simple["success"]["exact_discordant_p"] == 0.0078125
+    assert simple["success"]["holm_adjusted_p"] == 0.0234375
+    assert simple["success"]["holm_reject_at_alpha_0_05"] is True
+    assert set(simple["project_strata"]) == {"pandas", "scrapy"}
+    assert simple["wall_time_seconds"]["estimate"] == 1.0
+
+    f0 = comparisons[2]
+    missing_id = "bugsinpy-scrapy-8"
+    assert f0["paired_task_count"] == 8
+    assert f0["success"]["checkable_task_count"] == 7
+    assert f0["success"]["missing_task_ids"] == [missing_id]
+    assert result["repetition_audit"]["F0_PARENT_FEDERATION"][
+        "missing_repetitions_by_task"
+    ] == {missing_id: ["3"]}
+    assert result["primary_multiplicity"]["registered_family_size"] == 3
+
+    paired = json.loads(
+        (tmp_path / "aggregate" / "paired_comparisons.json").read_text()
+    )
+    assert paired["repetitions_nested_within_task"] is True
+    assert paired["multiplicity"]["method"] == "HOLM_STEP_DOWN"
