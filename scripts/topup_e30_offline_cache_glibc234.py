@@ -18,17 +18,17 @@ OFFLINE_CACHE_SCHEMA = "orion.v2.bugsinpy-offline-distribution-cache.v1"
 PROSPECTIVE_BINDING_SCHEMA = "orion.v2.bugsinpy-prospective-runtime-binding.v2"
 USER_AGENT = "ORION-V2-E30-offline-cache-glibc234/1.0"
 
-GLIBC234_ARTIFACTS = [
-    "MarkupSafe-2.0.0a1-cp36-cp36m-manylinux1_x86_64.whl",
-    "MarkupSafe-1.1.1-cp36-cp36m-manylinux1_x86_64.whl",
-    "MarkupSafe-1.1.1-cp38-cp38-manylinux1_x86_64.whl",
-    "pydantic-1.5.1-py36.py37.py38-none-any.whl",
-    "numba-0.49.1-cp38-cp38-manylinux1_x86_64.whl",
-    "Pillow-7.2.0-cp38-cp38-manylinux1_x86_64.whl",
-    "mitmproxy-4.0.4-py3-none-any.whl",
-    "utils-1.0.2.tar.gz",
-    "leveldb-0.201.tar.gz",
-    "python-gettext-4.0.tar.gz",
+GLIBC234_ARTIFACTS: list[tuple[str, str, str]] = [
+    ("MarkupSafe", "2.0.0a1", "MarkupSafe-2.0.0a1-cp36-cp36m-manylinux1_x86_64.whl"),
+    ("MarkupSafe", "1.1.1", "MarkupSafe-1.1.1-cp36-cp36m-manylinux1_x86_64.whl"),
+    ("MarkupSafe", "1.1.1", "MarkupSafe-1.1.1-cp38-cp38-manylinux1_x86_64.whl"),
+    ("pydantic", "1.5.1", "pydantic-1.5.1-py36.py37.py38-none-any.whl"),
+    ("numba", "0.49.1", "numba-0.49.1-cp38-cp38-manylinux1_x86_64.whl"),
+    ("Pillow", "7.2.0", "Pillow-7.2.0-cp38-cp38-manylinux1_x86_64.whl"),
+    ("mitmproxy", "4.0.4", "mitmproxy-4.0.4-py3-none-any.whl"),
+    ("utils", "1.0.2", "utils-1.0.2.tar.gz"),
+    ("leveldb", "0.201", "leveldb-0.201.tar.gz"),
+    ("python-gettext", "4.0", "python-gettext-4.0.tar.gz"),
 ]
 
 PROJECT_OVERRIDES: dict[str, dict[str, str]] = {
@@ -118,26 +118,17 @@ def fetch_bytes(url: str, *, attempts: int = 5, timeout: int = 600) -> bytes:
     raise last
 
 
-def pypi_artifact_url(filename: str) -> str:
-    if filename.endswith(".tar.gz"):
-        project = filename.split("-")[0]
-        version = filename[len(project) + 1:-len(".tar.gz")]
-        metadata = json.loads(
-            fetch_bytes(f"https://pypi.org/pypi/{project}/{version}/json").decode("utf-8")
-        )
-    else:
-        project = filename.split("-")[0]
-        version = filename[len(project) + 1:].split("-", 1)[0]
-        metadata = json.loads(
-            fetch_bytes(f"https://pypi.org/pypi/{project}/{version}/json").decode("utf-8")
-        )
+def pypi_artifact_url(project: str, version: str, filename: str) -> str:
+    metadata = json.loads(
+        fetch_bytes(f"https://pypi.org/pypi/{project}/{version}/json").decode("utf-8")
+    )
     for artifact in metadata.get("urls", []):
         if artifact.get("filename") == filename:
             return str(artifact["url"])
     raise RuntimeError(f"artifact not found on PyPI: {filename}")
 
 
-def download_artifact(cache: Path, filename: str) -> dict[str, Any]:
+def download_artifact(cache: Path, project: str, version: str, filename: str) -> dict[str, Any]:
     destination = cache / filename
     if destination.is_file():
         return {
@@ -147,7 +138,7 @@ def download_artifact(cache: Path, filename: str) -> dict[str, Any]:
             "bytes": destination.stat().st_size,
             "reused_existing": True,
         }
-    payload = fetch_bytes(pypi_artifact_url(filename))
+    payload = fetch_bytes(pypi_artifact_url(project, version, filename))
     temporary = cache / f".{filename}.part"
     temporary.write_bytes(payload)
     computed = hashlib.sha256(payload).hexdigest()
@@ -206,7 +197,7 @@ def main() -> int:
         raise SystemExit("unexpected offline cache schema")
     existing = {artifact["filename"] for artifact in manifest.get("artifacts", [])}
     downloads = []
-    for filename in GLIBC234_ARTIFACTS:
+    for project, version, filename in GLIBC234_ARTIFACTS:
         if filename in existing:
             downloads.append({
                 "filename": filename,
@@ -216,7 +207,7 @@ def main() -> int:
                 "reused_existing": True,
             })
             continue
-        downloads.append(download_artifact(cache, filename))
+        downloads.append(download_artifact(cache, project, version, filename))
         print("DOWNLOAD", filename, downloads[-1]["status"], flush=True)
     for result in downloads:
         if result["status"] != "PASS":
@@ -234,7 +225,7 @@ def main() -> int:
         existing.add(filename)
     manifest["source_sha"] = args.source_sha
     manifest["glibc234_topup_at"] = datetime.now(timezone.utc).isoformat()
-    manifest["glibc234_topup_artifacts"] = list(GLIBC234_ARTIFACTS)
+    manifest["glibc234_topup_artifacts"] = [filename for _project, _version, filename in GLIBC234_ARTIFACTS]
     manifest["predecessor_manifest_sha256"] = sha_file(manifest_path)
     write_json(manifest_path, manifest)
     binding_receipts = {}
