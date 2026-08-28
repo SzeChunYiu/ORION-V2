@@ -34,6 +34,8 @@ GLIBC234_ARTIFACTS: list[tuple[str, str, str]] = [
     ("attrs", "19.3.0", "attrs-19.3.0-py2.py3-none-any.whl"),
     ("more-itertools", "8.2.0", "more_itertools-8.2.0-py3-none-any.whl"),
     ("ruamel.yaml.clib", "0.2.0", "ruamel.yaml.clib-0.2.0-cp36-cp36m-manylinux1_x86_64.whl"),
+    ("ruamel.yaml", "0.16.10", "ruamel.yaml-0.16.10-py2.py3-none-any.whl"),
+    ("pytest-mock", "1.2", "pytest_mock-1.2-py2.py3-none-any.whl"),
 ]
 
 PROJECT_OVERRIDES: dict[str, dict[str, str]] = {
@@ -92,6 +94,7 @@ TORNADO_SETUP_REWRITES = {
 
 ANSIBLE_SETUP_INSTALLS = {
     "0adc45477b142c1ccb86fee954bd83132c427ec00cc2f67eebfbf7772fcd7eaf": "pytest==3.10.1",
+    "cb4822b2e90266a105d8b10b41266dc43dea570c43d5e0465c712a36cb7ceace": "pytest-mock==1.2",
 }
 ANSIBLE_SETUP_PREREQUISITES = {
     "0adc45477b142c1ccb86fee954bd83132c427ec00cc2f67eebfbf7772fcd7eaf": [
@@ -102,13 +105,17 @@ ANSIBLE_SETUP_PREREQUISITES = {
         "py==1.8.1",
         "packaging==20.4",
     ],
+    "cb4822b2e90266a105d8b10b41266dc43dea570c43d5e0465c712a36cb7ceace": [
+        "pytest==3.10.1",
+    ],
 }
 COOKIECUTTER_DEVELOP_DIGEST = "3d7b5491b985872ef7604a0c7730a7cd6a9a20371b3697e5dff279588c2324b3"
+COOKIECUTTER_TEST_PREREQUISITES = ["pytest==5.4.2"]
 COOKIECUTTER_SETUP_COMMAND_PREREQUISITES = {
-    COOKIECUTTER_DEVELOP_DIGEST: ["ruamel.yaml.clib==0.2.0"],
+    COOKIECUTTER_DEVELOP_DIGEST: ["ruamel.yaml.clib==0.2.0", "ruamel.yaml==0.16.10"],
 }
 COOKIECUTTER_SETUP_REWRITES = {
-    COOKIECUTTER_DEVELOP_DIGEST: ["{python}", "setup.py", "develop"],
+    COOKIECUTTER_DEVELOP_DIGEST: ["{python}", "setup.py", "develop", "--no-deps"],
 }
 ANSIBLE_SETUP_REWRITES = {
     "653b7a51d65d7409e319e29d51d5ee2af65d621ad9ef62148e7eacf99e289879": [
@@ -116,6 +123,9 @@ ANSIBLE_SETUP_REWRITES = {
     ],
     "0adc45477b142c1ccb86fee954bd83132c427ec00cc2f67eebfbf7772fcd7eaf": [
         "{python}", "-c", "import pytest",
+    ],
+    "cb4822b2e90266a105d8b10b41266dc43dea570c43d5e0465c712a36cb7ceace": [
+        "{python}", "-c", "import pytest_mock",
     ],
 }
 
@@ -216,6 +226,7 @@ def patch_binding(path: Path, project: str, source_sha: str) -> str:
         command_prereqs = dict(legacy.get("setup_command_prerequisites") or {})
         command_prereqs.update(COOKIECUTTER_SETUP_COMMAND_PREREQUISITES)
         legacy["setup_command_prerequisites"] = command_prereqs
+        legacy["test_prerequisites"] = list(COOKIECUTTER_TEST_PREREQUISITES)
         rewrites = dict(legacy.get("setup_command_rewrites") or {})
         rewrites.update(COOKIECUTTER_SETUP_REWRITES)
         legacy["setup_command_rewrites"] = rewrites

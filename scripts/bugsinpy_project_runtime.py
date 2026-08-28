@@ -380,6 +380,18 @@ def _load_prospective_binding(path: Path, project: str) -> dict[str, Any]:
                 raise RuntimeBindingError(
                     "setup command prerequisite must be exactly pinned"
                 ) from exc
+    test_prerequisites = legacy.get("test_prerequisites", [])
+    if test_prerequisites is None:
+        test_prerequisites = []
+    if not isinstance(test_prerequisites, list):
+        raise RuntimeBindingError("test_prerequisites must be a list")
+    for line in test_prerequisites:
+        if not isinstance(line, str) or not line.strip():
+            raise RuntimeBindingError("test prerequisite must be an exact pinned requirement")
+        try:
+            _dependency_binding(line.strip())
+        except RuntimeBindingError as exc:
+            raise RuntimeBindingError("test prerequisite must be exactly pinned") from exc
     overrides = binding.get("distribution_overrides", {})
     if overrides is None:
         overrides = {}
@@ -1220,6 +1232,8 @@ def execute_test_binding(
     environment_python: Path,
     stage: str,
     registry_path: Path = DEFAULT_REGISTRY,
+    offline_cache: Path | None = None,
+    test_prerequisites: Sequence[str] | None = None,
     timeout_seconds: int = 7200,
 ) -> dict[str, Any]:
     """Execute the registered failing test or honestly bound full regression."""
@@ -1277,6 +1291,38 @@ def execute_test_binding(
             rendered[index] = str(normalized)
             support_receipt["normalized_sha256"] = _sha256_file(normalized)
             support_receipt["normalized_path"] = str(normalized)
+    prerequisites = list(test_prerequisites or [])
+    interventions = base.get("compatibility_interventions") or []
+    if any(item.get("kind") == "BOUND_TOX_TO_PYTEST" for item in interventions):
+        if not any(req.casefold().startswith("pytest==") for req in prerequisites):
+            prerequisites.append("pytest==5.4.2")
+    if prerequisites:
+        if offline_cache is None:
+            base.update({
+                "status": "CANNOT_CHECK_TEST_PREREQUISITE_CACHE_MISSING",
+                "returncode": None,
+            })
+            return base
+        env = os.environ.copy()
+        env["VIRTUAL_ENV"] = str(environment_python.parent.parent)
+        env["PATH"] = str(environment_python.parent) + os.pathsep + env.get("PATH", "")
+        for requirement in prerequisites:
+            installed = _install_offline_pinned(
+                environment_python=environment_python,
+                workspace=workspace,
+                env=env,
+                offline_cache=offline_cache,
+                requirement=requirement.strip(),
+                timeout_seconds=timeout_seconds,
+            )
+            base.setdefault("test_prerequisite_returncodes", []).append(installed)
+            if installed.get("returncode") not in (0, None):
+                base.update({
+                    "status": "CANNOT_CHECK_TEST_PREREQUISITE_INSTALL_FAILED",
+                    "returncode": None,
+                    "stderr_tail": installed.get("stderr_tail", ""),
+                })
+                return base
     env = os.environ.copy()
     env["VIRTUAL_ENV"] = str(environment_python.parent.parent)
     env["PATH"] = str(environment_python.parent) + os.pathsep + env.get("PATH", "")
