@@ -537,6 +537,49 @@ def test_utf16_test_support_is_normalized_before_execution(
     ).hexdigest()
 
 
+def test_bound_setup_dependency_install_and_rewrite(tmp_path: Path, monkeypatch) -> None:
+    setup_line = "pip install Pillow"
+    (tmp_path / "bugsinpy_requirements.txt").write_text("# none\n", encoding="utf-8")
+    (tmp_path / "bugsinpy_setup.sh").write_text(setup_line + "\n", encoding="utf-8")
+    (tmp_path / "bugsinpy_run_test.sh").write_text("pytest -q\n", encoding="utf-8")
+    python = tmp_path / "python3"
+    python.write_text("", encoding="utf-8")
+    line_digest = hashlib.sha256(setup_line.encode("utf-8")).hexdigest()
+    cache, manifest = offline_cache(tmp_path, "Pillow-7.2.0-cp38-cp38-manylinux1_x86_64.whl")
+    binding = write_binding(
+        tmp_path,
+        "scrapy",
+        legacy_build={
+            "setup_dependency_installs": {line_digest: "Pillow==7.2.0"},
+            "setup_command_rewrites": {
+                line_digest: ["{python}", "-c", "from PIL import Image"],
+            },
+        },
+    )
+
+    def capture(command, **kwargs):
+        if "show" in command and command[-1] == "pillow":
+            stdout = "Name: Pillow\nVersion: 7.2.0\n"
+        else:
+            stdout = successful_capture(command, **kwargs)["stdout_tail"]
+        return {"command": list(command), "returncode": 0, "stdout_tail": stdout,
+                "stderr_tail": "", "timed_out": False}
+
+    monkeypatch.setattr(runtime, "_capture", capture)
+    receipt = runtime.compile_workspace(
+        tmp_path,
+        project="scrapy",
+        project_python=python,
+        offline_cache=cache,
+        offline_cache_manifest=manifest,
+        prospective_binding_path=binding,
+    )
+    assert receipt["status"] == "PASS"
+    assert receipt["setup_dependency_returncodes"][0]["pinned_requirement"] == "Pillow==7.2.0"
+    assert any(item["kind"] == "BOUND_SETUP_DEPENDENCY_INSTALL"
+               for item in receipt["compatibility_interventions"])
+
+
 def test_unbound_full_regression_records_toolchain_and_cannot_check(
     tmp_path: Path, monkeypatch
 ) -> None:

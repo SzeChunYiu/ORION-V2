@@ -324,6 +324,22 @@ def _load_prospective_binding(path: Path, project: str) -> dict[str, Any]:
             raise RuntimeBindingError("preflight command must be a non-empty argv list")
         if any(token in {";", "&&", "||", "|", ">", ">>", "<"} for token in command):
             raise RuntimeBindingError("shell operators are not allowed in preflight commands")
+    setup_installs = legacy.get("setup_dependency_installs", {})
+    if setup_installs is None:
+        setup_installs = {}
+    if not isinstance(setup_installs, dict):
+        raise RuntimeBindingError("setup_dependency_installs must be an object")
+    for digest, pinned in setup_installs.items():
+        if not isinstance(digest, str) or not _SHA256_RE.fullmatch(digest):
+            raise RuntimeBindingError("setup dependency install key must be a line SHA-256")
+        if not isinstance(pinned, str) or not pinned.strip():
+            raise RuntimeBindingError("setup dependency install must be an exact pinned requirement")
+        try:
+            _dependency_binding(pinned.strip())
+        except RuntimeBindingError as exc:
+            raise RuntimeBindingError(
+                "setup dependency install must be exactly pinned"
+            ) from exc
     overrides = binding.get("distribution_overrides", {})
     if overrides is None:
         overrides = {}
@@ -502,6 +518,85 @@ def _pip_show_identity(output: str) -> tuple[str, str] | None:
     if not _NAME_RE.fullmatch(name) or not _VERSION_RE.fullmatch(version):
         return None
     return _canonical_name(name), version
+
+
+def _install_offline_pinned(
+    *,
+    environment_python: Path,
+    workspace: Path,
+    env: dict[str, str],
+    offline_cache: Path,
+    requirement: str,
+    timeout_seconds: int,
+    override_filename: str | None = None,
+    prerequisite_lines: Sequence[str] | None = None,
+) -> dict[str, Any]:
+    dependency = _dependency_binding(requirement)
+    install_requirement = f"{dependency['name']}=={dependency['requested_version']}"
+    if prerequisite_lines:
+        for prerequisite in prerequisite_lines:
+            prereq = _dependency_binding(prerequisite)
+            prereq_install = _capture([
+                str(environment_python), "-m", "pip", "install",
+                "--disable-pip-version-check", "--no-index", "--no-deps", "--no-cache-dir",
+                "--no-build-isolation", "--find-links", str(offline_cache.resolve()),
+                f"{prereq['name']}=={prereq['requested_version']}",
+            ],
+                                 cwd=workspace, env=env, timeout=timeout_seconds)
+            if prereq_install["returncode"] != 0:
+                return {
+                    "name": prereq["name"],
+                    "requested_version": prereq["requested_version"],
+                    "status": "PREREQUISITE_INSTALL_FAILED",
+                    "returncode": prereq_install["returncode"],
+                    "stderr_tail": prereq_install["stderr_tail"],
+                }
+    if override_filename:
+        artifact_path = offline_cache.resolve() / override_filename
+        if not artifact_path.is_file():
+            return {
+                "name": dependency["name"],
+                "requested_version": dependency["requested_version"],
+                "status": "BOUND_ARTIFACT_MISSING",
+                "artifact": override_filename,
+                "returncode": None,
+            }
+        installed = _capture([
+            str(environment_python), "-m", "pip", "install",
+            "--disable-pip-version-check", "--no-index", "--no-deps", "--no-cache-dir",
+            "--no-build-isolation", str(artifact_path),
+        ],
+                             cwd=workspace, env=env, timeout=timeout_seconds)
+        install_status = "INSTALL_OFFLINE_BOUND_ARTIFACT"
+    else:
+        installed = _capture([
+            str(environment_python), "-m", "pip", "install",
+            "--disable-pip-version-check", "--no-index", "--no-deps", "--no-cache-dir",
+            "--no-build-isolation", "--find-links", str(offline_cache.resolve()),
+            install_requirement,
+        ],
+                             cwd=workspace, env=env, timeout=timeout_seconds)
+        install_status = "INSTALL_OFFLINE_HASHED"
+    result = {
+        "name": dependency["name"],
+        "requested_version": dependency["requested_version"],
+        "status": install_status,
+        "returncode": installed["returncode"],
+        "stderr_tail": installed["stderr_tail"],
+    }
+    if override_filename:
+        result["artifact"] = override_filename
+    if installed["returncode"] != 0:
+        return result
+    shown = _capture(
+        [str(environment_python), "-m", "pip", "show", dependency["name"]],
+        cwd=workspace, env=env, timeout=300,
+    )
+    identity = _pip_show_identity(shown["stdout_tail"]) if shown["returncode"] == 0 else None
+    if identity != (dependency["name"], dependency["requested_version"]):
+        result["version_probe_returncode"] = shown["returncode"]
+        result["status"] = "VERSION_UNVERIFIED"
+    return result
 
 
 def _frozen_environment_command(project_python: Path) -> list[str]:
@@ -908,6 +1003,7 @@ def compile_workspace(
 
     setup_path = workspace / "bugsinpy_setup.sh"
     setup_lines = support_text.get("bugsinpy_setup.sh", "").splitlines()
+    setup_installs = legacy.get("setup_dependency_installs", {})
     receipt["declared_setup_present"] = setup_path.is_file()
     for raw in setup_lines:
         line = raw.strip()
@@ -915,6 +1011,45 @@ def compile_workspace(
             continue
         line_digest = hashlib.sha256(line.encode("utf-8")).hexdigest()
         try:
+            pinned_setup = setup_installs.get(line_digest)
+            if pinned_setup:
+                if offline_cache is None:
+                    raise RuntimeBindingError("setup dependency install requires an offline cache")
+                installed_setup = _install_offline_pinned(
+                    environment_python=environment_python,
+                    workspace=workspace,
+                    env=env,
+                    offline_cache=offline_cache,
+                    requirement=pinned_setup.strip(),
+                    timeout_seconds=timeout_seconds,
+                )
+                receipt.setdefault("setup_dependency_returncodes", []).append({
+                    "source_sha256": line_digest,
+                    "pinned_requirement": pinned_setup.strip(),
+                    **installed_setup,
+                })
+                receipt["compatibility_interventions"].append({
+                    "kind": "BOUND_SETUP_DEPENDENCY_INSTALL",
+                    "source_sha256": line_digest,
+                    "binding_sha256": prospective["_receipt"]["sha256"],
+                    "pinned_requirement_sha256": hashlib.sha256(
+                        pinned_setup.strip().encode("utf-8")
+                    ).hexdigest(),
+                })
+                if installed_setup.get("returncode") not in (0, None):
+                    if installed_setup.get("status") == "BOUND_ARTIFACT_MISSING":
+                        return finish("CANNOT_CHECK_BOUND_DISTRIBUTION_MISSING", "declared_setup")
+                    combined = installed_setup.get("stderr_tail", "")
+                    if ("No matching distribution found" in combined
+                            or "Could not find a version that satisfies" in combined):
+                        return finish(
+                            "CANNOT_CHECK_HISTORICAL_DISTRIBUTION_UNAVAILABLE", "declared_setup"
+                        )
+                    return finish("CANNOT_CHECK_SETUP_DEPENDENCY_INSTALL_FAILED", "declared_setup")
+                if installed_setup.get("status") == "VERSION_UNVERIFIED":
+                    return finish("CANNOT_CHECK_SETUP_DEPENDENCY_VERSION_UNVERIFIED", "declared_setup")
+                if not legacy.get("setup_command_rewrites", {}).get(line_digest):
+                    continue
             rewrite = legacy.get("setup_command_rewrites", {}).get(line_digest)
             if rewrite:
                 command = _render_bound_setup_command(rewrite, environment_python, offline_cache)
