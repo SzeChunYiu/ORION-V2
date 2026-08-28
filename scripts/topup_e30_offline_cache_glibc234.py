@@ -110,7 +110,14 @@ ANSIBLE_SETUP_PREREQUISITES = {
     ],
 }
 COOKIECUTTER_DEVELOP_DIGEST = "3d7b5491b985872ef7604a0c7730a7cd6a9a20371b3697e5dff279588c2324b3"
-COOKIECUTTER_TEST_PREREQUISITES = ["pytest==5.4.2"]
+COOKIECUTTER_TEST_PREREQUISITES = [
+    "attrs==19.3.0",
+    "more-itertools==8.2.0",
+    "pluggy==0.13.1",
+    "py==1.8.1",
+    "packaging==20.4",
+    "pytest==5.4.2",
+]
 COOKIECUTTER_SETUP_COMMAND_PREREQUISITES = {
     COOKIECUTTER_DEVELOP_DIGEST: ["ruamel.yaml.clib==0.2.0", "ruamel.yaml==0.16.10"],
 }
