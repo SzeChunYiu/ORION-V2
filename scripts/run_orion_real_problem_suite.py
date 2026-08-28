@@ -548,7 +548,13 @@ def _evaluate_bugsinpy(
     test_result: subprocess.CompletedProcess[str] | None = None
     start = time.perf_counter()
     if checkout_result.returncode == 0 and patch_result and patch_result.returncode == 0:
-        compile_result = _run([compile_command], cwd=project_workspace, timeout=timeout_seconds)
+        compile_environment = os.environ.copy()
+        if project_python_bin := str(task.get("project_python_bin") or "").strip():
+            compile_environment["PATH"] = project_python_bin + os.pathsep + compile_environment.get("PATH", "")
+        compile_result = _run(
+            [compile_command], cwd=project_workspace, env=compile_environment,
+            timeout=timeout_seconds,
+        )
         if compile_result.returncode == 0:
             test_result = _run_bugsinpy_relevant_test(project_workspace, timeout=timeout_seconds)
     elapsed = time.perf_counter() - start

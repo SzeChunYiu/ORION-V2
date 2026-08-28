@@ -256,7 +256,14 @@ def generate(
         project_workspace = private_workspace / str(base_task["project"])
         if not project_workspace.is_dir():
             continue
-        compile_result = run([str(compile_command)], cwd=project_workspace, timeout=timeout_seconds)
+        compile_environment = os.environ.copy()
+        if project_python_bin := str(base_task.get("project_python_bin") or "").strip():
+            compile_environment["PATH"] = project_python_bin + os.pathsep + compile_environment.get("PATH", "")
+        compile_result = subprocess.run(
+            [str(compile_command)], cwd=str(project_workspace), env=compile_environment,
+            text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+            timeout=timeout_seconds, check=False,
+        )
         baseline = run_native_relevant_test(project_workspace, timeout=timeout_seconds) if compile_result.returncode == 0 else None
         if compile_result.returncode != 0 or baseline is None or baseline.returncode != 0:
             continue
@@ -276,7 +283,11 @@ def generate(
                 original, mutated = apply_mutation(path, token_index, new)
             except (OSError, SyntaxError, tokenize.TokenError, IndentationError):
                 continue
-            compile_mutation = run([str(compile_command)], cwd=project_workspace, timeout=timeout_seconds)
+            compile_mutation = subprocess.run(
+                [str(compile_command)], cwd=str(project_workspace), env=compile_environment,
+                text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                timeout=timeout_seconds, check=False,
+            )
             test_mutation = run_native_relevant_test(project_workspace, timeout=timeout_seconds) if compile_mutation.returncode == 0 else None
             path.write_text(original, encoding="utf-8")
             if compile_mutation.returncode == 0 and test_mutation is not None and test_mutation.returncode != 0:
@@ -322,6 +333,7 @@ def generate(
                 "gold_withheld": True,
                 "primary_decision": "repair a freshly generated production-code defect under the native regression suite",
                 "solver_test_command": str(test_command),
+                "project_python_bin": base_task.get("project_python_bin"),
                 "baseline_observation": {
                     "compile_returncode": 0,
                     "test_returncode": test_mutation.returncode,

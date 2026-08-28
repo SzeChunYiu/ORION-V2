@@ -159,10 +159,14 @@ def evaluate(
             test_result = None
             start = time.perf_counter()
             if patch_result.returncode == 0:
-                compile_result = run(
-                    [str(private_task["compile_command"])],
-                    cwd=workspace,
-                    timeout=timeout_seconds,
+                compile_environment = os.environ.copy()
+                public_python_bin = str(public_task.get("project_python_bin") or "").strip()
+                if public_python_bin:
+                    compile_environment["PATH"] = public_python_bin + os.pathsep + compile_environment.get("PATH", "")
+                compile_result = subprocess.run(
+                    [str(private_task["compile_command"])], cwd=str(workspace),
+                    env=compile_environment, text=True, stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE, timeout=timeout_seconds, check=False,
                 )
                 if compile_result.returncode == 0:
                     test_result = run_native_relevant_test(workspace, timeout=timeout_seconds)

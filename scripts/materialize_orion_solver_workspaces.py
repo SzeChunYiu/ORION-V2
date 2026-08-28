@@ -47,10 +47,14 @@ def venv_binary(venv: Path, name: str) -> Path:
     return venv / directory / f"{name}{suffix}"
 
 
-def run(command: list[str], *, cwd: Path | None = None, timeout: int = 2700) -> subprocess.CompletedProcess[str]:
+def run(
+    command: list[str], *, cwd: Path | None = None, timeout: int = 2700,
+    env: dict[str, str] | None = None,
+) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
         command,
         cwd=str(cwd) if cwd else None,
+        env=env,
         text=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
@@ -152,6 +156,8 @@ def main(argv: list[str] | None = None) -> int:
         task["workspace_commit"] = run(
             ["git", "rev-parse", "HEAD"], cwd=project_workspace, timeout=60
         ).stdout.strip()
+        project_python_bin = os.environ.get("BUGSINPY_PROJECT_PYTHON_BIN", "").strip()
+        task["project_python_bin"] = project_python_bin or None
 
         baseline: dict[str, Any] = {
             "task_id": task_id,
@@ -159,7 +165,13 @@ def main(argv: list[str] | None = None) -> int:
             "gold_visible": False,
         }
         if args.verify_baseline:
-            compile_result = run([str(compile_command)], cwd=project_workspace, timeout=args.timeout_seconds)
+            compile_environment = os.environ.copy()
+            if project_python_bin:
+                compile_environment["PATH"] = project_python_bin + os.pathsep + compile_environment.get("PATH", "")
+            compile_result = run(
+                [str(compile_command)], cwd=project_workspace,
+                timeout=args.timeout_seconds, env=compile_environment,
+            )
             test_result = None
             if compile_result.returncode == 0:
                 test_result = run_native_relevant_test(project_workspace, timeout=args.timeout_seconds)
