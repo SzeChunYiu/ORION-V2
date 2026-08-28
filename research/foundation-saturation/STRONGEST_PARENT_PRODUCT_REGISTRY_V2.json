@@ -1,0 +1,172 @@
+{
+  "schema_version": "orion.v2.strongest-parent-product-registry.v2",
+  "canonical_issue": 41,
+  "inherits_from": "research/foundation-saturation/STRONGEST_PARENT_PRODUCT_REGISTRY_V1.json",
+  "status": "PRODUCTS_SPECIFIED_NOT_EXECUTED",
+  "inherited_product_ids": [
+    "SPP-L09-STATISTICAL-CREDIBILITY",
+    "SPP-L10-SEVERITY-SEQUENTIAL",
+    "SPP-L11-ROBUSTNESS-TRIANGULATION",
+    "SPP-L12-L32-ASSURANCE-ARGUMENT",
+    "SPP-L13-L31-RESILIENCE-CONSENSUS",
+    "SPP-L21-L34-EVIDENCE-DECISION",
+    "SPP-L23-MDL-SUFFICIENCY",
+    "SPP-L33-DEEP-UNCERTAINTY"
+  ],
+  "new_products": [
+    {
+      "id": "SPP-L36-L37-COMPUTATIONAL-SCIENTIFIC-VALIDITY",
+      "lanes": ["L36","L37"],
+      "components": [
+        "domain-native scientific model and adequacy criteria",
+        "conditioning/sensitivity and discretization analysis",
+        "numerical method plus forward/backward/error bounds",
+        "implementation/arithmetic/precision identity",
+        "exact, partial, differential, metamorphic or property oracle",
+        "VVUQ and cross-implementation checks",
+        "claim-scope and uncertainty propagation"
+      ],
+      "protected_question": "Does an integrated transition controller make a better scientific decision than complete model, numerical and oracle validation?",
+      "hostile_cases": [
+        "reproducible numerical error",
+        "stable solution of inadequate scientific model",
+        "metamorphic relation blind to shared fault",
+        "formal proof of wrong specification"
+      ],
+      "state": "SPECIFIED_NOT_BOUND"
+    },
+    {
+      "id": "SPP-L38-UNCERTAINTY-FORM",
+      "lanes": ["L38"],
+      "components": [
+        "precise Bayesian parent when warranted",
+        "credal/lower-prevision parent",
+        "interval or validated numerical bounds",
+        "conflict/ignorance representation",
+        "DMDU or native decision rule",
+        "calibration, coverage and sensitivity"
+      ],
+      "protected_question": "Does a common uncertainty-form interface improve decisions beyond prospective selection of the correct native uncertainty parent?",
+      "hostile_cases": [
+        "ignorance laundered as uniform prior",
+        "imprecision creates unnecessary conservatism",
+        "source conflict averaged away",
+        "interval bound interpreted as probability"
+      ],
+      "state": "SPECIFIED_NOT_BOUND"
+    },
+    {
+      "id": "SPP-L39-L40-SEMANTIC-GOVERNED-KNOWLEDGE",
+      "lanes": ["L39","L40"],
+      "components": [
+        "native ontology/schema alignment",
+        "background-knowledge and translation provenance",
+        "query/constraint preservation and counterexamples",
+        "FAIR stewardship",
+        "CARE/custody/consent and collective authority",
+        "participatory/source-role protocol",
+        "pipeline leakage/underspecification controls"
+      ],
+      "protected_question": "Does the integrated interface preserve native semantics and legitimate use beyond the strongest semantic and governance parents?",
+      "hostile_cases": [
+        "syntactic interoperability with scientific meaning loss",
+        "FAIR but unauthorized reuse",
+        "community source excluded before evidence graph",
+        "equal benchmark score with divergent deployment behavior"
+      ],
+      "state": "SPECIFIED_NOT_BOUND"
+    },
+    {
+      "id": "SPP-L41-SECURE-MACHINE-INQUIRY",
+      "lanes": ["L41"],
+      "components": [
+        "explicit threat model and trust boundaries",
+        "adversarial-ML and tool-agent red teaming",
+        "instruction-data boundary and tool capability control",
+        "secure software/model/data supply-chain attestation",
+        "authenticated provenance and incident response",
+        "privacy mechanism and composition accounting",
+        "native scientific utility/validity evaluation",
+        "post-compromise selective reopening"
+      ],
+      "protected_question": "Does Machine Epistemics add scientific transition value beyond a complete secure-agent/supply-chain/privacy product plus native scientific validation?",
+      "hostile_cases": [
+        "signed but malicious artifact",
+        "indirect prompt injection through scientific source",
+        "common-mode poisoned model defeats replica assumptions",
+        "privacy defense destroys scientific identifiability",
+        "security lockdown prevents independent replication"
+      ],
+      "state": "SPECIFIED_NOT_BOUND"
+    },
+    {
+      "id": "SPP-F14-F18-F19-MACHINE-NATIVE-DISCOVERY",
+      "lanes": ["L24","L25","L26","L36","L37"],
+      "components": [
+        "strongest domain-native algorithm/search/proof parent",
+        "program synthesis or automated reasoning",
+        "self-play/evolutionary/quality-diversity search where applicable",
+        "matched compute and hardware/compiler conditions",
+        "exact or claim-relevant external evaluator",
+        "numerical/software validity",
+        "cross-domain transfer and leakage audit",
+        "human-mimetic, expert and hybrid controls"
+      ],
+      "protected_question": "Does any machine-native mechanism create a causal, resource-accounted scientific gain beyond existing search/reasoning parents?",
+      "hostile_cases": [
+        "more compute explains full gain",
+        "weak human or numerical baseline",
+        "evaluator exploit",
+        "one-domain overfit",
+        "nonhuman difference without scientific value"
+      ],
+      "state": "SPECIFIED_NOT_BOUND"
+    },
+    {
+      "id": "SPP-F0-COMPLETE-PARENT-FEDERATION",
+      "lanes": ["L01_TO_L41"],
+      "components": [
+        "expert-configured routing among all applicable native parent products",
+        "shared identity/provenance interfaces only where required",
+        "domain-native evaluators and authority",
+        "no universal F2 transition laws",
+        "simple/direct control and domain federation alternatives"
+      ],
+      "protected_question": "Can the strongest parent federation reproduce every proposed F2 decision and generative consequence with equal or lower cost?",
+      "hostile_cases": [
+        "three-plus-parent validity collision",
+        "cross-parent selective reopening",
+        "machine-native opaque strategy with external witness",
+        "local parent exactly sufficient",
+        "censored-route bounded closure"
+      ],
+      "state": "BLUEPRINT_SPECIFIED_NOT_IMPLEMENTATION_BOUND"
+    }
+  ],
+  "binding_requirements": [
+    "exact implementation/version or prospectively frozen expert procedure",
+    "same source, tool, evaluator and authority access as F1/F2/F3",
+    "matched compute, wall time, memory, human labour and infrastructure",
+    "known-answer or independently blinded domain adjudication",
+    "fault, uncertainty, semantic, numerical and authority assumptions explicit",
+    "negative cases, parent wins and CANNOT_CHECK retained",
+    "at least two materially different naturalistic domains for cross-domain dominance"
+  ],
+  "execution_state": {
+    "products_total": 14,
+    "products_bound": 0,
+    "protected_outcome_access": "NONE",
+    "independent_evaluator_custody": "OPEN",
+    "resource_binding": "OPEN",
+    "F0_federation_implementation": "OPEN"
+  },
+  "authority": {
+    "grants_parent_binding": false,
+    "grants_F2_residual": false,
+    "grants_supertheory_status": false,
+    "grants_foundation_law": false,
+    "grants_field_status": false,
+    "grants_publication_readiness": false
+  },
+  "current_terminal": "INTERNAL_FOUNDATION_SYNTHESIS_MAY_PROCEED__THEORY_DOMINANCE_CANNOT_CHECK"
+}

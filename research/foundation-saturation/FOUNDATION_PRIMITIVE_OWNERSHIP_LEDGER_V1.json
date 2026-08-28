@@ -1,0 +1,128 @@
+{
+  "schema_version": "orion.v2.foundation-primitive-ownership-ledger.v1",
+  "canonical_issue": 41,
+  "status": "INTERNAL_OWNERSHIP_CONTRACTION_COMPLETE_FOR_SYNTHESIS",
+  "rule": "A primitive survives only as a native parent view, bridge/interface, benchmark object or candidate cross-parent constraint with an explicit protected decision. Naming does not create ownership.",
+  "episode_interface": [
+    {"id":"E-P","name":"problem_and_criterion_contract","owners":["formal specification","scientific methodology","benchmark custody","measurement theory"],"disposition":"FEDERATED_INTERFACE"},
+    {"id":"E-F","name":"problem_and_representation_frame","owners":["scientific representation","cognitive problem solving","ontology/model theory"],"disposition":"FEDERATED_INTERFACE"},
+    {"id":"E-S","name":"plural_scientific_state","owners":["belief revision","truth maintenance","diagnosis","plural model reasoning"],"disposition":"FEDERATED_INTERFACE"},
+    {"id":"E-O","name":"obligations_and_blockers","owners":["formal methods","workflow/control","assurance","scientific methodology"],"disposition":"FEDERATED_INTERFACE"},
+    {"id":"E-A","name":"admissible_actions","owners":["decision theory","metareasoning","experimental design","control"],"disposition":"FEDERATED_INTERFACE"},
+    {"id":"E-R","name":"resources_tools_access","owners":["bounded rationality","operations research","systems engineering","infrastructure studies"],"disposition":"FEDERATED_INTERFACE"},
+    {"id":"E-M","name":"evidence_provenance_dependence_memory","owners":["provenance","evidence synthesis","social epistemology","memory and archival studies"],"disposition":"FEDERATED_INTERFACE"},
+    {"id":"E-V","name":"validation_review_evaluator_contract","owners":["severe testing","software V&V","formal verification","assurance and review methodology"],"disposition":"FEDERATED_INTERFACE"},
+    {"id":"E-X","name":"observations_tool_outputs_world_interactions","owners":["experimental science","measurement","causal intervention","human-computer interaction"],"disposition":"FEDERATED_INTERFACE"},
+    {"id":"E-H","name":"append_only_transition_and_failure_history","owners":["event sourcing","provenance","incident learning","belief revision"],"disposition":"FEDERATED_INTERFACE"},
+    {"id":"E-K","name":"authority_custody_governance_boundary","owners":["law","research ethics","institutional governance","CARE and data sovereignty"],"disposition":"EXTERNALLY_ROOTED_INTERFACE"}
+  ],
+  "kernel_families": [
+    {"id":"K0","name":"identity_contracts_receipts","owners":["formal specification","configuration management","metrology","provenance"],"disposition":"CANDIDATE_STABLE_INTERFACE_NOT_NATIVE_MECHANISM"},
+    {"id":"K1","name":"plural_scientific_state","owners":["TMS/ATMS","belief revision","diagnosis","uncertainty representation"],"disposition":"CANDIDATE_STABLE_INTERFACE_NOT_NATIVE_MECHANISM"},
+    {"id":"K2","name":"typed_relation_transport_comparability","owners":["abstract interpretation","causal transport","measurement invariance","metrology","ontology matching"],"disposition":"CANDIDATE_STABLE_INTERFACE_NOT_NATIVE_MECHANISM"},
+    {"id":"K3","name":"evidence_dependence_provenance_revalidation","owners":["provenance","dependent evidence","robustness/triangulation","argumentation","data governance"],"disposition":"CANDIDATE_STABLE_INTERFACE_NOT_NATIVE_MECHANISM"},
+    {"id":"K4","name":"action_diagnosis_recovery","owners":["decision theory","metareasoning","experimental design","control","diagnosis","resilience"],"disposition":"CANDIDATE_STABLE_INTERFACE_NOT_NATIVE_MECHANISM"},
+    {"id":"K5","name":"frontier_exploration_escalation","owners":["problem finding","open-ended learning","DMDU/adaptive pathways","portfolio theory"],"disposition":"CANDIDATE_STABLE_INTERFACE_NOT_NATIVE_MECHANISM"},
+    {"id":"K6","name":"evaluation_parity_saturation_authority","owners":["testing and V&V","metascience","systematic review","assurance","institutional authority"],"disposition":"CANDIDATE_STABLE_INTERFACE_NOT_NATIVE_MECHANISM"}
+  ],
+  "synthesized_candidate_commitments": [
+    {
+      "id":"BF-C1",
+      "name":"bound_transition_identity_and_authority",
+      "absorbs":["F2-P1","authority part of F2-P2","F2-P8"],
+      "owners":["provenance","formal specification","metrology","configuration management","law and governance"],
+      "claimed_residual":"one content-bound transition identity spanning criterion, representation, evidence, evaluator and externally rooted authority",
+      "protected_decisions":["criterion drift","cross-epoch comparability","unauthorized adoption"],
+      "disposition":"CANDIDATE_CROSS_PARENT_CONSTRAINT_NOT_LAW"
+    },
+    {
+      "id":"BF-C2",
+      "name":"layered_warrant_and_detection_adequacy",
+      "absorbs":["F2-P2","F2-P4"],
+      "owners":["assurance cases","formal argumentation","numerical analysis","scientific-software V&V","severe testing","metamorphic testing"],
+      "claimed_residual":"claim-relative composition of source, semantics, model, computation, oracle, argument and transport with explicit error-detection limits",
+      "protected_decisions":["false completion","weak pass overclaim","model-versus-computation diagnosis"],
+      "disposition":"CANDIDATE_CROSS_PARENT_CONSTRAINT_NOT_LAW"
+    },
+    {
+      "id":"BF-C3",
+      "name":"typed_conservation_through_composition",
+      "absorbs":["F2-P3"],
+      "owners":["abstract interpretation","causal transport","measurement invariance","metrology","imprecise probability","dependent evidence","semantic interoperability"],
+      "claimed_residual":"one non-laundering constraint across relation type, direction, approximation, numerical/semantic loss, uncertainty form and dependence",
+      "protected_decisions":["unsafe transport","false exactness","fabricated precision","false corroboration"],
+      "disposition":"CANDIDATE_FORMAL_INTERFACE_CONSTRAINT_NOT_LAW"
+    },
+    {
+      "id":"BF-C4",
+      "name":"plural_support_selective_invalidation_and_reopening",
+      "absorbs":["F2-P5"],
+      "owners":["TMS/ATMS","belief revision","model-based diagnosis","support hypergraphs","argumentation"],
+      "claimed_residual":"selective reopening across heterogeneous support, computation, relation, evaluator, security and governance invalidations",
+      "protected_decisions":["global reset overreach","stale claim retention","post-compromise revalidation"],
+      "disposition":"CANDIDATE_CROSS_PARENT_CONSTRAINT_NOT_LAW"
+    },
+    {
+      "id":"BF-C5",
+      "name":"constructive_exploration_confirmation_separation_and_bounded_closure",
+      "absorbs":["F2-P6","F2-P9"],
+      "owners":["exploratory experimentation","abduction","active learning","open-ended search","systematic review stopping","formal learning","qualitative saturation"],
+      "claimed_residual":"one transition discipline from construction of observables/problems to later confirmation and explicitly scoped stopping/reopening",
+      "protected_decisions":["exploration laundered as evidence","problem-space lock-in","premature saturation"],
+      "disposition":"CANDIDATE_PROGRAMME_CONSTRAINT_NOT_LAW"
+    },
+    {
+      "id":"BF-C6",
+      "name":"parent_recovery_local_deference_and_upward_dominance",
+      "absorbs":["F2-P7","F21 upward-synthesis gate"],
+      "owners":["interfield theory","theory reduction","conservative extension","integrative pluralism","component-value analysis"],
+      "claimed_residual":"a higher theory is valid only if it recovers native parent decisions, deactivates when a parent is sufficient, and produces prospective cross-parent strict gains",
+      "protected_decisions":["deceptive unification","framework drag","parent replacement","field demarcation"],
+      "disposition":"CANDIDATE_METATHEORY_CONSTRAINT_NOT_LAW"
+    },
+    {
+      "id":"BF-C7",
+      "name":"machine_native_internal_freedom_external_scientific_witness_and_governed_use",
+      "absorbs":["F2-P8","governed-data and adversarial-integrity findings"],
+      "owners":["automated reasoning","program synthesis","scientific accountability","interpretability","security/privacy","data governance"],
+      "claimed_residual":"nonhuman internal computation is permitted while scientific adoption remains bound to claim-sufficient external witnesses, source permissions, uncertainty and authority",
+      "protected_decisions":["human-mimicry lock-in","opaque novelty","unsafe tool/source use","unauthorized scientific adoption"],
+      "disposition":"CANDIDATE_MACHINE_EPISTEMIC_INTERFACE_CONSTRAINT_NOT_LAW"
+    }
+  ],
+  "pass_derived_research_objects": [
+    {"name":"HypothesisSpaceReceipt","owners":["formal concept analysis","ontology/model revision","computational discovery"],"disposition":"BENCHMARK_OBJECT"},
+    {"name":"EpistemicActionReceipt","owners":["active learning","DMDU","experimental design"],"disposition":"BENCHMARK_OBJECT"},
+    {"name":"ExperimentalSystemReceipt","owners":["philosophy/history of experiment","metrology","laboratory studies"],"disposition":"PARENT_FACING_INTERFACE"},
+    {"name":"InductiveBiasDeclaration","owners":["algorithmic induction","learning theory","no-free-lunch"],"disposition":"PARENT_FACING_INTERFACE"},
+    {"name":"BoundaryInterfaceReceipt","owners":["boundary objects","ontology matching","semantic interoperability"],"disposition":"K2_SPECIALIZATION"},
+    {"name":"ComputationalValidityReceipt","owners":["numerical analysis","validated numerics","VVUQ"],"disposition":"PARENT_FACING_INTERFACE"},
+    {"name":"OracleAdequacyProfile","owners":["scientific-software testing","metamorphic/differential testing"],"disposition":"K6_SPECIALIZATION"},
+    {"name":"UncertaintyFormReceipt","owners":["imprecise probability","interval uncertainty","DMDU"],"disposition":"PARENT_FACING_INTERFACE"},
+    {"name":"GovernedDataReceipt","owners":["CARE","data sovereignty","ethics/law"],"disposition":"EXTERNALLY_ROOTED_RESEARCH_OBJECT"},
+    {"name":"EpistemicParticipationReceipt","owners":["social epistemology","participatory research","citizen science"],"disposition":"BENCHMARK_OBJECT"},
+    {"name":"PipelineUnderspecificationProfile","owners":["ML credibility","data-centric AI","metascience"],"disposition":"K6_BENCHMARK_OBJECT"},
+    {"name":"AdversarialEpistemicIntegrityReceipt","owners":["computer security","adversarial ML","threat modelling"],"disposition":"PARENT_FACING_INTERFACE"},
+    {"name":"InstructionDataBoundaryReceipt","owners":["agent security","capability security","causal action attribution"],"disposition":"K0_K3_K4_SPECIALIZATION"},
+    {"name":"ResearchSupplyChainReceipt","owners":["secure development","supply-chain security","attestation"],"disposition":"PARENT_FACING_INTERFACE"},
+    {"name":"PrivacyScientificValidityReceipt","owners":["differential privacy","statistical disclosure control","private learning"],"disposition":"PARENT_FACING_INTERFACE"}
+  ],
+  "ownership_summary": {
+    "native_parent_mechanisms_claimed_by_orion": 0,
+    "new_kernel_families": 0,
+    "candidate_cross_parent_commitments": 7,
+    "commitments_frozen_as_laws": 0,
+    "benchmark_or_parent_facing_objects": 15,
+    "unresolved_ownership_items": 0,
+    "external_parent_review_complete": false
+  },
+  "authority": {
+    "internal_synthesis_allowed": true,
+    "foundation_laws_granted": false,
+    "supertheory_status_granted": false,
+    "field_founded": false,
+    "scientific_truth": false,
+    "novelty": false,
+    "publication_ready": false
+  }
+}
