@@ -1,0 +1,91 @@
+name: wave6-paper-completion
+
+on:
+  push:
+    branches:
+      - research/wave6-contraction-closure-20260827
+  pull_request:
+    paths:
+      - "papers/**"
+      - "src/orion_v2/paper_completion.py"
+      - "tests/unit/test_paper_completion_wave6.py"
+      - ".github/workflows/wave6-paper-completion.yml"
+
+jobs:
+  paper-completion:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install package and test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e .
+          python -m pip install pytest
+
+      - name: Compile completion semantics
+        run: python -m py_compile src/orion_v2/paper_completion.py
+
+      - name: Run paper-completion unit tests
+        run: python -m pytest -q tests/unit/test_paper_completion_wave6.py
+
+      - name: Parse portfolio claim ledger
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("papers/pipeline/PORTFOLIO_CLAIM_EVIDENCE_LEDGER_V1.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+          assert data["status"] == "PRE_OUTCOME_FROZEN"
+          assert data["authority"]["grants_submission_readiness"] is False
+          assert data["authority"]["grants_journal_acceptance"] is False
+          assert data["portfolio_terminal"]["field_founded"] is False
+          assert data["portfolio_terminal"]["submission_ready_R4"] == []
+          assert data["portfolio_terminal"]["top_tier_submission_ready"] == []
+          assert data["portfolio_terminal"]["second_tier_submission_ready"] == []
+          assert len(data["papers"]) >= 8
+          for paper in data["papers"]:
+              assert paper["claims"]
+              for claim in paper["claims"]:
+                  assert claim["claim_id"]
+                  assert claim["required_evidence_units"]
+                  assert claim["hard_falsifier"]
+          PY
+
+      - name: Check required manuscript surfaces
+        run: |
+          test -f papers/drafts/FLAGSHIP_MACHINE_EPISTEMICS_MANUSCRIPT_V7_TOP_TIER_PRE_EVIDENCE.md
+          test -f papers/drafts/P_A_STRUCTURAL_DONOR_DISCOVERY_MANUSCRIPT_V3_TOP_TIER_PRE_RESULTS.md
+          test -f papers/drafts/P_B_CONTEXT_RELATIVE_RELATIONS_MANUSCRIPT_V3_TOP_TIER_PRE_RESULTS.md
+          test -f papers/drafts/P_C_OBLIGATION_DRIVEN_SOLVER_MANUSCRIPT_V4_TOP_TIER_PRE_RESULTS.md
+          test -f papers/drafts/P_D_DEPENDENCE_AWARE_EVIDENCE_MANUSCRIPT_V4_TOP_TIER_PRE_RESULTS.md
+          test -f papers/drafts/P_E_FRONTIER_OPPORTUNITY_DISCOVERY_MANUSCRIPT_V4_TOP_TIER_PRE_RESULTS.md
+          test -f papers/drafts/P_F_MACHINE_NATIVE_SCIENTIFIC_INTELLIGENCE_MANUSCRIPT_V1_TOP_TIER_PRE_RESULTS.md
+          test -f papers/prospectuses/P_G_SCIENTIFIC_WARRANT_FACTORISATION_PROSPECTUS_V0.md
+          test -f papers/pipeline/TOP_TIER_PAPER_COMPLETION_PROGRAMME_V1.md
+
+      - name: Enforce honest manuscript terminals
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          paths = [
+              Path("papers/drafts/FLAGSHIP_MACHINE_EPISTEMICS_MANUSCRIPT_V7_TOP_TIER_PRE_EVIDENCE.md"),
+              Path("papers/drafts/P_A_STRUCTURAL_DONOR_DISCOVERY_MANUSCRIPT_V3_TOP_TIER_PRE_RESULTS.md"),
+              Path("papers/drafts/P_B_CONTEXT_RELATIVE_RELATIONS_MANUSCRIPT_V3_TOP_TIER_PRE_RESULTS.md"),
+              Path("papers/drafts/P_C_OBLIGATION_DRIVEN_SOLVER_MANUSCRIPT_V4_TOP_TIER_PRE_RESULTS.md"),
+              Path("papers/drafts/P_D_DEPENDENCE_AWARE_EVIDENCE_MANUSCRIPT_V4_TOP_TIER_PRE_RESULTS.md"),
+              Path("papers/drafts/P_E_FRONTIER_OPPORTUNITY_DISCOVERY_MANUSCRIPT_V4_TOP_TIER_PRE_RESULTS.md"),
+              Path("papers/drafts/P_F_MACHINE_NATIVE_SCIENTIFIC_INTELLIGENCE_MANUSCRIPT_V1_TOP_TIER_PRE_RESULTS.md"),
+              Path("papers/prospectuses/P_G_SCIENTIFIC_WARRANT_FACTORISATION_PROSPECTUS_V0.md"),
+          ]
+          for path in paths:
+              text = path.read_text(encoding="utf-8")
+              assert "TOP_TIER_SUBMISSION_READY = NO" in text or "SUBMISSION_READY_R4 = FALSE" in text
+              assert "Honest terminal" in text or "Current terminal" in text
+          PY
