@@ -55,6 +55,7 @@ def write_binding(tmp_path: Path, project: str, **updates):
         "requirement_dispositions": {},
         "marker_decisions": {},
         "legacy_build": {},
+        "distribution_overrides": {},
     }
     value.update(updates)
     path = tmp_path / f"{project}-prospective-binding.json"
@@ -431,6 +432,39 @@ def test_unbound_marker_and_hostile_dispositions_fail_closed(
         prospective_binding_path=binding,
     )
     assert rejected["status"] == "CANNOT_CHECK_PROSPECTIVE_BINDING_MISMATCH"
+
+
+def test_bound_distribution_override_installs_exact_artifact(
+    tmp_path: Path, monkeypatch
+) -> None:
+    requirement = "cryptography==2.9.2"
+    python = prepare_workspace(tmp_path, requirement + "\n")
+    digest = hashlib.sha256(requirement.encode("utf-8")).hexdigest()
+    cache, manifest = offline_cache(tmp_path, "cryptography-2.9.2.tar.gz")
+    commands = []
+
+    def fake_capture(command, **kwargs):
+        commands.append(list(command))
+        stdout = "Name: cryptography\nVersion: 2.9.2\n" if "show" in command else "ok"
+        return {"command": list(command), "returncode": 0, "stdout_tail": stdout,
+                "stderr_tail": "", "timed_out": False}
+
+    monkeypatch.setattr(runtime, "_capture", fake_capture)
+    binding = write_binding(
+        tmp_path, "ansible",
+        requirement_dispositions={},
+        distribution_overrides={digest: "cryptography-2.9.2.tar.gz"},
+    )
+    receipt = runtime.compile_workspace(
+        tmp_path, project="ansible", project_python=python,
+        offline_cache=cache, offline_cache_manifest=manifest,
+        prospective_binding_path=binding,
+    )
+    assert receipt["status"] == "PASS"
+    install = next(command for command in commands if "install" in command)
+    assert str(cache / "cryptography-2.9.2.tar.gz") in install
+    assert "--find-links" not in install
+    assert receipt["requirement_returncodes"][0]["status"] == "INSTALL_OFFLINE_BOUND_ARTIFACT"
 
 
 def test_utf16_test_support_is_normalized_before_execution(

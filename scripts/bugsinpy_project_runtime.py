@@ -314,6 +314,20 @@ def _load_prospective_binding(path: Path, project: str) -> dict[str, Any]:
             raise RuntimeBindingError("setup rewrite must be a non-empty argv list")
         if any(token in {";", "&&", "||", "|", ">", ">>", "<"} for token in command):
             raise RuntimeBindingError("shell operators are not allowed in setup rewrites")
+    overrides = binding.get("distribution_overrides", {})
+    if overrides is None:
+        overrides = {}
+    if not isinstance(overrides, dict):
+        raise RuntimeBindingError("distribution_overrides must be an object")
+    for digest, filename in overrides.items():
+        if not isinstance(digest, str) or not _SHA256_RE.fullmatch(digest):
+            raise RuntimeBindingError("distribution override key must be a requirement SHA-256")
+        if not isinstance(filename, str) or not filename or Path(filename).name != filename:
+            raise RuntimeBindingError("distribution override must be a cache artifact basename")
+        if not filename.casefold().endswith(
+            (".whl", ".zip", ".tar.gz", ".tar.bz2", ".tar.xz", ".tgz")
+        ):
+            raise RuntimeBindingError("distribution override must name a wheel or sdist artifact")
     binding["_receipt"] = {
         "path": str(path.resolve()),
         "sha256": _sha256_file(path),
@@ -536,6 +550,7 @@ def compile_workspace(
     legacy = prospective.get("legacy_build", {}) if prospective else {}
     dispositions = prospective.get("requirement_dispositions", {}) if prospective else {}
     marker_decisions = prospective.get("marker_decisions", {}) if prospective else {}
+    distribution_overrides = prospective.get("distribution_overrides", {}) if prospective else {}
     bound_cflags = str(legacy.get("compiler_compat_cflags", ""))
     if compiler_compat_cflags and compiler_compat_cflags != bound_cflags:
         receipt["unbound_compiler_compat_cflags_sha256"] = hashlib.sha256(
@@ -743,17 +758,46 @@ def compile_workspace(
         install_requirement = (
             f"{dependency['name']}{extras}=={dependency['requested_version']}"
         )
-        installed = _capture([
-            str(environment_python), "-m", "pip", "install",
-            "--disable-pip-version-check", "--no-index", "--no-deps", "--no-cache-dir",
-            "--no-build-isolation", "--find-links", str(offline_cache.resolve()),
-            install_requirement,
-        ],
-                             cwd=workspace, env=env, timeout=timeout_seconds)
+        override_filename = distribution_overrides.get(digest)
+        if override_filename:
+            artifact_path = offline_cache.resolve() / override_filename
+            if not artifact_path.is_file():
+                receipt["requirement_returncodes"].append({
+                    "sha256": digest, "name": dependency["name"],
+                    "requested_version": dependency["requested_version"],
+                    "status": "BOUND_ARTIFACT_MISSING", "artifact": override_filename,
+                    "returncode": None,
+                })
+                return finish("CANNOT_CHECK_BOUND_DISTRIBUTION_MISSING", "install_requirements")
+            installed = _capture([
+                str(environment_python), "-m", "pip", "install",
+                "--disable-pip-version-check", "--no-index", "--no-deps", "--no-cache-dir",
+                "--no-build-isolation", str(artifact_path),
+            ],
+                                 cwd=workspace, env=env, timeout=timeout_seconds)
+            install_status = "INSTALL_OFFLINE_BOUND_ARTIFACT"
+            decision_receipt = {
+                "requirement_sha256": digest,
+                "name": dependency["name"],
+                "version": dependency["requested_version"],
+                "decision": install_status,
+                "artifact": override_filename,
+                "binding_sha256": prospective["_receipt"]["sha256"],
+            }
+            receipt["requirement_decisions"].append(decision_receipt)
+        else:
+            installed = _capture([
+                str(environment_python), "-m", "pip", "install",
+                "--disable-pip-version-check", "--no-index", "--no-deps", "--no-cache-dir",
+                "--no-build-isolation", "--find-links", str(offline_cache.resolve()),
+                install_requirement,
+            ],
+                                 cwd=workspace, env=env, timeout=timeout_seconds)
+            install_status = "INSTALL_OFFLINE_HASHED"
         receipt["requirement_returncodes"].append({
             "sha256": digest, "name": dependency["name"],
             "requested_version": dependency["requested_version"],
-            "status": "INSTALL_OFFLINE_HASHED", "returncode": installed["returncode"],
+            "status": install_status, "returncode": installed["returncode"],
             "stderr_tail": installed["stderr_tail"],
         })
         if installed["returncode"] != 0:
