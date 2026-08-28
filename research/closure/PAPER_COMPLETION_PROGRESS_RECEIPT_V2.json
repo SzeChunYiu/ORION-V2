@@ -1,24 +1,35 @@
 {
   "schema_version": "orion.v2.paper-completion-progress.v2",
   "canonical_foundation_issue": 41,
-  "execution_master_issue": null,
+  "execution_master_issue": 45,
+  "scientificity_gate_issue": 46,
+  "external_demarcation_issue": 38,
   "review_surface": 36,
-  "status": "PRE_RESULTS_WRITING_COMPLETE__EXECUTION_AND_R3_R4_EVIDENCE_OPEN",
+  "status": "NON_EXECUTION_AND_PRE_RESULTS_WRITING_CLOSED__EXECUTION_SCIENTIFICITY_AND_R3_R4_OPEN",
   "foundation_state": {
     "bounded_conceptual_foundation_complete": true,
+    "canonical_foundation_issue_closed_as_non_execution_complete": true,
     "internal_synthesis_entry_earned": true,
     "field_founded": false,
     "protected_F2_over_F0_gain": false,
     "external_demarcation_complete": false
   },
+  "closeout": {
+    "matrix": "research/closure/NON_EXECUTION_CLOSEOUT_MATRIX_WAVE06_V1.md",
+    "receipt": "research/closure/NON_EXECUTION_CLOSEOUT_RECEIPT_WAVE06_V1.json",
+    "external_dependencies": "research/closure/EXTERNAL_DEPENDENCY_REGISTER_WAVE06_V1.json",
+    "post_result_playbook": "papers/pipeline/POST_RESULT_IMPORT_AND_R4_PLAYBOOK_V1.md",
+    "closed_non_execution_issues": [39, 40, 41, 42, 43, 44]
+  },
   "execution": {
+    "issue": 45,
     "master_handoff": "research/experiments/AI_SESSION_EXECUTION_MASTER_HANDOFF_V3.md",
     "backlog": "research/experiments/EXECUTION_BACKLOG_V1.json",
     "readiness_audit": "research/experiments/EXECUTION_READINESS_AUDIT_V1.md",
     "pilot_manifest": "research/experiments/ORION_REAL_PROBLEM_SUITE_V1.json",
     "confirmatory_manifest": "research/experiments/ORION_REAL_PROBLEM_CONFIRMATORY_SUITE_V1.json",
     "analysis_plan": "research/experiments/ORION_REAL_PROBLEM_ANALYSIS_PLAN_V1.md",
-    "outcome_access": "NONE_OR_NO_PROTECTED_RESULT_BOUND_TO_THIS_RECEIPT"
+    "outcome_access": "NO_PROTECTED_RESULT_BOUND_TO_THIS_RECEIPT"
   },
   "portfolio_counts": {
     "primary_manuscript_surfaces_complete_pre_results": 7,
@@ -45,8 +56,9 @@
       "P-E prospective opportunity cohort if available",
       "P-F predeclared machine-native mechanism experiment"
     ],
-    "external_human_or_custody": [
-      "PARITY-C/D independent reviewer custody under issue #8",
+    "scientificity_and_external": [
+      "reasonable-specification robustness and concept promotion/demotion under issue #46",
+      "PARITY-C/D independent reviewer custody under issue #8/#37",
       "native-domain adjudicators for cross-domain studies",
       "external field demarcation under issue #38",
       "hostile editorial review after R3"
@@ -62,17 +74,12 @@
   },
   "candidate_identity_resolution": "papers/prospectuses/P_G_CANDIDATE_IDENTITY_RESOLUTION_V1.md",
   "next_sequence": [
-    "run E00 preflight",
-    "bind SIMPLE/F0/F2 arms",
-    "run T1 BugsInPy pilot",
-    "run T2 confirmatory BugsInPy",
-    "run component ablations and anti-copy controls",
-    "run at least two scientific-domain restorations",
-    "complete paper-specific experiments",
-    "obtain independent adjudication",
-    "propose evidence-bound claim updates",
+    "complete issue #45 protected execution",
+    "apply issue #46 scientificity/robustness gate to results",
+    "obtain required independent adjudication",
+    "import results through POST_RESULT_IMPORT_AND_R4_PLAYBOOK_V1",
     "freeze surviving R3 manuscripts",
-    "obtain external demarcation",
+    "obtain external demarcation under issue #38",
     "complete R4 submission packages"
   ],
   "authority": {
@@ -82,5 +89,5 @@
     "grants_submission_readiness": false,
     "grants_journal_acceptance": false
   },
-  "honest_terminal": "CONCEPTUAL_AND_WRITING_WORK_COMPLETE_WITHIN_CURRENT_SCOPE__OUTCOME_GENERATING_EXECUTION_IS_THE_PRIMARY_REMAINING_FRONTIER"
+  "honest_terminal": "NON_EXECUTION_AND_PRE_RESULTS_WRITING_COMPLETE__PROTECTED_EXECUTION_AND_EXTERNAL_SCIENTIFIC_AUTHORITY_REMAIN"
 }
