@@ -1,0 +1,114 @@
+name: wave6-foundation-synthesis
+
+on:
+  pull_request:
+    paths:
+      - "src/orion_v2/**"
+      - "tests/unit/**"
+      - "research/foundation-saturation/**"
+      - "research/experiments/**"
+      - "papers/pipeline/**"
+      - ".github/workflows/wave6-foundation-synthesis.yml"
+  push:
+    branches:
+      - "research/wave6-contraction-closure-20260827"
+
+permissions:
+  contents: read
+
+jobs:
+  foundation-reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      PYTHONPATH: src
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pytest
+        run: python -m pip install pytest
+      - name: Compile research package
+        run: python -m compileall -q src/orion_v2
+      - name: Run integrated unit suite
+        run: python -m pytest -q
+      - name: Parse foundation and experiment JSON
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          roots = (
+              Path('research/foundation-saturation'),
+              Path('research/experiments'),
+              Path('research/closure'),
+              Path('papers/pipeline'),
+          )
+          parsed = []
+          for root in roots:
+              if not root.exists():
+                  continue
+              for path in root.rglob('*.json'):
+                  json.loads(path.read_text(encoding='utf-8'))
+                  parsed.append(str(path))
+          assert parsed, 'no foundation JSON artifacts parsed'
+          print(f'FOUNDATION_JSON_PARSE_PASS={len(parsed)}')
+          PY
+      - name: Enforce non-authority theory semantics
+        run: |
+          python - <<'PY'
+          from orion_v2.theory_dominance import (
+              TheoryDisposition,
+              TheoryProfile,
+              assess_theory_dominance,
+          )
+
+          parent = TheoryProfile(
+              'F0', 1.0,
+              {'quality': 0.8, 'safety': 0.9},
+              {'compute': 10.0, 'expert': 5.0},
+              generativity=0.2,
+              integration=0.1,
+              cross_domain_count=2,
+              independent_evaluation=True,
+              local_parent_deference=True,
+          )
+          candidate = TheoryProfile(
+              'F2', 1.0,
+              {'quality': 0.9, 'safety': 0.92},
+              {'compute': 9.0, 'expert': 5.0},
+              generativity=0.5,
+              integration=0.4,
+              cross_domain_count=3,
+              independent_evaluation=True,
+              local_parent_deference=True,
+          )
+          result = assess_theory_dominance(candidate, parent)
+          assert result.disposition is TheoryDisposition.ABSORPTIVE_SUPERTHEORY_CANDIDATE
+          assert not result.authority_granted
+          print('THEORY_DOMINANCE_NON_AUTHORITY_PASS')
+          PY
+      - name: Enforce foundation and publication blockers
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          proposition_path = Path(
+              'research/foundation-saturation/F2_CANDIDATE_PROPOSITION_LEDGER_V0.json'
+          )
+          proposition = json.loads(proposition_path.read_text(encoding='utf-8'))
+          assert proposition['current_terminal']['propositions_frozen_as_laws'] == 0
+          assert proposition['current_terminal']['field_founded'] is False
+          assert proposition['current_terminal']['publication_ready'] is False
+          assert proposition['authority']['grants_field_status'] is False
+          assert proposition['authority']['grants_publication_readiness'] is False
+
+          readiness = Path('papers/pipeline/PUBLICATION_READINESS_GATE_2026_V2.md')
+          text = readiness.read_text(encoding='utf-8')
+          assert 'TOP_TIER_SUBMISSION_READY = NONE' in text
+          assert 'SECOND_TIER_SUBMISSION_READY = NONE' in text
+          assert 'FIELD_FOUNDED = NO' in text
+          print('FOUNDATION_AND_PUBLICATION_BLOCKERS_PASS')
+          PY

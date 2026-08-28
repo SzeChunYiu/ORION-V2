@@ -1,0 +1,253 @@
+{
+  "schema_version": "orion.v2.f2-candidate-proposition-ledger.v0",
+  "status": "PRE_OUTCOME_CANDIDATES_NOT_FOUNDATION_LAWS",
+  "canonical_issue": 41,
+  "upward_synthesis_issue": 43,
+  "candidate_theory": "F2_ABSORPTIVE_SUPERTHEORY",
+  "authority": {
+    "grants_foundation_law": false,
+    "grants_supertheory_status": false,
+    "grants_field_status": false,
+    "grants_scientific_truth": false,
+    "grants_novelty": false,
+    "grants_publication_readiness": false
+  },
+  "propositions": [
+    {
+      "id": "F2-P1",
+      "name": "bound_transition_identity",
+      "statement": "A scientific-state transition must bind subject, problem and comparison identity, source/evidence basis, representation or evaluator epoch, and authority scope; silent mutation creates a new comparison or an invalid transition.",
+      "status_type": "candidate_cross_domain_constraint",
+      "parent_owners": [
+        "provenance and lineage",
+        "formal specification and configuration management",
+        "metrology and measurement traceability",
+        "benchmark custody",
+        "belief revision"
+      ],
+      "claimed_residual": "one transition identity spanning evidence, representation, evaluator and authority changes",
+      "protected_decisions": [
+        "criterion_drift",
+        "cross_epoch_comparability",
+        "selective_reopening",
+        "authority_scope"
+      ],
+      "required_cases": ["C2", "C10"],
+      "strongest_counterexample": "legitimate calibration iteration where scientific continuity is preserved through a relation rather than immutable fields",
+      "falsifier": "F0 configuration/provenance/metrology products produce identical decisions without a cross-parent transition object",
+      "current_terminal": "OPEN"
+    },
+    {
+      "id": "F2-P2",
+      "name": "warrant_factorization_and_weakest_link_ceiling",
+      "statement": "When a claim depends materially on source, semantic interpretation, model, computation, oracle or test, argument, transport and authority, its warranted scope cannot exceed the weakest necessary link and no link may be inferred valid from another.",
+      "status_type": "candidate_cross_parent_law",
+      "parent_owners": [
+        "assurance cases",
+        "numerical analysis and VVUQ",
+        "scientific software testing",
+        "severe testing",
+        "formal argumentation",
+        "epistemology of evidence"
+      ],
+      "claimed_residual": "cross-parent validity composition and weakest-link diagnosis",
+      "protected_decisions": [
+        "false completion",
+        "model versus computation diagnosis",
+        "oracle adequacy",
+        "claim scope"
+      ],
+      "required_cases": ["C1", "C7"],
+      "strongest_counterexample": "formal theorem whose proof and specification are fully sufficient without empirical-world links",
+      "falsifier": "mature assurance plus VVUQ and oracle methods already produce identical weakest-link decisions with equal or lower cost",
+      "current_terminal": "OPEN"
+    },
+    {
+      "id": "F2-P3",
+      "name": "typed_relation_uncertainty_and_dependence_conservation",
+      "statement": "Relation family, direction, approximation, uncertainty form, dependence, translation loss and unresolved distinctions cannot silently strengthen, disappear or become exact through composition.",
+      "status_type": "candidate_formal_interface_constraint",
+      "parent_owners": [
+        "abstract interpretation and simulation relations",
+        "causal transportability",
+        "measurement invariance",
+        "metrology",
+        "imprecise probability",
+        "dependent evidence"
+      ],
+      "claimed_residual": "common non-laundering rule across heterogeneous native relation families",
+      "protected_decisions": [
+        "unsafe transport",
+        "false exactness",
+        "uncertainty collapse",
+        "false corroboration"
+      ],
+      "required_cases": ["C4", "C5", "C8"],
+      "strongest_counterexample": "domain-specific composition theorem already preserves all relevant native semantics",
+      "falsifier": "no cross-family decision remains after native relation composition is correctly applied",
+      "current_terminal": "OPEN"
+    },
+    {
+      "id": "F2-P4",
+      "name": "error_detection_adequacy",
+      "statement": "A pass supports only the registered error classes that the evaluator or oracle had a warranted capacity to expose under the selected cases, perturbations and stopping history.",
+      "status_type": "candidate_empirical_and_engineering_constraint",
+      "parent_owners": [
+        "severe testing and error statistics",
+        "power and sensitivity analysis",
+        "metamorphic and differential testing",
+        "formal verification coverage",
+        "benchmark stress testing"
+      ],
+      "claimed_residual": "one claim-relative adequacy interface across statistical, formal, computational and semantic evaluators",
+      "protected_decisions": [
+        "weak_pass_overclaim",
+        "benchmark nonidentifiability",
+        "oracle blindness",
+        "closure"
+      ],
+      "required_cases": ["C1", "C7"],
+      "strongest_counterexample": "exact proof or exhaustive known-answer test with complete claim-relevant coverage",
+      "falsifier": "native evaluator methods already expose adequacy in every relevant case and the common layer adds only metadata",
+      "current_terminal": "OPEN"
+    },
+    {
+      "id": "F2-P5",
+      "name": "selective_invalidation_and_reopening",
+      "statement": "Invalidation of evidence, relation, computation or evaluator state reopens only commitments whose complete sufficient support has failed; independently sufficient support remains standing.",
+      "status_type": "candidate_formal_transition_constraint",
+      "parent_owners": [
+        "truth-maintenance systems",
+        "assumption-based TMS",
+        "belief revision",
+        "model-based diagnosis",
+        "support hypergraphs"
+      ],
+      "claimed_residual": "selective reopening across heterogeneous support and validity objects",
+      "protected_decisions": [
+        "global reset overreach",
+        "stale claim retention",
+        "support family validity"
+      ],
+      "required_cases": ["C2", "C8"],
+      "strongest_counterexample": "ATMS/support-hypergraph parent exactly handles every support mode",
+      "falsifier": "parent support-family machinery reproduces the integrated reopen decision with no semantic gap",
+      "current_terminal": "OPEN"
+    },
+    {
+      "id": "F2-P6",
+      "name": "exploration_confirmation_separation",
+      "statement": "Exploratory and constructive actions may expand observables, representations, instruments and problem frames, but their outputs do not gain confirmatory status without subsequent discrimination and testing.",
+      "status_type": "candidate_scientific_action_constraint",
+      "parent_owners": [
+        "exploratory experimentation",
+        "abduction",
+        "automated scientific discovery",
+        "active learning",
+        "open-ended learning"
+      ],
+      "claimed_residual": "controlled transition from exploratory state construction to confirmatory warrant",
+      "protected_decisions": [
+        "hypothesis_space_lock_in",
+        "exploration_laundered_as_evidence",
+        "minimum escalation",
+        "resource use"
+      ],
+      "required_cases": ["C3", "C9"],
+      "strongest_counterexample": "native automated-discovery or experimental-design parent already tracks proposal/evidence status and cost",
+      "falsifier": "integrated action modes add no discovery or validity value beyond parents",
+      "current_terminal": "OPEN"
+    },
+    {
+      "id": "F2-P7",
+      "name": "parent_recovery_and_local_deference",
+      "statement": "A higher-order theory must recover critical native parent decisions within their valid scope or provide explicit counterevidence and revision; when a parent is sufficient and more efficient, the higher layer remains inactive.",
+      "status_type": "candidate_metatheory_constraint",
+      "parent_owners": [
+        "interfield theory",
+        "conservative extension",
+        "integrative pluralism",
+        "theory reduction and correspondence",
+        "component value and efficiency analysis"
+      ],
+      "claimed_residual": "formalized local deference as part of higher-theory validity",
+      "protected_decisions": [
+        "native verdict loss",
+        "deceptive unification",
+        "framework drag",
+        "parent replacement"
+      ],
+      "required_cases": ["C9"],
+      "strongest_counterexample": "no cross-parent theory is needed if local routing plus interfaces always suffices",
+      "falsifier": "F2 cannot recover parent suites or cannot deactivate without losing its claimed architecture",
+      "current_terminal": "OPEN"
+    },
+    {
+      "id": "F2-P8",
+      "name": "machine_native_internal_freedom_external_witness",
+      "statement": "Machine cognition may use nonhuman internal representations and search processes, but adoption of a scientific transition requires a claim-relative external witness sufficient for evidence, assumptions, uncertainty, relation, affected commitments and authority.",
+      "status_type": "candidate_machine_epistemic_interface_constraint",
+      "parent_owners": [
+        "program synthesis and theorem proving",
+        "scientific software validation",
+        "interpretability and explanation",
+        "human-computer collaboration",
+        "scientific accountability"
+      ],
+      "claimed_residual": "scientific accountability without human-process imitation",
+      "protected_decisions": [
+        "opaque novelty",
+        "human trace conformity",
+        "scientific adoption",
+        "resource matched machine-native gain"
+      ],
+      "required_cases": ["C7"],
+      "strongest_counterexample": "a native formal certificate or domain validator is already fully sufficient and no higher witness is needed",
+      "falsifier": "machine-native gains disappear under stronger parents, resource matching or external witness requirements",
+      "current_terminal": "OPEN"
+    },
+    {
+      "id": "F2-P9",
+      "name": "bounded_closure_censorship_and_reopening",
+      "statement": "Scientific closure is relative to a declared search and evaluation universe, censored routes, residual uncertainty and omission challenge; a material new route, parent or criterion reopens the terminal.",
+      "status_type": "candidate_programme_level_constraint",
+      "parent_owners": [
+        "formal learning and reliable inquiry",
+        "systematic review stopping",
+        "qualitative saturation methodology",
+        "metascience",
+        "censoring and missing-data theory"
+      ],
+      "claimed_residual": "common bounded-closure semantics across literature, computation, experiment and authority routes",
+      "protected_decisions": [
+        "premature saturation",
+        "censored route interpreted as absence",
+        "field foundation freeze",
+        "reopening"
+      ],
+      "required_cases": ["C10"],
+      "strongest_counterexample": "domain-native stopping rules plus explicit scope already provide complete closure semantics",
+      "falsifier": "the cross-domain closure object adds no decision value or is too conservative to be usable",
+      "current_terminal": "OPEN"
+    }
+  ],
+  "admission_requirements": [
+    "native parent reconstruction",
+    "strongest parent federation bound",
+    "prospective discriminator or generative consequence",
+    "known-answer or independent semantic evaluation",
+    "component removal and parent replacement",
+    "resource accounting",
+    "at least two materially different domains for cross-domain status",
+    "explicit authority ceiling",
+    "negative and parent-win cases"
+  ],
+  "current_terminal": {
+    "candidate_proposition_count": 9,
+    "propositions_frozen_as_laws": 0,
+    "outcome_access": "NONE",
+    "f2_status": "ASPIRATIONAL_UNEARNED",
+    "field_founded": false,
+    "publication_ready": false
+  }
+}
