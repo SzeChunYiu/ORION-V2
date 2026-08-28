@@ -77,10 +77,11 @@ def run_native_relevant_test(workspace: Path, *, timeout: int) -> subprocess.Com
 
 def test_infrastructure_error(result: subprocess.CompletedProcess[str]) -> bool:
     combined = (result.stdout + "\n" + result.stderr).casefold()
-    return any(marker in combined for marker in (
+    return result.returncode in {4, 5} or any(marker in combined for marker in (
         "modulenotfounderror", "importerror while loading conftest",
         "unable to import required dependencies", "command not found",
         "no module named", "could not find a version that satisfies",
+        "error: file not found:", "no tests ran", "collected 0 items",
     ))
 
 
