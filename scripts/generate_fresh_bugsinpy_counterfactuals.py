@@ -307,6 +307,14 @@ def generate(
                 "gold_withheld": True,
                 "primary_decision": "repair a freshly generated production-code defect under the native regression suite",
                 "solver_test_command": str(test_command),
+                "baseline_observation": {
+                    "compile_returncode": 0,
+                    "test_returncode": test_mutation.returncode,
+                    "bug_reproduced": True,
+                    "stdout_tail": selected_mutation["failing_stdout_tail"],
+                    "stderr_tail": selected_mutation["failing_stderr_tail"],
+                    "gold_or_fixed_solution_included": False,
+                },
             }
         )
         private_records.append(
