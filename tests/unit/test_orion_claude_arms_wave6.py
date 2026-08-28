@@ -1,6 +1,10 @@
 from __future__ import annotations
 
-from scripts.orion_claude_arms import run_arm
+import json
+
+import pytest
+
+from scripts.orion_claude_arms import _provider_call, arm_call_count, run_arm
 
 
 def _request(arm: str) -> dict[str, object]:
@@ -31,8 +35,54 @@ def test_full_f2_has_each_required_stage() -> None:
 
 
 def test_arm_call_count_supports_equal_total_token_budget() -> None:
-    from scripts.orion_claude_arms import arm_call_count
     assert arm_call_count("SIMPLE_DIRECT") == 1
     assert arm_call_count("SAME_MODEL_REFLECTION") == 2
     assert arm_call_count("F0_PARENT_FEDERATION") == 3
     assert arm_call_count("F2_ORION_METABOLIC_FULL") == 3
+
+
+def test_provider_call_rejects_unknown_provider(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("ORION_MODEL_PROVIDER", "not-a-provider")
+    with pytest.raises(ValueError, match="unsupported ORION_MODEL_PROVIDER"):
+        _provider_call("hello")
+
+
+def test_gemini_provider_maps_text_and_usage(monkeypatch: pytest.MonkeyPatch) -> None:
+    class Response:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *_args):
+            return None
+
+        def read(self) -> bytes:
+            return json.dumps({
+                "candidates": [{"content": {"parts": [{"text": "READY"}]}}],
+                "usageMetadata": {"promptTokenCount": 7, "candidatesTokenCount": 2},
+            }).encode()
+
+    seen: dict[str, object] = {}
+
+    def fake_urlopen(request, timeout):
+        seen["url"] = request.full_url
+        seen["key_header"] = request.get_header("X-goog-api-key")
+        seen["body"] = json.loads(request.data)
+        seen["timeout"] = timeout
+        return Response()
+
+    monkeypatch.setenv("ORION_MODEL_PROVIDER", "gemini")
+    monkeypatch.setenv("ORION_GEMINI_MODEL", "models/gemini-test-version")
+    monkeypatch.setenv("GEMINI_API_KEY", "secret-test-key")
+    monkeypatch.setenv("ORION_ARM_MAX_TOKENS", "123")
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+
+    text, usage = _provider_call("hello")
+
+    assert text == "READY"
+    assert usage == {"input_tokens": 7, "output_tokens": 2}
+    assert str(seen["url"]).startswith(
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-test-version:generateContent"
+    )
+    assert "secret-test-key" not in str(seen["url"])
+    assert seen["key_header"] == "secret-test-key"
+    assert seen["body"]["generationConfig"]["maxOutputTokens"] == 123

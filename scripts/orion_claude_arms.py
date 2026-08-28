@@ -144,7 +144,7 @@ def run_arm(
         }
 
 
-def _provider_call(prompt: str) -> tuple[str, dict[str, int]]:
+def _anthropic_compatible_call(prompt: str) -> tuple[str, dict[str, int]]:
     base = os.environ["ANTHROPIC_BASE_URL"].rstrip("/")
     url = base + ("/messages" if base.endswith("/v1") else "/v1/messages")
     body = json.dumps({"model": os.environ["ANTHROPIC_MODEL"], "max_tokens": int(os.environ.get("ORION_ARM_MAX_TOKENS", "6000")), "temperature": 0, "system": "You are a bounded experimental software-debugging arm.", "messages": [{"role": "user", "content": prompt}]}).encode()
@@ -153,6 +153,47 @@ def _provider_call(prompt: str) -> tuple[str, dict[str, int]]:
         data = json.load(raw)
     text = "".join(str(x.get("text", "")) for x in data.get("content", []) if isinstance(x, dict))
     return text, dict(data.get("usage", {}))
+
+
+def _gemini_call(prompt: str) -> tuple[str, dict[str, int]]:
+    """Call the versioned Google Generative Language API without an SDK."""
+    model = os.environ["ORION_GEMINI_MODEL"].removeprefix("models/")
+    key = os.environ["GEMINI_API_KEY"]
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+    body = json.dumps({
+        "systemInstruction": {"parts": [{"text": "You are a bounded experimental software-debugging arm."}]},
+        "contents": [{"role": "user", "parts": [{"text": prompt}]}],
+        "generationConfig": {
+            "temperature": 0,
+            "maxOutputTokens": int(os.environ.get("ORION_ARM_MAX_TOKENS", "6000")),
+        },
+    }).encode()
+    req = urllib.request.Request(
+        url,
+        data=body,
+        headers={"content-type": "application/json", "x-goog-api-key": key},
+    )
+    with urllib.request.urlopen(req, timeout=int(os.environ.get("ORION_ARM_HTTP_TIMEOUT", "1800"))) as raw:
+        data = json.load(raw)
+    text = "".join(
+        str(part.get("text", ""))
+        for candidate in data.get("candidates", []) if isinstance(candidate, dict)
+        for part in candidate.get("content", {}).get("parts", []) if isinstance(part, dict)
+    )
+    usage = data.get("usageMetadata", {})
+    return text, {
+        "input_tokens": int(usage.get("promptTokenCount", 0)),
+        "output_tokens": int(usage.get("candidatesTokenCount", 0)),
+    }
+
+
+def _provider_call(prompt: str) -> tuple[str, dict[str, int]]:
+    provider = os.environ.get("ORION_MODEL_PROVIDER", "anthropic_compatible").strip().lower()
+    if provider == "gemini":
+        return _gemini_call(prompt)
+    if provider == "anthropic_compatible":
+        return _anthropic_compatible_call(prompt)
+    raise ValueError(f"unsupported ORION_MODEL_PROVIDER: {provider}")
 
 
 def _context(request: dict[str, Any]) -> str:
