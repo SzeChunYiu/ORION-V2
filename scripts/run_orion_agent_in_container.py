@@ -12,15 +12,19 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import shlex
 import subprocess
 import sys
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterable
 
 
 class SandboxError(RuntimeError):
     pass
+
+
+_ENV_NAME_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -45,7 +49,136 @@ def docker_available() -> bool:
 
 
 def mount_argument(source: Path, target: Path, mode: str) -> list[str]:
+    if mode not in {"readonly", "rw"}:
+        raise SandboxError(f"unsupported mount mode: {mode}")
     return ["--mount", f"type=bind,src={source},dst={target},{mode}"]
+
+
+def _require_existing(path: Path, *, label: str) -> Path:
+    resolved = path.resolve()
+    if not resolved.exists():
+        raise SandboxError(f"{label} does not exist: {resolved}")
+    return resolved
+
+
+def _positive_resource(value: str, *, label: str) -> str:
+    text = str(value).strip()
+    try:
+        numeric = float(text)
+    except ValueError as exc:
+        raise SandboxError(f"{label} must be numeric") from exc
+    if numeric <= 0:
+        raise SandboxError(f"{label} must be positive")
+    return text
+
+
+def build_command(
+    *,
+    image: str,
+    agent_command: str,
+    staged_input: Path,
+    workspace: Path,
+    response_parent: Path,
+    response_name: str,
+    support_mounts: Iterable[Path],
+    forwarded_environment_names: Iterable[str],
+    network_mode: str,
+    cpu_cores: str,
+    memory_gb: str,
+    read_only_root: bool,
+) -> list[str]:
+    """Build a fail-closed Docker command exposing only declared public surfaces.
+
+    ``staged_input`` may be a single request file or a directory containing a
+    public request bundle. It is always mounted read-only at ``/orion/in``.
+    The helper never mounts evaluator-private state, Git metadata, gold patches,
+    or any path not explicitly supplied by the caller.
+    """
+
+    image = image.strip()
+    agent_command = agent_command.strip()
+    if not image or not agent_command:
+        raise SandboxError("image and agent_command are required")
+
+    network = network_mode.strip().casefold()
+    if network not in {"none", "enabled"}:
+        raise SandboxError("network_mode must be none or enabled")
+
+    cpus = _positive_resource(cpu_cores, label="cpu_cores")
+    memory = _positive_resource(memory_gb, label="memory_gb")
+    staged = _require_existing(staged_input, label="staged input")
+    work = _require_existing(workspace, label="workspace")
+    out = response_parent.resolve()
+    out.mkdir(parents=True, exist_ok=True)
+    if not out.is_dir():
+        raise SandboxError(f"response parent is not a directory: {out}")
+
+    response_leaf = Path(response_name)
+    if response_leaf.name != response_name or response_name in {"", ".", ".."}:
+        raise SandboxError("response_name must be one file name")
+
+    command = [
+        "docker",
+        "run",
+        "--rm",
+        "--cpus",
+        cpus,
+        "--memory",
+        f"{memory}g",
+        "--pids-limit",
+        "512",
+        "--security-opt",
+        "no-new-privileges:true",
+        "--cap-drop",
+        "ALL",
+    ]
+    if read_only_root:
+        command.append("--read-only")
+    if network == "none":
+        command += ["--network", "none"]
+
+    command += mount_argument(staged, Path("/orion/in"), "readonly")
+    command += mount_argument(work, Path("/workspace"), "rw")
+    command += mount_argument(out, Path("/orion/out"), "rw")
+
+    normalized_support: list[Path] = []
+    for value in support_mounts:
+        source = _require_existing(Path(value), label="support mount")
+        if source in {staged, work, out}:
+            raise SandboxError("support mount duplicates a primary sandbox surface")
+        normalized_support.append(source)
+        command += mount_argument(source, source, "readonly")
+
+    forward_names: list[str] = []
+    for raw_name in forwarded_environment_names:
+        name = str(raw_name).strip()
+        if not name:
+            continue
+        if not _ENV_NAME_RE.fullmatch(name):
+            raise SandboxError(f"invalid environment variable name: {name!r}")
+        if name in {"ORION_GOLD_ACCESS", "ORION_OUTCOME_ACCESS"}:
+            raise SandboxError(f"reserved authority environment variable cannot be forwarded: {name}")
+        if name in os.environ:
+            forward_names.append(name)
+            command += ["--env", f"{name}={os.environ[name]}"]
+
+    command += [
+        "--env",
+        f"ORION_NETWORK_MODE={network}",
+        "--env",
+        "ORION_GOLD_ACCESS=NONE",
+        "--env",
+        "ORION_OUTCOME_ACCESS=NONE",
+        "--workdir",
+        "/workspace",
+        image,
+        "sh",
+        "-lc",
+        agent_command
+        + " --request /orion/in"
+        + f" --response /orion/out/{shlex.quote(response_name)}",
+    ]
+    return command
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -57,8 +190,8 @@ def main(argv: list[str] | None = None) -> int:
     if not docker_available():
         raise SandboxError("Docker is unavailable")
     image = os.environ.get("ORION_AGENT_IMAGE", "").strip()
-    command = os.environ.get("ORION_AGENT_COMMAND", "").strip()
-    if not image or not command:
+    agent_command = os.environ.get("ORION_AGENT_COMMAND", "").strip()
+    if not image or not agent_command:
         raise SandboxError("ORION_AGENT_IMAGE and ORION_AGENT_COMMAND are required")
 
     request = read_json(args.request)
@@ -79,64 +212,33 @@ def main(argv: list[str] | None = None) -> int:
     cpus = str(request.get("resource_contract", {}).get("default_cpu_cores", 4))
     memory_gb = str(request.get("resource_contract", {}).get("default_memory_gb", 16))
 
-    docker_command = [
-        "docker",
-        "run",
-        "--rm",
-        "--cpus",
-        cpus,
-        "--memory",
-        f"{memory_gb}g",
-        "--pids-limit",
-        "512",
-        "--security-opt",
-        "no-new-privileges:true",
-        "--cap-drop",
-        "ALL",
-    ]
-    if network_mode == "none":
-        docker_command += ["--network", "none"]
-    elif network_mode != "enabled":
-        raise SandboxError("ORION_AGENT_NETWORK_MODE must be none or enabled")
-
-    docker_command += mount_argument(request_path, Path("/orion/request.json"), "readonly")
-    docker_command += mount_argument(workspace, Path("/workspace"), "rw")
-    docker_command += mount_argument(response_parent, Path("/orion/out"), "rw")
-
     public_mounts = task.get("solver_support_mounts", [])
     if public_mounts is None:
         public_mounts = []
     if not isinstance(public_mounts, list):
         raise SandboxError("solver_support_mounts must be a list")
-    for value in public_mounts:
-        source = Path(str(value)).resolve()
-        if not source.exists():
-            raise SandboxError(f"support mount does not exist: {source}")
-        docker_command += mount_argument(source, source, "readonly")
+    support_paths = tuple(Path(str(value)) for value in public_mounts)
 
-    forward_names = [
+    forward_names = tuple(
         item.strip()
         for item in os.environ.get("ORION_AGENT_FORWARD_ENV", "").split(",")
         if item.strip()
-    ]
-    for name in forward_names:
-        if name in os.environ:
-            docker_command += ["--env", f"{name}={os.environ[name]}"]
+    )
 
-    docker_command += [
-        "--env",
-        f"ORION_NETWORK_MODE={network_mode}",
-        "--env",
-        "ORION_GOLD_ACCESS=NONE",
-        "--workdir",
-        "/workspace",
-        image,
-        "sh",
-        "-lc",
-        command
-        + " --request /orion/request.json"
-        + f" --response /orion/out/{shlex.quote(args.response.name)}",
-    ]
+    docker_command = build_command(
+        image=image,
+        agent_command=agent_command,
+        staged_input=request_path,
+        workspace=workspace,
+        response_parent=response_parent,
+        response_name=args.response.name,
+        support_mounts=support_paths,
+        forwarded_environment_names=forward_names,
+        network_mode=network_mode,
+        cpu_cores=cpus,
+        memory_gb=memory_gb,
+        read_only_root=True,
+    )
 
     result = subprocess.run(
         docker_command,
@@ -154,11 +256,16 @@ def main(argv: list[str] | None = None) -> int:
                 "network_mode": network_mode,
                 "workspace": str(workspace),
                 "support_mounts": [str(Path(value).resolve()) for value in public_mounts],
-                "forwarded_environment_names": forward_names,
+                "forwarded_environment_names": list(forward_names),
                 "returncode": result.returncode,
                 "stdout": result.stdout[-5000:],
                 "stderr": result.stderr[-5000:],
                 "gold_mounts": [],
+                "outcome_mounts": [],
+                "authority_environment": {
+                    "ORION_GOLD_ACCESS": "NONE",
+                    "ORION_OUTCOME_ACCESS": "NONE",
+                },
             },
             indent=2,
             sort_keys=True,
