@@ -83,10 +83,24 @@ def _normalize_patch(patch: str) -> str:
     patch = patch.strip() + "\n"
     if patch.startswith("diff --git "):
         return patch
-    match = re.search(r"^--- a/(.+)$\n^\+\+\+ b/(.+)$", patch, re.MULTILINE)
-    if not match or match.group(1) != match.group(2):
+    lines = patch.splitlines(keepends=True)
+    output: list[str] = []
+    found = False
+    index = 0
+    while index < len(lines):
+        if lines[index].startswith("--- ") and index + 1 < len(lines) and lines[index + 1].startswith("+++ "):
+            old = lines[index][4:].strip().removeprefix("a/")
+            new = lines[index + 1][4:].strip().removeprefix("b/")
+            path = new if old == "/dev/null" else old
+            if new != "/dev/null" and old != "/dev/null" and old != new:
+                raise ValueError("Codex diff renames a path; rename patches are outside this runner")
+            output.append(f"diff --git a/{path} b/{path}\n")
+            found = True
+        output.append(lines[index])
+        index += 1
+    if not found:
         raise ValueError("Codex result is not a repository-rooted unified diff")
-    return f"diff --git a/{match.group(1)} b/{match.group(2)}\n" + patch
+    return "".join(output)
 
 
 def execute(request: dict[str, Any]) -> dict[str, Any]:
