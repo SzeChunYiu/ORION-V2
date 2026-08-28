@@ -1,0 +1,187 @@
+{
+  "schema_version": "orion.v2.real-problem-suite.v1",
+  "suite_id": "orion-v2-real-problem-confirmatory-2026-08-28",
+  "status": "PROSPECTIVE_CONFIRMATORY_PROTOCOL_NO_RESULTS",
+  "candidate_foundations": ["F0", "F1", "F2", "F3"],
+  "benchmarks": [
+    {
+      "benchmark_id": "bugsinpy",
+      "domain": "real_software_debugging",
+      "repository": "https://github.com/soarsmu/BugsInPy.git",
+      "commit": "11c5f1eea954a42132cfd06bf257766a7963e0fd",
+      "adapter": "bugsinpy",
+      "execution_state": "RUNNER_IMPLEMENTED",
+      "selection": {
+        "projects": [
+          "ansible",
+          "black",
+          "cookiecutter",
+          "fastapi",
+          "pandas",
+          "scrapy",
+          "tornado",
+          "tqdm"
+        ],
+        "bugs_per_project": 5,
+        "policy": "lexicographically_first_existing_numeric_bug_ids_after_exact_commit_checkout",
+        "minimum_task_count": 40
+      },
+      "primary_outcomes": [
+        "original_failing_tests_fixed",
+        "full_regression_suite_passed",
+        "critical_new_failure_count",
+        "false_completion",
+        "wall_time_seconds",
+        "model_tokens_or_compute",
+        "human_intervention_minutes"
+      ],
+      "secondary_outcomes": [
+        "hidden_or_metamorphic_test_pass_rate",
+        "patch_size",
+        "post_outcome_gold_patch_similarity_diagnostic",
+        "diagnosis_failure_class_accuracy",
+        "selective_reopen_correctness",
+        "stage_receipt_completeness"
+      ]
+    },
+    {
+      "benchmark_id": "causalbench",
+      "domain": "causal_network_inference_from_perturbations",
+      "repository": "https://github.com/causalbench/causalbench.git",
+      "commit": "1a2143cffdc85f835b41ce8d52034be1bf903e71",
+      "adapter": "native_command",
+      "execution_state": "PINNED_REQUIRES_DATA_AND_COMPUTE",
+      "native_commands": [
+        "python -m pip install -e {repo}",
+        "causalbench_run --benchmark --data_directory {data_dir} --output_directory {output_dir} --model_name pc --run_name {run_name} --training_regime observational --fraction_partial_intervention 0.5 --partial_intervention_seed 0 --subset_data 1000"
+      ],
+      "protected_variants": [
+        "held_out_intervention_subset_seed_1701",
+        "gene_label_permutation_seed_1702",
+        "observational_regime",
+        "partial_interventional_regime",
+        "shared_preprocessing_common_cause",
+        "metric_sensitivity_and_oracle_adequacy"
+      ],
+      "primary_outcomes": [
+        "native_benchmark_graph_metrics",
+        "held_out_intervention_generalization",
+        "uncertainty_quality",
+        "false_causal_transport_rate",
+        "critical_false_completion",
+        "compute_and_wall_time"
+      ]
+    },
+    {
+      "benchmark_id": "matbench_discovery",
+      "domain": "materials_discovery_model_selection_and_decision",
+      "repository": "https://github.com/janosh/matbench-discovery.git",
+      "commit": "0ba474661cf615d10987ba9a2acb8132943aa491",
+      "adapter": "native_command",
+      "execution_state": "PINNED_REQUIRES_DATA_AND_COMPUTE",
+      "native_commands": [
+        "python -m pip install -e {repo}",
+        "python -c \"import matbench_discovery; print(matbench_discovery.__version__)\""
+      ],
+      "protected_variants": [
+        "cost_robustness_constraint_seed_2701",
+        "held_out_material_family_seed_2702",
+        "unit_and_identifier_permutation_seed_2703",
+        "changed_resource_budget",
+        "uncertainty_and_false_discovery_control",
+        "evaluator_epoch_shift"
+      ],
+      "primary_outcomes": [
+        "native_discovery_metrics",
+        "false_discovery_rate",
+        "robustness_under_domain_shift",
+        "decision_quality_under_resource_constraint",
+        "critical_false_completion",
+        "compute_and_wall_time"
+      ]
+    }
+  ],
+  "arms": [
+    {"arm_id": "SIMPLE_DIRECT", "description": "Smallest direct control."},
+    {"arm_id": "RETRIEVAL_ONLY", "description": "Retrieval plus direct generation."},
+    {"arm_id": "SAME_MODEL_REFLECTION", "description": "Same-model critique baseline."},
+    {"arm_id": "F0_PARENT_FEDERATION", "description": "Strongest native parent federation."},
+    {"arm_id": "F2_ORION_METABOLIC_FULL", "description": "Full decomposition, recovery, recombination and challenge lifecycle."},
+    {"arm_id": "F2_MINUS_DECOMPOSITION", "description": "Remove decomposition and sorting."},
+    {"arm_id": "F2_MINUS_NATIVE_RECOVERY", "description": "Remove native recovery."},
+    {"arm_id": "F2_MINUS_COUNTERPROBE", "description": "Remove discriminator/falsifier stage."},
+    {"arm_id": "F2_MINUS_SELECTIVE_REOPEN", "description": "Remove selective assimilation/reopening."},
+    {"arm_id": "MACHINE_NATIVE", "description": "Machine-substrate optimized internal strategy with external witness."},
+    {"arm_id": "HUMAN_EXPERT", "description": "Domain expert control."}
+  ],
+  "agent_protocol": {
+    "request_format": "orion.v2.agent-request.v1.json",
+    "response_format": "orion.v2.agent-response.v1.json",
+    "command_environment_prefix": "ORION_ARM_",
+    "command_arguments": ["--request", "{request_path}", "--response", "{response_path}"],
+    "required_response_fields": [
+      "task_id",
+      "arm_id",
+      "status",
+      "proposed_patch_or_artifact",
+      "diagnosis",
+      "source_ids_used",
+      "assumptions",
+      "uncertainty",
+      "discriminator_or_tests",
+      "falsifier",
+      "requested_authority",
+      "resource_receipt"
+    ]
+  },
+  "anti_copy_controls": [
+    "gold_and_fixed_commits_withheld_from_solver",
+    "network_disabled_during_solution_where_feasible",
+    "private_seeded_permutations_generated_after_protocol_freeze",
+    "hidden_regression_or_intervention_tests",
+    "execution_and_native_scientific_outcomes_primary",
+    "gold_similarity_post_outcome_diagnostic_only",
+    "retrieval_sources_content_bound",
+    "retrieval_off_and_no_memory_controls",
+    "surface_template_trap_cases"
+  ],
+  "resource_contract": {
+    "default_wall_time_minutes_per_task": 45,
+    "default_cpu_cores": 4,
+    "default_memory_gb": 16,
+    "default_gpu_count": 0,
+    "minimum_stochastic_repetitions": 3,
+    "model_token_budget_must_be_recorded": true,
+    "human_minutes_must_be_recorded": true,
+    "additional_compute_requires_new_resource_identity": true
+  },
+  "hard_failures": [
+    "scientific_or_test_false_completion",
+    "gold_or_outcome_leakage",
+    "source_identity_fabrication",
+    "unsafe_or_unscoped_transport",
+    "criterion_mutation",
+    "authority_or_custody_violation",
+    "unreported_resource_advantage"
+  ],
+  "analysis_plan": "research/experiments/ORION_REAL_PROBLEM_ANALYSIS_PLAN_V1.md",
+  "expected_artifacts": [
+    "frozen_tasks.json",
+    "baseline/bugsinpy_materialization.json",
+    "requests/{arm_id}/{task_id}.json",
+    "responses/{arm_id}/{task_id}.json",
+    "evaluations/{arm_id}/{task_id}.json",
+    "aggregate/arm_metrics.json",
+    "aggregate/paired_comparisons.json",
+    "aggregate/component_effects.json",
+    "aggregate/resource_pareto.json",
+    "aggregate/failure_ledger.json",
+    "aggregate/paper_claim_updates.json"
+  ],
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_field_status": false,
+    "grants_supertheory_status": false,
+    "grants_publication_readiness": false
+  }
+}
