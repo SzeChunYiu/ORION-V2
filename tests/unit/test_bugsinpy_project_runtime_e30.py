@@ -38,6 +38,50 @@ def offline_cache(tmp_path: Path, filename: str = "pytest-8.0-py3-none-any.whl")
     return cache, manifest
 
 
+FROZEN_LINUX = {
+    "python_version": "3.8.3",
+    "python_implementation": "CPython",
+    "sys_platform": "linux",
+    "platform_system": "Linux",
+    "platform_machine": "x86_64",
+}
+
+
+def write_binding(tmp_path: Path, project: str, **updates):
+    value = {
+        "schema_version": runtime.PROSPECTIVE_BINDING_SCHEMA,
+        "project": project,
+        "dependency_pins": {},
+        "requirement_dispositions": {},
+        "marker_decisions": {},
+        "legacy_build": {},
+    }
+    value.update(updates)
+    path = tmp_path / f"{project}-prospective-binding.json"
+    path.write_text(json.dumps(value), encoding="utf-8")
+    return path
+
+
+def prepare_workspace(tmp_path: Path, requirements: str) -> Path:
+    (tmp_path / "bugsinpy_requirements.txt").write_text(requirements, encoding="utf-8")
+    (tmp_path / "bugsinpy_run_test.sh").write_text("pytest -q\n", encoding="utf-8")
+    python = tmp_path / "python3"
+    python.write_text("", encoding="utf-8")
+    return python
+
+
+def successful_capture(command, **kwargs):
+    if "platform.python_version" in " ".join(command):
+        stdout = json.dumps(FROZEN_LINUX) + "\n"
+    elif "show" in command:
+        package = command[-1]
+        stdout = f"Name: {package}\nVersion: 1.0\n"
+    else:
+        stdout = "ok"
+    return {"command": list(command), "returncode": 0, "stdout_tail": stdout,
+            "stderr_tail": "", "timed_out": False}
+
+
 def test_registry_binds_exact_eight_projects_without_pandas_extension_assumption() -> None:
     registry = runtime.load_registry()
     assert set(registry["projects"]) == runtime.EXPECTED_PROJECTS
@@ -208,6 +252,8 @@ def test_project_binding_receipts_legacy_setup_rewrite(
         "schema_version": runtime.PROSPECTIVE_BINDING_SCHEMA,
         "project": "tornado",
         "dependency_pins": {},
+        "requirement_dispositions": {},
+        "marker_decisions": {},
         "legacy_build": {
             "compiler_compat_cflags": "-Wno-error=implicit-function-declaration",
             "setup_command_rewrites": {
@@ -239,6 +285,152 @@ def test_project_binding_receipts_legacy_setup_rewrite(
         str(tmp_path / ".orion-e30-env/bin/python"),
         "setup.py", "build_ext", "--inplace",
     ]
+
+
+def test_known_self_and_placeholder_dispositions_are_hash_bound(
+    tmp_path: Path, monkeypatch
+) -> None:
+    monkeypatch.setattr(runtime, "_capture", successful_capture)
+    cases = [
+        ("ansible", "ansible-base==2.10.0.dev0",
+         "SKIP_REDUNDANT_SELF_DISTRIBUTION", "FROZEN_WORKSPACE_PROVIDES_DISTRIBUTION"),
+        ("cookiecutter", "pkg-resources==0.0.0",
+         "SKIP_NON_DISTRIBUTION_PLACEHOLDER", "FROZEN_EXPORT_PLACEHOLDER_NOT_DISTRIBUTION"),
+    ]
+    for project, requirement, action, reason in cases:
+        workspace = tmp_path / project
+        workspace.mkdir()
+        python = prepare_workspace(workspace, requirement + "\n")
+        digest = hashlib.sha256(requirement.encode("utf-8")).hexdigest()
+        name, version = requirement.split("==")
+        binding = write_binding(workspace, project, requirement_dispositions={
+            digest: {"name": name, "version": version, "action": action, "reason": reason},
+        })
+        receipt = runtime.compile_workspace(
+            workspace, project=project, project_python=python,
+            prospective_binding_path=binding,
+        )
+        assert receipt["status"] == "PASS"
+        assert receipt["requirement_returncodes"][0]["status"] == action
+        assert receipt["requirement_decisions"][0]["binding_sha256"] == hashlib.sha256(
+            binding.read_bytes()
+        ).hexdigest()
+        assert "offline_cache" not in receipt
+
+
+def test_pywin32_227_platform_disposition_is_linux_only(
+    tmp_path: Path, monkeypatch
+) -> None:
+    requirement = "pywin32==227"
+    python = prepare_workspace(tmp_path, requirement + "\n")
+    digest = hashlib.sha256(requirement.encode("utf-8")).hexdigest()
+    binding = write_binding(tmp_path, "fastapi", requirement_dispositions={
+        digest: {
+            "name": "pywin32", "version": "227",
+            "action": "SKIP_PLATFORM_INAPPLICABLE",
+            "reason": "FROZEN_PLATFORM_EXCLUDES_DISTRIBUTION",
+            "environment": FROZEN_LINUX,
+        },
+    })
+    monkeypatch.setattr(runtime, "_capture", successful_capture)
+    receipt = runtime.compile_workspace(
+        tmp_path, project="fastapi", project_python=python,
+        prospective_binding_path=binding,
+    )
+    assert receipt["status"] == "PASS"
+    assert receipt["requirement_returncodes"][0]["status"] == "SKIP_PLATFORM_INAPPLICABLE"
+    assert receipt["requirement_decisions"][0]["frozen_environment"] == FROZEN_LINUX
+
+    hostile = json.loads(binding.read_text(encoding="utf-8"))
+    hostile["requirement_dispositions"][digest]["environment"] = {
+        **FROZEN_LINUX, "sys_platform": "win32", "platform_system": "Windows",
+    }
+    binding.write_text(json.dumps(hostile), encoding="utf-8")
+    rejected = runtime.compile_workspace(
+        tmp_path, project="fastapi", project_python=python,
+        prospective_binding_path=binding,
+    )
+    assert rejected["status"] == "CANNOT_CHECK_PROSPECTIVE_BINDING_INVALID"
+
+
+def test_marker_include_and_skip_are_frozen_environment_bound(
+    tmp_path: Path, monkeypatch
+) -> None:
+    monkeypatch.setattr(runtime, "_capture", successful_capture)
+    for decision in ("INCLUDE", "SKIP"):
+        workspace = tmp_path / decision.casefold()
+        workspace.mkdir()
+        requirement = "typing-extensions==1.0; python_version < '3.9'"
+        python = prepare_workspace(workspace, requirement + "\n")
+        digest = hashlib.sha256(requirement.encode("utf-8")).hexdigest()
+        binding = write_binding(workspace, "fastapi", marker_decisions={
+            digest: {
+                "name": "typing-extensions", "version": "1.0",
+                "decision": decision, "reason": runtime.MARKER_REASONS[decision],
+                "environment": FROZEN_LINUX,
+            },
+        })
+        kwargs = {}
+        if decision == "INCLUDE":
+            cache, manifest = offline_cache(
+                workspace, "typing_extensions-1.0-py3-none-any.whl"
+            )
+            kwargs = {"offline_cache": cache, "offline_cache_manifest": manifest}
+        receipt = runtime.compile_workspace(
+            workspace, project="fastapi", project_python=python,
+            prospective_binding_path=binding, **kwargs,
+        )
+        assert receipt["status"] == "PASS"
+        assert receipt["requirement_decisions"][0]["decision"] == f"MARKER_{decision}"
+        assert receipt["requirement_decisions"][0]["frozen_environment"] == FROZEN_LINUX
+        if decision == "SKIP":
+            assert receipt["requirement_returncodes"][0]["status"] == "SKIP_MARKER_FALSE"
+            assert "offline_cache" not in receipt
+        else:
+            assert receipt["dependencies"][0]["installed_version"] == "1.0"
+
+
+def test_unbound_marker_and_hostile_dispositions_fail_closed(
+    tmp_path: Path, monkeypatch
+) -> None:
+    monkeypatch.setattr(runtime, "_capture", successful_capture)
+    marker = "typing-extensions==1.0; python_version < '3.9'"
+    python = prepare_workspace(tmp_path, marker + "\n")
+    unbound = runtime.compile_workspace(tmp_path, project="fastapi", project_python=python)
+    assert unbound["status"] == "CANNOT_CHECK_MARKER_DECISION_NOT_BOUND"
+
+    requirement = "ansible-base==2.10.0.dev0"
+    (tmp_path / "bugsinpy_requirements.txt").write_text(requirement + "\n", encoding="utf-8")
+    digest = hashlib.sha256(requirement.encode("utf-8")).hexdigest()
+    for mutation in (
+        {"name": "ansible-base", "version": "2.10.0.dev0", "action": "SKIP_ARBITRARY",
+         "reason": "FROZEN_WORKSPACE_PROVIDES_DISTRIBUTION"},
+        {"name": "ansible-base", "version": "9.9", "action": "SKIP_REDUNDANT_SELF_DISTRIBUTION",
+         "reason": "FROZEN_WORKSPACE_PROVIDES_DISTRIBUTION"},
+        {"name": "donor", "version": "2.10.0.dev0", "action": "SKIP_REDUNDANT_SELF_DISTRIBUTION",
+         "reason": "FROZEN_WORKSPACE_PROVIDES_DISTRIBUTION"},
+    ):
+        binding = write_binding(tmp_path, "ansible", requirement_dispositions={digest: mutation})
+        rejected = runtime.compile_workspace(
+            tmp_path, project="ansible", project_python=python,
+            prospective_binding_path=binding,
+        )
+        assert rejected["status"] == "CANNOT_CHECK_PROSPECTIVE_BINDING_INVALID"
+
+    valid_disposition = {
+        "name": "ansible-base", "version": "2.10.0.dev0",
+        "action": "SKIP_REDUNDANT_SELF_DISTRIBUTION",
+        "reason": "FROZEN_WORKSPACE_PROVIDES_DISTRIBUTION",
+    }
+    wrong_hash = "0" * 64 if digest != "0" * 64 else "1" * 64
+    binding = write_binding(
+        tmp_path, "ansible", requirement_dispositions={wrong_hash: valid_disposition}
+    )
+    rejected = runtime.compile_workspace(
+        tmp_path, project="ansible", project_python=python,
+        prospective_binding_path=binding,
+    )
+    assert rejected["status"] == "CANNOT_CHECK_PROSPECTIVE_BINDING_MISMATCH"
 
 
 def test_utf16_test_support_is_normalized_before_execution(

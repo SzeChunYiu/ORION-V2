@@ -29,7 +29,20 @@ SUPPORT_FILENAMES = frozenset(
 )
 MAX_SUPPORT_FILE_BYTES = 2 * 1024 * 1024
 OFFLINE_CACHE_SCHEMA = "orion.v2.bugsinpy-offline-distribution-cache.v1"
-PROSPECTIVE_BINDING_SCHEMA = "orion.v2.bugsinpy-prospective-runtime-binding.v1"
+PROSPECTIVE_BINDING_SCHEMA = "orion.v2.bugsinpy-prospective-runtime-binding.v2"
+FROZEN_ENVIRONMENT_FIELDS = frozenset(
+    {"python_version", "python_implementation", "sys_platform",
+     "platform_system", "platform_machine"}
+)
+DISPOSITION_REASONS = {
+    "SKIP_REDUNDANT_SELF_DISTRIBUTION": "FROZEN_WORKSPACE_PROVIDES_DISTRIBUTION",
+    "SKIP_NON_DISTRIBUTION_PLACEHOLDER": "FROZEN_EXPORT_PLACEHOLDER_NOT_DISTRIBUTION",
+    "SKIP_PLATFORM_INAPPLICABLE": "FROZEN_PLATFORM_EXCLUDES_DISTRIBUTION",
+}
+MARKER_REASONS = {
+    "INCLUDE": "MARKER_TRUE_FOR_FROZEN_ENVIRONMENT",
+    "SKIP": "MARKER_FALSE_FOR_FROZEN_ENVIRONMENT",
+}
 _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 _NAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
 _VERSION_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._+!-]*$")
@@ -101,6 +114,34 @@ def _read_support_text(path: Path) -> tuple[str, dict[str, Any]]:
 
 def _canonical_name(name: str) -> str:
     return re.sub(r"[-_.]+", "-", name).casefold()
+
+
+def _validate_frozen_environment(value: Any) -> dict[str, str]:
+    if not isinstance(value, dict) or set(value) != FROZEN_ENVIRONMENT_FIELDS:
+        raise RuntimeBindingError("frozen environment must bind every Python/platform field")
+    if not all(isinstance(item, str) and item and re.fullmatch(r"[A-Za-z0-9._-]+", item)
+               for item in value.values()):
+        raise RuntimeBindingError("frozen environment contains an unsafe field value")
+    return dict(value)
+
+
+def _known_disposition(project: str, name: str, version: str, action: str) -> bool:
+    identity = (project, name, version, action)
+    if identity == (
+        "ansible", "ansible-base", "2.10.0.dev0", "SKIP_REDUNDANT_SELF_DISTRIBUTION"
+    ):
+        return True
+    if identity in {
+        ("cookiecutter", "pkg-resources", "0.0.0", "SKIP_NON_DISTRIBUTION_PLACEHOLDER"),
+        ("tqdm", "pkg-resources", "0.0.0", "SKIP_NON_DISTRIBUTION_PLACEHOLDER"),
+    }:
+        return True
+    return (
+        project in EXPECTED_PROJECTS
+        and name == "pywin32"
+        and version == "227"
+        and action == "SKIP_PLATFORM_INAPPLICABLE"
+    )
 
 
 def _dependency_binding(requirement: str) -> dict[str, Any]:
@@ -188,6 +229,11 @@ def _load_prospective_binding(path: Path, project: str) -> dict[str, Any]:
         raise RuntimeBindingError("unexpected prospective-binding schema_version")
     if binding.get("project") != project:
         raise RuntimeBindingError("prospective binding is not for this project")
+    required_maps = {
+        "dependency_pins", "requirement_dispositions", "marker_decisions", "legacy_build"
+    }
+    if not required_maps.issubset(binding):
+        raise RuntimeBindingError("prospective binding must explicitly provide every decision map")
     dependency_pins = binding.get("dependency_pins", {})
     if not isinstance(dependency_pins, dict):
         raise RuntimeBindingError("dependency_pins must be an object")
@@ -198,6 +244,54 @@ def _load_prospective_binding(path: Path, project: str) -> dict[str, Any]:
             raise RuntimeBindingError("dependency pin needs a safe distribution name")
         if not _VERSION_RE.fullmatch(str(pin.get("version", ""))):
             raise RuntimeBindingError("dependency pin needs an exact safe version")
+    dispositions = binding.get("requirement_dispositions", {})
+    if not isinstance(dispositions, dict):
+        raise RuntimeBindingError("requirement_dispositions must be an object")
+    for digest, disposition in dispositions.items():
+        if not isinstance(digest, str) or not _SHA256_RE.fullmatch(digest):
+            raise RuntimeBindingError("requirement disposition key must be a requirement SHA-256")
+        if not isinstance(disposition, dict):
+            raise RuntimeBindingError("requirement disposition must be an object")
+        name = _canonical_name(str(disposition.get("name", "")))
+        version = str(disposition.get("version", ""))
+        action = str(disposition.get("action", ""))
+        reason = str(disposition.get("reason", ""))
+        if not _NAME_RE.fullmatch(str(disposition.get("name", ""))):
+            raise RuntimeBindingError("requirement disposition needs a safe canonical name")
+        if name != disposition.get("name") or not _VERSION_RE.fullmatch(version):
+            raise RuntimeBindingError("requirement disposition name/version is not canonical and exact")
+        if action not in DISPOSITION_REASONS or reason != DISPOSITION_REASONS[action]:
+            raise RuntimeBindingError("requirement disposition action/reason is not allowed")
+        if not _known_disposition(project, name, version, action):
+            raise RuntimeBindingError("requirement disposition is not a known bounded exception")
+        environment = disposition.get("environment")
+        if action == "SKIP_PLATFORM_INAPPLICABLE":
+            frozen = _validate_frozen_environment(environment)
+            if frozen["sys_platform"] != "linux" or frozen["platform_system"] != "Linux":
+                raise RuntimeBindingError("pywin32 platform disposition is Linux-only")
+        elif environment is not None:
+            raise RuntimeBindingError("only platform dispositions may bind an environment")
+    marker_decisions = binding.get("marker_decisions", {})
+    if not isinstance(marker_decisions, dict):
+        raise RuntimeBindingError("marker_decisions must be an object")
+    if set(dispositions) & set(marker_decisions):
+        raise RuntimeBindingError("a requirement cannot have both a disposition and marker decision")
+    for digest, marker in marker_decisions.items():
+        if not isinstance(digest, str) or not _SHA256_RE.fullmatch(digest):
+            raise RuntimeBindingError("marker decision key must be a requirement SHA-256")
+        if not isinstance(marker, dict):
+            raise RuntimeBindingError("marker decision must be an object")
+        name = _canonical_name(str(marker.get("name", "")))
+        version = str(marker.get("version", ""))
+        decision = str(marker.get("decision", ""))
+        reason = str(marker.get("reason", ""))
+        if not _NAME_RE.fullmatch(str(marker.get("name", ""))):
+            raise RuntimeBindingError("marker decision needs a safe canonical name")
+        if name != marker.get("name") or not _VERSION_RE.fullmatch(version):
+            raise RuntimeBindingError("marker decision name/version is not canonical and exact")
+        if decision not in MARKER_REASONS or reason != MARKER_REASONS[decision]:
+            raise RuntimeBindingError("marker decision/reason is not allowed")
+        _validate_frozen_environment(marker.get("environment"))
     legacy = binding.get("legacy_build", {})
     if not isinstance(legacy, dict):
         raise RuntimeBindingError("legacy_build must be an object")
@@ -353,6 +447,28 @@ def _pip_show_identity(output: str) -> tuple[str, str] | None:
     return _canonical_name(name), version
 
 
+def _frozen_environment_command(project_python: Path) -> list[str]:
+    code = (
+        "import json,platform,sys;"
+        "print(json.dumps({"
+        "'python_version':platform.python_version(),"
+        "'python_implementation':platform.python_implementation(),"
+        "'sys_platform':sys.platform,"
+        "'platform_system':platform.system(),"
+        "'platform_machine':platform.machine()}"
+        ",sort_keys=True))"
+    )
+    return [str(project_python), "-c", code]
+
+
+def _parse_frozen_environment(output: str) -> dict[str, str] | None:
+    try:
+        value = json.loads(output.strip().splitlines()[-1])
+        return _validate_frozen_environment(value)
+    except (IndexError, ValueError, RuntimeBindingError):
+        return None
+
+
 def compile_workspace(
     workspace: Path,
     *,
@@ -376,7 +492,8 @@ def compile_workspace(
         "gold_or_fixed_solution_accessed": False,
         "native_extension_count_assumption": "NONE",
         "requirement_returncodes": [], "setup_returncodes": [],
-        "support_files": [], "dependencies": [], "compatibility_interventions": [],
+        "support_files": [], "dependencies": [], "requirement_decisions": [],
+        "compatibility_interventions": [],
     }
 
     def finish(status: str, stage: str) -> dict[str, Any]:
@@ -417,6 +534,8 @@ def compile_workspace(
         receipt["prospective_binding"] = prospective["_receipt"]
 
     legacy = prospective.get("legacy_build", {}) if prospective else {}
+    dispositions = prospective.get("requirement_dispositions", {}) if prospective else {}
+    marker_decisions = prospective.get("marker_decisions", {}) if prospective else {}
     bound_cflags = str(legacy.get("compiler_compat_cflags", ""))
     if compiler_compat_cflags and compiler_compat_cflags != bound_cflags:
         receipt["unbound_compiler_compat_cflags_sha256"] = hashlib.sha256(
@@ -436,7 +555,30 @@ def compile_workspace(
         requirement = raw.strip()
         if requirement and not requirement.startswith("#"):
             requirement_lines.append(requirement)
-    needs_cache = any(_requirement_kind(line, project) == "INSTALL" for line in requirement_lines)
+    requirement_hashes = {
+        hashlib.sha256(line.encode("utf-8")).hexdigest(): line
+        for line in requirement_lines
+    }
+    unused_decisions = (set(dispositions) | set(marker_decisions)) - set(requirement_hashes)
+    if unused_decisions:
+        receipt["unused_requirement_decision_sha256"] = sorted(unused_decisions)
+        return finish("CANNOT_CHECK_PROSPECTIVE_BINDING_MISMATCH", "preflight")
+    for digest, line in requirement_hashes.items():
+        has_marker = bool(line.partition(";")[1])
+        if digest in marker_decisions and not has_marker:
+            return finish("CANNOT_CHECK_MARKER_DECISION_MISMATCH", "preflight")
+        if has_marker and digest not in marker_decisions and digest not in dispositions:
+            return finish("CANNOT_CHECK_MARKER_DECISION_NOT_BOUND", "preflight")
+    needs_cache = False
+    for line in requirement_lines:
+        digest = hashlib.sha256(line.encode("utf-8")).hexdigest()
+        if _requirement_kind(line, project) != "INSTALL" or digest in dispositions:
+            continue
+        marker = marker_decisions.get(digest)
+        if marker and marker.get("decision") == "SKIP":
+            continue
+        needs_cache = True
+        break
     cache_receipt: dict[str, Any] | None = None
     if needs_cache:
         if offline_cache is None or offline_cache_manifest is None:
@@ -464,6 +606,24 @@ def compile_workspace(
     receipt["compiler_version"] = compiler_probe
     if python_probe["returncode"] != 0 or compiler_probe["returncode"] != 0:
         return finish("CANNOT_CHECK_TOOLCHAIN_PREFLIGHT", "preflight")
+    frozen_environment: dict[str, str] | None = None
+    needs_frozen_environment = bool(marker_decisions) or any(
+        item.get("action") == "SKIP_PLATFORM_INAPPLICABLE"
+        for item in dispositions.values()
+    )
+    if needs_frozen_environment:
+        frozen_probe = _capture(
+            _frozen_environment_command(project_python), cwd=workspace,
+            env=base_env, timeout=60,
+        )
+        frozen_environment = (
+            _parse_frozen_environment(frozen_probe["stdout_tail"])
+            if frozen_probe["returncode"] == 0 else None
+        )
+        receipt["frozen_environment_probe_returncode"] = frozen_probe["returncode"]
+        if frozen_environment is None:
+            return finish("CANNOT_CHECK_FROZEN_ENVIRONMENT_PROBE", "preflight")
+        receipt["frozen_environment"] = frozen_environment
 
     environment_dir = workspace / ".orion-e30-env"
     if environment_dir.exists():
@@ -504,9 +664,6 @@ def compile_workspace(
                 "reason": str(exc),
             })
             return finish("CANNOT_CHECK_UNSAFE_OR_UNPINNED_REQUIREMENT", "install_requirements")
-        if dependency["marker_present"]:
-            receipt["dependencies"].append({**dependency, "requirement_sha256": digest})
-            return finish("CANNOT_CHECK_REQUIREMENT_MARKER_UNSUPPORTED", "install_requirements")
         pin = prospective.get("dependency_pins", {}).get(digest) if prospective else None
         if dependency["requested_version"] is None:
             if not pin:
@@ -523,6 +680,63 @@ def compile_workspace(
                 or str(pin["version"]) != dependency["requested_version"]
             ):
                 return finish("CANNOT_CHECK_PROSPECTIVE_BINDING_MISMATCH", "install_requirements")
+        disposition = dispositions.get(digest)
+        if disposition:
+            if (dependency["name"] != disposition["name"]
+                    or dependency["requested_version"] != disposition["version"]):
+                return finish("CANNOT_CHECK_REQUIREMENT_DISPOSITION_MISMATCH", "install_requirements")
+            if disposition["action"] == "SKIP_PLATFORM_INAPPLICABLE":
+                if frozen_environment != disposition["environment"]:
+                    return finish(
+                        "CANNOT_CHECK_REQUIREMENT_DISPOSITION_ENVIRONMENT_MISMATCH",
+                        "install_requirements",
+                    )
+            decision_receipt = {
+                "requirement_sha256": digest,
+                "name": dependency["name"],
+                "version": dependency["requested_version"],
+                "decision": disposition["action"],
+                "reason": disposition["reason"],
+                "binding_sha256": prospective["_receipt"]["sha256"],
+            }
+            if disposition["action"] == "SKIP_PLATFORM_INAPPLICABLE":
+                decision_receipt["frozen_environment"] = frozen_environment
+            receipt["requirement_decisions"].append(decision_receipt)
+            receipt["requirement_returncodes"].append({
+                "sha256": digest, "name": dependency["name"],
+                "requested_version": dependency["requested_version"],
+                "status": disposition["action"], "reason": disposition["reason"],
+                "binding_sha256": prospective["_receipt"]["sha256"],
+                "returncode": None,
+            })
+            continue
+        if dependency["marker_present"]:
+            marker = marker_decisions.get(digest)
+            if marker is None:
+                receipt["dependencies"].append({**dependency, "requirement_sha256": digest})
+                return finish("CANNOT_CHECK_MARKER_DECISION_NOT_BOUND", "install_requirements")
+            if (dependency["name"] != marker["name"]
+                    or dependency["requested_version"] != marker["version"]):
+                return finish("CANNOT_CHECK_MARKER_DECISION_MISMATCH", "install_requirements")
+            if frozen_environment != marker["environment"]:
+                return finish("CANNOT_CHECK_MARKER_ENVIRONMENT_MISMATCH", "install_requirements")
+            marker_receipt = {
+                "requirement_sha256": digest,
+                "name": dependency["name"], "version": dependency["requested_version"],
+                "decision": f"MARKER_{marker['decision']}", "reason": marker["reason"],
+                "frozen_environment": frozen_environment,
+                "binding_sha256": prospective["_receipt"]["sha256"],
+            }
+            receipt["requirement_decisions"].append(marker_receipt)
+            if marker["decision"] == "SKIP":
+                receipt["requirement_returncodes"].append({
+                    "sha256": digest, "name": dependency["name"],
+                    "requested_version": dependency["requested_version"],
+                    "status": "SKIP_MARKER_FALSE", "reason": marker["reason"],
+                    "binding_sha256": prospective["_receipt"]["sha256"],
+                    "returncode": None,
+                })
+                continue
         dependency["requirement_sha256"] = digest
         receipt["dependencies"].append(dependency)
         extras = f"[{','.join(dependency['extras'])}]" if dependency["extras"] else ""
