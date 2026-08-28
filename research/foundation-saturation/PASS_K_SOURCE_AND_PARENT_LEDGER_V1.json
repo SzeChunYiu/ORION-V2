@@ -1,0 +1,72 @@
+{
+  "schema_version": "orion.v2.pass-k-source-parent-ledger.v1",
+  "pass_id": "K_ADVERSARIAL_SECURITY_PRIVACY_EPISTEMIC_INTEGRITY",
+  "status": "MATERIAL_PARENT_RECONSTRUCTION",
+  "groups": [
+    {
+      "id": "K1_ADVERSARIAL_ML",
+      "candidate_object": "AdversarialEpistemicIntegrityReceipt",
+      "owners": ["computer security", "adversarial machine learning", "threat modelling"],
+      "anchors": [
+        {"citation":"Barreno et al., The Security of Machine Learning, Machine Learning 81 (2010)","role":"security taxonomy and attack surface"},
+        {"citation":"Biggio, Nelson & Laskov, Poisoning Attacks against Support Vector Machines, ICML 2012","role":"strategic training-data manipulation"},
+        {"citation":"NIST AI 100-2 E2025, Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations","doi":"10.6028/NIST.AI.100-2e2025","role":"current lifecycle/goal/capability taxonomy"}
+      ],
+      "dependence":"NIST taxonomy synthesizes the adversarial-ML literature and is not independent evidence of each attack's empirical prevalence.",
+      "disposition":"NEW_BROAD_FAMILY_F22__NO_KERNEL_FAMILY"
+    },
+    {
+      "id": "K2_AGENT_PROMPT_INJECTION",
+      "candidate_object": "InstructionDataBoundaryReceipt",
+      "owners": ["LLM/agent security", "confused-deputy and capability security", "causal action attribution"],
+      "anchors": [
+        {"citation":"Greshake et al., Not What You've Signed Up For, arXiv:2302.12173","role":"indirect prompt-injection taxonomy and real-system demonstrations"},
+        {"citation":"Zhan et al., InjecAgent, arXiv:2403.02691","role":"tool-integrated-agent benchmark"},
+        {"citation":"Yi et al., Benchmarking and Defending Against Indirect Prompt Injection, arXiv:2312.14197","role":"benchmark and instruction/context distinction"}
+      ],
+      "dependence":"Benchmarks share modern tool-integrated LLM assumptions; they do not prove universal vulnerability rates across architectures.",
+      "disposition":"K0_K3_K4_SPECIALIZATION_PARENT_OWNED"
+    },
+    {
+      "id": "K3_SECURE_SUPPLY_CHAIN",
+      "candidate_object": "ResearchSupplyChainReceipt",
+      "owners": ["secure software development", "software/model supply-chain security", "attestation and incident response"],
+      "anchors": [
+        {"citation":"NIST SP 800-218, Secure Software Development Framework 1.1","doi":"10.6028/NIST.SP.800-218","role":"general secure-development lifecycle"},
+        {"citation":"NIST SP 800-218A, Secure Software Development Practices for Generative AI and Dual-Use Foundation Models","doi":"10.6028/NIST.SP.800-218A","role":"AI-specific development/acquisition practices"}
+      ],
+      "dependence":"NIST guidance is authoritative risk-management practice, not empirical proof that compliance eliminates compromise.",
+      "disposition":"PARENT_ADAPTER_AND_INCIDENT_REOPENING_PRESSURE"
+    },
+    {
+      "id": "K4_PRIVACY_SCIENTIFIC_VALIDITY",
+      "candidate_object": "PrivacyScientificValidityReceipt",
+      "owners": ["differential privacy", "statistical disclosure control", "privacy-preserving learning"],
+      "anchors": [
+        {"citation":"Dwork, McSherry, Nissim & Smith, Calibrating Noise to Sensitivity in Private Data Analysis, TCC 2006","role":"differential-privacy sensitivity mechanism"},
+        {"citation":"Allouah et al., On the Privacy-Robustness-Utility Trilemma in Distributed Learning, ICML 2023","role":"fundamental distributed trade-off"},
+        {"citation":"Kairouz et al., Practical and Private Deep Learning Without Sampling or Shuffling, ICML 2021","role":"implementation/utility parent"}
+      ],
+      "dependence":"Theoretical guarantees are mechanism- and adjacency-specific; empirical utility results are task- and implementation-dependent.",
+      "disposition":"F12_F16_F19_F20_F22_PARENT_PRESSURE"
+    },
+    {
+      "id": "K5_SECURITY_SCIENCE_TENSION",
+      "owners": ["security assurance", "resilience engineering", "open science and reproducibility"],
+      "anchors": [
+        {"citation":"NIST SP 800-218A","role":"security lifecycle and acquisition"},
+        {"citation":"NIST AI 100-2 E2025","role":"adaptive attack and mitigation limitations"}
+      ],
+      "dependence":"Security standards and taxonomies establish control surfaces but do not determine the scientific cost/benefit of each restriction.",
+      "disposition":"COMPONENT_VALUE_AND_PARETO_BENCHMARK"
+    }
+  ],
+  "authority": {
+    "new_broad_family": "F22",
+    "new_kernel_family": false,
+    "new_foundation_law": false,
+    "new_paper_identity": false,
+    "field_authority": false
+  },
+  "terminal": "MATERIAL_PASS_RESETS_COUNTER_TO_ZERO"
+}
