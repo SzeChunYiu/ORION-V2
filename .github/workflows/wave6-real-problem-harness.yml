@@ -8,18 +8,40 @@ on:
       - "src/orion_v2/knowledge_metabolism.py"
       - "scripts/run_orion_real_problem_suite.py"
       - "scripts/materialize_orion_solver_workspaces.py"
+      - "scripts/validate_orion_agent_responses.py"
+      - "scripts/evaluate_orion_real_problem_responses_v2.py"
+      - "scripts/analyze_orion_real_problem_results.py"
+      - "scripts/update_paper_claims_from_real_results.py"
       - "research/experiments/ORION_REAL_PROBLEM_SUITE_V1.json"
+      - "research/experiments/ORION_REAL_PROBLEM_CONFIRMATORY_SUITE_V1.json"
+      - "research/experiments/ORION_REAL_PROBLEM_ANALYSIS_PLAN_V1.md"
+      - "research/experiments/EXECUTION_BACKLOG_V1.json"
+      - "research/experiments/AI_SESSION_EXECUTION_MASTER_HANDOFF_V3.md"
+      - "papers/verification/KNOWLEDGE_METABOLISM_CLAIM_EXPERIMENT_LEDGER_V1.json"
       - "tests/unit/test_knowledge_metabolism_wave6.py"
       - "tests/unit/test_real_problem_suite_runner_wave6.py"
+      - "tests/unit/test_real_problem_evaluator_analysis_wave6.py"
+      - "tests/unit/test_real_problem_claim_update_wave6.py"
       - ".github/workflows/wave6-real-problem-harness.yml"
   pull_request:
     paths:
       - "src/orion_v2/knowledge_metabolism.py"
       - "scripts/run_orion_real_problem_suite.py"
       - "scripts/materialize_orion_solver_workspaces.py"
+      - "scripts/validate_orion_agent_responses.py"
+      - "scripts/evaluate_orion_real_problem_responses_v2.py"
+      - "scripts/analyze_orion_real_problem_results.py"
+      - "scripts/update_paper_claims_from_real_results.py"
       - "research/experiments/ORION_REAL_PROBLEM_SUITE_V1.json"
+      - "research/experiments/ORION_REAL_PROBLEM_CONFIRMATORY_SUITE_V1.json"
+      - "research/experiments/ORION_REAL_PROBLEM_ANALYSIS_PLAN_V1.md"
+      - "research/experiments/EXECUTION_BACKLOG_V1.json"
+      - "research/experiments/AI_SESSION_EXECUTION_MASTER_HANDOFF_V3.md"
+      - "papers/verification/KNOWLEDGE_METABOLISM_CLAIM_EXPERIMENT_LEDGER_V1.json"
       - "tests/unit/test_knowledge_metabolism_wave6.py"
       - "tests/unit/test_real_problem_suite_runner_wave6.py"
+      - "tests/unit/test_real_problem_evaluator_analysis_wave6.py"
+      - "tests/unit/test_real_problem_claim_update_wave6.py"
       - ".github/workflows/wave6-real-problem-harness.yml"
   workflow_dispatch:
 
@@ -42,53 +64,62 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -e . pytest
 
-      - name: Compile lifecycle and runners
+      - name: Compile lifecycle, execution and claim tools
         run: |
           python -m py_compile src/orion_v2/knowledge_metabolism.py
           python -m py_compile scripts/run_orion_real_problem_suite.py
           python -m py_compile scripts/materialize_orion_solver_workspaces.py
+          python -m py_compile scripts/validate_orion_agent_responses.py
+          python -m py_compile scripts/evaluate_orion_real_problem_responses_v2.py
+          python -m py_compile scripts/analyze_orion_real_problem_results.py
+          python -m py_compile scripts/update_paper_claims_from_real_results.py
 
-      - name: Run focused reference tests
+      - name: Run focused reference, evaluator, analysis and claim tests
         run: |
           python -m pytest -q \
             tests/unit/test_knowledge_metabolism_wave6.py \
-            tests/unit/test_real_problem_suite_runner_wave6.py
+            tests/unit/test_real_problem_suite_runner_wave6.py \
+            tests/unit/test_real_problem_evaluator_analysis_wave6.py \
+            tests/unit/test_real_problem_claim_update_wave6.py
 
-      - name: Validate frozen real-problem manifest
+      - name: Validate pilot and confirmatory manifests
         run: |
           python scripts/run_orion_real_problem_suite.py validate
+          python scripts/run_orion_real_problem_suite.py \
+            --manifest research/experiments/ORION_REAL_PROBLEM_CONFIRMATORY_SUITE_V1.json \
+            validate
 
-      - name: Enforce non-authorizing experiment state
+      - name: Validate execution backlog and non-authorizing state
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
 
-          registry = json.loads(
-              Path("research/experiments/ORION_REAL_PROBLEM_SUITE_V1.json").read_text()
-          )
-          assert registry["status"] == "PROSPECTIVE_PROTOCOL_NO_RESULTS"
-          assert all(value is False for value in registry["authority"].values())
-          assert "F2_ORION_METABOLIC_FULL" in {
-              item["arm_id"] for item in registry["arms"]
+          backlog = json.loads(Path("research/experiments/EXECUTION_BACKLOG_V1.json").read_text())
+          assert backlog["status"] == "READY_FOR_AI_SESSION_EXECUTION"
+          assert len(backlog["tasks"]) >= 10
+          assert len({item["id"] for item in backlog["tasks"]}) == len(backlog["tasks"])
+          assert all(value is False for value in backlog["authority"].values())
+
+          pilot = json.loads(Path("research/experiments/ORION_REAL_PROBLEM_SUITE_V1.json").read_text())
+          confirm = json.loads(Path("research/experiments/ORION_REAL_PROBLEM_CONFIRMATORY_SUITE_V1.json").read_text())
+          assert pilot["status"] == "PROSPECTIVE_PROTOCOL_NO_RESULTS"
+          assert confirm["status"] == "PROSPECTIVE_CONFIRMATORY_PROTOCOL_NO_RESULTS"
+          assert all(value is False for value in pilot["authority"].values())
+          assert all(value is False for value in confirm["authority"].values())
+          assert {"bugsinpy", "causalbench", "matbench_discovery"} <= {
+              item["benchmark_id"] for item in confirm["benchmarks"]
           }
-          assert {
-              "bugsinpy",
-              "causalbench",
-              "matbench_discovery",
-          } <= {item["benchmark_id"] for item in registry["benchmarks"]}
           PY
 
-      - name: Assert no result or publication promotion
+      - name: Assert evidence-bound claim promotion only
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
 
           ledger = json.loads(
-              Path(
-                  "papers/verification/KNOWLEDGE_METABOLISM_CLAIM_EXPERIMENT_LEDGER_V1.json"
-              ).read_text()
+              Path("papers/verification/KNOWLEDGE_METABOLISM_CLAIM_EXPERIMENT_LEDGER_V1.json").read_text()
           )
           assert ledger["status"] == "OPEN_NO_PROTECTED_RESULTS"
           assert all(value is False for value in ledger["authority"].values())

@@ -1,0 +1,210 @@
+{
+  "schema_version": "orion.v2.execution-backlog.v1",
+  "branch": "research/wave6-contraction-closure-20260827",
+  "status": "READY_FOR_AI_SESSION_EXECUTION",
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_field_status": false,
+    "grants_superiority": false,
+    "grants_submission_readiness": false
+  },
+  "global_rules": [
+    "freeze run, model, dataset, evaluator and resource identities before substantive outcome access",
+    "do not inspect gold/fixed solutions from solver arms",
+    "do not redesign endpoints after outcomes except under a new run identity for documented infrastructure defects",
+    "missing credentials/data/reviewer access becomes CANNOT_CHECK",
+    "retain parent wins, simple-control wins, negative results, invalid tasks and timeouts",
+    "automatic manuscript editing from experimental outputs is forbidden"
+  ],
+  "tasks": [
+    {
+      "id": "E00",
+      "title": "preflight and exact execution identity",
+      "priority": 0,
+      "type": "local_compute",
+      "dependencies": [],
+      "runnable_now": true,
+      "commands": [
+        "python -m pip install -e . pytest",
+        "python -m pytest -q tests/unit/test_knowledge_metabolism_wave6.py tests/unit/test_real_problem_suite_runner_wave6.py tests/unit/test_real_problem_evaluator_analysis_wave6.py tests/unit/test_real_problem_claim_update_wave6.py",
+        "python scripts/run_orion_real_problem_suite.py validate",
+        "python scripts/run_orion_real_problem_suite.py --manifest research/experiments/ORION_REAL_PROBLEM_CONFIRMATORY_SUITE_V1.json validate"
+      ],
+      "expected_artifacts": ["RUN_IDENTITY.json", "ENVIRONMENT_AND_MODEL_BINDINGS.json"],
+      "paper_targets": [],
+      "done_when": "all local validation is green or defects are recorded under a new run identity"
+    },
+    {
+      "id": "E10",
+      "title": "bind automated experimental arms",
+      "priority": 1,
+      "type": "model_integration",
+      "dependencies": ["E00"],
+      "runnable_now": false,
+      "external_requirements": ["model/provider executables or interactive AI sessions"],
+      "expected_artifacts": ["ENVIRONMENT_AND_MODEL_BINDINGS.json"],
+      "paper_targets": ["P-C", "P-D", "P-F"],
+      "done_when": "SIMPLE_DIRECT, SAME_MODEL_REFLECTION, F0 and F2_FULL are bound; missing secondary arms explicitly CANNOT_CHECK"
+    },
+    {
+      "id": "E20",
+      "title": "T1 three-task BugsInPy execution pilot",
+      "priority": 2,
+      "type": "benchmark_execution",
+      "dependencies": ["E10"],
+      "runnable_now": true,
+      "commands": ["bash scripts/run_orion_bugsinpy_pilot.sh"],
+      "expected_artifacts": ["frozen_tasks.json", "responses/*", "evaluations/*", "aggregate/*"],
+      "paper_targets": ["P-C", "P-D", "P-G-KM"],
+      "claim_limit": "infrastructure evidence only",
+      "done_when": "pilot infrastructure and native evaluator operate end to end"
+    },
+    {
+      "id": "E30",
+      "title": "T2 40-task eight-project BugsInPy confirmatory run",
+      "priority": 3,
+      "type": "benchmark_execution",
+      "dependencies": ["E20"],
+      "runnable_now": true,
+      "external_requirements": ["bound model arms", "compute budget"],
+      "expected_artifacts": ["aggregate/arm_metrics.json", "aggregate/paired_comparisons.json", "aggregate/failure_ledger.json", "aggregate/resource_pareto.json"],
+      "paper_targets": ["P-C", "P-D", "P-G-KM"],
+      "done_when": "minimum 40 valid paired tasks and required stochastic repetitions are frozen or shortfall is reported as underpowered"
+    },
+    {
+      "id": "E40",
+      "title": "T3a CausalBench cross-domain execution",
+      "priority": 4,
+      "type": "scientific_compute",
+      "dependencies": ["E20"],
+      "runnable_now": false,
+      "external_requirements": ["CausalBench dataset", "exact licence/checksum", "compute", "native-domain adjudicator"],
+      "pinned_commit": "1a2143cffdc85f835b41ce8d52034be1bf903e71",
+      "paper_targets": ["P-B", "P-C", "P-D", "P-F", "FLAGSHIP"],
+      "done_when": "F0 and F2 share native causal algorithms/data and held-out/permuted variants are independently scored"
+    },
+    {
+      "id": "E50",
+      "title": "T3b Matbench Discovery cross-domain execution",
+      "priority": 5,
+      "type": "scientific_compute",
+      "dependencies": ["E20"],
+      "runnable_now": false,
+      "external_requirements": ["Matbench data/models", "compute", "native materials adjudicator"],
+      "pinned_commit": "0ba474661cf615d10987ba9a2acb8132943aa491",
+      "paper_targets": ["P-B", "P-C", "P-D", "P-F", "FLAGSHIP"],
+      "done_when": "resource/uncertainty/domain-shift decision variants are scored under matched native models"
+    },
+    {
+      "id": "E60",
+      "title": "component ablation and drag analysis",
+      "priority": 6,
+      "type": "causal_ablation",
+      "dependencies": ["E30"],
+      "runnable_now": true,
+      "arms": ["F2_MINUS_DECOMPOSITION", "F2_MINUS_NATIVE_RECOVERY", "F2_MINUS_COUNTERPROBE", "F2_MINUS_SELECTIVE_REOPEN"],
+      "expected_artifacts": ["aggregate/component_effects.json", "aggregate/resource_pareto.json"],
+      "paper_targets": ["P-C", "P-D", "P-F", "FLAGSHIP"],
+      "done_when": "each component is classified NECESSARY, PARENT_REPLACEABLE, CONTEXTUAL, REDUNDANT_DRAG, HARMFUL or CANNOT_CHECK"
+    },
+    {
+      "id": "E70",
+      "title": "anti-memorization and counterfactual controls",
+      "priority": 7,
+      "type": "robustness_execution",
+      "dependencies": ["E30"],
+      "runnable_now": true,
+      "controls": ["retrieval_off", "network_off_where_feasible", "identifier_label_unit_permutations", "hidden_tests", "dynamic_counterfactuals", "surface_template_traps"],
+      "paper_targets": ["P-C", "P-F", "P-G-KM"],
+      "done_when": "active-solving evidence is reported without claiming proof of training-data absence"
+    },
+    {
+      "id": "E80",
+      "title": "P-A hidden remote-parent benchmark",
+      "priority": 8,
+      "type": "paper_specific_experiment",
+      "dependencies": ["E00"],
+      "runnable_now": false,
+      "external_requirements": ["held-out remote-domain corpus", "expert donor-card replication", "strongest retrieval/analogy/LBD/MDL baselines"],
+      "paper_targets": ["P-A"],
+      "done_when": "remote-parent recall and false-analogy/native-fidelity jointly improve or the paper contracts"
+    },
+    {
+      "id": "E90",
+      "title": "P-B formal relation result and two naturalistic cases",
+      "priority": 9,
+      "type": "formal_and_domain_execution",
+      "dependencies": ["E00"],
+      "runnable_now": false,
+      "external_requirements": ["formal proof/countermodel work", "two native-domain representation changes", "domain reviewers"],
+      "paper_targets": ["P-B"],
+      "done_when": "a nontrivial theorem/obstruction plus two decision-changing naturalistic cases are frozen or the paper contracts"
+    },
+    {
+      "id": "E100",
+      "title": "P-D blinded dependence/evaluator study",
+      "priority": 10,
+      "type": "human_and_compute_experiment",
+      "dependencies": ["E30"],
+      "runnable_now": false,
+      "external_requirements": ["independent blinded adjudicators", "assurance/argumentation F0 implementation"],
+      "paper_targets": ["P-D"],
+      "done_when": "false corroboration/authority gains preserve genuine independent support and beat F0"
+    },
+    {
+      "id": "E110",
+      "title": "P-E prospective opportunity cohort",
+      "priority": 11,
+      "type": "longitudinal_experiment",
+      "dependencies": ["E00"],
+      "runnable_now": false,
+      "external_requirements": ["genuine prospective or valid time-sliced cohort", "later outcome follow-up", "independent queue adjudication"],
+      "paper_targets": ["P-E"],
+      "done_when": "incremental future value over P-C/F0 is established; otherwise merge into P-C"
+    },
+    {
+      "id": "E120",
+      "title": "P-F predeclared machine-native mechanism experiment",
+      "priority": 12,
+      "type": "mechanism_experiment",
+      "dependencies": ["E40", "E50"],
+      "runnable_now": false,
+      "external_requirements": ["frozen machine-native mechanism", "matched-compute baselines", "external witness adjudication"],
+      "paper_targets": ["P-F"],
+      "done_when": "matched-compute causal gain with witness sufficiency and second-domain transfer survives"
+    },
+    {
+      "id": "E130",
+      "title": "V1-V2 parity execution",
+      "priority": 13,
+      "type": "protected_parity",
+      "dependencies": ["E00"],
+      "runnable_now": false,
+      "external_requirements": ["PARITY-C/D independent semantic reviewer custody under issue #8", "strongest parent configuration binding"],
+      "paper_targets": ["P-C", "FLAGSHIP"],
+      "done_when": "frozen parity campaigns execute without critical V1 capability regression"
+    },
+    {
+      "id": "E140",
+      "title": "claim-state update and R3 paper freeze",
+      "priority": 14,
+      "type": "analysis_and_governance",
+      "dependencies": ["E30", "E60"],
+      "runnable_now": true,
+      "commands": ["python scripts/update_paper_claims_from_real_results.py --workdir $ORION_WORKDIR"],
+      "paper_targets": ["P-A", "P-B", "P-C", "P-D", "P-E", "P-F", "P-G-KM", "FLAGSHIP"],
+      "done_when": "claim proposals are evidence-bound, manuscripts remain unedited automatically, and R3 candidates are identified"
+    },
+    {
+      "id": "E150",
+      "title": "external field demarcation and hostile editorial review",
+      "priority": 15,
+      "type": "independent_review",
+      "dependencies": ["E40", "E50", "E140"],
+      "runnable_now": false,
+      "external_requirements": ["independent parent-field reviewers under issue #38"],
+      "paper_targets": ["FLAGSHIP"],
+      "done_when": "external reviewers return reproducible field/integration/domain-federation dispositions"
+    }
+  ]
+}
