@@ -11,6 +11,7 @@ on:
       - "scripts/run_orion_agent_in_container.py"
       - "scripts/audit_orion_diff_interface.py"
       - "scripts/run_orion_generated_composition_suite.py"
+      - "scripts/dispatch_orion_gc1_blinded.py"
       - "scripts/run_orion_generated_composition_pilot.sh"
       - "scripts/materialize_orion_solver_workspaces.py"
       - "scripts/validate_orion_agent_responses.py"
@@ -41,6 +42,7 @@ on:
       - "scripts/run_orion_agent_in_container.py"
       - "scripts/audit_orion_diff_interface.py"
       - "scripts/run_orion_generated_composition_suite.py"
+      - "scripts/dispatch_orion_gc1_blinded.py"
       - "scripts/run_orion_generated_composition_pilot.sh"
       - "scripts/materialize_orion_solver_workspaces.py"
       - "scripts/validate_orion_agent_responses.py"
@@ -92,6 +94,7 @@ jobs:
           python -m py_compile scripts/run_orion_agent_in_container.py
           python -m py_compile scripts/audit_orion_diff_interface.py
           python -m py_compile scripts/run_orion_generated_composition_suite.py
+          python -m py_compile scripts/dispatch_orion_gc1_blinded.py
           python -m py_compile scripts/materialize_orion_solver_workspaces.py
           python -m py_compile scripts/validate_orion_agent_responses.py
           python -m py_compile scripts/evaluate_orion_real_problem_responses_v2.py
