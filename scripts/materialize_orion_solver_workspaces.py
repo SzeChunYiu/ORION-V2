@@ -59,6 +59,27 @@ def run(command: list[str], *, cwd: Path | None = None, timeout: int = 2700) -> 
     )
 
 
+def run_native_relevant_test(workspace: Path, *, timeout: int) -> subprocess.CompletedProcess[str]:
+    environment = os.environ.copy()
+    env_bin = workspace / "env" / ("Scripts" if os.name == "nt" else "bin")
+    environment["PATH"] = str(env_bin) + os.pathsep + environment.get("PATH", "")
+    environment["VIRTUAL_ENV"] = str(workspace / "env")
+    return subprocess.run(
+        ["bash", "bugsinpy_run_test.sh"], cwd=str(workspace), env=environment,
+        text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+        timeout=timeout, check=False,
+    )
+
+
+def test_infrastructure_error(result: subprocess.CompletedProcess[str]) -> bool:
+    combined = (result.stdout + "\n" + result.stderr).casefold()
+    return any(marker in combined for marker in (
+        "modulenotfounderror", "importerror while loading conftest",
+        "unable to import required dependencies", "command not found",
+        "no module named", "could not find a version that satisfies",
+    ))
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--workdir", type=Path, default=Path(".orion-real-problem-suite"))
@@ -141,12 +162,14 @@ def main(argv: list[str] | None = None) -> int:
             compile_result = run([str(compile_command)], cwd=project_workspace, timeout=args.timeout_seconds)
             test_result = None
             if compile_result.returncode == 0:
-                test_result = run([str(test_command)], cwd=project_workspace, timeout=args.timeout_seconds)
+                test_result = run_native_relevant_test(project_workspace, timeout=args.timeout_seconds)
+            infrastructure_error = bool(test_result and test_infrastructure_error(test_result))
             baseline.update(
                 {
                     "compile_returncode": compile_result.returncode,
                     "test_returncode": test_result.returncode if test_result else None,
-                    "bug_reproduced": bool(test_result and test_result.returncode != 0),
+                    "bug_reproduced": bool(test_result and test_result.returncode != 0 and not infrastructure_error),
+                    "test_infrastructure_error": infrastructure_error,
                     "stdout_tail": test_result.stdout[-3000:] if test_result else "",
                     "stderr_tail": (
                         test_result.stderr[-3000:]
@@ -159,6 +182,7 @@ def main(argv: list[str] | None = None) -> int:
                 "compile_returncode": baseline["compile_returncode"],
                 "test_returncode": baseline["test_returncode"],
                 "bug_reproduced": baseline["bug_reproduced"],
+                "test_infrastructure_error": baseline["test_infrastructure_error"],
                 "stdout_tail": baseline["stdout_tail"],
                 "stderr_tail": baseline["stderr_tail"],
                 "gold_or_fixed_solution_included": False,

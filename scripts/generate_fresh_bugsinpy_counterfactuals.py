@@ -90,6 +90,18 @@ def run(
     )
 
 
+def run_native_relevant_test(workspace: Path, *, timeout: int) -> subprocess.CompletedProcess[str]:
+    environment = os.environ.copy()
+    env_bin = workspace / ("env/Scripts" if os.name == "nt" else "env/bin")
+    environment["PATH"] = str(env_bin) + os.pathsep + environment.get("PATH", "")
+    environment["VIRTUAL_ENV"] = str(workspace / "env")
+    return subprocess.run(
+        ["bash", "bugsinpy_run_test.sh"], cwd=str(workspace), env=environment,
+        text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+        timeout=timeout, check=False,
+    )
+
+
 def venv_bin(venv: Path, name: str) -> Path:
     directory = "Scripts" if os.name == "nt" else "bin"
     suffix = ".cmd" if os.name == "nt" else ""
@@ -245,7 +257,7 @@ def generate(
         if not project_workspace.is_dir():
             continue
         compile_result = run([str(compile_command)], cwd=project_workspace, timeout=timeout_seconds)
-        baseline = run([str(test_command)], cwd=project_workspace, timeout=timeout_seconds) if compile_result.returncode == 0 else None
+        baseline = run_native_relevant_test(project_workspace, timeout=timeout_seconds) if compile_result.returncode == 0 else None
         if compile_result.returncode != 0 or baseline is None or baseline.returncode != 0:
             continue
 
@@ -265,7 +277,7 @@ def generate(
             except (OSError, SyntaxError, tokenize.TokenError, IndentationError):
                 continue
             compile_mutation = run([str(compile_command)], cwd=project_workspace, timeout=timeout_seconds)
-            test_mutation = run([str(test_command)], cwd=project_workspace, timeout=timeout_seconds) if compile_mutation.returncode == 0 else None
+            test_mutation = run_native_relevant_test(project_workspace, timeout=timeout_seconds) if compile_mutation.returncode == 0 else None
             path.write_text(original, encoding="utf-8")
             if compile_mutation.returncode == 0 and test_mutation is not None and test_mutation.returncode != 0:
                 path.write_text(mutated, encoding="utf-8")

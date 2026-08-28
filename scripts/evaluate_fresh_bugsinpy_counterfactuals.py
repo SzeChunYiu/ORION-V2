@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import importlib.util
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -53,6 +54,18 @@ def run(command: list[str], *, cwd: Path, timeout: int) -> subprocess.CompletedP
         stderr=subprocess.PIPE,
         timeout=timeout,
         check=False,
+    )
+
+
+def run_native_relevant_test(workspace: Path, *, timeout: int) -> subprocess.CompletedProcess[str]:
+    environment = os.environ.copy()
+    env_bin = workspace / ("env/Scripts" if os.name == "nt" else "env/bin")
+    environment["PATH"] = str(env_bin) + os.pathsep + environment.get("PATH", "")
+    environment["VIRTUAL_ENV"] = str(workspace / "env")
+    return subprocess.run(
+        ["bash", "bugsinpy_run_test.sh"], cwd=str(workspace), env=environment,
+        text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+        timeout=timeout, check=False,
     )
 
 
@@ -152,11 +165,7 @@ def evaluate(
                     timeout=timeout_seconds,
                 )
                 if compile_result.returncode == 0:
-                    test_result = run(
-                        [str(private_task["test_command"])],
-                        cwd=workspace,
-                        timeout=timeout_seconds,
-                    )
+                    test_result = run_native_relevant_test(workspace, timeout=timeout_seconds)
             elapsed = time.perf_counter() - start
             passed = bool(test_result and test_result.returncode == 0)
             result = {
@@ -168,7 +177,9 @@ def evaluate(
                 "patch_apply_returncode": patch_result.returncode,
                 "compile_returncode": compile_result.returncode if compile_result else None,
                 "test_returncode": test_result.returncode if test_result else None,
-                "full_regression_suite_passed": passed,
+                "full_regression_suite_passed": None,
+                "native_success": passed,
+                "full_regression_suite_status": "CANNOT_CHECK_NOT_RUN",
                 "native_success": passed,
                 "critical_new_failure_count": 0 if passed else 1,
                 "critical_false_completion": bool(not passed and "SUCCESS" in status.upper()),

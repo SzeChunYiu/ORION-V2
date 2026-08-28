@@ -479,6 +479,23 @@ def _extract_patch(response: dict[str, Any]) -> str | None:
     return None
 
 
+def _run_bugsinpy_relevant_test(workspace: Path, *, timeout: int) -> subprocess.CompletedProcess[str]:
+    environment = os.environ.copy()
+    env_bin = workspace / ("env/Scripts" if os.name == "nt" else "env/bin")
+    environment["PATH"] = str(env_bin) + os.pathsep + environment.get("PATH", "")
+    environment["VIRTUAL_ENV"] = str(workspace / "env")
+    return _run(["bash", "bugsinpy_run_test.sh"], cwd=workspace, env=environment, timeout=timeout)
+
+
+def _bugsinpy_test_infrastructure_error(result: subprocess.CompletedProcess[str]) -> bool:
+    combined = (result.stdout + "\n" + result.stderr).casefold()
+    return any(marker in combined for marker in (
+        "modulenotfounderror", "importerror while loading conftest",
+        "unable to import required dependencies", "command not found",
+        "no module named", "could not find a version that satisfies",
+    ))
+
+
 def _evaluate_bugsinpy(
     frozen: dict[str, Any],
     workdir: Path,
@@ -533,10 +550,11 @@ def _evaluate_bugsinpy(
     if checkout_result.returncode == 0 and patch_result and patch_result.returncode == 0:
         compile_result = _run([compile_command], cwd=project_workspace, timeout=timeout_seconds)
         if compile_result.returncode == 0:
-            test_result = _run([test_command], cwd=project_workspace, timeout=timeout_seconds)
+            test_result = _run_bugsinpy_relevant_test(project_workspace, timeout=timeout_seconds)
     elapsed = time.perf_counter() - start
 
-    passed = bool(test_result and test_result.returncode == 0)
+    infrastructure_error = bool(test_result and _bugsinpy_test_infrastructure_error(test_result))
+    passed = bool(test_result and test_result.returncode == 0 and not infrastructure_error)
     return {
         "schema_version": "orion.v2.task-evaluation.v1",
         "task_id": task["task_id"],
@@ -548,9 +566,12 @@ def _evaluate_bugsinpy(
         "patch_apply_returncode": patch_result.returncode if patch_result else None,
         "compile_returncode": compile_result.returncode if compile_result else None,
         "test_returncode": test_result.returncode if test_result else None,
+        "test_infrastructure_error": infrastructure_error,
         "original_failing_tests_fixed": passed,
-        "full_regression_suite_passed": passed,
-        "critical_new_failure_count": 0 if passed else 1,
+        "native_success": passed,
+        "full_regression_suite_passed": None,
+        "full_regression_suite_status": "CANNOT_CHECK_NOT_RUN",
+        "critical_new_failure_count": None,
         "wall_time_seconds": elapsed,
         "patch_size_bytes": len(patch.encode("utf-8")) if patch else 0,
         "metamorphic_or_mutation_test_pass_rate": "NOT_RUN",
