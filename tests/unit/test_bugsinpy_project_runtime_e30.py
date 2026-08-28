@@ -530,7 +530,7 @@ def test_tox_run_test_is_normalized_to_pytest(tmp_path: Path, monkeypatch) -> No
     )
     assert receipt["status"] == "FAIL"
     normalized = tmp_path / ".orion-e30-support/bugsinpy_run_test.sh"
-    assert normalized.read_text(encoding="utf-8") == f"{python} -m pytest -q tests/test_foo.py::test_bar\n"
+    assert normalized.read_text(encoding="utf-8") == f"{python} -m pytest -q -p no:cov tests/test_foo.py::test_bar\n"
     assert captured[0] == ["bash", str(normalized)]
     assert any(item["kind"] == "BOUND_TOX_TO_PYTEST"
                for item in receipt.get("compatibility_interventions", []))
