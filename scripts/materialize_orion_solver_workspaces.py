@@ -150,6 +150,14 @@ def main(argv: list[str] | None = None) -> int:
                     ),
                 }
             )
+            task["baseline_observation"] = {
+                "compile_returncode": baseline["compile_returncode"],
+                "test_returncode": baseline["test_returncode"],
+                "bug_reproduced": baseline["bug_reproduced"],
+                "stdout_tail": baseline["stdout_tail"],
+                "stderr_tail": baseline["stderr_tail"],
+                "gold_or_fixed_solution_included": False,
+            }
         baseline_records.append(baseline)
         count += 1
 

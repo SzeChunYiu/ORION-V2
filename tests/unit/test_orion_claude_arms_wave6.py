@@ -4,7 +4,7 @@ import json
 
 import pytest
 
-from scripts.orion_claude_arms import _provider_call, arm_call_count, run_arm
+from scripts.orion_claude_arms import _context, _provider_call, arm_call_count, run_arm
 
 
 def _request(arm: str) -> dict[str, object]:
@@ -32,6 +32,30 @@ def test_full_f2_has_each_required_stage() -> None:
     response = run_arm(_request("F2_ORION_METABOLIC_FULL"), call=call, workspace_context="context")
     assert len(calls) == 3
     assert set(response["metabolic_stages"]) == {"INGEST", "DECOMPOSE", "SORT", "NATIVE_RECONSTRUCT", "REDUCE", "ABSORB", "RECOMBINE", "CHALLENGE", "ASSIMILATE_OR_RECYCLE"}
+
+
+@pytest.mark.parametrize(
+    ("arm", "removed", "prompt_fragment"),
+    [
+        ("F2_MINUS_DECOMPOSITION", ["DECOMPOSE", "SORT"], "decomposition and source-bound sorting are removed"),
+        ("F2_MINUS_NATIVE_RECOVERY", ["NATIVE_RECONSTRUCT"], "without native-parent reconstruction"),
+        ("F2_MINUS_COUNTERPROBE", ["CHALLENGE", "COUNTERPROBE"], "without a challenge/counterprobe cycle"),
+        ("F2_MINUS_SELECTIVE_REOPEN", ["SELECTIVE_REOPEN"], "do not selectively reopen"),
+    ],
+)
+def test_f2_ablation_changes_prompt_and_records_removal(arm, removed, prompt_fragment) -> None:
+    calls: list[str] = []
+
+    def call(prompt: str) -> tuple[str, dict[str, int]]:
+        calls.append(prompt)
+        if len(calls) < 3:
+            return ("analysis", {"input_tokens": 2, "output_tokens": 3})
+        return ('{"patch":"diff --git a/a.py b/a.py\\n--- a/a.py\\n+++ b/a.py\\n@@ -1 +1 @@\\n-x=1\\n+x=2", "diagnosis":"fixed", "falsifier":"test"}', {"input_tokens": 2, "output_tokens": 3})
+
+    response = run_arm(_request(arm), call=call, workspace_context="context")
+
+    assert response["component_removal"] == removed
+    assert prompt_fragment in "\n".join(calls)
 
 
 def test_arm_call_count_supports_equal_total_token_budget() -> None:
@@ -86,3 +110,25 @@ def test_gemini_provider_maps_text_and_usage(monkeypatch: pytest.MonkeyPatch) ->
     assert "secret-test-key" not in str(seen["url"])
     assert seen["key_header"] == "secret-test-key"
     assert seen["body"]["generationConfig"]["maxOutputTokens"] == 123
+
+
+def test_context_includes_gold_blind_source_and_prioritizes_failure_file(tmp_path, monkeypatch) -> None:
+    (tmp_path / "pkg").mkdir()
+    (tmp_path / "tests").mkdir()
+    (tmp_path / "pkg" / "target.py").write_text("TARGET = 'visible'\n")
+    (tmp_path / "pkg" / "other.py").write_text("OTHER = 'visible'\n")
+    (tmp_path / "tests" / "test_target.py").write_text("def test_target(): assert False\n")
+    monkeypatch.setenv("ORION_CONTEXT_MAX_CHARS", "55")
+    request = {
+        "task": {
+            "solver_workspace": str(tmp_path),
+            "baseline_observation": {"stderr_tail": "failure in pkg/target.py"},
+            "workspace_contains_gold": False,
+        }
+    }
+
+    value = json.loads(_context(request))
+
+    assert value["gold_access"] == "NONE"
+    assert value["source_snapshots"][0]["path"] == "pkg/target.py"
+    assert "TARGET = 'visible'" in value["source_snapshots"][0]["content"]

@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import subprocess
 import time
 import urllib.error
@@ -107,9 +108,24 @@ def run_arm(
             second = ask(_stage_prompt("native parent diagnosis B", workspace_context))
             final = ask(_final_prompt(workspace_context, first + "\n\n" + second))
         elif arm.startswith("F2_"):
-            ingest = ask(_stage_prompt("INGEST/DECOMPOSE/SORT", workspace_context))
-            reconstruct = ask(_stage_prompt("NATIVE_RECONSTRUCT/REDUCE/ABSORB/RECOMBINE", workspace_context, ingest))
-            challenge = ask(_final_prompt(workspace_context, ingest + "\n\n" + reconstruct))
+            ingest_label = (
+                "INGEST only; decomposition and source-bound sorting are removed"
+                if arm == "F2_MINUS_DECOMPOSITION"
+                else "INGEST/DECOMPOSE/SORT"
+            )
+            reconstruct_label = (
+                "REDUCE/ABSORB/RECOMBINE without native-parent reconstruction"
+                if arm == "F2_MINUS_NATIVE_RECOVERY"
+                else "NATIVE_RECONSTRUCT/REDUCE/ABSORB/RECOMBINE"
+            )
+            ingest = ask(_stage_prompt(ingest_label, workspace_context))
+            reconstruct = ask(_stage_prompt(reconstruct_label, workspace_context, ingest))
+            final_prior = ingest + "\n\n" + reconstruct
+            if arm == "F2_MINUS_COUNTERPROBE":
+                final_prior += "\n\nABLATION: produce the final proposal without a challenge/counterprobe cycle."
+            elif arm == "F2_MINUS_SELECTIVE_REOPEN":
+                final_prior += "\n\nABLATION: use a flat global update; do not selectively reopen a rejected support family."
+            challenge = ask(_final_prompt(workspace_context, final_prior))
             final = challenge
             if arm == "F2_ORION_METABOLIC_FULL":
                 stages = {
@@ -132,6 +148,13 @@ def run_arm(
         }
         if stages is not None:
             response["metabolic_stages"] = stages
+        if arm.startswith("F2_MINUS_"):
+            response["component_removal"] = {
+                "F2_MINUS_DECOMPOSITION": ["DECOMPOSE", "SORT"],
+                "F2_MINUS_NATIVE_RECOVERY": ["NATIVE_RECONSTRUCT"],
+                "F2_MINUS_COUNTERPROBE": ["CHALLENGE", "COUNTERPROBE"],
+                "F2_MINUS_SELECTIVE_REOPEN": ["SELECTIVE_REOPEN"],
+            }.get(arm, [])
         return response
     except (ValueError, RuntimeError, urllib.error.URLError, json.JSONDecodeError) as exc:
         return {
@@ -200,9 +223,48 @@ def _context(request: dict[str, Any]) -> str:
     task = request.get("task", {})
     workspace = Path(str(task.get("solver_workspace", "")))
     listing: list[str] = []
+    snapshots: list[dict[str, str]] = []
     if workspace.is_dir():
-        listing = [p.relative_to(workspace).as_posix() for p in sorted(workspace.rglob("*.py"))[:80]]
-    return json.dumps({"task": task, "python_files": listing, "gold_access": "NONE", "network_allowed_during_solution": False}, indent=2, sort_keys=True)
+        candidates = [
+            path for path in workspace.rglob("*.py")
+            if ".git" not in path.parts and not any(part in {"venv", ".venv", "site-packages"} for part in path.parts)
+        ]
+        listing = [path.relative_to(workspace).as_posix() for path in sorted(candidates)]
+        baseline = json.dumps(task.get("baseline_observation", {}), sort_keys=True)
+
+        def priority(path: Path) -> tuple[int, int, str]:
+            relative = path.relative_to(workspace).as_posix()
+            mentioned = relative in baseline or path.name in baseline
+            is_test = bool(re.search(r"(^|/)(tests?|test_[^/]*)($|/)", relative))
+            try:
+                size = path.stat().st_size
+            except OSError:
+                size = 10**12
+            return (0 if mentioned else 1 if is_test else 2, size, relative)
+
+        remaining = int(os.environ.get("ORION_CONTEXT_MAX_CHARS", "120000"))
+        per_file = int(os.environ.get("ORION_CONTEXT_MAX_FILE_CHARS", "30000"))
+        for path in sorted(candidates, key=priority):
+            if remaining <= 0:
+                break
+            try:
+                content = path.read_text(encoding="utf-8", errors="replace")
+            except OSError:
+                continue
+            content = content[: min(per_file, remaining)]
+            snapshots.append({"path": path.relative_to(workspace).as_posix(), "content": content})
+            remaining -= len(content)
+    return json.dumps({
+        "task": task,
+        "python_files": listing,
+        "source_snapshots": snapshots,
+        "source_snapshot_truncation": {
+            "max_total_chars": int(os.environ.get("ORION_CONTEXT_MAX_CHARS", "120000")),
+            "max_file_chars": int(os.environ.get("ORION_CONTEXT_MAX_FILE_CHARS", "30000")),
+        },
+        "gold_access": "NONE",
+        "network_allowed_during_solution": False,
+    }, indent=2, sort_keys=True)
 
 
 def main() -> int:
