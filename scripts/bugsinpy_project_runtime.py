@@ -314,11 +314,26 @@ def _load_prospective_binding(path: Path, project: str) -> dict[str, Any]:
             raise RuntimeBindingError("setup rewrite must be a non-empty argv list")
         if any(token in {";", "&&", "||", "|", ">", ">>", "<"} for token in command):
             raise RuntimeBindingError("shell operators are not allowed in setup rewrites")
+    preflight = legacy.get("preflight_commands", [])
+    if preflight is None:
+        preflight = []
+    if not isinstance(preflight, list):
+        raise RuntimeBindingError("preflight_commands must be a list")
+    for command in preflight:
+        if not isinstance(command, list) or not command or not all(isinstance(x, str) and x for x in command):
+            raise RuntimeBindingError("preflight command must be a non-empty argv list")
+        if any(token in {";", "&&", "||", "|", ">", ">>", "<"} for token in command):
+            raise RuntimeBindingError("shell operators are not allowed in preflight commands")
     overrides = binding.get("distribution_overrides", {})
     if overrides is None:
         overrides = {}
     if not isinstance(overrides, dict):
         raise RuntimeBindingError("distribution_overrides must be an object")
+    prerequisites = binding.get("distribution_override_prerequisites", {})
+    if prerequisites is None:
+        prerequisites = {}
+    if not isinstance(prerequisites, dict):
+        raise RuntimeBindingError("distribution_override_prerequisites must be an object")
     for digest, filename in overrides.items():
         if not isinstance(digest, str) or not _SHA256_RE.fullmatch(digest):
             raise RuntimeBindingError("distribution override key must be a requirement SHA-256")
@@ -328,6 +343,34 @@ def _load_prospective_binding(path: Path, project: str) -> dict[str, Any]:
             (".whl", ".zip", ".tar.gz", ".tar.bz2", ".tar.xz", ".tgz")
         ):
             raise RuntimeBindingError("distribution override must name a wheel or sdist artifact")
+    for digest, lines in prerequisites.items():
+        if not isinstance(digest, str) or not _SHA256_RE.fullmatch(digest):
+            raise RuntimeBindingError("distribution override prerequisite key must be a requirement SHA-256")
+        if digest not in overrides:
+            raise RuntimeBindingError("distribution override prerequisite requires a bound override")
+        if not isinstance(lines, list) or not lines:
+            raise RuntimeBindingError("distribution override prerequisites must be a non-empty list")
+        for line in lines:
+            if not isinstance(line, str) or not line.strip():
+                raise RuntimeBindingError("distribution override prerequisite must be an exact pinned requirement")
+            try:
+                _dependency_binding(line.strip())
+            except RuntimeBindingError as exc:
+                raise RuntimeBindingError(
+                    "distribution override prerequisite must be exactly pinned"
+                ) from exc
+    preflight = legacy.get("preflight_commands", [])
+    if preflight is None:
+        preflight = []
+    if not isinstance(preflight, list):
+        raise RuntimeBindingError("preflight_commands must be a list")
+    for command in preflight:
+        if not isinstance(command, list) or not command or not all(isinstance(x, str) and x for x in command):
+            raise RuntimeBindingError("preflight command must be a non-empty argv list")
+        if any(token in {";", "&&", "||", "|", ">", ">>", "<"} for token in command):
+            raise RuntimeBindingError("shell operators are not allowed in preflight commands")
+        if len(command) >= 4 and command[1:4] == ["-m", "pip", "install"]:
+            raise RuntimeBindingError("preflight commands cannot bypass the hashed dependency installer")
     binding["_receipt"] = {
         "path": str(path.resolve()),
         "sha256": _sha256_file(path),
@@ -551,6 +594,9 @@ def compile_workspace(
     dispositions = prospective.get("requirement_dispositions", {}) if prospective else {}
     marker_decisions = prospective.get("marker_decisions", {}) if prospective else {}
     distribution_overrides = prospective.get("distribution_overrides", {}) if prospective else {}
+    distribution_prerequisites = (
+        prospective.get("distribution_override_prerequisites", {}) if prospective else {}
+    )
     bound_cflags = str(legacy.get("compiler_compat_cflags", ""))
     if compiler_compat_cflags and compiler_compat_cflags != bound_cflags:
         receipt["unbound_compiler_compat_cflags_sha256"] = hashlib.sha256(
@@ -656,6 +702,7 @@ def compile_workspace(
     env["PIP_CONFIG_FILE"] = os.devnull
     env["PIP_INDEX_URL"] = ""
     env["PIP_EXTRA_INDEX_URL"] = ""
+    env["PYTHONNOUSERSITE"] = "1"
     if offline_cache is not None:
         env["PIP_FIND_LINKS"] = str(offline_cache.resolve())
     pip_tmp = workspace / ".orion-e30-pip-tmp"
@@ -760,6 +807,31 @@ def compile_workspace(
         )
         override_filename = distribution_overrides.get(digest)
         if override_filename:
+            for prerequisite in distribution_prerequisites.get(digest, []):
+                try:
+                    prereq = _dependency_binding(prerequisite)
+                except RuntimeBindingError as exc:
+                    receipt["requirement_returncodes"].append({
+                        "sha256": digest, "status": "UNSAFE_PREREQUISITE", "reason": str(exc),
+                        "returncode": None,
+                    })
+                    return finish("CANNOT_CHECK_DISTRIBUTION_PREREQUISITE_INVALID", "install_requirements")
+                prereq_install = _capture([
+                    str(environment_python), "-m", "pip", "install",
+                    "--disable-pip-version-check", "--no-index", "--no-deps", "--no-cache-dir",
+                    "--no-build-isolation", "--find-links", str(offline_cache.resolve()),
+                    f"{prereq['name']}=={prereq['requested_version']}",
+                ],
+                                     cwd=workspace, env=env, timeout=timeout_seconds)
+                if prereq_install["returncode"] != 0:
+                    receipt["requirement_returncodes"].append({
+                        "sha256": digest, "name": prereq["name"],
+                        "requested_version": prereq["requested_version"],
+                        "status": "PREREQUISITE_INSTALL_FAILED",
+                        "returncode": prereq_install["returncode"],
+                        "stderr_tail": prereq_install["stderr_tail"],
+                    })
+                    return finish("CANNOT_CHECK_DISTRIBUTION_PREREQUISITE_FAILED", "install_requirements")
             artifact_path = offline_cache.resolve() / override_filename
             if not artifact_path.is_file():
                 receipt["requirement_returncodes"].append({
@@ -816,6 +888,23 @@ def compile_workspace(
             return finish("CANNOT_CHECK_DEPENDENCY_VERSION_UNVERIFIED", "install_requirements")
         dependency["installed_name"] = identity[0]
         dependency["installed_version"] = identity[1]
+
+    for command in legacy.get("preflight_commands", []):
+        rendered = _render_bound_setup_command(command, environment_python, offline_cache)
+        receipt["compatibility_interventions"].append({
+            "kind": "BOUND_PREFLIGHT_COMMAND",
+            "binding_sha256": prospective["_receipt"]["sha256"],
+            "rendered_argv_sha256": hashlib.sha256(
+                "\0".join(rendered).encode("utf-8")
+            ).hexdigest(),
+        })
+        executed = _capture(rendered, cwd=workspace, env=env, timeout=timeout_seconds)
+        receipt.setdefault("preflight_returncodes", []).append({
+            "command": rendered, "returncode": executed["returncode"],
+            "stderr_tail": executed["stderr_tail"],
+        })
+        if executed["returncode"] != 0:
+            return finish("FAIL_PREFLIGHT_COMMAND", "preflight")
 
     setup_path = workspace / "bugsinpy_setup.sh"
     setup_lines = support_text.get("bugsinpy_setup.sh", "").splitlines()

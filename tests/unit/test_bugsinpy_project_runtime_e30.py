@@ -56,6 +56,7 @@ def write_binding(tmp_path: Path, project: str, **updates):
         "marker_decisions": {},
         "legacy_build": {},
         "distribution_overrides": {},
+        "distribution_override_prerequisites": {},
     }
     value.update(updates)
     path = tmp_path / f"{project}-prospective-binding.json"
@@ -465,6 +466,48 @@ def test_bound_distribution_override_installs_exact_artifact(
     assert str(cache / "cryptography-2.9.2.tar.gz") in install
     assert "--find-links" not in install
     assert receipt["requirement_returncodes"][0]["status"] == "INSTALL_OFFLINE_BOUND_ARTIFACT"
+
+
+def test_bound_distribution_override_installs_with_prerequisites(
+    tmp_path: Path, monkeypatch
+) -> None:
+    requirements = "cryptography==2.9.2\npycparser==2.20\n"
+    python = prepare_workspace(tmp_path, requirements)
+    crypto_digest = hashlib.sha256(b"cryptography==2.9.2").hexdigest()
+    cache, manifest = offline_cache(tmp_path, "cryptography-2.9.2.tar.gz")
+    (cache / "pycparser-2.20-py2.py3-none-any.whl").write_bytes(b"pycparser")
+    manifest.write_text(json.dumps({
+        "schema_version": runtime.OFFLINE_CACHE_SCHEMA,
+        "artifacts": [
+            {"filename": "cryptography-2.9.2.tar.gz",
+             "sha256": hashlib.sha256((cache / "cryptography-2.9.2.tar.gz").read_bytes()).hexdigest()},
+            {"filename": "pycparser-2.20-py2.py3-none-any.whl",
+             "sha256": hashlib.sha256((cache / "pycparser-2.20-py2.py3-none-any.whl").read_bytes()).hexdigest()},
+        ],
+    }), encoding="utf-8")
+    commands = []
+
+    def fake_capture(command, **kwargs):
+        commands.append(list(command))
+        stdout = "Name: cryptography\nVersion: 2.9.2\n" if "show" in command else "ok"
+        if "pycparser" in " ".join(command) and "show" in command:
+            stdout = "Name: pycparser\nVersion: 2.20\n"
+        return {"command": list(command), "returncode": 0, "stdout_tail": stdout,
+                "stderr_tail": "", "timed_out": False}
+
+    monkeypatch.setattr(runtime, "_capture", fake_capture)
+    binding = write_binding(
+        tmp_path, "ansible",
+        distribution_overrides={crypto_digest: "cryptography-2.9.2.tar.gz"},
+        distribution_override_prerequisites={crypto_digest: ["pycparser==2.20"]},
+    )
+    receipt = runtime.compile_workspace(
+        tmp_path, project="ansible", project_python=python,
+        offline_cache=cache, offline_cache_manifest=manifest,
+        prospective_binding_path=binding,
+    )
+    assert receipt["status"] == "PASS"
+    assert any("pycparser==2.20" in " ".join(command) for command in commands)
 
 
 def test_utf16_test_support_is_normalized_before_execution(
