@@ -591,8 +591,8 @@ def _evaluate_bugsinpy(
         "patch_size_bytes": len(patch.encode("utf-8")) if patch else 0,
         "metamorphic_or_mutation_test_pass_rate": "NOT_RUN",
         "gold_patch_text_similarity_diagnostic": "WITHHELD_NOT_COMPUTED",
-        "scientific_truth_authorized": false,
-        "field_status_authorized": false,
+        "scientific_truth_authorized": False,
+        "field_status_authorized": False,
         "stdout_tail": test_result.stdout[-4000:] if test_result else "",
         "stderr_tail": (
             test_result.stderr[-4000:]

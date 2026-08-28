@@ -1,0 +1,77 @@
+{
+  "schema_version": "orion.v2.bugsinpy-e30-runtime-registry.v1",
+  "authority": {
+    "gold_or_fixed_solution_access": false,
+    "scientific_truth": false,
+    "field_status": false,
+    "publication_readiness": false
+  },
+  "compile_binding": {
+    "method": "ORION_FAIL_CLOSED_REQUIREMENTS_AND_SETUP_V1",
+    "required_workspace_files": [
+      "bugsinpy_requirements.txt",
+      "bugsinpy_run_test.sh"
+    ],
+    "declared_setup_policy": "RUN_IF_PRESENT_LINE_BY_LINE_FAIL_CLOSED; ABSENCE_ALLOWED",
+    "vcs_requirement_policy": "SKIP_ONLY_REDUNDANT_SELF_EDITABLE; OTHERWISE_CANNOT_CHECK_FORBIDDEN_VCS_REQUIREMENT",
+    "required_receipts": [
+      "python_version",
+      "compiler_version",
+      "requirement_returncodes",
+      "setup_returncodes",
+      "import_returncode"
+    ],
+    "native_extension_count_assumption": "NONE"
+  },
+  "projects": {
+    "ansible": {
+      "import_module": "ansible",
+      "registered_failing_test": ["bash", "bugsinpy_run_test.sh"],
+      "full_regression": null,
+      "full_regression_status": "CANNOT_CHECK_NOT_BOUND",
+      "full_regression_reason": "No single bounded command honestly covers Ansible unit, integration and platform-dependent suites across all five frozen historical versions."
+    },
+    "black": {
+      "import_module": "black",
+      "registered_failing_test": ["bash", "bugsinpy_run_test.sh"],
+      "full_regression": ["{python}", "-m", "pytest", "-q", "tests"],
+      "full_regression_status": "BOUND"
+    },
+    "cookiecutter": {
+      "import_module": "cookiecutter",
+      "registered_failing_test": ["bash", "bugsinpy_run_test.sh"],
+      "full_regression": ["{python}", "-m", "pytest", "-q", "tests"],
+      "full_regression_status": "BOUND"
+    },
+    "fastapi": {
+      "import_module": "fastapi",
+      "registered_failing_test": ["bash", "bugsinpy_run_test.sh"],
+      "full_regression": ["{python}", "-m", "pytest", "-q", "tests"],
+      "full_regression_status": "BOUND"
+    },
+    "pandas": {
+      "import_module": "pandas",
+      "registered_failing_test": ["bash", "bugsinpy_run_test.sh"],
+      "full_regression": ["{python}", "-m", "pytest", "-q", "pandas/tests"],
+      "full_regression_status": "BOUND"
+    },
+    "scrapy": {
+      "import_module": "scrapy",
+      "registered_failing_test": ["bash", "bugsinpy_run_test.sh"],
+      "full_regression": ["{python}", "-m", "pytest", "-q", "tests"],
+      "full_regression_status": "BOUND"
+    },
+    "tornado": {
+      "import_module": "tornado",
+      "registered_failing_test": ["bash", "bugsinpy_run_test.sh"],
+      "full_regression": ["{python}", "-m", "tornado.test.runtests"],
+      "full_regression_status": "BOUND"
+    },
+    "tqdm": {
+      "import_module": "tqdm",
+      "registered_failing_test": ["bash", "bugsinpy_run_test.sh"],
+      "full_regression": ["{python}", "-m", "pytest", "-q", "tests"],
+      "full_regression_status": "BOUND"
+    }
+  }
+}
