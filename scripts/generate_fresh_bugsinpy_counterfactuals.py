@@ -241,13 +241,16 @@ def generate(
         )
         if checkout_result.returncode != 0:
             continue
-        compile_result = run([str(compile_command)], cwd=private_workspace, timeout=timeout_seconds)
-        baseline = run([str(test_command)], cwd=private_workspace, timeout=timeout_seconds) if compile_result.returncode == 0 else None
+        project_workspace = private_workspace / str(base_task["project"])
+        if not project_workspace.is_dir():
+            continue
+        compile_result = run([str(compile_command)], cwd=project_workspace, timeout=timeout_seconds)
+        baseline = run([str(test_command)], cwd=project_workspace, timeout=timeout_seconds) if compile_result.returncode == 0 else None
         if compile_result.returncode != 0 or baseline is None or baseline.returncode != 0:
             continue
 
         candidates: list[tuple[Path, int, str, str]] = []
-        for path in source_files(private_workspace):
+        for path in source_files(project_workspace):
             for token_index, old, new in mutation_candidates(path):
                 candidates.append((path, token_index, old, new))
         generator.shuffle(candidates)
@@ -261,8 +264,8 @@ def generate(
                 original, mutated = apply_mutation(path, token_index, new)
             except (OSError, SyntaxError, tokenize.TokenError, IndentationError):
                 continue
-            compile_mutation = run([str(compile_command)], cwd=private_workspace, timeout=timeout_seconds)
-            test_mutation = run([str(test_command)], cwd=private_workspace, timeout=timeout_seconds) if compile_mutation.returncode == 0 else None
+            compile_mutation = run([str(compile_command)], cwd=project_workspace, timeout=timeout_seconds)
+            test_mutation = run([str(test_command)], cwd=project_workspace, timeout=timeout_seconds) if compile_mutation.returncode == 0 else None
             path.write_text(original, encoding="utf-8")
             if compile_mutation.returncode == 0 and test_mutation is not None and test_mutation.returncode != 0:
                 path.write_text(mutated, encoding="utf-8")
@@ -270,7 +273,7 @@ def generate(
                 selected_mutated = mutated
                 selected_path = path
                 selected_mutation = {
-                    "relative_path": str(path.relative_to(private_workspace)),
+                    "relative_path": str(path.relative_to(project_workspace)),
                     "token_index": token_index,
                     "old_token": old,
                     "new_token": new,
@@ -285,7 +288,7 @@ def generate(
         task_number = len(public_tasks) + 1
         task_id = f"fresh-bugsinpy-{task_number:03d}-{base_task['project']}"
         solver_workspace = output_workdir / "solver_workspaces" / task_id
-        copy_without_git(private_workspace, solver_workspace)
+        copy_without_git(project_workspace, solver_workspace)
         relative = Path(selected_mutation["relative_path"])
         gold = reverse_patch(relative, selected_original, selected_mutated)
         gold_path = output_workdir / "private_gold" / f"{task_id}.patch"
@@ -321,7 +324,7 @@ def generate(
             {
                 "task_id": task_id,
                 "source_case_id": base_id,
-                "private_mutated_template": str(private_workspace.resolve()),
+                "private_mutated_template": str(project_workspace.resolve()),
                 "gold_patch_path": str(gold_path.resolve()),
                 "mutation": selected_mutation,
                 "compile_command": str(compile_command),

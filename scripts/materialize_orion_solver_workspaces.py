@@ -119,12 +119,17 @@ def main(argv: list[str] | None = None) -> int:
             raise MaterializationError(
                 f"checkout failed for {task_id}: {checkout_result.stderr[-4000:]}"
             )
-        task["solver_workspace"] = str(workspace.resolve())
+        project_workspace = workspace / str(task["project"])
+        if not project_workspace.is_dir():
+            raise MaterializationError(
+                f"checkout did not create the expected project directory: {project_workspace}"
+            )
+        task["solver_workspace"] = str(project_workspace.resolve())
         task["workspace_contains_gold"] = False
         task["solver_may_return"] = "unified_diff_only"
         task["network_allowed_during_solution"] = False
         task["workspace_commit"] = run(
-            ["git", "rev-parse", "HEAD"], cwd=workspace, timeout=60
+            ["git", "rev-parse", "HEAD"], cwd=project_workspace, timeout=60
         ).stdout.strip()
 
         baseline: dict[str, Any] = {
@@ -133,10 +138,10 @@ def main(argv: list[str] | None = None) -> int:
             "gold_visible": False,
         }
         if args.verify_baseline:
-            compile_result = run([str(compile_command)], cwd=workspace, timeout=args.timeout_seconds)
+            compile_result = run([str(compile_command)], cwd=project_workspace, timeout=args.timeout_seconds)
             test_result = None
             if compile_result.returncode == 0:
-                test_result = run([str(test_command)], cwd=workspace, timeout=args.timeout_seconds)
+                test_result = run([str(test_command)], cwd=project_workspace, timeout=args.timeout_seconds)
             baseline.update(
                 {
                     "compile_returncode": compile_result.returncode,

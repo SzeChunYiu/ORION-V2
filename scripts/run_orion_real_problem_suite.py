@@ -513,12 +513,13 @@ def _evaluate_bugsinpy(
         cwd=repository,
         timeout=timeout_seconds,
     )
+    project_workspace = workspace / str(task["project"])
     patch = _extract_patch(response)
     patch_result: subprocess.CompletedProcess[str] | None = None
     if checkout_result.returncode == 0 and patch:
         patch_result = subprocess.run(
             ["git", "apply", "--whitespace=nowarn", "-"],
-            cwd=str(workspace),
+            cwd=str(project_workspace),
             input=patch,
             text=True,
             stdout=subprocess.PIPE,
@@ -530,9 +531,9 @@ def _evaluate_bugsinpy(
     test_result: subprocess.CompletedProcess[str] | None = None
     start = time.perf_counter()
     if checkout_result.returncode == 0 and patch_result and patch_result.returncode == 0:
-        compile_result = _run([compile_command], cwd=workspace, timeout=timeout_seconds)
+        compile_result = _run([compile_command], cwd=project_workspace, timeout=timeout_seconds)
         if compile_result.returncode == 0:
-            test_result = _run([test_command], cwd=workspace, timeout=timeout_seconds)
+            test_result = _run([test_command], cwd=project_workspace, timeout=timeout_seconds)
     elapsed = time.perf_counter() - start
 
     passed = bool(test_result and test_result.returncode == 0)
