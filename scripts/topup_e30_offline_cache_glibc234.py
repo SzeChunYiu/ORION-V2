@@ -30,6 +30,10 @@ GLIBC234_ARTIFACTS: list[tuple[str, str, str]] = [
     ("leveldb", "0.201", "leveldb-0.201.tar.gz"),
     ("python-gettext", "4.0", "python-gettext-4.0.tar.gz"),
     ("pytest", "3.10.1", "pytest-3.10.1-py2.py3-none-any.whl"),
+    ("atomicwrites", "1.4.0", "atomicwrites-1.4.0-py2.py3-none-any.whl"),
+    ("attrs", "19.3.0", "attrs-19.3.0-py2.py3-none-any.whl"),
+    ("more-itertools", "8.2.0", "more_itertools-8.2.0-py3-none-any.whl"),
+    ("ruamel.yaml.clib", "0.2.0", "ruamel.yaml.clib-0.2.0-cp36-cp36m-manylinux1_x86_64.whl"),
 ]
 
 PROJECT_OVERRIDES: dict[str, dict[str, str]] = {
@@ -88,6 +92,23 @@ TORNADO_SETUP_REWRITES = {
 
 ANSIBLE_SETUP_INSTALLS = {
     "0adc45477b142c1ccb86fee954bd83132c427ec00cc2f67eebfbf7772fcd7eaf": "pytest==3.10.1",
+}
+ANSIBLE_SETUP_PREREQUISITES = {
+    "0adc45477b142c1ccb86fee954bd83132c427ec00cc2f67eebfbf7772fcd7eaf": [
+        "atomicwrites==1.4.0",
+        "attrs==19.3.0",
+        "more-itertools==8.2.0",
+        "pluggy==0.13.1",
+        "py==1.8.1",
+        "packaging==20.4",
+    ],
+}
+COOKIECUTTER_DEVELOP_DIGEST = "3d7b5491b985872ef7604a0c7730a7cd6a9a20371b3697e5dff279588c2324b3"
+COOKIECUTTER_SETUP_COMMAND_PREREQUISITES = {
+    COOKIECUTTER_DEVELOP_DIGEST: ["ruamel.yaml.clib==0.2.0"],
+}
+COOKIECUTTER_SETUP_REWRITES = {
+    COOKIECUTTER_DEVELOP_DIGEST: ["{python}", "setup.py", "develop"],
 }
 ANSIBLE_SETUP_REWRITES = {
     "653b7a51d65d7409e319e29d51d5ee2af65d621ad9ef62148e7eacf99e289879": [
@@ -187,8 +208,16 @@ def patch_binding(path: Path, project: str, source_sha: str) -> str:
         legacy["setup_command_rewrites"] = rewrites
     if project == "ansible":
         legacy["setup_dependency_installs"] = dict(ANSIBLE_SETUP_INSTALLS)
+        legacy["setup_dependency_install_prerequisites"] = dict(ANSIBLE_SETUP_PREREQUISITES)
         rewrites = dict(legacy.get("setup_command_rewrites") or {})
         rewrites.update(ANSIBLE_SETUP_REWRITES)
+        legacy["setup_command_rewrites"] = rewrites
+    if project == "cookiecutter":
+        command_prereqs = dict(legacy.get("setup_command_prerequisites") or {})
+        command_prereqs.update(COOKIECUTTER_SETUP_COMMAND_PREREQUISITES)
+        legacy["setup_command_prerequisites"] = command_prereqs
+        rewrites = dict(legacy.get("setup_command_rewrites") or {})
+        rewrites.update(COOKIECUTTER_SETUP_REWRITES)
         legacy["setup_command_rewrites"] = rewrites
     binding["legacy_build"] = legacy
     write_json(path, binding)

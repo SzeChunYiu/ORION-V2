@@ -340,6 +340,46 @@ def _load_prospective_binding(path: Path, project: str) -> dict[str, Any]:
             raise RuntimeBindingError(
                 "setup dependency install must be exactly pinned"
             ) from exc
+    setup_prerequisites = legacy.get("setup_dependency_install_prerequisites", {})
+    if setup_prerequisites is None:
+        setup_prerequisites = {}
+    if not isinstance(setup_prerequisites, dict):
+        raise RuntimeBindingError("setup_dependency_install_prerequisites must be an object")
+    for digest, lines in setup_prerequisites.items():
+        if not isinstance(digest, str) or not _SHA256_RE.fullmatch(digest):
+            raise RuntimeBindingError("setup dependency prerequisite key must be a line SHA-256")
+        if digest not in setup_installs:
+            raise RuntimeBindingError("setup dependency prerequisite requires a bound setup install")
+        if not isinstance(lines, list) or not lines:
+            raise RuntimeBindingError("setup dependency prerequisites must be a non-empty list")
+        for line in lines:
+            if not isinstance(line, str) or not line.strip():
+                raise RuntimeBindingError("setup dependency prerequisite must be an exact pinned requirement")
+            try:
+                _dependency_binding(line.strip())
+            except RuntimeBindingError as exc:
+                raise RuntimeBindingError(
+                    "setup dependency prerequisite must be exactly pinned"
+                ) from exc
+    setup_command_prerequisites = legacy.get("setup_command_prerequisites", {})
+    if setup_command_prerequisites is None:
+        setup_command_prerequisites = {}
+    if not isinstance(setup_command_prerequisites, dict):
+        raise RuntimeBindingError("setup_command_prerequisites must be an object")
+    for digest, lines in setup_command_prerequisites.items():
+        if not isinstance(digest, str) or not _SHA256_RE.fullmatch(digest):
+            raise RuntimeBindingError("setup command prerequisite key must be a line SHA-256")
+        if not isinstance(lines, list) or not lines:
+            raise RuntimeBindingError("setup command prerequisites must be a non-empty list")
+        for line in lines:
+            if not isinstance(line, str) or not line.strip():
+                raise RuntimeBindingError("setup command prerequisite must be an exact pinned requirement")
+            try:
+                _dependency_binding(line.strip())
+            except RuntimeBindingError as exc:
+                raise RuntimeBindingError(
+                    "setup command prerequisite must be exactly pinned"
+                ) from exc
     overrides = binding.get("distribution_overrides", {})
     if overrides is None:
         overrides = {}
@@ -462,6 +502,11 @@ def _requirement_kind(requirement: str, project: str) -> str:
     if egg_match in lowered or f"#egg={normalized_project}" in lowered:
         return "SKIP_REDUNDANT_SELF_EDITABLE"
     return "FORBIDDEN_VCS"
+
+
+def _write_utf8_lf(path: Path, text: str) -> None:
+    with path.open("w", encoding="utf-8", newline="\n") as handle:
+        handle.write(text)
 
 
 def _normalize_run_test_support(
@@ -1048,6 +1093,8 @@ def compile_workspace(
     setup_path = workspace / "bugsinpy_setup.sh"
     setup_lines = support_text.get("bugsinpy_setup.sh", "").splitlines()
     setup_installs = legacy.get("setup_dependency_installs", {})
+    setup_prerequisites = legacy.get("setup_dependency_install_prerequisites", {})
+    setup_command_prerequisites = legacy.get("setup_command_prerequisites", {})
     receipt["declared_setup_present"] = setup_path.is_file()
     for raw in setup_lines:
         line = raw.strip()
@@ -1055,10 +1102,45 @@ def compile_workspace(
             continue
         line_digest = hashlib.sha256(line.encode("utf-8")).hexdigest()
         try:
+            for prerequisite in setup_command_prerequisites.get(line_digest, []):
+                if offline_cache is None:
+                    raise RuntimeBindingError("setup command prerequisite requires an offline cache")
+                installed_prereq = _install_offline_pinned(
+                    environment_python=environment_python,
+                    workspace=workspace,
+                    env=env,
+                    offline_cache=offline_cache,
+                    requirement=prerequisite.strip(),
+                    timeout_seconds=timeout_seconds,
+                )
+                receipt.setdefault("setup_command_prerequisite_returncodes", []).append({
+                    "source_sha256": line_digest,
+                    "pinned_requirement": prerequisite.strip(),
+                    **installed_prereq,
+                })
+                if installed_prereq.get("returncode") not in (0, None):
+                    return finish("CANNOT_CHECK_SETUP_COMMAND_PREREQUISITE_FAILED", "declared_setup")
             pinned_setup = setup_installs.get(line_digest)
             if pinned_setup:
                 if offline_cache is None:
                     raise RuntimeBindingError("setup dependency install requires an offline cache")
+                for prerequisite in setup_prerequisites.get(line_digest, []):
+                    installed_prereq = _install_offline_pinned(
+                        environment_python=environment_python,
+                        workspace=workspace,
+                        env=env,
+                        offline_cache=offline_cache,
+                        requirement=prerequisite.strip(),
+                        timeout_seconds=timeout_seconds,
+                    )
+                    receipt.setdefault("setup_dependency_returncodes", []).append({
+                        "source_sha256": line_digest,
+                        "pinned_requirement": prerequisite.strip(),
+                        "role": "PREREQUISITE",
+                        **installed_prereq,
+                    })
+                    if installed_prereq.get("returncode") not in (0, None):
+                        return finish("CANNOT_CHECK_SETUP_DEPENDENCY_INSTALL_FAILED", "declared_setup")
                 installed_setup = _install_offline_pinned(
                     environment_python=environment_python,
                     workspace=workspace,
@@ -1191,7 +1273,7 @@ def execute_test_binding(
             normalized_dir = workspace / ".orion-e30-support"
             normalized_dir.mkdir(parents=True, exist_ok=True)
             normalized = normalized_dir / "bugsinpy_run_test.sh"
-            normalized.write_text(normalized_text, encoding="utf-8", newline="\n")
+            normalized.write_bytes(normalized_text.encode("utf-8"))
             rendered[index] = str(normalized)
             support_receipt["normalized_sha256"] = _sha256_file(normalized)
             support_receipt["normalized_path"] = str(normalized)
