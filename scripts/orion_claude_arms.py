@@ -73,6 +73,14 @@ def _parse_patch(text: str) -> tuple[str, str, list[str], Any, list[str], str]:
     return patch, diagnosis, assumptions, data.get("uncertainty", "UNRESOLVED"), tests, falsifier
 
 
+def arm_call_count(arm: str) -> int:
+    if arm in {"F0_PARENT_FEDERATION", "F2_ORION_METABOLIC_FULL"} or arm.startswith("F2_"):
+        return 3
+    if arm == "SAME_MODEL_REFLECTION":
+        return 2
+    return 1
+
+
 def run_arm(
     request: dict[str, Any],
     *,
@@ -162,6 +170,9 @@ def main() -> int:
     parser.add_argument("--response", type=Path, required=True)
     args = parser.parse_args()
     request = json.loads(args.request.read_text())
+    total = os.environ.get("ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET", "").strip()
+    if total:
+        os.environ["ORION_ARM_MAX_TOKENS"] = str(max(1, int(total) // arm_call_count(str(request["arm_id"]))))
     start = time.time()
     response = run_arm(request, call=_provider_call, workspace_context=_context(request))
     response["resource_receipt"]["wall_time_seconds"] = time.time() - start

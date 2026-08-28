@@ -28,3 +28,11 @@ def test_full_f2_has_each_required_stage() -> None:
     response = run_arm(_request("F2_ORION_METABOLIC_FULL"), call=call, workspace_context="context")
     assert len(calls) == 3
     assert set(response["metabolic_stages"]) == {"INGEST", "DECOMPOSE", "SORT", "NATIVE_RECONSTRUCT", "REDUCE", "ABSORB", "RECOMBINE", "CHALLENGE", "ASSIMILATE_OR_RECYCLE"}
+
+
+def test_arm_call_count_supports_equal_total_token_budget() -> None:
+    from scripts.orion_claude_arms import arm_call_count
+    assert arm_call_count("SIMPLE_DIRECT") == 1
+    assert arm_call_count("SAME_MODEL_REFLECTION") == 2
+    assert arm_call_count("F0_PARENT_FEDERATION") == 3
+    assert arm_call_count("F2_ORION_METABOLIC_FULL") == 3
