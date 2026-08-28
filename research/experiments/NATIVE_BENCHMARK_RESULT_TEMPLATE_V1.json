@@ -1,0 +1,47 @@
+{
+  "schema_version": "orion.v2.native-benchmark-result-input.v1",
+  "status": "NATIVE_EVALUATION_COMPLETE_OR_CANNOT_CHECK",
+  "native_success": null,
+  "protected_decision_correct": null,
+  "critical_false_completion": null,
+  "command_identity": "sha256-or-content-bound-command-and-config-id",
+  "evaluator_identity": "native-evaluator-name-version-config-and-epoch",
+  "data_identity_ids": [
+    "dataset-name-version-checksum-split-and-licence-id"
+  ],
+  "source_ids": [
+    "repository-full-commit-sha",
+    "model-or-checkpoint-id",
+    "metric-or-standard-id"
+  ],
+  "assumptions": [
+    "registered scientific and computational assumptions"
+  ],
+  "uncertainty": {
+    "method": "bootstrap-posterior-or-native-uncertainty-method",
+    "intervals_or_bounds": {},
+    "blind_spots": []
+  },
+  "resource_receipt": {
+    "wall_time_seconds": null,
+    "cpu_core_seconds": null,
+    "gpu_type": null,
+    "gpu_seconds": null,
+    "peak_memory_gb": null,
+    "model_tokens": null,
+    "human_minutes": null,
+    "external_tool_calls": null
+  },
+  "primary_metrics": {},
+  "secondary_metrics": {},
+  "independent_adjudication_id": null,
+  "scientific_truth_authorized": false,
+  "field_status_authorized": false,
+  "publication_readiness_authorized": false,
+  "instructions": [
+    "Replace every placeholder with an outcome-bound value or explicit null/CANNOT_CHECK.",
+    "Provide every raw result, log, configuration and metric file through repeated --artifact arguments to bind_native_benchmark_evaluation.py.",
+    "Do not set native_success when the native evaluator, data identity or metric sensitivity is unresolved.",
+    "Do not derive field, novelty, superiority or publication authority from this artifact."
+  ]
+}
