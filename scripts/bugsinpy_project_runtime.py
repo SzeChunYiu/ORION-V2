@@ -539,7 +539,7 @@ def _normalize_run_test_support(
             target = line[4:].strip()
             if not target:
                 raise RuntimeBindingError("tox rewrite requires a pytest target")
-            normalized_lines.append(f"{python} -m pytest -q {target}")
+            normalized_lines.append(f"{python} -m pytest -q -p no:cov {target}")
             interventions.append({
                 "kind": "BOUND_TOX_TO_PYTEST",
                 "source_line_sha256": hashlib.sha256(line.encode("utf-8")).hexdigest(),
