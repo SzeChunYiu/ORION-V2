@@ -1,0 +1,88 @@
+{
+  "compute_log": {
+    "bytes": 0,
+    "path": "logs/compute.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "compute_pid": 3461850,
+  "compute_process_observed_complete": true,
+  "created_unix": 1787912713.5614824,
+  "host": "billy-laptop-old",
+  "inputs": [
+    {
+      "bytes": 86547306,
+      "path": "data/2022-10-19-wbm-computed-structure-entries.jsonl.gz",
+      "sha256": "e77ffb20a485380e564ebb81ca1e7c86ebdb10c1967d0fbbe52bbab6b935a382"
+    },
+    {
+      "bytes": 49537334,
+      "path": "data/2022-10-19-wbm-init-structs.jsonl.gz",
+      "sha256": "98d545172c1ea9060f03f40cace6f8173a4ac06f1ee875ccd963765211519b58"
+    },
+    {
+      "bytes": 179351659,
+      "path": "data/2023-02-07-mp-computed-structure-entries.json.gz",
+      "sha256": "553d6272f049a8f4ec26e503b89751e2616dd3af53d086545f6ea00f317a361f"
+    },
+    {
+      "bytes": 6350,
+      "path": "data/2023-02-07-mp-elemental-reference-entries.json.gz",
+      "sha256": "9fd6ef848a91c88840a0d1709b5856d0edb4af22095237e59db52f2acd6bbf79"
+    },
+    {
+      "bytes": 12745623,
+      "path": "data/2023-12-13-wbm-summary.csv.gz",
+      "sha256": "adbdd8b24086d4888195d8894c77f6d5fb29ce33bbb5d7d3898b4d79e964dc54"
+    },
+    {
+      "bytes": 1320974,
+      "path": "data/model_predictions/2023-12-21-chgnet-0.3.0-discovery.csv.gz",
+      "sha256": "b04ce3b031827fcd532e22058d06dc77fb4705ce8b12aea54652a14504e41f16"
+    },
+    {
+      "bytes": 1325696,
+      "path": "data/model_predictions/2024-10-11-orb-v2-discovery.csv.gz",
+      "sha256": "d3d2dbe2238678cbfed93487e886312c2f6611e9fc7daa03f5765e81dcf56d53"
+    },
+    {
+      "bytes": 1324924,
+      "path": "data/model_predictions/2024-12-09-mace-mpa-0-discovery.csv.gz",
+      "sha256": "8b6ae303e9dad595d10d449ba8b23f80aae377b537a94d5da84c98e895f75fd6"
+    },
+    {
+      "bytes": 491,
+      "path": "data/model_predictions/2023-12-21-chgnet-0.3.0-discovery.csv.gz.receipt.json",
+      "sha256": "c2051d92f90e6f4445a73811d6fcfb8325de1473e65c5eb9279283369de1be48"
+    },
+    {
+      "bytes": 481,
+      "path": "data/model_predictions/2024-10-11-orb-v2-discovery.csv.gz.receipt.json",
+      "sha256": "13a3af732ae7ece5452d5582a3592527324097ded51e91f49b021da0cfc0b4e7"
+    },
+    {
+      "bytes": 489,
+      "path": "data/model_predictions/2024-12-09-mace-mpa-0-discovery.csv.gz.receipt.json",
+      "sha256": "fe4b4f4cba74e375c84669c2fa8302552d66308a97d921c984919f3370d58849"
+    }
+  ],
+  "platform": "Linux-7.0.0-27-generic-x86_64-with-glibc2.43",
+  "python_version": "Python 3.14.4",
+  "result": {
+    "bytes": 11036,
+    "path": "run/E50_NATIVE_RESULT.json",
+    "sha256": "6bca82efcb5f3e6c3e347ae0d8fbb1ef0a5e50553df80746d1f5fe86a1a0de64"
+  },
+  "result_cannot_check_fields": {
+    "f0_f2_matched_native_model_control": "CANNOT_CHECK_NOT_IMPLEMENTED",
+    "independent_materials_adjudicator": "CANNOT_CHECK_NOT_BOUND",
+    "resource_cost_constraint": "CANNOT_CHECK_MODEL_INFERENCE_COST_NOT_PRESENT_IN_PRECOMPUTED_PREDICTIONS"
+  },
+  "schema_version": "orion.v2.e50-native-execution-manifest.v1",
+  "scientific_truth_authorized": false,
+  "source_registry_commit": "0ba474661cf615d10987ba9a2acb8132943aa491",
+  "source_script": {
+    "bytes": 3342,
+    "path": "run/e50_compute_native_r1.py",
+    "sha256": "49791cd18495dd94172b4a338cfa3e9ed9f11ea0f3248c8f404ff2aaf065e048"
+  }
+}

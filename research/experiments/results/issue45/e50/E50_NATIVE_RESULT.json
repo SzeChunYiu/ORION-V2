@@ -1,0 +1,365 @@
+{
+  "code_commit": "0ba474661cf615d10987ba9a2acb8132943aa491",
+  "created_unix": 1787912671.186304,
+  "decision_budgets": [
+    100,
+    1000,
+    10000
+  ],
+  "f0_f2_matched_native_model_control": "CANNOT_CHECK_NOT_IMPLEMENTED",
+  "held_out_count": 51518,
+  "held_out_family_rule": "sha256(20260828|protostructure_spglib) mod 5 == 0",
+  "independent_materials_adjudicator": "CANNOT_CHECK_NOT_BOUND",
+  "models": {
+    "chgnet-0.3.0": {
+      "canonical_metrics": {
+        "full_test_set": {
+          "Accuracy": 0.8387744539097068,
+          "DAF": 3.0378586117423634,
+          "F1": 0.6117717616410372,
+          "FN": 11450,
+          "FP": 29979,
+          "MAE": 0.061093442195508274,
+          "Precision": 0.5212628351511474,
+          "R2": 0.6900797438778628,
+          "RMSE": 0.10018917707140178,
+          "Recall": 0.7403157035289849,
+          "TN": 182892,
+          "TP": 32642
+        },
+        "unique_prototypes": {
+          "Accuracy": 0.8514256014256014,
+          "DAF": 3.3173669618559387,
+          "F1": 0.6125940804917597,
+          "FN": 8061,
+          "FP": 23955,
+          "MAE": 0.0634911596005346,
+          "Precision": 0.5137817650401884,
+          "R2": 0.6892261447307,
+          "RMSE": 0.10265655635879614,
+          "Recall": 0.7584646730988195,
+          "TN": 158159,
+          "TP": 25313
+        }
+      },
+      "decision_quality": {
+        "100": {
+          "false_discoveries": 0,
+          "precision": 1.0,
+          "selected": 100,
+          "true_stable": 100
+        },
+        "1000": {
+          "false_discoveries": 10,
+          "precision": 0.99,
+          "selected": 1000,
+          "true_stable": 990
+        },
+        "10000": {
+          "false_discoveries": 1182,
+          "precision": 0.8818,
+          "selected": 10000,
+          "true_stable": 8818
+        }
+      },
+      "held_out_family_metrics": {
+        "full_test_set": {
+          "Accuracy": 0.8372413525369774,
+          "DAF": 3.0230556413531806,
+          "F1": 0.6072047594509767,
+          "FN": 2328,
+          "FP": 6057,
+          "MAE": 0.061407779805116657,
+          "Precision": 0.516908597862498,
+          "R2": 0.6765344616287265,
+          "RMSE": 0.10033174678158585,
+          "Recall": 0.7357248268815983,
+          "TN": 36652,
+          "TP": 6481
+        },
+        "unique_prototypes": {
+          "Accuracy": 0.8512069005495397,
+          "DAF": 3.312387371837233,
+          "F1": 0.6113029256769035,
+          "FN": 1647,
+          "FP": 4770,
+          "MAE": 0.06368502330326709,
+          "Precision": 0.5140586797066015,
+          "R2": 0.679318045955927,
+          "RMSE": 0.10238747790382838,
+          "Recall": 0.7539220080681309,
+          "TN": 31664,
+          "TP": 5046
+        }
+      },
+      "prediction_file": "2023-12-21-chgnet-0.3.0-discovery.csv.gz",
+      "unit_identifier_invariance_matches_canonical": true,
+      "unit_identifier_invariance_metrics": {
+        "full_test_set": {
+          "Accuracy": 0.8387744539097068,
+          "DAF": 3.0378586117423634,
+          "F1": 0.6117717616410372,
+          "FN": 11450,
+          "FP": 29979,
+          "MAE": 0.061093442195508274,
+          "Precision": 0.5212628351511474,
+          "R2": 0.6900797438778628,
+          "RMSE": 0.10018917707140178,
+          "Recall": 0.7403157035289849,
+          "TN": 182892,
+          "TP": 32642
+        },
+        "unique_prototypes": {
+          "Accuracy": 0.8514256014256014,
+          "DAF": 3.3173669618559387,
+          "F1": 0.6125940804917597,
+          "FN": 8061,
+          "FP": 23955,
+          "MAE": 0.0634911596005346,
+          "Precision": 0.5137817650401884,
+          "R2": 0.6892261447307,
+          "RMSE": 0.10265655635879614,
+          "Recall": 0.7584646730988195,
+          "TN": 158159,
+          "TP": 25313
+        }
+      },
+      "version": "v0.3.0"
+    },
+    "mace-mpa-0": {
+      "canonical_metrics": {
+        "full_test_set": {
+          "Accuracy": 0.9435677509991711,
+          "DAF": 4.869322331435587,
+          "F1": 0.8355690619011441,
+          "FN": 7248,
+          "FP": 7253,
+          "MAE": 0.02759505991228173,
+          "Precision": 0.8355216908179695,
+          "R2": 0.8369201492778416,
+          "RMSE": 0.07267557969891279,
+          "Recall": 0.8356164383561644,
+          "TN": 205618,
+          "TP": 36844
+        },
+        "unique_prototypes": {
+          "Accuracy": 0.9543222824472825,
+          "DAF": 5.509468427799231,
+          "F1": 0.8523778814283786,
+          "FN": 4957,
+          "FP": 4886,
+          "MAE": 0.02823676248108926,
+          "Precision": 0.8532864907065429,
+          "R2": 0.8423323869276236,
+          "RMSE": 0.07311857456849981,
+          "Recall": 0.8514712051297417,
+          "TN": 177228,
+          "TP": 28417
+        }
+      },
+      "decision_quality": {
+        "100": {
+          "false_discoveries": 2,
+          "precision": 0.98,
+          "selected": 100,
+          "true_stable": 98
+        },
+        "1000": {
+          "false_discoveries": 50,
+          "precision": 0.95,
+          "selected": 1000,
+          "true_stable": 950
+        },
+        "10000": {
+          "false_discoveries": 448,
+          "precision": 0.9552,
+          "selected": 10000,
+          "true_stable": 9552
+        }
+      },
+      "held_out_family_metrics": {
+        "full_test_set": {
+          "Accuracy": 0.9406226949803952,
+          "DAF": 4.834412575455444,
+          "F1": 0.8263017432286639,
+          "FN": 1533,
+          "FP": 1526,
+          "MAE": 0.02788450414426306,
+          "Precision": 0.826630311292888,
+          "R2": 0.823820354592536,
+          "RMSE": 0.07403904712812621,
+          "Recall": 0.8259734362583722,
+          "TN": 41183,
+          "TP": 7276
+        },
+        "unique_prototypes": {
+          "Accuracy": 0.9521181626359357,
+          "DAF": 5.451904380925973,
+          "F1": 0.8456536362956872,
+          "FN": 1036,
+          "FP": 1029,
+          "MAE": 0.028506260724389002,
+          "Precision": 0.8460963206700568,
+          "R2": 0.8302104033899185,
+          "RMSE": 0.07449380741467088,
+          "Recall": 0.8452114149111012,
+          "TN": 35405,
+          "TP": 5657
+        }
+      },
+      "prediction_file": "2024-12-09-mace-mpa-0-discovery.csv.gz",
+      "unit_identifier_invariance_matches_canonical": true,
+      "unit_identifier_invariance_metrics": {
+        "full_test_set": {
+          "Accuracy": 0.9435677509991711,
+          "DAF": 4.869322331435587,
+          "F1": 0.8355690619011441,
+          "FN": 7248,
+          "FP": 7253,
+          "MAE": 0.02759505991228173,
+          "Precision": 0.8355216908179695,
+          "R2": 0.8369201492778416,
+          "RMSE": 0.07267557969891279,
+          "Recall": 0.8356164383561644,
+          "TN": 205618,
+          "TP": 36844
+        },
+        "unique_prototypes": {
+          "Accuracy": 0.9543222824472825,
+          "DAF": 5.509468427799231,
+          "F1": 0.8523778814283786,
+          "FN": 4957,
+          "FP": 4886,
+          "MAE": 0.02823676248108926,
+          "Precision": 0.8532864907065429,
+          "R2": 0.8423323869276236,
+          "RMSE": 0.07311857456849981,
+          "Recall": 0.8514712051297417,
+          "TN": 177228,
+          "TP": 28417
+        }
+      },
+      "version": "v0.3.9"
+    },
+    "orb-v2": {
+      "canonical_metrics": {
+        "full_test_set": {
+          "Accuracy": 0.9538143623790195,
+          "DAF": 5.280701515203393,
+          "F1": 0.8583196046128501,
+          "FN": 8143,
+          "FP": 3725,
+          "MAE": 0.028459630060592853,
+          "Precision": 0.9061097948278469,
+          "R2": 0.8137807840412633,
+          "RMSE": 0.07766191141441509,
+          "Recall": 0.8153179715141069,
+          "TN": 209146,
+          "TP": 35949
+        },
+        "unique_prototypes": {
+          "Accuracy": 0.9645363082863083,
+          "DAF": 5.963015305013445,
+          "F1": 0.8801292508470322,
+          "FN": 5319,
+          "FP": 2323,
+          "MAE": 0.028244227056727054,
+          "Precision": 0.9235301863190467,
+          "R2": 0.8242212178891201,
+          "RMSE": 0.07720540037631822,
+          "Recall": 0.8406244381854138,
+          "TN": 179791,
+          "TP": 28055
+        }
+      },
+      "decision_quality": {
+        "100": {
+          "false_discoveries": 0,
+          "precision": 1.0,
+          "selected": 100,
+          "true_stable": 100
+        },
+        "1000": {
+          "false_discoveries": 9,
+          "precision": 0.991,
+          "selected": 1000,
+          "true_stable": 991
+        },
+        "10000": {
+          "false_discoveries": 322,
+          "precision": 0.9678,
+          "selected": 10000,
+          "true_stable": 9678
+        }
+      },
+      "held_out_family_metrics": {
+        "full_test_set": {
+          "Accuracy": 0.9527155557280951,
+          "DAF": 5.279841023990372,
+          "F1": 0.8543062200956938,
+          "FN": 1667,
+          "FP": 769,
+          "MAE": 0.028906401646026637,
+          "Precision": 0.9027935785614967,
+          "R2": 0.8064033166552325,
+          "RMSE": 0.07761994321342884,
+          "Recall": 0.8107617209671927,
+          "TN": 41940,
+          "TP": 7142
+        },
+        "unique_prototypes": {
+          "Accuracy": 0.9640132631530132,
+          "DAF": 5.937533951908162,
+          "F1": 0.8786741713570982,
+          "FN": 1073,
+          "FP": 479,
+          "MAE": 0.028651563985438354,
+          "Precision": 0.9214625348417773,
+          "R2": 0.8198162579545261,
+          "RMSE": 0.07674805632762567,
+          "Recall": 0.8396832511579262,
+          "TN": 35955,
+          "TP": 5620
+        }
+      },
+      "prediction_file": "2024-10-11-orb-v2-discovery.csv.gz",
+      "unit_identifier_invariance_matches_canonical": true,
+      "unit_identifier_invariance_metrics": {
+        "full_test_set": {
+          "Accuracy": 0.9538143623790195,
+          "DAF": 5.280701515203393,
+          "F1": 0.8583196046128501,
+          "FN": 8143,
+          "FP": 3725,
+          "MAE": 0.028459630060592853,
+          "Precision": 0.9061097948278469,
+          "R2": 0.8137807840412633,
+          "RMSE": 0.07766191141441509,
+          "Recall": 0.8153179715141069,
+          "TN": 209146,
+          "TP": 35949
+        },
+        "unique_prototypes": {
+          "Accuracy": 0.9645363082863083,
+          "DAF": 5.963015305013445,
+          "F1": 0.8801292508470322,
+          "FN": 5319,
+          "FP": 2323,
+          "MAE": 0.028244227056727054,
+          "Precision": 0.9235301863190467,
+          "R2": 0.8242212178891201,
+          "RMSE": 0.07720540037631822,
+          "Recall": 0.8406244381854138,
+          "TN": 179791,
+          "TP": 28055
+        }
+      },
+      "version": "v2"
+    }
+  },
+  "reference_file": "2023-12-13-wbm-summary.csv.gz",
+  "resource_cost_constraint": "CANNOT_CHECK_MODEL_INFERENCE_COST_NOT_PRESENT_IN_PRECOMPUTED_PREDICTIONS",
+  "schema_version": "orion.v2.e50-native-decision-study.v1",
+  "scientific_truth_authorized": false,
+  "stability_threshold_ev_per_atom": 0.0
+}
