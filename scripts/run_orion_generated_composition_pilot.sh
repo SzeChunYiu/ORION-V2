@@ -13,7 +13,8 @@ MAX_CONCURRENCY="${ORION_GC1_MAX_CONCURRENCY:-2}"
 python -m py_compile \
   src/orion_v2/unified_diff_interface.py \
   scripts/orion_codex_arms.py \
-  scripts/run_orion_generated_composition_suite.py
+  scripts/run_orion_generated_composition_suite.py \
+  scripts/dispatch_orion_gc1_blinded.py
 
 python -m pytest -q \
   tests/unit/test_unified_diff_interface_wave6.py \
@@ -26,7 +27,10 @@ python scripts/run_orion_generated_composition_suite.py generate \
   --seed "$SEED" \
   --force
 
-python scripts/run_orion_generated_composition_suite.py dispatch \
+# Hidden-oracle JSON bytes are loaded into the orchestrator's memory and removed
+# from disk before any child/model process exists. They are restored and
+# hash-verified only after every response is terminal.
+python scripts/dispatch_orion_gc1_blinded.py \
   --workdir "$WORKDIR" \
   --arms "$ARMS" \
   --max-concurrency "$MAX_CONCURRENCY"
@@ -49,4 +53,5 @@ printf '%s\n' \
   "Arms: $ARMS" \
   "Tasks: $TASK_COUNT" \
   "Seed: $SEED" \
+  "Private oracle absent from disk during model dispatch; commitment/restoration receipts written." \
   "This is secondary fresh anti-copy/composition evidence and cannot replace E30/E40/E50."
