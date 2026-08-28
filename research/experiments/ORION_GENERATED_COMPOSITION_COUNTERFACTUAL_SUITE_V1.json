@@ -1,0 +1,89 @@
+{
+  "schema_version": "orion.v2.generated-composition-counterfactual-suite.v1",
+  "suite_id": "E70-GC1",
+  "status": "PROSPECTIVE_SECONDARY_ANTI_COPY_PROTOCOL_NO_RESULTS",
+  "freeze_date": "2026-08-28",
+  "seed": 20260828,
+  "task_count": 24,
+  "domain": "fresh_generated_executable_source_composition",
+  "purpose": "Test whether source decomposition/recombination helps on tasks whose symbols, thresholds, authority tokens and hidden cases are generated after protocol freeze and whose correct implementation requires multiple public source fragments.",
+  "primary_outcomes": [
+    "raw_hidden_oracle_success",
+    "critical_false_completion",
+    "patch_apply_success"
+  ],
+  "secondary_outcomes": [
+    "syntax_normalized_hidden_oracle_success",
+    "hidden_case_accuracy",
+    "model_tokens",
+    "model_wall_time_seconds",
+    "patch_size_bytes"
+  ],
+  "arms": [
+    "SIMPLE_DIRECT",
+    "SAME_MODEL_REFLECTION",
+    "F0_PARENT_FEDERATION",
+    "F2_ORION_METABOLIC_FULL",
+    "F2_MINUS_DECOMPOSITION",
+    "F2_MINUS_NATIVE_RECOVERY",
+    "F2_MINUS_COUNTERPROBE",
+    "F2_MINUS_SELECTIVE_REOPEN"
+  ],
+  "core_pilot_arms": [
+    "SIMPLE_DIRECT",
+    "SAME_MODEL_REFLECTION",
+    "F0_PARENT_FEDERATION",
+    "F2_ORION_METABOLIC_FULL"
+  ],
+  "task_contract": {
+    "public": [
+      "solver.py with an intentionally incomplete implementation",
+      "multiple independently useful source fragments",
+      "a small set of public examples",
+      "no hidden oracle cases or private specification"
+    ],
+    "private": [
+      "generation parameters",
+      "hidden executable records and expected outputs"
+    ],
+    "source_composition": [
+      "measurement/normalization rule",
+      "source-authority rule",
+      "decision thresholds/output codebook",
+      "precedence rule"
+    ],
+    "generated_coordinates": [
+      "unit names and conversion factor",
+      "source identifiers and authorized subset",
+      "affine/modular score coefficients",
+      "decision thresholds",
+      "output labels",
+      "records and hidden edge cases"
+    ]
+  },
+  "anti_copy_controls": [
+    "all semantic constants and labels generated from the frozen post-freeze seed",
+    "correct behavior requires composition of multiple public source fragments",
+    "no private specification or hidden case is mounted into solver workspace",
+    "hidden executable oracle is primary",
+    "surface labels are task-specific random codewords",
+    "raw emitted artifact remains primary even when syntax-only sensitivity is reported"
+  ],
+  "interface_policy": {
+    "raw_end_to_end_result_primary": true,
+    "syntax_normalization_secondary_only": true,
+    "syntax_normalization_protocol": "research/evaluation/E20_PATCH_SERIALIZATION_CONFOUND_AUDIT_V1.md",
+    "semantic_patch_repair_forbidden": true
+  },
+  "interpretation": {
+    "positive": "F2 improves protected hidden-oracle success versus strongest controls without critical failure or unreported resource advantage.",
+    "negative": "F2 ties/loses to simpler or parent controls, or its apparent gain disappears when raw executability or resources are considered.",
+    "boundary": "This suite supplies secondary fresh anti-copy/composition evidence only and cannot replace naturalistic E30/E40/E50 evidence."
+  },
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_active_solving_proof": false,
+    "grants_field_status": false,
+    "grants_submission_readiness": false
+  }
+}
