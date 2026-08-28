@@ -515,7 +515,6 @@ def _evaluate_bugsinpy(
     repository = Path(record["repository_path"])
     checkout = _bugsinpy_binary(record, "bugsinpy-checkout")
     compile_command = _bugsinpy_binary(record, "bugsinpy-compile")
-    test_command = _bugsinpy_binary(record, "bugsinpy-test")
     workspace = workdir / "runs" / arm_id / task["task_id"] / "workspace"
     if workspace.exists():
         shutil.rmtree(workspace)
