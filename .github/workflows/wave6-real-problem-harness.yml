@@ -6,7 +6,10 @@ on:
       - research/wave6-contraction-closure-20260827
     paths:
       - "src/orion_v2/knowledge_metabolism.py"
+      - "src/orion_v2/unified_diff_interface.py"
       - "scripts/run_orion_real_problem_suite.py"
+      - "scripts/run_orion_agent_in_container.py"
+      - "scripts/audit_orion_diff_interface.py"
       - "scripts/materialize_orion_solver_workspaces.py"
       - "scripts/validate_orion_agent_responses.py"
       - "scripts/evaluate_orion_real_problem_responses_v2.py"
@@ -17,8 +20,11 @@ on:
       - "research/experiments/ORION_REAL_PROBLEM_ANALYSIS_PLAN_V1.md"
       - "research/experiments/EXECUTION_BACKLOG_V1.json"
       - "research/experiments/AI_SESSION_EXECUTION_MASTER_HANDOFF_V3.md"
+      - "research/evaluation/E20_PATCH_SERIALIZATION_CONFOUND_AUDIT_V1.md"
       - "papers/verification/KNOWLEDGE_METABOLISM_CLAIM_EXPERIMENT_LEDGER_V1.json"
       - "tests/unit/test_knowledge_metabolism_wave6.py"
+      - "tests/unit/test_unified_diff_interface_wave6.py"
+      - "tests/unit/test_agent_container_adapter_wave6.py"
       - "tests/unit/test_real_problem_suite_runner_wave6.py"
       - "tests/unit/test_real_problem_evaluator_analysis_wave6.py"
       - "tests/unit/test_real_problem_claim_update_wave6.py"
@@ -26,7 +32,10 @@ on:
   pull_request:
     paths:
       - "src/orion_v2/knowledge_metabolism.py"
+      - "src/orion_v2/unified_diff_interface.py"
       - "scripts/run_orion_real_problem_suite.py"
+      - "scripts/run_orion_agent_in_container.py"
+      - "scripts/audit_orion_diff_interface.py"
       - "scripts/materialize_orion_solver_workspaces.py"
       - "scripts/validate_orion_agent_responses.py"
       - "scripts/evaluate_orion_real_problem_responses_v2.py"
@@ -37,8 +46,11 @@ on:
       - "research/experiments/ORION_REAL_PROBLEM_ANALYSIS_PLAN_V1.md"
       - "research/experiments/EXECUTION_BACKLOG_V1.json"
       - "research/experiments/AI_SESSION_EXECUTION_MASTER_HANDOFF_V3.md"
+      - "research/evaluation/E20_PATCH_SERIALIZATION_CONFOUND_AUDIT_V1.md"
       - "papers/verification/KNOWLEDGE_METABOLISM_CLAIM_EXPERIMENT_LEDGER_V1.json"
       - "tests/unit/test_knowledge_metabolism_wave6.py"
+      - "tests/unit/test_unified_diff_interface_wave6.py"
+      - "tests/unit/test_agent_container_adapter_wave6.py"
       - "tests/unit/test_real_problem_suite_runner_wave6.py"
       - "tests/unit/test_real_problem_evaluator_analysis_wave6.py"
       - "tests/unit/test_real_problem_claim_update_wave6.py"
@@ -64,20 +76,25 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -e . pytest
 
-      - name: Compile lifecycle, execution and claim tools
+      - name: Compile lifecycle, isolation, interface, execution and claim tools
         run: |
           python -m py_compile src/orion_v2/knowledge_metabolism.py
+          python -m py_compile src/orion_v2/unified_diff_interface.py
           python -m py_compile scripts/run_orion_real_problem_suite.py
+          python -m py_compile scripts/run_orion_agent_in_container.py
+          python -m py_compile scripts/audit_orion_diff_interface.py
           python -m py_compile scripts/materialize_orion_solver_workspaces.py
           python -m py_compile scripts/validate_orion_agent_responses.py
           python -m py_compile scripts/evaluate_orion_real_problem_responses_v2.py
           python -m py_compile scripts/analyze_orion_real_problem_results.py
           python -m py_compile scripts/update_paper_claims_from_real_results.py
 
-      - name: Run focused reference, evaluator, analysis and claim tests
+      - name: Run focused reference, isolation, interface, evaluator, analysis and claim tests
         run: |
           python -m pytest -q \
             tests/unit/test_knowledge_metabolism_wave6.py \
+            tests/unit/test_unified_diff_interface_wave6.py \
+            tests/unit/test_agent_container_adapter_wave6.py \
             tests/unit/test_real_problem_suite_runner_wave6.py \
             tests/unit/test_real_problem_evaluator_analysis_wave6.py \
             tests/unit/test_real_problem_claim_update_wave6.py
