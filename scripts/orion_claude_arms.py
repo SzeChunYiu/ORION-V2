@@ -92,6 +92,10 @@ def run_arm(
     calls: list[dict[str, int]] = []
 
     def ask(prompt: str) -> str:
+        if calls:
+            delay = float(os.environ.get("ORION_MIN_SECONDS_BETWEEN_CALLS", "0"))
+            if delay > 0:
+                time.sleep(delay)
         text, usage = call(prompt)
         calls.append({"input_tokens": int(usage.get("input_tokens", 0)), "output_tokens": int(usage.get("output_tokens", 0))})
         return text
@@ -183,13 +187,18 @@ def _gemini_call(prompt: str) -> tuple[str, dict[str, int]]:
     model = os.environ["ORION_GEMINI_MODEL"].removeprefix("models/")
     key = os.environ["GEMINI_API_KEY"]
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+    max_tokens = int(os.environ.get("ORION_ARM_MAX_TOKENS", "6000"))
+    generation_config: dict[str, Any] = {
+        "temperature": 0,
+        "maxOutputTokens": max_tokens,
+        "thinkingConfig": {"thinkingBudget": min(1024, max(0, max_tokens // 3))},
+    }
+    if "Return only one JSON object" in prompt:
+        generation_config["responseMimeType"] = "application/json"
     body = json.dumps({
         "systemInstruction": {"parts": [{"text": "You are a bounded experimental software-debugging arm."}]},
         "contents": [{"role": "user", "parts": [{"text": prompt}]}],
-        "generationConfig": {
-            "temperature": 0,
-            "maxOutputTokens": int(os.environ.get("ORION_ARM_MAX_TOKENS", "6000")),
-        },
+        "generationConfig": generation_config,
     }).encode()
     req = urllib.request.Request(
         url,

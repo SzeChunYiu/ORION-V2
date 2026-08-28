@@ -110,6 +110,29 @@ def test_gemini_provider_maps_text_and_usage(monkeypatch: pytest.MonkeyPatch) ->
     assert "secret-test-key" not in str(seen["url"])
     assert seen["key_header"] == "secret-test-key"
     assert seen["body"]["generationConfig"]["maxOutputTokens"] == 123
+    assert seen["body"]["generationConfig"]["thinkingConfig"] == {"thinkingBudget": 41}
+    assert "responseMimeType" not in seen["body"]["generationConfig"]
+
+
+def test_gemini_final_prompt_requests_json(monkeypatch: pytest.MonkeyPatch) -> None:
+    class Response:
+        def __enter__(self): return self
+        def __exit__(self, *_args): return None
+        def read(self): return b'{"candidates":[],"usageMetadata":{}}'
+
+    seen = {}
+    def fake_urlopen(request, timeout):
+        seen["body"] = json.loads(request.data)
+        return Response()
+
+    monkeypatch.setenv("ORION_MODEL_PROVIDER", "gemini")
+    monkeypatch.setenv("ORION_GEMINI_MODEL", "gemini-test-version")
+    monkeypatch.setenv("GEMINI_API_KEY", "secret-test-key")
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+
+    _provider_call("Return only one JSON object with keys patch, diagnosis")
+
+    assert seen["body"]["generationConfig"]["responseMimeType"] == "application/json"
 
 
 def test_context_includes_gold_blind_source_and_prioritizes_failure_file(tmp_path, monkeypatch) -> None:
