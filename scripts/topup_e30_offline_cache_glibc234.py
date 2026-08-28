@@ -29,6 +29,7 @@ GLIBC234_ARTIFACTS: list[tuple[str, str, str]] = [
     ("utils", "1.0.2", "utils-1.0.2.tar.gz"),
     ("leveldb", "0.201", "leveldb-0.201.tar.gz"),
     ("python-gettext", "4.0", "python-gettext-4.0.tar.gz"),
+    ("pytest", "3.10.1", "pytest-3.10.1-py2.py3-none-any.whl"),
 ]
 
 PROJECT_OVERRIDES: dict[str, dict[str, str]] = {
@@ -82,6 +83,18 @@ TORNADO_SETUP_REWRITES = {
     "5a0c356fd95ce0871fff4ba67d5fdbef663a6f59be937d04aaddbafe915aefb3": [
         "{python}", "-c",
         "import pkg_resources; pkg_resources.get_distribution('python-gettext')",
+    ],
+}
+
+ANSIBLE_SETUP_INSTALLS = {
+    "0adc45477b142c1ccb86fee954bd83132c427ec00cc2f67eebfbf7772fcd7eaf": "pytest==3.10.1",
+}
+ANSIBLE_SETUP_REWRITES = {
+    "653b7a51d65d7409e319e29d51d5ee2af65d621ad9ef62148e7eacf99e289879": [
+        "{python}", "setup.py", "install",
+    ],
+    "0adc45477b142c1ccb86fee954bd83132c427ec00cc2f67eebfbf7772fcd7eaf": [
+        "{python}", "-c", "import pytest",
     ],
 }
 
@@ -171,6 +184,11 @@ def patch_binding(path: Path, project: str, source_sha: str) -> str:
         legacy["setup_dependency_installs"] = dict(TORNADO_SETUP_INSTALLS)
         rewrites = dict(legacy.get("setup_command_rewrites") or {})
         rewrites.update(TORNADO_SETUP_REWRITES)
+        legacy["setup_command_rewrites"] = rewrites
+    if project == "ansible":
+        legacy["setup_dependency_installs"] = dict(ANSIBLE_SETUP_INSTALLS)
+        rewrites = dict(legacy.get("setup_command_rewrites") or {})
+        rewrites.update(ANSIBLE_SETUP_REWRITES)
         legacy["setup_command_rewrites"] = rewrites
     binding["legacy_build"] = legacy
     write_json(path, binding)

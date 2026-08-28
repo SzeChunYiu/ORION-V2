@@ -510,6 +510,32 @@ def test_bound_distribution_override_installs_with_prerequisites(
     assert any("pycparser==2.20" in " ".join(command) for command in commands)
 
 
+def test_tox_run_test_is_normalized_to_pytest(tmp_path: Path, monkeypatch) -> None:
+    script = tmp_path / "bugsinpy_run_test.sh"
+    script.write_text("tox tests/test_foo.py::test_bar\n", encoding="utf-8")
+    python = tmp_path / "env/bin/python"
+    python.parent.mkdir(parents=True)
+    python.write_text("", encoding="utf-8")
+    captured: list[list[str]] = []
+
+    def fake_capture(command, **kwargs):
+        captured.append(list(command))
+        return {"command": list(command), "returncode": 1, "stdout_tail": "failed",
+                "stderr_tail": "", "timed_out": False}
+
+    monkeypatch.setattr(runtime, "_capture", fake_capture)
+    receipt = runtime.execute_test_binding(
+        tmp_path, project="cookiecutter", environment_python=python,
+        stage="registered_failing_test",
+    )
+    assert receipt["status"] == "FAIL"
+    normalized = tmp_path / ".orion-e30-support/bugsinpy_run_test.sh"
+    assert normalized.read_text(encoding="utf-8") == f"{python} -m pytest -q tests/test_foo.py::test_bar\n"
+    assert captured[0] == ["bash", str(normalized)]
+    assert any(item["kind"] == "BOUND_TOX_TO_PYTEST"
+               for item in receipt.get("compatibility_interventions", []))
+
+
 def test_utf16_test_support_is_normalized_before_execution(
     tmp_path: Path, monkeypatch
 ) -> None:

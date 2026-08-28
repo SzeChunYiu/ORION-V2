@@ -464,6 +464,50 @@ def _requirement_kind(requirement: str, project: str) -> str:
     return "FORBIDDEN_VCS"
 
 
+def _normalize_run_test_support(
+    support_text: str,
+    environment_python: Path,
+) -> tuple[str, list[dict[str, Any]], bool]:
+    """Rewrite tox-based BugsInPy test scripts to bounded pytest invocations."""
+    interventions: list[dict[str, Any]] = []
+    normalized_lines: list[str] = []
+    changed = False
+    python = str(environment_python)
+    for raw in support_text.splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            normalized_lines.append(raw)
+            continue
+        if line.startswith("tox "):
+            target = line[4:].strip()
+            if not target:
+                raise RuntimeBindingError("tox rewrite requires a pytest target")
+            normalized_lines.append(f"{python} -m pytest -q {target}")
+            interventions.append({
+                "kind": "BOUND_TOX_TO_PYTEST",
+                "source_line_sha256": hashlib.sha256(line.encode("utf-8")).hexdigest(),
+                "pytest_target": target,
+            })
+            changed = True
+            continue
+        tokens = shlex.split(line)
+        if tokens and tokens[0] == "pytest":
+            normalized_lines.append(" ".join([python, "-m", "pytest", *tokens[1:]]))
+            interventions.append({
+                "kind": "BOUND_PYTEST_TO_MODULE_INVOCATION",
+                "source_line_sha256": hashlib.sha256(line.encode("utf-8")).hexdigest(),
+            })
+            changed = True
+            continue
+        normalized_lines.append(raw)
+    if not changed:
+        return support_text, interventions, False
+    normalized = "\n".join(normalized_lines)
+    if support_text.endswith("\n"):
+        normalized += "\n"
+    return normalized, interventions, True
+
+
 def _rewrite_setup_command(line: str, environment_python: Path) -> list[str]:
     tokens = shlex.split(line)
     if not tokens:
@@ -1129,11 +1173,25 @@ def execute_test_binding(
             })
             return base
         base["support_files"].append(support_receipt)
-        if support_receipt["encoding"] != "utf-8":
+        try:
+            normalized_text, test_interventions, tox_rewritten = _normalize_run_test_support(
+                support_text, environment_python
+            )
+        except RuntimeBindingError as exc:
+            base.update({
+                "status": "CANNOT_CHECK_SUPPORT_FILE_DECODE",
+                "returncode": None,
+                "support_decode_error": str(exc),
+            })
+            return base
+        if test_interventions:
+            base["compatibility_interventions"] = test_interventions
+        needs_normalization = support_receipt["encoding"] != "utf-8" or tox_rewritten
+        if needs_normalization:
             normalized_dir = workspace / ".orion-e30-support"
             normalized_dir.mkdir(parents=True, exist_ok=True)
             normalized = normalized_dir / "bugsinpy_run_test.sh"
-            normalized.write_text(support_text, encoding="utf-8", newline="\n")
+            normalized.write_text(normalized_text, encoding="utf-8", newline="\n")
             rendered[index] = str(normalized)
             support_receipt["normalized_sha256"] = _sha256_file(normalized)
             support_receipt["normalized_path"] = str(normalized)
