@@ -1,0 +1,46 @@
+{
+  "arm_id": "F2_ORION_METABOLIC_FULL",
+  "assumptions": [
+    "The Series `.at` tuple key denotes a scalar index label, including labels from a MultiIndex and a plain Index of tuples.",
+    "The requested no-edit constraint prohibits applying the patch in this workspace."
+  ],
+  "diagnosis": "_ScalarAccessIndexer treats a tuple key as separate axis arguments. For a one-dimensional Series, `at[1, 3]` is one tuple-valued label, so splatting it causes `_get_value` argument collision and the setter rejects it as too many indexers. _AtIndexer should wrap tuple keys once before delegating for one-dimensional objects.",
+  "discriminator_or_tests": [
+    "Attempted: `python -m pytest pandas/tests/indexing/test_scalar.py::test_at_with_tuple_index_set pandas/tests/indexing/test_scalar.py::test_multiindex_at_get pandas/tests/indexing/test_scalar.py::test_multiindex_at_set -q`; pytest failed before collection with `FileNotFoundError: No usable temporary directory found`.",
+    "After applying the patch in a writable environment, run `pandas/tests/indexing/test_scalar.py::test_at_with_tuple_index_get`, `::test_at_with_tuple_index_set`, `::test_multiindex_at_get`, and `::test_multiindex_at_set`."
+  ],
+  "falsifier": "The repair is falsified if a one-dimensional Series `.at` access with a tuple label must instead be interpreted as multiple independent axes; Series has only one axis, and the inspected `_get_value(label, takeable=False)` and `_set_value(label, value, takeable=False)` signatures require one label.",
+  "field_status_authorized": false,
+  "metabolic_stages": {
+    "ABSORB": "Incorporated local tests for both a plain Index of tuples and a MultiIndex, which exercise the same tuple-label contract.",
+    "ASSIMILATE_OR_RECYCLE": "Retained the smallest patch. Verification remains pending because the workspace is read-only and the attempted pytest run was blocked before collection by temporary-directory infrastructure.",
+    "CHALLENGE": "Checked that scalar Series keys remain unchanged, DataFrame paths remain unchanged, and tuple labels are passed as one positional label.",
+    "DECOMPOSE": "Separated the issue into getter argument construction, setter indexer arity validation, and DataFrame behavior.",
+    "INGEST": "Read the supplied baseline observation: get fails by duplicate `takeable`; set fails by indexer-count validation.",
+    "NATIVE_RECONSTRUCT": "Inspected `pandas/core/indexing.py`, `Series._get_value(label, takeable=False)`, and `Series._set_value(label, value, takeable=False)`; both require a single label.",
+    "RECOMBINE": "Prepared a two-site normalization in `_AtIndexer`, before existing fallback/delegation logic, covering reads and writes.",
+    "REDUCE": "Identified `_AtIndexer` as the narrow extension point, avoiding changes to generic scalar and `.iat` indexing.",
+    "SORT": "Ranked the shared one-dimensional tuple-key normalization as the smallest common repair; excluded DataFrame and positional `.iat` paths."
+  },
+  "proposed_patch_or_artifact": {
+    "content": "diff --git a/pandas/core/indexing.py b/pandas/core/indexing.py\n--- a/pandas/core/indexing.py\n+++ b/pandas/core/indexing.py\n@@ -2045,6 +2045,9 @@ class _AtIndexer(_ScalarAccessIndexer):\n \n     def __getitem__(self, key):\n \n+        if self.ndim == 1 and isinstance(key, tuple):\n+            key = (key,)\n+\n         if self.ndim == 2 and not self._axes_are_unique:\n             # GH#33041 fall back to .loc\n             if not isinstance(key, tuple) or not all(is_scalar(x) for x in key):\n@@ -2055,6 +2058,9 @@ class _AtIndexer(_ScalarAccessIndexer):\n         return super().__getitem__(key)\n \n     def __setitem__(self, key, value):\n+        if self.ndim == 1 and isinstance(key, tuple):\n+            key = (key,)\n+\n         if self.ndim == 2 and not self._axes_are_unique:\n             # GH#33041 fall back to .loc\n             if not isinstance(key, tuple) or not all(is_scalar(x) for x in key):\n",
+    "type": "unified_diff"
+  },
+  "publication_readiness_authorized": false,
+  "requested_authority": "EXECUTION_TEST_ONLY",
+  "resource_receipt": {
+    "executor": "codex-cli",
+    "model": "gpt-5.6-terra",
+    "model_calls": 1,
+    "total_tokens_reported_by_cli": 28491,
+    "wall_time_seconds": 95.10187530517578
+  },
+  "schema_version": "orion.v2.agent-response.v1",
+  "scientific_truth_authorized": false,
+  "source_ids_used": [
+    "gold-blind-solver-workspace"
+  ],
+  "status": "COMPLETED_PROPOSAL_ONLY",
+  "task_id": "bugsinpy-pandas-2",
+  "uncertainty": "The patch was not applied or post-patch tested because edits are prohibited. A focused pytest invocation was attempted but could not start because the environment has no writable temporary directory."
+}

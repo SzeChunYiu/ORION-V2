@@ -1,0 +1,46 @@
+{
+  "arm_id": "SIMPLE_DIRECT",
+  "assumptions": [
+    "CategoricalDtype is intentionally an object-kind extension dtype but not a string dtype, as specified by the supplied failing assertion.",
+    "The existing is_categorical_dtype predicate is safe to call from is_string_dtype and is already defined before it."
+  ],
+  "diagnosis": "is_string_dtype classifies every non-excluded object-kind dtype as a string dtype. CategoricalDtype has kind \"O\" but was absent from the explicit exclusions, so it incorrectly returned True.",
+  "discriminator_or_tests": [
+    "Run: pytest pandas/tests/dtypes/test_dtypes.py::TestCategoricalDtype::test_not_string",
+    "Run relevant dtype checks: pytest pandas/tests/dtypes/test_dtypes.py"
+  ],
+  "falsifier": "If is_string_dtype(CategoricalDtype()) is expected to return True elsewhere by a documented compatibility contract, this exclusion would be incorrect.",
+  "field_status_authorized": false,
+  "metabolic_stages": {
+    "ABSORB": "NOT_APPLICABLE",
+    "ASSIMILATE_OR_RECYCLE": "NOT_APPLICABLE",
+    "CHALLENGE": "Confirmed CategoricalDtype is imported by common.py and is_categorical_dtype precedes is_string_dtype.",
+    "DECOMPOSE": "Identified the failing predicate and its object-kind exclusion mechanism.",
+    "INGEST": "Read the supplied failure observation and inspected only the current workspace.",
+    "NATIVE_RECONSTRUCT": "NOT_APPLICABLE",
+    "RECOMBINE": "NOT_APPLICABLE",
+    "REDUCE": "Prepared the smallest change: add is_categorical_dtype to the existing exclusion tuple.",
+    "SORT": "Classified the defect as a missing categorical-dtype exclusion."
+  },
+  "proposed_patch_or_artifact": {
+    "content": "diff --git a/pandas/core/dtypes/common.py b/pandas/core/dtypes/common.py\n--- a/pandas/core/dtypes/common.py\n+++ b/pandas/core/dtypes/common.py\n@@ -606,7 +606,7 @@ def is_string_dtype(arr_or_dtype) -> bool:\n         \"\"\"\n         These have kind = \"O\" but aren't string dtypes so need to be explicitly excluded\n         \"\"\"\n-        is_excluded_checks = (is_period_dtype, is_interval_dtype)\n+        is_excluded_checks = (is_categorical_dtype, is_period_dtype, is_interval_dtype)\n         return any(is_excluded(dtype) for is_excluded in is_excluded_checks)\n \n     return _is_dtype(arr_or_dtype, condition)\n",
+    "type": "unified_diff"
+  },
+  "publication_readiness_authorized": false,
+  "requested_authority": "EXECUTION_TEST_ONLY",
+  "resource_receipt": {
+    "executor": "codex-cli",
+    "model": "gpt-5.6-terra",
+    "model_calls": 1,
+    "total_tokens_reported_by_cli": 9938,
+    "wall_time_seconds": 28.050930976867676
+  },
+  "schema_version": "orion.v2.agent-response.v1",
+  "scientific_truth_authorized": false,
+  "source_ids_used": [
+    "gold-blind-solver-workspace"
+  ],
+  "status": "COMPLETED_PROPOSAL_ONLY",
+  "task_id": "bugsinpy-pandas-1",
+  "uncertainty": "The proposed repair was inspected but not applied or test-run because the task explicitly prohibits file edits."
+}

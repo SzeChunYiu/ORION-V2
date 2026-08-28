@@ -1,0 +1,45 @@
+{
+  "arm_id": "SIMPLE_DIRECT",
+  "assumptions": [
+    "The paired to_period guard should match its existing analogous test contract."
+  ],
+  "diagnosis": "Series.to_timestamp and the paired Series.to_period use assertions for invalid index types, but their tests require a TypeError with the unsupported index type in its message.",
+  "discriminator_or_tests": [
+    "Attempted: /home/billy/orion-v2-e45/e30-cpu-ready/tooling/python/cpython-3.8.20-linux-x86_64-gnu/bin/python -m pytest pandas/tests/series/methods/test_to_period.py::TestToPeriod::test_to_period_raises -q; execution could not start because the executable path was unavailable.",
+    "Run pandas/tests/series/methods/test_to_timestamp.py and pandas/tests/series/methods/test_to_period.py after applying the patch."
+  ],
+  "falsifier": "If these APIs intentionally retain AssertionError for an unsupported Series index, the required tests' explicit TypeError expectation invalidates this repair.",
+  "field_status_authorized": false,
+  "metabolic_stages": {
+    "ABSORB": "NOT_APPLICABLE",
+    "ASSIMILATE_OR_RECYCLE": "NOT_APPLICABLE",
+    "CHALLENGE": "NOT_APPLICABLE",
+    "DECOMPOSE": "NOT_APPLICABLE",
+    "INGEST": "NOT_APPLICABLE",
+    "NATIVE_RECONSTRUCT": "NOT_APPLICABLE",
+    "RECOMBINE": "NOT_APPLICABLE",
+    "REDUCE": "NOT_APPLICABLE",
+    "SORT": "NOT_APPLICABLE"
+  },
+  "proposed_patch_or_artifact": {
+    "content": "diff --git a/pandas/core/series.py b/pandas/core/series.py\n--- a/pandas/core/series.py\n+++ b/pandas/core/series.py\n@@ -4684,7 +4684,8 @@ class Series(NDFrame):\n         if copy:\n             new_values = new_values.copy()\n \n-        assert isinstance(self.index, PeriodIndex)\n+        if not isinstance(self.index, PeriodIndex):\n+            raise TypeError(f\"unsupported Type {type(self.index).__name__}\")\n         new_index = self.index.to_timestamp(freq=freq, how=how)  # type: ignore\n         return self._constructor(new_values, index=new_index).__finalize__(\n             self, method=\"to_timestamp\"\n@@ -4712,7 +4713,8 @@ class Series(NDFrame):\n         if copy:\n             new_values = new_values.copy()\n \n-        assert isinstance(self.index, DatetimeIndex)\n+        if not isinstance(self.index, DatetimeIndex):\n+            raise TypeError(f\"unsupported Type {type(self.index).__name__}\")\n         new_index = self.index.to_period(freq=freq)  # type: ignore\n         return self._constructor(new_values, index=new_index).__finalize__(\n             self, method=\"to_period\"\n",
+    "type": "unified_diff"
+  },
+  "publication_readiness_authorized": false,
+  "requested_authority": "EXECUTION_TEST_ONLY",
+  "resource_receipt": {
+    "executor": "codex-cli",
+    "model": "gpt-5.6-terra",
+    "model_calls": 1,
+    "total_tokens_reported_by_cli": 16346,
+    "wall_time_seconds": 53.57598805427551
+  },
+  "schema_version": "orion.v2.agent-response.v1",
+  "scientific_truth_authorized": false,
+  "source_ids_used": [
+    "gold-blind-solver-workspace"
+  ],
+  "status": "COMPLETED_PROPOSAL_ONLY",
+  "task_id": "bugsinpy-pandas-3",
+  "uncertainty": "The supplied Python executable could not be run in this workspace because the rtk wrapper reported it was unavailable; no post-patch test was run."
+}

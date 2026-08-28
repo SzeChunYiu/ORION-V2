@@ -1,0 +1,482 @@
+{
+  "analysis_status": "DESCRIPTIVE_PROSPECTIVE_PLAN_IMPLEMENTATION",
+  "arm_summaries": {
+    "F0_PARENT_FEDERATION": {
+      "critical_failure_count": 0,
+      "critical_failure_rate": null,
+      "mean_wall_time_seconds": 104.00559402443469,
+      "median_wall_time_seconds": 37.23635791009292,
+      "status_counts": {
+        "NATIVE_FAILURE_PATCH_APPLY": 2,
+        "NATIVE_SUCCESS_REGISTERED_TESTS": 1
+      },
+      "success_count": 1,
+      "success_rate": 0.3333333333333333,
+      "task_count": 3
+    },
+    "F2_ORION_METABOLIC_FULL": {
+      "critical_failure_count": 0,
+      "critical_failure_rate": null,
+      "mean_wall_time_seconds": 113.03828144803022,
+      "median_wall_time_seconds": 35.405831263866276,
+      "status_counts": {
+        "NATIVE_FAILURE_PATCH_APPLY": 2,
+        "NATIVE_SUCCESS_REGISTERED_TESTS": 1
+      },
+      "success_count": 1,
+      "success_rate": 0.3333333333333333,
+      "task_count": 3
+    },
+    "SAME_MODEL_REFLECTION": {
+      "critical_failure_count": 0,
+      "critical_failure_rate": null,
+      "mean_wall_time_seconds": 163.45939326037964,
+      "median_wall_time_seconds": 228.493497509975,
+      "status_counts": {
+        "NATIVE_FAILURE_PATCH_APPLY": 1,
+        "NATIVE_SUCCESS_REGISTERED_TESTS": 2
+      },
+      "success_count": 2,
+      "success_rate": 0.6666666666666666,
+      "task_count": 3
+    },
+    "SIMPLE_DIRECT": {
+      "critical_failure_count": 0,
+      "critical_failure_rate": null,
+      "mean_wall_time_seconds": 165.84305937060466,
+      "median_wall_time_seconds": 228.19650798290968,
+      "status_counts": {
+        "NATIVE_FAILURE_PATCH_APPLY": 1,
+        "NATIVE_SUCCESS_REGISTERED_TESTS": 2
+      },
+      "success_count": 2,
+      "success_rate": 0.6666666666666666,
+      "task_count": 3
+    }
+  },
+  "component_effects": {
+    "F2_MINUS_COUNTERPROBE": {
+      "component_disposition": "CANNOT_CHECK_UNDERPOWERED",
+      "critical_failure": {
+        "exact_discordant_p": null,
+        "missing_task_ids": [],
+        "paired_table": {
+          "both_false": 0,
+          "both_true": 0,
+          "left_only": 0,
+          "right_only": 0
+        },
+        "risk_difference": {
+          "bootstrap_repetitions": 10000,
+          "ci95": [
+            null,
+            null
+          ],
+          "estimate": null,
+          "pair_count": 0,
+          "seed": 20260828
+        }
+      },
+      "left_arm": "F2_ORION_METABOLIC_FULL",
+      "paired_task_count": 0,
+      "right_arm": "F2_MINUS_COUNTERPROBE",
+      "success": {
+        "exact_discordant_p": null,
+        "missing_task_ids": [],
+        "paired_table": {
+          "both_false": 0,
+          "both_true": 0,
+          "left_only": 0,
+          "right_only": 0
+        },
+        "risk_difference": {
+          "bootstrap_repetitions": 10000,
+          "ci95": [
+            null,
+            null
+          ],
+          "estimate": null,
+          "pair_count": 0,
+          "seed": 20260828
+        }
+      },
+      "wall_time_seconds": {
+        "bootstrap_repetitions": 10000,
+        "ci95": [
+          null,
+          null
+        ],
+        "estimate": null,
+        "median_difference": null,
+        "pair_count": 0,
+        "seed": 20260828
+      }
+    },
+    "F2_MINUS_DECOMPOSITION": {
+      "component_disposition": "CANNOT_CHECK_UNDERPOWERED",
+      "critical_failure": {
+        "exact_discordant_p": null,
+        "missing_task_ids": [],
+        "paired_table": {
+          "both_false": 0,
+          "both_true": 0,
+          "left_only": 0,
+          "right_only": 0
+        },
+        "risk_difference": {
+          "bootstrap_repetitions": 10000,
+          "ci95": [
+            null,
+            null
+          ],
+          "estimate": null,
+          "pair_count": 0,
+          "seed": 20260828
+        }
+      },
+      "left_arm": "F2_ORION_METABOLIC_FULL",
+      "paired_task_count": 0,
+      "right_arm": "F2_MINUS_DECOMPOSITION",
+      "success": {
+        "exact_discordant_p": null,
+        "missing_task_ids": [],
+        "paired_table": {
+          "both_false": 0,
+          "both_true": 0,
+          "left_only": 0,
+          "right_only": 0
+        },
+        "risk_difference": {
+          "bootstrap_repetitions": 10000,
+          "ci95": [
+            null,
+            null
+          ],
+          "estimate": null,
+          "pair_count": 0,
+          "seed": 20260828
+        }
+      },
+      "wall_time_seconds": {
+        "bootstrap_repetitions": 10000,
+        "ci95": [
+          null,
+          null
+        ],
+        "estimate": null,
+        "median_difference": null,
+        "pair_count": 0,
+        "seed": 20260828
+      }
+    },
+    "F2_MINUS_NATIVE_RECOVERY": {
+      "component_disposition": "CANNOT_CHECK_UNDERPOWERED",
+      "critical_failure": {
+        "exact_discordant_p": null,
+        "missing_task_ids": [],
+        "paired_table": {
+          "both_false": 0,
+          "both_true": 0,
+          "left_only": 0,
+          "right_only": 0
+        },
+        "risk_difference": {
+          "bootstrap_repetitions": 10000,
+          "ci95": [
+            null,
+            null
+          ],
+          "estimate": null,
+          "pair_count": 0,
+          "seed": 20260828
+        }
+      },
+      "left_arm": "F2_ORION_METABOLIC_FULL",
+      "paired_task_count": 0,
+      "right_arm": "F2_MINUS_NATIVE_RECOVERY",
+      "success": {
+        "exact_discordant_p": null,
+        "missing_task_ids": [],
+        "paired_table": {
+          "both_false": 0,
+          "both_true": 0,
+          "left_only": 0,
+          "right_only": 0
+        },
+        "risk_difference": {
+          "bootstrap_repetitions": 10000,
+          "ci95": [
+            null,
+            null
+          ],
+          "estimate": null,
+          "pair_count": 0,
+          "seed": 20260828
+        }
+      },
+      "wall_time_seconds": {
+        "bootstrap_repetitions": 10000,
+        "ci95": [
+          null,
+          null
+        ],
+        "estimate": null,
+        "median_difference": null,
+        "pair_count": 0,
+        "seed": 20260828
+      }
+    },
+    "F2_MINUS_SELECTIVE_REOPEN": {
+      "component_disposition": "CANNOT_CHECK_UNDERPOWERED",
+      "critical_failure": {
+        "exact_discordant_p": null,
+        "missing_task_ids": [],
+        "paired_table": {
+          "both_false": 0,
+          "both_true": 0,
+          "left_only": 0,
+          "right_only": 0
+        },
+        "risk_difference": {
+          "bootstrap_repetitions": 10000,
+          "ci95": [
+            null,
+            null
+          ],
+          "estimate": null,
+          "pair_count": 0,
+          "seed": 20260828
+        }
+      },
+      "left_arm": "F2_ORION_METABOLIC_FULL",
+      "paired_task_count": 0,
+      "right_arm": "F2_MINUS_SELECTIVE_REOPEN",
+      "success": {
+        "exact_discordant_p": null,
+        "missing_task_ids": [],
+        "paired_table": {
+          "both_false": 0,
+          "both_true": 0,
+          "left_only": 0,
+          "right_only": 0
+        },
+        "risk_difference": {
+          "bootstrap_repetitions": 10000,
+          "ci95": [
+            null,
+            null
+          ],
+          "estimate": null,
+          "pair_count": 0,
+          "seed": 20260828
+        }
+      },
+      "wall_time_seconds": {
+        "bootstrap_repetitions": 10000,
+        "ci95": [
+          null,
+          null
+        ],
+        "estimate": null,
+        "median_difference": null,
+        "pair_count": 0,
+        "seed": 20260828
+      }
+    }
+  },
+  "field_status": "NOT_ESTABLISHED",
+  "hard_gate_state": "CANNOT_CHECK",
+  "minimum_confirmatory_paired_tasks": 40,
+  "primary_comparisons": [
+    {
+      "critical_failure": {
+        "exact_discordant_p": null,
+        "missing_task_ids": [
+          "bugsinpy-pandas-1",
+          "bugsinpy-pandas-2",
+          "bugsinpy-pandas-3"
+        ],
+        "paired_table": {
+          "both_false": 0,
+          "both_true": 0,
+          "left_only": 0,
+          "right_only": 0
+        },
+        "risk_difference": {
+          "bootstrap_repetitions": 10000,
+          "ci95": [
+            null,
+            null
+          ],
+          "estimate": null,
+          "pair_count": 0,
+          "seed": 20260828
+        }
+      },
+      "left_arm": "F2_ORION_METABOLIC_FULL",
+      "paired_task_count": 3,
+      "right_arm": "F0_PARENT_FEDERATION",
+      "success": {
+        "exact_discordant_p": 1.0,
+        "missing_task_ids": [],
+        "paired_table": {
+          "both_false": 1,
+          "both_true": 0,
+          "left_only": 1,
+          "right_only": 1
+        },
+        "risk_difference": {
+          "bootstrap_repetitions": 10000,
+          "ci95": [
+            -1.0,
+            1.0
+          ],
+          "estimate": 0.0,
+          "pair_count": 3,
+          "seed": 20260828
+        }
+      },
+      "wall_time_seconds": {
+        "bootstrap_repetitions": 10000,
+        "ci95": [
+          -207.85254975175485,
+          236.7811386687681
+        ],
+        "estimate": 9.032687423595538,
+        "median_difference": -1.8305266462266445,
+        "pair_count": 3,
+        "seed": 20260828
+      }
+    },
+    {
+      "critical_failure": {
+        "exact_discordant_p": null,
+        "missing_task_ids": [
+          "bugsinpy-pandas-1",
+          "bugsinpy-pandas-2",
+          "bugsinpy-pandas-3"
+        ],
+        "paired_table": {
+          "both_false": 0,
+          "both_true": 0,
+          "left_only": 0,
+          "right_only": 0
+        },
+        "risk_difference": {
+          "bootstrap_repetitions": 10000,
+          "ci95": [
+            null,
+            null
+          ],
+          "estimate": null,
+          "pair_count": 0,
+          "seed": 20260828
+        }
+      },
+      "left_arm": "F2_ORION_METABOLIC_FULL",
+      "paired_task_count": 3,
+      "right_arm": "SIMPLE_DIRECT",
+      "success": {
+        "exact_discordant_p": 1.0,
+        "missing_task_ids": [],
+        "paired_table": {
+          "both_false": 0,
+          "both_true": 0,
+          "left_only": 1,
+          "right_only": 2
+        },
+        "risk_difference": {
+          "bootstrap_repetitions": 10000,
+          "ci95": [
+            -1.0,
+            1.0
+          ],
+          "estimate": -0.3333333333333333,
+          "pair_count": 3,
+          "seed": 20260828
+        }
+      },
+      "wall_time_seconds": {
+        "bootstrap_repetitions": 10000,
+        "ci95": [
+          -205.79890008457005,
+          240.17524303589016
+        ],
+        "estimate": -52.80477792257443,
+        "median_difference": -192.7906767190434,
+        "pair_count": 3,
+        "seed": 20260828
+      }
+    },
+    {
+      "critical_failure": {
+        "exact_discordant_p": null,
+        "missing_task_ids": [
+          "bugsinpy-pandas-1",
+          "bugsinpy-pandas-2",
+          "bugsinpy-pandas-3"
+        ],
+        "paired_table": {
+          "both_false": 0,
+          "both_true": 0,
+          "left_only": 0,
+          "right_only": 0
+        },
+        "risk_difference": {
+          "bootstrap_repetitions": 10000,
+          "ci95": [
+            null,
+            null
+          ],
+          "estimate": null,
+          "pair_count": 0,
+          "seed": 20260828
+        }
+      },
+      "left_arm": "F2_ORION_METABOLIC_FULL",
+      "paired_task_count": 3,
+      "right_arm": "SAME_MODEL_REFLECTION",
+      "success": {
+        "exact_discordant_p": 1.0,
+        "missing_task_ids": [],
+        "paired_table": {
+          "both_false": 0,
+          "both_true": 0,
+          "left_only": 1,
+          "right_only": 2
+        },
+        "risk_difference": {
+          "bootstrap_repetitions": 10000,
+          "ci95": [
+            -1.0,
+            1.0
+          ],
+          "estimate": -0.3333333333333333,
+          "pair_count": 3,
+          "seed": 20260828
+        }
+      },
+      "wall_time_seconds": {
+        "bootstrap_repetitions": 10000,
+        "ci95": [
+          -195.70733320433646,
+          238.422611056827
+        ],
+        "estimate": -50.42111181234941,
+        "median_difference": -193.97861328953877,
+        "pair_count": 3,
+        "seed": 20260828
+      }
+    }
+  ],
+  "publication_readiness": "NOT_ESTABLISHED",
+  "required_next": [
+    "independent statistical and domain review",
+    "Holm adjustment across primary confirmatory tests",
+    "resource normalization and Pareto analysis",
+    "cross-domain native evaluation",
+    "complete missing and failure audit"
+  ],
+  "schema_version": "orion.v2.real-problem-analysis.v1",
+  "supertheory_status": "NOT_ESTABLISHED"
+}

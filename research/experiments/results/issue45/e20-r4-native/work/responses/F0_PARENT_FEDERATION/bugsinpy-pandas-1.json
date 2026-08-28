@@ -1,0 +1,45 @@
+{
+  "arm_id": "F0_PARENT_FEDERATION",
+  "assumptions": [
+    "CategoricalDtype should be treated consistently with the existing PeriodDtype and IntervalDtype object-kind exclusions."
+  ],
+  "diagnosis": "is_string_dtype classifies object-kind dtypes as strings unless excluded. CategoricalDtype declares kind='O' but was omitted from the explicit exclusions, causing the observed false positive.",
+  "discriminator_or_tests": [
+    "Apply the patch, then run: pytest pandas/tests/dtypes/test_dtypes.py::TestCategoricalDtype::test_not_string -q",
+    "Also run the dtype test modules covering is_string_dtype behavior, particularly pandas/tests/dtypes/test_common.py."
+  ],
+  "falsifier": "If categorical dtypes are intentionally meant to be string dtypes despite their category semantics, the expected assertion and this exclusion would be incorrect.",
+  "field_status_authorized": false,
+  "metabolic_stages": {
+    "ABSORB": "The existing PeriodDtype and IntervalDtype exclusions establish the local pattern for non-string object-kind extension dtypes.",
+    "ASSIMILATE_OR_RECYCLE": "No files were edited. Focused pytest invocation was attempted but collected no tests in this environment.",
+    "CHALLENGE": "Other object-kind extension dtypes are already represented by the existing Period and Interval exclusions; the failure-specific categorical case is directly covered.",
+    "DECOMPOSE": "Separated classification predicate, exclusions, and CategoricalDtype metadata.",
+    "INGEST": "Observed failure: is_string_dtype(CategoricalDtype()) returned True.",
+    "NATIVE_RECONSTRUCT": "The predicate accepts kind 'O'; CategoricalDtype reaches it and no current exclusion rejects it.",
+    "RECOMBINE": "Proposed adding is_categorical_dtype to is_excluded_checks.",
+    "REDUCE": "A single exclusion-tuple addition changes only categorical handling.",
+    "SORT": "Located is_string_dtype in pandas/core/dtypes/common.py and CategoricalDtype.kind='O' in pandas/core/dtypes/dtypes.py."
+  },
+  "proposed_patch_or_artifact": {
+    "content": "diff --git a/pandas/core/dtypes/common.py b/pandas/core/dtypes/common.py\n--- pandas/core/dtypes/common.py\n+++ pandas/core/dtypes/common.py\n@@ -600,7 +600,7 @@\n         These have kind = \"O\" but aren't string dtypes so need to be explicitly excluded\n         \"\"\"\n-        is_excluded_checks = (is_period_dtype, is_interval_dtype)\n+        is_excluded_checks = (is_period_dtype, is_interval_dtype, is_categorical_dtype)\n         return any(is_excluded(dtype) for is_excluded in is_excluded_checks)\n \n     return _is_dtype(arr_or_dtype, condition)\n",
+    "type": "unified_diff"
+  },
+  "publication_readiness_authorized": false,
+  "requested_authority": "EXECUTION_TEST_ONLY",
+  "resource_receipt": {
+    "executor": "codex-cli",
+    "model": "gpt-5.6-terra",
+    "model_calls": 1,
+    "total_tokens_reported_by_cli": 38519,
+    "wall_time_seconds": 50.44521498680115
+  },
+  "schema_version": "orion.v2.agent-response.v1",
+  "scientific_truth_authorized": false,
+  "source_ids_used": [
+    "gold-blind-solver-workspace"
+  ],
+  "status": "COMPLETED_PROPOSAL_ONLY",
+  "task_id": "bugsinpy-pandas-1",
+  "uncertainty": "The focused pytest command in this workspace reported 'No tests collected', so the proposed patch was not executed against the test here."
+}

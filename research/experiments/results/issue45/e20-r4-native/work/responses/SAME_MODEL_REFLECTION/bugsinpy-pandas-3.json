@@ -1,0 +1,46 @@
+{
+  "arm_id": "SAME_MODEL_REFLECTION",
+  "assumptions": [
+    "The intended public API for both Series conversion methods is the TypeError contract expressed in their existing tests.",
+    "No files were edited; the supplied patch is the proposed repair."
+  ],
+  "diagnosis": "Series.to_timestamp uses an assertion for an invalid index type, producing AssertionError where its test requires TypeError with an \"unsupported Type <IndexType>\" message. Series.to_period has the same incompatible assertion despite an analogous TypeError test.",
+  "discriminator_or_tests": [
+    "/home/billy/orion-v2-e45/e30-cpu-ready/tooling/python/cpython-3.8.20-linux-x86_64-gnu/bin/python -m pytest pandas/tests/series/methods/test_to_timestamp.py -q",
+    "/home/billy/orion-v2-e45/e30-cpu-ready/tooling/python/cpython-3.8.20-linux-x86_64-gnu/bin/python -m pytest pandas/tests/series/methods/test_to_period.py -q"
+  ],
+  "falsifier": "The repair is falsified if either conversion method is expected to retain AssertionError for a non-convertible index, or if the existing invalid-index tests require a different exception message.",
+  "field_status_authorized": false,
+  "metabolic_stages": {
+    "ABSORB": "Preserved copying, index conversion, construction, and finalization behavior.",
+    "ASSIMILATE_OR_RECYCLE": "Revised the patch to cover both matching assertion-based conversion methods; tests were not run because the supplied interpreter path is unavailable.",
+    "CHALLENGE": "Same-model critique found that changing only to_timestamp would leave the identical to_period test contract violated.",
+    "DECOMPOSE": "Separated the invalid-index exception contract from normal PeriodIndex/DatetimeIndex conversion behavior.",
+    "INGEST": "Read the supplied failure observation and inspected the implicated Series implementation and tests.",
+    "NATIVE_RECONSTRUCT": "Reconstructed the expected TypeError message directly from the parameterized tests.",
+    "RECOMBINE": "Proposed matching TypeError guards for to_timestamp and the analogous to_period method.",
+    "REDUCE": "Limited the proposed change to replacing only the two invalid-index assertions.",
+    "SORT": "Classified the failure as an API exception-type mismatch caused by assertions."
+  },
+  "proposed_patch_or_artifact": {
+    "content": "diff --git a/pandas/core/series.py b/pandas/core/series.py\n--- a/pandas/core/series.py\n+++ b/pandas/core/series.py\n@@ -4684,7 +4684,8 @@ class Series(NDFrame):\n         if copy:\n             new_values = new_values.copy()\n \n-        assert isinstance(self.index, PeriodIndex)\n+        if not isinstance(self.index, PeriodIndex):\n+            raise TypeError(f\"unsupported Type {type(self.index).__name__}\")\n         new_index = self.index.to_timestamp(freq=freq, how=how)  # type: ignore\n         return self._constructor(new_values, index=new_index).__finalize__(\n             self, method=\"to_timestamp\"\n@@ -4713,7 +4714,8 @@ class Series(NDFrame):\n         if copy:\n             new_values = new_values.copy()\n \n-        assert isinstance(self.index, DatetimeIndex)\n+        if not isinstance(self.index, DatetimeIndex):\n+            raise TypeError(f\"unsupported Type {type(self.index).__name__}\")\n         new_index = self.index.to_period(freq=freq)  # type: ignore\n         return self._constructor(new_values, index=new_index).__finalize__(\n             self, method=\"to_period\"\n",
+    "type": "unified_diff"
+  },
+  "publication_readiness_authorized": false,
+  "requested_authority": "EXECUTION_TEST_ONLY",
+  "resource_receipt": {
+    "executor": "codex-cli",
+    "model": "gpt-5.6-terra",
+    "model_calls": 1,
+    "total_tokens_reported_by_cli": 17165,
+    "wall_time_seconds": 59.20446991920471
+  },
+  "schema_version": "orion.v2.agent-response.v1",
+  "scientific_truth_authorized": false,
+  "source_ids_used": [
+    "gold-blind-solver-workspace"
+  ],
+  "status": "COMPLETED_PROPOSAL_ONLY",
+  "task_id": "bugsinpy-pandas-3",
+  "uncertainty": "The specified project Python executable is unavailable in this workspace (/home/billy/orion-v2-e45/e30-cpu-ready/tooling/python/cpython-3.8.20-linux-x86_64-gnu/bin/python), so I could not execute verification tests."
+}

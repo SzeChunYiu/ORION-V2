@@ -1,0 +1,95 @@
+{
+  "authority": {
+    "field_status": false,
+    "publication_readiness": false,
+    "scientific_truth": false
+  },
+  "outcome_access": "NONE",
+  "project_python": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e20-r4-native-r1/inputs/toolchain/cpython-3.8.20-linux-x86_64-gnu/bin/python3.8",
+  "schema_version": "orion.v2.frozen-real-problem-tasks.v1",
+  "source_commit": "582a125aa80660229fa6f29da4f5263645d62c0d",
+  "suite_id": "ORION_REAL_PROBLEM_SUITE_V1",
+  "tasks": [
+    {
+      "adapter": "bugsinpy",
+      "baseline_observation": {
+        "bug_reproduced": true,
+        "compile_returncode": 0,
+        "gold_or_fixed_solution_included": false,
+        "stderr_tail": "",
+        "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.8.20, pytest-5.4.2, py-1.8.1, pluggy-0.13.1\nrootdir: /home/billy/orion-v2-e45/e20-pilot-billyold-r4/shards/pandas-1/pilot/solver_workspaces/bugsinpy-pandas-1/pandas, inifile: setup.cfg\nplugins: hypothesis-5.15.1\ncollected 1 item\n\npandas/tests/dtypes/test_dtypes.py F                                     [100%]\n\n=================================== FAILURES ===================================\n_____________________ TestCategoricalDtype.test_not_string _____________________\n\nself = <pandas.tests.dtypes.test_dtypes.TestCategoricalDtype object at 0x79ad80544580>\n\n    def test_not_string(self):\n        # though CategoricalDtype has object kind, it cannot be string\n>       assert not is_string_dtype(CategoricalDtype())\nE       assert not True\nE        +  where True = is_string_dtype(CategoricalDtype(categories=None, ordered=False))\nE        +    where CategoricalDtype(categories=None, ordered=False) = CategoricalDtype()\n\npandas/tests/dtypes/test_dtypes.py:196: AssertionError\n=========================== short test summary info ============================\nFAILED pandas/tests/dtypes/test_dtypes.py::TestCategoricalDtype::test_not_string\n============================== 1 failed in 0.25s ===============================\n",
+        "test_infrastructure_error": false,
+        "test_returncode": 1
+      },
+      "benchmark_id": "bugsinpy",
+      "bug_id": 1,
+      "buggy_version": 0,
+      "compiler_compat_cflags": "-Wno-error=array-bounds",
+      "fixed_version": 1,
+      "gold_withheld": true,
+      "network_allowed_during_solution": false,
+      "primary_decision": "produce an executable patch that fixes the real bug without critical regression",
+      "project": "pandas",
+      "project_python_bin": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e20-r4-native-r1/inputs/toolchain/cpython-3.8.20-linux-x86_64-gnu/bin",
+      "solver_may_return": "unified_diff_only",
+      "solver_workspace": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e20-r4-native-r1/inputs/gold_blind/E20_R4_GOLD_BLIND_REQUESTS/workspaces/bugsinpy-pandas-1",
+      "task_id": "bugsinpy-pandas-1",
+      "workspace_commit": "3fd150c9e6e3a1a39622577745a7d821611c09d3",
+      "workspace_contains_gold": false
+    },
+    {
+      "adapter": "bugsinpy",
+      "baseline_observation": {
+        "bug_reproduced": true,
+        "compile_returncode": 0,
+        "gold_or_fixed_solution_included": false,
+        "stderr_tail": "",
+        "stdout_tail": "nvertible item here (e.g. Timestamp)\n            if not is_list_like_indexer(key):\n                key = tuple([key])\n            else:\n                raise ValueError(\"Invalid call for scalar access (getting)!\")\n    \n        key = self._convert_key(key)\n>       return self.obj._get_value(*key, takeable=self._takeable)\nE       TypeError: _get_value() got multiple values for argument 'takeable'\n\npandas/core/indexing.py:2008: TypeError\n=========================== short test summary info ============================\nFAILED pandas/tests/indexing/test_scalar.py::test_multiindex_at_get - TypeErr...\n============================== 1 failed in 0.10s ===============================\n============================= test session starts ==============================\nplatform linux -- Python 3.8.20, pytest-5.4.2, py-1.8.1, pluggy-0.13.1\nrootdir: /home/billy/orion-v2-e45/e20-pilot-billyold-r4/shards/pandas-2/pilot/solver_workspaces/bugsinpy-pandas-2/pandas, inifile: setup.cfg\nplugins: hypothesis-5.15.1\ncollected 1 item\n\npandas/tests/indexing/test_scalar.py F                                   [100%]\n\n=================================== FAILURES ===================================\n____________________________ test_multiindex_at_set ____________________________\n\n    def test_multiindex_at_set():\n        # GH 26989\n        # DataFrame.at and DataFrame.loc setter works with MultiIndex\n        df = DataFrame({\"a\": [1, 2]}, index=[[1, 2], [3, 4]])\n        assert df.index.nlevels == 2\n        df.at[(1, 3), \"a\"] = 3\n        assert df.at[(1, 3), \"a\"] == 3\n        df.loc[(1, 3), \"a\"] = 4\n        assert df.loc[(1, 3), \"a\"] == 4\n    \n        # Series.at and Series.loc setter works with MultiIndex\n        series = df[\"a\"]\n        assert series.index.nlevels == 2\n>       series.at[1, 3] = 5\n\npandas/tests/indexing/test_scalar.py:412: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npandas/core/indexing.py:2066: in __setitem__\n    return super().__setitem__(key, value)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <pandas.core.indexing._AtIndexer object at 0x76b51085cea0>, key = (1, 3)\nvalue = 5\n\n    def __setitem__(self, key, value):\n        if isinstance(key, tuple):\n            key = tuple(com.apply_if_callable(x, self.obj) for x in key)\n        else:\n            # scalar callable may return tuple\n            key = com.apply_if_callable(key, self.obj)\n    \n        if not isinstance(key, tuple):\n            key = _tuplify(self.ndim, key)\n        if len(key) != self.ndim:\n>           raise ValueError(\"Not enough indexers for scalar access (setting)!\")\nE           ValueError: Not enough indexers for scalar access (setting)!\n\npandas/core/indexing.py:2020: ValueError\n=========================== short test summary info ============================\nFAILED pandas/tests/indexing/test_scalar.py::test_multiindex_at_set - ValueEr...\n============================== 1 failed in 0.10s ===============================\n",
+        "test_infrastructure_error": false,
+        "test_returncode": 1
+      },
+      "benchmark_id": "bugsinpy",
+      "bug_id": 2,
+      "buggy_version": 0,
+      "compiler_compat_cflags": "-Wno-error=array-bounds",
+      "fixed_version": 1,
+      "gold_withheld": true,
+      "network_allowed_during_solution": false,
+      "primary_decision": "produce an executable patch that fixes the real bug without critical regression",
+      "project": "pandas",
+      "project_python_bin": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e20-r4-native-r1/inputs/toolchain/cpython-3.8.20-linux-x86_64-gnu/bin",
+      "solver_may_return": "unified_diff_only",
+      "solver_workspace": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e20-r4-native-r1/inputs/gold_blind/E20_R4_GOLD_BLIND_REQUESTS/workspaces/bugsinpy-pandas-2",
+      "task_id": "bugsinpy-pandas-2",
+      "workspace_commit": "2740fb44e5e2ff64087ca7de5999eb30352722f0",
+      "workspace_contains_gold": false
+    },
+    {
+      "adapter": "bugsinpy",
+      "baseline_observation": {
+        "bug_reproduced": true,
+        "compile_returncode": 0,
+        "gold_or_fixed_solution_included": false,
+        "stderr_tail": "",
+        "stdout_tail": "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = 0    NaN\n0    NaN\n1    NaN\n1    NaN\n2    NaN\n2    NaN\ndtype: object\nfreq = None, how = 'start', copy = True\n\n    def to_timestamp(self, freq=None, how=\"start\", copy=True) -> \"Series\":\n        \"\"\"\n        Cast to DatetimeIndex of Timestamps, at *beginning* of period.\n    \n        Parameters\n        ----------\n        freq : str, default frequency of PeriodIndex\n            Desired frequency.\n        how : {'s', 'e', 'start', 'end'}\n            Convention for converting period to timestamp; start of period\n            vs. end.\n        copy : bool, default True\n            Whether or not to return a copy.\n    \n        Returns\n        -------\n        Series with DatetimeIndex\n        \"\"\"\n        new_values = self._values\n        if copy:\n            new_values = new_values.copy()\n    \n>       assert isinstance(self.index, PeriodIndex)\nE       AssertionError\n\npandas/core/series.py:4687: AssertionError\n=========================== short test summary info ============================\nFAILED pandas/tests/series/methods/test_to_timestamp.py::TestToTimestamp::test_to_timestamp_raises[unicode]\nFAILED pandas/tests/series/methods/test_to_timestamp.py::TestToTimestamp::test_to_timestamp_raises[string]\nFAILED pandas/tests/series/methods/test_to_timestamp.py::TestToTimestamp::test_to_timestamp_raises[datetime]\nFAILED pandas/tests/series/methods/test_to_timestamp.py::TestToTimestamp::test_to_timestamp_raises[datetime-tz]\nFAILED pandas/tests/series/methods/test_to_timestamp.py::TestToTimestamp::test_to_timestamp_raises[timedelta]\nFAILED pandas/tests/series/methods/test_to_timestamp.py::TestToTimestamp::test_to_timestamp_raises[int]\nFAILED pandas/tests/series/methods/test_to_timestamp.py::TestToTimestamp::test_to_timestamp_raises[uint]\nFAILED pandas/tests/series/methods/test_to_timestamp.py::TestToTimestamp::test_to_timestamp_raises[range]\nFAILED pandas/tests/series/methods/test_to_timestamp.py::TestToTimestamp::test_to_timestamp_raises[float]\nFAILED pandas/tests/series/methods/test_to_timestamp.py::TestToTimestamp::test_to_timestamp_raises[bool]\nFAILED pandas/tests/series/methods/test_to_timestamp.py::TestToTimestamp::test_to_timestamp_raises[categorical]\nFAILED pandas/tests/series/methods/test_to_timestamp.py::TestToTimestamp::test_to_timestamp_raises[interval]\nFAILED pandas/tests/series/methods/test_to_timestamp.py::TestToTimestamp::test_to_timestamp_raises[empty]\nFAILED pandas/tests/series/methods/test_to_timestamp.py::TestToTimestamp::test_to_timestamp_raises[tuples]\nFAILED pandas/tests/series/methods/test_to_timestamp.py::TestToTimestamp::test_to_timestamp_raises[mi-with-dt64tz-level]\nFAILED pandas/tests/series/methods/test_to_timestamp.py::TestToTimestamp::test_to_timestamp_raises[multi]\nFAILED pandas/tests/series/methods/test_to_timestamp.py::TestToTimestamp::test_to_timestamp_raises[repeats]\n========================= 17 failed, 1 passed in 0.84s =========================\n",
+        "test_infrastructure_error": false,
+        "test_returncode": 1
+      },
+      "benchmark_id": "bugsinpy",
+      "bug_id": 3,
+      "buggy_version": 0,
+      "compiler_compat_cflags": "-Wno-error=array-bounds",
+      "fixed_version": 1,
+      "gold_withheld": true,
+      "network_allowed_during_solution": false,
+      "primary_decision": "produce an executable patch that fixes the real bug without critical regression",
+      "project": "pandas",
+      "project_python_bin": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e20-r4-native-r1/inputs/toolchain/cpython-3.8.20-linux-x86_64-gnu/bin",
+      "solver_may_return": "unified_diff_only",
+      "solver_workspace": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e20-r4-native-r1/inputs/gold_blind/E20_R4_GOLD_BLIND_REQUESTS/workspaces/bugsinpy-pandas-3",
+      "task_id": "bugsinpy-pandas-3",
+      "workspace_commit": "45fee3278680e8da2724236cc93227bcb28585b1",
+      "workspace_contains_gold": false
+    }
+  ]
+}
