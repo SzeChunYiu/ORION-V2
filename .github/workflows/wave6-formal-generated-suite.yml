@@ -1,0 +1,140 @@
+name: wave6-formal-generated-suite
+
+on:
+  push:
+    branches:
+      - research/wave6-contraction-closure-20260827
+    paths:
+      - "scripts/run_formal_discovery_generated_suite.py"
+      - "scripts/orion_formal_discovery_arms.py"
+      - "scripts/run_formal_discovery_campaign.py"
+      - "scripts/run_formal_discovery_campaign.sh"
+      - "tests/unit/test_formal_discovery_generated_suite_wave6.py"
+      - "tests/unit/test_formal_discovery_campaign_plan_wave6.py"
+      - "research/experiments/FORMAL_DISCOVERY_GENERATED_CAMPAIGN_PLAN_V1.json"
+      - "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_MECHANICS_PROTOCOL_V1.json"
+      - "research/experiments/FORMALISM_GENESIS_PROTOCOL_V1.json"
+      - ".github/workflows/wave6-formal-generated-suite.yml"
+  pull_request:
+    paths:
+      - "scripts/run_formal_discovery_generated_suite.py"
+      - "scripts/orion_formal_discovery_arms.py"
+      - "scripts/run_formal_discovery_campaign.py"
+      - "scripts/run_formal_discovery_campaign.sh"
+      - "tests/unit/test_formal_discovery_generated_suite_wave6.py"
+      - "tests/unit/test_formal_discovery_campaign_plan_wave6.py"
+      - "research/experiments/FORMAL_DISCOVERY_GENERATED_CAMPAIGN_PLAN_V1.json"
+      - "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_MECHANICS_PROTOCOL_V1.json"
+      - "research/experiments/FORMALISM_GENESIS_PROTOCOL_V1.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  formal-generated-suite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install package and tests
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e . pytest
+      - name: Compile formal suite plumbing
+        run: |
+          python -m py_compile scripts/run_formal_discovery_generated_suite.py
+          python -m py_compile scripts/orion_formal_discovery_arms.py
+          python -m py_compile scripts/run_formal_discovery_campaign.py
+          bash -n scripts/run_formal_discovery_campaign.sh
+      - name: Run focused tests
+        run: |
+          python -m pytest -q \
+            tests/unit/test_formal_discovery_generated_suite_wave6.py \
+            tests/unit/test_formal_discovery_campaign_plan_wave6.py
+      - name: Validate frozen campaign plan
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          plan=json.loads(Path('research/experiments/FORMAL_DISCOVERY_GENERATED_CAMPAIGN_PLAN_V1.json').read_text())
+          assert plan['status'] == 'PROSPECTIVE_EXECUTION_PLAN_NO_RESULTS'
+          expected={'FM10','FM20','FM30','FM40','FM50','FM60','FG10','FG20','FG30','FG40','FG50','FG60','FG70','FG80'}
+          assert set(plan['studies']) == expected
+          assert set(plan['excluded_from_generated_campaign']) == {'FM70','FM80','FG90'}
+          assert all(item['tasks'] > 0 and item['arms'] for item in plan['studies'].values())
+          assert all(v is False for v in plan['authority'].values())
+          PY
+      - name: Prepare all generated FM and FG families
+        run: |
+          python scripts/run_formal_discovery_generated_suite.py prepare \
+            --workdir /tmp/formal-suite \
+            --per-study 1 \
+            --seed 424242 \
+            --arms TARGET_ONLY_DIRECT,F0_PARENT_FEDERATION
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          public=json.loads(Path('/tmp/formal-suite/public_tasks.json').read_text())
+          private=json.loads(Path('/tmp/formal-suite/private_oracle.json').read_text())
+          freeze=json.loads(Path('/tmp/formal-suite/FROZEN_SUITE.json').read_text())
+          expected={'FM10','FM20','FM30','FM40','FM50','FM60','FG10','FG20','FG30','FG40','FG50','FG60','FG70','FG80'}
+          assert {t['study_id'] for t in public['tasks']} == expected
+          assert len(private['answers']) == len(expected)
+          assert 'answers' not in json.dumps(public)
+          assert freeze['private_oracle_visible_to_solver'] is False
+          assert all(v is False for v in freeze['authority'].values())
+          PY
+      - name: Exercise blinded dispatch with stub child
+        run: |
+          cat >/tmp/formal_stub.py <<'PY'
+          import argparse,json,os
+          from pathlib import Path
+          p=argparse.ArgumentParser(); p.add_argument('--request'); p.add_argument('--response'); a=p.parse_args()
+          req=Path(a.request); root=req.parents[2]
+          assert not (root/'private_oracle.json').exists()
+          assert os.environ.get('ORION_GOLD_ACCESS') == 'NONE'
+          Path(a.response).parent.mkdir(parents=True,exist_ok=True)
+          Path(a.response).write_text(json.dumps({'answer':{}}))
+          PY
+          ORION_FORMAL_ARM_COMMAND="python /tmp/formal_stub.py" \
+            python scripts/run_formal_discovery_generated_suite.py dispatch \
+              --workdir /tmp/formal-suite \
+              --arms TARGET_ONLY_DIRECT,F0_PARENT_FEDERATION \
+              --max-concurrency 2
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          receipt=json.loads(Path('/tmp/formal-suite/DISPATCH_RECEIPT.json').read_text())
+          commitment=json.loads(Path('/tmp/formal-suite/PRIVATE_ORACLE_COMMITMENT.json').read_text())
+          assert commitment['private_removed_before_dispatch'] is True
+          assert receipt['all_returncodes_zero'] is True
+          assert receipt['oracle_restored_hash_match'] is True
+          assert Path('/tmp/formal-suite/private_oracle.json').exists()
+          PY
+      - name: Verify exact evaluator on oracle-matching synthetic responses
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('/tmp/formal-suite')
+          answers=json.loads((root/'private_oracle.json').read_text())['answers']
+          for arm in ('TARGET_ONLY_DIRECT','F0_PARENT_FEDERATION'):
+              for task_id, answer in answers.items():
+                  p=root/'responses'/arm/f'{task_id}.json'
+                  p.parent.mkdir(parents=True,exist_ok=True)
+                  p.write_text(json.dumps({'answer':answer}))
+          PY
+          python scripts/run_formal_discovery_generated_suite.py evaluate \
+            --workdir /tmp/formal-suite \
+            --arms TARGET_ONLY_DIRECT,F0_PARENT_FEDERATION
+          python - <<'PY'
+          import json
+          s=json.load(open('/tmp/formal-suite/EVALUATION_SUMMARY.json'))
+          assert s['summary']['TARGET_ONLY_DIRECT']['accuracy'] == 1.0
+          assert s['summary']['F0_PARENT_FEDERATION']['accuracy'] == 1.0
+          assert all(v is False for v in s['authority'].values())
+          PY

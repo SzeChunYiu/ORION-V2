@@ -1,0 +1,152 @@
+{
+  "schema_version": "orion.v2.computation-only-successor-backlog.v1",
+  "status": "FRAMEWORK_REFERENCE_COMPLETE__OUTCOME_GENERATING_WORK_OPEN",
+  "owner_issue": 50,
+  "rules": {
+    "fetch_latest_head_before_each_round": true,
+    "commit_each_coherent_round": true,
+    "do_not_redesign_framework_by_default": true,
+    "protected_result_can_trigger_scoped_reopen": true,
+    "preserve_negative_parent_simple_tie_and_cannot_check": true,
+    "same_model_repetition_is_independent_replication": false,
+    "historical_or_generated_calibration_grants_naturalistic_claim": false,
+    "formal_witness_substitutes_for_empirical_evidence": false,
+    "empirical_result_substitutes_for_formal_witness": false
+  },
+  "canonical_sources": {
+    "execution_master_issue": 45,
+    "scientificity_issue": 46,
+    "adaptive_revision_issue": 47,
+    "conceptual_formal_issue": 48,
+    "recursive_scientific_development_issue": 49,
+    "umbrella_issue": 50,
+    "formal_transfer_protocol": "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_MECHANICS_PROTOCOL_V1.json",
+    "formalism_genesis_protocol": "research/experiments/FORMALISM_GENESIS_PROTOCOL_V1.json",
+    "formal_generated_campaign_plan": "research/experiments/FORMAL_DISCOVERY_GENERATED_CAMPAIGN_PLAN_V1.json",
+    "scientific_development_protocol": "research/experiments/SCIENTIFIC_DEVELOPMENT_RECURSIVE_META_GENERALIZATION_PROTOCOL_V1.json",
+    "scientific_development_backlog": "research/experiments/SCIENTIFIC_DEVELOPMENT_EXECUTION_BACKLOG_V1.json",
+    "result_import_map": "papers/pipeline/RECURSIVE_DEVELOPMENT_RESULT_IMPORT_MAP_V1.json",
+    "post_result_playbook": "papers/pipeline/POST_RESULT_IMPORT_AND_R4_PLAYBOOK_V1.md"
+  },
+  "lanes": [
+    {
+      "lane_id": "E_EXISTING_PROTECTED_EXECUTION",
+      "owner_issue": 45,
+      "readiness": "REFETCH_LIVE_STATE_BEFORE_ACTION",
+      "scope": [
+        "E30 confirmatory BugsInPy core study",
+        "E60 component causal/drag study",
+        "E70 fresh anti-copy/counterfactual studies",
+        "matched F0/F2 CausalBench around E40 native learner",
+        "matched F0/F2 materials study around E50 strongest native model",
+        "paper-specific E80+ studies and parity work already registered in #45"
+      ],
+      "instruction": "Do not duplicate or renumber existing protected identities. Fetch latest #45 comments and current branch first."
+    },
+    {
+      "lane_id": "FM_FG_GENERATED_EXACT_CAMPAIGN",
+      "owner_issue": 48,
+      "readiness": "PLUMBING_COMPLETE__MODEL_COMPUTATION_OPEN",
+      "generated_studies": [
+        "FM10", "FM20", "FM30", "FM40", "FM50", "FM60",
+        "FG10", "FG20", "FG30", "FG40", "FG50", "FG60", "FG70", "FG80"
+      ],
+      "prepare_command": "python scripts/run_formal_discovery_campaign.py prepare --campaign-root RUN",
+      "dispatch_command": "python scripts/run_formal_discovery_campaign.py dispatch --campaign-root RUN --max-concurrency 2",
+      "evaluate_command": "python scripts/run_formal_discovery_campaign.py evaluate --campaign-root RUN",
+      "one_command": "bash scripts/run_formal_discovery_campaign.sh RUN",
+      "study_subset_example": "ORION_FORMAL_STUDIES=FM10,FG10 bash scripts/run_formal_discovery_campaign.sh RUN",
+      "oracle_rule": "private oracle hash-committed and absent from disk throughout every child/model dispatch",
+      "excluded": {
+        "FM70": "requires held-out contextual regime-selection data rather than exact standalone formal tasks",
+        "FM80": "requires naturalistic mathematics-science transfer and independent scientific adjudication",
+        "FG90": "genuine frontier lane remains exploratory unless independently verified"
+      }
+    },
+    {
+      "lane_id": "FM70_CONTEXTUAL_REGIME_SELECTOR",
+      "owner_issue": 48,
+      "readiness": "WAIT_FOR_VALID_DEVELOPMENT_AND_TEST_OUTCOME_DATA",
+      "prerequisites": [
+        "pre-outcome task features frozen",
+        "development folds separated from held-out test folds",
+        "valid SIMPLE/F0/F2 outcomes available without reusing confirmatory test outcomes for training"
+      ],
+      "terminal_rule": "selector must beat always-SIMPLE/always-F0/always-F2 on held-out quality-resource frontier without simple-task regression"
+    },
+    {
+      "lane_id": "FM80_NATURALISTIC_MATH_SCIENCE_TRANSFER",
+      "owner_issue": 48,
+      "readiness": "NATURALISTIC_AND_INDEPENDENT_ADJUDICATION_REQUIRED",
+      "minimum_domains": 3,
+      "requirements": [
+        "at least one mathematical/formal domain",
+        "at least two materially different empirical sciences",
+        "prospectively frozen transfer consequence",
+        "strongest domain parent",
+        "formal witness for formal claims",
+        "empirical evidence for empirical claims",
+        "independent adjudication"
+      ]
+    },
+    {
+      "lane_id": "FG90_REAL_FRONTIER",
+      "owner_issue": 48,
+      "readiness": "EXPLORATORY_ONLY",
+      "instruction": "Use genuine open mathematical/scientific problems only as exploratory formalism-genesis cases. A claimed solution requires independent proof checking or empirical validation."
+    },
+    {
+      "lane_id": "SD_RECURSIVE_SCIENTIFIC_DEVELOPMENT",
+      "owner_issue": 49,
+      "readiness": "REFERENCE_AND_SD70_PLUMBING_COMPLETE__SCIENCE_OPEN",
+      "canonical_backlog": "research/experiments/SCIENTIFIC_DEVELOPMENT_EXECUTION_BACKLOG_V1.json",
+      "sequence": ["SD00", "SD10", "SD20", "SD30", "SD40", "SD50", "SD60", "SD70", "SD80", "SD90"],
+      "notes": {
+        "SD00": "reference software calibration only",
+        "SD10": "real multi-source corpus acquisition/normalization and bias audit",
+        "SD20_SD50": "population operator discovery, matched failures, held-out field/epoch and recursive abstraction",
+        "SD60": "reproduce/challenge established science-of-science findings as calibration only",
+        "SD70": "fresh generated hidden-policy meta-policy benchmark already has blinded runner",
+        "SD80": "prospective naturalistic research-direction test in at least three domains",
+        "SD90": "new-domain/new-epoch/hostile-omission challenge; only bounded RECURSIVE_STABILITY_CANDIDATE possible"
+      }
+    },
+    {
+      "lane_id": "PAPER_IMPORT_AND_CONTRACTION",
+      "owner_issue": 50,
+      "readiness": "WAIT_FOR_VALID_RESULTS",
+      "import_map": "papers/pipeline/RECURSIVE_DEVELOPMENT_RESULT_IMPORT_MAP_V1.json",
+      "required_order": [
+        "validate hashes/run identity/custody",
+        "separate infrastructure from scientific outcome",
+        "reproduce registered analysis",
+        "retain negative/parent/simple/tie/CANNOT_CHECK outcomes",
+        "apply #47 only if registered trigger fires",
+        "update additive claim/evidence ledger",
+        "then edit manuscript/result blocks",
+        "then run hostile editor/reviewer and publication-readiness gates"
+      ]
+    }
+  ],
+  "framework_reopen_triggers": [
+    "protected result exposes a material omitted coordinate",
+    "exact formal counterexample contradicts reference semantics",
+    "same omitted coordinate recurs across materially different valid domains",
+    "external parent-field review identifies a genuine conceptual defect"
+  ],
+  "framework_reopen_nontriggers": [
+    "a result is disappointing",
+    "F2 loses",
+    "a paper needs a stronger story",
+    "a famous historical analogy suggests another term",
+    "same-model critique proposes extra architecture"
+  ],
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_F2_superiority": false,
+    "grants_new_field": false,
+    "grants_R3": false,
+    "grants_R4": false,
+    "grants_journal_acceptance": false
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "schema_version": "orion.v2.e30-r11.evaluation-lane-defect-and-adapter.v2",
+  "recorded_at": "2026-08-29T13:30:00Z",
+  "recorded_by": "compute agent B (ORION-V2 session, ssh lunarc)",
+  "defect": {
+    "summary": "The stock arm-evaluation lane (evaluate_orion_real_problem_responses_v2 -> run_orion_real_problem_suite._evaluate_bugsinpy) cannot reproduce this campaign's frozen baseline environment on LUNARC; using it for the terminal 480/480 evaluation would mass-produce infrastructure CANNOT_CHECK verdicts that reflect the evaluator lane, not the arms.",
+    "evidence": {
+      "stock_lane_record": "run/confirmatory-r1/evaluations/F2_ORION_METABOLIC_FULL/bugsinpy-ansible-2.json (written 2026-08-29T02:35Z by a prior actor on partial responses; preserved at run/confirmatory-r1/aggregate-superseded-partial-20260829T0235Z/stock-lane-evaluation-evidence/)",
+      "stock_lane_observation": "test_returncode=4, test_infrastructure_error=true, 'ModuleNotFoundError: No module named ansible' under Python 3.11.5 (cluster interpreter), test_returncode semantics void",
+      "frozen_lane_baseline_for_same_task": "baseline_receipts/bugsinpy-ansible-2.json = PASS_VALID_BUG_REPRODUCED under Python 3.6.9 (pytest-3.10.1) with registered compatibility interventions (BOUND_SETUP_COMMAND_REWRITE, BOUND_SETUP_DEPENDENCY_INSTALL, BOUND_PYTEST_TO_MODULE_INVOCATION), wall 297s",
+      "baseline_statuses_all_40_tasks": "PASS_VALID_BUG_REPRODUCED x40 (max wall 641s, bugsinpy-pandas-5)"
+    },
+    "root_cause": "Stock lane re-provisions each workspace with stock bugsinpy-checkout/bugsinpy-compile and the unmodified bugsinpy_run_test.sh. On this cluster that path resolves the cluster Python 3.11 interpreter, lacks the campaign's exact-runtimes python (e30-exact-runtimes/cpython-3.6.9), offline cache dispositions, prospective bindings and support-script normalization, so imports and interpreter identity diverge from the frozen baseline."
+  },
+  "adapter": {
+    "path": "run/e30_r11_arm_eval_frozen_lane.py",
+    "sha256": "829abb411ccf0bd71182eea4c11d2e07fae60f3b743872f7b4fce0a8635aae93",
+    "version": "orion.v2.e30-r11-frozen-lane-arm-eval-adapter.v3",
+    "design": "Monkey-patches ONLY runner._evaluate_bugsinpy after loading the stock evaluate_orion_real_problem_responses_v2 module. Response selection, uncheckable precheck, CANNOT_CHECK mapping, atomic writes, _extract_patch, the pass predicate (rc==0 AND no infrastructure-error markers, marker list replicated verbatim) and the orion.v2.task-evaluation.v1 record schema are the stock code paths. Only the provisioning lane changes: copy the campaign's baseline-verified evaluator_private/<task_id> workspace (workspace HEAD verified against expected_buggy_commit), apply the arm patch at the workspace root with the stock `git apply --whitespace=nowarn -` invocation, recompile with the frozen bugsinpy_project_runtime.compile_workspace (exact-runtime python, offline cache, prospective binding, registry), run the registered failing-test binding via execute_test_binding -- the same two functions the frozen baseline driver e30_baseline_driver_r11.py used.",
+    "workspace_copy_policy": "copytree with symlinks=True (the frozen trees contain tracked-but-broken symlinks, e.g. black docs/*.md -> _build/generated/*; default follow-mode raises FileNotFoundError), excluding .orion-e30-env/.orion-e30-support/env/__pycache__/*.pyc.",
+    "workspace_restore_policy": "After the copy, the tree is restored to the post-checkout state the frozen baseline compiled FROM: the baseline run left build products inside evaluator_private, and because `python -m pip` resolves the CWD as a site directory a stale egg-info there shadows the env's pinned install (observed on bugsinpy-tqdm-1: `pip show tqdm` returned Version 4.41.1 with Location=<workspace> instead of the pinned 4.44.1, finishing compile as CANNOT_CHECK_DEPENDENCY_VERSION_UNVERIFIED). Removed = exactly the repo-IGNORED paths (git ls-files -o -i --exclude-standard --directory: build/, dist/, *.egg-info/, __pycache__/, generated .c/.so, .pytest_cache, SYMLINK_CACHE.json, ...) plus a suffix sweep (.egg-info/.egg-link dirs; .pyc/.pyo/.so/.o/.egg files) for artifacts individual repos forgot to ignore (ansible-5 untracked lib/ansible_base.egg-info/). PRESERVED = tracked files with their frozen modifications (registered failing-test edits, e.g. tqdm tests_contrib.py 'M'; 34 tasks have 1 tracked change, 1 has 2, 5 have 0), the bugsinpy framework files (bugsinpy_requirements.txt / bugsinpy_run_test.sh / bugsinpy_setup.sh / bugsinpy_bug.info / bugsinpy_patchfile.info -- required, else compile finishes CANNOT_CHECK_MISSING_RUNTIME_FILES missing_files=[bugsinpy_requirements.txt, bugsinpy_run_test.sh]), and untracked new test files (registered failing tests added as new .py, e.g. ansible-4 test/units/playbook/test_collectionsearch.py, fastapi tests/*.py). Counts per task recorded in workspace_stale_build_artifacts_removed (0..90; pandas=90).",
+    "lane_environment": "Per-evaluation isolated HOME/TMPDIR/XDG_CACHE_HOME/PIP_CACHE_DIR/PIP_CONFIG_FILE=/dev/null/GIT_CONFIG_GLOBAL mirror of the baseline driver per E30_R11_INFRASTRUCTURE_PREREGISTRATION lane_environment_policy. Hardenings added by the adapter, recorded in each evaluation record's isolated_environment field: (1) PYTHONPATH and PYTHONHOME are REMOVED from the lane environment -- the cluster login/batch environment exports the Python-3.11 bundle site-packages on PYTHONPATH, which the 3.6.9 frozen interpreter then imports (ModuleNotFoundError: dataclasses); a blanked PYTHONHOME additionally breaks Py_Initialize (no module 'encodings'), so the vars are popped, not blanked; (2) __pycache__/*.pyc are excluded from the workspace copy -- stale bytecode from evaluator_private carries the original absolute paths and shadows freshly collected test modules (pytest 'import file mismatch').",
+    "workspace_lifecycle": "The copied workspace and lane directories are removed after the evaluation record is written; compile_receipt.json and test_receipt.json are kept per (arm,task) under run/confirmatory-r<N>/runs/<arm>/<task_id>/.",
+    "frozen_endpoints_touched": "none. requests, frozen_tasks.json, response artifacts, predicates, and record schema are unmodified; the adapter only adds provenance fields (evaluation_lane, workspace_source, workspace_head*, workspace_stale_build_artifacts_removed, workspace_stale_build_artifacts_sample, workspace_dirty_after_restore, compile_status, test_binding_status, isolated_environment, workspace_cleanup)."
+  },
+  "validation": {
+    "positive_control": {
+      "job": 3553104,
+      "item": "confirmatory-r1 F2_ORION_METABOLIC_FULL bugsinpy-ansible-2 (real response, patch fixes _Alpha/_Numeric.__gt__)",
+      "result": "patch_apply_returncode=0, compile_status=PASS, test_binding_status=PASS, test_returncode=0, test_infrastructure_error=false, native_success=true; both registered failing tests ran under platform Python 3.6.9 pytest-3.10.1; wall 82s"
+    },
+    "negative_control_real_model_artifact": {
+      "job": 3553107,
+      "items": [
+        "SMOKE_NEGATIVE_CONTROL/bugsinpy-ansible-2 synthetic comment-only patch: patch_apply=0, compile PASS, test_binding FAIL, test_returncode=1, test_infrastructure_error=false, native_success=false -- the registered bug reproduces exactly as the baseline requires",
+        "SIMPLE_DIRECT/bugsinpy-pandas-1 REAL response: patch_apply_returncode=128 'error: corrupt patch at line 5' -- verified to be a genuinely malformed MODEL patch (hunk header '@@ -def is_string_dtype(arr_or_dtype) -> bool:' without line numbers at line 5 of the artifact), native_success=false with no infrastructure error; identical semantics to the stock lane; this artifact class is exactly what the syntax sensitivity control measures"
+      ]
+    },
+    "per_project_probe_all_8_projects": {
+      "job": 3553134,
+      "design": "for each of the campaign's 8 projects (lowest task_id), a synthetic valid no-op patch (trailing comment appended to a TRACKED non-test .py; first probe generation mistakenly targeted .orion-e30-env files and was discarded) evaluated through the full lane; expected outcome per project: patch_apply=0, compile PASS, registered failing test FAIL (bug reproduces), no infrastructure error, native_success=false",
+      "results": {
+        "bugsinpy-ansible-1": "PASS/FAIL rc=1 no-infra native_success=false, stale_removed=5, wall 109s",
+        "bugsinpy-black-1": "PASS/FAIL rc=1 no-infra native_success=false, stale_removed=2, wall 143s (validates symlinks=True; copytree previously crashed on the repo's 18 tracked-but-broken docs symlinks)",
+        "bugsinpy-cookiecutter-1": "PASS/FAIL rc=1 no-infra native_success=false, stale_removed=2, wall 57s",
+        "bugsinpy-fastapi-1": "PASS/FAIL rc=1 no-infra native_success=false, stale_removed=1, wall 300s",
+        "bugsinpy-pandas-1": "PASS/FAIL rc=1 no-infra native_success=false, stale_removed=90 (cythonized .c + built .so removed; full recompile), wall 534s",
+        "bugsinpy-scrapy-1": "PASS/FAIL rc=1 no-infra native_success=false, stale_removed=1, wall 127s",
+        "bugsinpy-tornado-1": "PASS/FAIL rc=1 no-infra native_success=false, stale_removed=0, wall 11s",
+        "bugsinpy-tqdm-1": "PASS/FAIL rc=1 no-infra native_success=false, stale_removed=4, wall 26s (validates the egg-info restore policy; previously CANNOT_CHECK_DEPENDENCY_VERSION_UNVERIFIED)"
+      },
+      "outcome": "8/8 projects reproduce the frozen-lane negative-control semantics"
+    },
+    "iteration_failures_fixed_en_route": [
+      "3553091: importlib load of stock scripts without source/scripts on sys.path (ModuleNotFoundError bugsinpy_runtime) -> fixed by sys.path insert",
+      "3553092: patch applied at workspace/<project> but frozen workspaces carry the repo at the workspace ROOT -> apply at root",
+      "3553094: cluster PYTHONPATH (3.11 site-packages) leaked into 3.6.9 interpreter -> removed from lane env",
+      "3553097: blanked PYTHONHOME broke Py_Initialize -> vars popped instead of blanked",
+      "3553104: copied __pycache__ shadowed test collection (import file mismatch) -> bytecode excluded from copy",
+      "smoke3 3553110: copytree follow-mode crashed on black's tracked-but-broken docs/*.md symlinks -> symlinks=True",
+      "smoke3 3553110: bugsinpy-tqdm-1 compile finished CANNOT_CHECK_DEPENDENCY_VERSION_UNVERIFIED (stale egg-info from the baseline run shadows the env's pinned tqdm 4.44.1, pip show resolves 4.41.1 at the workspace root) -> repo-ignored + stale-suffix restore step",
+      "first restore attempt used `git clean -xfd`, which deletes the untracked bugsinpy framework files and finishes CANNOT_CHECK_MISSING_RUNTIME_FILES missing_files=[bugsinpy_requirements.txt, bugsinpy_run_test.sh] (and would delete untracked registered failing-test .py files) -> replaced by the ignored-list + suffix restore that preserves them"
+    ]
+  },
+  "decision": "Terminal 480/480 evaluation proceeds on the frozen lane via e30_eval_r11_core480.sbatch (repointed from the stock evaluator to this adapter 2026-08-29; validated 8/8 projects 2026-08-29T13:20Z). Syntax-sensitivity re-evaluation uses the same adapter via e30_eval_r11_syntax.sbatch so raw and canonicalized passes share one lane. The 02:35Z stock-lane partial artifacts remain preserved under run/confirmatory-r{1,2,3}/aggregate-superseded-partial-20260829T0235Z/ and are not read as results."
+}
