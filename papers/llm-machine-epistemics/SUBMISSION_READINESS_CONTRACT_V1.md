@@ -14,7 +14,13 @@ No venue submission is authorized unless:
 - [x] Prospective Revision Audit Protocol V2 is frozen;
 - [x] alternate-channel retention is a mandatory causal-attribution gate;
 - [x] claim ceilings and negative/CANNOT_CHECK terminals are frozen;
-- [ ] final bibliography/display consistency pass completes;
+- [x] citation database and citation-coverage contract are materialized;
+- [x] citation-bound manuscript and reviewer-facing tables exist;
+- [x] venue-specific abstract/running-title/keywords are frozen;
+- [x] AI-use/authorship/reproducibility gate is documented;
+- [ ] final receipt-derived figures/displays and LaTeX conversion complete;
+- [ ] final bibliography/status refresh completes immediately before filing;
+- [ ] human intellectual-ownership review completes;
 - [ ] an external editorial judgment chooses the venue route without changing the science.
 
 The venue choice may change presentation, anonymity and page allocation. It may not change the theorem or parent concessions.
@@ -56,7 +62,7 @@ Current #51 status:
 PRACTICAL_UTILITY = PASS_PROTOCOL_V2
 THEORETICAL_SUPPORT = PASS_CORE
 PARENT_ACKNOWLEDGMENT = PASS_SUBSTANTIVE
-ML_READABILITY = PASS_DRAFT
+ML_READABILITY = PASS_CITATION_BOUND_DRAFT
 EXAMPLES = PASS_ONE_BIT_WITNESS_AND_CONTROLS
 SIGNIFICANCE_DISTINCTNESS = OPEN_EXTERNAL_EDITORIAL_RISK
 ```
@@ -109,7 +115,15 @@ Before filing, the human author group must supply/confirm:
 
 These fields depend on personal collaboration histories and authorship decisions. A future AI must not guess them from citations, GitHub, affiliations or model memory.
 
-## 2.5 JMLR go/no-go
+## 2.5 JMLR AI-use posture
+
+A search of the current official JMLR author/reviewer pages on 2026-08-29 did not surface a dedicated LLM-use policy analogous to TMLR's. This is not a license to conceal AI assistance.
+
+Use the truthful broad disclosure in `AI_USE_AUTHORSHIP_AND_REPRODUCIBILITY_V1.md` unless refreshed JMLR guidance specifies another placement.
+
+Refresh the policy immediately before filing.
+
+## 2.6 JMLR go/no-go
 
 JMLR submission remains blocked until an independent editorial-style judgment answers YES to:
 
@@ -117,7 +131,7 @@ JMLR submission remains blocked until an independent editorial-style judgment an
 
 If `YES`: prepare JMLR package without changing claim scope.
 
-If `NO` or `BORDERLINE_WEAK`: route to TMLR or flagship merge.
+If `NO` or `BORDERLINE_WEAK`: route to TMLR only if its AI/authorship policy gate passes, otherwise flagship merge/another compatible venue.
 
 ---
 
@@ -129,6 +143,8 @@ Official current sources:
 - Submission instructions: `https://jmlr.org/tmlr/submissions.html`
 - Acceptance criteria: `https://jmlr.org/tmlr/acceptance-criteria.html`
 - Editorial policies: `https://jmlr.org/tmlr/editorial-policies.html`
+- FAQ: `https://jmlr.org/tmlr/faq.html`
+- Ethics: `https://jmlr.org/tmlr/ethics.html`
 
 ## 3.1 TMLR scientific fit
 
@@ -139,9 +155,29 @@ TMLR's acceptance criteria prioritize:
 
 The criteria explicitly avoid requiring a new state of the art or treating method novelty/significance as necessary conditions.
 
-This makes TMLR a strong route if the framework remains technically sound/useful but JMLR distinctness is judged insufficient.
+This makes TMLR an editorially strong route if the framework remains technically sound/useful but JMLR distinctness is judged insufficient.
 
-## 3.2 TMLR filing requirements relevant here
+## 3.2 TMLR AI-use / authorship gate
+
+Current TMLR policy permits LLMs as general-purpose assistive tools, makes human authors fully responsible, and prohibits LLM authorship. Current FAQ requires authors to disclose LLM use explicitly in a first-page footnote and states an expectation that ideas, claims and results are human-sourced.
+
+The #51 workflow involved substantial AI assistance in literature discovery, theorem/formalization development, adversarial critique, software generation and drafting.
+
+Therefore TMLR is **not** an automatic fallback.
+
+```text
+IF HUMAN_INTELLECTUAL_OWNERSHIP_REVIEW != COMPLETE:
+    TMLR_SUBMISSION_AUTHORIZED = NO
+
+IF final human authors cannot truthfully reconcile the actual workflow with TMLR's current human-sourced expectation:
+    TMLR_ROUTE = CLOSED_FOR_POLICY_FIT
+```
+
+The exact disclosure and ownership checklist are frozen in `AI_USE_AUTHORSHIP_AND_REPRODUCIBILITY_V1.md`.
+
+No wording may be used to portray extensive scientific AI assistance as grammar-only support.
+
+## 3.3 TMLR filing requirements relevant here
 
 Current requirements include:
 
@@ -169,7 +205,7 @@ Because reviewers need not read appendices/supplements, every load-bearing state
 
 Proof details and mechanical receipts may be moved to appendix/supplement, but the paper must remain understandable if those are not opened.
 
-## 3.3 Anonymization obligations
+## 3.4 Anonymization obligations
 
 A TMLR package must not expose author identity through:
 
@@ -189,12 +225,14 @@ The public ORION-V2 repository may remain public, but the submission itself must
 IF external_distinctness >= JMLR_BORDERLINE_SUBMIT
 AND all JMLR filing gates pass:
     ROUTE = JMLR
-ELSE IF claims_sound AND audience_interest_plausible:
+ELSE IF claims_sound
+AND audience_interest_plausible
+AND TMLR_POLICY_FIT == PASS:
     ROUTE = TMLR
 ELSE IF audit_useful_but_not_standalone_scale:
     ROUTE = MERGE_INTO_MACHINE_EPISTEMICS_FLAGSHIP
 ELSE:
-    ROUTE = DROP_STANDALONE_PAPER
+    ROUTE = FIND_POLICY_COMPATIBLE_FIELD_VENUE_OR_DROP
 ```
 
 No branch in this decision tree changes the underlying theory result.
@@ -205,8 +243,8 @@ No branch in this decision tree changes the underlying theory result.
 
 Mechanical/editorial only:
 
-- [ ] convert `MANUSCRIPT_DRAFT_V8_CITED.md` to the chosen LaTeX template;
-- [ ] use `REFERENCES_V1.bib` + `REFERENCES_CLASSICS_SUPPLEMENT_V1.bib`;
+- [ ] convert `MANUSCRIPT_DRAFT_V8_CITED.md` to the chosen LaTeX template using `SUBMISSION_FRONTMATTER_V1.md`;
+- [ ] use/merge the two frozen bibliography files;
 - [ ] insert receipt-derived reviewer tables/figures;
 - [ ] run citation-key completeness and bibliography-status checks;
 - [ ] run page count and PDF-size checks;
@@ -217,4 +255,4 @@ Mechanical/editorial only:
 
 Current scientific terminal remains:
 
-`THEORY_PAPER_RESIDUAL_SUPPORTED_AS_PROSPECTIVE_REVISION_ASSESSMENT__NOT_JMLR_AUTHORIZED`.
+`THEORY_PAPER_RESIDUAL_SUPPORTED_AS_PROSPECTIVE_REVISION_ASSESSMENT__SUBMISSION_NOT_YET_AUTHORIZED`.
