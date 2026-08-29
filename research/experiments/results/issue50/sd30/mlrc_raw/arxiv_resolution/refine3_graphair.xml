@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/x5TGVltTxUlPKAvDBeVsdjl0+Rc</id>
+  <title>arXiv Query: search_query=all:"Learning Fair Graph Representations"&amp;id_list=&amp;start=0&amp;max_results=5</title>
+  <updated>2026-08-29T17:44:18Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22Learning+Fair+Graph+Representations%22&amp;start=0&amp;max_results=5&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>5</opensearch:itemsPerPage>
+  <opensearch:totalResults>3</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2409.00421v1</id>
+    <title>Reproducibility Study Of Learning Fair Graph Representations Via Automated Data Augmentations</title>
+    <updated>2024-08-31T11:28:22Z</updated>
+    <link href="https://arxiv.org/abs/2409.00421v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2409.00421v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this study, we undertake a reproducibility analysis of 'Learning Fair Graph Representations Via Automated Data Augmentations' by Ling et al. (2022). We assess the validity of the original claims focused on node classification tasks and explore the performance of the Graphair framework in link prediction tasks. Our investigation reveals that we can partially reproduce one of the original three claims and fully substantiate the other two. Additionally, we broaden the application of Graphair from node classification to link prediction across various datasets. Our findings indicate that, while Graphair demonstrates a comparable fairness-accuracy trade-off to baseline models for mixed dyadic-level fairness, it has a superior trade-off for subgroup dyadic-level fairness. These findings underscore Graphair's potential for wider adoption in graph-based learning. Our code base can be found on GitHub at https://github.com/juellsprott/graphair-reproducibility.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CY" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.SI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-08-31T11:28:22Z</published>
+    <arxiv:comment>Accepted at TMLR, 15 pages, 6 figures, 9 tables (incl. Appendix)</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Thijmen Nijdam</name>
+    </author>
+    <author>
+      <name>Juell Sprott</name>
+    </author>
+    <author>
+      <name>Taiki Papandreou-Lazos</name>
+    </author>
+    <author>
+      <name>Jurgen de Heus</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2510.25096v1</id>
+    <title>Learning Fair Graph Representations with Multi-view Information Bottleneck</title>
+    <updated>2025-10-29T02:02:12Z</updated>
+    <link href="https://arxiv.org/abs/2510.25096v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2510.25096v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Graph neural networks (GNNs) excel on relational data by passing messages over node features and structure, but they can amplify training data biases, propagating discriminatory attributes and structural imbalances into unfair outcomes. Many fairness methods treat bias as a single source, ignoring distinct attribute and structure effects and leading to suboptimal fairness and utility trade-offs. To overcome this challenge, we propose FairMIB, a multi-view information bottleneck framework designed to decompose graphs into feature, structural, and diffusion views for mitigating complexity biases in GNNs. Especially, the proposed FairMIB employs contrastive learning to maximize cross-view mutual information for bias-free representation learning. It further integrates multi-perspective conditional information bottleneck objectives to balance task utility and fairness by minimizing mutual information with sensitive attributes. Additionally, FairMIB introduces an inverse probability-weighted (IPW) adjacency correction in the diffusion view, which reduces the spread of bias propagation during message passing. Experiments on five real-world benchmark datasets demonstrate that FairMIB achieves state-of-the-art performance across both utility and fairness metrics.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-10-29T02:02:12Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Chuxun Liu</name>
+    </author>
+    <author>
+      <name>Debo Cheng</name>
+    </author>
+    <author>
+      <name>Qingfeng Chen</name>
+    </author>
+    <author>
+      <name>Jiangzhang Gan</name>
+    </author>
+    <author>
+      <name>Jiuyong Li</name>
+    </author>
+    <author>
+      <name>Lin Liu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2212.12040v1</id>
+    <title>Graph Learning with Localized Neighborhood Fairness</title>
+    <updated>2022-12-22T21:20:43Z</updated>
+    <link href="https://arxiv.org/abs/2212.12040v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2212.12040v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Learning fair graph representations for downstream applications is becoming increasingly important, but existing work has mostly focused on improving fairness at the global level by either modifying the graph structure or objective function without taking into account the local neighborhood of a node. In this work, we formally introduce the notion of neighborhood fairness and develop a computational framework for learning such locally fair embeddings. We argue that the notion of neighborhood fairness is more appropriate since GNN-based models operate at the local neighborhood level of a node. Our neighborhood fairness framework has two main components that are flexible for learning fair graph representations from arbitrary data: the first aims to construct fair neighborhoods for any arbitrary node in a graph and the second enables adaption of these fair neighborhoods to better capture certain application or data-dependent constraints, such as allowing neighborhoods to be more biased towards certain attributes or neighbors in the graph.Furthermore, while link prediction has been extensively studied, we are the first to investigate the graph representation learning task of fair link classification. We demonstrate the effectiveness of the proposed neighborhood fairness framework for a variety of graph machine learning tasks including fair link prediction, link classification, and learning fair graph embeddings. Notably, our approach achieves not only better fairness but also increases the accuracy in the majority of cases across a wide variety of graphs, problem settings, and metrics.</summary>
+    <category term="cs.SI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-12-22T21:20:43Z</published>
+    <arxiv:primary_category term="cs.SI"/>
+    <author>
+      <name>April Chen</name>
+    </author>
+    <author>
+      <name>Ryan Rossi</name>
+    </author>
+    <author>
+      <name>Nedim Lipka</name>
+    </author>
+    <author>
+      <name>Jane Hoffswell</name>
+    </author>
+    <author>
+      <name>Gromit Chan</name>
+    </author>
+    <author>
+      <name>Shunan Guo</name>
+    </author>
+    <author>
+      <name>Eunyee Koh</name>
+    </author>
+    <author>
+      <name>Sungchul Kim</name>
+    </author>
+    <author>
+      <name>Nesreen K. Ahmed</name>
+    </author>
+  </entry>
+</feed>

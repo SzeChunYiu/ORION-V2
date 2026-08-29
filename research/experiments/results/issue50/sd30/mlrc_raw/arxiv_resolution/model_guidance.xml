@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/qV3eLH6X3VK7DXGfBZgvkFrO9xU</id>
+  <title>arXiv Query: search_query=ti:"Studying How to Efficiently and Effectively Guide Models with Explanations"&amp;id_list=&amp;start=0&amp;max_results=3</title>
+  <updated>2026-08-29T17:39:12Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=ti:%22Studying+How+to+Efficiently+and+Effectively+Guide+Models+with+Explanations%22&amp;start=0&amp;max_results=3&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>3</opensearch:itemsPerPage>
+  <opensearch:totalResults>1</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2303.11932v2</id>
+    <title>Studying How to Efficiently and Effectively Guide Models with Explanations</title>
+    <updated>2024-07-21T12:55:08Z</updated>
+    <link href="https://arxiv.org/abs/2303.11932v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2303.11932v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Despite being highly performant, deep neural networks might base their decisions on features that spuriously correlate with the provided labels, thus hurting generalization. To mitigate this, 'model guidance' has recently gained popularity, i.e. the idea of regularizing the models' explanations to ensure that they are "right for the right reasons". While various techniques to achieve such model guidance have been proposed, experimental validation of these approaches has thus far been limited to relatively simple and / or synthetic datasets. To better understand the effectiveness of the various design choices that have been explored in the context of model guidance, in this work we conduct an in-depth evaluation across various loss functions, attribution methods, models, and 'guidance depths' on the PASCAL VOC 2007 and MS COCO 2014 datasets. As annotation costs for model guidance can limit its applicability, we also place a particular focus on efficiency. Specifically, we guide the models via bounding box annotations, which are much cheaper to obtain than the commonly used segmentation masks, and evaluate the robustness of model guidance under limited (e.g. with only 1% of annotated images) or overly coarse annotations. Further, we propose using the EPG score as an additional evaluation metric and loss function ('Energy loss'). We show that optimizing for the Energy loss leads to models that exhibit a distinct focus on object-specific features, despite only using bounding box annotations that also include background regions. Lastly, we show that such model guidance can improve generalization under distribution shifts. Code available at: https://github.com/sukrutrao/Model-Guidance.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-03-21T15:34:50Z</published>
+    <arxiv:comment>41 pages, 38 figures, 4 tables, IEEE/CVF International Conference on Computer Vision (ICCV) 2023</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <arxiv:journal_ref>2023 IEEE/CVF International Conference on Computer Vision (ICCV), Paris, France, 2023, pp. 1922-1933</arxiv:journal_ref>
+    <author>
+      <name>Sukrut Rao</name>
+    </author>
+    <author>
+      <name>Moritz Böhle</name>
+    </author>
+    <author>
+      <name>Amin Parchami-Araghi</name>
+    </author>
+    <author>
+      <name>Bernt Schiele</name>
+    </author>
+    <arxiv:doi>10.1109/ICCV51070.2023.00184</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/ICCV51070.2023.00184" title="doi"/>
+  </entry>
+</feed>

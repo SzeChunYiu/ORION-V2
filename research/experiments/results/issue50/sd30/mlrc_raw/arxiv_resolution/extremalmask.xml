@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/15QM74QtQQ/Aq0FZX4kbjW8j2nA</id>
+  <title>arXiv Query: search_query=ti:"Learning Perturbations to Explain Time Series Predictions"&amp;id_list=&amp;start=0&amp;max_results=3</title>
+  <updated>2026-08-29T17:38:39Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=ti:%22Learning+Perturbations+to+Explain+Time+Series+Predictions%22&amp;start=0&amp;max_results=3&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>3</opensearch:itemsPerPage>
+  <opensearch:totalResults>1</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2305.18840v1</id>
+    <title>Learning Perturbations to Explain Time Series Predictions</title>
+    <updated>2023-05-30T08:33:50Z</updated>
+    <link href="https://arxiv.org/abs/2305.18840v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2305.18840v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Explaining predictions based on multivariate time series data carries the additional difficulty of handling not only multiple features, but also time dependencies. It matters not only what happened, but also when, and the same feature could have a very different impact on a prediction depending on this time information. Previous work has used perturbation-based saliency methods to tackle this issue, perturbing an input using a trainable mask to discover which features at which times are driving the predictions. However these methods introduce fixed perturbations, inspired from similar methods on static data, while there seems to be little motivation to do so on temporal data. In this work, we aim to explain predictions by learning not only masks, but also associated perturbations. We empirically show that learning these perturbations significantly improves the quality of these explanations on time series data.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-05-30T08:33:50Z</published>
+    <arxiv:comment>Accepted at ICML 2023</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Joseph Enguehard</name>
+    </author>
+  </entry>
+</feed>

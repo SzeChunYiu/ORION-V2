@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/SvI+10DeuYYbMQGISrT2CNhjB4E</id>
+  <title>arXiv Query: search_query=ti:"LICO: Explainable Models with Language-Image Consistency"&amp;id_list=&amp;start=0&amp;max_results=3</title>
+  <updated>2026-08-29T17:38:57Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=ti:%22LICO:+Explainable+Models+with+Language-Image+Consistency%22&amp;start=0&amp;max_results=3&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>3</opensearch:itemsPerPage>
+  <opensearch:totalResults>2</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2310.09821v1</id>
+    <title>LICO: Explainable Models with Language-Image Consistency</title>
+    <updated>2023-10-15T12:44:33Z</updated>
+    <link href="https://arxiv.org/abs/2310.09821v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2310.09821v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Interpreting the decisions of deep learning models has been actively studied since the explosion of deep neural networks. One of the most convincing interpretation approaches is salience-based visual interpretation, such as Grad-CAM, where the generation of attention maps depends merely on categorical labels. Although existing interpretation methods can provide explainable decision clues, they often yield partial correspondence between image and saliency maps due to the limited discriminative information from one-hot labels. This paper develops a Language-Image COnsistency model for explainable image classification, termed LICO, by correlating learnable linguistic prompts with corresponding visual features in a coarse-to-fine manner. Specifically, we first establish a coarse global manifold structure alignment by minimizing the distance between the distributions of image and language features. We then achieve fine-grained saliency maps by applying optimal transport (OT) theory to assign local feature maps with class-specific prompts. Extensive experimental results on eight benchmark datasets demonstrate that the proposed LICO achieves a significant improvement in generating more explainable attention maps in conjunction with existing interpretation methods such as Grad-CAM. Remarkably, LICO improves the classification performance of existing models without introducing any computational overhead during inference. Source code is made available at https://github.com/ymLeiFDU/LICO.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-10-15T12:44:33Z</published>
+    <arxiv:comment>Accepted by NeurIPS 2023</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Yiming Lei</name>
+    </author>
+    <author>
+      <name>Zilong Li</name>
+    </author>
+    <author>
+      <name>Yangyang Li</name>
+    </author>
+    <author>
+      <name>Junping Zhang</name>
+    </author>
+    <author>
+      <name>Hongming Shan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2410.13989v1</id>
+    <title>Reproducibility study of "LICO: Explainable Models with Language-Image Consistency"</title>
+    <updated>2024-10-17T19:41:34Z</updated>
+    <link href="https://arxiv.org/abs/2410.13989v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2410.13989v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The growing reproducibility crisis in machine learning has brought forward a need for careful examination of research findings. This paper investigates the claims made by Lei et al. (2023) regarding their proposed method, LICO, for enhancing post-hoc interpretability techniques and improving image classification performance. LICO leverages natural language supervision from a vision-language model to enrich feature representations and guide the learning process. We conduct a comprehensive reproducibility study, employing (Wide) ResNets and established interpretability methods like Grad-CAM and RISE. We were mostly unable to reproduce the authors' results. In particular, we did not find that LICO consistently led to improved classification performance or improvements in quantitative and qualitative measures of interpretability. Thus, our findings highlight the importance of rigorous evaluation and transparent reporting in interpretability research.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-10-17T19:41:34Z</published>
+    <arxiv:comment>15 pages, 2 figures, Machine Learning Reproducibility Challenge 2024</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <arxiv:journal_ref>Transactions on Machine Learning Research 2024</arxiv:journal_ref>
+    <author>
+      <name>Luan Fletcher</name>
+    </author>
+    <author>
+      <name>Robert van der Klis</name>
+    </author>
+    <author>
+      <name>Martin Sedláček</name>
+    </author>
+    <author>
+      <name>Stefan Vasilev</name>
+    </author>
+    <author>
+      <name>Christos Athanasiadis</name>
+    </author>
+  </entry>
+</feed>

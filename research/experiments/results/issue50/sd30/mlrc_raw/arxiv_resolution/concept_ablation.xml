@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/GizHg0B5CqRqp07PJcHp7t3KPZQ</id>
+  <title>arXiv Query: search_query=ti:"Ablating Concepts in Text-to-Image Diffusion Models"&amp;id_list=&amp;start=0&amp;max_results=3</title>
+  <updated>2026-08-29T17:39:08Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=ti:%22Ablating+Concepts+in+Text-to-Image+Diffusion+Models%22&amp;start=0&amp;max_results=3&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>3</opensearch:itemsPerPage>
+  <opensearch:totalResults>1</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2303.13516v3</id>
+    <title>Ablating Concepts in Text-to-Image Diffusion Models</title>
+    <updated>2023-08-16T00:00:47Z</updated>
+    <link href="https://arxiv.org/abs/2303.13516v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2303.13516v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large-scale text-to-image diffusion models can generate high-fidelity images with powerful compositional ability. However, these models are typically trained on an enormous amount of Internet data, often containing copyrighted material, licensed images, and personal photos. Furthermore, they have been found to replicate the style of various living artists or memorize exact training samples. How can we remove such copyrighted concepts or images without retraining the model from scratch? To achieve this goal, we propose an efficient method of ablating concepts in the pretrained model, i.e., preventing the generation of a target concept. Our algorithm learns to match the image distribution for a target style, instance, or text prompt we wish to ablate to the distribution corresponding to an anchor concept. This prevents the model from generating target concepts given its text condition. Extensive experiments show that our method can successfully prevent the generation of the ablated concept while preserving closely related concepts in the model.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.GR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-03-23T17:59:42Z</published>
+    <arxiv:comment>ICCV 2023. Project website: https://www.cs.cmu.edu/~concept-ablation/</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Nupur Kumari</name>
+    </author>
+    <author>
+      <name>Bingliang Zhang</name>
+    </author>
+    <author>
+      <name>Sheng-Yu Wang</name>
+    </author>
+    <author>
+      <name>Eli Shechtman</name>
+    </author>
+    <author>
+      <name>Richard Zhang</name>
+    </author>
+    <author>
+      <name>Jun-Yan Zhu</name>
+    </author>
+  </entry>
+</feed>

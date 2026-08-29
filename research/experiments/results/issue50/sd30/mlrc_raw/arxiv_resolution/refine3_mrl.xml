@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/kqR3Xxu7e8xE0C0ra5te032IdTo</id>
+  <title>arXiv Query: search_query=all:"multivariate representations" AND all:"dense retrieval"&amp;id_list=&amp;start=0&amp;max_results=5</title>
+  <updated>2026-08-29T17:44:11Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22multivariate+representations%22+AND+all:%22dense+retrieval%22&amp;start=0&amp;max_results=5&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>5</opensearch:itemsPerPage>
+  <opensearch:totalResults>1</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2304.14522v1</id>
+    <title>Multivariate Representation Learning for Information Retrieval</title>
+    <updated>2023-04-27T20:30:46Z</updated>
+    <link href="https://arxiv.org/abs/2304.14522v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2304.14522v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Dense retrieval models use bi-encoder network architectures for learning query and document representations. These representations are often in the form of a vector representation and their similarities are often computed using the dot product function. In this paper, we propose a new representation learning framework for dense retrieval. Instead of learning a vector for each query and document, our framework learns a multivariate distribution and uses negative multivariate KL divergence to compute the similarity between distributions. For simplicity and efficiency reasons, we assume that the distributions are multivariate normals and then train large language models to produce mean and variance vectors for these distributions. We provide a theoretical foundation for the proposed framework and show that it can be seamlessly integrated into the existing approximate nearest neighbor algorithms to perform retrieval efficiently. We conduct an extensive suite of experiments on a wide range of datasets, and demonstrate significant improvements compared to competitive dense retrieval models.</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-04-27T20:30:46Z</published>
+    <arxiv:comment>Accepted for publication at SIGIR 2023</arxiv:comment>
+    <arxiv:primary_category term="cs.IR"/>
+    <author>
+      <name>Hamed Zamani</name>
+    </author>
+    <author>
+      <name>Michael Bendersky</name>
+    </author>
+  </entry>
+</feed>

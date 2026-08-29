@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/jE8R7wjajEn2WMtyuJvI8Bba5Jg</id>
+  <title>arXiv Query: search_query=all:"pure convolution structure"&amp;id_list=&amp;start=0&amp;max_results=5</title>
+  <updated>2026-08-29T17:44:03Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22pure+convolution+structure%22&amp;start=0&amp;max_results=5&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>5</opensearch:itemsPerPage>
+  <opensearch:totalResults>5</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2306.02326v1</id>
+    <title>Cross-LKTCN: Modern Convolution Utilizing Cross-Variable Dependency for Multivariate Time Series Forecasting Dependency for Multivariate Time Series Forecasting</title>
+    <updated>2023-06-04T10:50:52Z</updated>
+    <link href="https://arxiv.org/abs/2306.02326v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2306.02326v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The past few years have witnessed the rapid development in multivariate time series forecasting. The key to accurate forecasting results is capturing the long-term dependency between each time step (cross-time dependency) and modeling the complex dependency between each variable (cross-variable dependency) in multivariate time series. However, recent methods mainly focus on the cross-time dependency but seldom consider the cross-variable dependency. To fill this gap, we find that convolution, a traditional technique but recently losing steam in time series forecasting, meets the needs of respectively capturing the cross-time and cross-variable dependency. Based on this finding, we propose a modern pure convolution structure, namely Cross-LKTCN, to better utilize both cross-time and cross-variable dependency for time series forecasting. Specifically in each Cross-LKTCN block, a depth-wise large kernel convolution with large receptive field is proposed to capture cross-time dependency, and then two successive point-wise group convolution feed forward networks are proposed to capture cross-variable dependency. Experimental results on real-world benchmarks show that Cross-LKTCN achieves state-of-the-art forecasting performance and improves the forecasting accuracy significantly compared with existing convolutional-based models and cross-variable methods.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-06-04T10:50:52Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Donghao Luo</name>
+    </author>
+    <author>
+      <name>Xue Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1802.10062v4</id>
+    <title>CSRNet: Dilated Convolutional Neural Networks for Understanding the Highly Congested Scenes</title>
+    <updated>2018-04-11T04:20:08Z</updated>
+    <link href="https://arxiv.org/abs/1802.10062v4" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1802.10062v4" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We propose a network for Congested Scene Recognition called CSRNet to provide a data-driven and deep learning method that can understand highly congested scenes and perform accurate count estimation as well as present high-quality density maps. The proposed CSRNet is composed of two major components: a convolutional neural network (CNN) as the front-end for 2D feature extraction and a dilated CNN for the back-end, which uses dilated kernels to deliver larger reception fields and to replace pooling operations. CSRNet is an easy-trained model because of its pure convolutional structure. We demonstrate CSRNet on four datasets (ShanghaiTech dataset, the UCF_CC_50 dataset, the WorldEXPO'10 dataset, and the UCSD dataset) and we deliver the state-of-the-art performance. In the ShanghaiTech Part_B dataset, CSRNet achieves 47.3% lower Mean Absolute Error (MAE) than the previous state-of-the-art method. We extend the targeted applications for counting other objects, such as the vehicle in TRANCOS dataset. Results show that CSRNet significantly improves the output quality with 15.4% lower MAE than the previous state-of-the-art approach.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2018-02-27T18:39:31Z</published>
+    <arxiv:comment>Accepted by CVPR 2018</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Yuhong Li</name>
+    </author>
+    <author>
+      <name>Xiaofan Zhang</name>
+    </author>
+    <author>
+      <name>Deming Chen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2409.13292v2</id>
+    <title>Exploring Text-Queried Sound Event Detection with Audio Source Separation</title>
+    <updated>2025-01-10T08:35:55Z</updated>
+    <link href="https://arxiv.org/abs/2409.13292v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2409.13292v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In sound event detection (SED), overlapping sound events pose a significant challenge, as certain events can be easily masked by background noise or other events, resulting in poor detection performance. To address this issue, we propose the text-queried SED (TQ-SED) framework. Specifically, we first pre-train a language-queried audio source separation (LASS) model to separate the audio tracks corresponding to different events from the input audio. Then, multiple target SED branches are employed to detect individual events. AudioSep is a state-of-the-art LASS model, but has limitations in extracting dynamic audio information because of its pure convolutional structure for separation. To address this, we integrate a dual-path recurrent neural network block into the model. We refer to this structure as AudioSep-DP, which achieves the first place in DCASE 2024 Task 9 on language-queried audio source separation (objective single model track). Experimental results show that TQ-SED can significantly improve the SED performance, with an improvement of 7.22\% on F1 score over the conventional framework. Additionally, we setup comprehensive experiments to explore the impact of model complexity. The source code and pre-trained model are released at https://github.com/apple-yinhan/TQ-SED.</summary>
+    <category term="eess.AS" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.SD" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-09-20T07:42:04Z</published>
+    <arxiv:comment>Accepted by ICASSP 2025</arxiv:comment>
+    <arxiv:primary_category term="eess.AS"/>
+    <author>
+      <name>Han Yin</name>
+    </author>
+    <author>
+      <name>Jisheng Bai</name>
+    </author>
+    <author>
+      <name>Yang Xiao</name>
+    </author>
+    <author>
+      <name>Hui Wang</name>
+    </author>
+    <author>
+      <name>Siqi Zheng</name>
+    </author>
+    <author>
+      <name>Yafeng Chen</name>
+    </author>
+    <author>
+      <name>Rohan Kumar Das</name>
+    </author>
+    <author>
+      <name>Chong Deng</name>
+    </author>
+    <author>
+      <name>Jianfeng Chen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2402.16370v1</id>
+    <title>DEYO: DETR with YOLO for End-to-End Object Detection</title>
+    <updated>2024-02-26T07:48:19Z</updated>
+    <link href="https://arxiv.org/abs/2402.16370v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2402.16370v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The training paradigm of DETRs is heavily contingent upon pre-training their backbone on the ImageNet dataset. However, the limited supervisory signals provided by the image classification task and one-to-one matching strategy result in an inadequately pre-trained neck for DETRs. Additionally, the instability of matching in the early stages of training engenders inconsistencies in the optimization objectives of DETRs. To address these issues, we have devised an innovative training methodology termed step-by-step training. Specifically, in the first stage of training, we employ a classic detector, pre-trained with a one-to-many matching strategy, to initialize the backbone and neck of the end-to-end detector. In the second stage of training, we froze the backbone and neck of the end-to-end detector, necessitating the training of the decoder from scratch. Through the application of step-by-step training, we have introduced the first real-time end-to-end object detection model that utilizes a purely convolutional structure encoder, DETR with YOLO (DEYO). Without reliance on any supplementary training data, DEYO surpasses all existing real-time object detectors in both speed and accuracy. Moreover, the comprehensive DEYO series can complete its second-phase training on the COCO dataset using a single 8GB RTX 4060 GPU, significantly reducing the training expenditure. Source code and pre-trained models are available at https://github.com/ouyanghaodong/DEYO.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-02-26T07:48:19Z</published>
+    <arxiv:comment>arXiv admin note: text overlap with arXiv:2309.11851</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Haodong Ouyang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2409.12533v1</id>
+    <title>MambaClinix: Hierarchical Gated Convolution and Mamba-Based U-Net for Enhanced 3D Medical Image Segmentation</title>
+    <updated>2024-09-19T07:51:14Z</updated>
+    <link href="https://arxiv.org/abs/2409.12533v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2409.12533v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Deep learning, particularly convolutional neural networks (CNNs) and Transformers, has significantly advanced 3D medical image segmentation. While CNNs are highly effective at capturing local features, their limited receptive fields may hinder performance in complex clinical scenarios. In contrast, Transformers excel at modeling long-range dependencies but are computationally intensive, making them expensive to train and deploy. Recently, the Mamba architecture, based on the State Space Model (SSM), has been proposed to efficiently model long-range dependencies while maintaining linear computational complexity. However, its application in medical image segmentation reveals shortcomings, particularly in capturing critical local features essential for accurate delineation of clinical regions. In this study, we propose MambaClinix, a novel U-shaped architecture for medical image segmentation that integrates a hierarchical gated convolutional network(HGCN) with Mamba in an adaptive stage-wise framework. This design significantly enhances computational efficiency and high-order spatial interactions, enabling the model to effectively capture both proximal and distal relationships in medical images. Specifically, our HGCN is designed to mimic the attention mechanism of Transformers by a purely convolutional structure, facilitating high-order spatial interactions in feature maps while avoiding the computational complexity typically associated with Transformer-based methods. Additionally, we introduce a region-specific Tversky loss, which emphasizes specific pixel regions to improve auto-segmentation performance, thereby optimizing the model's decision-making process. Experimental results on five benchmark datasets demonstrate that the proposed MambaClinix achieves high segmentation accuracy while maintaining low model complexity.</summary>
+    <category term="eess.IV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-09-19T07:51:14Z</published>
+    <arxiv:comment>18 pages, 5 figures</arxiv:comment>
+    <arxiv:primary_category term="eess.IV"/>
+    <author>
+      <name>Chenyuan Bian</name>
+    </author>
+    <author>
+      <name>Nan Xia</name>
+    </author>
+    <author>
+      <name>Xia Yang</name>
+    </author>
+    <author>
+      <name>Feifei Wang</name>
+    </author>
+    <author>
+      <name>Fengjiao Wang</name>
+    </author>
+    <author>
+      <name>Bin Wei</name>
+    </author>
+    <author>
+      <name>Qian Dong</name>
+    </author>
+  </entry>
+</feed>

@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/NBYqBf9CPN7HS4Ui7FKB6ert4A0</id>
+  <title>arXiv Query: search_query=all:"Discover-then-Name"&amp;id_list=&amp;start=0&amp;max_results=6</title>
+  <updated>2026-08-29T17:42:27Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22Discover-then-Name%22&amp;start=0&amp;max_results=6&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>6</opensearch:itemsPerPage>
+  <opensearch:totalResults>7</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2407.14499v2</id>
+    <title>Discover-then-Name: Task-Agnostic Concept Bottlenecks via Automated Concept Discovery</title>
+    <updated>2024-08-12T14:50:01Z</updated>
+    <link href="https://arxiv.org/abs/2407.14499v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2407.14499v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Concept Bottleneck Models (CBMs) have recently been proposed to address the 'black-box' problem of deep neural networks, by first mapping images to a human-understandable concept space and then linearly combining concepts for classification. Such models typically require first coming up with a set of concepts relevant to the task and then aligning the representations of a feature extractor to map to these concepts. However, even with powerful foundational feature extractors like CLIP, there are no guarantees that the specified concepts are detectable. In this work, we leverage recent advances in mechanistic interpretability and propose a novel CBM approach -- called Discover-then-Name-CBM (DN-CBM) -- that inverts the typical paradigm: instead of pre-selecting concepts based on the downstream classification task, we use sparse autoencoders to first discover concepts learnt by the model, and then name them and train linear probes for classification. Our concept extraction strategy is efficient, since it is agnostic to the downstream task, and uses concepts already known to the model. We perform a comprehensive evaluation across multiple datasets and CLIP architectures and show that our method yields semantically meaningful concepts, assigns appropriate names to them that make them easy to interpret, and yields performant and interpretable CBMs. Code available at https://github.com/neuroexplicit-saar/discover-then-name.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-07-19T17:50:11Z</published>
+    <arxiv:comment>40 pages, 21 figures, 6 tables, European Conference on Computer Vision (ECCV) 2024</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Sukrut Rao</name>
+    </author>
+    <author>
+      <name>Sweta Mahajan</name>
+    </author>
+    <author>
+      <name>Moritz Böhle</name>
+    </author>
+    <author>
+      <name>Bernt Schiele</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2212.03434v7</id>
+    <title>Name Your Colour For the Task: Artificially Discover Colour Naming via Colour Quantisation Transformer</title>
+    <updated>2023-10-13T06:46:27Z</updated>
+    <link href="https://arxiv.org/abs/2212.03434v7" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2212.03434v7" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The long-standing theory that a colour-naming system evolves under dual pressure of efficient communication and perceptual mechanism is supported by more and more linguistic studies, including analysing four decades of diachronic data from the Nafaanra language. This inspires us to explore whether machine learning could evolve and discover a similar colour-naming system via optimising the communication efficiency represented by high-level recognition performance. Here, we propose a novel colour quantisation transformer, CQFormer, that quantises colour space while maintaining the accuracy of machine recognition on the quantised images. Given an RGB image, Annotation Branch maps it into an index map before generating the quantised image with a colour palette; meanwhile the Palette Branch utilises a key-point detection way to find proper colours in the palette among the whole colour space. By interacting with colour annotation, CQFormer is able to balance both the machine vision accuracy and colour perceptual structure such as distinct and stable colour distribution for discovered colour system. Very interestingly, we even observe the consistent evolution pattern between our artificial colour system and basic colour terms across human languages. Besides, our colour quantisation method also offers an efficient quantisation method that effectively compresses the image storage while maintaining high performance in high-level recognition tasks such as classification and detection. Extensive experiments demonstrate the superior performance of our method with extremely low bit-rate colours, showing potential to integrate into quantisation network to quantities from image to network activation. The source code is available at https://github.com/ryeocthiv/CQFormer</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-12-07T03:39:18Z</published>
+    <arxiv:comment>ICCV 2023 Oral</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Shenghan Su</name>
+    </author>
+    <author>
+      <name>Lin Gu</name>
+    </author>
+    <author>
+      <name>Yue Yang</name>
+    </author>
+    <author>
+      <name>Zenghui Zhang</name>
+    </author>
+    <author>
+      <name>Tatsuya Harada</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1904.07392v1</id>
+    <title>NAS-FPN: Learning Scalable Feature Pyramid Architecture for Object Detection</title>
+    <updated>2019-04-16T01:32:33Z</updated>
+    <link href="https://arxiv.org/abs/1904.07392v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1904.07392v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Current state-of-the-art convolutional architectures for object detection are manually designed. Here we aim to learn a better architecture of feature pyramid network for object detection. We adopt Neural Architecture Search and discover a new feature pyramid architecture in a novel scalable search space covering all cross-scale connections. The discovered architecture, named NAS-FPN, consists of a combination of top-down and bottom-up connections to fuse features across scales. NAS-FPN, combined with various backbone models in the RetinaNet framework, achieves better accuracy and latency tradeoff compared to state-of-the-art object detection models. NAS-FPN improves mobile detection accuracy by 2 AP compared to state-of-the-art SSDLite with MobileNetV2 model in [32] and achieves 48.3 AP which surpasses Mask R-CNN [10] detection accuracy with less computation time.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2019-04-16T01:32:33Z</published>
+    <arxiv:comment>Accepted at CVPR 2019</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Golnaz Ghiasi</name>
+    </author>
+    <author>
+      <name>Tsung-Yi Lin</name>
+    </author>
+    <author>
+      <name>Ruoming Pang</name>
+    </author>
+    <author>
+      <name>Quoc V. Le</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1710.10177v1</id>
+    <title>Combining Aspects of Genetic Algorithms with Weighted Recommender Hybridization</title>
+    <updated>2017-10-27T14:43:15Z</updated>
+    <link href="https://arxiv.org/abs/1710.10177v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1710.10177v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recommender systems are established means to inspire users to watch interesting movies, discover baby names, or read books. The recommendation quality further improves by combining the results of multiple recommendation algorithms using hybridization methods. In this paper, we focus on the task of combining unscored recommendations into a single ensemble. Our proposed method is inspired by genetic algorithms. It repeatedly selects items from the recommendations to create a population of items that will be used for the final ensemble. We compare our method with a weighted voting method and test the performance of both in a movie- and name-recommendation scenario. We were able to outperform the weighted method on both datasets by 20.3 % and 31.1 % and decreased the overall execution time by up to 19.9 %. Our results do not only propose a new kind of hybridization method, but introduce the field of recommender hybridization to further work with genetic algorithms.</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2017-10-27T14:43:15Z</published>
+    <arxiv:comment>10 pages, 6 figures, 2 tables, iiWAS '17, December 4-6, 2017, Salzburg, Austria</arxiv:comment>
+    <arxiv:primary_category term="cs.IR"/>
+    <author>
+      <name>Juergen Mueller</name>
+    </author>
+    <arxiv:doi>10.1145/3151759.3151765</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1145/3151759.3151765" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1711.00367v3</id>
+    <title>On the normalized ground states for the Kawahara equation and a fourth order NLS</title>
+    <updated>2020-02-10T14:32:53Z</updated>
+    <link href="https://arxiv.org/abs/1711.00367v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1711.00367v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We consider the Kawahara model and two fourth order semi-linear Schrödinger equations in any spatial dimension. We construct the corresponding normalized ground states, which we rigorously show to be spectrally stable.
+  For the Kawahara model, our results provide a significant extension in parameter space of the current rigorous results. At the same time, we verify and clarify recent numerical simulations of the stability of these solitons. For the fourth order NLS models, we improve upon recent results on stability of very special, explicit solutions in the one dimensional case. Our multidimensional results for fourth order NLS seem to be the first of its kind. Of particular interest is a new paradigm that we discover herein. Namely, all else being equal, the form of the second order derivatives (mixed second derivatives vs. pure Laplacian) has implications on the range of existence and stability of the normalized waves.</summary>
+    <category term="math.AP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2017-11-01T14:36:45Z</published>
+    <arxiv:comment>Simplified the stability proofs, extended the stability to all normalized waves</arxiv:comment>
+    <arxiv:primary_category term="math.AP"/>
+    <author>
+      <name>Iurii Posukhovskyi</name>
+    </author>
+    <author>
+      <name>Atanas Stefanov</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2302.03004v1</id>
+    <title>Neural Collapse Inspired Feature-Classifier Alignment for Few-Shot Class Incremental Learning</title>
+    <updated>2023-02-06T18:39:40Z</updated>
+    <link href="https://arxiv.org/abs/2302.03004v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2302.03004v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Few-shot class-incremental learning (FSCIL) has been a challenging problem as only a few training samples are accessible for each novel class in the new sessions. Finetuning the backbone or adjusting the classifier prototypes trained in the prior sessions would inevitably cause a misalignment between the feature and classifier of old classes, which explains the well-known catastrophic forgetting problem. In this paper, we deal with this misalignment dilemma in FSCIL inspired by the recently discovered phenomenon named neural collapse, which reveals that the last-layer features of the same class will collapse into a vertex, and the vertices of all classes are aligned with the classifier prototypes, which are formed as a simplex equiangular tight frame (ETF). It corresponds to an optimal geometric structure for classification due to the maximized Fisher Discriminant Ratio. We propose a neural collapse inspired framework for FSCIL. A group of classifier prototypes are pre-assigned as a simplex ETF for the whole label space, including the base session and all the incremental sessions. During training, the classifier prototypes are not learnable, and we adopt a novel loss function that drives the features into their corresponding prototypes. Theoretical analysis shows that our method holds the neural collapse optimality and does not break the feature-classifier alignment in an incremental fashion. Experiments on the miniImageNet, CUB-200, and CIFAR-100 datasets demonstrate that our proposed framework outperforms the state-of-the-art performances. Code address: https://github.com/NeuralCollapseApplications/FSCIL</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-02-06T18:39:40Z</published>
+    <arxiv:comment>ICLR 2023 (Notable-top-25%)</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Yibo Yang</name>
+    </author>
+    <author>
+      <name>Haobo Yuan</name>
+    </author>
+    <author>
+      <name>Xiangtai Li</name>
+    </author>
+    <author>
+      <name>Zhouchen Lin</name>
+    </author>
+    <author>
+      <name>Philip Torr</name>
+    </author>
+    <author>
+      <name>Dacheng Tao</name>
+    </author>
+  </entry>
+</feed>
