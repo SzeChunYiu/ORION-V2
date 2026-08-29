@@ -91,7 +91,7 @@ jobs:
           protocol = json.loads(Path('research/experiments/SCIENTIFIC_DEVELOPMENT_RECURSIVE_META_GENERALIZATION_PROTOCOL_V1.json').read_text())
           assert protocol['status'] == 'PROSPECTIVE_PROTOCOL_NO_RESULTS'
           backlog = json.loads(Path('research/experiments/SCIENTIFIC_DEVELOPMENT_EXECUTION_BACKLOG_V1.json').read_text())
-          assert backlog['status'] == 'SD10_EXECUTED__BOUNDED_2024_WINDOW_4_MODES__SD20_PLUS_PENDING'
+          assert backlog['status'] == 'SD20_BOUNDED_PILOT_EXECUTED__INTERIM_NO_TERMINAL_CLAIM__SD30_PLUS_PENDING'
           assert [item['id'] for item in backlog['tasks']] == ['SD00','SD10','SD20','SD30','SD40','SD50','SD60','SD70','SD80','SD90']
           assert all(value is False for value in backlog['authority'].values())
           PY
