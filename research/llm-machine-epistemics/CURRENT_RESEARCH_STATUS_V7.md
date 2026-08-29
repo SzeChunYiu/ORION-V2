@@ -171,7 +171,8 @@ Read/use in this order:
 13. `papers/llm-machine-epistemics/SUBMISSION_READINESS_CONTRACT_V1.md`
 14. `papers/llm-machine-epistemics/AI_USE_AUTHORSHIP_AND_REPRODUCIBILITY_V1.md`
 15. `papers/llm-machine-epistemics/SUBMISSION_PACKAGE_MANIFEST_V1.md`
-16. venue-specific cover/anonymization files.
+16. `papers/llm-machine-epistemics/JMLR_COVER_LETTER_DRAFT_V1.md`
+17. `papers/llm-machine-epistemics/TMLR_ANONYMIZED_PACKAGE_PLAN_V1.md`
 
 Older manuscripts V1–V7 remain research provenance and should not be mechanically converted for submission unless a current artifact explicitly incorporates them.
 
@@ -228,7 +229,7 @@ TMLR_POLICY_FIT = OPEN_DECISIVE
 TMLR_SUBMISSION_AUTHORIZED = NO
 ```
 
-No disclosure wording may hide the actual workflow.
+No disclosure wording may hide the actual workflow. See `AI_USE_AUTHORSHIP_AND_REPRODUCIBILITY_V1.md`.
 
 ## 11. Reproducibility/ethics status
 
@@ -256,7 +257,7 @@ Rule:
 ### Mechanical/editorial
 
 - [ ] mechanically assemble chosen LaTeX venue package from the frozen manifest;
-- [ ] merge the two `.bib` sources or use both as supported by the template;
+- [ ] merge/use the two `.bib` sources;
 - [ ] generate receipt-derived figures/tables;
 - [ ] run citation-key/coverage/status validation;
 - [ ] run page count/PDF-size checks;
