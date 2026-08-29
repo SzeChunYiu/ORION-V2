@@ -1,0 +1,117 @@
+{
+  "schema_version": "orion.v2.scientific-development-recursive-meta.v1",
+  "protocol_id": "ORION-SCIENTIFIC-DEVELOPMENT-META-V1",
+  "status": "PROSPECTIVE_PROTOCOL_NO_RESULTS",
+  "frozen_before_meta_outcome_access": true,
+  "central_question": "Can ORION learn recursively higher-order principles of scientific development from population-scale trajectories and use them prospectively on held-out scientific-development decisions beyond strongest science-of-science, sequence-model and parent controls?",
+  "arms": [
+    "SIMPLE_FREQUENCY_BASELINE",
+    "BIBLIOMETRIC_SCIENCE_OF_SCIENCE_PARENT",
+    "TEMPORAL_SEQUENCE_MODEL_PARENT",
+    "NETWORK_SCIENCE_PARENT",
+    "CAUSAL_OR_QUASI_EXPERIMENTAL_PARENT_WHEN_IDENTIFIABLE",
+    "FIXED_META_LESSON_INJECTION",
+    "F0_META_PARENT_FEDERATION",
+    "F2_STATIC_NO_RECURSIVE_META_LEARNING",
+    "F2_RECURSIVE_SCIENTIFIC_DEVELOPMENT_FULL"
+  ],
+  "hard_gates": {
+    "citation_impact_as_truth_label_allowed": false,
+    "prize_as_truth_label_allowed": false,
+    "publication_only_success_sampling_allowed": false,
+    "same_author_leakage_across_train_test_allowed": false,
+    "future_information_leakage_allowed": false,
+    "historical_association_as_causal_rule_allowed": false,
+    "recursive_level_without_heldout_residual_allowed": false,
+    "negative_and_failed_trajectories_required_where_available": true,
+    "prospective_claim_requires_prospective_test": true
+  },
+  "outcome_vector": [
+    "validity_or_reproducibility",
+    "bounded_novelty",
+    "generativity",
+    "transfer",
+    "explanatory_or_compressive_change",
+    "robustness_or_retention",
+    "downstream_use",
+    "resource_and_time_burden"
+  ],
+  "studies": [
+    {
+      "id": "SD10",
+      "name": "POPULATION_CORPUS_AND_BIAS_AUDIT",
+      "design": "Build source-bound multi-corpus trajectories with explicit publication, citation, field, language, career, institution and missing-failure bias receipts.",
+      "minimum_source_modes": 4,
+      "primary": ["coverage", "missingness", "identity_linkage_error", "survivorship_bias", "outcome_proxy_disagreement"]
+    },
+    {
+      "id": "SD20",
+      "name": "DEVELOPMENT_OPERATOR_DISCOVERY",
+      "design": "Infer candidate transition operators from temporally ordered scientific-development trajectories without using post-outcome fame labels during operator induction.",
+      "primary": ["heldout_transition_prediction", "operator_stability", "cross_domain_support", "failed_trajectory_explanation"]
+    },
+    {
+      "id": "SD30",
+      "name": "SUCCESS_FAILURE_CONTRASTS",
+      "design": "Construct matched/stratified positive-negative trajectory contrasts conditional on field, epoch, resources, topic maturity and available observables.",
+      "primary": ["failure_discrimination", "calibration", "sensitivity_to_unobserved_confounding", "false_breakthrough_prediction"]
+    },
+    {
+      "id": "SD40",
+      "name": "CROSS_FIELD_AND_CROSS_EPOCH_REPLICATION",
+      "design": "Test candidate principles on held-out scientific fields and later epochs with frozen outcome definitions and alternative proxies.",
+      "primary": ["cross_field_prediction", "cross_epoch_prediction", "outcome_definition_robustness", "contraction_rate"]
+    },
+    {
+      "id": "SD50",
+      "name": "RECURSIVE_ABSTRACTION_LEVELS",
+      "design": "Construct L1 operators, L2 operator families, L3 meta-policies and higher candidate levels; each higher level must add held-out prediction, compression without critical loss, prospective generativity or resource benefit.",
+      "primary": ["incremental_heldout_gain", "description_length", "critical_information_loss", "recursive_level_survival"]
+    },
+    {
+      "id": "SD60",
+      "name": "KNOWN_META_REGULARITY_REPLICATION",
+      "design": "Reproduce and challenge established large-scale candidate regularities such as conventional-plus-atypical combinations, innovation-risk tradeoffs, exploration-to-exploitation transitions and team-size niches using alternative corpora/outcomes.",
+      "evidence_class": "CALIBRATION_AND_REPLICATION_NOT_FRAMEWORK_TRUTH",
+      "primary": ["replication", "heterogeneity", "boundary_conditions", "proxy_dependence"]
+    },
+    {
+      "id": "SD70",
+      "name": "PROSPECTIVE_META_POLICY_ON_GENERATED_RESEARCH_EPISODES",
+      "design": "Use a frozen learned meta-policy to choose among exploration, exploitation, transfer search, formalism search, experiment/proof, parent deference or abstention on fresh hidden-outcome research episodes.",
+      "primary": ["protected_decision_quality", "critical_false_direction", "resource_cost", "parent_non_regression"]
+    },
+    {
+      "id": "SD80",
+      "name": "PROSPECTIVE_NATURALISTIC_RESEARCH_DIRECTION",
+      "design": "On real bounded research programmes, freeze candidate principles before later evidence; compare recommended research-development moves with strongest expert/meta-science/F0 controls.",
+      "minimum_materially_distinct_domains": 3,
+      "primary": ["decision_change", "later_validation", "negative_result_retention", "resource_cost"]
+    },
+    {
+      "id": "SD90",
+      "name": "RECURSIVE_STABILITY_CHALLENGE",
+      "design": "Attempt another abstraction level, new domain, new epoch and hostile omission route. Stop only when no material residual is found under the declared universe, while retaining reopen conditions.",
+      "primary": ["new_residual_found", "fixed_point_stability", "omission_failure", "reopen_trigger"]
+    }
+  ],
+  "recursive_promotion_rule": "A higher abstraction level is retained only if it adds held-out predictive/generative/transfer/resource value or stronger compression without losing registered critical distinctions.",
+  "allowed_terminals": [
+    "POPULATION_REGULARITY_ONLY",
+    "CONTEXTUAL_META_PRINCIPLE",
+    "PROSPECTIVE_META_POLICY_RESIDUAL",
+    "PARENT_SUFFICIENT",
+    "FIXED_META_LESSON_SUFFICIENT",
+    "NO_HIGHER_LEVEL_RESIDUAL",
+    "RECURSIVE_STABILITY_CANDIDATE",
+    "CANNOT_CHECK"
+  ],
+  "authority": {
+    "grants_ultimate_truth": false,
+    "grants_universal_breakthrough_law": false,
+    "grants_F2_superiority": false,
+    "grants_field_status": false,
+    "grants_submission_readiness": false,
+    "grants_journal_acceptance": false
+  }
+}
