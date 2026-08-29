@@ -3,6 +3,7 @@ from __future__ import annotations
 import difflib
 import json
 import random
+import re
 from pathlib import Path
 
 from scripts.run_orion_generated_composition_suite import (
@@ -86,6 +87,18 @@ def decide(record):
 '''
 
 
+def _rooted_patch(before: str, after: str) -> str:
+    body = "".join(
+        difflib.unified_diff(
+            before.splitlines(keepends=True),
+            after.splitlines(keepends=True),
+            fromfile="a/solver.py",
+            tofile="b/solver.py",
+        )
+    )
+    return "diff --git a/solver.py b/solver.py\n" + body
+
+
 def test_hidden_evaluator_accepts_correct_composed_repair(tmp_path: Path) -> None:
     workdir = tmp_path / "suite"
     arm = "SIMPLE_DIRECT"
@@ -95,14 +108,7 @@ def test_hidden_evaluator_accepts_correct_composed_repair(tmp_path: Path) -> Non
     solver_path = workdir / "public" / task_id / "solver.py"
     before = solver_path.read_text(encoding="utf-8")
     after = _correct_solver(private["spec"])
-    patch = "".join(
-        difflib.unified_diff(
-            before.splitlines(keepends=True),
-            after.splitlines(keepends=True),
-            fromfile="a/solver.py",
-            tofile="b/solver.py",
-        )
-    )
+    patch = _rooted_patch(before, after)
     response = {
         "schema_version": "orion.v2.agent-response.v1",
         "task_id": task_id,
@@ -131,16 +137,20 @@ def test_syntax_only_sensitivity_does_not_replace_raw_failure(tmp_path: Path) ->
     solver_path = workdir / "public" / task_id / "solver.py"
     before = solver_path.read_text(encoding="utf-8")
     after = _correct_solver(private["spec"])
-    patch = "".join(
-        difflib.unified_diff(
-            before.splitlines(keepends=True),
-            after.splitlines(keepends=True),
-            fromfile="a/solver.py",
-            tofile="b/solver.py",
-        )
+    patch = _rooted_patch(before, after)
+    # Damage only the hunk count metadata.  The edit body and paths stay fixed,
+    # so the arm-blind canonicalizer may recompute the counts without guessing
+    # or changing semantics, while raw git-apply must fail.
+    patch, replacements = re.subn(
+        r"@@ -(\d+),(\d+) \+(\d+),(\d+) @@",
+        lambda match: (
+            f"@@ -{match.group(1)},{int(match.group(2)) + 7} "
+            f"+{match.group(3)},{int(match.group(4)) + 11} @@"
+        ),
+        patch,
+        count=1,
     )
-    patch = "diff --git a/solver.py b/solver.py\n" + patch
-    patch = patch.replace("--- a/solver.py", "--- solver.py").replace("+++ b/solver.py", "+++ solver.py")
+    assert replacements == 1
     response_path = workdir / "responses" / arm / f"{task_id}.json"
     response_path.parent.mkdir(parents=True)
     response_path.write_text(
@@ -155,6 +165,7 @@ def test_syntax_only_sensitivity_does_not_replace_raw_failure(tmp_path: Path) ->
         encoding="utf-8",
     )
     result = evaluate_one(workdir, arm, task_id)
+    assert result["raw_patch_apply_success"] is False
     assert result["raw_hidden_oracle_success"] is False
     assert result["syntax_audit_status"] == "VALID_AFTER_SYNTAX_ONLY_CANONICALIZATION"
     assert result["syntax_normalized_hidden_oracle_success"] is True
