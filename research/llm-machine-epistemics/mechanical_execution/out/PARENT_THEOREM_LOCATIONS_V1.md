@@ -43,7 +43,7 @@ receipt JSON at generation time by `llm_epistemics_theorem_locations.py`.
 | V5 horizon | `PH1_HORIZON_COST_MONOTONICITY` | V5 | `RESPONSIBILITY_HORIZON_CURVE_V1.json` | fixtures[*].ph1_monotone | PASS (6/6 curves monotone) |
 | V5 horizon | `PH2_FINITE_HORIZON_STABILIZATION` | V5 | `RESPONSIBILITY_HORIZON_CURVE_V1.json` | fixtures[*].curve[-1]==c_inf + literal_equals_iterative_k | PASS (6/6 stabilize; literal==iterative) |
 | V5 horizon | `PH3_RESPONSIBILITY_FAMILY_MONOTONICITY` | V5 | `RESPONSIBILITY_HORIZON_CURVE_V1.json` | ph3.checks | PASS (4/4 family-monotonicity sub-checks) |
-| Mutation battery | `M1-M6_PREDICTIVE_COMPRESSION_ASSUMPTIONS` | V4 §9 | `—` | audit running at map-generation time | PENDING_RUN_IN_PROGRESS |
+| Mutation battery | `M1-M6_PREDICTIVE_COMPRESSION_ASSUMPTIONS` | V4 §9 | `PREDICTIVE_COMPRESSION_ASSUMPTION_MATRIX_V1.json` | see receipt | SEE_RECEIPT |
 
 ## Known gaps
 
