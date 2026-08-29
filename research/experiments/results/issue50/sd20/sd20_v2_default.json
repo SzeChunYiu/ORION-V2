@@ -1,0 +1,436 @@
+{
+ "arm_status": {
+  "BIBLIOMETRIC_SCIENCE_OF_SCIENCE_PARENT": "CANNOT_CHECK_ON_SLICE",
+  "CAUSAL_OR_QUASI_EXPERIMENTAL_PARENT_WHEN_IDENTIFIABLE": "CANNOT_CHECK_ON_SLICE",
+  "F0_META_PARENT_FEDERATION": "EVALUATED",
+  "F2_RECURSIVE_SCIENTIFIC_DEVELOPMENT_FULL": "CANNOT_CHECK_ON_SLICE",
+  "F2_STATIC_NO_RECURSIVE_META_LEARNING": "EVALUATED (alias of TEMPORAL_SEQUENCE_MODEL_PARENT under train-frozen selection)",
+  "FIXED_META_LESSON_INJECTION__abstract_grows": "EVALUATED",
+  "FIXED_META_LESSON_INJECTION__authors_nondecreasing": "EVALUATED",
+  "FIXED_META_LESSON_INJECTION__gaps_lengthen": "EVALUATED",
+  "NETWORK_SCIENCE_PARENT": "CANNOT_CHECK_ON_SLICE",
+  "SIMPLE_FREQUENCY_BASELINE": "EVALUATED",
+  "TEMPORAL_SEQUENCE_MODEL_PARENT": "EVALUATED"
+ },
+ "authority": {
+  "grants_causal_law": false,
+  "grants_population_regularity_beyond_slice": false,
+  "grants_scientific_truth": false
+ },
+ "cannot_check_reasons": {
+  "BIBLIOMETRIC_SCIENCE_OF_SCIENCE_PARENT": "Atom metadata carries no citation/fame fields on this slice",
+  "CAUSAL_OR_QUASI_EXPERIMENTAL_PARENT_WHEN_IDENTIFIABLE": "no interventions or quasi-experimental variation in version deposits",
+  "F2_RECURSIVE_SCIENTIFIC_DEVELOPMENT_FULL": "recursive promotion requires SD50 machinery; bounded pilot has one level",
+  "NETWORK_SCIENCE_PARENT": "no disambiguated author network in the inputs (SD10 CANNOT_CHECK)"
+ },
+ "classification": "BOUNDED_PILOT_INTERIM__NO_TERMINAL_CLAIM",
+ "cross_domain_support": {
+  "categories": [
+   {
+    "category": "astro-ph",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 178,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "cond-mat",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 218,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "cs",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 1114,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "econ",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 35,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "eess",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 108,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "gr-qc",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 77,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "hep-ex",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 13,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "hep-lat",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 13,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "hep-ph",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 102,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "hep-th",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 68,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "math",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 806,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "math-ph",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 13,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "nlin",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 12,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "nucl-ex",
+    "n_test": 1,
+    "status": "TOO_FEW"
+   },
+   {
+    "category": "nucl-th",
+    "n_test": 8,
+    "status": "TOO_FEW"
+   },
+   {
+    "category": "physics",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 162,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "q-bio",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 39,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "q-fin",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 26,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "quant-ph",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 148,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "stat",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 79,
+    "status": "EVALUATED"
+   }
+  ],
+  "n_evaluated": 18,
+  "n_loo_beats_baseline": 0
+ },
+ "failed_trajectory_explanation": {
+  "reason": "the SD10 corpus is outcome-censored (19,960/19,982 UNKNOWN); identifying 'failed' trajectories would require inventing outcome labels the protocol forbids",
+  "status": "CANNOT_CHECK"
+ },
+ "hard_gates": {
+  "fame_fields_found": [],
+  "features_are_version_local": true,
+  "gates": {
+   "citation_impact_as_truth_label_allowed": false,
+   "future_information_leakage_allowed": false,
+   "prize_as_truth_label_allowed": false,
+   "publication_only_success_sampling_allowed": false,
+   "recursive_level_without_heldout_residual_allowed": false,
+   "same_author_leakage_across_train_test_allowed": false
+  },
+  "no_missing_metric_silent_defaults": true,
+  "no_post_outcome_fame_labels_in_inputs": true,
+  "no_recursive_level_claimed_above_L1": true,
+  "trajectory_level_split_disjoint": true
+ },
+ "heldout_transition_prediction": {
+  "n_test": 1010,
+  "per_arm": {
+   "F0_META_PARENT_FEDERATION": {
+    "bootstrap_ci95": [
+     -0.6824517242298426,
+     -0.5015468571280085
+    ],
+    "ci_excludes_zero": true,
+    "delta_vs_baseline": -0.591753350684951,
+    "mean_logscore": -2.7691184610655566,
+    "mean_logscore_baseline": -2.1773651103806055
+   },
+   "FIXED_META_LESSON_INJECTION__abstract_grows": {
+    "bootstrap_ci95": [
+     -1.041112458047484,
+     -0.9297780471668301
+    ],
+    "ci_excludes_zero": true,
+    "delta_vs_baseline": -0.9841866114992466,
+    "mean_logscore": -3.161551721879852,
+    "mean_logscore_baseline": -2.1773651103806055
+   },
+   "FIXED_META_LESSON_INJECTION__authors_nondecreasing": {
+    "bootstrap_ci95": [
+     -0.8466200753035705,
+     -0.737005151600727
+    ],
+    "ci_excludes_zero": true,
+    "delta_vs_baseline": -0.7954860249860625,
+    "mean_logscore": -2.972851135366668,
+    "mean_logscore_baseline": -2.1773651103806055
+   },
+   "FIXED_META_LESSON_INJECTION__gaps_lengthen": {
+    "bootstrap_ci95": [
+     -1.1050357797490122,
+     -0.9926040943278482
+    ],
+    "ci_excludes_zero": true,
+    "delta_vs_baseline": -1.052160995498209,
+    "mean_logscore": -3.2295261058788145,
+    "mean_logscore_baseline": -2.1773651103806055
+   },
+   "SIMPLE_FREQUENCY_BASELINE": {
+    "bootstrap_ci95": [
+     0.0,
+     0.0
+    ],
+    "ci_excludes_zero": false,
+    "delta_vs_baseline": 0.0,
+    "mean_logscore": -2.1773651103806055,
+    "mean_logscore_baseline": -2.1773651103806055
+   },
+   "TEMPORAL_SEQUENCE_MODEL_PARENT": {
+    "bootstrap_ci95": [
+     -0.09817161207431843,
+     -0.05095718115979598
+    ],
+    "ci_excludes_zero": true,
+    "delta_vs_baseline": -0.07467121697917589,
+    "mean_logscore": -2.2520363273597814,
+    "mean_logscore_baseline": -2.1773651103806055
+   }
+  }
+ },
+ "inputs": {
+  "observations": [
+   "out/sd10/arxiv_obs.jsonl",
+   "out/sd20/arxiv_version_obs.jsonl",
+   "out/sd20/arxiv_head_obs.jsonl"
+  ]
+ },
+ "operator_stability": {
+  "bootstrap_draws": 200,
+  "max_tv": 0.5005587840858292,
+  "mean_tv": 0.0815970255977765,
+  "per_context": {
+   "first|astro-ph": {
+    "max_tv": 0.18591740780603863,
+    "mean_tv": 0.09836734838484013
+   },
+   "first|cond-mat": {
+    "max_tv": 0.1762404492313357,
+    "mean_tv": 0.08508810000040659
+   },
+   "first|cs": {
+    "max_tv": 0.10072571062974135,
+    "mean_tv": 0.06063162524240373
+   },
+   "first|econ": {
+    "max_tv": 0.4697977201609298,
+    "mean_tv": 0.04926940901594852
+   },
+   "first|eess": {
+    "max_tv": 0.20714285714285716,
+    "mean_tv": 0.10733284332126194
+   },
+   "first|gr-qc": {
+    "max_tv": 0.215625,
+    "mean_tv": 0.1236026228992151
+   },
+   "first|hep-ex": {
+    "max_tv": 0.044702726866338846,
+    "mean_tv": 0.027670987930263746
+   },
+   "first|hep-lat": {
+    "max_tv": 0.044702726866338846,
+    "mean_tv": 0.027670987930263746
+   },
+   "first|hep-ph": {
+    "max_tv": 0.1862348178137652,
+    "mean_tv": 0.09385826182257258
+   },
+   "first|hep-th": {
+    "max_tv": 0.19701213818860877,
+    "mean_tv": 0.09797237706215972
+   },
+   "first|math": {
+    "max_tv": 0.11203292396132741,
+    "mean_tv": 0.055175956899667505
+   },
+   "first|math-ph": {
+    "max_tv": 0.044702726866338846,
+    "mean_tv": 0.027670987930263746
+   },
+   "first|nlin": {
+    "max_tv": 0.044702726866338846,
+    "mean_tv": 0.027670987930263746
+   },
+   "first|nucl-ex": {
+    "max_tv": 0.044702726866338846,
+    "mean_tv": 0.027670987930263746
+   },
+   "first|nucl-th": {
+    "max_tv": 0.044702726866338846,
+    "mean_tv": 0.027670987930263746
+   },
+   "first|physics": {
+    "max_tv": 0.18671435871231476,
+    "mean_tv": 0.11248566079974562
+   },
+   "first|q-bio": {
+    "max_tv": 0.5005587840858292,
+    "mean_tv": 0.08442675615865142
+   },
+   "first|q-fin": {
+    "max_tv": 0.4697977201609298,
+    "mean_tv": 0.029876927805096112
+   },
+   "first|quant-ph": {
+    "max_tv": 0.21497252747252746,
+    "mean_tv": 0.10625840637960447
+   },
+   "first|stat": {
+    "max_tv": 0.1889740566037736,
+    "mean_tv": 0.10518203859099472
+   },
+   "later|astro-ph": {
+    "max_tv": 0.3474653553866786,
+    "mean_tv": 0.1642522352514284
+   },
+   "later|cond-mat": {
+    "max_tv": 0.18666666666666665,
+    "mean_tv": 0.10462351812459404
+   },
+   "later|cs": {
+    "max_tv": 0.1178044928044928,
+    "mean_tv": 0.07011306880369042
+   },
+   "later|econ": {
+    "max_tv": 0.45155341975860525,
+    "mean_tv": 0.11602200691747849
+   },
+   "later|eess": {
+    "max_tv": 0.17940011318619126,
+    "mean_tv": 0.10893024325245333
+   },
+   "later|gr-qc": {
+    "max_tv": 0.48594717469254983,
+    "mean_tv": 0.1960764640081944
+   },
+   "later|hep-lat": {
+    "max_tv": 0.044702726866338846,
+    "mean_tv": 0.027670987930263746
+   },
+   "later|hep-ph": {
+    "max_tv": 0.40791238265534197,
+    "mean_tv": 0.21336820494301012
+   },
+   "later|hep-th": {
+    "max_tv": 0.044702726866338846,
+    "mean_tv": 0.027670987930263746
+   },
+   "later|math": {
+    "max_tv": 0.1441167870076703,
+    "mean_tv": 0.07119021268464291
+   },
+   "later|math-ph": {
+    "max_tv": 0.044702726866338846,
+    "mean_tv": 0.027670987930263746
+   },
+   "later|nlin": {
+    "max_tv": 0.044702726866338846,
+    "mean_tv": 0.027670987930263746
+   },
+   "later|physics": {
+    "max_tv": 0.2077922077922078,
+    "mean_tv": 0.09748828836473128
+   },
+   "later|q-bio": {
+    "max_tv": 0.044702726866338846,
+    "mean_tv": 0.027670987930263746
+   },
+   "later|q-fin": {
+    "max_tv": 0.044702726866338846,
+    "mean_tv": 0.027670987930263746
+   },
+   "later|quant-ph": {
+    "max_tv": 0.32622613193690525,
+    "mean_tv": 0.12568522861752407
+   },
+   "later|stat": {
+    "max_tv": 0.39916741171211445,
+    "mean_tv": 0.20976028660425022
+   }
+  }
+ },
+ "population": {
+  "alphabet_cells": 27,
+  "alphabet_mode": "default",
+  "censor_detail": {},
+  "censoring_statement": "single-version trajectories have no observable transition (deposit-surface censoring, not evidence of stability); the last observed version of every trajectory is the latest as of the 2026-08 fetch and later versions may exist",
+  "context_mode": "default",
+  "head_rows_superseded": 2067,
+  "superseded_by_mode_pair": {
+   "arxiv_atom_metadata -> arxiv_atom_version_history": 2067
+  },
+  "test_transitions": 1010,
+  "train_transitions": 2210,
+  "trajectories_multiversion": 2067,
+  "trajectories_single_version_censored": 2933,
+  "trajectories_total": 5000,
+  "transitions_censored_missing_metric": 0,
+  "transitions_total": 3220
+ },
+ "schema": "orion.v2.sd20-operator-discovery.v2",
+ "skipped_arms": {}
+}

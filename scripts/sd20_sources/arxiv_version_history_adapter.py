@@ -82,7 +82,7 @@ DEFAULT_RATE_SECONDS = 3.0
 EPOCH_ANCHOR = date(1970, 1, 1)
 
 
-def load_parent_plan(parent_path: Path) -> list[dict]:
+def load_parent_plan(parent_path: Path, fetch_heads: bool = False) -> list[dict]:
     """Derive (arxiv_id, head_version, head_domain, head_epoch) plan rows.
 
     Parent rows are the SD10 head-version observations. The version-target
@@ -90,6 +90,13 @@ def load_parent_plan(parent_path: Path) -> list[dict]:
     across runs (a cursor indexes the same list in every run); resume skips
     batches whose targets are all already durable in the output ledger, and
     the ledger's key-dedupe absorbs any re-fetched rows from a torn batch.
+
+    fetch_heads=True (V2 repair mode) plans exactly ONE target per parent —
+    the head version v_k itself — to acquire the full proxy-metric set
+    (abstract/title chars, per-version <updated>) that SD10 head snapshots
+    never recorded (they carry only author_count). The fetched rows share
+    observation_id with the SD10 head rows; the operator script supersedes
+    the thinner SD10 row (counted, never silent).
     """
     plan: dict[str, dict] = {}
     for row in common.load_jsonl_rows(parent_path):
@@ -111,7 +118,8 @@ def load_parent_plan(parent_path: Path) -> list[dict]:
         }
     rows = sorted(plan.values(), key=lambda item: item["arxiv_id"])
     for row in rows:
-        row["versions_to_fetch"] = list(range(1, row["head_version"]))
+        row["versions_to_fetch"] = ([row["head_version"]] if fetch_heads
+                                    else list(range(1, row["head_version"])))
     return rows
 
 
@@ -230,7 +238,8 @@ def run(args, transport=None, sleep=None) -> dict:
     state = common.CursorState(Path(args.state))
     obs_ledger = common.OutputLedger(Path(args.output_observations), common.observation_key)
     bind_ledger = common.OutputLedger(Path(args.output_bindings), common.binding_key)
-    rows = load_parent_plan(Path(args.parent_observations))
+    rows = load_parent_plan(Path(args.parent_observations),
+                            fetch_heads=bool(getattr(args, "fetch_heads", False)))
     batches = plan_batches(rows, args.batch_size)
     all_targets = {f"arxiv-obs:{row['arxiv_id']}v{version}"
                    for row in rows for version in row["versions_to_fetch"]}
@@ -240,6 +249,8 @@ def run(args, transport=None, sleep=None) -> dict:
         "batches_planned": len(batches),
         "already_on_disk": len(all_targets & set(obs_ledger.index)),
         "batch_size": args.batch_size}
+    if getattr(args, "fetch_heads", False):
+        receipt["plan"]["mode"] = "head_versions_only"
     if args.dry_run:
         receipt["dry_run_plan"] = {"requests_planned": len(batches),
                                    "note": "dry run: zero network requests were made"}
@@ -333,6 +344,9 @@ def main(argv=None) -> int:
     parser.add_argument("--rate-seconds", type=float, default=DEFAULT_RATE_SECONDS)
     parser.add_argument("--timeout", type=float, default=30.0)
     parser.add_argument("--retries", type=int, default=5)
+    parser.add_argument("--fetch-heads", action="store_true",
+                        help="plan ONLY each parent's head version v_k (full metadata "
+                             "repair fetch; supersedes the thin SD10 head snapshots)")
     parser.add_argument("--backoff-cap", type=float, default=120.0,
                         help="max seconds between retries (429/5xx backoff)")
     parser.add_argument("--dry-run", action="store_true")

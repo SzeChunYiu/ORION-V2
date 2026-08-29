@@ -172,3 +172,43 @@ def test_run_records_missing_versions_honestly(tmp_path):
 
     receipt = adapter.run(args, transport=PartialTransport(), sleep=lambda s: None)
     assert receipt["missing_versions"] == ["2401.00614v2"]
+
+
+HEAD_FEED = b"""<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><totalResults>1</totalResults>
+<entry><id>http://arxiv.org/abs/2401.00614v3</id><updated>2025-06-01T10:00:00Z</updated><published>2024-01-01T00:41:18Z</published><title>Paper One v3</title><summary>Final abstract text for the third version.</summary><author><name>A</name></author><author><name>B</name></author><author><name>C</name></author><author><name>D</name></author><arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="math.NT"/></entry>
+</feed>"""
+
+
+def test_fetch_heads_mode_plans_head_versions_only(tmp_path):
+    """--fetch-heads plans exactly the head version v_k per parent (V2 repair
+    fetch): the full proxy-metric set the SD10 head snapshots never carried."""
+    args = _run_args(tmp_path)
+    args.fetch_heads = True
+    urls: list = []
+
+    class HeadTransport(FixtureTransport):
+        def __call__(self, url, headers):
+            urls.append(url)
+            self.calls += 1
+            assert "max_results=1" in url, url
+            assert "SD20-version-history-harvester" in headers["User-Agent"]
+            return types.SimpleNamespace(status=200, body=HEAD_FEED)
+
+    receipt = adapter.run(args, transport=HeadTransport(), sleep=lambda s: None)
+    assert receipt["plan"]["mode"] == "head_versions_only"
+    assert receipt["plan"]["version_targets"] == 1
+    assert "2401.00614v3" in urls[0]
+    assert "2401.00614v1" not in urls[0] and "2401.00614v2" not in urls[0]
+    rows = [json.loads(line) for line in Path(args.output_observations).read_text().splitlines()]
+    assert len(rows) == 1
+    head = rows[0]
+    assert head["observation_id"] == "arxiv-obs:2401.00614v3"
+    assert head["ordinal"] == 2 and head["source_mode_id"] == "arxiv_atom_version_history"
+    metrics = dict(head["proxy_metrics"])
+    # the exact fields SD10 head rows lack, now present on the head step
+    assert metrics["arxiv:author_count"] == 4.0
+    assert "arxiv:abstract_chars" in metrics
+    assert "arxiv:updated_epoch_days" in metrics
+    assert "arxiv:title_chars" in metrics
+    assert receipt["missing_versions"] == []

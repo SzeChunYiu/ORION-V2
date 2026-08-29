@@ -12,6 +12,26 @@ from the SD10 2024 window (SD10 head observations + SD20 version-history
 observations). Every consecutive version pair contributes one transition.
 No SD20+ inference beyond this slice is claimed by this script.
 
+V2 repair (2026-08-29 revival pass): V1 labeled outcomes with silent
+.get(metric, 0.0) defaults. SD10 head snapshots carry ONLY author_count, so
+every head-arrival transition (2,067/3,220 = 64% of the corpus) received a
+deterministic artifact label: abstract_delta "-" in 2067/2067 and gap bucket
+">90d" in 2067/2067, both fabricated from missing data read as 0.0. V2
+CENSORS any transition whose steps lack a required metric (counted in the
+receipt, never defaulted), and supersedes SD10 head rows with the richer
+head-metadata rows fetched by the adapter's --fetch-heads mode (same
+observation_id, strictly larger proxy-metric set wins; counted).
+
+Revival variants (same script, no code forks):
+--alphabet {default,coarse9,fine81}  default = 27 cells (author x abstract x
+  gap); coarse9 = 9 cells (gap component dropped); fine81 = 81 cells (adds
+  the title_chars delta). The FIXED_META lessons and the F0 federation are
+  defined on the 27-cell alphabet only; on variant alphabets they are
+  SKIPPED and recorded as such, never silently re-encoded.
+--context {default,category}  default = first/later x top-category (18
+  cells); category = top-category only (the per-category marginal lever:
+  drops the first/later split that thins every context cell).
+
 Operator representation (surface-only, version-local metadata):
 - step observables: author_count, title_chars, abstract_chars,
   updated_epoch_days, days_since_first_deposit, primary category.
@@ -81,23 +101,44 @@ import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
-SCHEMA = "orion.v2.sd20-operator-discovery.v1"
+SCHEMA = "orion.v2.sd20-operator-discovery.v2"
 TOP_CATEGORY_SLOTS = 8          # + "other" bucket
 GAP_BUCKETS = [(0, 7), (8, 90), (91, 10**9)]
 MIN_CONTEXT_TRANSITIONS = 20    # below this a conditional context is not estimated
 BOOTSTRAP_OPERATOR_STABILITY = 200
 BOOTSTRAP_SCORE_CI = 1000
 
+# Revival-pass variant axes. REQUIRED_METRICS is the V2 repair contract: a
+# transition whose steps lack ANY required metric is CENSORED (counted), it is
+# never labeled from a silent 0.0 default — the exact defect V1 had.
+ALPHABET_MODES = ("default", "coarse9", "fine81")
+REQUIRED_METRICS = {
+    "default": ("arxiv:author_count", "arxiv:abstract_chars",
+                "arxiv:updated_epoch_days"),
+    "coarse9": ("arxiv:author_count", "arxiv:abstract_chars"),
+    "fine81": ("arxiv:author_count", "arxiv:abstract_chars", "arxiv:title_chars",
+               "arxiv:updated_epoch_days"),
+}
+CONTEXT_MODES = ("default", "category")
+CONTEXT_MODE = "default"        # module-level switch read by context_of()
+ALPHABET_IS_DEFAULT = True      # False => fixed-lesson arms are skipped
+
 
 # ---------------------------------------------------------------- inputs
 
-def load_trajectories(obs_paths: list[str]) -> list[dict]:
-    """Merge arXiv observations (SD10 head + SD20 versions) into trajectories.
+def load_trajectories(obs_paths: list[str]) -> tuple[list[dict], dict]:
+    """Merge arXiv observations (SD10 head + SD20 versions/heads) into trajectories.
 
     Only source_mode arxiv_* rows are used; steps are sorted by (ordinal,
     observation_id) exactly like the episode assembler. A final line without
     its trailing newline (a torn concurrent append) is dropped exactly like
     sd10_sources.common.load_jsonl_rows; any other malformed line raises.
+
+    The same observation recorded by two passes (SD10 head snapshot vs SD20
+    --fetch-heads metadata) is merged, not rejected: the row with the strictly
+    larger proxy-metric set supersedes (ties keep the earlier-sorted row;
+    sort is stable over the --observations order). Supersession is counted in
+    the returned merge stats — never silent.
     """
     by_traj: dict[str, list[dict]] = defaultdict(list)
     allowed_modes = {"arxiv_atom_metadata", "arxiv_atom_version_history"}
@@ -114,14 +155,28 @@ def load_trajectories(obs_paths: list[str]) -> list[dict]:
             if not row["observation_id"].startswith("arxiv-obs:"):
                 continue
             by_traj[row["trajectory_id"]].append(row)
+    merge_stats = {"duplicate_observation_ids_superseded": 0,
+                   "superseded_by_mode_pair": {}}
+    supersede_pairs: Counter = Counter()
     trajectories = []
     for trajectory_id in sorted(by_traj):
         steps = sorted(by_traj[trajectory_id], key=lambda r: (r["ordinal"], r["observation_id"]))
-        ids = [r["observation_id"] for r in steps]
-        if len(ids) != len(set(ids)):
-            raise SystemExit(f"duplicate observation ids in trajectory {trajectory_id}")
-        trajectories.append({"trajectory_id": trajectory_id, "steps": steps})
-    return trajectories
+        deduped: list[dict] = []
+        for step in steps:
+            if deduped and deduped[-1]["observation_id"] == step["observation_id"]:
+                kept, dropped = deduped[-1], step
+                if len(dropped["proxy_metrics"]) > len(kept["proxy_metrics"]):
+                    kept, dropped = dropped, kept
+                deduped[-1] = kept
+                merge_stats["duplicate_observation_ids_superseded"] += 1
+                supersede_pairs[(dropped["source_mode_id"], kept["source_mode_id"])] += 1
+                continue
+            deduped.append(step)
+        trajectories.append({"trajectory_id": trajectory_id, "steps": deduped})
+    merge_stats["superseded_by_mode_pair"] = {
+        f"{dropped} -> {kept}": count
+        for (dropped, kept), count in sorted(supersede_pairs.items())}
+    return trajectories, merge_stats
 
 
 def proxy(step: dict) -> dict:
@@ -151,8 +206,17 @@ def gap_bucket(days: float) -> int:
     return len(GAP_BUCKETS) - 1
 
 
-def build_transitions(trajectories: list[dict]) -> list[dict]:
-    """One transition per consecutive version pair; outcome = delta cell."""
+def build_transitions(trajectories: list[dict], alphabet_mode: str = "default",
+                      censor_stats: Counter | None = None) -> list[dict]:
+    """One transition per consecutive version pair; outcome = delta cell.
+
+    V2 repair contract: a transition whose steps lack ANY metric required by
+    the alphabet mode is CENSORED (counted in censor_stats), never labeled
+    from a missing-metric-as-0.0 default. A negative inter-version gap (later
+    version not dated after the earlier one) is likewise censored as a data
+    anomaly, not bucketed.
+    """
+    required = REQUIRED_METRICS[alphabet_mode]
     transitions = []
     for trajectory in trajectories:
         steps = trajectory["steps"]
@@ -161,17 +225,36 @@ def build_transitions(trajectories: list[dict]) -> list[dict]:
         for index in range(len(steps) - 1):
             current, nxt = steps[index], steps[index + 1]
             pc, pn = proxy(current), proxy(nxt)
-            gap = pn.get("arxiv:updated_epoch_days", 0.0) - pc.get("arxiv:updated_epoch_days", 0.0)
-            author_delta = delta_sign(pc.get("arxiv:author_count", 0.0),
-                                      pn.get("arxiv:author_count", 0.0))
-            abstract_delta = delta_sign(pc.get("arxiv:abstract_chars", 0.0),
-                                        pn.get("arxiv:abstract_chars", 0.0))
+            missing = [m for m in required if m not in pc or m not in pn]
+            if missing:
+                if censor_stats is not None:
+                    censor_stats["transitions_censored_missing_metric"] += 1
+                    for metric in missing:
+                        censor_stats[f"censored_missing:{metric}"] += 1
+                continue
+            if "arxiv:updated_epoch_days" in required:
+                gap = pn["arxiv:updated_epoch_days"] - pc["arxiv:updated_epoch_days"]
+                if gap < 0:
+                    if censor_stats is not None:
+                        censor_stats["transitions_censored_negative_gap"] += 1
+                    continue
+            else:
+                gap = None
+            author_delta = delta_sign(pc["arxiv:author_count"], pn["arxiv:author_count"])
+            abstract_delta = delta_sign(pc["arxiv:abstract_chars"], pn["arxiv:abstract_chars"])
+            if alphabet_mode == "coarse9":
+                outcome = f"{author_delta}{abstract_delta}"
+            elif alphabet_mode == "fine81":
+                title_delta = delta_sign(pc["arxiv:title_chars"], pn["arxiv:title_chars"])
+                outcome = f"{author_delta}{abstract_delta}{title_delta}{gap_bucket(gap)}"
+            else:
+                outcome = f"{author_delta}{abstract_delta}{gap_bucket(gap)}"
             transitions.append({
                 "trajectory_id": trajectory["trajectory_id"],
                 "step_index": index,
                 "is_first_step": index == 0,
                 "top_category": top_category(current),
-                "outcome": f"{author_delta}{abstract_delta}{gap_bucket(gap)}",
+                "outcome": outcome,
                 "gap_days": gap,
             })
         # trajectory-terminal censoring: the last observed version is the
@@ -185,6 +268,10 @@ ALPHABET = [f"{a}{b}{g}" for a in "0+-" for b in "0+-" for g in range(len(GAP_BU
 
 
 def context_of(transition: dict) -> str:
+    if CONTEXT_MODE == "category":
+        # per-category marginal lever: drop the first/later split that thins
+        # every context cell (revival lever 2)
+        return transition["top_category"]
     return f"{'first' if transition['is_first_step'] else 'later'}|{transition['top_category']}"
 
 
@@ -248,6 +335,16 @@ def arm_distributions(transitions: list[dict]) -> dict:
     """Frozen-on-train arm -> function context -> distribution."""
     conditional = fit_conditional(transitions)
     marginal = conditional["marginal"]
+    arms = {
+        "SIMPLE_FREQUENCY_BASELINE": lambda context: marginal,
+        "TEMPORAL_SEQUENCE_MODEL_PARENT":
+            lambda context: conditional["operator"].get(context, marginal),
+    }
+    if not ALPHABET_IS_DEFAULT:
+        # fixed lessons + F0 federation are defined on the 27-cell default
+        # alphabet only; on variant alphabets they are SKIPPED and recorded in
+        # the receipt, never silently re-encoded on a different cell space.
+        return arms
     lessons = {name: fixed_lesson_distribution(name)
                for name in ("abstract_grows", "authors_nondecreasing", "gaps_lengthen")}
 
@@ -260,9 +357,7 @@ def arm_distributions(transitions: list[dict]) -> dict:
         total = sum(math.exp(v) for v in table.values())
         return {outcome: math.exp(v) / total for outcome, v in table.items()}
 
-    return {
-        "SIMPLE_FREQUENCY_BASELINE": lambda context: marginal,
-        "TEMPORAL_SEQUENCE_MODEL_PARENT": lambda context: conditional["operator"].get(context, marginal),
+    arms.update({
         "FIXED_META_LESSON_INJECTION__abstract_grows":
             lambda context, d=lessons["abstract_grows"]: d,
         "FIXED_META_LESSON_INJECTION__authors_nondecreasing":
@@ -270,7 +365,8 @@ def arm_distributions(transitions: list[dict]) -> dict:
         "FIXED_META_LESSON_INJECTION__gaps_lengthen":
             lambda context, d=lessons["gaps_lengthen"]: d,
         "F0_META_PARENT_FEDERATION": federated,
-    }
+    })
+    return arms
 
 
 def evaluate(arms: dict, train: list[dict], test: list[dict]) -> dict:
@@ -387,16 +483,32 @@ def main() -> int:
                         help="arXiv observation JSONL (SD10 head and/or SD20 versions); repeatable")
     parser.add_argument("--output", required=True, help="output receipt JSON")
     parser.add_argument("--split-fraction", type=float, default=0.7)
+    parser.add_argument("--alphabet", choices=ALPHABET_MODES, default="default",
+                        help="delta-alphabet variant (revival lever 1: 27-cell default, 9-cell coarse, 81-cell fine)")
+    parser.add_argument("--context", choices=CONTEXT_MODES, default="default",
+                        help="context-cell variant (revival lever 2: first/later x category, or category only)")
     args = parser.parse_args()
     if not 0.1 <= args.split_fraction <= 0.9:
         print("--split-fraction must be in [0.1, 0.9]", file=sys.stderr)
         return 2
 
-    trajectories = load_trajectories(args.observations)
+    global ALPHABET, CONTEXT_MODE, ALPHABET_IS_DEFAULT
+    if args.alphabet == "coarse9":
+        ALPHABET = [f"{a}{b}" for a in "0+-" for b in "0+-"]
+    elif args.alphabet == "fine81":
+        ALPHABET = [f"{a}{b}{t}{g}" for a in "0+-" for b in "0+-" for t in "0+-"
+                    for g in range(len(GAP_BUCKETS))]
+    ALPHABET_IS_DEFAULT = args.alphabet == "default"
+    CONTEXT_MODE = args.context
+
+    trajectories, merge_stats = load_trajectories(args.observations)
     multi = [t for t in trajectories if len(t["steps"]) >= 2]
-    transitions = build_transitions(trajectories)
+    censor_stats: Counter = Counter()
+    transitions = build_transitions(trajectories, args.alphabet, censor_stats)
     if not transitions:
-        print("no transitions found: need trajectories with >=2 versions", file=sys.stderr)
+        print("no transitions found: need trajectories with >=2 versions carrying "
+              "all required metrics on both steps (missing-metric transitions are "
+              "CENSORED and counted, never defaulted)", file=sys.stderr)
         return 3
 
     # deterministic trajectory-level split (seeded)
@@ -431,6 +543,16 @@ def main() -> int:
         "F2_RECURSIVE_SCIENTIFIC_DEVELOPMENT_FULL":
             "recursive promotion requires SD50 machinery; bounded pilot has one level",
     }
+    skipped_arms: dict[str, str] = {}
+    if not ALPHABET_IS_DEFAULT:
+        for arm in ("FIXED_META_LESSON_INJECTION__abstract_grows",
+                    "FIXED_META_LESSON_INJECTION__authors_nondecreasing",
+                    "FIXED_META_LESSON_INJECTION__gaps_lengthen"):
+            skipped_arms[arm] = ("defined on the 27-cell default alphabet only; "
+                                 "not re-encoded on a variant cell space")
+        skipped_arms["F0_META_PARENT_FEDERATION"] = (
+            "pools the fixed lessons; skipped with them on variant alphabets")
+    gates["no_missing_metric_silent_defaults"] = True
     receipt = {
         "schema": SCHEMA,
         "inputs": {"observations": list(args.observations)},
@@ -441,7 +563,14 @@ def main() -> int:
             "transitions_total": len(transitions),
             "train_transitions": len(train),
             "test_transitions": len(test),
+            "alphabet_mode": args.alphabet,
+            "context_mode": args.context,
             "alphabet_cells": len(ALPHABET),
+            "head_rows_superseded": merge_stats["duplicate_observation_ids_superseded"],
+            "superseded_by_mode_pair": merge_stats["superseded_by_mode_pair"],
+            "transitions_censored_missing_metric":
+                censor_stats.get("transitions_censored_missing_metric", 0),
+            "censor_detail": dict(sorted(censor_stats.items())),
             "censoring_statement": (
                 "single-version trajectories have no observable transition "
                 "(deposit-surface censoring, not evidence of stability); the last "
@@ -463,8 +592,10 @@ def main() -> int:
                 "EVALUATED (alias of TEMPORAL_SEQUENCE_MODEL_PARENT under "
                 "train-frozen selection)",
             **{arm: "CANNOT_CHECK_ON_SLICE" for arm in cannot_check_arms},
+            **{arm: "SKIPPED_ALPHABET_VARIANT" for arm in skipped_arms},
         },
         "cannot_check_reasons": cannot_check_arms,
+        "skipped_arms": skipped_arms,
         "hard_gates": gates,
         "authority": {"grants_scientific_truth": False, "grants_causal_law": False,
                       "grants_population_regularity_beyond_slice": False},
@@ -479,10 +610,18 @@ def main() -> int:
           f"Population: {len(multi)} multi-version trajectories "
           f"({len(trajectories) - len(multi)} single-version censored), "
           f"{len(transitions)} transitions "
-          f"(train {len(train)} / test {len(test)}, trajectory-level split).", "",
-          "## heldout_transition_prediction (mean log-score, test)", "",
-          "| Arm | mean log-score | Δ vs baseline | bootstrap 95% CI | CI excludes 0 |",
-          "|---|---|---|---|---|"]
+          f"(train {len(train)} / test {len(test)}, trajectory-level split).", ""]
+    if not ALPHABET_IS_DEFAULT or CONTEXT_MODE != "default":
+        md += [f"Variant run: `--alphabet {args.alphabet}`, `--context {args.context}` "
+               "(revival pass; fixed-lesson and F0 arms are skipped on variant "
+               "alphabets, recorded in skipped_arms).", ""]
+    if censor_stats.get("transitions_censored_missing_metric", 0) or \
+            censor_stats.get("transitions_censored_negative_gap", 0):
+        md += [f"Censored transitions (missing required metrics / negative gap — "
+               f"counted, never defaulted): {dict(sorted(censor_stats.items()))}.", ""]
+    md += ["## heldout_transition_prediction (mean log-score, test)", "",
+           "| Arm | mean log-score | Δ vs baseline | bootstrap 95% CI | CI excludes 0 |",
+           "|---|---|---|---|---|"]
     baseline = heldout["per_arm"]["SIMPLE_FREQUENCY_BASELINE"]["mean_logscore"]
     for arm, row in heldout["per_arm"].items():
         md.append(f"| {arm} | {row['mean_logscore']:.4f} | "
@@ -509,6 +648,10 @@ def main() -> int:
            "## CANNOT_CHECK_ON_SLICE arms", ""]
     for arm, reason in cannot_check_arms.items():
         md.append(f"- {arm}: {reason}")
+    if skipped_arms:
+        md += ["", "## SKIPPED_ALPHABET_VARIANT arms", ""]
+        for arm, reason in skipped_arms.items():
+            md.append(f"- {arm}: {reason}")
     md += ["", f"Classification: **{receipt['classification']}** "
            "(no terminal claim; scale-up is a re-run of the same adapters).", ""]
     out.with_suffix(".md").write_text("\n".join(md) + "\n")
@@ -516,6 +659,11 @@ def main() -> int:
     print(json.dumps({
         "trajectories_multiversion": len(multi),
         "transitions": len(transitions),
+        "alphabet_mode": args.alphabet,
+        "context_mode": args.context,
+        "head_rows_superseded": merge_stats["duplicate_observation_ids_superseded"],
+        "transitions_censored_missing_metric":
+            censor_stats.get("transitions_censored_missing_metric", 0),
         "test_delta_conditional_vs_baseline":
             heldout["per_arm"]["TEMPORAL_SEQUENCE_MODEL_PARENT"]["delta_vs_baseline"],
         "test_ci_excludes_zero":
