@@ -1,0 +1,143 @@
+{
+  "schema": "orion-v2.primary-results-insertion.v1",
+  "purpose": "Allow a computation-only successor to populate protected Results without changing scientific questions, estimands, terminals or narrative logic.",
+  "global_rules": {
+    "independent_unit": "registered scientific case/task unless paper-specific schema states otherwise",
+    "repeated_seeds": "nested technical repeats, not independent scientific cases",
+    "result_fabrication": "forbidden",
+    "post_outcome_metric_change": "forbidden_without_new_run_identity",
+    "invalid_infrastructure_runs": "must_not_be_scientific_failures_or_successes",
+    "negative_results": "must_remain_visible",
+    "cannot_check": "valid_terminal",
+    "parent_win": "valid_terminal",
+    "abstract_result_sentence": "must_be_derived_from_same_frozen_primary_terminal_and_receipts"
+  },
+  "papers": {
+    "P-A": {
+      "primary_terminal_enum": [
+        "PROTECTED_TRANSFER_RESIDUAL",
+        "CONTEXTUAL_TRANSFER_ONLY",
+        "PARENT_SUFFICIENT",
+        "FIXED_LESSON_SUFFICIENT",
+        "REMOTE_RECALL_GAIN_FALSE_ANALOGY_TOO_HIGH",
+        "NO_SCIENTIFIC_RESIDUAL",
+        "CANNOT_CHECK"
+      ],
+      "required_result_blocks": [
+        "case_flow_and_validity",
+        "remote_donor_recovery",
+        "critical_false_analogy",
+        "donor_native_fidelity",
+        "target_consequence_quality",
+        "novelty_contraction",
+        "resource_cost",
+        "domain_and_distance_heterogeneity",
+        "reasonable_specification_robustness"
+      ],
+      "required_receipt_fields": [
+        "arm_id",
+        "case_id",
+        "validity",
+        "donor_rank_or_discovery",
+        "false_analogy_class",
+        "native_verdict",
+        "target_verdict",
+        "contraction_terminal",
+        "resource_vector"
+      ],
+      "promotion_gate": "integrated method must improve a protected scientific decision or remote recovery beyond strongest parent federation while satisfying frozen critical false-analogy and native-fidelity thresholds"
+    },
+    "P-B": {
+      "primary_terminal_enum": [
+        "CROSS_PARENT_RELATION_RESIDUAL",
+        "FORMAL_INTERFACE_ONLY",
+        "PARENT_ORCHESTRATION_RESOURCE",
+        "PARENT_SUFFICIENT",
+        "FORMAL_CLAIM_CONTRACTED",
+        "CANNOT_CHECK"
+      ],
+      "required_result_blocks": [
+        "case_flow",
+        "relation_parent_selection",
+        "native_verdict_preservation",
+        "unsafe_false_exact_reuse",
+        "missed_valid_reuse",
+        "obstruction_counterprobe",
+        "selective_reopening",
+        "cannot_check_calibration",
+        "formal_claim_status",
+        "resource_cost"
+      ],
+      "formal_status_enum": [
+        "PROVED_WITH_ASSUMPTIONS",
+        "BOUNDED_REFERENCE_SEMANTICS",
+        "COUNTEREXAMPLE_FOUND__CONTRACTED",
+        "PARENT_OWNED",
+        "CANNOT_CHECK"
+      ],
+      "promotion_gate": "shared interface must change protected cross-parent reuse/reopening decisions beyond strongest parent composition while preserving native judgments"
+    },
+    "P-C": {
+      "primary_terminal_enum": [
+        "V2_CONTROL_RESIDUAL",
+        "CONTEXTUAL_REGIME_RESIDUAL",
+        "USE_DONOR_COMPOSED_SOLVER",
+        "V1_NONINFERIOR",
+        "F2_REDUNDANT_DRAG",
+        "F2_HARMFUL_OR_OVERESCALATING",
+        "MULTI_POLICY_NO_SINGLE_ARCHITECTURE",
+        "CANNOT_CHECK"
+      ],
+      "required_result_blocks": [
+        "v1_parity_59_cells",
+        "simple_control_nonregression",
+        "justified_terminal_outcomes",
+        "critical_false_completion",
+        "cannot_check_calibration",
+        "minimum_sufficient_intervention",
+        "over_and_under_escalation",
+        "selective_reopening",
+        "component_dispositions",
+        "resource_pareto",
+        "domain_heterogeneity",
+        "reasonable_specification_robustness"
+      ],
+      "component_terminal_enum": [
+        "NECESSARY",
+        "PARENT_REPLACEABLE",
+        "CONTEXTUAL",
+        "REDUNDANT_DRAG",
+        "HARMFUL",
+        "CANNOT_CHECK"
+      ],
+      "promotion_gate": "must pass critical V1 parity/nonregression gates and improve a registered justified outcome/intervention decision beyond strongest adaptive parent composition without unacceptable false completion or over-escalation"
+    },
+    "P-D": {
+      "primary_terminal_enum": [
+        "UNIFIED_ASSURANCE_RESIDUAL",
+        "DEPENDENCE_ONLY_RESULT",
+        "PERFORMATIVE_ONLY_RESULT",
+        "TWO_PARENT_METHODS_SUFFICIENT",
+        "DEPENDENCE_NOT_IDENTIFIABLE",
+        "OVERCONSERVATIVE_REJECTION",
+        "CANNOT_CHECK"
+      ],
+      "required_result_blocks": [
+        "case_flow",
+        "known_dependence_calibration",
+        "unknown_dependence",
+        "dependence_misspecification",
+        "independent_evidence_retention",
+        "evaluator_sensitivity",
+        "static_environment_negative_controls",
+        "performative_response",
+        "unified_vs_separate_parent_decision",
+        "selective_reopening",
+        "resource_cost",
+        "sensitivity_robustness"
+      ],
+      "promotion_gate": "unified interface must change protected scientific validity/reopening decisions beyond strongest separate dependence and dynamic-evaluation parents without blanket rejection of independent/stable controls"
+    }
+  },
+  "terminal": "RESULTS_SCHEMA_FROZEN__EXECUTOR_MAY_POPULATE_BUT_NOT_REDESIGN"
+}
