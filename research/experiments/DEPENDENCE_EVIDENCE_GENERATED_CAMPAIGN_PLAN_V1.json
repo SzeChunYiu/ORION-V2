@@ -1,0 +1,104 @@
+{
+  "schema_version": "orion.v2.dependence-evidence-generated-campaign-plan.v1",
+  "status": "PROSPECTIVE_EXECUTION_PLAN_NO_RESULTS",
+  "owner_issue": 50,
+  "design_doc": "research/experiments/DEPENDENCE_EVIDENCE_GENERATED_CAMPAIGN_DESIGN_V1.md",
+  "pattern_parent": "research/experiments/FORMAL_DISCOVERY_GENERATED_CAMPAIGN_PLAN_V1.json",
+  "seed": 20260903,
+  "max_concurrency_default": 2,
+  "arms": {
+    "offline_deterministic": [
+      "CURRENT_INDEPENDENT_COUNTING",
+      "PROVENANCE_TRACKING",
+      "STANDARD_DEPENDENCE_META_ANALYSIS",
+      "ARGUMENT_ACCEPTABILITY",
+      "SIMPLE_DIRECT_CONTROL"
+    ],
+    "model": [
+      "STRONGEST_ASSURANCE_FEDERATION",
+      "P_D_FULL",
+      "P_D_MINUS_DEPENDENCE",
+      "ROBUSTNESS_TRIANGULATION_PARENT",
+      "PERFORMATIVE_SECURITY_PARENT"
+    ]
+  },
+  "studies": {
+    "PD-S1-DEPENDENT-CORROBORATION": {
+      "tasks": 160,
+      "strata": {"PDS1A": 40, "PDS1B": 40, "PDS1C": 40, "PDS1D": 40},
+      "arms": [
+        "CURRENT_INDEPENDENT_COUNTING",
+        "PROVENANCE_TRACKING",
+        "STANDARD_DEPENDENCE_META_ANALYSIS",
+        "ARGUMENT_ACCEPTABILITY",
+        "SIMPLE_DIRECT_CONTROL",
+        "STRONGEST_ASSURANCE_FEDERATION",
+        "P_D_FULL",
+        "P_D_MINUS_DEPENDENCE",
+        "ROBUSTNESS_TRIANGULATION_PARENT"
+      ]
+    },
+    "PD-S2-ARGUMENT-AND-ADEQUACY": {
+      "tasks": 120,
+      "strata": {"PDS2A": 30, "PDS2B": 30, "PDS2C": 30, "PDS2D": 30},
+      "arms": [
+        "CURRENT_INDEPENDENT_COUNTING",
+        "PROVENANCE_TRACKING",
+        "STANDARD_DEPENDENCE_META_ANALYSIS",
+        "ARGUMENT_ACCEPTABILITY",
+        "SIMPLE_DIRECT_CONTROL",
+        "STRONGEST_ASSURANCE_FEDERATION",
+        "P_D_FULL",
+        "P_D_MINUS_DEPENDENCE"
+      ]
+    },
+    "PD-S3-REVOCATION-AND-UPTAKE": {
+      "tasks": 120,
+      "strata": {"PDS3A": 30, "PDS3B": 30, "PDS3C": 30, "PDS3D": 30},
+      "arms": [
+        "CURRENT_INDEPENDENT_COUNTING",
+        "PROVENANCE_TRACKING",
+        "STANDARD_DEPENDENCE_META_ANALYSIS",
+        "ARGUMENT_ACCEPTABILITY",
+        "SIMPLE_DIRECT_CONTROL",
+        "STRONGEST_ASSURANCE_FEDERATION",
+        "P_D_FULL",
+        "P_D_MINUS_DEPENDENCE"
+      ]
+    },
+    "PD-S4-AUTHORITY-AND-RESPONSE": {
+      "tasks": 120,
+      "strata": {"PDS4A": 30, "PDS4B": 30, "PDS4C": 30, "PDS4D": 30},
+      "arms": [
+        "CURRENT_INDEPENDENT_COUNTING",
+        "PROVENANCE_TRACKING",
+        "STANDARD_DEPENDENCE_META_ANALYSIS",
+        "ARGUMENT_ACCEPTABILITY",
+        "SIMPLE_DIRECT_CONTROL",
+        "STRONGEST_ASSURANCE_FEDERATION",
+        "P_D_FULL",
+        "P_D_MINUS_DEPENDENCE",
+        "PERFORMATIVE_SECURITY_PARENT"
+      ]
+    }
+  },
+  "offline_smoke": {
+    "env": "ORION_PD_OFFLINE_ONLY=1",
+    "expectation": "offline arms run_valid with constructed decision rates; model arms are missing responses so the campaign terminates CAMPAIGN INVALID (exit 3) until a live backend is attached"
+  },
+  "rules": {
+    "private_oracle_absent_during_model_calls": true,
+    "strata_recorded_only_in_private_oracle": true,
+    "exact_or_mechanical_primary_scoring": true,
+    "same_model_repetitions_are_independent_replication": false,
+    "generated_results_alone_grant_real_world_evidence_claims": false,
+    "offline_parent_rates_are_constructed_calibration_ceilings": true,
+    "parent_sufficiency_is_valid_terminal": true
+  },
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_dependence_detection_in_real_corpora": false,
+    "grants_R3": false,
+    "grants_R4": false
+  }
+}
