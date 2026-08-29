@@ -1,0 +1,240 @@
+{
+  "schema_version": "orion-v2.primary-paper-atomic-claim-gate.v2",
+  "date": "2026-08-29",
+  "supersedes": "PRIMARY_PAPERS_ATOMIC_CLAIM_GATE_V1.json",
+  "purpose": "Freeze current paper claims after non-computational science closeout and 2025-26 nearest-work subtraction. This is not a result ledger.",
+  "global": {
+    "protected_results_may_strengthen_only_within_frozen_claim_slots": true,
+    "parent_win_is_valid": true,
+    "cannot_check_is_valid": true,
+    "negative_result_must_remain_visible": true,
+    "new_claim_after_outcome_requires_successor_identity": true,
+    "field_or_publication_authority": false
+  },
+  "papers": {
+    "P-A": {
+      "claims": [
+        {
+          "id": "PA-C1",
+          "claim": "Scientific discovery can involve structurally useful remote donors that topical, lexical, citation or semantic proximity does not fully capture.",
+          "status": "PARENT_SUPPORTED_MOTIVATION",
+          "owners": ["structure_mapping", "literature_based_discovery", "analogical_reasoning", "ResearchBench_2026", "CANA_2026"],
+          "novelty": false
+        },
+        {
+          "id": "PA-C2",
+          "claim": "A protected donor-transfer study can separate candidate discovery, donor-native reconstruction, bounded relation mapping, challenge/counter-probes, target projection and novelty contraction.",
+          "status": "METHOD_DEFINITION_COMPLETE",
+          "novelty": "POSSIBLE_AS_INTEGRATED_EVALUATION_OBJECT_ONLY"
+        },
+        {
+          "id": "PA-C3",
+          "claim": "The integrated process improves remote donor recovery or protected target/novelty-contraction decisions beyond the strongest information-matched parent federation while satisfying critical false-analogy and native-fidelity gates.",
+          "status": "BLOCKED_PROTECTED_RESULTS",
+          "load_bearing": true
+        },
+        {
+          "id": "PA-C4",
+          "claim": "The integrated transfer process merits an independent scientific method claim.",
+          "status": "BLOCKED_PA_C3_PLUS_EXTERNAL_NOVELTY_REVIEW",
+          "load_bearing": true
+        },
+        {
+          "id": "PA-C5",
+          "claim": "Any gain in remote recall that violates the frozen critical false-analogy threshold does not constitute a scientific transfer advantage.",
+          "status": "FROZEN_NONCOMPENSATORY_DECISION_RULE",
+          "novelty": false
+        },
+        {
+          "id": "PA-C6",
+          "claim": "CANA/Analogical Reasoning in Science/ResearchBench/ReTRE and mature analogy/LBD/formal parents are direct controls, not weak baselines.",
+          "status": "NEAREST_WORK_BOUNDARY_2026",
+          "novelty": false
+        }
+      ],
+      "primary_terminals": ["PROTECTED_TRANSFER_RESIDUAL", "CONTEXTUAL_TRANSFER_ONLY", "PARENT_SUFFICIENT", "FIXED_LESSON_SUFFICIENT", "REMOTE_RECALL_GAIN_FALSE_ANALOGY_TOO_HIGH", "NO_SCIENTIFIC_RESIDUAL", "CANNOT_CHECK"],
+      "prohibited": [
+        "first scientific analogy method",
+        "first remote analogy benchmark",
+        "first structure-aware analogy agent",
+        "analogy count equals scientific value",
+        "expert-reconstructed donor gold is machine-generated"
+      ]
+    },
+    "P-B": {
+      "claims": [
+        {
+          "id": "PB-C1",
+          "claim": "Scientific equivalence/comparability/transport is relation-, context- and decision-dependent across mature parent theories.",
+          "status": "PARENT_SYNTHESIS",
+          "novelty": false
+        },
+        {
+          "id": "PB-C2",
+          "claim": "A common typed receipt can expose native relation family, context, direction, witnesses, loss/error, counter-probes, epoch and reopening consequence without replacing parent semantics.",
+          "status": "INTERFACE_DEFINITION_COMPLETE",
+          "novelty": "INTEROPERABILITY_CANDIDATE_ONLY"
+        },
+        {
+          "id": "PB-C3",
+          "claim": "The shared interface changes protected cross-parent reuse or reopening decisions beyond the strongest parent composition while preserving native judgments.",
+          "status": "BLOCKED_PROTECTED_RESULTS",
+          "load_bearing": true
+        },
+        {
+          "id": "PB-C4A",
+          "claim": "Context refinement: equality on every judgment in a richer declared context implies equality on every judgment in its subset.",
+          "status": "PROVED_BOUNDED_PARENT_STYLE",
+          "novelty": false
+        },
+        {
+          "id": "PB-C4B",
+          "claim": "Exact registered-decision-preserving mappings compose when both mappings preserve the corresponding registered decision.",
+          "status": "PROVED_BOUNDED_PARENT_STYLE",
+          "novelty": false
+        },
+        {
+          "id": "PB-C4C",
+          "claim": "Under exact sufficient-support-family semantics, a claim reopens iff every complete sufficient support family contains an invalidated member.",
+          "status": "PROVED_WITH_EXPLICIT_SEMANTIC_ASSUMPTION",
+          "novelty": "SUPPORTING_REFERENCE_SEMANTICS_ONLY"
+        },
+        {
+          "id": "PB-C4D",
+          "claim": "Under the same semantics, enlarging the invalidated set cannot restore a claim unless the support-family state itself changes.",
+          "status": "PROVED_WITH_EXPLICIT_SEMANTIC_ASSUMPTION",
+          "novelty": false
+        },
+        {
+          "id": "PB-C5",
+          "claim": "Formal relation composition cannot by itself establish empirical transport or authority validity outside its registered decision/context.",
+          "status": "FROZEN_CLAIM_CEILING"
+        }
+      ],
+      "primary_terminals": ["CROSS_PARENT_RELATION_RESIDUAL", "FORMAL_INTERFACE_ONLY", "PARENT_ORCHESTRATION_RESOURCE", "PARENT_SUFFICIENT", "FORMAL_CLAIM_CONTRACTED", "CANNOT_CHECK"],
+      "prohibited": [
+        "one universal equivalence",
+        "schema is theory",
+        "category theory applies to all relations",
+        "formal commuting diagram establishes empirical invariance",
+        "approximation silently becomes exact"
+      ]
+    },
+    "P-C": {
+      "claims": [
+        {
+          "id": "PC-C1",
+          "claim": "Scientific problem solving can be evaluated as control over plural scientific state, unresolved obligations and admissible interventions rather than by end-answer success alone.",
+          "status": "PARENT_SYNTHESIS_AND_METHOD_FRAMING",
+          "novelty": "NO_CLAIM_THAT_ADAPTIVE_AGENT_CONTROL_IS_NEW"
+        },
+        {
+          "id": "PC-C2",
+          "claim": "The candidate V2 controller preserves all frozen V1 critical capabilities under the protected 59-cell non-compensatory parity protocol.",
+          "status": "BLOCKED_PARITY_CUSTODY_AND_EXECUTION",
+          "load_bearing": true
+        },
+        {
+          "id": "PC-C3",
+          "claim": "The candidate improves justified scientific terminals or intervention choice beyond strongest adaptive parent/donor-composed controls without unacceptable false completion or over-escalation.",
+          "status": "BLOCKED_PROTECTED_RESULTS",
+          "load_bearing": true
+        },
+        {
+          "id": "PC-C4A",
+          "claim": "Minimum sufficient escalation can be evaluated relative to a prospectively registered episode-specific partial preorder over interventions and a protected set of sufficient actions.",
+          "status": "FORMAL_EVALUATION_OBJECT_DEFINED",
+          "novelty": "NO_UNIVERSAL_ESCALATION_LAW"
+        },
+        {
+          "id": "PC-C4B",
+          "claim": "A universal total J0-J8 escalation ladder is not required; incomparable minimal sufficient interventions are valid and should be reported as a Pareto set.",
+          "status": "FROZEN_SCOPE_CORRECTION"
+        },
+        {
+          "id": "PC-C4C",
+          "claim": "Cross-domain stability or usefulness of minimum sufficient escalation is an empirical protected-result question.",
+          "status": "BLOCKED_PROTECTED_RESULTS"
+        },
+        {
+          "id": "PC-C5",
+          "claim": "Concept/representation change and formalism genesis require a witnessed lower-level insufficiency and protected predecessor recovery; new vocabulary alone is not a scientific residual.",
+          "status": "METHOD_AND_FALSIFIER_DEFINED"
+        },
+        {
+          "id": "PC-C6",
+          "claim": "Current AI-scientist systems already use planning, reflection, tree search, persistent memory, tool building, adaptive experiments and real instrument control; these are direct parents rather than novelty claims.",
+          "status": "NEAREST_WORK_BOUNDARY_2026"
+        },
+        {
+          "id": "PC-C7",
+          "claim": "P-E opportunity discovery is one prospective action/problem-selection family in the current P-C paper unless real prospective future-value evidence supports a separate paper.",
+          "status": "PORTFOLIO_MERGER_RULE"
+        }
+      ],
+      "primary_terminals": ["V2_CONTROL_RESIDUAL", "CONTEXTUAL_REGIME_RESIDUAL", "USE_DONOR_COMPOSED_SOLVER", "V1_NONINFERIOR", "F2_REDUNDANT_DRAG", "F2_HARMFUL_OR_OVERESCALATING", "MULTI_POLICY_NO_SINGLE_ARCHITECTURE", "CANNOT_CHECK"],
+      "prohibited": [
+        "all current agents are fixed pipelines",
+        "J0-J8 are universal natural kinds",
+        "workflow completion equals scientific success",
+        "always-F2 must win",
+        "more explicit state is automatically better"
+      ]
+    },
+    "P-D": {
+      "claims": [
+        {
+          "id": "PD-C1",
+          "claim": "Counts of supporting agents/sources/validators can overstate evidence under statistical or structural dependence.",
+          "status": "PARENT_OWNED",
+          "novelty": false
+        },
+        {
+          "id": "PD-C2",
+          "claim": "Evaluator validity can change under distributional, strategic or performative response.",
+          "status": "PARENT_OWNED",
+          "novelty": false
+        },
+        {
+          "id": "PD-C3",
+          "claim": "The candidate dependence/evaluator interface improves protected scientific calibration, validity or reopening decisions beyond strongest separate parent pipelines without blanket rejection of independent/stable controls.",
+          "status": "BLOCKED_PROTECTED_RESULTS",
+          "load_bearing": true
+        },
+        {
+          "id": "PD-C4",
+          "claim": "Dependence and dynamic evaluation merit one common scientific assurance object.",
+          "status": "UNIFICATION_HYPOTHESIS_BLOCKED_JOINT_DISCRIMINATOR",
+          "load_bearing": true
+        },
+        {
+          "id": "PD-C5",
+          "claim": "Unknown dependence must not be silently treated as known independence; sensitivity/CANNOT_CHECK is a valid terminal.",
+          "status": "FROZEN_SAFETY_SCIENCE_RULE"
+        },
+        {
+          "id": "PD-C6",
+          "claim": "Statistical/scientific support does not create external action or publication authority.",
+          "status": "FROZEN_AUTHORITY_BOUNDARY"
+        },
+        {
+          "id": "PD-C7",
+          "claim": "Recent multi-agent reliability limits, consensus-misalignment results and finite-evaluator reward-hacking theory are direct parents, not novelty claims.",
+          "status": "NEAREST_WORK_BOUNDARY_2026"
+        }
+      ],
+      "primary_terminals": ["UNIFIED_ASSURANCE_RESIDUAL", "DEPENDENCE_ONLY_RESULT", "PERFORMATIVE_ONLY_RESULT", "TWO_PARENT_METHODS_SUFFICIENT", "DEPENDENCE_NOT_IDENTIFIABLE", "OVERCONSERVATIVE_REJECTION", "CANNOT_CHECK"],
+      "prohibited": [
+        "distinct agents imply independence",
+        "shared provenance implies full redundancy",
+        "unknown dependence is independence",
+        "all evaluators are performative",
+        "support creates authority",
+        "dependence and performativity necessarily form one theory"
+      ]
+    }
+  },
+  "programme_terminal": "NONCOMPUTE_CLAIM_SURFACE_COMPLETE__PROTECTED_RESULTS_STILL_GATED",
+  "publication_ready": false,
+  "scientific_truth_granted": false
+}
