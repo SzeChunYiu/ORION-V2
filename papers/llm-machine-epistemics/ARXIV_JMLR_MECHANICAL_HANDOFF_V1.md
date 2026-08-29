@@ -1,6 +1,7 @@
-# arXiv / JMLR Mechanical Handoff V1 — Prospective Revision Audit
+# arXiv / JMLR Mechanical Handoff V1 — Prospective Revision Adequacy
 
-**Scientific source:** `MANUSCRIPT_V11_ARXIV_JMLR_REVIEWED_MASTER.md`  
+**Scientific source:** `MANUSCRIPT_V12_ARXIV_JMLR_FINAL.md`  
+**Public title:** **Prospective Revision Adequacy: Auditing Autoregressive Representations Beyond Current Prediction and Decision**  
 **Rule:** no new scientific reasoning is delegated to this handoff.
 
 ## A. Remaining theorem/reproducibility check
@@ -21,15 +22,15 @@ joint_intersection = empty
 one_step_compatible = false
 ```
 
-2. add result receipt and include it in the mechanization table;
-3. do not change the theorem wording unless the checker contradicts the proof.
+2. add a result receipt and include it in the mechanization table;
+3. do not change theorem wording unless the checker contradicts the written proof.
 
 ## B. Citation assembly
 
 1. merge `REFERENCES_V1.bib` and `REFERENCES_CLASSICS_SUPPLEMENT_V1.bib` with duplicate-key detection;
-2. extract every citation key from V11;
+2. extract every citation key from V12;
 3. fail if any key is missing;
-4. fail if any unused duplicate/ambiguous key points to a different work;
+4. fail if any duplicate/ambiguous key points to a different work;
 5. refresh status of all 2026 preprints/public-review manuscripts immediately before release;
 6. run the existing citation-coverage matrix and record pass/fail.
 
@@ -37,12 +38,12 @@ No citation may be deleted merely because it weakens novelty.
 
 ## C. Figures/tables
 
-Generate only the displays already specified in `FIGURE_AND_DISPLAY_SPEC_V1.md`:
+Generate only the displays specified in `FIGURE_AND_DISPLAY_SPEC_V1.md`:
 
 - one-bit witness;
-- Prospective Revision Audit V3 flow;
+- Prospective Revision Audit flow;
 - strongest-parent/direct-neighbor tables;
-- compatibility correction if page budget permits;
+- tied-action compatibility control if page budget permits;
 - receipt validation summary.
 
 Use proof/receipt data only. No simulated LLM performance plot.
@@ -62,12 +63,12 @@ papers/llm-machine-epistemics/release/arxiv_v1/
 
 Requirements:
 
-- use V11 scientific prose;
-- include full proof/appendix sufficient for independent theory evaluation;
+- use V12 scientific prose;
+- include proof/appendix sufficient for independent theory evaluation;
 - include reproducibility + AI-assistance disclosure;
 - remove internal repo paths/PR/issue identifiers from manuscript surfaces;
-- preserve author placeholders outside the public PDF until humans provide them;
-- do not choose arXiv category or license.
+- keep author metadata human-supplied;
+- do not choose arXiv category or license automatically.
 
 Run manuscript-surface QA and compile until clean.
 
@@ -93,8 +94,8 @@ Requirements:
 - running title <=50 characters;
 - exactly five keywords;
 - target <=35 pages including appendix where feasible;
-- no science changes from the current arXiv scientific version except explicit corrections/contractions;
-- human-only fields remain clearly unresolved.
+- no science changes from the arXiv scientific version except explicit corrections/contractions;
+- human-only fields remain unresolved until provided.
 
 ## F. Final byte binding
 
@@ -122,8 +123,8 @@ Stop and report rather than repair scientifically if:
 
 - a theorem checker contradicts a load-bearing claim;
 - a citation source does not entail its manuscript sentence;
-- a new direct parent appears that fully absorbs the registered assessment object;
-- the final bytes contain a scientific claim absent from V11/claim ledger;
+- a new direct parent fully absorbs the registered assessment object;
+- the final bytes contain a scientific claim absent from V12/claim ledger;
 - required author/legal/COI fields are requested.
 
 Those return to human/scientific governance; the mechanical agent must not improvise.
