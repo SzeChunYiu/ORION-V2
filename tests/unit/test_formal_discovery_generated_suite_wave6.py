@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 import importlib.util
+import itertools
 import json
-import os
+import random
 import sys
 from pathlib import Path
 
@@ -36,7 +37,14 @@ def test_all_generated_fm_fg_studies_have_hidden_exact_oracle(tmp_path):
 def test_exact_answers_score_one_without_promoting_science(tmp_path):
     suite = load_suite()
     workdir = tmp_path / "suite"
-    suite.prepare(workdir, ["FM10", "FM20", "FM30", "FM40", "FM50", "FM60", "FG10", "FG40", "FG70", "FG80"], 2, 7, ["TEST"], False)
+    suite.prepare(
+        workdir,
+        ["FM10", "FM20", "FM30", "FM40", "FM50", "FM60", "FG10", "FG40", "FG70", "FG80"],
+        2,
+        7,
+        ["TEST"],
+        False,
+    )
     answers = json.loads((workdir / "private_oracle.json").read_text())["answers"]
     for task_id, answer in answers.items():
         path = workdir / "responses" / "TEST" / f"{task_id}.json"
@@ -60,7 +68,7 @@ def test_dispatch_removes_private_oracle_during_child_execution(tmp_path, monkey
         "req=Path(a.request); root=req.parents[2]\n"
         "assert not (root/'private_oracle.json').exists()\n"
         "assert os.environ.get('ORION_GOLD_ACCESS')=='NONE'\n"
-        "d=json.loads(req.read_text()); out={'answer':{}}\n"
+        "out={'answer':{}}\n"
         "Path(a.response).parent.mkdir(parents=True,exist_ok=True);Path(a.response).write_text(json.dumps(out))\n"
     )
     monkeypatch.setenv("ORION_FORMAL_ARM_COMMAND", f"{sys.executable} {stub}")
@@ -81,3 +89,69 @@ def test_generation_is_seed_deterministic(tmp_path):
     suite.prepare(b, ["FM10", "FM30", "FG10", "FG40"], 3, 20260829, ["TEST"], False)
     assert (a / "public_tasks.json").read_bytes() == (b / "public_tasks.json").read_bytes()
     assert (a / "private_oracle.json").read_bytes() == (b / "private_oracle.json").read_bytes()
+
+
+def test_fg30_operation_oracle_is_unique():
+    suite = load_suite()
+    for seed in range(30):
+        public, answer = suite.gen_fg30(random.Random(seed))
+        consistent = []
+        for candidate in public["candidate_operation_ids"]:
+            if all(
+                suite.operation_value(candidate, x, y, public["modulus"]) == z
+                for x, y, z in public["examples"]
+            ):
+                consistent.append(candidate)
+        assert consistent == [answer["operation_id"]]
+
+
+def test_fg40_axiom_oracle_is_unique_minimum():
+    suite = load_suite()
+    for seed in range(30):
+        public, answer = suite.gen_fg40(random.Random(seed))
+        features = public["feature_ids"]
+        valid = []
+        for size in range(len(features) + 1):
+            for subset in itertools.combinations(features, size):
+                chosen = list(subset)
+                if all(suite.conjunction_holds(row, chosen) for row in public["positive_models"]) and all(
+                    not suite.conjunction_holds(row, chosen) for row in public["negative_countermodels"]
+                ):
+                    valid.append(tuple(sorted(chosen)))
+            if valid:
+                break
+        assert valid == [tuple(answer["axiom_feature_ids"])]
+
+
+def test_fg80_representation_feature_is_unique():
+    suite = load_suite()
+    for seed in range(30):
+        public, answer = suite.gen_fg80(random.Random(seed))
+        features = list(public["target"])
+        consistent = [
+            feature
+            for feature in features
+            if all(
+                ("YES" if row[feature] else "NO") == row["decision"]
+                for row in public["demonstrations"]
+            )
+        ]
+        assert consistent == [answer["representation_feature"]]
+
+
+def test_fm50_generated_objects_are_complete_walking_arrow_categories():
+    suite = load_suite()
+    for seed in range(10):
+        public, _ = suite.gen_fm50(random.Random(seed))
+        for category in (public["source_category"], public["target_category"]):
+            endpoints = category["endpoints"]
+            composition = {(left, right): result for left, right, result in category["composition"]}
+            expected_pairs = {
+                (left, right)
+                for left in category["morphisms"]
+                for right in category["morphisms"]
+                if endpoints[left][1] == endpoints[right][0]
+            }
+            assert set(composition) == expected_pairs
+            for obj, identity in category["identities"].items():
+                assert endpoints[identity] == [obj, obj]
