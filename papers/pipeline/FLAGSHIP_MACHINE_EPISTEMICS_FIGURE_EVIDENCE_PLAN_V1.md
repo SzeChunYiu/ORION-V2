@@ -225,4 +225,8 @@ Before simulated publication readiness:
 6. figure artwork must be original and not imitate analogue-paper visual identity;
 7. the final rendered PDF must pass every-page/surface/accessibility review.
 
-Current status: `FIGURE_EVIDENCE_ARCHITECTURE_READY__RENDERING_AND_CITATION_BINDING_OPEN`.
+Current status: `FIGURE_GATE_CLOSED_V1` (2026-08-29) — 62/62 visual elements bound in
+`FLAGSHIP_MACHINE_EPISTEMICS_FIGURE_CLAIM_BINDING_V1.md`; production receipt
+`FLAGSHIP_MACHINE_EPISTEMICS_FIGURE_PRODUCTION_RECEIPT_V1.md` (0 audit violations,
+0 unbound elements, 0 unpublished quantitative elements, grayscale/jargon/accessibility PASS x4);
+single-source renderer + fig1-fig4 PDF/PNG under `papers/figures/flagship_machine_epistemics/`.
