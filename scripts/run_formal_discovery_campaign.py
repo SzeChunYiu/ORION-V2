@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import sys
 import importlib.util
 import json
 from pathlib import Path
@@ -154,10 +155,15 @@ def evaluate(plan_path: Path, campaign_root: Path, studies: list[str]) -> None:
         suite.evaluate(workdir, arms)
         summary = load_json(workdir / "EVALUATION_SUMMARY.json")
         aggregate[study_id] = summary["summary"]
+    all_valid = all(
+        all(arm_summary.get("run_valid", True) for arm_summary in study_summary.values())
+        for study_summary in aggregate.values()
+    )
     write_json(
         campaign_root / "CAMPAIGN_EVALUATION_SUMMARY.json",
         {
             "schema_version": "orion.v2.formal-discovery-campaign-evaluation.v1",
+            "all_runs_valid": all_valid,
             "studies": aggregate,
             "authority": {
                 "grants_scientific_truth": False,
@@ -227,6 +233,14 @@ def main() -> int:
         dispatch(args.plan, args.campaign_root, studies, args.max_concurrency, args.overwrite)
         evaluate(args.plan, args.campaign_root, studies)
         print(json.dumps(status(args.plan, args.campaign_root, studies), indent=2, sort_keys=True))
+    campaign_summary = load_json(args.campaign_root / "CAMPAIGN_EVALUATION_SUMMARY.json")
+    if not campaign_summary.get("all_runs_valid", True):
+        print(
+            "CAMPAIGN INVALID: execution failures present - responses are missing, "
+            "the accuracies above are not verdicts. Re-dispatch with a working model backend.",
+            file=sys.stderr,
+        )
+        return 3
     return 0
 
 

@@ -633,12 +633,25 @@ def evaluate(workdir: Path, arms: list[str]) -> None:
             total += 1
             if not path.exists():
                 failures += 1
+                rows.append({"arm": arm, "task_id": task_id, "correct": False, "missing": True,
+                             "expected": expected, "actual": None})
                 continue
             try:
                 response = read_json(path)
                 actual = response.get("answer")
             except Exception:
                 failures += 1
+                rows.append({"arm": arm, "task_id": task_id, "correct": False, "missing": True,
+                             "expected": expected, "actual": None})
+                continue
+            status = str(response.get("status") or "")
+            if actual is None or status.startswith("EXECUTION_FAILED"):
+                # Backend never produced an answer (executor missing / auth dead / call failed).
+                # This is a MISSING response, not a wrong one: scoring it as incorrect silently
+                # converts an infrastructure outage into "accuracy 0.0" verdicts (2026-08-29 null run).
+                failures += 1
+                rows.append({"arm": arm, "task_id": task_id, "correct": False, "missing": True,
+                             "expected": expected, "actual": None, "status": status})
                 continue
             ok = canon(actual) == canon(expected)
             correct += int(ok)
@@ -648,6 +661,7 @@ def evaluate(workdir: Path, arms: list[str]) -> None:
             "tasks": total,
             "accuracy": correct / total if total else 0.0,
             "missing_or_invalid": failures,
+            "run_valid": failures == 0,
         }
     write_json(workdir / "EVALUATION_ROWS.json", rows)
     write_json(
