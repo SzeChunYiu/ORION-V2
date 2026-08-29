@@ -437,7 +437,7 @@ def test_resume_survives_torn_output_tail(tmp_path):
     assert receipt["records"]["observations_in_output"] == 3
 
 
-
+def test_receipt_structure_hashes_and_authority(tmp_path):
     transport = FakeTransport([common.Response(200, (FIXTURES / "crossref_works_page1.json").read_bytes())])
     args = _crossref_args(tmp_path)
     receipt = crossref.run(args, transport=transport, sleep=SleepRecorder())
