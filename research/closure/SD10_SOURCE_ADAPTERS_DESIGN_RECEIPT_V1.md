@@ -35,8 +35,15 @@ file is atomically rewritten (deduped by observation id / by
 trajectory+witnesses for bindings) at run end. A crash between an append and
 the cursor advance therefore only re-fetches rows already safely on disk, and
 the load-time dedupe removes such duplicates — an interrupted run never loses
-already-fetched records. Receipts distinguish `observations_emitted` (new this
-run) from `observations_in_output` (total merged corpus slice).
+already-fetched records. A crash DURING an append can tear the final write
+(truncated JSON or a split UTF-8 sequence); the loader applies the
+append-only commit rule that a row counts only once its trailing newline is
+on disk, drops the unterminated tail (those rows were never durably written
+and are re-fetched), and the end-of-run atomic rewrite heals the file. Any
+newline-terminated line that fails to decode or parse is treated as real
+corruption and raises rather than being silently skipped. Receipts
+distinguish `observations_emitted` (new this run) from
+`observations_in_output` (total merged corpus slice).
 
 Cursor paging follows each source's documented protocol exactly: Crossref
 sends `cursor=*` on the first request and repeats `message.next-cursor`

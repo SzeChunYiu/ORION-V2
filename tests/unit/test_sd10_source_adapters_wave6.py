@@ -397,7 +397,47 @@ def test_cursor_resumption_continues_from_state(tmp_path):
     assert state_two["records_emitted"] == 3
 
 
-def test_receipt_structure_hashes_and_authority(tmp_path):
+def test_torn_final_append_line_is_dropped_and_healed(tmp_path):
+    # Crash during append_jsonl: one complete row, then a truncated JSON tail
+    # without the committing newline. The load must drop only the tail.
+    complete = json.dumps({"observation_id": "arxiv-obs:2401.00001v1", "k": 1}) + "\n"
+    torn = '{"observation_id": "arxiv-obs:2401.00002v2", "prox'
+    ledger_path = tmp_path / "obs.jsonl"
+    ledger_path.write_bytes(complete.encode("utf-8") + torn.encode("utf-8"))
+    assert [row["observation_id"] for row in common.load_jsonl_rows(ledger_path)] == ["arxiv-obs:2401.00001v1"]
+    # A split multibyte UTF-8 sequence in the tail is dropped the same way.
+    ledger_path.write_bytes(complete.encode("utf-8") + '{"a": "ﬂ'.encode("utf-8")[:-1])
+    assert [row["observation_id"] for row in common.load_jsonl_rows(ledger_path)] == ["arxiv-obs:2401.00001v1"]
+    # A newline-terminated line that still fails to parse is real corruption:
+    # it must raise, never silently vanish.
+    ledger_path.write_bytes(complete.encode("utf-8") + b"{not json}\n")
+    with pytest.raises(json.JSONDecodeError):
+        common.load_jsonl_rows(ledger_path)
+
+
+def test_resume_survives_torn_output_tail(tmp_path):
+    # A crash between the durable append and the cursor advance can leave a
+    # torn tail; the resumed run must start, re-fetch, and heal the file.
+    first_args = _run_arxiv(tmp_path, FakeTransport(
+        [common.Response(200, (FIXTURES / "arxiv_feed_page1.xml").read_bytes())]),
+        max_records=2, page_size=2)[0]
+    state = json.loads(Path(first_args.state).read_text(encoding="utf-8"))
+    # Roll the cursor back and truncate the last row mid-line: the on-disk
+    # picture of a crash mid-append (row 1 complete, row 2 torn, no newline).
+    state["cursor"] = {"start": 0}
+    Path(first_args.state).write_text(json.dumps(state), encoding="utf-8")
+    output = Path(first_args.output_observations)
+    output.write_bytes(output.read_bytes()[:-8])
+    transport = FakeTransport([common.Response(200, (FIXTURES / "arxiv_feed_page1.xml").read_bytes()),
+                               common.Response(200, (FIXTURES / "arxiv_feed_page2.xml").read_bytes())])
+    _args, receipt = _run_arxiv(tmp_path, transport, max_records=5, page_size=2)
+    assert output.read_bytes().endswith(b"\n")
+    ids = [row["observation_id"] for row in _read_jsonl(output)]
+    assert ids == ["arxiv-obs:2401.00001v1", "arxiv-obs:2401.00002v2", "arxiv-obs:2401.00003v1"]
+    assert receipt["records"]["observations_in_output"] == 3
+
+
+
     transport = FakeTransport([common.Response(200, (FIXTURES / "crossref_works_page1.json").read_bytes())])
     args = _crossref_args(tmp_path)
     receipt = crossref.run(args, transport=transport, sleep=SleepRecorder())

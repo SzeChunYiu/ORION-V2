@@ -209,13 +209,26 @@ def write_jsonl(path: Path, rows: list) -> None:
 
 
 def load_jsonl_rows(path: Path) -> list:
-    """Read a JSONL file tolerantly; missing/empty file yields []."""
+    """Read a JSONL ledger tolerantly; missing/empty file yields [].
+
+    Append-only commit rule: a row counts as durable only once its trailing
+    newline is on disk. A crash during append_jsonl can tear the final write
+    (truncated JSON or a split UTF-8 sequence); such an unterminated tail is
+    DROPPED on load — those rows were never durably written, the next run
+    re-fetches them, and the end-of-run atomic rewrite heals the file. A
+    decode or JSON error on any newline-terminated line is real corruption
+    and raises instead of being silently skipped.
+    """
     if not path.exists():
         return []
+    raw = path.read_bytes()
+    if raw and not raw.endswith(b"\n"):
+        raw = raw[: raw.rfind(b"\n") + 1]  # drop the unterminated (torn) tail
     rows = []
-    for line in path.read_text(encoding="utf-8").splitlines():
-        if line.strip():
-            rows.append(json.loads(line))
+    for line in raw.split(b"\n"):
+        if not line.strip():
+            continue
+        rows.append(json.loads(line.decode("utf-8")))
     return rows
 
 
