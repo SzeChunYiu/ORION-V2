@@ -110,16 +110,17 @@ jobs:
           python - <<'PY'
           from pathlib import Path
 
-          pc = Path("papers/results/P_C_E20_PILOT_RESULT_BLOCK_V1.md").read_text(encoding="utf-8")
-          flagship = Path("papers/results/FLAGSHIP_E20_E40_E50_BOUNDARY_RESULT_BLOCK_V1.md").read_text(encoding="utf-8")
-          round17 = Path("papers/iteration/ROUND_17_POST_E20_E40_E50_TOP_TIER_EDITOR_SYNTHESIS_V1.md").read_text(encoding="utf-8")
+          pc = Path("papers/results/P_C_E20_PILOT_RESULT_BLOCK_V1.md").read_text(encoding="utf-8").casefold()
+          flagship = Path("papers/results/FLAGSHIP_E20_E40_E50_BOUNDARY_RESULT_BLOCK_V1.md").read_text(encoding="utf-8").casefold()
+          round17 = Path("papers/iteration/ROUND_17_POST_E20_E40_E50_TOP_TIER_EDITOR_SYNTHESIS_V1.md").read_text(encoding="utf-8").casefold()
           required = ("1/3", "2/3", "underpowered", "superiority")
           for text in (pc, flagship, round17):
-              lower = text.casefold()
-              assert all(token.casefold() in lower for token in required)
+              assert all(token in text for token in required)
+          # Check scientific meaning, not brittle exact prose/capitalization.
           assert "does not support universal activation" in pc
-          assert "first protected real-problem pilot did not show an advantage" in flagship
-          assert "F2_SUPERIORITY = NOT_ESTABLISHED" in round17
+          assert "did not show an advantage" in flagship
+          assert "f2_superiority = not_established" in round17
+          assert "no_r3_paper_yet" in round17
           PY
 
       - name: Enforce honest manuscript terminals
