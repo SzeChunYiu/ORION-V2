@@ -14,8 +14,12 @@ on:
       - "src/orion_v2/scientific_development_sources.py"
       - "scripts/assemble_scientific_development_episodes.py"
       - "scripts/sd10_sources/**"
+      - "scripts/sd20_sources/**"
+      - "scripts/sd20_operator_discovery.py"
       - "tests/unit/test_scientific_development_sources_wave6.py"
       - "tests/unit/test_sd10_source_adapters_wave6.py"
+      - "tests/unit/test_sd20_version_history_adapter.py"
+      - "tests/unit/test_sd20_operator_negctl.py"
       - "tests/fixtures/sd10/**"
   workflow_dispatch:
 
@@ -44,10 +48,14 @@ jobs:
           python -m py_compile scripts/sd10_sources/crossref_adapter.py
           python -m py_compile scripts/sd10_sources/openalex_adapter.py
           python -m py_compile scripts/sd10_sources/pubmed_adapter.py
+          python -m py_compile scripts/sd20_sources/arxiv_version_history_adapter.py
+          python -m py_compile scripts/sd20_operator_discovery.py
       - name: Run source-contract tests
         run: |
           python -m pytest -q tests/unit/test_scientific_development_sources_wave6.py \
-            tests/unit/test_sd10_source_adapters_wave6.py
+            tests/unit/test_sd10_source_adapters_wave6.py \
+            tests/unit/test_sd20_version_history_adapter.py \
+            tests/unit/test_sd20_operator_negctl.py
       - name: Exercise explicit witness assembly
         run: |
           cat > /tmp/observations.jsonl <<'EOF'
