@@ -18,38 +18,66 @@
       "id": "SD00",
       "label": "REFERENCE_SEMANTICS_AND_BLINDING_PREFLIGHT",
       "command": "python scripts/run_scientific_development_reference.py --output /tmp/sd-reference.json",
-      "terminal": "REFERENCE_SEMANTICS_CALIBRATION_ONLY"
+      "terminal": "REFERENCE_SEMANTICS_CALIBRATION_ONLY",
+      "status": "EXECUTED__CALIBRATION_ONLY",
+      "executed_utc": "2026-08-29",
+      "executed_commit": "b3e16f129bc24a705ac85eeaf9b0aa36b1f12bde",
+      "output_sha256": "7dd0da44f0cae9822fc13c5fad23375816718629a2c318b9761297f8e37db4cb",
+      "receipt": "research/closure/SD00_REFERENCE_SEMANTICS_RECEIPT_V1.md"
     },
     {
       "id": "SD10",
       "label": "POPULATION_CORPUS_AND_BIAS_AUDIT",
-      "inputs": ["source-specific normalized JSONL adapters"],
+      "inputs": [
+        "source-specific normalized JSONL adapters"
+      ],
       "command_template": "python scripts/build_scientific_development_corpus.py --input SOURCE1.jsonl --input SOURCE2.jsonl --output corpus.json --receipt corpus-receipt.json",
-      "required_outputs": ["source lineage", "domain/epoch/source-mode coverage", "survivorship/publication/citation/language/team/institution bias audit", "failure-censoring statement"]
+      "required_outputs": [
+        "source lineage",
+        "domain/epoch/source-mode coverage",
+        "survivorship/publication/citation/language/team/institution bias audit",
+        "failure-censoring statement"
+      ]
     },
     {
       "id": "SD20",
       "label": "DEVELOPMENT_OPERATOR_DISCOVERY",
-      "requires": ["SD10"],
-      "controls": ["surface-only clustering", "fixed named breakthrough lessons", "strongest science-of-science parent"],
-      "terminal_options": ["POPULATION_REGULARITY_ONLY", "PARENT_SUFFICIENT", "CANNOT_CHECK"]
+      "requires": [
+        "SD10"
+      ],
+      "controls": [
+        "surface-only clustering",
+        "fixed named breakthrough lessons",
+        "strongest science-of-science parent"
+      ],
+      "terminal_options": [
+        "POPULATION_REGULARITY_ONLY",
+        "PARENT_SUFFICIENT",
+        "CANNOT_CHECK"
+      ]
     },
     {
       "id": "SD30",
       "label": "MATCHED_SUCCESS_FAILURE_CONTRAST",
-      "requires": ["SD20"],
+      "requires": [
+        "SD20"
+      ],
       "rule": "every candidate operator must explain comparable failures/non-breakthroughs and carry contraindications"
     },
     {
       "id": "SD40",
       "label": "HELDOUT_FIELD_AND_EPOCH_TRANSFER",
-      "requires": ["SD30"],
+      "requires": [
+        "SD30"
+      ],
       "rule": "hold out entire domains and historical epochs; no random-row leakage"
     },
     {
       "id": "SD50",
       "label": "RECURSIVE_ABSTRACTION_LEVEL_TEST",
-      "requires": ["SD40"],
+      "requires": [
+        "SD40"
+      ],
       "rule": "A_{k+1} retained only for material heldout residual without critical information loss"
     },
     {
@@ -61,7 +89,9 @@
     {
       "id": "SD70",
       "label": "FRESH_GENERATED_META_POLICY",
-      "requires": ["SD00"],
+      "requires": [
+        "SD00"
+      ],
       "prepare": "python scripts/run_scientific_development_meta_suite.py prepare --workdir RUN --tasks 120 --train-episodes 16 --arms TARGET_ONLY_DIRECT,FIXED_META_HEURISTIC,F0_PARENT_FEDERATION,F2_STATIC_NO_RECURSION,F2_RECURSIVE_META_DISCOVERY_FULL",
       "dispatch": "python scripts/run_scientific_development_meta_suite.py dispatch --workdir RUN --arms TARGET_ONLY_DIRECT,FIXED_META_HEURISTIC,F0_PARENT_FEDERATION,F2_STATIC_NO_RECURSION,F2_RECURSIVE_META_DISCOVERY_FULL --max-concurrency 2",
       "evaluate": "python scripts/run_scientific_development_meta_suite.py evaluate --workdir RUN --arms TARGET_ONLY_DIRECT,FIXED_META_HEURISTIC,F0_PARENT_FEDERATION,F2_STATIC_NO_RECURSION,F2_RECURSIVE_META_DISCOVERY_FULL",
@@ -70,14 +100,20 @@
     {
       "id": "SD80",
       "label": "PROSPECTIVE_NATURALISTIC_META_POLICY",
-      "requires": ["SD40", "SD70"],
+      "requires": [
+        "SD40",
+        "SD70"
+      ],
       "minimum_materially_distinct_domains": 3,
       "requires_independent_adjudication": true
     },
     {
       "id": "SD90",
       "label": "RECURSIVE_STABILITY_AND_HOSTILE_OMISSION",
-      "requires": ["SD50", "SD80"],
+      "requires": [
+        "SD50",
+        "SD80"
+      ],
       "rule": "add new domains, epochs, source modes and omission challenges; continue recursion whenever a material higher-level residual survives",
       "only_possible_stability_terminal": "RECURSIVE_STABILITY_CANDIDATE"
     }
