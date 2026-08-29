@@ -19,7 +19,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from itertools import product
-from typing import Callable, Iterable, Mapping, Sequence
+from typing import Callable, Iterable, Sequence
 
 
 @dataclass(frozen=True, slots=True)
@@ -103,7 +103,6 @@ class HomomorphismAssessment:
     critical_valid: bool
 
 
-
 def assess_partial_homomorphism(
     donor: FiniteRelationalStructure,
     target: FiniteRelationalStructure,
@@ -116,6 +115,10 @@ def assess_partial_homomorphism(
     relation_type_map = mapping.relation_types
     invariant_map = mapping.invariants
 
+    if len(node_map) != len(mapping.node_map):
+        raise ValueError("node map contains duplicate donor identities")
+    if len(relation_map) != len(mapping.relation_map):
+        raise ValueError("relation map contains duplicate donor identities")
     if not set(node_map).issubset(donor.nodes):
         raise ValueError("node map has unknown donor nodes")
     if not set(node_map.values()).issubset(target.nodes):
@@ -143,7 +146,6 @@ def assess_partial_homomorphism(
         exact_key = (target_predicate, target_relation_type, target_args)
         if exact_key in target_fact_keys:
             continue
-        # Distinguish semantic relation-type mismatch from absent relation.
         if any(
             pred == target_predicate and args == target_args and rtype != target_relation_type
             for pred, rtype, args in target_fact_keys
@@ -240,14 +242,19 @@ def formal_concept_closure(
         intent = derive_attributes(context, object_seed)
         extent = derive_objects(context, intent)
         return extent, intent
-    intent_seed = attribute_seed
-    extent = derive_objects(context, intent_seed)
+    extent = derive_objects(context, attribute_seed)
     intent = derive_attributes(context, extent)
     return extent, intent
 
 
 @dataclass(frozen=True, slots=True)
 class FiniteCategory:
+    """A small finite category with explicit composition.
+
+    Composition entries use `(f, g, h)` to mean `g ∘ f = h`.
+    Construction fails closed unless endpoint, identity and associativity laws hold.
+    """
+
     objects: tuple[str, ...]
     morphisms: tuple[str, ...]
     source_target: tuple[tuple[str, str, str], ...]
@@ -258,17 +265,59 @@ class FiniteCategory:
         if len(self.objects) != len(set(self.objects)) or len(self.morphisms) != len(set(self.morphisms)):
             raise ValueError("category objects and morphisms must be unique")
         st = {m: (s, t) for m, s, t in self.source_target}
-        if set(st) != set(self.morphisms):
-            raise ValueError("source_target must bind every morphism")
+        if len(st) != len(self.source_target) or set(st) != set(self.morphisms):
+            raise ValueError("source_target must bind every morphism exactly once")
         if any(s not in self.objects or t not in self.objects for s, t in st.values()):
             raise ValueError("morphism endpoint references unknown object")
         identity_map = dict(self.identities)
-        if set(identity_map) != set(self.objects):
-            raise ValueError("identity must bind each object")
+        if len(identity_map) != len(self.identities) or set(identity_map) != set(self.objects):
+            raise ValueError("identity must bind each object exactly once")
         if any(m not in self.morphisms for m in identity_map.values()):
             raise ValueError("identity references unknown morphism")
+        for obj, identity in identity_map.items():
+            if st[identity] != (obj, obj):
+                raise ValueError("identity morphism has incorrect endpoints")
+
+        compose = {(f, g): h for f, g, h in self.composition}
+        if len(compose) != len(self.composition):
+            raise ValueError("duplicate composition binding")
         if any(f not in self.morphisms or g not in self.morphisms or h not in self.morphisms for f, g, h in self.composition):
             raise ValueError("composition references unknown morphism")
+
+        # Every and only composable pair must have a well-typed composite.
+        for f in self.morphisms:
+            for g in self.morphisms:
+                composable = st[f][1] == st[g][0]
+                bound = (f, g) in compose
+                if composable != bound:
+                    raise ValueError("composition table must bind exactly the composable morphism pairs")
+                if bound:
+                    h = compose[(f, g)]
+                    if st[h] != (st[f][0], st[g][1]):
+                        raise ValueError("composite has incorrect endpoints")
+
+        # Left and right identity laws.
+        for f in self.morphisms:
+            source, target = st[f]
+            if compose[(identity_map[source], f)] != f:
+                raise ValueError("left identity law failed")
+            if compose[(f, identity_map[target])] != f:
+                raise ValueError("right identity law failed")
+
+        # Associativity: (h ∘ g) ∘ f = h ∘ (g ∘ f), represented by pair order.
+        for f in self.morphisms:
+            for g in self.morphisms:
+                if (f, g) not in compose:
+                    continue
+                for h in self.morphisms:
+                    if (g, h) not in compose:
+                        continue
+                    left_first = compose[(f, g)]
+                    right_first = compose[(g, h)]
+                    left = compose.get((left_first, h))
+                    right = compose.get((f, right_first))
+                    if left is None or right is None or left != right:
+                        raise ValueError("associativity law failed")
 
     @property
     def endpoints(self) -> dict[str, tuple[str, str]]:
@@ -313,6 +362,8 @@ def assess_functor(
 
     object_map = dict(candidate.object_map)
     morphism_map = dict(candidate.morphism_map)
+    if len(object_map) != len(candidate.object_map) or len(morphism_map) != len(candidate.morphism_map):
+        raise ValueError("functor candidate contains duplicate mappings")
     if set(object_map) != set(donor.objects) or set(morphism_map) != set(donor.morphisms):
         raise ValueError("functor candidate must map all donor objects and morphisms")
     if not set(object_map.values()).issubset(target.objects) or not set(morphism_map.values()).issubset(target.morphisms):
@@ -428,6 +479,8 @@ def noncompensatory_dominates(
 ) -> bool:
     """Return Pareto dominance while preserving hard critical-failure gates."""
 
+    if tolerance < 0:
+        raise ValueError("tolerance cannot be negative")
     if challenger.critical_failure and not baseline.critical_failure:
         return False
     left = challenger.benefit_vector()
