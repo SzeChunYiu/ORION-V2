@@ -30,7 +30,21 @@ A parent row is not an endorsement of a new field. If the parent or an informati
 | Performative prediction / strategic response | Perdomo et al. (ICML, 2020) plus strategic-classification/mechanism-design traditions | prediction-induced distribution shift and response to deployed decision systems | validity/revalidation of scientific evaluators and claims after the research ecosystem adapts | **PERFORMATIVE RESPONSE PARENT-OWNED; SCIENTIFIC ASSURANCE RESIDUAL OPEN** |
 | Metascience / science of science | Fortunato et al., *Science of science* (Science, 2018); broader metascience | empirical dynamics of scientists, institutions, teams, novelty, careers, publications and discovery systems | engineering/verifying one bounded machine-mediated scientific episode as a controlled transition system | **NEIGHBOR FIELD — MACRO/MICRO BOUNDARY MUST STAY CLEAR** |
 | Philosophy of science / social epistemology | broad parent; Krenn et al. 2022 demonstrates explicit import of philosophical definition into AI-science synthesis | evidence, explanation, understanding, justification, testimony, authority and normative demarcation | operational machine-readable scientific-process constraints; normative authority remains externally grounded | **NORMATIVE/CONCEPTUAL PARENT — DO NOT CLAIM OWNERSHIP** |
-| AI for Science / agentic / autonomous science | Wang et al. (Nature, 2023); Boiko et al. (Nature, 2023); Szymanski et al. (Nature, 2023); Xin et al. (NMI, 2025); Rodriques et al. and Lu et al. (Nature, 2026); Liu & Ou (npj AI, 2026) | AI methods and systems that perform or coordinate scientific tasks/loops | cross-domain scientific-state transition validity, reopening, evaluator custody, dependence and bounded closure | **APPLICATION/SYSTEM PARENT — ME MUST NOT BECOME 'BETTER AGENTS' BRAND** |
+| AI for Science / agentic / autonomous science | Wang et al. (Nature, 2023); Boiko et al. (Nature, 2023); Szymanski et al. (Nature, 2023); Xin et al. (NMI, 2025); Ghareeb et al. (Robin, Nature 2026 — corrected 2026-08-29: previously mislabeled "Rodriques et al."; Rodriques is a co-author) and Lu et al. (Nature, 2026); Liu & Ou (npj AI, 2026) | AI methods and systems that perform or coordinate scientific tasks/loops | cross-domain scientific-state transition validity, reopening, evaluator custody, dependence and bounded closure | **APPLICATION/SYSTEM PARENT — ME MUST NOT BECOME 'BETTER AGENTS' BRAND** |
+
+## 2026 convergence neighbors (Round-04 reopen; verified 2026-08-29)
+
+Round-04 external review reopened the field-priority claim: the manuscript may not claim novelty over 2026 work it had not absorbed. Five neighbors were identity-verified live (receipt: `papers/pipeline/FLAGSHIP_CITATION_VERIFICATION_RECEIPT_V1.md`) and the V8 flagship now cites all five with an emerging-convergence paragraph in *Parent sciences*.
+
+| Neighbor | Verified identity | What it owns | Consequence for Machine Epistemics |
+|---|---|---|---|
+| Ratti, *Epistemic control and the normativity of ML-based science* | Preprint (PhilSci-Archive 26333 / arXiv:2601.11202), forthcoming in *The Role of AI in Science* | philosophical normativity of epistemic control in ML-based science | ME must cite as direct conceptual neighbor; cannot claim to introduce epistemic control as a concept; ME residual is the machine-executable transition-warrant side |
+| Wojarnik, *Spec-driven AI for empirical research* | Preprint (SSRN 7073778, 2026) | scoping review + architecture of spec-driven epistemic control | convergence evidence; ME must position typed specifications as one warrant layer, not the field |
+| MacKnight et al., *Provenance grounds trust in autonomous science* | *Nat. Comput. Sci.* Comment (2026-08-20) | provenance as the trust foundation for autonomous science | ME boundary statement: provenance is necessary-not-sufficient for scientific validity (already a ME constraint; now neighbor-anchored) |
+| Kim & Park, *Evaluating LLM-assisted research* | *Research Evaluation* 35 (2026) | empirical stage-sensitive asymmetries in productivity and epistemic control | supplies measured neighbor evidence for evaluator-response custody questions |
+| Kramer & King, *Automated scientific discovery* | arXiv:2305.02251 / *Machine Learning* (two authors) | the authoritative survey of automated discovery | the equation-discovery-to-autonomous-systems lineage anchor; ME cites rather than restates it |
+
+**Disposition:** all five are absorbed as parents/neighbors, none as threats. The V8 convergence paragraph claims *convergence onto the problem from independent directions*, not priority. Priority claims remain forbidden until `FRESH_PRE_SUBMISSION_NAME_COLLISION_SEARCH` and `INDEPENDENT_FIELD_DEMARCATION_REVIEW` close.
 
 ## Direct anti-columbusing lessons
 
@@ -80,7 +94,9 @@ This falsifier is stronger than proving that no **single** parent owns the entir
 
 `CORE_CANONICAL_SOURCES_IDENTIFIED = YES`
 
-`FULL_CITATION_ENTAILMENT_AUDIT = OPEN`
+`FULL_CITATION_ENTAILMENT_AUDIT = OPEN` (central-claims first pass COMPLETE at V8: 17/70 refs VERIFIED_WEB, receipt `FLAGSHIP_CITATION_VERIFICATION_RECEIPT_V1.md`; sentence-level pass open)
+
+`ROUND04_NEIGHBOR_ABSORPTION = COMPLETE_5_OF_5_VERIFIED (V8)`
 
 `CONTRARY_AND_LIMITING_LITERATURE_AUDIT = OPEN`
 
