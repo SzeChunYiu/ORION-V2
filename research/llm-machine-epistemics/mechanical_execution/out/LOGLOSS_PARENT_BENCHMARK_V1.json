@@ -1,0 +1,49 @@
+{
+  "construction": "registered reveal/erasure, exact rational arithmetic",
+  "independent_novelty_credit": "none_emitted",
+  "overall": "PASS",
+  "part_a_achievability": {
+    "failures": [],
+    "pairs_checked": 737,
+    "worlds": 67
+  },
+  "part_a_converse": {
+    "channels": 230,
+    "failures": [],
+    "scope_counterexample": {
+      "Q_marginal": [
+        "9/10",
+        "1/10"
+      ],
+      "erasure_probs": {
+        "Q=0": "1/10",
+        "Q=1": "9/10"
+      },
+      "note": "P(e)=9/50; I(Q;Z) = H(Q) - 9/50 bits < H(Q) - E[d] = H(Q)*(1 - 9/50) bits since H(Q) < 1 bit"
+    },
+    "worlds": 14
+  },
+  "part_b_product": {
+    "checks": 190,
+    "failures": [],
+    "worlds": 3
+  },
+  "part_c_controls": {
+    "failures": [],
+    "inflation_bits": {
+      "Q1_deterministic_function_of_Q2": "0.89717165153863212428541726836887501695178566357722971374019620793494788917972729873200034690823986473986363793",
+      "Q2_equals_Q1": "0.87418541630608857593979719469275841228675946282042613643879033939611755276948738540552642920762254562117633554",
+      "independent_pair": "0",
+      "partially_correlated_pairs_checked": 300
+    },
+    "worlds": 303
+  },
+  "schema": "orion.51.logloss-parent-benchmark.v1",
+  "spec": "MECHANICAL_EXECUTION_SPEC_V4.md section 11",
+  "verdicts": {
+    "A_achievability_shared_r": "PASS",
+    "A_registered_class_tightness": "PASS",
+    "B_cond_independent_product_sum": "PASS",
+    "C_correlated_controls_exact_inflation": "PASS"
+  }
+}

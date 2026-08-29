@@ -1,0 +1,362 @@
+{
+ "schema": "orion.51.theorem-locations.v1",
+ "spec": "MECHANICAL_EXECUTION_SPEC_V4.md section 1 (theorem IDs) + V5 additions",
+ "role": "mechanical provenance map; every SUPPORTED row re-validated against its receipt at generation time",
+ "rows": [
+  {
+   "group": "Predictive base",
+   "theorem_id": "L1_PREDICTIVE_SUFFICIENT_REFINES_SP",
+   "spec": "V4 \u00a73",
+   "receipt": "PARTITION_ENUMERATION_RECEIPT_V1.json",
+   "evidence": "verdicts.L1_PREDICTIVE_SUFFICIENT_REFINES_SP",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "Predictive base",
+   "theorem_id": "T2_ENTROPY_MINIMAL_PREDICTIVE_ISOMORPHIC_SP",
+   "spec": "V4 \u00a73",
+   "receipt": "PARTITION_ENUMERATION_RECEIPT_V1.json",
+   "evidence": "verdicts.T2_...__structural_partition_layer",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "Predictive base",
+   "theorem_id": "T2b_D4_cardinality_minimal_corollary",
+   "spec": "V4 \u00a73",
+   "receipt": "PARTITION_ENUMERATION_RECEIPT_V1.json",
+   "evidence": "verdicts.T2b_D4_cardinality_minimal_corollary",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "Static responsibility",
+   "theorem_id": "R21_ANY_OPTIMAL_MIN_SELECTOR_ENTROPY",
+   "spec": "V4 \u00a74",
+   "receipt": "RESPONSIBILITY_SELECTOR_AUDIT_V1.json",
+   "evidence": "verdicts.R21_ANY_OPTIMAL_MIN_SELECTOR_ENTROPY",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "Static responsibility",
+   "theorem_id": "R22_CANONICAL_ACTION_COST",
+   "spec": "V4 \u00a74",
+   "receipt": "RESPONSIBILITY_SELECTOR_AUDIT_V1.json",
+   "evidence": "verdicts.R22_CANONICAL_ACTION_COST",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "Static responsibility",
+   "theorem_id": "R23_OPTIMAL_ACTION_SET_COST",
+   "spec": "V4 \u00a74",
+   "receipt": "RESPONSIBILITY_SELECTOR_AUDIT_V1.json",
+   "evidence": "verdicts.R23_OPTIMAL_ACTION_SET_COST",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "Static responsibility",
+   "theorem_id": "R24_ACTION_AND_RISK_COST",
+   "spec": "V4 \u00a74",
+   "receipt": "RESPONSIBILITY_SELECTOR_AUDIT_V1.json",
+   "evidence": "verdicts.R24_ACTION_AND_RISK_COST",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "Static responsibility",
+   "theorem_id": "R25_EXACT_TARGET_SPECIAL_CASE",
+   "spec": "V4 \u00a74",
+   "receipt": "RESPONSIBILITY_SELECTOR_AUDIT_V1.json",
+   "evidence": "verdicts.R25_EXACT_TARGET_SPECIAL_CASE",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "Static responsibility",
+   "theorem_id": "R26_JOINT_ANY_OPTIMAL_SELECTOR_COST",
+   "spec": "V4 \u00a74",
+   "receipt": "RESPONSIBILITY_SELECTOR_AUDIT_V1.json",
+   "evidence": "verdicts.R26_JOINT_ANY_OPTIMAL_SELECTOR_COST",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "Static responsibility",
+   "theorem_id": "R27_ZERO_COST_COMMON_OPTIMAL_ACTION",
+   "spec": "V4 \u00a74",
+   "receipt": "RESPONSIBILITY_SELECTOR_AUDIT_V1.json",
+   "evidence": "verdicts.R27_ZERO_COST_COMMON_OPTIMAL_ACTION",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "Static responsibility",
+   "theorem_id": "TIE_SEMANTICS_FIXTURE",
+   "spec": "V4 \u00a74 tie fixture",
+   "receipt": "RESPONSIBILITY_SELECTOR_AUDIT_V1.json",
+   "evidence": "verdicts.TIE_SEMANTICS_FIXTURE",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "Deficit identities",
+   "theorem_id": "D1_ACQUISITION_COMPRESSION_DECOMPOSITION",
+   "spec": "V4 \u00a710",
+   "receipt": "EPISTEMIC_DEFICIT_IDENTITY_AUDIT_V1.json",
+   "evidence": "verdicts.D1",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "Deficit identities",
+   "theorem_id": "D2_NEW_OBSERVATION_GAIN",
+   "spec": "V4 \u00a710",
+   "receipt": "EPISTEMIC_DEFICIT_IDENTITY_AUDIT_V1.json",
+   "evidence": "verdicts.D2",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "Deficit identities",
+   "theorem_id": "D3_PROSPECTIVE_DEFICIENCY_IDENTITY",
+   "spec": "V4 \u00a710",
+   "receipt": "EPISTEMIC_DEFICIT_IDENTITY_AUDIT_V1.json",
+   "evidence": "verdicts.D3",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "Deficit identities",
+   "theorem_id": "D-CONTROLS_all_five_mandatory_controls",
+   "spec": "V4 \u00a710",
+   "receipt": "EPISTEMIC_DEFICIT_IDENTITY_AUDIT_V1.json",
+   "evidence": "verdicts.CONTROLS",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "Classical benchmarks",
+   "theorem_id": "T8A_SINGLE_LOGLOSS_FRONTIER",
+   "spec": "V4 \u00a711",
+   "receipt": "LOGLOSS_PARENT_BENCHMARK_V1.json",
+   "evidence": "verdicts.A_achievability_shared_r + verdicts.A_registered_class_tightness",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "Classical benchmarks",
+   "theorem_id": "T8B_INDEPENDENT_RESPONSIBILITY_FRONTIER",
+   "spec": "V4 \u00a711",
+   "receipt": "LOGLOSS_PARENT_BENCHMARK_V1.json",
+   "evidence": "verdicts.B_cond_independent_product_sum",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "Classical benchmarks",
+   "theorem_id": "T8C_SHARED_EXACT_STATE_SAVING",
+   "spec": "V4 \u00a711",
+   "receipt": "LOGLOSS_PARENT_BENCHMARK_V1.json",
+   "evidence": "part_b_product (shared-Theta joint erasure within check B)",
+   "status": "SUPPORTED",
+   "verdict": "PASS (shared-Theta certificate inside check B)"
+  },
+  {
+   "group": "Classical benchmarks",
+   "theorem_id": "T8D_WORST_FIBRE_CARDINALITY",
+   "spec": "V4 \u00a711",
+   "receipt": null,
+   "evidence": "no distinct check mechanized; gap for theory lane",
+   "status": "NOT_MECHANIZED",
+   "verdict": "NOT_MECHANIZED_NO_DISTINCT_CHECK"
+  },
+  {
+   "group": "Joint dynamic",
+   "theorem_id": "J1_STATIC_PARTITION_SELECTOR_EQUIVALENCE",
+   "spec": "V4 \u00a74",
+   "receipt": "RESPONSIBILITY_SELECTOR_AUDIT_V1.json",
+   "evidence": "verdicts.R21_ANY_OPTIMAL_MIN_SELECTOR_ENTROPY (identity content)",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "Joint dynamic",
+   "theorem_id": "J2_DYNAMIC_ADMISSIBLE_PARTITION_OPTIMUM",
+   "spec": "V4 \u00a75",
+   "receipt": "DYNAMIC_RESPONSIBILITY_OPTIMIZATION_V1.json",
+   "evidence": "fixtures[*].impl_equivalence_direction",
+   "status": "SUPPORTED",
+   "verdict": "PASS (5/5 fixtures, both directions)"
+  },
+  {
+   "group": "Joint dynamic",
+   "theorem_id": "J3_SELECTOR_REFINEMENT_DYNAMIC_OPTIMUM_EQUIVALENCE",
+   "spec": "V4 \u00a76",
+   "receipt": "JOINT_DYNAMIC_SELECTOR_EQUIVALENCE_V1.json",
+   "evidence": "fixtures[*].j3_expr_equal",
+   "status": "SUPPORTED",
+   "verdict": "PASS (5/5 selectors, exact equality)"
+  },
+  {
+   "group": "Joint dynamic",
+   "theorem_id": "J4_OPTIONALITY_PREMIUM_NONNEGATIVE",
+   "spec": "V4 \u00a77",
+   "receipt": "JOINT_DYNAMIC_SELECTOR_EQUIVALENCE_V1.json",
+   "evidence": "j4_j5.fixtures[*].omega_dyn.nonnegative",
+   "status": "SUPPORTED",
+   "verdict": "PASS (5/5 omega-rows nonnegative + 1 canonical row(s))"
+  },
+  {
+   "group": "Joint dynamic",
+   "theorem_id": "J5_CANONICAL_ONE_BIT_PREMIUM",
+   "spec": "V4 \u00a77 canonical fixture",
+   "receipt": "JOINT_DYNAMIC_SELECTOR_EQUIVALENCE_V1.json",
+   "evidence": "j4_j5.fixtures[check==J5].expected==observed",
+   "status": "SUPPORTED",
+   "verdict": "PASS (spec fixture: expected==observed, omega=1 bit)"
+  },
+  {
+   "group": "Joint dynamic",
+   "theorem_id": "TIE_SENSITIVE_DYNAMIC_SELECTOR_SEARCH",
+   "spec": "V4 \u00a77 tie search",
+   "receipt": "JOINT_DYNAMIC_SELECTOR_EQUIVALENCE_V1.json",
+   "evidence": "tie_search.verdict + witness",
+   "status": "SUPPORTED",
+   "verdict": "PASS (smallest witness frozen)"
+  },
+  {
+   "group": "Universality",
+   "theorem_id": "U1_RESPONSIBILITY_OVERHEAD_BOUND",
+   "spec": "V4 \u00a712",
+   "receipt": "RESPONSIBILITY_UNIVERSALITY_AUDIT_V1.json",
+   "evidence": "verdicts.U1_SANDWICH",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "Universality",
+   "theorem_id": "U2_FIBRE_SEPARATING_SATURATION",
+   "spec": "V4 \u00a712",
+   "receipt": "RESPONSIBILITY_UNIVERSALITY_AUDIT_V1.json",
+   "evidence": "verdicts.U2_SEPARATING",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "Universality",
+   "theorem_id": "U3_UNRESTRICTED_RESPONSIBILITY_FULL_HISTORY",
+   "spec": "V4 \u00a712",
+   "receipt": "RESPONSIBILITY_UNIVERSALITY_AUDIT_V1.json",
+   "evidence": "verdicts.U3_COLLIDED_PAIR_ERROR",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "Universality",
+   "theorem_id": "U4_NONINJECTIVE_FAILING_BINARY_RESPONSIBILITY",
+   "spec": "V4 \u00a712",
+   "receipt": "RESPONSIBILITY_UNIVERSALITY_AUDIT_V1.json",
+   "evidence": "verdicts.U4_FULL_HISTORY_ZERO_ERROR",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "Universality",
+   "theorem_id": "U5_RESPONSIBILITY_FAMILY_MONOTONICITY",
+   "spec": "V4 \u00a712",
+   "receipt": "RESPONSIBILITY_UNIVERSALITY_AUDIT_V1.json",
+   "evidence": "verdicts.U5_NESTED_MONOTONE",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "V5 state phases",
+   "theorem_id": "DS1_P0_PREDICTIVE_DECISIONAL",
+   "spec": "V5",
+   "receipt": "RESPONSIBILITY_STATE_PHASE_AUDIT_V1.json",
+   "evidence": "fixtures[P0].verdict",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "V5 state phases",
+   "theorem_id": "DS2_P1_STATIC_CROSS_CHANNEL",
+   "spec": "V5",
+   "receipt": "RESPONSIBILITY_STATE_PHASE_AUDIT_V1.json",
+   "evidence": "fixtures[P1].verdict",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "V5 state phases",
+   "theorem_id": "P2_CANONICAL_PROSPECTIVE",
+   "spec": "V5",
+   "receipt": "RESPONSIBILITY_STATE_PHASE_AUDIT_V1.json",
+   "evidence": "fixtures[P2].verdict",
+   "status": "SUPPORTED",
+   "verdict": "PASS"
+  },
+  {
+   "group": "V5 state phases",
+   "theorem_id": "MIXED_P2_WITNESS_SEARCH",
+   "spec": "V5",
+   "receipt": "RESPONSIBILITY_STATE_PHASE_AUDIT_V1.json",
+   "evidence": "mixed_p2.verdict",
+   "status": "SUPPORTED",
+   "verdict": "CANNOT_CHECK_NO_SMALL_MIXED_P2_WITNESS (n=5826 searched)"
+  },
+  {
+   "group": "V5 horizon",
+   "theorem_id": "PH1_HORIZON_COST_MONOTONICITY",
+   "spec": "V5",
+   "receipt": "RESPONSIBILITY_HORIZON_CURVE_V1.json",
+   "evidence": "fixtures[*].ph1_monotone",
+   "status": "SUPPORTED",
+   "verdict": "PASS (6/6 curves monotone)"
+  },
+  {
+   "group": "V5 horizon",
+   "theorem_id": "PH2_FINITE_HORIZON_STABILIZATION",
+   "spec": "V5",
+   "receipt": "RESPONSIBILITY_HORIZON_CURVE_V1.json",
+   "evidence": "fixtures[*].curve[-1]==c_inf + literal_equals_iterative_k",
+   "status": "SUPPORTED",
+   "verdict": "PASS (6/6 stabilize; literal==iterative)"
+  },
+  {
+   "group": "V5 horizon",
+   "theorem_id": "PH3_RESPONSIBILITY_FAMILY_MONOTONICITY",
+   "spec": "V5",
+   "receipt": "RESPONSIBILITY_HORIZON_CURVE_V1.json",
+   "evidence": "ph3.checks",
+   "status": "SUPPORTED",
+   "verdict": "PASS (4/4 family-monotonicity sub-checks)"
+  },
+  {
+   "group": "Mutation battery",
+   "theorem_id": "M1-M6_PREDICTIVE_COMPRESSION_ASSUMPTIONS",
+   "spec": "V4 \u00a79",
+   "receipt": null,
+   "evidence": "audit running at map-generation time",
+   "status": "PENDING",
+   "verdict": "PENDING_RUN_IN_PROGRESS"
+  }
+ ],
+ "counts": {
+  "rows": 38,
+  "supported": 36,
+  "failures": 0,
+  "not_mechanized": 1,
+  "pending": 1
+ },
+ "known_gaps": [
+  "T8D_WORST_FIBRE_CARDINALITY: no distinct check mechanized in any receipt to date.",
+  "MIXED_P2_WITNESS_SEARCH: CANNOT_CHECK_NO_SMALL_MIXED_P2_WITNESS after 5826 machines (spec-mandated preserved negative, not a theorem).",
+  "Section-11 converse holds exactly within the registered per-fibre erasure class only; Q-dependent-erasure counterexample frozen in LOGLOSS_PARENT_BENCHMARK_V1.json part_a_converse.scope_counterexample."
+ ],
+ "overall": "PASS"
+}
