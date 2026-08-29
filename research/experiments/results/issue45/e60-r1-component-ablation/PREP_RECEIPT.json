@@ -1,0 +1,119 @@
+{
+ "arms": [
+  "F2_ORION_METABOLIC_FULL",
+  "F2_MINUS_DECOMPOSITION",
+  "F2_MINUS_NATIVE_RECOVERY",
+  "F2_MINUS_COUNTERPROBE",
+  "F2_MINUS_SELECTIVE_REOPEN"
+ ],
+ "authority": {
+  "grants_field_status": false,
+  "grants_publication_readiness": false,
+  "grants_scientific_truth": false,
+  "requested_authority_ceiling": "PROPOSAL_ONLY"
+ },
+ "campaign": "E60_R1_COMPONENT_ABLATION",
+ "campaign_root": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e60-r1-component-ablation-20260829-38aedc50",
+ "design": "fresh same-epoch paired reference: F2_ORION_METABOLIC_FULL re-run alongside 4 component ablations, same 40 frozen tasks x 3 confirmatory reps = 600 items",
+ "freeze_timestamp_utc": "2026-08-29T21:17:10Z",
+ "item_count": 600,
+ "jobs": {
+  "agents_array_job_id": "3554050",
+  "dependency_anchor_job_id": "3553440 (o2-e30r11-redis, E30 R11 terminal dispatch; E60 array frozen afterok on it)",
+  "submission_verified": "squeue: 3554050_[0-23%2] PENDING (Dependency); 3554051 PENDING (Dependency)",
+  "terminal_chain_job_id": "3554051 (afterany:3554050)"
+ },
+ "manifest": {
+  "path": "source/research/experiments/ORION_REAL_PROBLEM_CONFIRMATORY_SUITE_V1.json",
+  "sha256": "38aedc5030febdff19bfd915bc3b82c5a56ca9c2718f3b6a45c7cfd446cadf8f",
+  "sha256_first8": "38aedc50",
+  "suite_id": "orion-v2-real-problem-confirmatory-2026-08-28"
+ },
+ "r11_mutation_check": {
+  "categories": {
+   "responses/ (R11 job 3553440's own running retry/dispatch loop)": 34,
+   "source/ | evaluator_private/ | requests/ | frozen_tasks.json | SETUP_RECEIPT.json": 0
+  },
+  "files_newer_than_marker": 34,
+  "frozen_surface_spot_check": "SETUP_RECEIPT.json, run/confirmatory-r1/frozen_tasks.json, rep-1 F2_FULL request bugsinpy-ansible-1.json, evaluator_private/bugsinpy-ansible-1 - all older than marker (unchanged)",
+  "marker": ".e60_marker_1788037481 (pre-created before any E60 build step)",
+  "verdict": "PASS - every newer file is R11's own live job 3553440 writing its responses/ tree; zero E60-caused mutations of the frozen R11 surface"
+ },
+ "reps": [
+  "confirmatory-r1",
+  "confirmatory-r2",
+  "confirmatory-r3"
+ ],
+ "sbatch_files": {
+  "agents_array": "e60_agents_r1.sbatch (array 0-23%2, 25 items/shard strided, --time=24h, frozen #SBATCH --dependency=afterok:3553440, anthropic probe-confirm 20x1800s before any dispatch, ORION_ARM_HTTP_RETRIES=10, ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET=6000)",
+  "analysis": "e60_analysis_r1_terminal.sbatch (per-rep validate+summarize, analyze_orion_real_problem_results.py -> run/aggregate/component_effects.json + E60_R1_COMPONENT_ABLATION_ANALYSIS.json, exit 3 if component_effects missing)",
+  "eval": "e60_eval_r1_core600_single.sbatch (frozen-lane adapter e30_r11_arm_eval_frozen_lane.py --campaign E60 root, 6 in-job workers, resumable via evaluation_lane marker)",
+  "redispatch_terminal": "e60_redispatch_terminal_r1.sbatch (probe + guarded EXECUTION_FAILED_MODEL_RESPONSE retry MAX_PASSES=12, hard gate: chains eval only on 600/600 COMPLETED_PROPOSAL_ONLY else exit 3)"
+ },
+ "schema_version": "orion.v2.e60-prep-receipt.v1",
+ "source_reuse": {
+  "frozen_tasks_sha256_across_reps_identical": true,
+  "issue_receipts": {
+   "confirmatory-r1": "issued 200 requests",
+   "confirmatory-r2": "issued 200 requests",
+   "confirmatory-r3": "issued 200 requests"
+  },
+  "mode": "READ_ONLY: source/ and evaluator_private/ are cp -al hardlink copies; venv+scripts executed from R11 paths; every E60 write lands under the E60 root",
+  "r11_campaign": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e30-r11-disposition-offline-core4-rep3-deficit-topup-20260828-ffcc8ed6",
+  "request_builder": "frozen suite CLI: scripts/run_orion_real_problem_suite.py --manifest ORION_REAL_PROBLEM_CONFIRMATORY_SUITE_V1.json --workdir <rep> issue --arms <5 arms>"
+ },
+ "superseded_prior_campaign": {
+  "note": "earlier unpaired minus4 design (478/480 responses, ran 2026-08-29 morning); superseded by this fresh same-epoch paired 600 design; left untouched",
+  "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e60-ablation-minus4-rep3-20260829"
+ },
+ "task_ids": [
+  "bugsinpy-ansible-1",
+  "bugsinpy-ansible-2",
+  "bugsinpy-ansible-3",
+  "bugsinpy-ansible-4",
+  "bugsinpy-ansible-5",
+  "bugsinpy-ansible-6",
+  "bugsinpy-black-1",
+  "bugsinpy-black-2",
+  "bugsinpy-black-3",
+  "bugsinpy-black-4",
+  "bugsinpy-black-5",
+  "bugsinpy-cookiecutter-1",
+  "bugsinpy-cookiecutter-2",
+  "bugsinpy-cookiecutter-3",
+  "bugsinpy-cookiecutter-4",
+  "bugsinpy-fastapi-1",
+  "bugsinpy-fastapi-2",
+  "bugsinpy-fastapi-3",
+  "bugsinpy-fastapi-4",
+  "bugsinpy-fastapi-5",
+  "bugsinpy-pandas-1",
+  "bugsinpy-pandas-2",
+  "bugsinpy-pandas-3",
+  "bugsinpy-pandas-4",
+  "bugsinpy-pandas-5",
+  "bugsinpy-scrapy-1",
+  "bugsinpy-scrapy-2",
+  "bugsinpy-scrapy-3",
+  "bugsinpy-scrapy-4",
+  "bugsinpy-scrapy-5",
+  "bugsinpy-tornado-1",
+  "bugsinpy-tornado-2",
+  "bugsinpy-tornado-3",
+  "bugsinpy-tornado-4",
+  "bugsinpy-tornado-5",
+  "bugsinpy-tqdm-1",
+  "bugsinpy-tqdm-2",
+  "bugsinpy-tqdm-3",
+  "bugsinpy-tqdm-4",
+  "bugsinpy-tqdm-5"
+ ],
+ "taskmap": "run/e60-taskmap-core600.json",
+ "validations": {
+  "v1_requests": "600/600 parse; arm_id/task_id correct; gold_or_outcome_data_included=false; requested_authority_ceiling=PROPOSAL_ONLY; schema orion.v2.agent-request.v1; gold-leak keyword scan over string values (declaration keys exempt, null-case control verified) = 0 hits; arm contracts: removed_components exactly {DECOMPOSE,SORT}|{NATIVE_RECONSTRUCT}|{CHALLENGE}|{SELECTIVE_REOPEN}, must_preserve/must_not_claim identical to FULL",
+  "v2_construction_identity": "40/40 rep-1 F2_ORION_METABOLIC_FULL requests byte-identical (cmp) to R11's -- frozen builder reproduces R11 construction",
+  "v3_sbatch_taskmap": "bash -n clean on 4 sbatches; taskmap strided shards 24x25=600, max 25<=30; all 600 entries have request files",
+  "v4_submission": "array PENDING on Dependency anchor; terminal chain PENDING on array",
+  "v5_r11_mutation": "see r11_mutation_check block"
+ }
+}
