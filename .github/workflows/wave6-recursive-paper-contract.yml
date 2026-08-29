@@ -1,0 +1,73 @@
+name: wave6-recursive-paper-contract
+
+on:
+  push:
+    branches:
+      - research/wave6-contraction-closure-20260827
+    paths:
+      - "papers/pipeline/PORTFOLIO_CLAIM_EVIDENCE_LEDGER_V3_RECURSIVE_DEVELOPMENT_DELTA.json"
+      - "papers/pipeline/RECURSIVE_DEVELOPMENT_RESULT_IMPORT_MAP_V1.json"
+      - "papers/iteration/ROUND_18_RECURSIVE_DEVELOPMENT_TOP_TIER_EDITOR_SYNTHESIS_V1.md"
+      - "research/closure/V2_COMPUTATION_ONLY_SUCCESSOR_HANDOFF_V1.md"
+      - "research/closure/V2_PRECOMPUTATION_MAXIMAL_COMPLETION_RECEIPT_2026-08-29_V1.json"
+      - ".github/workflows/wave6-recursive-paper-contract.yml"
+  pull_request:
+    paths:
+      - "papers/pipeline/*RECURSIVE*"
+      - "papers/iteration/ROUND_18*"
+      - "research/closure/V2_COMPUTATION_ONLY_SUCCESSOR_HANDOFF_V1.md"
+      - "research/closure/V2_PRECOMPUTATION_MAXIMAL_COMPLETION_RECEIPT_2026-08-29_V1.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  recursive-paper-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate frozen candidate claims and import destinations
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          delta=json.loads(Path('papers/pipeline/PORTFOLIO_CLAIM_EVIDENCE_LEDGER_V3_RECURSIVE_DEVELOPMENT_DELTA.json').read_text())
+          assert delta['status'] == 'NEW_RECURSIVE_DEVELOPMENT_CLAIMS_FROZEN_PRE_OUTCOME__NO_PROMOTION'
+          ids={x['claim_id'] for x in delta['new_candidate_claims']}
+          assert ids == {'FL-C4','PA-C3','PB-C3','PC-C4'}
+          assert delta['portfolio_terminal']['new_claims_R3'] == []
+          assert delta['portfolio_terminal']['submission_ready_R4'] == []
+          assert all(v is False for v in delta['authority'].values())
+
+          imports=json.loads(Path('papers/pipeline/RECURSIVE_DEVELOPMENT_RESULT_IMPORT_MAP_V1.json').read_text())
+          assert imports['status'] == 'PRE_OUTCOME_IMPORT_DESTINATIONS_FROZEN'
+          expected={*(f'FM{i}' for i in range(10,81,10)), *(f'FG{i}' for i in range(10,91,10)), *(f'SD{i}' for i in range(10,91,10))}
+          assert expected.issubset(imports['imports'])
+          assert imports['imports']['FG90']['headline_eligible_without_independent_verification'] is False
+          assert imports['imports']['SD90']['ultimate_truth_authorized'] is False
+          assert all(v is False for v in imports['authority'].values())
+
+          close=json.loads(Path('research/closure/V2_PRECOMPUTATION_MAXIMAL_COMPLETION_RECEIPT_2026-08-29_V1.json').read_text())
+          assert close['status'] == 'NON_OUTCOME_IMPLEMENTATION_MAXIMALLY_ADVANCED__COMPUTATION_AND_EXTERNAL_EVIDENCE_OPEN'
+          assert close['paper_state']['R3'] == 0
+          assert close['paper_state']['R4'] == 0
+          assert close['paper_state']['field_founded'] is False
+          assert all(v is False for v in close['authority'].values())
+          PY
+      - name: Validate editorial boundary and successor handoff
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          round18=Path('papers/iteration/ROUND_18_RECURSIVE_DEVELOPMENT_TOP_TIER_EDITOR_SYNTHESIS_V1.md').read_text().casefold()
+          handoff=Path('research/closure/V2_COMPUTATION_ONLY_SUCCESSOR_HANDOFF_V1.md').read_text().casefold()
+          assert 'no_new_r3_claim' in round18
+          assert 'portfolio_r3 = 0' in round18
+          assert 'framework_redesign_required = no_by_default' in handoff
+          assert 'outcome_generating_computation = open' in handoff
+          assert 'no positive f2 result is required' in handoff
+          PY
