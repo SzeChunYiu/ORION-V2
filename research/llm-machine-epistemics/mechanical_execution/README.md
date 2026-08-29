@@ -50,3 +50,18 @@ The theorem-locations generator is itself a validator: it re-derives every
 SUPPORTED verdict from the receipt JSONs and exits 3 if any row's evidence is
 missing or contradicts the receipt (negative-control tested). Exit codes and
 verdict vocabulary as in batch 1.
+
+
+## Claim cross-check (2026-08-29)
+
+| Script | Spec | Output (out/) | Verdict |
+|---|---|---|---|
+| `llm_epistemics_claim_crosscheck.py` | §15 verification support | `CLAIM_RECEIPT_CROSSCHECK_V1.json` + `.md` | PASS — 18 claims: 11 MECHANICALLY_VERIFIED (every cited receipt check re-read at generation time), 6 CONSISTENT_PARENT_OWNED (parent owns it; receipts instantiate exactly), C18 NOT_MECHANICALLY_BACKED (confirmed absent from the receipt corpus — honest gap for the theory lane). Ledger-status drift vs `CLAIM_LEDGER_V4.json` fails the run. JMLR load-bearing C11/C13/C14 mechanically verified; C18 flagged. |
+
+Re-run:
+
+```bash
+python3 llm_epistemics_claim_crosscheck.py --output out/CLAIM_RECEIPT_CROSSCHECK_V1.json
+```
+
+Negative-control tested: corrupting one expected key makes the row FAIL with exit 3.
