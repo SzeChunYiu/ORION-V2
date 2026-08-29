@@ -2,7 +2,7 @@
  "schema_version": "orion.v2.scientific-development-execution-backlog.v1",
  "owner_issue": 50,
  "science_owner_issue": 49,
- "status": "SD20_BOUNDED_PILOT_EXECUTED__INTERIM_NO_TERMINAL_CLAIM__SD30_PLUS_PENDING",
+ "status": "SD30_STRUCTURAL_PILOT_EXECUTED__CANNOT_CHECK__SD40_PLUS_PENDING",
  "depends_on_protocol": "research/experiments/SCIENTIFIC_DEVELOPMENT_RECURSIVE_META_GENERALIZATION_PROTOCOL_V1.json",
  "rules": {
   "preserve_existing_E20_E30_identifies": true,
@@ -83,7 +83,26 @@
    "requires": [
     "SD20"
    ],
-   "rule": "every candidate operator must explain comparable failures/non-breakthroughs and carry contraindications"
+   "rule": "every candidate operator must explain comparable failures/non-breakthroughs and carry contraindications",
+   "status": "EXECUTED__STRUCTURAL_PILOT__CANNOT_CHECK",
+   "executed_utc": "2026-08-29",
+   "receipt": "research/closure/SD30_STRUCTURAL_PILOT_RECEIPT_V1.md",
+   "structural_pilot": {
+    "cannot_check_counts": 4,
+    "validated_failure_bindings": 23,
+    "validated_success_bindings_any_mode": 0,
+    "failure_trajectories_with_version_ladder": 0,
+    "multi_observation_trajectories_bibliographic_modes": 0,
+    "cross_mode_identity_linkage": "BROKEN",
+    "scale_independent_counts": [
+     "C2",
+     "C3",
+     "C4"
+    ],
+    "transitively_blocked": [
+     "SD40"
+    ]
+   }
   },
   {
    "id": "SD40",
