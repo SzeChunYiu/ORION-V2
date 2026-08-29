@@ -1,0 +1,33 @@
+{
+  "schema": "ORION-V2.LLMMachineEpistemics.ClaimLedger.v4",
+  "issue": 51,
+  "supersedes": ["CLAIM_LEDGER_V1.json","CLAIM_LEDGER_V2.json","CLAIM_LEDGER_V3.json"],
+  "status": "CANDIDATE_THEORY_PENDING_MECHANICAL_VERIFICATION_AND_PARENT_RECONSTRUCTION",
+  "major_new_parent": {
+    "citation": "Nicolas Brodu, Reconstruction of Epsilon-Machines in Predictive Frameworks and Decisional States, Advances in Complex Systems 14(5), 2011, DOI 10.1142/S0219525911003347",
+    "disposition": "GENERIC_PREDICTIVE_PLUS_UTILITY_DECISION_STATE_AND_DECISIONAL_COMPLEXITY_PARENT_OWNED"
+  },
+  "claims": [
+    {"id":"C01","status":"PARENT_OWNED","claim":"Minimal complete-linguistic-future predictive state S_P.","owners":["causal_states","sufficiency","PSR"]},
+    {"id":"C02","status":"PARENT_OWNED_PATTERN","claim":"Prediction state may miss a secondary target/responsibility.","owners":["R-PSR","task_relative_sufficiency","multi_task_representation"]},
+    {"id":"C03","status":"PARENT_OWNED_GENERIC_FORM","claim":"Utility/loss-defined decision states over predictive/causal states and entropy/complexity of such decision states.","owners":["Brodu_decisional_states","Blackwell_decision_theory"]},
+    {"id":"C04","status":"CANDIDATE_CROSS_CHANNEL_STATIC_COST","claim":"For a responsibility whose Bayes-optimal action is not measurable from the linguistic predictive state, minimum exact ANY_OPTIMAL_ACTION state cost beyond S_P is min_d H(d(H)|S_P).","formal_id":"R21/J1","novelty":"OPEN_HIGH_PARENT_PRESSURE"},
+    {"id":"C05","status":"MANDATORY_ZERO_COST_CONTROL","claim":"If some Bayes-optimal responsibility policy is a function of S_P, then static extra cost is zero; this includes Brodu-like decisions determined entirely from the same future distribution.","formal_id":"DS1","novelty":false},
+    {"id":"C06","status":"CANDIDATE_CROSS_CHANNEL_OBSTRUCTION","claim":"Positive static responsibility cost occurs iff no Bayes-optimal policy is implementable from S_P alone.","formal_id":"DS2","novelty":"PACKAGE_ONLY_LIKELY_DECISION_SUFFICIENCY_COROLLARY"},
+    {"id":"C07","status":"PARENT_OWNED_OR_COROLLARY","claim":"Entropy-minimal exact predictive state is isomorphic to S_P on support.","owners":["causal_state_minimality","DIB","minimal_sufficiency"]},
+    {"id":"C08","status":"CANDIDATE_STATIC_OPTIMIZATION_FORMULATION","claim":"Static responsibility state is minimum-entropy predictive-refining action-compatible partition, equivalent to optimal selector entropy.","formal_id":"J1","owners":["decision_theory","compatible_state_minimization"],"novelty":"OPEN_PACKAGE_RESIDUAL"},
+    {"id":"C09","status":"CANDIDATE_DYNAMIC_OPTIMIZATION_FORMULATION","claim":"Dynamic responsibility state is minimum-entropy predictive-refining action-compatible right-congruent partition.","formal_id":"J2","owners":["ISFSM_minimization","information_state","right_congruence"],"novelty":"OPEN_HIGH_PARENT_PRESSURE"},
+    {"id":"C10","status":"CANDIDATE_SELECTOR_EQUIVALENCE","claim":"Dynamic optimum equals minimum over Bayes-optimal selectors of coarsest right-congruent refinement cost.","formal_id":"J3","owners":["ISFSM_compatible_state_minimization"],"novelty":"OPEN_HIGH_PARENT_PRESSURE"},
+    {"id":"C11","status":"PRIMARY_CANDIDATE_QUANTITY","claim":"Dynamic epistemic optionality premium Omega_dyn=C_dyn^*-C_stat^* quantifies state needed solely for future responsibility update after optimizing current Bayes policy.","formal_id":"J4","novelty":"OPEN_HIGH_VALUE_HIGH_PARENT_PRESSURE"},
+    {"id":"C12","status":"KNOWN_ANSWER_WITNESS","claim":"Canonical provenance process has C_stat^*=0, C_dyn^*=1 bit, Omega_dyn=1 bit.","formal_id":"J5"},
+    {"id":"C13","status":"CANDIDATE_PHASE_FRAMEWORK","claim":"Exact state regimes P0 predictive-decisional, P1 static cross-channel refinement, P2 prospective refinement are classified by C0^* and Omega_dyn.","formal_id":"PHASE_P0_P1_P2","novelty":"OPEN_ANALYTICAL_FRAMEWORK"},
+    {"id":"C14","status":"CANDIDATE_HORIZON_CURVE","claim":"Minimum k-horizon state costs C_k^* and premiums Omega_k are monotone and stabilize in finite systems; K_epi records the stabilization horizon.","formal_id":"PH1","owners":["finite_state_compatibility","information_state"],"novelty":"OPEN_HIGH_PARENT_PRESSURE"},
+    {"id":"C15","status":"PARENT_OWNED_IDENTITY","claim":"Acquisition/compression/prospective conditional-information identities.","owners":["information_theory"]},
+    {"id":"C16","status":"PARENT_OWNED_BENCHMARK","claim":"Log-loss rate-distortion benchmarks.","owners":["Courtade_Weissman","log_loss_RD"]},
+    {"id":"C17","status":"CANDIDATE_BOUNDARY_LIKELY_CLASSICAL","claim":"Responsibility-family overhead bounded by non-predictive history; separating families force full-history retention within predictive fibres.","formal_id":"U1_U4"},
+    {"id":"C18","status":"CANDIDATE_LLM_EVALUATION_CONSEQUENCE","claim":"Matched linguistic prediction and current responsibility performance do not certify prospective revision adequacy; a controlled future-evidence test is a distinct representation audit.","novelty":"OPEN_SYNTHESIS_HIGH_PARENT_PRESSURE"}
+  ],
+  "primary_residual_candidates": ["C04","C09","C10","C11","C13","C14","C18"],
+  "jmlr_load_bearing_candidates": ["C11","C13","C14","C18"],
+  "current_terminal": "OPEN_HIGH_PARENT_PRESSURE_PENDING_MECHANICAL_THEOREM_AND_NEAREST_WORK_AUDIT"
+}
