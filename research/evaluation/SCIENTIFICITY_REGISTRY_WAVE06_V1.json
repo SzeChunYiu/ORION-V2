@@ -1,0 +1,140 @@
+{
+  "schema_version": "orion.v2.scientificity-registry.v1",
+  "status": "BINDING_NO_AUTHORITY",
+  "protocol": "research/evaluation/SCIENTIFICITY_AND_SCEPTICAL_REVIEW_PROTOCOL_WAVE06_V1.md",
+  "levels": [
+    "S0_INSPIRATION_OR_METAPHOR",
+    "S1_OPERATIONALLY_DEFINED_CONCEPT",
+    "S2_DISCRIMINATING_HYPOTHESIS",
+    "S3_PROSPECTIVELY_TESTED_RESULT",
+    "S4_INDEPENDENTLY_REPLICATED_OR_CROSS_DOMAIN",
+    "S5_FOUNDATION_PROPOSITION_CANDIDATE"
+  ],
+  "concepts": [
+    {
+      "concept_id": "ME-FIELD",
+      "name": "Machine Epistemics",
+      "claim_type": "field_hypothesis",
+      "plain_definition": "A proposed higher-order science of machine-mediated scientific-state change across mature parent sciences.",
+      "closest_parents": ["computational epistemology", "philosophy of science", "metareasoning", "scientific assurance", "AI for Science", "social epistemology"],
+      "scientificity_level": "S2_DISCRIMINATING_HYPOTHESIS",
+      "required_promotion": ["protected F2 over F0 residual", "at least two materially different domains", "independent parent-field demarcation", "replication or robust independent analysis"],
+      "falsifier": "F0/F1/F3 explains the protected decisions without a stable cross-parent residual.",
+      "allowed_wording": "field hypothesis / research programme",
+      "forbidden_wording": "established field"
+    },
+    {
+      "concept_id": "F2-ABSORPTIVE",
+      "name": "Absorptive supertheory",
+      "claim_type": "theory_candidate",
+      "plain_definition": "A federated higher-order theory that recovers parent-native judgments, formalizes cross-parent relations, generates new consequences and outperforms the strongest parent federation on protected problems.",
+      "closest_parents": ["interfield theory", "explanatory unification", "integrative pluralism", "mechanistic integration", "metatheory"],
+      "scientificity_level": "S2_DISCRIMINATING_HYPOTHESIS",
+      "required_promotion": ["parent recovery", "prospective generativity", "resource-matched F0 comparison", "cross-domain survival", "independent hostile review"],
+      "falsifier": "Strongest parent federation is equivalent or superior, or F2 loses native validity/authority distinctions.",
+      "allowed_wording": "aspirational theory candidate",
+      "forbidden_wording": "superior theory proven"
+    },
+    {
+      "concept_id": "KM-LIFECYCLE",
+      "name": "Scientific knowledge metabolism",
+      "claim_type": "operational_mechanism_hypothesis",
+      "plain_definition": "A measurable lifecycle of decomposition, native recovery, reduction, recombination, challenge and selective assimilation/reopening.",
+      "inspiration_sources": ["organism/protein digestion analogy", "recycling/sorting analogy", "scientific donor reduction and problem-solving parents"],
+      "closest_parents": ["case-based reasoning", "analogical transfer", "knowledge compilation", "scientific discovery systems", "retrieval and synthesis", "metareasoning"],
+      "scientificity_level": "S2_DISCRIMINATING_HYPOTHESIS",
+      "required_promotion": ["T2 confirmatory real-problem result", "component ablations", "strongest F0 comparison", "anti-copy controls", "second scientific domain"],
+      "falsifier": "Lifecycle components do not change protected outcomes beyond simple/F0 controls or add unacceptable drag.",
+      "allowed_wording": "operational lifecycle hypothesis inspired by metabolism/recycling metaphors",
+      "forbidden_wording": "ORION is literally an organism"
+    },
+    {
+      "concept_id": "MNSI",
+      "name": "Machine-native scientific intelligence",
+      "claim_type": "mechanism_hypothesis",
+      "plain_definition": "Scientific problem solving that uses substrate-relative internal representations/search while retaining claim-sufficient external scientific witnesses.",
+      "closest_parents": ["automated reasoning", "self-play", "program synthesis", "world-model planning", "meta-learning", "open-ended search"],
+      "scientificity_level": "S2_DISCRIMINATING_HYPOTHESIS",
+      "required_promotion": ["predeclared mechanism", "matched-compute human-mimetic and parent controls", "causal ablation", "independent witness scoring", "second-domain transfer"],
+      "falsifier": "Gain is explained by compute, leakage, opacity or parent method; mechanism fails to transfer or cannot support external scientific validation.",
+      "allowed_wording": "machine-native mechanism hypothesis",
+      "forbidden_wording": "general scientific intelligence established"
+    },
+    {
+      "concept_id": "WARRANT-FACTOR",
+      "name": "Scientific warrant factorisation",
+      "claim_type": "formal_assurance_candidate",
+      "plain_definition": "A candidate formal account in which scientific transition warrant depends on heterogeneous links such as source identity, model adequacy, numerical validity, evaluator adequacy, dependence, argument, transport and authority.",
+      "closest_parents": ["assurance cases", "defeasible argumentation", "provenance", "formal verification", "measurement theory", "epistemic logic"],
+      "scientificity_level": "S1_OPERATIONALLY_DEFINED_CONCEPT",
+      "required_promotion": ["nontrivial theorem/impossibility/counterexample or protected empirical residual", "strongest assurance-parent comparison", "independent formal review"],
+      "falsifier": "Mature assurance/argumentation composition expresses all registered cases without the proposed factorisation.",
+      "allowed_wording": "formal candidate",
+      "forbidden_wording": "new law of scientific warrant"
+    },
+    {
+      "concept_id": "ACTION-MODE",
+      "name": "Epistemic action modes",
+      "claim_type": "interface_hypothesis",
+      "plain_definition": "A typed distinction among confirmatory, discriminative, exploratory, constructive, calibrative and replicative actions so their outputs are not granted the wrong inferential authority.",
+      "closest_parents": ["philosophy of experiment", "experimental design", "scientific discovery", "metrology", "replication methodology"],
+      "scientificity_level": "S1_OPERATIONALLY_DEFINED_CONCEPT",
+      "required_promotion": ["known-answer misclassification cases", "naturalistic decision change", "parent comparison", "inter-rater reliability or executable classification rule"],
+      "falsifier": "Existing parent distinctions or simpler labels preserve all protected decisions without the ORION interface.",
+      "allowed_wording": "typed interface candidate",
+      "forbidden_wording": "universal action ontology"
+    },
+    {
+      "concept_id": "TEST-SENSITIVITY",
+      "name": "TestSensitivityProfile",
+      "claim_type": "evaluation_interface_candidate",
+      "plain_definition": "A claim-relative record of which relevant errors a test/evaluator can expose and its known blind spots.",
+      "closest_parents": ["severe testing", "power and sensitivity analysis", "formal coverage", "oracle adequacy", "robustness testing"],
+      "scientificity_level": "S1_OPERATIONALLY_DEFINED_CONCEPT",
+      "required_promotion": ["cases where evaluator identity alone fails", "strongest severity/oracle parent comparison", "independent evaluator audit"],
+      "falsifier": "Existing test-sensitivity methods provide the same protected decision with no need for a stable cross-domain interface.",
+      "allowed_wording": "parent-facing evaluation interface candidate",
+      "forbidden_wording": "new universal evidence law"
+    },
+    {
+      "concept_id": "BOUNDARY-INTERFACE",
+      "name": "BoundaryInterfaceReceipt",
+      "claim_type": "semantic_interoperability_candidate",
+      "plain_definition": "A record of shared identity, local projections, limited common invariants, translation loss and prohibited cross-practice inferences.",
+      "closest_parents": ["boundary objects", "semantic interoperability", "epistemic cultures", "ontology alignment", "measurement invariance"],
+      "scientificity_level": "S1_OPERATIONALLY_DEFINED_CONCEPT",
+      "required_promotion": ["two domain-native cases", "native-verdict preservation", "comparison to ontology/alignment parents", "clear non-application case"],
+      "falsifier": "A simpler native interface or mature semantic-interoperability method preserves all decisions.",
+      "allowed_wording": "interface candidate",
+      "forbidden_wording": "universal ontology"
+    },
+    {
+      "concept_id": "INDUCTIVE-BIAS",
+      "name": "InductiveBiasDeclaration",
+      "claim_type": "contract_candidate",
+      "plain_definition": "A declaration of representation, prior/regularization, search order, assumed problem family, resource regime and known failure strata for a reasoning method.",
+      "closest_parents": ["learning theory", "Bayesian modelling", "MDL", "algorithmic information theory", "No-Free-Lunch analysis", "model cards"],
+      "scientificity_level": "S1_OPERATIONALLY_DEFINED_CONCEPT",
+      "required_promotion": ["predictive value for method/task fit or failure", "strongest parent transparency controls", "cross-domain validation"],
+      "falsifier": "The declaration adds no predictive or decision value beyond ordinary model/method documentation.",
+      "allowed_wording": "contract/transparency candidate",
+      "forbidden_wording": "complete theory of inductive bias"
+    }
+  ],
+  "promotion_rules": {
+    "headline_empirical_claim_minimum": "S3_PROSPECTIVELY_TESTED_RESULT",
+    "broad_cross_domain_claim_minimum": "S4_INDEPENDENTLY_REPLICATED_OR_CROSS_DOMAIN",
+    "foundation_proposition_candidate_minimum": "S5_FOUNDATION_PROPOSITION_CANDIDATE",
+    "metaphor_can_directly_promote": false,
+    "same_model_self_review_counts_as_independent_replication": false,
+    "field_status_internal_grant_allowed": false
+  },
+  "authority": {
+    "scientific_truth": false,
+    "novelty": false,
+    "field_status": false,
+    "superiority": false,
+    "submission_readiness": false,
+    "journal_acceptance": false
+  }
+}

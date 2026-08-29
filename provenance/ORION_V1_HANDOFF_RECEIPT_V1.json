@@ -1,0 +1,90 @@
+{
+  "schema_version": "orion.v2.v1-handoff-receipt.v1",
+  "receipt_id": "orion-v2:v1-handoff:2026-08-27:v1",
+  "generated_at_utc": "2026-08-27T06:50:00Z",
+  "handoff_terminal": "V1_FREEZE_HANDOFF_BOUND_AND_NON_RETROACTIVE",
+  "source": {
+    "repository": "SzeChunYiu/ORION",
+    "freeze_commit": "8f250fc3e55d6d6a28fb1fb33d9932ef1a8760b5",
+    "observed_main_commit": "405247aad9b8fdda285b13590f6a5d4e96247d7e",
+    "main_is_descendant_of_freeze_commit": true,
+    "commits_after_freeze_observed": 16,
+    "freeze_subject_commit": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+    "freeze_base_tree": "5d5ff0985551b0a94453ea6eaa9925bda3e10fa2",
+    "freeze_terminal": "ORION_V1_ARCHITECTURE_AND_LOCAL_FORMALISM_FROZEN",
+    "freeze_scope": "architecture_and_local_formalism",
+    "paper_authority_delta": "NONE"
+  },
+  "control_plane": {
+    "freeze_contract": {
+      "path": "research/orion-v1-freeze/ORION_V1_FREEZE_CONTRACT_V1.json",
+      "git_identity": "81f7da438a13e09dfc962e33b6253549aca6d613"
+    },
+    "freeze_manifest": {
+      "path": "research/orion-v1-freeze/V1_FREEZE_MANIFEST_V1.json",
+      "git_identity": "34be2541d278e4aec4f5c198331916b5d6c03953"
+    },
+    "component_graph": {
+      "path": "research/orion-v1-freeze/V1_COMPONENT_GRAPH_V1.json",
+      "git_identity": "a6b22731ccb5dc8238553880b6e57dbd14274a37"
+    },
+    "component_binding": {
+      "path": "research/orion-v1-freeze/V1_COMPONENT_BINDING_V1.json",
+      "git_identity": "a08f834b2e507577dc499641f9d5280e40aab36a"
+    },
+    "issue_disposition_ledger": {
+      "path": "research/orion-v1-freeze/V1_ISSUE_DISPOSITION_LEDGER_V1.json",
+      "git_identity": "b701930a93b92951eb4ba7ecd354a53852d7254e"
+    },
+    "theorem_census": {
+      "path": "research/orion-v1-freeze/V1_THEOREM_CENSUS_V1.json",
+      "git_identity": "088e2797de063d4c0bd10f0007cc084e7ba7b42c"
+    },
+    "p1_p15_claim_ledger": {
+      "path": "papers/P1_P15_RESULT_BOUND_CLAIM_LEDGER_V1.json",
+      "git_identity": "c4de9f0340d386ce1f14a6b75b4b067d94052935"
+    },
+    "failure_ledger": {
+      "path": "FAILURE_LEDGER.md",
+      "git_identity": "dd8c6181dbdcf5a1afe2f49913ca026095dac268"
+    },
+    "research_harness_tree": {
+      "path": "packages/orion-research-harness/",
+      "git_identity": "a8687e4ae24d4c882ad3320b2f56a83d40a0d918"
+    }
+  },
+  "freeze_findings": {
+    "internal_implementation_gaps": "0_LOCAL_OPEN",
+    "unclassified_open_issues": 0,
+    "external_or_heavy_blockers": 3,
+    "external_blocker_semantics": "explicit CANNOT_CHECK; non-blocking for local architecture/formalism freeze",
+    "theorem_census_terminal": "V1_THEOREM_CENSUS_COMPLETE",
+    "theorem_count": 101,
+    "local_formal_proof_holes": 0,
+    "external_proof_review": "PENDING_EXTERNAL_AUTHORITY",
+    "p1_p15_history_preserved": true
+  },
+  "non_retroactivity": {
+    "v1_history_immutable": true,
+    "v2_cannot_rewrite_v1_terminals": true,
+    "v2_cannot_relabel_v1_negative_or_cannot_check": true,
+    "v2_papers_do_not_silently_renumber_p1_p15": true,
+    "later_orion_commits_do_not_change_bound_freeze_identity": true
+  },
+  "permissions": {
+    "reference_implementation_authorized": true,
+    "unit_and_known_answer_tests_authorized": true,
+    "local_prospective_pilots_authorized_after_protocol_freeze": true,
+    "protected_external_evaluation_authorized": false,
+    "scientific_claim_promotion_authorized": false,
+    "novelty_promotion_authorized": false,
+    "paper_identity_freeze_authorized": false
+  },
+  "reopen_conditions": [
+    "a bound control-plane identity is shown not to correspond to the declared file/tree",
+    "the ORION freeze contract is revoked by a later explicit non-retroactive correction",
+    "a required V1 negative or CANNOT_CHECK history is absent from the handoff",
+    "the handoff checker accepts a receipt that grants scientific or novelty authority"
+  ],
+  "authority": "LOCAL_REFERENCE_IMPLEMENTATION_AND_PROSPECTIVE_PROTOCOLS_ONLY"
+}

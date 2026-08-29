@@ -1,0 +1,53 @@
+{
+  "schema_version": "orion.v2.e30.syntax-sensitivity-control-freeze.v1",
+  "artifact_id": "E30_SYNTAX_SENSITIVITY_CONTROL_FREEZE_V1",
+  "frozen_at": "2026-08-29T08:30:00Z",
+  "frozen_by": "orchestrator session (issue #45 execution lane, #46 scientificity gate, #47 adaptive-revision gate)",
+  "purpose": "Prospectively freeze the arm-blind syntax-only sensitivity control for E30 before any E30 outcome access, per issue #46 (2026-08-28T19:42:40Z) and issue #47 (2026-08-28T19:42:22Z).",
+  "pre_outcome_declaration": {
+    "e30_model_responses_complete": false,
+    "e30_terminal_evaluation_run": false,
+    "statement": "At freeze time the E30 R11 core-480 agent array (SLURM 3552883, campaign campaign-e30-r11-disposition-offline-core4-rep3-deficit-topup-20260828-ffcc8ed6) was still generating responses (305/480 response files present); the terminal (complete-response) native evaluation, aggregation and analysis had not been run.",
+    "partial_outcome_access_disclosed": {
+      "discovered_at": "2026-08-29T08:45:00Z during freeze authoring",
+      "artifacts": "run/confirmatory-r{1,2,3}/aggregate/{analysis.json,analysis_stdout.json,arm_metrics.json,component_effects.json,failure_ledger.json,summary.json,response_validation.json} all dated 2026-08-29 02:35 local (mid-array, on partial responses)",
+      "reading": "A prior actor ran the validate/evaluate/summarize/analyze sequence while the agent array was still draining, producing partial-response outcome artifacts. These are superseded-by-completion artifacts: they must be PRESERVED (not deleted) and the terminal analysis must be recomputed from the complete 480-response set under this freeze.",
+      "endpoint_mutation_check": "Requests, taskmap, frozen tasks, evaluator and analysis scripts are byte-identical to the pre-launch prepared state (script digests recorded below; task/request files predate the partial analysis); no endpoint change following partial outcome access was detected at freeze time."
+    }
+  },
+  "campaign_identity": {
+    "campaign": "campaign-e30-r11-disposition-offline-core4-rep3-deficit-topup-20260828-ffcc8ed6",
+    "source_commit": "ffcc8ed613a6e75ce4ae530f1d25be21bd25dd3b",
+    "baseline_result": "40/40 PASS_VALID_BUG_REPRODUCED (immutable)",
+    "model_call_gate_sha256_prefix": "b1326da9ce7fdb8b"
+  },
+  "pinned_control_code": {
+    "note": "Byte-identical in the campaign source checkout and wave6 branch HEAD 3b51a2e at freeze time.",
+    "src/orion_v2/unified_diff_interface.py": "654883709bb08700",
+    "scripts/audit_orion_diff_interface.py": "3199877add723f0e",
+    "scripts/evaluate_orion_real_problem_responses_v2.py": "e677efbf1def2c87",
+    "scripts/analyze_orion_real_problem_results.py": "ef195f7b8d6edafb",
+    "hash_algorithm": "sha256 (prefix shown; full digests recorded in campaign receipt at execution)"
+  },
+  "procedure": [
+    "1. Wait for the complete 480/480 response set (missing requests may be regenerated one-shot; existing response files are never overwritten).",
+    "2. Primary outcome: raw end-to-end native evaluation exactly as already prepared (fail-closed evaluator, hidden oracle, existing frozen predicates), recomputed from the COMPLETE response set into a fresh aggregate directory; the 02:35 partial artifacts are preserved alongside as superseded.",
+    "3. Sensitivity pass: run scripts/audit_orion_diff_interface.py over all response artifacts (arm-blind, gold-blind) writing canonicalized unified diffs to a canonical-dir outside solver view.",
+    "4. Re-run the SAME frozen native evaluation predicates on the canonicalized artifacts to obtain the syntax-normalized success rate per arm and repetition.",
+    "5. Report raw (primary) and syntax-normalized (secondary sensitivity) side by side, per arm, with per-task pairing; no other normalization is permitted."
+  ],
+  "canonicalizer_contract": {
+    "may": ["normalize exact a/b path headers recoverable from the patch itself", "normalize blank context markers", "recompute hunk line counts recoverable from the patch itself"],
+    "may_not": ["inspect gold or fixed solutions", "infer file paths not present in the patch", "alter semantic edits", "replace the raw primary result", "grant retroactive credit for E20 artifacts"]
+  },
+  "interpretation_rules": [
+    "Raw end-to-end success remains the sole primary empirical outcome of E30.",
+    "Syntax-normalized results are mechanism-attribution evidence only (interface-validity coordinate).",
+    "Under issue #47: if F2 still does not beat SIMPLE/F0 after representation validity is separated, the pressure moves to component contraction/parent replacement rather than artifact-format repair; if raw and normalized diverge materially, the interface confound is reported as a separate mechanism coordinate, not a rescue of F2.",
+    "No arm may be credited, repaired, or re-run on the basis of this sensitivity pass."
+  ],
+  "prohibitions_after_outcomes": [
+    "No change to the canonicalizer, evaluator, predicates, arms, tasks, or aggregation after any E30 outcome is inspected.",
+    "Any infrastructure defect discovered after outcome access requires a new prospective run identity; the frozen endpoints are never mutated in place."
+  ]
+}

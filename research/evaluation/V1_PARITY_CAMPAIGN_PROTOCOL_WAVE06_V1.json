@@ -1,0 +1,240 @@
+{
+  "schema_version": "orion.v2.v1-parity-campaign-protocol.v1",
+  "protocol_id": "ORION-V2-V1-PARITY-WAVE06-V1",
+  "status": "DESIGN_FROZEN_V2_SUBJECT_UNBOUND",
+  "frozen_v1": {
+    "repository": "SzeChunYiu/ORION",
+    "freeze_commit": "8f250fc3e55d6d6a28fb1fb33d9932ef1a8760b5",
+    "capability_census": "provenance/V1_CAPABILITY_CENSUS_V1.json",
+    "capability_count": 59
+  },
+  "v2_subject": {
+    "commit": "TO_BIND_AFTER_KERNEL_CONTRACTION_BEFORE_OUTCOME_ACCESS",
+    "rule": "Changing the V2 subject after any paired outcome is observed creates a new protocol identity."
+  },
+  "comparison_contract": {
+    "unit": "one frozen V1 capability opportunity within one parity case",
+    "matched": [
+      "problem and public information",
+      "source/provider/tool availability",
+      "resource and time budget",
+      "authority and side-effect permissions",
+      "case/evaluator identity",
+      "random seed where applicable"
+    ],
+    "mandatory_coordinates": [
+      "scientific_validity_or_known_answer",
+      "false_completion",
+      "authority_and_integrity",
+      "semantic_and_provenance_preservation",
+      "cannot_check_calibration",
+      "replay_identity"
+    ],
+    "conditional_coordinates": [
+      "selective_reopen_correctness",
+      "responsibility_correctness",
+      "coverage_and_censoring_correctness",
+      "execution_side_effect_correctness"
+    ],
+    "secondary_coordinates": [
+      "resource_cost",
+      "latency",
+      "unnecessary_work",
+      "unnecessary_escalation",
+      "justified_reachability_gain"
+    ],
+    "aggregation_rule": "PER_CELL_NON_COMPENSATORY__NO_FAMILY_AVERAGE_CAN_HIDE_A_LOST_CELL"
+  },
+  "campaigns": [
+    {
+      "campaign_id": "PARITY-A",
+      "purpose": "problem contract, framing and decomposition",
+      "capability_ids": [
+        "ORION_SOLVE.v1",
+        "FRAME.v1",
+        "FRAME.QUESTION.v0",
+        "FRAME.CONTEXT.v0",
+        "FRAME.AUTHORITY_TARGET.v0",
+        "FRAME.RESOURCES.v0",
+        "FRAME.DECOMPOSE.v0"
+      ],
+      "hostile_controls": [
+        "direct case where decomposition is unnecessary and added V2 work is overreach",
+        "coupled case where independent decomposition breaks a global constraint",
+        "authority-required case where a correct candidate cannot self-adopt"
+      ]
+    },
+    {
+      "campaign_id": "PARITY-B",
+      "purpose": "heterogeneous search and acquisition",
+      "capability_ids": [
+        "SEARCH.v1",
+        "SEARCH.ROUTE.v0",
+        "SEARCH.QUERY.v0",
+        "SEARCH.SOURCE.v0",
+        "SEARCH.RETRIEVE.v0",
+        "SEARCH.ROUTE_STOP.v0"
+      ],
+      "hostile_controls": [
+        "censored route cannot become evidence of absence",
+        "one route may stop while the task remains open",
+        "source identity/lineage must survive retrieval"
+      ]
+    },
+    {
+      "campaign_id": "PARITY-C",
+      "purpose": "scientific-language absorption and native semantic binding",
+      "capability_ids": [
+        "ABSORB.v1",
+        "ABSORB.SCIENTIFIC_LANGUAGE.v0",
+        "ABSORB.CLAIM.v0",
+        "ABSORB.REFERENCE_IDENTITY.v0",
+        "ABSORB.CONTEXT.v0",
+        "ABSORB.REPRESENTATION_MAP.v0",
+        "ABSORB.EVIDENCE_BIND.v0"
+      ],
+      "hostile_controls": [
+        "same words with different native structure",
+        "different words with same registered structure",
+        "ambiguous identity/context must be quarantined rather than normalized",
+        "source projection must remain recoverable after mapping"
+      ]
+    },
+    {
+      "campaign_id": "PARITY-D",
+      "purpose": "reconstruction, plural portraits and gluing",
+      "capability_ids": [
+        "RECONSTRUCT.v1",
+        "RECONSTRUCT.ATLAS_UPDATE.v0",
+        "RECONSTRUCT.GLUE.v0",
+        "RECONSTRUCT.PORTRAIT.v0",
+        "RECONSTRUCT.SEARCH_UNIVERSE.v0"
+      ],
+      "hostile_controls": [
+        "pairwise local compatibility with a global obstruction",
+        "multiple justified portraits with no unique collapse",
+        "new representation opens a previously absent search route"
+      ]
+    },
+    {
+      "campaign_id": "PARITY-E",
+      "purpose": "detection, discriminating diagnosis and plural responsibility",
+      "capability_ids": [
+        "DETECT.v1",
+        "DETECT.CONTRADICTION.v0",
+        "DETECT.GAP.v0",
+        "DETECT.COVERAGE.v0",
+        "DETECT.FAILURE.v0",
+        "DIAGNOSE.v1",
+        "DIAGNOSE.HYPOTHESES.v0",
+        "DIAGNOSE.EXPERIENCE_RETRIEVAL.v0",
+        "DIAGNOSE.DISCRIMINATOR.v0",
+        "DIAGNOSE.ATTRIBUTION.v0"
+      ],
+      "hostile_controls": [
+        "missing evidence is not contradiction",
+        "structural non-identifiability is not resource failure",
+        "multiple independent faults",
+        "interaction-only responsibility",
+        "earliest-stage attribution is correct only on serial-upstream controls"
+      ]
+    },
+    {
+      "campaign_id": "PARITY-F",
+      "purpose": "reframe, transport, repair and selective reopen",
+      "capability_ids": [
+        "REFRAME.v1",
+        "REFRAME.REPRESENTATION.v0",
+        "REFRAME.DECOMPOSITION.v0",
+        "REFRAME.SEARCH_POLICY.v0",
+        "REFRAME.METHOD.v0",
+        "REFRAME.OBJECTIVE.v0",
+        "REOPEN.v1",
+        "REOPEN.DEPENDENCY.v0",
+        "REOPEN.CLOSURE.v0",
+        "REOPEN.FIBRE.v0"
+      ],
+      "hostile_controls": [
+        "local repair sufficient so higher Jump is overreach",
+        "model expansion sufficient so representation transition is overreach",
+        "true representation insufficiency with correspondence/preservation obligations",
+        "one support invalidates while an alternative support remains",
+        "unaffected commitments must not reopen"
+      ]
+    },
+    {
+      "campaign_id": "PARITY-G",
+      "purpose": "bounded saturation and honest stopping",
+      "capability_ids": [
+        "SATURATE_BOUNDED.v3",
+        "SATURATE.KNOWLEDGE_FLATNESS.v0",
+        "SATURATE.FORMULATION_FLATNESS.v0",
+        "SATURATE.ROUTE_COVERAGE.v0",
+        "SATURATE.OMISSION_CHALLENGE.v0",
+        "SATURATE.STOP.v0"
+      ],
+      "hostile_controls": [
+        "flat growth under incomplete route coverage is not saturation",
+        "changed-vocabulary omission challenge discovers a material parent",
+        "two complete no-material-change passes are required for closeout saturation"
+      ]
+    },
+    {
+      "campaign_id": "PARITY-H",
+      "purpose": "authority, review, benchmark and experiment-selection custody",
+      "capability_ids": [
+        "CROSS.AUTHORITY.v0",
+        "CROSS.REVIEW.v0",
+        "CROSS.BENCHMARK.v0",
+        "CROSS.EXPERIMENT_SELECTION.v0"
+      ],
+      "hostile_controls": [
+        "same-model or same-data reviewers are not counted as independent",
+        "protected evaluator identity cannot change after proposal access",
+        "high expected score cannot compensate an authority/integrity violation",
+        "unexercised experiment-selection arm cannot be reported as safe"
+      ]
+    },
+    {
+      "campaign_id": "PARITY-I",
+      "purpose": "memory, experience, real execution and bounded context",
+      "capability_ids": [
+        "CROSS.MEMORY.v0",
+        "CROSS.EXPERIENCE.v0",
+        "CROSS.EXECUTION.v0",
+        "CROSS.CONTEXT_POLICY.v0"
+      ],
+      "hostile_controls": [
+        "missing mandatory memory cannot be silently truncated",
+        "negative experience cannot be deleted by a successful successor",
+        "provider/tool timeout or execution failure is not a scientific negative",
+        "declared execution identity must be compared, not merely well formed"
+      ]
+    }
+  ],
+  "outcome_terminals": [
+    "V2_PARITY_NONINFERIOR",
+    "V2_PARITY_STRICT_GAIN_WITH_NO_MANDATORY_REGRESSION",
+    "V1_NONINFERIOR",
+    "V2_CAPABILITY_REGRESSION",
+    "V2_COMPLEXITY_OR_ESCALATION_OVERREACH",
+    "CANNOT_CHECK_MATCHING_OR_CUSTODY",
+    "PROTOCOL_INVALID"
+  ],
+  "run_gate": {
+    "allowed_now": false,
+    "blocked_on": [
+      "bind exact post-contraction V2 subject commit",
+      "bind per-campaign case/evaluator manifests",
+      "validate 59-of-59 exact-once capability coverage",
+      "freeze strongest parent-composed baselines",
+      "freeze matched resource budgets and custody"
+    ]
+  },
+  "authority": {
+    "grants_v2_closeout": false,
+    "grants_scientific_truth": false,
+    "grants_novelty": false,
+    "grants_publication_authority": false
+  }
+}

@@ -1,0 +1,141 @@
+name: wave6-conceptual-development
+
+on:
+  push:
+    branches:
+      - research/wave6-contraction-closure-20260827
+    paths:
+      - "src/orion_v2/conceptual_development.py"
+      - "src/orion_v2/transfer_formal_mechanics.py"
+      - "scripts/run_transfer_formal_mechanics_reference.py"
+      - "tests/unit/test_conceptual_development_wave6.py"
+      - "tests/unit/test_conceptual_development_open_world_math_wave6.py"
+      - "tests/unit/test_transfer_formal_mechanics_wave6.py"
+      - "tests/unit/test_transfer_formal_category_laws_wave6.py"
+      - "research/formalism/CONCEPTUAL_DEVELOPMENT_AND_TRANSFER_FORMAL_MECHANICS_V1.md"
+      - "research/formalism/FORMAL_PARENT_LITERATURE_ANCHORS_V1.md"
+      - "research/foundation-saturation/CONCEPTUAL_DEVELOPMENT_AND_TRANSFER_DISCOVERY_AMENDMENT_V1.md"
+      - "research/foundation-saturation/CONCEPTUAL_DEVELOPMENT_AND_TRANSFER_DISCOVERY_AMENDMENT_V2_ALL_SCIENCE_MATHEMATICS_FIRST.md"
+      - "research/foundation-saturation/MATHEMATICS_AND_ALL_SCIENCE_CONCEPTUAL_DEVELOPMENT_DONOR_ATLAS_V1.md"
+      - "research/experiments/CONCEPTUAL_TRANSFER_DISCOVERY_PROTOCOL_V1.json"
+      - "research/experiments/CONCEPTUAL_TRANSFER_DISCOVERY_PROTOCOL_V2_ALL_SCIENCE_MATHEMATICS_FIRST.json"
+      - "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_MECHANICS_PROTOCOL_V1.json"
+      - "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_EXECUTION_BACKLOG_V1.json"
+      - "research/closure/CONCEPTUAL_DEVELOPMENT_TRANSFER_DISCOVERY_INTEGRATION_RECEIPT_V1.json"
+      - "papers/formalism/**"
+      - ".github/workflows/wave6-conceptual-development.yml"
+  pull_request:
+    paths:
+      - "src/orion_v2/conceptual_development.py"
+      - "src/orion_v2/transfer_formal_mechanics.py"
+      - "scripts/run_transfer_formal_mechanics_reference.py"
+      - "tests/unit/test_conceptual_development_wave6.py"
+      - "tests/unit/test_conceptual_development_open_world_math_wave6.py"
+      - "tests/unit/test_transfer_formal_mechanics_wave6.py"
+      - "tests/unit/test_transfer_formal_category_laws_wave6.py"
+      - "research/formalism/CONCEPTUAL_DEVELOPMENT_AND_TRANSFER_FORMAL_MECHANICS_V1.md"
+      - "research/formalism/FORMAL_PARENT_LITERATURE_ANCHORS_V1.md"
+      - "research/foundation-saturation/CONCEPTUAL_DEVELOPMENT_AND_TRANSFER_DISCOVERY_AMENDMENT_V1.md"
+      - "research/foundation-saturation/CONCEPTUAL_DEVELOPMENT_AND_TRANSFER_DISCOVERY_AMENDMENT_V2_ALL_SCIENCE_MATHEMATICS_FIRST.md"
+      - "research/foundation-saturation/MATHEMATICS_AND_ALL_SCIENCE_CONCEPTUAL_DEVELOPMENT_DONOR_ATLAS_V1.md"
+      - "research/experiments/CONCEPTUAL_TRANSFER_DISCOVERY_PROTOCOL_V1.json"
+      - "research/experiments/CONCEPTUAL_TRANSFER_DISCOVERY_PROTOCOL_V2_ALL_SCIENCE_MATHEMATICS_FIRST.json"
+      - "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_MECHANICS_PROTOCOL_V1.json"
+      - "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_EXECUTION_BACKLOG_V1.json"
+      - "research/closure/CONCEPTUAL_DEVELOPMENT_TRANSFER_DISCOVERY_INTEGRATION_RECEIPT_V1.json"
+      - "papers/formalism/**"
+      - ".github/workflows/wave6-conceptual-development.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  conceptual-development:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ORION and test tooling
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e . pytest
+
+      - name: Compile conceptual-development and formal mechanics
+        run: |
+          python -m py_compile src/orion_v2/conceptual_development.py
+          python -m py_compile src/orion_v2/transfer_formal_mechanics.py
+          python -m py_compile scripts/run_transfer_formal_mechanics_reference.py
+
+      - name: Run conceptual-development and formal-mechanics unit tests
+        run: |
+          python -m pytest -q \
+            tests/unit/test_conceptual_development_wave6.py \
+            tests/unit/test_conceptual_development_open_world_math_wave6.py \
+            tests/unit/test_transfer_formal_mechanics_wave6.py \
+            tests/unit/test_transfer_formal_category_laws_wave6.py
+
+      - name: Run exact-oracle reference calibration
+        run: |
+          python scripts/run_transfer_formal_mechanics_reference.py \
+            --output /tmp/transfer-formal-reference.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          receipt = json.loads(Path('/tmp/transfer-formal-reference.json').read_text())
+          assert receipt['status'] == 'REFERENCE_SEMANTICS_CALIBRATION_ONLY'
+          assert receipt['all_reference_checks_pass'] is True
+          assert all(value is False for value in receipt['authority'].values())
+          PY
+
+      - name: Validate V1, mathematics-first V2 and formal prospective protocols
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          v1 = json.loads(Path("research/experiments/CONCEPTUAL_TRANSFER_DISCOVERY_PROTOCOL_V1.json").read_text())
+          assert v1["status"] == "PROSPECTIVE_PROTOCOL_NO_RESULTS"
+          assert v1["frozen_before_outcome_access"] is True
+          assert all(value is False for value in v1["authority"].values())
+
+          v2 = json.loads(Path("research/experiments/CONCEPTUAL_TRANSFER_DISCOVERY_PROTOCOL_V2_ALL_SCIENCE_MATHEMATICS_FIRST.json").read_text())
+          assert v2["status"] == "PROSPECTIVE_PROTOCOL_NO_RESULTS"
+          assert v2["frozen_before_td_outcome_access"] is True
+          assert v2["donor_universe"]["open_world"] is True
+          assert v2["donor_universe"]["mathematics_primary_structural_donor"] is True
+          assert len(v2["donor_universe"]["mathematics_families"]) >= 20
+          assert len(v2["donor_universe"]["empirical_and_applied_families"]) >= 10
+          assert "FIXED_LESSON_INJECTION" in v2["arms"]
+          assert "STRONGEST_DOMAIN_FORMAL_OR_SCIENTIFIC_PARENT" in v2["arms"]
+          assert "F2_TRANSFER_DISCOVERY_FULL" in v2["arms"]
+          assert "fixed_mathematics_lesson_table" in v2["hard_programming_boundary"]["forbidden_as_framework_truth"]
+          assert v2["paper_identity"]["new_standalone_paper_authorized"] is False
+          assert all(value is False for value in v2["authority"].values())
+
+          formal = json.loads(Path("research/experiments/CONCEPTUAL_TRANSFER_FORMAL_MECHANICS_PROTOCOL_V1.json").read_text())
+          assert formal["status"] == "PROSPECTIVE_PROTOCOL_NO_RESULTS"
+          assert formal["frozen_before_formal_benchmark_outcome_access"] is True
+          assert len(formal["studies"]) == 8
+          assert "FM10" == formal["studies"][0]["id"]
+          assert "FM80" == formal["studies"][-1]["id"]
+          assert "STRONGEST_DOMAIN_FORMAL_PARENT" in formal["arms"]
+          assert all(value is False for value in formal["authority"].values())
+
+          backlog = json.loads(Path("research/experiments/CONCEPTUAL_TRANSFER_FORMAL_EXECUTION_BACKLOG_V1.json").read_text())
+          assert backlog["status"] == "PROSPECTIVE_BACKLOG_NO_PROTECTED_RESULTS"
+          assert backlog["owner_issue"] == 48
+          assert backlog["tasks"][0]["id"] == "FM00"
+          assert backlog["tasks"][-1]["id"] == "FM90"
+          assert all(value is False for value in backlog["authority"].values())
+
+          receipt = json.loads(Path("research/closure/CONCEPTUAL_DEVELOPMENT_TRANSFER_DISCOVERY_INTEGRATION_RECEIPT_V1.json").read_text())
+          assert receipt["status"] == "FRAMEWORK_INTEGRATED__PROTECTED_EVIDENCE_OPEN"
+          assert receipt["hard_programmed_domain_transfer_lessons"] == 0
+          assert all(value is False for value in receipt["authority"].values())
+          PY

@@ -1,0 +1,199 @@
+{
+  "ablation_arms": [
+    "F2_TRANSFER_MINUS_ABSTRACTION_INDUCTION",
+    "F2_TRANSFER_MINUS_NEGATIVE_TRANSFER_CHALLENGE",
+    "F2_TRANSFER_MINUS_NATIVE_RECOVERY",
+    "F2_TRANSFER_MINUS_CONCEPT_LOSS_AUDIT"
+  ],
+  "allowed_terminals": [
+    "PROTECTED_TRANSFER_RESIDUAL",
+    "CONTEXTUAL_TRANSFER",
+    "PARENT_SUFFICIENT",
+    "FIXED_LESSON_SUFFICIENT",
+    "FALSE_ANALOGY_REJECTED",
+    "NO_SCIENTIFIC_RESIDUAL",
+    "MERGE_INTO_P_A",
+    "MERGE_INTO_P_B",
+    "MERGE_INTO_P_C",
+    "CANNOT_CHECK"
+  ],
+  "analysis": {
+    "independent_unit": "task",
+    "paired_analysis": true,
+    "repetitions_nested_within_task": true,
+    "report_by_surface_similarity_stratum": true,
+    "report_by_transition_class": true,
+    "report_remote_and_near_transfer_separately": true,
+    "retain_all_failed_and_negative_cases": true
+  },
+  "arms": [
+    "TARGET_ONLY_DIRECT",
+    "SEMANTIC_RETRIEVAL",
+    "FIXED_LESSON_INJECTION",
+    "STRUCTURE_MAPPING_PARENT",
+    "F0_PARENT_FEDERATION",
+    "F2_STATIC_NO_TRANSFER_DISCOVERY",
+    "F2_TRANSFER_DISCOVERY_FULL"
+  ],
+  "authority": {
+    "grants_F2_superiority": false,
+    "grants_field_status": false,
+    "grants_foundation_status": false,
+    "grants_journal_acceptance": false,
+    "grants_scientific_truth": false,
+    "grants_submission_readiness": false
+  },
+  "central_question": "Can ORION discover transferable relational structure and justified conceptual transitions from source-bound donor knowledge better than fixed lesson injection, semantic retrieval, strongest analogy parents, F0, and static F2 under matched resources?",
+  "frozen_before_outcome_access": true,
+  "hard_programming_boundary": {
+    "allowed_generic_operators": [
+      "source_bound_structural_description",
+      "comparison",
+      "candidate_generation",
+      "relational_alignment",
+      "abstraction_induction",
+      "prospective_consequence_freeze",
+      "native_parent_recovery",
+      "negative_transfer_challenge",
+      "hidden_case_evaluation",
+      "loss_and_authority_propagation"
+    ],
+    "forbidden_as_framework_truth": [
+      "domain_specific_physics_lessons",
+      "universal_regime_dependence",
+      "universal_symmetry_equivalence",
+      "universal_representation_redundancy",
+      "automatic_anomaly_to_revision",
+      "fixed_cross_domain_mapping_table"
+    ]
+  },
+  "kill_or_merge_conditions": [
+    "FIXED_LESSON_INJECTION matches or exceeds FULL at materially lower cost",
+    "STRUCTURE_MAPPING_PARENT or F0 reproduces protected transfer decisions",
+    "induced abstractions do not improve later retrieval",
+    "gain disappears after surface permutation or hidden counterexamples",
+    "donor native fidelity degrades",
+    "conceptual transitions lose predecessor-valid cases",
+    "conceptual changes do not alter hidden decisions/predictions or establish formal necessity",
+    "benefit appears only on historically famous or likely memorized cases"
+  ],
+  "noncompensatory_gates": {
+    "authority_corruption_allowed": false,
+    "false_analogy_must_be_reported_separately": true,
+    "gold_or_hidden_label_access_allowed": false,
+    "measurement_semantics_corruption_allowed": false,
+    "native_parent_recovery_required": true,
+    "old_valid_case_retention_required_for_conceptual_promotion": true,
+    "resource_cost_cannot_be_hidden_by_quality_average": true
+  },
+  "paper_identity": {
+    "current_home": [
+      "P_A_STRUCTURAL_DONOR_DISCOVERY",
+      "P_B_CONTEXT_RELATIVE_RELATIONS",
+      "P_C_OBLIGATION_DRIVEN_SOLVER",
+      "FLAGSHIP_MACHINE_EPISTEMICS"
+    ],
+    "new_standalone_paper_authorized": false,
+    "standalone_admission_rule": "Only after an independent protected residual beyond P-A/P-B/P-C and strongest parent methods."
+  },
+  "primary_estimands": [
+    "paired_difference_hidden_target_success_FULL_minus_FIXED_LESSON",
+    "paired_difference_hidden_target_success_FULL_minus_STRUCTURE_MAPPING_PARENT",
+    "paired_difference_hidden_target_success_FULL_minus_F0",
+    "paired_difference_false_analogy_FULL_minus_each_primary_control",
+    "paired_difference_old_valid_case_retention_FULL_minus_each_primary_control",
+    "paired_resource_difference_FULL_minus_each_primary_control"
+  ],
+  "protocol_id": "ORION-CONCEPTUAL-TRANSFER-DISCOVERY-V1",
+  "schema_version": "orion.v2.conceptual-transfer-discovery-protocol.v1",
+  "scientificity_level": "S2_DISCRIMINATING_MECHANISM_HYPOTHESIS",
+  "status": "PROSPECTIVE_PROTOCOL_NO_RESULTS",
+  "study_lanes": [
+    {
+      "anti_leakage_rule": "Historical source material may be public and memorized; use only for calibration, never as confirmatory evidence for active transfer discovery.",
+      "donor_families": [
+        "effective_field_theory_and_regime_bounded_models",
+        "renormalization_group_and_universality",
+        "symmetry_invariants_and_representation_change",
+        "duality_and_interpretative_equivalence",
+        "Maxwell_analogy_and_model_construction",
+        "organic_chemistry_foothold_exemplars",
+        "biology_mechanism_pluralism",
+        "mathematical_structuralism_and_invariants",
+        "human_analogical_abstraction_and_relational_retrieval"
+      ],
+      "evidence_class": "EXPLORATORY_CALIBRATION",
+      "headline_claim_eligible": false,
+      "id": "TD10",
+      "label": "HISTORICAL_CALIBRATION",
+      "purpose": "Reconstruct documented conceptual developments and transfers without exposing evaluator transfer labels."
+    },
+    {
+      "design": "Each target receives surface-similar decoys, structurally relevant remote donors, structurally partial donors and incompatible native concepts.",
+      "evidence_class": "PROTECTED_PILOT",
+      "id": "TD20",
+      "label": "REMOTE_DONOR_RETRIEVAL",
+      "minimum_tasks": 24,
+      "primary_outputs": [
+        "top_k_useful_donor_recall",
+        "false_analogy_rate",
+        "donor_native_fidelity",
+        "prospective_target_consequence_quality"
+      ]
+    },
+    {
+      "evidence_class": "CONFIRMATORY",
+      "generation": {
+        "after_protocol_freeze": true,
+        "hidden_transition_classes": [
+          "SPECIALIZE",
+          "GENERALIZE",
+          "SPLIT",
+          "MERGE",
+          "BRIDGE",
+          "REPARAMETERIZE",
+          "REVISE",
+          "NO_CHANGE"
+        ],
+        "randomize": [
+          "concept_tokens",
+          "surface_attributes",
+          "relation_labels",
+          "regime_variables",
+          "transformations",
+          "invariants",
+          "counterexamples",
+          "decision_codewords"
+        ],
+        "solver_access_to_hidden_cases": false,
+        "solver_access_to_private_transition_label": false
+      },
+      "id": "TD30",
+      "label": "FRESH_GENERATED_CONCEPTUAL_DEVELOPMENT",
+      "minimum_stochastic_repetitions": 3,
+      "minimum_tasks": 60,
+      "primary_outputs": [
+        "hidden_target_decision_success",
+        "concept_transition_correctness",
+        "old_valid_case_retention",
+        "false_analogy_rate",
+        "unnecessary_concept_proliferation",
+        "authority_or_measurement_corruption"
+      ]
+    },
+    {
+      "evidence_class": "INDEPENDENT_CROSS_DOMAIN",
+      "id": "TD40",
+      "label": "NATURALISTIC_PROSPECTIVE_TRANSFER",
+      "minimum_materially_distinct_domains": 2,
+      "promotion_role": "Required for S4-level broad transfer/conceptual-development claims.",
+      "requirements": [
+        "prospective_transfer_hypothesis_before_outcome",
+        "strongest_parent_comparator",
+        "independent_domain_adjudication",
+        "resource_accounting",
+        "negative_and_parent_wins_retained"
+      ]
+    }
+  ]
+}

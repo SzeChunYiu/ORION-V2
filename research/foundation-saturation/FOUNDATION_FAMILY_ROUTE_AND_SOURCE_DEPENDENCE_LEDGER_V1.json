@@ -1,0 +1,194 @@
+{
+  "schema_version": "orion.v2.foundation-family-route-source-dependence-ledger.v1",
+  "canonical_issue": 41,
+  "status": "INTERNAL_ROUTE_COVERAGE_COMPLETE_WITH_VISIBLE_CENSORSHIP",
+  "universe": "F01_TO_F22",
+  "required_routes": {
+    "N": "native_primary",
+    "C": "canonical_reconstruction",
+    "V": "changed_vocabulary",
+    "H": "historical_ancestry",
+    "P": "hostile_parent",
+    "R": "remote_practice",
+    "I": "implementation_artifact",
+    "X": "cross_domain_contradiction"
+  },
+  "coverage_rule": "Each declared family must list all required routes as COMPLETE or CENSORED, at least one source-bound COMPLETE route, source/dependence notes, and no OPEN route before internal synthesis.",
+  "families": [
+    {
+      "id": "F01",
+      "name": "formal_learning_reliable_inquiry_identifiability",
+      "completed_routes": ["N","C","V","H","P","R","I","X"],
+      "sources": ["Kelly1996", "Gold1967", "Hendricks2005", "formal-learning-identifiability-donor-synthesis"],
+      "dependence": ["Kelly and later computational-epistemology sources share the reliable-inquiry lineage", "formal convergence results do not establish empirical adequacy of the represented world"]
+    },
+    {
+      "id": "F02",
+      "name": "belief_change_truth_maintenance_diagnosis",
+      "completed_routes": ["N","C","V","H","P","R","I","X"],
+      "sources": ["Doyle1979", "deKleer1986", "Reiter1987", "belief-revision-and-support-family-artifacts"],
+      "dependence": ["TMS, ATMS and diagnosis are historically connected but solve different support/revision tasks", "logical consistency is not scientific truth"]
+    },
+    {
+      "id": "F03",
+      "name": "control_decision_metareasoning_deep_uncertainty",
+      "completed_routes": ["N","C","V","H","P","R","I","X"],
+      "sources": ["RussellWefald1991", "ChalonerVerdinelli1995", "Haasnoot2013", "KwakkelHaasnootWalker2016"],
+      "dependence": ["expected-value and deep-uncertainty methods require different uncertainty assumptions", "policy value is criterion- and resource-relative"]
+    },
+    {
+      "id": "F04",
+      "name": "experimentation_testing_measurement_calibration",
+      "completed_routes": ["N","C","V","H","P","R","I","X"],
+      "sources": ["Peirce1877-1878", "Dewey1910", "MayoSpanos2006", "NASA-STD-7009B", "metrology-and-experiment-ledgers"],
+      "dependence": ["philosophical, statistical and engineering sources provide non-identical evidence types", "test results depend on sensitivity, selection and measurement contracts"]
+    },
+    {
+      "id": "F05",
+      "name": "models_mechanisms_explanation_representation",
+      "completed_routes": ["N","C","V","H","P","R","I","X"],
+      "sources": ["Kuhn1962", "Lakatos1978", "PearlBareinboim2014", "scientific-understanding-AI-2022"],
+      "dependence": ["historical and formal model traditions should not be collapsed into one theory of representation", "explanatory adequacy and predictive fit are separable"]
+    },
+    {
+      "id": "F06",
+      "name": "automated_scientific_discovery_and_reasoning_history",
+      "completed_routes": ["N","C","V","H","P","R","I","X"],
+      "sources": ["DENDRAL-MetaDENDRAL-lineage", "AM-Eurisko-lineage", "AlphaTensor2022", "AlphaDev2023", "FunSearch2024"],
+      "dependence": ["modern systems share automated evaluator/search assumptions", "historical discovery claims depend on the encoded language and oracle"]
+    },
+    {
+      "id": "F07",
+      "name": "abstraction_relation_transport_comparability",
+      "completed_routes": ["N","C","V","H","P","R","I","X"],
+      "sources": ["CousotCousot1977", "PearlBareinboim2014", "Meredith1993", "theory-transport-and-stochastic-transport-artifacts"],
+      "dependence": ["native relation families preserve different judgments", "generic similarity is not a substitute for typed transport"]
+    },
+    {
+      "id": "F08",
+      "name": "evidence_provenance_dependence_replication_argument",
+      "completed_routes": ["N","C","V","H","P","R","I","X"],
+      "sources": ["W3C-PROV-2013", "HedgesTiptonJohnson2010", "Dung1995", "ASPICplus2014", "Longino1990"],
+      "dependence": ["provenance, correlated evidence and argument acceptability are different parent problems", "reviewer/source independence must be demonstrated rather than counted"]
+    },
+    {
+      "id": "F09",
+      "name": "cognition_metacognition_memory_attention_insight",
+      "completed_routes": ["N","C","V","H","P","R","I","X"],
+      "sources": ["FlemingDolanFrith2012", "ShenhavBotvinickCohen2013", "KouniosBeeman2014", "GottliebEtAl2013"],
+      "dependence": ["cognitive mechanisms are empirical parents, not normative machine architectures", "human self-monitoring can be miscalibrated"]
+    },
+    {
+      "id": "F10",
+      "name": "situated_embodied_distributed_practical_knowledge",
+      "completed_routes": ["N","C","V","H","P","R","I","X"],
+      "sources": ["Ryle1949", "Polanyi1966", "Suchman1987", "Hutchins1995", "ordinary-practice-donor-study"],
+      "dependence": ["philosophical and ethnographic sources motivate different operational tests", "tacit dependency is admitted only when it predicts transfer failure"]
+    },
+    {
+      "id": "F11",
+      "name": "social_institutional_epistemology_testimony_participation",
+      "completed_routes": ["N","C","V","H","P","R","I","X"],
+      "sources": ["Longino1990", "Fricker2007", "ListPettit2002", "HeiglEtAl2020", "participatory-research-artifacts"],
+      "dependence": ["participation, testimony, judgment aggregation and criticism uptake are non-identical", "social diversity is not automatic truth or independence"]
+    },
+    {
+      "id": "F12",
+      "name": "plural_nonwestern_indigenous_local_epistemologies_and_custody",
+      "completed_routes": ["N","C","V","H","P","I","X"],
+      "censored_routes": [{"route":"R","reason":"some community-specific, oral, sacred or custodially governed knowledge is unavailable to ordinary repository research"}],
+      "sources": ["nonwestern-and-plural-epistemologies-pass", "CARE2020", "CARE-FAIR-operationalization-2021", "native-reconstruction-programme"],
+      "dependence": ["public scholarly reconstruction does not replace community-native authority", "traditions must not be averaged into a single alternative epistemology"]
+    },
+    {
+      "id": "F13",
+      "name": "creativity_serendipity_problem_finding_open_endedness",
+      "completed_routes": ["N","C","V","H","P","R","I","X"],
+      "sources": ["Yaqub2018", "March1991", "MAP-Elites2015", "QualityDiversity2016", "opportunity-and-encounter-artifacts"],
+      "dependence": ["serendipity, curiosity and open-ended search share exploration concerns but differ in evaluation", "novelty is never direct scientific support"]
+    },
+    {
+      "id": "F14",
+      "name": "machine_native_evolutionary_collective_nonhuman_intelligence",
+      "completed_routes": ["N","C","V","H","P","R","I","X"],
+      "additional_censored_routes": [{"route":"PROPRIETARY_MODEL_TRAINING","reason":"closed model data, infrastructure and internal experiment histories are unavailable"}],
+      "sources": ["AlphaTensor2022", "AlphaDev2023", "FunSearch2024", "AlphaEvolve2025", "nonhuman-evolutionary-collective-pass"],
+      "dependence": ["several modern systems share foundation-model and automated-evaluator infrastructure", "difference from human traces is secondary to protected value"]
+    },
+    {
+      "id": "F15",
+      "name": "metascience_evaluation_science_of_science_and_pipeline_credibility",
+      "completed_routes": ["N","C","V","H","P","R","I","X"],
+      "additional_censored_routes": [{"route":"PROPRIETARY_BENCHMARK_AND_REVIEW_DATA","reason":"some journal, model-provider and institutional evaluation data are inaccessible"}],
+      "sources": ["FortunatoEtAl2018", "D'AmourEtAl2022", "SambasivanEtAl2021", "McGreivyHakim2024", "publication-readiness-gates"],
+      "dependence": ["pipeline-credibility studies cover different mechanisms and domains", "publication and benchmark observations are vulnerable to selection effects"]
+    },
+    {
+      "id": "F16",
+      "name": "ethics_politics_values_authority_law_and_evidence_to_decision",
+      "completed_routes": ["N","C","V","H","P","R","I","X"],
+      "additional_censored_routes": [{"route":"RESTRICTED_LEGAL_REGULATORY_DELIBERATION","reason":"some institutional deliberations and case materials are confidential"}],
+      "sources": ["GRADE2004", "GRADE-EtD-2018", "GRADE-Core7-2025", "CARE2020", "law-evidence-and-authority-artifacts"],
+      "dependence": ["evidence certainty, recommendation, values and authority are distinct", "domain institutions retain legitimate decision rights"]
+    },
+    {
+      "id": "F17",
+      "name": "research_infrastructure_boundary_objects_semantics_and_epistemic_cultures",
+      "completed_routes": ["N","C","V","H","P","R","I","X"],
+      "additional_censored_routes": [{"route":"PROPRIETARY_INFRASTRUCTURE","reason":"closed laboratory, software and data-platform implementation details remain unavailable"}],
+      "sources": ["boundary-object-and-epistemic-culture-pass", "FAIR2016", "PortischHladikPaulheim", "GrahamThrift2007", "distributed-cognition-artifacts"],
+      "dependence": ["semantic, infrastructural and sociological sources define different relations", "successful API/query execution does not prove semantic equivalence"]
+    },
+    {
+      "id": "F18",
+      "name": "algorithmic_induction_information_mdl_complexity_no_free_lunch",
+      "completed_routes": ["N","C","V","H","P","R","I","X"],
+      "sources": ["Rissanen1978", "Rissanen1987", "Grunwald2007", "Solomonoff-and-no-free-lunch-reconstructions"],
+      "dependence": ["compression, induction and no-free-lunch results rely on representation and prior/problem-class assumptions", "simplicity is not truth or authority"]
+    },
+    {
+      "id": "F19",
+      "name": "numerical_computation_scientific_software_and_oracle_validity",
+      "completed_routes": ["N","C","V","H","P","R","I","X"],
+      "sources": ["Higham2002", "IEEE754-2019", "NASA-STD-7009B", "MetamorphicTesting-lineage", "McGreivyHakim2024"],
+      "dependence": ["numerical stability, model adequacy and oracle adequacy are separable", "validated mathematics does not automatically validate nature"]
+    },
+    {
+      "id": "F20",
+      "name": "uncertainty_forms_imprecise_probability_ignorance_conflict",
+      "completed_routes": ["N","C","V","H","P","R","I","X"],
+      "sources": ["Dempster1967", "Shafer1976", "Walley1991", "Walley2000", "deep-uncertainty-pass"],
+      "dependence": ["uncertainty formalisms use different conditioning and decision semantics", "precise probability is not always warranted and imprecision is not universally optimal"]
+    },
+    {
+      "id": "F21",
+      "name": "interfield_unification_reduction_emergence_metatheory_and_absorptive_synthesis",
+      "completed_routes": ["N","C","V","H","P","R","I","X"],
+      "sources": ["interfield-unification-pass-I", "foundation-upward-synthesis-gate-v3", "F0-F3-blueprints", "theory-dominance-reference"],
+      "dependence": ["unification and reduction traditions disagree on the possibility and form of higher theory", "theory superiority requires prospective dominance, not vocabulary coverage"]
+    },
+    {
+      "id": "F22",
+      "name": "adversarial_security_privacy_and_epistemic_integrity",
+      "completed_routes": ["N","C","V","H","P","R","I","X"],
+      "additional_censored_routes": [{"route":"UNDISCLOSED_RED_TEAM_AND_INCIDENT_DATA","reason":"some attack, incident and mitigation evidence is security-sensitive or proprietary"}],
+      "sources": ["BarrenoEtAl2010", "NIST-AI-100-2E2025", "GreshakeEtAl2023", "DworkEtAl2006", "NIST-SP-800-218A"],
+      "dependence": ["standards/taxonomies are authoritative practice sources, not proof of universal defense efficacy", "security and scientific validity are coupled but non-equivalent"]
+    }
+  ],
+  "additional_censored_route_count": 6,
+  "open_route_count": 0,
+  "declared_family_count": 22,
+  "required_route_coverage_complete": true,
+  "source_dependence_notes_complete_for_internal_synthesis": true,
+  "external_independent_source_audit_complete": false,
+  "authority": {
+    "internal_synthesis_allowed_by_route_coverage": true,
+    "external_demarcation_ready": false,
+    "foundation_frozen": false,
+    "field_founded": false,
+    "scientific_truth": false,
+    "novelty": false,
+    "publication_ready": false
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "arm_id": "SAME_MODEL_REFLECTION",
+  "assumptions": [
+    "`ABCMultiIndex` is already imported in `pandas/core/indexing.py`.",
+    "A Series `.at` key for a MultiIndex must be passed to `_get_value` and `_set_value` as one tuple label."
+  ],
+  "diagnosis": "For a one-dimensional Series with a MultiIndex, `series.at[1, 3]` arrives as `(1, 3)`, which is one composite row label, not two Series axes. `_ScalarAccessIndexer` expands it as two positional arguments, causing the getter's duplicate `takeable` argument and the setter's indexer-count error.",
+  "discriminator_or_tests": [
+    "Apply the patch, then run `pytest pandas/tests/indexing/test_scalar.py::test_multiindex_at_get pandas/tests/indexing/test_scalar.py::test_multiindex_at_set -q`.",
+    "Also run the nearby tuple-index scalar-access tests in `pandas/tests/indexing/test_scalar.py` to distinguish MultiIndex tuple labels from ordinary tuple-index labels."
+  ],
+  "falsifier": "If wrapping the key causes `series.at[(1, 3)]` on a MultiIndex to resolve a different label or causes the targeted getter/setter tests to fail, this key-normalization hypothesis is false.",
+  "field_status_authorized": false,
+  "metabolic_stages": {
+    "ABSORB": "Preserved existing DataFrame and non-MultiIndex behavior by guarding on `self.ndim == 1` and `ABCMultiIndex`.",
+    "ASSIMILATE_OR_RECYCLE": "Revised the direct repair to normalize in both `_AtIndexer.__getitem__` and `__setitem__`; no execution was performed.",
+    "CHALLENGE": "Critiqued the repair for accidental DataFrame and ordinary Index changes; the guard excludes both.",
+    "DECOMPOSE": "Separated the getter argument-expansion failure from the setter dimensionality failure.",
+    "INGEST": "Observed the supplied failures in scalar `.at` access for a Series with a MultiIndex.",
+    "NATIVE_RECONSTRUCT": "Reconstructed `series.at[1, 3]` as the single row label `(1, 3)` for a one-dimensional Series.",
+    "RECOMBINE": "Proposed identical key normalization before the inherited getter and setter paths.",
+    "REDUCE": "Limited the change to `_AtIndexer` and only one-dimensional MultiIndex-backed objects.",
+    "SORT": "Located both failures in `_ScalarAccessIndexer` receiving a composite MultiIndex label as multiple axes."
+  },
+  "proposed_patch_or_artifact": {
+    "content": "diff --git a/pandas/core/indexing.py b/pandas/core/indexing.py\n--- a/pandas/core/indexing.py\n+++ b/pandas/core/indexing.py\n@@ -2052,6 +2052,9 @@ class _AtIndexer(_ScalarAccessIndexer):\n                 raise ValueError(\"Invalid call for scalar access (getting)!\")\n             return self.obj.loc[key]\n \n+        if self.ndim == 1 and isinstance(self.obj.index, ABCMultiIndex):\n+            key = (key,)\n+\n         return super().__getitem__(key)\n \n     def __setitem__(self, key, value):\n@@ -2063,6 +2066,9 @@ class _AtIndexer(_ScalarAccessIndexer):\n             self.obj.loc[key] = value\n             return\n \n+        if self.ndim == 1 and isinstance(self.obj.index, ABCMultiIndex):\n+            key = (key,)\n+\n         return super().__setitem__(key, value)\n",
+    "type": "unified_diff"
+  },
+  "publication_readiness_authorized": false,
+  "requested_authority": "EXECUTION_TEST_ONLY",
+  "resource_receipt": {
+    "executor": "codex-cli",
+    "model": "gpt-5.6-terra",
+    "model_calls": 1,
+    "total_tokens_reported_by_cli": 34793,
+    "wall_time_seconds": 57.05004405975342
+  },
+  "schema_version": "orion.v2.agent-response.v1",
+  "scientific_truth_authorized": false,
+  "source_ids_used": [
+    "gold-blind-solver-workspace"
+  ],
+  "status": "COMPLETED_PROPOSAL_ONLY",
+  "task_id": "bugsinpy-pandas-2",
+  "uncertainty": "The patch was derived by source inspection and the supplied failure trace; no files were edited and no tests were run because the workspace is read-only."
+}

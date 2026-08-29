@@ -1,0 +1,266 @@
+{
+  "schema_version": "orion-v2.atomic-claim-ledger.v1",
+  "paper_id": "ME-FLAGSHIP",
+  "manuscript": "papers/drafts/FLAGSHIP_MACHINE_EPISTEMICS_MANUSCRIPT_V2.md",
+  "pipeline_snapshot": "academic-paper-skills@d9466ca770d5864d60318c8220c58478b640c50f",
+  "release_rule": "publication-ready is forbidden while any in-scope assertion is UNRESOLVED, CONTRADICTED, BLOCKED, materially NOT_ASSESSABLE, or only SUPPORTED_INTERNAL",
+  "sources": {
+    "S1": "Wang et al., Scientific discovery in the age of artificial intelligence, Nature 2023, doi:10.1038/s41586-023-06221-2",
+    "S2": "Boiko et al., Autonomous chemical research with large language models, Nature 2023, doi:10.1038/s41586-023-06792-0",
+    "S3": "Szymanski et al., An autonomous laboratory for the accelerated synthesis of inorganic materials, Nature 2023, doi:10.1038/s41586-023-06734-w",
+    "S4": "Rodriques et al., A multi-agent system for automating scientific discovery, Nature 2026, doi:10.1038/s41586-026-10652-y",
+    "S5": "Lu et al., Towards end-to-end automation of AI research, Nature 2026, doi:10.1038/s41586-026-10265-5",
+    "S6": "Xin et al., Towards agentic science for advancing scientific discovery, Nature Machine Intelligence 2025, doi:10.1038/s42256-025-01110-x",
+    "S7": "Liu & Ou, Verification-first autonomous catalysis, npj Artificial Intelligence 2026, doi:10.1038/s44387-026-00111-4",
+    "S8": "Rahwan et al., Machine behaviour, Nature 2019, doi:10.1038/s41586-019-1138-y",
+    "S9": "Moss et al., Machine behaviour is old wine in new bottles, Nature 2019, doi:10.1038/d41586-019-03002-8",
+    "S10": "Lazer et al., Computational social science, Science 2009, doi:10.1126/science.1167742",
+    "S11": "Fortunato et al., Science of science, Science 2018, doi:10.1126/science.aao0185",
+    "S12": "Krenn et al., On scientific understanding with artificial intelligence, Nature Reviews Physics 2022, doi:10.1038/s42254-022-00518-3",
+    "S13": "Song et al., A manifesto for Sustainability Robotics, Nature Machine Intelligence 2026, doi:10.1038/s42256-026-01260-6",
+    "S14": "Doyle, A truth maintenance system, Artificial Intelligence 1979, doi:10.1016/0004-3702(79)90008-0",
+    "S15": "de Kleer, An assumption-based TMS, Artificial Intelligence 1986, doi:10.1016/0004-3702(86)90080-9",
+    "S16": "Reiter, A theory of diagnosis from first principles, Artificial Intelligence 1987, doi:10.1016/0004-3702(87)90062-2",
+    "S17": "Russell & Wefald, Principles of metareasoning, Artificial Intelligence 1991, doi:10.1016/0004-3702(91)90015-C",
+    "S18": "W3C PROV-O Recommendation, 2013",
+    "S19": "Perdomo et al., Performative Prediction, ICML 2020, PMLR 119:7599-7609",
+    "S20": "Nature Machine Intelligence AI editorial policy, accessed 2026-08-27",
+    "S21": "Barabasi, Gulbahce & Loscalzo, Network medicine, Nature Reviews Genetics 2011, doi:10.1038/nrg2918",
+    "S22": "Nature Machine Intelligence content types, Perspective guidance, accessed 2026-08-27"
+  },
+  "claims": [
+    {
+      "id": "ME-C001",
+      "text": "AI systems increasingly participate in multi-step scientific processes rather than only isolated prediction tasks.",
+      "class": "literature_synthesis",
+      "support": ["S1", "S2", "S3", "S4", "S5", "S6", "S7"],
+      "status": "VERIFIED",
+      "boundary": "does not imply full autonomous science is reliable or general"
+    },
+    {
+      "id": "ME-C002",
+      "text": "Published systems now connect literature/search, hypothesis generation, experiment or computation, analysis and revision in several scientific settings.",
+      "class": "literature_synthesis",
+      "support": ["S2", "S3", "S4", "S5", "S7"],
+      "status": "VERIFIED",
+      "boundary": "capabilities differ by system and domain; 'connect' does not mean every stage is fully autonomous"
+    },
+    {
+      "id": "ME-C003",
+      "text": "A-Lab integrates computation, literature-derived knowledge, machine/active learning and robotic experiments for inorganic materials synthesis.",
+      "class": "source_claim",
+      "support": ["S3"],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "ME-C004",
+      "text": "Coscientist uses language models with search, code and experimental automation to design, plan and perform chemistry experiments.",
+      "class": "source_claim",
+      "support": ["S2"],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "ME-C005",
+      "text": "Robin connects literature-based hypothesis generation and data analysis in experimental biology.",
+      "class": "source_claim",
+      "support": ["S4"],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "ME-C006",
+      "text": "The AI Scientist demonstrates an end-to-end computational research pipeline spanning idea generation, experimentation, analysis, writing and self-review.",
+      "class": "source_claim",
+      "support": ["S5"],
+      "status": "VERIFIED",
+      "boundary": "the paper's workshop-review result is not treated as proof of general scientific reliability"
+    },
+    {
+      "id": "ME-C007",
+      "text": "Machine Epistemics is defined here as the proposed study and engineering of warranted machine-mediated scientific-state transitions.",
+      "class": "definition",
+      "support": [],
+      "status": "COHERENT_DEFINITION",
+      "boundary": "definition does not establish novelty or field status"
+    },
+    {
+      "id": "ME-C008",
+      "text": "A machine-epistemic episode is proposed as a bounded object containing problem/criterion, scientific state, obligations, actions, resources, evidence/provenance/dependence, evaluators, observations, history and authority.",
+      "class": "definition",
+      "support": [],
+      "status": "COHERENT_DEFINITION",
+      "boundary": "not claimed as a universal ontology"
+    },
+    {
+      "id": "ME-C009",
+      "text": "A successful software/tool execution need not establish the scientific claim for which its output is later used.",
+      "class": "bounded_inference",
+      "support": ["S7", "S18"],
+      "status": "BOUNDED_INFERENCE",
+      "boundary": "formal checker outputs can be decisive when the claim/specification relationship is valid"
+    },
+    {
+      "id": "ME-C010",
+      "text": "Provenance representation can establish lineage/interchange properties without by itself establishing scientific correctness.",
+      "class": "bounded_inference",
+      "support": ["S18"],
+      "status": "BOUNDED_INFERENCE",
+      "boundary": "PROV is not designed as a truth criterion"
+    },
+    {
+      "id": "ME-C011",
+      "text": "Truth-maintenance systems already record reasons for beliefs and revise them after contradictory discoveries.",
+      "class": "source_claim",
+      "support": ["S14", "S15"],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "ME-C012",
+      "text": "Model-based diagnosis already formalizes competing explanations for observed system discrepancies and discriminating measurements.",
+      "class": "source_claim",
+      "support": ["S16"],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "ME-C013",
+      "text": "Rational metareasoning already formalizes selection of computational actions under uncertainty and resource bounds.",
+      "class": "source_claim",
+      "support": ["S17"],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "ME-C014",
+      "text": "Performative prediction formalizes settings in which deploying predictions changes the outcomes/distribution being predicted.",
+      "class": "source_claim",
+      "support": ["S19"],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "ME-C015",
+      "text": "Agentic science and verification-first autonomous science are existing adjacent programmes rather than concepts invented by Machine Epistemics.",
+      "class": "prior_work_boundary",
+      "support": ["S6", "S7"],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "ME-C016",
+      "text": "Machine behaviour was proposed in Nature as an emerging interdisciplinary scientific field concerned with intelligent machines as empirical actors.",
+      "class": "field_history",
+      "support": ["S8"],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "ME-C017",
+      "text": "The machine-behaviour proposal received a published Nature criticism arguing that cybernetics already covered relevant territory.",
+      "class": "field_history",
+      "support": ["S9"],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "ME-C018",
+      "text": "Computational social science was framed around new large-scale digital traces and associated methodological/institutional challenges.",
+      "class": "field_history",
+      "support": ["S10"],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "ME-C019",
+      "text": "Science of science operationalizes a transdisciplinary field through large-scale data on the production of science and searches for universal and domain-specific patterns.",
+      "class": "field_history",
+      "support": ["S11"],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "ME-C020",
+      "text": "Sustainability Robotics was explicitly advocated in Nature Machine Intelligence as a new discipline organized by three principles and two dimensions.",
+      "class": "field_history",
+      "support": ["S13"],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "ME-C021",
+      "text": "Network medicine reframed disease using network-level interdependencies and developed organizing principles/applications from that object.",
+      "class": "field_history",
+      "support": ["S21"],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "ME-C022",
+      "text": "No mature existing field already owns the complete machine-epistemic episode and all proposed composition-level transition decisions.",
+      "class": "novelty_demarcation",
+      "support": ["S8", "S9", "S11", "S14", "S15", "S16", "S17", "S18", "S19"],
+      "status": "UNRESOLVED",
+      "resolution_test": "complete parent-domain and changed-vocabulary demarcation audit; construct information-matched strongest parent composition; seek independent demarcation review"
+    },
+    {
+      "id": "ME-C023",
+      "text": "Cross-layer decisions such as provenance-to-validity, relation-to-reuse, evidence-to-authority and route-stop-to-scientific-closure recur across materially different sciences.",
+      "class": "field_hypothesis",
+      "support": ["S2", "S3", "S4", "S7", "S18"],
+      "status": "BOUNDED_INFERENCE",
+      "boundary": "published examples motivate recurrence; cross-domain protected tests are still required for a strong field claim"
+    },
+    {
+      "id": "ME-C024",
+      "text": "The proposed four control problems provide a coherent organizational framework for Machine Epistemics.",
+      "class": "conceptual_synthesis",
+      "support": [],
+      "status": "COHERENT_DEFINITION",
+      "resolution_test": "blind expert/demarcation review and cross-domain instantiation should test whether the four problems are stable/nonredundant"
+    },
+    {
+      "id": "ME-C025",
+      "text": "Machine Epistemics can produce formal and empirical research questions concerning observability, justified reachability, transport, dependence, selective reopening, escalation and stopping.",
+      "class": "research_agenda",
+      "support": ["S14", "S15", "S16", "S17", "S19"],
+      "status": "BOUNDED_INFERENCE",
+      "boundary": "many individual problems are parent-owned; field-level composition remains unproved"
+    },
+    {
+      "id": "ME-C026",
+      "text": "A distinct Machine Epistemics field should be rejected if strongest parent compositions reproduce the same protected cross-domain decisions.",
+      "class": "demarcation_falsifier",
+      "support": [],
+      "status": "COHERENT_DEFINITION"
+    },
+    {
+      "id": "ME-C027",
+      "text": "Machine Epistemics currently constitutes an established new scientific field.",
+      "class": "field_status",
+      "support": [],
+      "status": "CONTRADICTED",
+      "reason": "the manuscript explicitly proposes a provisional field hypothesis; external scientific/community recognition and protected residual evidence are not yet present"
+    },
+    {
+      "id": "ME-C028",
+      "text": "Nature Machine Intelligence Perspectives are intended for fast-moving/emerging scholarly topics with original forward-looking vision and are peer reviewed.",
+      "class": "target_guidance",
+      "support": ["S22"],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "ME-C029",
+      "text": "Nature Machine Intelligence currently requires human accountability for scholarly content and treats AI as support rather than a replacement for scholarly judgment.",
+      "class": "target_policy",
+      "support": ["S20"],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "ME-C030",
+      "text": "The current flagship is publication-ready for Nature Machine Intelligence.",
+      "class": "readiness",
+      "support": [],
+      "status": "BLOCKED",
+      "resolution_test": "full citation-entailment audit, complete bibliography and contrary literature, conceptual figures, blind review/revision, surface QA, AI-use disclosure, independent demarcation review"
+    }
+  ],
+  "summary": {
+    "verified": 18,
+    "bounded_inference": 5,
+    "coherent_definition": 4,
+    "unresolved": 1,
+    "contradicted": 1,
+    "blocked": 1,
+    "publication_ready": false
+  },
+  "note": "The CONTRADICTED field-status claim is intentionally retained as a hostile assertion that the manuscript must never imply. A full sentence-by-sentence manuscript atomic audit remains required before any simulated-publication-ready terminal."
+}

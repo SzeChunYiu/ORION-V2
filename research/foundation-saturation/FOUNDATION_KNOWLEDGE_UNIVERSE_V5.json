@@ -1,0 +1,123 @@
+{
+  "schema_version": "orion.v2.foundation-knowledge-universe.v5",
+  "canonical_issue": 41,
+  "status": "REOPENED_AFTER_MATERIAL_PASS_K",
+  "inherits_from": [
+    "research/foundation-saturation/FOUNDATION_KNOWLEDGE_UNIVERSE_V2.json",
+    "research/foundation-saturation/FOUNDATION_KNOWLEDGE_UNIVERSE_V3.json",
+    "research/foundation-saturation/FOUNDATION_UPWARD_SYNTHESIS_GATE_V3.md"
+  ],
+  "canonical_pass_sequence": ["H", "I", "J", "K", "L", "M", "N"],
+  "latest_material_pass": "K",
+  "coverage_axes": [
+    "ProblemClass",
+    "EpistemicFunction",
+    "Representation",
+    "SourceMode",
+    "AcquisitionMode",
+    "ActorTopology",
+    "TemporalScale",
+    "FailureMode",
+    "EvaluationMode",
+    "AuthorityRegime",
+    "Domain",
+    "HistoricalEpoch",
+    "EpistemicPractice",
+    "MachineAffordance",
+    "AdversarialCondition"
+  ],
+  "required_routes": [
+    "native_primary",
+    "canonical_reconstruction",
+    "changed_vocabulary",
+    "historical_ancestry",
+    "hostile_parent",
+    "remote_practice",
+    "implementation_artifact",
+    "cross_domain_contradiction"
+  ],
+  "families": [
+    {"family_id":"F01","name":"formal_learning_reliable_inquiry_identifiability","status":"ACTIVE"},
+    {"family_id":"F02","name":"belief_change_truth_maintenance_diagnosis","status":"ACTIVE"},
+    {"family_id":"F03","name":"control_decision_metareasoning_deep_uncertainty","status":"ACTIVE"},
+    {"family_id":"F04","name":"experimentation_testing_measurement_calibration","status":"ACTIVE"},
+    {"family_id":"F05","name":"models_mechanisms_explanation_representation","status":"ACTIVE"},
+    {"family_id":"F06","name":"automated_scientific_discovery_and_reasoning_history","status":"ACTIVE"},
+    {"family_id":"F07","name":"abstraction_relation_transport_comparability","status":"ACTIVE"},
+    {"family_id":"F08","name":"evidence_provenance_dependence_replication_argument","status":"ACTIVE"},
+    {"family_id":"F09","name":"cognition_metacognition_memory_attention_insight","status":"ACTIVE"},
+    {"family_id":"F10","name":"situated_embodied_distributed_practical_knowledge","status":"ACTIVE"},
+    {"family_id":"F11","name":"social_institutional_epistemology_testimony_participation","status":"ACTIVE"},
+    {"family_id":"F12","name":"plural_nonwestern_indigenous_local_epistemologies_and_custody","status":"ACTIVE"},
+    {"family_id":"F13","name":"creativity_serendipity_problem_finding_open_endedness","status":"ACTIVE"},
+    {"family_id":"F14","name":"machine_native_evolutionary_collective_nonhuman_intelligence","status":"ACTIVE"},
+    {"family_id":"F15","name":"metascience_evaluation_science_of_science_and_pipeline_credibility","status":"ACTIVE"},
+    {"family_id":"F16","name":"ethics_politics_values_authority_law_and_evidence_to_decision","status":"ACTIVE"},
+    {"family_id":"F17","name":"research_infrastructure_boundary_objects_semantics_and_epistemic_cultures","status":"ACTIVE"},
+    {"family_id":"F18","name":"algorithmic_induction_information_mdl_complexity_no_free_lunch","status":"ACTIVE"},
+    {"family_id":"F19","name":"numerical_computation_scientific_software_and_oracle_validity","status":"ACTIVE_AFTER_PASS_J"},
+    {"family_id":"F20","name":"uncertainty_forms_imprecise_probability_ignorance_conflict","status":"ACTIVE_AFTER_PASS_J"},
+    {
+      "family_id":"F21",
+      "name":"interfield_unification_reduction_emergence_metatheory_and_absorptive_synthesis",
+      "status":"ACTIVE_AFTER_PASS_I",
+      "native_questions":[
+        "When does a higher-level theory genuinely recover and improve its parent theories rather than rename them?",
+        "How are reduction, emergence, bridge laws, interfield relations and domain federation represented?",
+        "Which dominance tests distinguish a superior supertheory from a broad catalogue or integration architecture?"
+      ]
+    },
+    {
+      "family_id":"F22",
+      "name":"adversarial_security_privacy_and_epistemic_integrity",
+      "status":"ACTIVE_AFTER_PASS_K",
+      "native_questions":[
+        "How can machine-mediated scientific inquiry preserve confidentiality, integrity and availability under strategic attack?",
+        "How do poisoning, evasion, backdoors, prompt injection, supply-chain compromise and privacy attacks affect scientific commitments?",
+        "How should threat models, secure provenance, disclosure guarantees, utility loss and post-compromise reopening be represented?"
+      ],
+      "parent_examples":[
+        "computer and software security",
+        "adversarial machine learning",
+        "privacy and differential privacy",
+        "cryptography and attestation",
+        "secure development and supply-chain assurance",
+        "agent/tool security",
+        "Byzantine and intrusion-resilient systems"
+      ]
+    }
+  ],
+  "declared_family_count": 22,
+  "latest_material_additions": [
+    "INTERFIELD_UPWARD_SYNTHESIS_AND_THEORY_DOMINANCE",
+    "COMPUTATIONAL_VALIDITY_ORACLE_ADEQUACY_UNCERTAINTY_FORMS_GOVERNED_DATA_PARTICIPATION_UNDERSPECIFICATION",
+    "ADVERSARIAL_EPISTEMIC_INTEGRITY_PROMPT_INJECTION_SUPPLY_CHAIN_PRIVACY"
+  ],
+  "post_material_clean_passes": {
+    "required": 3,
+    "current": 0,
+    "must_follow_pass": "K",
+    "required_independent_families": [
+      "human_social_practice_plural_epistemic",
+      "machine_native_nonhuman_open_ended",
+      "remote_domain_naturalistic_restoration"
+    ]
+  },
+  "closure": {
+    "all_lanes_reconstructed_or_censored": false,
+    "primitive_ownership_cards_complete": false,
+    "strongest_parent_products_complete": false,
+    "source_dependence_ledger_complete": false,
+    "contradiction_ledger_complete": false,
+    "leave_one_family_out_complete": false,
+    "external_hostile_review_complete": false,
+    "internal_synthesis_allowed": false
+  },
+  "authority": {
+    "foundation_frozen": false,
+    "field_authority": false,
+    "scientific_truth": false,
+    "novelty": false,
+    "publication_authority": false
+  }
+}

@@ -1,0 +1,69 @@
+name: wave6-scientific-development-sources
+
+on:
+  push:
+    branches:
+      - research/wave6-contraction-closure-20260827
+    paths:
+      - "src/orion_v2/scientific_development_sources.py"
+      - "scripts/assemble_scientific_development_episodes.py"
+      - "tests/unit/test_scientific_development_sources_wave6.py"
+      - ".github/workflows/wave6-scientific-development-sources.yml"
+  pull_request:
+    paths:
+      - "src/orion_v2/scientific_development_sources.py"
+      - "scripts/assemble_scientific_development_episodes.py"
+      - "tests/unit/test_scientific_development_sources_wave6.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scientific-development-sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install package and tests
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e . pytest
+      - name: Compile source contracts
+        run: |
+          python -m py_compile src/orion_v2/scientific_development_sources.py
+          python -m py_compile scripts/assemble_scientific_development_episodes.py
+      - name: Run source-contract tests
+        run: python -m pytest -q tests/unit/test_scientific_development_sources_wave6.py
+      - name: Exercise explicit witness assembly
+        run: |
+          cat > /tmp/observations.jsonl <<'EOF'
+          {"observation_id":"o1","trajectory_id":"t1","domain_id":"math","epoch_id":"2020s","source_mode_id":"papers","ordinal":0,"kind":"METHOD_OR_REPRESENTATION","action_feature_ids":["change_representation"],"source_ids":["paper-a"],"proxy_metrics":{"citations":100000}}
+          {"observation_id":"o2","trajectory_id":"t2","domain_id":"physics","epoch_id":"2020s","source_mode_id":"software","ordinal":0,"kind":"EXPERIMENT_OR_COMPUTATION","action_feature_ids":["run_test"],"source_ids":["repo-a"]}
+          EOF
+          cat > /tmp/outcomes.jsonl <<'EOF'
+          {"trajectory_id":"t2","outcome_class":"VALIDATED_FAILURE","witness_ids":["correction-record"]}
+          EOF
+          python scripts/assemble_scientific_development_episodes.py \
+            --observation /tmp/observations.jsonl \
+            --outcome-binding /tmp/outcomes.jsonl \
+            --output /tmp/episodes.jsonl \
+            --receipt /tmp/assembly.json
+          python scripts/build_scientific_development_corpus.py \
+            --input /tmp/episodes.jsonl \
+            --output /tmp/corpus.json \
+            --receipt /tmp/corpus-receipt.json
+          python - <<'PY'
+          import json
+          rows=[json.loads(x) for x in open('/tmp/episodes.jsonl') if x.strip()]
+          by_id={x['episode_id']:x for x in rows}
+          assert by_id['t1']['outcome_class'] == 'UNKNOWN'
+          assert by_id['t2']['outcome_class'] == 'VALIDATED_FAILURE'
+          assert by_id['t1']['proxy_metrics']['o1:citations'] == 100000.0
+          receipt=json.load(open('/tmp/assembly.json'))
+          assert receipt['citation_or_fame_infers_outcome'] is False
+          assert all(v is False for v in receipt['authority'].values())
+          PY

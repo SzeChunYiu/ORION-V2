@@ -1,0 +1,41 @@
+{
+  "schema_version": "orion.v2.e30-task-deficit-correction.v1",
+  "status": "FROZEN_PRE_OUTCOME_INFRASTRUCTURE_CORRECTION",
+  "bugsinpy_commit": "11c5f1eea954a42132cfd06bf257766a7963e0fd",
+  "benchmark_id": "bugsinpy",
+  "projects_in_frozen_order": [
+    "ansible",
+    "black",
+    "cookiecutter",
+    "fastapi",
+    "pandas",
+    "scrapy",
+    "tornado",
+    "tqdm"
+  ],
+  "original_bugs_per_project": 5,
+  "original_discovered_task_count": 39,
+  "required_task_count": 40,
+  "observed_project_counts": {
+    "ansible": 5,
+    "black": 5,
+    "cookiecutter": 4,
+    "fastapi": 5,
+    "pandas": 5,
+    "scrapy": 5,
+    "tornado": 5,
+    "tqdm": 5
+  },
+  "deficit": 1,
+  "top_up_rule": "iterate projects in frozen order, then unused numeric bug ids in ascending order",
+  "added_task_ids": [
+    "bugsinpy-ansible-6"
+  ],
+  "corrected_task_count": 40,
+  "correction_scope": "task identity only; arms, repetitions, outcomes and analysis remain unchanged",
+  "gold_or_fixed_content_accessed": false,
+  "arm_outcomes_accessed": false,
+  "scientific_truth_authorized": false,
+  "field_status_authorized": false,
+  "publication_readiness_authorized": false
+}

@@ -1,0 +1,66 @@
+name: wave6-formalism-genesis
+
+on:
+  push:
+    branches:
+      - research/wave6-contraction-closure-20260827
+    paths:
+      - "src/orion_v2/formalism_genesis.py"
+      - "tests/unit/test_formalism_genesis_wave6.py"
+      - "research/foundation-saturation/FORMALISM_GENESIS_AND_BREAKTHROUGH_CONCEPTUAL_DEVELOPMENT_AMENDMENT_V1.md"
+      - "research/experiments/FORMALISM_GENESIS_PROTOCOL_V1.json"
+      - "research/experiments/FORMALISM_GENESIS_BACKLOG_V1.json"
+      - "papers/formalism/*FORMALISM_GENESIS*"
+      - ".github/workflows/wave6-formalism-genesis.yml"
+  pull_request:
+    paths:
+      - "src/orion_v2/formalism_genesis.py"
+      - "tests/unit/test_formalism_genesis_wave6.py"
+      - "research/foundation-saturation/FORMALISM_GENESIS_AND_BREAKTHROUGH_CONCEPTUAL_DEVELOPMENT_AMENDMENT_V1.md"
+      - "research/experiments/FORMALISM_GENESIS_PROTOCOL_V1.json"
+      - "research/experiments/FORMALISM_GENESIS_BACKLOG_V1.json"
+      - "papers/formalism/*FORMALISM_GENESIS*"
+      - ".github/workflows/wave6-formalism-genesis.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  formalism-genesis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -e . pytest
+      - name: Compile reference semantics
+        run: python -m py_compile src/orion_v2/formalism_genesis.py
+      - name: Run formalism-genesis tests
+        run: python -m pytest -q tests/unit/test_formalism_genesis_wave6.py
+      - name: Validate prospective protocol
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          protocol = json.loads(Path('research/experiments/FORMALISM_GENESIS_PROTOCOL_V1.json').read_text())
+          assert protocol['status'] == 'PROSPECTIVE_PROTOCOL_NO_RESULTS'
+          assert protocol['frozen_before_fg_outcome_access'] is True
+          assert protocol['studies'][0]['id'] == 'FG10'
+          assert protocol['studies'][-1]['id'] == 'FG90'
+          assert 'STRONGEST_DOMAIN_FORMAL_PARENT' in protocol['arms']
+          assert 'LOCAL_PATCH_OR_EXTRA_VARIABLE' in protocol['arms']
+          assert all(value is False for value in protocol['authority'].values())
+          backlog = json.loads(Path('research/experiments/FORMALISM_GENESIS_BACKLOG_V1.json').read_text())
+          assert backlog['status'] == 'PROSPECTIVE_BACKLOG'
+          assert backlog['tasks'][0]['id'] == 'FG00'
+          assert backlog['tasks'][-1]['id'] == 'FG90'
+          for path in (
+              'papers/formalism/FLAGSHIP_FORMALISM_GENESIS_BOX_V1.md',
+              'papers/formalism/P_A_FORMALISM_GENESIS_EXTENSION_V1.md',
+              'papers/formalism/P_B_FORMALISM_GENESIS_EXTENSION_V1.md',
+              'papers/formalism/P_C_FORMALISM_GENESIS_EXTENSION_V1.md',
+          ):
+              assert Path(path).is_file()
+          PY

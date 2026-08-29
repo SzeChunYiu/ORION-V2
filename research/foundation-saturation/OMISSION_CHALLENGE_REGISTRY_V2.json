@@ -1,0 +1,129 @@
+{
+  "schema_version": "orion.v2.foundation-omission-challenge-registry.v2",
+  "status": "OPEN_FOUNDATION_SATURATION",
+  "issue_number": 41,
+  "branch": "research/wave6-contraction-closure-20260827",
+  "inherits_from": "research/foundation-saturation/OMISSION_CHALLENGE_REGISTRY_V1.json",
+  "inherited_challenge_ids": [
+    "OC-01",
+    "OC-02",
+    "OC-03",
+    "OC-04",
+    "OC-05",
+    "OC-06",
+    "OC-07",
+    "OC-08",
+    "OC-09",
+    "OC-10",
+    "OC-11",
+    "OC-12",
+    "OC-13",
+    "OC-14",
+    "OC-15",
+    "OC-16",
+    "OC-17",
+    "OC-18"
+  ],
+  "latest_material_addition": "DISTRIBUTED_CONSENSUS__FORMAL_ARGUMENTATION__DEEP_UNCERTAINTY__EVIDENCE_TO_DECISION",
+  "authority": {
+    "grants_foundation_freeze": false,
+    "grants_kernel_change": false,
+    "grants_field_status": false,
+    "grants_scientific_truth": false,
+    "grants_novelty": false,
+    "grants_publication_readiness": false
+  },
+  "new_challenges": [
+    {
+      "challenge_id": "OC-19-CONSENSUS-TRUTH",
+      "name": "agreement is not scientific truth",
+      "question": "Are multi-agent agreement, replicated logs or protocol validity being promoted into scientific correctness?",
+      "axes_varied": [
+        "actor_topology",
+        "fault_model",
+        "synchrony",
+        "evaluation_mode"
+      ],
+      "required_output": "fault/synchrony model, safety-liveness-validity-scientific-correctness separation, and hostile agreement-on-falsehood case",
+      "success_condition": "Consensus or consistency never substitutes for independent scientific validation; safe nontermination/CANNOT_CHECK remains permitted.",
+      "state": "OPEN"
+    },
+    {
+      "challenge_id": "OC-20-ARGUMENT-SEMANTICS",
+      "name": "formal acceptability is not premise or scientific validity",
+      "question": "Does an assurance or argumentation graph hide false premises, circularity, preference dependence or multiple unresolved extensions?",
+      "axes_varied": [
+        "argument_semantics",
+        "attack_type",
+        "preference_rule",
+        "evidence_validity"
+      ],
+      "required_output": "structured argument graph, semantics/extensions, premise/evidence audit, defeaters and unresolved terminal",
+      "success_condition": "Argument acceptance is never promoted beyond its premises, rules, preferences, evidence and authority roots.",
+      "state": "OPEN"
+    },
+    {
+      "challenge_id": "OC-21-DEEP-UNCERTAINTY",
+      "name": "trusted probability-model assumption",
+      "question": "Does the controller optimize one probability model when models, probabilities, objectives or futures are deeply contested?",
+      "axes_varied": [
+        "uncertainty_type",
+        "scenario_family",
+        "resource_regime",
+        "adaptation_path"
+      ],
+      "required_output": "expected-utility, robust/minimax-regret and adaptive-pathway arms with signposts, triggers, lock-in and cost",
+      "success_condition": "The chosen policy exposes which uncertainty model justifies it and preserves adaptation when no unique posterior is warranted.",
+      "state": "OPEN"
+    },
+    {
+      "challenge_id": "OC-22-EVIDENCE-TO-DECISION",
+      "name": "evidence certainty is not recommendation or authority",
+      "question": "Are evidence certainty, effect magnitude, values, resources, equity, feasibility, recommendation and legitimate decision rights being collapsed?",
+      "axes_varied": [
+        "evidence_certainty",
+        "value_context",
+        "resource_context",
+        "authority_regime"
+      ],
+      "required_output": "evidence profile, contextual decision criteria, authority root, recommendation/adoption status and monitoring plan",
+      "success_condition": "The machine reports evidence and conditional consequences without silently selecting values, recommendation strength or mandate.",
+      "state": "OPEN"
+    }
+  ],
+  "post_material_addition_pass_requirement": {
+    "minimum_passes": 3,
+    "required_independent_families": [
+      "formal_statistical_systems",
+      "human_social_practice_plural_epistemic",
+      "machine_native_nonhuman_remote_domain"
+    ],
+    "current_count_after_latest_material_addition": 0,
+    "counter_reset_reason": "Pass 02 added four mature parent lanes and new strongest-parent obligations."
+  },
+  "synthesis_moratorium": {
+    "active": true,
+    "prohibits": [
+      "new_kernel_family_by_naming",
+      "new_foundation_law_before_atlas_contraction",
+      "new_standalone_paper_before_residual_evidence",
+      "flagship_final_foundation_rewrite",
+      "citation_breadth_as_saturation"
+    ],
+    "allows": [
+      "native_reconstruction",
+      "ownership_contraction",
+      "strongest_parent_binding",
+      "benchmark_design",
+      "contradiction_resolution",
+      "explicit_cannot_check"
+    ]
+  },
+  "current_terminal": {
+    "foundation_saturation": "OPEN",
+    "foundation_synthesis": "BLOCKED_PENDING_ATLAS_AND_POST_MATERIAL_PASSES",
+    "field_foundation_frozen": false,
+    "post_material_no_new_coordinate_count": 0,
+    "literal_human_knowledge_saturation": "NOT_CLAIMABLE"
+  }
+}

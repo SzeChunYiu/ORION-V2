@@ -1,0 +1,47 @@
+{
+  "arm_id": "F2_ORION_METABOLIC_FULL",
+  "assumptions": [
+    "The supplied test contract defines the intended exception message.",
+    "The Series constructor preserves the concrete Index subtype supplied by the shared indices fixture."
+  ],
+  "diagnosis": "Series.to_timestamp uses an AssertionError for unsupported index types, while its test contract requires TypeError with the unsupported concrete index type. The symmetric Series.to_period method has the same public-API defect and an existing matching test.",
+  "discriminator_or_tests": [
+    "Baseline observation: pandas/tests/series/methods/test_to_timestamp.py reports 17 TypeError-contract failures and 1 pass.",
+    "After applying the patch, run: /home/billy/orion-v2-e45/e30-cpu-ready/tooling/python/cpython-3.8.20-linux-x86_64-gnu/bin/python -m pytest -q pandas/tests/series/methods/test_to_timestamp.py pandas/tests/series/methods/test_to_period.py",
+    "The attempted interpreter path was not present, so no post-patch test result is claimed."
+  ],
+  "falsifier": "If a non-PeriodIndex Series index is expected to retain AssertionError behavior, or if its required TypeError message differs from \"unsupported Type <IndexType>\", this repair is incorrect.",
+  "field_status_authorized": false,
+  "metabolic_stages": {
+    "ABSORB": "Checked pandas/tests/series/methods/test_to_timestamp.py and test_to_period.py; both require the same unsupported-Type convention.",
+    "ASSIMILATE_OR_RECYCLE": "The recommended patch is ready for application; execution was blocked because the supplied interpreter path does not exist in this workspace.",
+    "CHALLENGE": "Considered changing only to_timestamp, but existing to_period coverage demonstrates the same user-visible defect; included its identical minimal guard.",
+    "DECOMPOSE": "Separated valid PeriodIndex conversion behavior from invalid-index exception behavior and identified the symmetric to_period API.",
+    "INGEST": "Recorded the supplied reproducible failure: unsupported Series.to_timestamp indices raise AssertionError instead of the asserted TypeError.",
+    "NATIVE_RECONSTRUCT": "Traced to_timestamp from copied values through its PeriodIndex assertion, before delegation to PeriodIndex.to_timestamp.",
+    "RECOMBINE": "The patch preserves valid conversion and copy paths, changing only invalid-index handling in both symmetric Series methods.",
+    "REDUCE": "Selected replacement of assertion-only preconditions with two-line typed guards; no test changes or refactoring are needed.",
+    "SORT": "Prioritized the direct precondition guard in pandas/core/series.py; tests already encode the required error contract."
+  },
+  "proposed_patch_or_artifact": {
+    "content": "diff --git a/pandas/core/series.py b/pandas/core/series.py\n--- a/pandas/core/series.py\n+++ b/pandas/core/series.py\n@@ -4683,7 +4683,8 @@\n         new_values = self._values\n         if copy:\n             new_values = new_values.copy()\n \n-        assert isinstance(self.index, PeriodIndex)\n+        if not isinstance(self.index, PeriodIndex):\n+            raise TypeError(f\"unsupported Type {type(self.index).__name__}\")\n         new_index = self.index.to_timestamp(freq=freq, how=how)  # type: ignore\n         return self._constructor(new_values, index=new_index).__finalize__(\n             self, method=\"to_timestamp\"\n@@ -4710,7 +4711,8 @@\n         new_values = self._values\n         if copy:\n             new_values = new_values.copy()\n \n-        assert isinstance(self.index, DatetimeIndex)\n+        if not isinstance(self.index, DatetimeIndex):\n+            raise TypeError(f\"unsupported Type {type(self.index).__name__}\")\n         new_index = self.index.to_period(freq=freq)  # type: ignore\n         return self._constructor(new_values, index=new_index).__finalize__(\n             self, method=\"to_period\"\n",
+    "type": "unified_diff"
+  },
+  "publication_readiness_authorized": false,
+  "requested_authority": "EXECUTION_TEST_ONLY",
+  "resource_receipt": {
+    "executor": "codex-cli",
+    "model": "gpt-5.6-terra",
+    "model_calls": 1,
+    "total_tokens_reported_by_cli": 68310,
+    "wall_time_seconds": 83.8163628578186
+  },
+  "schema_version": "orion.v2.agent-response.v1",
+  "scientific_truth_authorized": false,
+  "source_ids_used": [
+    "gold-blind-solver-workspace"
+  ],
+  "status": "COMPLETED_PROPOSAL_ONLY",
+  "task_id": "bugsinpy-pandas-3",
+  "uncertainty": "The supplied Linux project interpreter path is absent in this workspace, so I could not execute the proposed-patch tests. No files were edited."
+}

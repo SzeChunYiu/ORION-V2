@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orion.v2.scientific-development-episode.v1",
+  "title": "ORION-V2 Scientific Development Episode",
+  "type": "object",
+  "required": [
+    "episode_id",
+    "domain_id",
+    "epoch_id",
+    "outcome_class",
+    "steps",
+    "source_mode_ids"
+  ],
+  "properties": {
+    "episode_id": {"type": "string", "minLength": 1},
+    "domain_id": {"type": "string", "minLength": 1},
+    "epoch_id": {"type": "string", "minLength": 1},
+    "team_id": {"type": "string"},
+    "institution_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "source_mode_ids": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "outcome_class": {
+      "enum": ["VALIDATED_SUCCESS", "VALIDATED_FAILURE", "PARTIAL", "REDIRECTED", "ABANDONED", "UNKNOWN"]
+    },
+    "outcome_witness_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "proxy_metrics": {
+      "description": "Attention/impact/resource proxies. Never scientific truth labels.",
+      "type": "object",
+      "additionalProperties": {"type": "number"}
+    },
+    "bias_flag_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["step_id", "ordinal", "state_feature_ids", "action_feature_ids"],
+        "properties": {
+          "step_id": {"type": "string", "minLength": 1},
+          "ordinal": {"type": "integer", "minimum": 0},
+          "state_feature_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+          "action_feature_ids": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+          "result_feature_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+          "failure_feature_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+          "source_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+          "validation_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+          "resource_cost": {"type": "number", "minimum": 0}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false,
+  "x-orion-authority": {
+    "citation_or_prize_metric_is_truth_label": false,
+    "absence_of_unpublished_failure_means_no_failure": false,
+    "grants_scientific_truth": false
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "code_commit": "1a2143cffdc85f835b41ce8d52034be1bf903e71",
+  "data_files": {
+    "corum_complexes.txt.zip": {
+      "bytes": 1380819,
+      "sha256": "633df046b3655e9edc1e4ca6f19aad6de8ecaea86e9e242199ca7144685f885c"
+    },
+    "dataset_k562_filtered.npz": {
+      "bytes": 414727664,
+      "sha256": "513d763a466efcbeb9cdd30f219c6162e857035d3af1e7f574dbb7103764c57a"
+    },
+    "dataset_rpe1_filtered.npz": {
+      "bytes": 259094712,
+      "sha256": "a1f728261be13972e6739345dc70db6dde10e6248aef04fa3b2261ffec18d9ba"
+    },
+    "k562.h5ad": {
+      "bytes": 10661879995,
+      "sha256": "3e5a63a9e892b21029bb55fca4e12517a49aad7af6c14133ca63d12cf68c6cee"
+    },
+    "protein.info.txt.gz": {
+      "bytes": 1901833,
+      "sha256": "b0d3ae6cab0059ac08a6a6c53828d61dd3cababf7798ae7d6f922876da7f3ec7"
+    },
+    "protein.links.txt.gz": {
+      "bytes": 115547735,
+      "sha256": "e5acf7c6b657bfbb823630b3065dd1d6baba7176e8e19d11bc199d2814cb9015"
+    },
+    "protein.physical.links.txt.gz": {
+      "bytes": 15120958,
+      "sha256": "869e329126995719305f41d689b0b3157f32e1f0d85a95311c53757d93c4ce2b"
+    },
+    "rpe1.h5ad": {
+      "bytes": 8700873216,
+      "sha256": "9b05ef1f81526216fa008d677e9e0d03dce9a2f7a95499a4fb81e505e9d88ef1"
+    }
+  },
+  "datasets": [
+    "weissmann_k562",
+    "weissmann_rpe1"
+  ],
+  "do_filter": true,
+  "fraction_partial_intervention": 0.5,
+  "held_out_intervention_subset": "native test split",
+  "label_permutation": "CANNOT_CHECK_NOT_IMPLEMENTED_IN_PINNED_NATIVE_CLI",
+  "manifest_command_defects_repaired": [
+    "removed nonexistent --benchmark",
+    "replaced nonexistent --run_name with --exp_id",
+    "subset_data corrected from invalid count 1000 to frozen fraction 0.05",
+    "restored pkg_resources compatibility required by pinned CausalBench via setuptools 80.9.0"
+  ],
+  "max_path_length": -1,
+  "model": "pc",
+  "model_seed": 0,
+  "native_domain_adjudicator": "CANNOT_CHECK_NOT_BOUND",
+  "omission_estimation_size": 500,
+  "outcome_access_during_freeze": "NONE",
+  "partial_intervention_seed": 0,
+  "phase": "E40",
+  "run_id": "e45-e40-native-r1",
+  "schema_version": "orion.v2.execution-run-identity.v1",
+  "subset_data": 0.05,
+  "training_regimes": [
+    "observational",
+    "partial_interventional"
+  ]
+}

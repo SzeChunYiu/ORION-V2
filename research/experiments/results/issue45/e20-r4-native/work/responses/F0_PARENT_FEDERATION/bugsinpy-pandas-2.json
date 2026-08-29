@@ -1,0 +1,47 @@
+{
+  "arm_id": "F0_PARENT_FEDERATION",
+  "assumptions": [
+    "Series.at[1, 3] and Series.at[(1, 3)] are intended to address the single tuple label (1, 3).",
+    "DataFrame.at behavior and iat tuple validation must remain unchanged."
+  ],
+  "diagnosis": "For a one-dimensional Series, both a tuple-valued Index label and a complete MultiIndex label arrive at .at as a tuple. _ScalarAccessIndexer interprets that tuple as separate axis keys, causing getter calls to pass two positional labels plus takeable and setters to reject the key length. _AtIndexer should wrap such a tuple as the single Series-axis label before delegating.",
+  "discriminator_or_tests": [
+    "pandas/tests/indexing/test_scalar.py::test_at_with_tuple_index_set",
+    "pandas/tests/indexing/test_scalar.py::test_multiindex_at_get",
+    "pandas/tests/indexing/test_scalar.py::test_multiindex_at_set"
+  ],
+  "falsifier": "If Series.at is intentionally supposed to treat a tuple as multiple independent axis indexers even when Series.ndim is 1, wrapping the tuple would be incorrect; the supplied failing tests indicate the opposite contract.",
+  "field_status_authorized": false,
+  "metabolic_stages": {
+    "ABSORB": "Preserves two-dimensional DataFrame.at handling and leaves _iAtIndexer unchanged.",
+    "ASSIMILATE_OR_RECYCLE": "Static conclusion retained; no workspace edits or test execution performed.",
+    "CHALLENGE": "Checked that the change handles both an Index of tuples and a MultiIndex Series while avoiding positional iat behavior.",
+    "DECOMPOSE": "Separated the failures into Series.at getter argument binding and setter dimensionality validation.",
+    "INGEST": "Read the supplied failures and inspected only the workspace.",
+    "NATIVE_RECONSTRUCT": "Traced Series._get_value(label, takeable=False), _ScalarAccessIndexer dispatch, and _AtIndexer overrides.",
+    "RECOMBINE": "Proposed matching getter and setter normalization in _AtIndexer.",
+    "REDUCE": "Both failures reduce to converting a tuple key to a one-element tuple containing the label before the scalar base implementation.",
+    "SORT": "Classified both as one-dimensional tuple-label normalization defects in _AtIndexer."
+  },
+  "proposed_patch_or_artifact": {
+    "content": "diff --git a/pandas/core/indexing.py b/pandas/core/indexing.py\n--- a/pandas/core/indexing.py\n+++ b/pandas/core/indexing.py\n@@ -2045,6 +2045,9 @@ class _AtIndexer(_ScalarAccessIndexer):\n         return self.obj.index.is_unique and self.obj.columns.is_unique\n \n     def __getitem__(self, key):\n+        if self.ndim == 1 and isinstance(key, tuple):\n+            key = (key,)\n+\n         if self.ndim == 2 and not self._axes_are_unique:\n             # GH#33041 fall back to .loc\n             if not isinstance(key, tuple) or not all(is_scalar(x) for x in key):\n@@ -2055,6 +2058,9 @@ class _AtIndexer(_ScalarAccessIndexer):\n         return super().__getitem__(key)\n \n     def __setitem__(self, key, value):\n+        if self.ndim == 1 and isinstance(key, tuple):\n+            key = (key,)\n+\n         if self.ndim == 2 and not self._axes_are_unique:\n             # GH#33041 fall back to .loc\n             if not isinstance(key, tuple) or not all(is_scalar(x) for x in key):\n",
+    "type": "unified_diff"
+  },
+  "publication_readiness_authorized": false,
+  "requested_authority": "EXECUTION_TEST_ONLY",
+  "resource_receipt": {
+    "executor": "codex-cli",
+    "model": "gpt-5.6-terra",
+    "model_calls": 1,
+    "total_tokens_reported_by_cli": 33266,
+    "wall_time_seconds": 41.54735207557678
+  },
+  "schema_version": "orion.v2.agent-response.v1",
+  "scientific_truth_authorized": false,
+  "source_ids_used": [
+    "gold-blind-solver-workspace"
+  ],
+  "status": "COMPLETED_PROPOSAL_ONLY",
+  "task_id": "bugsinpy-pandas-2",
+  "uncertainty": "The patch was derived by static source tracing only; tests were not run because this arm is read-only and must not edit files."
+}

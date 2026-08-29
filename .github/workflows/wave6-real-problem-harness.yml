@@ -1,0 +1,191 @@
+name: wave6-real-problem-harness
+
+on:
+  push:
+    branches:
+      - research/wave6-contraction-closure-20260827
+    paths:
+      - "src/orion_v2/knowledge_metabolism.py"
+      - "src/orion_v2/unified_diff_interface.py"
+      - "scripts/run_orion_real_problem_suite.py"
+      - "scripts/run_orion_agent_in_container.py"
+      - "scripts/audit_orion_diff_interface.py"
+      - "scripts/run_orion_generated_composition_suite.py"
+      - "scripts/dispatch_orion_gc1_blinded.py"
+      - "scripts/run_orion_generated_composition_pilot.sh"
+      - "scripts/materialize_orion_solver_workspaces.py"
+      - "scripts/validate_orion_agent_responses.py"
+      - "scripts/evaluate_orion_real_problem_responses_v2.py"
+      - "scripts/analyze_orion_real_problem_results.py"
+      - "scripts/update_paper_claims_from_real_results.py"
+      - "research/experiments/ORION_REAL_PROBLEM_SUITE_V1.json"
+      - "research/experiments/ORION_REAL_PROBLEM_CONFIRMATORY_SUITE_V1.json"
+      - "research/experiments/ORION_GENERATED_COMPOSITION_COUNTERFACTUAL_SUITE_V1.json"
+      - "research/experiments/ORION_REAL_PROBLEM_ANALYSIS_PLAN_V1.md"
+      - "research/experiments/EXECUTION_BACKLOG_V1.json"
+      - "research/experiments/AI_SESSION_EXECUTION_MASTER_HANDOFF_V3.md"
+      - "research/evaluation/E20_PATCH_SERIALIZATION_CONFOUND_AUDIT_V1.md"
+      - "papers/verification/KNOWLEDGE_METABOLISM_CLAIM_EXPERIMENT_LEDGER_V1.json"
+      - "tests/unit/test_knowledge_metabolism_wave6.py"
+      - "tests/unit/test_unified_diff_interface_wave6.py"
+      - "tests/unit/test_generated_composition_suite_wave6.py"
+      - "tests/unit/test_agent_container_adapter_wave6.py"
+      - "tests/unit/test_real_problem_suite_runner_wave6.py"
+      - "tests/unit/test_real_problem_evaluator_analysis_wave6.py"
+      - "tests/unit/test_real_problem_claim_update_wave6.py"
+      - ".github/workflows/wave6-real-problem-harness.yml"
+  pull_request:
+    paths:
+      - "src/orion_v2/knowledge_metabolism.py"
+      - "src/orion_v2/unified_diff_interface.py"
+      - "scripts/run_orion_real_problem_suite.py"
+      - "scripts/run_orion_agent_in_container.py"
+      - "scripts/audit_orion_diff_interface.py"
+      - "scripts/run_orion_generated_composition_suite.py"
+      - "scripts/dispatch_orion_gc1_blinded.py"
+      - "scripts/run_orion_generated_composition_pilot.sh"
+      - "scripts/materialize_orion_solver_workspaces.py"
+      - "scripts/validate_orion_agent_responses.py"
+      - "scripts/evaluate_orion_real_problem_responses_v2.py"
+      - "scripts/analyze_orion_real_problem_results.py"
+      - "scripts/update_paper_claims_from_real_results.py"
+      - "research/experiments/ORION_REAL_PROBLEM_SUITE_V1.json"
+      - "research/experiments/ORION_REAL_PROBLEM_CONFIRMATORY_SUITE_V1.json"
+      - "research/experiments/ORION_GENERATED_COMPOSITION_COUNTERFACTUAL_SUITE_V1.json"
+      - "research/experiments/ORION_REAL_PROBLEM_ANALYSIS_PLAN_V1.md"
+      - "research/experiments/EXECUTION_BACKLOG_V1.json"
+      - "research/experiments/AI_SESSION_EXECUTION_MASTER_HANDOFF_V3.md"
+      - "research/evaluation/E20_PATCH_SERIALIZATION_CONFOUND_AUDIT_V1.md"
+      - "papers/verification/KNOWLEDGE_METABOLISM_CLAIM_EXPERIMENT_LEDGER_V1.json"
+      - "tests/unit/test_knowledge_metabolism_wave6.py"
+      - "tests/unit/test_unified_diff_interface_wave6.py"
+      - "tests/unit/test_generated_composition_suite_wave6.py"
+      - "tests/unit/test_agent_container_adapter_wave6.py"
+      - "tests/unit/test_real_problem_suite_runner_wave6.py"
+      - "tests/unit/test_real_problem_evaluator_analysis_wave6.py"
+      - "tests/unit/test_real_problem_claim_update_wave6.py"
+      - ".github/workflows/wave6-real-problem-harness.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reference-and-handoff:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ORION and test tooling
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e . pytest
+
+      - name: Compile lifecycle, isolation, interface, execution and claim tools
+        run: |
+          python -m py_compile src/orion_v2/knowledge_metabolism.py
+          python -m py_compile src/orion_v2/unified_diff_interface.py
+          python -m py_compile scripts/run_orion_real_problem_suite.py
+          python -m py_compile scripts/run_orion_agent_in_container.py
+          python -m py_compile scripts/audit_orion_diff_interface.py
+          python -m py_compile scripts/run_orion_generated_composition_suite.py
+          python -m py_compile scripts/dispatch_orion_gc1_blinded.py
+          python -m py_compile scripts/materialize_orion_solver_workspaces.py
+          python -m py_compile scripts/validate_orion_agent_responses.py
+          python -m py_compile scripts/evaluate_orion_real_problem_responses_v2.py
+          python -m py_compile scripts/analyze_orion_real_problem_results.py
+          python -m py_compile scripts/update_paper_claims_from_real_results.py
+
+      - name: Run focused reference, isolation, interface, evaluator, analysis and claim tests
+        run: |
+          python -m pytest -q \
+            tests/unit/test_knowledge_metabolism_wave6.py \
+            tests/unit/test_unified_diff_interface_wave6.py \
+            tests/unit/test_generated_composition_suite_wave6.py \
+            tests/unit/test_agent_container_adapter_wave6.py \
+            tests/unit/test_real_problem_suite_runner_wave6.py \
+            tests/unit/test_real_problem_evaluator_analysis_wave6.py \
+            tests/unit/test_real_problem_claim_update_wave6.py
+
+      - name: Validate pilot, confirmatory and fresh-composition manifests
+        run: |
+          python scripts/run_orion_real_problem_suite.py validate
+          python scripts/run_orion_real_problem_suite.py \
+            --manifest research/experiments/ORION_REAL_PROBLEM_CONFIRMATORY_SUITE_V1.json \
+            validate
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          protocol = json.loads(Path("research/experiments/ORION_GENERATED_COMPOSITION_COUNTERFACTUAL_SUITE_V1.json").read_text())
+          assert protocol["status"] == "PROSPECTIVE_SECONDARY_ANTI_COPY_PROTOCOL_NO_RESULTS"
+          assert protocol["task_count"] >= 20
+          assert len(protocol["core_pilot_arms"]) == 4
+          assert protocol["interface_policy"]["raw_end_to_end_result_primary"] is True
+          assert all(value is False for value in protocol["authority"].values())
+          PY
+
+      - name: Validate generated composition task custody without model calls
+        run: |
+          rm -rf /tmp/orion-gc1-ci
+          python scripts/run_orion_generated_composition_suite.py generate \
+            --workdir /tmp/orion-gc1-ci \
+            --task-count 2 \
+            --arms SIMPLE_DIRECT,F2_ORION_METABOLIC_FULL \
+            --seed 20260828
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path('/tmp/orion-gc1-ci')
+          frozen = json.loads((root/'FROZEN_TASKS.json').read_text())
+          assert frozen['task_count'] == 2
+          assert frozen['private_gold_mounted_to_solver'] is False
+          for task in frozen['tasks']:
+              workspace = Path(task['solver_workspace'])
+              assert (workspace/'solver.py').is_file()
+              assert len(list((workspace/'sources').glob('*.md'))) == 4
+          PY
+
+      - name: Validate execution backlog and non-authorizing state
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          backlog = json.loads(Path("research/experiments/EXECUTION_BACKLOG_V1.json").read_text())
+          assert backlog["status"] == "READY_FOR_AI_SESSION_EXECUTION"
+          assert len(backlog["tasks"]) >= 10
+          assert len({item["id"] for item in backlog["tasks"]}) == len(backlog["tasks"])
+          assert all(value is False for value in backlog["authority"].values())
+
+          pilot = json.loads(Path("research/experiments/ORION_REAL_PROBLEM_SUITE_V1.json").read_text())
+          confirm = json.loads(Path("research/experiments/ORION_REAL_PROBLEM_CONFIRMATORY_SUITE_V1.json").read_text())
+          assert pilot["status"] == "PROSPECTIVE_PROTOCOL_NO_RESULTS"
+          assert confirm["status"] == "PROSPECTIVE_CONFIRMATORY_PROTOCOL_NO_RESULTS"
+          assert all(value is False for value in pilot["authority"].values())
+          assert all(value is False for value in confirm["authority"].values())
+          assert {"bugsinpy", "causalbench", "matbench_discovery"} <= {
+              item["benchmark_id"] for item in confirm["benchmarks"]
+          }
+          PY
+
+      - name: Assert evidence-bound claim promotion only
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          ledger = json.loads(
+              Path("papers/verification/KNOWLEDGE_METABOLISM_CLAIM_EXPERIMENT_LEDGER_V1.json").read_text()
+          )
+          assert ledger["status"] == "OPEN_NO_PROTECTED_RESULTS"
+          assert all(value is False for value in ledger["authority"].values())
+          assert not any(
+              item["current_terminal"] == "SUBMISSION_READY"
+              for item in ledger["claims"]
+          )
+          PY

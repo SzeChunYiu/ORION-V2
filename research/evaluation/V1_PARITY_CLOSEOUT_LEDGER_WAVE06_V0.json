@@ -1,0 +1,61 @@
+{
+  "schema_version": "orion.v2.v1-parity-closeout-ledger.v0",
+  "source_census": "provenance/V1_CAPABILITY_CENSUS_V1.json",
+  "source_capability_count": 59,
+  "freeze_commit": "8f250fc3e55d6d6a28fb1fb33d9932ef1a8760b5",
+  "status": "PROTECTED_PARITY_NOT_RUN",
+  "evidence_grades": {
+    "R0": "MAPPED_ONLY",
+    "R1": "REFERENCE_KNOWN_ANSWER",
+    "R2": "INTEGRATED_REFERENCE",
+    "R3": "MATCHED_V1_CONTROL_REQUIRED",
+    "R4": "PROTECTED_PARITY_EARNED"
+  },
+  "family_counts": {
+    "root_and_top_level": 10,
+    "FRAME": 5,
+    "SEARCH": 5,
+    "ABSORB": 6,
+    "RECONSTRUCT": 4,
+    "DETECT": 4,
+    "DIAGNOSE": 4,
+    "REFRAME": 5,
+    "REOPEN": 3,
+    "SATURATE": 5,
+    "CROSS_CUTTING": 8
+  },
+  "campaigns": [
+    {"id":"PARITY-A","families":["FRAME","ROOT"],"kernel":["K0","K4"],"status":"PROTOCOL_REQUIRED","hostile":"unnecessary decomposition/escalation on direct problem"},
+    {"id":"PARITY-B","families":["SEARCH","SATURATE.ROUTE_COVERAGE"],"kernel":["K4","K6"],"status":"HIGH_PRIORITY_PROTOCOL_REQUIRED","hostile":"censored route interpreted as absence"},
+    {"id":"PARITY-C","families":["ABSORB"],"kernel":["K1","K2","K3"],"status":"HIGH_PRIORITY_PROTOCOL_REQUIRED","hostile":"language/parser/mapping erases native context or ambiguity"},
+    {"id":"PARITY-D","families":["RECONSTRUCT"],"kernel":["K1","K2"],"status":"MATCHED_CONTROL_REQUIRED","hostile":"local compatibility with global obstruction"},
+    {"id":"PARITY-E","families":["DETECT","DIAGNOSE"],"kernel":["K1","K4"],"status":"MATCHED_CONTROL_REQUIRED","hostile":"distributed/interaction cause forced into single owner"},
+    {"id":"PARITY-F","families":["REFRAME","REOPEN"],"kernel":["K2","K3","K4","K5"],"status":"MATCHED_CONTROL_REQUIRED","hostile":"higher Jump used when lower repair suffices"},
+    {"id":"PARITY-G","families":["SATURATE"],"kernel":["K6"],"status":"MATCHED_CONTROL_REQUIRED","hostile":"flat growth with incomplete coverage"},
+    {"id":"PARITY-H","families":["CROSS.AUTHORITY","CROSS.REVIEW","CROSS.BENCHMARK","CROSS.EXPERIMENT_SELECTION"],"kernel":["K0","K3","K6"],"status":"HIGH_PRIORITY_PROTOCOL_REQUIRED","hostile":"correlated self-review counted as independent authority"},
+    {"id":"PARITY-I","families":["CROSS.MEMORY","CROSS.EXPERIENCE","CROSS.EXECUTION","CROSS.CONTEXT_POLICY"],"kernel":["K0","K3","K4"],"status":"HIGH_PRIORITY_PROTOCOL_REQUIRED","hostile":"missing memory or failed external effect silently treated as success"}
+  ],
+  "highest_priority_gaps": [
+    "heterogeneous search and retrieval",
+    "scientific-language/claim extraction with native-context preservation",
+    "persistent memory and experience retrieval",
+    "independent/adversarial review execution",
+    "real provider/tool/environment execution and recovery"
+  ],
+  "reference_strengths": [
+    "contract and authority invariants",
+    "context-relative relations and gluing",
+    "non-identifiability and distinguishing probes",
+    "plural responsibility",
+    "exact and stochastic transport",
+    "selective reopening and reticulate inheritance",
+    "performative evaluation",
+    "saturation/coverage semantics"
+  ],
+  "protected_parity_complete": false,
+  "per_cell_scoring_required": true,
+  "family_average_cannot_compensate_lost_cell": true,
+  "grants_v2_closeout": false,
+  "grants_scientific_truth": false,
+  "grants_novelty": false
+}

@@ -1,0 +1,103 @@
+{
+  "schema_version": "orion.v2.recursive-development-component-graph.v1",
+  "status": "REFERENCE_ARCHITECTURE_FROZEN__PROTECTED_COMPUTATION_OPEN",
+  "owner_issue": 50,
+  "governing_issues": [45, 46, 47, 48, 49],
+  "central_rule": "minimum_sufficient_escalation_with_parent_recovery_and_noncompensatory_critical_gates",
+  "layers": [
+    {
+      "level": "L0",
+      "name": "SCIENTIFIC_EPISODE_AND_STATE_TRANSITION",
+      "implementation_surfaces": ["src/orion_v2/contracts.py", "src/orion_v2/closure.py", "src/orion_v2/development_controller.py"],
+      "inputs": ["problem_frame", "obligations", "evidence", "models", "uncertainty", "resources", "authority"],
+      "outputs": ["bounded_scientific_transition_receipt", "unresolved_or_reopen_state"]
+    },
+    {
+      "level": "L1",
+      "name": "KNOWLEDGE_METABOLISM",
+      "implementation_surfaces": ["src/orion_v2/knowledge_metabolism.py"],
+      "inputs": ["source_bound_knowledge"],
+      "outputs": ["decomposed_native_reconstructed_recombined_or_recycled_knowledge"]
+    },
+    {
+      "level": "L2",
+      "name": "TRANSFER_DISCOVERY",
+      "implementation_surfaces": ["src/orion_v2/conceptual_development.py", "src/orion_v2/donors.py", "src/orion_v2/correspondence.py"],
+      "inputs": ["source_bound_donors", "target_structure", "negative_transfer_probes"],
+      "outputs": ["candidate_transfer", "false_analogy_rejection", "parent_sufficiency"]
+    },
+    {
+      "level": "L3",
+      "name": "CONCEPTUAL_DEVELOPMENT",
+      "implementation_surfaces": ["src/orion_v2/conceptual_development.py"],
+      "inputs": ["versioned_concept_state", "anomalies", "counterexamples", "parent_concepts"],
+      "outputs": ["typed_concept_transition", "no_scientific_residual", "protected_conceptual_residual"]
+    },
+    {
+      "level": "L4",
+      "name": "FORMAL_MECHANICS_FEDERATION",
+      "implementation_surfaces": ["src/orion_v2/transfer_formal_mechanics.py"],
+      "inputs": ["native_formal_structures"],
+      "outputs": ["homomorphism_invariance_closure_functor_or_obstruction_witnesses"]
+    },
+    {
+      "level": "L5",
+      "name": "FORMALISM_GENESIS",
+      "implementation_surfaces": ["src/orion_v2/formalism_genesis.py", "src/orion_v2/development_controller.py"],
+      "inputs": ["registered_representational_deficit", "failed_parent_or_local_alternatives"],
+      "outputs": ["candidate_primitive_or_formalism", "predecessor_recovery", "false_formalism_invention_rejection"]
+    },
+    {
+      "level": "L6",
+      "name": "SCIENTIFIC_DEVELOPMENT_OPERATOR_DISCOVERY",
+      "implementation_surfaces": ["src/orion_v2/scientific_development.py"],
+      "inputs": ["source_bound_success_failure_partial_redirected_trajectories", "bias_audit"],
+      "outputs": ["candidate_development_operator_with_preconditions_and_contradictions"]
+    },
+    {
+      "level": "L7",
+      "name": "DEVELOPMENT_META_POLICY",
+      "implementation_surfaces": ["src/orion_v2/development_controller.py", "src/orion_v2/scientific_development.py"],
+      "inputs": ["candidate_operators", "episode_state", "registered_alternatives", "resource_and_authority_budget"],
+      "outputs": ["minimum_sufficient_mode_proposal_or_abstain"]
+    },
+    {
+      "level": "L8_PLUS",
+      "name": "RECURSIVE_HIGHER_ORDER_GENERALIZATION",
+      "implementation_surfaces": ["src/orion_v2/recursive_generalization.py"],
+      "inputs": ["lower_level_abstractions", "strongest_parent", "heldout_domains_epochs", "prospective_decisions"],
+      "outputs": ["higher_level_residual", "parent_sufficiency", "no_higher_level_residual", "recursive_stability_candidate"]
+    }
+  ],
+  "cross_layer_interfaces": {
+    "mode_controller": "src/orion_v2/development_controller.py",
+    "append_only_memory": "FrameworkMemoryLedger",
+    "minimum_sufficient_escalation": true,
+    "formalism_genesis_requires_parent_and_empirical_alternatives": true,
+    "recursive_meta_learning_requires_multiple_episodes_and_lower_level_terminal": true,
+    "domain_specific_lesson_table_allowed": false,
+    "historical_breakthrough_recipe_allowed_as_truth": false,
+    "citation_or_fame_metric_allowed_as_truth_label": false
+  },
+  "scientific_boundaries": {
+    "new_vocabulary_equals_new_science": false,
+    "formal_consistency_equals_empirical_truth": false,
+    "same_model_replication_is_independent": false,
+    "recursive_stability_equals_ultimate_truth": false,
+    "negative_parent_simple_and_cannot_check_terminals_preserved": true
+  },
+  "computation_owners": {
+    "E_series": 45,
+    "FM_and_FG_series": 48,
+    "SD_series": 49,
+    "umbrella_closeout": 50
+  },
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_F2_superiority": false,
+    "grants_foundation_status": false,
+    "grants_recursive_stability": false,
+    "grants_ultimate_truth": false,
+    "grants_submission_readiness": false
+  }
+}

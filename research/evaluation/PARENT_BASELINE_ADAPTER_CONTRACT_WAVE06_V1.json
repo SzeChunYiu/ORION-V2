@@ -1,0 +1,106 @@
+{
+  "schema_version": "orion.v2.parent-baseline-adapter-contract.v1",
+  "contract_id": "ORION-V2-PARENT-BASELINE-ADAPTER-CONTRACT-WAVE06-V1",
+  "status": "ADAPTER_BOUNDARY_FROZEN_IMPLEMENTATIONS_UNBOUND",
+  "purpose": "Prevent the ORION-V2 parity harness from laundering V2 scientific intelligence into a supposedly parent-only baseline while still allowing incompatible parent APIs to consume the same frozen cases/resources.",
+  "global_allowed_operations": [
+    "deserialize the frozen case fixture",
+    "rename or type-convert fields without changing scientific content",
+    "invoke the bound parent implementation using its native documented API",
+    "enforce the frozen resource/time/query/process ceilings",
+    "capture raw parent outputs, errors, timing and side effects",
+    "serialize outputs into a neutral evaluator packet without changing scientific meaning",
+    "map explicit parent-native unknown/error states to neutral CANNOT_CHECK/EXECUTION_FAILED only when the mapping is frozen before outcomes"
+  ],
+  "global_prohibited_operations": [
+    "call ORION-V2 scientific modules or the frozen V2 subject to fill a parent capability gap",
+    "add new retrieval, model, proof, diagnosis, experiment, relation or scientific reasoning unavailable to the bound parent composition",
+    "change the problem, case, criterion, source corpus, evaluator, seed or resource budget",
+    "repair or reinterpret an unfavorable parent output after observing V1/V2 outcomes",
+    "promote missing/failed/censored output into a scientific PASS",
+    "add semantic labels using the adapter author's judgment when the parent did not produce a corresponding native result",
+    "grant scientific, architecture, novelty, adoption or publication authority",
+    "suppress parent errors, retries, timeouts, side effects or resource use"
+  ],
+  "campaign_contracts": [
+    {
+      "campaign_id": "PARITY-A",
+      "parent_input": "frozen problem/framing/decomposition fixture plus matched action/resource opportunities",
+      "parent_output": "workflow/control decisions, state/history and execution status",
+      "adapter_may": ["encode the frozen direct/decomposition options as graph/workflow nodes", "record whether optional decomposition nodes were exercised"],
+      "adapter_may_not": ["decide whether a decomposition is scientifically correct", "invent coupled-constraint reasoning", "infer authority from workflow completion"]
+    },
+    {
+      "campaign_id": "PARITY-B",
+      "parent_input": "frozen route/query/source fixtures and route ceilings",
+      "parent_output": "retrieved items, routing decisions and native errors/stops",
+      "adapter_may": ["bind route IDs to parent components", "preserve source IDs/URIs", "record unexecuted/failed/censored route states from the frozen harness"],
+      "adapter_may_not": ["search outside the frozen fixture", "infer absence from no result", "convert route stop to task saturation"]
+    },
+    {
+      "campaign_id": "PARITY-C",
+      "parent_input": "frozen scientific passage/document and source identifiers",
+      "parent_output": "native extracted structure/entities/references/spans",
+      "adapter_may": ["preserve offsets/spans", "combine GROBID document structure with scispaCy language annotations", "emit unresolved when parent outputs do not identify a unique frozen target"],
+      "adapter_may_not": ["decide C2/C3 scientific equivalence", "normalize ambiguous scientific referents by author judgment", "invent a representation mapping absent from parent output"]
+    },
+    {
+      "campaign_id": "PARITY-D",
+      "parent_input": "frozen graph/state/local-compatibility fixtures",
+      "parent_output": "graph constructions, constraint-validation results and native witnesses",
+      "adapter_may": ["materialize alternate graph candidates already specified by the frozen case", "run graph/constraint checks", "preserve all valid returned candidates"],
+      "adapter_may_not": ["declare the scientific meaning of a portrait", "supply a global obstruction not witnessed by the parent checks or frozen case", "collapse multiple valid portraits for convenience"]
+    },
+    {
+      "campaign_id": "PARITY-E",
+      "parent_input": "frozen fault/responsibility hypotheses, observations and probe opportunity set",
+      "parent_output": "probabilistic diagnostic state and acquisition/experiment-selection result",
+      "adapter_may": ["encode the frozen hypothesis/probe set in PGM/optimization form", "report posterior/acquisition outputs and ties"],
+      "adapter_may_not": ["reveal hidden gold causes", "add a discriminator outside the frozen opportunity set", "convert utility into scientific authority"]
+    },
+    {
+      "campaign_id": "PARITY-F",
+      "parent_input": "frozen artifact/provenance/support/change fixture",
+      "parent_output": "provenance/version relations and native change status",
+      "adapter_may": ["encode frozen entities/activities/agents/versions", "report which declared dependencies changed"],
+      "adapter_may_not": ["claim provenance implies scientific correctness", "invent support-family sufficiency", "select a higher-level reframe using ORION logic"]
+    },
+    {
+      "campaign_id": "PARITY-G",
+      "parent_input": "frozen screening/search route and stopping fixture",
+      "parent_output": "active-learning screening decisions, estimated recall/stopping result and native uncertainty",
+      "adapter_may": ["bind a frozen route to one review instance", "record route-level stop/coverage", "combine only predeclared route outputs for neutral reporting"],
+      "adapter_may_not": ["declare global multi-axis saturation from one route", "hide censored routes", "generate a changed-vocabulary omission challenge not present in the frozen case"]
+    },
+    {
+      "campaign_id": "PARITY-H",
+      "parent_input": "frozen evaluation task/case/criterion/evaluator artifact identities",
+      "parent_output": "task/scorer results, logs and artifact lineage",
+      "adapter_may": ["freeze task/scorer/config versions", "capture blinded packet IDs", "record dependence metadata supplied by the frozen case"],
+      "adapter_may_not": ["treat evaluator score as scientific authority", "declare reviewers independent without the frozen independence disposition", "change criterion after output access"]
+    },
+    {
+      "campaign_id": "PARITY-I",
+      "parent_input": "frozen execution/memory/context request fixtures",
+      "parent_output": "workflow/tool/process results, state/checkpoint history and errors",
+      "adapter_may": ["enforce timeout/output/retry ceilings", "preserve append-only event history", "supply frozen mandatory context to the parent state system"],
+      "adapter_may_not": ["drop mandatory context silently", "convert execution failure into a scientific negative", "delete negative history after a successful successor", "ignore unsupported request fields"]
+    }
+  ],
+  "binding_requirements": [
+    "one exact adapter source artifact per campaign or a shared adapter with campaign-scoped configuration",
+    "Git/content digest for adapter source and configuration",
+    "no imports/calls into ORION-V2 scientific implementation modules except neutral parity schema/fixture utilities explicitly enumerated in the binding receipt",
+    "static/manual audit of prohibited operations",
+    "parent-only known-answer/hostile fit checks before paired outcome access",
+    "matched-resource compliance receipt"
+  ],
+  "authority": {
+    "grants_parent_binding": false,
+    "grants_parent_supremacy": false,
+    "grants_v1_parity": false,
+    "grants_v2_closeout": false,
+    "grants_scientific_truth": false,
+    "grants_novelty": false
+  }
+}

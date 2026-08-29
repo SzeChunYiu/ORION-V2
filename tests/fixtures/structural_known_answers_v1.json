@@ -1,0 +1,29 @@
+{
+  "schema_version": "orion.v2.structural-known-answers.v1",
+  "cases": [
+    {
+      "case_id": "remote-bisimulation",
+      "left_domain": "engineering",
+      "right_domain": "management",
+      "expected_relation": "BEHAVIORALLY_EQUIVALENT",
+      "negative_relations": ["SEMANTIC_IDENTITY"],
+      "description": "A machine transaction and a review process share the same labelled transition behaviour under the registered interface but do not denote the same native objects."
+    },
+    {
+      "case_id": "observational-not-interventional",
+      "left_domain": "causal-inference",
+      "right_domain": "inverse-problems",
+      "expected_relation": "OBSERVATIONALLY_INDISTINGUISHABLE",
+      "distinguishing_probe": "registered intervention",
+      "negative_relations": ["BEHAVIORALLY_EQUIVALENT", "SEMANTIC_IDENTITY"]
+    },
+    {
+      "case_id": "safe-current-unsafe-future-quotient",
+      "left_domain": "statistical-physics",
+      "right_domain": "information-systems",
+      "expected_relation_current": "SAFE_QUOTIENT",
+      "expected_relation_future": "DISTINGUISHED_BY",
+      "description": "A coarse representation preserves a declared current output but destroys a later protected query."
+    }
+  ]
+}

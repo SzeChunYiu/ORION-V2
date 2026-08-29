@@ -1,0 +1,168 @@
+{
+  "schema_version": "orion.v2.knowledge-metabolism-claim-ledger.v1",
+  "status": "OPEN_NO_PROTECTED_RESULTS",
+  "owner_papers": ["FLAGSHIP", "P_A", "P_B", "P_C", "P_D", "P_E", "P_F", "P_G"],
+  "reference_implementation": "src/orion_v2/knowledge_metabolism.py",
+  "real_problem_registry": "research/experiments/ORION_REAL_PROBLEM_SUITE_V1.json",
+  "runner": "scripts/run_orion_real_problem_suite.py",
+  "claims": [
+    {
+      "claim_id": "KM-C1",
+      "claim": "ORION decomposes mixed knowledge inputs into source-bound typed atoms while conserving assumptions, dependence, counterexamples and authority ceilings.",
+      "claim_type": "REFERENCE_SEMANTICS",
+      "paper_mapping": ["P_A", "P_G", "FLAGSHIP"],
+      "current_evidence": [
+        "tests/unit/test_knowledge_metabolism_wave6.py::test_decomposition_merges_equivalent_content_without_erasing_provenance"
+      ],
+      "required_protected_evidence": [
+        "human_or_native_expert_atomization_agreement",
+        "false_merge_and_false_split_rates",
+        "decision_effect_of_atomization"
+      ],
+      "current_terminal": "SUPPORTED_AS_REFERENCE_SEMANTICS_ONLY"
+    },
+    {
+      "claim_id": "KM-C2",
+      "claim": "Native-parent reconstruction and recovery reduce false analogy and unsafe transfer beyond retrieval and passage-level synthesis.",
+      "claim_type": "TESTABLE_EMPIRICAL_HYPOTHESIS",
+      "paper_mapping": ["P_A", "P_B", "P_G"],
+      "comparators": [
+        "RETRIEVAL_ONLY",
+        "F0_PARENT_FEDERATION",
+        "F2_MINUS_NATIVE_RECOVERY"
+      ],
+      "required_cases": [
+        "same_words_different_structure",
+        "different_words_same_structure",
+        "semantic_transport_with_local_exclusion",
+        "competence_or_authority_mismatch"
+      ],
+      "current_terminal": "OPEN"
+    },
+    {
+      "claim_id": "KM-C3",
+      "claim": "The full decomposition–absorption–recombination lifecycle improves executable real-problem success or critical-failure control beyond direct generation, same-model reflection and the strongest parent federation.",
+      "claim_type": "PRIMARY_PROTECTED_HYPOTHESIS",
+      "paper_mapping": ["P_C", "P_G", "FLAGSHIP"],
+      "comparators": [
+        "SIMPLE_DIRECT",
+        "SAME_MODEL_REFLECTION",
+        "F0_PARENT_FEDERATION"
+      ],
+      "required_domains": [
+        "bugsinpy",
+        "causalbench",
+        "matbench_discovery"
+      ],
+      "hard_gates": [
+        "no_critical_false_completion_regression",
+        "no_source_or_authority_failure",
+        "matched_resources",
+        "independent_evaluation"
+      ],
+      "current_terminal": "CANNOT_CHECK_RESULTS_NOT_RUN"
+    },
+    {
+      "claim_id": "KM-C4",
+      "claim": "Mandatory discriminators and falsifiers reduce brittle success and false completion beyond same-model reflection.",
+      "claim_type": "COMPONENT_HYPOTHESIS",
+      "paper_mapping": ["P_C", "P_D", "P_G"],
+      "comparators": [
+        "F2_ORION_METABOLIC_FULL",
+        "F2_MINUS_COUNTERPROBE",
+        "SAME_MODEL_REFLECTION"
+      ],
+      "primary_outcomes": [
+        "hidden_test_pass_rate",
+        "critical_false_completion",
+        "diagnostic_discriminator_value"
+      ],
+      "current_terminal": "OPEN"
+    },
+    {
+      "claim_id": "KM-C5",
+      "claim": "Selective assimilation and reopening preserve valid prior knowledge more accurately than flat overwrite or global restart.",
+      "claim_type": "COMPONENT_HYPOTHESIS",
+      "paper_mapping": ["P_C", "P_D", "P_G"],
+      "comparators": [
+        "F2_ORION_METABOLIC_FULL",
+        "F2_MINUS_SELECTIVE_REOPEN"
+      ],
+      "primary_outcomes": [
+        "selective_reopen_precision",
+        "selective_reopen_recall",
+        "unnecessary_rework",
+        "invalid_commitment_retention"
+      ],
+      "current_terminal": "OPEN"
+    },
+    {
+      "claim_id": "KM-C6",
+      "claim": "ORION component value is contextual: the full lifecycle should lose to simpler methods on direct tasks and win only when its protected distinctions are material.",
+      "claim_type": "EFFICIENCY_AND_SCOPE_HYPOTHESIS",
+      "paper_mapping": ["P_C", "P_G", "FLAGSHIP"],
+      "required_arms": [
+        "SIMPLE_DIRECT",
+        "F0_PARENT_FEDERATION",
+        "F2_ORION_METABOLIC_FULL",
+        "all_F2_MINUS_arms"
+      ],
+      "primary_outcomes": [
+        "quality_cost_pareto",
+        "activation_policy_precision",
+        "redundant_drag_cases",
+        "parent_local_deference"
+      ],
+      "current_terminal": "OPEN"
+    },
+    {
+      "claim_id": "KM-C7",
+      "claim": "ORION can demonstrate machine problem solving not reducible to verbal reproduction by succeeding on gold-blind executable tasks and newly generated counterfactual variants.",
+      "claim_type": "ANTI_COPY_CONVERGENT_EVIDENCE_HYPOTHESIS",
+      "paper_mapping": ["P_F", "P_G", "FLAGSHIP"],
+      "required_controls": [
+        "gold_withheld",
+        "network_off_where_feasible",
+        "new_seeded_permutations",
+        "hidden_tests_or_interventions",
+        "execution_scoring",
+        "retrieval_off_control",
+        "post_outcome_similarity_diagnostic"
+      ],
+      "non_claims": [
+        "cannot_prove_complete_absence_of_training_data_influence",
+        "different_text_is_not_sufficient_evidence_of_intelligence",
+        "correctness_is_not_field_superiority"
+      ],
+      "current_terminal": "OPEN"
+    },
+    {
+      "claim_id": "KM-C8",
+      "claim": "Scientific knowledge metabolism is a distinct paper-scale contribution rather than a restatement of donor discovery, relation transport and obligation-driven control.",
+      "claim_type": "PAPER_IDENTITY_HYPOTHESIS",
+      "paper_mapping": ["P_G"],
+      "survival_requirements": [
+        "protected_gain_beyond_F0",
+        "two_materially_different_domains",
+        "component_attribution",
+        "distinct_thesis_not_recoverable_by_P_A_to_P_D",
+        "resource_matched_value"
+      ],
+      "kill_terminal": "MERGE_INTO_P_A_P_B_P_C_P_D",
+      "current_terminal": "CONTINGENT"
+    }
+  ],
+  "promotion_rule": {
+    "REFERENCE_SEMANTICS": "may be described as implementation behaviour only",
+    "PILOT_EXECUTABLE": "may establish runnability only",
+    "SUPPORTED_IN_BOUNDED_TRANCHE": "requires exact evaluation and resource identities",
+    "GENERAL_CROSS_DOMAIN_CLAIM": "requires at least two naturalistic domains and independent adjudication",
+    "SUBMISSION_READY": "requires PUBLICATION_READINESS_GATE_2026_V2 R4"
+  },
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_novelty": false,
+    "grants_field_status": false,
+    "grants_publication_readiness": false
+  }
+}

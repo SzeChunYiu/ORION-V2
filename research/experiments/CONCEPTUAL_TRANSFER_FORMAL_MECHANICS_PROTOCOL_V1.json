@@ -1,0 +1,145 @@
+{
+  "schema_version": "orion.v2.conceptual-transfer-formal-mechanics.v1",
+  "protocol_id": "ORION-TD-FORMAL-MECHANICS-V1",
+  "status": "PROSPECTIVE_PROTOCOL_NO_RESULTS",
+  "frozen_before_formal_benchmark_outcome_access": true,
+  "central_question": "Can ORION discover and validate transferable mathematical/scientific structure beyond fixed lessons and strongest applicable formal parents while preserving native validity, counterexamples and resource fairness?",
+  "formal_parent_families": [
+    "typed_relational_homomorphism",
+    "structure_mapping",
+    "anti_unification_least_general_generalization",
+    "minimum_description_length",
+    "formal_concept_analysis_galois_closure",
+    "invariance_and_equivariance",
+    "category_functor_naturality_when_applicable",
+    "abstract_interpretation_or_native_abstraction",
+    "finite_model_counterexample_search",
+    "domain_native_theorem_or_model_checker"
+  ],
+  "arms": [
+    "TARGET_ONLY_DIRECT",
+    "SEMANTIC_RETRIEVAL",
+    "FIXED_LESSON_INJECTION",
+    "STRUCTURE_MAPPING_PARENT",
+    "ANTI_UNIFICATION_OR_MDL_PARENT_WHEN_APPLICABLE",
+    "FCA_PARENT_WHEN_APPLICABLE",
+    "STRONGEST_DOMAIN_FORMAL_PARENT",
+    "F0_PARENT_FEDERATION",
+    "F2_STATIC_NO_TRANSFER_DISCOVERY",
+    "F2_TRANSFER_DISCOVERY_FULL"
+  ],
+  "hard_gates": {
+    "critical_type_violation_allowed": false,
+    "critical_relation_violation_allowed": false,
+    "critical_invariant_violation_allowed": false,
+    "counterexample_or_obstruction_may_be_hidden": false,
+    "authority_or_measurement_corruption_allowed": false,
+    "old_valid_case_loss_allowed_for_conceptual_promotion": false,
+    "formal_claim_without_witness_allowed": false,
+    "empirical_claim_from_formal_witness_alone_allowed": false
+  },
+  "noncompensatory_outcome_vector": [
+    "hidden_target_decision_or_theorem_success",
+    "remote_donor_recall",
+    "false_analogy_rate",
+    "native_parent_fidelity",
+    "old_valid_case_retention",
+    "formal_witness_or_countermodel_rate",
+    "resource_cost"
+  ],
+  "studies": [
+    {
+      "id": "FM10",
+      "name": "FINITE_RELATIONAL_MAPPING",
+      "minimum_tasks": 120,
+      "oracle": "exhaustive_type_respecting_mapping_search",
+      "families": ["isomorphism", "partial_homomorphism", "non_homomorphism", "surface_decoy", "direction_reversal", "relation_type_mismatch"],
+      "primary": ["mapping_recovery", "false_transfer", "exact_violation_classification"]
+    },
+    {
+      "id": "FM20",
+      "name": "ANTI_UNIFICATION_AND_GENERALIZATION",
+      "minimum_tasks": 120,
+      "oracle": "generated_symbolic_terms_with_known_lgg_or_parent_solver",
+      "families": ["least_general_pattern", "distractor_regularities", "over_generalization", "under_generalization", "no_valid_common_abstraction"],
+      "primary": ["generalization_correctness", "held_out_instance_prediction", "unnecessary_abstraction"]
+    },
+    {
+      "id": "FM30",
+      "name": "FORMAL_CONCEPT_CLOSURE_AND_REVISION",
+      "minimum_tasks": 96,
+      "oracle": "exact_fca_closure_and_hidden_counterexamples",
+      "families": ["specialize", "split", "merge", "bridge", "no_change"],
+      "primary": ["transition_class", "old_case_retention", "hidden_case_success"]
+    },
+    {
+      "id": "FM40",
+      "name": "INVARIANCE_EQUIVARIANCE_DISCOVERY",
+      "minimum_tasks": 120,
+      "oracle": "generated_finite_transformation_actions",
+      "families": ["invariant", "equivariant", "non_invariant", "surface_only_symmetry", "partial_regime_invariance"],
+      "primary": ["invariant_discovery", "false_invariance", "unseen_transformation_generalization"]
+    },
+    {
+      "id": "FM50",
+      "name": "FUNCTORIALITY_AND_COMMUTING_DIAGRAMS",
+      "minimum_tasks": 96,
+      "oracle": "finite_category_identity_composition_and_diagram_checks",
+      "eligibility": "only cases whose native construction forms the required finite categorical structure",
+      "primary": ["functor_validity", "identity_preservation", "composition_preservation", "false_equivalence"]
+    },
+    {
+      "id": "FM60",
+      "name": "OBSTRUCTION_AND_COUNTEREXAMPLE_SEARCH",
+      "minimum_tasks": 120,
+      "oracle": "finite_model_exhaustive_search_or_proof_witness",
+      "families": ["single_hidden_obstruction", "multiple_obstruction", "no_obstruction", "minimal_counterexample", "misleading_surface_support"],
+      "primary": ["counterexample_found_before_claim", "minimality_when_defined", "false_acceptance"]
+    },
+    {
+      "id": "FM70",
+      "name": "CONTEXTUAL_REGIME_SELECTOR",
+      "design": "Train only on designated development folds using pre-outcome features; compare always-SIMPLE, always-F0, always-F2, and prospectively frozen selector on held-out tasks.",
+      "primary": ["quality_resource_pareto", "simple_task_regression", "missed_complexity_escalation"]
+    },
+    {
+      "id": "FM80",
+      "name": "NATURALISTIC_MATHEMATICS_SCIENCE_TRANSFER",
+      "minimum_domains": 3,
+      "requirements": [
+        "at_least_one_mathematical_or_formal_domain",
+        "at_least_two_materially_distinct_empirical_sciences",
+        "prospective_transfer_hypothesis",
+        "strongest_domain_parent",
+        "independent_adjudication",
+        "formal_witness_for_mathematical_claims",
+        "empirical_evidence_for_empirical_claims"
+      ],
+      "primary": ["decision_change", "formal_or_empirical_validity", "false_transfer", "resource_cost"]
+    }
+  ],
+  "ablation_arms": [
+    "F2_MINUS_RELATIONAL_MAPPING",
+    "F2_MINUS_ABSTRACTION_INDUCTION",
+    "F2_MINUS_INVARIANCE_TEST",
+    "F2_MINUS_OBSTRUCTION_SEARCH",
+    "F2_MINUS_OLD_CASE_RETENTION",
+    "F2_MINUS_PARENT_RECOVERY"
+  ],
+  "kill_or_contraction_conditions": [
+    "strongest formal parent matches F2 at lower cost",
+    "fixed lesson injection matches F2 at lower cost",
+    "formal abstraction increases false analogy or loses native validity",
+    "categorical machinery helps only when the parent category-theoretic method already solves the case",
+    "conceptual transitions fail old-valid-case retention",
+    "formal gains do not transfer to any protected scientific decision",
+    "regime selector cannot outperform always-simple or always-parent policies on held-out tasks"
+  ],
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_F2_superiority": false,
+    "grants_field_status": false,
+    "grants_submission_readiness": false,
+    "grants_journal_acceptance": false
+  }
+}

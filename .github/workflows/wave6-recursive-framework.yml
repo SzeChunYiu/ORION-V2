@@ -1,0 +1,72 @@
+name: wave6-recursive-framework
+
+on:
+  push:
+    branches:
+      - research/wave6-contraction-closure-20260827
+    paths:
+      - "src/orion_v2/development_controller.py"
+      - "tests/unit/test_development_controller_wave6.py"
+      - "scripts/run_recursive_framework_preflight.py"
+      - "research/foundation-saturation/ORION_V2_RECURSIVE_DEVELOPMENT_ARCHITECTURE_V1.md"
+      - "research/foundation-saturation/ORION_V2_RECURSIVE_DEVELOPMENT_COMPONENT_GRAPH_V1.json"
+      - "research/closure/V2_FRAMEWORK_IMPLEMENTATION_COMPLETION_RECEIPT_V1.json"
+      - ".github/workflows/wave6-recursive-framework.yml"
+  pull_request:
+    paths:
+      - "src/orion_v2/development_controller.py"
+      - "tests/unit/test_development_controller_wave6.py"
+      - "scripts/run_recursive_framework_preflight.py"
+      - "research/foundation-saturation/ORION_V2_RECURSIVE_DEVELOPMENT_*"
+      - "research/closure/V2_FRAMEWORK_IMPLEMENTATION_COMPLETION_RECEIPT_V1.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  recursive-framework:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install package and tests
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e . pytest
+      - name: Compile integration surfaces
+        run: |
+          python -m py_compile src/orion_v2/development_controller.py
+          python -m py_compile scripts/run_recursive_framework_preflight.py
+      - name: Run controller tests
+        run: python -m pytest -q tests/unit/test_development_controller_wave6.py
+      - name: Run framework preflight
+        run: |
+          python scripts/run_recursive_framework_preflight.py --output /tmp/framework-preflight.json
+          python - <<'PY'
+          import json
+          value=json.load(open('/tmp/framework-preflight.json'))
+          assert value['status'] == 'REFERENCE_FRAMEWORK_INTEGRATION_PREFLIGHT_ONLY'
+          assert value['layer_count'] == 9
+          assert value['all_reference_checks_pass'] is True
+          assert all(v is False for v in value['authority'].values())
+          PY
+      - name: Validate architecture and completion receipt
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          graph=json.loads(Path('research/foundation-saturation/ORION_V2_RECURSIVE_DEVELOPMENT_COMPONENT_GRAPH_V1.json').read_text())
+          assert graph['status'] == 'REFERENCE_ARCHITECTURE_FROZEN__PROTECTED_COMPUTATION_OPEN'
+          assert [x['level'] for x in graph['layers']] == ['L0','L1','L2','L3','L4','L5','L6','L7','L8_PLUS']
+          assert graph['cross_layer_interfaces']['domain_specific_lesson_table_allowed'] is False
+          assert graph['scientific_boundaries']['recursive_stability_equals_ultimate_truth'] is False
+          receipt=json.loads(Path('research/closure/V2_FRAMEWORK_IMPLEMENTATION_COMPLETION_RECEIPT_V1.json').read_text())
+          assert receipt['status'] == 'REFERENCE_FRAMEWORK_IMPLEMENTATION_COMPLETE__OUTCOME_COMPUTATION_OPEN'
+          assert receipt['integration_rules']['minimum_sufficient_escalation'] is True
+          assert receipt['explicitly_open_science']
+          assert all(v is False for v in receipt['authority'].values())
+          PY

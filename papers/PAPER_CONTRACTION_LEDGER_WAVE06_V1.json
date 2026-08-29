@@ -1,0 +1,82 @@
+{
+  "schema_version": "orion.v2.paper-contraction-ledger.v1",
+  "wave": "06",
+  "status": "PORTFOLIO_CONTRACTION_FROZEN_PUBLICATION_OPEN",
+  "scope": "Freeze programme ownership and merge/delete dispositions only. This does not establish novelty, scientific correctness, final titles/numbers, venue fitness or publication authority.",
+  "portfolio": {
+    "P-A": {
+      "role": "structural donor discovery, reduction and conservative generalization methods",
+      "absorbs": ["C01", "C03", "C11"],
+      "standalone_candidate_anchor": "C01",
+      "open_scientific_gate": "incremental value over strongest donor-search/reduction/generalization parent composition"
+    },
+    "P-B": {
+      "role": "context-relative structural relations, comparability and transport",
+      "absorbs": ["C02", "C06", "C08", "C12"],
+      "standalone_candidate_anchor": "C02",
+      "open_scientific_gate": "protected cross-domain relation/transport value beyond parent-specific equivalence, abstraction, provenance and stochastic-transport methods"
+    },
+    "P-C": {
+      "role": "obligation-driven scientific solver with witnessed minimum-level escalation",
+      "absorbs": ["C04", "C05"],
+      "standalone_candidate_anchor": "C04",
+      "open_scientific_gate": "protected solver value and V1 non-regression versus strongest fixed/adaptive/donor-composed baselines"
+    },
+    "P-D": {
+      "role": "dependence-aware evidence with dynamic/performative evaluation",
+      "absorbs": ["C07", "C09"],
+      "standalone_candidate_anchor": "C07",
+      "open_scientific_gate": "incremental calibration/false-authority protection beyond strongest dependence and performative-evaluation parents"
+    },
+    "P-E": {
+      "role": "frontier opportunity discovery and problem finding",
+      "absorbs": ["C10"],
+      "standalone_candidate_anchor": "C10",
+      "contingent": true,
+      "open_scientific_gate": "protected prospective frontier value beyond novelty, LBD, portfolio and open-ended-search parents"
+    }
+  },
+  "candidate_dispositions": [
+    {"candidate":"C01","disposition":"ANCHOR_P_A","standalone_issue_remains":true},
+    {"candidate":"C02","disposition":"ANCHOR_P_B","standalone_issue_remains":true},
+    {"candidate":"C03","disposition":"MERGED_INTO_P_A_METHODS","standalone_issue_remains":false},
+    {"candidate":"C04","disposition":"ANCHOR_P_C","standalone_issue_remains":true},
+    {"candidate":"C05","disposition":"MERGED_INTO_P_C","standalone_issue_remains":false},
+    {"candidate":"C06","disposition":"MERGED_INTO_P_B","standalone_issue_remains":false},
+    {"candidate":"C07","disposition":"ANCHOR_P_D","standalone_issue_remains":true},
+    {"candidate":"C08","disposition":"MERGED_INTO_P_B_WITH_P_D_METHOD_LINK","standalone_issue_remains":false},
+    {"candidate":"C09","disposition":"MERGED_INTO_P_D_WITH_P_C_GOVERNANCE_LINK","standalone_issue_remains":false},
+    {"candidate":"C10","disposition":"CONTINGENT_P_E","standalone_issue_remains":true},
+    {"candidate":"C11","disposition":"MERGED_INTO_P_A_WITH_P_B_TRANSPORT_LINK","standalone_issue_remains":false},
+    {"candidate":"C12","disposition":"NOT_OPENED_STANDALONE_ABSORBED_INTO_P_B","standalone_issue_remains":false}
+  ],
+  "contraction_invariants": [
+    "no scientific mechanism may acquire novelty merely because a candidate paper was merged or renamed",
+    "shared theory has one primary paper owner with explicit method links rather than duplicate standalone claims",
+    "a deleted/merged candidate remains successful novelty contraction and its negative history is retained",
+    "P-E remains contingent and cannot be promoted by interestingness alone",
+    "C12 remains closed unless a later protected discriminator forces re-separation"
+  ],
+  "programme_gate": {
+    "portfolio_contraction_frozen": true,
+    "new_candidate_requires_named_closeout_blocker": true,
+    "default_new_candidate_allowed": false
+  },
+  "publication_gate": {
+    "frozen": false,
+    "remaining": [
+      "protected V1 ownership/non-overlap results",
+      "strongest parent-product comparisons",
+      "protected prospective/naturalistic evaluation",
+      "independent scientific review",
+      "external publication authority"
+    ]
+  },
+  "authority": {
+    "grants_final_paper_identity": false,
+    "grants_novelty": false,
+    "grants_scientific_truth": false,
+    "grants_publication_authority": false,
+    "grants_v2_closeout": false
+  }
+}

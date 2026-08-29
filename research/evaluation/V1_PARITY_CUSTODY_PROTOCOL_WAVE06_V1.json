@@ -1,0 +1,78 @@
+{
+  "schema_version": "orion.v2.v1-parity-custody-protocol.v1",
+  "protocol_id": "ORION-V2-V1-PARITY-CUSTODY-WAVE06-V1",
+  "status": "CASE_AND_SCORING_BOUND_SEMANTIC_EVALUATOR_IDENTITIES_OPEN",
+  "subject_commit": "f33d2f45554583f9e612f7a186b7d92e6bc8d01a",
+  "frozen_v1_commit": "8f250fc3e55d6d6a28fb1fb33d9932ef1a8760b5",
+  "custody_invariants": [
+    "protected held-out case identities and expected invariants are digest-bound before paired outcome access",
+    "the V2 subject commit, V1 freeze commit, scoring logic and resource manifest are immutable for the run identity",
+    "case authoring/selection and outcome-producing subject code may not be the sole evaluator authority",
+    "where human or model judgment is required, V1/V2 outputs are presented in randomized/blinded order when feasible",
+    "an evaluator PASS is evidence under the frozen evaluator contract, not self-granting scientific authority",
+    "digest/provenance custody establishes integrity and replay identity only, not scientific correctness",
+    "same-model, same-data or same-source evaluators are not counted as independent without a declared dependence disposition",
+    "public availability of a case does not confer protected custody",
+    "any evaluator, scorer, criterion or case mutation after subject-output access creates a new run identity and invalidates the prior parity terminal",
+    "negative, blocked and CANNOT_CHECK outcomes remain admissible and may not be hidden by selection or reporting"
+  ],
+  "required_bound_objects": [
+    "protected_case_manifest_digest",
+    "protected_case_selection_receipt_digest",
+    "evaluator_registry_digest",
+    "scoring_or_adjudication_logic_digest",
+    "resource_budget_manifest_digest",
+    "V1_subject_commit",
+    "V2_subject_commit",
+    "randomization_or_blinding_receipt_digest_when_applicable",
+    "evaluation_output_receipt_digest"
+  ],
+  "evaluator_registry": {
+    "bound": false,
+    "path": "research/evaluation/V1_PARITY_EVALUATOR_REGISTRY_WAVE06_V1.json",
+    "digest": "git-sha1:93ce327e3021e5ae1ed1352e939fd08797e18bb6",
+    "status": "DETERMINISTIC_SCORER_BOUND_SEMANTIC_EVALUATOR_IDENTITIES_OPEN",
+    "current_blocker": "BIND_INDEPENDENT_SEMANTIC_REVIEWER_IDENTITIES_FOR_PARITY_C_AND_PARITY_D",
+    "required_fields": [
+      "evaluator_id",
+      "evaluator_type",
+      "independence_or_dependence_disposition",
+      "allowed_case_access_stage",
+      "allowed_subject_output_access_stage",
+      "criterion_digest",
+      "scorer_or_adjudicator_digest",
+      "authority_ceiling"
+    ]
+  },
+  "scoring_registry": {
+    "bound": true,
+    "path": "research/evaluation/V1_PARITY_SCORING_ADJUDICATION_WAVE06_V1.json",
+    "digest": "git-sha1:599c80442d01b4239d7bb957122bd0be989042cd",
+    "status": "SCORING_LOGIC_FROZEN_SEMANTIC_REVIEWER_IDENTITIES_UNBOUND"
+  },
+  "protected_case_registry": {
+    "bound": true,
+    "path": "research/evaluation/V1_PARITY_CASE_REGISTRY_WAVE06_V1.json",
+    "digest": "git-sha1:79f5e9d47d65994bae77695f37718c0c86079257",
+    "selection_receipt": "research/evaluation/V1_PARITY_CASE_SELECTION_RECEIPT_WAVE06_V1.json",
+    "selection_receipt_digest": "git-sha1:8b24c27a89b8c61d8e58f601cf7e9acbafcfb2c2",
+    "public_source_audit": "research/evaluation/V1_PARITY_CASE_SOURCE_AUDIT_WAVE06_V1.json",
+    "rule": "public V1-native sources seed the frozen registry but do not by themselves confer protected scientific evaluator authority"
+  },
+  "run_gate": {
+    "allowed_now": false,
+    "blocked_on": [
+      "independent semantic evaluator identities for PARITY-C and PARITY-D",
+      "strongest parent-composed baseline identities",
+      "case budget manifest"
+    ]
+  },
+  "authority": {
+    "grants_v1_parity": false,
+    "grants_independent_authority": false,
+    "grants_scientific_truth": false,
+    "grants_novelty": false,
+    "grants_publication_authority": false,
+    "grants_v2_closeout": false
+  }
+}

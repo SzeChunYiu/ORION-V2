@@ -1,0 +1,22 @@
+{
+  "schema_version": "orion.v2.issue45.e70-gc1.run-identity.v1",
+  "run_id": "e70-gc1-r1",
+  "issue": 45,
+  "phase": "E70-GC1 generated-composition pilot (gold-blind, hidden-oracle, arm-blinded dispatch)",
+  "source_commit": "3b51a2eedb62d3eebef7d8399d128f47c5f33dc4",
+  "arms": ["SIMPLE_DIRECT", "SAME_MODEL_REFLECTION", "F0_PARENT_FEDERATION", "F2_ORION_METABOLIC_FULL"],
+  "task_count": 24,
+  "seed": 20260828,
+  "max_concurrency": 2,
+  "arm_executable": "scripts/orion_codex_arms.py",
+  "entrypoint": "scripts/run_orion_generated_composition_pilot.sh",
+  "executor": {
+    "host": "LUNARC lu48 partition, SLURM",
+    "account": "lu2026-2-51",
+    "job_id": 3553088,
+    "job_state_at_receipt": "PENDING, --begin=2026-09-04T08:00:00"
+  },
+  "status": "DISPATCH_QUEUED_DEFERRED_ACCOUNT_WALL",
+  "outcome_access": "NONE",
+  "status_detail": "Infrastructure fully provisioned and preflight green on 2026-08-29; the only available authenticated codex account is server-stated usage-walled until Sep 3rd, 2026 6:26 PM. Dispatch submitted as deferred SLURM job 3553088 with an in-job availability probe loop (20 attempts, 30 min apart). No model responses exist yet; no evaluation has run."
+}

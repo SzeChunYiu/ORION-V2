@@ -1,0 +1,26 @@
+[project]
+name = "orion-v2-research"
+version = "0.1.0a0"
+description = "ORION-V2 research, formal reference objects, protocols and publication programme"
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.orion_v2]
+status = "V1_FREEZE_HANDOFF_BOUND_REFERENCE_IMPLEMENTATION_AUTHORIZED"
+implementation_authorized = true
+unit_and_known_answer_tests_authorized = true
+local_prospective_pilots_require_protocol_freeze = true
+protected_external_evaluation_authorized = false
+scientific_claim_promotion_authorized = false
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests/unit"]
+addopts = "-q"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/orion_v2"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

@@ -1,0 +1,110 @@
+{
+  "schema_version": "orion.v2.critical-failure-disposition.v1",
+  "receipt_id": "ORION-V2-CRITICAL-FAILURE-DISPOSITION-WAVE06-V1",
+  "status": "NO_KNOWN_OPEN_CRITICAL_LOCAL_DEFECTS_OTHER_EVIDENCE_GATES_REMAIN",
+  "date": "2026-08-27",
+  "review_scope": "local reference/governance correctness, integrity and authority-boundary defects retained in the ORION-V2 convergence branch; scientific negatives and unresolved protected evidence are classified separately",
+  "reviewed_failure_records": [
+    {
+      "failure_id": "PARALLEL_WAVE3_OWNERSHIP_COLLISION",
+      "path": "research/failures/2026-08-parallel-wave3-ownership-collision/README.md",
+      "git_blob_sha": "efb1cfaf6cf6fe448908e7d3bb81603937753b1e",
+      "classification": "RESOLVED_INTERNAL_OWNERSHIP_COLLISION_G4_COMPARISON_REMAINS",
+      "critical_open": false,
+      "resolution_evidence": [
+        "research/generalization/WAVE_06_UNIFIED_GENERALIZATION_STACK_V0.md",
+        "src/orion_v2/unified_generalization.py",
+        "tests/unit/test_unified_generalization_wave6.py",
+        "research/framework/KERNEL_COMPONENT_DISPOSITION_WAVE06_V1.json",
+        "draft PR #34 closed as absorbed/superseded by convergence"
+      ],
+      "disposition": "Layer ownership is explicit; receipt chains require immediate predecessor identity; duplicate layers fail closed; kernel duplicate-owner groups are empty. Strongest parent-product comparison is a separate G4 evidence blocker, not an unresolved correctness defect."
+    },
+    {
+      "failure_id": "WAVE4_TAUTOLOGICAL_NATIVE_RECOVERY_EXPECTATION",
+      "path": "research/failures/2026-08-wave4-recovery-and-ci-preterminal-defects/README.md",
+      "git_blob_sha": "8a5d4d0bc8f0d96ea0b03f276c8174ae60806e8a",
+      "classification": "REPAIRED_BEFORE_WAVE4_TERMINAL",
+      "critical_open": false,
+      "disposition": "Expected terminals were separated from observations and hostile corruption must fail. External native-expert correctness of authored expectations remains protected-evaluation evidence, not a local implementation defect."
+    },
+    {
+      "failure_id": "WAVE4_REFERENCE_CI_SRC_PATH_UNBOUND",
+      "path": "research/failures/2026-08-wave4-recovery-and-ci-preterminal-defects/README.md",
+      "git_blob_sha": "8a5d4d0bc8f0d96ea0b03f276c8174ae60806e8a",
+      "classification": "REPAIRED_AND_VERIFIED",
+      "critical_open": false,
+      "disposition": "Workflow-level PYTHONPATH was bound and the full successor audit became green."
+    },
+    {
+      "failure_id": "WAVE5_DECLARED_EPOCH_NOT_COMPARED",
+      "path": "research/failures/2026-08-wave5-epoch-and-chain-binding-defects/README.md",
+      "git_blob_sha": "f5ba7044151336307cefaf9ed64fc6a47429978e",
+      "classification": "REPAIRED_AND_VERIFIED",
+      "critical_open": false,
+      "disposition": "Transport epochs are compared exactly and mismatch fails with INVALID_EPOCH."
+    },
+    {
+      "failure_id": "WAVE5_DISCONNECTED_ERROR_BOUNDS_COMPOSED",
+      "path": "research/failures/2026-08-wave5-epoch-and-chain-binding-defects/README.md",
+      "git_blob_sha": "f5ba7044151336307cefaf9ed64fc6a47429978e",
+      "classification": "REPAIRED_AND_VERIFIED",
+      "critical_open": false,
+      "disposition": "Adjacent transport links must bind source/target theory identities and epochs before error composition."
+    },
+    {
+      "failure_id": "WAVE5_MODEL_DISTANCE_WITHOUT_DECISION_MARGIN",
+      "path": "research/failures/2026-08-wave5-epoch-and-chain-binding-defects/README.md",
+      "git_blob_sha": "f5ba7044151336307cefaf9ed64fc6a47429978e",
+      "classification": "CONTROL_ADDED_AND_VERIFIED",
+      "critical_open": false,
+      "disposition": "A small state/model distance cannot certify a stable decision when the decision margin is smaller than the transport error; hostile reversal returns DECISION_CHANGED."
+    },
+    {
+      "failure_id": "PARITY_PREFLIGHT_TEST_EXPECTATION_DRIFT",
+      "path": "research/failures/2026-08-parity-preflight-test-expectation-drift/README.md",
+      "git_blob_sha": "89a2aa2e649bf27a54097b7a8a3a85be5aff62f1",
+      "classification": "REPAIRED_BEFORE_CLOSEOUT_TERMINAL",
+      "critical_open": false,
+      "disposition": "The stale synthetic expected gate was updated after resource budgets became legitimately bound; an explicit unbound-resource control still fails closed. No paired V1/V2 outcome was accessed."
+    }
+  ],
+  "current_verification": {
+    "verified_head": "37573dea7a901f38bf43b2babfe7ec49f0dc1527",
+    "workflows": [
+      {"name": "wave3-generalization-reference", "run_id": 33097876864, "conclusion": "success"},
+      {"name": "wave4-native-recovery", "run_id": 33097876895, "conclusion": "success"},
+      {"name": "wave5-stochastic-generalization", "run_id": 33097877020, "conclusion": "success"},
+      {"name": "wave6-unified-generalization", "run_id": 33097876942, "conclusion": "success"}
+    ]
+  },
+  "not_classified_as_g7_critical_defects": [
+    "independent semantic evaluator identities for PARITY-C/D are unbound — G1/G5 custody evidence blocker",
+    "strongest parent-composed comparator implementation identities are unbound — G4 evidence blocker",
+    "protected V1/V2 parity outcomes are not run — G1 evidence blocker",
+    "protected prospective/naturalistic scientific value is open — G5 evidence blocker",
+    "novelty, field acceptance and publication authority are external — G8 authority blocker",
+    "valid scientific negative, parent-subsumption, censored and CANNOT_CHECK terminals when explicitly ledgered"
+  ],
+  "failure_class_vocabulary_rule": "The top-level FAILURE_LEDGER.md retains classes of failures that future work must continue to detect. A retained class is not evidence that a concrete critical defect is currently open.",
+  "gate_disposition": {
+    "G7_CRITICAL_FAILURES": "LOCALLY_SATISFIED_NO_KNOWN_OPEN_CRITICAL_DEFECTS",
+    "open_critical_failures": 0,
+    "historical_failure_records_deleted": false
+  },
+  "reopen_conditions": [
+    "any red current convergence CI caused by a correctness/integrity/authority defect rather than an intentionally failing control",
+    "a hostile test demonstrates fail-open behavior on a protected invariant",
+    "a receipt/identity binding can be bypassed or mutated after outcome access without changing run identity",
+    "an implementation grants authority, parity, scientific truth, novelty or adoption beyond its declared ceiling",
+    "a retained historical repair no longer reproduces on the current convergence branch"
+  ],
+  "authority": {
+    "grants_v1_parity": false,
+    "grants_protected_scientific_value": false,
+    "grants_v2_closeout": false,
+    "grants_scientific_truth": false,
+    "grants_novelty": false,
+    "grants_publication_authority": false
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "schema_version": "orion.v2.real-problem-suite.v1",
+  "suite_id": "orion-v2-fresh-counterfactual-repair-2026-08-28",
+  "status": "PROSPECTIVE_POST_FREEZE_COUNTERFACTUAL_PROTOCOL_NO_RESULTS",
+  "candidate_foundations": ["F0", "F1", "F2", "F3"],
+  "benchmarks": [
+    {
+      "benchmark_id": "fresh_bugsinpy_counterfactual",
+      "domain": "post_freeze_executable_software_repair",
+      "repository": "https://github.com/soarsmu/BugsInPy.git",
+      "commit": "11c5f1eea954a42132cfd06bf257766a7963e0fd",
+      "adapter": "fresh_bugsinpy_counterfactual",
+      "execution_state": "GENERATOR_AND_EVALUATOR_IMPLEMENTED",
+      "protected_variants": [
+        "token_level_semantics_changing_mutation_generated_after_protocol_freeze",
+        "fixed_source_git_history_removed_from_solver_workspace",
+        "gold_reverse_patch_private",
+        "mutation_accepted_only_when_fixed_native_suite_becomes_failing",
+        "fresh_native_evaluator_workspace"
+      ],
+      "primary_outcomes": [
+        "full_regression_suite_passed",
+        "critical_false_completion",
+        "wall_time_seconds",
+        "model_tokens_or_compute",
+        "human_intervention_minutes"
+      ],
+      "secondary_outcomes": [
+        "solution_similarity_to_private_reverse_patch_after_scoring",
+        "correctness_under_additional_seeded_mutations",
+        "diagnosis_and_discriminator_quality"
+      ]
+    }
+  ],
+  "arms": [
+    {"arm_id": "SIMPLE_DIRECT", "description": "Smallest direct solver."},
+    {"arm_id": "RETRIEVAL_ONLY", "description": "Retrieval plus direct generation."},
+    {"arm_id": "SAME_MODEL_REFLECTION", "description": "Same-model critique baseline."},
+    {"arm_id": "F0_PARENT_FEDERATION", "description": "Strongest repair/testing parent federation."},
+    {"arm_id": "F2_ORION_METABOLIC_FULL", "description": "Full knowledge-metabolism lifecycle."},
+    {"arm_id": "F2_MINUS_DECOMPOSITION", "description": "Remove decomposition/sorting."},
+    {"arm_id": "F2_MINUS_NATIVE_RECOVERY", "description": "Remove native recovery."},
+    {"arm_id": "F2_MINUS_COUNTERPROBE", "description": "Remove challenge stage."},
+    {"arm_id": "MACHINE_NATIVE", "description": "Machine-native internal strategy under external witness."},
+    {"arm_id": "HUMAN_EXPERT", "description": "Human domain-expert control."}
+  ],
+  "agent_protocol": {
+    "request_format": "orion.v2.agent-request.v1.json",
+    "response_format": "orion.v2.agent-response.v1.json",
+    "command_environment_prefix": "ORION_ARM_",
+    "command_arguments": ["--request", "{request_path}", "--response", "{response_path}"],
+    "required_response_fields": [
+      "task_id",
+      "arm_id",
+      "status",
+      "proposed_patch_or_artifact",
+      "diagnosis",
+      "source_ids_used",
+      "assumptions",
+      "uncertainty",
+      "discriminator_or_tests",
+      "falsifier",
+      "requested_authority",
+      "resource_receipt"
+    ]
+  },
+  "anti_copy_controls": [
+    "defect_generated_after_protocol_freeze",
+    "fixed_source_history_removed",
+    "private_gold_reverse_patch",
+    "network_disabled_during_solution_where_feasible",
+    "native_execution_primary",
+    "similarity_post_outcome_diagnostic_only"
+  ],
+  "resource_contract": {
+    "default_wall_time_minutes_per_task": 45,
+    "default_cpu_cores": 4,
+    "default_memory_gb": 16,
+    "default_gpu_count": 0,
+    "minimum_stochastic_repetitions": 3,
+    "model_token_budget_must_be_recorded": true,
+    "human_minutes_must_be_recorded": true,
+    "additional_compute_requires_new_resource_identity": true
+  },
+  "hard_failures": [
+    "scientific_or_test_false_completion",
+    "gold_or_outcome_leakage",
+    "source_identity_fabrication",
+    "criterion_mutation",
+    "authority_violation",
+    "unreported_resource_advantage"
+  ],
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_field_status": false,
+    "grants_supertheory_status": false,
+    "grants_publication_readiness": false
+  }
+}

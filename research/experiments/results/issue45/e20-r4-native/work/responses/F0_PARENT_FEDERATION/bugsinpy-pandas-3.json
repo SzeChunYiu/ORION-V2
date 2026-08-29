@@ -1,0 +1,48 @@
+{
+  "arm_id": "F0_PARENT_FEDERATION",
+  "assumptions": [
+    "The intended public contract is the existing test expectation: TypeError with message 'unsupported Type <IndexType>'.",
+    "Changing the analogous Series.to_period assertion is in scope because it has the same defect and already has a corresponding test."
+  ],
+  "diagnosis": "Series.to_timestamp uses an assertion to reject a non-PeriodIndex. Assertions raise AssertionError, but the regression test requires TypeError with the unsupported index type in its message. Series.to_period has the same public-API error-handling defect and an existing matching regression test, so the patch corrects both analogous conversions.",
+  "discriminator_or_tests": [
+    "Static discriminator: non-PeriodIndex Series indexes now take the explicit TypeError branch before calling PeriodIndex.to_timestamp.",
+    "Static discriminator: PeriodIndex behavior remains unchanged because it proceeds to index.to_timestamp.",
+    "Proposed verification: run the supplied project Python against `pandas/tests/series/methods/test_to_timestamp.py -q` in an environment where that interpreter is accessible.",
+    "Proposed companion verification: run `pandas/tests/series/methods/test_to_period.py -q`."
+  ],
+  "falsifier": "If the project contract intentionally permits AssertionError for invalid Series indexes, or if an invalid index type is expected to be converted instead of rejected, the proposed explicit TypeError branches would be incorrect. The existing tests directly falsify those alternatives.",
+  "field_status_authorized": false,
+  "metabolic_stages": {
+    "ABSORB": "Included the matching Series.to_period guard because its existing regression test expects the same TypeError contract.",
+    "ASSIMILATE_OR_RECYCLE": "No recycle needed; retain the focused patch and verify both Series conversion test modules when a runnable project pytest environment is available.",
+    "CHALLENGE": "Checked the test expectations and DataFrame implementation; the Series tests explicitly require the proposed error text. Test execution was blocked by collection/runtime availability.",
+    "DECOMPOSE": "Separated the failing public API contract from successful PeriodIndex conversion behavior and inspected the analogous to_period path.",
+    "INGEST": "Read the supplied failure observation and identified 17 invalid-index parametrizations failing with AssertionError.",
+    "NATIVE_RECONSTRUCT": "Traced Series.to_timestamp to its `assert isinstance(self.index, PeriodIndex)` guard; the observed Series has a non-PeriodIndex index.",
+    "RECOMBINE": "Prepared one focused workspace-relative unified diff affecting only `pandas/core/series.py`.",
+    "REDUCE": "Reduced the repair to replacing assertion guards with TypeError guards while preserving value copying and valid-index conversion calls.",
+    "SORT": "Prioritized the explicit exception-type/message mismatch; classified the analogous to_period assertion as the same regression-risk pattern."
+  },
+  "proposed_patch_or_artifact": {
+    "content": "diff --git a/pandas/core/series.py b/pandas/core/series.py\n--- a/pandas/core/series.py\n+++ b/pandas/core/series.py\n@@ -4684,7 +4684,8 @@ class Series(NDFrame):\n         if copy:\n             new_values = new_values.copy()\n \n-        assert isinstance(self.index, PeriodIndex)\n+        if not isinstance(self.index, PeriodIndex):\n+            raise TypeError(f\"unsupported Type {type(self.index).__name__}\")\n         new_index = self.index.to_timestamp(freq=freq, how=how)  # type: ignore\n         return self._constructor(new_values, index=new_index).__finalize__(\n             self, method=\"to_timestamp\"\n@@ -4712,7 +4713,8 @@ class Series(NDFrame):\n         if copy:\n             new_values = new_values.copy()\n \n-        assert isinstance(self.index, DatetimeIndex)\n+        if not isinstance(self.index, DatetimeIndex):\n+            raise TypeError(f\"unsupported Type {type(self.index).__name__}\")\n         new_index = self.index.to_period(freq=freq)  # type: ignore\n         return self._constructor(new_values, index=new_index).__finalize__(\n             self, method=\"to_period\"\n",
+    "type": "unified_diff"
+  },
+  "publication_readiness_authorized": false,
+  "requested_authority": "EXECUTION_TEST_ONLY",
+  "resource_receipt": {
+    "executor": "codex-cli",
+    "model": "gpt-5.6-terra",
+    "model_calls": 1,
+    "total_tokens_reported_by_cli": 55294,
+    "wall_time_seconds": 52.40070080757141
+  },
+  "schema_version": "orion.v2.agent-response.v1",
+  "scientific_truth_authorized": false,
+  "source_ids_used": [
+    "gold-blind-solver-workspace"
+  ],
+  "status": "COMPLETED_PROPOSAL_ONLY",
+  "task_id": "bugsinpy-pandas-3",
+  "uncertainty": "The requested pytest command could not be executed in the supplied runtime: the specified interpreter path was unavailable through the mandated command wrapper, and `rtk pytest` reported 'No tests collected'. Therefore no passing test result is claimed."
+}

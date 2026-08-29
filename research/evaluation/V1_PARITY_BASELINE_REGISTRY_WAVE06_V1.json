@@ -1,0 +1,86 @@
+{
+  "schema_version": "orion.v2.v1-parity-baseline-registry.v1",
+  "registry_id": "ORION-V2-V1-PARITY-BASELINES-WAVE06-V1",
+  "status": "BASELINE_ROLES_FROZEN_IMPLEMENTATION_IDENTITIES_UNBOUND",
+  "subjects": {
+    "frozen_v1_commit": "8f250fc3e55d6d6a28fb1fb33d9932ef1a8760b5",
+    "contracted_v2_commit": "f33d2f45554583f9e612f7a186b7d92e6bc8d01a"
+  },
+  "mandatory_comparator_roles": [
+    "FROZEN_V1",
+    "CONTRACTED_V2",
+    "SIMPLE_DIRECT_CONTROL_WHERE_APPLICABLE",
+    "STRONGEST_PARENT_COMPOSED_BASELINE_WHERE_V2_ADDS_OR_REPLACES_MECHANICS"
+  ],
+  "campaigns": [
+    {
+      "campaign_id":"PARITY-A",
+      "parent_comparator_role":"strong fixed/scoped workflow plus recursive decomposition/control that preserves authority and coupled constraints",
+      "simple_control_role":"direct solve/frame path with no unnecessary decomposition"
+    },
+    {
+      "campaign_id":"PARITY-B",
+      "parent_comparator_role":"strong heterogeneous retrieval/search orchestration with explicit route/source identity, censoring and route-stop semantics",
+      "simple_control_role":"direct retrieval route when one route is sufficient"
+    },
+    {
+      "campaign_id":"PARITY-C",
+      "parent_comparator_role":"strong schema-bound scientific claim/entity/context extraction with recoverable source projection and ambiguity handling",
+      "simple_control_role":"direct structured extraction on unambiguous passages"
+    },
+    {
+      "campaign_id":"PARITY-D",
+      "parent_comparator_role":"strong graph/state reconstruction and local-to-global consistency method supporting plural portraits and obstruction",
+      "simple_control_role":"direct state update when no gluing ambiguity exists"
+    },
+    {
+      "campaign_id":"PARITY-E",
+      "parent_comparator_role":"strong multi-fault diagnosis plus discriminating experiment/probe design with non-identifiability handling",
+      "simple_control_role":"direct attribution on serial-upstream single-fault controls"
+    },
+    {
+      "campaign_id":"PARITY-F",
+      "parent_comparator_role":"strong configuration/change-management plus provenance-aware selective invalidation/recovery and minimal repair/escalation",
+      "simple_control_role":"local repair with no reframe when lower-level fix suffices"
+    },
+    {
+      "campaign_id":"PARITY-G",
+      "parent_comparator_role":"strong route-coverage and bounded stopping/saturation method that separates flatness, censoring and omission challenge",
+      "simple_control_role":"bounded stop on fully covered no-material-change controls"
+    },
+    {
+      "campaign_id":"PARITY-H",
+      "parent_comparator_role":"strong evaluator/review/benchmark governance with criterion binding, independence/dependence accounting and authority non-amplification",
+      "simple_control_role":"frozen deterministic known-answer evaluator where independent judgment is unnecessary"
+    },
+    {
+      "campaign_id":"PARITY-I",
+      "parent_comparator_role":"strong replayable capability execution, memory/experience retention and mandatory-context policy with explicit process/resource safety",
+      "simple_control_role":"direct bounded local/provider execution with no extra memory/meta layer when not needed"
+    }
+  ],
+  "implementation_bindings": {
+    "bound": false,
+    "required_per_campaign": [
+      "implementation_or_product_id",
+      "version_or_commit",
+      "source_or_package_identity",
+      "configuration_digest",
+      "why_this_is_the_strongest_practical_comparator_under_the_frozen_role",
+      "known_limitations",
+      "matched_resource_adapter_digest"
+    ],
+    "rule": "A transparent ORION-V2 reference module may serve as a falsifier or adapter but cannot be declared the strongest parent comparator merely because it is already in the repository."
+  },
+  "run_gate": {
+    "allowed_now": false,
+    "reason": "comparator roles are frozen but strongest implementation identities/configurations are unbound"
+  },
+  "authority": {
+    "grants_parent_supremacy": false,
+    "grants_v1_parity": false,
+    "grants_v2_closeout": false,
+    "grants_scientific_truth": false,
+    "grants_novelty": false
+  }
+}

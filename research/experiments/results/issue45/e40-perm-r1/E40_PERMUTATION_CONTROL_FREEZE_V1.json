@@ -1,0 +1,37 @@
+{
+  "schema_version": "orion.v2.study-freeze.v1",
+  "study_id": "campaign-e40-perm-r1",
+  "frozen_at": "2026-08-29T11:30:00Z",
+  "frozen_before_any_run": true,
+  "successor_relationship": {
+    "parent_study": "campaign-e40-r3 (native characterization, adjudicated 2026-08-28)",
+    "disclosure": "Designed AFTER native outcomes were known and recorded (TP 137/272 K562-obs, 41/128 RPE1-obs; both partial-interventional cells empty). This is a VALIDITY control on the native chain, not decisive evidence for any paper claim. No parent frozen endpoint is modified."
+  },
+  "design": {
+    "cells": [
+      {"id": 0, "dataset": "weissmann_k562", "regime": "observational", "frac": 0.0},
+      {"id": 1, "dataset": "weissmann_k562", "regime": "partial_interventional", "frac": 0.5},
+      {"id": 2, "dataset": "weissmann_rpe1", "regime": "observational", "frac": 0.0},
+      {"id": 3, "dataset": "weissmann_rpe1", "regime": "partial_interventional", "frac": 0.5}
+    ],
+    "permutation": {
+      "object": "interventions vector (per-sample perturbed-gene labels), shuffled across ALL samples",
+      "preserved": "label marginal (count of each label value), expression_matrix bytes, var_names",
+      "destroyed": "perturbation-to-expression coupling",
+      "rng": "numpy.random.Generator(PCG64(seed)).permutation(n_samples)",
+      "seeds": [1, 2, 3],
+      "raw_data_policy": "raw npz files are NEVER modified; permuted copies written to campaign-e40-perm-r1/data/<dataset>_perm<seed>.npz"
+    },
+    "invocation": "identical to e40_compute_native_r3.sbatch main_app call, differing ONLY in --data_directory (perm copy) and --exp_id (500000 + cell*3 + seed_idx)",
+    "pinned_args": {"model_name": "pc", "subset_data": 0.05, "partial_intervention_seed": 0, "model_seed": 0, "omission_estimation_size": 500, "do_filter": true, "max_path_length": -1},
+    "exp_id_scheme": "500000 + cell_id*3 + seed_index",
+    "runs_total": 12
+  },
+  "pre_declared_interpretation": {
+    "VALIDITY_PASS": "in each observational cell, median TP over seeds 1-3 is < 50% of the native TP (137 K562, 41 RPE1): the native chain is signal-sensitive, its observational metrics are not produced by pipeline artifacts",
+    "VALIDITY_FAIL": "median permuted TP >= 50% of native TP in any observational cell: native chain validity defect; native characterization interpretation reopens",
+    "AMBIGUOUS_EMPTY": "partial-interventional cells that were empty natively and remain empty under permutation are recorded as AMBIGUOUS_EMPTY (cannot distinguish signal absence from pipeline failure) and are NOT interpreted as pass or fail",
+    "wasserstein_role": "descriptive only; no pass/fail load"
+  },
+  "authority": "wave6 execution master #45; adjudication receipt EXECUTION_PARTIAL_SCIENTIFIC_ADJUDICATION_2026-08-28_V1.md listed this label-permutation control as not-yet-executed"
+}

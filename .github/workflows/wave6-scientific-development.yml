@@ -1,0 +1,149 @@
+name: wave6-scientific-development
+
+on:
+  push:
+    branches:
+      - research/wave6-contraction-closure-20260827
+    paths:
+      - "src/orion_v2/scientific_development.py"
+      - "src/orion_v2/recursive_generalization.py"
+      - "scripts/generate_scientific_development_meta_benchmark.py"
+      - "scripts/evaluate_scientific_development_meta_benchmark.py"
+      - "scripts/run_scientific_development_reference.py"
+      - "scripts/orion_scientific_development_arms.py"
+      - "scripts/run_scientific_development_meta_suite.py"
+      - "scripts/run_scientific_development_meta_pilot.sh"
+      - "scripts/build_scientific_development_corpus.py"
+      - "tests/unit/test_scientific_development_wave6.py"
+      - "tests/unit/test_recursive_generalization_wave6.py"
+      - "tests/unit/test_scientific_development_scripts_wave6.py"
+      - "research/schemas/SCIENTIFIC_DEVELOPMENT_EPISODE_SCHEMA_V1.json"
+      - "research/experiments/SCIENTIFIC_DEVELOPMENT_RECURSIVE_META_GENERALIZATION_PROTOCOL_V1.json"
+      - "research/experiments/SCIENTIFIC_DEVELOPMENT_EXECUTION_BACKLOG_V1.json"
+      - ".github/workflows/wave6-scientific-development.yml"
+  pull_request:
+    paths:
+      - "src/orion_v2/scientific_development.py"
+      - "src/orion_v2/recursive_generalization.py"
+      - "scripts/*scientific_development*"
+      - "tests/unit/test_scientific_development*"
+      - "tests/unit/test_recursive_generalization_wave6.py"
+      - "research/schemas/SCIENTIFIC_DEVELOPMENT_EPISODE_SCHEMA_V1.json"
+      - "research/experiments/SCIENTIFIC_DEVELOPMENT_RECURSIVE_META_GENERALIZATION_PROTOCOL_V1.json"
+      - "research/experiments/SCIENTIFIC_DEVELOPMENT_EXECUTION_BACKLOG_V1.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scientific-development:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install package and test tooling
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e . pytest
+
+      - name: Compile framework and execution scripts
+        run: |
+          python -m py_compile src/orion_v2/scientific_development.py
+          python -m py_compile src/orion_v2/recursive_generalization.py
+          python -m py_compile scripts/generate_scientific_development_meta_benchmark.py
+          python -m py_compile scripts/evaluate_scientific_development_meta_benchmark.py
+          python -m py_compile scripts/run_scientific_development_reference.py
+          python -m py_compile scripts/orion_scientific_development_arms.py
+          python -m py_compile scripts/run_scientific_development_meta_suite.py
+          python -m py_compile scripts/build_scientific_development_corpus.py
+
+      - name: Run focused scientific-development tests
+        run: |
+          python -m pytest -q \
+            tests/unit/test_scientific_development_wave6.py \
+            tests/unit/test_recursive_generalization_wave6.py \
+            tests/unit/test_scientific_development_scripts_wave6.py
+
+      - name: Run reference semantics calibration
+        run: |
+          python scripts/run_scientific_development_reference.py --output /tmp/sd-reference.json
+          python - <<'PY'
+          import json
+          value = json.load(open('/tmp/sd-reference.json'))
+          assert value['status'] == 'REFERENCE_SEMANTICS_CALIBRATION_ONLY'
+          assert value['all_reference_checks_pass'] is True
+          assert all(v is False for v in value['authority'].values())
+          PY
+
+      - name: Validate protocol, schema and executable backlog
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          schema = json.loads(Path('research/schemas/SCIENTIFIC_DEVELOPMENT_EPISODE_SCHEMA_V1.json').read_text())
+          assert schema['x-orion-authority']['citation_or_prize_metric_is_truth_label'] is False
+          protocol = json.loads(Path('research/experiments/SCIENTIFIC_DEVELOPMENT_RECURSIVE_META_GENERALIZATION_PROTOCOL_V1.json').read_text())
+          assert protocol['status'] == 'PROSPECTIVE_PROTOCOL_NO_RESULTS'
+          backlog = json.loads(Path('research/experiments/SCIENTIFIC_DEVELOPMENT_EXECUTION_BACKLOG_V1.json').read_text())
+          assert backlog['status'] == 'PROSPECTIVE_EXECUTION_BACKLOG__NO_SD_RESULTS'
+          assert [item['id'] for item in backlog['tasks']] == ['SD00','SD10','SD20','SD30','SD40','SD50','SD60','SD70','SD80','SD90']
+          assert all(value is False for value in backlog['authority'].values())
+          PY
+
+      - name: Prepare fresh SD70 suite and verify public/private separation
+        run: |
+          python scripts/run_scientific_development_meta_suite.py prepare \
+            --workdir /tmp/sd70 \
+            --tasks 8 \
+            --train-episodes 8 \
+            --seed 424242 \
+            --arms TARGET_ONLY_DIRECT,F0_PARENT_FEDERATION
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          public = json.loads(Path('/tmp/sd70/public_tasks.json').read_text())
+          private = json.loads(Path('/tmp/sd70/private_oracle.json').read_text())
+          freeze = json.loads(Path('/tmp/sd70/FROZEN_SUITE.json').read_text())
+          assert public['task_count'] == private['task_count'] == 8
+          assert 'correct_action' not in json.dumps(public)
+          assert 'latent_weights' not in json.dumps(public)
+          assert freeze['private_oracle_visible_to_solver'] is False
+          PY
+
+      - name: Exercise blinded dispatcher with non-model stub
+        run: |
+          cat > /tmp/sd_stub.py <<'PY'
+          import argparse, json
+          from pathlib import Path
+          p=argparse.ArgumentParser(); p.add_argument('--request'); p.add_argument('--response'); a=p.parse_args()
+          req=json.loads(Path(a.request).read_text())
+          if Path('/tmp/sd70/private_oracle.json').exists():
+              raise SystemExit('private oracle visible during child execution')
+          out={'schema_version':'stub','task_id':req['task_id'],'arm_id':req['arm_id'],'status':'COMPLETED_PROPOSAL_ONLY','selected_action':req['task']['candidate_actions'][0]}
+          Path(a.response).parent.mkdir(parents=True, exist_ok=True); Path(a.response).write_text(json.dumps(out))
+          PY
+          ORION_SD70_ARM_COMMAND="python /tmp/sd_stub.py" \
+            python scripts/run_scientific_development_meta_suite.py dispatch \
+              --workdir /tmp/sd70 \
+              --arms TARGET_ONLY_DIRECT,F0_PARENT_FEDERATION \
+              --max-concurrency 2
+          python scripts/run_scientific_development_meta_suite.py evaluate \
+            --workdir /tmp/sd70 \
+            --arms TARGET_ONLY_DIRECT,F0_PARENT_FEDERATION
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          commitment=json.loads(Path('/tmp/sd70/PRIVATE_ORACLE_COMMITMENT.json').read_text())
+          dispatch=json.loads(Path('/tmp/sd70/DISPATCH_RECEIPT.json').read_text())
+          summary=json.loads(Path('/tmp/sd70/EVALUATION_SUMMARY.json').read_text())
+          assert commitment['private_removed_before_dispatch'] is True
+          assert dispatch['all_returncodes_zero'] is True
+          assert Path('/tmp/sd70/private_oracle.json').exists()
+          assert all(value is False for value in summary['authority'].values())
+          PY

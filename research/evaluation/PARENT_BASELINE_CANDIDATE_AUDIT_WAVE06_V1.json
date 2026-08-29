@@ -1,0 +1,223 @@
+{
+  "schema_version": "orion.v2.parent-baseline-candidate-audit.v1",
+  "audit_id": "ORION-V2-PARENT-BASELINE-CANDIDATES-WAVE06-V1",
+  "status": "CANDIDATES_SHORTLISTED_STRONGEST_BINDING_OPEN",
+  "as_of": "2026-08-27",
+  "purpose": "Shortlist concrete maintained parent implementations that plausibly satisfy the already frozen per-campaign comparator roles. This audit does not bind any implementation as strongest; binding requires exact version/commit/configuration, a matched-resource adapter, and a campaign-specific fit/limitation test.",
+  "selection_rules": [
+    "prefer maintained native/production implementations over ORION-V2-authored transparent references",
+    "do not choose one framework merely for vocabulary similarity or convenience",
+    "compose multiple parent implementations when no single product preserves all required scientific roles",
+    "record a limitation whenever a candidate lacks authority, semantics, gluing, non-identifiability, selective reopening or protected evaluation required by the campaign",
+    "a candidate becomes bound only after exact version/configuration identity and matched-budget adapter are frozen before paired outcomes"
+  ],
+  "campaigns": [
+    {
+      "campaign_id": "PARITY-A",
+      "composed_candidate": ["LangGraph", "Temporal"],
+      "alternates": ["Prefect"],
+      "fit": [
+        "LangGraph provides low-level long-running stateful agent orchestration with persistence/memory and controlled deterministic+agentic workflows",
+        "Temporal provides durable crash-recoverable workflow execution across failures",
+        "Prefect provides explicit workflow state, retries, timeouts and recoverable orchestration as a simpler control"
+      ],
+      "limitations": [
+        "none natively defines ORION scientific authority or coupled-decomposition correctness",
+        "decomposition and honest scientific terminal semantics require a frozen adapter and hostile controls"
+      ],
+      "sources": [
+        "https://langchain-ai.github.io/langgraph/reference/",
+        "https://docs.temporal.io/",
+        "https://docs.prefect.io/latest/tutorial/flows"
+      ],
+      "binding_status": "CANDIDATE_COMPOSITION_NOT_BOUND"
+    },
+    {
+      "campaign_id": "PARITY-B",
+      "composed_candidate": ["Haystack"],
+      "alternates": [],
+      "fit": [
+        "production-oriented modular pipelines, retrievers, agents and tools",
+        "directed multigraph pipelines support branching, simultaneous flows and loops",
+        "retriever families include sparse and dense approaches, useful for heterogeneous route controls"
+      ],
+      "limitations": [
+        "route censoring, evidence-of-absence discipline and exact source/provenance receipts are not guaranteed by default",
+        "scholarly source corpus/provider identity must be separately frozen"
+      ],
+      "sources": [
+        "https://docs.haystack.deepset.ai/",
+        "https://docs.haystack.deepset.ai/docs/pipelines",
+        "https://docs.haystack.deepset.ai/docs/retrievers"
+      ],
+      "binding_status": "CANDIDATE_NOT_BOUND"
+    },
+    {
+      "campaign_id": "PARITY-C",
+      "composed_candidate": ["GROBID", "scispaCy"],
+      "alternates": [],
+      "fit": [
+        "GROBID converts technical/scientific PDFs into structured TEI/XML with bibliographic/reference structure",
+        "scispaCy supplies scientific/biomedical NLP pipelines and entity-oriented processing"
+      ],
+      "limitations": [
+        "scispaCy is strongest in biomedical/scientific text and is not a universal cross-domain claim extractor",
+        "neither package alone guarantees atomic claim scope, reference identity resolution, representation mapping or evidence-binding semantics",
+        "PARITY-C remains a known source-coverage gap requiring held-out native semantic cases"
+      ],
+      "sources": [
+        "https://grobid.readthedocs.io/en/latest/Introduction/",
+        "https://allenai.github.io/scispacy/"
+      ],
+      "binding_status": "CANDIDATE_COMPOSITION_NOT_BOUND"
+    },
+    {
+      "campaign_id": "PARITY-D",
+      "composed_candidate": ["NetworkX", "RDFLib", "pySHACL"],
+      "alternates": [],
+      "fit": [
+        "NetworkX provides mature graph structures, composition and structural algorithms",
+        "RDFLib provides RDF graph creation/parsing/querying/merging",
+        "pySHACL validates RDF graphs against explicit SHACL constraints and can apply SHACL rules"
+      ],
+      "limitations": [
+        "graph composition/constraint validation is not equivalent to local-to-global scientific gluing or obstruction",
+        "plural justified portraits and search-universe expansion require an explicit adapter and held-out cases",
+        "PARITY-D remains a known source-coverage gap"
+      ],
+      "sources": [
+        "https://networkx.org/documentation/stable/reference/introduction.html",
+        "https://networkx.org/documentation/stable/reference/algorithms/operators.html",
+        "https://rdflib.readthedocs.io/",
+        "https://github.com/RDFLib/pySHACL"
+      ],
+      "binding_status": "CANDIDATE_COMPOSITION_NOT_BOUND"
+    },
+    {
+      "campaign_id": "PARITY-E",
+      "composed_candidate": ["pyAgrum", "BoTorch", "Ax"],
+      "alternates": [],
+      "fit": [
+        "pyAgrum provides Bayesian/graphical-model representation, exact/approximate inference, learning and causal models",
+        "BoTorch provides Bayesian optimization for adaptively selecting expensive evaluations under uncertainty",
+        "Ax supplies a production-oriented adaptive experimentation layer above optimization methods"
+      ],
+      "limitations": [
+        "responsibility topology, interaction-only fault semantics and scientific authority are not supplied automatically",
+        "diagnostic model and experiment-space construction must be frozen per case before outcome access"
+      ],
+      "sources": [
+        "https://pyagrum.readthedocs.io/en/stable/index.html",
+        "https://botorch.org/docs/overview",
+        "https://ax.dev/"
+      ],
+      "binding_status": "CANDIDATE_COMPOSITION_NOT_BOUND"
+    },
+    {
+      "campaign_id": "PARITY-F",
+      "composed_candidate": ["PROV Python", "DVC"],
+      "alternates": ["Git"],
+      "fit": [
+        "PROV Python implements the W3C PROV data model and serializations for explicit provenance lineage",
+        "DVC versions data/experiments and codifies reproducible pipelines tied to Git identities",
+        "together they provide strong provenance/configuration/reproducibility parents for change and reopening controls"
+      ],
+      "limitations": [
+        "selective reopening by alternative support family and minimal scientific reframe are not native DVC/PROV operations",
+        "authority non-amplification and scientific repair level selection remain explicit adapter responsibilities"
+      ],
+      "sources": [
+        "https://prov.readthedocs.io/en/latest/readme.html",
+        "https://dvc.org/blog/ml-experiment-versioning/",
+        "https://dvc.org/blog/jupyter-notebook-to-dvc-pipeline/"
+      ],
+      "binding_status": "CANDIDATE_COMPOSITION_NOT_BOUND"
+    },
+    {
+      "campaign_id": "PARITY-G",
+      "composed_candidate": ["ASReview LAB"],
+      "alternates": [],
+      "fit": [
+        "active-learning review workflow directly studies efficient coverage of relevant literature",
+        "documentation exposes stopping criteria and explicitly discusses model switching/different vocabulary after a stopping threshold",
+        "this is a strong native parent for route coverage, omission challenge and bounded stopping controls"
+      ],
+      "limitations": [
+        "the ideal stopping threshold remains an active research problem and user-configured threshold is not universal saturation",
+        "ASReview literature-screening saturation does not cover every ORION scientific saturation axis"
+      ],
+      "sources": [
+        "https://asreview.readthedocs.io/en/latest/guides/activelearning.html",
+        "https://asreview.readthedocs.io/en/stable/lab/progress.html"
+      ],
+      "binding_status": "CANDIDATE_NOT_BOUND"
+    },
+    {
+      "campaign_id": "PARITY-H",
+      "composed_candidate": ["Inspect AI", "DVC"],
+      "alternates": [],
+      "fit": [
+        "Inspect provides datasets, agents/solvers, scorers, model/provider routing, execution limits, sandboxing, eval sets, retries and log analysis",
+        "Inspect can bridge arbitrary external agents and supports human baselining/intervention",
+        "DVC can bind/version case data, parameters and experiment artifacts for reproducible custody"
+      ],
+      "limitations": [
+        "framework-integrity and data/version custody do not themselves establish independent scientific correctness",
+        "evaluator independence/dependence disposition and criterion custody still require the frozen ORION-V2 custody protocol"
+      ],
+      "sources": [
+        "https://inspect.aisi.org.uk/",
+        "https://inspect.aisi.org.uk/running.html",
+        "https://inspect.aisi.org.uk/sandboxing.html",
+        "https://dvc.org/blog/ml-experiment-versioning/"
+      ],
+      "binding_status": "CANDIDATE_COMPOSITION_NOT_BOUND"
+    },
+    {
+      "campaign_id": "PARITY-I",
+      "composed_candidate": ["Temporal", "Inspect AI", "LangGraph"],
+      "alternates": ["Prefect"],
+      "fit": [
+        "Temporal supplies durable recovery from crashes/network/infrastructure failures",
+        "Inspect supplies sandboxed tool execution, limits, agent/provider bridges and evaluation transcripts",
+        "LangGraph supplies long-running stateful agent orchestration with persistence and memory"
+      ],
+      "limitations": [
+        "negative-experience retention and mandatory-context non-truncation are not guaranteed merely by durable execution",
+        "provider/tool identity, retry semantics, context budgets and scientific-vs-execution failure separation must remain explicitly frozen"
+      ],
+      "sources": [
+        "https://docs.temporal.io/",
+        "https://inspect.aisi.org.uk/agent-bridge.html",
+        "https://inspect.aisi.org.uk/sandboxing.html",
+        "https://langchain-ai.github.io/langgraph/reference/"
+      ],
+      "binding_status": "CANDIDATE_COMPOSITION_NOT_BOUND"
+    }
+  ],
+  "cross_campaign_findings": [
+    "no single maintained framework currently covers all nine campaign roles without semantic loss",
+    "the strongest comparator should therefore be composed per campaign under one matched resource/custody adapter",
+    "Inspect AI is a strong evaluator/execution substrate candidate but must not be treated as scientific authority",
+    "Temporal/LangGraph/Prefect are execution-orchestration parents, not substitutes for scientific contract or authority semantics",
+    "ASReview provides unusually direct native stopping/changed-vocabulary controls for PARITY-G but cannot establish universal ORION saturation",
+    "PARITY-C and PARITY-D still require protected native cases because candidate software coverage is structurally incomplete"
+  ],
+  "binding_gate": {
+    "complete": false,
+    "next_required": [
+      "choose exact version/commit and configuration per campaign",
+      "build matched-resource adapters",
+      "run pre-outcome known-answer fit tests against the frozen comparator role",
+      "record rejected alternatives and why they are weaker or mismatched",
+      "freeze resulting implementation registry before protected V1/V2 outcomes"
+    ]
+  },
+  "authority": {
+    "grants_strongest_parent_status": false,
+    "grants_v1_parity": false,
+    "grants_v2_closeout": false,
+    "grants_scientific_truth": false,
+    "grants_novelty": false
+  }
+}

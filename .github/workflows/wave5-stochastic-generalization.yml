@@ -1,0 +1,69 @@
+name: wave5-stochastic-generalization
+
+on:
+  pull_request:
+    paths:
+      - "src/orion_v2/**"
+      - "tests/unit/**"
+      - "research/stochastic-generalization/**"
+      - "papers/WAVE_05_PROGRAMME_DELTA_V0.md"
+      - ".github/workflows/wave5-stochastic-generalization.yml"
+  push:
+    branches:
+      - "research/wave5-stochastic-approximate-generalization-20260827"
+
+permissions:
+  contents: read
+
+jobs:
+  stochastic-reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PYTHONPATH: src
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pytest
+        run: python -m pip install pytest
+      - name: Compile package
+        run: python -m compileall -q src/orion_v2
+      - name: Run integrated unit and known-answer tests
+        run: python -m pytest -q
+      - name: Stochastic authority boundary
+        run: |
+          python - <<'PY'
+          from orion_v2.stochastic_transport import (
+              FiniteStochasticTheory,
+              StochasticTransport,
+              assess_stochastic_transport,
+          )
+          source = FiniteStochasticTheory(
+              's', frozenset({'x'}), frozenset({'a'}),
+              {('x','a'):{'x':1.0}}, {'o':{'x':0.0}}, 'e1'
+          )
+          target = FiniteStochasticTheory(
+              't', frozenset({'y'}), frozenset({'b'}),
+              {('y','b'):{'y':1.0}}, {'o':{'y':0.0}}, 'e2'
+          )
+          result = assess_stochastic_transport(
+              source, target,
+              StochasticTransport('m', {'x':'y'}, {'a':'b'}, ('o',), 0, 0, 'e1', 'e2', 1)
+          )
+          assert not result.grants_scientific_truth
+          assert not result.grants_novelty
+          assert not result.grants_target_adoption
+          print('STOCHASTIC_AUTHORITY_BOUNDARY_PASS')
+          PY
+      - name: Parse research JSON
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for root in (Path('research'), Path('tests')):
+              for path in root.rglob('*.json'):
+                  json.loads(path.read_text(encoding='utf-8'))
+          print('JSON_PARSE_PASS')
+          PY
