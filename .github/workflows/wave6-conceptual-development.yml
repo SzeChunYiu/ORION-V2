@@ -1,0 +1,76 @@
+name: wave6-conceptual-development
+
+on:
+  push:
+    branches:
+      - research/wave6-contraction-closure-20260827
+    paths:
+      - "src/orion_v2/conceptual_development.py"
+      - "tests/unit/test_conceptual_development_wave6.py"
+      - "research/foundation-saturation/CONCEPTUAL_DEVELOPMENT_AND_TRANSFER_DISCOVERY_AMENDMENT_V1.md"
+      - "research/experiments/CONCEPTUAL_TRANSFER_DISCOVERY_PROTOCOL_V1.json"
+      - "research/closure/CONCEPTUAL_DEVELOPMENT_TRANSFER_DISCOVERY_INTEGRATION_RECEIPT_V1.json"
+      - ".github/workflows/wave6-conceptual-development.yml"
+  pull_request:
+    paths:
+      - "src/orion_v2/conceptual_development.py"
+      - "tests/unit/test_conceptual_development_wave6.py"
+      - "research/foundation-saturation/CONCEPTUAL_DEVELOPMENT_AND_TRANSFER_DISCOVERY_AMENDMENT_V1.md"
+      - "research/experiments/CONCEPTUAL_TRANSFER_DISCOVERY_PROTOCOL_V1.json"
+      - "research/closure/CONCEPTUAL_DEVELOPMENT_TRANSFER_DISCOVERY_INTEGRATION_RECEIPT_V1.json"
+      - ".github/workflows/wave6-conceptual-development.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  conceptual-development:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ORION and test tooling
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e . pytest
+
+      - name: Compile conceptual-development reference semantics
+        run: python -m py_compile src/orion_v2/conceptual_development.py
+
+      - name: Run conceptual-development unit tests
+        run: python -m pytest -q tests/unit/test_conceptual_development_wave6.py
+
+      - name: Validate prospective protocol and non-authorizing state
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          protocol = json.loads(
+              Path("research/experiments/CONCEPTUAL_TRANSFER_DISCOVERY_PROTOCOL_V1.json")
+              .read_text(encoding="utf-8")
+          )
+          assert protocol["status"] == "PROSPECTIVE_PROTOCOL_NO_RESULTS"
+          assert protocol["frozen_before_outcome_access"] is True
+          assert "FIXED_LESSON_INJECTION" in protocol["arms"]
+          assert "STRUCTURE_MAPPING_PARENT" in protocol["arms"]
+          assert "F2_TRANSFER_DISCOVERY_FULL" in protocol["arms"]
+          assert protocol["paper_identity"]["new_standalone_paper_authorized"] is False
+          assert all(value is False for value in protocol["authority"].values())
+
+          receipt = json.loads(
+              Path(
+                  "research/closure/"
+                  "CONCEPTUAL_DEVELOPMENT_TRANSFER_DISCOVERY_INTEGRATION_RECEIPT_V1.json"
+              ).read_text(encoding="utf-8")
+          )
+          assert receipt["status"] == "FRAMEWORK_INTEGRATED__PROTECTED_EVIDENCE_OPEN"
+          assert receipt["hard_programmed_domain_transfer_lessons"] == 0
+          assert all(value is False for value in receipt["authority"].values())
+          PY
