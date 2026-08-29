@@ -155,3 +155,40 @@ def test_fm50_generated_objects_are_complete_walking_arrow_categories():
             assert set(composition) == expected_pairs
             for obj, identity in category["identities"].items():
                 assert endpoints[identity] == [obj, obj]
+
+
+def test_execution_failed_responses_are_missing_not_wrong(tmp_path):
+    suite = load_suite()
+    workdir = tmp_path / "suite"
+    suite.prepare(workdir, ["FM10"], 2, 11, ["TEST"], False)
+    answers = json.loads((workdir / "private_oracle.json").read_text())["answers"]
+    for task_id in answers:
+        path = workdir / "responses" / "TEST" / f"{task_id}.json"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps({
+            "answer": None,
+            "status": "EXECUTION_FAILED_MODEL_RESPONSE",
+            "reasoning_summary": "[Errno 2] No such file or directory: 'codex'",
+        }))
+    suite.evaluate(workdir, ["TEST"])
+    summary = json.loads((workdir / "EVALUATION_SUMMARY.json").read_text())
+    arm = summary["summary"]["TEST"]
+    assert arm["tasks"] == len(answers)
+    assert arm["missing_or_invalid"] == len(answers)
+    assert arm["correct"] == 0
+    assert arm["run_valid"] is False
+    rows = json.loads((workdir / "EVALUATION_ROWS.json").read_text())
+    assert rows and all(row["missing"] is True and row["actual"] is None for row in rows)
+
+
+def test_missing_response_files_are_reported_in_rows(tmp_path):
+    suite = load_suite()
+    workdir = tmp_path / "suite"
+    suite.prepare(workdir, ["FM10"], 2, 11, ["TEST"], False)
+    suite.evaluate(workdir, ["TEST"])  # no responses written at all
+    summary = json.loads((workdir / "EVALUATION_SUMMARY.json").read_text())
+    arm = summary["summary"]["TEST"]
+    assert arm["missing_or_invalid"] == arm["tasks"] == 2
+    assert arm["run_valid"] is False
+    rows = json.loads((workdir / "EVALUATION_ROWS.json").read_text())
+    assert len(rows) == 2 and all(row["missing"] is True for row in rows)
