@@ -1,0 +1,923 @@
+{
+  "authority": {
+    "grants_R3": false,
+    "grants_R4": false,
+    "grants_dependence_detection_in_real_corpora": false,
+    "grants_scientific_truth": false
+  },
+  "note": "offline parent rates are constructed calibration ceilings; only model arms carry empirical content; per-stratum join on the private oracle strata map",
+  "schema_version": "orion.v2.dependence-evidence-campaign-analysis.v1",
+  "studies": {
+    "PD-S1-DEPENDENT-CORROBORATION": {
+      "ARGUMENT_ACCEPTABILITY": {
+        "PDS1A": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "false_corroboration_rate": 1.0,
+          "missing": 0,
+          "n": 40
+        },
+        "PDS1B": {
+          "accuracy": 1.0,
+          "exact_correct": 40,
+          "independent_support_preservation": 1.0,
+          "missing": 0,
+          "n": 40
+        },
+        "PDS1C": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 40
+        },
+        "PDS1D": {
+          "accuracy": 1.0,
+          "exact_correct": 40,
+          "missing": 0,
+          "n": 40
+        }
+      },
+      "CURRENT_INDEPENDENT_COUNTING": {
+        "PDS1A": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "false_corroboration_rate": 1.0,
+          "missing": 0,
+          "n": 40
+        },
+        "PDS1B": {
+          "accuracy": 1.0,
+          "exact_correct": 40,
+          "independent_support_preservation": 1.0,
+          "missing": 0,
+          "n": 40
+        },
+        "PDS1C": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 40
+        },
+        "PDS1D": {
+          "accuracy": 1.0,
+          "exact_correct": 40,
+          "missing": 0,
+          "n": 40
+        }
+      },
+      "PROVENANCE_TRACKING": {
+        "PDS1A": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "false_corroboration_rate": 1.0,
+          "missing": 0,
+          "n": 40
+        },
+        "PDS1B": {
+          "accuracy": 1.0,
+          "exact_correct": 40,
+          "independent_support_preservation": 1.0,
+          "missing": 0,
+          "n": 40
+        },
+        "PDS1C": {
+          "accuracy": 1.0,
+          "exact_correct": 40,
+          "missing": 0,
+          "n": 40
+        },
+        "PDS1D": {
+          "accuracy": 1.0,
+          "exact_correct": 40,
+          "missing": 0,
+          "n": 40
+        }
+      },
+      "P_D_FULL": {
+        "PDS1A": {
+          "exact_correct": 0,
+          "false_corroboration_rate": null,
+          "missing": 40,
+          "n": 40
+        },
+        "PDS1B": {
+          "exact_correct": 0,
+          "independent_support_preservation": null,
+          "missing": 40,
+          "n": 40
+        },
+        "PDS1C": {
+          "exact_correct": 0,
+          "missing": 40,
+          "n": 40
+        },
+        "PDS1D": {
+          "exact_correct": 0,
+          "missing": 40,
+          "n": 40
+        }
+      },
+      "P_D_MINUS_DEPENDENCE": {
+        "PDS1A": {
+          "exact_correct": 0,
+          "false_corroboration_rate": null,
+          "missing": 40,
+          "n": 40
+        },
+        "PDS1B": {
+          "exact_correct": 0,
+          "independent_support_preservation": null,
+          "missing": 40,
+          "n": 40
+        },
+        "PDS1C": {
+          "exact_correct": 0,
+          "missing": 40,
+          "n": 40
+        },
+        "PDS1D": {
+          "exact_correct": 0,
+          "missing": 40,
+          "n": 40
+        }
+      },
+      "ROBUSTNESS_TRIANGULATION_PARENT": {
+        "PDS1A": {
+          "exact_correct": 0,
+          "false_corroboration_rate": null,
+          "missing": 40,
+          "n": 40
+        },
+        "PDS1B": {
+          "exact_correct": 0,
+          "independent_support_preservation": null,
+          "missing": 40,
+          "n": 40
+        },
+        "PDS1C": {
+          "exact_correct": 0,
+          "missing": 40,
+          "n": 40
+        },
+        "PDS1D": {
+          "exact_correct": 0,
+          "missing": 40,
+          "n": 40
+        }
+      },
+      "SIMPLE_DIRECT_CONTROL": {
+        "PDS1A": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "false_corroboration_rate": 1.0,
+          "missing": 0,
+          "n": 40
+        },
+        "PDS1B": {
+          "accuracy": 1.0,
+          "exact_correct": 40,
+          "independent_support_preservation": 1.0,
+          "missing": 0,
+          "n": 40
+        },
+        "PDS1C": {
+          "accuracy": 1.0,
+          "exact_correct": 40,
+          "missing": 0,
+          "n": 40
+        },
+        "PDS1D": {
+          "accuracy": 1.0,
+          "exact_correct": 40,
+          "missing": 0,
+          "n": 40
+        }
+      },
+      "STANDARD_DEPENDENCE_META_ANALYSIS": {
+        "PDS1A": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "false_corroboration_rate": 1.0,
+          "missing": 0,
+          "n": 40
+        },
+        "PDS1B": {
+          "accuracy": 1.0,
+          "exact_correct": 40,
+          "independent_support_preservation": 1.0,
+          "missing": 0,
+          "n": 40
+        },
+        "PDS1C": {
+          "accuracy": 1.0,
+          "exact_correct": 40,
+          "missing": 0,
+          "n": 40
+        },
+        "PDS1D": {
+          "accuracy": 1.0,
+          "exact_correct": 40,
+          "missing": 0,
+          "n": 40
+        }
+      },
+      "STRONGEST_ASSURANCE_FEDERATION": {
+        "PDS1A": {
+          "exact_correct": 0,
+          "false_corroboration_rate": null,
+          "missing": 40,
+          "n": 40
+        },
+        "PDS1B": {
+          "exact_correct": 0,
+          "independent_support_preservation": null,
+          "missing": 40,
+          "n": 40
+        },
+        "PDS1C": {
+          "exact_correct": 0,
+          "missing": 40,
+          "n": 40
+        },
+        "PDS1D": {
+          "exact_correct": 0,
+          "missing": 40,
+          "n": 40
+        }
+      }
+    },
+    "PD-S2-ARGUMENT-AND-ADEQUACY": {
+      "ARGUMENT_ACCEPTABILITY": {
+        "PDS2A": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS2B": {
+          "accuracy": 1.0,
+          "exact_correct": 30,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS2C": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS2D": {
+          "accuracy": 1.0,
+          "exact_correct": 30,
+          "missing": 0,
+          "n": 30
+        }
+      },
+      "CURRENT_INDEPENDENT_COUNTING": {
+        "PDS2A": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS2B": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS2C": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS2D": {
+          "accuracy": 1.0,
+          "exact_correct": 30,
+          "missing": 0,
+          "n": 30
+        }
+      },
+      "PROVENANCE_TRACKING": {
+        "PDS2A": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS2B": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS2C": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS2D": {
+          "accuracy": 1.0,
+          "exact_correct": 30,
+          "missing": 0,
+          "n": 30
+        }
+      },
+      "P_D_FULL": {
+        "PDS2A": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        },
+        "PDS2B": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        },
+        "PDS2C": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        },
+        "PDS2D": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        }
+      },
+      "P_D_MINUS_DEPENDENCE": {
+        "PDS2A": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        },
+        "PDS2B": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        },
+        "PDS2C": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        },
+        "PDS2D": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        }
+      },
+      "SIMPLE_DIRECT_CONTROL": {
+        "PDS2A": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS2B": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS2C": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS2D": {
+          "accuracy": 1.0,
+          "exact_correct": 30,
+          "missing": 0,
+          "n": 30
+        }
+      },
+      "STANDARD_DEPENDENCE_META_ANALYSIS": {
+        "PDS2A": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS2B": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS2C": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS2D": {
+          "accuracy": 1.0,
+          "exact_correct": 30,
+          "missing": 0,
+          "n": 30
+        }
+      },
+      "STRONGEST_ASSURANCE_FEDERATION": {
+        "PDS2A": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        },
+        "PDS2B": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        },
+        "PDS2C": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        },
+        "PDS2D": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        }
+      }
+    },
+    "PD-S3-REVOCATION-AND-UPTAKE": {
+      "ARGUMENT_ACCEPTABILITY": {
+        "PDS3A": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30,
+          "reopening_precision": 0.0,
+          "reopening_recall": null
+        },
+        "PDS3B": {
+          "accuracy": 1.0,
+          "exact_correct": 30,
+          "missing": 0,
+          "n": 30,
+          "reopening_precision": 1.0,
+          "reopening_recall": 1.0
+        },
+        "PDS3C": {
+          "accuracy": 1.0,
+          "exact_correct": 30,
+          "missing": 0,
+          "n": 30,
+          "reopening_precision": null,
+          "reopening_recall": null
+        },
+        "PDS3D": {
+          "accuracy": 0.3333333333333333,
+          "exact_correct": 10,
+          "missing": 0,
+          "n": 30
+        }
+      },
+      "CURRENT_INDEPENDENT_COUNTING": {
+        "PDS3A": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30,
+          "reopening_precision": 0.0,
+          "reopening_recall": null
+        },
+        "PDS3B": {
+          "accuracy": 1.0,
+          "exact_correct": 30,
+          "missing": 0,
+          "n": 30,
+          "reopening_precision": 1.0,
+          "reopening_recall": 1.0
+        },
+        "PDS3C": {
+          "accuracy": 1.0,
+          "exact_correct": 30,
+          "missing": 0,
+          "n": 30,
+          "reopening_precision": null,
+          "reopening_recall": null
+        },
+        "PDS3D": {
+          "accuracy": 0.3333333333333333,
+          "exact_correct": 10,
+          "missing": 0,
+          "n": 30
+        }
+      },
+      "PROVENANCE_TRACKING": {
+        "PDS3A": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30,
+          "reopening_precision": 0.0,
+          "reopening_recall": null
+        },
+        "PDS3B": {
+          "accuracy": 1.0,
+          "exact_correct": 30,
+          "missing": 0,
+          "n": 30,
+          "reopening_precision": 1.0,
+          "reopening_recall": 1.0
+        },
+        "PDS3C": {
+          "accuracy": 1.0,
+          "exact_correct": 30,
+          "missing": 0,
+          "n": 30,
+          "reopening_precision": null,
+          "reopening_recall": null
+        },
+        "PDS3D": {
+          "accuracy": 0.3333333333333333,
+          "exact_correct": 10,
+          "missing": 0,
+          "n": 30
+        }
+      },
+      "P_D_FULL": {
+        "PDS3A": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30,
+          "reopening_precision": null,
+          "reopening_recall": null
+        },
+        "PDS3B": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30,
+          "reopening_precision": null,
+          "reopening_recall": 0.0
+        },
+        "PDS3C": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30,
+          "reopening_precision": null,
+          "reopening_recall": null
+        },
+        "PDS3D": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        }
+      },
+      "P_D_MINUS_DEPENDENCE": {
+        "PDS3A": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30,
+          "reopening_precision": null,
+          "reopening_recall": null
+        },
+        "PDS3B": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30,
+          "reopening_precision": null,
+          "reopening_recall": 0.0
+        },
+        "PDS3C": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30,
+          "reopening_precision": null,
+          "reopening_recall": null
+        },
+        "PDS3D": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        }
+      },
+      "SIMPLE_DIRECT_CONTROL": {
+        "PDS3A": {
+          "accuracy": 1.0,
+          "exact_correct": 30,
+          "missing": 0,
+          "n": 30,
+          "reopening_precision": null,
+          "reopening_recall": null
+        },
+        "PDS3B": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30,
+          "reopening_precision": null,
+          "reopening_recall": 0.0
+        },
+        "PDS3C": {
+          "accuracy": 1.0,
+          "exact_correct": 30,
+          "missing": 0,
+          "n": 30,
+          "reopening_precision": null,
+          "reopening_recall": null
+        },
+        "PDS3D": {
+          "accuracy": 0.3333333333333333,
+          "exact_correct": 10,
+          "missing": 0,
+          "n": 30
+        }
+      },
+      "STANDARD_DEPENDENCE_META_ANALYSIS": {
+        "PDS3A": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30,
+          "reopening_precision": 0.0,
+          "reopening_recall": null
+        },
+        "PDS3B": {
+          "accuracy": 1.0,
+          "exact_correct": 30,
+          "missing": 0,
+          "n": 30,
+          "reopening_precision": 1.0,
+          "reopening_recall": 1.0
+        },
+        "PDS3C": {
+          "accuracy": 1.0,
+          "exact_correct": 30,
+          "missing": 0,
+          "n": 30,
+          "reopening_precision": null,
+          "reopening_recall": null
+        },
+        "PDS3D": {
+          "accuracy": 0.3333333333333333,
+          "exact_correct": 10,
+          "missing": 0,
+          "n": 30
+        }
+      },
+      "STRONGEST_ASSURANCE_FEDERATION": {
+        "PDS3A": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30,
+          "reopening_precision": null,
+          "reopening_recall": null
+        },
+        "PDS3B": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30,
+          "reopening_precision": null,
+          "reopening_recall": 0.0
+        },
+        "PDS3C": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30,
+          "reopening_precision": null,
+          "reopening_recall": null
+        },
+        "PDS3D": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        }
+      }
+    },
+    "PD-S4-AUTHORITY-AND-RESPONSE": {
+      "ARGUMENT_ACCEPTABILITY": {
+        "PDS4A": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "false_authority_rate": 1.0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS4B": {
+          "accuracy": 1.0,
+          "exact_correct": 30,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS4C": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS4D": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        }
+      },
+      "CURRENT_INDEPENDENT_COUNTING": {
+        "PDS4A": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "false_authority_rate": 1.0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS4B": {
+          "accuracy": 1.0,
+          "exact_correct": 30,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS4C": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS4D": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        }
+      },
+      "PERFORMATIVE_SECURITY_PARENT": {
+        "PDS4A": {
+          "exact_correct": 0,
+          "false_authority_rate": null,
+          "missing": 30,
+          "n": 30
+        },
+        "PDS4B": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        },
+        "PDS4C": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        },
+        "PDS4D": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        }
+      },
+      "PROVENANCE_TRACKING": {
+        "PDS4A": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "false_authority_rate": 1.0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS4B": {
+          "accuracy": 1.0,
+          "exact_correct": 30,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS4C": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS4D": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        }
+      },
+      "P_D_FULL": {
+        "PDS4A": {
+          "exact_correct": 0,
+          "false_authority_rate": null,
+          "missing": 30,
+          "n": 30
+        },
+        "PDS4B": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        },
+        "PDS4C": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        },
+        "PDS4D": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        }
+      },
+      "P_D_MINUS_DEPENDENCE": {
+        "PDS4A": {
+          "exact_correct": 0,
+          "false_authority_rate": null,
+          "missing": 30,
+          "n": 30
+        },
+        "PDS4B": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        },
+        "PDS4C": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        },
+        "PDS4D": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        }
+      },
+      "SIMPLE_DIRECT_CONTROL": {
+        "PDS4A": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "false_authority_rate": 0.0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS4B": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS4C": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS4D": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        }
+      },
+      "STANDARD_DEPENDENCE_META_ANALYSIS": {
+        "PDS4A": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "false_authority_rate": 1.0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS4B": {
+          "accuracy": 1.0,
+          "exact_correct": 30,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS4C": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        },
+        "PDS4D": {
+          "accuracy": 0.0,
+          "exact_correct": 0,
+          "missing": 0,
+          "n": 30
+        }
+      },
+      "STRONGEST_ASSURANCE_FEDERATION": {
+        "PDS4A": {
+          "exact_correct": 0,
+          "false_authority_rate": null,
+          "missing": 30,
+          "n": 30
+        },
+        "PDS4B": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        },
+        "PDS4C": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        },
+        "PDS4D": {
+          "exact_correct": 0,
+          "missing": 30,
+          "n": 30
+        }
+      }
+    }
+  }
+}
