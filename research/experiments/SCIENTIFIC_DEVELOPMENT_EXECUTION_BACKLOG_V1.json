@@ -32,6 +32,12 @@
         "source-specific normalized JSONL adapters"
       ],
       "command_template": "python scripts/build_scientific_development_corpus.py --input SOURCE1.jsonl --input SOURCE2.jsonl --output corpus.json --receipt corpus-receipt.json",
+      "adapters_implemented": [
+        "scripts/sd10_sources/arxiv_adapter.py",
+        "scripts/sd10_sources/crossref_adapter.py",
+        "scripts/sd10_sources/openalex_adapter.py"
+      ],
+      "adapters_note": "adapters implemented only; SD10 execution still requires the actual lawful fetch run plus corpus assembly and bias audit, which are NOT performed by the adapter PR",
       "required_outputs": [
         "source lineage",
         "domain/epoch/source-mode coverage",

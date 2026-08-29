@@ -1,0 +1,44 @@
+{
+  "meta": {
+    "count": 3,
+    "db_response_time_ms": 12,
+    "next_cursor": "openalex-cursor-2"
+  },
+  "results": [
+    {
+      "id": "https://openalex.org/W1",
+      "doi": "https://doi.org/10.1000/normal-article",
+      "type": "article",
+      "publication_year": 2024,
+      "cited_by_count": 41,
+      "referenced_works_count": 19,
+      "is_retracted": false,
+      "primary_topic": {"field": {"id": "https://openalex.org/fields/33", "display_name": "Mathematics"}},
+      "authorships": [
+        {"author": {"id": "https://openalex.org/A1"}, "institutions": [{"id": "https://openalex.org/I1", "display_name": "Example Institute"}]},
+        {"author": {"id": "https://openalex.org/A2"}, "institutions": []}
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2",
+      "type": "article",
+      "publication_year": 2024,
+      "cited_by_count": 3,
+      "referenced_works_count": 8,
+      "is_retracted": true,
+      "authorships": [
+        {"author": {"id": "https://openalex.org/A3"}, "institutions": [{"id": "https://openalex.org/I2"}]}
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3",
+      "type": "dataset",
+      "publication_year": 2024,
+      "cited_by_count": 0,
+      "referenced_works_count": 0,
+      "is_retracted": false,
+      "primary_location": {"source": {"id": "https://openalex.org/S77", "display_name": "Example Repository"}},
+      "authorships": []
+    }
+  ]
+}

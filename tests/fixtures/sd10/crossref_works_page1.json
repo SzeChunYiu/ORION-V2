@@ -1,0 +1,66 @@
+{
+  "status": "ok",
+  "message-type": "work-list",
+  "message": {
+    "next-cursor": "crossref-cursor-2",
+    "total-results": 4,
+    "items": [
+      {
+        "DOI": "10.1000/normal-article",
+        "type": "journal-article",
+        "title": ["A normal indexed article"],
+        "subject": ["Mathematics"],
+        "issued": {"date-parts": [[2024, 3, 1]]},
+        "is-referenced-by-count": 57,
+        "reference-count": 22,
+        "author": [
+          {"name": "Author One"},
+          {"name": "Author Two"},
+          {"name": "Author Three"}
+        ],
+        "institution": [{"name": "Example Institute"}],
+        "update-to": [
+          {
+            "DOI": "10.1000/correction-notice",
+            "type": "correction",
+            "label": "Correction",
+            "source": "crossref",
+            "updated": {"date-parts": [[2024, 5, 1]], "timestamp": 1714521600000},
+            "record-id": "77"
+          }
+        ]
+      },
+      {
+        "DOI": "10.1000/retraction-notice",
+        "type": "journal-article",
+        "title": ["Retraction: A normal indexed article"],
+        "subject": ["Mathematics"],
+        "issued": {"date-parts": [[2024, 6, 1]]},
+        "is-referenced-by-count": 2,
+        "reference-count": 1,
+        "author": [{"name": "Editors"}],
+        "relation": {},
+        "update-to": [
+          {
+            "DOI": "10.1000/retracted-target",
+            "type": "retraction",
+            "label": "Retraction",
+            "source": "crossref",
+            "updated": {"date-parts": [[2024, 6, 1]], "timestamp": 1717200000000},
+            "record-id": "9"
+          }
+        ]
+      },
+      {
+        "DOI": "10.1000/retracted-target",
+        "type": "journal-article",
+        "title": ["The retracted article itself, unmarked in Crossref"],
+        "subject": ["Computer Science"],
+        "issued": {"date-parts": [[2024, 4, 1]]},
+        "is-referenced-by-count": 0,
+        "reference-count": 3,
+        "author": [{"name": "Author Four"}]
+      }
+    ]
+  }
+}
