@@ -1,7 +1,10 @@
-# arXiv Release Readiness V1 — Prospective Revision Audit
+# arXiv Release Readiness V1 — Prospective Revision Adequacy
 
-**Scientific master:** `MANUSCRIPT_V11_ARXIV_JMLR_REVIEWED_MASTER.md`  
+**Public title:** **Prospective Revision Adequacy: Auditing Autoregressive Representations Beyond Current Prediction and Decision**  
+**Scientific master:** `MANUSCRIPT_V12_ARXIV_JMLR_FINAL.md`  
 **Pipeline:** `academic-paper-pipeline@d2cac7bd...`
+
+The V12 master supersedes manuscript V1–V11 for public release and fixes the reference-protocol notation serialization defect found during final surface QA.
 
 ## Scientific-content gate
 
@@ -14,7 +17,7 @@
 - [x] one-step versus recurrent-state boundary explicit;
 - [x] strongest-parent novelty subtraction explicit;
 - [x] direct LLM-neighbor comparison in main text;
-- [x] Protocol V3 scientific controls integrated;
+- [x] Prospective Revision Audit scientific controls integrated;
 - [x] alternate-channel and parametric reconstruction gates explicit;
 - [x] update + maintain/selective-reopening logic explicit;
 - [x] deterministic/stochastic decision boundary explicit;
@@ -42,13 +45,14 @@
 - [x] direct 2026 LLM-memory/revision frontier reviewed;
 - [x] universal priority claim prohibited;
 - [ ] final metadata/status refresh for all 2026 preprints/public-review items immediately before upload;
-- [ ] exact V11 citation-key completeness check after LaTeX assembly.
+- [ ] exact V12 citation-key completeness check after LaTeX assembly.
 
 ## Manuscript-surface gate
 
-- [x] V11 contains no issue/PR/branch/CI narrative;
+- [x] V12 contains no issue/PR/branch/CI narrative;
 - [x] internal terminal language removed from scientific prose;
 - [x] central notation locally explained;
+- [x] reference-protocol notation repaired and simplified;
 - [x] abstract contains problem, contribution, result and boundary;
 - [x] direct-neighbor table performs a scientific comparison rather than checkmark marketing;
 - [ ] exact rendered-PDF surface QA after LaTeX assembly;
@@ -69,6 +73,7 @@
 SCIENTIFIC_CONTENT = READY_FOR_ARXIV
 THEOREM_EVIDENCE = READY
 SIMULATED_REVIEW = CLOSED
+ARXIV_SOURCE_MASTER = V12_FINAL
 ARXIV_BINARY_PACKAGE = NOT_YET_ASSEMBLED
 HUMAN_RELEASE_AUTHORITY = OPEN
 ARXIV_PUBLIC_RELEASE_AUTHORIZED = NO
