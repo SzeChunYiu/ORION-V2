@@ -226,7 +226,7 @@ The Perspective is not submission-ready until:
 ```text
 FLAGSHIP_MANUSCRIPT_SURFACE = COMPLETE_PRE_EVIDENCE
 FLAGSHIP_CITATION_FIRST_PASS = COMPLETE_CENTRAL_CLAIMS (V8)
-CITATION_ENTAILMENT_SENTENCE_LEVEL = OPEN
+CITATION_ENTAILMENT_SENTENCE_LEVEL = COMPLETE_53_OF_53_CHECKED (2026-08-29; 6 corrections applied: refs 12, 13, 15, 29, 33, 55; receipt FLAGSHIP_SENTENCE_LEVEL_CITATION_AUDIT_V1.md)
 CONTRARY_AND_LIMITING_LITERATURE_AUDIT = OPEN
 PRE_SUBMISSION_NAME_COLLISION_SEARCH = OPEN__PRELIMINARY_PASS_2026-08-29_NO_FIELD_COLLISION
 FIELD_HYPOTHESIS = MACHINE_EPISTEMICS
@@ -254,10 +254,10 @@ PUBLICATION_AUTHORITY = EXTERNAL_ONLY
 9. Silver, D. et al. Mastering the game of Go without human knowledge. *Nature* 550, 354–359 (2017).
 10. Kelly, K. T. *The Logic of Reliable Inquiry* (Oxford University Press, 1996).
 11. Doyle, J. A truth maintenance system. *Artificial Intelligence* 12, 231–272 (1979).
-12. de Kleer, J. An assumption-based truth maintenance system. *Artificial Intelligence* 28, 127–224 (1986).
-13. Alchourrón, C. E., Gärdenfors, P. & Makinson, D. On the logic of theory change: partial meet contraction and revision functions. *Journal of Philosophical Logic* 13, 157–224 (1985).
+12. de Kleer, J. An assumption-based truth maintenance system. *Artificial Intelligence* 28, 127–162 (1986).
+13. Alchourrón, C. E., Gärdenfors, P. & Makinson, D. On the logic of theory change: partial meet contraction and revision functions. *Journal of Symbolic Logic* 50, 510–530 (1985).
 14. Reiter, R. A theory of diagnosis from first principles. *Artificial Intelligence* 32, 57–95 (1987).
-15. Russell, S. & Wefald, E. *Principles of Metareasoning* (MIT Press, 1991); see also Russell, S. & Wefald, E. Principles of metareasoning. *Artificial Intelligence* 49, 361–395 (1991).
+15. Russell, S. & Wefald, E. *Do the Right Thing: Studies in Limited Rationality* (MIT Press, 1991); see also Russell, S. & Wefald, E. Principles of metareasoning. *Artificial Intelligence* 49, 361–395 (1991).
 16. Chaloner, K. & Verdinelli, I. Bayesian experimental design: a review. *Statistical Science* 10, 273–304 (1995).
 17. Settles, B. *Active Learning Literature Survey* (Computer Sciences Technical Report 1648, University of Wisconsin–Madison, 2009).
 18. Wiener, N. *Cybernetics: Or Control and Communication in the Animal and the Machine* (MIT Press/Wiley, 1948).
@@ -271,11 +271,11 @@ PUBLICATION_AUTHORITY = EXTERNAL_ONLY
 26. Star, S. L. & Griesemer, J. R. Institutional ecology, 'translations' and boundary objects: amateurs and professionals in Berkeley's Museum of Vertebrate Zoology, 1907–39. *Social Studies of Science* 19, 387–420 (1989).
 27. Gelman, A. et al. Bayesian workflow. Preprint at arXiv, https://arxiv.org/abs/2011.01808 (2020).
 28. Gelman, A., Meng, X.-L. & Stern, H. Posterior predictive assessment of model fitness via realized discrepancies. *Statistica Sinica* 6, 733–760 (1996).
-29. Talts, S., Betancourt, M., Simpson, D., Vehtari, A. & Gelman, A. Validating Bayesian inference algorithms with simulation-based calibration. Preprint at arXiv, https://arxiv.org/abs/1804.01988 (2018).
+29. Talts, S., Betancourt, M., Simpson, D., Vehtari, A. & Gelman, A. Validating Bayesian inference algorithms with simulation-based calibration. Preprint at arXiv, https://arxiv.org/abs/1804.06788 (2018).
 30. Higham, N. J. *Accuracy and Stability of Numerical Algorithms*, 2nd edn (SIAM, 2002).
 31. Moore, R. E. *Interval Analysis* (Prentice-Hall, 1966).
 32. Barr, E. T., Harman, M., McMinn, P., Shahbaz, M. & Yoo, S. The oracle problem in software testing: a survey. *IEEE Transactions on Software Engineering* 41, 507–525 (2015).
-33. Chen, T. Y. et al. Metamorphic testing: a review of challenges and opportunities. *Journal of Systems and Software* 133, 8–23 (2017).
+33. Chen, T. Y. et al. Metamorphic testing: a review of challenges and opportunities. *ACM Computing Surveys* 51(1), 4:1–4:27 (2018).
 34. Mayo, D. G. *Error and the Growth of Experimental Knowledge* (University of Chicago Press, 1996).
 35. Moreau, L. & Groth, P. *Provenance: An Introduction to PROV* (Morgan & Claypool, 2013).
 36. Stodden, V., LeVeque, R. J. & Mitchell, I. (eds) *Implementing Reproducible Research* (CRC Press, 2014).
@@ -297,7 +297,7 @@ PUBLICATION_AUTHORITY = EXTERNAL_ONLY
 52. Kukutai, T. & Taylor, J. (eds) *Indigenous Data Sovereignty: Toward an Agenda* (ANU Press, 2016).
 53. Carroll, S. R. et al. The CARE Principles for Indigenous Data Governance. *Data Science Journal* 19, 43 (2020).
 54. MacKnight, R., Novitskiy, I. M., Radadiya, R. & Gomes, G. Provenance grounds trust in autonomous science. *Nature Computational Science* (Comment, 2026).
-55. The mathlib Community (de Moura, L. et al.). The Lean mathematical library. *Proc. 10th ACM SIGPLAN International Conference on Certified Programs and Proofs (CPP)*, 477–478 (2021).
+55. The mathlib Community. The Lean mathematical library. *Proc. 9th ACM SIGPLAN International Conference on Certified Programs and Proofs (CPP)*, 477–478 (2021).
 56. Gulwani, S., Polozov, O. & Singh, R. *Program Synthesis* (Foundations and Trends in Programming Languages 4, 1–119; now Publishers, 2017).
 57. Stanley, K. O. & Lehman, J. *Why Greatness Cannot Be Planned: The Myth of the Objective* (Springer, 2015).
 58. Ha, D. & Schmidhuber, J. Recurrent world models facilitate policy evolution. *Advances in Neural Information Processing Systems* 31 (2018).
@@ -317,4 +317,4 @@ PUBLICATION_AUTHORITY = EXTERNAL_ONLY
 72. Peters, U. Response to Koskinen: existing social epistemology and deferred responsibility. *Social Epistemology Review and Reply Collective* 13(1), 58–66 (2024); see also Koskinen, I. S. We still have no satisfactory social epistemology of AI-based science: a response to Peters. *Soc. Epistemol. Rev. Reply Collect.* 13(5), 9–14 (2024).
 73. Camps-Valls, G. AI needs a new philosophy of science. *The Innovation* 7(5), 101311 (2026).
 
-**Verification note.** References 1–9, 21, 37, 54, 59–65, 67, 68, 71–73 were verified against live web sources during the V8 citation pass (2026-08-29; verification receipt: `papers/pipeline/FLAGSHIP_CITATION_VERIFICATION_RECEIPT_V1.md`). The remaining references are canonical published works cited from standard bibliographic knowledge; their full sentence-level verification is part of the open complete-entailment audit.
+**Verification note.** References 1–9, 21, 37, 54, 59–65, 67, 68, 71–73 were verified against live web sources during the V8 citation pass (2026-08-29; verification receipt: `papers/pipeline/FLAGSHIP_CITATION_VERIFICATION_RECEIPT_V1.md`). The remaining references underwent sentence-level identity verification on 2026-08-29 (53/53 checked: 46 verified, 3 minor fixes, 3 wrong-identity corrections applied, 1 thesis title variant left unpinned; receipt: `papers/pipeline/FLAGSHIP_SENTENCE_LEVEL_CITATION_AUDIT_V1.md`), and placement of all 66 in-text citation brackets was checked with zero clear misplacements.

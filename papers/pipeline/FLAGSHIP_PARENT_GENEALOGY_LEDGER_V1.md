@@ -108,7 +108,7 @@ This falsifier is stronger than proving that no **single** parent owns the entir
 
 `CORE_CANONICAL_SOURCES_IDENTIFIED = YES`
 
-`FULL_CITATION_ENTAILMENT_AUDIT = OPEN` (central-claims first pass COMPLETE at V8: 17/70 refs VERIFIED_WEB, receipt `FLAGSHIP_CITATION_VERIFICATION_RECEIPT_V1.md`; sentence-level pass open)
+`FULL_CITATION_ENTAILMENT_AUDIT = COMPLETE_V8` (central-claims pass: receipt `FLAGSHIP_CITATION_VERIFICATION_RECEIPT_V1.md`; sentence-level identity+placement pass 2026-08-29: 53/53 checked, 46 verified, 6 corrections applied in manuscript, receipt `FLAGSHIP_SENTENCE_LEVEL_CITATION_AUDIT_V1.md`; ref 38 thesis title-variant detail unpinned until submission-time library check)
 
 `ROUND04_NEIGHBOR_ABSORPTION = COMPLETE_5_OF_5_VERIFIED (V8)`
 
