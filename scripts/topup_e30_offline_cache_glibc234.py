@@ -117,6 +117,7 @@ COOKIECUTTER_TEST_PREREQUISITES = [
     "py==1.8.1",
     "packaging==20.4",
     "pytest==5.4.2",
+    "wcwidth==0.1.9",
 ]
 COOKIECUTTER_SETUP_COMMAND_PREREQUISITES = {
     COOKIECUTTER_DEVELOP_DIGEST: ["ruamel.yaml.clib==0.2.0", "ruamel.yaml==0.16.10"],
