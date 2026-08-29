@@ -1,0 +1,52 @@
+{
+  "status": "ok",
+  "message-type": "work-list",
+  "message": {
+    "next-cursor": "crossref-cursor-2",
+    "total-results": 3,
+    "items": [
+      {
+        "DOI": "10.1000/normal-article",
+        "type": "journal-article",
+        "title": ["A normal indexed article"],
+        "subject": ["Mathematics"],
+        "issued": {"date-parts": [[2024, 3, 1]]},
+        "is-referenced-by-count": 57,
+        "reference-count": 22,
+        "author": [
+          {"name": "Author One"},
+          {"name": "Author Two"},
+          {"name": "Author Three"}
+        ],
+        "institution": [{"name": "Example Institute"}]
+      },
+      {
+        "DOI": "10.1000/retraction-notice",
+        "type": "journal-article",
+        "title": ["Retraction: A normal indexed article"],
+        "subject": ["Mathematics"],
+        "issued": {"date-parts": [[2024, 6, 1]]},
+        "is-referenced-by-count": 2,
+        "reference-count": 1,
+        "author": [{"name": "Editors"}],
+        "relation": [
+          {
+            "kind": "is-retraction-of",
+            "assertion": [{"DOI": "10.1000/retracted-target"}]
+          }
+        ]
+      },
+      {
+        "DOI": "10.1000/flagged-retracted",
+        "type": "journal-article",
+        "title": ["An article carrying the is-retracted flag"],
+        "subject": ["Computer Science"],
+        "issued": {"date-parts": [[2024, 4, 1]]},
+        "is-referenced-by-count": 0,
+        "reference-count": 3,
+        "author": [{"name": "Author Four"}],
+        "is-retracted": true
+      }
+    ]
+  }
+}
