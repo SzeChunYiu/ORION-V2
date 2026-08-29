@@ -7,7 +7,11 @@ on:
     paths:
       - "scripts/run_formal_discovery_generated_suite.py"
       - "scripts/orion_formal_discovery_arms.py"
+      - "scripts/run_formal_discovery_campaign.py"
+      - "scripts/run_formal_discovery_campaign.sh"
       - "tests/unit/test_formal_discovery_generated_suite_wave6.py"
+      - "tests/unit/test_formal_discovery_campaign_plan_wave6.py"
+      - "research/experiments/FORMAL_DISCOVERY_GENERATED_CAMPAIGN_PLAN_V1.json"
       - "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_MECHANICS_PROTOCOL_V1.json"
       - "research/experiments/FORMALISM_GENESIS_PROTOCOL_V1.json"
       - ".github/workflows/wave6-formal-generated-suite.yml"
@@ -15,7 +19,11 @@ on:
     paths:
       - "scripts/run_formal_discovery_generated_suite.py"
       - "scripts/orion_formal_discovery_arms.py"
+      - "scripts/run_formal_discovery_campaign.py"
+      - "scripts/run_formal_discovery_campaign.sh"
       - "tests/unit/test_formal_discovery_generated_suite_wave6.py"
+      - "tests/unit/test_formal_discovery_campaign_plan_wave6.py"
+      - "research/experiments/FORMAL_DISCOVERY_GENERATED_CAMPAIGN_PLAN_V1.json"
       - "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_MECHANICS_PROTOCOL_V1.json"
       - "research/experiments/FORMALISM_GENESIS_PROTOCOL_V1.json"
   workflow_dispatch:
@@ -40,8 +48,26 @@ jobs:
         run: |
           python -m py_compile scripts/run_formal_discovery_generated_suite.py
           python -m py_compile scripts/orion_formal_discovery_arms.py
+          python -m py_compile scripts/run_formal_discovery_campaign.py
+          bash -n scripts/run_formal_discovery_campaign.sh
       - name: Run focused tests
-        run: python -m pytest -q tests/unit/test_formal_discovery_generated_suite_wave6.py
+        run: |
+          python -m pytest -q \
+            tests/unit/test_formal_discovery_generated_suite_wave6.py \
+            tests/unit/test_formal_discovery_campaign_plan_wave6.py
+      - name: Validate frozen campaign plan
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          plan=json.loads(Path('research/experiments/FORMAL_DISCOVERY_GENERATED_CAMPAIGN_PLAN_V1.json').read_text())
+          assert plan['status'] == 'PROSPECTIVE_EXECUTION_PLAN_NO_RESULTS'
+          expected={'FM10','FM20','FM30','FM40','FM50','FM60','FG10','FG20','FG30','FG40','FG50','FG60','FG70','FG80'}
+          assert set(plan['studies']) == expected
+          assert set(plan['excluded_from_generated_campaign']) == {'FM70','FM80','FG90'}
+          assert all(item['tasks'] > 0 and item['arms'] for item in plan['studies'].values())
+          assert all(v is False for v in plan['authority'].values())
+          PY
       - name: Prepare all generated FM and FG families
         run: |
           python scripts/run_formal_discovery_generated_suite.py prepare \
@@ -71,7 +97,6 @@ jobs:
           req=Path(a.request); root=req.parents[2]
           assert not (root/'private_oracle.json').exists()
           assert os.environ.get('ORION_GOLD_ACCESS') == 'NONE'
-          data=json.loads(req.read_text())
           Path(a.response).parent.mkdir(parents=True,exist_ok=True)
           Path(a.response).write_text(json.dumps({'answer':{}}))
           PY
