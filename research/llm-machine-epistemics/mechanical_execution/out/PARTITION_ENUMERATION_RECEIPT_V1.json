@@ -1,0 +1,90 @@
+{
+  "bell_reference": {
+    "1": 1,
+    "2": 2,
+    "3": 5,
+    "4": 15,
+    "5": 52,
+    "6": 203,
+    "7": 877
+  },
+  "per_n": [
+    {
+      "L1_pred_sufficient_refines_P": true,
+      "T2a_min_block_count_equals_P": true,
+      "T2b_equal_block_count_implies_equal_P": true,
+      "bell_match": true,
+      "n": 1,
+      "partitions": 1,
+      "predictive_sufficient_pairs": 1,
+      "seconds": 0.0
+    },
+    {
+      "L1_pred_sufficient_refines_P": true,
+      "T2a_min_block_count_equals_P": true,
+      "T2b_equal_block_count_implies_equal_P": true,
+      "bell_match": true,
+      "n": 2,
+      "partitions": 2,
+      "predictive_sufficient_pairs": 3,
+      "seconds": 0.0
+    },
+    {
+      "L1_pred_sufficient_refines_P": true,
+      "T2a_min_block_count_equals_P": true,
+      "T2b_equal_block_count_implies_equal_P": true,
+      "bell_match": true,
+      "n": 3,
+      "partitions": 5,
+      "predictive_sufficient_pairs": 12,
+      "seconds": 0.0
+    },
+    {
+      "L1_pred_sufficient_refines_P": true,
+      "T2a_min_block_count_equals_P": true,
+      "T2b_equal_block_count_implies_equal_P": true,
+      "bell_match": true,
+      "n": 4,
+      "partitions": 15,
+      "predictive_sufficient_pairs": 60,
+      "seconds": 0.0
+    },
+    {
+      "L1_pred_sufficient_refines_P": true,
+      "T2a_min_block_count_equals_P": true,
+      "T2b_equal_block_count_implies_equal_P": true,
+      "bell_match": true,
+      "n": 5,
+      "partitions": 52,
+      "predictive_sufficient_pairs": 358,
+      "seconds": 0.0
+    },
+    {
+      "L1_pred_sufficient_refines_P": true,
+      "T2a_min_block_count_equals_P": true,
+      "T2b_equal_block_count_implies_equal_P": true,
+      "bell_match": true,
+      "n": 6,
+      "partitions": 203,
+      "predictive_sufficient_pairs": 2471,
+      "seconds": 0.03
+    },
+    {
+      "L1_pred_sufficient_refines_P": true,
+      "T2a_min_block_count_equals_P": true,
+      "T2b_equal_block_count_implies_equal_P": true,
+      "bell_match": true,
+      "n": 7,
+      "partitions": 877,
+      "predictive_sufficient_pairs": 19302,
+      "seconds": 0.51
+    }
+  ],
+  "schema_version": "orion.51.predictive-partition-audit.v1",
+  "verdicts": {
+    "L1_PREDICTIVE_SUFFICIENT_REFINES_SP": "PASS",
+    "T2_ENTROPY_MINIMAL_PREDICTIVE_ISOMORPHIC_SP__structural_partition_layer": "PASS",
+    "T2b_D4_cardinality_minimal_corollary": "PASS",
+    "support": "exhaustive over all set partitions of n=1..7 (Bell-verified); predictive sufficiency modelled structurally: same P-block <=> identical full-future law, distinct P-blocks <=> distinct laws"
+  }
+}
