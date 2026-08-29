@@ -1,0 +1,51 @@
+{
+  "schema_version": "orion.v2.recursive-development-result-import-map.v1",
+  "status": "PRE_OUTCOME_IMPORT_DESTINATIONS_FROZEN",
+  "owner_issue": 50,
+  "rules": {
+    "raw_registered_outcome_imported_before_interpretive_edit": true,
+    "negative_parent_simple_and_tie_results_retained": true,
+    "result_may_only_update_listed_claims_or_explicitly_create_new_successor_claim": true,
+    "historical_calibration_may_not_promote_claim": true,
+    "formal_witness_may_not_promote_empirical_claim_without_empirical_evidence": true,
+    "exploratory_FG90_may_not_promote_claim_without_independent_verification": true
+  },
+  "imports": {
+    "FM10": {"papers": ["P-A", "P-B"], "claims": ["PA-C2", "PA-C3", "PB-C1"], "role": "finite_mapping_false_analogy_and_relation_parent_control"},
+    "FM20": {"papers": ["P-A"], "claims": ["PA-C2", "PA-C3"], "role": "anti_unification_generalization_parent_control"},
+    "FM30": {"papers": ["P-A", "P-C"], "claims": ["PA-C3", "PC-C2"], "role": "formal_concept_closure_and_concept_revision_control"},
+    "FM40": {"papers": ["P-B"], "claims": ["PB-C1", "PB-C3"], "role": "invariance_equivariance_known_answer"},
+    "FM50": {"papers": ["P-B"], "claims": ["PB-C1", "PB-C2", "PB-C3"], "role": "functoriality_equivalence_and_false_unification"},
+    "FM60": {"papers": ["P-A", "P-B"], "claims": ["PA-C2", "PB-C2", "PB-C3"], "role": "obstruction_counterexample_before_transfer"},
+    "FM70": {"papers": ["P-C"], "claims": ["PC-C1", "PC-C3", "PC-C4"], "role": "heldout_regime_selector"},
+    "FM80": {"papers": ["P-A", "P-B", "FLAGSHIP"], "claims": ["PA-C1", "PA-C3", "PB-C1", "PB-C3", "FL-C2"], "role": "prospective_mathematics_science_transfer"},
+
+    "FG10": {"papers": ["P-A", "P-C"], "claims": ["PA-C2", "PC-C2", "PC-C4"], "role": "representation_collision_minimal_primitive"},
+    "FG20": {"papers": ["P-B", "P-C"], "claims": ["PB-C3", "PC-C2"], "role": "generalized_object_and_closure"},
+    "FG30": {"papers": ["P-B", "P-C"], "claims": ["PB-C3", "PC-C2"], "role": "relation_operation_invariant_synthesis"},
+    "FG40": {"papers": ["P-B"], "claims": ["PB-C2", "PB-C3"], "role": "axiom_rule_synthesis_with_countermodels"},
+    "FG50": {"papers": ["P-B", "FLAGSHIP"], "claims": ["PB-C1", "PB-C3", "FL-C2"], "role": "rival_formalism_semantics_equivalence_or_no_common_framework"},
+    "FG60": {"papers": ["P-B", "FLAGSHIP"], "claims": ["PB-C2", "FL-C2"], "role": "conservative_extension_and_parent_recovery"},
+    "FG70": {"papers": ["P-C"], "claims": ["PC-C1", "PC-C3", "PC-C4"], "role": "new_formalism_needed_vs_parent_patch_data_no_change"},
+    "FG80": {"papers": ["P-C", "P-F"], "claims": ["PC-C2", "PC-C4", "PF-C1"], "role": "fresh_intermediate_representation_before_solution"},
+    "FG90": {"papers": ["P-F", "FLAGSHIP"], "claims": ["PF-C1", "FL-C4"], "role": "exploratory_frontier_only_until_independently_verified", "headline_eligible_without_independent_verification": false},
+
+    "SD10": {"papers": ["FLAGSHIP"], "claims": ["FL-C4"], "role": "corpus_and_bias_adequacy_only", "headline_eligible": false},
+    "SD20": {"papers": ["FLAGSHIP"], "claims": ["FL-C4"], "role": "candidate_development_operator_discovery", "maximum_pre_prospective_state": "POPULATION_REGULARITY_ONLY"},
+    "SD30": {"papers": ["FLAGSHIP"], "claims": ["FL-C4"], "role": "success_failure_contraindication_and_boundary_learning"},
+    "SD40": {"papers": ["FLAGSHIP"], "claims": ["FL-C4"], "role": "heldout_field_epoch_transfer"},
+    "SD50": {"papers": ["FLAGSHIP"], "claims": ["FL-C4"], "role": "recursive_higher_level_residual"},
+    "SD60": {"papers": ["FLAGSHIP"], "claims": ["FL-C4"], "role": "science_of_science_calibration_only", "headline_eligible": false},
+    "SD70": {"papers": ["P-C", "FLAGSHIP"], "claims": ["PC-C4", "FL-C4"], "role": "fresh_prospective_generated_meta_policy"},
+    "SD80": {"papers": ["P-C", "FLAGSHIP"], "claims": ["PC-C4", "FL-C4"], "role": "naturalistic_prospective_meta_policy_with_independent_adjudication"},
+    "SD90": {"papers": ["FLAGSHIP"], "claims": ["FL-C4"], "role": "bounded_recursive_stability_or_continue_recursion", "ultimate_truth_authorized": false}
+  },
+  "existing_E_series_remain_owned_by": "papers/pipeline/POST_RESULT_IMPORT_AND_R4_PLAYBOOK_V1.md",
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_R3": false,
+    "grants_R4": false,
+    "grants_field_status": false,
+    "grants_journal_acceptance": false
+  }
+}
