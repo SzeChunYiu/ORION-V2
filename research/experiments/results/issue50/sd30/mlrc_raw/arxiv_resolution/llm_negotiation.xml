@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/hBSCdAV1V6TDSxq5IVY0xmMXUno</id>
+  <title>arXiv Query: search_query=ti:"Cooperation, Competition, and Maliciousness: LLM-Stakeholders Interactive Negotiation"&amp;id_list=&amp;start=0&amp;max_results=3</title>
+  <updated>2026-08-29T17:37:54Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=ti:%22Cooperation,+Competition,+and+Maliciousness:+LLM-Stakeholders+Interactive+Negotiation%22&amp;start=0&amp;max_results=3&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>3</opensearch:itemsPerPage>
+  <opensearch:totalResults>2</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2309.17234v2</id>
+    <title>Cooperation, Competition, and Maliciousness: LLM-Stakeholders Interactive Negotiation</title>
+    <updated>2024-06-10T14:43:34Z</updated>
+    <link href="https://arxiv.org/abs/2309.17234v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2309.17234v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>There is an growing interest in using Large Language Models (LLMs) in multi-agent systems to tackle interactive real-world tasks that require effective collaboration and assessing complex situations. Yet, we still have a limited understanding of LLMs' communication and decision-making abilities in multi-agent setups. The fundamental task of negotiation spans many key features of communication, such as cooperation, competition, and manipulation potentials. Thus, we propose using scorable negotiation to evaluate LLMs. We create a testbed of complex multi-agent, multi-issue, and semantically rich negotiation games. To reach an agreement, agents must have strong arithmetic, inference, exploration, and planning capabilities while integrating them in a dynamic and multi-turn setup. We propose multiple metrics to rigorously quantify agents' performance and alignment with the assigned role. We provide procedures to create new games and increase games' difficulty to have an evolving benchmark. Importantly, we evaluate critical safety aspects such as the interaction dynamics between agents influenced by greedy and adversarial players. Our benchmark is highly challenging; GPT-3.5 and small models mostly fail, and GPT-4 and SoTA large models (e.g., Llama-3 70b) still underperform.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CY" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-09-29T13:33:06Z</published>
+    <arxiv:comment>Updated version with major additions (new experiments, evaluation, and attacks)</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Sahar Abdelnabi</name>
+    </author>
+    <author>
+      <name>Amr Gomaa</name>
+    </author>
+    <author>
+      <name>Sarath Sivaprasad</name>
+    </author>
+    <author>
+      <name>Lea Schönherr</name>
+    </author>
+    <author>
+      <name>Mario Fritz</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2502.16242v1</id>
+    <title>Reproducibility Study of Cooperation, Competition, and Maliciousness: LLM-Stakeholders Interactive Negotiation</title>
+    <updated>2025-02-22T14:28:49Z</updated>
+    <link href="https://arxiv.org/abs/2502.16242v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2502.16242v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper presents a reproducibility study and extension of "Cooperation, Competition, and Maliciousness: LLM-Stakeholders Interactive Negotiation." We validate the original findings using a range of open-weight models (1.5B-70B parameters) and GPT-4o Mini while introducing several novel contributions. We analyze the Pareto front of the games, propose a communication-free baseline to test whether successful negotiations are possible without agent interaction, evaluate recent small language models' performance, analyze structural information leakage in model responses, and implement an inequality metric to assess negotiation fairness. Our results demonstrate that smaller models (&lt;10B parameters) struggle with format adherence and coherent responses, but larger open-weight models can approach proprietary model performance. Additionally, in many scenarios, single-agent approaches can achieve comparable results to multi-agent negotiations, challenging assumptions about the necessity of agent communication to perform well on the benchmark. This work also provides insights into the accessibility, fairness, environmental impact, and privacy considerations of LLM-based negotiation systems.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-02-22T14:28:49Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Jose L. Garcia</name>
+    </author>
+    <author>
+      <name>Karolina Hajkova</name>
+    </author>
+    <author>
+      <name>Maria Marchenko</name>
+    </author>
+    <author>
+      <name>Carlos Miguel Patiño</name>
+    </author>
+  </entry>
+</feed>

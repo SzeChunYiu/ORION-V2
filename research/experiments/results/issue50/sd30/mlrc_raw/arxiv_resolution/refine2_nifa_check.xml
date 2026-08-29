@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/5/ES+eMJPM7BCUlyi7cZgkjj1Gg</id>
+  <title>arXiv Query: search_query=all:"Node Injection-based Fairness"&amp;id_list=&amp;start=0&amp;max_results=6</title>
+  <updated>2026-08-29T17:42:38Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22Node+Injection-based+Fairness%22&amp;start=0&amp;max_results=6&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>6</opensearch:itemsPerPage>
+  <opensearch:totalResults>1</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2406.03052v2</id>
+    <title>Are Your Models Still Fair? Fairness Attacks on Graph Neural Networks via Node Injections</title>
+    <updated>2024-10-30T11:56:49Z</updated>
+    <link href="https://arxiv.org/abs/2406.03052v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2406.03052v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Despite the remarkable capabilities demonstrated by Graph Neural Networks (GNNs) in graph-related tasks, recent research has revealed the fairness vulnerabilities in GNNs when facing malicious adversarial attacks. However, all existing fairness attacks require manipulating the connectivity between existing nodes, which may be prohibited in reality. To this end, we introduce a Node Injection-based Fairness Attack (NIFA), exploring the vulnerabilities of GNN fairness in such a more realistic setting. In detail, NIFA first designs two insightful principles for node injection operations, namely the uncertainty-maximization principle and homophily-increase principle, and then optimizes injected nodes' feature matrix to further ensure the effectiveness of fairness attacks. Comprehensive experiments on three real-world datasets consistently demonstrate that NIFA can significantly undermine the fairness of mainstream GNNs, even including fairness-aware GNNs, by injecting merely 1% of nodes. We sincerely hope that our work can stimulate increasing attention from researchers on the vulnerability of GNN fairness, and encourage the development of corresponding defense mechanisms. Our code and data are released at: https://github.com/CGCL-codes/NIFA.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-06-05T08:26:53Z</published>
+    <arxiv:comment>Accepted by NeurIPS 2024</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Zihan Luo</name>
+    </author>
+    <author>
+      <name>Hong Huang</name>
+    </author>
+    <author>
+      <name>Yongkang Zhou</name>
+    </author>
+    <author>
+      <name>Jiping Zhang</name>
+    </author>
+    <author>
+      <name>Nuo Chen</name>
+    </author>
+    <author>
+      <name>Hai Jin</name>
+    </author>
+  </entry>
+</feed>

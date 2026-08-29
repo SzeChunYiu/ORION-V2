@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/6Z1GLVqaTs2z450Owys1Fb2u+MY</id>
+  <title>arXiv Query: search_query=all:"Curriculum of Data Augmentation"&amp;id_list=&amp;start=0&amp;max_results=5</title>
+  <updated>2026-08-29T17:40:24Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22Curriculum+of+Data+Augmentation%22&amp;start=0&amp;max_results=5&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>5</opensearch:itemsPerPage>
+  <opensearch:totalResults>4</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2302.05499v1</id>
+    <title>CUDA: Curriculum of Data Augmentation for Long-Tailed Recognition</title>
+    <updated>2023-02-10T20:30:22Z</updated>
+    <link href="https://arxiv.org/abs/2302.05499v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2302.05499v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Class imbalance problems frequently occur in real-world tasks, and conventional deep learning algorithms are well known for performance degradation on imbalanced training datasets. To mitigate this problem, many approaches have aimed to balance among given classes by re-weighting or re-sampling training samples. These re-balancing methods increase the impact of minority classes and reduce the influence of majority classes on the output of models. However, the extracted representations may be of poor quality owing to the limited number of minority samples. To handle this restriction, several methods have been developed that increase the representations of minority samples by leveraging the features of the majority samples. Despite extensive recent studies, no deep analysis has been conducted on determination of classes to be augmented and strength of augmentation has been conducted. In this study, we first investigate the correlation between the degree of augmentation and class-wise performance, and find that the proper degree of augmentation must be allocated for each class to mitigate class imbalance problems. Motivated by this finding, we propose a simple and efficient novel curriculum, which is designed to find the appropriate per-class strength of data augmentation, called CUDA: CUrriculum of Data Augmentation for long-tailed recognition. CUDA can simply be integrated into existing long-tailed recognition methods. We present the results of experiments showing that CUDA effectively achieves better generalization performance compared to the state-of-the-art method on various imbalanced datasets such as CIFAR-100-LT, ImageNet-LT, and iNaturalist 2018.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-02-10T20:30:22Z</published>
+    <arxiv:comment>ICLR'23 Spotlight, 23 pages</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Sumyeong Ahn</name>
+    </author>
+    <author>
+      <name>Jongwoo Ko</name>
+    </author>
+    <author>
+      <name>Se-Young Yun</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2412.02956v2</id>
+    <title>Curriculum-style Data Augmentation for LLM-based Metaphor Detection</title>
+    <updated>2025-03-02T09:35:28Z</updated>
+    <link href="https://arxiv.org/abs/2412.02956v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2412.02956v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recently, utilizing large language models (LLMs) for metaphor detection has achieved promising results. However, these methods heavily rely on the capabilities of closed-source LLMs, which come with relatively high inference costs and latency. To address this, we propose a method for metaphor detection by fine-tuning open-source LLMs, effectively reducing inference costs and latency with a single inference step. Furthermore, metaphor detection suffers from a severe data scarcity problem, which hinders effective fine-tuning of LLMs. To tackle this, we introduce Curriculum-style Data Augmentation (CDA). Specifically, before fine-tuning, we evaluate the training data to identify correctly predicted instances for fine-tuning, while incorrectly predicted instances are used as seed data for data augmentation. This approach enables the model to quickly learn simpler knowledge and progressively acquire more complex knowledge, thereby improving performance incrementally. Experimental results demonstrate that our method achieves state-of-the-art performance across all baselines. Additionally, we provide detailed ablation studies to validate the effectiveness of CDA.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-12-04T02:05:21Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Kaidi Jia</name>
+    </author>
+    <author>
+      <name>Yanxia Wu</name>
+    </author>
+    <author>
+      <name>Ming Liu</name>
+    </author>
+    <author>
+      <name>Rongsheng Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2106.00197v2</id>
+    <title>Multilingual Speech Translation with Unified Transformer: Huawei Noah's Ark Lab at IWSLT 2021</title>
+    <updated>2021-06-22T03:11:01Z</updated>
+    <link href="https://arxiv.org/abs/2106.00197v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2106.00197v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper describes the system submitted to the IWSLT 2021 Multilingual Speech Translation (MultiST) task from Huawei Noah's Ark Lab. We use a unified transformer architecture for our MultiST model, so that the data from different modalities (i.e., speech and text) and different tasks (i.e., Speech Recognition, Machine Translation, and Speech Translation) can be exploited to enhance the model's ability. Specifically, speech and text inputs are firstly fed to different feature extractors to extract acoustic and textual features, respectively. Then, these features are processed by a shared encoder--decoder architecture. We apply several training techniques to improve the performance, including multi-task learning, task-level curriculum learning, data augmentation, etc. Our final system achieves significantly better results than bilingual baselines on supervised language pairs and yields reasonable results on zero-shot language pairs.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.SD" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.AS" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2021-06-01T02:50:49Z</published>
+    <arxiv:comment>IWSLT 2021</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Xingshan Zeng</name>
+    </author>
+    <author>
+      <name>Liangyou Li</name>
+    </author>
+    <author>
+      <name>Qun Liu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2504.20193v1</id>
+    <title>ProFi-Net: Prototype-based Feature Attention with Curriculum Augmentation for WiFi-based Gesture Recognition</title>
+    <updated>2025-04-28T18:52:45Z</updated>
+    <link href="https://arxiv.org/abs/2504.20193v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2504.20193v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper presents ProFi-Net, a novel few-shot learning framework for WiFi-based gesture recognition that overcomes the challenges of limited training data and sparse feature representations. ProFi-Net employs a prototype-based metric learning architecture enhanced with a feature-level attention mechanism, which dynamically refines the Euclidean distance by emphasizing the most discriminative feature dimensions. Additionally, our approach introduces a curriculum-inspired data augmentation strategy exclusively on the query set. By progressively incorporating Gaussian noise of increasing magnitude, the model is exposed to a broader range of challenging variations, thereby improving its generalization and robustness to overfitting. Extensive experiments conducted across diverse real-world environments demonstrate that ProFi-Net significantly outperforms conventional prototype networks and other state-of-the-art few-shot learning methods in terms of classification accuracy and training efficiency.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-04-28T18:52:45Z</published>
+    <arxiv:comment>This paper was accepted at The 9th APWeb-WAIM joint International Conference on Web and Big Data</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Zhe Cui</name>
+    </author>
+    <author>
+      <name>Shuxian Zhang</name>
+    </author>
+    <author>
+      <name>Kangzhi Lou</name>
+    </author>
+    <author>
+      <name>Le-Nam Tran</name>
+    </author>
+  </entry>
+</feed>

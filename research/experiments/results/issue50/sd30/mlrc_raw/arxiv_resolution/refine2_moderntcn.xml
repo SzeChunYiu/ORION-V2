@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/lb9Z65BcHkgOsA20+FHz957ZlVo</id>
+  <title>arXiv Query: search_query=all:"ModernTCN"&amp;id_list=&amp;start=0&amp;max_results=6</title>
+  <updated>2026-08-29T17:41:26Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22ModernTCN%22&amp;start=0&amp;max_results=6&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>6</opensearch:itemsPerPage>
+  <opensearch:totalResults>3</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2603.16886v1</id>
+    <title>A Controlled Comparison of Deep Learning Architectures for Multi-Horizon Financial Forecasting: Evidence from 918 Experiments</title>
+    <updated>2026-02-27T03:27:04Z</updated>
+    <link href="https://arxiv.org/abs/2603.16886v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2603.16886v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Multi-horizon price forecasting is central to portfolio allocation, risk management, and algorithmic trading, yet deep learning architectures have proliferated faster than rigorous financial benchmarks can evaluate them. This study provides a controlled comparison of nine architectures (Autoformer, DLinear, iTransformer, LSTM, ModernTCN, N-HiTS, PatchTST, TimesNet, and TimeXer) spanning Transformer, MLP, CNN, and RNN families across cryptocurrency, forex, and equity index markets at 4-hour and 24-hour horizons. A total of 918 experiments were conducted under a strict five-stage protocol including fixed-seed Bayesian hyperparameter optimization, configuration freezing per asset class, multi-seed retraining, uncertainty aggregation, and statistical validation. ModernTCN achieves the best mean rank (1.333) with a 75 percent first-place rate, followed by PatchTST (2.000). Results reveal a clear three-tier ranking structure and show that architecture explains nearly all performance variance, while seed randomness is negligible. Rankings remain stable across horizons despite 2 to 2.5 times error amplification. Directional accuracy remains near 50 percent across all configurations, indicating that MSE-trained models lack directional skill at hourly resolution. The findings highlight the importance of architectural inductive bias over raw parameter count and provide reproducible guidance for multi-step financial forecasting.</summary>
+    <category term="q-fin.ST" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="q-fin.GN" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-02-27T03:27:04Z</published>
+    <arxiv:primary_category term="q-fin.ST"/>
+    <author>
+      <name>Nabeel Ahmad Saidd</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2510.22955v2</id>
+    <title>SARNet: A Spike-Aware consecutive validation Framework for Accurate Remaining Useful Life Prediction</title>
+    <updated>2026-01-25T16:35:35Z</updated>
+    <link href="https://arxiv.org/abs/2510.22955v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2510.22955v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Accurate prediction of remaining useful life (RUL) is essential to enhance system reliability and reduce maintenance risk. Yet many strong contemporary models are fragile around fault onset and opaque to engineers: short, high-energy spikes are smoothed away or misread, fixed thresholds blunt sensitivity, and physics-based explanations are scarce. To remedy this, we introduce SARNet (Spike-Aware Consecutive Validation Framework), which builds on a Modern Temporal Convolutional Network (ModernTCN) and adds spike-aware detection to provide physics-informed interpretability. ModernTCN forecasts degradation-sensitive indicators; an adaptive consecutive threshold validates true spikes while suppressing noise. Failure-prone segments then receive targeted feature engineering (spectral slopes, statistical derivatives, energy ratios), and the final RUL is produced by a stacked RF--LGBM regressor. Across benchmark-ported datasets under an event-triggered protocol, SARNet consistently lowers error compared to recent baselines (RMSE 0.0365, MAE 0.0204) while remaining lightweight, robust, and easy to deploy.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-10-27T03:23:11Z</published>
+    <arxiv:comment>5 pages, 2 figures, 3 tables. Equal contribution by Junhao Fan and Wenrui Liang. Corresponding author: Wei-Qiang Zhang. Accepted to ICASSP 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <arxiv:journal_ref>ICASSP 2026 - 2026 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</arxiv:journal_ref>
+    <author>
+      <name>Junhao Fan</name>
+    </author>
+    <author>
+      <name>Wenrui Liang</name>
+    </author>
+    <author>
+      <name>Wei-Qiang Zhang</name>
+    </author>
+    <arxiv:doi>10.1109/ICASSP55912.2026.11463499</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/ICASSP55912.2026.11463499" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2508.02161v1</id>
+    <title>User Trajectory Prediction Unifying Global and Local Temporal Information</title>
+    <updated>2025-08-04T08:03:01Z</updated>
+    <link href="https://arxiv.org/abs/2508.02161v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2508.02161v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Trajectory prediction is essential for formulating proactive strategies that anticipate user mobility and support advance preparation. Therefore, how to reduce the forecasting error in user trajectory prediction within an acceptable inference time arises as an interesting issue. However, trajectory data contains both global and local temporal information, complicating the extraction of the complete temporal pattern. Moreover, user behavior occurs over different time scales, increasing the difficulty of capturing behavioral patterns. To address these challenges, a trajectory prediction model based on multilayer perceptron (MLP), multi-scale convolutional neural network (MSCNN), and cross-attention (CA) is proposed. Specifically, MLP is used to extract the global temporal information of each feature. In parallel, MSCNN is employed to extract the local temporal information by modeling interactions among features within a local temporal range. Convolutional kernels with different sizes are used in MSCNN to capture temporal information at multiple resolutions, enhancing the model's adaptability to different behavioral patterns. Finally, CA is applied to fuse the global and local temporal information. Experimental results show that our model reduces mean squared error (MSE) by 5.04% and mean absolute error (MAE) by 4.35% compared with ModernTCN in 12-step prediction, while maintaining similar inference time.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-08-04T08:03:01Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Wei Hao</name>
+    </author>
+    <author>
+      <name>Bin Chong</name>
+    </author>
+    <author>
+      <name>Ronghua Ji</name>
+    </author>
+    <author>
+      <name>Chen Hou</name>
+    </author>
+  </entry>
+</feed>

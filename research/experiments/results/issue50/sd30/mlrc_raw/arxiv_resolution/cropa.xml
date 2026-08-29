@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/+sSApAa0+LOmVL9y41yV1ueS0/I</id>
+  <title>arXiv Query: search_query=ti:"An Image is Worth 1000 Lies: Adversarial Transferability Across Prompts on Vision-Language Models"&amp;id_list=&amp;start=0&amp;max_results=3</title>
+  <updated>2026-08-29T17:37:28Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=ti:%22An+Image+is+Worth+1000+Lies:+Adversarial+Transferability+Across+Prompts+on+Vision-Language+Models%22&amp;start=0&amp;max_results=3&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>3</opensearch:itemsPerPage>
+  <opensearch:totalResults>1</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2403.09766v1</id>
+    <title>An Image Is Worth 1000 Lies: Adversarial Transferability across Prompts on Vision-Language Models</title>
+    <updated>2024-03-14T17:59:35Z</updated>
+    <link href="https://arxiv.org/abs/2403.09766v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2403.09766v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Different from traditional task-specific vision models, recent large VLMs can readily adapt to different vision tasks by simply using different textual instructions, i.e., prompts. However, a well-known concern about traditional task-specific vision models is that they can be misled by imperceptible adversarial perturbations. Furthermore, the concern is exacerbated by the phenomenon that the same adversarial perturbations can fool different task-specific models. Given that VLMs rely on prompts to adapt to different tasks, an intriguing question emerges: Can a single adversarial image mislead all predictions of VLMs when a thousand different prompts are given? This question essentially introduces a novel perspective on adversarial transferability: cross-prompt adversarial transferability. In this work, we propose the Cross-Prompt Attack (CroPA). This proposed method updates the visual adversarial perturbation with learnable prompts, which are designed to counteract the misleading effects of the adversarial image. By doing this, CroPA significantly improves the transferability of adversarial examples across prompts. Extensive experiments are conducted to verify the strong cross-prompt adversarial transferability of CroPA with prevalent VLMs including Flamingo, BLIP-2, and InstructBLIP in various different tasks. Our source code is available at \url{https://github.com/Haochen-Luo/CroPA}.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-03-14T17:59:35Z</published>
+    <arxiv:comment>Accepted to ICLR 2024</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Haochen Luo</name>
+    </author>
+    <author>
+      <name>Jindong Gu</name>
+    </author>
+    <author>
+      <name>Fengyuan Liu</name>
+    </author>
+    <author>
+      <name>Philip Torr</name>
+    </author>
+  </entry>
+</feed>

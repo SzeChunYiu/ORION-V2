@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/o4jJE/R9PqGmWLc/Kk+fcxsK1dw</id>
+  <title>arXiv Query: search_query=all:"CS-Shapley"&amp;id_list=&amp;start=0&amp;max_results=6</title>
+  <updated>2026-08-29T17:42:08Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22CS-Shapley%22&amp;start=0&amp;max_results=6&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>6</opensearch:itemsPerPage>
+  <opensearch:totalResults>1</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2211.06800v1</id>
+    <title>CS-Shapley: Class-wise Shapley Values for Data Valuation in Classification</title>
+    <updated>2022-11-13T03:32:33Z</updated>
+    <link href="https://arxiv.org/abs/2211.06800v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2211.06800v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Data valuation, or the valuation of individual datum contributions, has seen growing interest in machine learning due to its demonstrable efficacy for tasks such as noisy label detection. In particular, due to the desirable axiomatic properties, several Shapley value approximation methods have been proposed. In these methods, the value function is typically defined as the predictive accuracy over the entire development set. However, this limits the ability to differentiate between training instances that are helpful or harmful to their own classes. Intuitively, instances that harm their own classes may be noisy or mislabeled and should receive a lower valuation than helpful instances. In this work, we propose CS-Shapley, a Shapley value with a new value function that discriminates between training instances' in-class and out-of-class contributions. Our theoretical analysis shows the proposed value function is (essentially) the unique function that satisfies two desirable properties for evaluating data values in classification. Further, our experiments on two benchmark evaluation tasks (data removal and noisy label detection) and four classifiers demonstrate the effectiveness of CS-Shapley over existing methods. Lastly, we evaluate the "transferability" of data values estimated from one classifier to others, and our results suggest Shapley-based data valuation is transferable for application across different models.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-11-13T03:32:33Z</published>
+    <arxiv:comment>Accepted to NeurIPS 2022</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Stephanie Schoch</name>
+    </author>
+    <author>
+      <name>Haifeng Xu</name>
+    </author>
+    <author>
+      <name>Yangfeng Ji</name>
+    </author>
+  </entry>
+</feed>

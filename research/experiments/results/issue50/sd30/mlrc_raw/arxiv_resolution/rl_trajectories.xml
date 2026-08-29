@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/qWw5fPijpuwssd40UgWKOgsNPQ0</id>
+  <title>arXiv Query: search_query=ti:"Explaining RL Decisions with Trajectories"&amp;id_list=&amp;start=0&amp;max_results=3</title>
+  <updated>2026-08-29T17:38:27Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=ti:%22Explaining+RL+Decisions+with+Trajectories%22&amp;start=0&amp;max_results=3&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>3</opensearch:itemsPerPage>
+  <opensearch:totalResults>2</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2305.04073v2</id>
+    <title>Explaining RL Decisions with Trajectories</title>
+    <updated>2024-01-22T12:00:58Z</updated>
+    <link href="https://arxiv.org/abs/2305.04073v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2305.04073v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Explanation is a key component for the adoption of reinforcement learning (RL) in many real-world decision-making problems. In the literature, the explanation is often provided by saliency attribution to the features of the RL agent's state. In this work, we propose a complementary approach to these explanations, particularly for offline RL, where we attribute the policy decisions of a trained RL agent to the trajectories encountered by it during training. To do so, we encode trajectories in offline training data individually as well as collectively (encoding a set of trajectories). We then attribute policy decisions to a set of trajectories in this encoded space by estimating the sensitivity of the decision with respect to that set. Further, we demonstrate the effectiveness of the proposed approach in terms of quality of attributions as well as practical scalability in diverse environments that involve both discrete and continuous state and action spaces such as grid-worlds, video games (Atari) and continuous control (MuJoCo). We also conduct a human study on a simple navigation task to observe how their understanding of the task compares with data attributed for a trained RL policy. Keywords -- Explainable AI, Verifiability of AI Decisions, Explainable RL.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-05-06T15:26:22Z</published>
+    <arxiv:comment>Published at International Conference on Learning Representations (ICLR), 2023</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Shripad Vilasrao Deshmukh</name>
+    </author>
+    <author>
+      <name>Arpan Dasgupta</name>
+    </author>
+    <author>
+      <name>Balaji Krishnamurthy</name>
+    </author>
+    <author>
+      <name>Nan Jiang</name>
+    </author>
+    <author>
+      <name>Chirag Agarwal</name>
+    </author>
+    <author>
+      <name>Georgios Theocharous</name>
+    </author>
+    <author>
+      <name>Jayakumar Subramanian</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2411.07200v1</id>
+    <title>'Explaining RL Decisions with Trajectories': A Reproducibility Study</title>
+    <updated>2024-11-11T18:24:27Z</updated>
+    <link href="https://arxiv.org/abs/2411.07200v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2411.07200v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This work investigates the reproducibility of the paper 'Explaining RL decisions with trajectories'. The original paper introduces a novel approach in explainable reinforcement learning based on the attribution decisions of an agent to specific clusters of trajectories encountered during training. We verify the main claims from the paper, which state that (i) training on less trajectories induces a lower initial state value, (ii) trajectories in a cluster present similar high-level patterns, (iii) distant trajectories influence the decision of an agent, and (iv) humans correctly identify the attributed trajectories to the decision of the agent. We recover the environments used by the authors based on the partial original code they provided for one of the environments (Grid-World), and implemented the remaining from scratch (Seaquest, HalfCheetah, Breakout and Q*Bert). While we confirm that (i), (ii), and (iii) partially hold, we extend on the largely qualitative experiments from the authors by introducing a quantitative metric to further support (iii), and new experiments and visual results for (i). Moreover, we investigate the use of different clustering algorithms and encoder architectures to further support (ii). We could not support (iv), given the limited extent of the original experiments. We conclude that, while some of the claims can be supported, further investigations and experiments could be of interest. We recognise the novelty of the work from the authors and hope that our work paves the way for clearer and more transparent approaches.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-11-11T18:24:27Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <arxiv:journal_ref>Transactions on Machine Learning Research, May 2024</arxiv:journal_ref>
+    <author>
+      <name>Karim Abdel Sadek</name>
+    </author>
+    <author>
+      <name>Matteo Nulli</name>
+    </author>
+    <author>
+      <name>Joan Velja</name>
+    </author>
+    <author>
+      <name>Jort Vincenti</name>
+    </author>
+  </entry>
+</feed>

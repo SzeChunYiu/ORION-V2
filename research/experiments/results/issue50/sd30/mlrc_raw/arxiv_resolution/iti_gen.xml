@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/QFOVdzPvltLsWVgNWKDQgUzaoEs</id>
+  <title>arXiv Query: search_query=ti:"ITI-GEN: Inclusive Text-to-Image Generation"&amp;id_list=&amp;start=0&amp;max_results=3</title>
+  <updated>2026-08-29T17:38:46Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=ti:%22ITI-GEN:+Inclusive+Text-to-Image+Generation%22&amp;start=0&amp;max_results=3&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>3</opensearch:itemsPerPage>
+  <opensearch:totalResults>2</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2309.05569v1</id>
+    <title>ITI-GEN: Inclusive Text-to-Image Generation</title>
+    <updated>2023-09-11T15:54:30Z</updated>
+    <link href="https://arxiv.org/abs/2309.05569v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2309.05569v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Text-to-image generative models often reflect the biases of the training data, leading to unequal representations of underrepresented groups. This study investigates inclusive text-to-image generative models that generate images based on human-written prompts and ensure the resulting images are uniformly distributed across attributes of interest. Unfortunately, directly expressing the desired attributes in the prompt often leads to sub-optimal results due to linguistic ambiguity or model misrepresentation. Hence, this paper proposes a drastically different approach that adheres to the maxim that "a picture is worth a thousand words". We show that, for some attributes, images can represent concepts more expressively than text. For instance, categories of skin tones are typically hard to specify by text but can be easily represented by example images. Building upon these insights, we propose a novel approach, ITI-GEN, that leverages readily available reference images for Inclusive Text-to-Image GENeration. The key idea is learning a set of prompt embeddings to generate images that can effectively represent all desired attribute categories. More importantly, ITI-GEN requires no model fine-tuning, making it computationally efficient to augment existing text-to-image models. Extensive experiments demonstrate that ITI-GEN largely improves over state-of-the-art models to generate inclusive images from a prompt. Project page: https://czhang0528.github.io/iti-gen.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-09-11T15:54:30Z</published>
+    <arxiv:comment>Accepted to ICCV 2023 (Oral Presentation)</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Cheng Zhang</name>
+    </author>
+    <author>
+      <name>Xuanbai Chen</name>
+    </author>
+    <author>
+      <name>Siqi Chai</name>
+    </author>
+    <author>
+      <name>Chen Henry Wu</name>
+    </author>
+    <author>
+      <name>Dmitry Lagun</name>
+    </author>
+    <author>
+      <name>Thabo Beeler</name>
+    </author>
+    <author>
+      <name>Fernando De la Torre</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2407.19996v1</id>
+    <title>Reproducibility Study of "ITI-GEN: Inclusive Text-to-Image Generation"</title>
+    <updated>2024-07-29T13:27:44Z</updated>
+    <link href="https://arxiv.org/abs/2407.19996v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2407.19996v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Text-to-image generative models often present issues regarding fairness with respect to certain sensitive attributes, such as gender or skin tone. This study aims to reproduce the results presented in "ITI-GEN: Inclusive Text-to-Image Generation" by Zhang et al. (2023a), which introduces a model to improve inclusiveness in these kinds of models. We show that most of the claims made by the authors about ITI-GEN hold: it improves the diversity and quality of generated images, it is scalable to different domains, it has plug-and-play capabilities, and it is efficient from a computational point of view. However, ITI-GEN sometimes uses undesired attributes as proxy features and it is unable to disentangle some pairs of (correlated) attributes such as gender and baldness. In addition, when the number of considered attributes increases, the training time grows exponentially and ITI-GEN struggles to generate inclusive images for all elements in the joint distribution. To solve these issues, we propose using Hard Prompt Search with negative prompting, a method that does not require training and that handles negation better than vanilla Hard Prompt Search. Nonetheless, Hard Prompt Search (with or without negative prompting) cannot be used for continuous attributes that are hard to express in natural language, an area where ITI-GEN excels as it is guided by images during training. Finally, we propose combining ITI-GEN and Hard Prompt Search with negative prompting.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-07-29T13:27:44Z</published>
+    <arxiv:comment>Accepted to TMLR, see https://openreview.net/forum?id=d3Vj360Wi2</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Daniel Gallo Fernández</name>
+    </author>
+    <author>
+      <name>Răzvan-Andrei Matisan</name>
+    </author>
+    <author>
+      <name>Alejandro Monroy Muñoz</name>
+    </author>
+    <author>
+      <name>Janusz Partyka</name>
+    </author>
+  </entry>
+</feed>

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/xxKjwuMOcD02w4TW4XkSzTVjGcg</id>
+  <title>arXiv Query: search_query=ti:"Fair Attribute Completion on Graph with Missing Attributes"&amp;id_list=&amp;start=0&amp;max_results=3</title>
+  <updated>2026-08-29T17:38:31Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=ti:%22Fair+Attribute+Completion+on+Graph+with+Missing+Attributes%22&amp;start=0&amp;max_results=3&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>3</opensearch:itemsPerPage>
+  <opensearch:totalResults>1</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2302.12977v3</id>
+    <title>Fair Attribute Completion on Graph with Missing Attributes</title>
+    <updated>2023-08-31T01:28:35Z</updated>
+    <link href="https://arxiv.org/abs/2302.12977v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2302.12977v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Tackling unfairness in graph learning models is a challenging task, as the unfairness issues on graphs involve both attributes and topological structures. Existing work on fair graph learning simply assumes that attributes of all nodes are available for model training and then makes fair predictions. In practice, however, the attributes of some nodes might not be accessible due to missing data or privacy concerns, which makes fair graph learning even more challenging. In this paper, we propose FairAC, a fair attribute completion method, to complement missing information and learn fair node embeddings for graphs with missing attributes. FairAC adopts an attention mechanism to deal with the attribute missing problem and meanwhile, it mitigates two types of unfairness, i.e., feature unfairness from attributes and topological unfairness due to attribute completion. FairAC can work on various types of homogeneous graphs and generate fair embeddings for them and thus can be applied to most downstream tasks to improve their fairness performance. To our best knowledge, FairAC is the first method that jointly addresses the graph attribution completion and graph unfairness problems. Experimental results on benchmark datasets show that our method achieves better fairness performance with less sacrifice in accuracy, compared with the state-of-the-art methods of fair graph learning. Code is available at: https://github.com/donglgcn/FairAC.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-02-25T04:12:30Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Dongliang Guo</name>
+    </author>
+    <author>
+      <name>Zhixuan Chu</name>
+    </author>
+    <author>
+      <name>Sheng Li</name>
+    </author>
+  </entry>
+</feed>
