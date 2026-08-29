@@ -1,0 +1,191 @@
+{
+  "coverage": {
+    "adapter_receipts": {
+      "out/sd10/arxiv_receipt.json": {
+        "fetched_window": {
+          "since": "2024-01-01",
+          "until": "2024-12-31"
+        },
+        "max_records": null,
+        "requests": null
+      },
+      "out/sd10/cr_receipt.json": {
+        "fetched_window": {
+          "since": "2024-01-01",
+          "until": "2024-12-31"
+        },
+        "max_records": null,
+        "requests": null
+      },
+      "out/sd10/oa_receipt.json": {
+        "fetched_window": {
+          "since": "2024-01-01",
+          "until": "2024-12-31"
+        },
+        "max_records": null,
+        "requests": null
+      },
+      "out/sd10/pm_receipt.json": {
+        "fetched_window": {
+          "since": "2024-01-01",
+          "until": "2024-12-31"
+        },
+        "max_records": null,
+        "requests": null
+      }
+    },
+    "per_mode": {
+      "arxiv_atom_metadata": {
+        "domains": 146,
+        "epochs": [
+          "year:2024"
+        ],
+        "kinds": {
+          "OTHER": 2933,
+          "VERSION_OR_REVISION": 2067
+        },
+        "observations": 5000,
+        "trajectories": 5000
+      },
+      "crossref_rest_works": {
+        "domains": 1,
+        "epochs": [
+          "year:2024"
+        ],
+        "kinds": {
+          "OTHER": 4995,
+          "RETRACTION": 5
+        },
+        "observations": 5000,
+        "trajectories": 5000
+      },
+      "openalex_works": {
+        "domains": 26,
+        "epochs": [
+          "year:2024"
+        ],
+        "kinds": {
+          "OTHER": 4982
+        },
+        "observations": 4982,
+        "trajectories": 4982
+      },
+      "pubmed_eutils_metadata": {
+        "domains": 641,
+        "epochs": [
+          "year:2024",
+          "year:2026"
+        ],
+        "kinds": {
+          "CORRECTION": 24,
+          "OTHER": 4967,
+          "RETRACTION": 9
+        },
+        "observations": 5000,
+        "trajectories": 5000
+      }
+    },
+    "run_window": "2024-01-01..2024-12-31",
+    "source_mode_count": 4,
+    "source_modes": [
+      "arxiv_atom_metadata",
+      "crossref_rest_works",
+      "openalex_works",
+      "pubmed_eutils_metadata"
+    ],
+    "total_observations": 19982,
+    "total_trajectories": 19982
+  },
+  "failures": [],
+  "identity_linkage_error": {
+    "cross_mode_linked_observation_share": 0.0,
+    "duplicate_observation_ids": 0,
+    "note": "cross-mode linkage requires a shared id scheme in source_ids; with source-native ids only this share is 0 by construction \u2014 that is absent linkage evidence, NOT zero linkage error",
+    "schemes_disjoint_across_modes": true,
+    "trajectory_id_schemes_per_mode": {
+      "arxiv_atom_metadata": [
+        "arxiv"
+      ],
+      "crossref_rest_works": [
+        "doi"
+      ],
+      "openalex_works": [
+        "openalex"
+      ],
+      "pubmed_eutils_metadata": [
+        "pubmed"
+      ]
+    }
+  },
+  "inputs": {
+    "adapter_receipts": [
+      "out/sd10/arxiv_receipt.json",
+      "out/sd10/cr_receipt.json",
+      "out/sd10/oa_receipt.json",
+      "out/sd10/pm_receipt.json"
+    ],
+    "observations": [
+      "out/sd10/arxiv_obs.jsonl",
+      "out/sd10/cr_obs.jsonl",
+      "out/sd10/oa_obs.jsonl",
+      "out/sd10/pm_obs.jsonl"
+    ],
+    "outcome_bindings": [
+      "out/sd10/cr_bind.jsonl",
+      "out/sd10/oa_bind.jsonl",
+      "out/sd10/pm_bind.jsonl"
+    ]
+  },
+  "missingness": {
+    "arxiv_atom_metadata": {
+      "empty_institution_ids": 1.0,
+      "empty_team_id": 1.0,
+      "empty_validation_ids": 1.0,
+      "no_proxy_metrics": 0.0,
+      "observations": 5000
+    },
+    "crossref_rest_works": {
+      "empty_institution_ids": 1.0,
+      "empty_team_id": 1.0,
+      "empty_validation_ids": 1.0,
+      "no_proxy_metrics": 0.0,
+      "observations": 5000
+    },
+    "openalex_works": {
+      "empty_institution_ids": 0.032717784022480934,
+      "empty_team_id": 1.0,
+      "empty_validation_ids": 1.0,
+      "no_proxy_metrics": 0.0,
+      "observations": 4982
+    },
+    "pubmed_eutils_metadata": {
+      "empty_institution_ids": 0.007,
+      "empty_team_id": 1.0,
+      "empty_validation_ids": 1.0,
+      "no_proxy_metrics": 0.0,
+      "observations": 5000
+    }
+  },
+  "outcome_proxy_disagreement": {
+    "reason": "fewer than two modes emit doi: trajectory ids (doi modes: ['crossref_rest_works']; non-doi: ['arxiv_atom_metadata', 'openalex_works', 'pubmed_eutils_metadata']); OpenAlex observations carry openalex:<W-id> only, so Crossref/OpenAlex retraction-channel disagreement is not computable from the normalized JSONL",
+    "remediation": "emit a doi: alias in source_ids when the source record carries a DOI, then re-run",
+    "status": "CANNOT_CHECK_FROM_EMITTED_FIELDS"
+  },
+  "overall": "EXECUTED",
+  "schema_version": "orion.v2.sd10-bias-audit.v1",
+  "survivorship_bias": {
+    "bias_flag_counts": {
+      "BIAS_CITATION_WINDOW_TRUNCATION": 9982,
+      "BIAS_LANGUAGE_GEOGRAPHY_SKEW": 19982,
+      "BIAS_PUBLICATION_ONLY_CORPUS": 19982,
+      "BIAS_SURVIVORSHIP_OF_INDEXED_RECORDS": 19982
+    },
+    "binding_class_counts": {
+      "VALIDATED_FAILURE": 23
+    },
+    "censoring_statement": "unpublished failures are absent-by-censoring, not absent-by-fact; absence of a retraction marker never encodes success",
+    "share_trajectories_with_binding": 0.0011009908918026225,
+    "trajectories_with_any_binding": 22,
+    "unbound_trajectories_unknown_not_success": 19960
+  }
+}
