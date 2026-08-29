@@ -11,13 +11,16 @@ on:
       - "tests/unit/test_conceptual_development_wave6.py"
       - "tests/unit/test_conceptual_development_open_world_math_wave6.py"
       - "tests/unit/test_transfer_formal_mechanics_wave6.py"
+      - "tests/unit/test_transfer_formal_category_laws_wave6.py"
       - "research/formalism/CONCEPTUAL_DEVELOPMENT_AND_TRANSFER_FORMAL_MECHANICS_V1.md"
+      - "research/formalism/FORMAL_PARENT_LITERATURE_ANCHORS_V1.md"
       - "research/foundation-saturation/CONCEPTUAL_DEVELOPMENT_AND_TRANSFER_DISCOVERY_AMENDMENT_V1.md"
       - "research/foundation-saturation/CONCEPTUAL_DEVELOPMENT_AND_TRANSFER_DISCOVERY_AMENDMENT_V2_ALL_SCIENCE_MATHEMATICS_FIRST.md"
       - "research/foundation-saturation/MATHEMATICS_AND_ALL_SCIENCE_CONCEPTUAL_DEVELOPMENT_DONOR_ATLAS_V1.md"
       - "research/experiments/CONCEPTUAL_TRANSFER_DISCOVERY_PROTOCOL_V1.json"
       - "research/experiments/CONCEPTUAL_TRANSFER_DISCOVERY_PROTOCOL_V2_ALL_SCIENCE_MATHEMATICS_FIRST.json"
       - "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_MECHANICS_PROTOCOL_V1.json"
+      - "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_EXECUTION_BACKLOG_V1.json"
       - "research/closure/CONCEPTUAL_DEVELOPMENT_TRANSFER_DISCOVERY_INTEGRATION_RECEIPT_V1.json"
       - "papers/formalism/**"
       - ".github/workflows/wave6-conceptual-development.yml"
@@ -29,13 +32,16 @@ on:
       - "tests/unit/test_conceptual_development_wave6.py"
       - "tests/unit/test_conceptual_development_open_world_math_wave6.py"
       - "tests/unit/test_transfer_formal_mechanics_wave6.py"
+      - "tests/unit/test_transfer_formal_category_laws_wave6.py"
       - "research/formalism/CONCEPTUAL_DEVELOPMENT_AND_TRANSFER_FORMAL_MECHANICS_V1.md"
+      - "research/formalism/FORMAL_PARENT_LITERATURE_ANCHORS_V1.md"
       - "research/foundation-saturation/CONCEPTUAL_DEVELOPMENT_AND_TRANSFER_DISCOVERY_AMENDMENT_V1.md"
       - "research/foundation-saturation/CONCEPTUAL_DEVELOPMENT_AND_TRANSFER_DISCOVERY_AMENDMENT_V2_ALL_SCIENCE_MATHEMATICS_FIRST.md"
       - "research/foundation-saturation/MATHEMATICS_AND_ALL_SCIENCE_CONCEPTUAL_DEVELOPMENT_DONOR_ATLAS_V1.md"
       - "research/experiments/CONCEPTUAL_TRANSFER_DISCOVERY_PROTOCOL_V1.json"
       - "research/experiments/CONCEPTUAL_TRANSFER_DISCOVERY_PROTOCOL_V2_ALL_SCIENCE_MATHEMATICS_FIRST.json"
       - "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_MECHANICS_PROTOCOL_V1.json"
+      - "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_EXECUTION_BACKLOG_V1.json"
       - "research/closure/CONCEPTUAL_DEVELOPMENT_TRANSFER_DISCOVERY_INTEGRATION_RECEIPT_V1.json"
       - "papers/formalism/**"
       - ".github/workflows/wave6-conceptual-development.yml"
@@ -71,7 +77,8 @@ jobs:
           python -m pytest -q \
             tests/unit/test_conceptual_development_wave6.py \
             tests/unit/test_conceptual_development_open_world_math_wave6.py \
-            tests/unit/test_transfer_formal_mechanics_wave6.py
+            tests/unit/test_transfer_formal_mechanics_wave6.py \
+            tests/unit/test_transfer_formal_category_laws_wave6.py
 
       - name: Run exact-oracle reference calibration
         run: |
@@ -119,6 +126,13 @@ jobs:
           assert "FM80" == formal["studies"][-1]["id"]
           assert "STRONGEST_DOMAIN_FORMAL_PARENT" in formal["arms"]
           assert all(value is False for value in formal["authority"].values())
+
+          backlog = json.loads(Path("research/experiments/CONCEPTUAL_TRANSFER_FORMAL_EXECUTION_BACKLOG_V1.json").read_text())
+          assert backlog["status"] == "PROSPECTIVE_BACKLOG_NO_PROTECTED_RESULTS"
+          assert backlog["owner_issue"] == 48
+          assert backlog["tasks"][0]["id"] == "FM00"
+          assert backlog["tasks"][-1]["id"] == "FM90"
+          assert all(value is False for value in backlog["authority"].values())
 
           receipt = json.loads(Path("research/closure/CONCEPTUAL_DEVELOPMENT_TRANSFER_DISCOVERY_INTEGRATION_RECEIPT_V1.json").read_text())
           assert receipt["status"] == "FRAMEWORK_INTEGRATED__PROTECTED_EVIDENCE_OPEN"
