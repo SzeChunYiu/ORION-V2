@@ -26,6 +26,9 @@
 | [65] | van de Schoot et al., ASReview | *Nature Machine Intelligence* 3 (2021), DOI 10.1038/s42256-020-00287-7 | VERIFIED_WEB |
 | [67] | Rahwan et al., Machine behaviour | *Nature* 568, 477–486 (2019) | VERIFIED_WEB |
 | [68] | Moss et al., machine-behaviour critique | *Nature* Correspondence (2019), DOI d41586-019-03002-8 | VERIFIED_WEB |
+| [71] | Koskinen, no satisfactory social epistemology of AI-based science | *Social Epistemology* (2023); original of the Koskinen–Peters exchange | VERIFIED_WEB |
+| [72] | Peters rebuttal (+ Koskinen reply) | SERRC 13(1), 58–66 (2024) and SERRC 13(5), 9–14 (2024); Peters holds existing social epistemology suffices under a deferred-responsibility account (echoing Durán & Formanek) | VERIFIED_WEB |
+| [73] | Camps-Valls, AI needs a new philosophy of science | *The Innovation* 7(5), 101311 (2026), sole author | VERIFIED_WEB |
 
 ## B. Corrections made during verification (ledger → V8)
 
@@ -42,8 +45,8 @@
 ## D. Counters
 
 ```text
-TOTAL_REFERENCES_V8 = 70
-VERIFIED_WEB = 17
+TOTAL_REFERENCES_V8 = 73
+VERIFIED_WEB = 20
 CANONICAL_STANDARD = 53
 CENTRAL_CLAIM_CITATION_PASS = COMPLETE (V8)
 SENTENCE_LEVEL_ENTAILMENT_AUDIT = OPEN

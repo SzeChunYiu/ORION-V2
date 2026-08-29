@@ -68,6 +68,20 @@ Computational epistemology already asks when reliable learning/inquiry is feasib
 
 Epistemic engineering already treats epistemic change as distributed across humans, tools, organizations and control structures. Machine Epistemics cannot claim distributed knowledge construction. Its narrower question is whether scientific commitments in AI-mediated research admit machine-executable transition warrants with measurable failure modes.
 
+## Name-collision scan (preliminary pass, 2026-08-29)
+
+Live exact-phrase scan for "machine epistemics" as an established field/framework name:
+
+| Candidate collision | Identity | Disposition |
+|---|---|---|
+| *Machine epistemology* (Wheeler 2017) | Routledge Companion ch. 38 | already a DIRECT NAMING parent row; different object (ML as pragmatist inquiry) — disclosed, not a collision |
+| *Epistemic Artificial Intelligence* (Cuzzolin, arXiv:2505.04950, 2025 position paper) | paradigm for models representing what they don't know (subjective logic, imprecise probability) | **different object**: model-internal uncertainty representation, not scientific-state transition validity; disclose as near-name neighbor |
+| *Epistemic AI* (TU Delft consortium, epistemic-ai.eu) | formal verification + worst-case ML guarantees | engineering-programme namesake, not a science-of-transition claim; disclose |
+| "human and machine epistemics" (E. J. Larson, Colligo Substack essay) | informal essay phrase use for the human/machine correspondence gap | non-academic phrase use, different sense; no field claim |
+| *AI as an Epistemic Technology* (Alvarado, Sci. Eng. Ethics, 2023, 10.1007/s11948-023-00451-3) | positions AI as epistemic technology | conceptual neighbor; philosophy row already covers the tradition |
+
+**Verdict:** no established field, journal, society or peer-reviewed field-defining paper occupies "machine epistemics". The name is available *as of this scan*; the flagship still must cite and differentiate the near-name neighbors above.
+
 ## Strongest-parent composition falsifier
 
 The flagship field hypothesis fails if a composition containing, as needed,
@@ -98,9 +112,9 @@ This falsifier is stronger than proving that no **single** parent owns the entir
 
 `ROUND04_NEIGHBOR_ABSORPTION = COMPLETE_5_OF_5_VERIFIED (V8)`
 
-`CONTRARY_AND_LIMITING_LITERATURE_AUDIT = OPEN`
+`CONTRARY_AND_LIMITING_LITERATURE_AUDIT = OPEN (first pass 2026-08-29 COMPLETE: Koskinen–Peters exchange + Camps-Valls engaged in V8 refs [71–73]; full corpus receipt FLAGSHIP_CONTRARY_AND_LIMITING_LITERATURE_RECEIPT_V1.md)`
 
-`FRESH_PRE_SUBMISSION_NAME_COLLISION_SEARCH = OPEN`
+`FRESH_PRE_SUBMISSION_NAME_COLLISION_SEARCH = OPEN (preliminary pass 2026-08-29: NO_ESTABLISHED_FIELD_COLLISION; fresh rescan mandatory at submission)`
 
 `INDEPENDENT_FIELD_DEMARCATION_REVIEW = OPEN`
 
