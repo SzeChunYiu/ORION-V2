@@ -39,7 +39,6 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-
           path = Path("papers/pipeline/PORTFOLIO_CLAIM_EVIDENCE_LEDGER_V1.json")
           data = json.loads(path.read_text(encoding="utf-8"))
           assert data["status"] == "PRE_OUTCOME_FROZEN"
@@ -63,7 +62,6 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-
           delta = json.loads(Path("papers/pipeline/PORTFOLIO_CLAIM_EVIDENCE_LEDGER_V2_POST_EXECUTION_DELTA.json").read_text())
           assert delta["status"] == "POST_E20_E40_E50_EVIDENCE_BOUND__CONFIRMATORY_RESULTS_OPEN"
           e20 = delta["evidence_bound"]["E20"]
@@ -79,7 +77,6 @@ jobs:
           assert delta["portfolio_terminal"]["top_tier_submission_ready"] == []
           assert delta["portfolio_terminal"]["field_founded"] is False
           assert all(value is False for value in delta["authority"].values())
-
           receipt = json.loads(Path("research/closure/PAPER_COMPLETION_PROGRESS_RECEIPT_V3.json").read_text())
           assert receipt["status"] == "FIRST_PROTECTED_F2_COMPARISON_BOUND__NO_R3_PAPER_YET"
           assert receipt["evidence_state"]["E20"] == "COMPLETE_VALID_ADVERSE_UNDERPOWERED_PILOT"
@@ -109,6 +106,10 @@ jobs:
           test -f papers/formalism/P_B_RELATION_TRANSPORT_FORMALISM_V1.md
           test -f papers/formalism/P_C_REGIME_AND_SEARCH_CONTROL_FORMALISM_V1.md
           test -f papers/formalism/FLAGSHIP_CONCEPTUAL_DEVELOPMENT_FORMALISM_BOX_V1.md
+          test -f papers/formalism/FLAGSHIP_FORMALISM_GENESIS_BOX_V1.md
+          test -f papers/formalism/P_A_FORMALISM_GENESIS_EXTENSION_V1.md
+          test -f papers/formalism/P_B_FORMALISM_GENESIS_EXTENSION_V1.md
+          test -f papers/formalism/P_C_FORMALISM_GENESIS_EXTENSION_V1.md
 
       - name: Enforce formalism is testable and non-authorizing
         run: |
@@ -118,18 +119,21 @@ jobs:
           pb = Path("papers/formalism/P_B_RELATION_TRANSPORT_FORMALISM_V1.md").read_text()
           pc = Path("papers/formalism/P_C_REGIME_AND_SEARCH_CONTROL_FORMALISM_V1.md").read_text()
           flagship = Path("papers/formalism/FLAGSHIP_CONCEPTUAL_DEVELOPMENT_FORMALISM_BOX_V1.md").read_text()
+          genesis = Path("papers/formalism/FLAGSHIP_FORMALISM_GENESIS_BOX_V1.md").read_text().casefold()
           assert "partial typed homomorphism" in pa.casefold()
           assert "false analogy" in pa.casefold()
           assert "functor" in pb.casefold() and "obstruction" in pb.casefold()
           assert "\\pi(z)" in pc and "post-outcome routing is not evidence" in pc.casefold()
           assert "does not earn scientific credit" in flagship.casefold()
+          assert "representational deficit" in genesis
+          assert "parent_sufficient" in genesis
+          assert "new symbols" not in genesis or "no" in genesis
           PY
 
       - name: Enforce adverse pilot in top-tier evidence narrative
         run: |
           python - <<'PY'
           from pathlib import Path
-
           pc = Path("papers/results/P_C_E20_PILOT_RESULT_BLOCK_V1.md").read_text(encoding="utf-8").casefold()
           flagship = Path("papers/results/FLAGSHIP_E20_E40_E50_BOUNDARY_RESULT_BLOCK_V1.md").read_text(encoding="utf-8").casefold()
           round17 = Path("papers/iteration/ROUND_17_POST_E20_E40_E50_TOP_TIER_EDITOR_SYNTHESIS_V1.md").read_text(encoding="utf-8").casefold()
@@ -146,7 +150,6 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-
           paths = [
               Path("papers/drafts/FLAGSHIP_MACHINE_EPISTEMICS_MANUSCRIPT_V7_TOP_TIER_PRE_EVIDENCE.md"),
               Path("papers/drafts/P_A_STRUCTURAL_DONOR_DISCOVERY_MANUSCRIPT_V3_TOP_TIER_PRE_RESULTS.md"),
