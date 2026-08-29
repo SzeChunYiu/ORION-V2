@@ -21,7 +21,7 @@ import time
 import urllib.error
 import urllib.request
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Callable
 
@@ -203,7 +203,80 @@ def binding_to_json(binding: OutcomeBinding) -> dict:
 
 def write_jsonl(path: Path, rows: list) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text("".join(json.dumps(row, sort_keys=True) + "\n" for row in rows), encoding="utf-8")
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text("".join(json.dumps(row, sort_keys=True) + "\n" for row in rows), encoding="utf-8")
+    os.replace(tmp, path)
+
+
+def load_jsonl_rows(path: Path) -> list:
+    """Read a JSONL file tolerantly; missing/empty file yields []."""
+    if not path.exists():
+        return []
+    rows = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if line.strip():
+            rows.append(json.loads(line))
+    return rows
+
+
+def append_jsonl(path: Path, rows: list) -> None:
+    """Append rows without truncating the file (durable incremental output)."""
+    if not rows:
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a", encoding="utf-8") as handle:
+        for row in rows:
+            handle.write(json.dumps(row, sort_keys=True) + "\n")
+
+
+class OutputLedger:
+    """Durable incremental JSONL output keyed for resume-merge.
+
+    An interrupted run must not lose already-fetched records on resume, so rows
+    are appended to disk after every page and BEFORE the cursor state advances;
+    a crash between an append and the state advance only re-fetches rows that
+    are already safely on disk, and the load-time dedupe by key removes such
+    duplicates. Keys already present are never re-emitted (first row wins;
+    observation/binding ids are deterministic per record).
+    """
+
+    def __init__(self, path: Path, key_fn: Callable[[dict], str]) -> None:
+        self.path = path
+        self.key_fn = key_fn
+        self.index: dict = {}
+        for row in load_jsonl_rows(path):
+            self.index[self.key_fn(row)] = row
+        self.new_rows: list = []
+
+    def add(self, rows: list) -> list:
+        """Append only rows whose key is new; returns the appended rows."""
+        fresh = [row for row in rows if self.key_fn(row) not in self.index]
+        if fresh:
+            append_jsonl(self.path, fresh)
+            for row in fresh:
+                self.index[self.key_fn(row)] = row
+                self.new_rows.append(row)
+        return fresh
+
+    def rows(self) -> list:
+        return list(self.index.values())
+
+    def rewrite_atomically(self) -> None:
+        write_jsonl(self.path, self.rows())
+
+
+def observation_key(row: dict) -> str:
+    return row["observation_id"]
+
+
+def binding_key(row: dict) -> str:
+    # Key by trajectory AND witnesses so two independent retraction notices for
+    # the same trajectory both survive a resume-merge.
+    return row["trajectory_id"] + "|" + "|".join(sorted(row["witness_ids"]))
+
+
+def utc_today() -> str:
+    return datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
 
 def write_receipt(path: Path, payload: dict) -> None:

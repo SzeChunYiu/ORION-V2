@@ -8,7 +8,10 @@ Lawful acquisition contract (research/closure/SD10_SOURCE_ADAPTERS_DESIGN_RECEIP
   send a User-Agent identifying the caller with a mailto contact to join the
   polite pool. Real (non-dry) runs therefore REQUIRE --contact-email.
 - Conservative default interval 1.0s between requests (well inside Crossref's
-  documented polite-pool expectations), deep paging via the documented cursor.
+  documented polite-pool expectations), deep paging via the documented cursor
+  protocol: the first request sends cursor=* and every later request repeats
+  the message.next-cursor value; `offset` is never sent (the API documents that
+  offset cannot be combined with cursor).
 - --since/--until map to from-pub-date/until-pub-date filters; --max-records caps;
   --dry-run prints the plan and performs zero requests; HTTP 4xx (except 429)
   fails closed.
@@ -17,11 +20,14 @@ Scientific honesty contract:
 - is-referenced-by-count and reference counts are PROXY METRICS ONLY and are
   never mapped to an outcome class.
 - Outcome bindings are emitted ONLY where the source itself carries a validated
-  failure witness: (a) a record whose relation includes "is-retraction-of" binds
-  the RETRACTED trajectory to VALIDATED_FAILURE with the retraction notice DOI
-  as witness id; (b) a record carrying "is-retracted": true binds its own
-  trajectory to VALIDATED_FAILURE with that record as witness. Absence of such
-  records is NEVER a success: unbound trajectories stay UNKNOWN.
+  failure witness: a retraction notice record whose documented `update-to`
+  array contains an entry with type "retraction" binds the RETRACTED
+  trajectory to VALIDATED_FAILURE, with the retraction notice DOI as witness
+  id. Verified against the live API (2026-08-29): `update-to` is the only
+  source-carried retraction channel — the current API has no `is-retracted`
+  field and no retraction relation type in its documented enum. Corrections
+  and other update types do NOT bind. Absence of such records is NEVER a
+  success: unbound trajectories stay UNKNOWN.
 """
 from __future__ import annotations
 
@@ -64,21 +70,31 @@ def build_url(args, cursor: str | None, rows: int) -> str:
     filters = [f"from-pub-date:{args.since}", f"until-pub-date:{args.until}"]
     if args.work_type:
         filters.append(f"type:{args.work_type}")
-    params = {"filter": ",".join(filters), "rows": str(rows), "offset": "0"}
-    if cursor:
-        params["cursor"] = cursor
+    # Documented cursor protocol: first request sends cursor=*, later requests
+    # repeat message.next-cursor. `offset` must never appear alongside `cursor`.
+    params = {"filter": ",".join(filters), "rows": str(rows), "cursor": cursor or "*"}
     if args.contact_email:
         params["mailto"] = args.contact_email
     return ENDPOINT + "?" + urllib.parse.urlencode(params)
 
 
 def retraction_targets(item: dict) -> list[str]:
+    """DOIs this record retracts, from the documented `update-to` array.
+
+    Verified against live api.crossref.org responses (2026-08-29): a retraction
+    notice carries `update-to: [{DOI, type: "retraction", label, source,
+    updated, record-id}, ...]` pointing at the retracted work. The current API
+    has no `is-retracted` boolean and its documented relation-type enum contains
+    no retraction relation, so this is the only source-carried retraction
+    channel. Only type "retraction" binds; corrections do not.
+    """
     targets = []
-    for relation in item.get("relation", []) if isinstance(item.get("relation"), list) else []:
-        if relation.get("kind") == "is-retraction-of":
-            for claim in relation.get("assertion", []) if isinstance(relation.get("assertion"), list) else []:
-                if claim.get("DOI"):
-                    targets.append(str(claim["DOI"]).lower())
+    updates = item.get("update-to") or []
+    if isinstance(updates, list):
+        for entry in updates:
+            if (isinstance(entry, dict) and str(entry.get("type", "")).lower() == "retraction"
+                    and entry.get("DOI")):
+                targets.append(str(entry["DOI"]).lower())
     return sorted(set(targets))
 
 
@@ -97,12 +113,8 @@ def to_observation(item: dict, ordinal: int) -> DevelopmentObservation:
     if isinstance(raw_institution, list) and raw_institution and isinstance(raw_institution[0], dict):
         institution = str(raw_institution[0].get("name", "")).strip()
     kind = ObservationKind.DATA_OR_INSTRUMENT if work_type == "dataset" else (
-        ObservationKind.RETRACTION if retraction_targets(item) or item.get("is-retracted") else ObservationKind.OTHER)
-    failures: tuple[str, ...] = ()
-    if item.get("is-retracted"):
-        failures = ("crossref:is_retracted",)
-    elif retraction_targets(item):
-        failures = ("crossref:retraction_notice",)
+        ObservationKind.RETRACTION if retraction_targets(item) else ObservationKind.OTHER)
+    failures: tuple[str, ...] = ("crossref:retraction_notice",) if retraction_targets(item) else ()
     return DevelopmentObservation(
         observation_id=f"crossref-obs:{doi}",
         trajectory_id=f"doi:{doi}",
@@ -128,28 +140,22 @@ def to_observation(item: dict, ordinal: int) -> DevelopmentObservation:
 def bindings_from_items(items: list[dict]) -> list[OutcomeBinding]:
     """Validated-failure bindings ONLY from source-carried retraction evidence.
 
-    Two conservative paths, both requiring an explicit witness identity:
-    1. A notice record with relation kind "is-retraction-of" binds each RETRACTED
-       trajectory to VALIDATED_FAILURE; the witness is the retraction notice DOI.
-    2. A record flagged "is-retracted": true binds its own trajectory to
-       VALIDATED_FAILURE; the witness is that record's own DOI (the record
-       carrying the flag). Absence of any flag/relation NEVER yields a binding.
+    A notice record whose documented `update-to` array carries a type
+    "retraction" entry binds the RETRACTED trajectory to VALIDATED_FAILURE;
+    the witness is the retraction notice DOI (the record carrying the
+    evidence). The retracted target record itself typically carries no marker
+    in Crossref, which is exactly why the witness must be the notice.
+    Absence of a retraction entry NEVER yields a binding and is NEVER a
+    success: unbound trajectories stay UNKNOWN.
     """
     bindings: list[OutcomeBinding] = []
     for item in items:
         doi = str(item.get("DOI", "")).lower()
         if not doi:
             continue
-        notice_kind = retraction_targets(item)
-        if notice_kind:
-            for target in notice_kind:
-                bindings.append(OutcomeBinding(
-                    trajectory_id=f"doi:{target}",
-                    outcome_class=DevelopmentOutcomeClass.VALIDATED_FAILURE,
-                    witness_ids=(f"doi:{doi}",), source_ids=(f"doi:{doi}",)))
-        elif item.get("is-retracted"):
+        for target in retraction_targets(item):
             bindings.append(OutcomeBinding(
-                trajectory_id=f"doi:{doi}",
+                trajectory_id=f"doi:{target}",
                 outcome_class=DevelopmentOutcomeClass.VALIDATED_FAILURE,
                 witness_ids=(f"doi:{doi}",), source_ids=(f"doi:{doi}",)))
     return bindings
@@ -165,13 +171,15 @@ def run(args, transport=None, sleep=None) -> dict:
         endpoints=[ENDPOINT], terms_note=TERMS_NOTE, rate_note=RATE_NOTE,
         dry_run=args.dry_run, since=args.since, until=args.until, max_records=args.max_records)
     if args.dry_run:
-        plan = [build_url(args, cursor="START_CURSOR", rows=min(args.page_size, args.max_records))]
+        plan = [build_url(args, cursor=None, rows=min(args.page_size, args.max_records))]
         receipt["dry_run_plan"] = {"requests_planned": 1, "sample_url": plan[0],
-                                   "note": "dry run: zero network requests were made"}
+                                   "note": "dry run: zero network requests were made; sample_url uses the documented cursor=* start"}
         return receipt
     if not args.contact_email:
         raise SystemExit("Crossref polite pool requires a mailto contact: --contact-email or SD10_CONTACT_EMAIL")
     state = common.CursorState(Path(args.state))
+    obs_ledger = common.OutputLedger(Path(args.output_observations), common.observation_key)
+    bind_ledger = common.OutputLedger(Path(args.output_bindings), common.binding_key)
     headers = {"User-Agent": f"ORION-V2-SD10-research-metadata-harvester (mailto:{args.contact_email})"}
     limiter = common.RateLimiter(args.rate_seconds, sleep)
     cursor = state.data.get("cursor")
@@ -191,30 +199,33 @@ def run(args, transport=None, sleep=None) -> dict:
             break
         for item in items:
             if len(observations) < args.max_records:
-                observations.append(to_observation(item, len(observations)))
+                observations.append(to_observation(item, already + len(observations)))
                 bindings.extend(bindings_from_items([item]))
+        # Durable output BEFORE the cursor advances: an interrupted run never
+        # loses already-fetched records (resume merges instead of replacing).
+        obs_ledger.add([common.observation_to_json(obs) for obs in observations])
+        bind_ledger.add([common.binding_to_json(binding) for binding in bindings])
         cursor = message.get("next-cursor") or cursor
         state.advance(cursor, already + len(observations))
         if len(items) < rows:
             break
-    rows_out = [common.observation_to_json(obs) for obs in observations]
-    binding_rows = [common.binding_to_json(binding) for binding in bindings]
-    common.write_jsonl(Path(args.output_observations), rows_out)
-    common.write_jsonl(Path(args.output_bindings), binding_rows)
+    obs_ledger.rewrite_atomically()
+    bind_ledger.rewrite_atomically()
     receipt["pages"] = state.data.get("pages_fetched", 0)
     receipt["records"] = {
-        "observations_emitted": len(rows_out), "outcome_bindings_emitted": len(binding_rows),
-        "per_record_source_ids": [row["source_ids"][0] for row in rows_out]}
+        "observations_emitted": len(obs_ledger.new_rows), "observations_in_output": len(obs_ledger.rows()),
+        "outcome_bindings_emitted": len(bind_ledger.new_rows), "outcome_bindings_in_output": len(bind_ledger.rows()),
+        "per_record_source_ids": [row["source_ids"][0] for row in obs_ledger.new_rows]}
     receipt["emitted_files"] = [
-        {"path": args.output_observations, "kind": "observations", "records": len(rows_out),
+        {"path": args.output_observations, "kind": "observations", "records": len(obs_ledger.rows()),
          "sha256": common.sha256_file(Path(args.output_observations))},
-        {"path": args.output_bindings, "kind": "outcome_bindings", "records": len(binding_rows),
+        {"path": args.output_bindings, "kind": "outcome_bindings", "records": len(bind_ledger.rows()),
          "sha256": common.sha256_file(Path(args.output_bindings))}]
     receipt["cannot_check"] = [
         "citation counts are truncated at fetch date (citation-window bias is structural)",
         "author lists are not stable team identities -> team_id stays empty",
         "institutions appear only for some record types; absent means not indexed, not absent",
-        "withdrawn items without an is-retracted flag or relation cannot be detected here"]
+        "withdrawn items with no type=retraction update-to entry cannot be detected here"]
     return receipt
 
 

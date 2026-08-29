@@ -142,6 +142,8 @@ def run(args, transport=None, sleep=None) -> dict:
         endpoints=[ENDPOINT], terms_note=TERMS_NOTE, rate_note=RATE_NOTE,
         dry_run=args.dry_run, since=args.since, until=args.until, max_records=args.max_records)
     state = common.CursorState(Path(args.state))
+    obs_ledger = common.OutputLedger(Path(args.output_observations), common.observation_key)
+    bind_ledger = common.OutputLedger(Path(args.output_bindings), common.binding_key)
     headers = {"User-Agent": f"ORION-V2-SD10-research-metadata-harvester (mailto:{args.contact_email})"}
     limiter = common.RateLimiter(args.rate_seconds, sleep)
     observations: list[DevelopmentObservation] = []
@@ -175,19 +177,24 @@ def run(args, transport=None, sleep=None) -> dict:
         for entry in entries:
             if len(observations) < args.max_records:
                 observations.append(to_observation(entry))
+        # Durable output BEFORE the cursor advances: an interrupted run never
+        # loses already-fetched records (resume merges instead of replacing).
+        obs_ledger.add([common.observation_to_json(obs) for obs in observations])
+        bind_ledger.add([])
         start += page
         state.advance({"start": start}, already + len(observations))
         if len(entries) < page:
             break
     if not fetched_any:
         receipt["error_log"].append("no page fetched")
-    rows = [common.observation_to_json(obs) for obs in observations]
-    common.write_jsonl(Path(args.output_observations), rows)
-    common.write_jsonl(Path(args.output_bindings), [])
+    obs_ledger.rewrite_atomically()
+    bind_ledger.rewrite_atomically()
+    rows = obs_ledger.rows()
     receipt["pages"] = state.data.get("pages_fetched", 0)
     receipt["records"] = {
-        "observations_emitted": len(rows), "outcome_bindings_emitted": 0,
-        "per_record_source_ids": [row["source_ids"][0] for row in rows]}
+        "observations_emitted": len(obs_ledger.new_rows), "observations_in_output": len(rows),
+        "outcome_bindings_emitted": 0, "outcome_bindings_in_output": len(bind_ledger.rows()),
+        "per_record_source_ids": [row["source_ids"][0] for row in obs_ledger.new_rows]}
     receipt["emitted_files"] = [
         {"path": args.output_observations, "kind": "observations", "records": len(rows),
          "sha256": common.sha256_file(Path(args.output_observations))},

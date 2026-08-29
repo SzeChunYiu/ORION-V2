@@ -10,9 +10,13 @@ Lawful acquisition contract (research/closure/SD10_SOURCE_ADAPTERS_DESIGN_RECEIP
   daily request budget (--daily-request-cap, default 100000, clamped to the
   documented limit): the run stops before exceeding the budget and says so in
   the receipt. Real (non-dry) runs REQUIRE --contact-email.
-- --since/--until map to from_publication_date/until_publication_date filters;
+- --since/--until map to the documented from_publication_date and
+  to_publication_date filters; cursor paging follows the documented protocol
+  (first request sends cursor=*, later requests repeat meta.next_cursor);
   --max-records caps; --dry-run prints the plan and performs zero requests;
   HTTP 4xx (except 429) fails closed.
+- The daily request budget is keyed by UTC date in the state file, so a new
+  day resets the counter instead of resuming a spent budget forever.
 
 Scientific honesty contract:
 - cited_by_count is a PROXY METRIC ONLY and is never mapped to an outcome class.
@@ -59,12 +63,14 @@ DOCUMENTED_DAILY_LIMIT = 100000
 
 
 def build_url(args, cursor: str | None, per_page: int) -> str:
-    filters = [f"from_publication_date:{args.since}", f"until_publication_date:{args.until}"]
+    # Documented filters: from_publication_date / to_publication_date (the
+    # end-date filter is `to_publication_date`; `until_publication_date` does
+    # not exist). Documented cursor protocol: first request sends cursor=*,
+    # later requests repeat meta.next_cursor.
+    filters = [f"from_publication_date:{args.since}", f"to_publication_date:{args.until}"]
     if args.work_type:
         filters.append(f"type:{args.work_type}")
-    params = {"filter": ",".join(filters), "per-page": str(per_page)}
-    if cursor:
-        params["cursor"] = cursor
+    params = {"filter": ",".join(filters), "per-page": str(per_page), "cursor": cursor or "*"}
     if args.contact_email:
         params["mailto"] = args.contact_email
     return ENDPOINT + "?" + urllib.parse.urlencode(params)
@@ -147,18 +153,27 @@ def run(args, transport=None, sleep=None) -> dict:
     receipt["daily_request_budget"] = {"cap": daily_cap, "documented_limit": DOCUMENTED_DAILY_LIMIT}
     if args.dry_run:
         receipt["dry_run_plan"] = {
-            "requests_planned": 1, "sample_url": build_url(args, cursor="START_CURSOR",
+            "requests_planned": 1, "sample_url": build_url(args, cursor=None,
                                                            per_page=min(args.page_size, args.max_records)),
-            "note": "dry run: zero network requests were made"}
+            "note": "dry run: zero network requests were made; sample_url uses the documented cursor=* start"}
         return receipt
     if not args.contact_email:
         raise SystemExit("OpenAlex etiquette requires a mailto contact: --contact-email or SD10_CONTACT_EMAIL")
     state = common.CursorState(Path(args.state))
+    obs_ledger = common.OutputLedger(Path(args.output_observations), common.observation_key)
+    bind_ledger = common.OutputLedger(Path(args.output_bindings), common.binding_key)
     headers = {"User-Agent": f"ORION-V2-SD10-research-metadata-harvester (mailto:{args.contact_email})"}
     limiter = common.RateLimiter(args.rate_seconds, sleep)
     cursor = state.data.get("cursor")
     already = int(state.data.get("records_emitted", 0))
-    requests_today = int(state.data.get("requests_today", 0))
+    # Daily budget is keyed by UTC date: a state file from an earlier day means
+    # the budget resets, not that the run is blocked forever.
+    today = common.utc_today()
+    if state.data.get("budget_date") != today:
+        requests_today = 0
+    else:
+        requests_today = int(state.data.get("requests_today", 0))
+    state.data["budget_date"] = today
     observations: list[DevelopmentObservation] = []
     bindings: list[OutcomeBinding] = []
     while len(observations) < args.max_records:
@@ -179,24 +194,27 @@ def run(args, transport=None, sleep=None) -> dict:
             break
         for item in items:
             if len(observations) < args.max_records:
-                observations.append(to_observation(item, len(observations)))
+                observations.append(to_observation(item, already + len(observations)))
                 bindings.extend(bindings_from_items([item]))
+        # Durable output BEFORE the cursor advances: an interrupted run never
+        # loses already-fetched records (resume merges instead of replacing).
+        obs_ledger.add([common.observation_to_json(obs) for obs in observations])
+        bind_ledger.add([common.binding_to_json(binding) for binding in bindings])
         cursor = (payload.get("meta") or {}).get("next_cursor") or cursor
         state.advance(cursor, already + len(observations))
         if len(items) < per_page:
             break
-    rows_out = [common.observation_to_json(obs) for obs in observations]
-    binding_rows = [common.binding_to_json(binding) for binding in bindings]
-    common.write_jsonl(Path(args.output_observations), rows_out)
-    common.write_jsonl(Path(args.output_bindings), binding_rows)
+    obs_ledger.rewrite_atomically()
+    bind_ledger.rewrite_atomically()
     receipt["pages"] = state.data.get("pages_fetched", 0)
     receipt["records"] = {
-        "observations_emitted": len(rows_out), "outcome_bindings_emitted": len(binding_rows),
-        "per_record_source_ids": [row["source_ids"][0] for row in rows_out]}
+        "observations_emitted": len(obs_ledger.new_rows), "observations_in_output": len(obs_ledger.rows()),
+        "outcome_bindings_emitted": len(bind_ledger.new_rows), "outcome_bindings_in_output": len(bind_ledger.rows()),
+        "per_record_source_ids": [row["source_ids"][0] for row in obs_ledger.new_rows]}
     receipt["emitted_files"] = [
-        {"path": args.output_observations, "kind": "observations", "records": len(rows_out),
+        {"path": args.output_observations, "kind": "observations", "records": len(obs_ledger.rows()),
          "sha256": common.sha256_file(Path(args.output_observations))},
-        {"path": args.output_bindings, "kind": "outcome_bindings", "records": len(binding_rows),
+        {"path": args.output_bindings, "kind": "outcome_bindings", "records": len(bind_ledger.rows()),
          "sha256": common.sha256_file(Path(args.output_bindings))}]
     receipt["cannot_check"] = [
         "cited_by_count is truncated at fetch date (citation-window bias is structural)",

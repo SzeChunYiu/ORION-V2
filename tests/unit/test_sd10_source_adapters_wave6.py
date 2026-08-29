@@ -10,6 +10,8 @@ import importlib.util
 import json
 import sys
 import time
+import urllib.parse
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import pytest
@@ -106,6 +108,10 @@ def _read_jsonl(path):
     return [json.loads(line) for line in Path(path).read_text(encoding="utf-8").splitlines() if line.strip()]
 
 
+def _query_params(url):
+    return {key: values[0] for key, values in urllib.parse.parse_qs(urllib.parse.urlparse(url).query).items()}
+
+
 def _arxiv_pages():
     return [common.Response(200, (FIXTURES / "arxiv_feed_page1.xml").read_bytes()),
             common.Response(200, (FIXTURES / "arxiv_feed_page2.xml").read_bytes())]
@@ -193,14 +199,21 @@ def test_crossref_retraction_bindings_are_failure_only_with_witness(tmp_path):
     args = _crossref_args(tmp_path)
     receipt = crossref.run(args, transport=transport, sleep=SleepRecorder())
     bindings = _read_jsonl(args.output_bindings)
-    assert {(b["trajectory_id"], b["outcome_class"]) for b in bindings} == {
-        ("doi:10.1000/retracted-target", "VALIDATED_FAILURE"),
-        ("doi:10.1000/flagged-retracted", "VALIDATED_FAILURE")}
-    by_trajectory = {b["trajectory_id"]: b for b in bindings}
-    assert by_trajectory["doi:10.1000/retracted-target"]["witness_ids"] == ["doi:10.1000/retraction-notice"]
-    assert by_trajectory["doi:10.1000/flagged-retracted"]["witness_ids"] == ["doi:10.1000/flagged-retracted"]
+    # Only the notice's documented update-to type=retraction entry binds; the
+    # correction on the normal article must NOT bind, and the notice/normal
+    # records bind nothing for themselves.
+    assert [(b["trajectory_id"], b["outcome_class"]) for b in bindings] == \
+        [("doi:10.1000/retracted-target", "VALIDATED_FAILURE")]
+    assert bindings[0]["witness_ids"] == ["doi:10.1000/retraction-notice"]
     assert all(b["outcome_class"] != "VALIDATED_SUCCESS" for b in bindings)
-    assert receipt["records"]["outcome_bindings_emitted"] == 2
+    assert receipt["records"]["outcome_bindings_emitted"] == 1
+    rows = _read_jsonl(args.output_observations)
+    by_trajectory = {row["trajectory_id"]: row for row in rows}
+    assert by_trajectory["doi:10.1000/retraction-notice"]["kind"] == "RETRACTION"
+    assert by_trajectory["doi:10.1000/retraction-notice"]["failure_feature_ids"] == ["crossref:retraction_notice"]
+    # The retracted target record itself carries no Crossref marker: the binding
+    # exists only through the notice, which is why the witness is the notice DOI.
+    assert by_trajectory["doi:10.1000/retracted-target"]["failure_feature_ids"] == []
 
 
 def test_crossref_absence_of_retraction_is_never_success(tmp_path):
@@ -209,6 +222,7 @@ def test_crossref_absence_of_retraction_is_never_success(tmp_path):
     crossref.run(args, transport=transport, sleep=SleepRecorder())
     rows = _read_jsonl(args.output_observations)
     normal = next(row for row in rows if row["trajectory_id"] == "doi:10.1000/normal-article")
+    # A correction update is NOT failure evidence: no failure feature, no binding.
     assert normal["failure_feature_ids"] == []
     assert normal["proxy_metrics"]["crossref:is_referenced_by_count"] == 57.0
     assert normal["institution_ids"] == ["crossref-inst:Example Institute"]
@@ -217,7 +231,7 @@ def test_crossref_absence_of_retraction_is_never_success(tmp_path):
            "proxy_metrics": tuple(row["proxy_metrics"].items())}) for row in rows]
     episodes = {ep.episode_id: ep for ep in assemble_all(observations)}
     assert episodes["doi:10.1000/normal-article"].outcome_class is DevelopmentOutcomeClass.UNKNOWN
-    assert episodes["doi:10.1000/flagged-retracted"].outcome_class is DevelopmentOutcomeClass.UNKNOWN
+    assert episodes["doi:10.1000/retracted-target"].outcome_class is DevelopmentOutcomeClass.UNKNOWN
 
 
 def test_crossref_bindings_roundtrip_to_validated_failure(tmp_path):
@@ -228,19 +242,14 @@ def test_crossref_bindings_roundtrip_to_validated_failure(tmp_path):
     observations = [DevelopmentObservation(
         **{**row, "kind": ObservationKind(row["kind"]), "action_feature_ids": tuple(row["action_feature_ids"]),
            "proxy_metrics": tuple(row["proxy_metrics"].items())}) for row in rows]
-    # The notice binds a trajectory outside this page; add its observation so the
-    # assembly exercises the binding the way a full corpus run would.
-    observations.append(DevelopmentObservation(
-        observation_id="crossref-obs:10.1000/retracted-target",
-        trajectory_id="doi:10.1000/retracted-target", domain_id="crossref-subject:Mathematics",
-        epoch_id="year:2024", source_mode_id="crossref_rest_works", ordinal=0,
-        kind=ObservationKind.OTHER, action_feature_ids=("crossref:publish_work",)))
     bindings = [OutcomeBinding(b["trajectory_id"], DevelopmentOutcomeClass(b["outcome_class"]),
                                tuple(b["witness_ids"]), tuple(b["source_ids"])) for b in _read_jsonl(args.output_bindings)]
     episodes = {ep.episode_id: ep for ep in assemble_all(observations, bindings)}
     assert episodes["doi:10.1000/retracted-target"].outcome_class is DevelopmentOutcomeClass.VALIDATED_FAILURE
     assert episodes["doi:10.1000/retracted-target"].outcome_witness_ids == ("doi:10.1000/retraction-notice",)
     assert episodes["doi:10.1000/normal-article"].outcome_class is DevelopmentOutcomeClass.UNKNOWN
+
+
 def test_openalex_retraction_institutions_and_kinds(tmp_path):
     transport = FakeTransport([common.Response(200, (FIXTURES / "openalex_works_page1.json").read_bytes())])
     args = _openalex_args(tmp_path)
@@ -272,6 +281,75 @@ def test_openalex_daily_budget_stops_before_exceeding_limit(tmp_path):
     assert receipt["daily_request_budget"]["documented_limit"] == 100000
 
 
+def test_openalex_daily_budget_resets_on_new_utc_day(tmp_path):
+    yesterday = (datetime.now(timezone.utc) - timedelta(days=1)).strftime("%Y-%m-%d")
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    state_path = tmp_path / "state.json"
+    state_path.write_text(json.dumps({"cursor": None, "records_emitted": 0, "pages_fetched": 0,
+                                      "requests_today": 1, "budget_date": yesterday}), encoding="utf-8")
+    transport = FakeTransport([common.Response(200, (FIXTURES / "openalex_works_page1.json").read_bytes())])
+    args = _openalex_args(tmp_path, daily_request_cap=1, page_size=3, max_records=3)
+    receipt = openalex.run(args, transport=transport, sleep=SleepRecorder())
+    # A state file from an earlier UTC day must RESET the budget, not block the
+    # run forever.
+    assert len(transport.urls) == 1
+    assert receipt["request_count"] == 1
+    assert receipt["error_log"] == []
+    state = json.loads(state_path.read_text(encoding="utf-8"))
+    assert state["budget_date"] == today
+    assert state["requests_today"] == 1
+
+
+def test_openalex_daily_budget_still_blocks_within_same_day(tmp_path):
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    (tmp_path / "state.json").write_text(json.dumps(
+        {"cursor": None, "records_emitted": 0, "pages_fetched": 0,
+         "requests_today": 1, "budget_date": today}), encoding="utf-8")
+    transport = FakeTransport([])
+    args = _openalex_args(tmp_path, daily_request_cap=1, page_size=3)
+    receipt = openalex.run(args, transport=transport, sleep=SleepRecorder())
+    assert len(transport.urls) == 0
+    assert any("daily request budget" in entry for entry in receipt["error_log"])
+
+
+def test_crossref_cursor_protocol_never_combines_offset_with_cursor(tmp_path):
+    transport = FakeTransport([common.Response(200, (FIXTURES / "crossref_works_page1.json").read_bytes()),
+                               common.Response(200, (FIXTURES / "crossref_works_page2.json").read_bytes())])
+    args = _crossref_args(tmp_path, page_size=2)
+    receipt = crossref.run(args, transport=transport, sleep=SleepRecorder())
+    assert len(transport.urls) == 2
+    first = _query_params(transport.urls[0])
+    second = _query_params(transport.urls[1])
+    # Documented protocol: first request cursor=*, later requests repeat
+    # message.next-cursor; `offset` must never ride along.
+    assert first["cursor"] == "*"
+    assert second["cursor"] == "crossref-cursor-2"
+    for url in transport.urls:
+        params = _query_params(url)
+        assert "offset" not in params
+        assert "from-pub-date:2024-01-01" in params["filter"]
+        assert "until-pub-date:2024-12-31" in params["filter"]
+    # Page 2 content still normalizes (dataset type -> DATA_OR_INSTRUMENT).
+    rows = _read_jsonl(args.output_observations)
+    by_trajectory = {row["trajectory_id"]: row for row in rows}
+    assert by_trajectory["doi:10.1000/dataset-article"]["kind"] == "DATA_OR_INSTRUMENT"
+    assert receipt["records"]["observations_in_output"] == 4
+
+
+def test_openalex_cursor_protocol_uses_documented_start_and_next_cursor(tmp_path):
+    transport = FakeTransport([common.Response(200, (FIXTURES / "openalex_works_page1.json").read_bytes()),
+                               common.Response(200, b'{"results": [], "meta": {}}')])
+    args = _openalex_args(tmp_path, page_size=3)
+    openalex.run(args, transport=transport, sleep=SleepRecorder())
+    assert len(transport.urls) == 2
+    first = _query_params(transport.urls[0])
+    second = _query_params(transport.urls[1])
+    assert first["cursor"] == "*"
+    assert second["cursor"] == "openalex-cursor-2"
+    assert "from_publication_date:2024-01-01" in first["filter"]
+    assert "to_publication_date:2024-12-31" in first["filter"]
+
+
 def test_rate_limit_and_429_backoff_plumbing(tmp_path):
     pages = [common.Response(429, b"slow down"),
              common.Response(200, (FIXTURES / "arxiv_feed_page1.xml").read_bytes())]
@@ -300,16 +378,21 @@ def test_non_429_4xx_fails_closed(tmp_path):
 
 def test_cursor_resumption_continues_from_state(tmp_path):
     transport_one = FakeTransport([common.Response(200, (FIXTURES / "arxiv_feed_page1.xml").read_bytes())])
-    args_one, _receipt = _run_arxiv(tmp_path, transport_one, max_records=2, page_size=2)
+    args_one, receipt_one = _run_arxiv(tmp_path, transport_one, max_records=2, page_size=2)
     state = json.loads(Path(args_one.state).read_text(encoding="utf-8"))
     assert state["cursor"] == {"start": 2}
     assert state["records_emitted"] == 2
     assert state["pages_fetched"] == 1
     transport_two = FakeTransport([common.Response(200, (FIXTURES / "arxiv_feed_page2.xml").read_bytes())])
-    args_two, _receipt_two = _run_arxiv(tmp_path, transport_two, max_records=5, page_size=2)
+    args_two, receipt_two = _run_arxiv(tmp_path, transport_two, max_records=5, page_size=2)
     assert "start=2" in transport_two.urls[0]
+    # Resume MERGES into the existing output instead of replacing it: an
+    # interrupted run never loses already-fetched records.
     rows_two = _read_jsonl(args_two.output_observations)
-    assert [row["observation_id"] for row in rows_two] == ["arxiv-obs:2401.00003v1"]
+    assert [row["observation_id"] for row in rows_two] == \
+        ["arxiv-obs:2401.00001v1", "arxiv-obs:2401.00002v1", "arxiv-obs:2401.00003v1"]
+    assert receipt_two["records"]["observations_emitted"] == 1
+    assert receipt_two["records"]["observations_in_output"] == 3
     state_two = json.loads(Path(args_two.state).read_text(encoding="utf-8"))
     assert state_two["records_emitted"] == 3
 
@@ -339,7 +422,9 @@ def test_dry_run_requires_no_contact_email(tmp_path):
     args = _openalex_args(tmp_path, dry_run=True, contact_email="")
     receipt = openalex.run(args, transport=_forbidden, sleep=SleepRecorder())
     assert receipt["dry_run_plan"]["requests_planned"] == 1
-    assert "from_publication_date" in receipt["dry_run_plan"]["sample_url"]
+    params = _query_params(receipt["dry_run_plan"]["sample_url"])
+    assert params["filter"] == "from_publication_date:2024-01-01,to_publication_date:2024-12-31"
+    assert params["cursor"] == "*"
 
 
 def test_real_run_requires_contact_email_for_polite_pools(tmp_path):

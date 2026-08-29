@@ -29,6 +29,23 @@ prints the URL plan; `--max-records` caps every run; `--since/--until` are
 ISO-date windows validated at parse time; cursor state is persisted atomically
 after every page so an interrupted run resumes rather than silently skipping.
 
+Durable resume (`common.OutputLedger`): fetched records are APPENDED to the
+output JSONL after every page and BEFORE the cursor state advances, then the
+file is atomically rewritten (deduped by observation id / by
+trajectory+witnesses for bindings) at run end. A crash between an append and
+the cursor advance therefore only re-fetches rows already safely on disk, and
+the load-time dedupe removes such duplicates — an interrupted run never loses
+already-fetched records. Receipts distinguish `observations_emitted` (new this
+run) from `observations_in_output` (total merged corpus slice).
+
+Cursor paging follows each source's documented protocol exactly: Crossref
+sends `cursor=*` on the first request and repeats `message.next-cursor`
+afterwards (`offset` is never sent — the API documents that `rows` may be
+combined with `cursor` but `offset` may not); OpenAlex sends `cursor=*` first
+and repeats `meta.next_cursor` afterwards. The OpenAlex daily budget is keyed
+by UTC date in the state file, so a new UTC day RESETS the counter instead of
+resuming a spent budget forever.
+
 ## 2. Outcome-policy conservatism (the scientific-honesty core)
 
 1. **Citation/fame metrics are proxy metrics only.** `is-referenced-by-count`,
@@ -38,12 +55,20 @@ after every page so an interrupted run resumes rather than silently skipping.
    `VERSION_OR_REVISION` observations; the arXiv adapter emits ZERO outcome
    bindings, ever (its metadata carries no validated outcome).
 3. **Outcome bindings only where the source itself carries a validated record:**
-   - Crossref relation kind `is-retraction-of` -> the RETRACTED trajectory gets
-     `VALIDATED_FAILURE` with the retraction notice DOI as witness id.
-   - Crossref `is-retracted: true` -> that trajectory gets `VALIDATED_FAILURE`
-     with the record itself as witness.
-   - OpenAlex `is_retracted: true` -> `VALIDATED_FAILURE`, witness = the work record.
-4. **Absence is never success.** No flag/relation -> no binding -> trajectory
+   - Crossref: a retraction NOTICE record whose `update-to` array carries an
+     entry with `type: "retraction"` -> the RETRACTED trajectory gets
+     `VALIDATED_FAILURE` with the retraction notice DOI as witness id. Verified
+     against live `api.crossref.org` responses on 2026-08-29 (e.g. notice
+     `10.1016/s0140-6736(10)60175-4` carries `update-to:
+     [{DOI: "10.1016/s0140-6736(97)11096-0", type: "retraction", ...},
+     {type: "correction", ...}]`): `update-to` is the only source-carried
+     retraction channel in the current API — there is no `is-retracted` field,
+     the relation-type enum contains no retraction kind (`is-retraction-of` is
+     rejected as invalid), and the retracted target record itself typically
+     carries no marker at all. Corrections and other update types do NOT bind.
+   - OpenAlex `is_retracted: true` (a documented Work boolean) ->
+     `VALIDATED_FAILURE`, witness = the work record.
+4. **Absence is never success.** No flag/update entry -> no binding -> trajectory
    stays `UNKNOWN` downstream. The corpus receipt already states
    `unpublished_failure_absence_may_be_interpreted_as_no_failure: false`.
 5. Every run receipt repeats the censoring statement: unpublished failures are
@@ -61,10 +86,10 @@ DOI / OpenAlex W id); each emitted record is one observation on that trajectory.
 | `domain_id` | `arxiv-cat:<primary_category>` | `crossref-subject:<first subject or uncategorized>` | `openalex-field:<field id>` else `openalex-source:<source id>` else uncategorized |
 | `epoch_id` | `year:<published year>` | `year:<issued year>` | `year:<publication_year>` |
 | `source_mode_id` | `arxiv_atom_metadata` | `crossref_rest_works` | `openalex_works` |
-| `ordinal` | version - 1 | page order index | page order index |
-| `kind` | `VERSION_OR_REVISION` if version>1 else `OTHER` | `RETRACTION` for retraction evidence, `DATA_OR_INSTRUMENT` for dataset type, else `OTHER` | `DATA_OR_INSTRUMENT` for dataset type, else `OTHER` |
+| `ordinal` | version - 1 | cumulative index (already-emitted + in-run order), stable across resumes | cumulative index (stable across resumes) |
+| `kind` | `VERSION_OR_REVISION` if version>1 else `OTHER` | `RETRACTION` for records carrying a type=retraction `update-to` entry, `DATA_OR_INSTRUMENT` for dataset type, else `OTHER` | `DATA_OR_INSTRUMENT` for dataset type, else `OTHER` |
 | `action_feature_ids` | `arxiv:deposit_version`, `arxiv:primary_category:<cat>` | `crossref:publish_work`, `crossref:type:<type>` | `openalex:publish_work`, `openalex:type:<type>` |
-| `failure_feature_ids` | (never: metadata carries none) | `crossref:is_retracted` / `crossref:retraction_notice` | `openalex:is_retracted` |
+| `failure_feature_ids` | (never: metadata carries none) | `crossref:retraction_notice` (on the notice record only; the unmarked retracted target gets none) | `openalex:is_retracted` |
 | `source_ids` | entry id URL | `doi:<doi>` | `openalex:<W-id>` |
 | `validation_ids` | empty (no validation witness in metadata) | empty (witnesses live in bindings) | empty |
 | `institution_ids` | empty (CANNOT_CHECK: Atom exposes no affiliations) | `crossref-inst:<institution.name>` when present | `openalex-inst:<institution id>` for each authorship institution |
@@ -74,7 +99,9 @@ DOI / OpenAlex W id); each emitted record is one observation on that trajectory.
 | `resource_cost` | 0.0 per record (acquisition cost is accounted at run level in the receipt: request count, pages, fetched window) | same | same |
 
 Window filters: arXiv `submittedDate:[YYYYMMDD0000 TO YYYYMMDD2359]`;
-Crossref `from-pub-date/until-pub-date`; OpenAlex `from/until_publication_date`.
+Crossref `from-pub-date/until-pub-date`; OpenAlex `from_publication_date` /
+`to_publication_date` (the end-date filter is `to_publication_date`;
+`until_publication_date` does not exist).
 
 ## 4. Bias ledger (structural biases each source induces)
 
@@ -96,9 +123,14 @@ Crossref `from-pub-date/until-pub-date`; OpenAlex `from/until_publication_date`.
 - arXiv Atom metadata carries no affiliations, citations, or team identities;
   withdrawal states are not reliably machine-readable in Atom -> institution/
   team fields stay empty and NO arXiv outcome binding is ever emitted.
-- Crossref `is-retracted` coverage is incomplete (not all publishers flag);
-  withdrawal-without-flag is undetectable here.
-- OpenAlex `is_retracted` similarly tracks Crossref's flag upstream.
+- Crossref: retraction evidence exists only where a notice record carries a
+  type=retraction `update-to` entry (verified live 2026-08-29). Notices
+  deposited without such an entry, and withdrawals with no notice at all, are
+  undetectable here; the retracted target record itself usually carries no
+  marker, which is why the binding witness is always the notice DOI.
+- OpenAlex `is_retracted` tracks Crossref-derived retraction evidence
+  upstream; works retracted without a Crossref-recorded notice can stay
+  unflagged.
 - Author lists are not stable team identities; `team_id` is left empty across
   all sources rather than guessed.
 - Cursor state is per-output-path; operators must not share one state file
