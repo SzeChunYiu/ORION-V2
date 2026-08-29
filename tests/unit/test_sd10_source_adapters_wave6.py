@@ -514,7 +514,9 @@ def test_pubmed_field_mapping_and_domain_fallbacks(tmp_path):
     # Epoch year comes from the pdat channel (Journal/JournalIssue/PubDate).
     assert by_trajectory["pubmed:2190089"]["epoch_id"] == "year:1990"
     assert by_trajectory["pubmed:36017998"]["epoch_id"] == "year:2022"
-    assert by_trajectory["pubmed:33522354"]["epoch_id"] == "year:2026"
+    # First-public-appearance channel: the electronic ArticleDate (2021) wins
+    # over the future print Journal year (2026) — PubMed [dp] is multi-valued.
+    assert by_trajectory["pubmed:33522354"]["epoch_id"] == "year:2021"
     # Proxy metrics are real countable XML fields only; no citation counts exist.
     assert by_trajectory["pubmed:2190089"]["proxy_metrics"] == {
         "pubmed:author_count": 1.0, "pubmed:mesh_heading_count": 5.0}
@@ -602,12 +604,18 @@ def test_pubmed_paging_uses_documented_esearch_efetch_protocol(tmp_path):
     assert "WebEnv" not in first and "query_key" not in first
     assert fetch_one.startswith("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi")
     assert _query_params(fetch_one)["retmode"] == "xml"
-    assert _query_params(fetch_one)["id"] == "41675261,42182984,42256493"
-    assert _query_params(fetch_two)["id"] == "42182983,42186608,42179428"
+    assert _query_params(fetch_one)["id"] == "42493777,38213033,42604052"
+    assert _query_params(fetch_two)["id"] == "39601775,39442171,39405086"
     assert receipt["request_count"] == 4
     assert receipt["pages"] == 2
     assert receipt["records"]["observations_in_output"] == 6
     assert receipt["records"]["outcome_bindings_emitted"] == 0
+    # The server's own window echo and count are recorded for audit, and the
+    # echo is verified to be the full mindate:maxdate range (live values for
+    # the 2024 window, captured 2026-08-29 with the adapter's exact URL shape).
+    assert receipt["esearch_window"]["counts_by_page"] == [1739765, 1739765]
+    assert receipt["esearch_window"]["querytranslations"] == [
+        "2024/01/01:2024/12/31[Date - Publication]"] * 2
 
 
 def test_pubmed_cursor_resumption_continues_from_retstart(tmp_path):
@@ -620,7 +628,7 @@ def test_pubmed_cursor_resumption_continues_from_retstart(tmp_path):
     assert _query_params(transport.urls[0])["retstart"] == "3"
     rows = _read_jsonl(args.output_observations)
     assert [row["observation_id"] for row in rows] == \
-        ["pubmed-obs:42182983", "pubmed-obs:42186608", "pubmed-obs:42179428"]
+        ["pubmed-obs:39601775", "pubmed-obs:39442171", "pubmed-obs:39405086"]
     assert receipt["records"]["observations_emitted"] == 3
     state = json.loads(state_path.read_text(encoding="utf-8"))
     assert state["cursor"] == {"retstart": 6}
@@ -654,6 +662,50 @@ def test_pubmed_esearch_errorlist_fails_closed(tmp_path):
                                           "errorlist": {"phrasesnotfound": ["publication"]}}}).encode()
     with pytest.raises(common.HardFailClosed):
         _run_pubmed(tmp_path, FakeTransport([common.Response(200, error)]))
+
+
+def test_pubmed_esearch_error_field_fails_closed(tmp_path):
+    # Verbatim live shape (2026-08-29): retstart > 9998 returns HTTP 200 with
+    # a top-level esearchresult.ERROR string — NOT an errorlist. Without this
+    # check a window larger than 9,999 records would silently truncate.
+    error = json.dumps({"esearchresult": {
+        "ERROR": "Search Backend failed: Exception: 'retstart' cannot be larger than 9998. "
+                 "For PubMed, ESearch can only retrieve the first 9,999 records matching the query.",
+        "idlist": []}}).encode()
+    with pytest.raises(common.HardFailClosed):
+        _run_pubmed(tmp_path, FakeTransport([common.Response(200, error)]))
+
+
+def test_pubmed_window_translation_collapse_fails_closed(tmp_path):
+    # A malformed capture (2026-08-29) proved the failure class is real: the
+    # server can echo a single-date translation while a window was requested,
+    # which would fetch the wrong PMID set (242,229 records instead of the
+    # 1,739,765-record 2024 window). The adapter must fail closed on any
+    # date-clause echo that is not the full mindate:maxdate range. The page
+    # shape is deliberately COMPLETE (3 of 3 ids, count 3) so ONLY the
+    # translation verification can catch this — the short-page guard cannot.
+    collapsed = json.dumps({"esearchresult": {
+        "count": "3", "idlist": ["42493777", "38213033", "42604052"],
+        "querytranslation": "2024/01/01[Date - Publication]"}}).encode()
+    efetch = (FIXTURES / "pubmed_efetch_page1.xml").read_bytes()
+    with pytest.raises(common.HardFailClosed):
+        _run_pubmed(tmp_path, FakeTransport([common.Response(200, collapsed),
+                                             common.Response(200, efetch)]),
+                    page_size=3, max_records=3)
+
+
+def test_pubmed_short_page_with_unconsumed_window_fails_closed(tmp_path):
+    # A page returning fewer PMIDs than requested while the esearch count
+    # still shows unconsumed records is truncation (retstart ceiling or index
+    # drift), never end-of-results: no success receipt may be written over a
+    # partial corpus.
+    short = json.dumps({"esearchresult": {
+        "count": "1739765", "idlist": ["42493777", "38213033"],
+        "querytranslation": "2024/01/01:2024/12/31[Date - Publication]"}}).encode()
+    efetch = (FIXTURES / "pubmed_efetch_page1.xml").read_bytes()
+    with pytest.raises(common.HardFailClosed):
+        _run_pubmed(tmp_path, FakeTransport([common.Response(200, short),
+                                             common.Response(200, efetch)]))
 
 
 def test_pubmed_non_429_4xx_fails_closed(tmp_path):

@@ -18,6 +18,14 @@ Lawful acquisition contract (research/closure/SD10_SOURCE_ADAPTERS_DESIGN_RECEIP
   contract (an interrupted run must resume from persisted state, not from a
   live server session); retstart paging re-runs the query deterministically
   (sort=pub_date) from the persisted retstart.
+- Ceiling (live-verified 2026-08-29): ESearch rejects retstart > 9998 with
+  HTTP 200 + esearchresult.ERROR ("... ESearch can only retrieve the first
+  9,999 records matching the query..."). The adapter FAILS CLOSED on that
+  ERROR key, on any short page while the esearch count still shows unconsumed
+  records, and on any querytranslation echo that collapses the requested
+  mindate:maxdate window to a single date; every page's count and
+  querytranslation are recorded in the run receipt. Windows larger than 9,999
+  records must be split into smaller date ranges by the operator.
 - --max-records caps the run; --dry-run prints the URL plan and performs zero
   requests; HTTP 4xx (except 429) fails closed.
 
@@ -107,28 +115,67 @@ def check_esearch_error(payload: dict) -> None:
     # Live shape (verified 2026-08-29): esearchresult.errorlist is an object of
     # lists (phrasesnotfound/fieldsnotfound/...); any non-empty sub-list is a
     # real query error -> fail closed rather than silently fetching nothing.
-    errorlist = payload.get("esearchresult", {}).get("errorlist") or {}
+    # esearchresult.ERROR is a separate TOP-LEVEL STRING returned with HTTP 200
+    # (live-verified: retstart > 9998 -> "Search Backend failed: Exception:
+    # 'retstart' cannot be larger than 9998. For PubMed, ESearch can only
+    # retrieve the first 9,999 records matching the query...") -> also fail
+    # closed, otherwise the ceiling would silently truncate a large window.
+    result = payload.get("esearchresult", {})
+    error = result.get("ERROR")
+    if error:
+        raise common.HardFailClosed(f"esearch returned ERROR: {error}; failing closed")
+    errorlist = result.get("errorlist") or {}
     failures = {key: value for key, value in errorlist.items() if value}
     if failures:
         raise common.HardFailClosed(f"esearch returned an errorlist: {failures}; failing closed")
 
 
-def parse_esearch_ids(body: bytes) -> list[str]:
+def parse_esearch_result(body: bytes) -> tuple[list[str], int, str]:
+    """ids + window count + the server's own querytranslation echo."""
     payload = json.loads(body.decode("utf-8"))
     check_esearch_error(payload)
     result = payload.get("esearchresult", {})
-    return [str(pmid) for pmid in result.get("idlist", []) if str(pmid).strip()]
+    pmids = [str(pmid) for pmid in result.get("idlist", []) if str(pmid).strip()]
+    try:
+        count = int(result.get("count") or 0)
+    except (TypeError, ValueError):
+        count = 0
+    return pmids, count, str(result.get("querytranslation") or "")
+
+
+def check_window_translation(args, querytranslation: str) -> None:
+    # Live-verified 2026-08-29 with this adapter's exact URL shape
+    # (datetype=pdat + mindate + maxdate): the server echoes the window as
+    # "<mindate>:<maxdate>[Date - Publication]" in querytranslation and applies
+    # it (the 2024 window matches 1,739,765 records; the single-date query
+    # matches 242,229). If the echo ever collapses to a single date the fetched
+    # set would be the WRONG PMID set -> fail closed instead. Non-date queries
+    # echo no date clause and pass untouched.
+    if "[Date - Publication]" in querytranslation:
+        expected = f"{args.since.replace('-', '/')}:{args.until.replace('-', '/')}[Date - Publication]"
+        if expected not in querytranslation:
+            raise common.HardFailClosed(
+                f"esearch querytranslation {querytranslation!r} does not contain the requested "
+                f"window {expected!r}; failing closed rather than fetching the wrong PMID set")
 
 
 def _year_of(medline: ET.Element) -> str:
-    # pdat-channel year: Journal/JournalIssue/PubDate (Year, else leading year
-    # of MedlineDate), then ArticleDate, else "" (epoch falls back to unknown).
+    # PubMed [dp]/pdat is MULTI-VALUED (live-verified 2026-08-29: PMIDs
+    # 33522354 and 42493777 each match BOTH their electronic and print years
+    # via "<uid>[UID] AND <year>[dp]"). The epoch therefore pins the FIRST
+    # PUBLIC APPEARANCE channel: Article/ArticleDate Year (electronic
+    # publication — a direct child of Article, no ArticleDateList wrapper in
+    # live XML; ahead-of-print records carry the window-matching pdat here
+    # while the Journal PubDate still holds the future print year), else the
+    # citation PubDate Year, else the leading year of MedlineDate, else "".
+    text = (medline.findtext("Article/ArticleDate/Year") or "").strip()
+    if text[:4].isdigit():
+        return text[:4]
     for path in ("Article/Journal/JournalIssue/PubDate/Year", "Article/Journal/JournalIssue/PubDate/MedlineDate"):
         text = (medline.findtext(path) or "").strip()
         if text[:4].isdigit():
             return text[:4]
-    text = (medline.findtext("Article/ArticleDate/Year") or "").strip()
-    return text[:4] if text[:4].isdigit() else ""
+    return ""
 
 
 def parse_pubmed_articles(body: bytes) -> list[dict]:
@@ -279,7 +326,12 @@ def run(args, transport=None, sleep=None) -> dict:
         dry_run=args.dry_run, since=args.since, until=args.until, max_records=args.max_records)
     receipt["paging_protocol"] = {
         "mechanism": "stateless retstart/retmax with sort=pub_date (no usehistory/WebEnv)",
-        "reason": "WebEnv history expires server-side and cannot satisfy the resumable-cursor contract; retstart paging re-runs the query deterministically from persisted state"}
+        "reason": "WebEnv history expires server-side and cannot satisfy the resumable-cursor contract; retstart paging re-runs the query deterministically from persisted state",
+        "retstart_ceiling": ("live-verified 2026-08-29: ESearch rejects retstart > 9998 with HTTP 200 + "
+                             "esearchresult.ERROR ('ESearch can only retrieve the first 9,999 records "
+                             "matching the query'); the adapter fails closed on that ERROR and on any short "
+                             "page while the esearch count shows unconsumed records — split larger windows "
+                             "into smaller date ranges")}
     if args.dry_run:
         urls = plan_requests(args, retstart=0)
         receipt["planned_urls"] = urls
@@ -287,7 +339,9 @@ def run(args, transport=None, sleep=None) -> dict:
             "requests_planned": len(urls), "sample_url": urls[0],
             "note": ("dry run: zero network requests were made; each planned esearch page "
                      "is followed by exactly one efetch whose id list comes from that page, "
-                     "so the true request count is 2x requests_planned")}
+                     "so the true request count is 2x requests_planned; if the window matches "
+                     "more than 9,999 records and --max-records exceeds 9,999, the real run "
+                     "will fail closed at the ESearch retstart ceiling (retstart <= 9998)")}
         return receipt
     if not args.contact_email:
         raise SystemExit("NCBI E-utilities etiquette requires a descriptive mailto contact: --contact-email or SD10_CONTACT_EMAIL")
@@ -300,13 +354,18 @@ def run(args, transport=None, sleep=None) -> dict:
     already = int(state.data.get("records_emitted", 0))
     observations: list[DevelopmentObservation] = []
     bindings: list[OutcomeBinding] = []
+    esearch_counts: list[int] = []
+    esearch_querytranslations: list[str] = []
     while len(observations) < args.max_records:
         rows = min(args.page_size, args.max_records - len(observations))
         search_response = common.fetch_with_retry(
             transport, build_esearch_url(args, retstart, rows), headers,
             rate_limiter=limiter, sleep=sleep, retries=args.retries)
         receipt["request_count"] += 1
-        pmids = parse_esearch_ids(search_response.body)
+        pmids, window_count, querytranslation = parse_esearch_result(search_response.body)
+        check_window_translation(args, querytranslation)
+        esearch_counts.append(window_count)
+        esearch_querytranslations.append(querytranslation)
         if not pmids:
             break
         fetch_response = common.fetch_with_retry(
@@ -322,10 +381,24 @@ def run(args, transport=None, sleep=None) -> dict:
         # loses already-fetched records (resume merges instead of replacing).
         obs_ledger.add([common.observation_to_json(obs) for obs in observations])
         bind_ledger.add([common.binding_to_json(binding) for binding in bindings])
+        retstart_before = retstart
         retstart += len(pmids)
         state.advance({"retstart": retstart}, already + len(observations))
+        if len(pmids) < rows and window_count > retstart_before + len(pmids):
+            # A short page while the window count still shows unconsumed
+            # records: the ESearch retstart ceiling (9,999 records, live error
+            # text above) or index drift truncated the corpus — NEVER write a
+            # success receipt over a partial fetch.
+            raise common.HardFailClosed(
+                f"esearch returned {len(pmids)} of {rows} requested PMIDs while the window count "
+                f"{window_count} exceeds the {retstart_before + len(pmids)} consumed: the result set was "
+                f"truncated (PubMed ESearch stateless paging cannot exceed the first 9,999 records of a "
+                f"query; the index can also drift between pages) - split the date window into smaller "
+                f"ranges; failing closed")
         if len(pmids) < rows:
             break
+    receipt["esearch_window"] = {"counts_by_page": esearch_counts,
+                                 "querytranslations": esearch_querytranslations}
     obs_ledger.rewrite_atomically()
     bind_ledger.rewrite_atomically()
     receipt["pages"] = state.data.get("pages_fetched", 0)

@@ -58,10 +58,30 @@ resuming a spent budget forever. PubMed pages STATELESSLY with
 `usehistory`/WebEnv server-side history is deliberately NOT used because it
 expires server-side and cannot satisfy the resumable-cursor contract above;
 the persisted cursor is simply the next `retstart`, and the receipt records
-this choice. The live PubMed index can drift between pages of a long window
-(the `count` in each esearch response is recorded), which is a paging-window
-fidelity limit, not a silent skip: the output ledger keys by observation id
-so a drifted overlap is deduped, never duplicated.
+this choice.
+
+PubMed truncation cannot be silent (all live-verified 2026-08-29):
+
+- ESearch stateless paging has a HARD ceiling: `retstart > 9998` returns
+  HTTP 200 with a top-level `esearchresult.ERROR` string ("... ESearch can
+  only retrieve the first 9,999 records matching the query ..."). The adapter
+  FAILS CLOSED on that ERROR key (it is distinct from `errorlist`), so a
+  window larger than 9,999 records aborts with exit 2 and a failed-closed
+  receipt instead of silently writing a truncated corpus. Operators fetch
+  larger windows by splitting the date range.
+- A page returning fewer PMIDs than requested while the esearch `count`
+  still shows unconsumed records (ceiling hit mid-page, or index drift)
+  also fails closed — end-of-results is only ever `count == consumed`.
+- Every page's `count` and the server's `querytranslation` echo are recorded
+  in the run receipt (`esearch_window.counts_by_page` /
+  `querytranslations`), and the echo is VERIFIED to contain the full
+  `mindate:maxdate[Date - Publication]` range: a capture where the window
+  collapsed to a single date (matching 242,229 records instead of the
+  1,739,765-record 2024 window) proved this wrong-corpus failure class is
+  real, so a collapsed echo fails closed rather than fetching the wrong
+  PMID set. A drifted overlap that still pages normally is a fidelity limit,
+  not a silent skip: the output ledger keys by observation id so overlap is
+  deduped, never duplicated.
 
 ## 2. Outcome-policy conservatism (the scientific-honesty core)
 
@@ -122,7 +142,7 @@ DOI / OpenAlex W id); each emitted record is one observation on that trajectory.
 | `observation_id` | `arxiv-obs:<id>v<version>` | `crossref-obs:<doi>` | `openalex-obs:<W-id>` | `pubmed-obs:<PMID>` |
 | `trajectory_id` | `arxiv:<id>` (version stripped) | `doi:<doi>` | `openalex:<W-id>` | `pubmed:<PMID>` |
 | `domain_id` | `arxiv-cat:<primary_category>` | `crossref-subject:<first subject or uncategorized>` | `openalex-field:<field id>` else `openalex-source:<source id>` else uncategorized | `pubmed-mesh:<first DescriptorName UI>` (MeshHeadingList) else `pubmed-journal:<NlmUniqueID>` (MedlineJournalInfo) else uncategorized |
-| `epoch_id` | `year:<published year>` | `year:<issued year>` | `year:<publication_year>` | `year:<pdat channel year>` (Journal/JournalIssue/PubDate Year, else leading year of MedlineDate, else ArticleDate Year, else unknown) |
+| `epoch_id` | `year:<published year>` | `year:<issued year>` | `year:<publication_year>` | `year:<first-public-appearance year>` (Article/ArticleDate Year — the electronic-publication channel, a direct child of Article in live XML; else Journal/JournalIssue/PubDate Year, else leading year of MedlineDate, else unknown. PubMed `[dp]` is MULTI-VALUED — live-verified: PMIDs 33522354 and 42493777 each match both their electronic and print years via `<uid>[UID] AND <year>[dp]` — so the epoch pins the earliest observable publication channel; ahead-of-print records carry the window-matching pdat in ArticleDate while the Journal PubDate still holds the future print year) |
 | `source_mode_id` | `arxiv_atom_metadata` | `crossref_rest_works` | `openalex_works` | `pubmed_eutils_metadata` |
 | `ordinal` | version - 1 | cumulative index (already-emitted + in-run order), stable across resumes | cumulative index (stable across resumes) | cumulative index (stable across resumes) |
 | `kind` | `VERSION_OR_REVISION` if version>1 else `OTHER` | `RETRACTION` for records carrying a type=retraction `update-to` entry, `DATA_OR_INSTRUMENT` for dataset type, else `OTHER` | `DATA_OR_INSTRUMENT` for dataset type, else `OTHER` | `RETRACTION` for PT `Retracted Publication` OR PT `Retraction Notice`, `CORRECTION` for PT `Published Erratum`, else `OTHER` |
@@ -140,9 +160,12 @@ Window filters: arXiv `submittedDate:[YYYYMMDD0000 TO YYYYMMDD2359]`;
 Crossref `from-pub-date/until-pub-date`; OpenAlex `from_publication_date` /
 `to_publication_date` (the end-date filter is `to_publication_date`;
 `until_publication_date` does not exist); PubMed esearch `datetype=pdat`
-with `mindate/maxdate` (live-verified 2026-08-29: ISO `YYYY-MM-DD` values are
-accepted and normalized by the server to `YYYY/MM/DD[Date - Publication]`;
-the adapter sends `YYYY/MM/DD` directly).
+with `mindate/maxdate` (live-verified 2026-08-29 with the adapter's exact
+URL shape: the server echoes and applies the full range —
+`querytranslation` returns `2024/01/01:2024/12/31[Date - Publication]`,
+count 1,739,765, vs 242,229 for the single-date query; the adapter sends
+`YYYY/MM/DD` directly and verifies the echo, see the truncation rules
+above).
 
 ## 4. Bias ledger (structural biases each source induces)
 
@@ -186,7 +209,10 @@ the adapter sends `YYYY/MM/DD` directly).
   PubMed XML carries no citation counts, so no citation-window proxy exists
   (nothing invented); the CommentsCorrections RefType channel is recorded but
   deliberately not a binding channel; affiliations are free-text strings, not
-  canonical institution identifiers.
+  canonical institution identifiers; stateless retstart paging cannot exceed
+  the first 9,999 records of a window (ESearch ceiling, live-verified
+  2026-08-29) — larger windows must be split into smaller date ranges by the
+  operator (the adapter fails closed rather than truncating silently).
 - Author lists are not stable team identities; `team_id` is left empty across
   all sources rather than guessed.
 - Cursor state is per-output-path; operators must not share one state file
@@ -212,10 +238,19 @@ the record's own `pubmed:<PMID>` as witness for PubMed (whose retracted
 articles carry the PT marker themselves).
 
 Fixture provenance: every `tests/fixtures/sd10/pubmed_*` file is a TRIMMED
-live NCBI E-utilities response captured on 2026-08-29 (date-window esearch
-pages retstart=0/3 for 2024-01-01; a 4-uid OR-term esearch; the matching
-efetch XML sets). Trimming removed only element blocks the adapter never reads
-(`Abstract`, `OtherAbstract`, `KeywordList`, `InvestigatorList`,
-`PubmedData/ReferenceList`) to keep the fixtures small; every element path
-the adapter parses is present verbatim in a live-response fixture.
+live NCBI E-utilities response captured on 2026-08-29. The window fixtures
+(`pubmed_esearch_page1/2.json`, `pubmed_efetch_page1/2.xml`) were captured
+with the adapter's EXACT URL shape (datetype=pdat + mindate/maxdate +
+sort=pub_date + retstart/retmax=3 for the 2024 window): their `count`
+(1,739,765) and `querytranslation` (`2024/01/01:2024/12/31[Date -
+Publication]`) are the live window echo the adapter verifies and records.
+The retraction-set fixtures come from a 4-UID OR-term esearch plus its efetch
+(live verbatim). The ceiling `ERROR` body reproduced in
+`test_pubmed_esearch_error_field_fails_closed` is a verbatim live response
+(retstart=20000). Trimming removed only element blocks the adapter never
+reads (`Abstract`, `OtherAbstract`, `KeywordList`, `InvestigatorList`,
+`PubmedData/ReferenceList`) to keep the fixtures small, with the trim
+invariant verified by running the adapter's own parser over raw and trimmed
+bodies and asserting identical records; every element path the adapter
+parses is present verbatim in a live-response fixture.
 
