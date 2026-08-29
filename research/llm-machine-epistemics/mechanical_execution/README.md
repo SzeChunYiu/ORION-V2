@@ -83,6 +83,11 @@ Re-run:
 
 ```bash
 python3 llm_epistemics_nearest_theorem_matrix.py --output out/NEAREST_THEOREM_CLAIM_MATRIX_V3.csv
+| `llm_epistemics_citation_binding_audit.py` | §F citation gate | `CITATION_BINDING_AUDIT_V1.json` + `.md` | FAIL (one defect) — 31/31 cited keys resolve, 0 unused bib entries, all 15 OWNERSHIP/DIRECT_NEIGHBOR rows covered, all 8 §D keys cited, bibs duplicate-free; F4 catches a one-word divergence: V8 inserts **therefore** (`is therefore not belief revision`) into the frozen §D residual sentence. 4 rule classes negative-control validated (F1 rename→missing-bib, F2 drop DIRECT_NEIGHBOR key, F3 global-drop §D key, F5 duplicated bib). Sentence-level binding / F6 padding / preprint-status = CANNOT_CHECK, recorded. |
+
+Re-run:
+
+python3 llm_epistemics_citation_binding_audit.py --manuscript ../../papers/llm-machine-epistemics/MANUSCRIPT_DRAFT_V8_CITED.md --bib ../../papers/llm-machine-epistemics/REFERENCES_V1.bib --bib ../../papers/llm-machine-epistemics/REFERENCES_CLASSICS_SUPPLEMENT_V1.bib --matrix ../../papers/llm-machine-epistemics/CITATION_COVERAGE_MATRIX_V1.md --output out/CITATION_BINDING_AUDIT_V1.json
 ```
 
 Negative-control tested: flipping C16's overlap to PARTIAL_OVERLAP fails R2 (exit 3); renaming its claim id to C99 fails R1.

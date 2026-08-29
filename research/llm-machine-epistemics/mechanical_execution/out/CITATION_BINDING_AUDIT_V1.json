@@ -1,0 +1,296 @@
+{
+ "schema": "orion.51.citation-binding-audit.v1",
+ "inputs": {
+  "manuscript": "/tmp/ms8.md",
+  "bib": [
+   "/tmp/ref1.bib",
+   "/tmp/refc.bib"
+  ],
+  "matrix": "/tmp/ccm.md"
+ },
+ "counts": {
+  "cite_commands": 60,
+  "cited_keys": 31,
+  "bib_keys": 31,
+  "unused_bib_keys": 0,
+  "matrix_rows_ab": 21,
+  "mandated_rows": 15,
+  "section_d_keys": 8
+ },
+ "unused_bib_keys": [],
+ "row_report": [
+  {
+   "role": "OWNERSHIP",
+   "assertion": "Minimal/future-sufficient predictive state is established pr",
+   "required_keys": [
+    "littman2001predictive",
+    "shalizi2001computational"
+   ],
+   "cited_of_required": [
+    "littman2001predictive",
+    "shalizi2001computational"
+   ]
+  },
+  {
+   "role": "OWNERSHIP",
+   "assertion": "Utility/decision state over predictive state is established",
+   "required_keys": [
+    "blackwell1953equivalent",
+    "brodu2011decisional"
+   ],
+   "cited_of_required": [
+    "blackwell1953equivalent",
+    "brodu2011decisional"
+   ]
+  },
+  {
+   "role": "OWNERSHIP",
+   "assertion": "Prediction-sufficient state can miss another target",
+   "required_keys": [
+    "baisero2021reconciling"
+   ],
+   "cited_of_required": [
+    "baisero2021reconciling"
+   ]
+  },
+  {
+   "role": "OWNERSHIP",
+   "assertion": "Recursive/current+future decision-sufficient history compres",
+   "required_keys": [
+    "subramanian2022approximate",
+    "zhang2026minimal"
+   ],
+   "cited_of_required": [
+    "subramanian2022approximate",
+    "zhang2026minimal"
+   ]
+  },
+  {
+   "role": "OWNERSHIP",
+   "assertion": "Capacity should preserve task/decision-relevant information",
+   "required_keys": [
+    "arumugam2022deciding",
+    "grimm2020value",
+    "grimm2021proper",
+    "strouse2017deterministic",
+    "tishby1999information"
+   ],
+   "cited_of_required": [
+    "arumugam2022deciding",
+    "grimm2020value",
+    "grimm2021proper",
+    "strouse2017deterministic",
+    "tishby1999information"
+   ]
+  },
+  {
+   "role": "BOUNDARY",
+   "assertion": "\u201cEpistemic state abstraction\u201d terminology already exists",
+   "required_keys": [
+    "arumugam2022information"
+   ],
+   "cited_of_required": [
+    "arumugam2022information"
+   ]
+  },
+  {
+   "role": "OWNERSHIP",
+   "assertion": "Iterated revision can require state beyond current beliefs",
+   "required_keys": [
+    "liberatore2024representing"
+   ],
+   "cited_of_required": [
+    "liberatore2024representing"
+   ]
+  },
+  {
+   "role": "DIRECT_NEIGHBOR",
+   "assertion": "LLM belief revision after new evidence already has a benchma",
+   "required_keys": [
+    "wilie2024belief"
+   ],
+   "cited_of_required": [
+    "wilie2024belief"
+   ]
+  },
+  {
+   "role": "BOUNDARY",
+   "assertion": "Belief representation requires more than decodability",
+   "required_keys": [
+    "herrmann2025standards"
+   ],
+   "cited_of_required": [
+    "herrmann2025standards"
+   ]
+  },
+  {
+   "role": "BOUNDARY",
+   "assertion": "Real LLMs can contain belief-like causally useful internal s",
+   "required_keys": [
+    "mendozza2026beliefs"
+   ],
+   "cited_of_required": [
+    "mendozza2026beliefs"
+   ]
+  },
+  {
+   "role": "MOTIVATION",
+   "assertion": "Hidden-state self-knowledge can reflect recall rather than t",
+   "required_keys": [
+    "cheang2026know"
+   ],
+   "cited_of_required": [
+    "cheang2026know"
+   ]
+  },
+  {
+   "role": "OWNERSHIP",
+   "assertion": "Matched predictor behavior does not identify arbitrary hidde",
+   "required_keys": [
+    "sevetlidis2026fiber"
+   ],
+   "cited_of_required": [
+    "sevetlidis2026fiber"
+   ]
+  },
+  {
+   "role": "DIRECT_NEIGHBOR",
+   "assertion": "Learned internal reasoning/context compression exists and ev",
+   "required_keys": [
+    "kontonis2026memento"
+   ],
+   "cited_of_required": [
+    "kontonis2026memento"
+   ]
+  },
+  {
+   "role": "TERMINOLOGY_BOUNDARY",
+   "assertion": "\u201cProspective memory\u201d is already an LLM-agent benchmark term",
+   "required_keys": [
+    "liu2026pmbench"
+   ],
+   "cited_of_required": [
+    "liu2026pmbench"
+   ]
+  },
+  {
+   "role": "DIRECT_NEIGHBOR",
+   "assertion": "Lossy LLM hand-off state can harm exact downstream constrain",
+   "required_keys": [
+    "sharma2026state"
+   ],
+   "cited_of_required": [
+    "sharma2026state"
+   ]
+  },
+  {
+   "role": "DIRECT_NEIGHBOR",
+   "assertion": "Current evidence/memory sufficiency routing exists",
+   "required_keys": [
+    "lin2026stop"
+   ],
+   "cited_of_required": [
+    "lin2026stop"
+   ]
+  },
+  {
+   "role": "DIRECT_NEIGHBOR",
+   "assertion": "Continual scientific belief updating with memory exists",
+   "required_keys": [
+    "agarwal2026evidence"
+   ],
+   "cited_of_required": [
+    "agarwal2026evidence"
+   ]
+  },
+  {
+   "role": "DIRECT_NEIGHBOR",
+   "assertion": "Selected/omitted evidence affects LLM updating",
+   "required_keys": [
+    "deng2026selected"
+   ],
+   "cited_of_required": [
+    "deng2026selected"
+   ]
+  },
+  {
+   "role": "DIRECT_NEIGHBOR",
+   "assertion": "Decision-aware context selection/compression exists",
+   "required_keys": [
+    "guan2026decision"
+   ],
+   "cited_of_required": [
+    "guan2026decision"
+   ]
+  },
+  {
+   "role": "DIRECT_NEIGHBOR",
+   "assertion": "Bounded typed memory/testbeds exist for long-horizon agents",
+   "required_keys": [
+    "cheng2026agenticsts"
+   ],
+   "cited_of_required": [
+    "cheng2026agenticsts"
+   ]
+  },
+  {
+   "role": "PUBLIC_PREPRINT_NEIGHBOR",
+   "assertion": "Exact/near-exact acceptable-continuation memory complexity h",
+   "required_keys": [
+    "anonymous2026history"
+   ],
+   "cited_of_required": [
+    "anonymous2026history"
+   ]
+  }
+ ],
+ "e_classes": {
+  "Archival/final": [
+   "arumugam2022deciding",
+   "arumugam2022information",
+   "baisero2021reconciling",
+   "blackwell1953equivalent",
+   "brodu2011decisional",
+   "cheang2026know",
+   "courtade2014multiterminal",
+   "grimm2020value",
+   "grimm2021proper",
+   "herrmann2025standards",
+   "liberatore2024representing",
+   "littman2001predictive",
+   "mendozza2026beliefs",
+   "shalizi2001computational",
+   "strouse2017deterministic",
+   "subramanian2022approximate",
+   "wilie2024belief"
+  ],
+  "Preprint / status to refresh at submission": [
+   "agarwal2026evidence",
+   "cheng2026agenticsts",
+   "guan2026decision",
+   "kontonis2026memento",
+   "lin2026stop",
+   "liu2026pmbench",
+   "sevetlidis2026fiber",
+   "sharma2026state",
+   "zhang2026minimal"
+  ],
+  "Working paper / public review": [
+   "anonymous2026history",
+   "deng2026selected"
+  ]
+ },
+ "warnings": [
+  "cited keys outside matrix universe (editor-added): ['paull1959minimizing', 'smallwood1973optimal']"
+ ],
+ "cannot_check": [
+  "sentence-level binding of citation keys to their classified assertions (key-level presence only is checked)",
+  "F6 decorative-bibliography relevance (editorial judgement)",
+  "blind-review identity integrity and preprint-status refresh (require external metadata evidence)"
+ ],
+ "failures": [
+  "F4 residual sentence not present verbatim in manuscript"
+ ],
+ "terminal_mark": null,
+ "overall": "FAIL"
+}
