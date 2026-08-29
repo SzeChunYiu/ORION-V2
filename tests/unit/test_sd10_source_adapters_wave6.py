@@ -48,6 +48,7 @@ def _load(name: str):
 arxiv = _load("arxiv_adapter")
 crossref = _load("crossref_adapter")
 openalex = _load("openalex_adapter")
+pubmed = _load("pubmed_adapter")
 
 
 class FakeTransport:
@@ -100,6 +101,17 @@ def _openalex_args(tmp_path, **overrides):
         since="2024-01-01", until="2024-12-31", max_records=10, work_type="", page_size=100,
         contact_email="orion-sd10@example.org", rate_seconds=1.0, daily_request_cap=100000,
         timeout=5.0, retries=3, dry_run=False)
+    base.update(overrides)
+    return argparse.Namespace(**base)
+
+
+def _pubmed_args(tmp_path, **overrides):
+    base = dict(
+        output_observations=str(tmp_path / "obs.jsonl"), output_bindings=str(tmp_path / "bind.jsonl"),
+        receipt=str(tmp_path / "receipt.json"), state=str(tmp_path / "state.json"),
+        since="2024-01-01", until="2024-12-31", max_records=10, page_size=100,
+        contact_email="orion-sd10@example.org", rate_seconds=0.5, timeout=5.0, retries=3,
+        dry_run=False)
     base.update(overrides)
     return argparse.Namespace(**base)
 
@@ -469,8 +481,183 @@ def test_dry_run_requires_no_contact_email(tmp_path):
 
 def test_real_run_requires_contact_email_for_polite_pools(tmp_path):
     transport = FakeTransport([])
-    for module, factory in ((crossref, _crossref_args), (openalex, _openalex_args)):
+    for module, factory in ((crossref, _crossref_args), (openalex, _openalex_args), (pubmed, _pubmed_args)):
         with pytest.raises(SystemExit):
             module.run(factory(tmp_path, contact_email=""), transport=transport, sleep=SleepRecorder())
+
+
+def _pubmed_retraction_set_pages():
+    # One esearch (4-uid term search) + one efetch for the whole set: live
+    # responses captured 2026-08-29 and trimmed only for size.
+    return [
+        common.Response(200, (FIXTURES / "pubmed_retraction_set_esearch.json").read_bytes()),
+        common.Response(200, (FIXTURES / "pubmed_retraction_set.xml").read_bytes())]
+
+
+def _run_pubmed(tmp_path, transport, **overrides):
+    args = _pubmed_args(tmp_path, **overrides)
+    receipt = pubmed.run(args, transport=transport, sleep=SleepRecorder())
+    return args, receipt
+
+
+def test_pubmed_field_mapping_and_domain_fallbacks(tmp_path):
+    _args, _receipt = _run_pubmed(tmp_path, FakeTransport(_pubmed_retraction_set_pages()))
+    rows = _read_jsonl(_args.output_observations)
+    by_trajectory = {row["trajectory_id"]: row for row in rows}
+    assert sorted(by_trajectory) == ["pubmed:2190089", "pubmed:33522354",
+                                     "pubmed:36017998", "pubmed:42462751"]
+    # Domain: first MeSH descriptor UI for indexed records, journal identity
+    # (NlmUniqueID) for unindexed In-Process/PubMed-not-MEDLINE records.
+    assert by_trajectory["pubmed:2190089"]["domain_id"] == "pubmed-mesh:D000818"
+    assert by_trajectory["pubmed:33522354"]["domain_id"] == "pubmed-journal:101581063"
+    assert by_trajectory["pubmed:36017998"]["domain_id"] == "pubmed-journal:101581063"
+    # Epoch year comes from the pdat channel (Journal/JournalIssue/PubDate).
+    assert by_trajectory["pubmed:2190089"]["epoch_id"] == "year:1990"
+    assert by_trajectory["pubmed:36017998"]["epoch_id"] == "year:2022"
+    assert by_trajectory["pubmed:33522354"]["epoch_id"] == "year:2026"
+    # Proxy metrics are real countable XML fields only; no citation counts exist.
+    assert by_trajectory["pubmed:2190089"]["proxy_metrics"] == {
+        "pubmed:author_count": 1.0, "pubmed:mesh_heading_count": 5.0}
+    assert by_trajectory["pubmed:36017998"]["proxy_metrics"] == {
+        "pubmed:author_count": 0.0, "pubmed:mesh_heading_count": 0.0}
+    assert "pubmed:cited_by_count" not in by_trajectory["pubmed:2190089"]["proxy_metrics"]
+    # Institutions from AuthorList/AffiliationInfo when present; verbatim text.
+    assert by_trajectory["pubmed:33522354"]["institution_ids"] == [
+        "pubmed-inst:Department of Life Science of Shanxi Datong University, Datong Shanxi 037009, China."]
+    assert by_trajectory["pubmed:2190089"]["institution_ids"] == []
+    assert by_trajectory["pubmed:2190089"]["team_id"] == ""
+    assert common.BIAS_PUBLICATION in by_trajectory["pubmed:2190089"]["bias_flag_ids"]
+    assert common.BIAS_CITATION_WINDOW not in by_trajectory["pubmed:2190089"]["bias_flag_ids"]
+    for row in rows:
+        DevelopmentObservation(**{**row, "kind": ObservationKind(row["kind"]),
+                                  "action_feature_ids": tuple(row["action_feature_ids"]),
+                                  "proxy_metrics": tuple(row["proxy_metrics"].items())})
+
+
+def test_pubmed_retracted_binds_notice_and_erratum_do_not(tmp_path):
+    args, receipt = _run_pubmed(tmp_path, FakeTransport(_pubmed_retraction_set_pages()))
+    bindings = _read_jsonl(args.output_bindings)
+    # ONLY the record whose own PublicationType is "Retracted Publication"
+    # binds; the "Retraction Notice" record and the "Published Erratum" record
+    # bind nothing (the notice documents a failure, the erratum corrects one).
+    assert [(b["trajectory_id"], b["outcome_class"]) for b in bindings] == \
+        [("pubmed:33522354", "VALIDATED_FAILURE")]
+    # The witness is the pubmed record itself: PubMed marks the RETRACTED
+    # article with its own PT, unlike Crossref where only the notice knows.
+    assert bindings[0]["witness_ids"] == ["pubmed:33522354"]
+    assert all(b["outcome_class"] != "VALIDATED_SUCCESS" for b in bindings)
+    assert receipt["records"]["outcome_bindings_emitted"] == 1
+    rows = _read_jsonl(args.output_observations)
+    by_trajectory = {row["trajectory_id"]: row for row in rows}
+    assert by_trajectory["pubmed:33522354"]["kind"] == "RETRACTION"
+    assert by_trajectory["pubmed:33522354"]["failure_feature_ids"] == ["pubmed:retracted_publication"]
+    assert by_trajectory["pubmed:36017998"]["kind"] == "RETRACTION"
+    assert by_trajectory["pubmed:36017998"]["failure_feature_ids"] == ["pubmed:retraction_notice"]
+    assert by_trajectory["pubmed:42462751"]["kind"] == "CORRECTION"
+    assert by_trajectory["pubmed:42462751"]["failure_feature_ids"] == []
+    assert by_trajectory["pubmed:2190089"]["kind"] == "OTHER"
+    assert by_trajectory["pubmed:2190089"]["failure_feature_ids"] == []
+
+
+def test_pubmed_bindings_roundtrip_to_validated_failure(tmp_path):
+    args, _receipt = _run_pubmed(tmp_path, FakeTransport(_pubmed_retraction_set_pages()))
+    rows = _read_jsonl(args.output_observations)
+    observations = [DevelopmentObservation(
+        **{**row, "kind": ObservationKind(row["kind"]), "action_feature_ids": tuple(row["action_feature_ids"]),
+           "proxy_metrics": tuple(row["proxy_metrics"].items())}) for row in rows]
+    bindings = [OutcomeBinding(b["trajectory_id"], DevelopmentOutcomeClass(b["outcome_class"]),
+                               tuple(b["witness_ids"]), tuple(b["source_ids"])) for b in _read_jsonl(args.output_bindings)]
+    episodes = {ep.episode_id: ep for ep in assemble_all(observations, bindings)}
+    assert episodes["pubmed:33522354"].outcome_class is DevelopmentOutcomeClass.VALIDATED_FAILURE
+    assert episodes["pubmed:33522354"].outcome_witness_ids == ("pubmed:33522354",)
+    # Absence of a retraction PT is never a success: notice, erratum and plain
+    # records all stay UNKNOWN downstream.
+    for trajectory in ("pubmed:36017998", "pubmed:42462751", "pubmed:2190089"):
+        assert episodes[trajectory].outcome_class is DevelopmentOutcomeClass.UNKNOWN
+
+
+def _pubmed_window_pages():
+    return [
+        common.Response(200, (FIXTURES / "pubmed_esearch_page1.json").read_bytes()),
+        common.Response(200, (FIXTURES / "pubmed_efetch_page1.xml").read_bytes()),
+        common.Response(200, (FIXTURES / "pubmed_esearch_page2.json").read_bytes()),
+        common.Response(200, (FIXTURES / "pubmed_efetch_page2.xml").read_bytes())]
+
+
+def test_pubmed_paging_uses_documented_esearch_efetch_protocol(tmp_path):
+    transport = FakeTransport(_pubmed_window_pages())
+    args = _pubmed_args(tmp_path, page_size=3, max_records=6)
+    receipt = pubmed.run(args, transport=transport, sleep=SleepRecorder())
+    # Two pages: esearch+efetch per page, alternating documented URLs.
+    assert len(transport.urls) == 4
+    search_one, fetch_one, search_two, fetch_two = transport.urls
+    first = _query_params(search_one)
+    second = _query_params(search_two)
+    assert first["db"] == "pubmed" and first["retmode"] == "json"
+    assert first["datetype"] == "pdat"
+    assert first["mindate"] == "2024/01/01" and first["maxdate"] == "2024/12/31"
+    assert first["sort"] == "pub_date"
+    assert first["retstart"] == "0" and first["retmax"] == "3"
+    assert second["retstart"] == "3"
+    assert "WebEnv" not in first and "query_key" not in first
+    assert fetch_one.startswith("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi")
+    assert _query_params(fetch_one)["retmode"] == "xml"
+    assert _query_params(fetch_one)["id"] == "41675261,42182984,42256493"
+    assert _query_params(fetch_two)["id"] == "42182983,42186608,42179428"
+    assert receipt["request_count"] == 4
+    assert receipt["pages"] == 2
+    assert receipt["records"]["observations_in_output"] == 6
+    assert receipt["records"]["outcome_bindings_emitted"] == 0
+
+
+def test_pubmed_cursor_resumption_continues_from_retstart(tmp_path):
+    state_path = tmp_path / "state.json"
+    state_path.write_text(json.dumps({"cursor": {"retstart": 3}, "records_emitted": 3,
+                                      "pages_fetched": 1}), encoding="utf-8")
+    transport = FakeTransport([common.Response(200, (FIXTURES / "pubmed_esearch_page2.json").read_bytes()),
+                               common.Response(200, (FIXTURES / "pubmed_efetch_page2.xml").read_bytes())])
+    args, receipt = _run_pubmed(tmp_path, transport, page_size=3, max_records=3)
+    assert _query_params(transport.urls[0])["retstart"] == "3"
+    rows = _read_jsonl(args.output_observations)
+    assert [row["observation_id"] for row in rows] == \
+        ["pubmed-obs:42182983", "pubmed-obs:42186608", "pubmed-obs:42179428"]
+    assert receipt["records"]["observations_emitted"] == 3
+    state = json.loads(state_path.read_text(encoding="utf-8"))
+    assert state["cursor"] == {"retstart": 6}
+    assert state["records_emitted"] == 6
+
+
+def test_pubmed_dry_run_makes_zero_requests(tmp_path):
+    def _forbidden(url, headers):
+        raise AssertionError("dry run performed a network request")
+
+    args, receipt = _run_pubmed(tmp_path, _forbidden, dry_run=True)
+    assert receipt["run"]["dry_run"] is True
+    assert receipt["dry_run_plan"]["requests_planned"] >= 1
+    assert "2x requests_planned" in receipt["dry_run_plan"]["note"]
+    params = _query_params(receipt["dry_run_plan"]["sample_url"])
+    assert params["datetype"] == "pdat"
+    assert params["mindate"] == "2024/01/01"
+    assert params["retstart"] == "0"
+
+
+def test_pubmed_rejects_intervals_below_documented_three_per_second(tmp_path):
+    argv = ["--output-observations", str(tmp_path / "o.jsonl"), "--output-bindings", str(tmp_path / "b.jsonl"),
+            "--receipt", str(tmp_path / "r.json"), "--state", str(tmp_path / "s.json"),
+            "--since", "2024-01-01", "--until", "2024-12-31", "--rate-seconds", "0.2"]
+    with pytest.raises(SystemExit):
+        pubmed.main(argv)
+
+
+def test_pubmed_esearch_errorlist_fails_closed(tmp_path):
+    error = json.dumps({"esearchresult": {"count": "0", "idlist": [],
+                                          "errorlist": {"phrasesnotfound": ["publication"]}}}).encode()
+    with pytest.raises(common.HardFailClosed):
+        _run_pubmed(tmp_path, FakeTransport([common.Response(200, error)]))
+
+
+def test_pubmed_non_429_4xx_fails_closed(tmp_path):
+    with pytest.raises(common.HardFailClosed):
+        _run_pubmed(tmp_path, FakeTransport([common.Response(403, b"forbidden")]))
 
 

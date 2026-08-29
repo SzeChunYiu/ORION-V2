@@ -43,6 +43,7 @@ jobs:
           python -m py_compile scripts/sd10_sources/arxiv_adapter.py
           python -m py_compile scripts/sd10_sources/crossref_adapter.py
           python -m py_compile scripts/sd10_sources/openalex_adapter.py
+          python -m py_compile scripts/sd10_sources/pubmed_adapter.py
       - name: Run source-contract tests
         run: |
           python -m pytest -q tests/unit/test_scientific_development_sources_wave6.py \
