@@ -1,0 +1,367 @@
+{
+  "schema": "orion.51.parent-theorem-locations.v1",
+  "retrieved": "2026-08-29",
+  "retrieved_by": "bibliography executor agents (4 parallel), assembled mechanically; every VERIFIED row carries its source URL",
+  "provenance": "Feeds NEAREST_THEOREM_CLAIM_MATRIX_V3 (Spec V4 §14 / V5 §10). Marks: locations only — no novelty authority.",
+  "parents": {
+    "BRODU_2011": {
+      "citation": "Nicolas Brodu, Reconstruction of Epsilon-Machines in Predictive Frameworks and Decisional States, Advances in Complex Systems 14(5):761-794, 2011, DOI 10.1142/S0219525911003347, arXiv:0902.0600",
+      "structural_note": "Paper contains NO numbered definitions/theorems/propositions; only numbered display equations are Eq.(1) Sec.3.1 and Eq.(2) Sec.4.2. Locations are section + run-in label anchors. arXiv v5 (author-final) and author PDF textually consistent; published full text 403-unreachable.",
+      "sources": [
+        "https://ar5iv.labs.arxiv.org/html/0902.0600",
+        "https://nicolas.brodu.net/common/recherche/publications/decisional_states.pdf",
+        "https://api.crossref.org/works/10.1142/S0219525911003347"
+      ],
+      "locations": {
+        "causal_state_equivalence_brodu": {
+          "status": "VERIFIED",
+          "location": "Sec. 3.2, run-in block 'Causal state equivalence relation:' (light-cone prose version Sec. 2.1)",
+          "assumptions": "causal (not merely predictive) reading: X restricted to past, Z to future (Sec. 2.1 caveat)",
+          "quote": "x1 =c x2 iff the conditional distributions P(Z|x1)=P(Z|x2) are the same"
+        },
+        "iso_prediction_definition": {
+          "status": "VERIFIED",
+          "location": "Sec. 3.2, run-in block 'Prediction equivalence relation:' + partitions sentence defining psi in Psi",
+          "assumptions": "expected utility U(y|x) well-defined; each y_x chosen independently per x",
+          "quote": "x1 =p x2 iff argmax_y U(y|x1)=argmax_y U(y|x2)"
+        },
+        "iso_utility_definition_brodu": {
+          "status": "VERIFIED",
+          "location": "Sec. 3.2, run-in block 'Utility equivalence relation:' + partitions sentence defining upsilon in Upsilon",
+          "assumptions": "utility U(y,z) defined on Z^2, independent of x (Sec. 3.1)",
+          "quote": "x1 =u x2 iff max_y U(y|x1)=max_y U(y|x2)"
+        },
+        "decisional_state_definition": {
+          "status": "VERIFIED",
+          "location": "Sec. 3.2, paragraph after the upsilon/psi partitions sentence ('Let us call decisional states...')",
+          "assumptions": "utility encodes all the user needs for the decision; deciding does not modify the system",
+          "quote": "decisional states omega in Omega are the intersection of both equivalence relations"
+        },
+        "causal_refines_decisional": {
+          "status": "VERIFIED",
+          "location": "Sec. 3.3 closing sentences (Fig. 2); echoed Sec. 3.5 bullet 1 and Sec. 5.4",
+          "assumptions": "none beyond the definitions (direct derivation)",
+          "quote": "the causal states sub-partition both the iso-utility, iso-prediction and decisional states; the converse is not true"
+        },
+        "decisional_complexity": {
+          "status": "VERIFIED",
+          "location": "Sec. 3.4 prose paragraph defining D=I(x;omega); local D_omega=-log2 p(omega) same paragraph; literal 'D=H(omega)' only in Sec. 5.4 (Occam bullet)",
+          "assumptions": "discrete case (H(omega|x)=0); utility fixed beforehand",
+          "quote": "D=I(x;omega); D<=C in the discrete case"
+        },
+        "transition_graph": {
+          "status": "VERIFIED",
+          "location": "Sec. 3.4, paragraph 'Let x be the current system configuration...' (Fig. 3; algorithm recap Fig. 4 step 9, Sec. 5.1)",
+          "assumptions": "discrete scenario with alphabet A; coarser states are unions of epsilon-machine causal states",
+          "quote": "p(e_{omega->gamma}) = sum_{x in omega} sum_{a in A} p(xa in gamma | x in omega)"
+        },
+        "determinism_recursive_sufficiency": {
+          "status": "VERIFIED",
+          "location": "Sec. 3.4 paragraphs after the transition-probability definition incl. footnote 4; Sec. 5.5; Sec. 6.1 opening; Sec. 3.5 bullet 3",
+          "assumptions": "discrete case; sub-machine claim rests on Shalizi's hypothesis [24, sec. 11.2.2]",
+          "quote": "we loose the Markov property of the coarser graph; symbol labels lost at the coarser level; 'recursively sufficient' does not appear in the paper"
+        }
+      }
+    },
+    "ISFSM": {
+      "citation": "Composite parent: Paull & Unger (IRE Trans. Electron. Comput. EC-8(3):356-367, Sept 1959, DOI 10.1109/TEC.1959.5222697); Grasselli & Luccio (IEEE Trans. Electron. Comput. EC-14(3):350-359, June 1965, DOI 10.1109/PGEC.1965.264140); binate-covering formulation per Villa, Kam, Brayton, Sangiovanni-Vincentelli (IEEE TCAD 16(7):677-691, July 1997); Pfleeger (IEEE Trans. Computers C-22(12):1099-1102, Dec 1973, DOI 10.1109/T-C.1973.223655)",
+      "structural_note": "Incomplete/finite-state-machine minimization cluster. Paull-Unger and Grasselli-Luccio full texts not retrievable on 2026-08-29 (paywalled); two items carry CANNOT_CHECK_FULL_TEXT. Villa et al 1997 Sec. I read directly; Springer book chapters verified via TOC.",
+      "sources": [
+        "http://robertdick.org/eecs303/refs/villa-binate-covering.pdf",
+        "https://link.springer.com/book/10.1007/978-1-4757-2622-0",
+        "https://www.iro.umontreal.ca/~dift6221/demicheli4/fsm.4.ps.pdf"
+      ],
+      "locations": {
+        "compatible_states": {
+          "status": "CANNOT_CHECK_FULL_TEXT",
+          "location": "Paull & Unger 1959, EC-8(3):356-367 (compatibility relation on state pairs of an incompletely specified machine; origin of the construction)",
+          "assumptions": "secondary attribution via Villa et al 1997 Sec. I historical account and De Micheli course notes",
+          "source": "paywalled full text not retrieved 2026-08-29"
+        },
+        "closed_covers": {
+          "status": "CANNOT_CHECK_FULL_TEXT",
+          "location": "Grasselli & Luccio 1965, EC-14(3):350-359 (prime compatibles; closed covers; year verified four independent ways: IEEE Xplore record, DOI, citation lists, bibliographic databases)",
+          "assumptions": "secondary attribution via Villa et al 1997 Sec. I",
+          "source": "paywalled full text not retrieved 2026-08-29"
+        },
+        "compatibility_non_transitivity": {
+          "status": "VERIFIED_SECONDARY",
+          "location": "De Micheli, Synthesis and Optimization of Digital Circuits course notes ch. FSM.4, sentence 'Compatibility is not an equivalency relation'",
+          "assumptions": "course-notes level statement of the classical fact; textbook treatment",
+          "source": "https://www.iro.umontreal.ca/~dift6221/demicheli4/fsm.4.ps.pdf"
+        },
+        "np_hardness": {
+          "status": "CANNOT_CHECK_FULL_TEXT",
+          "location": "Pfleeger 1973, IEEE Trans. Computers C-22(12):1099-1102 (state reduction of incompletely specified machines)",
+          "assumptions": "hardness attribution as cited by Abel & Reineke ICCAD 2015 and Villa et al 1997",
+          "source": "paywalled full text not retrieved 2026-08-29"
+        },
+        "binate_cover": {
+          "status": "VERIFIED",
+          "location": "Villa, Kam, Brayton, Sangiovanni-Vincentelli 1997, IEEE TCAD 16(7), Sec. I pp. 677-678: binate table where 'each column of the table is a prime compatible and each row is one of the covering or closure clauses' (attributed to Grasselli-Luccio ref [18]); book treatment: Synthesis of Finite State Machines: Functional Optimization, Springer 1997, Ch. 4 Compatible Generation pp. 73-113, Ch. 5 Binate Covering pp. 115-173",
+          "assumptions": "exact binate-covering formulation for closed covers of compatible classes",
+          "source": "http://robertdick.org/eecs303/refs/villa-binate-covering.pdf (full text read); Springer TOC"
+        }
+      }
+    },
+    "BLACKWELL_LECAM": {
+      "citation": "Composite parent: Blackwell (Comparison of Experiments, Proc. 2nd Berkeley Symp. Math. Statist. Probab. Vol. 2, pp. 93-102, 1951); Blackwell (Equivalent Comparisons of Experiments, Ann. Math. Statist. 24(2):265-272, 1953, DOI 10.1214/aoms/1177729032); Le Cam (Sufficiency and Approximate Sufficiency, Ann. Math. Statist. 35(4):1419-1455, 1964, DOI 10.1214/aoms/1177700372); Le Cam (Asymptotic Methods in Statistical Decision Theory, Springer 1986, DOI 10.1007/978-1-4612-4946-7); Halmos & Savage (Ann. Math. Statist. 20(2):225-241, 1949, DOI 10.1214/aoms/1177730032)",
+      "structural_note": "1953/1964/1949 full texts are image-only scans; locations read verbatim from OCR output with journal page numbers pinned to printed running headers. Le Cam 1964 page range corrected to 1419-1455.",
+      "sources": [
+        "https://projecteuclid.org/proceedings/berkeley-symposium-on-mathematical-statistics-and-probability/Proceedings-of-the-Second-Berkeley-Symposium-on-Mathematical-Statistics-and/Chapter/Comparison-of-Experiments/bsmsp/1200500222",
+        "https://projecteuclid.org/journals/Annals-of-Mathematical-Statistics/volume-24/issue-2/Equivalent-Comparisons-of-Experiments/10.1214/aoms/1177729032.full",
+        "https://projecteuclid.org/journals/Annals-of-Mathematical-Statistics/volume-35/issue-4/Sufficiency-and-Approximate-Sufficiency/10.1214/aoms/1177700372.full",
+        "https://projecteuclid.org/journals/Annals-of-Mathematical-Statistics/volume-20/issue-2/Application-of-the-Radon-Nikodym-Theorem-to-the-Theory-of/10.1214/aoms/1177730032.full",
+        "https://link.springer.com/book/10.1007/978-1-4612-4946-7"
+      ],
+      "locations": {
+        "sufficiency_characterization": {
+          "status": "VERIFIED",
+          "location": "Halmos & Savage 1949, Theorem 1, p. 233 (T sufficient for a dominated family iff dmu/dlambda = gT(x); Corollary 1 p. 234 = Neyman factorization; Lemma 7 p. 232); Blackwell 1953, Theorem 8, Sec. 4 'Equivalence of > and superset', pp. 268-269 (M superset m implies M > m)",
+          "assumptions": "Halmos-Savage: dominated family of measures; Blackwell 1953: n simple hypotheses, standard measures",
+          "source": "projecteuclid full texts (OCR-verified verbatim, header-pinned pages)"
+        },
+        "experiment_comparison": {
+          "status": "VERIFIED",
+          "location": "Blackwell 1951, Sec. 2 'Definitions', p. 93 (alpha more informative than beta: risk-set inclusion for every finite decision problem A); Theorem 2, Sec. 3, p. 94 (four equivalent risk-domination conditions); Theorem 6, Sec. 4, p. 97 + restatement p. 98 (stochastic-transformation form); Theorem 8 p. 98; Theorem 10 p. 99 (N=2 converse); Blackwell 1953, Theorem 2 p. 266, Theorem 3 p. 267, Theorem 6 (Sherman-Stein finite case) p. 267",
+          "assumptions": "experiments as N-tuples of distributions; finite decision problems; Theorem 10 restricted to dichotomies (N=2)",
+          "source": "projecteuclid full texts (OCR-verified verbatim, header-pinned pages)"
+        },
+        "deficiency_comparison": {
+          "status": "VERIFIED",
+          "location": "Le Cam 1964, Definition 8, Sec. 4 'Approximate sufficiency', p. 1429 (epsilon-deficiency); Definition 9 p. 1433 (delta(E,F) as inf over positive normalized linear maps of sup_theta norm of MP_theta - Q_theta); Theorem 3, Sec. 4, pp. 1430-1431 (equivalence of randomized-map, deficiency, risk-set and per-procedure risk conditions; epsilon=0 case noted as 'essentially a form of the Blackwell-Sherman-Stein theorem'); Proposition 8 p. 1433; Le Cam 1986 Ch. 2 'Some Results from Decision Theory: Deficiencies' pp. 16-28, Sec. 3 'Deficiencies; Distances' pp. 18-23, Ch. 2 Theorem 2; Ch. 3 Sec. 7 'The Blackwell-Sherman-Stein Theorem' p. 43",
+          "assumptions": "arbitrary parameter space; all decision spaces; finite-support priors (Def 8); L-space framework (Def 9)",
+          "source": "projecteuclid 1964 full text (OCR-verified) + Springer 1986 TOC/front matter"
+        }
+      }
+    },
+    "LSS_2001": {
+      "citation": "Littman, Sutton & Singh, Predictive Representations of State, NIPS 2001 (Advances in Neural Information Processing Systems 14), pp. 1555-1561; ACM DL 10.5555/2980539.2980741",
+      "structural_note": "papers.nips.cc metadata lists only Littman & Sutton; the PDF title block lists all three authors. Pagination verified via ACM DL and S. Singh's Michigan NIPS page.",
+      "sources": [
+        "https://papers.nips.cc/paper/1983-predictive-representations-of-state",
+        "http://papers.nips.cc/paper/1983-predictive-representations-of-state.pdf"
+      ],
+      "locations": {
+        "psr_predictive_state": {
+          "status": "VERIFIED",
+          "location": "Sec. 1 'Predictive State Representations': prediction vector p(h) is a PSR iff it is a sufficient statistic, P(t|h) = f_t(p(h)), Eq. (1); linear PSR P(t|h) = p(h) m_t, Eq. (2); recursive state update Eq. (3); Theorem 1 (finite-POMDP-representable environment has a linear PSR with no more tests than minimal-POMDP states), proof in Sec. 2 incl. Lemma 1",
+          "assumptions": "discrete-observation environment indexed by history h; tests t = sets of future observation-event sequences; Theorem 1 requires finite-POMDP representability",
+          "source": "papers.nips.cc PDF (full text read)"
+        }
+      }
+    },
+    "OSBAND_2023": {
+      "citation": "Osband, Wen, Asghari, Dwaracherla, Ibrahimi, Lu & Van Roy, Epistemic Neural Networks, NeurIPS 2023; arXiv:2107.08924 (v1 2021-07-19, v8 2023-05-17)",
+      "structural_note": "Theorem 2 is labeled [informal] by the authors (formal version in Appendix B); dyadic sampling (Appendix E) is explicitly 'a practical heuristic' with no theorem.",
+      "sources": [
+        "https://arxiv.org/pdf/2107.08924",
+        "https://proceedings.neurips.cc/paper_files/paper/2023/hash/07fbde96bee50f4e09303fd4f877c2f3-Abstract-Conference.html"
+      ],
+      "locations": {
+        "enn_joint_predictive": {
+          "status": "VERIFIED",
+          "location": "Sec. 3 'Epistemic neural networks': ENN = function class f + reference distribution P_Z, output f_theta(x,z) with epistemic index z; joint prediction Eq. (2): integral over P_Z(dz) of the product of softmax(f_theta(x_t,z))_{y_t}, contrasted with marginal product Eq. (1); Theorem 2 [informal] Sec. 3.1 (small expected joint log loss implies near-optimal actions for any decision problem; formal in Appendix B); Theorem 3 Sec. 3.2 (every BNN expressible as an ENN, strict converse fails); Theorem 4 Sec. 4.3 p. 7 (linear-Gaussian epinet with LSG loss Eq. 9 converges in distribution to the exact posterior as D_Z grows; proof Appendix D)",
+          "assumptions": "z iid across inputs; Theorem 4 assumes linear-Gaussian data model + linear-Gaussian epinet + Gaussian bootstrapping contexts",
+          "source": "arXiv v8 PDF (full text read)"
+        }
+      }
+    },
+    "SC_2001": {
+      "citation": "Shalizi & Crutchfield, Computational Mechanics: Pattern and Prediction, Structure and Simplicity, Journal of Statistical Physics 104(3/4):817-860, 2001; arXiv:cond-mat/9907176",
+      "structural_note": "Numbering as printed in the published JSP version (shared counter across Definitions/Lemmas/Theorems/Propositions; Def 9 epsilon-machine, Thm 4 minimal stochasticity nearby). Published PDF cross-checked against ar5iv.",
+      "sources": [
+        "https://bactra.org/research/cmppss.pdf",
+        "https://ar5iv.labs.arxiv.org/html/cond-mat/9907176"
+      ],
+      "locations": {
+        "causal_state_equivalence": {
+          "status": "VERIFIED",
+          "location": "Definition 5 ('A Process's Causal States'), Sec IV.A 'Causal States': causal states = range of the map E, E(s-) = {s-' : P(S+ in S+ | S- = s-) = P(S+ in S+ | S- = s-')}; equivalence-relation form stated immediately after (noted as 'the original approach', their ref. 6)",
+          "assumptions": "stationary stochastic process; futures measurable w.r.t. the sigma-algebra of S+; cardinality/topology of the causal-state set unspecified",
+          "source": "https://bactra.org/research/cmppss.pdf (published JSP, full text read)"
+        },
+        "causal_state_minimality": {
+          "status": "VERIFIED",
+          "location": "Theorem 2 ('Causal States Are Minimal'), Sec V, using Definition 11 ('Prescient Rivals') and Lemma 7 ('Refinement Lemma'); supporting: Theorem 1 + Corollary 1 ('Maximally Prescient' / 'Sufficient Statistics') and Theorem 3 ('Unique'), all Sec V",
+          "assumptions": "rival partitions must be prescient; minimality measured via the statistical complexity of the rival",
+          "source": "https://bactra.org/research/cmppss.pdf (published JSP, full text read)"
+        }
+      }
+    },
+    "BAISERO_2021": {
+      "citation": "Baisero & Amato, Reconciling Rewards with Predictive State Representations, IJCAI 2021, paper 299, pp. 2170-2175; extended version arXiv:2106.03926",
+      "structural_note": "Main-text numbering identical in IJCAI PDF and arXiv extended version (which adds appendix Lemma 1, Propositions 2-3).",
+      "sources": [
+        "https://www.ijcai.org/proceedings/2021/0299.pdf",
+        "https://arxiv.org/abs/2106.03926"
+      ],
+      "locations": {
+        "psr_reward_insufficiency": {
+          "status": "VERIFIED",
+          "location": "Proposition 1, Sec 3 (reward-conversion discussion): no function f(p(h),a) recovering the behavior reward from the standard PSR state need exist",
+          "assumptions": "linear PSR model of the POMDP; reward not assumed PSR-representable",
+          "source": "https://www.ijcai.org/proceedings/2021/0299.pdf (full text read; footers 2170-2171 verified)"
+        },
+        "state_augmentation_reward": {
+          "status": "VERIFIED",
+          "location": "Sec 4 'Reward-Predictive State Representations', Eqs (7)-(11), NO numbered theorem in the main text (proofs in Appendix): reward preserved by augmenting observations with a token action so rewards become observations",
+          "assumptions": "PSR with observable rewards; core intents replace core tests",
+          "source": "https://www.ijcai.org/proceedings/2021/0299.pdf (full text read)"
+        }
+      }
+    },
+    "WANG_2022": {
+      "citation": "Wang, Guo, Deng & Lu, Rethinking Minimal Sufficient Representation in Contrastive Learning, CVPR 2022, pp. 16041 ff.; arXiv:2203.07004",
+      "structural_note": "CVPR camera-ready and arXiv use identical numbering (Def 1-2, Thm 1-3); arXiv adds appendix Lemmas 1-2.",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2022/papers/Wang_Rethinking_Minimal_Sufficient_Representation_in_Contrastive_Learning_CVPR_2022_paper.pdf",
+        "https://arxiv.org/abs/2203.07004"
+      ],
+      "locations": {
+        "minimal_sufficient_downstream_loss": {
+          "status": "VERIFIED",
+          "location": "Theorem 1 ('Task-Relevant Information in Representations'), Sec 3.2, Eq (3): I(v1,T) = I(z1min,T) + I(v1,T|v2) >= I(z1suf,T) >= I(z1min,T); groundwork Definition 1 (Sufficient Representation) and Definition 2 (Minimal Sufficient Representation), Sec 3.1; consequences Theorem 2 (Bayes error, Eqs 4-6) and Theorem 3 (prediction error, Eqs 7-9)",
+          "assumptions": "two-view contrastive setup; v1 -> v2 Markov chain view pair; task T independent of views given v1",
+          "source": "https://openaccess.thecvf.com/content/CVPR2022/papers/Wang_Rethinking_Minimal_Sufficient_Representation_in_Contrastive_Learning_CVPR_2022_paper.pdf (full text read)"
+        }
+      }
+    },
+    "HU_2025": {
+      "citation": "Hu, Wei, Zhou & Hu, An Information-theoretic Multi-task Representation Learning Framework for Natural Language Understanding, AAAI-25",
+      "structural_note": "Paper contains NO theorem/proposition/lemma anywhere; sufficiency appears as the objective (Eq 1) and prose ('approximately the minimal sufficient task-specific representations').",
+      "sources": [
+        "AAAI-25 OJS proceedings PDF"
+      ],
+      "locations": {
+        "multi_task_sufficiency_objective": {
+          "status": "VERIFIED",
+          "location": "Methodology section, 'Shared Information Maximization Principle', Eq (1): max sum_t I(Y_t;Z) + alpha I(X;Z) with chain Y_t -> X -> Z -> Z_t; paired 'Task-specific Information Minimization Principle' Eq (3). NO_THEOREM: the sufficiency-vs-compression statement is prose only",
+          "assumptions": "multi-task NLU encoder with shared representation Z + task heads; InfoBottleneck-style Lagrangian",
+          "source": "AAAI-25 OJS PDF (full text read)"
+        }
+      }
+    },
+    "STROUSE_2017": {
+      "citation": "Strouse & Schwab, The Deterministic Information Bottleneck, arXiv:1604.00268 (v2); published as Neural Computation 29(6):1611-1630, 2017 (published version NOT consulted; equation numbers below are arXiv v2). CITATION CORRECTION: the task's earlier id 1611.00353 is an unrelated paper",
+      "structural_note": "No numbered Theorem/Definition environments exist anywhere in the paper.",
+      "sources": [
+        "https://arxiv.org/pdf/1604.00268",
+        "https://ar5iv.labs.arxiv.org/html/1604.00268"
+      ],
+      "locations": {
+        "dib_objective": {
+          "status": "VERIFIED",
+          "location": "Sec 3 'The deterministic information bottleneck', Eq (7): L_DIB[q(t|x)] = H(T) - beta I(T;Y); supporting Eqs (8)-(9) (L_IB - L_DIB = -H(T|X)), Eq (10) L_alpha family, Eqs (12)-(13) variational solution; deterministic collapse Eqs (17)-(18) (rich-get-richer mass-concentration encoder). NO_NUMBERED_THEOREM: minimal deterministic task-sufficiency is by construction (Eqs 17-18), not a numbered statement",
+          "assumptions": "exponential-family-ish joint p(x,y); latent cardinality fixed; beta sweep",
+          "source": "https://arxiv.org/pdf/1604.00268 (arXiv v2, full text read)"
+        }
+      }
+    },
+    "SUBRAMANIAN_2022": {
+      "citation": "Subramanian, Sinha, Seraj & Mahajan, Approximate Information State for Approximate Planning and Reinforcement Learning in Partially Observed Systems, Journal of Machine Learning Research 23(12):1-83, 2022",
+      "structural_note": "Shared theorem counter across the JMLR paper; finite-horizon PO-MDP model of Sec 2.1.",
+      "sources": [
+        "https://www.jmlr.org/papers/v23/ (paper 12)"
+      ],
+      "locations": {
+        "ais_definition": {
+          "status": "VERIFIED",
+          "location": "Definition 3, Sec 2.3 'Information State and Simplified Dynamic Programs': generator sigma_t satisfying (P1) E[R_t|H_t,A_t] = E[R_t|Z_t=sigma_t(h_t),A_t] and (P2) P(Z_{t+1} in B|H_t,A_t) = P(Z_{t+1} in B|Z_t,A_t); approximate version Definition 7, Sec 3 intro: (AP1) reward bound epsilon_t, (AP2) IPM bound delta_t",
+          "assumptions": "PO-MDP general model (Sec 2.1); finite horizon; Borel spaces",
+          "source": "JMLR volume 23 paper 12 PDF (full text read)"
+        },
+        "ais_dynamic_programming": {
+          "status": "VERIFIED",
+          "location": "Theorem 5, Sec 2.3: simplified DP with Q/V recursions (Eqs 8a-8b), Q_t = Q_t-bar o sigma_t (Eq 9), optimal policy pi_t = pi_t-bar o sigma_t",
+          "assumptions": "(P1)(P2) hold exactly; finite-horizon model",
+          "source": "JMLR volume 23 paper 12 PDF (full text read)"
+        },
+        "ais_approximate_bounds": {
+          "status": "VERIFIED",
+          "location": "Theorem 9, Sec 3 (Eqs 14-17): alpha_t = epsilon_t + rho_F(V_{t+1}-hat) delta_t + alpha_{t+1}; |V_t - V_t-hat| <= alpha_t; loss of the AIS-induced policy <= 2 alpha_t; extensions Corollary 10 (infinite horizon) and Theorem 13 (learned/RL AIS)",
+          "assumptions": "(AP1)(AP2) per-step bounds; rho_F = Lipschitz constant of V-hat w.r.t. the chosen IPM",
+          "source": "JMLR volume 23 paper 12 PDF (full text read)"
+        }
+      }
+    },
+    "CW_2014": {
+      "citation": "Courtade & Weissman, Multiterminal Source Coding under Logarithmic Loss, arXiv:1110.3069 (v3). CITATION CORRECTION: the task's earlier id 1110.3065 is an unrelated paper. Journal version IEEE Trans. Inf. Theory 2014 was NOT consulted; locations below are arXiv v3 numbering",
+      "structural_note": "Log-loss distortion is defined in prose (Sec 2), not a numbered environment; no 'equipartition property' appears anywhere (the key lemma is Lemma 1).",
+      "sources": [
+        "https://arxiv.org/html/1110.3069v3"
+      ],
+      "locations": {
+        "logloss_rd_region": {
+          "status": "VERIFIED",
+          "location": "Theorem 6, Sec 4.2 'A Matching Outer Bound' ('The main result of this paper'): achievable single-letter RD region equals the outer bound; region given in Definition 5, Sec 4.1 'Inner Bound'; log-loss distortion defined in prose in Sec 2 'Problem Definition' (d(y,y-hat) = log(1/y-hat(y)) = D(1_y || y-hat)); CEO companion Theorem 3 Sec 3 (regions Def 3-4, inner bound Thm 1, converse Thm 2); key converse Lemma 1 (n E d >= H(X^n|Z))",
+          "assumptions": "arbitrarily correlated finite-alphabet sources; two encoders + joint decoder; reproduction alphabet = probability distributions; stronger converse holds",
+          "source": "https://arxiv.org/html/1110.3069v3 (full HTML text read)"
+        }
+      }
+    },
+    "CHEANG_2026": {
+      "citation": "Cheang, Chan, Zhang & Deng, Do LLMs Really Know What They Don't Know? Internal States Mainly Reflect Knowledge Recall Rather Than Truthfulness, Findings of ACL 2026, pp. 713-730",
+      "structural_note": "EMPIRICAL_NO_THEOREM: zero numbered Theorem/Proposition/Definition/Lemma/Claim environments; only informal prose 'hypothesis' statements.",
+      "sources": [
+        "https://aclanthology.org/2026.findings-acl.34.pdf"
+      ],
+      "locations": {
+        "hidden_state_recall_vs_truth": {
+          "status": "VERIFIED",
+          "location": "Title + Abstract (the finding is the title claim), developed via the three-category factual-association taxonomy (Fig. 1: factual / associated-hallucination / unassociated-hallucination) and the internal-state probe analyses (hidden-state signals degrade when associations conflict with truthfulness)",
+          "assumptions": "LLMs with extractable hidden states; probe-based internal-signal analysis; English factual-association benchmarks",
+          "source": "https://aclanthology.org/2026.findings-acl.34.pdf (full text read)"
+        }
+      }
+    },
+    "MYHILL_NERODE": {
+      "citation": "Composite parent: Nerode (Linear automaton transformations, Proc. Amer. Math. Soc. 9(4):541-544, 1958, DOI 10.1090/S0002-9939-1958-0135681-9); Myhill (Finite Automata and the Representation of Events, Technical Note WADD 57-624, Wright-Patterson AFB, 1957 — primary document not available online); modern minimal-DFA form per Hopcroft & Ullman 1979 Sec 3.4 (Theorem 3.9, secondary-sourced)",
+      "structural_note": "Nerode 1958 read from the AMS PDF; Myhill 1957 citation verified via Savage 'Models of Computation' bibliography [226] and Hopcroft-Ullman/Kozen bibliographies, statement content CANNOT_CHECK_FULL_TEXT.",
+      "sources": [
+        "https://www.ams.org/journals/proc/1958-009-04/S0002-9939-1958-0135681-9/",
+        "https://cs.brown.edu/people/jsavage/book/pdfs/ModelsOfComputation_Bibliography.pdf",
+        "https://en.wikipedia.org/wiki/Myhill%E2%80%93Nerode_theorem"
+      ],
+      "locations": {
+        "right_congruence": {
+          "status": "VERIFIED",
+          "location": "Nerode 1958, Lemma 2 (p. 543): M is an automaton transformation iff M is causal and possesses only a finite number of intrinsic states; 'the least number of states required ... is the number of intrinsic states'; state-equivalence and intrinsic-state definitions unnumbered pp. 542-543; modern DFA form (equivalence relation, minimal DFA on classes, unique up to isomorphism, regularity corollary) per Hopcroft & Ullman Sec 3.4 Theorem 3.9 (secondary-sourced)",
+          "assumptions": "finite input/output alphabets; two-sided infinite sequences; finite-state Mealy-form realization; Myhill 1957 primary content unverified (CANNOT_CHECK_FULL_TEXT)",
+          "source": "AMS Proc. 9(4) PDF (full text read); HU 1979 theorem number secondary-sourced"
+        }
+      }
+    },
+    "POMDP_BELIEF": {
+      "citation": "Composite parent: Striebel (Sufficient statistics in the optimum control of stochastic systems, J. Math. Anal. Appl. 12(3):576-592, Dec 1965, DOI 10.1016/0022-247X(65)90027-2 — CITATION CORRECTION: earlier recorded as Ann. Math. Statist. 36(1), wrong); Kaelbling, Littman & Cassandra (Planning and acting in partially observable stochastic domains, Artificial Intelligence 101(1-2):99-134, 1998, DOI 10.1016/S0004-3702(98)00023-X)",
+      "structural_note": "Striebel citation Crossref-verified but internal numbering CANNOT_CHECK_FULL_TEXT (Elsevier anti-bot wall; open mirrors dead). KLC read from the author's scanned CSAIL preprint (title variant '...stochastic domains' vs published '...stochastic tasks'; OCR caveats on subsection digits).",
+      "sources": [
+        "https://doi.org/10.1016/0022-247X(65)90027-2",
+        "CSAIL preprint scan of KLC 1998 (OCR'd)"
+      ],
+      "locations": {
+        "belief_sufficiency": {
+          "status": "VERIFIED",
+          "location": "Kaelbling-Littman-Cassandra 1998, Sec 3 'Partial Observability', subsection 3.2 'Problem Structure', preprint p. 10: belief states 'comprise a sufficient statistic for the past history and initial belief state of the agent' (citing Astrom 1965 [1] and Smallwood & Sondik 1973 [56]); reused in Sec 3.4 'Finding an Optimal Policy' (belief MDP). Striebel 1965 is the classical origin; its internal theorem numbers CANNOT_CHECK_FULL_TEXT",
+          "assumptions": "POMDP with known generative model; belief = distribution over world states; continuous belief-MDP formulation",
+          "source": "KLC CSAIL preprint scan (OCR-read, caveat noted); Striebel via Crossref metadata"
+        }
+      }
+    },
+    "COVER_THOMAS_DPI": {
+      "citation": "Cover & Thomas, Elements of Information Theory, 2nd ed., Wiley-Interscience 2006",
+      "structural_note": "Theorem number verified via 2nd-edition table of contents (Sec. 2.8 at book p. 34) plus two independent secondary citations; full text not rendered. DPI content itself is classical.",
+      "sources": [
+        "Wiley 2nd-ed. TOC (studfile mirror)"
+      ],
+      "locations": {
+        "data_processing": {
+          "status": "VERIFIED_SECONDARY",
+          "location": "Sec. 2.8 'Data-Processing Inequality', book p. 34 (2nd ed.): Theorem 2.8.1 — X -> Y -> Z Markov implies I(X;Z) <= I(X;Y); Sec. 2.9 p. 35 treats the sufficient-statistics connection",
+          "assumptions": "discrete random variables forming a Markov chain",
+          "source": "2nd-ed TOC + two independent secondary citations (full text not rendered)"
+        }
+      }
+    }
+  }
+}

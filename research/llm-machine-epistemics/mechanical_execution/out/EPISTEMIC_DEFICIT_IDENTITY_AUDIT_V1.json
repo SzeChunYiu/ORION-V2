@@ -1,0 +1,194 @@
+{
+  "d1_randomized": {
+    "trials": 300,
+    "verdict": "PASS"
+  },
+  "d2_randomized": {
+    "trials": 300,
+    "verdict": "PASS"
+  },
+  "d3_randomized": {
+    "trials": 300,
+    "verdict": "PASS"
+  },
+  "mandatory_controls": {
+    "C1_acquisition_only": {
+      "H(Q|H)_bits": "1",
+      "H(Q|Z)-H(Q|H)_bits": "0",
+      "decimal_crosscheck_1e-30": true,
+      "distribution": {
+        "0,0,0": "1/4",
+        "0,1,1": "1/4",
+        "1,0,0": "1/4",
+        "1,1,1": "1/4"
+      },
+      "expected": "acquisition > 0, compression == 0",
+      "verdict": "PASS"
+    },
+    "C2_compression_only": {
+      "H(Q|H)_bits": "0",
+      "H(Q|Z)-H(Q|H)_bits": "1.9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999",
+      "decimal_crosscheck_1e-30": true,
+      "distribution": {
+        "0,0,0": "1/4",
+        "0,2,0": "1/4",
+        "1,1,0": "1/4",
+        "1,3,0": "1/4"
+      },
+      "expected": "acquisition == 0, compression > 0",
+      "verdict": "PASS"
+    },
+    "C3_prospective_only": {
+      "D3_bits": "1",
+      "H(Qf|Ht,Xf)_bits": "0",
+      "H(Qf|Zt,Xf)_bits": "1.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "decimal_agree_1e-30": true,
+      "distribution": {
+        "0,0,0,0": "1/4",
+        "0,0,0,1": "1/4",
+        "1,1,0,0": "1/4",
+        "1,1,0,1": "1/4"
+      },
+      "expected": "D3 == 1 bit",
+      "verdict": "PASS"
+    },
+    "C4_future_reconstructs_provenance": {
+      "D3_bits": "0",
+      "H(Qf|Ht,Xf)_bits": "0",
+      "H(Qf|Zt,Xf)_bits": "0",
+      "decimal_agree_1e-30": true,
+      "distribution": {
+        "0,0,0,0": "1/2",
+        "1,1,0,1": "1/2"
+      },
+      "expected": "D3 == 0",
+      "verdict": "PASS"
+    },
+    "C5_state_retains_provenance": {
+      "D3_bits": "0",
+      "H(Qf|Ht,Xf)_bits": "0",
+      "H(Qf|Zt,Xf)_bits": "0",
+      "decimal_agree_1e-30": true,
+      "distribution": {
+        "0,0,0,0": "1/4",
+        "0,0,0,1": "1/4",
+        "1,1,1,0": "1/4",
+        "1,1,1,1": "1/4"
+      },
+      "expected": "D3 == 0",
+      "verdict": "PASS"
+    }
+  },
+  "schema_version": "orion.51.epistemic-deficit-identity-audit.v1",
+  "sections": {
+    "identity_trials_sample": [
+      {
+        "decimal_agree_1e-30": true,
+        "decimal_crosscheck_bits": {
+          "lhs": "1.5754508105601306443635033708690119526960425837014690776235872863529982675119600654487945230690342217582416489",
+          "rhs": "1.5754508105601306443635033708690119526960425837014690776235872863529982675119600654487945230690342217582416489"
+        },
+        "exact_identity": true,
+        "identity": "D1_trial0",
+        "verdict": "PASS"
+      },
+      {
+        "decimal_agree_1e-30": true,
+        "decimal_crosscheck_bits": {
+          "lhs": "0.87500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "rhs": "0.87500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "exact_identity": true,
+        "identity": "D1_trial1",
+        "verdict": "PASS"
+      },
+      {
+        "decimal_agree_1e-30": true,
+        "decimal_crosscheck_bits": {
+          "lhs": "0.8090285548190020152713966013142073015077250247103508722202792400136426323392391638310740656221880439741643140",
+          "rhs": "0.8090285548190020152713966013142073015077250247103508722202792400136426323392391638310740656221880439741643140"
+        },
+        "exact_identity": true,
+        "identity": "D1_trial2",
+        "verdict": "PASS"
+      },
+      {
+        "note": "remaining 297 trials all PASS"
+      },
+      {
+        "decimal_agree_1e-30": true,
+        "decimal_crosscheck_bits": {
+          "lhs": "0.99562333869119500684177127245327527779750015385440765243650438013563933427385885367389611560849713885199332192",
+          "rhs": "0.99562333869119500684177127245327527779750015385440765243650438013563933427385885367389611560849713885199332192"
+        },
+        "exact_identity": true,
+        "identity": "D2_trial0",
+        "verdict": "PASS"
+      },
+      {
+        "decimal_agree_1e-30": true,
+        "decimal_crosscheck_bits": {
+          "lhs": "0.9961384148043385594382422819845017669416924225935339989779045181963373614506416236097788485238417655422700749",
+          "rhs": "0.9961384148043385594382422819845017669416924225935339989779045181963373614506416236097788485238417655422700749"
+        },
+        "exact_identity": true,
+        "identity": "D2_trial1",
+        "verdict": "PASS"
+      },
+      {
+        "decimal_agree_1e-30": true,
+        "decimal_crosscheck_bits": {
+          "lhs": "0.9905628018721981833449390299285275211618724508788875328603425418281979541441189865141054491805030286207128568",
+          "rhs": "0.9905628018721981833449390299285275211618724508788875328603425418281979541441189865141054491805030286207128568"
+        },
+        "exact_identity": true,
+        "identity": "D2_trial2",
+        "verdict": "PASS"
+      },
+      {
+        "note": "remaining 297 trials all PASS"
+      },
+      {
+        "decimal_agree_1e-30": true,
+        "decimal_crosscheck_bits": {
+          "lhs": "0.42275780413537842996397761930260838218467538695127239223743233217109299350239589329170548426649170974990482547",
+          "rhs": "0.42275780413537842996397761930260838218467538695127239223743233217109299350239589329170548426649170974990482547"
+        },
+        "exact_identity": true,
+        "identity": "D3_trial0",
+        "verdict": "PASS"
+      },
+      {
+        "decimal_agree_1e-30": true,
+        "decimal_crosscheck_bits": {
+          "lhs": "0.61576627583643823422412773010185668379002523478347896733900873863621001948610499981443439715222120212416553709",
+          "rhs": "0.61576627583643823422412773010185668379002523478347896733900873863621001948610499981443439715222120212416553709"
+        },
+        "exact_identity": true,
+        "identity": "D3_trial1",
+        "verdict": "PASS"
+      },
+      {
+        "decimal_agree_1e-30": true,
+        "decimal_crosscheck_bits": {
+          "lhs": "0.78102373758903721357992590734641947241803595508726138295946572833309811193649460181571590898932322486026995494",
+          "rhs": "0.78102373758903721357992590734641947241803595508726138295946572833309811193649460181571590898932322486026995494"
+        },
+        "exact_identity": true,
+        "identity": "D3_trial2",
+        "verdict": "PASS"
+      },
+      {
+        "note": "remaining 297 trials all PASS"
+      }
+    ]
+  },
+  "seed": 20260829,
+  "verdicts": {
+    "CONTROLS": "PASS",
+    "D1": "PASS",
+    "D2": "PASS",
+    "D3": "PASS",
+    "OVERALL": "PASS"
+  }
+}

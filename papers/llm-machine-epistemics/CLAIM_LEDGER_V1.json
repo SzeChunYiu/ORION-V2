@@ -1,0 +1,168 @@
+{
+  "schema": "ORION-V2.LLMMachineEpistemics.ClaimLedger.v1",
+  "issue": 51,
+  "paper_identity": "ORION-V2.LLM-MACHINE-EPISTEMICS.THEORY.V1",
+  "scientific_authority_delta": "NONE_PENDING_FORMAL_AND_NOVELTY_CHECK",
+  "claims": [
+    {
+      "id": "C01",
+      "claim": "Histories with identical complete linguistic-future laws define a minimal linguistic predictive state S_P under the stated finite assumptions.",
+      "status": "PARENT_OWNED_BACKGROUND",
+      "owner_families": ["statistical_sufficiency", "computational_mechanics_causal_states", "predictive_state_representations"],
+      "paper_role": "definition_and_foundation",
+      "formal_check": "L1_predictive_sufficient_refines_SP",
+      "novelty_credit": false
+    },
+    {
+      "id": "C02",
+      "claim": "A language-predictive state need not be sufficient for a separately declared epistemic responsibility.",
+      "status": "FOUNDATIONAL_SYNTHESIS_NOT_STANDALONE_NOVELTY",
+      "owner_families": ["task_relative_sufficiency", "reward_predictive_state_representations", "multi_task_representation"],
+      "paper_role": "problem_separation",
+      "formal_check": "T1_predictive_epistemic_separation",
+      "novelty_credit": false
+    },
+    {
+      "id": "C03",
+      "claim": "Epistemic state requirements should be defined by a responsibility decision contract rather than by exact recovery of every auxiliary target variable.",
+      "status": "CANDIDATE_CONCEPTUAL_RESIDUAL",
+      "owner_families": ["Blackwell_decision_theory", "statistical_decision_sufficiency"],
+      "paper_role": "responsibility_formalization",
+      "formal_check": "responsibility_decision_quotient_structural_checks",
+      "novelty_credit": "PROVISIONAL"
+    },
+    {
+      "id": "C04",
+      "claim": "The coarsest finite deterministic state preserving complete linguistic predictive sufficiency and a registered responsibility family is the common refinement of S_P and the joint responsibility-decision signature.",
+      "status": "CANDIDATE_COROLLARY",
+      "owner_families": ["minimal_sufficiency", "Blackwell_decision_theory"],
+      "paper_role": "static_joint_state",
+      "formal_check": "R1_joint_predictive_responsibility_quotient",
+      "novelty_credit": "PACKAGE_ONLY"
+    },
+    {
+      "id": "C05",
+      "claim": "The minimum additional average deterministic state entropy beyond S_P for exact responsibility-decision preservation is H(C_R | S_P).",
+      "status": "CANDIDATE_STATIC_STATE_COST",
+      "owner_families": ["source_coding", "minimal_sufficient_representation"],
+      "paper_role": "static_overhead",
+      "formal_check": "R2_exact_responsibility_decision_overhead",
+      "novelty_credit": "PROVISIONAL_PACKAGE_ONLY"
+    },
+    {
+      "id": "C06",
+      "claim": "Exact target recovery is the special case of C05 with C_R=Q, giving H(Q | S_P).",
+      "status": "COROLLARY",
+      "owner_families": ["conditional_entropy", "source_coding"],
+      "paper_role": "special_case",
+      "formal_check": "T3_exact_deterministic_overhead",
+      "novelty_credit": false
+    },
+    {
+      "id": "C07",
+      "claim": "Any entropy-minimal deterministic representation exactly sufficient for the complete linguistic future is almost-surely isomorphic to S_P.",
+      "status": "PARENT_OWNED_OR_DIRECT_COROLLARY",
+      "owner_families": ["minimal_sufficient_statistics", "causal_state_minimality", "deterministic_information_bottleneck"],
+      "paper_role": "compression_bridge",
+      "formal_check": "T2_entropy_minimal_predictive_isomorphic_SP",
+      "novelty_credit": false
+    },
+    {
+      "id": "C08",
+      "claim": "If a responsibility decision varies within an S_P fibre, maximal exact prediction-preserving compression to S_P cannot preserve that responsibility.",
+      "status": "CANDIDATE_DESIGN_CONSEQUENCE",
+      "owner_families": ["minimal_sufficiency", "multi_task_information_bottleneck"],
+      "paper_role": "compression_implication",
+      "formal_check": "T2_responsibility_loss_corollary",
+      "novelty_credit": "PROVISIONAL_INTERPRETIVE"
+    },
+    {
+      "id": "C09",
+      "claim": "Under log loss, responsibility uncertainty from Z decomposes into acquisition deficit H(Q|H) plus compression deficit I(Q;H|Z).",
+      "status": "PARENT_OWNED_IDENTITY",
+      "owner_families": ["information_theory", "Bayes_log_loss"],
+      "paper_role": "diagnostic_calculus",
+      "formal_check": "D1_acquisition_compression_decomposition",
+      "novelty_credit": false
+    },
+    {
+      "id": "C10",
+      "claim": "A state sufficient for current linguistic prediction and current responsibility decisions can still be insufficient for correct future responsibility revision.",
+      "status": "PRIMARY_CANDIDATE_DYNAMIC_RESIDUAL",
+      "owner_families": ["right_congruence", "POMDP_information_state", "predictive_state_recursion", "dynamic_sufficiency"],
+      "paper_role": "main_sequential_claim",
+      "formal_check": "T13_static_zero_dynamic_positive_witness",
+      "novelty_credit": "OPEN_HIGH_VALUE"
+    },
+    {
+      "id": "C11",
+      "claim": "The minimal exact recursively updateable predictive-responsibility state is the coarsest right-congruent refinement of the current base partition.",
+      "status": "CLASSICAL_SUBSTRATE_WITH_CANDIDATE_EPISTEMIC_INTERPRETATION",
+      "owner_families": ["Myhill_Nerode", "automata_minimization", "bisimulation", "causal_state_recursive_calculability"],
+      "paper_role": "dynamic_state_theorem",
+      "formal_check": "T11_coarsest_right_congruent_refinement,T12_recursive_implementability",
+      "novelty_credit": "INTERPRETATION_ONLY_UNLESS_NEAREST_WORK_LEAVES_RESIDUAL"
+    },
+    {
+      "id": "C12",
+      "claim": "The additional average state required solely for exact future update correctness beyond current static predictive-responsibility sufficiency is H(S_infinity | S_0).",
+      "status": "PRIMARY_CANDIDATE_DYNAMIC_STATE_COST",
+      "owner_families": ["state_minimization", "entropy_of_refinements"],
+      "paper_role": "dynamic_optionality_cost",
+      "formal_check": "T12_recursive_implementability",
+      "novelty_credit": "OPEN_HIGH_VALUE"
+    },
+    {
+      "id": "C13",
+      "claim": "The canonical provenance witness has zero static responsibility overhead but one bit of horizon-1 dynamic optionality cost.",
+      "status": "KNOWN_ANSWER_WITNESS",
+      "owner_families": [],
+      "paper_role": "counterexample",
+      "formal_check": "T13_static_zero_dynamic_positive_witness",
+      "novelty_credit": false
+    },
+    {
+      "id": "C14",
+      "claim": "Prospective epistemic deficiency after k future observations is I(Q_future;H_now | Z_now,X_future) under the declared Markov model, equal to excess Bayes log loss from having retained Z rather than the full prior history.",
+      "status": "PARENT_OWNED_IDENTITY_WITH_CANDIDATE_DIAGNOSTIC_USE",
+      "owner_families": ["conditional_mutual_information", "dynamic_information_state"],
+      "paper_role": "prospective_diagnostic",
+      "formal_check": "D2_prospective_deficiency_identity",
+      "novelty_credit": false
+    },
+    {
+      "id": "C15",
+      "claim": "The exact single-responsibility stochastic-augmentation frontier under logarithmic loss is [H(Q|S_P)-D]_+ for deterministic Q.",
+      "status": "PARENT_OWNED_RATE_DISTORTION_BENCHMARK",
+      "owner_families": ["log_loss_rate_distortion", "Courtade_Weissman"],
+      "paper_role": "approximate_benchmark",
+      "formal_check": "T8A_exact_logloss_frontier",
+      "novelty_credit": false
+    },
+    {
+      "id": "C16",
+      "claim": "For conditionally independent typed responsibilities under separate log-loss constraints, extra state rates add; correlated responsibilities can share state and exact zero-error saving equals conditional total correlation.",
+      "status": "CLASSICAL_PRODUCT_SOURCE_BENCHMARK",
+      "owner_families": ["multiterminal_information_theory", "conditional_total_correlation"],
+      "paper_role": "responsibility_state_sharing",
+      "formal_check": "T8B_independent_responsibility_frontier,T8C_shared_state_saving",
+      "novelty_credit": false
+    },
+    {
+      "id": "C17",
+      "claim": "Predictive behavior alone cannot certify that a real LLM hidden state satisfies a declared current or prospective epistemic responsibility.",
+      "status": "CANDIDATE_IMPLICATION",
+      "owner_families": ["representation_identifiability", "belief_representation_standards"],
+      "paper_role": "LLM_interpretation",
+      "formal_check": "nearest_work_only",
+      "novelty_credit": "PROVISIONAL_SYNTHESIS"
+    }
+  ],
+  "paper_terminal_logic": {
+    "primary_candidates": ["C10", "C12"],
+    "supporting_candidates": ["C03", "C05", "C08", "C17"],
+    "explicitly_parent_owned": ["C01", "C02", "C06", "C07", "C09", "C14", "C15", "C16"],
+    "jmlr_requires": ["C10_or_C12_nontrivial_residual", "formal_checks_green", "nearest_work_matrix_no_full_parent_absorption", "broad_ML_design_consequence"],
+    "current_terminal": "OPEN_PENDING_MECHANICAL_VERIFICATION_AND_THEOREM_LEVEL_NOVELTY_AUDIT"
+  }
+}

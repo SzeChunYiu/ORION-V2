@@ -1,0 +1,444 @@
+{
+  "fixtures": [
+    {
+      "c_dyn_star": {
+        "bits": "0",
+        "expr": {},
+        "pi": [
+          0,
+          0,
+          1
+        ]
+      },
+      "c_stat_star": {
+        "bits": "0",
+        "expr": {},
+        "pi": [
+          0,
+          0,
+          1
+        ]
+      },
+      "decimal_crosscheck_bits": {
+        "c_dyn": "0",
+        "c_stat": "0"
+      },
+      "impl_equivalence_direction": "PASS",
+      "machine": {
+        "P": [
+          0,
+          0,
+          1
+        ],
+        "a_star": [
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "delta": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "m": 1,
+        "n": 3,
+        "name": "P0_PREDICTIVE_DECISIONAL",
+        "probs": [
+          {
+            "__fraction__": [
+              "1",
+              "4"
+            ]
+          },
+          {
+            "__fraction__": [
+              "1",
+              "4"
+            ]
+          },
+          {
+            "__fraction__": [
+              "1",
+              "2"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "c_dyn_star": {
+        "bits": "1",
+        "expr": {
+          "2": "1"
+        },
+        "pi": [
+          0,
+          1
+        ]
+      },
+      "c_stat_star": {
+        "bits": "1",
+        "expr": {
+          "2": "1"
+        },
+        "pi": [
+          0,
+          1
+        ]
+      },
+      "decimal_crosscheck_bits": {
+        "c_dyn": "1.0",
+        "c_stat": "1.0"
+      },
+      "impl_equivalence_direction": "PASS",
+      "machine": {
+        "P": [
+          0,
+          0
+        ],
+        "a_star": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "delta": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "m": 1,
+        "n": 2,
+        "name": "P1_STATIC_CROSS_CHANNEL",
+        "probs": [
+          {
+            "__fraction__": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "__fraction__": [
+              "1",
+              "2"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "c_dyn_star": {
+        "bits": "1",
+        "expr": {
+          "2": "1"
+        },
+        "pi": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "c_stat_star": {
+        "bits": "0",
+        "expr": {},
+        "pi": [
+          0,
+          0,
+          1,
+          2
+        ]
+      },
+      "decimal_crosscheck_bits": {
+        "c_dyn": "1.0",
+        "c_stat": "0"
+      },
+      "impl_equivalence_direction": "PASS",
+      "machine": {
+        "P": [
+          0,
+          0,
+          1,
+          2
+        ],
+        "a_star": [
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "delta": [
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "m": 1,
+        "n": 4,
+        "name": "P2_PROSPECTIVE_REFINEMENT",
+        "probs": [
+          {
+            "__fraction__": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "__fraction__": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "__fraction__": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "__fraction__": [
+              "0",
+              "1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "c_dyn_star": {
+        "bits": "0",
+        "expr": {},
+        "pi": [
+          0,
+          1,
+          1,
+          2
+        ]
+      },
+      "c_stat_star": {
+        "bits": "0",
+        "expr": {},
+        "pi": [
+          0,
+          1,
+          1,
+          2
+        ]
+      },
+      "decimal_crosscheck_bits": {
+        "c_dyn": "0",
+        "c_stat": "0"
+      },
+      "impl_equivalence_direction": "PASS",
+      "machine": {
+        "P": [
+          0,
+          1,
+          1,
+          2
+        ],
+        "a_star": [
+          [
+            2
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "delta": [
+          [
+            null
+          ],
+          [
+            null
+          ],
+          [
+            null
+          ],
+          [
+            0
+          ]
+        ],
+        "m": 1,
+        "n": 4,
+        "name": "RND_J_0",
+        "probs": [
+          {
+            "__fraction__": [
+              "1",
+              "4"
+            ]
+          },
+          {
+            "__fraction__": [
+              "1",
+              "4"
+            ]
+          },
+          {
+            "__fraction__": [
+              "1",
+              "4"
+            ]
+          },
+          {
+            "__fraction__": [
+              "1",
+              "4"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "c_dyn_star": {
+        "bits": "0.95097750043269370887224336636868990525588864461548863627345159272465893667661513751336828495085294525458839752",
+        "expr": {
+          "3": "3/5"
+        },
+        "pi": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "c_stat_star": {
+        "bits": "0",
+        "expr": {},
+        "pi": [
+          0,
+          0,
+          1,
+          0,
+          2
+        ]
+      },
+      "decimal_crosscheck_bits": {
+        "c_dyn": "0.95097750043269370887224336636868990525588864461548863627345159272465893667661513751336828495085294525458839753",
+        "c_stat": "0"
+      },
+      "impl_equivalence_direction": "PASS",
+      "machine": {
+        "P": [
+          0,
+          0,
+          1,
+          0,
+          2
+        ],
+        "a_star": [
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            2
+          ],
+          [
+            0
+          ],
+          [
+            2
+          ]
+        ],
+        "delta": [
+          [
+            1
+          ],
+          [
+            3
+          ],
+          [
+            0
+          ],
+          [
+            null
+          ],
+          [
+            3
+          ]
+        ],
+        "m": 1,
+        "n": 5,
+        "name": "RND_J_1",
+        "probs": [
+          {
+            "__fraction__": [
+              "1",
+              "5"
+            ]
+          },
+          {
+            "__fraction__": [
+              "1",
+              "5"
+            ]
+          },
+          {
+            "__fraction__": [
+              "1",
+              "5"
+            ]
+          },
+          {
+            "__fraction__": [
+              "1",
+              "5"
+            ]
+          },
+          {
+            "__fraction__": [
+              "1",
+              "5"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "runbook_note": "brute-force RGS enumeration, exact expr entropies",
+  "theorem": "J2"
+}

@@ -1,0 +1,239 @@
+{
+  "schema": "ORION-V2.LLMMachineEpistemics.ClaimLedger.v6",
+  "issue": 51,
+  "supersedes": [
+    "CLAIM_LEDGER_V1.json",
+    "CLAIM_LEDGER_V2.json",
+    "CLAIM_LEDGER_V3.json",
+    "CLAIM_LEDGER_V4.json",
+    "CLAIM_LEDGER_V5.json"
+  ],
+  "status": "POST_MECHANICAL_PARENT_CONTRACTED__PROSPECTIVE_REVISION_ASSESSMENT_ROUTE_ONLY",
+  "mechanical_state": {
+    "source": "research/llm-machine-epistemics/mechanical_execution/out/CLAIM_RECEIPT_CROSSCHECK_V1.json",
+    "claims_mechanically_verified_v4": 11,
+    "claims_consistent_parent_owned_v4": 6,
+    "claims_unbacked_v4": 1,
+    "theorem_map_supported_rows": 37,
+    "theorem_map_total_rows": 38,
+    "distinct_unmechanized_item": "T8D_WORST_FIBRE_CARDINALITY__DROPPED_FROM_PUBLICATION_SET",
+    "preserved_cannot_check": "MIXED_P2_WITNESS_SEARCH__NO_SMALL_WITNESS_IN_5826_MACHINES"
+  },
+  "major_parent_families": [
+    "causal_states_and_PSR",
+    "Brodu_decisional_states_and_Blackwell",
+    "R_PSR",
+    "information_bottleneck_and_DIB",
+    "value_equivalence_PVE_VES",
+    "POMDP_belief_and_information_state",
+    "Approximate_Information_State_JMLR_2022",
+    "incomplete_FSM_compatible_closed_cover_minimization",
+    "stable_quotient_minimal_Markovization_2026",
+    "retentive_complexity_public_2026_manuscript",
+    "BAMDP_epistemic_state_abstraction",
+    "log_loss_rate_distortion",
+    "iterated_belief_revision_state_storage",
+    "Belief_R",
+    "LLM_context_and_memory_compression",
+    "prospective_memory_benchmarks",
+    "decision_aware_bounded_agent_memory",
+    "representation_identifiability"
+  ],
+  "claims": [
+    {
+      "id": "C01",
+      "status": "PARENT_OWNED",
+      "claim": "Minimal complete-linguistic-future predictive state S_P.",
+      "owners": ["causal_states", "statistical_sufficiency", "PSR"],
+      "manuscript_role": "definition/reference channel only"
+    },
+    {
+      "id": "C02",
+      "status": "PARENT_OWNED_PATTERN",
+      "claim": "A state sufficient for one predictive target can omit a secondary decision/reward target.",
+      "owners": ["R_PSR", "task_relative_sufficiency", "multi_task_representation"],
+      "manuscript_role": "motivation/control only"
+    },
+    {
+      "id": "C03",
+      "status": "PARENT_OWNED",
+      "claim": "Utility/loss-defined decision states over predictive/causal states and decision-state complexity.",
+      "owners": ["Brodu_decisional_states", "Blackwell_decision_theory", "retentive_complexity"],
+      "manuscript_role": "zero-cost parent control"
+    },
+    {
+      "id": "C04",
+      "status": "SPECIALIZED_PARENT_COROLLARY",
+      "claim": "For a cross-channel responsibility under ANY_OPTIMAL_ACTION, current extra-state cost relative to S_P can be written as min_d H(d(H)|S_P).",
+      "formal_id": "R21/J1",
+      "mechanical": "VERIFIED",
+      "novelty": "NO_INDEPENDENT_THEOREM_CREDIT",
+      "manuscript_role": "conditional accounting coordinate"
+    },
+    {
+      "id": "C05",
+      "status": "MANDATORY_PARENT_CONTROL",
+      "claim": "If some Bayes-optimal responsibility policy factors through S_P, static extra cost is zero.",
+      "formal_id": "DS1/R27",
+      "mechanical": "VERIFIED",
+      "novelty": false,
+      "manuscript_role": "P0 negative control"
+    },
+    {
+      "id": "C06",
+      "status": "DECISION_SUFFICIENCY_COROLLARY",
+      "claim": "Positive current cross-channel cost occurs exactly when no Bayes-optimal responsibility policy is implementable from S_P alone in the registered finite exact semantics.",
+      "formal_id": "DS2/R21",
+      "mechanical": "VERIFIED",
+      "novelty": "NO_INDEPENDENT_THEOREM_CREDIT",
+      "manuscript_role": "phase definition"
+    },
+    {
+      "id": "C07",
+      "status": "PARENT_OWNED_OR_DIRECT_COROLLARY",
+      "claim": "Entropy-minimal exact deterministic predictive state is isomorphic to S_P on positive-probability support.",
+      "formal_id": "T2",
+      "mechanical": "VERIFIED_WITH_ASSUMPTION_MUTATION_AUDIT",
+      "owners": ["causal_state_minimality", "minimal_sufficiency", "DIB"],
+      "manuscript_role": "background lemma only"
+    },
+    {
+      "id": "C08",
+      "status": "PARENT_SYNTHESIS_SPECIALIZATION",
+      "claim": "Static responsibility state is a minimum-cost predictive-refining action-compatible partition, equivalent to selection of acceptable Bayes actions.",
+      "formal_id": "J1",
+      "mechanical": "VERIFIED",
+      "owners": ["decision_sufficiency", "compatible_state_minimization", "retentive_complexity"],
+      "novelty": "NO_STANDALONE_CREDIT",
+      "manuscript_role": "audit machinery"
+    },
+    {
+      "id": "C09",
+      "status": "PARENT_OWNED_SUBSTRATE_SPECIALIZATION",
+      "claim": "Dynamic responsibility state is obtained by adding recursive/right-congruent successor compatibility to current action compatibility.",
+      "formal_id": "J2",
+      "mechanical": "VERIFIED",
+      "owners": ["information_state", "POMDP_belief_state", "ISFSM_closed_cover", "stable_quotient_2026"],
+      "novelty": "NOT_SUPPORTED_AS_NEW_MATHEMATICS",
+      "manuscript_role": "construction used to define relative audit cost"
+    },
+    {
+      "id": "C10",
+      "status": "PARENT_OWNED_SUBSTRATE_SPECIALIZATION",
+      "claim": "The registered finite exact dynamic optimum is equivalent to minimizing coarsest recurrent refinements over acceptable current policy selectors.",
+      "formal_id": "J3",
+      "mechanical": "VERIFIED",
+      "owners": ["compatible_controller_minimization", "ISFSM", "right_congruence", "information_state"],
+      "novelty": "NOT_SUPPORTED_AS_NEW_MATHEMATICS",
+      "manuscript_role": "independent computation route / reproducibility"
+    },
+    {
+      "id": "C11",
+      "status": "CANDIDATE_DERIVED_AUDIT_METRIC",
+      "claim": "Omega_dyn = C_dyn^* - C_stat^* isolates additional state required for prospective recursive responsibility after optimizing the current acceptable decision, conditional on the linguistic predictive reference state.",
+      "formal_id": "J4",
+      "mechanical": "VERIFIED_NONNEGATIVE",
+      "novelty": "CANDIDATE_SYNTHESIS_METRIC_NOT_NEW_MINIMIZATION_LAW",
+      "manuscript_role": "primary quantitative audit coordinate"
+    },
+    {
+      "id": "C12",
+      "status": "KNOWN_ANSWER_WITNESS",
+      "claim": "A registered provenance fixture has C_stat^*=0, C_dyn^*=1 bit, Omega_dyn=1 bit while current optimal action is unique.",
+      "formal_id": "J5",
+      "mechanical": "VERIFIED_EXACT",
+      "novelty": "EXAMPLE_NOT_STANDALONE_THEOREM",
+      "manuscript_role": "no-certification witness"
+    },
+    {
+      "id": "C13",
+      "status": "CANDIDATE_ANALYTICAL_TAXONOMY",
+      "claim": "P0/P1/P2 separates predictive-decisional adequacy, current cross-channel refinement, and prospective revision refinement.",
+      "formal_id": "PHASE_P0_P1_P2",
+      "mechanical": "FIXTURES_VERIFIED",
+      "novelty": "CANDIDATE_FRAMEWORK_ONLY",
+      "manuscript_role": "primary diagnostic taxonomy"
+    },
+    {
+      "id": "C14",
+      "status": "CANDIDATE_ANALYTICAL_AUDIT_CURVE",
+      "claim": "C_k^* / Omega_k provide a horizon-indexed representation-retention profile that is monotone and stabilizes in finite registered systems.",
+      "formal_id": "PH1_PH2",
+      "mechanical": "VERIFIED_ON_REGISTERED_FINITE_SUITE",
+      "owners": ["finite_partition_refinement", "information_state", "stable_quotient", "order_k_value_equivalence"],
+      "novelty": "FRAMEWORK_INTERPRETATION_ONLY",
+      "manuscript_role": "prospective revision-horizon audit"
+    },
+    {
+      "id": "C15",
+      "status": "PARENT_OWNED_IDENTITY",
+      "claim": "Acquisition, current compression, and prospective conditional-information decompositions.",
+      "formal_id": "D1_D3",
+      "mechanical": "VERIFIED",
+      "owners": ["information_theory"],
+      "manuscript_role": "diagnostic vocabulary only"
+    },
+    {
+      "id": "C16",
+      "status": "PARENT_OWNED_BENCHMARK",
+      "claim": "Registered log-loss rate-distortion benchmarks.",
+      "formal_id": "T8A_T8C",
+      "mechanical": "VERIFIED_WITH_SCOPE_COUNTEREXAMPLE",
+      "owners": ["log_loss_rate_distortion", "value_equivalent_sampling"],
+      "manuscript_role": "calibration appendix/background"
+    },
+    {
+      "id": "C17",
+      "status": "LIKELY_CLASSICAL_BOUNDARY_COROLLARY",
+      "claim": "As the registered responsibility family separates more histories inside predictive fibres, required retained information grows toward the non-predictive-history bound; unrestricted exact responsibility support defeats nontrivial compression.",
+      "formal_id": "U1_U5",
+      "mechanical": "VERIFIED",
+      "owners": ["sufficiency", "no_free_compression", "value_equivalence_family_growth", "retentive_complexity"],
+      "novelty": "NO_INDEPENDENT_CREDIT",
+      "manuscript_role": "limitation / bounded-responsibility rule"
+    },
+    {
+      "id": "C18",
+      "status": "THEORETICALLY_ENTAILED_EVALUATION_PRESCRIPTION",
+      "claim": "Matched complete-linguistic predictive adequacy and matched current responsibility decision adequacy do not logically certify prospective evidence-triggered revision adequacy; a separate controlled future-evidence representation audit is necessary for any claim of prospective responsibility sufficiency.",
+      "formal_support": ["J5_ONE_BIT_WITNESS", "P2_PHASE_FIXTURE"],
+      "mechanical": "ABSTRACT_EXISTENCE_WITNESS_VERIFIED__NO_EMPIRICAL_LLM_TEST",
+      "nearest_llm_parent": "Belief-R tests output-level update/maintain after new evidence but does not isolate representation retention after matching current prediction and current decision.",
+      "novelty": "STRONGEST_SURVIVING_CANDIDATE_AS_FORMAL_ASSESSMENT_TASK",
+      "manuscript_role": "primary practical consequence"
+    },
+    {
+      "id": "C19",
+      "status": "PARENT_STYLE_DECISION_COMPATIBILITY_COROLLARY",
+      "claim": "For one registered future evidence event under ANY_OPTIMAL_ACTION semantics, a deterministic future decision rule using only (Z,x) exists exactly when the joint intersection of acceptable future-action sets over every nonempty representation/event cell is nonempty.",
+      "formal_support": "PROSPECTIVE_REVISION_COMPATIBILITY_CRITERION_V1.md",
+      "mechanical": "NOT_YET_SEPARATELY_MECHANIZED__ELEMENTARY_PROOF_WRITTEN",
+      "owners": ["decision_sufficiency", "compatible_state_intersection_logic"],
+      "novelty": "NO_INDEPENDENT_THEOREM_CREDIT",
+      "manuscript_role": "complete one-step audit compatibility test; corrects pairwise-collision incompleteness"
+    }
+  ],
+  "diagnostic_correction": {
+    "pairwise_revision_collision": "SUFFICIENT_FAILURE_WITNESS_ONLY",
+    "complete_one_step_any_optimal_action_test": "JOINT_ACCEPTABLE_ACTION_INTERSECTION_PER_REPRESENTATION_EVENT_CELL",
+    "mandatory_counterexample": ["{a,b}", "{b,c}", "{a,c}"],
+    "note": "Every pair overlaps but the triple intersection is empty; absence of pairwise disjointness is not a sufficiency certificate."
+  },
+  "integrated_candidate": {
+    "id": "I01_PROSPECTIVE_REVISION_REPRESENTATION_AUDIT",
+    "status": "PRIMARY_STANDALONE_CANDIDATE",
+    "claim": "An analytical representation-audit framework for autoregressive systems that separately registers complete-linguistic predictive adequacy, current cross-channel decision adequacy, and prospective evidence-triggered revision adequacy, with present-equivalence, representation intervention, common later evidence, update/maintain scoring, alternate-channel retention checks, and complete one-step compatibility diagnostics.",
+    "novelty_type": "FORMAL_ASSESSMENT_TASK_AND_ANALYTICAL_FRAMEWORK",
+    "not_claimed": [
+      "new generic minimal state theorem",
+      "new belief revision benchmark in general",
+      "empirical failure of current LLM hidden states",
+      "new information-theoretic identity",
+      "new FSM minimization algorithm",
+      "new pairwise fibre criterion"
+    ],
+    "jmlr_route": "ANALYTICAL_FRAMEWORK_OR_NEW_ASSESSMENT_TASK_ONLY"
+  },
+  "jmlr_load_bearing_candidates": ["C11", "C13", "C18", "I01_PROSPECTIVE_REVISION_REPRESENTATION_AUDIT"],
+  "current_terminal": "CORE_THEOREM_NOVELTY_CONTRACTED__PROSPECTIVE_REVISION_ASSESSMENT_ROUTE_OPEN_BORDERLINE"
+}

@@ -1,0 +1,45 @@
+{
+  "note": "exact log-linear Fraction identities; Bayes errors as exact Fractions; Decimal used only as a cross-check",
+  "overall": "PASS",
+  "schema_version": "orion.51.responsibility-universality-audit.v1",
+  "u1": {
+    "admissible_partitions_checked": 12298,
+    "chain_rule_exact": true,
+    "families_checked": 4427,
+    "max_H_H_given_P_C_R_nats": "2.3071885761626684886609100993086191434913655370958601267088576590414092119797804763737829004164610862328593346",
+    "statement": "0 <= H(C_R|P) <= H(H|P) via exact chain rule H(H|P)=H(C_R|P)+H(H|P,C_R), both terms manifest entropies",
+    "verdict": "PASS"
+  },
+  "u2": {
+    "nonvacuity_control_coarser_pi_exists": true,
+    "separating_families_checked": 972,
+    "statement": "intra-fibre separation forces C_R to determine H given P and costs the full H(H|P) overhead",
+    "verdict": "PASS"
+  },
+  "u3": {
+    "instances": 66216,
+    "statement": "best 0-1 Bayes error of the non-injective representation is strictly positive",
+    "verdict": "PASS"
+  },
+  "u4": {
+    "instances": 66216,
+    "statement": "full-history representation achieves exact zero 0-1 error on every instance",
+    "verdict": "PASS"
+  },
+  "u5": {
+    "modes": [
+      "static",
+      "dynamic"
+    ],
+    "nested_pairs_checked": 1625,
+    "statement": "pointwise action-set inclusion gives monotone fixed-signature overhead C*(F1) >= C*(F2)",
+    "verdict": "PASS"
+  },
+  "verdicts": {
+    "U1_SANDWICH": "PASS",
+    "U2_SEPARATING": "PASS",
+    "U3_COLLIDED_PAIR_ERROR": "PASS",
+    "U4_FULL_HISTORY_ZERO_ERROR": "PASS",
+    "U5_NESTED_MONOTONE": "PASS"
+  }
+}

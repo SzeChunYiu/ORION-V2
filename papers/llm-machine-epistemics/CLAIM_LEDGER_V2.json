@@ -1,0 +1,165 @@
+{
+  "schema": "ORION-V2.LLMMachineEpistemics.ClaimLedger.v2",
+  "issue": 51,
+  "supersedes": "papers/llm-machine-epistemics/CLAIM_LEDGER_V1.json",
+  "paper_identity": "ORION-V2.LLM-MACHINE-EPISTEMICS.THEORY.V1",
+  "scientific_authority_delta": "NONE_PENDING_FORMAL_AND_NOVELTY_CHECK",
+  "governing_correction": "Responsibility state cost depends on registered decision semantics. V1 full-optimal-action-set signatures are stronger than necessary for ANY_OPTIMAL_ACTION responsibilities.",
+  "decision_semantics": [
+    "ANY_OPTIMAL_ACTION",
+    "CANONICAL_ACTION",
+    "OPTIMAL_ACTION_SET",
+    "ACTION_AND_RISK",
+    "EXACT_TARGET"
+  ],
+  "claims": [
+    {
+      "id": "C01",
+      "claim": "The complete-linguistic-future predictive quotient S_P is the minimal exact predictive state under the stated finite assumptions.",
+      "status": "PARENT_OWNED_BACKGROUND",
+      "owners": ["statistical_sufficiency", "computational_mechanics_causal_states", "predictive_state_representations"],
+      "novelty_credit": false
+    },
+    {
+      "id": "C02",
+      "claim": "A state sufficient for linguistic prediction may be insufficient for a distinct task/responsibility target.",
+      "status": "PARENT_OWNED_PATTERN",
+      "owners": ["reward_predictive_state_representations", "task_relative_sufficiency", "multi_task_representation"],
+      "novelty_credit": false
+    },
+    {
+      "id": "C03",
+      "claim": "A Machine-Epistemic responsibility is decision-relative and must specify target Q, admissible actions, loss, and exact decision semantics rather than treating arbitrary Q recovery as the universal state requirement.",
+      "status": "CANDIDATE_CONCEPTUAL_RESIDUAL_HIGH_BLACKWELL_OVERLAP",
+      "owners": ["statistical_decision_theory", "Blackwell_comparison"],
+      "formal_check": "responsibility_contract_schema",
+      "novelty_credit": "PROVISIONAL_PACKAGE_ONLY"
+    },
+    {
+      "id": "C04",
+      "claim": "For ANY_OPTIMAL_ACTION, exact additional deterministic state entropy beyond retained S_P is min over Bayes-optimal selectors d of H(d(H)|S_P).",
+      "status": "CANDIDATE_EXACT_DECISION_STATE_COST",
+      "owners": ["statistical_decision_sufficiency", "source_coding"],
+      "formal_check": "R2_1_minimum_optimal_action_state_entropy",
+      "novelty_credit": "OPEN_PACKAGE_RESIDUAL"
+    },
+    {
+      "id": "C05",
+      "claim": "For CANONICAL_ACTION with registered selector d_tau, exact additional state entropy is H(d_tau(H)|S_P).",
+      "status": "COROLLARY",
+      "formal_check": "R2_2_canonical_action_cost",
+      "novelty_credit": false
+    },
+    {
+      "id": "C06",
+      "claim": "For OPTIMAL_ACTION_SET, exact additional state entropy is H(A_star(H)|S_P), which can strictly exceed the ANY_OPTIMAL_ACTION cost.",
+      "status": "CANDIDATE_SEMANTICS_SEPARATION",
+      "formal_check": "R2_3_option_set_cost_and_tie_fixture",
+      "novelty_credit": "PROVISIONAL_PACKAGE_ONLY"
+    },
+    {
+      "id": "C07",
+      "claim": "For EXACT_TARGET with deterministic Q and zero-one loss, exact additional state entropy reduces to H(Q|S_P).",
+      "status": "PARENT_OWNED_OR_CLEAN_COROLLARY",
+      "formal_check": "T3_exact_deterministic_overhead",
+      "novelty_credit": false
+    },
+    {
+      "id": "C08",
+      "claim": "For several ANY_OPTIMAL_ACTION responsibilities, the exact joint state cost is the minimum over jointly selected Bayes-optimal policies of H(d_1(H),...,d_m(H)|S_P).",
+      "status": "CANDIDATE_JOINT_POLICY_STATE_FORMULATION",
+      "owners": ["decision_theory", "multi_task_sufficiency"],
+      "formal_check": "R2_family_joint_selector_cost",
+      "novelty_credit": "OPEN_HIGH_PARENT_PRESSURE"
+    },
+    {
+      "id": "C09",
+      "claim": "Every entropy-minimal deterministic representation exactly sufficient for the complete linguistic future is almost-surely isomorphic to S_P.",
+      "status": "PARENT_OWNED_OR_DIRECT_COROLLARY",
+      "owners": ["causal_state_minimality", "minimal_sufficient_statistics", "deterministic_information_bottleneck"],
+      "novelty_credit": false
+    },
+    {
+      "id": "C10",
+      "claim": "Prediction-preserving maximal compression is safe for a fixed responsibility policy only if that policy is implementable from S_P; otherwise minimal predictive state lacks required action information.",
+      "status": "CANDIDATE_DESIGN_CONSEQUENCE",
+      "formal_check": "compression_policy_safety_corollary",
+      "novelty_credit": "PROVISIONAL_INTERPRETIVE"
+    },
+    {
+      "id": "C11",
+      "claim": "Under log loss, responsibility uncertainty from Z decomposes as H(Q|H)+I(Q;H|Z).",
+      "status": "PARENT_OWNED_IDENTITY",
+      "owners": ["information_theory"],
+      "novelty_credit": false
+    },
+    {
+      "id": "C12",
+      "claim": "A representation can preserve complete linguistic prediction and a registered current optimal policy while losing information required to update that policy correctly after future observations.",
+      "status": "PRIMARY_CANDIDATE_DYNAMIC_RESIDUAL",
+      "owners": ["approximate_information_state", "POMDP_information_state", "right_congruence", "reward_predictive_states"],
+      "formal_check": "T13_static_zero_dynamic_positive_witness_route_A",
+      "novelty_credit": "OPEN_HIGH_VALUE_HIGH_PARENT_PRESSURE"
+    },
+    {
+      "id": "C13",
+      "claim": "For a fixed registered current/future responsibility policy semantics, the minimal exact recursively updateable state is the coarsest right-congruent refinement of the current predictive-policy label.",
+      "status": "CLASSICAL_SUBSTRATE_WITH_CANDIDATE_EPISTEMIC_INTERPRETATION",
+      "owners": ["Myhill_Nerode", "automata_minimization", "causal_state_recursive_calculability", "information_state_theory"],
+      "formal_check": "T11_T12_fixed_policy_right_congruence",
+      "novelty_credit": "INTERPRETATION_ONLY_UNLESS_PARENT_MATRIX_LEAVES_RESIDUAL"
+    },
+    {
+      "id": "C14",
+      "claim": "For fixed-policy dynamic state, extra exact average state required solely for future update correctness is H(S_infinity|S_0).",
+      "status": "PRIMARY_CANDIDATE_DYNAMIC_STATE_COST",
+      "formal_check": "T12_dynamic_optionality_cost",
+      "novelty_credit": "OPEN_HIGH_VALUE_HIGH_PARENT_PRESSURE"
+    },
+    {
+      "id": "C15",
+      "claim": "The stronger problem that jointly optimizes Bayes-optimal policy selection and recursive state is not solved by the current right-congruence theorem and remains an explicit nonclaim unless separately mechanized.",
+      "status": "BOUNDARY_NONCLAIM",
+      "novelty_credit": false
+    },
+    {
+      "id": "C16",
+      "claim": "Prospective log-loss deficiency is I(Q_future;H_now|Z_now,X_future) under the declared joint model.",
+      "status": "PARENT_OWNED_IDENTITY_WITH_DIAGNOSTIC_USE",
+      "owners": ["conditional_mutual_information", "dynamic_information_state"],
+      "novelty_credit": false
+    },
+    {
+      "id": "C17",
+      "claim": "Responsibility-family state overhead is bounded above by H(H|S_P); a predictive-fibre-separating responsibility family saturates this bound and forces retention of all non-predictive history on support.",
+      "status": "CANDIDATE_NEGATIVE_DESIGN_COROLLARY_LIKELY_CLASSICAL",
+      "formal_check": "U1_U2_family_saturation",
+      "novelty_credit": "PROVISIONAL_PACKAGE_ONLY"
+    },
+    {
+      "id": "C18",
+      "claim": "Any non-injective state fails some exact binary responsibility; unrestricted exact future responsibility sufficiency therefore admits no nontrivial compression.",
+      "status": "CANDIDATE_NO_FREE_COMPRESSION_COROLLARY_LIKELY_CLASSICAL",
+      "formal_check": "U3_U4_universality",
+      "novelty_credit": "PROVISIONAL_PACKAGE_ONLY"
+    },
+    {
+      "id": "C19",
+      "claim": "Single-responsibility conditional log-loss frontier [H(Q|S_P)-D]_+ and independent product extensions are classical log-loss rate-distortion benchmarks, not independent ORION novelty.",
+      "status": "PARENT_OWNED_BENCHMARK",
+      "owners": ["log_loss_rate_distortion", "Courtade_Weissman"],
+      "novelty_credit": false
+    },
+    {
+      "id": "C20",
+      "claim": "Predictive behavior/static hidden-state probes cannot by themselves certify prospective responsibility-update sufficiency of a real LLM state.",
+      "status": "CANDIDATE_EVALUATION_CONSEQUENCE",
+      "owners": ["representation_identifiability", "belief_representation_standards", "information_state_theory"],
+      "novelty_credit": "OPEN_SYNTHESIS"
+    }
+  ],
+  "primary_residual_candidates": ["C04", "C08", "C12", "C14", "C20"],
+  "jmlr_load_bearing_candidates": ["C12", "C14", "C20"],
+  "explicit_nonclaims": ["C15"],
+  "current_terminal": "OPEN_PENDING_MECHANICAL_VERIFICATION_AND_THEOREM_LEVEL_PARENT_RECONSTRUCTION"
+}

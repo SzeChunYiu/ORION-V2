@@ -1,0 +1,308 @@
+{
+  "fixtures": [
+    {
+      "a0_gate": {
+        "a0_pass": true,
+        "h_q_given_h_bits": "0",
+        "h_q_given_h_expr": {},
+        "q_pi": [
+          0,
+          0,
+          1
+        ]
+      },
+      "c0": {
+        "bits": "0",
+        "expr": {},
+        "pi": [
+          0,
+          0,
+          1
+        ]
+      },
+      "cinf": {
+        "bits": "0",
+        "expr": {},
+        "pi": [
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": {
+        "c0_expr": "0",
+        "cinf_expr": "0",
+        "omega_expr": "0",
+        "phase": "P0_PREDICTIVE_DECISIONAL"
+      },
+      "machine": {
+        "P": [
+          0,
+          0,
+          1
+        ],
+        "a_star": [
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "delta": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "m": 1,
+        "n": 3,
+        "name": "P0_PREDICTIVE_DECISIONAL",
+        "probs": [
+          {
+            "__fraction__": [
+              "1",
+              "4"
+            ]
+          },
+          {
+            "__fraction__": [
+              "1",
+              "4"
+            ]
+          },
+          {
+            "__fraction__": [
+              "1",
+              "2"
+            ]
+          }
+        ]
+      },
+      "omega": {
+        "bits": "0",
+        "expr": {}
+      },
+      "phase": "P0_PREDICTIVE_DECISIONAL",
+      "verdict": "PASS"
+    },
+    {
+      "a0_gate": {
+        "a0_pass": true,
+        "h_q_given_h_bits": "0",
+        "h_q_given_h_expr": {},
+        "q_pi": [
+          0,
+          1
+        ]
+      },
+      "c0": {
+        "bits": "1",
+        "expr": {
+          "2": "1"
+        },
+        "pi": [
+          0,
+          1
+        ]
+      },
+      "cinf": {
+        "bits": "1",
+        "expr": {
+          "2": "1"
+        },
+        "pi": [
+          0,
+          1
+        ]
+      },
+      "expected": {
+        "c0_expr": "ln2",
+        "cinf_expr": "ln2",
+        "omega_expr": "0",
+        "phase": "P1_STATIC_CROSS_CHANNEL"
+      },
+      "machine": {
+        "P": [
+          0,
+          0
+        ],
+        "a_star": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "delta": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "m": 1,
+        "n": 2,
+        "name": "P1_STATIC_CROSS_CHANNEL",
+        "probs": [
+          {
+            "__fraction__": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "__fraction__": [
+              "1",
+              "2"
+            ]
+          }
+        ]
+      },
+      "omega": {
+        "bits": "0",
+        "expr": {}
+      },
+      "phase": "P1_STATIC_CROSS_CHANNEL",
+      "verdict": "PASS"
+    },
+    {
+      "a0_gate": {
+        "a0_pass": true,
+        "h_q_given_h_bits": "0",
+        "h_q_given_h_expr": {},
+        "q_pi": [
+          0,
+          0,
+          1,
+          2
+        ]
+      },
+      "c0": {
+        "bits": "0",
+        "expr": {},
+        "pi": [
+          0,
+          0,
+          1,
+          2
+        ]
+      },
+      "cinf": {
+        "bits": "1",
+        "expr": {
+          "2": "1"
+        },
+        "pi": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": {
+        "c0_expr": "0",
+        "cinf_expr": "ln2",
+        "omega_expr": "ln2",
+        "phase": "P2_PROSPECTIVE_REFINEMENT"
+      },
+      "machine": {
+        "P": [
+          0,
+          0,
+          1,
+          2
+        ],
+        "a_star": [
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "delta": [
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "m": 1,
+        "n": 4,
+        "name": "P2_PROSPECTIVE_REFINEMENT",
+        "probs": [
+          {
+            "__fraction__": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "__fraction__": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "__fraction__": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "__fraction__": [
+              "0",
+              "1"
+            ]
+          }
+        ]
+      },
+      "omega": {
+        "bits": "1",
+        "expr": {
+          "2": "1"
+        }
+      },
+      "phase": "P2_PROSPECTIVE_REFINEMENT",
+      "verdict": "PASS"
+    }
+  ],
+  "mixed_p2": {
+    "bound": {
+      "actions": 3,
+      "m": 1,
+      "n_max": 4
+    },
+    "counts": {
+      "machines": 5826,
+      "static_opt_positive": 5826
+    },
+    "verdict": "CANNOT_CHECK_NO_SMALL_MIXED_P2_WITNESS",
+    "witness": null
+  },
+  "theorem": "DS1+DS2+phases"
+}

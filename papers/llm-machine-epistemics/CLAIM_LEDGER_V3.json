@@ -1,0 +1,33 @@
+{
+  "schema": "ORION-V2.LLMMachineEpistemics.ClaimLedger.v3",
+  "issue": 51,
+  "supersedes": [
+    "papers/llm-machine-epistemics/CLAIM_LEDGER_V1.json",
+    "papers/llm-machine-epistemics/CLAIM_LEDGER_V2.json"
+  ],
+  "paper_identity": "ORION-V2.LLM-MACHINE-EPISTEMICS.THEORY.V1",
+  "authority": "CANDIDATE_THEORY_PENDING_MECHANICAL_VERIFICATION_AND_PARENT_RECONSTRUCTION",
+  "claims": [
+    {"id":"C01","status":"PARENT_OWNED","claim":"Minimal complete-linguistic-future predictive state S_P.","owners":["causal_states","statistical_sufficiency","PSR"]},
+    {"id":"C02","status":"PARENT_OWNED_PATTERN","claim":"A prediction-sufficient state may miss a secondary task/responsibility target.","owners":["R-PSR","task_relative_sufficiency","multi_task_representation"]},
+    {"id":"C03","status":"CANDIDATE_FORMULATION","claim":"Epistemic state requirements are defined by explicit decision semantics, not by arbitrary auxiliary target recovery.","owners":["Blackwell_decision_theory"],"novelty":"PACKAGE_ONLY"},
+    {"id":"C04","status":"CANDIDATE_EXACT_STATIC_COST","claim":"For ANY_OPTIMAL_ACTION, exact static extra state cost beyond S_P is min over Bayes-optimal selectors d of H(d(H)|S_P).","formal_id":"R21_ANY_OPTIMAL_MIN_SELECTOR_ENTROPY","novelty":"OPEN_HIGH_PARENT_PRESSURE"},
+    {"id":"C05","status":"COROLLARY","claim":"Canonical action cost is H(d_tau(H)|S_P); full optimal-set and action+risk semantics use their registered signature entropies; exact target gives H(Q|S_P).","novelty":false},
+    {"id":"C06","status":"CANDIDATE_JOINT_STATIC_FORMULATION","claim":"For multiple ANY_OPTIMAL_ACTION responsibilities, jointly optimize Bayes-optimal selectors to minimize joint conditional action entropy.","formal_id":"R26_JOINT_ANY_OPTIMAL_SELECTOR_COST","novelty":"OPEN_HIGH_PARENT_PRESSURE"},
+    {"id":"C07","status":"PARENT_OWNED_OR_DIRECT_COROLLARY","claim":"Entropy-minimal deterministic exact predictive state is isomorphic to S_P on support.","owners":["causal_state_minimality","minimal_sufficiency","DIB"]},
+    {"id":"C08","status":"CANDIDATE_DESIGN_CONSEQUENCE","claim":"Maximal exact predictive compression is safe for a responsibility iff a Bayes-optimal responsibility policy can be implemented from S_P.","novelty":"INTERPRETIVE"},
+    {"id":"C09","status":"PARENT_OWNED_IDENTITY","claim":"Acquisition/compression and conditional-information log-loss decompositions.","owners":["information_theory"]},
+    {"id":"C10","status":"PARENT_OWNED_BENCHMARK","claim":"Conditional log-loss rate frontiers.","owners":["log_loss_rate_distortion","Courtade_Weissman"]},
+    {"id":"C11","status":"CANDIDATE_DYNAMIC_OPTIMIZATION_FORMULATION","claim":"Static ANY_OPTIMAL_ACTION state is minimum-entropy predictive-refining action-compatible partition; dynamic state adds right-congruence constraint.","formal_id":"J1_J2","owners":["incompletely_specified_FSM_minimization","decision_theory"],"novelty":"OPEN_PACKAGE_RESIDUAL"},
+    {"id":"C12","status":"CANDIDATE_EXACT_EQUIVALENCE","claim":"Joint exact dynamic policy/state optimum equals minimum over Bayes-optimal selectors of the entropy of the coarsest right-congruent refinement of (S_P,d).","formal_id":"J3","owners":["ISFSM_compatible_state_minimization","right_congruence"],"novelty":"OPEN_HIGH_PARENT_PRESSURE"},
+    {"id":"C13","status":"PRIMARY_CANDIDATE_QUANTITY","claim":"Dynamic epistemic optionality premium Omega_dyn = C_dyn^* - C_stat^* >= 0 measures irreducible recurrent-state cost beyond the optimal static responsibility state.","formal_id":"J_OPTIONALITY_PREMIUM","novelty":"OPEN_HIGH_VALUE_HIGH_PARENT_PRESSURE"},
+    {"id":"C14","status":"KNOWN_ANSWER_WITNESS","claim":"Canonical equal-prior provenance case has C_stat^*=0, C_dyn^*=1 bit, Omega_dyn=1 bit even after joint Bayes-optimal policy optimization.","formal_id":"J_CANONICAL_ONE_BIT_WITNESS"},
+    {"id":"C15","status":"PARENT_OWNED_SUBSTRATE","claim":"Generic compatible-state/right-congruence/incompletely specified FSM minimization mathematics.","owners":["ISFSM_minimization","Myhill_Nerode","automata_minimization"]},
+    {"id":"C16","status":"CANDIDATE_DIAGNOSTIC_USE","claim":"Prospective deficit I(Q_future;H_now|Z_now,X_future) identifies past information discarded now that later evidence cannot reconstruct.","owners":["conditional_mutual_information","information_state_theory"],"novelty":"DIAGNOSTIC_ONLY"},
+    {"id":"C17","status":"CANDIDATE_NEGATIVE_BOUNDARY_LIKELY_CLASSICAL","claim":"Responsibility-family cost is bounded by H(H|S_P); fibre-separating families saturate this bound; unrestricted exact responsibilities force history-recoverable state.","formal_id":"U1_U4","novelty":"PACKAGE_ONLY"},
+    {"id":"C18","status":"CANDIDATE_EVALUATION_CONSEQUENCE","claim":"Predictive loss and static hidden-state probes cannot certify minimum prospective responsibility-state adequacy; controlled future-evidence revision is a distinct representation test.","owners":["representation_identifiability","information_state_theory","belief_representation_standards"],"novelty":"OPEN_SYNTHESIS"}
+  ],
+  "primary_residual_candidates": ["C04","C11","C12","C13","C18"],
+  "jmlr_load_bearing_candidates": ["C12","C13","C18"],
+  "current_terminal": "OPEN_PENDING_MECHANICAL_VERIFICATION_AND_PARENT_THEOREM_MATRIX"
+}
