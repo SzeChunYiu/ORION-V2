@@ -1,5 +1,15 @@
 # ORION-V2 / Machine Epistemics Papers
 
+> **Canonical manuscript home moved (2026-08-29):** all papers now live in
+> [`SzeChunYiu/ORION-paper`](https://github.com/SzeChunYiu/ORION-paper) —
+> `v1-papers/` (ORION-01…25 from the research monorepo) and `v2-papers/`
+> (this programme: FLAGSHIP, P-A…P-F, public masters, release packages).
+> The copies in this subtree are **frozen evidence** referenced by receipts and
+> freeze manifests; they stay, but new manuscript versions are written to
+> ORION-paper (per-result PR; old→new path binding in its
+> `v2-papers/FILE_MIGRATION_MAP.json`). Completion and publication authority
+> remains with this repo's freeze ledgers and the completion programme.
+
 This subtree contains **new V2-only publication candidates** and the provisional Machine Epistemics field synthesis. Existing ORION P1–P15 and related papers remain owned and published from the ORION repository.
 
 ## Frozen programme shape
