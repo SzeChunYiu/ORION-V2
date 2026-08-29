@@ -1,3 +1,23 @@
+> ## ⚠️ CORRECTION (2026-08-29 revival pass) — Stage-2 numbers below are superseded
+>
+> The revival pass (`SD20_REVIVAL_RECEIPT_V1.md`, same repo) found that Stage 2
+> labeled outcomes with silent `.get(metric, 0.0)` defaults. SD10 head
+> snapshots carry ONLY `arxiv:author_count`, so every head-arrival transition —
+> **2,067/3,220 = 64% of the corpus** — received a deterministic artifact
+> label: `abstract_delta` = "−" in 2,067/2,067 and gap bucket ">90d" in
+> 2,067/2,067, both fabricated from missing data read as 0.0 (the head's
+> abstract chars and per-version update date were simply never recorded by the
+> SD10 head fetch). A deterministic component is absorbed trivially by the
+> marginal baseline, which confounds the V1 conditional-vs-marginal comparison
+> in the tables below.
+>
+> **Stage 1 (acquisition) is unaffected** — the version-history data files are
+> correct; the defect was in the analysis script, and the repair re-fetched
+> the missing head metadata lawfully (104 additional batched requests). The
+> Stage-2 tables below are preserved as the honest record of the defective run
+> and MUST NOT be cited; the corrected result of record is
+> `research/closure/SD20_REVIVAL_RECEIPT_V1.md`.
+
 # SD20 execution receipt V1 — bounded-pilot arXiv version-transition operator discovery (2026-08-29)
 
 Owner issue #50 (science owner #49). Executes the SD20 stage

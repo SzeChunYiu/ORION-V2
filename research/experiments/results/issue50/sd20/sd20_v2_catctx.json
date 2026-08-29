@@ -1,0 +1,368 @@
+{
+ "arm_status": {
+  "BIBLIOMETRIC_SCIENCE_OF_SCIENCE_PARENT": "CANNOT_CHECK_ON_SLICE",
+  "CAUSAL_OR_QUASI_EXPERIMENTAL_PARENT_WHEN_IDENTIFIABLE": "CANNOT_CHECK_ON_SLICE",
+  "F0_META_PARENT_FEDERATION": "EVALUATED",
+  "F2_RECURSIVE_SCIENTIFIC_DEVELOPMENT_FULL": "CANNOT_CHECK_ON_SLICE",
+  "F2_STATIC_NO_RECURSIVE_META_LEARNING": "EVALUATED (alias of TEMPORAL_SEQUENCE_MODEL_PARENT under train-frozen selection)",
+  "FIXED_META_LESSON_INJECTION__abstract_grows": "EVALUATED",
+  "FIXED_META_LESSON_INJECTION__authors_nondecreasing": "EVALUATED",
+  "FIXED_META_LESSON_INJECTION__gaps_lengthen": "EVALUATED",
+  "NETWORK_SCIENCE_PARENT": "CANNOT_CHECK_ON_SLICE",
+  "SIMPLE_FREQUENCY_BASELINE": "EVALUATED",
+  "TEMPORAL_SEQUENCE_MODEL_PARENT": "EVALUATED"
+ },
+ "authority": {
+  "grants_causal_law": false,
+  "grants_population_regularity_beyond_slice": false,
+  "grants_scientific_truth": false
+ },
+ "cannot_check_reasons": {
+  "BIBLIOMETRIC_SCIENCE_OF_SCIENCE_PARENT": "Atom metadata carries no citation/fame fields on this slice",
+  "CAUSAL_OR_QUASI_EXPERIMENTAL_PARENT_WHEN_IDENTIFIABLE": "no interventions or quasi-experimental variation in version deposits",
+  "F2_RECURSIVE_SCIENTIFIC_DEVELOPMENT_FULL": "recursive promotion requires SD50 machinery; bounded pilot has one level",
+  "NETWORK_SCIENCE_PARENT": "no disambiguated author network in the inputs (SD10 CANNOT_CHECK)"
+ },
+ "classification": "BOUNDED_PILOT_INTERIM__NO_TERMINAL_CLAIM",
+ "cross_domain_support": {
+  "categories": [
+   {
+    "category": "astro-ph",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 178,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "cond-mat",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 218,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "cs",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 1114,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "econ",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 35,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "eess",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 108,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "gr-qc",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 77,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "hep-ex",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 13,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "hep-lat",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 13,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "hep-ph",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 102,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "hep-th",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 68,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "math",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 806,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "math-ph",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 13,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "nlin",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 12,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "nucl-ex",
+    "n_test": 1,
+    "status": "TOO_FEW"
+   },
+   {
+    "category": "nucl-th",
+    "n_test": 8,
+    "status": "TOO_FEW"
+   },
+   {
+    "category": "physics",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 162,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "q-bio",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 39,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "q-fin",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 26,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "quant-ph",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 148,
+    "status": "EVALUATED"
+   },
+   {
+    "category": "stat",
+    "loo_ci_excludes_zero": false,
+    "loo_delta_vs_baseline": 0.0,
+    "n_test": 79,
+    "status": "EVALUATED"
+   }
+  ],
+  "n_evaluated": 18,
+  "n_loo_beats_baseline": 0
+ },
+ "failed_trajectory_explanation": {
+  "reason": "the SD10 corpus is outcome-censored (19,960/19,982 UNKNOWN); identifying 'failed' trajectories would require inventing outcome labels the protocol forbids",
+  "status": "CANNOT_CHECK"
+ },
+ "hard_gates": {
+  "fame_fields_found": [],
+  "features_are_version_local": true,
+  "gates": {
+   "citation_impact_as_truth_label_allowed": false,
+   "future_information_leakage_allowed": false,
+   "prize_as_truth_label_allowed": false,
+   "publication_only_success_sampling_allowed": false,
+   "recursive_level_without_heldout_residual_allowed": false,
+   "same_author_leakage_across_train_test_allowed": false
+  },
+  "no_missing_metric_silent_defaults": true,
+  "no_post_outcome_fame_labels_in_inputs": true,
+  "no_recursive_level_claimed_above_L1": true,
+  "trajectory_level_split_disjoint": true
+ },
+ "heldout_transition_prediction": {
+  "n_test": 1010,
+  "per_arm": {
+   "F0_META_PARENT_FEDERATION": {
+    "bootstrap_ci95": [
+     -0.7064916825319701,
+     -0.5177712392200988
+    ],
+    "ci_excludes_zero": true,
+    "delta_vs_baseline": -0.6130328009133383,
+    "mean_logscore": -2.790397911293944,
+    "mean_logscore_baseline": -2.1773651103806055
+   },
+   "FIXED_META_LESSON_INJECTION__abstract_grows": {
+    "bootstrap_ci95": [
+     -1.041112458047484,
+     -0.9297780471668301
+    ],
+    "ci_excludes_zero": true,
+    "delta_vs_baseline": -0.9841866114992466,
+    "mean_logscore": -3.161551721879852,
+    "mean_logscore_baseline": -2.1773651103806055
+   },
+   "FIXED_META_LESSON_INJECTION__authors_nondecreasing": {
+    "bootstrap_ci95": [
+     -0.8466200753035705,
+     -0.737005151600727
+    ],
+    "ci_excludes_zero": true,
+    "delta_vs_baseline": -0.7954860249860625,
+    "mean_logscore": -2.972851135366668,
+    "mean_logscore_baseline": -2.1773651103806055
+   },
+   "FIXED_META_LESSON_INJECTION__gaps_lengthen": {
+    "bootstrap_ci95": [
+     -1.1050357797490122,
+     -0.9926040943278482
+    ],
+    "ci_excludes_zero": true,
+    "delta_vs_baseline": -1.052160995498209,
+    "mean_logscore": -3.2295261058788145,
+    "mean_logscore_baseline": -2.1773651103806055
+   },
+   "SIMPLE_FREQUENCY_BASELINE": {
+    "bootstrap_ci95": [
+     0.0,
+     0.0
+    ],
+    "ci_excludes_zero": false,
+    "delta_vs_baseline": 0.0,
+    "mean_logscore": -2.1773651103806055,
+    "mean_logscore_baseline": -2.1773651103806055
+   },
+   "TEMPORAL_SEQUENCE_MODEL_PARENT": {
+    "bootstrap_ci95": [
+     -0.07135897239221597,
+     -0.029030202962157286
+    ],
+    "ci_excludes_zero": true,
+    "delta_vs_baseline": -0.050714535049699805,
+    "mean_logscore": -2.2280796454303053,
+    "mean_logscore_baseline": -2.1773651103806055
+   }
+  }
+ },
+ "inputs": {
+  "observations": [
+   "out/sd10/arxiv_obs.jsonl",
+   "out/sd20/arxiv_version_obs.jsonl",
+   "out/sd20/arxiv_head_obs.jsonl"
+  ]
+ },
+ "operator_stability": {
+  "bootstrap_draws": 200,
+  "max_tv": 0.5056608249021558,
+  "mean_tv": 0.07445479635940547,
+  "per_context": {
+   "astro-ph": {
+    "max_tv": 0.17105691056910569,
+    "mean_tv": 0.09301768820976218
+   },
+   "cond-mat": {
+    "max_tv": 0.14637268847795165,
+    "mean_tv": 0.07658612400267839
+   },
+   "cs": {
+    "max_tv": 0.08380230035738251,
+    "mean_tv": 0.04790140182411745
+   },
+   "econ": {
+    "max_tv": 0.3492207852265195,
+    "mean_tv": 0.11213026431424651
+   },
+   "eess": {
+    "max_tv": 0.2042857142857143,
+    "mean_tv": 0.09860747576503387
+   },
+   "gr-qc": {
+    "max_tv": 0.2014399059653247,
+    "mean_tv": 0.11703047398184924
+   },
+   "hep-ex": {
+    "max_tv": 0.044702726866338846,
+    "mean_tv": 0.027670987930263746
+   },
+   "hep-lat": {
+    "max_tv": 0.43578772590842324,
+    "mean_tv": 0.03699935808980571
+   },
+   "hep-ph": {
+    "max_tv": 0.15438596491228068,
+    "mean_tv": 0.0938132337593646
+   },
+   "hep-th": {
+    "max_tv": 0.1892361111111111,
+    "mean_tv": 0.0978526307437553
+   },
+   "math": {
+    "max_tv": 0.08608938701327312,
+    "mean_tv": 0.04465479723741649
+   },
+   "math-ph": {
+    "max_tv": 0.34335498720741114,
+    "mean_tv": 0.029289416867194856
+   },
+   "nlin": {
+    "max_tv": 0.044702726866338846,
+    "mean_tv": 0.027670987930263746
+   },
+   "nucl-ex": {
+    "max_tv": 0.044702726866338846,
+    "mean_tv": 0.027670987930263746
+   },
+   "nucl-th": {
+    "max_tv": 0.044702726866338846,
+    "mean_tv": 0.027670987930263746
+   },
+   "physics": {
+    "max_tv": 0.15139389088968921,
+    "mean_tv": 0.09361630579200464
+   },
+   "q-bio": {
+    "max_tv": 0.34389544821057616,
+    "mean_tv": 0.15033596903586638
+   },
+   "q-fin": {
+    "max_tv": 0.5056608249021558,
+    "mean_tv": 0.08256339820342826
+   },
+   "quant-ph": {
+    "max_tv": 0.16393442622950816,
+    "mean_tv": 0.0982975966973803
+   },
+   "stat": {
+    "max_tv": 0.17679738562091502,
+    "mean_tv": 0.10571584094315024
+   }
+  }
+ },
+ "population": {
+  "alphabet_cells": 27,
+  "alphabet_mode": "default",
+  "censor_detail": {},
+  "censoring_statement": "single-version trajectories have no observable transition (deposit-surface censoring, not evidence of stability); the last observed version of every trajectory is the latest as of the 2026-08 fetch and later versions may exist",
+  "context_mode": "category",
+  "head_rows_superseded": 2067,
+  "superseded_by_mode_pair": {
+   "arxiv_atom_metadata -> arxiv_atom_version_history": 2067
+  },
+  "test_transitions": 1010,
+  "train_transitions": 2210,
+  "trajectories_multiversion": 2067,
+  "trajectories_single_version_censored": 2933,
+  "trajectories_total": 5000,
+  "transitions_censored_missing_metric": 0,
+  "transitions_total": 3220
+ },
+ "schema": "orion.v2.sd20-operator-discovery.v2",
+ "skipped_arms": {}
+}
