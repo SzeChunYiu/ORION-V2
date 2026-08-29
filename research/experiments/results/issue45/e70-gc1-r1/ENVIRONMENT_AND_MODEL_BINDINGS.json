@@ -1,0 +1,34 @@
+{
+  "schema_version": "orion.v2.issue45.e70-gc1.env-bindings.v1",
+  "run_id": "e70-gc1-r1",
+  "python": {
+    "implementation": "CPython",
+    "version": "3.13.5",
+    "venv": "/projects/hep/fs9/users/scyiu/orion-v2-wave6/.venv",
+    "note": "System python 3.12.3 could not import venv pip-setuptools (bare-LD busybox env); a 3.13.5 venv built from a full toolchain resolves all imports."
+  },
+  "codex_cli": {
+    "version": "0.150.1",
+    "build": "x86_64-unknown-linux-musl (static)",
+    "binary_path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/codex-cli/pkg150/package/vendor/x86_64-unknown-linux-musl/bin/codex",
+    "binary_sha256": "abf1bb1643a79f73aa78ee627e111e02d4f8c98f25813a0cf6ce277709664386",
+    "registry_shasums_receipt": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e70-gc1-r1/infra/codex_binaries_sha256.txt"
+  },
+  "model": {
+    "id": "gpt-5.6-terra",
+    "bound_via": "ORION_CODEX_BIN -> codex 0.150.1 exec; per-arm prompts built by scripts/orion_codex_arms.py",
+    "probe_receipt": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e70-gc1-r1/infra/codex_0.150.1_probe_gpt-5.6-terra.log"
+  },
+  "arm_executable": {
+    "path": "scripts/orion_codex_arms.py",
+    "sha256": "df38cafb63f4f15029305f1b65b8fc8825b1de65013016d4f1e7ffae2641343f"
+  },
+  "pilot_entrypoint": {
+    "path": "scripts/run_orion_generated_composition_pilot.sh",
+    "sha256": "4375472614ef4c966a40bcbfaa4a84e805e657f77796ed5108e6f9d7b8b7358d"
+  },
+  "credential_values_logged": false,
+  "workdir": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e70-gc1-r1",
+  "codex_home": "/projects/hep/fs9/users/scyiu/orion-v2-e45/codex-home",
+  "env_exports": ["CODEX_HOME", "ORION_CODEX_BIN", "ORION_GC1_WORKDIR", "PATH prepend of venv"]
+}
