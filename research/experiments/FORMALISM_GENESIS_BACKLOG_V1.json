@@ -1,0 +1,27 @@
+{
+  "schema_version": "orion.v2.formalism-genesis-backlog.v1",
+  "status": "PROSPECTIVE_BACKLOG",
+  "owner_issue": 48,
+  "tasks": [
+    {"id": "FG00", "action": "run unit tests and exact reference semantics", "terminal": "REFERENCE_ONLY"},
+    {"id": "FG10", "action": "generate and execute >=160 representation-collision tasks", "depends_on": ["FG00"]},
+    {"id": "FG20", "action": "generate and execute >=120 generalized-object/closure tasks", "depends_on": ["FG00"]},
+    {"id": "FG30", "action": "generate and execute >=160 relation-operation-invariant tasks", "depends_on": ["FG00"]},
+    {"id": "FG40", "action": "generate and execute >=120 axiom/rule-synthesis tasks with exact countermodels", "depends_on": ["FG00"]},
+    {"id": "FG50", "action": "generate and execute >=120 rival-formalism semantics/equivalence tasks", "depends_on": ["FG00"]},
+    {"id": "FG60", "action": "generate and execute >=120 conservative-extension/recovery tasks", "depends_on": ["FG00"]},
+    {"id": "FG70", "action": "run balanced new-formalism-vs-parent-vs-local-patch decision study", "depends_on": ["FG10", "FG20", "FG30", "FG40", "FG50", "FG60"]},
+    {"id": "FG80", "action": "run >=80 fresh post-freeze mini-frontier episodes requiring intermediate representation invention", "depends_on": ["FG70"]},
+    {"id": "FG90", "action": "exploratory real-frontier lane; no positive claim without independent proof/empirical verification", "depends_on": ["FG80"]}
+  ],
+  "preserve": [
+    "parent_sufficiency",
+    "local_patch_sufficiency",
+    "false_formalism_invention",
+    "inconsistent_candidates",
+    "failed_semantics",
+    "old_case_regressions",
+    "negative_hidden_results",
+    "cannot_check"
+  ]
+}
