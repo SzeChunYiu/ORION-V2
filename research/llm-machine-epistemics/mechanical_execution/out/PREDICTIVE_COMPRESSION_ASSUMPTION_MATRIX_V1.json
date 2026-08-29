@@ -1,0 +1,126 @@
+{
+  "mutations": [
+    {
+      "corollary": "sufficiency is closed under refinement: without the entropy-minimality selection rule the S_P isomorph is not singled out",
+      "mutation": "M1_no_entropy_minimality",
+      "verdict": "FAIL_COUNTEREXAMPLE_FOUND",
+      "witness": {
+        "H_SP_bits": "0.91829583405448951478707227728114984209314774102581439378908598787443156112769189585561380825142157542431399582",
+        "H_Z_bits": "1.5849625007211561814537389439478165087598144076924810604557526545410982277943585625222804749180882420909806625",
+        "Q": [
+          0,
+          0,
+          1
+        ],
+        "Z": [
+          0,
+          1,
+          2
+        ],
+        "blocks_SP": 2,
+        "blocks_Z": 3,
+        "n": 3,
+        "probs": [
+          "1/3",
+          "1/3",
+          "1/3"
+        ]
+      }
+    },
+    {
+      "corollary": "approximate sufficiency destroys isomorphism uniqueness but preserves the exact floor H(Q|Z) >= H(S_P) - H(Z)",
+      "floor_identity_exact_and_cellwise_nonneg": true,
+      "floor_identity_trials": 200,
+      "floor_statement": "H(Q|Z) >= H(S_P) - H(Z) exactly; approximate sufficiency cannot beat the data-processing entropy floor",
+      "mutation": "M2_approximate_predictive_sufficiency",
+      "verdict": "PASS",
+      "witness": null
+    },
+    {
+      "chain_rule_and_cellwise_consistent": true,
+      "corollary": "exact stochastic sufficiency inherits the deterministic floor H(Z) >= H(S_P) cellwise, and independent noise entropy is paid additively on top of it",
+      "counterexamples": 0,
+      "exactly_sufficient_stochastic_channels": 16,
+      "mutation": "M3_stochastic_representation",
+      "non_vacuous": true,
+      "verdict": "PASS"
+    },
+    {
+      "chain_rule_and_cellwise_consistent": true,
+      "corollary": "on the exact deterministic lattice, entropy and cardinality minimality both select the Q-partition structure; the two criteria coincide",
+      "mutation": "M4_cardinality_minimality",
+      "non_vacuous": true,
+      "verdict": "PASS",
+      "worlds_with_sufficient_maps": 18668
+    },
+    {
+      "corollary": "the T2 isomorphism is pinned only on the positive-mass support; nominal zero-mass histories are free labels",
+      "mutation": "M5_zero_mass_histories",
+      "verdict": "FAIL_COUNTEREXAMPLE_FOUND",
+      "witness": {
+        "H_bits": "1",
+        "Q": [
+          0,
+          1,
+          0
+        ],
+        "Z_a": [
+          0,
+          1,
+          0
+        ],
+        "Z_b": [
+          0,
+          1,
+          1
+        ],
+        "agree_on_positive_mass": true,
+        "both_sufficient": [
+          true,
+          true
+        ],
+        "probs": [
+          "1/2",
+          "1/2",
+          "0"
+        ]
+      }
+    },
+    {
+      "corollary": "no metric stability: entropy closeness to the minimum carries no sufficiency guarantee (the sufficient lattice is not entropy-isolated)",
+      "mutation": "M6_near_minimal_entropy",
+      "search_family": "all 2-block Z on n=4, denominator d<=16 grids",
+      "verdict": "FAIL_COUNTEREXAMPLE_FOUND",
+      "witness": {
+        "H_SP_bits": "0.91829583405448951478707227728114984209314774102581439378908598787443156112769189585561380825142157542431399582",
+        "H_Z_bits": "1",
+        "Q": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "Z": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "delta": "1/10",
+        "probs": [
+          "1/6",
+          "1/6",
+          "1/6",
+          "1/2"
+        ]
+      }
+    }
+  ],
+  "note": "grid searches are exhaustive over the registered families; witnesses are frozen smallest-denominator hits; a FAIL_COUNTEREXAMPLE_FOUND verdict on a mutation reports the MUTATED statement failing, not the parent theorem",
+  "schema_version": "orion.51.predictive-compression-assumption-matrix.v1",
+  "summary": {
+    "mutation_counterexamples_frozen": 3,
+    "mutations_executed": 6,
+    "mutations_survived_by_parent_conclusion": 3
+  }
+}

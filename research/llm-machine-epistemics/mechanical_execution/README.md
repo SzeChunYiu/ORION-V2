@@ -65,3 +65,9 @@ python3 llm_epistemics_claim_crosscheck.py --output out/CLAIM_RECEIPT_CROSSCHECK
 ```
 
 Negative-control tested: corrupting one expected key makes the row FAIL with exit 3.
+
+## Mutation battery (2026-08-29)
+
+| Script | Spec | Output (out/) | Verdict |
+|---|---|---|---|
+| `llm_epistemics_mutation_audit.py` | §9 M1–M6 | `PREDICTIVE_COMPRESSION_ASSUMPTION_MATRIX_V1.json` | MATRIX_COMPLETE — 6/6 mutations executed; M1/M5/M6 refuted with frozen smallest-denominator witnesses (entropy-minimality selection, positive-mass support pinning, exact-minimality no-stability are load-bearing); M2/M3/M4 survived (parent conclusions robust to approximate/stochastic/cardinality relaxations). FAIL_COUNTEREXAMPLE_FOUND on a mutation = the MUTATED statement fails, not the parent theorem. Re-running `llm_epistemics_theorem_locations.py` now flips the M1–M6 row PENDING_RUN → SUPPORTED (37/38 rows supported). |
