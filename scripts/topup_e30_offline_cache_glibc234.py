@@ -36,6 +36,8 @@ GLIBC234_ARTIFACTS: list[tuple[str, str, str]] = [
     ("ruamel.yaml.clib", "0.2.0", "ruamel.yaml.clib-0.2.0-cp36-cp36m-manylinux1_x86_64.whl"),
     ("ruamel.yaml", "0.16.10", "ruamel.yaml-0.16.10-py2.py3-none-any.whl"),
     ("pytest-mock", "1.2", "pytest_mock-1.2-py2.py3-none-any.whl"),
+    ("wcwidth", "0.1.9", "wcwidth-0.1.9-py2.py3-none-any.whl"),
+    ("future", "0.18.2", "future-0.18.2.tar.gz"),
 ]
 
 PROJECT_OVERRIDES: dict[str, dict[str, str]] = {
@@ -118,6 +120,7 @@ COOKIECUTTER_TEST_PREREQUISITES = [
     "packaging==20.4",
     "pytest==5.4.2",
     "wcwidth==0.1.9",
+    "future==0.18.2",
 ]
 COOKIECUTTER_SETUP_COMMAND_PREREQUISITES = {
     COOKIECUTTER_DEVELOP_DIGEST: ["ruamel.yaml.clib==0.2.0", "ruamel.yaml==0.16.10"],
