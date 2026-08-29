@@ -44,6 +44,7 @@ def binding(v):
 def episode_dict(ep):
     value = asdict(ep)
     value["outcome_class"] = ep.outcome_class.value
+    value["proxy_metrics"] = dict(ep.proxy_metrics)
     return value
 
 
