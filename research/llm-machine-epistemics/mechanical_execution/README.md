@@ -71,3 +71,18 @@ Negative-control tested: corrupting one expected key makes the row FAIL with exi
 | Script | Spec | Output (out/) | Verdict |
 |---|---|---|---|
 | `llm_epistemics_mutation_audit.py` | §9 M1–M6 | `PREDICTIVE_COMPRESSION_ASSUMPTION_MATRIX_V1.json` | MATRIX_COMPLETE — 6/6 mutations executed; M1/M5/M6 refuted with frozen smallest-denominator witnesses (entropy-minimality selection, positive-mass support pinning, exact-minimality no-stability are load-bearing); M2/M3/M4 survived (parent conclusions robust to approximate/stochastic/cardinality relaxations). FAIL_COUNTEREXAMPLE_FOUND on a mutation = the MUTATED statement fails, not the parent theorem. Re-running `llm_epistemics_theorem_locations.py` now flips the M1–M6 row PENDING_RUN → SUPPORTED (37/38 rows supported). |
+
+
+## Nearest-theorem claim matrix (2026-08-29)
+
+| Script | Spec | Output (out/) | Verdict |
+|---|---|---|---|
+| `llm_epistemics_nearest_theorem_matrix.py` | §14 / V5 §10 | `NEAREST_THEOREM_CLAIM_MATRIX_V3.csv` + `.json` + `.md` | PASS — 47 (claim × parent) rows covering C01–C18 × 16 parent sources; overlap marks are a frozen transcription of the three NEAREST_WORK passes + HOSTILE_REVIEW_DECISION_MATRIX (no novelty authority in the script). Exact theorem/definition locations come from `nearest_parent_theorem_locations.json` (retrieval receipt; VERIFIED rows carry source URLs; VERIFIED_SECONDARY = location fixed via ≥2 secondary sources with the primary full text not rendered — kept as a distinct status, never upgraded; remaining items print CANNOT_CHECK_FULL_TEXT). Consistency rules R1–R6: ledger coverage, PARENT_OWNED claims need a PARENT_OWNED row, CANDIDATE claims need a residual row, parents/items must exist in the retrieval receipt. |
+
+Re-run:
+
+```bash
+python3 llm_epistemics_nearest_theorem_matrix.py --output out/NEAREST_THEOREM_CLAIM_MATRIX_V3.csv
+```
+
+Negative-control tested: flipping C16's overlap to PARTIAL_OVERLAP fails R2 (exit 3); renaming its claim id to C99 fails R1.
