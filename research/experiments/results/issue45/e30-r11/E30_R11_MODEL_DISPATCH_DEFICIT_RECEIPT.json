@@ -1,0 +1,50 @@
+{
+  "schema_version": "orion.v2.e30-r11.model-dispatch-deficit-receipt.v1",
+  "recorded_at": "2026-08-29T11:35:00Z",
+  "recorded_by": "compute agent B (ORION-V2 session, ssh lunarc)",
+  "campaign": "campaign-e30-r11-disposition-offline-core4-rep3-deficit-topup-20260828-ffcc8ed6",
+  "frozen_identity": "E30 R11 disposition-offline-core4-rep3-deficit-topup, source commit ffcc8ed613a6e75ce4ae530f1d25be21bd25dd3b, sensitivity freeze E30_SYNTAX_SENSITIVITY_CONTROL_FREEZE_V1.json (sha256 prefix 4663435c3036cc18d5b6, verified pre-outcome)",
+  "summary": "Terminal E30 R11 evaluation is DEFERRED: model dispatch infrastructure did not reliably serve the frozen request set. After the agent array and a guarded deficit topup, 286/480 requests hold real model responses (COMPLETED_PROPOSAL_ONLY) and 194/480 remain dispatch-failed envelopes (EXECUTION_FAILED_MODEL_RESPONSE, HTTP 429, containing no model output). Per coordinator triage rule (failure >50% and not improving -> cancel, no terminal aggregate on a mixed run), the topup was cancelled and no terminal analysis was produced.",
+  "dispatch_deficit_timeline": {
+    "agent_array_3552883": "retry array 0-47 completed 2026-08-29T11:41Z leaving 247/480 response files present but carrying agent_status=EXECUTION_FAILED_MODEL_RESPONSE (HTTP 429). The file-presence completeness gate passed because the one-shot writer records failures as envelopes rather than absent files; the deficit was detected during evaluation when 247/436 records resolved to stock CANNOT_CHECK_AGENT_OR_ARTIFACT_UNAVAILABLE with reason 'HTTP Error 429: Too Many Requests'.",
+    "topup_3553156": "Guarded deficit topup (e30_agents_r11_429_topup.sbatch): looping passes, per-item guard re-reads the envelope and invokes the one-shot command ONLY while status==EXECUTION_FAILED_MODEL_RESPONSE, so a real model response can never be overwritten or resampled; 2-way concurrency, ORION_ARM_HTTP_RETRIES=10, command pattern identical to the frozen agent array.",
+    "topup_cancellation": "Cancelled at ~78 min of pass 1 per triage rule (scancel 3553156)."
+  },
+  "triage_numbers": {
+    "per_attempt": "168 echoed attempts: 52 success / 116 failed = 69.0% dispatch failure",
+    "by_arm_attempt_failure": {
+      "SIMPLE_DIRECT": "22/38 = 58%",
+      "SAME_MODEL_REFLECTION": "34/45 = 76%",
+      "F0_PARENT_FEDERATION": "35/49 = 71%",
+      "F2_ORION_METABOLIC_FULL": "25/36 = 69%"
+    },
+    "by_sequence_bucket_success_rate": ["39%", "29%", "32%", "39%", "29%", "18%"],
+    "verdict": "Systematic, not improving (flat-to-degrading; final bucket worst). Failure is dispatch-level and approximately uniform across arms -- not an arm-specific artifact. Dispatch failure dominates the reflection/federation arms slightly (longer prompts), consistent with throughput unavailability rather than content rejection."
+  },
+  "final_response_stock_at_cancellation": {
+    "total": {"COMPLETED_PROPOSAL_ONLY": 286, "EXECUTION_FAILED_MODEL_RESPONSE": 194},
+    "by_arm": {
+      "SIMPLE_DIRECT": {"COMPLETED_PROPOSAL_ONLY": 84, "EXECUTION_FAILED_MODEL_RESPONSE": 36},
+      "SAME_MODEL_REFLECTION": {"COMPLETED_PROPOSAL_ONLY": 66, "EXECUTION_FAILED_MODEL_RESPONSE": 54},
+      "F0_PARENT_FEDERATION": {"COMPLETED_PROPOSAL_ONLY": 69, "EXECUTION_FAILED_MODEL_RESPONSE": 54},
+      "F2_ORION_METABOLIC_FULL": {"COMPLETED_PROPOSAL_ONLY": 67, "EXECUTION_FAILED_MODEL_RESPONSE": 53}
+    },
+    "by_rep": {
+      "r1": {"COMPLETED_PROPOSAL_ONLY": 99, "EXECUTION_FAILED_MODEL_RESPONSE": 61},
+      "r2": {"COMPLETED_PROPOSAL_ONLY": 100, "EXECUTION_FAILED_MODEL_RESPONSE": 60},
+      "r3": {"COMPLETED_PROPOSAL_ONLY": 87, "EXECUTION_FAILED_MODEL_RESPONSE": 73}
+    }
+  },
+  "outcome_access_statement": "NO terminal aggregate was produced from the mixed stock. No analysis, summarize, or rollup output for the 09:50Z stock was written to any aggregate path, and nothing was posted to #45. The frozen-lane per-task evaluation run (job 3553149, 2026-08-29T09:50-10:09Z over the then-present stock) wrote per-task evaluation records only (233 frozen-lane records + 247 stock CANNOT_CHECK_AGENT_OR_ARTIFACT_UNAVAILABLE records for the dispatch-failed envelopes); these are per-task receipts under the stock CANNOT_CHECK mapping and were not aggregated. The earlier 02:35Z partial aggregate written by a prior actor remains preserved and disclosed (run/confirmatory-r{1,2,3}/aggregate-superseded-partial-20260829T0235Z/, byte-identical live copies relocated to .../live-moved-20260829T1147Z/) and is not read as a result.",
+  "disposition": {
+    "terminal_evaluation": "DEFERRED -- partial execution voided for terminal purposes; no aggregate mixes completed responses with dispatch-failed envelopes.",
+    "re_dispatch_legitimacy": "The 194 remaining (rep,arm,task) requests are dispatch infrastructure failures containing no model output (HTTP 429 envelopes). Re-dispatching exactly those requests under the SAME frozen R11 identity (same requests, same task map, same one-shot command, envelope-status guard) once model dispatch is reliable is legitimate execution repair, not resampling: no completed model response is overwritten. The 286 completed responses stay frozen as-is.",
+    "deferral_window": "Sep 3-4, 2026, alongside SD70 and E70-GC1 (same model-availability root cause). Re-dispatch job pattern: single-job guarded loop as in e30_agents_r11_429_topup.sbatch (job 3553181 pattern exists).",
+    "after_re_dispatch": "When 480/480 real responses are present: re-run run/e30_r11_arm_eval_frozen_lane.py via e30_eval_r11_core480_single.sbatch (its resume logic re-evaluates exactly the items whose evaluation record lacks the frozen-lane marker or whose response changed), then the frozen analysis sequence (e30_analysis_r11_terminal.sbatch) into fresh terminal480 paths, then the syntax sensitivity sequence (run/e30_r11_syntax_audit_and_build.py -> e30_eval_r11_syntax_single.sbatch -> run/e30_r11_sensitivity_rollup.py)."
+  },
+  "evaluation_lane_state_preserved": {
+    "adapter": "run/e30_r11_arm_eval_frozen_lane.py (v3, sha256 829abb411ccf0bd71182eea4c11d2e07fae60f3b743872f7b4fce0a8635aae93) -- stock orchestration/predicates with the campaign frozen baseline runtime; fully validated 8/8 projects + positive/negative controls (see E30_R11_EVALUATION_LANE_DEFECT_AND_ADAPTER.json)",
+    "per_task_records": "run/confirmatory-r{1,2,3}/evaluations/<arm>/<task>.json: 233 frozen-lane records (56 compile PASS, 0 infrastructure errors, 39 native_success) + 247 stock CANNOT_CHECK records for dispatch-failed envelopes; these will be superseded per-task after re-dispatch",
+    "responses": "run/confirmatory-r{1,2,3}/responses/<arm>/<task>.json -- 286 real (frozen, never to be rewritten) + 194 dispatch-failed envelopes (only these are re-dispatchable)"
+  }
+}
