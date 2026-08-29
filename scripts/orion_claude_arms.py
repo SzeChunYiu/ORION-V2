@@ -171,12 +171,25 @@ def run_arm(
         }
 
 
+def _urlopen_with_retry(req: urllib.request.Request, *, timeout: int) -> Any:
+    attempts = int(os.environ.get("ORION_ARM_HTTP_RETRIES", "8"))
+    for attempt in range(attempts):
+        try:
+            return urllib.request.urlopen(req, timeout=timeout)
+        except urllib.error.HTTPError as exc:
+            if exc.code in {429, 503} and attempt + 1 < attempts:
+                time.sleep(min(120.0, 2.0 ** attempt))
+                continue
+            raise
+    raise RuntimeError("HTTP retries exhausted")
+
+
 def _anthropic_compatible_call(prompt: str) -> tuple[str, dict[str, int]]:
     base = os.environ["ANTHROPIC_BASE_URL"].rstrip("/")
     url = base + ("/messages" if base.endswith("/v1") else "/v1/messages")
     body = json.dumps({"model": os.environ["ANTHROPIC_MODEL"], "max_tokens": int(os.environ.get("ORION_ARM_MAX_TOKENS", "6000")), "temperature": 0, "system": "You are a bounded experimental software-debugging arm.", "messages": [{"role": "user", "content": prompt}]}).encode()
     req = urllib.request.Request(url, data=body, headers={"x-api-key": os.environ["ANTHROPIC_AUTH_TOKEN"], "anthropic-version": "2023-06-01", "content-type": "application/json"})
-    with urllib.request.urlopen(req, timeout=int(os.environ.get("ORION_ARM_HTTP_TIMEOUT", "1800"))) as raw:
+    with _urlopen_with_retry(req, timeout=int(os.environ.get("ORION_ARM_HTTP_TIMEOUT", "1800"))) as raw:
         data = json.load(raw)
     text = "".join(str(x.get("text", "")) for x in data.get("content", []) if isinstance(x, dict))
     return text, dict(data.get("usage", {}))
@@ -205,7 +218,7 @@ def _gemini_call(prompt: str) -> tuple[str, dict[str, int]]:
         data=body,
         headers={"content-type": "application/json", "x-goog-api-key": key},
     )
-    with urllib.request.urlopen(req, timeout=int(os.environ.get("ORION_ARM_HTTP_TIMEOUT", "1800"))) as raw:
+    with _urlopen_with_retry(req, timeout=int(os.environ.get("ORION_ARM_HTTP_TIMEOUT", "1800"))) as raw:
         data = json.load(raw)
     text = "".join(
         str(part.get("text", ""))
