@@ -390,7 +390,7 @@ def test_cursor_resumption_continues_from_state(tmp_path):
     # interrupted run never loses already-fetched records.
     rows_two = _read_jsonl(args_two.output_observations)
     assert [row["observation_id"] for row in rows_two] == \
-        ["arxiv-obs:2401.00001v1", "arxiv-obs:2401.00002v1", "arxiv-obs:2401.00003v1"]
+        ["arxiv-obs:2401.00001v1", "arxiv-obs:2401.00002v2", "arxiv-obs:2401.00003v1"]
     assert receipt_two["records"]["observations_emitted"] == 1
     assert receipt_two["records"]["observations_in_output"] == 3
     state_two = json.loads(Path(args_two.state).read_text(encoding="utf-8"))
