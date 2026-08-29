@@ -516,22 +516,25 @@ def test_tox_run_test_is_normalized_to_pytest(tmp_path: Path, monkeypatch) -> No
     python = tmp_path / "env/bin/python"
     python.parent.mkdir(parents=True)
     python.write_text("", encoding="utf-8")
+    cache, _manifest = offline_cache(tmp_path, "pytest-5.4.2-py3-none-any.whl")
     captured: list[list[str]] = []
 
     def fake_capture(command, **kwargs):
         captured.append(list(command))
-        return {"command": list(command), "returncode": 1, "stdout_tail": "failed",
-                "stderr_tail": "", "timed_out": False}
+        is_install = "pip" in command and "install" in command
+        return {"command": list(command), "returncode": 0 if is_install else 1,
+                "stdout_tail": "failed", "stderr_tail": "", "timed_out": False}
 
     monkeypatch.setattr(runtime, "_capture", fake_capture)
     receipt = runtime.execute_test_binding(
         tmp_path, project="cookiecutter", environment_python=python,
-        stage="registered_failing_test",
+        stage="registered_failing_test", offline_cache=cache,
     )
     assert receipt["status"] == "FAIL"
     normalized = tmp_path / ".orion-e30-support/bugsinpy_run_test.sh"
     assert normalized.read_text(encoding="utf-8") == f"{python} -m pytest -q -o addopts= tests/test_foo.py::test_bar\n"
-    assert captured[0] == ["bash", str(normalized)]
+    assert ["bash", str(normalized)] in captured
+    assert any("pytest==5.4.2" in " ".join(command) for command in captured)
     assert any(item["kind"] == "BOUND_TOX_TO_PYTEST"
                for item in receipt.get("compatibility_interventions", []))
 
@@ -556,8 +559,10 @@ def test_utf16_test_support_is_normalized_before_execution(
     )
     assert receipt["status"] == "PASS"
     normalized = tmp_path / ".orion-e30-support/bugsinpy_run_test.sh"
-    assert normalized.read_text(encoding="utf-8") == "pytest -q\n"
+    assert normalized.read_text(encoding="utf-8") == f"{python} -m pytest -q\n"
     assert receipt["command"] == ["bash", str(normalized)]
+    assert any(item["kind"] == "BOUND_PYTEST_TO_MODULE_INVOCATION"
+               for item in receipt.get("compatibility_interventions", []))
     assert receipt["support_files"][0]["normalized_sha256"] == hashlib.sha256(
         normalized.read_bytes()
     ).hexdigest()

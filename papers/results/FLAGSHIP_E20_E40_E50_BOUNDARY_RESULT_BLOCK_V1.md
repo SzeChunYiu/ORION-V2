@@ -14,3 +14,7 @@ Two scientific-domain native studies further sharpen the lower bound without yet
 ## Field-status consequence
 
 These results narrow rather than expand the claim. Machine Epistemics remains a research programme hypothesis until a higher-order residual survives strongest-parent comparison in confirmatory real-problem studies and at least two materially different scientific domains. If F0 or simpler controls reproduce the protected decisions with lower cost, the flagship must contract to interfield integration, domain federation or parent sufficiency. A negative or contracted terminal is scientifically valid and must remain visible in the main text.
+
+## Terminal counters
+
+F2_SUPERIORITY = NOT_ESTABLISHED
