@@ -6,6 +6,7 @@ on:
       - "papers/llm-machine-epistemics/**"
       - "scripts/check_llm_three_history_compatibility.py"
       - "scripts/assemble_llm_pra_release.py"
+      - "scripts/assemble_llm_pra_release_safe_fonts.py"
       - "tests/unit/test_llm_three_history_compatibility.py"
       - ".github/workflows/llm-pra-release-package.yml"
   workflow_dispatch:
@@ -50,7 +51,7 @@ jobs:
 
       - name: Assemble and compile arXiv and JMLR candidates
         run: |
-          python scripts/assemble_llm_pra_release.py \
+          python scripts/assemble_llm_pra_release_safe_fonts.py \
             --root "$GITHUB_WORKSPACE" \
             --out-root build/llm-release/packages \
             --jmlr-style build/llm-release/style/jmlr2e.sty \
