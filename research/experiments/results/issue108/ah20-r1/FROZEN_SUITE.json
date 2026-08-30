@@ -1,0 +1,57 @@
+{
+ "answer_contract": "decision|gluing_disposition|global_section_witness_id|holds_across_contexts|transport_verdict|probe_decision|probe_id|horizon_disposition|outside_atlas_witness_id|brief_rationale",
+ "arms": [
+  "SIMPLE_NATIVE",
+  "CURRENT_F0",
+  "CURRENT_F2",
+  "PARENT_LOCAL_GLOBAL",
+  "F2_PLUS_ATLAS_HORIZON"
+ ],
+ "authority": {
+  "claim_limit": "formal/interface discriminator only",
+  "grants_absolute_globality": false,
+  "grants_new_kernel_family": false,
+  "grants_paper_endpoint_change": false,
+  "grants_scientific_truth": false,
+  "grants_total_epistemic_space": false,
+  "parent_sufficiency_is_valid_terminal": true
+ },
+ "classes_new": [
+  "AHC0",
+  "AHC1",
+  "AHC2",
+  "AHC3",
+  "AHC4"
+ ],
+ "classes_reused": [
+  "ELC1",
+  "ELC2",
+  "ELC3",
+  "ELC4",
+  "ELC5",
+  "ELC6",
+  "ELC7",
+  "ELC8"
+ ],
+ "executor_note": "primary codex-cli gpt-5.6-terra; anthropic Messages-API fallback admissible for the whole suite only if the primary is dead before any arm starts, never mixed per-arm within a run (mixed executors force run_valid=false)",
+ "private_oracle_visible_to_solver": false,
+ "reuse_ledger": {
+  "EL10": {
+   "seed": 20260830,
+   "source": "research/experiments/results/issue104/el10-r1",
+   "status": "REUSED_BYTE_IDENTICAL",
+   "tasks": 48
+  },
+  "GR10": {
+   "status": "CANNOT_REUSE__SUITE_NOT_FROZEN"
+  },
+  "MX20": {
+   "status": "CANNOT_REUSE__SUITE_NOT_FROZEN"
+  }
+ },
+ "schema_version": "orion.v2.ah20-freeze.v1",
+ "seed_el10_reuse": 20260830,
+ "seed_new_cases": 20260901,
+ "suite": "AH20",
+ "task_count": 78
+}
