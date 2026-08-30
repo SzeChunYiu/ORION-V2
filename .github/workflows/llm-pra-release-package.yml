@@ -1,0 +1,92 @@
+name: llm-pra-release-package
+
+on:
+  pull_request:
+    paths:
+      - "papers/llm-machine-epistemics/**"
+      - "scripts/check_llm_three_history_compatibility.py"
+      - "scripts/assemble_llm_pra_release.py"
+      - "tests/unit/test_llm_three_history_compatibility.py"
+      - ".github/workflows/llm-pra-release-package.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  release-package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install release toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            pandoc latexmk poppler-utils \
+            texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended
+
+      - name: Run exact three-history compatibility control
+        run: |
+          python scripts/check_llm_three_history_compatibility.py \
+            --json-out build/llm-release/three_history_compatibility.json \
+            --md-out build/llm-release/THREE_HISTORY_COMPATIBILITY_RECEIPT_V1.md
+          python -m pytest -q tests/unit/test_llm_three_history_compatibility.py
+
+      - name: Fetch current official JMLR style
+        run: |
+          mkdir -p build/llm-release/style
+          curl --fail --location --silent --show-error \
+            https://raw.githubusercontent.com/JmlrOrg/jmlr-style-file/master/jmlr2e.sty \
+            -o build/llm-release/style/jmlr2e.sty
+          test -s build/llm-release/style/jmlr2e.sty
+
+      - name: Assemble and compile arXiv and JMLR candidates
+        run: |
+          python scripts/assemble_llm_pra_release.py \
+            --root "$GITHUB_WORKSPACE" \
+            --out-root build/llm-release/packages \
+            --jmlr-style build/llm-release/style/jmlr2e.sty \
+            --compile
+
+      - name: Enforce release candidate invariants
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          receipt = json.loads(Path('build/llm-release/packages/release_receipt.json').read_text())
+          assert receipt['audit']['pass'] is True
+          assert receipt['human_release_authority'] is False
+          assert receipt['scientific_claims_changed'] is False
+          assert receipt['empirical_llm_result_added'] is False
+          for venue in ('arxiv_v1', 'jmlr_v1'):
+              package = receipt['packages'][venue]
+              assert package['compiled_pdf_sha256']
+              assert package['pdf_size_bytes'] > 0
+              assert package['page_count'] is not None
+          jmlr = receipt['packages']['jmlr_v1']
+          assert jmlr['pdf_size_bytes'] < 5 * 1024 * 1024
+          if jmlr['page_count'] > 35:
+              print(f"JMLR_PAGE_PRESSURE={jmlr['page_count']} pages")
+          else:
+              print(f"JMLR_PAGE_COUNT_PASS={jmlr['page_count']}")
+          print('LLM_PRA_RELEASE_PACKAGE_PASS')
+          PY
+
+      - name: Upload mechanical release candidates
+        uses: actions/upload-artifact@v4
+        with:
+          name: llm-pra-release-candidates
+          path: |
+            build/llm-release/packages/
+            build/llm-release/three_history_compatibility.json
+            build/llm-release/THREE_HISTORY_COMPATIBILITY_RECEIPT_V1.md
+          if-no-files-found: error
+          retention-days: 30
