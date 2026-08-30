@@ -1,0 +1,443 @@
+{
+ "schema_version": "orion.v2.e40-matched.rollup.v2",
+ "variant": "e40-m3-cycle1-anchor-revival",
+ "reference_arms_root": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m2",
+ "primary": "mean wasserstein_distance.mean of quantitative_test_evaluation.output_graph (lower better)",
+ "nan_policy": "NaN primaries rank worst for best-selection (never selected while a real run exists; a config with no prediction has no score); a pair whose F0 best-selection or F2 final has no defined primary is CANNOT_CHECK__NO_DEFINED_PRIMARY and is excluded from the contrast with its count reported; NaN runs otherwise stay in the per-run record unchanged",
+ "chain_statistics": {
+  "pairs_total": 12,
+  "pairs_complete": 12,
+  "pairs_cannot_check_no_defined_primary": 0
+ },
+ "degenerate_run_accounting": {
+  "simple_nan_runs_over_total": [
+   0,
+   12
+  ],
+  "f0_nan_runs_over_total": [
+   0,
+   48
+  ],
+  "f2_nan_runs_over_total": [
+   0,
+   48
+  ]
+ },
+ "controls": {
+  "planted": {
+   "control": "planted_feedback_recovery",
+   "target": {
+    "training_regime": "partial_interventional",
+    "fraction_partial_intervention": 0.8
+   },
+   "chosen": [
+    {
+     "training_regime": "interventional",
+     "fraction_partial_intervention": 0.0,
+     "partial_intervention_seed": 0,
+     "model_seed": 0,
+     "omission_estimation_size": 1000
+    },
+    {
+     "training_regime": "partial_interventional",
+     "fraction_partial_intervention": 0.5,
+     "partial_intervention_seed": 0,
+     "model_seed": 0,
+     "omission_estimation_size": 1000
+    },
+    {
+     "training_regime": "partial_interventional",
+     "fraction_partial_intervention": 0.5,
+     "partial_intervention_seed": 0,
+     "model_seed": 0,
+     "omission_estimation_size": 1000
+    },
+    {
+     "training_regime": "partial_interventional",
+     "fraction_partial_intervention": 0.75,
+     "partial_intervention_seed": 0,
+     "model_seed": 0,
+     "omission_estimation_size": 1000
+    },
+    {
+     "training_regime": "partial_interventional",
+     "fraction_partial_intervention": 0.9,
+     "partial_intervention_seed": 0,
+     "model_seed": 0,
+     "omission_estimation_size": 1000
+    },
+    {
+     "training_regime": "partial_interventional",
+     "fraction_partial_intervention": 0.75,
+     "partial_intervention_seed": 0,
+     "model_seed": 0,
+     "omission_estimation_size": 1000
+    },
+    {
+     "training_regime": "partial_interventional",
+     "fraction_partial_intervention": 0.75,
+     "partial_intervention_seed": 0,
+     "model_seed": 0,
+     "omission_estimation_size": 1000
+    },
+    {
+     "training_regime": "partial_interventional",
+     "fraction_partial_intervention": 0.75,
+     "partial_intervention_seed": 0,
+     "model_seed": 0,
+     "omission_estimation_size": 1000
+    },
+    {
+     "training_regime": "partial_interventional",
+     "fraction_partial_intervention": 0.75,
+     "partial_intervention_seed": 0,
+     "model_seed": 0,
+     "omission_estimation_size": 1000
+    }
+   ],
+   "qualities": [
+    0.02332263739822093,
+    0.6411803884299545,
+    0.6411803884299545,
+    0.9877302162356105,
+    0.9518167844230893,
+    0.9877302162356105,
+    0.9877302162356105,
+    0.9877302162356105,
+    0.9877302162356105
+   ],
+   "in_basin_0p8_count": 6,
+   "of": 8,
+   "terminal_quality": 0.9877302162356105,
+   "verdict": "PASS",
+   "rule": "last 3 cycles at planted quality >= 0.9 AND no post-arrival dip below 0.8"
+  },
+  "nullcal": {
+   "control": "permutation_null_calibration",
+   "reps": 400,
+   "n_pairs": 12,
+   "alpha": 0.05,
+   "rejection_rate": 0.055,
+   "accept_band": [
+    0.02,
+    0.09
+   ],
+   "verdict": "PASS"
+  },
+  "uninformative": {
+   "control": "uninformative_feedback_blind_replay",
+   "feedback_rule": "cycle feedback drawn from other-dataset runs only (mismatched config+dataset)",
+   "chains": [
+    {
+     "dataset": "weissmann_k562",
+     "rep": 0,
+     "exp_id": 500200,
+     "blind_final_config": {
+      "training_regime": "partial_interventional",
+      "fraction_partial_intervention": 0.9,
+      "partial_intervention_seed": 3,
+      "model_seed": 0,
+      "omission_estimation_size": 10000
+     },
+     "blind": {
+      "primary": 0.16864014911178743,
+      "true_positives": 148,
+      "false_positives": 262,
+      "false_omission_rate": 0.1809,
+      "corum_tp": 90.0,
+      "string_tp": 231.0,
+      "run_time": 144.4521827697754
+     }
+    },
+    {
+     "dataset": "weissmann_k562",
+     "rep": 1,
+     "exp_id": 500201,
+     "blind_final_config": {
+      "training_regime": "partial_interventional",
+      "fraction_partial_intervention": 0.9,
+      "partial_intervention_seed": 0,
+      "model_seed": 1,
+      "omission_estimation_size": 1000
+     },
+     "blind": {
+      "primary": 0.1877905259393996,
+      "true_positives": 161,
+      "false_positives": 228,
+      "false_omission_rate": 0.182,
+      "corum_tp": 104.0,
+      "string_tp": 233.0,
+      "run_time": 136.03168106079102
+     }
+    },
+    {
+     "dataset": "weissmann_k562",
+     "rep": 2,
+     "exp_id": 500202,
+     "blind_final_config": {
+      "training_regime": "interventional",
+      "fraction_partial_intervention": 0.0,
+      "partial_intervention_seed": 0,
+      "model_seed": 7,
+      "omission_estimation_size": 1000
+     },
+     "blind": {
+      "primary": 0.16688056661438358,
+      "true_positives": 141,
+      "false_positives": 263,
+      "false_omission_rate": 0.19,
+      "corum_tp": 88.0,
+      "string_tp": 229.0,
+      "run_time": 140.8555769920349
+     }
+    },
+    {
+     "dataset": "weissmann_k562",
+     "rep": 3,
+     "exp_id": 500203,
+     "blind_final_config": {
+      "training_regime": "interventional",
+      "fraction_partial_intervention": 0.0,
+      "partial_intervention_seed": 0,
+      "model_seed": 3,
+      "omission_estimation_size": 1000
+     },
+     "blind": {
+      "primary": 0.16533432420687863,
+      "true_positives": 148,
+      "false_positives": 253,
+      "false_omission_rate": 0.178,
+      "corum_tp": 100.0,
+      "string_tp": 240.0,
+      "run_time": 142.1610825061798
+     }
+    },
+    {
+     "dataset": "weissmann_k562",
+     "rep": 4,
+     "exp_id": 500204,
+     "blind_final_config": {
+      "training_regime": "partial_interventional",
+      "fraction_partial_intervention": 0.25,
+      "partial_intervention_seed": 0,
+      "model_seed": 4,
+      "omission_estimation_size": 1000
+     },
+     "blind": {
+      "primary": 0.1730150498851034,
+      "true_positives": 146,
+      "false_positives": 215,
+      "false_omission_rate": 0.18,
+      "corum_tp": 91.0,
+      "string_tp": 214.0,
+      "run_time": 128.90132331848145
+     }
+    },
+    {
+     "dataset": "weissmann_k562",
+     "rep": 5,
+     "exp_id": 500205,
+     "blind_final_config": {
+      "training_regime": "interventional",
+      "fraction_partial_intervention": 0.0,
+      "partial_intervention_seed": 0,
+      "model_seed": 5,
+      "omission_estimation_size": 1000
+     },
+     "blind": {
+      "primary": 0.15607174567691418,
+      "true_positives": 144,
+      "false_positives": 273,
+      "false_omission_rate": 0.215,
+      "corum_tp": 85.0,
+      "string_tp": 228.0,
+      "run_time": 148.75567841529846
+     }
+    },
+    {
+     "dataset": "weissmann_rpe1",
+     "rep": 0,
+     "exp_id": 500206,
+     "blind_final_config": {
+      "training_regime": "interventional",
+      "fraction_partial_intervention": 0.0,
+      "partial_intervention_seed": 0,
+      "model_seed": 0,
+      "omission_estimation_size": 1000
+     },
+     "blind": {
+      "primary": 0.1759346916668028,
+      "true_positives": 44,
+      "false_positives": 138,
+      "false_omission_rate": 0.124,
+      "corum_tp": 5.0,
+      "string_tp": 62.0,
+      "run_time": 88.66525769233704
+     }
+    },
+    {
+     "dataset": "weissmann_rpe1",
+     "rep": 1,
+     "exp_id": 500207,
+     "blind_final_config": {
+      "training_regime": "partial_interventional",
+      "fraction_partial_intervention": 1.0,
+      "partial_intervention_seed": 0,
+      "model_seed": 1,
+      "omission_estimation_size": 1000
+     },
+     "blind": {
+      "primary": 0.15390264600286993,
+      "true_positives": 43,
+      "false_positives": 157,
+      "false_omission_rate": 0.118,
+      "corum_tp": 6.0,
+      "string_tp": 72.0,
+      "run_time": 99.26239681243896
+     }
+    },
+    {
+     "dataset": "weissmann_rpe1",
+     "rep": 2,
+     "exp_id": 500208,
+     "blind_final_config": {
+      "training_regime": "interventional",
+      "fraction_partial_intervention": 0.0,
+      "partial_intervention_seed": 0,
+      "model_seed": 2,
+      "omission_estimation_size": 1000
+     },
+     "blind": {
+      "primary": 0.16150221692008654,
+      "true_positives": 50,
+      "false_positives": 148,
+      "false_omission_rate": 0.134,
+      "corum_tp": 8.0,
+      "string_tp": 75.0,
+      "run_time": 96.47606468200684
+     }
+    },
+    {
+     "dataset": "weissmann_rpe1",
+     "rep": 3,
+     "exp_id": 500209,
+     "blind_final_config": {
+      "training_regime": "interventional",
+      "fraction_partial_intervention": 0.0,
+      "partial_intervention_seed": 0,
+      "model_seed": 3,
+      "omission_estimation_size": 1000
+     },
+     "blind": {
+      "primary": 0.15586995309055876,
+      "true_positives": 41,
+      "false_positives": 156,
+      "false_omission_rate": 0.137,
+      "corum_tp": 6.0,
+      "string_tp": 68.0,
+      "run_time": 94.905757188797
+     }
+    },
+    {
+     "dataset": "weissmann_rpe1",
+     "rep": 4,
+     "exp_id": 500210,
+     "blind_final_config": {
+      "training_regime": "interventional",
+      "fraction_partial_intervention": 0.0,
+      "partial_intervention_seed": 0,
+      "model_seed": 4,
+      "omission_estimation_size": 1000
+     },
+     "blind": {
+      "primary": 0.15323311286361105,
+      "true_positives": 41,
+      "false_positives": 145,
+      "false_omission_rate": 0.11,
+      "corum_tp": 7.0,
+      "string_tp": 54.0,
+      "run_time": 90.40856838226318
+     }
+    },
+    {
+     "dataset": "weissmann_rpe1",
+     "rep": 5,
+     "exp_id": 500211,
+     "blind_final_config": {
+      "training_regime": "partial_interventional",
+      "fraction_partial_intervention": 0.5,
+      "partial_intervention_seed": 0,
+      "model_seed": 5,
+      "omission_estimation_size": 1000
+     },
+     "blind": {
+      "primary": 0.1753235425681266,
+      "true_positives": 60,
+      "false_positives": 155,
+      "false_omission_rate": 0.122,
+      "corum_tp": 7.0,
+      "string_tp": 77.0,
+      "run_time": 111.24483442306519
+     }
+    }
+   ]
+  }
+ },
+ "primary_comparison": {
+  "contrast": "F2_final vs F0_best (conservative)",
+  "mean_d": -0.007413520834557391,
+  "perm_p_exact": 0.986083984375,
+  "wins_f2": 2,
+  "wins_f0": 10
+ },
+ "secondary_comparisons": {
+  "both_best": {
+   "mean_d": -0.0012099336519952111,
+   "perm_p_exact": 0.6962890625
+  },
+  "both_final": {
+   "mean_d": 0.0009090283818725051,
+   "perm_p_exact": 0.388427734375
+  }
+ },
+ "secondary_metrics": {
+  "true_positives": {
+   "contrast": "F0_best - F2_final",
+   "mean_d": -13.083333333333334,
+   "perm_p_exact": 0.995849609375
+  },
+  "false_positives": {
+   "contrast": "F0_best - F2_final",
+   "mean_d": 2.6666666666666665,
+   "perm_p_exact": 0.2744140625
+  },
+  "false_omission_rate": {
+   "contrast": "F0_best - F2_final",
+   "mean_d": -1.6666666666667145e-05,
+   "perm_p_exact": 0.50390625
+  },
+  "corum_tp": {
+   "contrast": "F0_best - F2_final",
+   "mean_d": -9.416666666666666,
+   "perm_p_exact": 0.9951171875
+  },
+  "string_tp": {
+   "contrast": "F0_best - F2_final",
+   "mean_d": -25.75,
+   "perm_p_exact": 0.99072265625
+  }
+ },
+ "per_dataset_collapse_check": {
+  "weissmann_k562": {
+   "f2_final_median_tp": 157.0,
+   "simple_median_tp": 135.5,
+   "passes": true
+  },
+  "weissmann_rpe1": {
+   "f2_final_median_tp": 45.5,
+   "simple_median_tp": 54.5,
+   "passes": false
+  }
+ },
+ "gate": "METABOLIC_DRAG_MATCHED_NATIVE"
+}
