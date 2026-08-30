@@ -1,0 +1,42 @@
+{
+  "schema_version": "orion.v2.e40-matched.prospective-design.v1",
+  "lane_id": "E40_T3A_MATCHED_F0_F2",
+  "owner_issue": 45,
+  "frozen_date": "2026-08-30",
+  "readiness_after_this_freeze": "DESIGN_FROZEN__RUNNER_AND_DISPATCH_NEXT",
+  "question": "Does the ORION metabolic loop (F2) improve orchestration of a native causal learner over the parent federation (F0) and a naive single config (SIMPLE) at matched native compute, sharing the pinned native learner, data and invocation budget?",
+  "substrate": {
+    "causalbench_commit": "1a2143cffdc85f835b41ce8d52034be1bf903e71",
+    "invocation": "python -m causalscbench.apps.main_app",
+    "datasets": ["weissmann_k562", "weissmann_rpe1"],
+    "data_sha256_source": "research/experiments/results/issue45/e40/RUN_IDENTITY.json",
+    "model": "pc",
+    "fixed_flags": {"do_filter": true, "subset_data": 0.05, "max_path_length": -1},
+    "orchestratable_knobs": ["training_regime", "fraction_partial_intervention", "partial_intervention_seed", "model_seed", "subset_data", "max_path_length", "omission_estimation_size"],
+    "held_out_final_score": "quantitative_test_evaluation.output_graph",
+    "feedback_channel": "metrics.json with quantitative_test_evaluation redacted (external-knowledge evals, omission stats, arguments only)"
+  },
+  "arms": {
+    "SIMPLE_DIRECT_CONTROL": {"native_invocations_per_chain": 1, "protocol": "E40 R1 default config verbatim"},
+    "F0_PARENT_FEDERATION_MATCHED": {"native_invocations_per_chain": 4, "protocol": "all K=4 configs committed upfront, no feedback"},
+    "F2_ORION_METABOLIC_FULL_MATCHED": {"native_invocations_per_chain": 4, "protocol": "config k chosen after cycles 1..k-1 redacted feedback"}
+  },
+  "chains": {"datasets": 2, "model_seed_reps": 6, "chains_per_arm": 12, "native_runs_total": 108},
+  "leakage_rule": "quantitative_test_evaluation redacted from all arm-visible feedback; final score read once after configs frozen",
+  "independent_adjudicator": "upstream CausalBench scorer at pinned commit + frozen E40_MATCHED_ROLLUP_V1 (sha256 committed in dispatch receipt)",
+  "analysis_preregistered": {
+    "primary": "mean held-out Wasserstein distance (output_graph), lower better",
+    "primary_comparison": "F2_final vs F0_max (conservative); secondary both-max and both-final",
+    "secondary": ["true_positives", "false_positives", "false_omission_rate", "corum_tp", "string_tp"],
+    "null": "arm-label permutation over 12 chain-level paired statistics, one-sided, 5000 perms, exact p",
+    "positive_control": "planted-feedback replay: F2 harness must recover >=3/4 of planted optimum sequence else CHECKER_INVALID__NO_VERDICT",
+    "no_fabrication_control": "identical uninformative feedback replay: no F2 advantage beyond chance"
+  },
+  "gates": {
+    "F2_METABOLIC_ADVANTAGE_MATCHED_NATIVE": "F2_final < F0_max pooled primary, perm p<0.05, and no per-dataset collapse (F2_final median TP >= SIMPLE)",
+    "NO_DETECTED_ADVANTAGE_MATCHED_NATIVE": "direction holds, p>=0.05, negative retained",
+    "METABOLIC_DRAG_MATCHED_NATIVE": "F2_final >= F0_max, negative retained, feeds component attribution"
+  },
+  "boundary_inheritance": "success-resource claims on generated causal-discovery orchestration only; no biological claim; no cross-domain transfer license; authority false",
+  "authority": {"field_status": false, "scientific_truth": false, "publication_readiness": false, "grants_cross_domain_transfer": false}
+}
