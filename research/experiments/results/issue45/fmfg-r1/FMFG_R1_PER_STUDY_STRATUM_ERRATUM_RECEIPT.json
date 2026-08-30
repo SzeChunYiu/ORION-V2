@@ -1,0 +1,172 @@
+{
+  "receipt_id": "FMFG_R1_PER_STUDY_STRATUM_ERRATUM_RECEIPT",
+  "schema": "orion-v2.erratum.v1",
+  "date_corrected": "2026-08-30",
+  "corrects": [
+    {
+      "record": "FMFG_R1_SUITE_TERMINAL_RESULTS_RECEIPT",
+      "field": "per_study_F2_vs_STATIC.ties_at_ceiling_8_of_8",
+      "was": [
+        "FM10",
+        "FM20",
+        "FM40",
+        "FM50",
+        "FG10",
+        "FG20",
+        "FG30",
+        "FG40",
+        "FG70"
+      ],
+      "now": [
+        "FM10",
+        "FM20",
+        "FM40",
+        "FM50",
+        "FG10",
+        "FG20",
+        "FG30",
+        "FG40"
+      ],
+      "reason": "FG80 excluded as a non-tie is correct; but FG70 is a 7/7 tie (F2_FULL=7, F2_STATIC=7), not 8/8. True 8/8-ceiling ties number 8, not 9. MD section 3 carries the same error ('FG10/20/30/40, FG70 at 8/8 for both')."
+    },
+    {
+      "record": "FMFG_R1_GENERATED_SUITE_PAPER_INTERPRETATION_V1 (ORION-paper _portfolio/claims; downstream of this receipt)",
+      "field": "per-study stratum table, FM20 row, STRONGEST_DOMAIN_FORMAL_PARENT column",
+      "was": "8",
+      "now": "6",
+      "reason": "Transcription error introduced when the 5-arm stratum table was built from EVALUATION_ROWS.json. FM20 truth: F0=6/8, F2_FULL=8/8, F2_STATIC=8/8, PARENT=6/8, TARGET=7/8. The FM20 signal is a parent-routing loss (both parent arms 6/8 vs F2/STATIC 8/8), NOT a federation-specific loss."
+    }
+  ],
+  "trigger": "Paper-import recomputation during the P-A manuscript V4 import pass (ORION-paper PR #9): per-feed-subset paired statistics were computed from EVALUATION_ROWS.json and the FM20 parent column failed to reconcile.",
+  "provenance": {
+    "source": "EVALUATION_ROWS.json (campaign artifact, billy-old ~/sd10run/ORION-V2/.orion-formal-discovery-suite; local mirror sha256 51affd367a4c9057299125b5e12b743174b1ec11ea44ed11b56058316a174351)",
+    "rows": 560,
+    "arm_parity": "112 tasks/arm, 0 duplicate (task_id, arm)",
+    "cross_check": "Per-arm correct totals reproduce EVALUATION_SUMMARY.json exactly: TARGET 100, STATIC 100, F2_FULL 99, PARENT 98, F0 97"
+  },
+  "verified_per_study_matrix": {
+    "FG10": {
+      "F0": 8,
+      "F2_FULL": 8,
+      "F2_STATIC": 8,
+      "PARENT": 8,
+      "TARGET": 8
+    },
+    "FG20": {
+      "F0": 8,
+      "F2_FULL": 8,
+      "F2_STATIC": 8,
+      "PARENT": 8,
+      "TARGET": 8
+    },
+    "FG30": {
+      "F0": 8,
+      "F2_FULL": 8,
+      "F2_STATIC": 8,
+      "PARENT": 8,
+      "TARGET": 7
+    },
+    "FG40": {
+      "F0": 8,
+      "F2_FULL": 8,
+      "F2_STATIC": 8,
+      "PARENT": 8,
+      "TARGET": 8
+    },
+    "FG50": {
+      "F0": 7,
+      "F2_FULL": 6,
+      "F2_STATIC": 8,
+      "PARENT": 8,
+      "TARGET": 8
+    },
+    "FG60": {
+      "F0": 8,
+      "F2_FULL": 7,
+      "F2_STATIC": 8,
+      "PARENT": 8,
+      "TARGET": 8
+    },
+    "FG70": {
+      "F0": 7,
+      "F2_FULL": 7,
+      "F2_STATIC": 7,
+      "PARENT": 7,
+      "TARGET": 8
+    },
+    "FG80": {
+      "F0": 4,
+      "F2_FULL": 6,
+      "F2_STATIC": 4,
+      "PARENT": 4,
+      "TARGET": 6
+    },
+    "FM10": {
+      "F0": 8,
+      "F2_FULL": 8,
+      "F2_STATIC": 8,
+      "PARENT": 8,
+      "TARGET": 8
+    },
+    "FM20": {
+      "F0": 6,
+      "F2_FULL": 8,
+      "F2_STATIC": 8,
+      "PARENT": 6,
+      "TARGET": 7
+    },
+    "FM30": {
+      "F0": 6,
+      "F2_FULL": 6,
+      "F2_STATIC": 6,
+      "PARENT": 6,
+      "TARGET": 5
+    },
+    "FM40": {
+      "F0": 8,
+      "F2_FULL": 8,
+      "F2_STATIC": 8,
+      "PARENT": 8,
+      "TARGET": 8
+    },
+    "FM50": {
+      "F0": 8,
+      "F2_FULL": 8,
+      "F2_STATIC": 8,
+      "PARENT": 8,
+      "TARGET": 8
+    },
+    "FM60": {
+      "F0": 3,
+      "F2_FULL": 3,
+      "F2_STATIC": 3,
+      "PARENT": 3,
+      "TARGET": 3
+    }
+  },
+  "verified_matrix_column_sums": {
+    "F0": 97,
+    "F2_FULL": 99,
+    "F2_STATIC": 100,
+    "PARENT": 98,
+    "TARGET": 100
+  },
+  "unaffected": [
+    "arm_table (100/100/99/98/97 of 112)",
+    "all primary paired comparisons vs F2_FULL and their exact McNemar p (5/6 net-1 p=1.0 twice; 5/4 net+1 p=1.0; 6/4 net+2 p=0.7539)",
+    "authority grants (grants_F2_superiority=false, grants_new_mathematical_theory=false, grants_new_scientific_truth=false)",
+    "aggregate verdict and arm ranking (F0 weakest arm in aggregate at 97/112)",
+    "FG80 win / FG50,FG60 losses / ties=11 (the tie count and the win/loss set are unchanged; only the ceiling sub-classification of FG70)"
+  ],
+  "interpretation_impact": [
+    "FM20 (anti-unification control): BOTH parent arms sit at 6/8 (F0 federation and STRONGEST single parent) vs 8/8 for F2_FULL and F2_STATIC, 7/8 for TARGET. Attribution shifts from 'federation-specific loss' to 'parent-routing loss'; federation is not uniquely defective on this study.",
+    "Aggregate statement stands: F0 remains the weakest arm overall (97/112 vs PARENT 98/112), so 'federation weakest in aggregate' survives; 'federation uniquely negative at FM20' does not.",
+    "FG70 (new-formalism-vs-parent-patch): formal arms 7/8, TARGET 8/8 - a near-ceiling tie among formal arms with the direct control nominally ahead; not an 8/8 ceiling study."
+  ],
+  "paper_impact": {
+    "P-B V4 (merged 57eae38)": "AUDITED UNAFFECTED: FM20 is not in P-B's feed; its FG80 (6 vs 4) and ceiling ('eleven of fourteen ... most often at the task ceiling') sentences verify against the corrected matrix.",
+    "P-A V4 (PR #9, open)": "Amended before merge: anti-unification-control sentence, federation-attribution prose, subset paired statistics added, terminal enum updated.",
+    "P-C / FLAGSHIP / P-F": "Pending imports must use the verified matrix (this receipt)."
+  },
+  "custody_note": "No frozen suite, oracle, or dispatch artifact is modified by this erratum; only analysis-layer stratum bookkeeping is corrected. Recomputation script and outputs preserved in the paper-import working notes."
+}
