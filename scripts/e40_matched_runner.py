@@ -329,6 +329,19 @@ def write_decision(cycle_dir: Path, *, cycle: int, prompt: str, decision: dict[s
 
 
 # ------------------------------------------------------------------ chain exec
+# Upstream main_app accepts enum VALUES (partial_interventional) but serializes
+# enum NAMES into arguments.json (PartialIntervational — upstream's own spelling;
+# Interventional; Observational). Canonicalize explicitly: no mechanical mapping
+# survives the upstream typo, and an unknown string must fail loud (drift).
+_REGIME_CANON = {"observational": "obs", "partialinterventional": "partial",
+                 "partialintervational": "partial", "interventional": "inter",
+                 "intervational": "inter"}
+
+
+def canon_regime(s: Any) -> str:
+    return _REGIME_CANON.get(str(s).lower().replace("_", ""), f"UNKNOWN:{s}")
+
+
 def task_split(task: int) -> tuple[str, str, int]:
     arm, ds, rep = ARMS[task // (len(DATASETS) * REPS)], DATASETS[(task // REPS) % len(DATASETS)], task % REPS
     return arm, ds, rep
@@ -344,6 +357,7 @@ def run_chain(task: int, *, dry_run: bool = False) -> dict[str, Any]:
     chain_dir.mkdir(parents=True, exist_ok=True)
     if chain_done(chain_dir):
         return {"task": task, "status": "ALREADY_COMPLETE"}
+    (chain_dir / "CANNOT_CHECK.json").unlink(missing_ok=True)  # stale marker from an aborted pass
     exp_base = 500000 + task * K_CYCLES
     cycles: list[dict[str, Any]] = []
 
@@ -361,7 +375,12 @@ def run_chain(task: int, *, dry_run: bool = False) -> dict[str, Any]:
         if args_path.exists():
             ran = json.loads(args_path.read_text())
             for key in ("model_name", "training_regime", "subset_data", "max_path_length"):
-                if str(ran.get(key)) != str(cfg[key]):
+                ran_v, cfg_v = str(ran.get(key)), str(cfg[key])
+                if key == "training_regime":
+                    if canon_regime(ran_v) != canon_regime(cfg_v):
+                        raise ChainCannotCheck(f"exp_id={exp_id} arguments.json drift on {key}"
+                                               f" (recorded {ran_v!r} vs passed {cfg_v!r})")
+                elif ran_v != str(cfg[key]):
                     raise ChainCannotCheck(f"exp_id={exp_id} arguments.json drift on {key}")
         fb = redacted_feedback(metrics)
         fb_path.write_text(json.dumps(fb, sort_keys=True))
@@ -533,6 +552,14 @@ def control_uninformative(*, dry_run: bool = False) -> dict[str, Any]:
                 pool[ds].append(fb)
     out_dir = CONTROLS / "uninformative"
     out_dir.mkdir(parents=True, exist_ok=True)
+    missing = [ds for ds in DATASETS if not pool[ds]]
+    if missing:
+        doc = {"control": "uninformative_feedback_blind_replay",
+               "verdict": "CANNOT_CHECK__NO_FEEDBACK_POOL",
+               "missing_datasets": missing,
+               "hint": "F2 chains must complete first (redacted feedback files build the pool)"}
+        (out_dir / "uninformative.json").write_text(json.dumps(doc, indent=1))
+        return doc
     rows: list[dict[str, Any]] = []
     idx = 0
     for ds in DATASETS:
@@ -753,6 +780,15 @@ def selftest() -> int:
             failures.append(f"validator accepts {why}")
         except ValueError:
             pass
+    # custody canonicalization: upstream records enum NAMES (incl. its
+    # 'PartialIntervational' spelling) while the CLI takes enum VALUES
+    for passed, recorded, same in (("observational", "Observational", True),
+                                   ("partial_interventional", "PartialIntervational", True),
+                                   ("interventional", "Interventional", True),
+                                   ("partial_interventional", "Interventional", False),
+                                   ("observational", "QuasiExperimental", False)):
+        if (canon_regime(passed) == canon_regime(recorded)) != same:
+            failures.append(f"regime canon mismatch: {passed!r} vs {recorded!r}")
     if DRY_RUN_TEMPLATE.exists():
         fb = redacted_feedback(DRY_RUN_TEMPLATE)
         if "quantitative_test_evaluation" in fb:
