@@ -34,7 +34,7 @@ def sha256(path: Path) -> str:
 
 
 def patch_once(text: str, pattern: str, replacement: str, label: str, *, flags: int = 0) -> str:
-    out, count = re.subn(pattern, replacement, text, count=1, flags=flags)
+    out, count = re.subn(pattern, lambda _m: replacement, text, count=1, flags=flags)
     if count != 1:
         raise RuntimeError(f"expected one {label} replacement, got {count}")
     return out
@@ -45,7 +45,7 @@ def patch_flagship(tex_path: Path) -> None:
     text = patch_once(
         text,
         re.escape(r"\author{Author metadata pending human release}"),
-        r"\\author{Sze Chun Yiu\\\\\\texttt{sze-chun.yiu@fysik.su.se}}",
+        r"\author{Sze Chun Yiu\\\texttt{sze-chun.yiu@fysik.su.se}}",
         "flagship author",
     )
     text = patch_once(
@@ -63,7 +63,7 @@ def patch_llm_arxiv(tex_path: Path) -> None:
     text = patch_once(
         text,
         re.escape(r"\author{Author metadata pending human release}"),
-        r"\\author{Sze Chun Yiu\\\\\\texttt{sze-chun.yiu@fysik.su.se}}",
+        r"\author{Sze Chun Yiu\\\texttt{sze-chun.yiu@fysik.su.se}}",
         "LLM arXiv author",
     )
     text = patch_once(
@@ -81,13 +81,13 @@ def patch_llm_jmlr(tex_path: Path) -> None:
     text = patch_once(
         text,
         re.escape(r"\ShortHeadings{Prospective Revision Adequacy}{Author metadata pending}"),
-        r"\\ShortHeadings{Prospective Revision Adequacy}{Sze Chun Yiu}",
+        r"\ShortHeadings{Prospective Revision Adequacy}{Sze Chun Yiu}",
         "JMLR short author",
     )
     text = patch_once(
         text,
         re.escape(r"\author{\name Author metadata pending human release}"),
-        r"\\author{\\name Sze Chun Yiu \\email sze-chun.yiu@fysik.su.se\n\\addr Independent researcher}",
+        "\\author{\\name Sze Chun Yiu \\email sze-chun.yiu@fysik.su.se\n\\addr Independent researcher}",
         "JMLR author",
     )
     text = patch_once(
