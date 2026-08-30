@@ -176,7 +176,3 @@ The task is therefore not to declare Machine Epistemics or a completed global ep
 ## Transparency and versioning note
 
 This Perspective is a research-programme proposal and synthesis. It does not claim that a distinct field has already been established. Empirical examples from the associated programme must be labeled according to their actual evidential status, including negative and parent-sufficient results. Large language model tools contributed materially to literature discovery, formalization, critique, software and drafting; AI systems are not authors, and human authors must independently review and adopt every scientific claim and citation before public release.
-
-## Bibliography source
-
-Use `papers/flagship/FLAGSHIP_REFERENCES_V14_CORRECTED.bib`, `papers/flagship/FLAGSHIP_REFERENCES_V15_NEIGHBOR_SUPPLEMENT.bib`, and `papers/flagship/FLAGSHIP_REFERENCES_V16_FOUNDATION_SUPPLEMENT.bib`. The status of 2026 preprints/forthcoming works must be refreshed immediately before arXiv upload and again before journal submission.
