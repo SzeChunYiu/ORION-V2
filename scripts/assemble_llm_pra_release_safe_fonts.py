@@ -4,9 +4,11 @@
 The scientific master and generated scientific prose are unchanged. The wrapper
 only adjusts serialization/toolchain details needed for reliable PDF builds:
 
-- disable pdfTeX microtype font expansion on hosted runners; and
-- tell Pandoc to preserve the frozen master's `\\[ ... \\]` / `\\( ... \\)` math
-  delimiters as TeX math instead of escaping their contents as ordinary text.
+- disable pdfTeX microtype font expansion on hosted runners;
+- preserve the frozen master's `\\[ ... \\]` / `\\( ... \\)` math delimiters as
+  TeX math instead of escaping their contents as ordinary text; and
+- shift body headings one level upward after the standalone manuscript title is
+  removed, so top-level sections render as 1, 2, ... rather than 0.1, 0.2, ....
 """
 
 from __future__ import annotations
@@ -37,6 +39,7 @@ def _pandoc_fragment(markdown_path: Path) -> str:
             str(markdown_path),
             "--from=markdown+raw_tex+tex_math_dollars+tex_math_single_backslash+pipe_tables+fenced_code_blocks",
             "--to=latex",
+            "--shift-heading-level-by=-1",
             "--wrap=none",
         ],
         capture=True,
