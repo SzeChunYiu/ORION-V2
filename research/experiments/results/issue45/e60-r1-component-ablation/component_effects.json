@@ -1,0 +1,3430 @@
+{
+  "F2_MINUS_COUNTERPROBE": {
+    "component_disposition": "CANNOT_CHECK_MISSING_OUTCOMES",
+    "critical_failure": {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+      "checkable_task_count": 0,
+      "discordant_left_win_probability": null,
+      "discordant_left_win_probability_exact_ci95": [
+        null,
+        null
+      ],
+      "exact_discordant_p": null,
+      "missing_task_ids": [
+        "bugsinpy-ansible-1",
+        "bugsinpy-ansible-2",
+        "bugsinpy-ansible-3",
+        "bugsinpy-ansible-4",
+        "bugsinpy-ansible-5",
+        "bugsinpy-ansible-6",
+        "bugsinpy-black-1",
+        "bugsinpy-black-2",
+        "bugsinpy-black-3",
+        "bugsinpy-black-4",
+        "bugsinpy-black-5",
+        "bugsinpy-cookiecutter-1",
+        "bugsinpy-cookiecutter-2",
+        "bugsinpy-cookiecutter-3",
+        "bugsinpy-cookiecutter-4",
+        "bugsinpy-fastapi-1",
+        "bugsinpy-fastapi-2",
+        "bugsinpy-fastapi-3",
+        "bugsinpy-fastapi-4",
+        "bugsinpy-fastapi-5",
+        "bugsinpy-pandas-1",
+        "bugsinpy-pandas-2",
+        "bugsinpy-pandas-3",
+        "bugsinpy-pandas-4",
+        "bugsinpy-pandas-5",
+        "bugsinpy-scrapy-1",
+        "bugsinpy-scrapy-2",
+        "bugsinpy-scrapy-3",
+        "bugsinpy-scrapy-4",
+        "bugsinpy-scrapy-5",
+        "bugsinpy-tornado-1",
+        "bugsinpy-tornado-2",
+        "bugsinpy-tornado-3",
+        "bugsinpy-tornado-4",
+        "bugsinpy-tornado-5",
+        "bugsinpy-tqdm-1",
+        "bugsinpy-tqdm-2",
+        "bugsinpy-tqdm-3",
+        "bugsinpy-tqdm-4",
+        "bugsinpy-tqdm-5"
+      ],
+      "paired_table": {
+        "both_false": 0,
+        "both_true": 0,
+        "left_only": 0,
+        "right_only": 0
+      },
+      "risk_difference": {
+        "bootstrap_repetitions": 10000,
+        "bootstrap_stratification": "NONE",
+        "bootstrap_unit": "TASK",
+        "ci95": [
+          null,
+          null
+        ],
+        "estimate": null,
+        "pair_count": 0,
+        "seed": 20260828
+      }
+    },
+    "left_arm": "F2_ORION_METABOLIC_FULL",
+    "left_only_task_ids": [],
+    "paired_task_count": 40,
+    "project_strata": {
+      "ansible": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-ansible-1",
+            "bugsinpy-ansible-2",
+            "bugsinpy-ansible-3",
+            "bugsinpy-ansible-4",
+            "bugsinpy-ansible-5",
+            "bugsinpy-ansible-6"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 6,
+        "right_arm": "F2_MINUS_COUNTERPROBE",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 6,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 5,
+            "both_true": 1,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 6,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            0.3559216047481944,
+            94.57823947491124
+          ],
+          "difference_iqr": [
+            0.5583572403993458,
+            50.092362177791074
+          ],
+          "estimate": 39.221036757497735,
+          "exact_sign_p": 0.21875,
+          "median_difference": 1.482464513508603,
+          "missing_task_ids": [],
+          "pair_count": 6,
+          "seed": 20260828
+        }
+      },
+      "black": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-black-1",
+            "bugsinpy-black-2",
+            "bugsinpy-black-3",
+            "bugsinpy-black-4",
+            "bugsinpy-black-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_COUNTERPROBE",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 5,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            -4.803929965477437,
+            0.23912884593009948
+          ],
+          "difference_iqr": [
+            -4.431098178960383,
+            0.00697719119489193
+          ],
+          "estimate": -2.07678858358413,
+          "exact_sign_p": 1.0,
+          "median_difference": -0.037647814489901066,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      },
+      "cookiecutter": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-cookiecutter-1",
+            "bugsinpy-cookiecutter-2",
+            "bugsinpy-cookiecutter-3",
+            "bugsinpy-cookiecutter-4"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 4,
+        "right_arm": "F2_MINUS_COUNTERPROBE",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 4,
+          "discordant_left_win_probability": 1.0,
+          "discordant_left_win_probability_exact_ci95": [
+            0.024999999999999967,
+            1.0
+          ],
+          "exact_discordant_p": 1.0,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 3,
+            "both_true": 0,
+            "left_only": 1,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.75
+            ],
+            "estimate": 0.25,
+            "pair_count": 4,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            -0.750140018411912,
+            0.39881451101973653
+          ],
+          "difference_iqr": [
+            -0.08358516893349588,
+            0.32713090477045625
+          ],
+          "estimate": -0.02694494288880378,
+          "exact_sign_p": 0.625,
+          "median_difference": 0.27049067872576416,
+          "missing_task_ids": [],
+          "pair_count": 4,
+          "seed": 20260828
+        }
+      },
+      "fastapi": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-fastapi-1",
+            "bugsinpy-fastapi-2",
+            "bugsinpy-fastapi-3",
+            "bugsinpy-fastapi-4",
+            "bugsinpy-fastapi-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_COUNTERPROBE",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 5,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            -0.4811524098739028,
+            0.16361630912870168
+          ],
+          "difference_iqr": [
+            -0.4447711808606982,
+            0.19454034883528948
+          ],
+          "estimate": -0.15876805037260056,
+          "exact_sign_p": 1.0,
+          "median_difference": -0.21879091951996088,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      },
+      "pandas": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-pandas-1",
+            "bugsinpy-pandas-2",
+            "bugsinpy-pandas-3",
+            "bugsinpy-pandas-4",
+            "bugsinpy-pandas-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_COUNTERPROBE",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 5,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            0.2615587778389454,
+            1.725576459057629
+          ],
+          "difference_iqr": [
+            0.2506320020183921,
+            1.5097352201119065
+          ],
+          "estimate": 0.9368837017565965,
+          "exact_sign_p": 0.0625,
+          "median_difference": 0.4237384498119354,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      },
+      "scrapy": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-scrapy-1",
+            "bugsinpy-scrapy-2",
+            "bugsinpy-scrapy-3",
+            "bugsinpy-scrapy-4",
+            "bugsinpy-scrapy-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_COUNTERPROBE",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 4,
+            "both_true": 1,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            -5.833221636433154,
+            4.049297618772835
+          ],
+          "difference_iqr": [
+            -0.4778891010209918,
+            0.3507055607624352
+          ],
+          "estimate": -0.6433800525031984,
+          "exact_sign_p": 1.0,
+          "median_difference": -0.06300402898341417,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      },
+      "tornado": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-tornado-1",
+            "bugsinpy-tornado-2",
+            "bugsinpy-tornado-3",
+            "bugsinpy-tornado-4",
+            "bugsinpy-tornado-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_COUNTERPROBE",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 5,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            -0.031564203463494776,
+            2.122513493616134
+          ],
+          "difference_iqr": [
+            0.19187321700155735,
+            0.5573969557881355
+          ],
+          "estimate": 0.8096773342229426,
+          "exact_sign_p": 0.375,
+          "median_difference": 0.24973297212272882,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      },
+      "tqdm": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-tqdm-1",
+            "bugsinpy-tqdm-2",
+            "bugsinpy-tqdm-3",
+            "bugsinpy-tqdm-4",
+            "bugsinpy-tqdm-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_COUNTERPROBE",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 3,
+            "both_true": 2,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            -0.4914809106849134,
+            1.6710081996396184
+          ],
+          "difference_iqr": [
+            0.032434450928121805,
+            0.11404537595808506
+          ],
+          "estimate": 0.4148687032982707,
+          "exact_sign_p": 0.375,
+          "median_difference": 0.040099627804011106,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      }
+    },
+    "right_arm": "F2_MINUS_COUNTERPROBE",
+    "right_only_task_ids": [],
+    "success": {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+      "checkable_task_count": 40,
+      "discordant_left_win_probability": 1.0,
+      "discordant_left_win_probability_exact_ci95": [
+        0.024999999999999967,
+        1.0
+      ],
+      "exact_discordant_p": 1.0,
+      "missing_task_ids": [],
+      "paired_table": {
+        "both_false": 35,
+        "both_true": 4,
+        "left_only": 1,
+        "right_only": 0
+      },
+      "risk_difference": {
+        "bootstrap_repetitions": 10000,
+        "bootstrap_stratification": "PROJECT",
+        "bootstrap_unit": "TASK",
+        "ci95": [
+          0.0,
+          0.075
+        ],
+        "estimate": 0.025,
+        "pair_count": 40,
+        "seed": 20260828
+      }
+    },
+    "wall_time_seconds": {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+      "bootstrap_repetitions": 10000,
+      "bootstrap_stratification": "PROJECT",
+      "bootstrap_unit": "TASK",
+      "ci95": [
+        -0.2190509350720094,
+        14.102456531568022
+      ],
+      "difference_iqr": [
+        -0.24450576840899885,
+        0.5585399337578565
+      ],
+      "estimate": 5.790772650938015,
+      "exact_sign_p": 0.03847730828420026,
+      "median_difference": 0.22213666047900915,
+      "missing_task_ids": [],
+      "pair_count": 40,
+      "seed": 20260828
+    }
+  },
+  "F2_MINUS_DECOMPOSITION": {
+    "component_disposition": "CANNOT_CHECK_MISSING_OUTCOMES",
+    "critical_failure": {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+      "checkable_task_count": 0,
+      "discordant_left_win_probability": null,
+      "discordant_left_win_probability_exact_ci95": [
+        null,
+        null
+      ],
+      "exact_discordant_p": null,
+      "missing_task_ids": [
+        "bugsinpy-ansible-1",
+        "bugsinpy-ansible-2",
+        "bugsinpy-ansible-3",
+        "bugsinpy-ansible-4",
+        "bugsinpy-ansible-5",
+        "bugsinpy-ansible-6",
+        "bugsinpy-black-1",
+        "bugsinpy-black-2",
+        "bugsinpy-black-3",
+        "bugsinpy-black-4",
+        "bugsinpy-black-5",
+        "bugsinpy-cookiecutter-1",
+        "bugsinpy-cookiecutter-2",
+        "bugsinpy-cookiecutter-3",
+        "bugsinpy-cookiecutter-4",
+        "bugsinpy-fastapi-1",
+        "bugsinpy-fastapi-2",
+        "bugsinpy-fastapi-3",
+        "bugsinpy-fastapi-4",
+        "bugsinpy-fastapi-5",
+        "bugsinpy-pandas-1",
+        "bugsinpy-pandas-2",
+        "bugsinpy-pandas-3",
+        "bugsinpy-pandas-4",
+        "bugsinpy-pandas-5",
+        "bugsinpy-scrapy-1",
+        "bugsinpy-scrapy-2",
+        "bugsinpy-scrapy-3",
+        "bugsinpy-scrapy-4",
+        "bugsinpy-scrapy-5",
+        "bugsinpy-tornado-1",
+        "bugsinpy-tornado-2",
+        "bugsinpy-tornado-3",
+        "bugsinpy-tornado-4",
+        "bugsinpy-tornado-5",
+        "bugsinpy-tqdm-1",
+        "bugsinpy-tqdm-2",
+        "bugsinpy-tqdm-3",
+        "bugsinpy-tqdm-4",
+        "bugsinpy-tqdm-5"
+      ],
+      "paired_table": {
+        "both_false": 0,
+        "both_true": 0,
+        "left_only": 0,
+        "right_only": 0
+      },
+      "risk_difference": {
+        "bootstrap_repetitions": 10000,
+        "bootstrap_stratification": "NONE",
+        "bootstrap_unit": "TASK",
+        "ci95": [
+          null,
+          null
+        ],
+        "estimate": null,
+        "pair_count": 0,
+        "seed": 20260828
+      }
+    },
+    "left_arm": "F2_ORION_METABOLIC_FULL",
+    "left_only_task_ids": [],
+    "paired_task_count": 40,
+    "project_strata": {
+      "ansible": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-ansible-1",
+            "bugsinpy-ansible-2",
+            "bugsinpy-ansible-3",
+            "bugsinpy-ansible-4",
+            "bugsinpy-ansible-5",
+            "bugsinpy-ansible-6"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 6,
+        "right_arm": "F2_MINUS_DECOMPOSITION",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 6,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 5,
+            "both_true": 1,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 6,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            1.4664250341399263,
+            98.85315205405156
+          ],
+          "difference_iqr": [
+            1.7284801818896085,
+            49.25752057239879
+          ],
+          "estimate": 41.23295440804213,
+          "exact_sign_p": 0.21875,
+          "median_difference": 3.705943472450599,
+          "missing_task_ids": [],
+          "pair_count": 6,
+          "seed": 20260828
+        }
+      },
+      "black": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-black-1",
+            "bugsinpy-black-2",
+            "bugsinpy-black-3",
+            "bugsinpy-black-4",
+            "bugsinpy-black-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_DECOMPOSITION",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": 0.0,
+          "discordant_left_win_probability_exact_ci95": [
+            0.0,
+            0.9750000000000001
+          ],
+          "exact_discordant_p": 1.0,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 4,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 1
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              -0.6,
+              0.0
+            ],
+            "estimate": -0.2,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            -76.81720700636507,
+            0.8663208136335016
+          ],
+          "difference_iqr": [
+            -2.22308400971815,
+            0.055555496364831924
+          ],
+          "estimate": -25.62590280212462,
+          "exact_sign_p": 1.0,
+          "median_difference": -0.2990540415048599,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      },
+      "cookiecutter": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-cookiecutter-1",
+            "bugsinpy-cookiecutter-2",
+            "bugsinpy-cookiecutter-3",
+            "bugsinpy-cookiecutter-4"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 4,
+        "right_arm": "F2_MINUS_DECOMPOSITION",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 4,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 3,
+            "both_true": 1,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 4,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            0.19085361855104566,
+            1.2737224879674613
+          ],
+          "difference_iqr": [
+            0.2407401748932898,
+            0.8051952777896076
+          ],
+          "estimate": 0.6307287474628538,
+          "exact_sign_p": 0.125,
+          "median_difference": 0.41520670522004366,
+          "missing_task_ids": [],
+          "pair_count": 4,
+          "seed": 20260828
+        }
+      },
+      "fastapi": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-fastapi-1",
+            "bugsinpy-fastapi-2",
+            "bugsinpy-fastapi-3",
+            "bugsinpy-fastapi-4",
+            "bugsinpy-fastapi-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_DECOMPOSITION",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 5,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            0.0044605121947824955,
+            0.6705025027506053
+          ],
+          "difference_iqr": [
+            -0.010320697911083698,
+            0.7260777237825096
+          ],
+          "estimate": 0.3374815074726939,
+          "exact_sign_p": 1.0,
+          "median_difference": 0.23876404063776135,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      },
+      "pandas": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-pandas-1",
+            "bugsinpy-pandas-2",
+            "bugsinpy-pandas-3",
+            "bugsinpy-pandas-4",
+            "bugsinpy-pandas-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_DECOMPOSITION",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 5,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            0.9818100268021226,
+            2.1055691287852825
+          ],
+          "difference_iqr": [
+            1.3727189037017524,
+            2.2341323336586356
+          ],
+          "estimate": 1.5684066203422844,
+          "exact_sign_p": 0.0625,
+          "median_difference": 1.542650154326111,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      },
+      "scrapy": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-scrapy-1",
+            "bugsinpy-scrapy-2",
+            "bugsinpy-scrapy-3",
+            "bugsinpy-scrapy-4",
+            "bugsinpy-scrapy-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_DECOMPOSITION",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": 0.0,
+          "discordant_left_win_probability_exact_ci95": [
+            0.0,
+            0.9750000000000001
+          ],
+          "exact_discordant_p": 1.0,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 3,
+            "both_true": 1,
+            "left_only": 0,
+            "right_only": 1
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              -0.6,
+              0.0
+            ],
+            "estimate": -0.2,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            -104.76011191960424,
+            -0.777581661194563
+          ],
+          "difference_iqr": [
+            -128.4769760137424,
+            -0.2402898669242859
+          ],
+          "estimate": -52.7688467903994,
+          "exact_sign_p": 0.375,
+          "median_difference": -3.647722286172211,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      },
+      "tornado": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-tornado-1",
+            "bugsinpy-tornado-2",
+            "bugsinpy-tornado-3",
+            "bugsinpy-tornado-4",
+            "bugsinpy-tornado-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_DECOMPOSITION",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 5,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            0.12794293286278843,
+            2.131179478112608
+          ],
+          "difference_iqr": [
+            0.13467765925452113,
+            0.6956819500774145
+          ],
+          "estimate": 0.8875750248320401,
+          "exact_sign_p": 0.0625,
+          "median_difference": 0.24598587909713387,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      },
+      "tqdm": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-tqdm-1",
+            "bugsinpy-tqdm-2",
+            "bugsinpy-tqdm-3",
+            "bugsinpy-tqdm-4",
+            "bugsinpy-tqdm-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_DECOMPOSITION",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 3,
+            "both_true": 2,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            -0.49677534252405164,
+            1.8767249770462513
+          ],
+          "difference_iqr": [
+            0.006588705349713564,
+            1.521522644907236
+          ],
+          "estimate": 0.5903918669559062,
+          "exact_sign_p": 0.375,
+          "median_difference": 0.10774106904864311,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      }
+    },
+    "right_arm": "F2_MINUS_DECOMPOSITION",
+    "right_only_task_ids": [],
+    "success": {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+      "checkable_task_count": 40,
+      "discordant_left_win_probability": 0.0,
+      "discordant_left_win_probability_exact_ci95": [
+        0.0,
+        0.841886116991581
+      ],
+      "exact_discordant_p": 0.5,
+      "missing_task_ids": [],
+      "paired_table": {
+        "both_false": 33,
+        "both_true": 5,
+        "left_only": 0,
+        "right_only": 2
+      },
+      "risk_difference": {
+        "bootstrap_repetitions": 10000,
+        "bootstrap_stratification": "PROJECT",
+        "bootstrap_unit": "TASK",
+        "ci95": [
+          -0.125,
+          0.0
+        ],
+        "estimate": -0.05,
+        "pair_count": 40,
+        "seed": 20260828
+      }
+    },
+    "wall_time_seconds": {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+      "bootstrap_repetitions": 10000,
+      "bootstrap_stratification": "PROJECT",
+      "bootstrap_unit": "TASK",
+      "ci95": [
+        -14.54700873685477,
+        8.884850954955905
+      ],
+      "difference_iqr": [
+        -0.03221803391352296,
+        1.557342884130776
+      ],
+      "estimate": -3.128345785662532,
+      "exact_sign_p": 0.006426576095691416,
+      "median_difference": 0.2683063051663339,
+      "missing_task_ids": [],
+      "pair_count": 40,
+      "seed": 20260828
+    }
+  },
+  "F2_MINUS_NATIVE_RECOVERY": {
+    "component_disposition": "CANNOT_CHECK_MISSING_OUTCOMES",
+    "critical_failure": {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+      "checkable_task_count": 0,
+      "discordant_left_win_probability": null,
+      "discordant_left_win_probability_exact_ci95": [
+        null,
+        null
+      ],
+      "exact_discordant_p": null,
+      "missing_task_ids": [
+        "bugsinpy-ansible-1",
+        "bugsinpy-ansible-2",
+        "bugsinpy-ansible-3",
+        "bugsinpy-ansible-4",
+        "bugsinpy-ansible-5",
+        "bugsinpy-ansible-6",
+        "bugsinpy-black-1",
+        "bugsinpy-black-2",
+        "bugsinpy-black-3",
+        "bugsinpy-black-4",
+        "bugsinpy-black-5",
+        "bugsinpy-cookiecutter-1",
+        "bugsinpy-cookiecutter-2",
+        "bugsinpy-cookiecutter-3",
+        "bugsinpy-cookiecutter-4",
+        "bugsinpy-fastapi-1",
+        "bugsinpy-fastapi-2",
+        "bugsinpy-fastapi-3",
+        "bugsinpy-fastapi-4",
+        "bugsinpy-fastapi-5",
+        "bugsinpy-pandas-1",
+        "bugsinpy-pandas-2",
+        "bugsinpy-pandas-3",
+        "bugsinpy-pandas-4",
+        "bugsinpy-pandas-5",
+        "bugsinpy-scrapy-1",
+        "bugsinpy-scrapy-2",
+        "bugsinpy-scrapy-3",
+        "bugsinpy-scrapy-4",
+        "bugsinpy-scrapy-5",
+        "bugsinpy-tornado-1",
+        "bugsinpy-tornado-2",
+        "bugsinpy-tornado-3",
+        "bugsinpy-tornado-4",
+        "bugsinpy-tornado-5",
+        "bugsinpy-tqdm-1",
+        "bugsinpy-tqdm-2",
+        "bugsinpy-tqdm-3",
+        "bugsinpy-tqdm-4",
+        "bugsinpy-tqdm-5"
+      ],
+      "paired_table": {
+        "both_false": 0,
+        "both_true": 0,
+        "left_only": 0,
+        "right_only": 0
+      },
+      "risk_difference": {
+        "bootstrap_repetitions": 10000,
+        "bootstrap_stratification": "NONE",
+        "bootstrap_unit": "TASK",
+        "ci95": [
+          null,
+          null
+        ],
+        "estimate": null,
+        "pair_count": 0,
+        "seed": 20260828
+      }
+    },
+    "left_arm": "F2_ORION_METABOLIC_FULL",
+    "left_only_task_ids": [],
+    "paired_task_count": 40,
+    "project_strata": {
+      "ansible": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-ansible-1",
+            "bugsinpy-ansible-2",
+            "bugsinpy-ansible-3",
+            "bugsinpy-ansible-4",
+            "bugsinpy-ansible-5",
+            "bugsinpy-ansible-6"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 6,
+        "right_arm": "F2_MINUS_NATIVE_RECOVERY",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 6,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 5,
+            "both_true": 1,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 6,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            0.13172050092058876,
+            95.1168202442738
+          ],
+          "difference_iqr": [
+            -0.53589547064621,
+            49.541608438361436
+          ],
+          "estimate": 39.386392303897686,
+          "exact_sign_p": 0.6875,
+          "median_difference": 2.5459034198429435,
+          "missing_task_ids": [],
+          "pair_count": 6,
+          "seed": 20260828
+        }
+      },
+      "black": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-black-1",
+            "bugsinpy-black-2",
+            "bugsinpy-black-3",
+            "bugsinpy-black-4",
+            "bugsinpy-black-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_NATIVE_RECOVERY",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 5,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            -6.5707955429330465,
+            0.308056859485805
+          ],
+          "difference_iqr": [
+            -4.335853911936283,
+            -0.04238162795081735
+          ],
+          "estimate": -2.6773825901560486,
+          "exact_sign_p": 0.375,
+          "median_difference": -0.06647799164056778,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      },
+      "cookiecutter": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-cookiecutter-1",
+            "bugsinpy-cookiecutter-2",
+            "bugsinpy-cookiecutter-3",
+            "bugsinpy-cookiecutter-4"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 4,
+        "right_arm": "F2_MINUS_NATIVE_RECOVERY",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 4,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 3,
+            "both_true": 1,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 4,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            -2.8255829237168655,
+            0.34442185680381954
+          ],
+          "difference_iqr": [
+            -0.9011753699742258,
+            0.2557532644132152
+          ],
+          "estimate": -0.7816457931185141,
+          "exact_sign_p": 0.625,
+          "median_difference": 0.13622368755750358,
+          "missing_task_ids": [],
+          "pair_count": 4,
+          "seed": 20260828
+        }
+      },
+      "fastapi": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-fastapi-1",
+            "bugsinpy-fastapi-2",
+            "bugsinpy-fastapi-3",
+            "bugsinpy-fastapi-4",
+            "bugsinpy-fastapi-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_NATIVE_RECOVERY",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 5,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            -0.5493154705502092,
+            0.03799414467066527
+          ],
+          "difference_iqr": [
+            -0.3882668758742511,
+            -0.03305608965456486
+          ],
+          "estimate": -0.23595311027020216,
+          "exact_sign_p": 0.375,
+          "median_difference": -0.1713187862187624,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      },
+      "pandas": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-pandas-1",
+            "bugsinpy-pandas-2",
+            "bugsinpy-pandas-3",
+            "bugsinpy-pandas-4",
+            "bugsinpy-pandas-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_NATIVE_RECOVERY",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 5,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            -0.19009279254823924,
+            1.1606364207342268
+          ],
+          "difference_iqr": [
+            -0.14725675014778972,
+            1.2348073883913457
+          ],
+          "estimate": 0.48527181409299375,
+          "exact_sign_p": 1.0,
+          "median_difference": 0.607347602955997,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      },
+      "scrapy": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-scrapy-1",
+            "bugsinpy-scrapy-2",
+            "bugsinpy-scrapy-3",
+            "bugsinpy-scrapy-4",
+            "bugsinpy-scrapy-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_NATIVE_RECOVERY",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 4,
+            "both_true": 1,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            -5.43052826942876,
+            4.042111092526466
+          ],
+          "difference_iqr": [
+            0.0725358841009438,
+            0.686644006986171
+          ],
+          "estimate": -0.3430066712200642,
+          "exact_sign_p": 0.375,
+          "median_difference": 0.2786260340362787,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      },
+      "tornado": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-tornado-1",
+            "bugsinpy-tornado-2",
+            "bugsinpy-tornado-3",
+            "bugsinpy-tornado-4",
+            "bugsinpy-tornado-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_NATIVE_RECOVERY",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 5,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            0.09799804892390965,
+            2.072096631489694
+          ],
+          "difference_iqr": [
+            0.10397326713427901,
+            0.5485852956771851
+          ],
+          "estimate": 0.8364823096431792,
+          "exact_sign_p": 0.0625,
+          "median_difference": 0.24780869204550982,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      },
+      "tqdm": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-tqdm-1",
+            "bugsinpy-tqdm-2",
+            "bugsinpy-tqdm-3",
+            "bugsinpy-tqdm-4",
+            "bugsinpy-tqdm-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_NATIVE_RECOVERY",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 3,
+            "both_true": 2,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            0.11062215203419327,
+            1.9060141257010401
+          ],
+          "difference_iqr": [
+            0.008085644338279963,
+            1.467757502105087
+          ],
+          "estimate": 0.9419369108043611,
+          "exact_sign_p": 0.375,
+          "median_difference": 0.5612583556212485,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      }
+    },
+    "right_arm": "F2_MINUS_NATIVE_RECOVERY",
+    "right_only_task_ids": [],
+    "success": {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+      "checkable_task_count": 40,
+      "discordant_left_win_probability": null,
+      "discordant_left_win_probability_exact_ci95": [
+        null,
+        null
+      ],
+      "exact_discordant_p": null,
+      "missing_task_ids": [],
+      "paired_table": {
+        "both_false": 35,
+        "both_true": 5,
+        "left_only": 0,
+        "right_only": 0
+      },
+      "risk_difference": {
+        "bootstrap_repetitions": 10000,
+        "bootstrap_stratification": "PROJECT",
+        "bootstrap_unit": "TASK",
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "estimate": 0.0,
+        "pair_count": 40,
+        "seed": 20260828
+      }
+    },
+    "wall_time_seconds": {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+      "bootstrap_repetitions": 10000,
+      "bootstrap_stratification": "PROJECT",
+      "bootstrap_unit": "TASK",
+      "ci95": [
+        -0.3424094365199562,
+        14.103362807589875
+      ],
+      "difference_iqr": [
+        -0.1532722591655329,
+        0.8726972346194088
+      ],
+      "estimate": 5.70571284913458,
+      "exact_sign_p": 0.1538599441628321,
+      "median_difference": 0.1501765896100551,
+      "missing_task_ids": [],
+      "pair_count": 40,
+      "seed": 20260828
+    }
+  },
+  "F2_MINUS_SELECTIVE_REOPEN": {
+    "component_disposition": "CANNOT_CHECK_MISSING_OUTCOMES",
+    "critical_failure": {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+      "checkable_task_count": 0,
+      "discordant_left_win_probability": null,
+      "discordant_left_win_probability_exact_ci95": [
+        null,
+        null
+      ],
+      "exact_discordant_p": null,
+      "missing_task_ids": [
+        "bugsinpy-ansible-1",
+        "bugsinpy-ansible-2",
+        "bugsinpy-ansible-3",
+        "bugsinpy-ansible-4",
+        "bugsinpy-ansible-5",
+        "bugsinpy-ansible-6",
+        "bugsinpy-black-1",
+        "bugsinpy-black-2",
+        "bugsinpy-black-3",
+        "bugsinpy-black-4",
+        "bugsinpy-black-5",
+        "bugsinpy-cookiecutter-1",
+        "bugsinpy-cookiecutter-2",
+        "bugsinpy-cookiecutter-3",
+        "bugsinpy-cookiecutter-4",
+        "bugsinpy-fastapi-1",
+        "bugsinpy-fastapi-2",
+        "bugsinpy-fastapi-3",
+        "bugsinpy-fastapi-4",
+        "bugsinpy-fastapi-5",
+        "bugsinpy-pandas-1",
+        "bugsinpy-pandas-2",
+        "bugsinpy-pandas-3",
+        "bugsinpy-pandas-4",
+        "bugsinpy-pandas-5",
+        "bugsinpy-scrapy-1",
+        "bugsinpy-scrapy-2",
+        "bugsinpy-scrapy-3",
+        "bugsinpy-scrapy-4",
+        "bugsinpy-scrapy-5",
+        "bugsinpy-tornado-1",
+        "bugsinpy-tornado-2",
+        "bugsinpy-tornado-3",
+        "bugsinpy-tornado-4",
+        "bugsinpy-tornado-5",
+        "bugsinpy-tqdm-1",
+        "bugsinpy-tqdm-2",
+        "bugsinpy-tqdm-3",
+        "bugsinpy-tqdm-4",
+        "bugsinpy-tqdm-5"
+      ],
+      "paired_table": {
+        "both_false": 0,
+        "both_true": 0,
+        "left_only": 0,
+        "right_only": 0
+      },
+      "risk_difference": {
+        "bootstrap_repetitions": 10000,
+        "bootstrap_stratification": "NONE",
+        "bootstrap_unit": "TASK",
+        "ci95": [
+          null,
+          null
+        ],
+        "estimate": null,
+        "pair_count": 0,
+        "seed": 20260828
+      }
+    },
+    "left_arm": "F2_ORION_METABOLIC_FULL",
+    "left_only_task_ids": [],
+    "paired_task_count": 40,
+    "project_strata": {
+      "ansible": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-ansible-1",
+            "bugsinpy-ansible-2",
+            "bugsinpy-ansible-3",
+            "bugsinpy-ansible-4",
+            "bugsinpy-ansible-5",
+            "bugsinpy-ansible-6"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 6,
+        "right_arm": "F2_MINUS_SELECTIVE_REOPEN",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 6,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 5,
+            "both_true": 1,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 6,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            -0.17237765924073756,
+            87.17956943095972
+          ],
+          "difference_iqr": [
+            -0.03037725284229964,
+            3.6098202819703147
+          ],
+          "estimate": 29.676600774827723,
+          "exact_sign_p": 0.6875,
+          "median_difference": 1.9489351939409971,
+          "missing_task_ids": [],
+          "pair_count": 6,
+          "seed": 20260828
+        }
+      },
+      "black": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-black-1",
+            "bugsinpy-black-2",
+            "bugsinpy-black-3",
+            "bugsinpy-black-4",
+            "bugsinpy-black-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_SELECTIVE_REOPEN",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 5,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            -4.295645677857101,
+            -0.11503483292414872
+          ],
+          "difference_iqr": [
+            -4.309023927897215,
+            -0.05800400720909238
+          ],
+          "estimate": -2.095069223828614,
+          "exact_sign_p": 0.375,
+          "median_difference": -0.48348294477909803,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      },
+      "cookiecutter": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-cookiecutter-1",
+            "bugsinpy-cookiecutter-2",
+            "bugsinpy-cookiecutter-3",
+            "bugsinpy-cookiecutter-4"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 4,
+        "right_arm": "F2_MINUS_SELECTIVE_REOPEN",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 4,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 3,
+            "both_true": 1,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 4,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            -4.973620326258242,
+            0.2539002690464258
+          ],
+          "difference_iqr": [
+            -1.7615929219173267,
+            -0.018819535966031253
+          ],
+          "estimate": -1.6250331287737936,
+          "exact_sign_p": 0.625,
+          "median_difference": -0.15537932910956442,
+          "missing_task_ids": [],
+          "pair_count": 4,
+          "seed": 20260828
+        }
+      },
+      "fastapi": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-fastapi-1",
+            "bugsinpy-fastapi-2",
+            "bugsinpy-fastapi-3",
+            "bugsinpy-fastapi-4",
+            "bugsinpy-fastapi-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_SELECTIVE_REOPEN",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 5,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            -0.10033552199602128,
+            0.6076919249258935
+          ],
+          "difference_iqr": [
+            0.14473140612244606,
+            0.5832630535587668
+          ],
+          "estimate": 0.25447852425277234,
+          "exact_sign_p": 0.375,
+          "median_difference": 0.18413379648700356,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      },
+      "pandas": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-pandas-1",
+            "bugsinpy-pandas-2",
+            "bugsinpy-pandas-3",
+            "bugsinpy-pandas-4",
+            "bugsinpy-pandas-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_SELECTIVE_REOPEN",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 5,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            -0.5056461970321834,
+            0.6150532574392855
+          ],
+          "difference_iqr": [
+            -0.6838248469866812,
+            0.4316742564551532
+          ],
+          "estimate": 0.05470353020355105,
+          "exact_sign_p": 1.0,
+          "median_difference": 0.31084422254934907,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      },
+      "scrapy": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-scrapy-1",
+            "bugsinpy-scrapy-2",
+            "bugsinpy-scrapy-3",
+            "bugsinpy-scrapy-4",
+            "bugsinpy-scrapy-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_SELECTIVE_REOPEN",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 4,
+            "both_true": 1,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            -80.10208767112344,
+            3.56817521750927
+          ],
+          "difference_iqr": [
+            -4.2511140163987875,
+            -0.4693108438514173
+          ],
+          "estimate": -26.171981522161513,
+          "exact_sign_p": 0.375,
+          "median_difference": -0.7041549598798156,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      },
+      "tornado": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-tornado-1",
+            "bugsinpy-tornado-2",
+            "bugsinpy-tornado-3",
+            "bugsinpy-tornado-4",
+            "bugsinpy-tornado-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_SELECTIVE_REOPEN",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 5,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            -0.08955554189160467,
+            2.0138150171376763
+          ],
+          "difference_iqr": [
+            0.01664168620482087,
+            0.5069557544775307
+          ],
+          "estimate": 0.7229205511510373,
+          "exact_sign_p": 0.375,
+          "median_difference": 0.175316009670496,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      },
+      "tqdm": {
+        "critical_failure": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [
+            "bugsinpy-tqdm-1",
+            "bugsinpy-tqdm-2",
+            "bugsinpy-tqdm-3",
+            "bugsinpy-tqdm-4",
+            "bugsinpy-tqdm-5"
+          ],
+          "paired_table": {
+            "both_false": 0,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "NONE",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              null,
+              null
+            ],
+            "estimate": null,
+            "pair_count": 0,
+            "seed": 20260828
+          }
+        },
+        "left_arm": "F2_ORION_METABOLIC_FULL",
+        "left_only_task_ids": [],
+        "paired_task_count": 5,
+        "right_arm": "F2_MINUS_SELECTIVE_REOPEN",
+        "right_only_task_ids": [],
+        "success": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "missing_task_ids": [],
+          "paired_table": {
+            "both_false": 3,
+            "both_true": 2,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260828
+          }
+        },
+        "wall_time_seconds": {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "bootstrap_repetitions": 10000,
+          "bootstrap_stratification": "PROJECT",
+          "bootstrap_unit": "TASK",
+          "ci95": [
+            0.22282464820891618,
+            2.1397500129416587
+          ],
+          "difference_iqr": [
+            0.007223031017929316,
+            2.051029469817877
+          ],
+          "estimate": 1.1812873305752873,
+          "exact_sign_p": 0.375,
+          "median_difference": 1.1562953349202871,
+          "missing_task_ids": [],
+          "pair_count": 5,
+          "seed": 20260828
+        }
+      }
+    },
+    "right_arm": "F2_MINUS_SELECTIVE_REOPEN",
+    "right_only_task_ids": [],
+    "success": {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+      "checkable_task_count": 40,
+      "discordant_left_win_probability": null,
+      "discordant_left_win_probability_exact_ci95": [
+        null,
+        null
+      ],
+      "exact_discordant_p": null,
+      "missing_task_ids": [],
+      "paired_table": {
+        "both_false": 35,
+        "both_true": 5,
+        "left_only": 0,
+        "right_only": 0
+      },
+      "risk_difference": {
+        "bootstrap_repetitions": 10000,
+        "bootstrap_stratification": "PROJECT",
+        "bootstrap_unit": "TASK",
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "estimate": 0.0,
+        "pair_count": 40,
+        "seed": 20260828
+      }
+    },
+    "wall_time_seconds": {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+      "bootstrap_repetitions": 10000,
+      "bootstrap_stratification": "PROJECT",
+      "bootstrap_unit": "TASK",
+      "ci95": [
+        -7.089363433263206,
+        10.431802700935492
+      ],
+      "difference_iqr": [
+        -0.47708281548693776,
+        0.8152504852041602
+      ],
+      "estimate": 1.0322792021208442,
+      "exact_sign_p": 0.6358280026288412,
+      "median_difference": 0.04776996583677828,
+      "missing_task_ids": [],
+      "pair_count": 40,
+      "seed": 20260828
+    }
+  }
+}
