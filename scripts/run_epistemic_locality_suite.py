@@ -389,36 +389,39 @@ def _kill_rule(summary, resources):
     # false_universalization_rate and cross_frame_transport_error are error rates
     # (lower better); invalid_comparison_detection is a success rate (higher better).
     ERR = {"false_universalization_rate", "cross_frame_transport_error"}
+    # Kill fires when, for EVERY critical metric, the best other arm matches or beats
+    # LOCALITY (error rates: other <= locality; success rates: other >= locality)
+    # and LOCALITY costs no more than 1.10x the cheapest other arm.
     protected_residual = False
-    others_match = True
+    others_match_or_beat_all = True
     for m, vals in critical.items():
         loc, best = vals["locality"], vals["best_other"]
         if loc is None or best is None:
-            others_match = False
+            others_match_or_beat_all = False
             continue
         if m in ERR:
-            locality_better = loc < best
-            matched = loc >= best
+            other_matches_or_beats = best <= loc
+            locality_strictly_better = loc < best
         else:
-            locality_better = loc > best
-            matched = loc <= best
-        if locality_better:
+            other_matches_or_beats = best >= loc
+            locality_strictly_better = loc > best
+        if locality_strictly_better:
             protected_residual = True
-        if matched:
-            others_match = False
+        if not other_matches_or_beats:
+            others_match_or_beat_all = False
     loc_cost = resources[LOCALITY]["wall_time_seconds_sum"]
     other_cost = min(resources[o]["wall_time_seconds_sum"] for o in others)
     equal_or_lower_cost = loc_cost <= other_cost * 1.10
-    if others_match and equal_or_lower_cost:
+    if others_match_or_beat_all and equal_or_lower_cost:
         verdict = "INTERFACE_KILLED__CONTRACT_TO_DOCUMENTATION"
     elif protected_residual:
         verdict = "INTERFACE_PROTECTED_RESIDUAL"
     else:
-        verdict = "PARENT_MATCH_ON_CRITICAL_METRICS__NULL_TERMINAL"
+        verdict = "LOCALITY_STRICTLY_WORSE_ON_A_CRITICAL_METRIC__NULL_TERMINAL"
     return {
         "verdict": verdict,
         "protected_residual_any_critical_metric": protected_residual,
-        "others_match_or_beat_locality_on_all_critical": others_match,
+        "others_match_or_beat_locality_on_all_critical": others_match_or_beat_all,
         "locality_cost_ratio_vs_cheapest_other": round(loc_cost / max(other_cost, 1e-9), 3),
         "parent_win_or_null_is_valid_terminal": True,
         "critical_point_estimates": critical,
@@ -475,7 +478,39 @@ def selftest(workdir: Path) -> None:
     for o in oracle.values():
         counts[o["class_id"]] = counts.get(o["class_id"], 0) + 1
     assert all(v == 6 for v in counts.values()), counts
-    print("SELFTEST_OK", counts)
+    # Independent winner-consistency audit: the registered value of the class's
+    # flipping coordinate must appear in the WINNING method's registry fact line,
+    # parsed from public text only (this is what catches registry/context flips).
+    tasks = {t["task_id"]: t for t in read_json(workdir / "public_tasks.json")["tasks"]}
+    flip_coord = {"ELC2": "environment_distribution", "ELC3": "scale",
+                  "ELC4": "timescale", "ELC5": "system_boundary"}
+    checked = 0
+    for tid, o in oracle.items():
+        cls = o["class_id"]
+        if cls not in flip_coord:
+            continue
+        text = tasks[tid]["scenario_text"]
+        ctx_lines = text.split("REGISTERED CONTEXT", 1)[1].split("COUNTERFACTUAL", 1)[0]
+        reg_val = None
+        for line in ctx_lines.splitlines():
+            if line.strip().startswith(f"- {flip_coord[cls]}:"):
+                reg_val = line.split(":", 1)[1].strip()
+                break
+        assert reg_val, (tid, "registered value not found")
+        # registry block lines for FIRST and SECOND
+        reg_block = text.split("METHOD REGISTRY", 1)[1].split("REGISTERED CONTEXT", 1)[0]
+        lines = [l for l in reg_block.splitlines() if l.strip().startswith(("-", "FIRST", "SECOND"))]
+        first_line, second_line = lines[0], lines[1]
+        # ELC4 registered long budget -> winner is the slow crosser (fact mentions "needs")
+        winner_line = first_line if o["decision"] == "FIRST" else second_line
+        if cls == "ELC4":
+            assert "needs" in winner_line or "crosses" in winner_line, (tid, winner_line)
+        else:
+            key = reg_val.split(":")[-1].strip()
+            assert key and key in winner_line, (tid, key, winner_line)
+        checked += 1
+    assert checked == 24, checked
+    print("SELFTEST_OK", counts, "winner_consistency_checked", checked)
 
 
 def main() -> int:

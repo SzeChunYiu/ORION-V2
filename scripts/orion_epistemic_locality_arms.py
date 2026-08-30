@@ -141,19 +141,26 @@ def prompt(req: dict) -> str:
 
 
 def _extract_json(text: str) -> dict:
-    last = None
-    for _ in range(3):
+    stripped = text.strip()
+    if stripped.startswith("{"):
         try:
-            lo = text.rindex("{")
-            hi = text.rindex("}")
-            if lo < hi:
-                return json.loads(text[lo : hi + 1])
-        except ValueError:
+            return json.loads(stripped)
+        except json.JSONDecodeError:
             pass
-        except json.JSONDecodeError as exc:
-            last = exc
-        break
-    raise RuntimeError(f"no JSON object in model response ({last})")
+    # Walk brace pairs from the outside in: last opening brace paired with each
+    # later closing brace, so prose or stray braces inside rationale cannot
+    # make a valid object unparseable.
+    starts = [i for i, ch in enumerate(text) if ch == "{"]
+    ends = [i for i, ch in enumerate(text) if ch == "}"]
+    for lo in reversed(starts):
+        for hi in ends:
+            if hi <= lo:
+                continue
+            try:
+                return json.loads(text[lo : hi + 1])
+            except json.JSONDecodeError:
+                continue
+    raise RuntimeError("no parseable JSON object in model response")
 
 
 def _api_structured(pl: str) -> tuple[dict, int, int]:

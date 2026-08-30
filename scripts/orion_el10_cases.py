@@ -228,12 +228,12 @@ def _registry_order(rng, dom, fact_first, fact_second):
 def _gen_elc1(rng, dom):
     fact_w = (
         "registered benchmark sweep across the FULL registered envelope (every environment, "
-        "scale, timescale and boundary value in the registration) shows strict dominance on "
-        "the registered criterion in every cell"
+        "scale, timescale and boundary value in the registration) shows strict dominance OVER "
+        "THE OTHER REGISTERED METHOD on the registered criterion in every cell"
     )
     fact_l = (
-        "the same full-envelope sweep shows strict domination on the registered criterion "
-        "in every cell"
+        "the same full-envelope sweep shows it STRICTLY DOMINATED BY the other registered "
+        "method on the registered criterion in every cell"
     )
     reg, winner = _registry_order(rng, dom, fact_w, fact_l)
     ctx = _ctx(task_family=dom["task_family"], criterion="the registered primary criterion (single, commensurate)")
@@ -254,7 +254,7 @@ def _gen_elc2(rng, dom):
         winner, env_val = "FIRST", dom["env_a"]
     else:
         reg = _registry(dom["m2"], dom["m1"], fact_b, fact_a)
-        winner, env_val = "SECOND", dom["env_b"]
+        winner, env_val = "SECOND", dom["env_a"]
     ctx = _ctx(environment_distribution=f"registered deployment environment: {env_val}", task_family=dom["task_family"])
     cf = (
         f"a result report established the ranking under the {lead_b if winner == 'FIRST' else lead_a} regime; "
@@ -278,7 +278,7 @@ def _gen_elc3(rng, dom):
         winner, scale_val = "FIRST", f"registered deployment scale: {dom['scale_small']}"
     else:
         reg = _registry(dom["m2"], dom["m1"], fact_big, fact_small)
-        winner, scale_val = "SECOND", f"registered deployment scale: {dom['scale_large']}"
+        winner, scale_val = "SECOND", f"registered deployment scale: {dom['scale_small']}"
     ctx = _ctx(scale=scale_val, task_family=dom["task_family"])
     cf = (
         "a result report established the ranking on the other side of the scale threshold; "
@@ -326,7 +326,7 @@ def _gen_elc5(rng, dom):
         winner, b_val = "FIRST", f"registered boundary: {dom['boundary_closed']}"
     else:
         reg = _registry(dom["m2"], dom["m1"], fact_open, fact_closed)
-        winner, b_val = "SECOND", f"registered boundary: {dom['boundary_open']}"
+        winner, b_val = "SECOND", f"registered boundary: {dom['boundary_closed']}"
     ctx = _ctx(system_boundary=b_val, task_family=dom["task_family"])
     cf = (
         "a result report established the ranking under the opposite boundary configuration; "
