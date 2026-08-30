@@ -99,17 +99,38 @@ So the drag is not an orchestration failure — it is the cost of re-deriving, a
 compute, a configuration the federation already contains, with no counterbalancing
 discovery. The gate label per the frozen map is `METABOLIC_DRAG_MATCHED_NATIVE`.
 
-## 5. Open mechanism question + diagnostic probe (separate root, non-frozen)
+## 5. Mechanism probe — outcome (SLURM 3554405, terminal 2026-08-30)
 
-The NaN mechanism — subset×regime interaction vs regime-intrinsic emptiness under
-`do_filter` at `subset_data=0.05` — is not resolved by this campaign (the label-
-permutation control already marked the partial-interventional cells AMBIGUOUS_EMPTY).
-Diagnostic probe submitted as SLURM array **3554405** (`campaign-e40-m1-probe/`,
-exp_ids 510001–510004, weissmann_k562): {interventional, partial_interventional} ×
-{subset 0.5, 1.0}, outputs quarantined from the frozen campaign tree. Outcome to be
-appended here; it informs any revival design (a follow-up must pre-declare either a
-higher-subset interventional cell or a NaN-robust composite endpoint — a new run
-identity under the frozen contract, not a re-analysis of this one).
+The NaN mechanism question — subset×regime interaction vs regime-intrinsic emptiness
+— is now resolved. Probe (separate root `campaign-e40-m1-probe/`, exp_ids 510001–510004,
+weissmann_k562, all other knobs at campaign pins):
+
+| exp | regime | subset_data | primary | TP | FP |
+|---|---|---|---|---|---|
+| 510001 | interventional | 0.5 | NaN | 0 | 0 |
+| 510002 | partial_interventional | 0.5 | NaN | 0 | 0 |
+| 510003 | interventional | 1.0 (full data) | NaN | 0 | 0 |
+| 510004 | partial_interventional | 1.0 (full data) | NaN | 0 | 0 |
+
+**Regime-intrinsic, subset-independent.** Native logs show `Mean of empty slice.`
+(numpy warning) in every interventional-family run, including full-data: the PC model
+emits an **empty predicted graph** under interventional/partial-interventional
+training, so the output-graph wasserstein evaluates over an empty edge set (NaN mean,
+TP=FP=0). This also resolves the label-permutation control's AMBIGUOUS_EMPTY cells:
+the emptiness is not a 5%-subsample artifact.
+
+Implications (recorded, not acted on here):
+
+- The E40-m1 contrast therefore tested **within-observational configuration
+  exploration only** — the substrate cannot exercise the metabolic hypothesis's
+  regime-exploration component at any subset. The null verdict (no F2 advantage,
+  p=0.625) is about seed/knob exploration around one working basin.
+- The SIMPLE control's pinned default (partial 0.5) was structurally unable to score
+  — an E40 R1 default defect on this substrate, not an arm behaviour.
+- Any revival must first repair the native interventional path (why PC returns an
+  empty graph under interventional regimes — a causalscbench pipeline question) or
+  change substrate. Pre-registering a NaN-robust composite endpoint would only mask
+  a broken cell; that is not a valid revival lever.
 
 ## 6. Chain of custody
 
