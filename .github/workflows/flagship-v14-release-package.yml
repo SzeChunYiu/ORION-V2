@@ -46,17 +46,28 @@ jobs:
           import json
           from pathlib import Path
 
-          r = json.loads(Path('build/flagship-v14/arxiv_v1/release_receipt.json').read_text())
+          root = Path('build/flagship-v14/arxiv_v1')
+          r = json.loads((root / 'release_receipt.json').read_text())
+          tex = (root / 'manuscript.tex').read_text()
+          bbl = (root / 'manuscript.bbl').read_text()
           assert r['citation_key_count'] > 0
           assert r['pdf_sha256']
           assert r['pdf_size_bytes'] > 0
           assert r['page_count'] is not None
+          assert r['pandoc_citation_markup_absent'] is True
+          assert r['natbib_commands_present'] is True
+          assert r['bibliography_rendered'] is True
+          assert r['bibliography_item_count'] > 0
+          assert '[@' not in tex
+          assert '\\cite' in tex
+          assert '\\bibitem' in bbl
           assert r['human_release_authority'] is False
           assert r['ah20_required_for_arxiv'] is False
           assert r['scientific_claims_changed'] is False
           print(f"FLAGSHIP_WORD_COUNT={r['main_text_word_count_mechanical']}")
           print(f"FLAGSHIP_WITHIN_NMI_NOMINAL_TARGET={r['within_nominal_target']}")
           print(f"FLAGSHIP_PAGE_COUNT={r['page_count']}")
+          print(f"FLAGSHIP_BIBLIOGRAPHY_ITEMS={r['bibliography_item_count']}")
           print('FLAGSHIP_V14_RELEASE_PACKAGE_PASS')
           PY
 
