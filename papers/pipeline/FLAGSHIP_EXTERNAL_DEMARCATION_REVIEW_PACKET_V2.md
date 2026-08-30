@@ -1,294 +1,412 @@
-# Independent Field and Name Demarcation Review Packet V2
+# Independent Demarcation Review Packet V2 — Machine Epistemics
 
-**Working object:** Machine Epistemics  
-**Purpose:** blinded-as-feasible independent assessment of whether the proposed scientific object is coherent/nonredundant and whether the working name improves or harms demarcation.  
-**Supersedes:** `FLAGSHIP_EXTERNAL_DEMARCATION_REVIEW_PACKET_V1.md`.
+**Packet date:** 2026-08-30  
+**Manuscript snapshot:** *Machine Epistemics: Toward a Science of AI-Driven Inquiry and Scientific Change*, reconciled V14 Perspective  
+**Review status:** pre-AH20-outcome packet; the questions below are frozen before any AH20 result is supplied  
+**Purpose:** blinded-as-feasible external assessment of whether the proposed object, scientific residual, field boundary and working label are coherent, useful and nonredundant.
 
-**This packet intentionally omits:** ORION development history, internal paper/issue names, internal simulated-review outcomes, architecture preference and the authors' desired field decision.
-
-## 1. Proposed object — no software vocabulary
-
-AI and hybrid research systems increasingly participate in multi-step inquiry: finding sources, building models, selecting experiments/computations, acting on tools/instruments, changing representations or methods, revising evidence and conclusions, and proposing new research directions.
-
-The proposed object is the **scientific validity of the transitions among those states and modes**.
-
-Candidate transition classes are:
-
-1. **knowledge/source transitions** — new observations, papers, datasets, instruments or testimony enter the investigation;
-2. **relation/transfer transitions** — structure or conclusions are reused across representations/domains/contexts;
-3. **concept/representation transitions** — the scientific vocabulary, state variables or abstraction changes;
-4. **method/formalism transitions** — the method, instrument, operator or formal language changes;
-5. **action/experiment transitions** — the system chooses and executes a query, proof, simulation, measurement or intervention;
-6. **evidence/evaluator transitions** — support, dependence, calibration, evaluator adequacy or environment state changes;
-7. **agenda/meta-policy transitions** — the system changes what question/method/strategy to pursue;
-8. **commitment/authority consequences** — claims are retained, reopened, scoped, deferred or adopted subject to external authority.
-
-The proposal does **not** assume these share one implementation or one universal calculus.
-
-Working label:
-
-**Machine Epistemics**.
-
-The name is explicitly provisional.
+This packet deliberately omits repository-development history, internal issue/PR chronology, simulated editor outcomes and any preferred field terminal. It includes adverse/null evidence that materially bears on the proposed boundary.
 
 ---
 
-# 2. Strongest parent ownership
+## 1. Proposed object
 
-Assume the following are mature parents and **not** proposed inventions:
+AI and hybrid research systems increasingly participate in extended scientific processes: literature search, model/hypothesis construction, proof or computation, experiment/measurement selection, tool execution, evaluation, revision and scientific output.
 
-- computational/formal epistemology and reliable inquiry;
-- machine epistemology;
-- historical uses of `Epistemics`;
-- epistemic responsibility in human–AI collaboration;
-- epistemic-control architectures for empirical/AI research;
-- philosophy and social epistemology of AI-based science;
-- science of science and metascience;
-- cybernetics/control/metareasoning/POMDPs/experimental design;
-- belief revision/truth maintenance/diagnosis;
-- causal identification/transport;
-- measurement invariance/metrology;
-- formal methods/abstract interpretation/behavioural equivalence;
-- provenance/reproducibility/assurance;
-- evidence synthesis and dependence-aware statistics;
-- performative prediction/strategic response;
-- AI for Science, AI-scientist systems and autonomous laboratories;
-- machine-native scientific computation and agentic instrument control.
+The proposed object is **not the AI model or agent alone**. It is the controlled transition from one scientific state to another inside a bounded machine-mediated research episode.
 
-The proposal can survive only if a **cross-transition composition-level scientific problem** remains after these parents are fairly combined.
+A transition can change or depend on:
 
----
+- problem and criterion identity;
+- current claims, alternatives and uncertainty;
+- unresolved scientific obligations;
+- admissible actions and resources;
+- evidence identity, provenance and dependence;
+- representation/model identity;
+- relation and transport assumptions across contexts;
+- experiments, instruments and evaluators;
+- current problem or agenda framing;
+- transition history and reopening obligations;
+- externally supplied authority/governance limits.
 
-# 3. Direct current contrary/nearby programmes to consider
+Working field label:
 
-The review should explicitly consider whether the object is already adequately covered by current work such as:
+> **Machine Epistemics — the control science of AI-driven discovery.**
 
-- machine epistemology;
-- spec-driven architectures of epistemic control for AI-assisted empirical research;
-- epistemic responsibility standards for human–AI collaboration;
-- proposals for an “engineering of science” centered on structured verification;
-- social/pragmatist approaches to AI science evaluation that reject universal evaluators;
-- closed-loop AI-science epistemology/governance emphasizing graded autonomy and verification;
-- provenance-to-trust and assurance-oriented autonomous-science work.
+The label is provisional and carries **no naming novelty claim**.
 
-A reviewer should add stronger parents rather than accepting this list as complete.
+A narrow candidate definition is:
+
+> **Machine Epistemics studies the executable control and empirical/formal evaluation of warranted scientific-state transitions in machine or hybrid inquiry.**
+
+The proposal survives only if that object remains scientifically useful beyond faithful composition of its strongest parent disciplines.
 
 ---
 
-# 4. Four competing field foundations
+## 2. Relationship to neighboring machine-X concepts
 
-Do not assume the distinct-field hypothesis.
+The Perspective uses the following operational taxonomy to avoid a false superiority ladder. Reviewers should challenge it if the distinctions are misleading or already standard under clearer terminology.
 
-## F0 — strongest parent federation
+| Term | Role in this Perspective | Main question |
+|---|---|---|
+| Machine learning | learning/update mechanism | How does a system update from data, feedback or experience? |
+| Machine reasoning/planning | process family | How does it derive, search, predict or select actions? |
+| Machine cognition | processing architecture | How are representation, memory, attention, search and planning organized? |
+| Machine metacognition | self-monitoring/control mechanism | What can the system estimate about the adequacy of its own processes? |
+| Machine intelligence | context-relative capability profile | How capable is a system under a declared ecology of tasks and constraints? |
+| Machine-native intelligence | design orientation | Which strategies exploit machine-specific affordances without requiring human imitation? |
+| Machine scientific intelligence | science-scoped capability | How capable is the system at making progress on scientific problems? |
+| Machine Epistemics | scientific-transition control | When may machine-mediated inquiry change commitments, evidence, representations, methods, problems or evaluators? |
+| AI for Science / agentic science | application/autonomy ecosystem | How are AI methods and systems deployed across scientific work? |
 
-Mature methods remain native and a well-engineered federation coordinates them.
+The proposal explicitly rejects:
 
-## F1 — selective interfield bridge theories
+```text
+Machine Learning < Machine Intelligence < Machine Epistemics
+```
 
-Only a few cross-parent links deserve theory; no broad field is needed.
-
-## F2 — absorptive transition theory
-
-Some recurring cross-transition validity constraints form a useful higher-order theory while recovering/defering to parents locally.
-
-## F3 — plural/domain federation
-
-No stable common transition theory is useful; domain and parent semantics should remain plural with limited boundary objects.
-
-The proposal earns distinct-field credit only if F2 yields a protected residual beyond F0/F1/F3 across materially different domains.
-
----
-
-# 5. Candidate cross-transition constraints
-
-These are hypotheses, not established laws:
-
-- bind transition identity before inheriting prior validity;
-- do not amplify one warrant type into another;
-- preserve relation type, uncertainty and dependence under transport/composition;
-- require evaluator sensitivity to the error a claim denies;
-- selectively reopen conclusions whose complete support is defeated;
-- recover/defer to stronger native parents locally;
-- allow machine-native internal computation only with an external scientific witness proportional to the adopted transition;
-- close only relative to a declared source/search/evaluator/resource universe.
-
-A reviewer may decide these are already parent-owned, incoherent together or too generic to define a field.
+as a total order. `governs a scientific transition` does not mean `is more intelligent than`.
 
 ---
 
-# 6. Strongest falsifier
+## 3. Direct epistemology parent boundary
 
-Reject/contract the distinct-field claim if an information- and resource-matched composition of mature parent methods makes the same protected scientific-transition decisions across materially different domains without a nontrivial residual.
+The proposal does **not** claim to invent executable or mathematical epistemology.
 
-Other valid contraction outcomes:
+Direct parents include:
 
-- only selective bridge theories are needed;
-- the object is a subfield of one existing parent;
-- the useful content is integration/assurance engineering;
-- common abstraction damages domain semantics;
-- the scientific object survives but the name is misleading/redundant;
-- evidence is insufficient to demarcate.
+- mainstream epistemology: knowledge, justification, evidence, epistemic success and limits;
+- formal epistemology: logical/probabilistic/mathematical treatment of epistemic questions;
+- formal learning / computational epistemology: reliable inquiry, learnability and convergence under stated possible-world/computability assumptions;
+- social epistemology: testimony, disagreement, groups, institutions and collective inquiry;
+- philosophy of science/metascience: confirmation, explanation, models, underdetermination and scientific practice;
+- AI epistemology / epistemic agency: epistemic status and responsibility in AI-mediated inquiry.
+
+Formal learning theory is an especially strong parent: it already provides a mathematical normative theory of reliable inquiry. A reviewer may therefore conclude that the proposed object is a subproblem, engineering layer or federation of existing epistemology/control traditions rather than a distinct field.
+
+The candidate residual, if any, is narrower:
+
+> **system-level control of versioned machine-mediated scientific transitions where mutable state includes not only belief/credence but evidence lineage, representations, models, tools, experiments, problems, evaluators, resources, generative regimes and authority boundaries.**
 
 ---
 
-# 7. Reviewer questions
+## 4. Four competing foundations
 
-## D1 — object coherence
+Please assess these as real competitors rather than treating F2 as the preferred answer.
 
-Can you explain the proposed object in your own words without using the working name?
+### F0 — strongest parent federation
 
-- `YES_STABLE_OBJECT`
-- `PARTLY_NEEDS_REDEFINITION`
-- `NO_TOO_HETEROGENEOUS`
+Mature methods remain native: formal learning governs reliable inquiry; causal inference causal claims; measurement science comparability; metareasoning action choice; truth maintenance/revision commitment change; provenance lineage; formal methods abstraction/refinement; scientific methodology and domain science substantive validity. Interfaces connect them.
 
-Give the narrowest defensible definition.
+If F0 makes the same scientific-transition decisions at equal or lower cost, the distinct-field claim should contract.
 
-## D2 — strongest parents
+### F1 — selective interfield theories
 
-Name the 1–5 fields/programmes that most nearly subsume the object. Which omitted source would most damage the novelty/demarcation claim?
+Only specific interfaces deserve reusable theories—for example execution→evidence, measurement→transport, support→authority or uncertainty→action—without supporting a broad field.
 
-## D3 — transition ecology
+### F2 — absorptive transition theory
 
-Which transition classes are scientifically distinct/useful?
+Several scientific-transition classes share nontrivial constraints that can be represented in one higher-order transition theory while recovering and deferring to parent sciences locally.
 
-For each mark:
+F2 earns credit only when the higher representation changes a protected scientific decision, preservation/reopening obligation or action choice beyond information-matched parents.
 
-- retain;
-- merge;
-- fully parent-owned / unnecessary;
-- incoherent;
-- missing important transition class.
+### F3 — plural/domain federation
 
-## D4 — cross-transition residual
+No stable higher theory exists. Different domains remain linked by typed translations, boundary objects and provenance while preserving incompatible native semantics.
 
-Can you identify **one** scientific decision that plausibly requires coordination across multiple parent transitions and is not already handled by straightforward parent composition?
+F3 should win whenever common abstractions erase distinctions that matter scientifically.
 
-- `PLAUSIBLE_RESIDUAL`
-- `PARENT_COMPOSITION_LIKELY_SUFFICIENT`
-- `CANNOT_CHECK`
+---
 
-State the decisive example/counterexample.
+## 5. Candidate transition ecology
 
-## D5 — F0/F1/F2/F3 credibility
+The Perspective currently organizes machine-mediated scientific change into the following classes. They are an organizing proposal, not claimed natural kinds.
 
-Are these genuine scientific competitors, or does the framing privilege F2?
+- knowledge/source transitions;
+- relation/transport transitions;
+- concept/representation transitions;
+- method/formalism transitions;
+- action/experiment transitions;
+- evidence/evaluator transitions;
+- problem/agenda transitions;
+- optional generative-regime/invention transitions;
+- optional perspective/locality transitions;
+- optional atlas/horizon local-to-global transitions.
 
-What result would make you choose F0, F1 or F3?
+The classes need not share one implementation. The field hypothesis concerns responsibility for scientifically warranted change across implementations.
 
-## D6 — candidate constraint novelty/usefulness
+---
 
-For each proposed constraint, classify:
+## 6. Three recent hardenings reviewers should attack
 
-- direct parent theorem/principle;
-- useful cross-parent restatement;
-- plausible new composition-level constraint;
-- too vague/unfalsifiable;
-- harmful/overconservative.
+### 6.1 Frontier obstruction / minimum sufficient action
 
-## D7 — name interpretation
+A frontier problem may be difficult because the **kind of missing object** is unknown: more data, a new model class, a different representation, a measurement, a tool/operator, a problem reformulation or justified abstention may be required.
 
-Without seeing the naming history, what does **Machine Epistemics** suggest to you?
+Candidate principle:
 
-Does it sound like:
+> diagnose the witnessed obstruction and choose a minimum sufficient action rather than defaulting to more reasoning or novelty generation.
 
-- machine/computational epistemology;
-- epistemic-control/assurance engineering;
-- philosophy of AI;
-- AI for Science;
-- scientific-process control;
-- another existing field?
+Strongest parent threats include metareasoning, active experiment design, diagnosis, CEGAR/CEGIS-style refinement and modern adaptive scientific agents.
 
-Would a different name make the object clearer?
+### 6.2 Generative regime / invention
 
-## D8 — name versus object
+A proposed `generative regime` records the current representation language, generative rules, operator repertoire, constraints, problem portfolio, traversal policy and tool/affordance environment. An invention proposal changes what can subsequently be represented, generated, done or asked.
 
-Choose independently:
+Direct parents include computational creativity, novelty search, quality-diversity, open-ended learning, problem framing and cumulative innovation. The candidate residual is **not** a new creativity algorithm; it is responsibility for when a scientific process may adopt a possibility-space transformation, which predecessor obligations survive and how the successor is validated.
 
-### Scientific object
+### 6.3 Epistemic atlas / horizon
 
-- `DISTINCT_FIELD_CANDIDATE`
-- `INTERDISCIPLINARY_PROGRAMME`
-- `SUBFIELD_OF_EXISTING_PARENT`
-- `INTEGRATION_ENGINEERING`
-- `NO_COHERENT_OBJECT`
-- `CANNOT_CHECK`
+Observed intelligences and epistemic practices are treated as local samples, not observations of a complete global intelligence space.
 
-### Working name
+Current formal hypothesis:
 
-- `KEEP_MACHINE_EPISTEMICS`
-- `RENAME_OBJECT_SURVIVES`
-- `RENAME_AND_CONTRACT_OBJECT`
-- `NO_USEFUL_LABEL`
-- `CANNOT_CHECK`
+```text
+CURRENT_EPISTEMIC_ATLAS != TOTAL_POSSIBLE_EPISTEMIC_SPACE
+PAIRWISE_COMPATIBILITY != GLOBAL_COHERENCE
+FORMAL_UNIVERSALITY != EMPIRICAL_ABSOLUTE_GLOBALITY
+```
 
-## D9 — cross-domain test
+A local-to-global claim therefore requires a separate transport/gluing witness. Sheaf/fibration language is only a possible parent formalism when actual cover/restriction/gluing assumptions hold.
 
-Name at least two materially different domains that could genuinely test the same higher-order transition constraint—or explain why such cross-domain recurrence is unlikely.
+An `OUTSIDE_CURRENT_ATLAS` terminal means only that the current registered representation/probe/formalism classes cannot responsibly classify a persistent residual. It is **not** positive evidence for a specific unknown or alien mechanism.
 
-## D10 — recursive scientific-development frontier
+Strongest parent threats include formal learning, identifiability/partial identification, optimal experiment design, model pluralism, open-world recognition and category/sheaf local-to-global methods.
 
-Does population-level learning of research-development operators/meta-policies belong within this field hypothesis, or should it remain science-of-science/meta-learning?
+---
 
-What evidence would be needed before including it in a field-defining Perspective?
+## 7. Epistemic locality and diverse adaptive systems
 
-## D11 — Perspective value
+The Perspective treats competence as context-relative to a declared ecology—environment/task family/resources/system boundary/substrate or interface/timescale/criterion—rather than presuming one substrate-independent ranking.
 
-Independent of whether the field/name survives, is the object + parent reconstruction + falsification agenda sufficiently timely/useful for a broad AI-science Perspective?
+This does **not** equate different adaptive processes. The programme enforces:
 
-- `YES_CURRENT_SCOPE`
-- `YES_AFTER_MAJOR_NARROWING`
-- `SPECIALIST_ONLY`
+```text
+COGNITION != COLLECTIVE/CULTURAL ADAPTATION != EVOLUTIONARY ADAPTATION != MACHINE ADAPTATION
+FITNESS != TRUTH
+SURVIVAL != NORMATIVE AUTHORITY
+```
+
+Human cognition is a high-value donor, not the definition of substrate-independent intelligence. Non-human cognition, collective behaviour, cultural accumulation and evolution can supply mechanisms, contrasts or hostile controls without being collapsed into one notion of cognition.
+
+### Existing bounded evidence: EL10
+
+An exact 48-task locality benchmark compared a context-free global ranking, strongest parent federation, current integrated control and an explicit locality-interface arm.
+
+Headline bounded result:
+
+- context-free global ranking failed strongly;
+- strongest parent/current integrated controls already eliminated false universalization on the critical cases;
+- the explicit locality interface produced no statistically protected improvement over F0/F2 and added wrapper cost;
+- the dedicated runtime locality object therefore contracted to a documentation/analysis convention rather than a required component.
+
+This is **parent-sufficiency/null evidence**, not evidence for F2 superiority.
+
+### Existing bounded evidence: EL20
+
+A source-bound audit reconstructed six adaptive-system donor families with native mechanisms, boundaries, timescales, retention channels, transfer conditions and explicit anti-analogy cases. Independent adversarial criteria review passed, and unsourceable claims were left `CANNOT_SOURCE/CANNOT_CHECK` rather than filled by analogy.
+
+This supports category-error discipline and genealogy only. It does not establish a universal intelligence law.
+
+---
+
+## 8. Atlas/horizon verification status — outcome blind in this packet
+
+Reference semantics (AH10) have passed exact tests for:
+
+- compatible overlaps without a global witness → matching family only;
+- incompatible overlaps → global obstruction;
+- explicit separate witness required for global coherence;
+- a new probe may strictly refine an observational partition;
+- no empirical `ABSOLUTE_GLOBAL` terminal.
+
+A prospective AH20 benchmark has been frozen and implemented with 78 tasks and five arms, including strongest local-to-global/experiment-design parent control and an explicit atlas/horizon interface arm.
+
+**AH20 outcomes are intentionally absent from this V2 packet.** The reviewer questions below are frozen before those outcomes are supplied. A later result addendum may append the frozen outcome and ask whether it changes the reviewer's judgment; it must not rewrite these pre-outcome questions.
+
+AH30 naturalistic transfer is gated and is not authorized by default.
+
+---
+
+## 9. Candidate cross-transition constraints
+
+The Perspective currently proposes these as falsifiable hypotheses, not laws:
+
+- bind identity before inheriting validity;
+- do not amplify warrant across layers;
+- preserve relation type, uncertainty and dependence;
+- require evaluator sensitivity;
+- reopen selectively after support invalidation;
+- recover/defer to mature parents locally;
+- permit machine-native cognition but require claim-appropriate external witnesses;
+- do not universalize local competence;
+- do not identify the observed atlas with total possible epistemic space;
+- do not infer global coherence from local compatibility;
+- separate adaptation/survival/adoption from truth and normative authority;
+- close only relative to a declared search/evidence universe.
+
+A reviewer should identify which are already fully parent-owned, which are useful interface principles and which—if any—form a nontrivial common scientific object.
+
+---
+
+## 10. Strongest field falsifier
+
+The distinct-field hypothesis should contract if an information- and resource-matched composition of mature parents makes the same protected scientific-transition decisions across materially different domains without a nontrivial residual.
+
+Specific contraction triggers include:
+
+- locality/atlas/frontier interfaces add no decision value beyond current context conditioning, identifiability, experiment design or metareasoning;
+- the common abstraction disappears when native domain semantics are restored;
+- purported cross-domain recurrence is vocabulary-level only;
+- measured benefit is logging/provenance overhead rather than scientific decision quality;
+- resource cost dominates any gain;
+- independent parent-field reviewers cannot articulate a stable object distinct from existing fields;
+- the label `Machine Epistemics` predictably denotes a different established object.
+
+Valid terminals include:
+
+- `CANDIDATE_FIELD_DEMARCATION_SUPPORTED`;
+- `USEFUL_INTERDISCIPLINARY_RESEARCH_PROGRAMME`;
+- `INTEGRATION_ENGINEERING_ONLY`;
+- `SUBFIELD_OF_EXISTING_PARENT`;
+- `RENAME_SCIENTIFIC_PROGRAMME`;
+- `FIELD_BOUNDARY_TOO_FRAGMENTED`;
+- `CANNOT_CHECK_FIELD_SEPARATION`.
+
+No vote count automatically selects a terminal.
+
+---
+
+## 11. Reviewer questions — freeze before discussion
+
+Please answer independently before seeing other reviewers' arguments.
+
+### D1 — Object coherence
+
+Can you explain the proposed scientific object in your own words without naming ORION or any software implementation?
+
+- `YES, STABLE OBJECT`
+- `PARTLY, NEEDS REDEFINITION`
+- `NO, TOO HETEROGENEOUS`
+
+Give the narrowest definition you consider defensible.
+
+### D2 — Strongest parent(s)
+
+Name the strongest 1–3 existing fields/traditions that most nearly subsume the object. Identify omitted work that would materially change the claim.
+
+### D3 — Epistemology boundary
+
+Does the proposal draw a scientifically meaningful boundary from formal learning/computational epistemology, formal/social epistemology and philosophy of science?
+
+If not, state the parent-owned description you would prefer.
+
+### D4 — Machine-X taxonomy
+
+Is the distinction among learning mechanism, cognition/architecture, context-relative capability and scientific-transition control useful, misleading or redundant? Does `Machine Epistemics` invite an incorrect superiority interpretation despite the manuscript's caveat?
+
+### D5 — Composition residual
+
+Is there a plausible scientific residual in cross-parent scientific-transition decisions?
+
+- `PLAUSIBLE RESIDUAL`
+- `PARENT COMPOSITION LIKELY SUFFICIENT`
+- `CANNOT CHECK`
+
+Name the decisive example/counterexample.
+
+### D6 — Frontier / invention boundary
+
+Do obstruction-first action routing and warranted possibility-space transformation constitute a useful cross-parent problem, or are they adequately owned by metareasoning, diagnosis, computational creativity/open-endedness and domain-specific methodology?
+
+### D7 — Locality / diverse-intelligence boundary
+
+Does the locality principle add useful scientific discipline after the EL10 parent-sufficiency result, or is it simply an existing context-conditioning/ecological-rationality principle? Are the donor categories separated strongly enough to avoid anthropomorphism or `evolution = cognition` rhetoric?
+
+### D8 — Atlas / horizon boundary
+
+Is the atlas/horizon formulation a useful scientific interface for local-to-global inference and unknown representational limits, or an unnecessary renaming of identifiability, model pluralism, formal learning and sheaf/local-to-global parents?
+
+What evidence would justify keeping or deleting this interface?
+
+### D9 — Field versus integration programme
+
+What is the strongest defensible status **before AH20 outcome disclosure**?
+
+- `CANDIDATE DISTINCT SCIENTIFIC FIELD`
+- `USEFUL INTERDISCIPLINARY RESEARCH PROGRAMME`
+- `INTEGRATION/ASSURANCE ENGINEERING AREA`
+- `SUBFIELD OF EXISTING PARENT`
+- `LABEL NOT USEFUL`
+- `CANNOT CHECK`
+
+### D10 — Name interpretation
+
+Without seeing naming history, what does **Machine Epistemics** mean to you? Would another label communicate the actual object more accurately?
+
+### D11 — Falsifiability and cross-domain burden
+
+What result would make you abandon the distinct-field claim? Name two materially different scientific domains that would provide a convincing cross-domain test—or explain why no such pair can validate the abstraction.
+
+### D12 — Perspective publication value / omitted literature
+
+Independent of field status, is the demarcation/research agenda sufficiently important and timely for a broad AI-science Perspective?
+
+- `YES`
+- `YES AFTER MAJOR NARROWING`
+- `SPECIALIST ONLY`
 - `NO`
 
-## D12 — strongest reason to reject
-
-What is the strongest scientific reason **not** to create or publish this field proposal?
+List any omitted contrary literature whose absence would make the Perspective misleading.
 
 ---
 
-# 8. Reviewer independence declaration
+## 12. Reviewer independence declaration
 
-Record:
+Before reviewing, record:
 
-- primary discipline/expertise;
-- whether you contributed to this framework/manuscript;
-- whether you have seen identifiable internal review outcomes;
-- relevant conflicts/advocacy;
-- material shared source/model/adjudication dependence with another reviewer.
+- primary expertise;
+- current institution/role if the reviewer wishes to disclose it;
+- whether you contributed to the proposed framework or manuscript;
+- whether you previously saw identifiable internal experimental/review outcomes;
+- whether you have seen AH20 outcomes;
+- whether another reviewer shares a material model/data/source/adjudication process with you;
+- conflicts or strong prior advocacy/opposition relevant to the field label.
+
+A reviewer who has seen AH20 may still provide a useful post-outcome review but should not be represented as having supplied the pre-outcome demarcation judgment requested by this packet.
 
 Reviewer independence is not inferred from number of names.
 
 ---
 
-# 9. Adjudication rule
+## 13. Adjudication rule
 
-Do not use majority vote as field authority.
+No majority-vote field decision is used. Arguments are synthesized by concern class:
 
-Synthesize by concern class:
-
-- omitted/stronger parent;
+- omitted parent / false novelty;
 - incoherent object;
-- redundant/ambiguous name;
-- parent-composition sufficiency;
-- plausible cross-transition residual;
-- insufficient evidence;
-- harmful over-unification;
-- Perspective significance.
+- redundant or misleading label;
+- parent-sufficient composition;
+- plausible composition residual;
+- category error / anthropomorphism;
+- local-to-global overclaim;
+- missing evidence;
+- resource/complexity drag;
+- target significance;
+- optional enrichment.
 
-Final programme terminals may include:
+A positive review does not establish a field. It supplies independent evidence for a later Perspective and research programme. Journal acceptance, citation, community adoption and field recognition remain external outcomes.
+
+## Packet terminal
 
 ```text
-CANDIDATE_FIELD_DEMARCATION_SUPPORTED
-USEFUL_INTERDISCIPLINARY_RESEARCH_PROGRAMME
-SUBFIELD_OF_EXISTING_PARENT
-INTEGRATION_ENGINEERING_ONLY
-RENAME__OBJECT_SURVIVES
-RENAME_AND_CONTRACT
-CANNOT_CHECK
+CANONICAL_MANUSCRIPT = FLAGSHIP_V14
+PACKET_VERSION = V2_PRE_AH20_OUTCOME
+EL10 = PARENT_SUFFICIENCY_NULL_RETAINED
+EL20 = CATEGORY_ERROR_AUDIT_PASS_RETAINED
+AH10 = EXACT_REFERENCE_SEMANTICS_PASS
+AH20 = OUTCOME_WITHHELD_FROM_PACKET
+AH30 = GATED_NOT_AUTHORIZED_BY_DEFAULT
+FIELD_STATUS = HYPOTHESIS_NOT_FOUNDED
+REVIEW_STATUS = READY_TO_BIND_GENUINELY_INDEPENDENT_REVIEWERS
 ```
-
-A positive review is evidence for demarcation, not field authority by itself.
-
-Current packet terminal:
-
-`READY_FOR_INDEPENDENT_MULTI_PARENT_FIELD_AND_NAME_DEMARCATION`.
