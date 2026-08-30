@@ -1,0 +1,104 @@
+{
+  "schema_version": "orion.v2.fm80-naturalistic-transfer-decisive.v1",
+  "freeze_date": "2026-08-30",
+  "owner_issue": 48,
+  "timing": "FROZEN_BEFORE_FMFG_R2_TERMINAL",
+  "questions": {
+    "P_A": "remote donor discovery improves a protected target-domain scientific decision beyond strongest retrieval/parent baselines while preserving native meaning",
+    "P_B": "typed relation selection/composition/selective reopening improves a protected transfer decision beyond strongest information/resource-matched parent composition"
+  },
+  "domains": {
+    "minimum": 3,
+    "requirements": [
+      "at least one mathematical/formal domain with formal witness",
+      "at least two materially different empirical sciences",
+      "domain identities and target cases frozen before arm outcomes"
+    ]
+  },
+  "minimum_eligible_cases": 90,
+  "minimum_per_domain": 30,
+  "remote_definition": [
+    "outside target primary field/taxonomy or frozen semantic neighbourhood",
+    "absent from top-K strongest lexical+dense retrieval baseline at matched budget",
+    "not visible in target prompt/metadata/citation neighbourhood/support files",
+    "independent adjudicator accepts scientific relevance to registered decision"
+  ],
+  "arms": [
+    "A0_STRONGEST_NATIVE_PARENT_DIRECT",
+    "A1_STRONGEST_RETRIEVAL_LBD_BASELINE",
+    "A2_STRUCTURE_SEARCH_NO_NATIVE_FIDELITY_GATE",
+    "A3_FULL_DONOR_DISCOVERY_TYPED_TRANSFER_GATE",
+    "A4_ORACLE_DONOR_CEILING_ANALYSIS_ONLY"
+  ],
+  "resource_matching": [
+    "same model family/version when LLM used",
+    "same maximum tool calls",
+    "same searchable corpus",
+    "same wall-clock budget class",
+    "same output contract"
+  ],
+  "primary_endpoint": "registered scientific disposition correctness",
+  "primary_dispositions": ["TRANSFER", "BLOCK_TRANSFER", "REOPEN", "RETAIN", "CASE_SPECIFIC_EQUIVALENT"],
+  "co_primary_noncompensatory": "CRITICAL_NATIVE_FIDELITY_FAILURE",
+  "secondary_endpoints": [
+    "remote_donor_recovery",
+    "relation_type_correctness",
+    "source_provenance_binding",
+    "selective_reopening_accuracy",
+    "cost_tool_calls_latency",
+    "abstain_unresolved_calibration"
+  ],
+  "adjudication": {
+    "minimum_qualified_per_domain": 2,
+    "arm_blinded": true,
+    "third_adjudicator_only_for_predeclared_terminal_disagreement": true,
+    "record_expertise_conflicts_and_dependence": true,
+    "formal_cases_prefer_machine_checkable_witness": true
+  },
+  "analysis": {
+    "primary_comparison": "A3_vs_preoutcome_strongest_of_A0_A1",
+    "paired": true,
+    "interval": "95%",
+    "domain_primary_multiplicity": "Holm",
+    "no_pooled_claim_hides_domain_loss": true
+  },
+  "standalone_survival": {
+    "minimum_absolute_decision_gain_pp": 10,
+    "minimum_domains_with_gain": 2,
+    "winning_domain_intervals_exclude_zero_after_multiplicity": true,
+    "no_critical_native_fidelity_increase_any_domain": true,
+    "at_least_one_winning_domain_has_REMOTE_cases": true,
+    "A2_must_not_reproduce_A3_protected_decision_gain": true,
+    "sensitivity_excluding_inadvertently_visible_donors": true,
+    "independent_adjudication_no_stronger_omitted_parent": true
+  },
+  "contraction_terminals": [
+    "PARENT_OR_RETRIEVAL_SUFFICIENCY",
+    "REMOTE_DONOR_RECOVERY_WITHOUT_DECISION_VALUE",
+    "SEARCH_GAIN_WITHOUT_NATIVE_FIDELITY_VALUE",
+    "TYPED_TRANSFER_VALUE_WITHOUT_REMOTE_DONOR_VALUE",
+    "DOMAIN_SPECIFIC_ONLY",
+    "CRITICAL_NATIVE_FIDELITY_REGRESSION",
+    "INSUFFICIENT_ELIGIBLE_NATURALISTIC_CASES",
+    "CANNOT_CHECK_INDEPENDENT_ADJUDICATION"
+  ],
+  "pre_dispatch_freeze": [
+    "case_ids_domain_membership",
+    "prompt_visible_files",
+    "hidden_donor_relation_disposition_keys",
+    "corpus_snapshot_ids",
+    "baseline_search_configuration",
+    "model_tool_versions",
+    "arm_prompts_budgets",
+    "adjudication_forms",
+    "analysis_code_or_complete_reproducible_spec"
+  ],
+  "hidden_keys_absent_from_model_workspaces": true,
+  "R2_substitution_allowed": false,
+  "authority": {
+    "scientific_truth": false,
+    "publication_readiness": false,
+    "paper_survival": false,
+    "field_status": false
+  }
+}
