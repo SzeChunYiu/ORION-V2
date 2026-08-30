@@ -23,6 +23,8 @@
     "formal_transfer_protocol": "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_MECHANICS_PROTOCOL_V1.json",
     "formalism_genesis_protocol": "research/experiments/FORMALISM_GENESIS_PROTOCOL_V1.json",
     "formal_generated_campaign_plan": "research/experiments/FORMAL_DISCOVERY_GENERATED_CAMPAIGN_PLAN_V1.json",
+    "fm80_decisive_protocol": "research/experiments/FM80_NATURALISTIC_TRANSFER_DECISIVE_PROTOCOL_V1.json",
+    "pf_mechanism_followup_protocol": "research/experiments/PF_MACHINE_NATIVE_MECHANISM_FOLLOWUP_PROTOCOL_V1.json",
     "scientific_development_protocol": "research/experiments/SCIENTIFIC_DEVELOPMENT_RECURSIVE_META_GENERALIZATION_PROTOCOL_V1.json",
     "scientific_development_backlog": "research/experiments/SCIENTIFIC_DEVELOPMENT_EXECUTION_BACKLOG_V1.json",
     "result_import_map": "papers/pipeline/RECURSIVE_DEVELOPMENT_RESULT_IMPORT_MAP_V1.json",
@@ -34,10 +36,10 @@
       "owner_issue": 45,
       "readiness": "REFETCH_LIVE_STATE_BEFORE_ACTION",
       "scope": [
-        "E30 confirmatory BugsInPy core study",
-        "E60 component causal/drag study",
+        "E30 confirmatory BugsInPy core study — terminal null already recorded",
+        "E60 component causal/drag study — live state must be refetched before action",
         "E70 fresh anti-copy/counterfactual studies",
-        "matched F0/F2 CausalBench around E40 native learner",
+        "matched F0/F2 CausalBench around E40 native learner — E40-m2 terminal active drag recorded at main ef687b44",
         "matched F0/F2 materials study around E50 strongest native model",
         "paper-specific E80+ studies and parity work already registered in #45"
       ],
@@ -71,8 +73,8 @@
       "study_subset_example": "ORION_FORMAL_STUDIES=FM10,FG10 bash scripts/run_formal_discovery_campaign.sh RUN",
       "oracle_rule": "private oracle hash-committed and absent from disk throughout every child/model dispatch",
       "excluded": {
-        "FM70": "requires held-out contextual regime-selection data rather than exact standalone formal tasks",
-        "FM80": "requires naturalistic mathematics-science transfer and independent scientific adjudication",
+        "FM70": "requires held-out contextual regime-selection data rather than exact standalone formal tasks; Gate 0 terminal fail recorded",
+        "FM80": "naturalistic mathematics-science transfer uses the separately frozen decisive protocol",
         "FG90": "genuine frontier lane remains exploratory unless independently verified"
       }
     },
@@ -93,23 +95,47 @@
     {
       "lane_id": "FM80_NATURALISTIC_MATH_SCIENCE_TRANSFER",
       "owner_issue": 48,
-      "readiness": "NATURALISTIC_AND_INDEPENDENT_ADJUDICATION_REQUIRED",
+      "readiness": "DECISIVE_PROTOCOL_FROZEN_PRE_R2_TERMINAL__CASE_ASSEMBLY_AND_INDEPENDENT_ADJUDICATION_OPEN",
+      "protocol_md": "research/experiments/FM80_NATURALISTIC_TRANSFER_DECISIVE_PROTOCOL_V1.md",
+      "protocol_json": "research/experiments/FM80_NATURALISTIC_TRANSFER_DECISIVE_PROTOCOL_V1.json",
       "minimum_domains": 3,
+      "minimum_eligible_cases": 90,
       "requirements": [
         "at least one mathematical/formal domain",
         "at least two materially different empirical sciences",
-        "prospectively frozen transfer consequence",
-        "strongest domain parent",
+        "prospectively frozen protected transfer/block/reopen/retain consequence",
+        "operationally remote donor definition against matched retrieval baseline",
+        "strongest native parent and strongest retrieval/LBD baseline",
+        "search-only ablation without native-fidelity gate",
         "formal witness for formal claims",
-        "empirical evidence for empirical claims",
-        "independent adjudication"
+        "empirical witness for empirical claims",
+        "arm-blinded independent adjudication",
+        "no critical native-fidelity regression",
+        "cross-domain survival rather than pooled-only gain"
+      ],
+      "R2_substitution_allowed": false
+    },
+    {
+      "lane_id": "P_F_MACHINE_NATIVE_MECHANISM_FOLLOWUP",
+      "owner_issue": 48,
+      "readiness": "PROTOCOL_FROZEN_PRE_R2_TERMINAL__EXECUTION_CONDITIONAL_ON_REGISTERED_FG80_R2_EFFECT",
+      "protocol_md": "research/experiments/PF_MACHINE_NATIVE_MECHANISM_FOLLOWUP_PROTOCOL_V1.md",
+      "protocol_json": "research/experiments/PF_MACHINE_NATIVE_MECHANISM_FOLLOWUP_PROTOCOL_V1.json",
+      "trigger": "registered FM/FG R2 terminal establishes the predeclared statistically supported FG80 full/F2 advantage over simple direct control",
+      "no_trigger_terminal": "NO_R2_EFFECT_TO_EXPLAIN__P_F_STANDALONE_ROUTE_CLOSED_OR_MERGE",
+      "required_sequence": [
+        "freeze one primary mechanism manifest before follow-up outcome access",
+        "Phase A fresh held-out formal causal ablation with resource-matched simple and language-scaffold controls",
+        "Phase B restoration in one new formal domain plus two materially different empirical sciences",
+        "negative-control stratum in every phase",
+        "independent external-witness adjudication"
       ]
     },
     {
       "lane_id": "FG90_REAL_FRONTIER",
       "owner_issue": 48,
       "readiness": "EXPLORATORY_ONLY",
-      "instruction": "Use genuine open mathematical/scientific problems only as exploratory formalism-genesis cases. A claimed solution requires independent proof checking or empirical validation."
+      "instruction": "Use genuine open mathematical/scientific problems only as exploratory formalism-genesis cases. A claimed solution requires independent proof checking or empirical validation. FG90 is not a substitute for the P-F causal mechanism protocol."
     },
     {
       "lane_id": "SD_RECURSIVE_SCIENTIFIC_DEVELOPMENT",
