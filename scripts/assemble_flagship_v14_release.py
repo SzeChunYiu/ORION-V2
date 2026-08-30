@@ -99,6 +99,7 @@ def pandoc_fragment(path: Path) -> str:
             "--from=markdown+raw_tex+tex_math_dollars+pipe_tables+fenced_code_blocks+citations",
             "--to=latex",
             "--natbib",
+            "--shift-heading-level-by=-1",
             "--wrap=none",
         ],
         capture=True,
@@ -177,6 +178,8 @@ def main() -> int:
         raise ValueError("Pandoc citation markup leaked into generated LaTeX")
     if cited and "\\cite" not in body_tex and "\\cite" not in abstract_tex:
         raise ValueError("citation keys exist but generated LaTeX has no natbib citation commands")
+    if re.search(r"\\subsection\{From scientific outputs", body_tex):
+        raise ValueError("top-level manuscript headings were not promoted to LaTeX sections")
 
     bib_summary = merge_bibs(bib_paths, out / "references.bib")
     tex = rf"""\documentclass[11pt]{{article}}
@@ -226,6 +229,7 @@ def main() -> int:
         "references_sha256": sha256(out / "references.bib"),
         "pandoc_citation_markup_absent": True,
         "natbib_commands_present": True,
+        "top_level_headings_promoted": True,
         "human_release_authority": False,
         "ah20_required_for_arxiv": False,
         "scientific_claims_changed": False,
