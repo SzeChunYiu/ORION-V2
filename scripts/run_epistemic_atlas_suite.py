@@ -728,7 +728,7 @@ def _kill_rule(summary, resources, per_task, task_ids, oracle):
             other_better = best > iface
         if iface_better:
             interface_strictly_better = True
-        if not other_matches_or_beat_all:
+        if not other_matches_or_beats:
             others_match_or_beat_all = False
         if other_better:
             for o in others:
