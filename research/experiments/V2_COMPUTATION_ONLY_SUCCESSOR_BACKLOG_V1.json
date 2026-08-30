@@ -48,8 +48,20 @@
       "owner_issue": 48,
       "readiness": "PLUMBING_COMPLETE__MODEL_COMPUTATION_OPEN",
       "generated_studies": [
-        "FM10", "FM20", "FM30", "FM40", "FM50", "FM60",
-        "FG10", "FG20", "FG30", "FG40", "FG50", "FG60", "FG70", "FG80"
+        "FM10",
+        "FM20",
+        "FM30",
+        "FM40",
+        "FM50",
+        "FM60",
+        "FG10",
+        "FG20",
+        "FG30",
+        "FG40",
+        "FG50",
+        "FG60",
+        "FG70",
+        "FG80"
       ],
       "prepare_command": "python scripts/run_formal_discovery_campaign.py prepare --campaign-root RUN",
       "dispatch_command": "python scripts/run_formal_discovery_campaign.py dispatch --campaign-root RUN --max-concurrency 2",
@@ -66,13 +78,14 @@
     {
       "lane_id": "FM70_CONTEXTUAL_REGIME_SELECTOR",
       "owner_issue": 48,
-      "readiness": "WAIT_FOR_VALID_DEVELOPMENT_AND_TEST_OUTCOME_DATA",
+      "readiness": "DEV_OUTCOMES_SATISFIED_BY_E30_R11_TERMINAL__DESIGN_FROZEN__AWAITING_FEATURE_FREEZE_AND_GATE0",
       "prerequisites": [
         "pre-outcome task features frozen",
         "development folds separated from held-out test folds",
         "valid SIMPLE/F0/F2 outcomes available without reusing confirmatory test outcomes for training"
       ],
-      "terminal_rule": "selector must beat always-SIMPLE/always-F0/always-F2 on held-out quality-resource frontier without simple-task regression"
+      "terminal_rule": "selector must beat always-SIMPLE/always-F0/always-F2 on held-out quality-resource frontier without simple-task regression",
+      "design_pointer": "research/experiments/fm70/FM70_CONTEXTUAL_REGIME_SELECTOR_PROSPECTIVE_DESIGN_V1.md (+ .json twin, frozen 2026-08-30, PR pending)"
     },
     {
       "lane_id": "FM80_NATURALISTIC_MATH_SCIENCE_TRANSFER",
@@ -100,7 +113,18 @@
       "owner_issue": 49,
       "readiness": "REFERENCE_AND_SD70_PLUMBING_COMPLETE__SCIENCE_OPEN",
       "canonical_backlog": "research/experiments/SCIENTIFIC_DEVELOPMENT_EXECUTION_BACKLOG_V1.json",
-      "sequence": ["SD00", "SD10", "SD20", "SD30", "SD40", "SD50", "SD60", "SD70", "SD80", "SD90"],
+      "sequence": [
+        "SD00",
+        "SD10",
+        "SD20",
+        "SD30",
+        "SD40",
+        "SD50",
+        "SD60",
+        "SD70",
+        "SD80",
+        "SD90"
+      ],
       "notes": {
         "SD00": "reference software calibration only",
         "SD10": "real multi-source corpus acquisition/normalization and bias audit",

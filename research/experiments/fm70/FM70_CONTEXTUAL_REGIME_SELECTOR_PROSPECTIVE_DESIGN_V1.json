@@ -1,0 +1,62 @@
+{
+  "schema_version": "orion.v2.fm70.prospective-design.v1",
+  "lane_id": "FM70_CONTEXTUAL_REGIME_SELECTOR",
+  "owner_issue": 48,
+  "frozen_date": "2026-08-30",
+  "readiness_after_this_freeze": "PREREQUISITE_DEV_OUTCOMES_SATISFIED__AWAITING_FEATURE_FREEZE_AND_GATE0",
+  "question": "do pre-outcome task features carry enough signal to route each real-repair task to the arm that wins on it, converting the E30 global null into a contextual activation claim?",
+  "development_fold": {
+    "source": "E30 R11 terminal raw rollup",
+    "evidence_pointer": "ORION-V2 PR #86 main 833fe0b (regenerated from frozen campaign, 480/480 COMPLETED)",
+    "layout": "4 arms x 40 tasks x 3 repetitions",
+    "aggregation": "within-task majority across repetitions",
+    "leakage_discipline": "E30 outcomes are development/training data for FM70; FM70 held-out outcomes are never used for training or feature tuning"
+  },
+  "dev_fold_signal_audit_2026_08_30": {
+    "majority_disagreement_tasks": 5,
+    "any_repetition_disagreement_fraction": 0.22,
+    "oracle_routing_ceiling": "8/40 union of any-arm majority success",
+    "best_always_arm": "SIMPLE_DIRECT 6/40",
+    "max_routing_gain_tasks": 2,
+    "repetition_instability_tasks_per_arm": {"F0_PARENT_FEDERATION": 6, "F2_ORION_METABOLIC_FULL": 4, "SAME_MODEL_REFLECTION": 2, "SIMPLE_DIRECT": 4}
+  },
+  "feature_freeze": {
+    "rule": "computable from task workdir at dispatch time t=0; gold-patch geometry, evaluation outcomes and run telemetry excluded",
+    "features": ["P01_project_onehot", "P02_target_file_loc", "P03_target_file_def_count", "P04_failing_test_count", "P05_failing_test_source_chars", "P06_project_python_file_count", "P07_prompt_context_tokens"],
+    "artifact": "FM70_PRE_OUTCOME_FEATURES_V1.json (dev 40 + candidate held-out pool, one read-only pass, sha256 committed before any selector fit)",
+    "status": "NOT_YET_EXECUTED"
+  },
+  "held_out_fold": {
+    "rule": "per project, next ascending numeric bug ids after dev-fold ids, at exact commit 11c5f1eea954a42132cfd06bf257766a7963e0fd",
+    "primary_size_per_project": 5,
+    "extended_pool_max_per_project": 8,
+    "arms": ["SIMPLE_DIRECT", "F0_PARENT_FEDERATION", "F2_ORION_METABOLIC_FULL"],
+    "repetitions": 3,
+    "selector_role": "routing rule over the three always-arms, not a fourth solver"
+  },
+  "primary_selector_preregistered": {
+    "model": "multinomial logistic regression on P01-P07",
+    "unseen_project_fallback": "per-project empirical best-arm with Laplace smoothing",
+    "training": "development fold only"
+  },
+  "gates": {
+    "gate0_dev_fold_diagnosability": {
+      "design": "leave-one-project-out CV vs always-best-arm (SIMPLE_DIRECT), label-permutation null >= 1000 permutations",
+      "pass": "CV selector >= always-best + 2 tasks AND permutation one-sided p < 0.05",
+      "fail_terminal": "INSUFFICIENT_ROUTING_SIGNAL_ON_DEVELOPMENT_FOLD (no held-out dispatch)"
+    },
+    "gate1_freeze": "feature hash + selector hyperparameters + held-out id list committed in one receipt before the first held-out response exists",
+    "gate2_held_out_terminal_rule": {
+      "success": "exact discordant test vs each always-arm, Holm family 3, one-sided",
+      "resource": "mean wall time within 1.15x of routed arm's always-arm mean",
+      "simple_task_guard": "on pre-frozen feature-defined simple stratum (below dev-median P02xP05), selector majority successes >= always-SIMPLE"
+    }
+  },
+  "boundary_inheritance": "E30 R11 receipt section 5: registered-failing-test lane does not run full regression suites; no critical-failure, safety or non-inferiority endpoint claims from FM70 outcomes; routing claims are success-resource claims only",
+  "terminal_vocabulary": ["SELECTOR_PROMOTED", "SELECTOR_FAILED_TERMINAL_RULE", "INSUFFICIENT_ROUTING_SIGNAL_ON_DEVELOPMENT_FOLD", "EXECUTION_DEFECT_<id>"],
+  "authority": {
+    "field_status_authorized": false,
+    "scientific_truth": false,
+    "publication_readiness": false
+  }
+}
