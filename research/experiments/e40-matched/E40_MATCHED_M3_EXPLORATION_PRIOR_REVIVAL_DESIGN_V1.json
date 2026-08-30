@@ -1,0 +1,69 @@
+{
+  "schema_version": "orion.v2.e40-matched.design.m3.v1",
+  "study": "e40-m3",
+  "title": "cycle-1 regime-extreme anchor (exploration-prior revival of e40-m2)",
+  "parent": {
+    "study": "e40-m2",
+    "gate": "METABOLIC_DRAG_MATCHED_NATIVE",
+    "mean_d": -0.008979,
+    "perm_p_exact": 0.999,
+    "wins_f2_f0": [1, 11],
+    "mechanism": "greedy sequential search converges mid-axis while upfront federation parallel sample catches an extreme"
+  },
+  "single_delta": {
+    "f2_prompt_cycle1_rule": "training_regime MUST be observational|interventional at cycle 1; partial_interventional reserved for cycles 2+",
+    "enforcement": "ask_config_f2 re-ask with VIOLATION note, max 3 attempts, exhaustion => chain CANNOT_CHECK (never silent fill)",
+    "cycles_2_4_prompts": "byte-identical to m2 (verified)"
+  },
+  "reference_reuse": {
+    "simple_f0": "frozen e40-m2 chains reused read-only (E40M_REF, default campaign-e40-m2)",
+    "rationale": "F2-prompt delta cannot perturb no-feedback arms; re-proposing injects proposal variance into the reference"
+  },
+  "protocol": {
+    "arms_executed": ["F2_ORION_METABOLIC_FULL_MATCHED"],
+    "chains": 12,
+    "datasets": ["weissmann_k562", "weissmann_rpe1"],
+    "reps": 6,
+    "k_cycles": 4,
+    "f2_native_runs": 48,
+    "exp_ids": "501000-501047",
+    "contrast": "d = F0_best(m2) - F2_final(m3) per (dataset, rep), 12 pairs",
+    "test": "exact sign-flip permutation, one-sided F2 better"
+  },
+  "pins_unchanged": {
+    "model_name": "gies",
+    "subset_data": 0.05,
+    "max_path_length": -1,
+    "do_filter": true,
+    "leakage_rule": "quantitative_test_evaluation structurally redacted from all arm-visible feedback; FORBIDDEN_SUBSTRINGS audit",
+    "rollup_schema": "orion.v2.e40-matched.rollup.v2 (NaN policy v2)"
+  },
+  "controls": {
+    "planted": "same prompted policy => inherits anchor; cycle-1 extreme quality <= 0.7 not penalized; mandate exhaustion = recorded FAIL",
+    "nullcal": "unchanged",
+    "uninformative": "unchanged",
+    "audit": "unchanged (leakage+pin, m3 artifacts)"
+  },
+  "gates": [
+    {"name": "F2_METABOLIC_ADVANTAGE_UNDER_ANCHOR", "condition": "perm_p <= 0.05 and mean_d > 0"},
+    {"name": "EXPLORATION_PRIOR_EXPLAINS_DRAG", "condition": "perm_p > 0.05 and abs(mean_d) < 0.005"},
+    {"name": "METABOLIC_DRAG_ROBUST_TO_ANCHOR", "condition": "mean_d < 0 and perm_p >= 0.95"},
+    {"name": "NO_DETECTED_ADVANTAGE", "condition": "otherwise"}
+  ],
+  "secondary_readouts": [
+    "f2_final regime census (extreme vs interior)",
+    "cycle-1 mandate violations census",
+    "if drag persists AND finals extreme => proxy-objective misalignment named as next lever class (feedback-channel design), opened only if this gate fires"
+  ],
+  "selftest_additions": [
+    "mandate re-ask: interior->interior->extreme accepted",
+    "mandate exhaustion: 3x interior => ChainCannotCheck",
+    "no binding outside cycle 1",
+    "synthetic-root reference pairing: simple/f0 from m2 root, f2 from live root, absent => MISSING"
+  ],
+  "custody": {
+    "runner": "scripts/e40_matched_runner_m3.py",
+    "frozen_dir": "campaign-e40-m3/run/",
+    "rollup_variant": "e40-m3-cycle1-anchor-revival"
+  }
+}
