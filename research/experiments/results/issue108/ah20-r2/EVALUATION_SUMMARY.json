@@ -1,0 +1,394 @@
+{
+ "authority": {
+  "claim_limit": "formal/interface discriminator only",
+  "grants_absolute_globality": false,
+  "grants_new_kernel_family": false,
+  "grants_paper_endpoint_change": false,
+  "grants_scientific_truth": false,
+  "grants_total_epistemic_space": false,
+  "parent_sufficiency_is_valid_terminal": true
+ },
+ "calibration_analysis": {
+  "contrasts": {
+   "CURRENT_F0": {
+    "base_control_rate": 0.0,
+    "base_treatment_rate": 0.0238,
+    "did_interface_minus_base": -0.0238,
+    "interface_control_rate": 0.0,
+    "interface_treatment_rate": 0.0,
+    "n_control": 12,
+    "n_treatment": 42,
+    "p_permutation_twosided": 1.0
+   },
+   "CURRENT_F2": {
+    "base_control_rate": 0.0,
+    "base_treatment_rate": 0.0238,
+    "did_interface_minus_base": -0.0238,
+    "interface_control_rate": 0.0,
+    "interface_treatment_rate": 0.0,
+    "n_control": 12,
+    "n_treatment": 42,
+    "p_permutation_twosided": 1.0
+   },
+   "PARENT_LOCAL_GLOBAL": {
+    "base_control_rate": 0.0,
+    "base_treatment_rate": 0.0238,
+    "did_interface_minus_base": -0.0238,
+    "interface_control_rate": 0.0,
+    "interface_treatment_rate": 0.0,
+    "n_control": 12,
+    "n_treatment": 42,
+    "p_permutation_twosided": 1.0
+   },
+   "SIMPLE_NATIVE": {
+    "base_control_rate": 0.0,
+    "base_treatment_rate": 0.0238,
+    "did_interface_minus_base": -0.0238,
+    "interface_control_rate": 0.0,
+    "interface_treatment_rate": 0.0,
+    "n_control": 12,
+    "n_treatment": 42,
+    "p_permutation_twosided": 1.0
+   }
+  },
+  "control_strata": [
+   "AHC0"
+  ],
+  "null": "seeded within-task arm-label swaps (10000, seed 20260902)",
+  "registered_in": "EPISTEMIC_ATLAS_HORIZON_AH20_SUITE_FREEZE_V2.md (repair 3)",
+  "relaxes_kill_rule": false,
+  "statistic": "within-arm DiD (overclaim rate on false-globalization strata minus own AHC0 control rate), interface arm minus base arm",
+  "treatment_strata": [
+   "AHC1",
+   "ELC2",
+   "ELC3",
+   "ELC4",
+   "ELC5",
+   "ELC8"
+  ]
+ },
+ "kill_rule": {
+  "critical_point_estimates": {
+   "false_globalization_rate": {
+    "best_other": 0.023809523809523808,
+    "interface": 0.0
+   },
+   "gluing_disposition_correctness": {
+    "best_other": 0.875,
+    "interface": 0.8541666666666666
+   },
+   "probe_selection_correctness": {
+    "best_other": 1.0,
+    "interface": 1.0
+   },
+   "transport_correctness": {
+    "best_other": 0.9722222222222222,
+    "interface": 1.0
+   }
+  },
+  "interface_cost_ratio_vs_cheapest_other": 0.971,
+  "interface_strictly_better_on_a_critical_metric": true,
+  "other_strictly_better_on_a_critical_metric": [
+   "CURRENT_F0",
+   "gluing_disposition_correctness",
+   0.875
+  ],
+  "others_match_or_beat_interface_on_all_critical": false,
+  "parent_win_or_null_is_valid_terminal": true,
+  "verdict": "INTERFACE_PROTECTED_RESIDUAL"
+ },
+ "mcnemar_tests": [
+  {
+   "base_only_success": 1,
+   "interface_minus": "SIMPLE_NATIVE",
+   "interface_only_success": 13,
+   "metric": "gluing_disposition_correctness",
+   "n_paired": 48,
+   "p_exact_mcnemar": 0.001831,
+   "p_holm": 0.029296,
+   "significant_005": true
+  },
+  {
+   "base_only_success": 1,
+   "interface_minus": "CURRENT_F0",
+   "interface_only_success": 0,
+   "metric": "gluing_disposition_correctness",
+   "n_paired": 48,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 1,
+   "interface_minus": "CURRENT_F2",
+   "interface_only_success": 9,
+   "metric": "gluing_disposition_correctness",
+   "n_paired": 48,
+   "p_exact_mcnemar": 0.021484,
+   "p_holm": 0.32226,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 1,
+   "interface_minus": "PARENT_LOCAL_GLOBAL",
+   "interface_only_success": 1,
+   "metric": "gluing_disposition_correctness",
+   "n_paired": 48,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "SIMPLE_NATIVE",
+   "interface_only_success": 1,
+   "metric": "false_globalization_rate",
+   "n_paired": 42,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "CURRENT_F0",
+   "interface_only_success": 1,
+   "metric": "false_globalization_rate",
+   "n_paired": 42,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "CURRENT_F2",
+   "interface_only_success": 1,
+   "metric": "false_globalization_rate",
+   "n_paired": 42,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "PARENT_LOCAL_GLOBAL",
+   "interface_only_success": 1,
+   "metric": "false_globalization_rate",
+   "n_paired": 42,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "SIMPLE_NATIVE",
+   "interface_only_success": 1,
+   "metric": "transport_correctness",
+   "n_paired": 36,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "CURRENT_F0",
+   "interface_only_success": 1,
+   "metric": "transport_correctness",
+   "n_paired": 36,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "CURRENT_F2",
+   "interface_only_success": 1,
+   "metric": "transport_correctness",
+   "n_paired": 36,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "PARENT_LOCAL_GLOBAL",
+   "interface_only_success": 1,
+   "metric": "transport_correctness",
+   "n_paired": 36,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "SIMPLE_NATIVE",
+   "interface_only_success": 0,
+   "metric": "probe_selection_correctness",
+   "n_paired": 24,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "CURRENT_F0",
+   "interface_only_success": 0,
+   "metric": "probe_selection_correctness",
+   "n_paired": 24,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "CURRENT_F2",
+   "interface_only_success": 0,
+   "metric": "probe_selection_correctness",
+   "n_paired": 24,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "PARENT_LOCAL_GLOBAL",
+   "interface_only_success": 0,
+   "metric": "probe_selection_correctness",
+   "n_paired": 24,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  }
+ ],
+ "missing_is_not_wrong": true,
+ "resources": {
+  "CURRENT_F0": {
+   "model_calls": 108,
+   "tokens_reported": 0,
+   "wall_time_seconds_sum": 1554.9
+  },
+  "CURRENT_F2": {
+   "model_calls": 108,
+   "tokens_reported": 0,
+   "wall_time_seconds_sum": 1522.9
+  },
+  "F2_PLUS_ATLAS_HORIZON": {
+   "model_calls": 108,
+   "tokens_reported": 0,
+   "wall_time_seconds_sum": 1478.1
+  },
+  "PARENT_LOCAL_GLOBAL": {
+   "model_calls": 108,
+   "tokens_reported": 0,
+   "wall_time_seconds_sum": 1593.7
+  },
+  "SIMPLE_NATIVE": {
+   "model_calls": 108,
+   "tokens_reported": 0,
+   "wall_time_seconds_sum": 1538.0
+  }
+ },
+ "schema_version": "orion.v2.ah20-evaluation.v2",
+ "suite": "AH20-R2",
+ "summary": {
+  "CURRENT_F0": {
+   "decision_relevant_partition_refinement": 1.0,
+   "executors_seen": [
+    "codex-cli"
+   ],
+   "false_globalization_rate": 0.023809523809523808,
+   "false_outside_atlas_exact_ci95": [
+    0.0,
+    0.037697
+   ],
+   "false_outside_atlas_rate": 0.0,
+   "gluing_disposition_correctness": 0.875,
+   "gluing_reference_all_worlds_r1_comparable": 0.6018518518518519,
+   "local_scope_correctness": 0.6666666666666666,
+   "missing_or_invalid": 0,
+   "probe_selection_correctness": 1.0,
+   "run_valid": true,
+   "transport_correctness": 0.9722222222222222,
+   "valid_responses": 108
+  },
+  "CURRENT_F2": {
+   "decision_relevant_partition_refinement": 1.0,
+   "executors_seen": [
+    "codex-cli"
+   ],
+   "false_globalization_rate": 0.023809523809523808,
+   "false_outside_atlas_exact_ci95": [
+    0.0,
+    0.037697
+   ],
+   "false_outside_atlas_rate": 0.0,
+   "gluing_disposition_correctness": 0.6875,
+   "gluing_reference_all_worlds_r1_comparable": 0.3055555555555556,
+   "local_scope_correctness": 0.6666666666666666,
+   "missing_or_invalid": 0,
+   "probe_selection_correctness": 1.0,
+   "run_valid": true,
+   "transport_correctness": 0.9722222222222222,
+   "valid_responses": 108
+  },
+  "F2_PLUS_ATLAS_HORIZON": {
+   "decision_relevant_partition_refinement": 1.0,
+   "executors_seen": [
+    "codex-cli"
+   ],
+   "false_globalization_rate": 0.0,
+   "false_outside_atlas_exact_ci95": [
+    0.0,
+    0.037697
+   ],
+   "false_outside_atlas_rate": 0.0,
+   "gluing_disposition_correctness": 0.8541666666666666,
+   "gluing_reference_all_worlds_r1_comparable": 0.37962962962962965,
+   "local_scope_correctness": 0.6666666666666666,
+   "missing_or_invalid": 0,
+   "probe_selection_correctness": 1.0,
+   "run_valid": true,
+   "transport_correctness": 1.0,
+   "valid_responses": 108
+  },
+  "PARENT_LOCAL_GLOBAL": {
+   "decision_relevant_partition_refinement": 1.0,
+   "executors_seen": [
+    "codex-cli"
+   ],
+   "false_globalization_rate": 0.023809523809523808,
+   "false_outside_atlas_exact_ci95": [
+    0.0,
+    0.037697
+   ],
+   "false_outside_atlas_rate": 0.0,
+   "gluing_disposition_correctness": 0.8541666666666666,
+   "gluing_reference_all_worlds_r1_comparable": 0.4444444444444444,
+   "local_scope_correctness": 0.6666666666666666,
+   "missing_or_invalid": 0,
+   "probe_selection_correctness": 1.0,
+   "run_valid": true,
+   "transport_correctness": 0.9722222222222222,
+   "valid_responses": 108
+  },
+  "SIMPLE_NATIVE": {
+   "decision_relevant_partition_refinement": 1.0,
+   "executors_seen": [
+    "codex-cli"
+   ],
+   "false_globalization_rate": 0.023809523809523808,
+   "false_outside_atlas_exact_ci95": [
+    0.0,
+    0.037697
+   ],
+   "false_outside_atlas_rate": 0.0,
+   "gluing_disposition_correctness": 0.6041666666666666,
+   "gluing_reference_all_worlds_r1_comparable": 0.28703703703703703,
+   "local_scope_correctness": 0.6666666666666666,
+   "missing_or_invalid": 0,
+   "probe_selection_correctness": 1.0,
+   "run_valid": true,
+   "transport_correctness": 0.9722222222222222,
+   "valid_responses": 108
+  }
+ }
+}
