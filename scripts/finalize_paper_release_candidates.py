@@ -55,6 +55,31 @@ def strip_internal_bibliography_source(text: str) -> str:
     return out
 
 
+def stabilize_validation_table(package: Path, *, jmlr: bool) -> None:
+    """Keep the appendix heading before its table; widen JMLR's first column."""
+    tex_path = package / "manuscript.tex"
+    tex = tex_path.read_text(encoding="utf-8")
+    if r"\usepackage{float}" not in tex:
+        anchor = r"\usepackage{booktabs,longtable,array}"
+        if anchor not in tex:
+            raise RuntimeError(f"cannot add float package in {tex_path}")
+        tex = tex.replace(anchor, anchor + "\n" + r"\usepackage{float}", 1)
+    tex_path.write_text(tex, encoding="utf-8")
+
+    table_path = package / "figures/table3_validation.tex"
+    table = table_path.read_text(encoding="utf-8")
+    if r"\begin{table}[t]" not in table:
+        raise RuntimeError(f"unexpected validation table placement in {table_path}")
+    table = table.replace(r"\begin{table}[t]", r"\begin{table}[H]", 1)
+    if jmlr:
+        old = r"\begin{tabular}{p{0.31\linewidth}p{0.43\linewidth}p{0.17\linewidth}}"
+        new = r"\begin{tabular}{p{0.37\linewidth}p{0.37\linewidth}p{0.17\linewidth}}"
+        if old not in table:
+            raise RuntimeError("unexpected JMLR validation-table column contract")
+        table = table.replace(old, new, 1)
+    table_path.write_text(table, encoding="utf-8")
+
+
 def patch_flagship(tex_path: Path) -> None:
     text = tex_path.read_text(encoding="utf-8")
     text = patch_once(
@@ -186,6 +211,8 @@ def main() -> int:
     patch_flagship(flagship / "manuscript.tex")
     patch_llm_arxiv(llm_arxiv / "manuscript.tex")
     patch_llm_jmlr(llm_jmlr / "manuscript.tex")
+    stabilize_validation_table(llm_arxiv, jmlr=False)
+    stabilize_validation_table(llm_jmlr, jmlr=True)
 
     for package in (flagship, llm_arxiv, llm_jmlr):
         assert_release_surface(package / "manuscript.tex")
@@ -212,6 +239,7 @@ def main() -> int:
         "scientific_master_changed": False,
         "scientific_claims_changed": False,
         "internal_release_instructions_stripped": True,
+        "appendix_table_placement_stabilized": True,
         "ah20_result_backfilled_into_arxiv": False,
         "submission_authorized": False,
         "packages": metrics,
