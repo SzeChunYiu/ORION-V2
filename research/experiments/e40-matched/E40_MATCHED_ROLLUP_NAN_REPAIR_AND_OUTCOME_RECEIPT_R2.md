@@ -149,6 +149,33 @@ Consequences:
   statistically invalid (PC's CI tests assume observational i.i.d.; the stub
   exists for that reason).
 
+## 5c. Revival capability probe — lever (1) validated (SLURM 3554459, terminal 2026-08-30)
+
+Bounded probe of revival lever (1) (re-pin to intervention-aware model), same
+probe root, `model_name=gies`, all other knobs at campaign pins
+(`probe_driver_gies.py` + `e40_m1_probe_gies.sbatch` archived alongside):
+
+| exp | cell | TP | FP | wd_mean | run_time (s) |
+|---|---|---|---|---|---|
+| 510005 | gies observational @0.05 (positive control) | 137 | 251 | 0.1690 | 126 |
+| 510006 | gies **interventional** @0.05 | 141 | 276 | **0.1642** | 147 |
+| 510007 | gies **partial 0.5** @0.05 (SIMPLE's pinned default) | 139 | 255 | **0.1607** | 137 |
+| 510008 | gies interventional @1.0 (ceiling) | 431 | 1146 | 0.1519 | 1271 |
+
+**All cells defined.** Under `gies` every regime produces a real, non-degenerate
+primary at the campaign pin — the regime axis carries signal (interventional
+scores *better* than observational at 0.05: 0.1642 vs 0.1690) instead of a NaN
+cliff, and the E40-R1 "SIMPLE default structurally unscorable" defect is
+repaired by the same re-pin (510007). Runtime at the campaign pin is ~2–2.5 min
+per native run (126–147 s), so a full matched re-contrast at 4× compute is
+budget-feasible.
+
+**Action taken:** E40-m2 dispatched — same arms/gates/contrast/NaN policy,
+`PINNED.model_name: pc → gies`, fresh root (frozen e40-m1 artifacts untouched).
+E40-m1's `METABOLIC_DRAG_MATCHED_NATIVE` verdict stands as recorded (it
+answered the within-observational question); E40-m2 tests the full decision
+space including the regime axis.
+
 Implications (recorded, not acted on here):
 
 - The E40-m1 contrast therefore tested **within-observational configuration
