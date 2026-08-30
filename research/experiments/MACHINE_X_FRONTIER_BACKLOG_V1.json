@@ -1,0 +1,92 @@
+{
+  "schema_version": "orion.v2.machine-x-frontier-backlog.v1",
+  "status": "PROSPECTIVE_STAGED_EXTENSION",
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_intelligence_superiority": false,
+    "grants_new_kernel_family": false,
+    "grants_paper_endpoint_change": false
+  },
+  "global_rules": [
+    "treat machine learning, cognition, intelligence, epistemics and AI-for-science as typed roles rather than one superiority ladder",
+    "freeze case, obstruction oracle, arms, evaluator and resources before outcome access",
+    "reuse GR10 and EL10 exact cases when their oracle matches instead of duplicating cases",
+    "retain ML-only wins, F0 wins, current-F2 sufficiency, false-Jump harm and CANNOT_CHECK",
+    "do not alter frozen P-A through P-D primary endpoints from this backlog"
+  ],
+  "jobs": [
+    {
+      "id": "MX10",
+      "title": "machine-X taxonomy and frontier-routing code hardening",
+      "priority": 1,
+      "type": "local_unit_verification",
+      "runnable_now": true,
+      "commands": [
+        "python -m pytest -q tests/unit/test_epistemic_architecture_wave6.py tests/unit/test_jump.py"
+      ],
+      "expected_artifacts": [
+        "CI/test receipt"
+      ],
+      "paper_targets": [
+        "FLAGSHIP"
+      ],
+      "claim_limit": "semantic/interface integrity only",
+      "done_when": "taxonomy remains non-ordinal, locality context is required, direct actions remain direct and transforms route through existing Jump semantics"
+    },
+    {
+      "id": "MX20",
+      "title": "exact hidden-obstruction frontier routing benchmark",
+      "priority": 2,
+      "type": "formal_synthetic_compute",
+      "runnable_now": false,
+      "dependencies": [
+        "MX10"
+      ],
+      "reuse_sources": [
+        "GR10",
+        "EL10"
+      ],
+      "required_arms": [
+        "SIMPLE_DIRECT",
+        "ML_ONLY_OR_TASK_OPTIMIZER",
+        "SAME_MODEL_REFLECTION",
+        "F0_PARENT_FEDERATION",
+        "CURRENT_F2"
+      ],
+      "conditional_arm": "F2_OBSTRUCTION_ROUTING only if a separable interface delta exists beyond CURRENT_F2",
+      "primary_outcomes": [
+        "obstruction_class_correctness",
+        "action_family_correctness",
+        "minimum_responsible_level_correctness",
+        "false_jump_rate",
+        "missed_jump_rate",
+        "justified_terminal_correctness",
+        "critical_false_completion",
+        "predecessor_preservation",
+        "resource_cost"
+      ],
+      "paper_targets": [
+        "FLAGSHIP"
+      ],
+      "claim_limit": "field-boundary discriminator; does not enter frozen P-C Results by default",
+      "done_when": "hidden-obstruction routing is compared against matched controls or contracts as parent/current-F2 sufficient"
+    },
+    {
+      "id": "MX30",
+      "title": "naturalistic scientific frontier obstruction transfer",
+      "priority": 3,
+      "type": "prospective_scientific_experiment",
+      "runnable_now": false,
+      "dependencies": [
+        "MX20"
+      ],
+      "gate": "open only if MX20 shows protected incremental value beyond F0 and CURRENT_F2 that survives renamed-formulation controls",
+      "paper_targets": [
+        "FLAGSHIP",
+        "P-C"
+      ],
+      "claim_limit": "new prospective identity required before any result-bearing P-C claim",
+      "done_when": "fresh independently certified frontier cases confirm, refute or render CANNOT_CHECK the routing residual"
+    }
+  ]
+}
