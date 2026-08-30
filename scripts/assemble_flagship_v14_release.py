@@ -98,6 +98,7 @@ def pandoc_fragment(path: Path) -> str:
             str(path),
             "--from=markdown+raw_tex+tex_math_dollars+pipe_tables+fenced_code_blocks+citations",
             "--to=latex",
+            "--natbib",
             "--wrap=none",
         ],
         capture=True,
@@ -113,10 +114,14 @@ def compile_pdf(package: Path) -> dict[str, object]:
         m = re.search(r"(?m)^Pages:\s+(\d+)$", info)
         if m:
             page_count = int(m.group(1))
+    bbl = package / "manuscript.bbl"
+    bbl_text = bbl.read_text(encoding="utf-8") if bbl.exists() else ""
     return {
         "pdf_sha256": sha256(pdf),
         "pdf_size_bytes": pdf.stat().st_size,
         "page_count": page_count,
+        "bibliography_rendered": "\\bibitem" in bbl_text,
+        "bibliography_item_count": bbl_text.count("\\bibitem"),
     }
 
 
@@ -168,6 +173,10 @@ def main() -> int:
     (build / "body.md").write_text(body_md, encoding="utf-8")
     abstract_tex = pandoc_fragment(build / "abstract.md").strip()
     body_tex = pandoc_fragment(build / "body.md")
+    if "[@" in abstract_tex or "[@" in body_tex:
+        raise ValueError("Pandoc citation markup leaked into generated LaTeX")
+    if cited and "\\cite" not in body_tex and "\\cite" not in abstract_tex:
+        raise ValueError("citation keys exist but generated LaTeX has no natbib citation commands")
 
     bib_summary = merge_bibs(bib_paths, out / "references.bib")
     tex = rf"""\documentclass[11pt]{{article}}
@@ -215,6 +224,8 @@ def main() -> int:
         "within_nominal_target": 3000 <= word_count <= 4000,
         "manuscript_tex_sha256": sha256(out / "manuscript.tex"),
         "references_sha256": sha256(out / "references.bib"),
+        "pandoc_citation_markup_absent": True,
+        "natbib_commands_present": True,
         "human_release_authority": False,
         "ah20_required_for_arxiv": False,
         "scientific_claims_changed": False,
