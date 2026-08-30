@@ -1,0 +1,83 @@
+{
+  "receipt_id": "E30_R11_TERMINAL_RESULTS_RECEIPT",
+  "date_executed": "2026-08-30",
+  "campaign": "campaign-e30-r11-disposition-offline-core4-rep3-deficit-topup-20260828-ffcc8ed6",
+  "jobs": {
+    "redispatch": 3554274,
+    "eval": 3554282,
+    "analysis": 3554283
+  },
+  "supersedes": "interim E30_R11_TERMINAL_ANALYSIS_480.json from receipt #62 (286/480 stock, F2 5/15 checkable)",
+  "terminal_execution_state": {
+    "responses": "480/480",
+    "missing_repetitions": 0,
+    "raw_status": "COMPLETED_PROPOSAL_ONLY x480",
+    "authority_flags_false": 480,
+    "analysis_status": "CONFIRMATORY_TASK_LEVEL_ANALYSIS"
+  },
+  "nondeterminism_record": {
+    "cells": [
+      "F0_PARENT_FEDERATION/bugsinpy-pandas-5 rep1",
+      "F0_PARENT_FEDERATION/bugsinpy-pandas-5 rep3"
+    ],
+    "consecutive_failed_passes": 4,
+    "recovered_on_pass": 4,
+    "max_passes": 12,
+    "probe_attribution": "final synthesis call thinking-drowning past per-call output-token cap (stop_reason=max_tokens, thinking-only, zero text)",
+    "conclusion": "endpoint nondeterminism at temperature 0; recovered by re-roll design, no lane change"
+  },
+  "success_endpoint": {
+    "F2_ORION_METABOLIC_FULL": "5/40",
+    "F0_PARENT_FEDERATION": "5/40",
+    "SAME_MODEL_REFLECTION": "4/40",
+    "SIMPLE_DIRECT": "6/40",
+    "primary_comparisons": {
+      "F2_vs_SIMPLE_DIRECT": {
+        "discordants": [
+          1,
+          2
+        ],
+        "exact_p": 1.0,
+        "holm_p": 1.0
+      },
+      "F2_vs_SAME_MODEL_REFLECTION": {
+        "discordants": [
+          2,
+          1
+        ],
+        "exact_p": 1.0,
+        "holm_p": 1.0
+      },
+      "F2_vs_F0_PARENT_FEDERATION": {
+        "discordants": [
+          1,
+          1
+        ],
+        "exact_p": 1.0,
+        "holm_p": 1.0
+      }
+    },
+    "repetition_instability_tasks": {
+      "F0": 6,
+      "F2": 4,
+      "REFLECTION": 2,
+      "SIMPLE": 4
+    }
+  },
+  "hard_gate_state": "CANNOT_CHECK",
+  "hard_gate_root_cause": "STRUCTURAL_FROZEN_LANE_RUNS_REGISTERED_FAILING_TEST_ONLY; full_regression_suite CANNOT_CHECK_NOT_RUN x480; critical_new_failure_count None x480",
+  "verdict_class": "EXECUTION_COMPLETE_480_OF_480__SUCCESS_ENDPOINT_NULL_NO_ARM_SEPARATION__HARD_GATE_STRUCTURALLY_CANNOT_CHECK",
+  "not_established": [
+    "publication_readiness",
+    "supertheory_status",
+    "field_status"
+  ],
+  "named_follow_ups": [
+    "full-regression-suite frozen-lane stage to make the critical-failure hard gate checkable",
+    "resource normalization and Pareto analysis",
+    "independent statistical and domain review",
+    "cross-domain native evaluation"
+  ],
+  "e60_binding": "inherits boundary: no critical-failure endpoint claims downstream of unchecked hard gate",
+  "md_sha256": "7489d843fac50e5215967d61dca4202ef4d97cc8edb5a8a276fe01489553c0c2"
+}
