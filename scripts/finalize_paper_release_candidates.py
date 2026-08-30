@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build final author-facing release candidates from frozen scientific masters.
 
-This layer changes only release metadata and the AI-use disclosure. It must not
+This layer changes only release metadata and public-surface packaging. It must not
 change scientific claims, results, citations, theorem text, or AH20 custody.
 """
 
@@ -40,6 +40,21 @@ def patch_once(text: str, pattern: str, replacement: str, label: str, *, flags: 
     return out
 
 
+def strip_internal_bibliography_source(text: str) -> str:
+    """Remove the frozen master's packaging instruction from public LaTeX only."""
+    pattern = (
+        r"\\hypertarget\{bibliography-source\}\{%\s*"
+        r"\\section\{Bibliography source\}\\label\{bibliography-source\}\}\s*"
+        r"Use \\texttt\{REFERENCES\\_V1\.bib\} together with "
+        r"\\texttt\{REFERENCES\\_CLASSICS\\_SUPPLEMENT\\_V1\.bib\}\. "
+        r"Refresh 2026 preprint/publication statuses before arXiv and journal release\.\s*"
+    )
+    out, count = re.subn(pattern, "", text, count=1, flags=re.S)
+    if count != 1:
+        raise RuntimeError(f"expected one internal bibliography-source block, got {count}")
+    return out
+
+
 def patch_flagship(tex_path: Path) -> None:
     text = tex_path.read_text(encoding="utf-8")
     text = patch_once(
@@ -73,6 +88,7 @@ def patch_llm_arxiv(tex_path: Path) -> None:
         "LLM arXiv AI disclosure",
         flags=re.S,
     )
+    text = strip_internal_bibliography_source(text)
     tex_path.write_text(text, encoding="utf-8")
 
 
@@ -97,6 +113,7 @@ def patch_llm_jmlr(tex_path: Path) -> None:
         "JMLR AI disclosure",
         flags=re.S,
     )
+    text = strip_internal_bibliography_source(text)
     tex_path.write_text(text, encoding="utf-8")
 
 
@@ -119,10 +136,15 @@ def assert_release_surface(tex_path: Path) -> None:
         "Author metadata pending",
         "used extensively as research-assistance tools",
         "contributed materially to literature discovery",
+        "Bibliography source",
+        "REFERENCES_V1.bib",
+        "REFERENCES\\_V1.bib",
+        "REFERENCES_CLASSICS_SUPPLEMENT_V1.bib",
+        "REFERENCES\\_CLASSICS\\_SUPPLEMENT\\_V1.bib",
     ]
     hits = [x for x in forbidden if x in text]
     if hits:
-        raise RuntimeError(f"unresolved release placeholders/disclosure wording: {hits}")
+        raise RuntimeError(f"unresolved release placeholders/internal instructions: {hits}")
     if AUTHOR not in text or EMAIL not in text:
         raise RuntimeError(f"author metadata missing from {tex_path}")
     if AI_DISCLOSURE not in text:
@@ -189,6 +211,7 @@ def main() -> int:
         "ai_disclosure": AI_DISCLOSURE,
         "scientific_master_changed": False,
         "scientific_claims_changed": False,
+        "internal_release_instructions_stripped": True,
         "ah20_result_backfilled_into_arxiv": False,
         "submission_authorized": False,
         "packages": metrics,
