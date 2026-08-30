@@ -4,6 +4,9 @@ on:
   pull_request:
     paths:
       - 'papers/release/FINAL_AUTHOR_AND_AI_METADATA_V1.json'
+      - 'papers/flagship/FLAGSHIP_FORMAL_SPINE_MAIN_TEXT_V1.tex'
+      - 'papers/pipeline/FLAGSHIP_FORMAL_SPINE_INVENTORY_PR17_V1.md'
+      - 'papers/llm-machine-epistemics/FORMAL_SPINE_INVENTORY_PR17_V1.md'
       - 'scripts/finalize_paper_release_candidates.py'
       - '.github/workflows/final-paper-release-candidates.yml'
   workflow_dispatch:
@@ -36,30 +39,44 @@ jobs:
             --root "$GITHUB_WORKSPACE" \
             --out-root build/final-release/packages \
             --jmlr-style build/final-release/style/jmlr2e.sty
-      - name: Enforce final release invariants
+      - name: Enforce PR17 release invariants
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
           p = Path('build/final-release/packages/FINAL_RELEASE_RECEIPT.json')
           r = json.loads(p.read_text())
+          assert r['schema'] == 'orion-v2.final-paper-release.v2-pr17'
           assert r['author']['name'] == 'Sze Chun Yiu'
           assert r['author']['email'] == 'sze-chun.yiu@fysik.su.se'
           assert r['author']['institutional_affiliation_claimed'] is False
-          assert r['scientific_master_changed'] is False
-          assert r['scientific_claims_changed'] is False
-          assert r['ah20_result_backfilled_into_arxiv'] is False
+          assert r['academic_skill_state']['formal_spine_pr17_head'] == 'ef47c81101e1e1b97864019dde143456a581de1c'
+          assert r['academic_skill_state']['research_integrity_pr16_head'] == '087e47330826295a0b114563ec33238951ac56a9'
+          assert r['flagship']['release_composite'] == 'V15_FORMAL_SPINE_COMPOSITE'
+          assert r['flagship']['formal_spine_status'] == 'PASS_RESTORED_IN_MAIN_TEXT'
+          assert 3000 <= r['flagship']['estimated_main_text_word_count'] <= 4000
+          assert r['flagship']['base_master_edited'] is False
+          assert r['flagship']['new_scientific_result_added'] is False
+          assert r['flagship']['ah20_r2_backfilled_into_perspective'] is False
+          assert r['pra']['formal_spine_status'] == 'PASS_NO_SCIENTIFIC_REWRITE_REQUIRED'
+          assert r['pra']['scientific_manuscript_changed'] is False
+          assert r['research_integrity_independent_verification_complete'] is False
           assert r['submission_authorized'] is False
+          ftex = Path('build/final-release/packages/flagship_arxiv/manuscript.tex').read_text()
+          assert 'Formal object of Machine Epistemics' in ftex
+          assert r'E_t=(P_t,S_t,O_t,A_t,R_t,M_t,V_t,X_t,H_t,K_t)' in ftex
+          assert r'\widetilde E_t=(E_t;\Gamma_t,\Pi_t,\mathcal A_t)' in ftex
+          assert r'\mathcal A_t\neq\mathfrak E^{\star}' in ftex
           for name, package in r['packages'].items():
               assert package['page_count']
               assert package['pdf_size_bytes'] > 0
               assert package['pdf_sha256']
-          print('FINAL_PAPER_RELEASE_CANDIDATES_PASS')
+          print('FINAL_PAPER_RELEASE_PR17_PASS')
           PY
       - name: Upload final candidates
         uses: actions/upload-artifact@v4
         with:
-          name: final-paper-release-candidates
+          name: final-paper-release-candidates-pr17
           path: build/final-release/packages/
           if-no-files-found: error
           retention-days: 30
