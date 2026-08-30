@@ -1,10 +1,21 @@
 #!/usr/bin/env python3
 """AH20 epistemic-atlas / horizon suite runner (prospective custody, gold-blind).
 
-prepare: build_suite() (48 EL10 worlds re-derived byte-identical under EL10's
-own seed + 30 new seeded worlds, all machine-cross-checked against the
-AH10-green module) -> public_tasks.json + private_oracle.json + per-arm
-requests; FROZEN_SUITE.json freeze record incl. the GR10/MX20 reuse ledger.
+R2 (freeze V2, supersedes V1; R1 outcome preserved at results/issue108/ah20-r1):
+- 48 EL10 worlds re-derived byte-identical under EL10's own seed + 60 new
+  seeded worlds (AH_PER_CLASS 12, AH_SEED 20260902), all machine-cross-checked
+  against the AH10-green module -> 108 tasks.
+- Repair 1: `holds_across_contexts` split into the scored
+  `holds_warranted_by_registered_evidence` and the descriptive
+  `proposal_global_scope_claimed` (never scored).
+- Repair 2: gluing scored only on text-derivable classes
+  (GLUING_SCORED_CLASSES); `gluing_reference_all_worlds_r1_comparable` keeps
+  the R1-comparable descriptive rate.
+- Repair 3: pre-registered co-primary calibration block (within-arm DiD on
+  overclaim rates, seeded permutation null) emitted regardless of sentinel
+  state; the kill rule is NOT relaxed by it.
+- Repair 4: per-class power 6 -> 12.
+
 dispatch: hash-commit + REMOVE the private oracle before any arm runs, run
 arms with ORION_GOLD_ACCESS=NONE, restore + verify in finally.
 evaluate: missing != wrong; per-arm metric vector; paired exact McNemar x16
@@ -13,8 +24,8 @@ estimates; false_outside_atlas_rate with exact Clopper-Pearson CI.
 selftest: no-model structural audit (oracle exactness, balance, witness
 discipline, leak checks, winner-consistency parsed from public text).
 
-Freeze doc: research/experiments/EPISTEMIC_ATLAS_HORIZON_AH20_SUITE_FREEZE_V1.md
-(V1 FROZEN 2026-08-30; canonical paper anchor V14, PR #112).
+Freeze doc: research/experiments/EPISTEMIC_ATLAS_HORIZON_AH20_SUITE_FREEZE_V2.md
+(canonical paper anchor V14, PR #112).
 """
 
 from __future__ import annotations
@@ -33,6 +44,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from orion_ah20_cases import (  # noqa: E402
     AH_CLASSES,
+    AH_PER_CLASS,
     AH_SEED,
     EL10_CLASSES,
     EL10_SEED,
@@ -51,13 +63,19 @@ ARMS = [
 ]
 INTERFACE = "F2_PLUS_ATLAS_HORIZON"
 CONTRAST_BASES = ["SIMPLE_NATIVE", "CURRENT_F0", "CURRENT_F2", "PARENT_LOCAL_GLOBAL"]
-TASK_COUNT = 78
-# Freeze section 5 metric denominators (class -> count: 6 each).
-FALSE_GLOBALIZATION_CLASSES = ["AHC1", "ELC2", "ELC3", "ELC4", "ELC5", "ELC8"]  # 36
+TASK_COUNT = 108
+# Freeze-V2 section 5 metric denominators (ELC classes 6 each, AH classes 12 each).
+FALSE_GLOBALIZATION_CLASSES = ["AHC1", "ELC2", "ELC3", "ELC4", "ELC5", "ELC8"]  # 12 + 30 = 42
 TRANSPORT_CLASSES = ["ELC2", "ELC3", "ELC4", "ELC5", "ELC7", "ELC8"]  # 36
-PROBE_CLASSES = ["AHC2", "AHC3"]  # 12
-LOCAL_SCOPE_CLASSES = ["AHC0", "ELC1"]  # 12
-SENTINEL_CLASSES = ["AHC4"]  # 6; false_outside_atlas denominator = 78 - 6 = 72
+PROBE_CLASSES = ["AHC2", "AHC3"]  # 24
+LOCAL_SCOPE_CLASSES = ["AHC0", "ELC1"]  # 12 + 6 = 18
+SENTINEL_CLASSES = ["AHC4"]  # 12; false_outside_atlas denominator = 108 - 12 = 96
+# Repair 2: gluing is scored only where the correct disposition is derivable
+# from the scenario text alone (a registry of charts/overlaps/witnesses is in
+# text). ELC2-ELC6/ELC8 need overlap-registry facts absent from the reused
+# texts; AHC2/AHC3 expose no chart registry. Both stay out, honestly.
+GLUING_SCORED_CLASSES = ["AHC0", "AHC1", "AHC4", "ELC1", "ELC7"]  # 12+12+12+6+6 = 48
+CALIBRATION_CONTROL_CLASSES = ["AHC0"]  # repair 3 control stratum (12)
 CRITICAL_METRICS = [
     "gluing_disposition_correctness",
     "false_globalization_rate",
@@ -138,7 +156,7 @@ def prepare(workdir: Path, arms=None, force: bool = False) -> None:
             write_json(
                 workdir / "requests" / arm / f"{task_id}.json",
                 {
-                    "schema_version": "orion.v2.ah20-request.v1",
+                    "schema_version": "orion.v2.ah20-request.v2",
                     "task_id": task_id,
                     "arm_id": arm,
                     "task": task,
@@ -148,29 +166,57 @@ def prepare(workdir: Path, arms=None, force: bool = False) -> None:
             )
     write_json(
         workdir / "public_tasks.json",
-        {"schema_version": "orion.v2.ah20-public.v1", "tasks": public_tasks},
+        {"schema_version": "orion.v2.ah20-public.v2", "tasks": public_tasks},
     )
     write_json(
         workdir / "private_oracle.json",
-        {"schema_version": "orion.v2.ah20-private.v1", "answers": private_answers},
+        {"schema_version": "orion.v2.ah20-private.v2", "answers": private_answers},
     )
     write_json(
         workdir / "FROZEN_SUITE.json",
         {
-            "schema_version": "orion.v2.ah20-freeze.v1",
-            "suite": "AH20",
+            "schema_version": "orion.v2.ah20-freeze.v2",
+            "suite": "AH20-R2",
+            "supersedes": {
+                "freeze_v1": "research/experiments/EPISTEMIC_ATLAS_HORIZON_AH20_SUITE_FREEZE_V1.md",
+                "r1_outcome_preserved": "research/experiments/results/issue108/ah20-r1 (CONTROL_DIVERGENT)",
+                "note": (
+                    "R1's frozen record is not edited; R2 repairs are pre-registered "
+                    "here BEFORE dispatch per V1's supersede provision"
+                ),
+            },
             "seed_new_cases": AH_SEED,
             "seed_el10_reuse": EL10_SEED,
             "classes_new": AH_CLASSES,
+            "per_class_new": AH_PER_CLASS,
             "classes_reused": EL10_CLASSES,
             "task_count": len(public_tasks),
             "arms": arms,
             "private_oracle_visible_to_solver": False,
             "answer_contract": (
-                "decision|gluing_disposition|global_section_witness_id|holds_across_contexts|"
+                "decision|gluing_disposition|global_section_witness_id|"
+                "holds_warranted_by_registered_evidence|proposal_global_scope_claimed|"
                 "transport_verdict|probe_decision|probe_id|horizon_disposition|"
                 "outside_atlas_witness_id|brief_rationale"
             ),
+            "r2_repairs": {
+                "1_contract_split": (
+                    "holds_across_contexts split: scored holds_warranted_by_registered_"
+                    "evidence (registry-facts warrant, proposals ignored) + descriptive "
+                    "proposal_global_scope_claimed (never scored)"
+                ),
+                "2_gluing_text_derivable_only": (
+                    "gluing scored on AHC0/AHC1/AHC4/ELC1/ELC7 (48 cells); ELC2-6/8 and "
+                    "AHC2/3 honestly excluded (needed registry facts absent from text); "
+                    "gluing_reference_all_worlds_r1_comparable kept descriptive"
+                ),
+                "3_calibration_co_primary": (
+                    "within-arm DiD (treatment overclaim rate - own AHC0 control rate), "
+                    "IFACE vs each base, seeded permutation null (10000, seed 20260902); "
+                    "emitted regardless of sentinel state; kill rule NOT relaxed"
+                ),
+                "4_power": "AH per-class 6 -> 12 (60 fresh worlds; EL10 reuse stays 48)",
+            },
             "reuse_ledger": reuse_ledger(),
             "executor_note": (
                 "primary codex-cli gpt-5.6-terra; anthropic Messages-API fallback admissible "
@@ -316,15 +362,20 @@ def _clopper_pearson(k: int, n: int, alpha: float = 0.05):
 
 
 def score_row(answer: dict, o: dict) -> dict:
-    """Per-task per-arm scoring. Oracle o carries the 10 contract fields."""
+    """Per-task per-arm scoring. Oracle o carries the contract fields.
+
+    R2 repair 1: the scored global-scope field is
+    `holds_warranted_by_registered_evidence` (the registry-facts warrant);
+    `proposal_global_scope_claimed` is descriptive and never enters scoring.
+    """
     cls = o["class_id"]
     claims_global = (
-        answer.get("holds_across_contexts") is True
+        answer.get("holds_warranted_by_registered_evidence") is True
         or answer.get("gluing_disposition") == "GLOBAL_SECTION_WITNESSED"
         or answer.get("transport_verdict") == "VALID"
     )
     oracle_global = (
-        o["holds_across_contexts"] is True
+        o["holds_warranted_by_registered_evidence"] is True
         or o["gluing_disposition"] == "GLOBAL_SECTION_WITNESSED"
         or o["transport_verdict"] == "VALID"
     )
@@ -438,7 +489,10 @@ def evaluate(workdir: Path, arms=None) -> None:
             "executors_seen": sorted(str(e) for e in executors),
             "local_scope_correctness": rate(arm, "local_scope_ok", LOCAL_SCOPE_CLASSES),
             "false_globalization_rate": fg,
-            "gluing_disposition_correctness": rate(arm, "gluing_ok", AH_CLASSES + EL10_CLASSES),
+            # R2 repair 2: gluing scored only on text-derivable classes; the
+            # all-worlds rate stays as a descriptive R1-comparable reference.
+            "gluing_disposition_correctness": rate(arm, "gluing_ok", GLUING_SCORED_CLASSES),
+            "gluing_reference_all_worlds_r1_comparable": rate(arm, "gluing_ok", AH_CLASSES + EL10_CLASSES),
             "transport_correctness": (1 - te) if te is not None else None,
             "probe_selection_correctness": rate(arm, "probe_ok", PROBE_CLASSES),
             "decision_relevant_partition_refinement": rate(arm, "refinement_ok", PROBE_CLASSES),
@@ -459,7 +513,7 @@ def _metric_indicator(per_task, task_ids, arm, metric, oracle):
             continue
         cls = oracle[t]["class_id"]
         if metric == "gluing_disposition_correctness":
-            out[t] = 1 if row["gluing_ok"] else 0
+            out[t] = (1 if row["gluing_ok"] else 0) if cls in GLUING_SCORED_CLASSES else None
         elif metric == "false_globalization_rate":
             out[t] = (0 if row["false_globalization"] else 1) if cls in FALSE_GLOBALIZATION_CLASSES else None
         elif metric == "transport_correctness":
@@ -523,6 +577,76 @@ def _contrasts(per_task, task_ids, oracle):
     return tests
 
 
+def _calibration_contrasts(per_task, task_ids, oracle, permutations=10000, seed=20260902):
+    """Freeze-V2 pre-registered co-primary: calibrated overclaim contrasts.
+
+    Statistic per base arm: within-arm difference-in-differences — (base's
+    overclaim rate on the false-globalization strata minus the same arm's
+    AHC0 control overclaim rate) subtracted from the interface arm's same
+    quantity. Under the null of no arm effect the two arm labels are
+    exchangeable within a task, so the null distribution is generated by
+    seeded within-task label swaps (repair 3; seed 20260902).
+    Emitted regardless of sentinel state; the kill rule is NOT relaxed by it.
+    """
+    import random as _random
+
+    def overclaim(arm, t):
+        row = per_task[t][arm]
+        if row.get("missing"):
+            return None
+        return 1 if row.get("false_globalization") else 0
+
+    control = [t for t in task_ids if oracle[t]["class_id"] in CALIBRATION_CONTROL_CLASSES]
+    treat = [t for t in task_ids if oracle[t]["class_id"] in FALSE_GLOBALIZATION_CLASSES]
+    block = {
+        "registered_in": "EPISTEMIC_ATLAS_HORIZON_AH20_SUITE_FREEZE_V2.md (repair 3)",
+        "statistic": (
+            "within-arm DiD (overclaim rate on false-globalization strata minus own "
+            "AHC0 control rate), interface arm minus base arm"
+        ),
+        "null": f"seeded within-task arm-label swaps ({permutations}, seed {seed})",
+        "relaxes_kill_rule": False,
+        "control_strata": CALIBRATION_CONTROL_CLASSES,
+        "treatment_strata": FALSE_GLOBALIZATION_CLASSES,
+        "contrasts": {},
+    }
+
+    def did(ctrl_pairs, treat_pairs):
+        ia = sum(a for a, _ in treat_pairs) / len(treat_pairs)
+        ib = sum(b for _, b in treat_pairs) / len(treat_pairs)
+        ca = sum(a for a, _ in ctrl_pairs) / len(ctrl_pairs)
+        cb = sum(b for _, b in ctrl_pairs) / len(ctrl_pairs)
+        return (ia - ca) - (ib - cb)
+
+    for base in CONTRAST_BASES:
+        cp = [(overclaim(INTERFACE, t), overclaim(base, t)) for t in control]
+        tp = [(overclaim(INTERFACE, t), overclaim(base, t)) for t in treat]
+        cp = [(a, b) for a, b in cp if a is not None and b is not None]
+        tp = [(a, b) for a, b in tp if a is not None and b is not None]
+        if not cp or not tp:
+            block["contrasts"][base] = {"status": "NOT_COMPUTABLE_MISSING_CELLS"}
+            continue
+        obs = did(cp, tp)
+        rng = _random.Random(f"{seed}:{base}")
+        ge = 0
+        for _ in range(permutations):
+            scp = [(a, b) if rng.random() < 0.5 else (b, a) for a, b in cp]
+            stp = [(a, b) if rng.random() < 0.5 else (b, a) for a, b in tp]
+            if abs(did(scp, stp)) >= abs(obs) - 1e-12:
+                ge += 1
+        block["contrasts"][base] = {
+            "n_control": len(cp),
+            "n_treatment": len(tp),
+            "interface_control_rate": round(sum(a for a, _ in cp) / len(cp), 4),
+            "base_control_rate": round(sum(b for _, b in cp) / len(cp), 4),
+            "interface_treatment_rate": round(sum(a for a, _ in tp) / len(tp), 4),
+            "base_treatment_rate": round(sum(b for _, b in tp) / len(tp), 4),
+            "did_interface_minus_base": round(obs, 4),
+            "p_permutation_twosided": round((ge + 1) / (permutations + 1), 4),
+        }
+    return block
+
+
 def _control_divergent(per_task, task_ids, oracle):
     """Invariance sentinel: arms must agree on AHC0 (the control class)."""
     control = [t for t in task_ids if oracle[t]["class_id"] == "AHC0"]
@@ -551,7 +675,11 @@ def _kill_rule(summary, resources, per_task, task_ids, oracle):
     if control is not None:
         return {
             "verdict": "CONTROL_DIVERGENT",
-            "note": "arms disagree on the AHC0 invariance control; a null here is not evidence about the interface",
+            "note": (
+                "arms disagree on the AHC0 invariance control; a null here is not "
+                "evidence about the interface; freeze V2: the pre-registered "
+                "calibration_analysis block carries this run's evidential content"
+            ),
             **control,
         }
     others = CONTRAST_BASES
@@ -633,15 +761,17 @@ def _kill_rule(summary, resources, per_task, task_ids, oracle):
 
 def evaluate_finish(workdir: Path, arms, summary, resources, per_task, task_ids, oracle):
     tests = _contrasts(per_task, task_ids, oracle)
+    calibration = _calibration_contrasts(per_task, task_ids, oracle)
     kill = _kill_rule(summary, resources, per_task, task_ids, oracle)
     write_json(
         workdir / "EVALUATION_SUMMARY.json",
         {
-            "schema_version": "orion.v2.ah20-evaluation.v1",
-            "suite": "AH20",
+            "schema_version": "orion.v2.ah20-evaluation.v2",
+            "suite": "AH20-R2",
             "summary": summary,
             "resources": resources,
             "mcnemar_tests": tests,
+            "calibration_analysis": calibration,
             "kill_rule": kill,
             "missing_is_not_wrong": True,
             "authority": {
@@ -665,7 +795,14 @@ def selftest(workdir: Path) -> None:
     counts = {}
     for o in oracle.values():
         counts[o["class_id"]] = counts.get(o["class_id"], 0) + 1
-    assert all(v == 6 for v in counts.values()) and len(counts) == 13, counts
+    expected = {f"ELC{i}": 6 for i in range(1, 9)}
+    expected.update({cls: AH_PER_CLASS for cls in AH_CLASSES})
+    assert counts == expected and len(counts) == 13, counts
+    # R2 repair 1 shape: split fields present, v1 field absent everywhere.
+    for tid, o in oracle.items():
+        assert "holds_warranted_by_registered_evidence" in o, tid
+        assert "proposal_global_scope_claimed" in o, tid
+        assert "holds_across_contexts" not in o, tid
     gluing = {}
     for o in oracle.values():
         gluing[o["gluing_disposition"]] = gluing.get(o["gluing_disposition"], 0) + 1
@@ -693,6 +830,7 @@ def selftest(workdir: Path) -> None:
         "CANNOT_CHECK", "PROBE_REFINES_HORIZON", "NO_DISTINGUISHABILITY_GAIN",
         "BROKEN_CANDIDATE_UNIVERSE", "OUTSIDE_CURRENT_ATLAS", "NOT_APPLICABLE",
         "gluing_disposition", "horizon_disposition",
+        "holds_warranted_by_registered_evidence", "proposal_global_scope_claimed",
     ):
         assert leak not in public_text, leak
     # Winner-consistency audit parsed from public text only.
@@ -722,10 +860,11 @@ def selftest(workdir: Path) -> None:
         elif cls == "AHC1":
             assert "GLOBAL SECTION WITNESS REGISTRY: NONE registered" in text, tid
             checked += 1
-    assert checked == 30, checked
+    assert checked == 60, checked  # 5 AH classes x AH_PER_CLASS
     # Freeze record shape.
     frozen = read_json(workdir / "FROZEN_SUITE.json")
     assert frozen["task_count"] == TASK_COUNT and len(frozen["arms"]) == 5
+    assert frozen["suite"] == "AH20-R2" and frozen["per_class_new"] == AH_PER_CLASS
     assert frozen["reuse_ledger"]["EL10"]["status"] == "REUSED_BYTE_IDENTICAL"
     for key in ("GR10", "MX20"):
         assert frozen["reuse_ledger"][key]["status"].startswith("CANNOT_REUSE") or \
@@ -733,8 +872,31 @@ def selftest(workdir: Path) -> None:
     # Clopper-Pearson sanity: known bounds.
     lo, hi = _clopper_pearson(0, 72)
     assert lo == 0.0 and 0.04 < hi < 0.06, (lo, hi)
-    lo, hi = _clopper_pearson(72, 72)
-    assert hi == 1.0 and 0.94 < lo < 0.96, (lo, hi)
+    lo, hi = _clopper_pearson(0, 96)  # R2 false_outside_atlas denominator
+    assert lo == 0.0 and 0.03 < hi < 0.045, (lo, hi)
+    lo, hi = _clopper_pearson(96, 96)
+    assert hi == 1.0 and 0.955 < lo < 0.97, (lo, hi)
+    # Repair 3 smoke test: synthetic data, no model calls. The base arm
+    # overclaims on one treatment task and nothing else does; the interface
+    # DiD must be negative (base rises from control to treatment more).
+    def _fake_row(oc):
+        return {"missing": False, "false_globalization": oc}
+    fake_oracle = {
+        "c1": {"class_id": "AHC0"}, "c2": {"class_id": "AHC0"},
+        "t1": {"class_id": "AHC1"}, "t2": {"class_id": "AHC1"},
+    }
+    fake_per = {
+        "c1": {a: _fake_row(False) for a in ARMS},
+        "c2": {a: _fake_row(False) for a in ARMS},
+        "t1": {"SIMPLE_NATIVE": _fake_row(True), **{a: _fake_row(False) for a in ARMS if a != "SIMPLE_NATIVE"}},
+        "t2": {a: _fake_row(False) for a in ARMS},
+    }
+    cal = _calibration_contrasts(fake_per, sorted(fake_per), fake_oracle, permutations=199)
+    sn = cal["contrasts"]["SIMPLE_NATIVE"]
+    assert sn["did_interface_minus_base"] == -0.5, sn
+    assert 0.0 <= sn["p_permutation_twosided"] <= 1.0, sn
+    for base in CONTRAST_BASES[1:]:
+        assert cal["contrasts"][base]["did_interface_minus_base"] == 0.0, base
     print("SELFTEST_OK", counts, "gluing", gluing, "winner_consistency_checked", checked)
 
 
