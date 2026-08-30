@@ -1,0 +1,70 @@
+{
+  "schema_version": "orion.v2.epistemic-atlas-horizon-backlog.v1",
+  "status": "PROSPECTIVE_STAGED_EXTENSION",
+  "authority": {
+    "grants_total_epistemic_space": false,
+    "grants_absolute_globality": false,
+    "grants_new_kernel_family": false,
+    "grants_paper_endpoint_change": false
+  },
+  "global_rules": [
+    "the observed atlas is never identified with the total space of possible epistemic mechanisms",
+    "pairwise or overlap compatibility is not a global-section witness",
+    "OUTSIDE_CURRENT_ATLAS requires a persistent obstruction witness and has no positive mechanism content",
+    "sheaf or cohomological machinery is parent-owned and requires domain-specific mathematical prerequisites",
+    "reuse EL10 GR10 and MX20 exact worlds before creating new cases",
+    "parent sufficiency and CANNOT_CHECK are valid terminals"
+  ],
+  "jobs": [
+    {
+      "id": "AH10",
+      "title": "exact atlas and horizon reference semantics",
+      "priority": 1,
+      "type": "unit_reference_verification",
+      "runnable_now": true,
+      "dependencies": [],
+      "primary_outcomes": [
+        "gluing_status_correctness",
+        "pairwise_compatibility_nonpromotion",
+        "probe_partition_refinement_correctness",
+        "globality_scope_validation",
+        "non_authority_invariants"
+      ],
+      "done_when": "integrated unit suite passes all epistemic_atlas reference cases"
+    },
+    {
+      "id": "AH20",
+      "title": "exact local-to-global and horizon decision benchmark",
+      "priority": 2,
+      "type": "formal_synthetic_compute",
+      "runnable_now": false,
+      "dependencies": ["AH10"],
+      "required_reuse": ["EL10", "GR10", "MX20"],
+      "primary_outcomes": [
+        "local_scope_correctness",
+        "false_globalization_rate",
+        "gluing_disposition_correctness",
+        "transport_correctness",
+        "probe_selection_correctness",
+        "decision_relevant_partition_refinement",
+        "false_outside_atlas_rate",
+        "resource_cost"
+      ],
+      "paper_targets": ["FLAGSHIP"],
+      "claim_limit": "formal/interface discriminator only; no new P-A through P-D result claim",
+      "done_when": "CURRENT_F2 and strongest applicable parent are compared against F2_PLUS_ATLAS_HORIZON under exact known answers or missing parents are CANNOT_CHECK"
+    },
+    {
+      "id": "AH30",
+      "title": "naturalistic cross-chart scientific transfer",
+      "priority": 3,
+      "type": "prospective_scientific_experiment",
+      "runnable_now": false,
+      "dependencies": ["AH20"],
+      "gate": "open only if AH20 shows a protected residual beyond current K2 locality and strongest parent methods",
+      "paper_targets": ["FLAGSHIP", "P-B_IF_MATERIAL_REOPEN"],
+      "claim_limit": "does not establish a total epistemic space or absolute universal intelligence",
+      "done_when": "independent evaluation confirms or refutes incremental scientific decision value across fresh contexts"
+    }
+  ]
+}

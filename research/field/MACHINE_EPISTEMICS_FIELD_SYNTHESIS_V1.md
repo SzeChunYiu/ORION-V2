@@ -40,6 +40,21 @@ The relevant relations are typed rather than ordinal. Learning mechanisms may im
 
 `governs` does not mean `is more intelligent than`. A highly capable system can be epistemically unreliable, while a conservative epistemic controller can be reliable but scientifically weak because its solvers are poor.
 
+### 1.2 Relationship to epistemology and its formal/computational descendants
+
+There is no single standard discipline called `traditional epistemic science`. The direct parent landscape is already broad.
+
+- **Epistemology** studies the nature, sources, limits and value of knowledge, justification, belief and rationality.
+- **Formal epistemology** uses logic, probability and other mathematical tools to analyze epistemological questions.
+- **Formal learning theory / computational epistemology** studies reliable convergence, learnability and the conditions under which inquiry can reach truth across possible worlds. This is a particularly strong parent because it already treats epistemology as a formal, normative problem of inquiry.
+- **Social epistemology** studies testimony, disagreement, groups, institutions, networks and the social organization of knowledge.
+- **Philosophy of science and metascience** study confirmation, explanation, models, underdetermination, scientific practice and the empirical structure of science.
+- **AI epistemology / epistemic-agency research** asks whether AI can count as a knower or epistemic agent and how responsibility changes in human–AI knowledge practices.
+
+Machine Epistemics does not replace these fields and should not be presented as “epistemology, but for machines.” Its candidate residual is narrower in domain and more operational in form: **the executable, system-level control and empirical evaluation of scientific-state transitions in machine/hybrid inquiry, where mutable state includes not only beliefs or credences but evidence lineage, representations, models, tools, experiments, problems, evaluators, resources, generative regimes and authority boundaries.**
+
+A field-level residual therefore exists only if this composition changes prospective scientific decisions beyond faithful formal/computational/social epistemology and the strongest neighboring control, identifiability, provenance and scientific-method parents.
+
 ## 2. Primitive object
 
 A **Machine-Epistemic Episode** is
@@ -62,7 +77,10 @@ where:
 When decision-relevant, the state may additionally bind:
 
 - `Gamma` — current generative regime: representation language, operators, constraints, problem portfolio, traversal and tool/affordance environment;
-- `Pi` — current perspective/locality frame: environment, system boundary, scale, timescale, substrate/interface and criterion context.
+- `Pi` — current perspective/locality frame: environment, system boundary, scale, timescale, substrate/interface and criterion context;
+- `Atlas_t` — the current bounded epistemic atlas: registered local contexts, typed transports, probes, obstructions and horizon state.
+
+`Atlas_t` is explicitly not the total space of possible epistemic mechanisms. It is a time-indexed scientific object whose boundary is part of the state.
 
 A tool execution proposes information. An interpretation proposes a scientific-state transition. A transition may be admitted only under the current evidence, semantic, preservation, resource, locality and authority obligations.
 
@@ -129,6 +147,14 @@ Stopping must state the searched basis, residual uncertainty, omitted/censored r
 
 `CANNOT_CHECK` is a first-class outcome whenever required identity, evidence, relation, evaluator, authority, locality or resource conditions cannot be established. Aggregation cannot promote it to success.
 
+### Local-to-global hardening of L5, L8 and L9
+
+The locality programme adds two explicit corollaries without creating new kernel laws.
+
+**Atlas/territory separation.** No finite collection of observed epistemic systems, charts, environments or probes licenses identification of the current atlas with the total class of possible epistemic mechanisms.
+
+**No automatic gluing.** Locally valid or pairwise-compatible descriptions do not automatically establish one coherent global description. A stronger global claim requires a registered transport/gluing witness; persistent failure to glue is itself an admissible obstruction.
+
 ## 5. Candidate quantitative programme
 
 Machine Epistemics should be judged by formal and measurable problems rather than terminology.
@@ -193,28 +219,76 @@ Measure:
 
 This programme should reuse existing GR10/EL10 and scientific-control fixtures where possible rather than proliferating benchmarks.
 
+### 5.12 Epistemic-atlas consistency and gluing
+
+Represent a bounded family of local contexts as charts with typed overlap/restriction relations. Distinguish:
+
+```text
+LOCAL_VALID
+COVER_COMPATIBLE
+MATCHING_FAMILY_ONLY
+GLOBAL_SECTION_WITNESSED
+GLOBAL_SECTION_OBSTRUCTED
+CANNOT_CHECK
+```
+
+Pairwise compatibility must not self-promote to global coherence. In domains with suitable mathematical structure, sheaf-theoretic consistency or obstruction methods may be used as parent algorithms.
+
+### 5.13 Horizon and discriminating-probe refinement
+
+For a bounded candidate family `Theta_t` and probe family `P_t`, define decision-relative observational equivalence
+
+```text
+theta ~_P theta'
+```
+
+when all registered probes/evaluators treat the candidates as indistinguishable.
+
+A new probe `p*` has protected epistemic value when the induced observational partition is strictly refined for a decision-relevant class or justified reach expands. A persistent residual not representable by known uncertainty/model/representation/probe/context/formalism classes can receive only the negative sentinel `OUTSIDE_CURRENT_ATLAS`, not an invented positive mechanism.
+
+### 5.14 Globality claim ladder
+
+Globality must be typed:
+
+```text
+G0 LOCAL
+G1 COVER_COMPATIBLE
+G2 TRANSPORT_STABLE
+G3 ATLAS_ROBUST under independent hostile new-chart/probe challenge
+G4 FORMAL_UNIVERSE_THEOREM
+```
+
+There is no empirical `ABSOLUTE_GLOBAL` state. A G4 statement is universal only inside the explicitly axiomatized formal universe named by the theorem.
+
 ## 6. Parent fields and boundary
 
 Machine Epistemics treats the following as parents, not as inventions:
 
+- mainstream epistemology, formal epistemology and formal learning/computational epistemology;
+- social epistemology, philosophy of science and metascience;
+- AI epistemology, epistemic agency and human–AI epistemic responsibility;
 - machine learning, reinforcement learning and meta-learning;
 - machine reasoning, planning, search and cognitive architectures;
 - machine intelligence evaluation and general-agent theory;
 - machine metacognition, confidence/calibration and self-modeling;
 - AI for Science and agentic/autonomous science;
-- Bayesian experimental design and active learning;
+- Bayesian experimental design, active learning, identifiability and model discrimination;
+- open-set/open-world learning and novelty management;
 - POMDPs, rational metareasoning and control;
 - truth-maintenance systems and belief revision;
 - model-based diagnosis and fault isolation;
 - knowledge representation, theorem proving and formal verification;
+- category/fibration/sheaf local-to-global methods where applicable;
 - bisimulation, abstraction, causal transport and experiment comparison;
 - provenance standards, reproducible computing and workflow systems;
 - systematic review, metrology, evidence synthesis and research methodology;
-- philosophy of science, social epistemology and scientific governance.
+- model pluralism, scientific underdetermination and scientific governance.
 
 The candidate residual is the **cross-parent control semantics of machine-mediated scientific commitments and transitions**.
 
 Machine learning is therefore neither subordinate nor replaced. In a frontier episode, `LEARN` may be the minimum-sufficient action. The Machine-Epistemic question is why learning is appropriate, which evidence can train it without invalid dependence/leakage, what its result can warrant, and when the problem/model/representation requires a different action.
+
+The atlas/horizon extension also does not claim a new mathematical theory of local-to-global structure. Formal learning, identifiability, active experimental design, sheaf/fibration methods and open-world learning are direct strongest-parent threats.
 
 ## 7. Relationship to ORION-V2
 
@@ -234,7 +308,7 @@ The seven contracted V2 interface families can be read as one experimental facto
 
 These are not automatically the final ontology of the field.
 
-The research-only `epistemic_architecture` module supplies terminology and frontier-routing composition around these interfaces. It is intentionally excluded from the stable kernel because a vocabulary map is not itself a new scientific obligation.
+The research-only `epistemic_architecture` module supplies terminology and frontier-routing composition around these interfaces. The research-only `epistemic_atlas` module supplies exact finite reference semantics for local charts, overlap/gluing, observational partitions, horizon refinement and bounded globality claims. Both are intentionally excluded from the stable kernel because research vocabulary/composition is not automatically a new scientific obligation.
 
 ## 8. Empirical programme
 
@@ -250,9 +324,11 @@ Minimum field-level empirical evidence should include:
 6. cross-generation representation/transport cases;
 7. naturalistic AI-for-science or scientific-agent tasks;
 8. hidden-obstruction frontier cases where the correct action family is not supplied;
-9. independent blinded semantic evaluation;
-10. strongest parent-composed baselines under matched resources;
-11. negative cases where the parent composition is sufficient and Machine Epistemics adds nothing.
+9. exact local-to-global cases separating overlap compatibility from witnessed gluing;
+10. exact probe-refinement cases where new measurements do or do not split decision-relevant observational equivalence;
+11. independent blinded semantic evaluation;
+12. strongest parent-composed baselines under matched resources;
+13. negative cases where the parent composition is sufficient and Machine Epistemics adds nothing.
 
 ## 9. Field-level falsifiers
 
@@ -264,30 +340,35 @@ The field hypothesis fails or contracts if:
 - measured benefit is only additional logging/provenance rather than scientific decision quality;
 - false closure, false escalation, false universalization or authority laundering is not improved;
 - the proposed machine-X boundary is only terminology and yields no clearer scientific or evaluation object;
+- the atlas/horizon interface adds no decision beyond current K2/K4/K5 plus strongest identifiability/local-to-global parents;
+- pairwise compatibility is mistaken for global coherence or `OUTSIDE_CURRENT_ATLAS` becomes an unfalsifiable escape hatch;
+- sheaf/cohomological language is used where no valid cover/restriction/gluing semantics exist;
 - the framework adds complexity without protected justified reach;
 - independent reviewers cannot agree on a stable field boundary.
 
-A valid external conclusion is that the useful object is metareasoning, AI-for-science integration engineering, scientific methodology or another existing field rather than Machine Epistemics.
+A valid external conclusion is that the useful object is formal/computational epistemology, metareasoning, AI-for-science integration engineering, scientific methodology or another existing field rather than Machine Epistemics.
 
 ## 10. Proposed basic curriculum
 
 A Machine Epistemics curriculum would contain:
 
-1. scientific claims, evidence and uncertainty;
-2. machine learning, reasoning, cognition and intelligence as distinct neighboring objects;
-3. AI agents, AI for Science and scientific workflow systems;
-4. decision theory, metareasoning and active experimentation;
-5. formal relations, abstraction and transport;
-6. truth maintenance, belief revision and diagnosis;
-7. provenance, dependency and selective invalidation;
-8. verification versus validation and authority;
-9. evaluator design, dependence and performativity;
-10. epistemic locality, capability scope and perspective change;
-11. frontier obstruction diagnosis and minimum sufficient escalation;
-12. epistemic stopping and saturation;
-13. reproducible scientific-control experiments;
-14. machine/human delegation and governance;
-15. domain practicum in at least two sciences.
+1. mainstream, formal, computational and social epistemology;
+2. scientific claims, evidence and uncertainty;
+3. machine learning, reasoning, cognition and intelligence as distinct neighboring objects;
+4. AI agents, AI for Science and scientific workflow systems;
+5. decision theory, metareasoning and active experimentation;
+6. formal relations, abstraction and transport;
+7. local-to-global methods, identifiability and epistemic-horizon reasoning;
+8. truth maintenance, belief revision and diagnosis;
+9. provenance, dependency and selective invalidation;
+10. verification versus validation and authority;
+11. evaluator design, dependence and performativity;
+12. epistemic locality, capability scope and perspective change;
+13. frontier obstruction diagnosis and minimum sufficient escalation;
+14. epistemic stopping and saturation;
+15. reproducible scientific-control experiments;
+16. machine/human delegation and governance;
+17. domain practicum in at least two sciences.
 
 ## 11. Publication architecture
 
@@ -299,7 +380,7 @@ Machine Epistemics should not be established by one manifesto alone.
 - the flagship should normally be a peer-reviewed Perspective/Review, while new primary evidence stays in the specialist articles;
 - external field recognition remains separate from internal ORION-V2 closeout.
 
-The machine-X demarcation belongs in the flagship as a reader-facing taxonomy and in P-C only as the control boundary that makes learning one action family among several. It does not require retrofitting primary endpoints.
+The machine-X demarcation belongs in the flagship as a reader-facing taxonomy and in P-C only as the control boundary that makes learning one action family among several. The epistemology-parent and atlas/horizon discussion belongs primarily in the flagship and framework formalism. It does not require retrofitting P-A–P-D primary endpoints.
 
 ## 12. Current terminal
 
@@ -311,8 +392,12 @@ MACHINE_X_TOTAL_ORDER = REJECTED
 MACHINE_INTELLIGENCE = CONTEXT_RELATIVE_CAPABILITY_PROFILE
 MACHINE_EPISTEMICS = WARRANTED_TRANSITION_CONTROL_HYPOTHESIS
 MACHINE_LEARNING = PARENT_ACTION_MECHANISM_NOT_REPLACED
+FORMAL_COMPUTATIONAL_EPISTEMOLOGY = LOAD_BEARING_PARENT
+CURRENT_GLOBAL_OBJECT = EXPANDING_EPISTEMIC_ATLAS
+TOTAL_EPISTEMIC_SPACE = NOT_ENUMERATED_OR_CLAIMED
+GLOBALITY = G0_TO_G4_BOUNDED_ONLY
 FRONTIER_DEFAULT = OBSTRUCTION_FIRST_MINIMUM_SUFFICIENT_INTERVENTION
-FOUNDATION_LAWS = PROVISIONAL_10
+FOUNDATION_LAWS = PROVISIONAL_10_PLUS_LOCAL_TO_GLOBAL_COROLLARIES
 FORMAL_PROGRAMME = DEFINED
 EMPIRICAL_PROGRAMME = DEFINED
 ORION_V2_RELATION = CANDIDATE_EXPERIMENTAL_FRAMEWORK_NOT_FIELD_IDENTITY
