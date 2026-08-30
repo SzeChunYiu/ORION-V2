@@ -29,7 +29,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
-            pandoc latexmk poppler-utils \
+            pandoc latexmk poppler-utils lmodern \
             texlive-latex-base texlive-latex-recommended texlive-latex-extra \
             texlive-fonts-recommended
 
