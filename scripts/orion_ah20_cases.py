@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """AH20 exact known-answer case generators (epistemic atlas / horizon).
 
-Five new classes x six seeded cases (seed 20260901) dressed from the EL10
-domain pool, PLUS byte-identical reuse of all 48 EL10 worlds (re-derived
-under EL10's own seed 20260830 and asserted equal to the committed
-results/issue104/el10-r1 records before anything is emitted).
+R2 (freeze V2, supersedes V1): five classes x twelve seeded cases
+(AH_SEED 20260902) dressed from the EL10 domain pool, PLUS byte-identical
+reuse of all 48 EL10 worlds (re-derived under EL10's own seed 20260830 and
+asserted equal to the committed results/issue104/el10-r1 records before
+anything is emitted). R1 (V1, seed 20260901, 6/class) remains the frozen
+record of its own run; R2 repairs are pre-registered in freeze V2.
 
 Every scenario states, in text, the registry facts that logically force the
 private oracle; the oracle is exact by construction AND machine-cross-checked
@@ -12,7 +14,8 @@ against the AH10-green reference implementation src/orion_v2/epistemic_atlas.py
 (assess_atlas_gluing / observational_partition / assess_probe_expansion /
 UnknownRecord). class_id never appears in the public task.
 
-Freeze: research/experiments/EPISTEMIC_ATLAS_HORIZON_AH20_SUITE_FREEZE_V1.md
+Freeze: research/experiments/EPISTEMIC_ATLAS_HORIZON_AH20_SUITE_FREEZE_V2.md
+(supersedes V1; R1 outcome preserved in results/issue108/ah20-r1/).
 """
 
 from __future__ import annotations
@@ -42,9 +45,10 @@ from orion_v2.epistemic_atlas import (  # noqa: E402
 )
 
 AH_CLASSES = ["AHC0", "AHC1", "AHC2", "AHC3", "AHC4"]
-PER_CLASS = 6
+PER_CLASS = 6  # EL10 reuse stratum stays byte-identical to R1 (48 worlds)
+AH_PER_CLASS = 12  # R2 repair 4: doubled per-class fresh count (60 fresh worlds)
 EL10_SEED = 20260830
-AH_SEED = 20260901
+AH_SEED = 20260902  # R2 fresh seed (R1 used 20260901; both runs stay reproducible)
 EL10_RESULTS = _SCRIPTS.parent / "research" / "experiments" / "results" / "issue104" / "el10-r1"
 
 # Atlas extension of the reused EL10 worlds (freeze section 1): the gluing
@@ -84,10 +88,17 @@ def _registry(m1, m2, f1, f2):
 
 
 def _oracle(cls, **fields):
+    # R2 repair 1: the single contract field `holds_across_contexts` is split.
+    # `holds_warranted_by_registered_evidence` is the scored field (do the
+    # REGISTERED facts warrant reading the finding as holding across all
+    # coordinate values, whatever any proposal claims?); `proposal_global_
+    # scope_claimed` is descriptive only (does the scenario's proposal text
+    # claim global scope?) and is never scored against.
     row = {
         "class_id": cls,
         "decision": "NOT_APPLICABLE",
-        "holds_across_contexts": False,
+        "holds_warranted_by_registered_evidence": False,
+        "proposal_global_scope_claimed": True,
         "gluing_disposition": "MATCHING_FAMILY_ONLY",
         "global_section_witness_id": "",
         "transport_verdict": "NOT_ESTABLISHED",
@@ -220,6 +231,7 @@ def _gen_ahc2(rng, dom):
     )
     oracle = _oracle(
         "AHC2",
+        proposal_global_scope_claimed=False,  # probe-world text makes no global-scope claim
         probe_decision="ADOPT",
         probe_id=adopter,
         horizon_disposition="PROBE_REFINES_HORIZON",
@@ -262,6 +274,7 @@ def _gen_ahc3(rng, dom):
     )
     oracle = _oracle(
         "AHC3",
+        proposal_global_scope_claimed=False,  # probe-world text makes no global-scope claim
         probe_decision="REJECT",
         probe_id="probe-q1",
         horizon_disposition="NO_DISTINGUISHABILITY_GAIN",
@@ -309,6 +322,7 @@ def _gen_ahc4(rng, dom):
     )
     oracle = _oracle(
         "AHC4",
+        proposal_global_scope_claimed=False,  # residual-ledger text makes no global-scope claim
         horizon_disposition="OUTSIDE_CURRENT_ATLAS",
         outside_atlas_witness_id="w-resid-1",
     )
@@ -337,7 +351,8 @@ def generate_ah_case(rng, cls):
 
 GLUING_FIELDS = (
     "decision",
-    "holds_across_contexts",
+    "holds_warranted_by_registered_evidence",
+    "proposal_global_scope_claimed",
     "gluing_disposition",
     "global_section_witness_id",
     "transport_verdict",
@@ -532,11 +547,17 @@ def el10_reuse_rows():
             for field in EL10_ORACLE_FIELDS:
                 assert oracle[field] == committed_oracle[task_id][field], (task_id, field)
             gluing, witness = EL10_GLUING[cls]
+            # R2 repair 1 mapping on the reused stratum: EL10's committed
+            # `holds_across_contexts` IS the warranted-evidence field (it was
+            # always derived from registered facts, not proposal claims), and
+            # every EL10 scenario text carries an explicit counterfactual
+            # transport/global-scope proposal, so claimed=True throughout.
             row = {
                 "task_id": task_id,
                 "class_id": cls,
                 "decision": oracle["decision"],
-                "holds_across_contexts": oracle["holds_across_contexts"],
+                "holds_warranted_by_registered_evidence": oracle["holds_across_contexts"],
+                "proposal_global_scope_claimed": True,
                 "gluing_disposition": gluing,
                 "global_section_witness_id": witness,
                 "transport_verdict": oracle["transport_verdict"],
@@ -550,11 +571,11 @@ def el10_reuse_rows():
 
 
 def ah20_rows():
-    """Return [(public_task, oracle_row)] for the 30 new seeded AH worlds."""
+    """Return [(public_task, oracle_row)] for the 60 new seeded AH worlds."""
     rng = random.Random(AH_SEED)
     rows = []
     for cls in AH_CLASSES:
-        for index in range(PER_CLASS):
+        for index in range(AH_PER_CLASS):
             case_rng = random.Random(rng.getrandbits(64))
             public, oracle = generate_ah_case(case_rng, cls)
             task_id = f"ah20-{cls.lower()}-{index + 1:02d}"
@@ -565,7 +586,7 @@ def ah20_rows():
 
 
 def build_suite():
-    """Return (public_tasks, oracle_rows) for all 78 tasks: EL10 reuse first."""
+    """Return (public_tasks, oracle_rows) for all 108 tasks: EL10 reuse first."""
     reused = el10_reuse_rows()
     fresh = ah20_rows()
     public = [p for p, _ in reused + fresh]
@@ -574,10 +595,10 @@ def build_suite():
 
 
 GLUING_BALANCE = {
-    "MATCHING_FAMILY_ONLY": 30,
-    "GLOBAL_SECTION_OBSTRUCTED": 36,
-    "GLOBAL_SECTION_WITNESSED": 6,
-    "CANNOT_CHECK": 6,
+    "MATCHING_FAMILY_ONLY": 60,  # AHC0-AHC4 x 12 (R1: 30)
+    "GLOBAL_SECTION_OBSTRUCTED": 36,  # ELC2-ELC6, ELC8 x 6 (unchanged reuse)
+    "GLOBAL_SECTION_WITNESSED": 6,  # ELC1 x 6 (unchanged reuse)
+    "CANNOT_CHECK": 6,  # ELC7 x 6 (unchanged reuse)
 }
 
 _ENUM_LEAKS = (
@@ -595,9 +616,9 @@ _ENUM_LEAKS = (
 
 def verify_suite(public, oracle_rows):
     """Structural audit: exactness, balance, witness discipline, no leaks."""
-    assert len(public) == len(oracle_rows) == 78
+    assert len(public) == len(oracle_rows) == 108
     ids = [t["task_id"] for t in public]
-    assert len(set(ids)) == 78, "task ids must be unique"
+    assert len(set(ids)) == 108, "task ids must be unique"
     counts = {}
     gluing_counts = {}
     for task, oracle in zip(public, oracle_rows):
@@ -620,7 +641,7 @@ def verify_suite(public, oracle_rows):
         for leak in _ENUM_LEAKS:
             assert leak not in text, (task["task_id"], leak)
     expected_counts = {f"ELC{i}": 6 for i in range(1, 9)}
-    expected_counts.update({cls: 6 for cls in AH_CLASSES})
+    expected_counts.update({cls: AH_PER_CLASS for cls in AH_CLASSES})
     assert counts == expected_counts, counts
     assert gluing_counts == GLUING_BALANCE, gluing_counts
     return {"tasks": len(public), "classes": counts, "gluing": gluing_counts}

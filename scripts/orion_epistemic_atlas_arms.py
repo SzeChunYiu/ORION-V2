@@ -101,7 +101,8 @@ ANSWER_CONTRACT = {
     "decision": "one of: FIRST | SECOND | PARETO_INCOMPARABLE | COMPARISON_INVALID | NOT_APPLICABLE",
     "gluing_disposition": "one of: GLOBAL_SECTION_WITNESSED | MATCHING_FAMILY_ONLY | GLOBAL_SECTION_OBSTRUCTED | CANNOT_CHECK",
     "global_section_witness_id": "string, required iff gluing_disposition is GLOBAL_SECTION_WITNESSED, else empty",
-    "holds_across_contexts": "bool - does the finding you rely on hold across ALL values of the registered coordinates",
+    "holds_warranted_by_registered_evidence": "bool - IGNORING what any proposal, review or report in the scenario claims: do the REGISTERED facts themselves warrant reading the finding you rely on as holding across ALL values of the registered coordinates?",
+    "proposal_global_scope_claimed": "bool - does the proposal/review text in the scenario itself claim global scope (holding across all contexts) for the finding? Descriptive only; it is never scored",
     "transport_verdict": "one of: VALID | INVALID | NOT_ESTABLISHED",
     "probe_decision": "one of: ADOPT | REJECT | NONE",
     "probe_id": "string, the adopted/rejected probe id, else empty",
@@ -126,7 +127,8 @@ def schema() -> dict:
                 "enum": ["GLOBAL_SECTION_WITNESSED", "MATCHING_FAMILY_ONLY", "GLOBAL_SECTION_OBSTRUCTED", "CANNOT_CHECK"],
             },
             "global_section_witness_id": {"type": "string"},
-            "holds_across_contexts": {"type": "boolean"},
+            "holds_warranted_by_registered_evidence": {"type": "boolean"},
+            "proposal_global_scope_claimed": {"type": "boolean"},
             "transport_verdict": {"type": "string", "enum": ["VALID", "INVALID", "NOT_ESTABLISHED"]},
             "probe_decision": {"type": "string", "enum": ["ADOPT", "REJECT", "NONE"]},
             "probe_id": {"type": "string"},
@@ -159,8 +161,12 @@ def prompt(req: dict) -> str:
         "2. Gluing disposition over the registered charts/overlaps: GLOBAL_SECTION_WITNESSED\n"
         "   (only with the registered global-section witness id), MATCHING_FAMILY_ONLY,\n"
         "   GLOBAL_SECTION_OBSTRUCTED, or CANNOT_CHECK. Include the witness id iff WITNESSED.\n"
-        "3. Does the finding/superiority you rely on hold across ALL values of the registered\n"
-        "   coordinates?\n"
+        "3a. IGNORING what any proposal, review or report in the scenario claims: do the\n"
+        "    REGISTERED facts themselves warrant reading the finding/superiority you rely on\n"
+        "    as holding across ALL values of the registered coordinates?\n"
+        "3b. Separately and descriptively: does the proposal/review text in the scenario\n"
+        "    itself claim global scope for the finding? (This is bookkeeping about the text,\n"
+        "    not a judgment; it is never scored against the registry.)\n"
         "4. Verdict on the scenario's transport proposal: VALID, INVALID or NOT_ESTABLISHED.\n"
         "5. Probe decision on any registered probe proposal: ADOPT (with probe id), REJECT\n"
         "   (with probe id), or NONE.\n"
@@ -272,7 +278,7 @@ def execute(req: dict) -> dict:
                     pass
         calls, tokens, exec_name, exec_model = 1, 0, "codex-cli", os.environ.get("ORION_CODEX_MODEL", "gpt-5.6-terra")
     return {
-        "schema_version": "orion.v2.ah20-response.v1",
+        "schema_version": "orion.v2.ah20-response.v2",
         "task_id": req["task_id"],
         "arm_id": req["arm_id"],
         "answer": data,
@@ -294,7 +300,7 @@ def main() -> int:
         out = execute(request)
     except Exception as exc:  # noqa: BLE001 - execution failure is receipted, not crashed
         out = {
-            "schema_version": "orion.v2.ah20-response.v1",
+            "schema_version": "orion.v2.ah20-response.v2",
             "task_id": request["task_id"],
             "arm_id": request["arm_id"],
             "answer": None,
