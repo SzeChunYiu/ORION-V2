@@ -1,0 +1,80 @@
+name: flagship-v14-release-package
+
+on:
+  pull_request:
+    paths:
+      - "papers/drafts/FLAGSHIP_MACHINE_EPISTEMICS_PERSPECTIVE_V14_CITED_ARXIV_JOURNAL_MASTER.md"
+      - "papers/flagship/FLAGSHIP_REFERENCES_V14_CORRECTED.bib"
+      - "papers/flagship/FLAGSHIP_REFERENCES_V15_NEIGHBOR_SUPPLEMENT.bib"
+      - "papers/flagship/FLAGSHIP_REFERENCES_V16_FOUNDATION_SUPPLEMENT.bib"
+      - "scripts/assemble_flagship_v14_release.py"
+      - ".github/workflows/flagship-v14-release-package.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  release-package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install release toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            pandoc latexmk poppler-utils lmodern \
+            texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended
+
+      - name: Assemble and compile flagship V14
+        run: |
+          python scripts/assemble_flagship_v14_release.py \
+            --root "$GITHUB_WORKSPACE" \
+            --out-dir build/flagship-v14/arxiv_v1 \
+            --compile
+
+      - name: Enforce mechanical release invariants
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('build/flagship-v14/arxiv_v1')
+          r = json.loads((root / 'release_receipt.json').read_text())
+          tex = (root / 'manuscript.tex').read_text()
+          bbl = (root / 'manuscript.bbl').read_text()
+          assert r['citation_key_count'] > 0
+          assert r['pdf_sha256']
+          assert r['pdf_size_bytes'] > 0
+          assert r['page_count'] is not None
+          assert r['pandoc_citation_markup_absent'] is True
+          assert r['natbib_commands_present'] is True
+          assert r['bibliography_rendered'] is True
+          assert r['bibliography_item_count'] > 0
+          assert '[@' not in tex
+          assert '\\cite' in tex
+          assert '\\bibitem' in bbl
+          assert r['human_release_authority'] is False
+          assert r['ah20_required_for_arxiv'] is False
+          assert r['scientific_claims_changed'] is False
+          print(f"FLAGSHIP_WORD_COUNT={r['main_text_word_count_mechanical']}")
+          print(f"FLAGSHIP_WITHIN_NMI_NOMINAL_TARGET={r['within_nominal_target']}")
+          print(f"FLAGSHIP_PAGE_COUNT={r['page_count']}")
+          print(f"FLAGSHIP_BIBLIOGRAPHY_ITEMS={r['bibliography_item_count']}")
+          print('FLAGSHIP_V14_RELEASE_PACKAGE_PASS')
+          PY
+
+      - name: Upload flagship arXiv candidate
+        uses: actions/upload-artifact@v4
+        with:
+          name: flagship-v14-arxiv-candidate
+          path: build/flagship-v14/arxiv_v1/
+          if-no-files-found: error
+          retention-days: 30
