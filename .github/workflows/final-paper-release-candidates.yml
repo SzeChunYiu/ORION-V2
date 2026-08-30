@@ -1,0 +1,65 @@
+name: final-paper-release-candidates
+
+on:
+  pull_request:
+    paths:
+      - 'papers/release/FINAL_AUTHOR_AND_AI_METADATA_V1.json'
+      - 'scripts/finalize_paper_release_candidates.py'
+      - '.github/workflows/final-paper-release-candidates.yml'
+  workflow_dispatch:
+
+jobs:
+  build-final-candidates:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install release toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            pandoc latexmk poppler-utils \
+            texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended lmodern
+      - name: Fetch current official JMLR style
+        run: |
+          mkdir -p build/final-release/style
+          curl --fail --location --silent --show-error \
+            https://raw.githubusercontent.com/JmlrOrg/jmlr-style-file/master/jmlr2e.sty \
+            -o build/final-release/style/jmlr2e.sty
+          test -s build/final-release/style/jmlr2e.sty
+      - name: Build final author-facing candidates
+        run: |
+          python scripts/finalize_paper_release_candidates.py \
+            --root "$GITHUB_WORKSPACE" \
+            --out-root build/final-release/packages \
+            --jmlr-style build/final-release/style/jmlr2e.sty
+      - name: Enforce final release invariants
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('build/final-release/packages/FINAL_RELEASE_RECEIPT.json')
+          r = json.loads(p.read_text())
+          assert r['author']['name'] == 'Sze Chun Yiu'
+          assert r['author']['email'] == 'sze-chun.yiu@fysik.su.se'
+          assert r['author']['institutional_affiliation_claimed'] is False
+          assert r['scientific_master_changed'] is False
+          assert r['scientific_claims_changed'] is False
+          assert r['ah20_result_backfilled_into_arxiv'] is False
+          assert r['submission_authorized'] is False
+          for name, package in r['packages'].items():
+              assert package['page_count']
+              assert package['pdf_size_bytes'] > 0
+              assert package['pdf_sha256']
+          print('FINAL_PAPER_RELEASE_CANDIDATES_PASS')
+          PY
+      - name: Upload final candidates
+        uses: actions/upload-artifact@v4
+        with:
+          name: final-paper-release-candidates
+          path: build/final-release/packages/
+          if-no-files-found: error
+          retention-days: 30
