@@ -29,7 +29,7 @@ AI_DISCLOSURE = (
 SKILL_PR17_HEAD = "ef47c81101e1e1b97864019dde143456a581de1c"
 SKILL_PR16_HEAD = "087e47330826295a0b114563ec33238951ac56a9"
 FLAGSHIP_RELEASE_COMPOSITE = "V15_FORMAL_SPINE_COMPOSITE"
-FLAGSHIP_FORMAL_MARKER = r"\subsection{Frontier problems expose the distinction}"
+FLAGSHIP_FORMAL_MARKER = r"\hypertarget{frontier-problems-expose-the-distinction}{%"
 
 
 def run(cmd: list[str], *, cwd: Path | None = None, capture: bool = False) -> subprocess.CompletedProcess[str]:
