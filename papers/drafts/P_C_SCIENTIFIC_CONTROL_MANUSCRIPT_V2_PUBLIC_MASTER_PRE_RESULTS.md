@@ -153,6 +153,14 @@ A regime transform is warranted only when the predecessor repertoire is demonstr
 
 This extension does **not** alter the present paper's frozen primary endpoints, comparator regimes or Results order. A result-bearing claim that explicit regime-transform control improves scientific decisions requires a separate prospective transfer study after an exact synthetic benchmark and strongest-parent comparison. Until then, regime transformation is a clarification of the existing representation/method/instrument/problem action families, and false invention remains over-escalation.
 
+### 7.2 Perspective change and local sufficiency
+
+Minimum sufficiency is also relative to the registered **perspective**. A method can be sufficient at one environmental distribution, system boundary, organizational scale, timescale or resource regime and insufficient at another. When the current frame itself is a witnessed blocker, a parent-owned `CHANGE_PERSPECTIVE`, `CHANGE_BOUNDARY` or `CHANGE_SCALE` proposal may therefore be admissible.
+
+This does not create a universal “overview” stage. The controller should change perspective only when a registered discriminator or obligation depends on the frame. If two admissible frames support different decisions, the correct terminal may be `PERSPECTIVE_DEPENDENCE` plus explicit scope rather than a globally ranked winner. Conversely, manufacturing perspective dependence on invariant cases is an error.
+
+The present paper's endpoints remain unchanged. A separate low-cost exact verification study tests whether explicit locality/perspective binding reduces false universalization or wrong method routing beyond existing context-conditioned parents before it can become a result-bearing P-C mechanism.
+
 ## 8. Study design
 
 The evaluation combines task families in which different blocker/action types are genuinely required, including software repair, hidden-world discovery, multi-fault diagnosis, formal synthesis and governed scientific decisions. Some cases are deliberately simple so that activating a larger controller can be measured as unnecessary work.
