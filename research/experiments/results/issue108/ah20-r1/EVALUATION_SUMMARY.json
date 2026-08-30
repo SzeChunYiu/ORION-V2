@@ -1,0 +1,346 @@
+{
+ "authority": {
+  "claim_limit": "formal/interface discriminator only",
+  "grants_absolute_globality": false,
+  "grants_new_kernel_family": false,
+  "grants_paper_endpoint_change": false,
+  "grants_scientific_truth": false,
+  "grants_total_epistemic_space": false,
+  "parent_sufficiency_is_valid_terminal": true
+ },
+ "kill_rule": {
+  "arms_ahc0_local_scope_signatures": {
+   "CURRENT_F0": [
+    false,
+    true,
+    false,
+    true,
+    false,
+    true
+   ],
+   "CURRENT_F2": [
+    true,
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "F2_PLUS_ATLAS_HORIZON": [
+    true,
+    true,
+    true,
+    true,
+    false,
+    true
+   ],
+   "PARENT_LOCAL_GLOBAL": [
+    true,
+    true,
+    true,
+    true,
+    false,
+    true
+   ],
+   "SIMPLE_NATIVE": [
+    false,
+    true,
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "note": "arms disagree on the AHC0 invariance control; a null here is not evidence about the interface",
+  "verdict": "CONTROL_DIVERGENT"
+ },
+ "mcnemar_tests": [
+  {
+   "base_only_success": 1,
+   "interface_minus": "SIMPLE_NATIVE",
+   "interface_only_success": 8,
+   "metric": "gluing_disposition_correctness",
+   "n_paired": 78,
+   "p_exact_mcnemar": 0.039062,
+   "p_holm": 0.624992,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 9,
+   "interface_minus": "CURRENT_F0",
+   "interface_only_success": 3,
+   "metric": "gluing_disposition_correctness",
+   "n_paired": 78,
+   "p_exact_mcnemar": 0.145996,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "CURRENT_F2",
+   "interface_only_success": 3,
+   "metric": "gluing_disposition_correctness",
+   "n_paired": 78,
+   "p_exact_mcnemar": 0.25,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 5,
+   "interface_minus": "PARENT_LOCAL_GLOBAL",
+   "interface_only_success": 0,
+   "metric": "gluing_disposition_correctness",
+   "n_paired": 78,
+   "p_exact_mcnemar": 0.0625,
+   "p_holm": 0.9375,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "SIMPLE_NATIVE",
+   "interface_only_success": 1,
+   "metric": "false_globalization_rate",
+   "n_paired": 36,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "CURRENT_F0",
+   "interface_only_success": 3,
+   "metric": "false_globalization_rate",
+   "n_paired": 36,
+   "p_exact_mcnemar": 0.25,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "CURRENT_F2",
+   "interface_only_success": 0,
+   "metric": "false_globalization_rate",
+   "n_paired": 36,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "PARENT_LOCAL_GLOBAL",
+   "interface_only_success": 1,
+   "metric": "false_globalization_rate",
+   "n_paired": 36,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "SIMPLE_NATIVE",
+   "interface_only_success": 0,
+   "metric": "transport_correctness",
+   "n_paired": 36,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "CURRENT_F0",
+   "interface_only_success": 0,
+   "metric": "transport_correctness",
+   "n_paired": 36,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "CURRENT_F2",
+   "interface_only_success": 0,
+   "metric": "transport_correctness",
+   "n_paired": 36,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "PARENT_LOCAL_GLOBAL",
+   "interface_only_success": 0,
+   "metric": "transport_correctness",
+   "n_paired": 36,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "SIMPLE_NATIVE",
+   "interface_only_success": 0,
+   "metric": "probe_selection_correctness",
+   "n_paired": 12,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "CURRENT_F0",
+   "interface_only_success": 0,
+   "metric": "probe_selection_correctness",
+   "n_paired": 12,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "CURRENT_F2",
+   "interface_only_success": 0,
+   "metric": "probe_selection_correctness",
+   "n_paired": 12,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  },
+  {
+   "base_only_success": 0,
+   "interface_minus": "PARENT_LOCAL_GLOBAL",
+   "interface_only_success": 0,
+   "metric": "probe_selection_correctness",
+   "n_paired": 12,
+   "p_exact_mcnemar": 1.0,
+   "p_holm": 1.0,
+   "significant_005": false
+  }
+ ],
+ "missing_is_not_wrong": true,
+ "resources": {
+  "CURRENT_F0": {
+   "model_calls": 78,
+   "tokens_reported": 0,
+   "wall_time_seconds_sum": 1175.6
+  },
+  "CURRENT_F2": {
+   "model_calls": 78,
+   "tokens_reported": 0,
+   "wall_time_seconds_sum": 1082.9
+  },
+  "F2_PLUS_ATLAS_HORIZON": {
+   "model_calls": 78,
+   "tokens_reported": 0,
+   "wall_time_seconds_sum": 1086.2
+  },
+  "PARENT_LOCAL_GLOBAL": {
+   "model_calls": 78,
+   "tokens_reported": 0,
+   "wall_time_seconds_sum": 1151.7
+  },
+  "SIMPLE_NATIVE": {
+   "model_calls": 78,
+   "tokens_reported": 0,
+   "wall_time_seconds_sum": 1023.4
+  }
+ },
+ "schema_version": "orion.v2.ah20-evaluation.v1",
+ "suite": "AH20",
+ "summary": {
+  "CURRENT_F0": {
+   "decision_relevant_partition_refinement": 1.0,
+   "executors_seen": [
+    "codex-cli"
+   ],
+   "false_globalization_rate": 0.1111111111111111,
+   "false_outside_atlas_exact_ci95": [
+    0.0,
+    0.049944
+   ],
+   "false_outside_atlas_rate": 0.0,
+   "gluing_disposition_correctness": 0.38461538461538464,
+   "local_scope_correctness": 0.25,
+   "missing_or_invalid": 0,
+   "probe_selection_correctness": 1.0,
+   "run_valid": true,
+   "transport_correctness": 0.9722222222222222,
+   "valid_responses": 78
+  },
+  "CURRENT_F2": {
+   "decision_relevant_partition_refinement": 1.0,
+   "executors_seen": [
+    "codex-cli"
+   ],
+   "false_globalization_rate": 0.027777777777777776,
+   "false_outside_atlas_exact_ci95": [
+    0.0,
+    0.049944
+   ],
+   "false_outside_atlas_rate": 0.0,
+   "gluing_disposition_correctness": 0.2692307692307692,
+   "local_scope_correctness": 0.25,
+   "missing_or_invalid": 0,
+   "probe_selection_correctness": 1.0,
+   "run_valid": true,
+   "transport_correctness": 0.9722222222222222,
+   "valid_responses": 78
+  },
+  "F2_PLUS_ATLAS_HORIZON": {
+   "decision_relevant_partition_refinement": 1.0,
+   "executors_seen": [
+    "codex-cli"
+   ],
+   "false_globalization_rate": 0.027777777777777776,
+   "false_outside_atlas_exact_ci95": [
+    0.0,
+    0.049944
+   ],
+   "false_outside_atlas_rate": 0.0,
+   "gluing_disposition_correctness": 0.3076923076923077,
+   "local_scope_correctness": 0.4166666666666667,
+   "missing_or_invalid": 0,
+   "probe_selection_correctness": 1.0,
+   "run_valid": true,
+   "transport_correctness": 0.9722222222222222,
+   "valid_responses": 78
+  },
+  "PARENT_LOCAL_GLOBAL": {
+   "decision_relevant_partition_refinement": 1.0,
+   "executors_seen": [
+    "codex-cli"
+   ],
+   "false_globalization_rate": 0.05555555555555555,
+   "false_outside_atlas_exact_ci95": [
+    0.0,
+    0.049944
+   ],
+   "false_outside_atlas_rate": 0.0,
+   "gluing_disposition_correctness": 0.3717948717948718,
+   "local_scope_correctness": 0.4166666666666667,
+   "missing_or_invalid": 0,
+   "probe_selection_correctness": 1.0,
+   "run_valid": true,
+   "transport_correctness": 0.9722222222222222,
+   "valid_responses": 78
+  },
+  "SIMPLE_NATIVE": {
+   "decision_relevant_partition_refinement": 1.0,
+   "executors_seen": [
+    "codex-cli"
+   ],
+   "false_globalization_rate": 0.05555555555555555,
+   "false_outside_atlas_exact_ci95": [
+    0.0,
+    0.049944
+   ],
+   "false_outside_atlas_rate": 0.0,
+   "gluing_disposition_correctness": 0.21794871794871795,
+   "local_scope_correctness": 0.08333333333333333,
+   "missing_or_invalid": 0,
+   "probe_selection_correctness": 1.0,
+   "run_valid": true,
+   "transport_correctness": 0.9722222222222222,
+   "valid_responses": 78
+  }
+ }
+}

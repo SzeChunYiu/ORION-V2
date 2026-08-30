@@ -1,0 +1,1019 @@
+{
+ "schema_version": "orion.v2.ah20-public.v1",
+ "tasks": [
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A hospital triage desk scores incoming patients. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: LearnedScore-GBM -- the same full-envelope sweep shows it STRICTLY DOMINATED BY the other registered method on the registered criterion in every cell\n- SECOND: RuleLadder-Triage -- registered benchmark sweep across the FULL registered envelope (every environment, scale, timescale and boundary value in the registration) shows strict dominance OVER THE OTHER REGISTERED METHOD on the registered criterion in every cell\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: ordinal risk scoring of arrivals\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: the registered primary criterion (single, commensurate)\n\nCOUNTERFACTUAL TRANSPORT CLAIM: the dominance finding was established by the full-envelope sweep; a proposal applies it unchanged to a different point INSIDE the registered envelope.",
+   "task_id": "el10-elc1-01"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: An online catalogue retrieval service ranks product matches. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: EmbedRank-NB -- the same full-envelope sweep shows it STRICTLY DOMINATED BY the other registered method on the registered criterion in every cell\n- SECOND: ExactLex-Match -- registered benchmark sweep across the FULL registered envelope (every environment, scale, timescale and boundary value in the registration) shows strict dominance OVER THE OTHER REGISTERED METHOD on the registered criterion in every cell\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: ranking over a fixed item corpus\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: the registered primary criterion (single, commensurate)\n\nCOUNTERFACTUAL TRANSPORT CLAIM: the dominance finding was established by the full-envelope sweep; a proposal applies it unchanged to a different point INSIDE the registered envelope.",
+   "task_id": "el10-elc1-02"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A retailer forecasts weekly demand for stocked items. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: SeasonalDecompose-AR -- registered benchmark sweep across the FULL registered envelope (every environment, scale, timescale and boundary value in the registration) shows strict dominance OVER THE OTHER REGISTERED METHOD on the registered criterion in every cell\n- SECOND: GradientBoost-Local -- the same full-envelope sweep shows it STRICTLY DOMINATED BY the other registered method on the registered criterion in every cell\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: seasonal demand forecasting\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: the registered primary criterion (single, commensurate)\n\nCOUNTERFACTUAL TRANSPORT CLAIM: the dominance finding was established by the full-envelope sweep; a proposal applies it unchanged to a different point INSIDE the registered envelope.",
+   "task_id": "el10-elc1-03"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A logistics operator routes parcels through a hub network. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: StaticCost-Dijkstra -- registered benchmark sweep across the FULL registered envelope (every environment, scale, timescale and boundary value in the registration) shows strict dominance OVER THE OTHER REGISTERED METHOD on the registered criterion in every cell\n- SECOND: LiveLoad-RLite -- the same full-envelope sweep shows it STRICTLY DOMINATED BY the other registered method on the registered criterion in every cell\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: routing on a fixed network graph\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: the registered primary criterion (single, commensurate)\n\nCOUNTERFACTUAL TRANSPORT CLAIM: the dominance finding was established by the full-envelope sweep; a proposal applies it unchanged to a different point INSIDE the registered envelope.",
+   "task_id": "el10-elc1-04"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A network operator schedules traffic across a backbone. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: TrafficEngine-TE -- the same full-envelope sweep shows it STRICTLY DOMINATED BY the other registered method on the registered criterion in every cell\n- SECOND: ShortestPath-ECMP -- registered benchmark sweep across the FULL registered envelope (every environment, scale, timescale and boundary value in the registration) shows strict dominance OVER THE OTHER REGISTERED METHOD on the registered criterion in every cell\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: traffic engineering on a fixed topology\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: the registered primary criterion (single, commensurate)\n\nCOUNTERFACTUAL TRANSPORT CLAIM: the dominance finding was established by the full-envelope sweep; a proposal applies it unchanged to a different point INSIDE the registered envelope.",
+   "task_id": "el10-elc1-05"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A retailer forecasts weekly demand for stocked items. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: SeasonalDecompose-AR -- registered benchmark sweep across the FULL registered envelope (every environment, scale, timescale and boundary value in the registration) shows strict dominance OVER THE OTHER REGISTERED METHOD on the registered criterion in every cell\n- SECOND: GradientBoost-Local -- the same full-envelope sweep shows it STRICTLY DOMINATED BY the other registered method on the registered criterion in every cell\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: seasonal demand forecasting\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: the registered primary criterion (single, commensurate)\n\nCOUNTERFACTUAL TRANSPORT CLAIM: the dominance finding was established by the full-envelope sweep; a proposal applies it unchanged to a different point INSIDE the registered envelope.",
+   "task_id": "el10-elc1-06"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A game studio evaluates search engines for a competitive board AI. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: SampledRollout-Shallow -- leads by a wide margin under uniform regimes (opponent pool diffuse across many styles); loses under skewed regimes\n- SECOND: AlphaBeta-Deep -- leads by a wide margin under skewed regimes (opponent pool concentrated on one dominant style); loses under uniform regimes\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: registered deployment environment: opponent pool concentrated on one dominant style\n- task_family: game-tree search with imperfect information\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking under the skewed regime; a proposal transports it unchanged to the registered deployment environment above.",
+   "task_id": "el10-elc2-01"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A logistics operator routes parcels through a hub network. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: StaticCost-Dijkstra -- leads by a wide margin under concentrated regimes ( shipment demand concentrated on one dense corridor); loses under diffuse regimes\n- SECOND: LiveLoad-RLite -- leads by a wide margin under diffuse regimes ( shipment demand diffuse across sparse regional links); loses under concentrated regimes\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: registered deployment environment: shipment demand concentrated on one dense corridor\n- task_family: routing on a fixed network graph\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking under the diffuse regime; a proposal transports it unchanged to the registered deployment environment above.",
+   "task_id": "el10-elc2-02"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A network operator schedules traffic across a backbone. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: ShortestPath-ECMP -- leads by a wide margin under concentrated regimes (flows concentrated on a few elephant paths); loses under diffuse regimes\n- SECOND: TrafficEngine-TE -- leads by a wide margin under diffuse regimes (flows diffuse across many mice paths); loses under concentrated regimes\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: registered deployment environment: flows concentrated on a few elephant paths\n- task_family: traffic engineering on a fixed topology\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking under the diffuse regime; a proposal transports it unchanged to the registered deployment environment above.",
+   "task_id": "el10-elc2-03"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A fund rebalances a tracked index portfolio. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: FullCov-Optimizer -- leads by a wide margin under skewed regimes (return correlation concentrated in one factor); loses under uniform regimes\n- SECOND: DiagonalApprox-Trade -- leads by a wide margin under uniform regimes (return correlation diffuse across many factors); loses under skewed regimes\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: registered deployment environment: return correlation concentrated in one factor\n- task_family: constrained portfolio rebalancing\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking under the uniform regime; a proposal transports it unchanged to the registered deployment environment above.",
+   "task_id": "el10-elc2-04"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: An observatory calibrates a sensor array. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: FullBatch-MLE -- leads by a wide margin under bursty regimes (drift concentrated in one fast-warming channel); loses under smooth regimes\n- SECOND: OnlineDrift-Tracker -- leads by a wide margin under smooth regimes (drift diffuse across all channels); loses under bursty regimes\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: registered deployment environment: drift concentrated in one fast-warming channel\n- task_family: static calibration of drifting sensors\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking under the smooth regime; a proposal transports it unchanged to the registered deployment environment above.",
+   "task_id": "el10-elc2-05"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A hospital triage desk scores incoming patients. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: RuleLadder-Triage -- leads by a wide margin under skewed regimes (arrival acuity concentrated in one low-risk band); loses under uniform regimes\n- SECOND: LearnedScore-GBM -- leads by a wide margin under uniform regimes (arrival acuity diffuse across all bands); loses under skewed regimes\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: registered deployment environment: arrival acuity concentrated in one low-risk band\n- task_family: ordinal risk scoring of arrivals\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking under the uniform regime; a proposal transports it unchanged to the registered deployment environment above.",
+   "task_id": "el10-elc2-06"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: An online catalogue retrieval service ranks product matches. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: EmbedRank-NB -- loses its optimality guarantee on small instances (catalogue of 30k items or fewer) but scales and leads beyond the threshold (catalogue above 30k items)\n- SECOND: ExactLex-Match -- exhaustive and optimal whenever the problem is small (catalogue of 30k items or fewer); cost becomes prohibitive beyond that (catalogue above 30k items)\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: ranking over a fixed item corpus\n- system_boundary: single closed decision unit, no external channels\n- scale: registered deployment scale: catalogue of 30k items or fewer\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking on the other side of the scale threshold; a proposal transports it unchanged to the registered deployment scale above.",
+   "task_id": "el10-elc3-01"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: An online catalogue retrieval service ranks product matches. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: ExactLex-Match -- exhaustive and optimal whenever the problem is small (catalogue of 30k items or fewer); cost becomes prohibitive beyond that (catalogue above 30k items)\n- SECOND: EmbedRank-NB -- loses its optimality guarantee on small instances (catalogue of 30k items or fewer) but scales and leads beyond the threshold (catalogue above 30k items)\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: ranking over a fixed item corpus\n- system_boundary: single closed decision unit, no external channels\n- scale: registered deployment scale: catalogue of 30k items or fewer\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking on the other side of the scale threshold; a proposal transports it unchanged to the registered deployment scale above.",
+   "task_id": "el10-elc3-02"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A grid operator dispatches storage assets. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: Deterministic-LP -- exhaustive and optimal whenever the problem is small (fleet of 12 assets or fewer); cost becomes prohibitive beyond that (fleet above 12 assets)\n- SECOND: Stochastic-MPC -- loses its optimality guarantee on small instances (fleet of 12 assets or fewer) but scales and leads beyond the threshold (fleet above 12 assets)\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: online dispatch under stochastic net load\n- system_boundary: single closed decision unit, no external channels\n- scale: registered deployment scale: fleet of 12 assets or fewer\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking on the other side of the scale threshold; a proposal transports it unchanged to the registered deployment scale above.",
+   "task_id": "el10-elc3-03"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A fund rebalances a tracked index portfolio. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: DiagonalApprox-Trade -- loses its optimality guarantee on small instances (book of 200 names or fewer) but scales and leads beyond the threshold (book above 200 names)\n- SECOND: FullCov-Optimizer -- exhaustive and optimal whenever the problem is small (book of 200 names or fewer); cost becomes prohibitive beyond that (book above 200 names)\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: constrained portfolio rebalancing\n- system_boundary: single closed decision unit, no external channels\n- scale: registered deployment scale: book of 200 names or fewer\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking on the other side of the scale threshold; a proposal transports it unchanged to the registered deployment scale above.",
+   "task_id": "el10-elc3-04"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A grid operator dispatches storage assets. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: Stochastic-MPC -- loses its optimality guarantee on small instances (fleet of 12 assets or fewer) but scales and leads beyond the threshold (fleet above 12 assets)\n- SECOND: Deterministic-LP -- exhaustive and optimal whenever the problem is small (fleet of 12 assets or fewer); cost becomes prohibitive beyond that (fleet above 12 assets)\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: online dispatch under stochastic net load\n- system_boundary: single closed decision unit, no external channels\n- scale: registered deployment scale: fleet of 12 assets or fewer\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking on the other side of the scale threshold; a proposal transports it unchanged to the registered deployment scale above.",
+   "task_id": "el10-elc3-05"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A logistics operator routes parcels through a hub network. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: LiveLoad-RLite -- loses its optimality guarantee on small instances (network of 200 hubs or fewer) but scales and leads beyond the threshold (network above 200 hubs)\n- SECOND: StaticCost-Dijkstra -- exhaustive and optimal whenever the problem is small (network of 200 hubs or fewer); cost becomes prohibitive beyond that (network above 200 hubs)\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: routing on a fixed network graph\n- system_boundary: single closed decision unit, no external channels\n- scale: registered deployment scale: network of 200 hubs or fewer\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking on the other side of the scale threshold; a proposal transports it unchanged to the registered deployment scale above.",
+   "task_id": "el10-elc3-06"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A hospital triage desk scores incoming patients. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: RuleLadder-Triage -- converges within scoring window T = H/4 and then plateaus strictly BELOW the registered criterion bar; it never crosses the bar at any budget\n- SECOND: LearnedScore-GBM -- needs scoring window T = 4H to converge, then crosses the registered criterion bar by a wide margin; before that it is far below the bar\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: ordinal risk scoring of arrivals\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered horizon: scoring window T = 4H (long budget)\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking under the short budget; a proposal transports it unchanged to the registered long horizon above.",
+   "task_id": "el10-elc4-01"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A chemical plant controller schedules batch reactors. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: EmpiricalSurrogate-GP -- needs control horizon T = 4H to converge, then crosses the registered criterion bar by a wide margin; before that it is far below the bar\n- SECOND: KineticFirst-Principles -- converges within control horizon T = H/4 and then plateaus strictly BELOW the registered criterion bar; it never crosses the bar at any budget\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: constrained scheduling of batch processes\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered horizon: control horizon T = 4H (long budget)\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking under the short budget; a proposal transports it unchanged to the registered long horizon above.",
+   "task_id": "el10-elc4-02"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A grid operator dispatches storage assets. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: Stochastic-MPC -- needs dispatch horizon T = 4H to converge, then crosses the registered criterion bar by a wide margin; before that it is far below the bar\n- SECOND: Deterministic-LP -- converges within dispatch horizon T = H/4 and then plateaus strictly BELOW the registered criterion bar; it never crosses the bar at any budget\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: online dispatch under stochastic net load\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered horizon: dispatch horizon T = 4H (long budget)\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking under the short budget; a proposal transports it unchanged to the registered long horizon above.",
+   "task_id": "el10-elc4-03"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A logistics operator routes parcels through a hub network. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: LiveLoad-RLite -- needs planning budget T = 4H to converge, then crosses the registered criterion bar by a wide margin; before that it is far below the bar\n- SECOND: StaticCost-Dijkstra -- converges within planning budget T = H/4 and then plateaus strictly BELOW the registered criterion bar; it never crosses the bar at any budget\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: routing on a fixed network graph\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered horizon: planning budget T = 4H (long budget)\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking under the short budget; a proposal transports it unchanged to the registered long horizon above.",
+   "task_id": "el10-elc4-04"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A game studio evaluates search engines for a competitive board AI. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: AlphaBeta-Deep -- converges within thinking time T = H/4 and then plateaus strictly BELOW the registered criterion bar; it never crosses the bar at any budget\n- SECOND: SampledRollout-Shallow -- needs thinking time T = 4H to converge, then crosses the registered criterion bar by a wide margin; before that it is far below the bar\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: game-tree search with imperfect information\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered horizon: thinking time T = 4H (long budget)\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking under the short budget; a proposal transports it unchanged to the registered long horizon above.",
+   "task_id": "el10-elc4-05"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A logistics operator routes parcels through a hub network. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: StaticCost-Dijkstra -- converges within planning budget T = H/4 and then plateaus strictly BELOW the registered criterion bar; it never crosses the bar at any budget\n- SECOND: LiveLoad-RLite -- needs planning budget T = 4H to converge, then crosses the registered criterion bar by a wide margin; before that it is far below the bar\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: routing on a fixed network graph\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered horizon: planning budget T = 4H (long budget)\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking under the short budget; a proposal transports it unchanged to the registered long horizon above.",
+   "task_id": "el10-elc4-06"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: An observatory calibrates a sensor array. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: FullBatch-MLE -- optimal for a single closed estimator, no external channels: fully exploits local state, degrades when external channels are present but unused\n- SECOND: OnlineDrift-Tracker -- leads when stations cross-validating drift estimates: it depends on those external channels and cannot run in the closed configuration\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: static calibration of drifting sensors\n- system_boundary: registered boundary: a single closed estimator, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking under the opposite boundary configuration; a proposal transports it unchanged to the registered boundary above.",
+   "task_id": "el10-elc5-01"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A retailer forecasts weekly demand for stocked items. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: GradientBoost-Local -- leads when stores pooling point-of-sale signals: it depends on those external channels and cannot run in the closed configuration\n- SECOND: SeasonalDecompose-AR -- optimal for a single closed forecaster, no external channels: fully exploits local state, degrades when external channels are present but unused\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: seasonal demand forecasting\n- system_boundary: registered boundary: a single closed forecaster, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking under the opposite boundary configuration; a proposal transports it unchanged to the registered boundary above.",
+   "task_id": "el10-elc5-02"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: An observatory calibrates a sensor array. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: FullBatch-MLE -- optimal for a single closed estimator, no external channels: fully exploits local state, degrades when external channels are present but unused\n- SECOND: OnlineDrift-Tracker -- leads when stations cross-validating drift estimates: it depends on those external channels and cannot run in the closed configuration\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: static calibration of drifting sensors\n- system_boundary: registered boundary: a single closed estimator, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking under the opposite boundary configuration; a proposal transports it unchanged to the registered boundary above.",
+   "task_id": "el10-elc5-03"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A network operator schedules traffic across a backbone. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: TrafficEngine-TE -- leads when domains advertising link utilisation: it depends on those external channels and cannot run in the closed configuration\n- SECOND: ShortestPath-ECMP -- optimal for a single closed controller, no external channels: fully exploits local state, degrades when external channels are present but unused\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: traffic engineering on a fixed topology\n- system_boundary: registered boundary: a single closed controller, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking under the opposite boundary configuration; a proposal transports it unchanged to the registered boundary above.",
+   "task_id": "el10-elc5-04"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A hospital triage desk scores incoming patients. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: RuleLadder-Triage -- optimal for a single closed scorer, no external channels: fully exploits local state, degrades when external channels are present but unused\n- SECOND: LearnedScore-GBM -- leads when wards feeding back disposition outcomes: it depends on those external channels and cannot run in the closed configuration\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: ordinal risk scoring of arrivals\n- system_boundary: registered boundary: a single closed scorer, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking under the opposite boundary configuration; a proposal transports it unchanged to the registered boundary above.",
+   "task_id": "el10-elc5-05"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A chemical plant controller schedules batch reactors. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: EmpiricalSurrogate-GP -- leads when units sharing live sensor feeds: it depends on those external channels and cannot run in the closed configuration\n- SECOND: KineticFirst-Principles -- optimal for a single closed controller, no external channels: fully exploits local state, degrades when external channels are present but unused\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: constrained scheduling of batch processes\n- system_boundary: registered boundary: a single closed controller, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a result report established the ranking under the opposite boundary configuration; a proposal transports it unchanged to the registered boundary above.",
+   "task_id": "el10-elc5-06"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: An online catalogue retrieval service ranks product matches. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: ExactLex-Match -- exactly meets exact-match precision at least 0.98 on every instance; worst-case cost on bounded 99th-percentile latency is UNBOUNDED (no registered bound exists)\n- SECOND: EmbedRank-NB -- meets bounded 99th-percentile latency with a strict bound on every instance; does not meet exact-match precision at least 0.98 on any instance\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: ranking over a fixed item corpus\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: deployment must satisfy BOTH exact-match precision at least 0.98 AND bounded 99th-percentile latency; NO commensurate exchange rate between the two criteria is registered\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a single-scale registry claims a total order over the two methods under this two-criterion requirement; a proposal adopts that total order.",
+   "task_id": "el10-elc6-01"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A grid operator dispatches storage assets. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: Deterministic-LP -- exactly meets delivery shortfall of zero events on every instance; worst-case cost on bounded solve time per interval is UNBOUNDED (no registered bound exists)\n- SECOND: Stochastic-MPC -- meets bounded solve time per interval with a strict bound on every instance; does not meet delivery shortfall of zero events on any instance\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: online dispatch under stochastic net load\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: deployment must satisfy BOTH delivery shortfall of zero events AND bounded solve time per interval; NO commensurate exchange rate between the two criteria is registered\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a single-scale registry claims a total order over the two methods under this two-criterion requirement; a proposal adopts that total order.",
+   "task_id": "el10-elc6-02"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A fund rebalances a tracked index portfolio. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: DiagonalApprox-Trade -- meets bounded turnover per rebalance with a strict bound on every instance; does not meet tracking error below 5 basis points on any instance\n- SECOND: FullCov-Optimizer -- exactly meets tracking error below 5 basis points on every instance; worst-case cost on bounded turnover per rebalance is UNBOUNDED (no registered bound exists)\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: constrained portfolio rebalancing\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: deployment must satisfy BOTH tracking error below 5 basis points AND bounded turnover per rebalance; NO commensurate exchange rate between the two criteria is registered\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a single-scale registry claims a total order over the two methods under this two-criterion requirement; a proposal adopts that total order.",
+   "task_id": "el10-elc6-03"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A fund rebalances a tracked index portfolio. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: FullCov-Optimizer -- exactly meets tracking error below 5 basis points on every instance; worst-case cost on bounded turnover per rebalance is UNBOUNDED (no registered bound exists)\n- SECOND: DiagonalApprox-Trade -- meets bounded turnover per rebalance with a strict bound on every instance; does not meet tracking error below 5 basis points on any instance\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: constrained portfolio rebalancing\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: deployment must satisfy BOTH tracking error below 5 basis points AND bounded turnover per rebalance; NO commensurate exchange rate between the two criteria is registered\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a single-scale registry claims a total order over the two methods under this two-criterion requirement; a proposal adopts that total order.",
+   "task_id": "el10-elc6-04"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A game studio evaluates search engines for a competitive board AI. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: SampledRollout-Shallow -- meets bounded nodes per move with a strict bound on every instance; does not meet worst-case tactical soundness on any instance\n- SECOND: AlphaBeta-Deep -- exactly meets worst-case tactical soundness on every instance; worst-case cost on bounded nodes per move is UNBOUNDED (no registered bound exists)\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: game-tree search with imperfect information\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: deployment must satisfy BOTH worst-case tactical soundness AND bounded nodes per move; NO commensurate exchange rate between the two criteria is registered\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a single-scale registry claims a total order over the two methods under this two-criterion requirement; a proposal adopts that total order.",
+   "task_id": "el10-elc6-05"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A fund rebalances a tracked index portfolio. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: DiagonalApprox-Trade -- meets bounded turnover per rebalance with a strict bound on every instance; does not meet tracking error below 5 basis points on any instance\n- SECOND: FullCov-Optimizer -- exactly meets tracking error below 5 basis points on every instance; worst-case cost on bounded turnover per rebalance is UNBOUNDED (no registered bound exists)\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: constrained portfolio rebalancing\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: deployment must satisfy BOTH tracking error below 5 basis points AND bounded turnover per rebalance; NO commensurate exchange rate between the two criteria is registered\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a single-scale registry claims a total order over the two methods under this two-criterion requirement; a proposal adopts that total order.",
+   "task_id": "el10-elc6-06"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A network operator schedules traffic across a backbone. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: TrafficEngine-TE -- substrate: a model WITH internal beliefs and a predictive interface; native evidence interface: held-out predictive likelihood on registered evaluation splits\n- SECOND: ShortestPath-ECMP -- substrate: replicator dynamics over a fixed population, NO beliefs, NO predictive interface; native evidence interface: population fitness gain over 500 generations\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: traffic engineering on a fixed topology\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: two DIFFERENT substrates with two DIFFERENT native evidence interfaces: generational fitness gain (no beliefs) versus held-out predictive likelihood (model with beliefs); no registered mapping between them\n- criterion: each method is evaluated only on its own native evidence interface\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a review claims that the fitness-gain result on the no-beliefs substrate settles the predictive-likelihood standing of the model-with-beliefs substrate, and transports that verdict unchanged.",
+   "task_id": "el10-elc7-01"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A grid operator dispatches storage assets. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: Deterministic-LP -- substrate: replicator dynamics over a fixed population, NO beliefs, NO predictive interface; native evidence interface: population fitness gain over 500 generations\n- SECOND: Stochastic-MPC -- substrate: a model WITH internal beliefs and a predictive interface; native evidence interface: held-out predictive likelihood on registered evaluation splits\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: online dispatch under stochastic net load\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: two DIFFERENT substrates with two DIFFERENT native evidence interfaces: generational fitness gain (no beliefs) versus held-out predictive likelihood (model with beliefs); no registered mapping between them\n- criterion: each method is evaluated only on its own native evidence interface\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a review claims that the fitness-gain result on the no-beliefs substrate settles the predictive-likelihood standing of the model-with-beliefs substrate, and transports that verdict unchanged.",
+   "task_id": "el10-elc7-02"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A network operator schedules traffic across a backbone. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: TrafficEngine-TE -- substrate: a model WITH internal beliefs and a predictive interface; native evidence interface: held-out predictive likelihood on registered evaluation splits\n- SECOND: ShortestPath-ECMP -- substrate: replicator dynamics over a fixed population, NO beliefs, NO predictive interface; native evidence interface: population fitness gain over 500 generations\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: traffic engineering on a fixed topology\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: two DIFFERENT substrates with two DIFFERENT native evidence interfaces: generational fitness gain (no beliefs) versus held-out predictive likelihood (model with beliefs); no registered mapping between them\n- criterion: each method is evaluated only on its own native evidence interface\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a review claims that the fitness-gain result on the no-beliefs substrate settles the predictive-likelihood standing of the model-with-beliefs substrate, and transports that verdict unchanged.",
+   "task_id": "el10-elc7-03"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: An online catalogue retrieval service ranks product matches. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: EmbedRank-NB -- substrate: a model WITH internal beliefs and a predictive interface; native evidence interface: held-out predictive likelihood on registered evaluation splits\n- SECOND: ExactLex-Match -- substrate: replicator dynamics over a fixed population, NO beliefs, NO predictive interface; native evidence interface: population fitness gain over 500 generations\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: ranking over a fixed item corpus\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: two DIFFERENT substrates with two DIFFERENT native evidence interfaces: generational fitness gain (no beliefs) versus held-out predictive likelihood (model with beliefs); no registered mapping between them\n- criterion: each method is evaluated only on its own native evidence interface\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a review claims that the fitness-gain result on the no-beliefs substrate settles the predictive-likelihood standing of the model-with-beliefs substrate, and transports that verdict unchanged.",
+   "task_id": "el10-elc7-04"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A grid operator dispatches storage assets. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: Stochastic-MPC -- substrate: a model WITH internal beliefs and a predictive interface; native evidence interface: held-out predictive likelihood on registered evaluation splits\n- SECOND: Deterministic-LP -- substrate: replicator dynamics over a fixed population, NO beliefs, NO predictive interface; native evidence interface: population fitness gain over 500 generations\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: online dispatch under stochastic net load\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: two DIFFERENT substrates with two DIFFERENT native evidence interfaces: generational fitness gain (no beliefs) versus held-out predictive likelihood (model with beliefs); no registered mapping between them\n- criterion: each method is evaluated only on its own native evidence interface\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a review claims that the fitness-gain result on the no-beliefs substrate settles the predictive-likelihood standing of the model-with-beliefs substrate, and transports that verdict unchanged.",
+   "task_id": "el10-elc7-05"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: An observatory calibrates a sensor array. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: FullBatch-MLE -- substrate: replicator dynamics over a fixed population, NO beliefs, NO predictive interface; native evidence interface: population fitness gain over 500 generations\n- SECOND: OnlineDrift-Tracker -- substrate: a model WITH internal beliefs and a predictive interface; native evidence interface: held-out predictive likelihood on registered evaluation splits\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: nominal mixed reference distribution (registered)\n- task_family: static calibration of drifting sensors\n- system_boundary: single closed decision unit, no external channels\n- scale: registered nominal scale\n- timescale: registered nominal horizon H\n- substrate_interface: two DIFFERENT substrates with two DIFFERENT native evidence interfaces: generational fitness gain (no beliefs) versus held-out predictive likelihood (model with beliefs); no registered mapping between them\n- criterion: each method is evaluated only on its own native evidence interface\n\nCOUNTERFACTUAL TRANSPORT CLAIM: a review claims that the fitness-gain result on the no-beliefs substrate settles the predictive-likelihood standing of the model-with-beliefs substrate, and transports that verdict unchanged.",
+   "task_id": "el10-elc7-06"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A fund rebalances a tracked index portfolio. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: DiagonalApprox-Trade -- leads by a wide margin under return correlation diffuse across many factors at large scale (book above 200 names); the complementary sweep establishing this is registered alongside the report\n- SECOND: FullCov-Optimizer -- leads by a wide margin under return correlation concentrated in one factor at small scale (book of 200 names or fewer); this is where the original result report was established\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: registered deployment environment: return correlation diffuse across many factors\n- task_family: constrained portfolio rebalancing\n- system_boundary: single closed decision unit, no external channels\n- scale: registered deployment scale: book above 200 names\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: the result report established FIRST-order superiority under the concentrated/small configuration; a proposal transports that conclusion unchanged to the registered deployment context above.",
+   "task_id": "el10-elc8-01"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A fund rebalances a tracked index portfolio. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: FullCov-Optimizer -- leads by a wide margin under return correlation concentrated in one factor at small scale (book of 200 names or fewer); this is where the original result report was established\n- SECOND: DiagonalApprox-Trade -- leads by a wide margin under return correlation diffuse across many factors at large scale (book above 200 names); the complementary sweep establishing this is registered alongside the report\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: registered deployment environment: return correlation diffuse across many factors\n- task_family: constrained portfolio rebalancing\n- system_boundary: single closed decision unit, no external channels\n- scale: registered deployment scale: book above 200 names\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: the result report established FIRST-order superiority under the concentrated/small configuration; a proposal transports that conclusion unchanged to the registered deployment context above.",
+   "task_id": "el10-elc8-02"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A logistics operator routes parcels through a hub network. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: StaticCost-Dijkstra -- leads by a wide margin under shipment demand concentrated on one dense corridor at small scale (network of 200 hubs or fewer); this is where the original result report was established\n- SECOND: LiveLoad-RLite -- leads by a wide margin under shipment demand diffuse across sparse regional links at large scale (network above 200 hubs); the complementary sweep establishing this is registered alongside the report\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: registered deployment environment: shipment demand diffuse across sparse regional links\n- task_family: routing on a fixed network graph\n- system_boundary: single closed decision unit, no external channels\n- scale: registered deployment scale: network above 200 hubs\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: the result report established FIRST-order superiority under the concentrated/small configuration; a proposal transports that conclusion unchanged to the registered deployment context above.",
+   "task_id": "el10-elc8-03"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A logistics operator routes parcels through a hub network. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: StaticCost-Dijkstra -- leads by a wide margin under shipment demand concentrated on one dense corridor at small scale (network of 200 hubs or fewer); this is where the original result report was established\n- SECOND: LiveLoad-RLite -- leads by a wide margin under shipment demand diffuse across sparse regional links at large scale (network above 200 hubs); the complementary sweep establishing this is registered alongside the report\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: registered deployment environment: shipment demand diffuse across sparse regional links\n- task_family: routing on a fixed network graph\n- system_boundary: single closed decision unit, no external channels\n- scale: registered deployment scale: network above 200 hubs\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: the result report established FIRST-order superiority under the concentrated/small configuration; a proposal transports that conclusion unchanged to the registered deployment context above.",
+   "task_id": "el10-elc8-04"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A logistics operator routes parcels through a hub network. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: LiveLoad-RLite -- leads by a wide margin under shipment demand diffuse across sparse regional links at large scale (network above 200 hubs); the complementary sweep establishing this is registered alongside the report\n- SECOND: StaticCost-Dijkstra -- leads by a wide margin under shipment demand concentrated on one dense corridor at small scale (network of 200 hubs or fewer); this is where the original result report was established\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: registered deployment environment: shipment demand diffuse across sparse regional links\n- task_family: routing on a fixed network graph\n- system_boundary: single closed decision unit, no external channels\n- scale: registered deployment scale: network above 200 hubs\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: the result report established FIRST-order superiority under the concentrated/small configuration; a proposal transports that conclusion unchanged to the registered deployment context above.",
+   "task_id": "el10-elc8-05"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: An online catalogue retrieval service ranks product matches. You are the method-selection officer; a deployment decision must be made from the registry below, strictly under the registered context that follows.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: ExactLex-Match -- leads by a wide margin under query demand concentrated on a few head terms at small scale (catalogue of 30k items or fewer); this is where the original result report was established\n- SECOND: EmbedRank-NB -- leads by a wide margin under query demand diffuse across the long tail at large scale (catalogue above 30k items); the complementary sweep establishing this is registered alongside the report\n\nREGISTERED CONTEXT (deployment frame; all seven coordinates):\n- environment_distribution: registered deployment environment: query demand diffuse across the long tail\n- task_family: ranking over a fixed item corpus\n- system_boundary: single closed decision unit, no external channels\n- scale: registered deployment scale: catalogue above 30k items\n- timescale: registered nominal horizon H\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: registered primary criterion\n\nCOUNTERFACTUAL TRANSPORT CLAIM: the result report established FIRST-order superiority under the concentrated/small configuration; a proposal transports that conclusion unchanged to the registered deployment context above.",
+   "task_id": "el10-elc8-06"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: An observatory calibrates a sensor array. You are the method-selection officer for a SINGLE registered deployment context; the decision must be made from the registry below.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: OnlineDrift-Tracker -- the same registered local sweep shows it strictly dominated by the other registered method on the registered criterion\n- SECOND: FullBatch-MLE -- the registered local sweep over the single registered deployment context shows strict dominance over the other registered method on the registered criterion\n\nREGISTERED CONTEXT COORDINATES (deployment frame; all seven):\n- environment_distribution: registered deployment environment: drift concentrated in one fast-warming channel\n- task_family: static calibration of drifting sensors\n- system_boundary: a single closed estimator, no external channels\n- scale: array of 16 channels or fewer\n- timescale: recalibration window T = H/4\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: the registered primary criterion (single, commensurate)\n\nATLAS REGISTRY (local epistemic charts and overlaps):\n- local chart: chart-L1 over the single registered context (local states: the method-selection decision and its registered evidence)\n- overlap assessments: NONE registered (no second context is registered)\n- global section witness registry: NONE registered\n\nTRANSPORT PROPOSAL: a review proposes to treat the local selection as holding across all contexts and to report a witnessed global section for it.",
+   "task_id": "ah20-ahc0-01"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A logistics operator routes parcels through a hub network. You are the method-selection officer for a SINGLE registered deployment context; the decision must be made from the registry below.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: StaticCost-Dijkstra -- the registered local sweep over the single registered deployment context shows strict dominance over the other registered method on the registered criterion\n- SECOND: LiveLoad-RLite -- the same registered local sweep shows it strictly dominated by the other registered method on the registered criterion\n\nREGISTERED CONTEXT COORDINATES (deployment frame; all seven):\n- environment_distribution: registered deployment environment: shipment demand concentrated on one dense corridor\n- task_family: routing on a fixed network graph\n- system_boundary: a single closed planner, no external channels\n- scale: network of 200 hubs or fewer\n- timescale: planning budget T = H/4\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: the registered primary criterion (single, commensurate)\n\nATLAS REGISTRY (local epistemic charts and overlaps):\n- local chart: chart-L1 over the single registered context (local states: the method-selection decision and its registered evidence)\n- overlap assessments: NONE registered (no second context is registered)\n- global section witness registry: NONE registered\n\nTRANSPORT PROPOSAL: a review proposes to treat the local selection as holding across all contexts and to report a witnessed global section for it.",
+   "task_id": "ah20-ahc0-02"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A game studio evaluates search engines for a competitive board AI. You are the method-selection officer for a SINGLE registered deployment context; the decision must be made from the registry below.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: SampledRollout-Shallow -- the same registered local sweep shows it strictly dominated by the other registered method on the registered criterion\n- SECOND: AlphaBeta-Deep -- the registered local sweep over the single registered deployment context shows strict dominance over the other registered method on the registered criterion\n\nREGISTERED CONTEXT COORDINATES (deployment frame; all seven):\n- environment_distribution: registered deployment environment: opponent pool concentrated on one dominant style\n- task_family: game-tree search with imperfect information\n- system_boundary: a single closed engine, no external channels\n- scale: branching factor of 8 or fewer\n- timescale: thinking time T = H/4\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: the registered primary criterion (single, commensurate)\n\nATLAS REGISTRY (local epistemic charts and overlaps):\n- local chart: chart-L1 over the single registered context (local states: the method-selection decision and its registered evidence)\n- overlap assessments: NONE registered (no second context is registered)\n- global section witness registry: NONE registered\n\nTRANSPORT PROPOSAL: a review proposes to treat the local selection as holding across all contexts and to report a witnessed global section for it.",
+   "task_id": "ah20-ahc0-03"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: An observatory calibrates a sensor array. You are the method-selection officer for a SINGLE registered deployment context; the decision must be made from the registry below.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: FullBatch-MLE -- the registered local sweep over the single registered deployment context shows strict dominance over the other registered method on the registered criterion\n- SECOND: OnlineDrift-Tracker -- the same registered local sweep shows it strictly dominated by the other registered method on the registered criterion\n\nREGISTERED CONTEXT COORDINATES (deployment frame; all seven):\n- environment_distribution: registered deployment environment: drift concentrated in one fast-warming channel\n- task_family: static calibration of drifting sensors\n- system_boundary: a single closed estimator, no external channels\n- scale: array of 16 channels or fewer\n- timescale: recalibration window T = H/4\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: the registered primary criterion (single, commensurate)\n\nATLAS REGISTRY (local epistemic charts and overlaps):\n- local chart: chart-L1 over the single registered context (local states: the method-selection decision and its registered evidence)\n- overlap assessments: NONE registered (no second context is registered)\n- global section witness registry: NONE registered\n\nTRANSPORT PROPOSAL: a review proposes to treat the local selection as holding across all contexts and to report a witnessed global section for it.",
+   "task_id": "ah20-ahc0-04"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: An observatory calibrates a sensor array. You are the method-selection officer for a SINGLE registered deployment context; the decision must be made from the registry below.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: FullBatch-MLE -- the registered local sweep over the single registered deployment context shows strict dominance over the other registered method on the registered criterion\n- SECOND: OnlineDrift-Tracker -- the same registered local sweep shows it strictly dominated by the other registered method on the registered criterion\n\nREGISTERED CONTEXT COORDINATES (deployment frame; all seven):\n- environment_distribution: registered deployment environment: drift concentrated in one fast-warming channel\n- task_family: static calibration of drifting sensors\n- system_boundary: a single closed estimator, no external channels\n- scale: array of 16 channels or fewer\n- timescale: recalibration window T = H/4\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: the registered primary criterion (single, commensurate)\n\nATLAS REGISTRY (local epistemic charts and overlaps):\n- local chart: chart-L1 over the single registered context (local states: the method-selection decision and its registered evidence)\n- overlap assessments: NONE registered (no second context is registered)\n- global section witness registry: NONE registered\n\nTRANSPORT PROPOSAL: a review proposes to treat the local selection as holding across all contexts and to report a witnessed global section for it.",
+   "task_id": "ah20-ahc0-05"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A game studio evaluates search engines for a competitive board AI. You are the method-selection officer for a SINGLE registered deployment context; the decision must be made from the registry below.\n\nMETHOD REGISTRY (order of listing defines FIRST and SECOND):\n- FIRST: AlphaBeta-Deep -- the registered local sweep over the single registered deployment context shows strict dominance over the other registered method on the registered criterion\n- SECOND: SampledRollout-Shallow -- the same registered local sweep shows it strictly dominated by the other registered method on the registered criterion\n\nREGISTERED CONTEXT COORDINATES (deployment frame; all seven):\n- environment_distribution: registered deployment environment: opponent pool concentrated on one dominant style\n- task_family: game-tree search with imperfect information\n- system_boundary: a single closed engine, no external channels\n- scale: branching factor of 8 or fewer\n- timescale: thinking time T = H/4\n- substrate_interface: registered benchmark interface, single substrate\n- criterion: the registered primary criterion (single, commensurate)\n\nATLAS REGISTRY (local epistemic charts and overlaps):\n- local chart: chart-L1 over the single registered context (local states: the method-selection decision and its registered evidence)\n- overlap assessments: NONE registered (no second context is registered)\n- global section witness registry: NONE registered\n\nTRANSPORT PROPOSAL: a review proposes to treat the local selection as holding across all contexts and to report a witnessed global section for it.",
+   "task_id": "ah20-ahc0-06"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A logistics operator routes parcels through a hub network. 3 registered evaluation campaigns (local charts) cover the task family under different registered coordinate values; their pairwise compatibility has been assessed.\n\nCHART REGISTRY:\n- chart-A (context C-A; environment_distribution: shipment demand concentrated on one dense corridor; task family: routing on a fixed network graph)\n- chart-B (context C-B; environment_distribution: shipment demand diffuse across sparse regional links; task family: routing on a fixed network graph)\n- chart-C (context C-C; environment_distribution: mixed reference demand; task family: routing on a fixed network graph)\n\nOVERLAP ASSESSMENTS (registered, each with a witness):\n- OVL-1: chart-A vs chart-B: COMPATIBLE on the shared task family (matched method family on shared local states), witness w-1\n- OVL-2: chart-B vs chart-C: COMPATIBLE on the shared task family (matched method family on shared local states), witness w-2\n- OVL-3: chart-A vs chart-C: COMPATIBLE on the shared task family (matched method family on shared local states), witness w-3\n\nGLOBAL SECTION WITNESS REGISTRY: NONE registered (no finding covering ALL the registered charts exists).\n\nATLAS CLAIM UNDER REVIEW: a review claims the compatible overlaps themselves establish a witnessed global section over the whole family.",
+   "task_id": "ah20-ahc1-01"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A network operator schedules traffic across a backbone. 3 registered evaluation campaigns (local charts) cover the task family under different registered coordinate values; their pairwise compatibility has been assessed.\n\nCHART REGISTRY:\n- chart-A (context C-A; timescale: reconfiguration window T = H/4; task family: traffic engineering on a fixed topology)\n- chart-B (context C-B; timescale: reconfiguration window T = 4H; task family: traffic engineering on a fixed topology)\n- chart-C (context C-C; timescale: budget T = H; task family: traffic engineering on a fixed topology)\n\nOVERLAP ASSESSMENTS (registered, each with a witness):\n- OVL-1: chart-A vs chart-B: COMPATIBLE on the shared task family (matched method family on shared local states), witness w-1\n- OVL-2: chart-B vs chart-C: COMPATIBLE on the shared task family (matched method family on shared local states), witness w-2\n- OVL-3: chart-A vs chart-C: COMPATIBLE on the shared task family (matched method family on shared local states), witness w-3\n\nGLOBAL SECTION WITNESS REGISTRY: NONE registered (no finding covering ALL the registered charts exists).\n\nATLAS CLAIM UNDER REVIEW: a review claims the compatible overlaps themselves establish a witnessed global section over the whole family.",
+   "task_id": "ah20-ahc1-02"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: An online catalogue retrieval service ranks product matches. 3 registered evaluation campaigns (local charts) cover the task family under different registered coordinate values; their pairwise compatibility has been assessed.\n\nCHART REGISTRY:\n- chart-A (context C-A; environment_distribution: query demand concentrated on a few head terms; task family: ranking over a fixed item corpus)\n- chart-B (context C-B; environment_distribution: query demand diffuse across the long tail; task family: ranking over a fixed item corpus)\n- chart-C (context C-C; environment_distribution: mixed reference demand; task family: ranking over a fixed item corpus)\n\nOVERLAP ASSESSMENTS (registered, each with a witness):\n- OVL-1: chart-A vs chart-B: COMPATIBLE on the shared task family (matched method family on shared local states), witness w-1\n- OVL-2: chart-B vs chart-C: COMPATIBLE on the shared task family (matched method family on shared local states), witness w-2\n- OVL-3: chart-A vs chart-C: COMPATIBLE on the shared task family (matched method family on shared local states), witness w-3\n\nGLOBAL SECTION WITNESS REGISTRY: NONE registered (no finding covering ALL the registered charts exists).\n\nATLAS CLAIM UNDER REVIEW: a review claims the compatible overlaps themselves establish a witnessed global section over the whole family.",
+   "task_id": "ah20-ahc1-03"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A fund rebalances a tracked index portfolio. 2 registered evaluation campaigns (local charts) cover the task family under different registered coordinate values; their pairwise compatibility has been assessed.\n\nCHART REGISTRY:\n- chart-A (context C-A; environment_distribution: return correlation concentrated in one factor; task family: constrained portfolio rebalancing)\n- chart-B (context C-B; environment_distribution: return correlation diffuse across many factors; task family: constrained portfolio rebalancing)\n\nOVERLAP ASSESSMENTS (registered, each with a witness):\n- OVL-1: chart-A vs chart-B: COMPATIBLE on the shared task family (matched method family on shared local states), witness w-1\n\nGLOBAL SECTION WITNESS REGISTRY: NONE registered (no finding covering ALL the registered charts exists).\n\nATLAS CLAIM UNDER REVIEW: a review claims the compatible overlaps themselves establish a witnessed global section over the whole family.",
+   "task_id": "ah20-ahc1-04"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: An observatory calibrates a sensor array. 3 registered evaluation campaigns (local charts) cover the task family under different registered coordinate values; their pairwise compatibility has been assessed.\n\nCHART REGISTRY:\n- chart-A (context C-A; scale: array of 16 channels or fewer; task family: static calibration of drifting sensors)\n- chart-B (context C-B; scale: array above 16 channels; task family: static calibration of drifting sensors)\n- chart-C (context C-C; scale: registered intermediate scale; task family: static calibration of drifting sensors)\n\nOVERLAP ASSESSMENTS (registered, each with a witness):\n- OVL-1: chart-A vs chart-B: COMPATIBLE on the shared task family (matched method family on shared local states), witness w-1\n- OVL-2: chart-B vs chart-C: COMPATIBLE on the shared task family (matched method family on shared local states), witness w-2\n- OVL-3: chart-A vs chart-C: COMPATIBLE on the shared task family (matched method family on shared local states), witness w-3\n\nGLOBAL SECTION WITNESS REGISTRY: NONE registered (no finding covering ALL the registered charts exists).\n\nATLAS CLAIM UNDER REVIEW: a review claims the compatible overlaps themselves establish a witnessed global section over the whole family.",
+   "task_id": "ah20-ahc1-05"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A fund rebalances a tracked index portfolio. 3 registered evaluation campaigns (local charts) cover the task family under different registered coordinate values; their pairwise compatibility has been assessed.\n\nCHART REGISTRY:\n- chart-A (context C-A; timescale: rebalance window T = H/4; task family: constrained portfolio rebalancing)\n- chart-B (context C-B; timescale: rebalance window T = 4H; task family: constrained portfolio rebalancing)\n- chart-C (context C-C; timescale: budget T = H; task family: constrained portfolio rebalancing)\n\nOVERLAP ASSESSMENTS (registered, each with a witness):\n- OVL-1: chart-A vs chart-B: COMPATIBLE on the shared task family (matched method family on shared local states), witness w-1\n- OVL-2: chart-B vs chart-C: COMPATIBLE on the shared task family (matched method family on shared local states), witness w-2\n- OVL-3: chart-A vs chart-C: COMPATIBLE on the shared task family (matched method family on shared local states), witness w-3\n\nGLOBAL SECTION WITNESS REGISTRY: NONE registered (no finding covering ALL the registered charts exists).\n\nATLAS CLAIM UNDER REVIEW: a review claims the compatible overlaps themselves establish a witnessed global section over the whole family.",
+   "task_id": "ah20-ahc1-06"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A retailer forecasts weekly demand for stocked items. A candidate set is evaluated by registered probes under a bound evaluator; the candidate deployment consequences are registered and DIFFER between cand-1 and cand-2 (consequence class D-1 versus D-2: deploying the wrong one is a registered loss), while cand-3 sits in consequence class D-3.\n\nCURRENT PROBE TABLE (outcome class under the bound evaluator; the full candidate-by-probe grid is registered):\n- cand-1: p1:oc-a; p2:oc-x\n- cand-2: p1:oc-a; p2:oc-x\n- cand-3: p1:oc-b; p2:oc-y\n\nPROPOSED NEW PROBES (at most one will be adopted; each proposal's would-be outcome classes are registered):\n- probe-q1: registered would-be outcome classes: cand-1 -> o-alpha; cand-2 -> o-beta; cand-3 -> o-alpha\n- probe-q2: registered would-be outcome classes: cand-1 -> oc-a; cand-2 -> oc-a; cand-3 -> oc-b\n- probe-q3: registered would-be outcome classes: cand-1 -> oc-k; cand-2 -> oc-k; cand-3 -> oc-k\n\nDECISION REQUIRED: adopt the proposal that restores distinguishability of the decision-distinct candidates, or reject.",
+   "task_id": "ah20-ahc2-01"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A hospital triage desk scores incoming patients. A candidate set is evaluated by registered probes under a bound evaluator; the candidate deployment consequences are registered and DIFFER between cand-1 and cand-2 (consequence class D-1 versus D-2: deploying the wrong one is a registered loss), while cand-3 sits in consequence class D-3.\n\nCURRENT PROBE TABLE (outcome class under the bound evaluator; the full candidate-by-probe grid is registered):\n- cand-1: p1:oc-a; p2:oc-x\n- cand-2: p1:oc-a; p2:oc-x\n- cand-3: p1:oc-b; p2:oc-y\n\nPROPOSED NEW PROBES (at most one will be adopted; each proposal's would-be outcome classes are registered):\n- probe-q1: registered would-be outcome classes: cand-1 -> oc-k; cand-2 -> oc-k; cand-3 -> oc-k\n- probe-q2: registered would-be outcome classes: cand-1 -> o-alpha; cand-2 -> o-beta; cand-3 -> o-alpha\n- probe-q3: registered would-be outcome classes: cand-1 -> oc-a; cand-2 -> oc-a; cand-3 -> oc-b\n\nDECISION REQUIRED: adopt the proposal that restores distinguishability of the decision-distinct candidates, or reject.",
+   "task_id": "ah20-ahc2-02"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A hospital triage desk scores incoming patients. A candidate set is evaluated by registered probes under a bound evaluator; the candidate deployment consequences are registered and DIFFER between cand-1 and cand-2 (consequence class D-1 versus D-2: deploying the wrong one is a registered loss), while cand-3 sits in consequence class D-3.\n\nCURRENT PROBE TABLE (outcome class under the bound evaluator; the full candidate-by-probe grid is registered):\n- cand-1: p1:oc-a; p2:oc-x\n- cand-2: p1:oc-a; p2:oc-x\n- cand-3: p1:oc-b; p2:oc-y\n\nPROPOSED NEW PROBES (at most one will be adopted; each proposal's would-be outcome classes are registered):\n- probe-q1: registered would-be outcome classes: cand-1 -> o-alpha; cand-2 -> o-beta; cand-3 -> o-alpha\n- probe-q2: registered would-be outcome classes: cand-1 -> oc-k; cand-2 -> oc-k; cand-3 -> oc-k\n- probe-q3: registered would-be outcome classes: cand-1 -> oc-a; cand-2 -> oc-a; cand-3 -> oc-b\n\nDECISION REQUIRED: adopt the proposal that restores distinguishability of the decision-distinct candidates, or reject.",
+   "task_id": "ah20-ahc2-03"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A fund rebalances a tracked index portfolio. A candidate set is evaluated by registered probes under a bound evaluator; the candidate deployment consequences are registered and DIFFER between cand-1 and cand-2 (consequence class D-1 versus D-2: deploying the wrong one is a registered loss), while cand-3 sits in consequence class D-3.\n\nCURRENT PROBE TABLE (outcome class under the bound evaluator; the full candidate-by-probe grid is registered):\n- cand-1: p1:oc-a; p2:oc-x\n- cand-2: p1:oc-a; p2:oc-x\n- cand-3: p1:oc-b; p2:oc-y\n\nPROPOSED NEW PROBES (at most one will be adopted; each proposal's would-be outcome classes are registered):\n- probe-q1: registered would-be outcome classes: cand-1 -> o-alpha; cand-2 -> o-beta; cand-3 -> o-alpha\n- probe-q2: registered would-be outcome classes: cand-1 -> oc-k; cand-2 -> oc-k; cand-3 -> oc-k\n- probe-q3: registered would-be outcome classes: cand-1 -> oc-a; cand-2 -> oc-a; cand-3 -> oc-b\n\nDECISION REQUIRED: adopt the proposal that restores distinguishability of the decision-distinct candidates, or reject.",
+   "task_id": "ah20-ahc2-04"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A chemical plant controller schedules batch reactors. A candidate set is evaluated by registered probes under a bound evaluator; the candidate deployment consequences are registered and DIFFER between cand-1 and cand-2 (consequence class D-1 versus D-2: deploying the wrong one is a registered loss), while cand-3 sits in consequence class D-3.\n\nCURRENT PROBE TABLE (outcome class under the bound evaluator; the full candidate-by-probe grid is registered):\n- cand-1: p1:oc-a; p2:oc-x\n- cand-2: p1:oc-a; p2:oc-x\n- cand-3: p1:oc-b; p2:oc-y\n\nPROPOSED NEW PROBES (at most one will be adopted; each proposal's would-be outcome classes are registered):\n- probe-q1: registered would-be outcome classes: cand-1 -> oc-a; cand-2 -> oc-a; cand-3 -> oc-b\n- probe-q2: registered would-be outcome classes: cand-1 -> o-alpha; cand-2 -> o-beta; cand-3 -> o-alpha\n- probe-q3: registered would-be outcome classes: cand-1 -> oc-k; cand-2 -> oc-k; cand-3 -> oc-k\n\nDECISION REQUIRED: adopt the proposal that restores distinguishability of the decision-distinct candidates, or reject.",
+   "task_id": "ah20-ahc2-05"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A game studio evaluates search engines for a competitive board AI. A candidate set is evaluated by registered probes under a bound evaluator; the candidate deployment consequences are registered and DIFFER between cand-1 and cand-2 (consequence class D-1 versus D-2: deploying the wrong one is a registered loss), while cand-3 sits in consequence class D-3.\n\nCURRENT PROBE TABLE (outcome class under the bound evaluator; the full candidate-by-probe grid is registered):\n- cand-1: p1:oc-a; p2:oc-x\n- cand-2: p1:oc-a; p2:oc-x\n- cand-3: p1:oc-b; p2:oc-y\n\nPROPOSED NEW PROBES (at most one will be adopted; each proposal's would-be outcome classes are registered):\n- probe-q1: registered would-be outcome classes: cand-1 -> oc-k; cand-2 -> oc-k; cand-3 -> oc-k\n- probe-q2: registered would-be outcome classes: cand-1 -> o-alpha; cand-2 -> o-beta; cand-3 -> o-alpha\n- probe-q3: registered would-be outcome classes: cand-1 -> oc-a; cand-2 -> oc-a; cand-3 -> oc-b\n\nDECISION REQUIRED: adopt the proposal that restores distinguishability of the decision-distinct candidates, or reject.",
+   "task_id": "ah20-ahc2-06"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A fund rebalances a tracked index portfolio. A candidate set is evaluated by registered probes under a bound evaluator.\n\nCURRENT PROBE TABLE (outcome class under the bound evaluator; the full candidate-by-probe grid is registered):\n- cand-1: p1:oc-a; p2:oc-x\n- cand-2: p1:oc-a; p2:oc-x\n- cand-3: p1:oc-b; p2:oc-y\n\nPROPOSED NEW PROBE probe-q1 (cheap to run and previously successful on a neighbouring family): its outcome class is the constant class oc-k for every candidate.\n\nDECISION REQUIRED: adopt probe-q1 or reject it.",
+   "task_id": "ah20-ahc3-01"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: An observatory calibrates a sensor array. A candidate set is evaluated by registered probes under a bound evaluator.\n\nCURRENT PROBE TABLE (outcome class under the bound evaluator; the full candidate-by-probe grid is registered):\n- cand-1: p1:oc-a; p2:oc-x\n- cand-2: p1:oc-a; p2:oc-x\n- cand-3: p1:oc-b; p2:oc-y\n\nPROPOSED NEW PROBE probe-q1 (cheap to run and previously successful on a neighbouring family): its outcome class is the constant class oc-k for every candidate.\n\nDECISION REQUIRED: adopt probe-q1 or reject it.",
+   "task_id": "ah20-ahc3-02"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A network operator schedules traffic across a backbone. A candidate set is evaluated by registered probes under a bound evaluator.\n\nCURRENT PROBE TABLE (outcome class under the bound evaluator; the full candidate-by-probe grid is registered):\n- cand-1: p1:oc-a; p2:oc-x\n- cand-2: p1:oc-a; p2:oc-x\n- cand-3: p1:oc-b; p2:oc-y\n\nPROPOSED NEW PROBE probe-q1 (cheap to run and previously successful on a neighbouring family): its outcome class is the constant class oc-k for every candidate.\n\nDECISION REQUIRED: adopt probe-q1 or reject it.",
+   "task_id": "ah20-ahc3-03"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A game studio evaluates search engines for a competitive board AI. A candidate set is evaluated by registered probes under a bound evaluator.\n\nCURRENT PROBE TABLE (outcome class under the bound evaluator; the full candidate-by-probe grid is registered):\n- cand-1: p1:oc-a; p2:oc-x\n- cand-2: p1:oc-a; p2:oc-x\n- cand-3: p1:oc-b; p2:oc-y\n\nPROPOSED NEW PROBE probe-q1 (cheap to run and previously successful on a neighbouring family): its outcome class is the constant class oc-k for every candidate.\n\nDECISION REQUIRED: adopt probe-q1 or reject it.",
+   "task_id": "ah20-ahc3-04"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: An observatory calibrates a sensor array. A candidate set is evaluated by registered probes under a bound evaluator.\n\nCURRENT PROBE TABLE (outcome class under the bound evaluator; the full candidate-by-probe grid is registered):\n- cand-1: p1:oc-a; p2:oc-x\n- cand-2: p1:oc-a; p2:oc-x\n- cand-3: p1:oc-b; p2:oc-y\n\nPROPOSED NEW PROBE probe-q1 (cheap to run and previously successful on a neighbouring family): its outcome class duplicates probe p2's outcome class for every candidate.\n\nDECISION REQUIRED: adopt probe-q1 or reject it.",
+   "task_id": "ah20-ahc3-05"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A retailer forecasts weekly demand for stocked items. A candidate set is evaluated by registered probes under a bound evaluator.\n\nCURRENT PROBE TABLE (outcome class under the bound evaluator; the full candidate-by-probe grid is registered):\n- cand-1: p1:oc-a; p2:oc-x\n- cand-2: p1:oc-a; p2:oc-x\n- cand-3: p1:oc-b; p2:oc-y\n\nPROPOSED NEW PROBE probe-q1 (cheap to run and previously successful on a neighbouring family): its outcome class is the constant class oc-k for every candidate.\n\nDECISION REQUIRED: adopt probe-q1 or reject it.",
+   "task_id": "ah20-ahc3-06"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A game studio evaluates search engines for a competitive board AI. After a multi-campaign evaluation the local charts are pairwise compatible on their overlaps, but a decision-relevant residual persists.\n\nCHART REGISTRY:\n- chart-A (campaign A over the task family)\n- chart-B (campaign B over the task family)\n\nOVERLAP ASSESSMENTS (registered, with witnesses):\n- OVL-1: chart-A vs chart-B: COMPATIBLE (matched method family on shared local states), witness w-ovl-1\n\nGLOBAL SECTION WITNESS REGISTRY: NONE registered.\n\nRESIDUAL DISPOSITION LEDGER (registered attempts, each with a witness):\n- KNOWN_UNCERTAINTY: applied to the residual and does NOT dispose it (witness w-ku-1)\n- MODEL_FAMILY_INSUFFICIENCY: applied to the residual and does NOT dispose it (witness w-mf-1)\n- REPRESENTATION_INSUFFICIENCY: applied to the residual and does NOT dispose it (witness w-ri-1)\n- residual R-1: decision-relevant, persists after every registered disposition above (witness w-resid-1)\n\nHORIZON QUESTION: a review asks whether the residual is outside the current atlas, and if so with what witness. No mechanism content is registered for it.",
+   "task_id": "ah20-ahc4-01"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A network operator schedules traffic across a backbone. After a multi-campaign evaluation the local charts are pairwise compatible on their overlaps, but a decision-relevant residual persists.\n\nCHART REGISTRY:\n- chart-A (campaign A over the task family)\n- chart-B (campaign B over the task family)\n\nOVERLAP ASSESSMENTS (registered, with witnesses):\n- OVL-1: chart-A vs chart-B: COMPATIBLE (matched method family on shared local states), witness w-ovl-1\n\nGLOBAL SECTION WITNESS REGISTRY: NONE registered.\n\nRESIDUAL DISPOSITION LEDGER (registered attempts, each with a witness):\n- KNOWN_UNCERTAINTY: applied to the residual and does NOT dispose it (witness w-ku-1)\n- MODEL_FAMILY_INSUFFICIENCY: applied to the residual and does NOT dispose it (witness w-mf-1)\n- REPRESENTATION_INSUFFICIENCY: applied to the residual and does NOT dispose it (witness w-ri-1)\n- PROBE_OR_ACTION_INSUFFICIENCY: applied to the residual and does NOT dispose it (witness w-pa-1)\n- residual R-1: decision-relevant, persists after every registered disposition above (witness w-resid-1)\n\nHORIZON QUESTION: a review asks whether the residual is outside the current atlas, and if so with what witness. No mechanism content is registered for it.",
+   "task_id": "ah20-ahc4-02"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A chemical plant controller schedules batch reactors. After a multi-campaign evaluation the local charts are pairwise compatible on their overlaps, but a decision-relevant residual persists.\n\nCHART REGISTRY:\n- chart-A (campaign A over the task family)\n- chart-B (campaign B over the task family)\n\nOVERLAP ASSESSMENTS (registered, with witnesses):\n- OVL-1: chart-A vs chart-B: COMPATIBLE (matched method family on shared local states), witness w-ovl-1\n\nGLOBAL SECTION WITNESS REGISTRY: NONE registered.\n\nRESIDUAL DISPOSITION LEDGER (registered attempts, each with a witness):\n- KNOWN_UNCERTAINTY: applied to the residual and does NOT dispose it (witness w-ku-1)\n- MODEL_FAMILY_INSUFFICIENCY: applied to the residual and does NOT dispose it (witness w-mf-1)\n- REPRESENTATION_INSUFFICIENCY: applied to the residual and does NOT dispose it (witness w-ri-1)\n- residual R-1: decision-relevant, persists after every registered disposition above (witness w-resid-1)\n\nHORIZON QUESTION: a review asks whether the residual is outside the current atlas, and if so with what witness. No mechanism content is registered for it.",
+   "task_id": "ah20-ahc4-03"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: An observatory calibrates a sensor array. After a multi-campaign evaluation the local charts are pairwise compatible on their overlaps, but a decision-relevant residual persists.\n\nCHART REGISTRY:\n- chart-A (campaign A over the task family)\n- chart-B (campaign B over the task family)\n\nOVERLAP ASSESSMENTS (registered, with witnesses):\n- OVL-1: chart-A vs chart-B: COMPATIBLE (matched method family on shared local states), witness w-ovl-1\n\nGLOBAL SECTION WITNESS REGISTRY: NONE registered.\n\nRESIDUAL DISPOSITION LEDGER (registered attempts, each with a witness):\n- KNOWN_UNCERTAINTY: applied to the residual and does NOT dispose it (witness w-ku-1)\n- MODEL_FAMILY_INSUFFICIENCY: applied to the residual and does NOT dispose it (witness w-mf-1)\n- REPRESENTATION_INSUFFICIENCY: applied to the residual and does NOT dispose it (witness w-ri-1)\n- PROBE_OR_ACTION_INSUFFICIENCY: applied to the residual and does NOT dispose it (witness w-pa-1)\n- residual R-1: decision-relevant, persists after every registered disposition above (witness w-resid-1)\n\nHORIZON QUESTION: a review asks whether the residual is outside the current atlas, and if so with what witness. No mechanism content is registered for it.",
+   "task_id": "ah20-ahc4-04"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A chemical plant controller schedules batch reactors. After a multi-campaign evaluation the local charts are pairwise compatible on their overlaps, but a decision-relevant residual persists.\n\nCHART REGISTRY:\n- chart-A (campaign A over the task family)\n- chart-B (campaign B over the task family)\n\nOVERLAP ASSESSMENTS (registered, with witnesses):\n- OVL-1: chart-A vs chart-B: COMPATIBLE (matched method family on shared local states), witness w-ovl-1\n\nGLOBAL SECTION WITNESS REGISTRY: NONE registered.\n\nRESIDUAL DISPOSITION LEDGER (registered attempts, each with a witness):\n- KNOWN_UNCERTAINTY: applied to the residual and does NOT dispose it (witness w-ku-1)\n- MODEL_FAMILY_INSUFFICIENCY: applied to the residual and does NOT dispose it (witness w-mf-1)\n- REPRESENTATION_INSUFFICIENCY: applied to the residual and does NOT dispose it (witness w-ri-1)\n- PROBE_OR_ACTION_INSUFFICIENCY: applied to the residual and does NOT dispose it (witness w-pa-1)\n- residual R-1: decision-relevant, persists after every registered disposition above (witness w-resid-1)\n\nHORIZON QUESTION: a review asks whether the residual is outside the current atlas, and if so with what witness. No mechanism content is registered for it.",
+   "task_id": "ah20-ahc4-05"
+  },
+  {
+   "coordinate_vocabulary": [
+    "environment_distribution",
+    "task_family",
+    "system_boundary",
+    "scale",
+    "timescale",
+    "substrate_interface",
+    "criterion"
+   ],
+   "scenario_text": "SETTING: A logistics operator routes parcels through a hub network. After a multi-campaign evaluation the local charts are pairwise compatible on their overlaps, but a decision-relevant residual persists.\n\nCHART REGISTRY:\n- chart-A (campaign A over the task family)\n- chart-B (campaign B over the task family)\n\nOVERLAP ASSESSMENTS (registered, with witnesses):\n- OVL-1: chart-A vs chart-B: COMPATIBLE (matched method family on shared local states), witness w-ovl-1\n\nGLOBAL SECTION WITNESS REGISTRY: NONE registered.\n\nRESIDUAL DISPOSITION LEDGER (registered attempts, each with a witness):\n- KNOWN_UNCERTAINTY: applied to the residual and does NOT dispose it (witness w-ku-1)\n- MODEL_FAMILY_INSUFFICIENCY: applied to the residual and does NOT dispose it (witness w-mf-1)\n- REPRESENTATION_INSUFFICIENCY: applied to the residual and does NOT dispose it (witness w-ri-1)\n- PROBE_OR_ACTION_INSUFFICIENCY: applied to the residual and does NOT dispose it (witness w-pa-1)\n- residual R-1: decision-relevant, persists after every registered disposition above (witness w-resid-1)\n\nHORIZON QUESTION: a review asks whether the residual is outside the current atlas, and if so with what witness. No mechanism content is registered for it.",
+   "task_id": "ah20-ahc4-06"
+  }
+ ]
+}
