@@ -1,0 +1,61 @@
+{
+  "schema_version": "orion.v2.epistemic-locality-backlog.v1",
+  "status": "PROSPECTIVE_STAGED_VERIFICATION",
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_field_status": false,
+    "grants_new_kernel_family": false,
+    "grants_primary_endpoint_change": false
+  },
+  "jobs": [
+    {
+      "id": "EL10",
+      "title": "exact synthetic locality and perspective-dependence benchmark",
+      "priority": 1,
+      "type": "formal_synthetic_compute",
+      "runnable_now": false,
+      "primary_outcomes": [
+        "local_decision_correctness",
+        "false_universalization_rate",
+        "perspective_dependence_detection",
+        "invalid_comparison_detection",
+        "method_routing_correctness",
+        "cross_frame_transport_error",
+        "resource_cost"
+      ],
+      "paper_targets": ["FLAGSHIP"],
+      "claim_limit": "interface discriminator only",
+      "done_when": "F2_PLUS_LOCALITY_INTERFACE is compared with GLOBAL_RANKING, CURRENT_F0 and CURRENT_F2 on exact known-answer context reversals"
+    },
+    {
+      "id": "EL20",
+      "title": "diverse adaptive-system donor and category-error audit",
+      "priority": 2,
+      "type": "curation_plus_independent_review",
+      "runnable_now": true,
+      "donor_families": [
+        "human_individual_cognition",
+        "nonhuman_individual_embodied_cognition",
+        "animal_collective_decision",
+        "cultural_cumulative_adaptation",
+        "evolutionary_adaptation",
+        "machine_native_adaptation"
+      ],
+      "paper_targets": ["FLAGSHIP"],
+      "claim_limit": "genealogy and boundary verification, not causal superiority",
+      "done_when": "each donor has a source-bound AdaptiveSystemProfile, native mechanism, anti-analogy case and explicit transfer boundary"
+    },
+    {
+      "id": "EL30",
+      "title": "held-out naturalistic scientific perspective-change study",
+      "priority": 3,
+      "type": "prospective_scientific_experiment",
+      "runnable_now": false,
+      "dependencies": ["EL10", "EL20"],
+      "gate": "open only if EL10 shows protected incremental value beyond current interfaces/parents",
+      "paper_targets": ["P-C", "FLAGSHIP"],
+      "claim_limit": "only stage eligible to support a result-bearing locality/perspective mechanism",
+      "done_when": "independent scientific cases show or refute decision value from explicit boundary/scale/timescale handling"
+    }
+  ]
+}

@@ -195,6 +195,12 @@ A parent-sufficiency result would be equally informative. It would show that sop
 
 The main limitations are the representativeness of registered donor cases, the difficulty of independent native adjudication, the possibility that benchmark construction itself reveals structural cues, and the cost of expert/native validation. Generalization beyond the studied case families requires fresh domains whose donor relations were not used to design the representation.
 
+### Historical invention as a donor family
+
+A further donor class is not a scientific theory or equation but a **historical transformation of a possibility space**: a new movement, representation, generative rule, instrument, search procedure, problem formulation or coordination pattern. Such episodes occur in science and mathematics, but also in engineering, sport, music, art, design and craft. The transferable object is not the celebrated artifact itself. It is the bounded transformation from a predecessor repertoire to a successor repertoire, together with the constraints that motivated it, the predecessor capabilities it preserved or lost, and the functional discriminator by which the change could have been judged at the time.
+
+This extension does not change the registered P-A benchmark or Results order. Historical invention cases are a prospective donor/source family for later work. They require time-sliced source cutoffs and matched failed, ignored or near-miss cases because retrospective fame can otherwise leak the answer and confuse later adoption with scientific or functional validity. A separate prospective protocol tests whether an explicit `GenerativeRegime`/`InventionEpisode` interface adds value beyond current transfer machinery and strongest creativity/open-ended-search parents before any invention-specific result is admitted to this paper.
+
 ## 9. Conclusion
 
 Remote scientific transfer should be judged by more than whether a system retrieves a surprising source. A scientifically useful system must recover the donor's native meaning, preserve the target consequence, expose invalid mappings and contract novelty when a mature parent already suffices.

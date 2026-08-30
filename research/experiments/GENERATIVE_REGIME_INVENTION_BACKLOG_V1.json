@@ -1,0 +1,92 @@
+{
+  "schema_version": "orion.v2.generative-regime-invention-backlog.v1",
+  "status": "PROSPECTIVE_STAGED_EXTENSION",
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_field_status": false,
+    "grants_new_kernel_family": false,
+    "grants_paper_endpoint_change": false
+  },
+  "global_rules": [
+    "freeze task, solver, parent, evaluator and resource identities before substantive outcome access",
+    "novelty alone is not a positive outcome",
+    "retain no-transform, parent-win, regression, failed-invention and CANNOT_CHECK cases",
+    "historical tasks must enforce a solver-visible source cutoff before the target invention epoch",
+    "do not score historical similarity to a famous answer as functional validity",
+    "do not alter frozen P-A through P-D primary endpoints from these outcomes"
+  ],
+  "jobs": [
+    {
+      "id": "GR10",
+      "title": "exact synthetic generative-regime transformation benchmark",
+      "priority": 1,
+      "type": "formal_synthetic_compute",
+      "runnable_now": false,
+      "dependencies": [],
+      "required_build": [
+        "finite episode generator",
+        "exact reachable-set oracle",
+        "prospective binding of strongest parent transform baseline"
+      ],
+      "transform_families": [
+        "NO_TRANSFORM",
+        "REPRESENT",
+        "ADD_OPERATOR",
+        "COMPOSE",
+        "CONSTRAINT_CHANGE",
+        "TOOL_CONSTRUCT",
+        "PROBLEM_POSE",
+        "TRAVERSAL_CHANGE",
+        "REJECT_TRANSFORM"
+      ],
+      "primary_outcomes": [
+        "transform_decision_correctness",
+        "false_invention_rate",
+        "exact_reach_gain",
+        "predecessor_retention",
+        "discriminator_access_gain",
+        "resource_cost"
+      ],
+      "paper_targets": ["FLAGSHIP"],
+      "claim_limit": "framework/interface discriminator only; no new P-C mechanism claim",
+      "done_when": "F2_PLUS_REGIME_INTERFACE is compared with CURRENT_F0, CURRENT_F2 and a faithfully bound strongest parent transform arm, or the missing parent is CANNOT_CHECK"
+    },
+    {
+      "id": "GR20",
+      "title": "time-sliced historical invention reconstruction",
+      "priority": 2,
+      "type": "curation_plus_blinded_evaluation",
+      "runnable_now": false,
+      "dependencies": [],
+      "minimum_cohort": "12 matched pairs across six domain families",
+      "domain_families": [
+        "science",
+        "mathematics_or_formal_reasoning",
+        "engineering_or_tool_invention",
+        "sport_or_movement",
+        "music_or_performance_or_composition",
+        "art_or_design_or_craft"
+      ],
+      "external_requirements": [
+        "source-cutoff custody",
+        "native/domain adjudicators",
+        "matched failed/ignored/near-miss cases"
+      ],
+      "paper_targets": ["FLAGSHIP", "P-A"],
+      "claim_limit": "exploratory/descriptive unless independent cutoff and adjudication are complete",
+      "done_when": "successful and non-successful cases are evaluated without post-event leakage and invention is separated from later adoption"
+    },
+    {
+      "id": "GR30",
+      "title": "held-out scientific regime-transformation transfer",
+      "priority": 3,
+      "type": "prospective_scientific_experiment",
+      "runnable_now": false,
+      "dependencies": ["GR10", "GR20"],
+      "gate": "open only if GR10 shows a protected residual and GR20 does not attribute it to synthetic/surface effects",
+      "paper_targets": ["P-C", "FLAGSHIP"],
+      "claim_limit": "only stage eligible to support a result-bearing P-C regime-transform mechanism",
+      "done_when": "independently certified predecessor-insufficient scientific cases show or refute incremental valid reach beyond current interfaces and strongest parents"
+    }
+  ]
+}

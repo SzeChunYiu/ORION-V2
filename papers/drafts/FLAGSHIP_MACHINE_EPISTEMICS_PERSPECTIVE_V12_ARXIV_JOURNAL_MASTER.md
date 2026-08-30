@@ -67,6 +67,24 @@ A result changes scientific force when support, dependence, calibration or evalu
 
 Research systems also change what they work on. They may redirect a project, search for a remote donor, build an instrument, reformulate a problem or abandon a non-identifiable question. Novelty and surprise are not scientific authority; machine-generated opportunities remain proposals until a scientific or institutional process adopts them.
 
+### Generative-regime and invention transitions
+
+A still broader change occurs when the system alters not only a scientific state inside a fixed repertoire, but the **repertoire itself**. One candidate interface is a versioned `GenerativeRegime`: the current representation language, generative rules, operator repertoire, active constraints, problem portfolio, traversal policy and tool/affordance environment. Ordinary problem solving searches within this regime; an invention proposal changes one or more of these coordinates and therefore changes what can subsequently be represented, generated, done or asked.
+
+This distinction is motivated by invention across many human practices, not only formal science. New scientific instruments, mathematical representations, engineering mechanisms, athletic movements, musical grammars, artistic techniques and design procedures can all be described as bounded transformations from a predecessor possibility space to a successor. But a regime mutation is not automatically an invention, and an invention is not automatically a scientific advance. The successor should make a registered capability, discriminator or decision newly reachable, preserve required predecessor competence or expose the loss, and remain subject to domain-native validation. Later fame or adoption is a separate social state rather than a validity oracle.
+
+Computational creativity, novelty/non-objective search, quality-diversity, open-ended learning, design/problem-framing and cumulative cultural evolution are direct parent families for this question. Machine Epistemics would receive no credit for rediscovering their algorithms. The possible residual is narrower: whether a machine-mediated scientific process needs explicit responsibility for **when a possibility-space transformation is warranted, what predecessor obligations it must preserve, how the transform is validated, and when the new regime may affect scientific commitments**. A separate prospective benchmark is required before this candidate transition class can become a result-bearing mechanism.
+
+### Epistemic locality and perspective transitions
+
+Human scientific cognition is a powerful donor, but it is not a neutral definition of intelligence. Comparative cognition emphasizes mechanism-level comparison rather than treating human-like performance as the sole summit; ecological-rationality research shows that decision mechanisms can be strong because they fit particular environmental structures; collective-behavior studies show that useful information processing can be distributed across groups; and major-transitions theory shows that the scientifically relevant unit of organization can itself change [40–43]. These parents motivate a boundary condition rather than a new intelligence metric.
+
+We therefore propose an **Epistemic Locality** hypothesis: competence should be interpreted relative to a declared environment, task family, resource regime, system boundary, substrate/interface, timescale and criterion. A system that dominates in one such ecology is not thereby globally superior. Human cognition is one historically realized solution; machine-native systems need not imitate it, but neither may machine-specific performance be universalized from one benchmark ecology.
+
+This extension deliberately does **not** equate cognition, within-lifetime learning, collective adaptation, cultural accumulation and evolutionary adaptation. They may share abstract structures—variation, retention, feedback, selection, recombination or distributed coordination—while differing in mechanism, timescale, agency and evidential meaning. In particular, evolutionary fitness is neither scientific truth nor normative authority. Natural adaptation supplies donors and hostile controls, not a warrant root.
+
+The corresponding perspective problem is operational. A scientific conclusion may change when the relevant boundary, organizational scale, temporal scale, environment or evaluator frame changes. When two admissible frames yield different registered judgments, the system should expose `PERSPECTIVE_DEPENDENCE` or establish a lawful transport relation rather than silently promoting one local conclusion to a universal claim. This is a candidate cross-cutting interface and remains falsifiable against ordinary context-conditioned metareasoning and domain-native parents.
+
 The transition classes need not share one implementation. The field hypothesis concerns responsibility for change across implementations.
 
 ## Candidate constraints—and reasons to doubt them
@@ -87,6 +105,10 @@ A field-level theory becomes interesting only if some constraints recur across m
 
 **Permit machine-native cognition but require external witness.** Scientific computation need not imitate human verbal reasoning. Programs, latent structures, large-scale search and non-human representations are acceptable when adopted scientific transitions have external tests, proofs, measurements or behavioural consequences proportionate to the claim [33–36].
 
+**Do not universalize local competence.** Superiority, intelligence and method claims should bind the environment, task distribution, system boundary, scale, timescale, resource regime and criterion on which they were established. A cross-context claim requires a transport or robustness witness rather than rhetorical generalization.
+
+**Separate adaptation from warrant.** Survival, selection, popularity, adoption and historical persistence can identify mechanisms worth studying; none automatically establishes scientific truth or legitimate authority.
+
 **Close only relative to a declared universe.** No finite search establishes universal exhaustion. Closure is relative to sources, routes, evaluators, domains and resources; unresolvedness can be the correct terminal.
 
 Each constraint has an obvious objection. It may simply restate a parent discipline; it may add costly bureaucracy; it may be too conservative; or it may erase domain meaning. That is why comparison against F0, F1 and F3 is more important than conceptual elegance.
@@ -96,6 +118,10 @@ Each constraint has an obvious objection. It may simply restate a parent discipl
 A further frontier is whether machines can learn reusable **operators of scientific development** rather than only domain knowledge. Science-of-science studies population regularities in novelty, teams, citation, interdisciplinarity and research dynamics [37–39], but popularity and historical impact are not truth criteria. Successful, failed, partial and abandoned trajectories are also observed with very different probabilities.
 
 A defensible hierarchy begins with source-bound research episodes; infers candidate development operators with preconditions, contraindications, failures and costs; learns policies for selecting or sequencing those operators; and retains higher abstractions only when they improve held-out prediction, transfer, prospective research decisions, resource use or compression without critical loss. Field and epoch holdouts are mandatory because a “general principle” that encodes discipline or era is not general.
+
+The invention extension adds a particularly demanding episode type: reconstruct the predecessor possibility space before an historical change, freeze solver-visible information to that epoch, infer the transformation rather than merely the later artifact, and compare successful cases with failed, ignored, near-miss and independently rediscovered alternatives. Such data can suggest reusable transformation operators, but retrospective historical fit is still observational evidence. Any claim that an operator improves scientific development requires prospective or otherwise independently identified testing.
+
+A second hardening is to vary the **unit and ecology of adaptation**. Candidate development principles should be challenged across human individual reasoning, non-human cognition, collective coordination, cultural accumulation, evolutionary adaptation and machine-native systems without assuming that those processes implement the same mechanism. A recurring structural pattern is scientifically interesting only if the native distinctions remain recoverable and the transfer improves a held-out decision or formal explanation.
 
 Early evidence already illustrates how easily attractive meta-rules can fail. In a bounded 2024 arXiv version-transition pilot, an initial implementation contained a labeling defect caused by missing head-version metadata. After repairing that defect and rerunning all transitions with complete metrics, the context-conditioned transition model still underperformed a simple marginal frequency model: the mean log-score difference was \(-0.0747\) nats with a 95% bootstrap interval of \([-0.0982,-0.0510]\). None of 18 evaluable disciplinary categories improved over the marginal baseline, and finer transition alphabets increased the disadvantage. Several fixed “breakthrough” heuristics were also anti-predictive. The pilot is too narrow for a programme-level conclusion—failed trajectories remain poorly observed and the source is limited—but it is useful negative calibration: more contextual structure and intuitive meta-rules do not automatically create knowledge about scientific development.
 
@@ -111,6 +137,8 @@ Machine Epistemics should be founded, contracted or abandoned through prospectiv
 
 **Prospective generativity.** Before outcome access, candidate foundations should propose predictions, experiments, measurements, bridge constraints or counter-probes. Retrospective explanation is not enough.
 
+**Locality challenge.** Registered cases should include environments, boundaries, scales, resource regimes or criteria under which a ranking is preserved, reversed or invalid to compare. An explicit locality interface earns credit only if it reduces false universalization or incorrect intervention beyond strongest context-conditioned parents.
+
 **Cross-domain recurrence.** One-domain improvement is scoped engineering. A field-level residual should recur across materially different sciences and independent evaluators.
 
 **Resource adjustment and local deference.** A higher layer that ties a parent while consuming much more compute or expert time should contract.
@@ -121,7 +149,7 @@ Valid outcomes therefore include rename, parent sufficiency and integration engi
 
 ## What would a machine-epistemic system require?
 
-The programme implies interfaces, not a monolith: a stable problem/criterion identity; plural alternatives and obligations; evidence/provenance/dependence state; typed relations and representations; actions with execution receipts; controlled concept and method revision; evaluator and reopening state; learning of reusable procedures; and an external authority boundary.
+The programme implies interfaces, not a monolith: a stable problem/criterion identity; plural alternatives and obligations; evidence/provenance/dependence state; typed relations and representations; actions with execution receipts; controlled concept and method revision; evaluator and reopening state; learning of reusable procedures; optional versioned generative-regime state when the possibility space itself is under revision; optional boundary/scale/timescale perspective state when conclusions are perspective-sensitive; and an external authority boundary.
 
 LLMs, theorem provers, causal models, retrieval systems, simulators, program synthesis, laboratory controllers and humans can all occupy these interfaces. None is Machine Epistemics by itself.
 
@@ -129,11 +157,11 @@ LLMs, theorem provers, causal models, retrieval systems, simulators, program syn
 
 AI-driven science makes an old epistemological problem executable: not merely *what should we believe?*, but *what may a machine-mediated investigation change, on what warrant, and what follows from that change?*
 
-Mature sciences already answer pieces of this question. Machine Epistemics deserves a distinct identity only if the relationships among those pieces form a stable and useful scientific object. The strongest current hypothesis is a transition ecology covering knowledge acquisition, structural transfer, conceptual and formal change, action, evaluation and research meta-policy, constrained by explicit responsibility for what is preserved or reopened.
+Mature sciences already answer pieces of this question. Machine Epistemics deserves a distinct identity only if the relationships among those pieces form a stable and useful scientific object. The strongest current hypothesis is a transition ecology covering knowledge acquisition, structural transfer, conceptual and formal change, action, evaluation, research meta-policy, changes to the generative regime from which new representations, tools, operators and problems become reachable, and the locality conditions under which apparently general capabilities or methods remain valid—constrained by explicit responsibility for what is preserved or reopened.
 
-That hypothesis should be easy to kill. If strongest parent federation handles the same cases, use it. If selective bridge theories suffice, prefer them. If common abstractions erase domain meaning, choose plural federation. If recursive scientific-development learning only rediscovers population averages or publication bias, discard it. If the name collides with clearer existing language, rename it.
+That hypothesis should be easy to kill. If strongest parent federation handles the same cases, use it. If selective bridge theories suffice, prefer them. If common abstractions erase domain meaning, choose plural federation. If explicit perspective state adds nothing beyond ordinary context conditioning, remove it. If recursive scientific-development learning only rediscovers population averages or publication bias, discard it. If the name collides with clearer existing language, rename it.
 
-But if cross-transition constraints repeatedly preserve parent competence, diagnose failures that local methods miss, generate new scientifically useful decisions across different domains and support machine-native cognition without surrendering external warrant, the object may merit a field of its own.
+But if cross-transition constraints repeatedly preserve parent competence, diagnose failures that local methods miss, prevent false universalization across boundaries and scales, generate new scientifically useful decisions across different domains and support machine-native cognition without surrendering external warrant, the object may merit a field of its own.
 
 The task is therefore not to declare Machine Epistemics. It is to make the proposal precise enough that science can decide whether it should exist.
 
