@@ -3,9 +3,9 @@
 **Programme:** ORION-V2 / Machine Epistemics  
 **Supersedes for current manuscript work:** `ACADEMIC_PAPER_SKILLS_BINDING_V1.md`  
 **Bound repository:** `SzeChunYiu/academic-paper-skills`  
-**Bound commit:** `d2cac7bd0d3152369acee5c3859059dc87fcd24d`  
-**Pipeline:** `academic-paper-pipeline` v1.6.0  
-**Writing router:** `academic-writing`
+**Bound commit:** `6cf6d7a30e0785bc818e7ba3e112af00f518a422`  
+**Pipeline:** `academic-paper-pipeline` v1.9.0  
+**Writing router:** `academic-writing` v1.9.0
 
 This binding changes manuscript-development governance, not scientific results or protocol identities.
 
@@ -33,6 +33,8 @@ exact target/archetype resolution
 ```
 
 A complete draft is not a release state. A polished draft is not a scientific result.
+
+The v1.9 binding additionally treats fit-first target selection, journal-acceptance readiness and evidence-graded acceptance optimization as **decision support**, never as a numeric acceptance prediction or permission to weaken evidence/claim boundaries.
 
 ## 2. arXiv-first portfolio rule
 
@@ -186,6 +188,8 @@ data snapshot
 
 No decorative architecture figure earns main-paper space merely because a peer paper has one. Negative/failure displays remain main-text when they alter the headline interpretation.
 
+For conceptual/Perspective material, tables or schematics may organize a taxonomy or argument when they improve reader decisions, but their layout must not imply an unsupported hierarchy. Conceptual displays are explanatory objects, not empirical evidence.
+
 ## 9. Prose and manuscript-surface layer
 
 Public manuscripts must translate repository artifacts into scientific meaning.
@@ -209,7 +213,7 @@ Initial reviews use independent lenses:
 2. contribution/strongest prior work/target significance;
 3. reproducibility/readership/boundaries.
 
-The flagship adds an independent field/name demarcation lens.
+The flagship adds an independent field/name demarcation lens. The demarcation lens must explicitly test whether a term map is only vocabulary, whether neighboring fields already own the scientific object, and whether visual/text structure accidentally implies a superiority ladder that the evidence does not support.
 
 Reviewer votes do not determine acceptance. Every blocking concern needs a stable concern ID and a concrete resolution test.
 

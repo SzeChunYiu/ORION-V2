@@ -4,7 +4,7 @@
 
 **Preferred field hypothesis:** **Machine Epistemics — the control science of AI-driven discovery.**
 
-ORION-V2 is an experimental framework and research programme for re-deriving scientific problem solving from frozen ORION V1 evidence plus the strongest relevant structures across human knowledge. It is not “ORION V1 plus features,” and Machine Epistemics is not defined as ORION-V2 itself.
+ORION-V2 is an experimental framework and research programme for re-deriving scientific problem solving from frozen ORION V1 evidence plus the strongest relevant structures across human knowledge, non-human adaptive systems and machine-native computation. It is not “ORION V1 plus features,” and Machine Epistemics is not defined as ORION-V2 itself.
 
 ## Current constitutional state
 
@@ -58,13 +58,27 @@ Issue #37 owns the independent semantic reviewer binding required for PARITY-C a
 
 Preferred working definition:
 
-> Machine Epistemics studies and engineers how AI and hybrid human–machine research systems acquire, transform, compare, test, preserve, revise, reopen, and close scientific commitments under explicit evidence, uncertainty, provenance, resource, and authority constraints.
+> Machine Epistemics studies and engineers how AI and hybrid human–machine research systems acquire, transform, compare, test, preserve, revise, reopen, and close scientific commitments under explicit evidence, uncertainty, provenance, resource, context and authority constraints.
+
+Machine Epistemics is **not** defined as a superior level of machine learning or machine intelligence. The programme distinguishes:
+
+- **machine learning** — learning/update mechanisms;
+- **machine reasoning/planning** — inference, search and action-selection processes;
+- **machine cognition** — organization of representation, memory, search, attention and related processes;
+- **machine intelligence** — capability evaluated under a declared environment/task/resource/boundary/timescale/criterion ecology;
+- **machine-native intelligence** — a design orientation that exploits machine-specific affordances rather than requiring human imitation;
+- **machine scientific intelligence** — science-scoped capability;
+- **Machine Epistemics** — cross-cutting control of when machine-mediated scientific state may change and what must remain warranted;
+- **AI for Science / agentic science** — the application and autonomous-system ecosystem in which these mechanisms and capabilities may be deployed.
+
+For frontier problems, the default question is obstruction-first: **what currently prevents a warranted answer, and what is the minimum sufficient intervention capable of removing that obstruction?** Learning is one admissible action among retrieval, proof, simulation, measurement, experiment, challenge, representation change, tool construction, problem reformulation and justified abstention.
 
 Canonical artifacts:
 
 - `research/field/MACHINE_EPISTEMICS_NAMING_AND_DEMARCATION_V1.md`
 - `research/field/MACHINE_EPISTEMICS_FIELD_SYNTHESIS_V1.md`
-- `papers/drafts/FLAGSHIP_MACHINE_EPISTEMICS_MANUSCRIPT_V1.md`
+- `research/framework/MACHINE_X_DEMARCATION_AND_FRONTIER_OPERATION_V1.md`
+- `papers/drafts/FLAGSHIP_MACHINE_EPISTEMICS_PERSPECTIVE_V12_ARXIV_JOURNAL_MASTER.md`
 
 The earlier **Computational Scientific Control (CSC)** documents are retained as historical derivation/provenance. Machine Epistemics is a **field hypothesis worth protected testing**, not a self-declared discipline.
 
@@ -128,6 +142,7 @@ Local tests, code, manuscripts, CI, provenance and closeout receipts can establi
 
 - scientific truth;
 - novelty;
+- global intelligence superiority;
 - final publication identity;
 - journal acceptance;
 - Machine Epistemics field recognition;

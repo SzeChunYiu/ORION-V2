@@ -1,6 +1,6 @@
 # Machine Epistemics — Provisional Field Synthesis V1
 
-**Status:** provisional scientific field hypothesis. No novelty, disciplinary, publication, or scientific-truth authority.
+**Status:** provisional scientific field hypothesis. No novelty, disciplinary, publication, intelligence-superiority or scientific-truth authority.
 
 **Tagline:** **The control science of AI-driven discovery.**
 
@@ -14,9 +14,31 @@ The central question is no longer only:
 
 Machine Epistemics asks:
 
-> **Under what conditions may a machine-mediated research process change what it scientifically commits to, and how can those changes remain warranted, replayable, revisable, and authority-bounded?**
+> **Under what conditions may a machine-mediated research process change what it scientifically commits to, and how can those changes remain warranted, replayable, revisable, context-bound and authority-bounded?**
 
 This question treats the scientific process itself as an executable object without treating execution as truth.
+
+### 1.1 Relationship to neighboring machine-X concepts
+
+Machine Epistemics is not proposed as a superior rung above machine learning, cognition or intelligence. These terms denote different kinds of scientific objects. For this programme, the local demarcation is:
+
+| Term | Local role | Central question |
+|---|---|---|
+| **Machine learning** | learning/update mechanism | How does a machine update from data, feedback or experience? |
+| **Machine reasoning/planning** | process family | How does it derive, search, predict or select actions? |
+| **Machine cognition** | processing architecture | How are representation, memory, attention, search, planning and communication organized? |
+| **Machine metacognition** | self-monitoring/control mechanism | What can the system estimate about the adequacy or reliability of its own processes? |
+| **Machine intelligence** | capability profile | How capable is a system under a declared ecology of tasks and constraints? |
+| **Machine-native intelligence** | design orientation | Which strategies exploit machine-specific affordances without requiring human imitation? |
+| **Machine scientific intelligence** | scientific capability profile | How capable is the system at making progress on scientific problems? |
+| **Machine Epistemics** | epistemic/scientific control | When may machine-mediated inquiry change commitments, evidence state, representations, methods, problems or evaluators? |
+| **AI for Science / agentic science** | application/autonomy ecosystem | How are AI methods and integrated systems deployed across scientific work? |
+
+The table is an operational terminology contract rather than a claim that all neighboring literatures use one universal taxonomy.
+
+The relevant relations are typed rather than ordinal. Learning mechanisms may implement parts of cognition; cognitive architecture helps realize capability; capability is evaluated relative to an environment/task/resource/boundary/timescale/criterion context; machine-native is a design orientation; scientific intelligence scopes capability to scientific work; Machine Epistemics governs the warranted scientific transitions caused by any of these mechanisms or systems; and AI for Science is an application ecosystem in which they may be deployed.
+
+`governs` does not mean `is more intelligent than`. A highly capable system can be epistemically unreliable, while a conservative epistemic controller can be reliable but scientifically weak because its solvers are poor.
 
 ## 2. Primitive object
 
@@ -37,7 +59,12 @@ where:
 - `H` — append-only transition and negative-history record;
 - `K` — authority/constitution boundary.
 
-A tool execution proposes information. An interpretation proposes a scientific-state transition. A transition may be admitted only under the current evidence, semantic, preservation, resource and authority obligations.
+When decision-relevant, the state may additionally bind:
+
+- `Gamma` — current generative regime: representation language, operators, constraints, problem portfolio, traversal and tool/affordance environment;
+- `Pi` — current perspective/locality frame: environment, system boundary, scale, timescale, substrate/interface and criterion context.
+
+A tool execution proposes information. An interpretation proposes a scientific-state transition. A transition may be admitted only under the current evidence, semantic, preservation, resource, locality and authority obligations.
 
 ## 3. Core transition form
 
@@ -58,6 +85,8 @@ A valid transition receipt should bind at least:
 - replay identity;
 - terminal or next-action status.
 
+The action family can include learning, retrieval, reasoning, proof, simulation, measurement, experiment and challenge. It may also include model/representation/perspective change, problem reformulation, tool construction, workflow revision or a broader regime transform when incumbent insufficiency is witnessed. Machine Epistemics does not own the native algorithms that implement these actions.
+
 ## 4. Ten foundation laws
 
 ### L1 — Criterion conservation
@@ -74,11 +103,11 @@ Support binds to the actual source/content/execution identity used, not merely a
 
 ### L4 — Non-amplifying authority
 
-No local computation, evaluator, provenance check, majority vote, confidence score, or model output may create scientific or adoption authority above its valid roots.
+No local computation, evaluator, provenance check, majority vote, confidence score, model output or capability score may create scientific or adoption authority above its valid roots.
 
 ### L5 — Context-relative transport
 
-Equivalence, comparability, abstraction, approximation, and transport are typed and context-bound. One similarity score cannot silently substitute for these relations.
+Equivalence, comparability, abstraction, approximation, capability and transport claims are typed and context-bound. One similarity or benchmark score cannot silently substitute for these relations.
 
 ### L6 — Reopen on invalidated support
 
@@ -98,7 +127,7 @@ Stopping must state the searched basis, residual uncertainty, omitted/censored r
 
 ### L10 — Honest unresolved state
 
-`CANNOT_CHECK` is a first-class outcome whenever required identity, evidence, relation, evaluator, authority, or resource conditions cannot be established. Aggregation cannot promote it to success.
+`CANNOT_CHECK` is a first-class outcome whenever required identity, evidence, relation, evaluator, authority, locality or resource conditions cannot be established. Aggregation cannot promote it to success.
 
 ## 5. Candidate quantitative programme
 
@@ -118,7 +147,7 @@ Estimate how dependence topology changes effective evidential strength and false
 
 ### 5.4 Minimum sufficient escalation
 
-For an ordered family of interventions, identify the lowest level capable of resolving an obstruction. Measure false escalation, missed escalation, cost, preservation and justified reach.
+For an ordered or partially ordered family of interventions, identify the lowest level capable of resolving an obstruction. Measure false escalation, missed escalation, cost, preservation and justified reach.
 
 ### 5.5 Context-relative transport
 
@@ -140,10 +169,38 @@ Model criterion churn, evaluator dependence, strategic response and environment 
 
 Define sufficient content-bound identity for deciding whether two scientific episodes are actually the same experiment/comparison rather than superficially similar reruns.
 
+### 5.10 Epistemic locality and false universalization
+
+For a system or method `M`, evaluate capability only under a declared context
+
+`C = (environment, task family, resource regime, system boundary, substrate/interface, timescale, criterion)`.
+
+Construct cases where rankings are preserved, reversed, Pareto-incomparable or invalid to compare across contexts. Measure false universalization, missed perspective dependence and invalid transport.
+
+### 5.11 Frontier-obstruction routing
+
+For frontier episodes whose missing object is hidden, evaluate whether the system identifies what prevents a warranted conclusion before choosing an intervention. Candidate correct actions should vary across ordinary learning/search, proof, measurement, model expansion, representation/perspective change, problem reformulation, tool/operator construction and abstention.
+
+Measure:
+
+- obstruction-diagnosis correctness;
+- action-family correctness;
+- false and missed Jump rate;
+- minimum-responsible-level correctness;
+- incremental justified reach;
+- predecessor preservation;
+- resource cost.
+
+This programme should reuse existing GR10/EL10 and scientific-control fixtures where possible rather than proliferating benchmarks.
+
 ## 6. Parent fields and boundary
 
 Machine Epistemics treats the following as parents, not as inventions:
 
+- machine learning, reinforcement learning and meta-learning;
+- machine reasoning, planning, search and cognitive architectures;
+- machine intelligence evaluation and general-agent theory;
+- machine metacognition, confidence/calibration and self-modeling;
 - AI for Science and agentic/autonomous science;
 - Bayesian experimental design and active learning;
 - POMDPs, rational metareasoning and control;
@@ -155,7 +212,9 @@ Machine Epistemics treats the following as parents, not as inventions:
 - systematic review, metrology, evidence synthesis and research methodology;
 - philosophy of science, social epistemology and scientific governance.
 
-The candidate residual is the **cross-parent control semantics of machine-mediated scientific commitments**.
+The candidate residual is the **cross-parent control semantics of machine-mediated scientific commitments and transitions**.
+
+Machine learning is therefore neither subordinate nor replaced. In a frontier episode, `LEARN` may be the minimum-sufficient action. The Machine-Epistemic question is why learning is appropriate, which evidence can train it without invalid dependence/leakage, what its result can warrant, and when the problem/model/representation requires a different action.
 
 ## 7. Relationship to ORION-V2
 
@@ -175,6 +234,8 @@ The seven contracted V2 interface families can be read as one experimental facto
 
 These are not automatically the final ontology of the field.
 
+The research-only `epistemic_architecture` module supplies terminology and frontier-routing composition around these interfaces. It is intentionally excluded from the stable kernel because a vocabulary map is not itself a new scientific obligation.
+
 ## 8. Empirical programme
 
 A credible field requires more than one benchmark and more than one domain.
@@ -188,9 +249,10 @@ Minimum field-level empirical evidence should include:
 5. non-identifiable cases requiring discriminating probes;
 6. cross-generation representation/transport cases;
 7. naturalistic AI-for-science or scientific-agent tasks;
-8. independent blinded semantic evaluation;
-9. strongest parent-composed baselines under matched resources;
-10. negative cases where the parent composition is sufficient and Machine Epistemics adds nothing.
+8. hidden-obstruction frontier cases where the correct action family is not supplied;
+9. independent blinded semantic evaluation;
+10. strongest parent-composed baselines under matched resources;
+11. negative cases where the parent composition is sufficient and Machine Epistemics adds nothing.
 
 ## 9. Field-level falsifiers
 
@@ -200,26 +262,32 @@ The field hypothesis fails or contracts if:
 - the common abstraction disappears when native domain semantics are restored;
 - the formal objects do not transfer across at least two materially different scientific domains;
 - measured benefit is only additional logging/provenance rather than scientific decision quality;
-- false closure or authority laundering is not improved;
+- false closure, false escalation, false universalization or authority laundering is not improved;
+- the proposed machine-X boundary is only terminology and yields no clearer scientific or evaluation object;
 - the framework adds complexity without protected justified reach;
 - independent reviewers cannot agree on a stable field boundary.
+
+A valid external conclusion is that the useful object is metareasoning, AI-for-science integration engineering, scientific methodology or another existing field rather than Machine Epistemics.
 
 ## 10. Proposed basic curriculum
 
 A Machine Epistemics curriculum would contain:
 
 1. scientific claims, evidence and uncertainty;
-2. AI agents and scientific workflow systems;
-3. decision theory, metareasoning and active experimentation;
-4. formal relations, abstraction and transport;
-5. truth maintenance, belief revision and diagnosis;
-6. provenance, dependency and selective invalidation;
-7. verification versus validation and authority;
-8. evaluator design, dependence and performativity;
-9. epistemic stopping and saturation;
-10. reproducible scientific-control experiments;
-11. machine/human delegation and governance;
-12. domain practicum in at least two sciences.
+2. machine learning, reasoning, cognition and intelligence as distinct neighboring objects;
+3. AI agents, AI for Science and scientific workflow systems;
+4. decision theory, metareasoning and active experimentation;
+5. formal relations, abstraction and transport;
+6. truth maintenance, belief revision and diagnosis;
+7. provenance, dependency and selective invalidation;
+8. verification versus validation and authority;
+9. evaluator design, dependence and performativity;
+10. epistemic locality, capability scope and perspective change;
+11. frontier obstruction diagnosis and minimum sufficient escalation;
+12. epistemic stopping and saturation;
+13. reproducible scientific-control experiments;
+14. machine/human delegation and governance;
+15. domain practicum in at least two sciences.
 
 ## 11. Publication architecture
 
@@ -231,12 +299,19 @@ Machine Epistemics should not be established by one manifesto alone.
 - the flagship should normally be a peer-reviewed Perspective/Review, while new primary evidence stays in the specialist articles;
 - external field recognition remains separate from internal ORION-V2 closeout.
 
+The machine-X demarcation belongs in the flagship as a reader-facing taxonomy and in P-C only as the control boundary that makes learning one action family among several. It does not require retrofitting primary endpoints.
+
 ## 12. Current terminal
 
 ```text
 FIELD_NAME = MACHINE_EPISTEMICS
 FIELD_TAGLINE = THE_CONTROL_SCIENCE_OF_AI_DRIVEN_DISCOVERY
 FIELD_OBJECT = MACHINE_EPISTEMIC_EPISODE
+MACHINE_X_TOTAL_ORDER = REJECTED
+MACHINE_INTELLIGENCE = CONTEXT_RELATIVE_CAPABILITY_PROFILE
+MACHINE_EPISTEMICS = WARRANTED_TRANSITION_CONTROL_HYPOTHESIS
+MACHINE_LEARNING = PARENT_ACTION_MECHANISM_NOT_REPLACED
+FRONTIER_DEFAULT = OBSTRUCTION_FIRST_MINIMUM_SUFFICIENT_INTERVENTION
 FOUNDATION_LAWS = PROVISIONAL_10
 FORMAL_PROGRAMME = DEFINED
 EMPIRICAL_PROGRAMME = DEFINED

@@ -62,7 +62,15 @@ The distinction matters because different blockers imply different actions. Miss
 
 ## 5. Action families and regimes
 
-The admissible action space can include direct calculation, source checking, execution verification, measurement, counterexample construction, evaluator strengthening, hypothesis expansion, remote-donor search, representation change, method/instrument change, problem reformulation, resource allocation, delegation and abstention.
+The admissible action space can include direct calculation, source checking, execution verification, machine learning, measurement, counterexample construction, evaluator strengthening, hypothesis expansion, remote-donor search, representation change, method/instrument change, problem reformulation, resource allocation, delegation and abstention.
+
+### 5.1 Learning is one action family, not the control layer
+
+Machine learning is neither replaced nor treated as a lower-status field in this formulation. It is one powerful family of interventions inside a larger scientific episode. When the blocker is predictive estimation, representation fitting, policy learning or another learnable object and the evidence/criterion are adequate, `LEARN` may be the minimum-sufficient action and any broader escalation is unnecessary overhead.
+
+The same action can be insufficient or misleading under a different blocker. More training data cannot by itself repair an invalid measurement channel, establish an evaluator's sensitivity, distinguish structurally non-identifiable alternatives, recover a variable absent from the representation, authorize a changed scientific criterion or make an ill-posed question well posed. In such cases repeatedly learning inside the incumbent formulation is under-escalation rather than scientific persistence.
+
+The scientific-control claim is therefore about **routing and warrant**, not algorithmic supremacy: diagnose what prevents a justified terminal, choose among mature native actions, and alter the action/problem/representation family only when the incumbent one is witnessed insufficient. This distinction is prospectively testable without changing the present study's primary endpoints.
 
 Let pre-outcome episode features be \(z\). A contextual regime policy may choose
 
@@ -245,6 +253,8 @@ When the benchmark lacks a valid oracle, semantic custody or sufficient evidence
 ## 12. Discussion
 
 Scientific agents face a routing problem that ordinary end-task accuracy obscures: what should the system do when the failure mode itself is uncertain? More reasoning, more tools or a richer representation are not universally better. They are useful only when they address the blocker that prevents a justified decision.
+
+This also clarifies the relation to machine learning. Better learning can solve an enormous class of scientific tasks, and the minimum-sufficient controller should defer to it when the blocker is genuinely learnable. The proposed residual exists only where identifying *which* scientific action is warranted—or recognizing that the incumbent learning problem is malformed—changes the justified terminal beyond the strongest adaptive parents.
 
 A positive result would support minimum-sufficient intervention as an evaluation principle for agentic science. The practical contribution would not be a fixed stage order, but a way to test whether agents choose an intervention commensurate with the problem and preserve prior valid capability.
 
