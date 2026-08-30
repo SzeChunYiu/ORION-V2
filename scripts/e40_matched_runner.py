@@ -653,8 +653,21 @@ def collect_chains() -> dict[str, dict[str, Any]]:
     return out
 
 
-def _best_by_primary(runs: list[dict[str, Any]]) -> dict[str, Any]:
-    return min(runs, key=lambda r: r["primary"])
+def _is_nan(x: Any) -> bool:
+    return isinstance(x, float) and x != x
+
+
+def _best_by_primary(runs: list[dict[str, Any]]) -> dict[str, Any] | None:
+    """Best run by primary with an explicit NaN policy: a run whose primary is
+    NaN (config produced no prediction -> no defined score) ranks WORST and is
+    never selected while a real-valued run exists. Returns None when every run
+    is NaN. Rationale: Python's min() keeps the first element on NaN
+    comparisons, so an all-NaN prefix poisons the selection positionally
+    (E40-m1 defect: chains whose observational run sat last had f0_best=NaN)."""
+    real = [r for r in runs if not _is_nan(r["primary"])]
+    if not real:
+        return None
+    return min(real, key=lambda r: r["primary"])
 
 
 def rollup() -> dict[str, Any]:
@@ -669,21 +682,54 @@ def rollup() -> dict[str, Any]:
                               "missing": [x.get("status") for x in (s, f0, f2)]})
                 continue
             f0_best, f2_final = _best_by_primary(f0["runs"]), f2["runs"][-1]
+            nan_counts = {
+                "simple_nan": sum(1 for r in s["runs"] if _is_nan(r["primary"])),
+                "f0_nan": sum(1 for r in f0["runs"] if _is_nan(r["primary"])),
+                "f2_nan": sum(1 for r in f2["runs"] if _is_nan(r["primary"])),
+                "f2_final_nan": int(_is_nan(f2_final["primary"])),
+                "f0_best_all_nan": int(f0_best is None),
+            }
+            if f0_best is None or _is_nan(f2_final["primary"]):
+                pairs.append({"dataset": ds, "rep": rep,
+                              "status": "CANNOT_CHECK__NO_DEFINED_PRIMARY",
+                              "nan_counts": nan_counts})
+                continue
+            f0_real = [r for r in f0["runs"] if not _is_nan(r["primary"])]
             pairs.append({
                 "dataset": ds, "rep": rep, "status": "COMPLETE",
                 "simple": s["runs"][0],
-                "f0_best": f0_best, "f0_mean": {k: sum(r[k] for r in f0["runs"]) / len(f0["runs"])
+                "nan_counts": nan_counts,
+                "f0_best": f0_best, "f0_mean": {k: sum(r[k] for r in f0_real) / len(f0_real)
                                                 for k in ("primary", "true_positives", "false_positives",
                                                           "false_omission_rate", "corum_tp", "string_tp")},
+                "f0_real_runs": len(f0_real),
                 "f0_all": f0["runs"],
                 "f2_final": f2_final, "f2_best": _best_by_primary(f2["runs"]), "f2_all": f2["runs"],
                 "d_primary": f0_best["primary"] - f2_final["primary"]})
 
     complete = [p for p in pairs if p.get("status") == "COMPLETE"]
     doc: dict[str, Any] = {
-        "schema_version": "orion.v2.e40-matched.rollup.v1",
+        "schema_version": "orion.v2.e40-matched.rollup.v2",
         "primary": "mean wasserstein_distance.mean of quantitative_test_evaluation.output_graph (lower better)",
-        "chain_statistics": {"pairs_total": len(pairs), "pairs_complete": len(complete)},
+        "nan_policy": ("NaN primaries rank worst for best-selection (never selected while a real "
+                       "run exists; a config with no prediction has no score); a pair whose F0 "
+                       "best-selection or F2 final has no defined primary is CANNOT_CHECK__"
+                       "NO_DEFINED_PRIMARY and is excluded from the contrast with its count "
+                       "reported; NaN runs otherwise stay in the per-run record unchanged"),
+        "chain_statistics": {"pairs_total": len(pairs), "pairs_complete": len(complete),
+                             "pairs_cannot_check_no_defined_primary":
+                                 sum(1 for p in pairs
+                                     if p.get("status") == "CANNOT_CHECK__NO_DEFINED_PRIMARY")},
+        "degenerate_run_accounting": {
+            "simple_nan_runs_over_total": [sum(p["nan_counts"]["simple_nan"] for p in pairs
+                                               if p.get("status") == "COMPLETE"), len(complete)],
+            "f0_nan_runs_over_total": [sum(p["nan_counts"]["f0_nan"] for p in pairs
+                                           if p.get("status") == "COMPLETE"),
+                                       len(complete) * K_CYCLES],
+            "f2_nan_runs_over_total": [sum(p["nan_counts"]["f2_nan"] for p in pairs
+                                           if p.get("status") == "COMPLETE"),
+                                       len(complete) * K_CYCLES],
+        },
         "controls": control_verdicts(),
     }
     if len(complete) >= 8:
@@ -748,7 +794,12 @@ def rollup() -> dict[str, Any]:
     (ROLLUP_DIR / "E40_MATCHED_ROLLUP_V1.json").write_text(json.dumps(doc, indent=1))
     lines = ["# E40_MATCHED_ROLLUP_V1", "",
              f"- gate: `{doc['gate']}`",
+             f"- schema: `{doc['schema_version']}` (v2 = NaN-policy repair of the rollup aggregation; "
+             f"no native run, arm prompt, or gate criterion changed)",
              f"- pairs complete: {doc['chain_statistics']['pairs_complete']}/{doc['chain_statistics']['pairs_total']}",
+             f"- pairs CANNOT_CHECK no-defined-primary: "
+             f"{doc['chain_statistics']['pairs_cannot_check_no_defined_primary']}",
+             f"- degenerate (NaN-primary) runs: {json.dumps(doc['degenerate_run_accounting'])}",
              f"- primary contrast: {json.dumps(doc.get('primary_comparison', {}), indent=1)}",
              f"- controls: planted={(doc['controls']['planted'] or {}).get('verdict')}, "
              f"nullcal={(doc['controls']['nullcal'] or {}).get('verdict')}, "
@@ -757,6 +808,9 @@ def rollup() -> dict[str, Any]:
              "| dataset | rep | d_primary (F0best−F2final) |", "|---|---|---|"]
     for p in complete:
         lines.append(f"| {p['dataset']} | {p['rep']} | {p['d_primary']:+.6f} |")
+    for p in pairs:
+        if p.get("status") == "CANNOT_CHECK__NO_DEFINED_PRIMARY":
+            lines.append(f"| {p['dataset']} | {p['rep']} | CANNOT_CHECK__NO_DEFINED_PRIMARY |")
     (ROLLUP_DIR / "E40_MATCHED_ROLLUP_V1.md").write_text("\n".join(lines) + "\n")
     print(json.dumps({"gate": doc["gate"], "pairs": doc["chain_statistics"],
                       "primary": doc.get("primary_comparison")}, indent=1))
@@ -807,6 +861,20 @@ def selftest() -> int:
     p_null = perm_paired_p([1.0, -1.0] * 6)
     if abs(p_null - (0.5 + comb(12, 6) / 2 ** 13)) > 1e-12:
         failures.append(f"perm p on symmetric diffs != tie-inclusive exact value: {p_null}")
+    # NaN policy for best-selection (E40-m1 defect class: Python min() keeps the
+    # first element when comparisons hit NaN, so an all-NaN prefix wins positionally).
+    nan = float("nan")
+    mk = lambda p: {"run": "r", "exp_id": 0, "primary": p}  # noqa: E731
+    b1 = _best_by_primary([mk(nan), mk(nan), mk(nan), mk(0.15)])
+    if not (b1 and b1["primary"] == 0.15):
+        failures.append(f"best-selection prefers NaN prefix over real run: {b1}")
+    b2 = _best_by_primary([mk(nan), mk(0.20), mk(nan), mk(0.10)])
+    if not (b2 and b2["primary"] == 0.10):
+        failures.append(f"best-selection ignores real minimum when NaNs interleave: {b2}")
+    if _best_by_primary([mk(nan), mk(nan)]) is not None:
+        failures.append("all-NaN list must yield None (CANNOT_CHECK), not a fabricated best")
+    if not _is_nan(nan) or _is_nan(0.5):
+        failures.append("NaN predicate wrong")
     print(json.dumps({"selftest": "e40_matched_runner", "failures": failures}, indent=1))
     return 1 if failures else 0
 
