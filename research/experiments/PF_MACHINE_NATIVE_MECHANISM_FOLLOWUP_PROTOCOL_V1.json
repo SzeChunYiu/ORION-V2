@@ -1,0 +1,80 @@
+{
+  "schema_version": "orion.v2.pf-machine-native-mechanism-followup.v1",
+  "freeze_date": "2026-08-30",
+  "timing": "FROZEN_BEFORE_FMFG_R2_TERMINAL",
+  "trigger": "registered FM/FG R2 terminal establishes predeclared statistically supported FG80 FULL/F2 advantage over simple direct control under the R2 analysis contract",
+  "trigger_fail_terminal": "NO_R2_EFFECT_TO_EXPLAIN__P_F_STANDALONE_ROUTE_CLOSED_OR_MERGE",
+  "pre_dispatch_requirement": "hash-frozen MECHANISM_MANIFEST.json naming one primary machine-native mechanism before follow-up outcome access",
+  "mechanism_manifest_classes": [
+    "representation_internal_state",
+    "persistent_memory",
+    "branching_non_linear_search_topology",
+    "control_scheduling_policy",
+    "external_tool_interface",
+    "language_visible_rationale_scaffold",
+    "compute_token_tool_call_budgets"
+  ],
+  "phase_A": {
+    "fresh_heldout_tasks_minimum": 80,
+    "reuse_R2_test_outcomes": false,
+    "private_oracle_absent_during_dispatch": true,
+    "arms": [
+      "M0_SIMPLE_DIRECT",
+      "M1_FULL_NATIVE",
+      "M2_MINUS_PRIMARY_MECHANISM",
+      "M3_RESOURCE_MATCHED_SIMPLE",
+      "M4_HUMAN_MIMETIC_SCAFFOLD_MATCH"
+    ],
+    "primary_endpoint": "correct registered task disposition or exact formal witness",
+    "pass": {
+      "M1_minus_M2_min_pp": 10,
+      "paired_95_interval_excludes_zero": true,
+      "M1_exceeds_M3_resource_matched_simple": true,
+      "M2_information_access_equal_to_M1": true,
+      "no_hidden_critical_exact_oracle_regression": true
+    }
+  },
+  "phase_B": {
+    "requires_phase_A_pass": true,
+    "domains_minimum": 3,
+    "domain_structure": [
+      "one formal_or_mathematical domain not used in Phase A",
+      "one empirical science with frozen external witness",
+      "second empirical science with materially different data_measurement semantics"
+    ],
+    "eligible_cases_minimum_per_domain": 30,
+    "primary_endpoint": "registered scientific decision with domain-appropriate external witness"
+  },
+  "standalone_survival": {
+    "R2_trigger": true,
+    "phase_A_named_mechanism_causal_value": true,
+    "phase_B_minimum_winning_domains": 2,
+    "phase_B_minimum_gain_pp": 10,
+    "paired_intervals_exclude_zero_after_Holm": true,
+    "resource_matched_simple_does_not_reproduce_gain": true,
+    "no_domain_critical_failure_increase": true,
+    "at_least_one_domain_not_reproduced_by_language_scaffold": true,
+    "independent_domain_adjudication_accepts_external_witness": true
+  },
+  "negative_control_required_each_phase": true,
+  "contraction_terminals": [
+    "NO_R2_EFFECT_TO_EXPLAIN__P_F_STANDALONE_ROUTE_CLOSED_OR_MERGE",
+    "CANNOT_IDENTIFY_PREOUTCOME_MECHANISM",
+    "RESOURCE_MATCHED_SIMPLE_REPRODUCES_GAIN",
+    "PRIMARY_MECHANISM_ABLATION_NO_EFFECT",
+    "LANGUAGE_SCAFFOLD_REPRODUCES_GAIN",
+    "FORMAL_ONLY_NO_CROSS_DOMAIN_RESTORATION",
+    "DOMAIN_SPECIFIC_ONLY",
+    "CRITICAL_FAILURE_REGRESSION",
+    "CANNOT_CHECK_CAUSAL_ATTRIBUTION",
+    "CANNOT_CHECK_EXTERNAL_WITNESS"
+  ],
+  "same_model_repetition_is_independent_replication": false,
+  "authority": {
+    "scientific_truth": false,
+    "paper_admission": false,
+    "publication_readiness": false,
+    "human_inferiority": false,
+    "new_field": false
+  }
+}
