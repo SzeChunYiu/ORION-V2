@@ -21,6 +21,44 @@ We use **Machine Epistemics** as a provisional label for a higher-order question
 
 The term itself carries no novelty claim. *Epistemics* has historical disciplinary uses; *machine epistemology* predates this programme; and recent work already discusses epistemic responsibility in human–AI collaboration, architectures of epistemic control for empirical AI research, verification-centred engineering of science, social and pragmatist evaluation of AI science, and the epistemology of closed-loop scientific AI [21–27]. The exact compound should therefore survive only if it demarcates a scientific object more clearly than existing language. Renaming is a legitimate outcome.
 
+## What Machine Epistemics is—and is not
+
+Neighboring “machine-X” terms mix mechanisms, processing architectures, capability evaluations, design orientations and application settings. Treating them as one ladder would create a category error. We therefore use the following **operational demarcation for this Perspective**; it is not a claim that the surrounding literatures already share one universal taxonomy.
+
+| Term | Role in this Perspective | Central question |
+|---|---|---|
+| **Machine learning** | learning/update mechanism | How does a machine update from data, feedback or experience? |
+| **Machine reasoning/planning** | process family | How does it derive, search, predict or select actions? |
+| **Machine cognition** | processing architecture | How are representation, memory, attention, search, planning and communication organized? |
+| **Machine metacognition** | self-monitoring/control mechanism | What can the system estimate about the adequacy or reliability of its own processes? |
+| **Machine intelligence** | context-relative capability profile | How capable is a system under a declared ecology of tasks and constraints? |
+| **Machine-native intelligence** | design orientation | Which strategies exploit machine-specific affordances without requiring human imitation? |
+| **Machine scientific intelligence** | science-scoped capability | How capable is the system at making progress on scientific problems? |
+| **Machine Epistemics** | epistemic/scientific control | When may machine-mediated inquiry change commitments, evidence state, representations, methods, problems or evaluators? |
+| **AI for Science / agentic science** | application and autonomy ecosystem | How are AI methods and integrated systems deployed across scientific work? |
+
+These roles are related but not totally ordered. A learning algorithm may implement part of a cognitive architecture; an architecture helps realize a system's capability; capability must be evaluated relative to the environment, task family, resources, boundary, substrate/interface, timescale and criterion under which it was established. *Machine-native* describes a design orientation, not an authority status. *Scientific intelligence* scopes capability to science. Machine Epistemics instead asks whether outputs from any of these mechanisms or systems may legitimately change scientific state.
+
+Accordingly, we do not claim
+
+\[
+\text{Machine Learning}<\text{Machine Intelligence}<\text{Machine Epistemics}.
+\]
+
+The objects are not measured on one axis. A highly capable scientific system can be epistemically unreliable if it launders dependent evidence, silently changes criteria or cannot detect an invalid evaluator. Conversely, a conservative epistemic controller can be reliable yet scientifically weak because its native solvers are poor. Machine Epistemics is therefore **higher-order in responsibility for scientific change**, not a claim of universal performance superiority.
+
+Machine metacognition illustrates the boundary. A self-model can estimate confidence, likely failure class, method adequacy or the value of more computation, but those estimates do not establish source independence, instrument validity, causal transport, evaluator sensitivity or external authority. Metacognition can inform an epistemic action; it does not replace the evidence and validation system that determines what the resulting scientific transition may warrant.
+
+### Frontier problems expose the distinction
+
+On mature tasks, the problem representation, objective and admissible method family may already be well specified. Machine learning can then be exactly the right tool. A frontier problem is harder because the missing object may itself be unknown: more data may be needed, but so might a different model class, representation, scale, system boundary, measurement channel, operator, tool or problem formulation.
+
+We therefore treat **frontier obstruction diagnosis** as a candidate operational primitive: before asking for a clever answer, ask what currently prevents a warranted answer and what observation or counterexample could discriminate among responsibility hypotheses. The sequence is obstruction-first rather than novelty-first: bind the current problem and locality; retain plural alternatives; test the strongest existing/native actions; diagnose incumbent insufficiency; and only then consider changing the solving space.
+
+This makes learning one admissible epistemic action among retrieval, reasoning, proof, simulation, measurement, experiment and challenge. If a witnessed obstruction survives those lower-level routes, the system may propose model expansion, representation or perspective change, problem reformulation, tool construction, workflow revision or a broader regime transformation. Such a proposal must predict new reachable consequences and predecessor obligations before protected outcome access. The scientific result can still be lower-level sufficiency, refutation, non-identifiability or `CANNOT_CHECK` rather than a “creative” transition.
+
+This frontier formulation is testable. Hidden-obstruction cases can compare direct generation, ML-only optimization, same-model reflection, strongest parent federation and explicit scientific-control routing on obstruction diagnosis, action-family choice, false/missed escalation, justified reach and resource cost. Until such evidence exists beyond the strongest parents, the frontier lifecycle remains an operational hypothesis rather than evidence that Machine Epistemics is a superior form of intelligence.
+
 ## Four foundations should compete
 
 A new field cannot be justified by assembling a long list of concerns. It needs comparison against simpler explanations.
@@ -139,6 +177,8 @@ Machine Epistemics should be founded, contracted or abandoned through prospectiv
 
 **Locality challenge.** Registered cases should include environments, boundaries, scales, resource regimes or criteria under which a ranking is preserved, reversed or invalid to compare. An explicit locality interface earns credit only if it reduces false universalization or incorrect intervention beyond strongest context-conditioned parents.
 
+**Frontier-action challenge.** Cases should hide the kind of missing object rather than merely hide an answer. The proposed control layer earns credit only if it identifies the obstruction and routes to the correct minimum action family more reliably than direct generation, ML-only optimization, same-model reflection and strongest parent federation under matched information/resources.
+
 **Cross-domain recurrence.** One-domain improvement is scoped engineering. A field-level residual should recur across materially different sciences and independent evaluators.
 
 **Resource adjustment and local deference.** A higher layer that ties a parent while consuming much more compute or expert time should contract.
@@ -159,9 +199,9 @@ AI-driven science makes an old epistemological problem executable: not merely *w
 
 Mature sciences already answer pieces of this question. Machine Epistemics deserves a distinct identity only if the relationships among those pieces form a stable and useful scientific object. The strongest current hypothesis is a transition ecology covering knowledge acquisition, structural transfer, conceptual and formal change, action, evaluation, research meta-policy, changes to the generative regime from which new representations, tools, operators and problems become reachable, and the locality conditions under which apparently general capabilities or methods remain valid—constrained by explicit responsibility for what is preserved or reopened.
 
-That hypothesis should be easy to kill. If strongest parent federation handles the same cases, use it. If selective bridge theories suffice, prefer them. If common abstractions erase domain meaning, choose plural federation. If explicit perspective state adds nothing beyond ordinary context conditioning, remove it. If recursive scientific-development learning only rediscovers population averages or publication bias, discard it. If the name collides with clearer existing language, rename it.
+That hypothesis should be easy to kill. If strongest parent federation handles the same cases, use it. If selective bridge theories suffice, prefer them. If common abstractions erase domain meaning, choose plural federation. If explicit perspective state adds nothing beyond ordinary context conditioning, remove it. If frontier routing adds nothing beyond mature metareasoning and scientific-agent parents, remove it. If recursive scientific-development learning only rediscovers population averages or publication bias, discard it. If the name collides with clearer existing language, rename it.
 
-But if cross-transition constraints repeatedly preserve parent competence, diagnose failures that local methods miss, prevent false universalization across boundaries and scales, generate new scientifically useful decisions across different domains and support machine-native cognition without surrendering external warrant, the object may merit a field of its own.
+But if cross-transition constraints repeatedly preserve parent competence, diagnose failures that local methods miss, prevent false universalization across boundaries and scales, choose warranted actions when the missing object itself is unknown, generate new scientifically useful decisions across different domains and support machine-native cognition without surrendering external warrant, the object may merit a field of its own.
 
 The task is therefore not to declare Machine Epistemics. It is to make the proposal precise enough that science can decide whether it should exist.
 
