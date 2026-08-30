@@ -1,0 +1,63 @@
+{
+  "receipt_id": "FMFG_R1_SUITE_TERMINAL_RESULTS_RECEIPT",
+  "schema": "orion.v2.execution-state-receipt.v1",
+  "date_executed": "2026-08-30",
+  "campaign": "orion-formal-discovery-suite (14 studies x 5 arms x 8 tasks = 560)",
+  "execution_host": "billy-old:~/sd10run/ORION-V2/.orion-formal-discovery-suite",
+  "dispatch_window": "2026-08-30T02:43:02 -> 2026-08-30T03:23:06 +02:00 (40m04s, concurrency 2)",
+  "scientific_status": "TERMINAL_RECORDED_MIXED_NULL_CELL",
+  "claim_grants": {
+    "grants_F2_superiority": false,
+    "grants_new_mathematical_theory": false,
+    "grants_scientific_truth": false,
+    "grants_results": true,
+    "record_type": "evaluated_campaign_results_authority_block_verbatim"
+  },
+  "terminal_execution_state": {
+    "responses": "560/560",
+    "statuses": {"COMPLETED_PROPOSAL_ONLY": 560, "failures": 0},
+    "run_valid_all_arms": true,
+    "missing_or_invalid_all_arms": 0,
+    "frozen_suite_sha256": "d680c358ad4113125ffdb6e19cb8c3126c1da038613bdf501b887baecb564090",
+    "public_tasks_sha256": "0d48bbf6246a9f3670979ea521500417950ddcdf064138423aff2b376aa87fb6",
+    "private_oracle_sha256": "3cc97cf2134ab9f558cf15b308cd9cf67e0aa9dc3279425b406301e73cdd9cc9",
+    "oracle_discipline": "hash-committed, removed during dispatch, restored in finally"
+  },
+  "arm_table": [
+    {"arm": "TARGET_ONLY_DIRECT", "accuracy": 0.8929, "correct": 100, "tasks": 112},
+    {"arm": "F2_STATIC_NO_FORMAL_DISCOVERY", "accuracy": 0.8929, "correct": 100, "tasks": 112},
+    {"arm": "F2_FORMAL_DISCOVERY_FULL", "accuracy": 0.8839, "correct": 99, "tasks": 112},
+    {"arm": "STRONGEST_DOMAIN_FORMAL_PARENT", "accuracy": 0.8750, "correct": 98, "tasks": 112},
+    {"arm": "F0_PARENT_FEDERATION", "accuracy": 0.8661, "correct": 97, "tasks": 112}
+  ],
+  "aggregate_verdict": "F2_FORMAL_DISCOVERY_FULL does NOT beat the static control on aggregate oracle accuracy (99 vs 100 of 112); top arms are the two controls",
+  "per_study_F2_vs_STATIC": {
+    "wins": [{"study": "FG80", "F2": "6/8", "STATIC": "4/8", "delta": 2}],
+    "losses": [
+      {"study": "FG50", "F2": "6/8", "STATIC": "8/8", "delta": -2},
+      {"study": "FG60", "F2": "7/8", "STATIC": "8/8", "delta": -1}
+    ],
+    "ties": 11,
+    "ties_at_ceiling_8_of_8": ["FM10", "FM20", "FM40", "FM50", "FG10", "FG20", "FG30", "FG40", "FG70"],
+    "ties_shared_failures": [{"study": "FM30", "both": "6/8"}, {"study": "FM60", "both": "3/8"}],
+    "note": "FM60 hard for every arm (3/8 both F2 and STATIC): difficulty anchor, not arm separator"
+  },
+  "interpretation_discipline": [
+    "P-B/P-A imports carry this cell as CONDITIONAL/MIXED with an aggregate null; no superiority prose",
+    "ceiling structure (11 ties) => low discriminative power at 8 tasks/study; no-difference-detected is not no-difference-exists",
+    "grants_F2_superiority:false is machine-checked; prose may not upgrade it"
+  ],
+  "chained_state": "PD dependence-evidence campaign auto-started 2026-08-30T03:23:06 +02:00 (evaluate exited 0 under set -euo pipefail); 857+ response files at receipt time; separate terminal receipt to follow",
+  "artifacts": [
+    "EVALUATION_SUMMARY.json",
+    "EVALUATION_ROWS.json",
+    "DISPATCH_RECEIPT.json",
+    "FROZEN_SUITE.json",
+    "PRIVATE_ORACLE_COMMITMENT.json"
+  ],
+  "next_actions": {
+    "imports": "P-B (9/14 destinations) then P-A (6/14) per RECURSIVE_DEVELOPMENT_RESULT_IMPORT_MAP_V1.json, importing the mixed/null cell as recorded",
+    "pd": "terminal receipt + P-D section-8 kill/merge decision after PD completes",
+    "monitor": "2h cadence cron; resume rule = dispatch only, never prepare --force on live workdir"
+  }
+}
