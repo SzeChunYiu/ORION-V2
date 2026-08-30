@@ -19,8 +19,7 @@ NUMERIC_HEADING_RE = re.compile(r"^(#{2,4})\s+\d+(?:\.\d+)*\.?\s+(.+)$", re.MULT
 
 
 def sha256(path: Path) -> str:
-    h = hashlib.sha256(path.read_bytes()).hexdigest()
-    return h
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def run(cmd: list[str], *, cwd: Path | None = None, capture: bool = False) -> subprocess.CompletedProcess[str]:
@@ -174,6 +173,7 @@ def main() -> int:
     tex = rf"""\documentclass[11pt]{{article}}
 \usepackage[T1]{{fontenc}}
 \usepackage[utf8]{{inputenc}}
+\usepackage{{lmodern}}
 \usepackage[margin=1in]{{geometry}}
 \usepackage{{amsmath,amssymb,mathtools}}
 \usepackage{{booktabs,longtable,array}}
