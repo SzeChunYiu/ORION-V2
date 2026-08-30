@@ -119,6 +119,36 @@ training, so the output-graph wasserstein evaluates over an empty edge set (NaN 
 TP=FP=0). This also resolves the label-permutation control's AMBIGUOUS_EMPTY cells:
 the emptiness is not a 5%-subsample artifact.
 
+## 5b. Root cause of the empty graph — named (2026-08-30, same day)
+
+The probe's open question ("a causalscbench pipeline question") is now closed.
+It is **not** a data-path defect: the splitter is correct
+(`get_interventional()` returns the full training matrix;
+`regime_capability_census.md` in this directory transcribes the check). The
+empty graph is produced by an upstream **capability stub** in the PC wrapper
+(`causalbench/causalscbench/models/causallearn_models.py`, `PC.__call__`,
+first statement): `if not training_regime == TrainingRegime.Observational:
+return []`. The same stub guards GES, both notears classes,
+sparsest_permutations, and varsortability. It fires before any data is
+touched — hence run_time ≈ 0.013 s in every interventional-family run,
+including full-data.
+
+Consequences:
+
+- With `model_name=pc` pinned, **every non-observational choice is
+  structurally unscoreable** — the F2 agent's cycle-2–4 escape to
+  observational was the only scoreable basin in the decision space, and the
+  all-zero redacted feedback on interventional cycles was the stub's
+  signature, not evidence about the configs tried.
+- Valid revival levers are exactly two: (1) re-pin to an
+  intervention-aware model — `gies` consumes interventions via
+  per-intervention environments; DCDI variants do too but are heavy; arboreto
+  grnboost2/genie3 run under any regime but ignore `interventions` entirely,
+  so the regime axis would carry no information — or (2) change substrate.
+  Feeding interventional data to vanilla PC by patching the guard would be
+  statistically invalid (PC's CI tests assume observational i.i.d.; the stub
+  exists for that reason).
+
 Implications (recorded, not acted on here):
 
 - The E40-m1 contrast therefore tested **within-observational configuration
