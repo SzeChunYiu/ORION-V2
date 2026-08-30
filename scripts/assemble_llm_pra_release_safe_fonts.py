@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-"""Font-safe wrapper for the frozen PRA release assembler.
+"""Packaging-safe wrapper for the frozen PRA release assembler.
 
-The scientific master and generated scientific prose are unchanged.  The
-wrapper only changes the TeX microtype option in generated venue templates to
-avoid pdfTeX font-expansion failures on hosted runners with non-scalable font
-variants.
+The scientific master and generated scientific prose are unchanged. The wrapper
+only adjusts serialization/toolchain details needed for reliable PDF builds:
+
+- disable pdfTeX microtype font expansion on hosted runners; and
+- tell Pandoc to preserve the frozen master's `\\[ ... \\]` / `\\( ... \\)` math
+  delimiters as TeX math instead of escaping their contents as ordinary text.
 """
 
 from __future__ import annotations
@@ -28,8 +30,23 @@ def _patch_writer(writer):
     return wrapped
 
 
+def _pandoc_fragment(markdown_path: Path) -> str:
+    completed = base.run(
+        [
+            "pandoc",
+            str(markdown_path),
+            "--from=markdown+raw_tex+tex_math_dollars+tex_math_single_backslash+pipe_tables+fenced_code_blocks",
+            "--to=latex",
+            "--wrap=none",
+        ],
+        capture=True,
+    )
+    return completed.stdout
+
+
 base.write_arxiv_tex = _patch_writer(base.write_arxiv_tex)
 base.write_jmlr_tex = _patch_writer(base.write_jmlr_tex)
+base.pandoc_fragment = _pandoc_fragment
 
 
 def main() -> int:
