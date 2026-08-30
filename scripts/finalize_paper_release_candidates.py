@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
-"""Build final author-facing release candidates from frozen scientific masters.
+"""Build author-facing paper candidates under the academic-skill PR17 gates.
 
-This layer changes only release metadata and public-surface packaging. It must not
-change scientific claims, results, citations, theorem text, or AH20 custody.
+The PRA V12 scientific master already exposes its required formal spine and is
+not scientifically rewritten here. The flagship release is a versioned V15
+composite: frozen V14 prose/citations plus a compact formal-spine fragment whose
+content already exists in the programme's formal records. AH20-R2 is not
+backfilled into the Perspective.
 """
 
 from __future__ import annotations
@@ -23,6 +26,10 @@ AI_DISCLOSURE = (
     "AI tools assisted with literature search, drafting/editing, formalization, "
     "critique and code development. The author is responsible for all scientific content."
 )
+SKILL_PR17_HEAD = "ef47c81101e1e1b97864019dde143456a581de1c"
+SKILL_PR16_HEAD = "087e47330826295a0b114563ec33238951ac56a9"
+FLAGSHIP_RELEASE_COMPOSITE = "V15_FORMAL_SPINE_COMPOSITE"
+FLAGSHIP_FORMAL_MARKER = r"\hypertarget{frontier-problems-expose-the-distinction}{%"
 
 
 def run(cmd: list[str], *, cwd: Path | None = None, capture: bool = False) -> subprocess.CompletedProcess[str]:
@@ -40,8 +47,18 @@ def patch_once(text: str, pattern: str, replacement: str, label: str, *, flags: 
     return out
 
 
+def prose_word_count_from_tex(text: str) -> int:
+    text = re.sub(r"\\\[.*?\\\]", " ", text, flags=re.S)
+    text = re.sub(r"\\subsection\{([^}]*)\}", r"\1", text)
+    text = re.sub(r"\\label\{[^}]*\}", " ", text)
+    text = re.sub(r"\\text\{([^}]*)\}", r"\1", text)
+    text = re.sub(r"\\[A-Za-z]+\*?", " ", text)
+    text = re.sub(r"[{}$\\_^~]", " ", text)
+    return len(re.findall(r"\b[A-Za-z0-9][A-Za-z0-9'’-]*\b", text))
+
+
 def strip_internal_bibliography_source(text: str) -> str:
-    """Remove the frozen master's packaging instruction from public LaTeX only."""
+    """Remove the frozen PRA master's packaging instruction from public LaTeX only."""
     pattern = (
         r"\\hypertarget\{bibliography-source\}\{%\s*"
         r"\\section\{Bibliography source\}\\label\{bibliography-source\}\}\s*"
@@ -80,7 +97,22 @@ def stabilize_validation_table(package: Path, *, jmlr: bool) -> None:
     table_path.write_text(table, encoding="utf-8")
 
 
-def patch_flagship(tex_path: Path) -> None:
+def inject_flagship_formal_spine(tex_path: Path, formal_spine_path: Path) -> dict[str, object]:
+    text = tex_path.read_text(encoding="utf-8")
+    if "Formal object of Machine Epistemics" in text:
+        raise RuntimeError("flagship formal spine already present before PR17 injection")
+    if FLAGSHIP_FORMAL_MARKER not in text:
+        raise RuntimeError("cannot locate flagship formal-spine insertion point")
+    fragment = formal_spine_path.read_text(encoding="utf-8").strip()
+    text = text.replace(FLAGSHIP_FORMAL_MARKER, fragment + "\n\n" + FLAGSHIP_FORMAL_MARKER, 1)
+    tex_path.write_text(text, encoding="utf-8")
+    return {
+        "fragment_sha256": sha256(formal_spine_path),
+        "added_prose_words_mechanical": prose_word_count_from_tex(fragment),
+    }
+
+
+def patch_flagship(tex_path: Path, formal_spine_path: Path) -> dict[str, object]:
     text = tex_path.read_text(encoding="utf-8")
     text = patch_once(
         text,
@@ -96,6 +128,7 @@ def patch_flagship(tex_path: Path) -> None:
         flags=re.S,
     )
     tex_path.write_text(text, encoding="utf-8")
+    return inject_flagship_formal_spine(tex_path, formal_spine_path)
 
 
 def patch_llm_arxiv(tex_path: Path) -> None:
@@ -176,6 +209,22 @@ def assert_release_surface(tex_path: Path) -> None:
         raise RuntimeError(f"minimal truthful AI disclosure missing from {tex_path}")
 
 
+def assert_flagship_formal_spine(tex_path: Path) -> None:
+    text = tex_path.read_text(encoding="utf-8")
+    required = [
+        "Formal object of Machine Epistemics",
+        r"E_t=(P_t,S_t,O_t,A_t,R_t,M_t,V_t,X_t,H_t,K_t)",
+        r"\widetilde E_t=(E_t;\Gamma_t,\Pi_t,\mathcal A_t)",
+        r"T_t:(\widetilde E_t,a_t,x_t)\mapsto(\widetilde E_{t+1},\rho_t)",
+        r"\mathcal A_t\neq\mathfrak E^{\star}",
+        r"\not\Rightarrow\text{warranted scientific transition}",
+        "candidate constraints to test, not established universal axioms",
+    ]
+    missing = [item for item in required if item not in text]
+    if missing:
+        raise RuntimeError(f"PR17 formal-spine recovery failed: {missing}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, default=Path.cwd())
@@ -206,9 +255,12 @@ def main() -> int:
         "--jmlr-style", str(args.jmlr_style.resolve()),
     ])
 
+    flagship_base_receipt = json.loads((flagship / "release_receipt.json").read_text(encoding="utf-8"))
+    formal_spine_path = root / "papers/flagship/FLAGSHIP_FORMAL_SPINE_MAIN_TEXT_V1.tex"
+    flagship_formal = patch_flagship(flagship / "manuscript.tex", formal_spine_path)
+
     llm_arxiv = llm / "arxiv_v1"
     llm_jmlr = llm / "jmlr_v1"
-    patch_flagship(flagship / "manuscript.tex")
     patch_llm_arxiv(llm_arxiv / "manuscript.tex")
     patch_llm_jmlr(llm_jmlr / "manuscript.tex")
     stabilize_validation_table(llm_arxiv, jmlr=False)
@@ -216,6 +268,14 @@ def main() -> int:
 
     for package in (flagship, llm_arxiv, llm_jmlr):
         assert_release_surface(package / "manuscript.tex")
+    assert_flagship_formal_spine(flagship / "manuscript.tex")
+
+    estimated_flagship_words = (
+        int(flagship_base_receipt["main_text_word_count_mechanical"])
+        + int(flagship_formal["added_prose_words_mechanical"])
+    )
+    if not 3000 <= estimated_flagship_words <= 4000:
+        raise RuntimeError(f"PR17 flagship formal-spine repair leaves Perspective target: {estimated_flagship_words}")
 
     metrics = {
         "flagship_arxiv": compile_package(flagship),
@@ -223,12 +283,17 @@ def main() -> int:
         "llm_jmlr": compile_package(llm_jmlr),
     }
 
+    shutil.copy2(formal_spine_path, flagship / "FORMAL_SPINE_MAIN_TEXT.tex")
     metadata_src = root / "papers/release/FINAL_AUTHOR_AND_AI_METADATA_V1.json"
     for package in (flagship, llm_arxiv, llm_jmlr):
         shutil.copy2(metadata_src, package / "AUTHOR_AND_AI_METADATA.json")
 
     receipt = {
-        "schema": "orion-v2.final-paper-release.v1",
+        "schema": "orion-v2.final-paper-release.v2-pr17",
+        "academic_skill_state": {
+            "formal_spine_pr17_head": SKILL_PR17_HEAD,
+            "research_integrity_pr16_head": SKILL_PR16_HEAD,
+        },
         "author": {
             "name": AUTHOR,
             "email": EMAIL,
@@ -236,11 +301,26 @@ def main() -> int:
             "journal_status_label": JOURNAL_STATUS,
         },
         "ai_disclosure": AI_DISCLOSURE,
-        "scientific_master_changed": False,
-        "scientific_claims_changed": False,
+        "flagship": {
+            "base_scientific_master": "V14_CITED_ARXIV_JOURNAL_MASTER",
+            "release_composite": FLAGSHIP_RELEASE_COMPOSITE,
+            "formal_spine_status": "PASS_RESTORED_IN_MAIN_TEXT",
+            "formal_spine_fragment_sha256": flagship_formal["fragment_sha256"],
+            "formal_spine_added_prose_words_mechanical": flagship_formal["added_prose_words_mechanical"],
+            "estimated_main_text_word_count": estimated_flagship_words,
+            "base_master_edited": False,
+            "scientific_manuscript_delta": "RESTORE_EXISTING_PROGRAMME_FORMAL_SPINE",
+            "new_scientific_result_added": False,
+            "ah20_r2_backfilled_into_perspective": False,
+        },
+        "pra": {
+            "scientific_master": "V12_ARXIV_JMLR_FINAL",
+            "formal_spine_status": "PASS_NO_SCIENTIFIC_REWRITE_REQUIRED",
+            "scientific_manuscript_changed": False,
+        },
         "internal_release_instructions_stripped": True,
         "appendix_table_placement_stabilized": True,
-        "ah20_result_backfilled_into_arxiv": False,
+        "research_integrity_independent_verification_complete": False,
         "submission_authorized": False,
         "packages": metrics,
     }
