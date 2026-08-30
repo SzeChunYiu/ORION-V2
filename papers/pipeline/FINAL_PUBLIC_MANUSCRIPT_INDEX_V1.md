@@ -1,7 +1,7 @@
 # Final Public Manuscript Index V1
 
-**State date:** 2026-08-29  
-**Pipeline:** `SzeChunYiu/academic-paper-skills@d2cac7bd0d3152369acee5c3859059dc87fcd24d` / academic-paper-pipeline v1.6.0  
+**State date:** 2026-08-30  
+**Pipeline:** `SzeChunYiu/academic-paper-skills@6cf6d7a30e0785bc818e7ba3e112af00f518a422` / `academic-paper-pipeline` v1.9.0 / `academic-writing` v1.9.0  
 **Purpose:** identify the one canonical public scientific source per surviving paper.
 
 Older drafts remain provenance only. A future execution/formatting agent must not select an older manuscript because it is easier to parse.
@@ -10,23 +10,32 @@ Older drafts remain provenance only. A future execution/formatting agent must no
 
 Canonical public source:
 
-`papers/drafts/FLAGSHIP_MACHINE_EPISTEMICS_PERSPECTIVE_V13_CITED_ARXIV_MASTER.md`
+`papers/drafts/FLAGSHIP_MACHINE_EPISTEMICS_PERSPECTIVE_V14_CITED_ARXIV_JOURNAL_MASTER.md`
 
 Bibliography:
 
 - `papers/flagship/FLAGSHIP_REFERENCES_V14_CORRECTED.bib`
 - `papers/flagship/FLAGSHIP_REFERENCES_V15_NEIGHBOR_SUPPLEMENT.bib`
+- `papers/flagship/FLAGSHIP_REFERENCES_V16_FOUNDATION_SUPPLEMENT.bib`
 
 Scientific state:
 
-- content complete;
-- stable citations inserted;
-- repaired SD20 negative incorporated;
-- F0/F1/F2/F3 competitors explicit;
-- naming novelty rejected;
-- strongest current contrary/neighbor programmes cited;
-- arXiv science ready after mechanical citation/key/status QA and human release/adoption;
-- Nature Machine Intelligence submission remains external-demarcation / evidence / policy gated.
+- content complete at Perspective scope;
+- V13's cited parent/neighbor positioning preserved;
+- post-V13 machine-X demarcation, frontier-obstruction, generative-regime/invention, epistemic-locality/diverse-intelligence and atlas/horizon science reconciled into one cited public master;
+- formal epistemology, formal learning/computational epistemology and social epistemology are explicit strongest parents rather than a straw-man contrast with “traditional epistemology”;
+- context-relative capability is separated from epistemic warrant;
+- creativity/open-endedness algorithms remain parent-owned;
+- current atlas is explicitly not identified with total possible epistemic space;
+- local compatibility is not promoted to global coherence without a separate witness;
+- EL10 parent sufficiency is honored: locality remains a scientific constraint/documentation convention, not a required new runtime component;
+- EL20 category-error audit is honored: cognition, collective/cultural adaptation, evolutionary adaptation and machine adaptation are not equated;
+- F0/F1/F2/F3 competitors and contraction/rename terminals remain explicit;
+- naming novelty is rejected;
+- citation keys and central claim/citation boundaries are frozen in `FLAGSHIP_V14_ATOMIC_CLAIM_AND_CITATION_GATE_V1.md`;
+- 2026 bibliographic metadata was refreshed on 2026-08-30, with another status-only refresh required if upload occurs later;
+- arXiv scientific/citation work is complete; release still requires human adoption, author metadata and arXiv choices;
+- Nature Machine Intelligence submission remains external-demarcation / current-policy / journal-strengthening-evidence gated.
 
 ## 2. P-A — Structural donor discovery
 
@@ -129,7 +138,7 @@ Scientific state:
 ## 7. Public release order
 
 1. **#51 Prospective Revision Adequacy** — first arXiv preprint.
-2. **FLAGSHIP Machine Epistemics Perspective** — second arXiv preprint after human naming/field/adoption review.
+2. **FLAGSHIP Machine Epistemics Perspective** — second arXiv preprint after human adoption/release approval.
 3. **P-A** — after protected Results.
 4. **P-B** — after protected Results/formal receipts.
 5. **P-C** — after parity and protected Results.
@@ -154,18 +163,22 @@ It may not:
 - delete the strongest parent merely to improve novelty;
 - change result numbers or uncertainty;
 - conceal AI assistance;
-- retroactively redefine the endpoint after results.
+- retroactively redefine an endpoint after results.
 
 ## Terminal
 
 ```text
-FLAGSHIP_PUBLIC_MANUSCRIPT_SCIENCE = COMPLETE
+FLAGSHIP_PUBLIC_MANUSCRIPT_SCIENCE = COMPLETE_V14
+FLAGSHIP_ARXIV_CITATION_GATE = CLOSED_2026_08_30
+FLAGSHIP_ARXIV_HUMAN_RELEASE = OPEN
+FLAGSHIP_NMI_EXTERNAL_GATE = OPEN
 P_A_PUBLIC_MANUSCRIPT_SCIENCE = COMPLETE_PRE_RESULTS
 P_B_PUBLIC_MANUSCRIPT_SCIENCE = COMPLETE_PRE_RESULTS
 P_C_PUBLIC_MANUSCRIPT_SCIENCE = COMPLETE_PRE_RESULTS
 P_D_PUBLIC_MANUSCRIPT_SCIENCE = COMPLETE_PRE_RESULTS
 LLM_PRA_PUBLIC_MANUSCRIPT_SCIENCE = COMPLETE_ON_PR52
 
-REMAINING_SCIENCE = PROTECTED_RESULTS_ONLY_WHERE_APPLICABLE
-REMAINING_PUBLICATION = MECHANICAL_ASSEMBLY + HUMAN_RELEASE + EXTERNAL_JUDGMENT
+REMAINING_FLAGSHIP_SCIENCE_FOR_ARXIV = NONE
+REMAINING_FLAGSHIP_PUBLICATION = HUMAN_RELEASE + ARXIV_METADATA
+REMAINING_FLAGSHIP_JOURNAL_STRENGTHENING = AH20 + EXTERNAL_DEMARCATION + CURRENT_POLICY_CHECK
 ```
