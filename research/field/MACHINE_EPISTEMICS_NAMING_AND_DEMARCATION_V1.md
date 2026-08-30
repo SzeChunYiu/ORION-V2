@@ -1,6 +1,6 @@
 # Machine Epistemics — Naming and Demarcation Audit V1
 
-**Status:** preferred working name; no disciplinary, novelty, publication, or external scientific authority.
+**Status:** preferred working name; no disciplinary, novelty, publication, intelligence-superiority, or external scientific authority.
 
 ## Decision
 
@@ -14,7 +14,7 @@ Tagline:
 
 Operational definition:
 
-> Machine Epistemics studies and engineers how AI and hybrid human–machine research systems acquire, transform, compare, test, preserve, revise, reopen, and close scientific commitments under explicit evidence, uncertainty, provenance, resource, and authority constraints.
+> Machine Epistemics studies and engineers how AI and hybrid human–machine research systems acquire, transform, compare, test, preserve, revise, reopen, and close scientific commitments under explicit evidence, uncertainty, provenance, resource, context and authority constraints.
 
 The earlier working label **Computational Scientific Control (CSC)** remains a historical derivation name. It described the object well but sounded primarily like control engineering and did not immediately signal modern AI. Machine Epistemics better names the scientific object while retaining control-theoretic content as a parent rather than the public identity of the field.
 
@@ -89,10 +89,37 @@ Candidate subjects include:
 
 If the strongest composition of AI-for-Science, metareasoning, truth-maintenance/belief revision, formal methods, provenance, evidence synthesis, control, and scientific governance fully reproduces these decisions, Machine Epistemics should contract to an integration/engineering label rather than claim a new science.
 
+## Machine-X non-hierarchy boundary
+
+The preferred name must not create the implication that Machine Epistemics is a globally superior form of machine learning, cognition or intelligence. The programme uses a typed demarcation:
+
+- **machine learning** — learning/update mechanisms;
+- **machine reasoning/planning** — inference/search/action processes;
+- **machine cognition** — organization of representation, memory, attention, search and related processes;
+- **machine metacognition** — self-monitoring and control signals about those processes;
+- **machine intelligence** — capability evaluated under a declared ecology of tasks and constraints;
+- **machine-native intelligence** — a design orientation exploiting machine-specific affordances;
+- **machine scientific intelligence** — science-scoped capability;
+- **Machine Epistemics** — control of warranted machine-mediated scientific transitions;
+- **AI for Science / agentic science** — application and autonomy ecosystems.
+
+These are different scientific roles, not one ordinal scale. In particular:
+
+```text
+MACHINE_EPISTEMICS > MACHINE_INTELLIGENCE = INVALID_CATEGORY_COMPARISON
+MACHINE_EPISTEMICS > MACHINE_LEARNING = INVALID_CATEGORY_COMPARISON
+```
+
+A learning method can be the correct minimum-sufficient scientific action. A highly intelligent system can still be epistemically unreliable. Machine-native difference does not grant authority. Machine Epistemics receives scientific credit only if its transition-control object changes protected decisions beyond the strongest relevant parents.
+
 ## Field demarcation
 
 Machine Epistemics does **not** own:
 
+- generic machine learning, reinforcement learning or meta-learning;
+- generic machine reasoning/planning or cognitive architectures;
+- generic intelligence definitions or benchmarks;
+- generic machine metacognition or confidence estimation;
 - generic AI agents or multi-agent orchestration;
 - generic autonomous laboratories;
 - generic Bayesian optimization or experimental design;
@@ -105,7 +132,13 @@ Machine Epistemics does **not** own:
 - generic philosophy of science or epistemology;
 - generic systematic review methodology.
 
-It can claim a distinct field only if the **composition-level control of scientific commitments** requires stable abstractions, laws, benchmarks, or empirical results not reducible to those parents in straightforward composition.
+It can claim a distinct field only if the **composition-level control of scientific commitments and transitions** requires stable abstractions, laws, benchmarks, or empirical results not reducible to those parents in straightforward composition.
+
+## Frontier-use boundary
+
+The field is most clearly distinguished on frontier problems where the missing object is not supplied in advance. A Machine-Epistemic system should first identify a **frontier obstruction**—what prevents a warranted answer and what discriminator could locate responsibility—before deciding whether the next action is learning, proof, measurement, experiment, representation change, problem reformulation, tool construction or abstention.
+
+This does not create a proprietary universal frontier algorithm. The existing strongest native methods and metareasoning parents remain primary. The candidate residual is whether explicit scientific-state, preservation, evidence, evaluator and authority semantics improve obstruction diagnosis and action routing when the problem formulation itself may be wrong.
 
 ## Preferred terminology
 
@@ -115,6 +148,7 @@ It can claim a distinct field only if the **composition-level control of scienti
 - **Epistemic transition receipt** — a replayable record of a proposed or admitted scientific-state transition.
 - **Epistemic control policy** — a policy over scientific actions subject to non-compensatory validity and authority constraints.
 - **Epistemic closure** — bounded, typed stopping under a declared searched basis and residual uncertainty; never universal truth or completeness.
+- **Frontier obstruction** — a witnessed blocker plus responsibility hypotheses and discriminators; not merely low performance or difficulty.
 
 The acronym **ME** is intentionally not used as a brand in paper titles where ambiguity is likely; titles should normally spell out “Machine Epistemics.”
 
@@ -127,13 +161,16 @@ The label advances from `PREFERRED_WORKING_NAME` to `CANDIDATE_FIELD` only if al
 3. the integrated framework improves a protected scientific decision over the strongest parent-composed baseline;
 4. V1 non-regression and authority/integrity gates pass;
 5. independent reviewers agree that the residual object is coherent and non-redundant;
-6. the flagship manuscript can state the field boundary without relying on ORION-specific vocabulary.
+6. the flagship manuscript can state the field boundary without relying on ORION-specific vocabulary;
+7. reviewers do not interpret the field as an unsupported superiority ladder over machine learning/intelligence;
+8. the frontier-control story either demonstrates a protected residual or contracts to existing metareasoning/AI-for-science parents.
 
 Otherwise the terminal is one of:
 
 - `MACHINE_EPISTEMICS_AS_INTEGRATION_ENGINEERING_ONLY`;
 - `SUBSUMED_BY_AGENTIC_OR_AUTONOMOUS_SCIENCE`;
 - `SUBSUMED_BY_EPISTEMOLOGY_PLUS_CONTROL_FORMAL_METHODS`;
+- `SUBSUMED_BY_METAREASONING_AND_SCIENTIFIC_METHODOLOGY`;
 - `FIELD_BOUNDARY_TOO_FRAGMENTED`;
 - `CANNOT_CHECK_FIELD_SEPARATION`.
 
@@ -142,6 +179,8 @@ Otherwise the terminal is one of:
 ```text
 WORKING_NAME = MACHINE_EPISTEMICS
 TAGLINE = THE_CONTROL_SCIENCE_OF_AI_DRIVEN_DISCOVERY
+MACHINE_X_TOTAL_ORDER = REJECTED
+MACHINE_EPISTEMICS_SUPERIORITY_CLAIM = FORBIDDEN
 NAME_COLLISION_RISK = LOW_RELATIVE_TO_REJECTED_CANDIDATES
 FIELD_STATUS = FIELD_HYPOTHESIS_WORTH_PROTECTED_TESTING
 EXTERNAL_FIELD_AUTHORITY = NONE
