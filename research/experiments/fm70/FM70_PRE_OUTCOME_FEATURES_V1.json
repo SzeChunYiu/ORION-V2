@@ -1,0 +1,687 @@
+{
+  "amendment_v1_1": "P02/P03 read the failing-test file (gold patchfile not t=0-visible); P07 dropped as arm-dependent; held-out pool frozen as id list, content features at Gate 1",
+  "authority": {
+    "field_status": false,
+    "publication_readiness": false,
+    "scientific_truth": false
+  },
+  "campaign": "campaign-e30-r11-disposition-offline-core4-rep3-deficit-topup-20260828-ffcc8ed6",
+  "dev_task_count": 40,
+  "extraction_errors": {},
+  "feature_rule": "arm-independent, computable at dispatch time t=0 from the frozen task workdir; gold-patch geometry, evaluation outcomes and run telemetry excluded",
+  "frozen_utc": "2026-08-30T05:45:02.841664+00:00",
+  "heldout_candidate_pool_id_list": {
+    "ansible": [
+      "bugsinpy-ansible-7",
+      "bugsinpy-ansible-8",
+      "bugsinpy-ansible-9",
+      "bugsinpy-ansible-10",
+      "bugsinpy-ansible-11",
+      "bugsinpy-ansible-12",
+      "bugsinpy-ansible-13",
+      "bugsinpy-ansible-14"
+    ],
+    "black": [
+      "bugsinpy-black-6",
+      "bugsinpy-black-7",
+      "bugsinpy-black-8",
+      "bugsinpy-black-9",
+      "bugsinpy-black-10",
+      "bugsinpy-black-11",
+      "bugsinpy-black-12",
+      "bugsinpy-black-13"
+    ],
+    "cookiecutter": [],
+    "fastapi": [
+      "bugsinpy-fastapi-6",
+      "bugsinpy-fastapi-7",
+      "bugsinpy-fastapi-8",
+      "bugsinpy-fastapi-9",
+      "bugsinpy-fastapi-10",
+      "bugsinpy-fastapi-11",
+      "bugsinpy-fastapi-12",
+      "bugsinpy-fastapi-13"
+    ],
+    "pandas": [
+      "bugsinpy-pandas-6",
+      "bugsinpy-pandas-7",
+      "bugsinpy-pandas-8",
+      "bugsinpy-pandas-9",
+      "bugsinpy-pandas-10",
+      "bugsinpy-pandas-11",
+      "bugsinpy-pandas-12",
+      "bugsinpy-pandas-13"
+    ],
+    "scrapy": [
+      "bugsinpy-scrapy-6",
+      "bugsinpy-scrapy-7",
+      "bugsinpy-scrapy-8",
+      "bugsinpy-scrapy-9",
+      "bugsinpy-scrapy-10",
+      "bugsinpy-scrapy-11",
+      "bugsinpy-scrapy-12",
+      "bugsinpy-scrapy-13"
+    ],
+    "tornado": [
+      "bugsinpy-tornado-6",
+      "bugsinpy-tornado-7",
+      "bugsinpy-tornado-8",
+      "bugsinpy-tornado-9",
+      "bugsinpy-tornado-10",
+      "bugsinpy-tornado-11",
+      "bugsinpy-tornado-12",
+      "bugsinpy-tornado-13"
+    ],
+    "tqdm": [
+      "bugsinpy-tqdm-6",
+      "bugsinpy-tqdm-7",
+      "bugsinpy-tqdm-8",
+      "bugsinpy-tqdm-9"
+    ]
+  },
+  "schema_version": "orion.v2.fm70.pre-outcome-features.v1",
+  "tasks": {
+    "bugsinpy-ansible-1": {
+      "P01_project": "ansible",
+      "P02_test_file_loc": 1341,
+      "P03_test_file_def_class_count": 71,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 54535,
+      "P06_project_python_file_count": 3190,
+      "bug_info_sha256": "42fde680d2cb58eb179dfb9b73841e4f432500d024e5fab6c1de9f82c4a8e381",
+      "buggy_commit_id": "25c5388fdec9e56517a93feb5e8d485680946c25",
+      "run_test_sh": "pytest test/units/galaxy/test_collection.py::test_verify_collections_no_version",
+      "run_test_sha256": "2ddd95ae0816db5b5d3043971b82ccbca487de1a8606af3f9bd06712aa396df5",
+      "test_files": [
+        "test/units/galaxy/test_collection.py"
+      ]
+    },
+    "bugsinpy-ansible-2": {
+      "P01_project": "ansible",
+      "P02_test_file_loc": 336,
+      "P03_test_file_def_class_count": 17,
+      "P04_failing_test_count": 2,
+      "P05_test_file_source_chars": 9977,
+      "P06_project_python_file_count": 3223,
+      "bug_info_sha256": "b6933b089724589eada19ad61f882958e176f7d749d7334e8f9d2fa245043a79",
+      "buggy_commit_id": "de59b17c7f69d5cfb72479b71776cc8b97e29a6b",
+      "run_test_sh": "pytest test/units/utils/test_version.py::test_alpha\npytest test/units/utils/test_version.py::test_numeric",
+      "run_test_sha256": "0eebc8eefe5aec784f13f8f13ab3b63549e198289baa53c159bc89b57fadf948",
+      "test_files": [
+        "test/units/utils/test_version.py"
+      ]
+    },
+    "bugsinpy-ansible-3": {
+      "P01_project": "ansible",
+      "P02_test_file_loc": 1966,
+      "P03_test_file_def_class_count": 15,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 81405,
+      "P06_project_python_file_count": 3219,
+      "bug_info_sha256": "ff21cb594ea71b843baa81f07501d88f88fe60ee417baec0d20271f11701edaa",
+      "buggy_commit_id": "70219df9056ffb1e2766f572fbe71f7a1800c9f5",
+      "run_test_sh": "pytest test/units/module_utils/test_distribution_version.py::test_distribution_version",
+      "run_test_sha256": "492a2446419b8fbb81694c383d92ddff17e0c8b70e20bfe6c3c3c69f33f8cf1c",
+      "test_files": [
+        "test/units/module_utils/test_distribution_version.py"
+      ]
+    },
+    "bugsinpy-ansible-4": {
+      "P01_project": "ansible",
+      "P02_test_file_loc": 39,
+      "P03_test_file_def_class_count": 1,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 1349,
+      "P06_project_python_file_count": 3210,
+      "bug_info_sha256": "0410bd942896474b27a38a06ba4cff6fbc42e442569098a7f0bd23716bb25904",
+      "buggy_commit_id": "d91658ec0c8434c82c3ef98bfe9eb4e1027a43a3",
+      "run_test_sh": "pytest test/units/playbook/test_collectionsearch.py::test_collection_static_warning",
+      "run_test_sha256": "be2e8033dd9372129abcbd0c1c90b7c55c506291aa22f1054284d65d673b3cde",
+      "test_files": [
+        "test/units/playbook/test_collectionsearch.py"
+      ]
+    },
+    "bugsinpy-ansible-5": {
+      "P01_project": "ansible",
+      "P02_test_file_loc": 89,
+      "P03_test_file_def_class_count": 7,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 2107,
+      "P06_project_python_file_count": 3199,
+      "bug_info_sha256": "477a8b1c414a2843271f2057930ccbe58765305e33de4c9c57e799c933d0b3f1",
+      "buggy_commit_id": "2af76f16be8cf2239daaec4c2f31c3dcb4e3469e",
+      "run_test_sh": "pytest test/units/module_utils/common/validation/test_check_required_arguments.py::test_check_required_arguments_missing_multiple",
+      "run_test_sha256": "4d0681f80427de5a5b23f452ff0767275e0c8afbd8ce82cadddc048164b9afc1",
+      "test_files": [
+        "test/units/module_utils/common/validation/test_check_required_arguments.py"
+      ]
+    },
+    "bugsinpy-ansible-6": {
+      "P01_project": "ansible",
+      "P02_test_file_loc": 777,
+      "P03_test_file_def_class_count": 38,
+      "P04_failing_test_count": 3,
+      "P05_test_file_source_chars": 33175,
+      "P06_project_python_file_count": 19417,
+      "bug_info_sha256": "4d3a0a0bff7071a8eaa57ed0d271ae7f1683336e7fd185313845be65a94769b3",
+      "buggy_commit_id": "90898132e456ee1993db99a1531379f1b98ee915",
+      "run_test_sh": "pytest test/units/galaxy/test_collection_install.py::test_build_requirement_from_path_with_manifest\npytest test/units/galaxy/test_collection_install.py::test_build_requirement_from_path_no_version\npytest test/units/galaxy/test_collection_install.py::test_add_collection_requirement_to_unknown_installed_version",
+      "run_test_sha256": "22062735e3eb496a22cceb7a0187dc990d6f32b3f4af10aba6dfdd3e2226384b",
+      "test_files": [
+        "test/units/galaxy/test_collection_install.py"
+      ]
+    },
+    "bugsinpy-black-1": {
+      "P01_project": "black",
+      "P02_test_file_loc": 1933,
+      "P03_test_file_def_class_count": 156,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 79664,
+      "P06_project_python_file_count": 2210,
+      "bug_info_sha256": "f25c9512a79be435f9340ab09b1a365c172a18ee44841f529a2c68b6ac9c55f3",
+      "buggy_commit_id": "26c9465a22c732ab1e17b0dec578fa3432e9b558",
+      "run_test_sh": "python -m unittest -q tests.test_black.BlackTestCase.test_works_in_mono_process_only_environment",
+      "run_test_sha256": "4cc4dcdb0380e6752e5115f068ba37550faf5071b888c90e32bcab0a40a7d5e1",
+      "test_files": [
+        "tests/test_black.py"
+      ]
+    },
+    "bugsinpy-black-2": {
+      "P01_project": "black",
+      "P02_test_file_loc": 1838,
+      "P03_test_file_def_class_count": 149,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 75646,
+      "P06_project_python_file_count": 2205,
+      "bug_info_sha256": "dccadf2989741b6c67e81ff339d7fcf9329f6bc7006517905274c86a44125b7c",
+      "buggy_commit_id": "c8ca6b2b9ff3510bee12129824cebfc2fc51e5b2",
+      "run_test_sh": "python -m unittest -q tests.test_black.BlackTestCase.test_fmtonoff4",
+      "run_test_sha256": "661c7eff06a036821b9e66a3ef8b7c0e46e6a6e815f65db6427aad3f8f6adcec",
+      "test_files": [
+        "tests/test_black.py"
+      ]
+    },
+    "bugsinpy-black-3": {
+      "P01_project": "black",
+      "P02_test_file_loc": 1830,
+      "P03_test_file_def_class_count": 148,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 75321,
+      "P06_project_python_file_count": 2205,
+      "bug_info_sha256": "09ac24b9d2f0224396ef78dd9ef288d4d4605acda48494400b908dfb8c4790cc",
+      "buggy_commit_id": "8126b4f6a9342290de4655e6a8a78cd288ce7daa",
+      "run_test_sh": "python -m unittest -q tests.test_black.BlackTestCase.test_invalid_config_return_code",
+      "run_test_sha256": "41745e9452aa678f675d1f6c66d963586276803f86ada6a9daffe7a8e5adae90",
+      "test_files": [
+        "tests/test_black.py"
+      ]
+    },
+    "bugsinpy-black-4": {
+      "P01_project": "black",
+      "P02_test_file_loc": 1712,
+      "P03_test_file_def_class_count": 129,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 70899,
+      "P06_project_python_file_count": 2235,
+      "bug_info_sha256": "1fef3ed3e436de9bfd1650c69ab996ed65039b55e878216af7aa7e9526b5c58a",
+      "buggy_commit_id": "65ea568e3301951f26e0e3b98f6d5dc80132e917",
+      "run_test_sh": "python -m unittest -q tests.test_black.BlackTestCase.test_beginning_backslash",
+      "run_test_sha256": "2e1dd0725ca9e6b35a4bee6b3af6daf79b2509c1ff33e1ec74ef21380fd4e110",
+      "test_files": [
+        "tests/test_black.py",
+        "tests/data/beginning_backslash.py"
+      ]
+    },
+    "bugsinpy-black-5": {
+      "P01_project": "black",
+      "P02_test_file_loc": 1636,
+      "P03_test_file_def_class_count": 123,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 68276,
+      "P06_project_python_file_count": 2231,
+      "bug_info_sha256": "679c472f6c117ba5adbc39032fe5a07337afd1c7620e8e8f610544c063887891",
+      "buggy_commit_id": "1bbb01b854d168d76ebe4bf78961c2152ae075d9",
+      "run_test_sh": "python -m unittest -q tests.test_black.BlackTestCase.test_function_trailing_comma",
+      "run_test_sha256": "f62855bcc4294ddbf4ad7326b09d1f33171e6eecbf752c8048e60e69f19899f0",
+      "test_files": [
+        "tests/test_black.py"
+      ]
+    },
+    "bugsinpy-cookiecutter-1": {
+      "P01_project": "cookiecutter",
+      "P02_test_file_loc": 172,
+      "P03_test_file_def_class_count": 10,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 5987,
+      "P06_project_python_file_count": 1103,
+      "bug_info_sha256": "83a016f8c374b67b2af875a343e9335e1ac2bacfa5e2fc068225ab56e50710ee",
+      "buggy_commit_id": "c15633745df6abdb24e02746b82aadb20b8cdf8c",
+      "run_test_sh": "tox tests/test_generate_context.py::test_generate_context_decodes_non_ascii_chars",
+      "run_test_sha256": "8fa48fdd88c886fbdf244124c952d919743b1c4ca407a0b4d50d091d9fab4b34",
+      "test_files": [
+        "tests/test_generate_context.py"
+      ]
+    },
+    "bugsinpy-cookiecutter-2": {
+      "P01_project": "cookiecutter",
+      "P02_test_file_loc": 248,
+      "P03_test_file_def_class_count": 18,
+      "P04_failing_test_count": 4,
+      "P05_test_file_source_chars": 9515,
+      "P06_project_python_file_count": 1103,
+      "bug_info_sha256": "b1560609c67712f4ffacdae1e739dc21634e22a413697d2fe9ef4a28aa43350d",
+      "buggy_commit_id": "d7e7b28811e474e14d1bed747115e47dcdd15ba3",
+      "run_test_sh": "tox tests/test_hooks.py::TestFindHooks::test_find_hook\ntox tests/test_hooks.py::TestExternalHooks::test_run_hook",
+      "run_test_sha256": "d1afcc0a9c7c285eba2cd8697752e3d4ce55e5dc2710606c18a43817ef360cc0",
+      "test_files": [
+        "tests/test_hooks.py"
+      ]
+    },
+    "bugsinpy-cookiecutter-3": {
+      "P01_project": "cookiecutter",
+      "P02_test_file_loc": 43,
+      "P03_test_file_def_class_count": 2,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 1004,
+      "P06_project_python_file_count": 1297,
+      "bug_info_sha256": "6cb00df7f13e3899355728c1985428c938614d577260b3cfa8d62c70664e1ed0",
+      "buggy_commit_id": "5c282f020a8db7e5e7c4e7b51b010556ca31fb7f",
+      "run_test_sh": "tox tests/test_read_user_choice.py::test_click_invocation",
+      "run_test_sha256": "e2d6b23928c772e858658ac76f40fdb0c374d469f56411bb1a5f5e039442fca4",
+      "test_files": [
+        "tests/test_read_user_choice.py"
+      ]
+    },
+    "bugsinpy-cookiecutter-4": {
+      "P01_project": "cookiecutter",
+      "P02_test_file_loc": 183,
+      "P03_test_file_def_class_count": 14,
+      "P04_failing_test_count": 2,
+      "P05_test_file_source_chars": 6334,
+      "P06_project_python_file_count": 1077,
+      "bug_info_sha256": "52236af17ff214fcc07f9c9b924cd25f0ff31774f52c126be82b6a0fed601301",
+      "buggy_commit_id": "9568ab6ecd2d6836646006c59473c4a4ac0dee04",
+      "run_test_sh": "tox tests/test_hooks.py::TestExternalHooks::test_run_failing_hook",
+      "run_test_sha256": "b9237865af67323bdf738c16108241b4f88e448db1fab9dddb057ac78630c6b2",
+      "test_files": [
+        "tests/test_hooks.py"
+      ]
+    },
+    "bugsinpy-fastapi-1": {
+      "P01_project": "fastapi",
+      "P02_test_file_loc": 161,
+      "P03_test_file_def_class_count": 32,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 4178,
+      "P06_project_python_file_count": 4267,
+      "bug_info_sha256": "75edf40e76c70804fc126417e89e51111c1fe2d1399f97e010bdb76a29e74dc8",
+      "buggy_commit_id": "766157bfb4e7dfccba09ab398e8ec444d14e947c",
+      "run_test_sh": "pytest tests/test_jsonable_encoder.py::test_encode_model_with_default",
+      "run_test_sha256": "38172a1aa0b625cc3569da9178538e262fd5fd98ff73938fc8f2cecc8e4caaed",
+      "test_files": [
+        "tests/test_jsonable_encoder.py"
+      ]
+    },
+    "bugsinpy-fastapi-2": {
+      "P01_project": "fastapi",
+      "P02_test_file_loc": 93,
+      "P03_test_file_def_class_count": 12,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 2514,
+      "P06_project_python_file_count": 4250,
+      "bug_info_sha256": "f45bdde393339c32075fba987b782ad2e208f061dbe3b96fa2c36a4191dde8b2",
+      "buggy_commit_id": "210af1fd3dc0f612a08fa02a0cb3f5adb81e5bfb",
+      "run_test_sh": "pytest tests/test_ws_router.py::test_router_ws_depends_with_override",
+      "run_test_sha256": "fc9a219514046c946f56c9eb45c5e24e9d6788c9820f8f62c22bee50e368f743",
+      "test_files": [
+        "tests/test_ws_router.py"
+      ]
+    },
+    "bugsinpy-fastapi-3": {
+      "P01_project": "fastapi",
+      "P02_test_file_loc": 155,
+      "P03_test_file_def_class_count": 17,
+      "P04_failing_test_count": 8,
+      "P05_test_file_source_chars": 4251,
+      "P06_project_python_file_count": 4248,
+      "bug_info_sha256": "054e05030585aa27a513af6632a596830d15716fdff3d78e23e220e89fda1e98",
+      "buggy_commit_id": "869c7389e22dc9ad659940fa271da76c4f3ba3b1",
+      "run_test_sh": "pytest tests/test_serialize_response_model.py::test_valid\npytest tests/test_serialize_response_model.py::test_coerce\npytest tests/test_serialize_response_model.py::test_validlist\npytest tests/test_serialize_response_model.py::test_validdict\npytest tests/test_serialize_response_model.py::test_valid_exclude_unset\npytest tests/test_serialize_response_model.py::test_coerce_exclude_unset\npytest tests/test_serialize_response_model.py::test_validlist_exclude_unset\npytest tests/test_serialize_response_model.py::test_validdict_exclude_unset",
+      "run_test_sha256": "d5d0dc30901ee068dad8f303143eec821573f02e2835e147332315afb9aae7f6",
+      "test_files": [
+        "tests/test_serialize_response_model.py"
+      ]
+    },
+    "bugsinpy-fastapi-4": {
+      "P01_project": "fastapi",
+      "P02_test_file_loc": 94,
+      "P03_test_file_def_class_count": 4,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 2803,
+      "P06_project_python_file_count": 4207,
+      "bug_info_sha256": "e764a670bec29539381cb23b590b94b14d7b3e1af671fd114431978639aa638b",
+      "buggy_commit_id": "7ccd81f70653857bd8f3a15ee946aa3fb0edc2cb",
+      "run_test_sh": "pytest tests/test_param_in_path_and_dependency.py::test_reused_param",
+      "run_test_sha256": "35a5e03ca95459e50b993498d796b372bab8672f877fe70c1919d359b323ee0c",
+      "test_files": [
+        "tests/test_param_in_path_and_dependency.py"
+      ]
+    },
+    "bugsinpy-fastapi-5": {
+      "P01_project": "fastapi",
+      "P02_test_file_loc": 92,
+      "P03_test_file_def_class_count": 7,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 2429,
+      "P06_project_python_file_count": 4205,
+      "bug_info_sha256": "f07ad0ab582d00d58af97b3913a92351f2a1fc414462e87b68ccd8a7321e3b7c",
+      "buggy_commit_id": "7cea84b74ca3106a7f861b774e9d215e5228728f",
+      "run_test_sh": "pytest tests/test_filter_pydantic_sub_model.py::test_filter_sub_model",
+      "run_test_sha256": "1b142738a1e6ce38452c90f558f4374cb0d93e94c7d3076cb0313d77cbd950a1",
+      "test_files": [
+        "tests/test_filter_pydantic_sub_model.py"
+      ]
+    },
+    "bugsinpy-pandas-1": {
+      "P01_project": "pandas",
+      "P02_test_file_loc": 990,
+      "P03_test_file_def_class_count": 100,
+      "P04_failing_test_count": 2,
+      "P05_test_file_source_chars": 34571,
+      "P06_project_python_file_count": 2525,
+      "bug_info_sha256": "e85b965a5d15674a3e352527fff2d854538e88613ffe776512d50f19d0ef5e50",
+      "buggy_commit_id": "3fd150c",
+      "run_test_sh": "pytest pandas/tests/dtypes/test_dtypes.py::TestCategoricalDtype::test_not_string",
+      "run_test_sha256": "423c3e6acc7ed0d01f5957261bdc1b27516512a16993b1a401a3cef352d2f7a9",
+      "test_files": [
+        "pandas/tests/dtypes/test_dtypes.py"
+      ]
+    },
+    "bugsinpy-pandas-2": {
+      "P01_project": "pandas",
+      "P02_test_file_loc": 416,
+      "P03_test_file_def_class_count": 28,
+      "P04_failing_test_count": 4,
+      "P05_test_file_source_chars": 13259,
+      "P06_project_python_file_count": 2527,
+      "bug_info_sha256": "a8ddfc76e0f60d58dd734bfd2f5dae09b902d492a44b81a4503a4b6209e5f2b7",
+      "buggy_commit_id": "2740fb4",
+      "run_test_sh": "pytest pandas/tests/indexing/test_scalar.py::test_at_with_tuple_index_get \npytest pandas/tests/indexing/test_scalar.py::test_at_with_tuple_index_set\npytest pandas/tests/indexing/test_scalar.py::test_multiindex_at_get\npytest pandas/tests/indexing/test_scalar.py::test_multiindex_at_set",
+      "run_test_sha256": "60225c889a414a2dcc42c98cdd10a288ae4378602b2de3966e178d8f0a2cf1fd",
+      "test_files": [
+        "pandas/tests/indexing/test_scalar.py"
+      ]
+    },
+    "bugsinpy-pandas-3": {
+      "P01_project": "pandas",
+      "P02_test_file_loc": 124,
+      "P03_test_file_def_class_count": 7,
+      "P04_failing_test_count": 4,
+      "P05_test_file_source_chars": 4423,
+      "P06_project_python_file_count": 2525,
+      "bug_info_sha256": "a3c1e6d5ebd146497353767e867f7f6fd712619414018a602ce70f3232080cf9",
+      "buggy_commit_id": "45fee32",
+      "run_test_sh": "pytest pandas/tests/series/methods/test_to_period.py::TestToPeriod::test_to_period_raises\npytest pandas/tests/series/methods/test_to_timestamp.py::TestToTimestamp::test_to_timestamp_raises",
+      "run_test_sha256": "0645f4d9623715b1f5e5be5ec494a3625418d3edbf517eb44a264afbe54942aa",
+      "test_files": [
+        "pandas/tests/series/methods/test_to_period.py",
+        "pandas/tests/series/methods/test_to_timestamp.py"
+      ]
+    },
+    "bugsinpy-pandas-4": {
+      "P01_project": "pandas",
+      "P02_test_file_loc": 116,
+      "P03_test_file_def_class_count": 7,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 3788,
+      "P06_project_python_file_count": 2520,
+      "bug_info_sha256": "7088fcff1152cc7a446ff00b839bb1458b3bfec2a55df63d6679bf366950766e",
+      "buggy_commit_id": "cca710b",
+      "run_test_sh": "pytest pandas/tests/indexes/multi/test_join.py::test_join_multi_return_indexers",
+      "run_test_sha256": "d688b10b47711c317305abd6c39a96c906277f42a3fbb104865947e472d137f6",
+      "test_files": [
+        "pandas/tests/indexes/multi/test_join.py"
+      ]
+    },
+    "bugsinpy-pandas-5": {
+      "P01_project": "pandas",
+      "P02_test_file_loc": 1056,
+      "P03_test_file_def_class_count": 39,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 33144,
+      "P06_project_python_file_count": 4611,
+      "bug_info_sha256": "6ac1d3cd54fd4b4344df8bbe3d924ada4dff6f4f3fa20b3f098282d7de509cac",
+      "buggy_commit_id": "4f4282f8a7c1033fc3efe9f4eab5368a70ae5041",
+      "run_test_sh": "pytest pandas/tests/groupby/test_function.py::test_ops_not_as_index",
+      "run_test_sha256": "22048f37d67111e120b6cfb8ec93816d2a029944d255a9ab883278978673e456",
+      "test_files": [
+        "pandas/tests/groupby/test_function.py"
+      ]
+    },
+    "bugsinpy-scrapy-1": {
+      "P01_project": "scrapy",
+      "P02_test_file_loc": 83,
+      "P03_test_file_def_class_count": 14,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 3177,
+      "P06_project_python_file_count": 2849,
+      "bug_info_sha256": "3253ba4da33bac07f80e10bcc69161ae200b946f9ec3da0170de13b640640709",
+      "buggy_commit_id": "c57512fa669e6f6b1b766a7639206a380f0d10ce",
+      "run_test_sh": "python -m unittest -q tests.test_spidermiddleware_offsite.TestOffsiteMiddleware4._get_spiderargs\npython -m unittest -q tests.test_spidermiddleware_offsite.TestOffsiteMiddleware4.test_process_spider_output",
+      "run_test_sha256": "fcdb910c48de6fa7d66c991091fb1895e6da9a6033e3b79bc7ba5d81d339ff10",
+      "test_files": [
+        "tests/test_spidermiddleware_offsite.py"
+      ]
+    },
+    "bugsinpy-scrapy-2": {
+      "P01_project": "scrapy",
+      "P02_test_file_loc": 273,
+      "P03_test_file_def_class_count": 42,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 7638,
+      "P06_project_python_file_count": 2827,
+      "bug_info_sha256": "2bc8ed7bf35ebbc25b49871a643148715b0113b3167d9e62a4d63655415de4bb",
+      "buggy_commit_id": "f02c3d1dcf3e4880388d19e961e7911be5dc54ff",
+      "run_test_sh": "python -m unittest -q tests.test_utils_datatypes.LocalCacheTest.test_cache_without_limit",
+      "run_test_sha256": "5293652f90a2be032b64f23939e820819cf457ad1a80396add1f8e27ccf97593",
+      "test_files": [
+        "tests/test_utils_datatypes.py"
+      ]
+    },
+    "bugsinpy-scrapy-3": {
+      "P01_project": "scrapy",
+      "P02_test_file_loc": 319,
+      "P03_test_file_def_class_count": 31,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 14726,
+      "P06_project_python_file_count": 2827,
+      "bug_info_sha256": "3c47f23754215ad604948870a4e5240e9ea414f9c853a161128c32324acbb96d",
+      "buggy_commit_id": "be2e910dd06ba4904e7b10eb5a7e3251e8dab099",
+      "run_test_sh": "python -m unittest -q tests.test_downloadermiddleware_redirect.RedirectMiddlewareTest.test_redirect_302_relative",
+      "run_test_sha256": "db2fed84b030e903703e29f2d18d4cb3e9c994ab654194a417f68297574b3df7",
+      "test_files": [
+        "tests/test_downloadermiddleware_redirect.py"
+      ]
+    },
+    "bugsinpy-scrapy-4": {
+      "P01_project": "scrapy",
+      "P02_test_file_loc": 205,
+      "P03_test_file_def_class_count": 21,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 6021,
+      "P06_project_python_file_count": 2825,
+      "bug_info_sha256": "757d16d7fd5c433133af24a3b7a901817c251bb6ec357d0c94c0fb18070f4593",
+      "buggy_commit_id": "c8f3d07e86dd41074971b5423fb932c2eda6db1e",
+      "run_test_sh": "python -m unittest -q tests.test_contracts.ContractsManagerTest.test_errback",
+      "run_test_sha256": "9d41b9ee41cbd34068e11119d3af72319fb8769ef0418c6a14a7da86c5d2fc46",
+      "test_files": [
+        "tests/test_contracts.py"
+      ]
+    },
+    "bugsinpy-scrapy-5": {
+      "P01_project": "scrapy",
+      "P02_test_file_loc": 595,
+      "P03_test_file_def_class_count": 50,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 26868,
+      "P06_project_python_file_count": 2891,
+      "bug_info_sha256": "31c80f5962dbea425d469af4c9538481992a2308f6e6bf2c9c17705b1791c0df",
+      "buggy_commit_id": "426da0ed07637e7efbcfb0fe49546e187d5d7f67",
+      "run_test_sh": "python -m unittest -q tests.test_http_response.BaseResponseTest.test_follow_None_url",
+      "run_test_sha256": "59926f004b96bb1c4a686e2795aca7ddda44e7e5e9ab09f178bef98548607bc0",
+      "test_files": [
+        "tests/test_http_response.py"
+      ]
+    },
+    "bugsinpy-tornado-1": {
+      "P01_project": "tornado",
+      "P02_test_file_loc": 823,
+      "P03_test_file_def_class_count": 129,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 27509,
+      "P06_project_python_file_count": 558,
+      "bug_info_sha256": "453a311f228494491bf8601e26d8bbe79adc9abb2af5b2be477acee6849bc675",
+      "buggy_commit_id": "6a5a0bfa370b6c0d3dbbf9589a560a98202d2baa",
+      "run_test_sh": "python -m unittest -q tornado.test.websocket_test.WebSocketTest.test_nodelay",
+      "run_test_sha256": "824b5decbe6517adcba0b9c8e773f810f1490c510b7cec960278d6f46eca777b",
+      "test_files": [
+        "tornado/test/websocket_test.py"
+      ]
+    },
+    "bugsinpy-tornado-2": {
+      "P01_project": "tornado",
+      "P02_test_file_loc": 807,
+      "P03_test_file_def_class_count": 100,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 29930,
+      "P06_project_python_file_count": 558,
+      "bug_info_sha256": "399b96f35c0f437fbb44fd12b1b9ea8c55c9d533ff44adaf255ab0f083ff4c9e",
+      "buggy_commit_id": "2ca8821d006f6693f920a4b183a3a7c985a5c8ad",
+      "run_test_sh": "python -m unittest -q tornado.test.httpclient_test.HTTPClientCommonTestCase.test_redirect_put_without_body",
+      "run_test_sha256": "9e749a53b7a4bd1683b8d7c6ac6c3d84c3ad6315912647db58e1269fb89d782b",
+      "test_files": [
+        "tornado/test/httpclient_test.py"
+      ]
+    },
+    "bugsinpy-tornado-3": {
+      "P01_project": "tornado",
+      "P02_test_file_loc": 761,
+      "P03_test_file_def_class_count": 94,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 28016,
+      "P06_project_python_file_count": 558,
+      "bug_info_sha256": "383a9e50eab339ad28a1e760804148d5464c94c42ce839e71feb4f12c3ad8aa1",
+      "buggy_commit_id": "940fd87fe9145d1154c8457221f86d56ea063c65",
+      "run_test_sh": "python -m unittest -q tornado.test.httpclient_test.SyncHTTPClientSubprocessTest",
+      "run_test_sha256": "33120f4cf0039b05b41b58240ad69f5ff94b226ad604748a9b1dd9647092c09d",
+      "test_files": [
+        "tornado/test/httpclient_test.py"
+      ]
+    },
+    "bugsinpy-tornado-4": {
+      "P01_project": "tornado",
+      "P02_test_file_loc": 3115,
+      "P03_test_file_def_class_count": 519,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 114251,
+      "P06_project_python_file_count": 558,
+      "bug_info_sha256": "82dc28e61edfee9ce3ed884b8b52858d5ee89a63984299c2f1f622c3fed6a5a4",
+      "buggy_commit_id": "a8420fc681c5423d072978f00eab4d0645057d16",
+      "run_test_sh": "python -m unittest -q tornado.test.web_test.StaticFileTest.test_static_with_range_neg_past_start\npython -m unittest -q tornado.test.web_test.StaticFileTest.test_static_unsatisfiable_range_end_less_than_start",
+      "run_test_sha256": "4f493563fea4e43e400d75e2ee9a1b8dd7e1c60e13a052f84083bf434158eb0d",
+      "test_files": [
+        "tornado/test/web_test.py"
+      ]
+    },
+    "bugsinpy-tornado-5": {
+      "P01_project": "tornado",
+      "P02_test_file_loc": 907,
+      "P03_test_file_def_class_count": 126,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 33366,
+      "P06_project_python_file_count": 568,
+      "bug_info_sha256": "7a550dd5a8eff243e80b1ab392482c37a6b9bca17949ae5152a5f8dc545187b6",
+      "buggy_commit_id": "2d4053daa56c609d642b214399e046671d4a593e",
+      "run_test_sh": "python -m unittest -q tornado.test.ioloop_test.TestPeriodicCallbackMath.test_clock_backwards",
+      "run_test_sha256": "1f4d28e6d3cc2ce3ba1306b2c617bb78b47fd1cf751aeddca1e48a884114dd6e",
+      "test_files": [
+        "tornado/test/ioloop_test.py"
+      ]
+    },
+    "bugsinpy-tqdm-1": {
+      "P01_project": "tqdm",
+      "P02_test_file_loc": 62,
+      "P03_test_file_def_class_count": 5,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 1716,
+      "P06_project_python_file_count": 773,
+      "bug_info_sha256": "3bca7455cc4f7c6a5a653e91b5824f67384ecfbfc1901a6a27ae6eb7385fff44",
+      "buggy_commit_id": "8cc777fe8401a05d07f2c97e65d15e4460feab88",
+      "run_test_sh": "python3 -m pytest tqdm/tests/tests_contrib.py::test_enumerate",
+      "run_test_sha256": "ac23cf3aa708f053772f2bb16df79fbdf855188a09f8dc516bee91f5273b449d",
+      "test_files": [
+        "tqdm/tests/tests_contrib.py"
+      ]
+    },
+    "bugsinpy-tqdm-2": {
+      "P01_project": "tqdm",
+      "P02_test_file_loc": 1875,
+      "P03_test_file_def_class_count": 91,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 64121,
+      "P06_project_python_file_count": 760,
+      "bug_info_sha256": "20e7313692bc7ea7af64675b1ceccbbf0618c6b68c401ac3de68cb6366d430d8",
+      "buggy_commit_id": "bef86db56654d271838b145ad77f7040a73a7b4d",
+      "run_test_sh": "python3 -m pytest tqdm/tests/tests_tqdm.py::test_format_meter",
+      "run_test_sha256": "a34275c58852ddc675261386198e461aa6975706195d0a9647aecbc70c660998",
+      "test_files": [
+        "tqdm/tests/tests_tqdm.py"
+      ]
+    },
+    "bugsinpy-tqdm-3": {
+      "P01_project": "tqdm",
+      "P02_test_file_loc": 1764,
+      "P03_test_file_def_class_count": 92,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 59434,
+      "P06_project_python_file_count": 742,
+      "bug_info_sha256": "48e4180efbd4d0e54faf353e0e94c9a47c69b0db03903baea16660abdb7501c8",
+      "buggy_commit_id": "c2599e3cd6087429f48bae34347ec5d2473c8392",
+      "run_test_sh": "python3 -m pytest tqdm/tests/tests_tqdm.py::test_bool",
+      "run_test_sha256": "38962eab7ed15017209aa152e2d83cec769dbcc4b3831d7fd4d72151829883b2",
+      "test_files": [
+        "tqdm/tests/tests_tqdm.py"
+      ]
+    },
+    "bugsinpy-tqdm-4": {
+      "P01_project": "tqdm",
+      "P02_test_file_loc": 1686,
+      "P03_test_file_def_class_count": 84,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 57092,
+      "P06_project_python_file_count": 742,
+      "bug_info_sha256": "51bea30e7d69f67f8a49da2e59594ca4feaa08737d6f65573af795fb46936ab8",
+      "buggy_commit_id": "03b347646492131d889871939b40457d29147216",
+      "run_test_sh": "python3 -m pytest tqdm/tests/tests_tqdm.py::test_nototal",
+      "run_test_sha256": "05c0562d3d33fbfa2faaddf5cd369639570f4a99ba5626a8be18c7d7ce1d451d",
+      "test_files": [
+        "tqdm/tests/tests_tqdm.py"
+      ]
+    },
+    "bugsinpy-tqdm-5": {
+      "P01_project": "tqdm",
+      "P02_test_file_loc": 1605,
+      "P03_test_file_def_class_count": 73,
+      "P04_failing_test_count": 1,
+      "P05_test_file_source_chars": 54527,
+      "P06_project_python_file_count": 736,
+      "bug_info_sha256": "94c71277306cd397048c9624f9c92ef95f10dcd412965b4b715d49a0f5256c0f",
+      "buggy_commit_id": "19b08ab34fdbfa0275bc5cb2430436c724c7e759",
+      "run_test_sh": "python3 -m pytest tqdm/tests/tests_tqdm.py::test_bool",
+      "run_test_sha256": "38962eab7ed15017209aa152e2d83cec769dbcc4b3831d7fd4d72151829883b2",
+      "test_files": [
+        "tqdm/tests/tests_tqdm.py"
+      ]
+    }
+  }
+}

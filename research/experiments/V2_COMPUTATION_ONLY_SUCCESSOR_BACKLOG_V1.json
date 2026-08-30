@@ -78,14 +78,16 @@
     {
       "lane_id": "FM70_CONTEXTUAL_REGIME_SELECTOR",
       "owner_issue": 48,
-      "readiness": "DEV_OUTCOMES_SATISFIED_BY_E30_R11_TERMINAL__DESIGN_FROZEN__AWAITING_FEATURE_FREEZE_AND_GATE0",
+      "readiness": "TERMINAL_INSUFFICIENT_ROUTING_SIGNAL_ON_DEVELOPMENT_FOLD__GATE0_FAILED_2026_08_30__NO_HELD_OUT_DISPATCH",
       "prerequisites": [
         "pre-outcome task features frozen",
         "development folds separated from held-out test folds",
         "valid SIMPLE/F0/F2 outcomes available without reusing confirmatory test outcomes for training"
       ],
       "terminal_rule": "selector must beat always-SIMPLE/always-F0/always-F2 on held-out quality-resource frontier without simple-task regression",
-      "design_pointer": "research/experiments/fm70/FM70_CONTEXTUAL_REGIME_SELECTOR_PROSPECTIVE_DESIGN_V1.md (+ .json twin, frozen 2026-08-30, PR pending)"
+      "design_pointer": "research/experiments/fm70/FM70_CONTEXTUAL_REGIME_SELECTOR_PROSPECTIVE_DESIGN_V1.md (+ .json twin, frozen 2026-08-30, PR #87 main 93d89cd)",
+      "terminal_pointer": "research/experiments/fm70/FM70_GATE0_TERMINAL_RECEIPT.md (CV selector 3/40 vs always-SIMPLE 6/40, permutation p=1.0; positive controls A 20=20 no-fabrication, B 22>20 planted-signal-recovered)",
+      "terminal_vocabulary": "INSUFFICIENT_ROUTING_SIGNAL_ON_DEVELOPMENT_FOLD"
     },
     {
       "lane_id": "FM80_NATURALISTIC_MATH_SCIENCE_TRANSFER",

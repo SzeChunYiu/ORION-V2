@@ -1,0 +1,49 @@
+{
+  "authority": {
+    "field_status": false,
+    "publication_readiness": false,
+    "scientific_truth": false
+  },
+  "cv": "leave-one-project-out over 8 dev projects",
+  "design": "FM70_CONTEXTUAL_REGIME_SELECTOR_PROSPECTIVE_DESIGN_V1 section 6 (Gate 0)",
+  "dev_fold": {
+    "aggregation": "within-task majority over 3 repetitions",
+    "arms": [
+      "SIMPLE_DIRECT",
+      "F0_PARENT_FEDERATION",
+      "F2_ORION_METABOLIC_FULL"
+    ],
+    "tasks": 40
+  },
+  "executed_utc": "2026-08-30T05:54:38.319353+00:00",
+  "implementation_note": "design V1 pre-registered a multinomial logistic; the routing decision needs only per-arm P(success), fitted per-arm binary LR + argmax is the equivalent, better-conditioned form with 5-6 positives per arm. Recorded as a faithful operationalization, not a design change.",
+  "pass_rule": "cv_selector >= always_best + 2 AND p < 0.05",
+  "positive_control_validation": {
+    "control_A_agreeable_signal": {
+      "best_always_arm": 20,
+      "cv_successes": 20,
+      "expected": "cv == best always-arm (no fabricated routing gain)"
+    },
+    "control_B_routing_signal": {
+      "best_always_arm": 20,
+      "cv_successes": 22,
+      "expected": "cv > best always-arm (planted routing recovered)"
+    }
+  },
+  "results": {
+    "always_best_arm": "SIMPLE_DIRECT",
+    "always_best_successes": 6,
+    "cv_selector_successes": 3,
+    "oracle_ceiling_3arm": 8,
+    "per_arm_successes": {
+      "F0_PARENT_FEDERATION": 5,
+      "F2_ORION_METABOLIC_FULL": 5,
+      "SIMPLE_DIRECT": 6
+    },
+    "permutation_p_one_sided": 1.0,
+    "permutations": 1000
+  },
+  "schema_version": "orion.v2.fm70.gate0.v1",
+  "selector": "per-arm binary logistic regression on standardized P01+log1p(P02-P06); route = argmax predicted P(success); degenerate-label and unseen-project fallback = Laplace-smoothed training arm rate",
+  "verdict": "GATE0_FAIL_INSUFFICIENT_ROUTING_SIGNAL_ON_DEVELOPMENT_FOLD"
+}
