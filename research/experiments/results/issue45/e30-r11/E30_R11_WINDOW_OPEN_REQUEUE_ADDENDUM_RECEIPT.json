@@ -1,0 +1,66 @@
+{
+  "receipt_id": "E30_R11_WINDOW_OPEN_REQUEUE_ADDENDUM_RECEIPT",
+  "schema": "orion.v2.execution-state-receipt.v1",
+  "date_executed": "2026-08-30",
+  "campaign": "campaign-e30-r11-disposition-offline-core4-rep3-deficit-topup-20260828-ffcc8ed6",
+  "scientific_status": "UNCHANGED terminal_evaluation: DEFERRED (see E30_R11_MODEL_DISPATCH_DEFICIT_RECEIPT.json)",
+  "claim_grants": {
+    "grants_scientific_truth": false,
+    "grants_results": false,
+    "grants_r3_or_r4": false,
+    "record_type": "execution_state_and_recovery_only"
+  },
+  "supersedes": {
+    "receipt": "E30_R11_EARLY_REDISPATCH_TERMINAL_AND_REANCHOR_RECEIPT",
+    "sections": "reanchored_chain (md section 3, json reanchored_chain) and channel_queue_discipline rows for 3554177/3554178",
+    "still_governing": "3553440 terminal state, 3554050/3554051 cancellation, 22-envelope deficit characterization"
+  },
+  "trigger": {
+    "cause": "model channel probe returned HTTP 200 with normal completion (glm-5.2, 2026-08-30 ~02:15 LUNARC local) — Sep 3-4 availability window opened ~4 days early",
+    "policy": "never park dispatchable work behind a closed window that has opened"
+  },
+  "cancelled_deferred_chain": {
+    "jobs": [3554177, 3554178, 3554179],
+    "state": "CANCELLED by 6350 @ 2026-08-30T02:25:32 (sacct)",
+    "were_pending": true,
+    "envelopes_dispatched_under_them": 0,
+    "stock_state_unchanged": "R11 458/480 completed; E60 0/600 pristine"
+  },
+  "replacement_chain": [
+    {
+      "job_id": 3554200,
+      "script": "e30_agents_r11_redispatch_deferred.sbatch",
+      "gating": "begin-hold removed; probe-confirm loop on exact R11 channel; re-dispatches only the 22 EXECUTION_FAILED_MODEL_RESPONSE envelopes under same frozen R11 identity; on 480/480 self-chains e30_eval_r11_core480_single.sbatch then afterok e30_analysis_r11_terminal.sbatch",
+      "state_at_verify": "RUNNING since 2026-08-30T02:27:06"
+    },
+    {
+      "job_id": 3554201,
+      "script": "e60_agents_r1.sbatch (array 0-23%2)",
+      "gating": "afterok:3554200",
+      "state_at_verify": "PENDING (Dependency)"
+    },
+    {
+      "job_id": 3554202,
+      "script": "e60_redispatch_terminal_r1.sbatch",
+      "gating": "afterany:3554201; envelope recovery then eval->analysis only on full 600/600 stock, exit 3 otherwise",
+      "state_at_verify": "PENDING (Dependency)"
+    }
+  ],
+  "queue_discipline": [
+    {"job_id": 3553181, "study": "SD70", "begin": "2026-09-03T18:35"},
+    {"job_id": 3553088, "study": "E70-GC1", "begin": "2026-09-04T08:00"},
+    {"job_id": 3554200, "study": "E30-R11-redispatch", "begin": "running now (window open)"},
+    {"job_id": 3554201, "study": "E60-R1-agent-array", "begin": "afterok:3554200"}
+  ],
+  "verification": [
+    "sacct -j 3554177,3554178,3554179 -> all CANCELLED by 6350 2026-08-30T02:25:32 (asserted from sacct)",
+    "sacct/squeue -j 3554200 -> RUNNING since 2026-08-30T02:27:06",
+    "squeue -> 3554201_[0-23] and 3554202 PENDING (Dependency)",
+    "guard semantics re-read from submitted scripts: envelope-status guard, eval completeness gate, E60 full-stock gate intact"
+  ],
+  "next_actions": {
+    "on_3554200_completed": "children eval+analysis run; E30_R11_TERMINAL_ANALYSIS_480.json -> results receipt PR -> P-C/Flagship import",
+    "on_3554202_terminal": "fetch component_effects.json, verify 600/600, results receipt PR -> P-C lane import",
+    "on_3554200_failed_again": "classify channel-reclosed vs new defect; deficit-state note; corrected re-defer; never loop-resubmit against a closed window"
+  }
+}

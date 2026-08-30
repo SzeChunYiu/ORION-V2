@@ -1,0 +1,62 @@
+{
+  "receipt_id": "FMFG_R1_CHANNEL_REOPEN_AND_DISPATCH_BINDING_REPAIR_RECEIPT",
+  "schema": "orion.v2.execution-state-receipt.v1",
+  "date_executed": "2026-08-30",
+  "campaign": "orion-formal-discovery-suite (FM/FG 560 dispatches) + orion-dependence-evidence-campaign (PD S1-S4, 4440 jobs)",
+  "execution_host": "billy-old:~/sd10run/ORION-V2",
+  "scientific_status": "NONE_prospective_execution_state_and_repair_only",
+  "claim_grants": {
+    "grants_scientific_truth": false,
+    "grants_results": false,
+    "grants_r3_or_r4": false,
+    "record_type": "execution_state_and_recovery_only"
+  },
+  "channel_reopen": {
+    "days_early_vs_assumed_window": 4,
+    "assumed_window": "2026-09-03/04",
+    "auth_failure_class": "refresh-token-already-used (copied credential rotation kill) + websocket 401; NOT channel availability",
+    "auth_heal": "archived auth.json.dead-20260830; scp live auth.json from Mac; single-active-consumer discipline maintained",
+    "model_gate": "gpt-5.6-terra rejected by pinned CLI 0.129.0-alpha.15 (HTTP 400 requires newer Codex)",
+    "cli_exception": "side-by-side ~/.npm-terra codex-cli 0.147.0 via ORION_CODEX_BIN; canonical ~/.npm-global pin 0.129.0-alpha.15 untouched (documented exception, terra model only)"
+  },
+  "dispatch_binding_defect": {
+    "first_live_dispatch": "55/55 EXECUTION_FAILED_MODEL_RESPONSE, model_calls 0, ~8s each",
+    "root_cause": "backend strict mode on --output-schema: objects must declare additionalProperties:false; free-form per-task answer object cannot comply (HTTP 400 invalid_json_schema, reproduced manually on a single arm)",
+    "repair_pr": 77,
+    "repair_merge_sha": "722bc09df4a150887146357d1df70feabd829521",
+    "repair_files": [
+      "scripts/orion_formal_discovery_arms.py",
+      "scripts/orion_pd_arms.py"
+    ],
+    "repair_content": [
+      "answer serialized as JSON-encoded string on the wire (strict-compliant scalar), decoded by the runner before the answer_contract check",
+      "answer_encoding_instruction(contract) injects contract-derived worked example; without it models echo shape placeholders (array-item) as keys"
+    ],
+    "validation": "single-arm live tests on BOTH runners returned COMPLETED_PROPOSAL_ONLY with concrete answer values; CI formal-generated-suite green pre-merge",
+    "evaluator_semantics": "unchanged: EXECUTION_FAILED responses are MISSING not wrong; run_valid requires failures==0"
+  },
+  "workdir_purge_and_determinism": {
+    "reason": "55 failed response files would be preserved by dispatch-skip resume",
+    "action": "rm -rf workdir + re-prepare (never prepare --force on a live workdir)",
+    "frozen_suite_sha256": "d680c358ad4113125ffdb6e19cb8c3126c1da038613bdf501b887baecb564090",
+    "public_tasks_sha256": "0d48bbf6246a9f3670979ea521500417950ddcdf064138423aff2b376aa87fb6",
+    "private_oracle_regenerated_equals_committed_sha256": "3cc97cf2134ab9f558cf15b308cd9cf67e0aa9dc3279425b406301e73cdd9cc9",
+    "oracle_discipline": "hash-committed, removed during dispatch, restored in finally"
+  },
+  "launch_state": {
+    "driver": "~/sd10run/fmfg_pd_driver_20260830.sh (PID 2354300)",
+    "driver_log": "~/sd10run/logs-fmfg/driver-20260830T024302.log",
+    "chain": "FM/FG prepare (14 studies x 5 arms x 8 tasks = 560) -> dispatch --max-concurrency 2 -> evaluate -> run_dependence_evidence_campaign.sh all (S1 1440 + S2 960 + S3 960 + S4 1080)",
+    "census_t_plus_10min": {
+      "responses": 134,
+      "COMPLETED_PROPOSAL_ONLY": 134,
+      "failures": 0,
+      "driver_alive": true
+    }
+  },
+  "next_actions": {
+    "on_suite_complete": "fetch EVALUATION_SUMMARY.json, assert run_valid, results receipt PR, imports per RECURSIVE_DEVELOPMENT_RESULT_IMPORT_MAP_V1.json (P-B, P-A first)",
+    "on_pd_complete": "fetch CAMPAIGN_ANALYSIS_SUMMARY.json / CAMPAIGN_STATUS.json, results receipt PR, P-D section-8 kill/merge decision",
+    "resume_rule": "rerun dispatch only; never prepare --force on a live workdir (rmtree destroys resumable state)"
+  }
+}
