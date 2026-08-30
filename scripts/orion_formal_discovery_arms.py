@@ -9,7 +9,7 @@ def schema() -> dict[str,Any]:
     return {
       "type":"object",
       "properties":{
-        "answer":{"type":"object","additionalProperties":True},
+        "answer":{"type":"string"},
         "reasoning_summary":{"type":"string"},
         "falsifier":{"type":"string"},
       },
@@ -30,6 +30,33 @@ def arm_instruction(arm:str)->str:
         return "Use full ORION formal discovery: inspect structural relations, invariants, counterexamples, parent sufficiency, and only invent/revise representation when simpler routes fail."
     return "Use the smallest justified formal method."
 
+def answer_encoding_instruction(contract: dict) -> str:
+    ex = {}
+    for k, shape in (contract or {}).items():
+        if isinstance(shape, list):
+            ex[k] = ["<concrete-value>"]
+        elif isinstance(shape, dict):
+            ex[k] = {kk: "<concrete-value>" for kk in shape}
+        elif isinstance(shape, bool):
+            ex[k] = "<true-or-false>"
+        elif isinstance(shape, int):
+            ex[k] = "<concrete-integer>"
+        elif isinstance(shape, float):
+            ex[k] = "<concrete-number>"
+        else:
+            ex[k] = "<concrete-value>"
+    import json as _json
+    return (
+        "Return JSON matching the schema. `answer` MUST be a single JSON-encoded string. "
+        "Parsing that string must yield an object with EXACTLY the keys of `answer_contract`, "
+        "each mapped to a concrete value of the described shape (never the placeholder itself). "
+        "Do not add extra answer keys. "
+        "`answer_contract` = " + _json.dumps(contract or {}, sort_keys=True) + "; "
+        "so `answer` must be the string " + _json.dumps(_json.dumps(ex)) + " "
+        "with every '<concrete-value>'/'<concrete-integer>'/'<concrete-number>'/'<true-or-false>' "
+        "replaced by the real concrete value(s)."
+    )
+
 def prompt(req:dict[str,Any])->str:
     task=req["task"]
     return f"""You are a protected gold-blind formal-reasoning experimental arm.
@@ -40,7 +67,7 @@ ARM PROCEDURE: {arm_instruction(str(req['arm_id']))}
 PUBLIC TASK:
 {json.dumps(task,indent=2,sort_keys=True)}
 
-Return JSON matching the schema. `answer` MUST contain exactly the keys described by `answer_contract`, with concrete values (not type names). Do not add extra answer keys.
+{answer_encoding_instruction(req['task'].get('answer_contract', {}))}
 Do not claim scientific truth, a new mathematical theory, ORION superiority, field status, or publication readiness.
 """
 
@@ -56,7 +83,9 @@ def execute(req:dict[str,Any])->dict[str,Any]:
         if cp.returncode!=0 or not op.exists(): raise RuntimeError(f"Codex failed ({cp.returncode}): {cp.stdout[-2000:]}")
         data=json.loads(op.read_text())
     contract=req["task"].get("answer_contract",{})
-    answer=data["answer"]
+    raw=data["answer"]
+    answer=json.loads(raw) if isinstance(raw,str) else raw
+    if not isinstance(answer,dict): raise ValueError("decoded answer is not an object")
     if set(answer)!=set(contract): raise ValueError(f"answer keys {sorted(answer)} do not match contract {sorted(contract)}")
     return {
       "schema_version":"orion.v2.formal-discovery-response.v1",
