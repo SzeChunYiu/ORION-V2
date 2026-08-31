@@ -1,0 +1,65 @@
+{
+  "schema_version": "orion.v2.e40-matched.m5p-stage1-design.v1",
+  "title": "E40-m5' Stage 1 truth-calibration channel screen",
+  "class": "REGISTERED_REANALYSIS__NO_MODEL_CALLS__NO_NATIVE_RUNS__NO_RESCUE",
+  "parent_route": "m4 G2_AND_NOT_G1 -> draft m5-prime feedback-channel design",
+  "parent_evidence": {
+    "receipt": "research/experiments/e40-matched/E40_M4_SHIPPING_COUNTERFACTUAL_OUTCOME_RECEIPT.md",
+    "pr": 130,
+    "main_sha": "7b8f52f",
+    "m4_rollup_json_sha256": "b8d2554097b43299a3aff8e200c580476baded8150b057e997a5f9898a732817"
+  },
+  "question": "does any frozen composite of the 8 already-visible feedback fields rank truth (raw wasserstein) out-of-sample (select on R, confirm on P)?",
+  "cohorts": {
+    "P_confirm": {"chains": "campaign-e40-m3/run/chains/*_f2_{ds}_{rep}", "results": "campaign-e40-m3/run/results", "pairs": 12},
+    "R_select": {"chains": "campaign-e40-m2/run/chains/{24..35}_f2_{ds}_{rep}", "results": "campaign-e40-m2/run/results", "pairs": 12}
+  },
+  "visible_channel_schema": [
+    "chipseq_evaluation.true_positives", "corum_evaluation.true_positives",
+    "ligand_receptor_evaluation.true_positives", "pooled_biological_evaluation.true_positives",
+    "pooled_biological_sigificant_evaluation.true_positives", "run_time",
+    "string_network_evaluation.true_positives", "string_physical_evaluation.true_positives"
+  ],
+  "candidates": {
+    "pooled_tp": {"def": "pooled_biological_evaluation.true_positives", "direction": 1, "note": "m4 baseline"},
+    "pooled_sig_tp": {"def": "pooled_biological_sigificant_evaluation.true_positives", "direction": 1},
+    "corum_tp": {"def": "corum_evaluation.true_positives", "direction": 1},
+    "string_net_tp": {"def": "string_network_evaluation.true_positives", "direction": 1},
+    "string_phys_tp": {"def": "string_physical_evaluation.true_positives", "direction": 1},
+    "chipseq_tp": {"def": "chipseq_evaluation.true_positives", "direction": 1},
+    "ligand_tp": {"def": "ligand_receptor_evaluation.true_positives", "direction": 1},
+    "fast_runtime": {"def": "run_time", "direction": -1},
+    "zmean_tp": {"def": "mean of within-chain z-scores over the 6 TP channels", "direction": 1},
+    "rankmean_tp": {"def": "mean of within-chain ranks over the 6 TP channels", "direction": 1},
+    "sig_purity": {"def": "pooled_sig_tp / max(pooled_tp, 1)", "direction": 1},
+    "efficiency": {"def": "within-chain z(pooled_tp) - within-chain z(run_time)", "direction": 1}
+  },
+  "statistics": {
+    "per_chain": "Spearman(direction * candidate, truth) over cycles with finite truth; chains with <3 finite pairs excluded and counted",
+    "pooled": "arithmetic mean of per-chain rho (gate); Fisher-z reference reported",
+    "perm": "within-chain cycle-shuffle, two-sided |mean rho|, seed 20260831 (m4 M1 seed, GS0-exact), 10000 draws",
+    "census": "true-rank of candidate-argmax cycle; CT3-style TP delta vs f0_best; leave-one-chain-out rho stability for the winner on P"
+  },
+  "gates": {
+    "GS0_M4_REPRODUCED": {"hard": true, "rule": "reproduce m4 rollup M1 pooled_rho_arithmetic and perm_p_two_sided for pooled_tp on both cohorts, |delta| <= 1e-9, rollup sha256 pinned"},
+    "GS1_SELECTION_AVAILABLE_ON_R": {"rule": ">=1 candidate other than pooled_tp with R perm_p <= 0.05 and directed pooled rho > 0; winner = max directed pooled rho"},
+    "GS2_WINNER_CONFIRMED_ON_P": {"rule": "winner P directed pooled rho >= 0.4 AND P perm_p <= 0.05"}
+  },
+  "routing_preregistered": {
+    "GS2_pass": "draft m5-double-prime prospective interventional: fresh 12x4 F2 campaign, winner composite surfaced in feedback+prompt, shipping = winner-argmax, m-series gate battery",
+    "GS1_pass_GS2_fail": "draft Stage-2b seed-replica stability-probe design (only remaining truth-anchor without substrate modification; needs new native runs)",
+    "GS1_fail": "same Stage-2b route; strengthens terminal reading if Stage-2b fails"
+  },
+  "controls": {
+    "C2_leakage": "FORBIDDEN_SUBSTRINGS absent from every redacted_feedback.json read",
+    "full_table": "all 24 cohort-by-candidate rows reported; no post-hoc candidate additions"
+  },
+  "custody": {
+    "input_manifest": "sha256 of every file read incl. the m4 rollup",
+    "output": ["E40_M5P_CHANNEL_SCREEN_ROLLUP_V1.json", "E40_M5P_CHANNEL_SCREEN_ROLLUP_V1.md"],
+    "lunarc_path": "campaign-e40-m5p/stage1/rollup",
+    "archive": "research/experiments/e40-matched/rollup-m5p-stage1/",
+    "determinism": "byte-identical JSON on re-run; only RNG is the frozen-seed shuffle"
+  },
+  "no_rescue_clause": "screen attributes and selects only; every revival requires the prospective m5-double-prime or Stage-2b execution under its own freeze"
+}
