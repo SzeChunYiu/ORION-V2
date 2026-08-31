@@ -100,6 +100,41 @@ def test_representation_locus_only_suggests_existing_escalation_family() -> None
     assert receipt.action_adoption_authorized is False
 
 
+def test_problem_criterion_misspecification_suggests_reformulation_not_model_change() -> None:
+    problem = _hypothesis("h:problem", DiscrepancyLocus.PROBLEM_CRITERION)
+    model = _hypothesis("h:model", DiscrepancyLocus.EPISTEMIC_MODEL)
+    receipt = assess_discrepancy_locus(
+        (problem, model),
+        LocusDiagnosisEvidence(
+            discrepancy_witness_ids=("witness:wrong-specification",),
+            supported_hypothesis_ids=("h:problem",),
+            defeated_hypothesis_ids=("h:model",),
+            evaluator_adequate=True,
+        ),
+    )
+    assert receipt.status is LocusDiagnosisStatus.ACTIONABLE_LOCUS_HYPOTHESIS
+    assert EpistemicAction.REFORMULATE_PROBLEM in receipt.candidate_actions
+    assert EpistemicAction.CHANGE_MODEL not in receipt.candidate_actions
+
+
+def test_evaluator_failure_is_not_silently_collapsed_into_measurement_or_model() -> None:
+    evaluator = _hypothesis("h:evaluator", DiscrepancyLocus.EVALUATOR_VALIDATION)
+    measurement = _hypothesis("h:measurement", DiscrepancyLocus.OBSERVATION_MEASUREMENT)
+    receipt = assess_discrepancy_locus(
+        (evaluator, measurement),
+        LocusDiagnosisEvidence(
+            discrepancy_witness_ids=("witness:blind-oracle",),
+            supported_hypothesis_ids=("h:evaluator",),
+            defeated_hypothesis_ids=("h:measurement",),
+            evaluator_adequate=True,
+        ),
+    )
+    assert receipt.status is LocusDiagnosisStatus.ACTIONABLE_LOCUS_HYPOTHESIS
+    assert receipt.live_loci == (DiscrepancyLocus.EVALUATOR_VALIDATION,)
+    assert EpistemicAction.CHALLENGE in receipt.candidate_actions
+    assert EpistemicAction.CHANGE_MODEL not in receipt.candidate_actions
+
+
 def test_ambiguous_loci_remain_plural_instead_of_forcing_one_cause() -> None:
     measurement = _hypothesis("h:measurement", DiscrepancyLocus.OBSERVATION_MEASUREMENT)
     model = _hypothesis("h:model", DiscrepancyLocus.EPISTEMIC_MODEL)
