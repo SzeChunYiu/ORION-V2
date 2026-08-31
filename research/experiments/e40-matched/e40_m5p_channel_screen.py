@@ -70,7 +70,8 @@ def _ranks(xs: list[float]) -> list[float]:
 
 
 def _z(xs: list[float]) -> list[float]:
-    m, s = mean(xs), math.sqrt(sum((x - m) ** 2 for x in xs) / len(xs))
+    m = mean(xs)
+    s = math.sqrt(sum((x - m) ** 2 for x in xs) / len(xs))
     return [(x - m) / s if s > 0 else 0.0 for x in xs]
 
 
