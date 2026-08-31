@@ -1,0 +1,67 @@
+{
+  "schema_version": "orion.v2.pc-r6-design.v1",
+  "title": "PC-R6 full-regression evaluator lane over frozen E30-R11/E60 proposals",
+  "class": "REGISTERED_EVALUATOR_LANE_EXTENSION__ZERO_MODEL_CALLS__NEW_SUITE_COMPUTE_ONLY__NO_MEAN_RESCUE",
+  "theory_revision": "B: obligations are tail insurance, not mean alpha",
+  "parent_evidence": {
+    "pc_status": "R2_REGISTERED_SCALE_NULL_IMPORTED__GENERATED_CELLS_CONDITIONAL_SUPPORT_ONLY__REAL_REPAIR_CONFIRMATORY_NULL__E60_COMPONENT_NULL",
+    "pc_r5_slot": "CANNOT_CHECK (structural, frozen-lane adapter writes critical_new_failure_count=None x480; E60 x600, 0 checkable tasks all contrasts)",
+    "e30_r11_receipt": "research/experiments/results/issue45/e30-r11/E30_R11_TERMINAL_RESULTS_RECEIPT.md",
+    "e60_receipt": "research/experiments/results/issue45/e60-r1-component-ablation/RECEIPT.md",
+    "endpoint_registration": "research/experiments/ORION_REAL_PROBLEM_CONFIRMATORY_SUITE_V1.json (primary_outcomes: full_regression_suite_passed, critical_new_failure_count) + ORION_REAL_PROBLEM_ANALYSIS_PLAN_V1.md (margin 2pp, 'average gain cannot offset a critical gate failure')",
+    "named_followup_source": "E30-R11 terminal receipt: 'requires a new frozen-lane stage that runs each project's full regression suite - a named follow-up, not a re-analysis'"
+  },
+  "cells": {
+    "primary_e30r11": {
+      "campaign": "campaign-e30-r11-disposition-offline-core4-rep3-deficit-topup-20260828-ffcc8ed6",
+      "arms": ["F2_ORION_METABOLIC_FULL", "F0_PARENT_FEDERATION", "SAME_MODEL_REFLECTION", "SIMPLE_DIRECT"],
+      "evaluations": 480
+    },
+    "component_e60": {
+      "campaign": "campaign-e60-r1-component-ablation-20260829-38aedc50",
+      "arms": ["F2_ORION_METABOLIC_FULL", "F2_MINUS_DECOMPOSITION", "F2_MINUS_NATIVE_RECOVERY", "F2_MINUS_COUNTERPROBE", "F2_MINUS_SELECTIVE_REOPEN"],
+      "evaluations": 600
+    },
+    "substrate": {"benchmark": "bugsinpy", "commit": "11c5f1eea954a42132cfd06bf257766a7963e0fd", "projects": 8, "tasks": 40, "reps": 3}
+  },
+  "stage_spec": {
+    "suite_definition": "all test cases collected by the frozen runtime in the test file(s) referenced by the task's registered test command; parametrized instances count individually",
+    "baseline_pass": "per task, buggy workspace + task test patch, arm-independent; baseline-failing tests cannot be new failures",
+    "patched_pass": "per arm x rep: apply proposal patch (existing frozen-lane machinery), compile, run same frozen suite",
+    "derived": {"critical_new_failure_count": "tests passing at baseline and failing patched", "full_regression_suite_passed": "registered failing test passes AND critical_new_failure_count == 0"},
+    "no_imputation": "non-applying/non-compiling -> None, excluded from RD denominators, compile_failure_rate reported; analysis layer authoritative (summary-layer `or 0` imputation explicitly not used)",
+    "suite_timeout_s": 900,
+    "isolation": "per-task scratch workspaces, no network, read-only over frozen trees, sha256 manifest on every file read"
+  },
+  "statistics": {
+    "unit": "task after within-task rep aggregation (majority, E60 convention)",
+    "endpoint": "binary any_critical_new_failure per task per arm",
+    "inference": "paired risk differences; bootstrap 10000 draws PROJECT-stratified seed 20260902; exact discordant tests when discordants <= 10; one-sided 97.5% upper bound for non-inferiority, two-sided 95% for superiority",
+    "families": {"cell1": 3, "cell2": 4},
+    "multiplicity": "Holm within each cell's pre-registered family"
+  },
+  "gates": {
+    "GR0_LANE_VALID": {
+      "hard": true,
+      "rule_a": "reproduce frozen native_success vector bit-exactly for all 480+600 evaluations",
+      "rule_b": "known-answer control: frozen 5-task subset (one per project where available), gold patch flips registered failing test AND critical_new_failure_count == 0 under the same suite definition; failure = lane defect, fix and re-freeze, no gate evaluation"
+    },
+    "GR1_CRITICAL_NON_INFERIORITY": "cell1 F2 vs F0: upper bound one-sided 97.5% CI RD(F2-F0) <= 0.02",
+    "GR2_TAIL_INSURANCE": "any pre-registered contrast with point RD < 0 and bootstrap 95% CI excluding 0",
+    "GR3_COMPONENT_NECESSITY_TAIL": "cell2 some component with RD(MINUS_X - FULL) lower bound >= +0.02"
+  },
+  "routing_preregistered": {
+    "GR0_fail": "lane defect: repair + re-freeze; nothing evaluates",
+    "GR1_pass_GR2_GR3_null": "P-C closes mean-null + tail-safe at registered margin (boundary/contracted-result paper class, P-D precedent)",
+    "GR1_fail": "revision B refuted harmful-direction; contraction matrix + manuscript limitation as registered result",
+    "GR2_or_GR3_fire": "P-C first registered positive evidence class; manuscript result block re-opened under a new freeze"
+  },
+  "no_rescue_clause": "no mean-success claim may issue from this lane; no re-dispatch of arms; only re-evaluation of the exact frozen proposals; no endpoint/margin/family/suite change after first suite execution; mid-run lane defect -> halt, receipt, re-freeze",
+  "custody": {
+    "runner": "pc_r6_fullreg_eval.py (sha256 stamped in dispatch PR); reuses frozen-lane patch-application path",
+    "campaign_id": "campaign-pc-r6-fullreg-e30r11-e60-<YYYYMMDD>-<manifest8>",
+    "compute": "40 baseline + 1080 patched + 5 gold suites ~= 30-90 CPU-hours; LUNARC array queued behind SD70 (3553181) and E70-GC1 (3553088)",
+    "outputs": ["PC_R6_FULLREG_ROLLUP_V1.json", "PC_R6_FULLREG_ROLLUP_V1.md", "PC_R6_OUTCOME_RECEIPT.md"],
+    "archive": "research/experiments/results/issue<current>/pc-r6/"
+  }
+}
