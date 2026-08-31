@@ -1,0 +1,53 @@
+{
+  "schema_version": "orion.v2.pc-r7-design.v1",
+  "title": "PC-R7 naturalistic-domain obligation cell",
+  "class": "BINDING_CELL_DESIGN__PRE_INTAKE_FREEZE__NO_DISPATCH_YET__NO_TRANSFER_CLAIM",
+  "theory_revision": "A: obligation structure binds to naturalistic constraint structure (externally-authored, verifiable, consequential constraints are the working regime; internal constraints are mean-neutral)",
+  "parent_evidence": {
+    "pc_status": "GENERATED_CELLS_CONDITIONAL_SUPPORT_ONLY; decisive list requires >=1 naturalistic scientific-domain control; import map SD80 -> PC-C4",
+    "generated_results_rule": "FORMAL_DISCOVERY_GENERATED_CAMPAIGN_PLAN_V1.json: generated_results_alone_grant_cross_domain_naturalistic_claims=false",
+    "e30_e60": "terminal mean-null (E30-R11 480/480, E60 component null); tail endpoint owned by PC-R6",
+    "fm80_protocol": "research/experiments/FM80_NATURALISTIC_TRANSFER_DECISIVE_PROTOCOL_V1.md (domains, eligibility, remoteness, adjudication, resource parity - used as infrastructure, not altered)",
+    "witness_sources": "MLRC Journal Track (39 forum pages, linkage 24/30) + RP:P REGISTERED_REPLICATION_VERDICT (SD30/C3/C4 recon)"
+  },
+  "case_matrix": {
+    "domains": "FM80 s2: >=1 formal + 2 empirical sciences, >=30 eligible cases/domain",
+    "provenance_tag": {
+      "rule": "classify each case's binding constraints from the public record only, pre-outcome, blind to arms",
+      "levels": ["EXTERNAL_VERIFIABLE", "INTERNAL"],
+      "populations": ">=15 cases/domain per tag before the cell may run, else INSUFFICIENT_ELIGIBLE_NATURALISTIC_CASES (contraction terminal)"
+    }
+  },
+  "arms": {
+    "OBLIGATION": "full P-C obligation-driven control (decompose, ledger, satisfy/defer, selective reopen)",
+    "OBLIGATION_FREE": "same model/budget/corpus/output contract, direct solve without the ledger",
+    "parity": "FM80 s5 resource parity verbatim; no donor/transfer machinery in either arm"
+  },
+  "endpoints": {
+    "primary_external_stratum": "case-level registered decision quality on the case's own verifiable outcome, FM80 s7 independent adjudication blind to arm, binary per case",
+    "co_primary_safety": "CRITICAL_CONSTRAINT_VIOLATION (incl. silent constraint drops), non-compensatory, both strata",
+    "secondary": ["ledger coverage of external constraints", "defer/reopen counts", "wall-time/token parity"]
+  },
+  "statistics": {
+    "design": "paired within case; risk differences, exact paired tests, 95% intervals; Holm across >=3 domain-level primary tests",
+    "strata": "pre-registered: external stratum is THE primary; internal stratum non-inferiority margin +5pp"
+  },
+  "gates": {
+    "GN0_INTAKE_VALID": "two independent taggers, >=90% agreement on 20-case calibration set pre-run, disagreements adjudicated before run",
+    "GN1_EXTERNAL_BINDING": "external stratum: OBLIGATION >= OBLIGATION_FREE by >=10pp in >=2/3 domains, Holm CIs excluding 0",
+    "GN2_INTERNAL_HARMLESS": "internal stratum RD upper bound <= +5pp AND no CRITICAL_CONSTRAINT_VIOLATION increase in any stratum"
+  },
+  "routing_preregistered": {
+    "GN0_fail_or_insufficient": "INSUFFICIENT_ELIGIBLE_NATURALISTIC_CASES contraction terminal; P-C closes on generated+boundary contract",
+    "GN1_and_GN2_pass": "theory A survives; PC-C4 evidence; P-C result block re-opened under new freeze",
+    "GN1_fail_GN2_pass": "theory A refuted; regime boundary stated as registered result; P-C closes",
+    "GN2_fail": "obligations harm naturalistic execution; contraction matrix + manuscript limitation"
+  },
+  "no_rescue_clause": "no generated-cell re-reading; no transfer claim (FM80 owns it); no endpoint/stratum-margin/arm/tagging-rule change after intake begins; no claim until the cell executes under its own dispatch freeze",
+  "custody": {
+    "freeze": "this PR; tagging rule + runner freeze in the dispatch PR",
+    "dependency_chain": ["SD70 (3553181, Sep 3)", "E70-GC1 (3553088, Sep 4)", "PC-R6 suite compute", "SD80 case-matrix freeze", "this cell"],
+    "outputs": ["PC_R7_NATURALISTIC_OBLIGATION_CELL_ROLLUP_V1.json", "PC_R7_NATURALISTIC_OBLIGATION_CELL_ROLLUP_V1.md", "PC_R7_OUTCOME_RECEIPT.md"],
+    "archive": "research/experiments/results/issue<current>/pc-r7/"
+  }
+}
