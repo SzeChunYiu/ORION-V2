@@ -58,7 +58,7 @@ def test_target_change_record_does_not_self_authorize_machine_knowledge() -> Non
             supported_hypothesis_ids=("h:target",),
             defeated_hypothesis_ids=(),
             unresolved_hypothesis_ids=("h:model",),
-            evaluator_adequate=True,
+            diagnostic_evaluator_adequate=True,
         ),
     )
     assert receipt.status is LocusDiagnosisStatus.MULTIPLE_LIVE_LOCUS_HYPOTHESES
@@ -74,7 +74,7 @@ def test_measurement_drift_is_distinct_from_model_failure() -> None:
             discrepancy_witness_ids=("witness:calibration-shift",),
             supported_hypothesis_ids=("h:measurement",),
             defeated_hypothesis_ids=("h:model",),
-            evaluator_adequate=True,
+            diagnostic_evaluator_adequate=True,
         ),
     )
     assert receipt.status is LocusDiagnosisStatus.ACTIONABLE_LOCUS_HYPOTHESIS
@@ -92,7 +92,7 @@ def test_representation_locus_only_suggests_existing_escalation_family() -> None
             discrepancy_witness_ids=("witness:expressive-ceiling",),
             supported_hypothesis_ids=("h:representation",),
             defeated_hypothesis_ids=("h:process",),
-            evaluator_adequate=True,
+            diagnostic_evaluator_adequate=True,
         ),
     )
     assert receipt.status is LocusDiagnosisStatus.ACTIONABLE_LOCUS_HYPOTHESIS
@@ -109,7 +109,7 @@ def test_problem_criterion_misspecification_suggests_reformulation_not_model_cha
             discrepancy_witness_ids=("witness:wrong-specification",),
             supported_hypothesis_ids=("h:problem",),
             defeated_hypothesis_ids=("h:model",),
-            evaluator_adequate=True,
+            diagnostic_evaluator_adequate=True,
         ),
     )
     assert receipt.status is LocusDiagnosisStatus.ACTIONABLE_LOCUS_HYPOTHESIS
@@ -126,7 +126,7 @@ def test_evaluator_failure_is_not_silently_collapsed_into_measurement_or_model()
             discrepancy_witness_ids=("witness:blind-oracle",),
             supported_hypothesis_ids=("h:evaluator",),
             defeated_hypothesis_ids=("h:measurement",),
-            evaluator_adequate=True,
+            diagnostic_evaluator_adequate=True,
         ),
     )
     assert receipt.status is LocusDiagnosisStatus.ACTIONABLE_LOCUS_HYPOTHESIS
@@ -143,7 +143,7 @@ def test_ambiguous_loci_remain_plural_instead_of_forcing_one_cause() -> None:
         LocusDiagnosisEvidence(
             discrepancy_witness_ids=("witness:residual",),
             supported_hypothesis_ids=("h:measurement", "h:model"),
-            evaluator_adequate=True,
+            diagnostic_evaluator_adequate=True,
         ),
     )
     assert receipt.status is LocusDiagnosisStatus.MULTIPLE_LIVE_LOCUS_HYPOTHESES
@@ -153,7 +153,7 @@ def test_ambiguous_loci_remain_plural_instead_of_forcing_one_cause() -> None:
     }
 
 
-def test_blind_evaluator_returns_cannot_identify() -> None:
+def test_blind_diagnostic_evaluator_returns_cannot_identify() -> None:
     target = _hypothesis("h:target", DiscrepancyLocus.TARGET_WORLD)
     measurement = _hypothesis("h:measurement", DiscrepancyLocus.OBSERVATION_MEASUREMENT)
     receipt = assess_discrepancy_locus(
@@ -161,7 +161,7 @@ def test_blind_evaluator_returns_cannot_identify() -> None:
         LocusDiagnosisEvidence(
             discrepancy_witness_ids=("witness:drift",),
             unresolved_hypothesis_ids=("h:target", "h:measurement"),
-            evaluator_adequate=False,
+            diagnostic_evaluator_adequate=False,
         ),
     )
     assert receipt.status is LocusDiagnosisStatus.CANNOT_IDENTIFY
@@ -174,7 +174,7 @@ def test_no_discrepancy_witness_blocks_locus_diagnosis() -> None:
         LocusDiagnosisEvidence(
             discrepancy_witness_ids=(),
             supported_hypothesis_ids=("h:model",),
-            evaluator_adequate=True,
+            diagnostic_evaluator_adequate=True,
         ),
     )
     assert receipt.status is LocusDiagnosisStatus.NO_DISCREPANCY_WITNESSED
