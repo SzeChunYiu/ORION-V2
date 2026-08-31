@@ -6,10 +6,11 @@ It does not model the world as a machine and it does not grant privileged access
 to an objective world state.
 
 The primary engineering use is discrepancy-locus diagnosis: before a research
-system changes a model, representation, tool, workflow, or scientific claim, it
-should keep distinct hypotheses that the relevant discrepancy originates in the
-target, the observation/measurement channel, the current epistemic model, the
-representation/generative regime, or the research process/tool/workflow.
+system changes a model, representation, problem, evaluator, tool, workflow, or
+scientific claim, it should keep distinct hypotheses that the relevant
+discrepancy originates in the target, observation/measurement channel, current
+epistemic model, representation/generative regime, registered problem/criterion,
+evaluator/validation contract, or research process/tool/workflow.
 
 The module is intentionally not re-exported from :mod:`orion_v2.kernel`.
 Receipts and action suggestions are non-authorizing: they can make a diagnosis
@@ -38,12 +39,20 @@ def _ids(values: Iterable[str], *, name: str, allow_empty: bool = False) -> tupl
 
 
 class DiscrepancyLocus(StrEnum):
-    """Candidate locus responsible for a witnessed scientific discrepancy."""
+    """Candidate locus responsible for a witnessed scientific discrepancy.
+
+    The set is an operational responsibility interface rather than a claim that
+    all scientific error admits one universal partition.  More than one locus
+    may remain live, and domain-native reconstruction can contract or refine a
+    locus before protected use.
+    """
 
     TARGET_WORLD = "TARGET_WORLD"
     OBSERVATION_MEASUREMENT = "OBSERVATION_MEASUREMENT"
     EPISTEMIC_MODEL = "EPISTEMIC_MODEL"
     REPRESENTATION_REGIME = "REPRESENTATION_REGIME"
+    PROBLEM_CRITERION = "PROBLEM_CRITERION"
+    EVALUATOR_VALIDATION = "EVALUATOR_VALIDATION"
     PROCESS_TOOL_WORKFLOW = "PROCESS_TOOL_WORKFLOW"
 
 
@@ -166,6 +175,15 @@ _LOCUS_CANDIDATE_ACTIONS: dict[DiscrepancyLocus, tuple[EpistemicAction, ...]] = 
         EpistemicAction.CHALLENGE,
         EpistemicAction.CHANGE_REPRESENTATION,
         EpistemicAction.TRANSFORM_REGIME,
+    ),
+    DiscrepancyLocus.PROBLEM_CRITERION: (
+        EpistemicAction.CHALLENGE,
+        EpistemicAction.REFORMULATE_PROBLEM,
+    ),
+    DiscrepancyLocus.EVALUATOR_VALIDATION: (
+        EpistemicAction.CHALLENGE,
+        EpistemicAction.BUILD_TOOL,
+        EpistemicAction.CHANGE_WORKFLOW,
     ),
     DiscrepancyLocus.PROCESS_TOOL_WORKFLOW: (
         EpistemicAction.CHALLENGE,
