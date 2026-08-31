@@ -1,0 +1,299 @@
+{
+  "schema_version": "orion-v2.machine-epistemics-decisive-studies.v1",
+  "state_date": "2026-09-01",
+  "status": "PROSPECTIVE_UNEXECUTED",
+  "base_evidence_mechanics_head": "4165dd2d3c621d9f60e0ff492560baf3afbf7c5f",
+  "authority": {
+    "scientific_truth": false,
+    "novelty": false,
+    "field_status": false,
+    "architecture_adoption": false,
+    "publication_authority": false
+  },
+  "hypotheses": {
+    "H_ME": "Cross-transition epistemic control yields protected scientific decisions beyond the strongest faithful parent composition under matched information, evaluator custody and resources.",
+    "H0": "The strongest faithful parent composition makes the same protected decisions with equal or better reliability and cost."
+  },
+  "global_freeze_requirements": [
+    "protected_case_ids",
+    "train_dev_protected_partition",
+    "model_provider_version_and_inference_settings",
+    "tool_library_data_snapshots",
+    "information_available_per_arm",
+    "evaluator_and_adjudication_contracts",
+    "resource_budgets",
+    "primary_secondary_outcomes",
+    "tie_and_contraction_rule",
+    "missing_censored_handling",
+    "randomization_and_seeds",
+    "pilot_only_tuning_surface",
+    "protected_result_custody"
+  ],
+  "baseline_hierarchy": [
+    "B0_DIRECT_TASK_SYSTEM",
+    "B1_CALIBRATED_UNCERTAINTY_ABSTENTION",
+    "B2_PROVENANCE_VERIFIER_RUNTIME",
+    "B3_DIAGNOSIS_METAREASONING_VOI",
+    "B4_TMS_ASSURANCE_FEDERATION",
+    "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION",
+    "M_MACHINE_EPISTEMICS"
+  ],
+  "studies": [
+    {
+      "id": "ME-X1",
+      "name": "Transition Coupling Benchmark",
+      "claim_ids": ["ME-H01", "ME-H02", "ME-H03", "ME-H10"],
+      "case_families": [
+        "claim_binding_error",
+        "measurement_calibration_break",
+        "hidden_dependence",
+        "invalid_transport",
+        "defeated_prerequisite",
+        "blind_evaluator",
+        "authority_mismatch",
+        "formal_proof_wrong_specification",
+        "local_compatibility_global_obstruction",
+        "fully_warranted_negative_controls"
+      ],
+      "required_arms": ["B0", "B2", "B4", "B5", "M"],
+      "required_ablations": [
+        "M_MINUS_PROVENANCE_DEPENDENCE",
+        "M_MINUS_EVALUATOR_CONTRACT",
+        "M_MINUS_TRANSPORT",
+        "M_MINUS_REOPENING",
+        "M_MINUS_AUTHORITY",
+        "M_MINUS_UNRESOLVED_TERMINAL"
+      ],
+      "primary_outcomes": [
+        "exact_transition_decision",
+        "false_update",
+        "over_reopening",
+        "under_reopening",
+        "invalid_transport",
+        "false_closure",
+        "correct_unresolved_or_authority_abstention",
+        "resource_cost"
+      ],
+      "field_residual_requirement": "A B5 composition error must be prevented by a named ME cross-transition condition, restored by its ablation, and transferred to an independently authored/native-domain case family.",
+      "kill": [
+        "B5_ties_or_wins_quality_cost_frontier",
+        "M_has_extra_information_unavailable_to_B5",
+        "M_wins_only_by_uniform_over_abstention",
+        "no_receipt_field_has_omission_specific_causal_value"
+      ]
+    },
+    {
+      "id": "ME-X2",
+      "name": "Obstruction Classification and Minimum Escalation",
+      "claim_ids": ["ME-H04", "ME-H05"],
+      "obstruction_families": [
+        "SEARCH_INSUFFICIENT",
+        "MISSING_PREMISE_OR_DATA",
+        "MODEL_FAMILY_INADEQUATE",
+        "REPRESENTATION_INSUFFICIENT",
+        "PROBE_ACTION_INSUFFICIENT",
+        "MEASUREMENT_OR_EVALUATOR_BLIND",
+        "FORMALISM_OR_OPERATOR_INSUFFICIENT",
+        "PROBLEM_OBJECTIVE_MISSPECIFIED",
+        "TOOL_INSTRUMENT_INADEQUATE",
+        "WORKFLOW_INADEQUATE",
+        "NO_ESCALATION_NEEDED",
+        "CANNOT_IDENTIFY"
+      ],
+      "intervention_levels": {
+        "0": "ACTION_PARAMETER",
+        "1": "LOCAL_REPAIR_COMPOSITION",
+        "2": "MODEL_HYPOTHESIS_EXPANSION",
+        "3": "REPRESENTATION_REGIME_TRANSITION",
+        "4": "PROBLEM_OBJECTIVE_REFORMULATION",
+        "5": "METHOD_TOOL_INSTRUMENT_INVENTION",
+        "6": "WORKFLOW_META_SKILL_REVISION",
+        "7": "FRAMEWORK_REVISION",
+        "8": "CONSTITUTION_PROPOSAL_EXTERNAL_AUTHORITY_ONLY"
+      },
+      "required_arms": ["B0", "B1", "B3", "MDA_STYLE_MODEL_EXPANSION", "B5", "M"],
+      "primary_outcomes": [
+        "obstruction_classification",
+        "minimal_level_accuracy",
+        "false_escalation",
+        "missed_escalation",
+        "verified_success",
+        "intervention_cost",
+        "oracle_minimal_intervention_regret",
+        "failure_recurrence"
+      ],
+      "mechanistic_requirement": "Any ME gain must be mediated by correct obstruction identification rather than additional search budget.",
+      "kill": [
+        "B3_or_B5_matches_routing_and_cost",
+        "gain_explained_by_more_retries",
+        "false_escalation_cost_offsets_gain",
+        "taxonomy_unstable_under_native_changed_vocabulary_review"
+      ]
+    },
+    {
+      "id": "ME-X3",
+      "name": "Formal Mathematical Discovery and Regime Change",
+      "claim_ids": ["ME-H06", "ME-MATH"],
+      "environment": [
+        "frozen_Lean_version",
+        "frozen_mathlib_commit",
+        "frozen_model_and_budget",
+        "network_disabled_unless_registered_retrieval_arm",
+        "proof_verification_separate_from_specification_intent"
+      ],
+      "problem_strata": [
+        "DIRECT_SEARCH",
+        "MISSING_LEMMA",
+        "REPRESENTATION_CHANGE",
+        "DECEPTIVE_CHANGE",
+        "UNDERDETERMINED",
+        "SPECIFICATION_MISMATCH",
+        "TRANSFER"
+      ],
+      "required_baselines": [
+        "direct_LLM_Lean_search",
+        "retrieval_library_search",
+        "self_reflection_retry",
+        "lemma_abstraction_parent",
+        "strongest_available_proof_search_under_same_budget",
+        "M_obstruction_minimum_escalation"
+      ],
+      "primary_outcomes": [
+        "verified_solve_rate",
+        "specification_intent_match",
+        "proof_search_cost",
+        "false_representation_change",
+        "held_out_lemma_reuse",
+        "family_transfer_gain",
+        "unsolved_CANNOT_CHECK_calibration"
+      ],
+      "contamination_controls": [
+        "time_sliced_or_newly_generated_theorem_families",
+        "theorem_name_string_search_audit",
+        "paraphrase_controls",
+        "hidden_transformations",
+        "retrieval_only_comparison"
+      ],
+      "kill": [
+        "gain_vanishes_against_matched_lemma_abstraction_parent",
+        "gain_is_extra_compute_or_library_exposure",
+        "regime_change_is_post_hoc_label_for_ordinary_search",
+        "specification_mismatch_harm_dominates_verified_gain"
+      ]
+    },
+    {
+      "id": "ME-X4",
+      "name": "Selective Reopening under Dynamic Evidence",
+      "claim_ids": ["ME-H07"],
+      "graph_events": [
+        "shared_ancestor_dependence",
+        "retraction_or_correction",
+        "calibration_invalidation",
+        "transport_invalidation",
+        "evaluator_change",
+        "independent_support",
+        "unresolved_censored_edges"
+      ],
+      "required_arms": ["TMS_ATMS", "Bayesian_support_graph", "provenance_only", "assurance_case_update", "B5", "M"],
+      "primary_outcomes": ["exact_reopened_set", "exact_preserved_set", "over_reopening", "under_reopening", "recovery_after_correction", "cost"],
+      "kill": ["B5_exactly_recovers_reopening_semantics_without_ME_residual"]
+    },
+    {
+      "id": "ME-X5",
+      "name": "Cross-Domain Field Residual Test",
+      "claim_ids": ["ME-H03", "ME-H08", "ME-H09", "ME-H11"],
+      "minimum_epistemic_modes": [
+        "formal_verification_or_mathematics",
+        "computational_or_experimental_physical_science",
+        "evidence_synthesis_or_measurement_revision"
+      ],
+      "requirements": [
+        "native_domain_reviewer_per_mode",
+        "native_parent_recovery",
+        "ordinary_engineering_glue_allowed_in_B5",
+        "same_information_tools_evaluators_for_B5_and_M",
+        "per_domain_nonpooled_reporting",
+        "independent_adjudication"
+      ],
+      "outcome_vector": [
+        "false_scientific_transition",
+        "missed_warranted_transition",
+        "invalid_transport",
+        "false_closure",
+        "wrong_reopening",
+        "unnecessary_escalation",
+        "unresolved_state_calibration",
+        "resource_cost"
+      ],
+      "emerging_field_support": [
+        "stable_transition_object_across_domains",
+        "causally_ablated_cross_transition_mechanism",
+        "protected_residual_beyond_B5_in_more_than_one_epistemic_mode",
+        "no_extra_information_or_resource_explanation",
+        "independent_adjudication",
+        "fresh_prior_art_demarcation_audit"
+      ],
+      "kill": ["B5_ties_or_wins", "common_object_dissolves_under_native_semantics"]
+    },
+    {
+      "id": "ME-X6",
+      "name": "Collective Epistemics Noisy-Sensor Study",
+      "claim_ids": ["ME-COLLECTIVE"],
+      "flagship_gate": false,
+      "latent_dimensions": [
+        "validated_problem_reach",
+        "solution_verification_cost",
+        "independent_evidence_depth",
+        "representation_repertoire",
+        "transport_scope",
+        "calibration_reproducibility",
+        "unresolved_frontier",
+        "exploration_diversity"
+      ],
+      "observable_channels": [
+        "arXiv_preprints",
+        "peer_reviewed_publications",
+        "citations",
+        "formal_library_changes",
+        "software_data_releases",
+        "benchmark_capability",
+        "replications",
+        "corrections_retractions",
+        "downstream_reuse"
+      ],
+      "hostile_invariances": [
+        "duplicates",
+        "semantic_paraphrases",
+        "citation_popularity_shocks",
+        "mass_low_information_AI_generation",
+        "later_invalidated_work",
+        "field_specific_publication_rate_change"
+      ],
+      "validation": "Predict later verified capability/reuse/replication on held-out future windows beyond activity, citation and text-novelty baselines.",
+      "kill": ["metric_fails_hostile_invariances", "no_incremental_predictive_value"]
+    },
+    {
+      "id": "ME-X7",
+      "name": "Claim-Sufficient External Witnesses",
+      "claim_ids": ["ME-H12"],
+      "arms": ["answer_only", "provenance_only", "full_reasoning_trace", "structured_claim_sufficient_witness", "formal_proof_or_verification_artifact"],
+      "outcomes": ["failure_detection", "replay", "independent_audit_agreement", "trace_exposure", "latency_storage", "task_capability"],
+      "kill": ["witness_hides_decision_critical_failures", "overhead_erases_machine_native_gain"]
+    }
+  ],
+  "formal_targets": [
+    "FT1_COMPOSITION_COUNTEREXAMPLE",
+    "FT2_RECEIPT_RECOVERABILITY",
+    "FT3_ESCALATION_REGRET",
+    "FT4_REOPENING_BOUNDARY",
+    "FT5_HORIZON_DECISION_CONSEQUENCE",
+    "FT6_WANG_BUEHLER_REGIME_PARENT_MAPPING"
+  ],
+  "terminal": {
+    "protected_outcomes_inspected": false,
+    "field_hypothesis": "OPEN",
+    "strongest_parent_null": "ACTIVE",
+    "field_established": false,
+    "parent_sufficiency_is_valid_terminal": true
+  }
+}
