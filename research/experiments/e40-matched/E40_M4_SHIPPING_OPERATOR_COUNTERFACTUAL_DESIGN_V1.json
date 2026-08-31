@@ -1,0 +1,85 @@
+{
+  "schema_version": "orion.v2.e40-matched.m4-design.v1",
+  "title": "E40-m4 shipping-operator counterfactual re-analysis",
+  "class": "REGISTERED_REANALYSIS__NO_MODEL_CALLS__NO_NATIVE_RUNS__NO_RESCUE",
+  "parent_gate": "METABOLIC_DRAG_ROBUST_TO_ANCHOR",
+  "parent_evidence": {
+    "receipt": "research/experiments/e40-matched/E40_M3_ANCHOR_REVIVAL_OUTCOME_RECEIPT.md",
+    "pr": 101,
+    "main_sha": "1f7e969",
+    "decomposition": {
+      "both_final": {"mean_d": 0.0009090283818725051, "perm_p_exact": 0.388427734375},
+      "both_best": {"mean_d": -0.0012099336519952111, "perm_p_exact": 0.6962890625},
+      "primary_F0_best_minus_F2_final": {"mean_d": -0.007413520834557391, "perm_p_exact": 0.986083984375, "wins_f0": 10, "wins_f2": 2}
+    }
+  },
+  "cohorts": {
+    "P_primary": {
+      "f2_chains": "campaign-e40-m3/run/chains",
+      "f2_results": "campaign-e40-m3/run/results",
+      "f2_exp_ids": [501000, 501047],
+      "f0_reference": {"chains": "campaign-e40-m2/run/chains (f0)", "results": "campaign-e40-m2/run/results", "members": ["run0", "run1", "run2", "run3"]},
+      "pairs": 12
+    },
+    "R_replication": {
+      "f2_chains": "campaign-e40-m2/run/chains (f2)",
+      "f2_results": "campaign-e40-m2/run/results",
+      "f0_reference": {"chains": "campaign-e40-m2/run/chains (f0)", "results": "campaign-e40-m2/run/results", "members": ["run0", "run1", "run2", "run3"]},
+      "pairs": 12
+    }
+  },
+  "operator_counterfactual": {
+    "name": "F2_ship = cycle argmax of cycle-visible proxy",
+    "proxy_field": "redacted_feedback.json:pooled_biological_evaluation.true_positives",
+    "direction": "higher_better",
+    "tie_rule": "earliest_cycle",
+    "missing_rule": "fall_back_to_terminal_and_count",
+    "cohort_abort": {"max_fallback_chains": 2, "status": "CANNOT_CHECK__PROXY_MISSING"}
+  },
+  "statistics": {
+    "perm": "exhaustive sign-flip, 2^12, p = #{T_perm >= T_obs}/4096, T = mean(diffs)",
+    "CT1_primary": "d = f0_best - f2_ship, raw wasserstein (negative = F0 better)",
+    "CT2_recovery": "d = f2_final - f2_ship (negative = proxy shipping improves)",
+    "CT3_tp_family": "d = f2_ship - f0_best for true_positives/corum_tp/string_tp",
+    "M1_mechanism": "per-chain Spearman(proxy, raw primary) over 4 cycles; pooled Fisher-z; within-chain cycle-shuffle two-sided p, seed 20260831, 10000 draws",
+    "M2_selection_census": "true-rank of proxy-chosen cycle; cycle1-persistence count",
+    "C1_degeneracy": "proxy-argmax cycle index census"
+  },
+  "gates": {
+    "G0_M3_REPRODUCED": {
+      "hard": true,
+      "must_reproduce_bit_exact": {
+        "primary_mean_d": -0.007413520834557391,
+        "primary_perm_p": 0.986083984375,
+        "tp_mean_d": -13.083333333333334,
+        "tp_perm_p": 0.995849609375,
+        "both_best_mean_d": -0.0012099336519952111
+      },
+      "on_fail": "M4_CANNOT_RUN__REPRODUCTION_FAILED"
+    },
+    "G1_DRAG_ELIMINATED_UNDER_PROXY_SHIPPING": {
+      "condition": "CT1.mean_d >= -0.001 AND CT1.perm_p <= 0.90 AND CT2.recovery_nonneg_chains >= 8/12"
+    },
+    "G2_PROXY_CHANNEL_UNINFORMATIVE": {
+      "condition": "abs(pooled_rho) < 0.2 OR M1.perm_p > 0.05"
+    }
+  },
+  "routing_preregistered": {
+    "G1_and_not_G2": "draft m5 prospective interventional: shipping rule = proxy-argmax, matched scale, m-series gates",
+    "G1_and_G2": "same as G1_and_not_G2 (G1 dominates)",
+    "G2_and_not_G1": "draft m5-prime feedback-channel design (calibrated extreme-resident probes / proxy-truth calibration)",
+    "neither": "E40 line stays terminal-negative pending a new mechanism class; neither named lever authorized"
+  },
+  "controls": {
+    "C2_leakage": "FORBIDDEN_SUBSTRINGS absent from every redacted_feedback.json read",
+    "C3_fallback_census": true,
+    "C1_degeneracy_census": true
+  },
+  "custody": {
+    "input_manifest": "sha256 of every file read + script self-sha",
+    "output": ["E40_M4_SHIPPING_COUNTERFACTUAL_ROLLUP_V1.json", "E40_M4_SHIPPING_COUNTERFACTUAL_ROLLUP_V1.md"],
+    "archive": "research/experiments/e40-matched/rollup-m4/",
+    "determinism": "byte-identical JSON on re-run; only RNG is the frozen-seed M1 shuffle"
+  },
+  "no_rescue_clause": "m4 attributes and selects levers only; no positive F2/component claim; every revival requires a prospective m5/m5-prime execution under its own freeze"
+}
