@@ -42,7 +42,7 @@ class DiscrepancyLocus(StrEnum):
     """Candidate locus responsible for a witnessed scientific discrepancy.
 
     The set is an operational responsibility interface rather than a claim that
-    all scientific error admits one universal partition.  More than one locus
+    all scientific error admits one universal partition. More than one locus
     may remain live, and domain-native reconstruction can contract or refine a
     locus before protected use.
     """
@@ -67,7 +67,7 @@ class LocusDiagnosisStatus(StrEnum):
 class WorldObservationBoundary:
     """Registered interface between a target and the observations available to inquiry.
 
-    ``target_id`` identifies the scientific referent.  It is not an assertion
+    ``target_id`` identifies the scientific referent. It is not an assertion
     that the machine has direct access to the target's objective state.
     """
 
@@ -93,8 +93,8 @@ class OnticEpistemicDelta:
     """Registered case-level distinction between different kinds of change.
 
     This object is intended for known-answer fixtures, adjudicated episodes, or
-    explicit scientific records.  It is not a hidden oracle available to the
-    acting machine.  ``target_changed`` may therefore be ``None`` when target
+    explicit scientific records. It is not a hidden oracle available to the
+    acting machine. ``target_changed`` may therefore be ``None`` when target
     change is not independently established.
     """
 
@@ -128,11 +128,19 @@ class LocusHypothesis:
 
 @dataclass(frozen=True, slots=True)
 class LocusDiagnosisEvidence:
+    """Evidence disposition for responsibility hypotheses.
+
+    ``diagnostic_evaluator_adequate`` refers to the evaluator used to
+    discriminate *among locus hypotheses*. It is deliberately distinct from a
+    scientific evaluator/oracle that may itself be under diagnosis through the
+    ``EVALUATOR_VALIDATION`` locus.
+    """
+
     discrepancy_witness_ids: tuple[str, ...]
     supported_hypothesis_ids: tuple[str, ...] = ()
     defeated_hypothesis_ids: tuple[str, ...] = ()
     unresolved_hypothesis_ids: tuple[str, ...] = ()
-    evaluator_adequate: bool | None = None
+    diagnostic_evaluator_adequate: bool | None = None
 
     def __post_init__(self) -> None:
         object.__setattr__(
@@ -244,11 +252,11 @@ def assess_discrepancy_locus(
 ) -> LocusDiagnosisReceipt:
     """Assess which discrepancy loci remain live without converting diagnosis to truth.
 
-    An actionable locus requires a witnessed discrepancy, an adequate evaluator,
-    exactly one supported hypothesis, and explicit defeat of every registered
-    alternative.  Otherwise the result remains plural or ``CANNOT_IDENTIFY``.
-    The returned actions are candidate families only; higher-level changes must
-    still pass the existing frontier/Jump machinery.
+    An actionable locus requires a witnessed discrepancy, an adequate diagnostic
+    evaluator, exactly one supported hypothesis, and explicit defeat of every
+    registered alternative. Otherwise the result remains plural or
+    ``CANNOT_IDENTIFY``. Returned actions are candidate families only;
+    higher-level changes must still pass the existing frontier/Jump machinery.
     """
 
     if not hypotheses:
@@ -275,7 +283,7 @@ def assess_discrepancy_locus(
             ("no registered discrepancy witness licenses a responsibility diagnosis",),
         )
 
-    if evidence.evaluator_adequate is not True:
+    if evidence.diagnostic_evaluator_adequate is not True:
         live = tuple(item for item in hypotheses if item.hypothesis_id not in evidence.defeated_hypothesis_ids)
         loci = tuple(dict.fromkeys(item.locus for item in live))
         return LocusDiagnosisReceipt(
@@ -283,7 +291,7 @@ def assess_discrepancy_locus(
             tuple(item.hypothesis_id for item in live),
             loci,
             _candidate_actions(loci),
-            ("the registered evaluator cannot establish the responsibility distinction",),
+            ("the registered diagnostic evaluator cannot establish the responsibility distinction",),
         )
 
     supported = tuple(item for item in hypotheses if item.hypothesis_id in evidence.supported_hypothesis_ids)
