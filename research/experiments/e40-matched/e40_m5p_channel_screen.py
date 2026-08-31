@@ -234,7 +234,7 @@ def main() -> int:
 
     cohorts = {"P_confirm": build_cohort("P_confirm", M3_ROOT),
                "R_select": build_cohort("R_select", M2_ROOT)}
-    table = {c: {k: eval_candidate(v, c) for k in v["chains"][0]["scores"]} for c, v in cohorts.items()}
+    table = {c: {k: eval_candidate(v, k) for k in v["chains"][0]["scores"]} for c, v in cohorts.items()}
 
     # GS0: reproduce m4's M1 for pooled_tp on both cohorts (raw rho + perm p)
     gs0_detail = {}
