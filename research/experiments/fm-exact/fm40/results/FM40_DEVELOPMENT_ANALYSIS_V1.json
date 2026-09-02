@@ -1,0 +1,1167 @@
+{
+  "cost": {
+    "M_wall_ms": 10.168587,
+    "P_wall_ms": 0.768623,
+    "flag": "COST_ADVANTAGE_PARENT",
+    "ratio_P_over_M": 0.07558798483997825,
+    "rule": "wall-clock flag at 2x; reported only, routes nothing"
+  },
+  "custody_sha256": "b0003c9669914511757e0335a0ae818a22eafbcc5e0eb9e73fd7393a51590bb6",
+  "gates": [
+    {
+      "applicable": true,
+      "detail": {
+        "fixtures": [
+          {
+            "expected": "TRANSFER_VALID",
+            "name": "KA-01-INVARIANT_SORTED_HISTOGRAM",
+            "oracle": "TRANSFER_VALID",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+            "name": "KA-02-EQUIVARIANT_HISTOGRAM",
+            "oracle": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_NON_INVARIANT",
+            "name": "KA-03-NON_INVARIANT_SITE_INDEXED",
+            "oracle": "BLOCK_NON_INVARIANT",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_SURFACE_SYMMETRY_ONLY",
+            "name": "KA-04-SURFACE_ONLY_SYMMETRY",
+            "oracle": "BLOCK_SURFACE_SYMMETRY_ONLY",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_REGIME_BOUNDED_INVARIANT",
+            "name": "KA-05-REGIME_BOUNDED_INVARIANT",
+            "oracle": "BLOCK_REGIME_BOUNDED_INVARIANT",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_REGIME_BOUNDED_INVARIANT",
+            "name": "KA-06-REGIME_DOMINATES_SURFACE",
+            "oracle": "BLOCK_REGIME_BOUNDED_INVARIANT",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_NON_INVARIANT",
+            "name": "KA-07-UNSEEN_TRANSFORMATION_BREAK",
+            "oracle": "BLOCK_NON_INVARIANT",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+            "name": "KA-08-UNSEEN_TRANSFORMATION_EQUIVARIANCE",
+            "oracle": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+            "passed": true
+          },
+          {
+            "expected": "TRANSFER_VALID",
+            "name": "KA-09-INVARIANT_UNDER_A_SITE_ONLY_GROUP",
+            "oracle": "TRANSFER_VALID",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+            "name": "KA-10-MAJORITY_COLOUR_IS_EQUIVARIANT",
+            "oracle": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_REGIME_BOUNDED_INVARIANT",
+            "name": "KA-11-ADJACENCY_REGIME_ON_FOUR_SITES",
+            "oracle": "BLOCK_REGIME_BOUNDED_INVARIANT",
+            "passed": true
+          }
+        ]
+      },
+      "gate": "G0a_KNOWN_ANSWER",
+      "hard": true,
+      "min_required_evaluated": 8,
+      "n_evaluated": 11,
+      "n_violations": 0,
+      "rule": "every hand-authored fixture's disposition is reproduced by the exhaustive oracle",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "n_disagreements": 0,
+        "n_evaluated": 21
+      },
+      "gate": "G0b_ORACLE_SELF_AGREEMENT",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 21,
+      "n_violations": 0,
+      "rule": "exhaustive enumeration and the independent branch-and-bound search agree on disposition, min_missing, optimal profile and optimal-map count for every instance of the split",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "constant_arm_rates": {
+          "C_ALWAYS_INVARIANT": 0.14285714285714285,
+          "C_ALWAYS_NON_INVARIANT": 0.2857142857142857
+        },
+        "random_rate": 0.19047619047619047,
+        "shuffled_label_null": {
+          "exact_against_shuffled": 5,
+          "n": 21,
+          "rate": 0.23809523809523808,
+          "seed": 20260902
+        },
+        "violations": []
+      },
+      "gate": "G0c_NULL_CALIBRATION",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 4,
+      "n_violations": 0,
+      "rule": "constant-response arms <= 0.4, random arm <= 0.4, M against within-split shuffled oracle labels <= 0.4",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "below_minimum": {},
+        "counts": {
+          "PARTIAL_REGIME_INVARIANCE": 3,
+          "SURFACE_ONLY_SYMMETRY": 3,
+          "UNSEEN_TRANSFORMATION_BREAK": 3,
+          "UNSEEN_TRANSFORMATION_EQUIVARIANCE": 3
+        },
+        "minimum": 3
+      },
+      "gate": "G0d_DECOY_COVERAGE",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 4,
+      "n_violations": 0,
+      "rule": "every registered decoy family carries >= 3 instances in the split",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "planted": [
+          {
+            "description": "a deliberately incomplete oracle that classifies using only the witnessed transformations must disagree with the exhaustive closure",
+            "fired": true,
+            "gate": "G0b_ORACLE_SELF_AGREEMENT",
+            "name": "witnessed_only_pseudo_oracle_is_detected"
+          },
+          {
+            "description": "the known-answer comparison must reject a deliberately wrong expected disposition",
+            "fired": true,
+            "gate": "G0a_KNOWN_ANSWER",
+            "name": "wrong_expected_label_is_detected"
+          },
+          {
+            "description": "the over-acceptance counter must count C_ALWAYS_INVARIANT on an instance whose property the oracle reports as broken",
+            "fired": true,
+            "gate": "G2_ANTI_PERMISSIVENESS",
+            "name": "false_invariance_claim_is_counted"
+          },
+          {
+            "description": "a synthetic per-arm table where every arm scores 1.0 must FAIL the discrimination gate (the FM/FG R2 ceiling defect, which the R2 fm40 cell exhibited with 1.000 for all five arms)",
+            "fired": true,
+            "gate": "G0f_FAMILY_DISCRIMINATION",
+            "name": "degenerate_all_ceiling_split_is_detected"
+          },
+          {
+            "description": "M_MINUS_SURFACE_AUDIT must be wrong on a hand-built surface-only instance on which M is right",
+            "fired": true,
+            "gate": "G3_MECHANISM_BY_OMISSION",
+            "name": "surface_audit_ablation_loses_the_surface_family"
+          },
+          {
+            "description": "M's own pipeline, run with a shortened value-action sample schedule, must return a different disposition from the federation: the decision-identity counter has a subject that can move",
+            "fired": true,
+            "gate": "G1a_PARENT_REPRODUCES_M",
+            "name": "mechanic_can_diverge_from_its_own_comparator"
+          }
+        ]
+      },
+      "gate": "G0e_PLANTED_POSITIVES",
+      "hard": true,
+      "min_required_evaluated": 3,
+      "n_evaluated": 6,
+      "n_violations": 0,
+      "rule": "every registered planted positive trips its own gate predicate",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "halves": {
+          "separating": {
+            "n_evaluated": 4,
+            "threshold": 0.85,
+            "violation": false,
+            "weak_arms_at_or_below_threshold": {
+              "M_MINUS_EQUIVARIANCE_TEST": 0.7142857142857143,
+              "P0_SURFACE_SYMMETRY_SCAN": 0.38095238095238093,
+              "P3_AUGMENTATION_EMPIRICAL": 0.2857142857142857,
+              "P5_FIXED_LESSON_TABLE": 0.5238095238095238
+            }
+          },
+          "solvable": {
+            "best_arm": "F0_PARENT_FEDERATION",
+            "best_rate": 1.0,
+            "n_evaluated": 12,
+            "threshold": 0.95,
+            "violation": false
+          }
+        },
+        "per_arm_exact": {
+          "C_ALWAYS_INVARIANT": 0.14285714285714285,
+          "C_ALWAYS_NON_INVARIANT": 0.2857142857142857,
+          "C_RANDOM_DISPOSITION": 0.19047619047619047,
+          "F0_PARENT_FEDERATION": 1.0,
+          "M_F2_INVARIANCE_DISCOVERY_FULL": 1.0,
+          "M_MINUS_EQUIVARIANCE_TEST": 0.7142857142857143,
+          "M_MINUS_REGIME_RESTRICTION": 0.8571428571428571,
+          "M_MINUS_SURFACE_AUDIT": 0.8571428571428571,
+          "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": 0.42857142857142855,
+          "P0_SURFACE_SYMMETRY_SCAN": 0.38095238095238093,
+          "P1_ORBIT_STABILISER": 0.42857142857142855,
+          "P2_EQUIVARIANCE_SOLVER": 0.7142857142857143,
+          "P3_AUGMENTATION_EMPIRICAL": 0.2857142857142857,
+          "P4_REGIME_RESTRICTION": 0.5714285714285714,
+          "P5_FIXED_LESSON_TABLE": 0.5238095238095238
+        }
+      },
+      "gate": "G0f_FAMILY_DISCRIMINATION",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 2,
+      "n_violations": 0,
+      "rule": "non-degenerate split, two independent halves: some arm >= 0.95 (not at floor) AND some registered weak arm <= 0.85 (not at ceiling); guards against the families that made FM/FG R2 uninformative",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "counter_liveness_control": {
+          "ablation_vs_parent_discordance": {
+            "M_MINUS_EQUIVARIANCE_TEST": 6,
+            "M_MINUS_REGIME_RESTRICTION": 3,
+            "M_MINUS_SURFACE_AUDIT": 3,
+            "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": 12
+          },
+          "counter_is_live": true
+        },
+        "decision_identity_rate": 1.0,
+        "paired": {
+          "diff_x_minus_y": 0.0,
+          "discordant": 0,
+          "exact_p_two_sided": 1.0,
+          "n": 21,
+          "wald_ci95": [
+            0.0,
+            0.0
+          ],
+          "x_only": 0,
+          "y_only": 0
+        },
+        "per_family": {
+          "EQUIVARIANT_ACTION": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "FULL_INVARIANCE": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "NON_INVARIANT": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "PARTIAL_REGIME_INVARIANCE": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "SURFACE_ONLY_SYMMETRY": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_BREAK": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_EQUIVARIANCE": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          }
+        }
+      },
+      "gate": "G1a_PARENT_REPRODUCES_M",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 21,
+      "n_violations": 0,
+      "rule": "F0_PARENT_FEDERATION reproduces M_F2_INVARIANCE_DISCOVERY_FULL's disposition on >= 99.5% of instances and no family exceeds 5% discordance; AND the discordance counter is shown live on this split by at least one ablation arm disagreeing with the parent",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "discordant_pairs": 0,
+        "paired": {
+          "diff_x_minus_y": 0.0,
+          "discordant": 0,
+          "exact_p_two_sided": 1.0,
+          "n": 21,
+          "wald_ci95": [
+            0.0,
+            0.0
+          ],
+          "x_only": 0,
+          "y_only": 0
+        },
+        "per_family": {
+          "EQUIVARIANT_ACTION": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "FULL_INVARIANCE": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "NON_INVARIANT": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "PARTIAL_REGIME_INVARIANCE": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "SURFACE_ONLY_SYMMETRY": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_BREAK": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_EQUIVARIANCE": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          }
+        }
+      },
+      "gate": "G1b_M_ADVANTAGE",
+      "hard": false,
+      "min_required_evaluated": 1,
+      "n_evaluated": 21,
+      "n_violations": 1,
+      "rule": "paired instance-exact difference (M_F2_INVARIANCE_DISCOVERY_FULL - F0_PARENT_FEDERATION) > 0, exact two-sided p <= 0.05, and >= 1 family with >= 5 M-only-exact instances",
+      "verdict": "NOT_FIRED"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "M_over_accept": 0,
+        "P_over_accept": 0,
+        "n_blocked": 18
+      },
+      "gate": "G2_ANTI_PERMISSIVENESS",
+      "hard": true,
+      "min_required_evaluated": 10,
+      "n_evaluated": 18,
+      "n_violations": 0,
+      "rule": "on instances the oracle blocks, M_F2_INVARIANCE_DISCOVERY_FULL accepts no more transfers than F0_PARENT_FEDERATION",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": false,
+      "detail": {
+        "checks": {},
+        "claimed_families": []
+      },
+      "gate": "G3_MECHANISM_BY_OMISSION",
+      "hard": false,
+      "min_required_evaluated": 1,
+      "n_evaluated": 0,
+      "n_violations": 0,
+      "rule": "for every family with a claimed M advantage, the matching omission ablation's exact rate is <= the parent's on that family",
+      "verdict": "NOT_APPLICABLE"
+    }
+  ],
+  "generator_rejections": {
+    "FULL_INVARIANCE|surface_encoding_is_not_a_re_description": 1,
+    "NON_INVARIANT|family_disposition_mismatch": 3,
+    "NON_INVARIANT|surface_encoding_invariant_would_collapse_the_family": 8,
+    "NON_INVARIANT|surface_encoding_is_not_a_re_description": 1,
+    "PARTIAL_REGIME_INVARIANCE|no_proper_rescuing_regime": 4,
+    "SURFACE_ONLY_SYMMETRY|family_disposition_mismatch": 1,
+    "UNSEEN_TRANSFORMATION_BREAK|surface_encoding_invariant_would_collapse_the_family": 1
+  },
+  "holm_across_families": {
+    "EQUIVARIANT_ACTION": {
+      "holm_p": 1.0,
+      "m": 7,
+      "rank": 2,
+      "raw_p": 1.0
+    },
+    "FULL_INVARIANCE": {
+      "holm_p": 1.0,
+      "m": 7,
+      "rank": 1,
+      "raw_p": 1.0
+    },
+    "NON_INVARIANT": {
+      "holm_p": 1.0,
+      "m": 7,
+      "rank": 3,
+      "raw_p": 1.0
+    },
+    "PARTIAL_REGIME_INVARIANCE": {
+      "holm_p": 1.0,
+      "m": 7,
+      "rank": 5,
+      "raw_p": 1.0
+    },
+    "SURFACE_ONLY_SYMMETRY": {
+      "holm_p": 1.0,
+      "m": 7,
+      "rank": 4,
+      "raw_p": 1.0
+    },
+    "UNSEEN_TRANSFORMATION_BREAK": {
+      "holm_p": 1.0,
+      "m": 7,
+      "rank": 6,
+      "raw_p": 1.0
+    },
+    "UNSEEN_TRANSFORMATION_EQUIVARIANCE": {
+      "holm_p": 1.0,
+      "m": 7,
+      "rank": 7,
+      "raw_p": 1.0
+    }
+  },
+  "label": "DEVELOPMENT",
+  "n_instances": 21,
+  "results_sha256": "7c3d608fe077d0ee2536ffc90bac0d5049b4173ee8f5d2c8166f5e2c35d47c50",
+  "route": {
+    "cost_flag": "COST_ADVANTAGE_PARENT",
+    "reason": "F0_PARENT_FEDERATION reproduces M_F2_INVARIANCE_DISCOVERY_FULL's dispositions (identity 1.0000)",
+    "route": "PARENT_SUFFICIENT"
+  },
+  "schema_version": "orion.v2.fm-exact.analysis.v1",
+  "score": {
+    "per_arm": {
+      "C_ALWAYS_INVARIANT": {
+        "exact": 3,
+        "exact_rate": 0.14285714285714285,
+        "n": 21,
+        "over_accept": 18,
+        "per_family": {
+          "EQUIVARIANT_ACTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "FULL_INVARIANCE": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NON_INVARIANT": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "PARTIAL_REGIME_INVARIANCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "SURFACE_ONLY_SYMMETRY": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_BREAK": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_EQUIVARIANCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.01654
+      },
+      "C_ALWAYS_NON_INVARIANT": {
+        "exact": 6,
+        "exact_rate": 0.2857142857142857,
+        "n": 21,
+        "over_accept": 0,
+        "per_family": {
+          "EQUIVARIANT_ACTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "FULL_INVARIANCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "NON_INVARIANT": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_REGIME_INVARIANCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "SURFACE_ONLY_SYMMETRY": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_BREAK": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_EQUIVARIANCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          }
+        },
+        "under_accept": 3,
+        "wall_ms": 0.008337
+      },
+      "C_RANDOM_DISPOSITION": {
+        "exact": 4,
+        "exact_rate": 0.19047619047619047,
+        "n": 21,
+        "over_accept": 1,
+        "per_family": {
+          "EQUIVARIANT_ACTION": {
+            "exact": 1,
+            "exact_rate": 0.3333333333333333,
+            "n": 3
+          },
+          "FULL_INVARIANCE": {
+            "exact": 2,
+            "exact_rate": 0.6666666666666666,
+            "n": 3
+          },
+          "NON_INVARIANT": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "PARTIAL_REGIME_INVARIANCE": {
+            "exact": 1,
+            "exact_rate": 0.3333333333333333,
+            "n": 3
+          },
+          "SURFACE_ONLY_SYMMETRY": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_BREAK": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_EQUIVARIANCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          }
+        },
+        "under_accept": 1,
+        "wall_ms": 0.171876
+      },
+      "F0_PARENT_FEDERATION": {
+        "exact": 21,
+        "exact_rate": 1.0,
+        "n": 21,
+        "over_accept": 0,
+        "per_family": {
+          "EQUIVARIANT_ACTION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "FULL_INVARIANCE": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NON_INVARIANT": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_REGIME_INVARIANCE": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "SURFACE_ONLY_SYMMETRY": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_BREAK": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_EQUIVARIANCE": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.768623
+      },
+      "M_F2_INVARIANCE_DISCOVERY_FULL": {
+        "exact": 21,
+        "exact_rate": 1.0,
+        "n": 21,
+        "over_accept": 0,
+        "per_family": {
+          "EQUIVARIANT_ACTION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "FULL_INVARIANCE": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NON_INVARIANT": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_REGIME_INVARIANCE": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "SURFACE_ONLY_SYMMETRY": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_BREAK": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_EQUIVARIANCE": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 10.168587
+      },
+      "M_MINUS_EQUIVARIANCE_TEST": {
+        "exact": 15,
+        "exact_rate": 0.7142857142857143,
+        "n": 21,
+        "over_accept": 0,
+        "per_family": {
+          "EQUIVARIANT_ACTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "FULL_INVARIANCE": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NON_INVARIANT": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_REGIME_INVARIANCE": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "SURFACE_ONLY_SYMMETRY": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_BREAK": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_EQUIVARIANCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 8.719294
+      },
+      "M_MINUS_REGIME_RESTRICTION": {
+        "exact": 18,
+        "exact_rate": 0.8571428571428571,
+        "n": 21,
+        "over_accept": 0,
+        "per_family": {
+          "EQUIVARIANT_ACTION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "FULL_INVARIANCE": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NON_INVARIANT": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_REGIME_INVARIANCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "SURFACE_ONLY_SYMMETRY": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_BREAK": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_EQUIVARIANCE": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 10.04175
+      },
+      "M_MINUS_SURFACE_AUDIT": {
+        "exact": 18,
+        "exact_rate": 0.8571428571428571,
+        "n": 21,
+        "over_accept": 0,
+        "per_family": {
+          "EQUIVARIANT_ACTION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "FULL_INVARIANCE": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NON_INVARIANT": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_REGIME_INVARIANCE": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "SURFACE_ONLY_SYMMETRY": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_BREAK": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_EQUIVARIANCE": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 11.199209
+      },
+      "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
+        "exact": 9,
+        "exact_rate": 0.42857142857142855,
+        "n": 21,
+        "over_accept": 9,
+        "per_family": {
+          "EQUIVARIANT_ACTION": {
+            "exact": 2,
+            "exact_rate": 0.6666666666666666,
+            "n": 3
+          },
+          "FULL_INVARIANCE": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NON_INVARIANT": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "PARTIAL_REGIME_INVARIANCE": {
+            "exact": 1,
+            "exact_rate": 0.3333333333333333,
+            "n": 3
+          },
+          "SURFACE_ONLY_SYMMETRY": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_BREAK": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_EQUIVARIANCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 1.288667
+      },
+      "P0_SURFACE_SYMMETRY_SCAN": {
+        "exact": 8,
+        "exact_rate": 0.38095238095238093,
+        "n": 21,
+        "over_accept": 11,
+        "per_family": {
+          "EQUIVARIANT_ACTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "FULL_INVARIANCE": {
+            "exact": 2,
+            "exact_rate": 0.6666666666666666,
+            "n": 3
+          },
+          "NON_INVARIANT": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_REGIME_INVARIANCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "SURFACE_ONLY_SYMMETRY": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_BREAK": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_EQUIVARIANCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          }
+        },
+        "under_accept": 1,
+        "wall_ms": 0.077292
+      },
+      "P1_ORBIT_STABILISER": {
+        "exact": 9,
+        "exact_rate": 0.42857142857142855,
+        "n": 21,
+        "over_accept": 0,
+        "per_family": {
+          "EQUIVARIANT_ACTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "FULL_INVARIANCE": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NON_INVARIANT": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_REGIME_INVARIANCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "SURFACE_ONLY_SYMMETRY": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_BREAK": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_EQUIVARIANCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.260037
+      },
+      "P2_EQUIVARIANCE_SOLVER": {
+        "exact": 15,
+        "exact_rate": 0.7142857142857143,
+        "n": 21,
+        "over_accept": 0,
+        "per_family": {
+          "EQUIVARIANT_ACTION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "FULL_INVARIANCE": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NON_INVARIANT": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_REGIME_INVARIANCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "SURFACE_ONLY_SYMMETRY": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_BREAK": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_EQUIVARIANCE": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.779874
+      },
+      "P3_AUGMENTATION_EMPIRICAL": {
+        "exact": 6,
+        "exact_rate": 0.2857142857142857,
+        "n": 21,
+        "over_accept": 9,
+        "per_family": {
+          "EQUIVARIANT_ACTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "FULL_INVARIANCE": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NON_INVARIANT": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_REGIME_INVARIANCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "SURFACE_ONLY_SYMMETRY": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_BREAK": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_EQUIVARIANCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.055502
+      },
+      "P4_REGIME_RESTRICTION": {
+        "exact": 12,
+        "exact_rate": 0.5714285714285714,
+        "n": 21,
+        "over_accept": 0,
+        "per_family": {
+          "EQUIVARIANT_ACTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "FULL_INVARIANCE": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NON_INVARIANT": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_REGIME_INVARIANCE": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "SURFACE_ONLY_SYMMETRY": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_BREAK": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_EQUIVARIANCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.085041
+      },
+      "P5_FIXED_LESSON_TABLE": {
+        "exact": 11,
+        "exact_rate": 0.5238095238095238,
+        "n": 21,
+        "over_accept": 0,
+        "per_family": {
+          "EQUIVARIANT_ACTION": {
+            "exact": 1,
+            "exact_rate": 0.3333333333333333,
+            "n": 3
+          },
+          "FULL_INVARIANCE": {
+            "exact": 1,
+            "exact_rate": 0.3333333333333333,
+            "n": 3
+          },
+          "NON_INVARIANT": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_REGIME_INVARIANCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "SURFACE_ONLY_SYMMETRY": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_BREAK": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "UNSEEN_TRANSFORMATION_EQUIVARIANCE": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 2,
+        "wall_ms": 0.036915
+      }
+    }
+  },
+  "suite": "FM40"
+}
