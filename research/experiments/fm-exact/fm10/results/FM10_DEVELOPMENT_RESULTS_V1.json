@@ -1,0 +1,4549 @@
+{
+  "_generator_rejections": {
+    "DIRECTION_REVERSAL": 0,
+    "INVARIANT_BREAKING_EMBEDDING": 0,
+    "ISOMORPHIC_TRANSFER": 1,
+    "NON_HOMOMORPHISM": 0,
+    "PARTIAL_HOMOMORPHISM": 0,
+    "RELATION_TYPE_MISMATCH": 0,
+    "SURFACE_DECOY": 32
+  },
+  "_oracle_agreement": {
+    "n_disagreements": 0,
+    "n_evaluated": 21
+  },
+  "arms": [
+    "P0_SURFACE_SIMILARITY",
+    "P1_SME_STRUCTURE_MAPPING",
+    "P2_COMPLETE_HOMOMORPHISM",
+    "P3_FIXED_LESSON_INJECTION",
+    "P4_INVARIANCE_PARENT",
+    "F0_PARENT_FEDERATION",
+    "M_F2_TRANSFER_DISCOVERY_FULL",
+    "M_MINUS_RELATIONAL_MAPPING",
+    "M_MINUS_INVARIANCE_TEST",
+    "M_MINUS_OBSTRUCTION_SEARCH",
+    "M_MINUS_TYPE_DISCIPLINE",
+    "C_ALWAYS_TRANSFER",
+    "C_ALWAYS_BLOCK",
+    "C_RANDOM_DISPOSITION"
+  ],
+  "instances": [
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "TRANSFER_VALID",
+          "source": "P2+P4",
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_F2_TRANSFER_DISCOVERY_FULL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_MINUS_INVARIANCE_TEST": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "x1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t1"
+            ]
+          ]
+        },
+        "M_MINUS_RELATIONAL_MAPPING": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_MINUS_TYPE_DISCIPLINE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P0_SURFACE_SIMILARITY": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "x1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P1_SME_STRUCTURE_MAPPING": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P2_COMPLETE_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P3_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P4_INVARIANCE_PARENT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "ISOMORPHIC_TRANSFER",
+      "instance_id": "ISOMORPHIC_TRANSFER-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_INVARIANT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "TRANSFER_VALID",
+          "source": "P2+P4",
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "M_F2_TRANSFER_DISCOVERY_FULL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "M_MINUS_INVARIANCE_TEST": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t2"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t0"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "M_MINUS_RELATIONAL_MAPPING": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "M_MINUS_TYPE_DISCIPLINE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t4"
+            ],
+            [
+              "d4",
+              "t3"
+            ]
+          ]
+        },
+        "P0_SURFACE_SIMILARITY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "P1_SME_STRUCTURE_MAPPING": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "P2_COMPLETE_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "P3_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "P4_INVARIANCE_PARENT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "ISOMORPHIC_TRANSFER",
+      "instance_id": "ISOMORPHIC_TRANSFER-00003"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_DIRECTION_REVERSAL",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "TRANSFER_VALID",
+          "source": "P2+P4",
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_F2_TRANSFER_DISCOVERY_FULL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_INVARIANCE_TEST": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "x0"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_RELATIONAL_MAPPING": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_TYPE_DISCIPLINE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P0_SURFACE_SIMILARITY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P1_SME_STRUCTURE_MAPPING": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P2_COMPLETE_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P3_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P4_INVARIANCE_PARENT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "ISOMORPHIC_TRANSFER",
+      "instance_id": "ISOMORPHIC_TRANSFER-00004"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": "P2",
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_F2_TRANSFER_DISCOVERY_FULL": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_MINUS_INVARIANCE_TEST": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "x0"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_MINUS_RELATIONAL_MAPPING": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_TYPE_DISCIPLINE": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P0_SURFACE_SIMILARITY": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P1_SME_STRUCTURE_MAPPING": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P2_COMPLETE_HOMOMORPHISM": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P3_FIXED_LESSON_INJECTION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "P4_INVARIANCE_PARENT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "PARTIAL_HOMOMORPHISM",
+      "instance_id": "PARTIAL_HOMOMORPHISM-00001"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": "P2",
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_F2_TRANSFER_DISCOVERY_FULL": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_MINUS_INVARIANCE_TEST": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_MINUS_RELATIONAL_MAPPING": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_TYPE_DISCIPLINE": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P0_SURFACE_SIMILARITY": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P1_SME_STRUCTURE_MAPPING": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P2_COMPLETE_HOMOMORPHISM": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P3_FIXED_LESSON_INJECTION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "P4_INVARIANCE_PARENT": {
+          "disposition": "BLOCK_INVARIANT_VIOLATION",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "PARTIAL_HOMOMORPHISM",
+      "instance_id": "PARTIAL_HOMOMORPHISM-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": "P2",
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_F2_TRANSFER_DISCOVERY_FULL": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_INVARIANCE_TEST": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t2"
+            ],
+            [
+              "d2",
+              "x0"
+            ]
+          ]
+        },
+        "M_MINUS_RELATIONAL_MAPPING": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_TYPE_DISCIPLINE": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P0_SURFACE_SIMILARITY": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P1_SME_STRUCTURE_MAPPING": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P2_COMPLETE_HOMOMORPHISM": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P3_FIXED_LESSON_INJECTION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "P4_INVARIANCE_PARENT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "PARTIAL_HOMOMORPHISM",
+      "instance_id": "PARTIAL_HOMOMORPHISM-00003"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": "P2",
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_F2_TRANSFER_DISCOVERY_FULL": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_INVARIANCE_TEST": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_RELATIONAL_MAPPING": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_TYPE_DISCIPLINE": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P0_SURFACE_SIMILARITY": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P1_SME_STRUCTURE_MAPPING": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P2_COMPLETE_HOMOMORPHISM": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P3_FIXED_LESSON_INJECTION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "P4_INVARIANCE_PARENT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "NON_HOMOMORPHISM",
+      "instance_id": "NON_HOMOMORPHISM-00001"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_MIXED_TYPED_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": "P2",
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_F2_TRANSFER_DISCOVERY_FULL": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_MINUS_INVARIANCE_TEST": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "x1"
+            ],
+            [
+              "d2",
+              "x0"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_MINUS_RELATIONAL_MAPPING": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_TYPE_DISCIPLINE": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P0_SURFACE_SIMILARITY": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "x1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P1_SME_STRUCTURE_MAPPING": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P2_COMPLETE_HOMOMORPHISM": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P3_FIXED_LESSON_INJECTION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "P4_INVARIANCE_PARENT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "NON_HOMOMORPHISM",
+      "instance_id": "NON_HOMOMORPHISM-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_MIXED_TYPED_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": "P2",
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_F2_TRANSFER_DISCOVERY_FULL": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_INVARIANCE_TEST": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t2"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t0"
+            ]
+          ]
+        },
+        "M_MINUS_RELATIONAL_MAPPING": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_TYPE_DISCIPLINE": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P0_SURFACE_SIMILARITY": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P1_SME_STRUCTURE_MAPPING": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P2_COMPLETE_HOMOMORPHISM": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P3_FIXED_LESSON_INJECTION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "P4_INVARIANCE_PARENT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "NON_HOMOMORPHISM",
+      "instance_id": "NON_HOMOMORPHISM-00003"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_MIXED_TYPED_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "TRANSFER_VALID",
+          "source": "P2+P4",
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t4"
+            ],
+            [
+              "d3",
+              "x0"
+            ],
+            [
+              "d4",
+              "t2"
+            ]
+          ]
+        },
+        "M_F2_TRANSFER_DISCOVERY_FULL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t4"
+            ],
+            [
+              "d3",
+              "x0"
+            ],
+            [
+              "d4",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_INVARIANCE_TEST": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t4"
+            ],
+            [
+              "d3",
+              "x0"
+            ],
+            [
+              "d4",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t4"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "x0"
+            ],
+            [
+              "d4",
+              "t0"
+            ]
+          ]
+        },
+        "M_MINUS_RELATIONAL_MAPPING": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_TYPE_DISCIPLINE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t4"
+            ],
+            [
+              "d3",
+              "x1"
+            ],
+            [
+              "d4",
+              "t2"
+            ]
+          ]
+        },
+        "P0_SURFACE_SIMILARITY": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "P1_SME_STRUCTURE_MAPPING": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t4"
+            ],
+            [
+              "d3",
+              "x0"
+            ],
+            [
+              "d4",
+              "t2"
+            ]
+          ]
+        },
+        "P2_COMPLETE_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t4"
+            ],
+            [
+              "d3",
+              "x0"
+            ],
+            [
+              "d4",
+              "t2"
+            ]
+          ]
+        },
+        "P3_FIXED_LESSON_INJECTION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "P4_INVARIANCE_PARENT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "SURFACE_DECOY",
+      "instance_id": "SURFACE_DECOY-00001"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "TRANSFER_VALID",
+          "source": "P2+P4",
+          "witness": [
+            [
+              "d0",
+              "t2"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t0"
+            ]
+          ]
+        },
+        "M_F2_TRANSFER_DISCOVERY_FULL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t2"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t0"
+            ]
+          ]
+        },
+        "M_MINUS_INVARIANCE_TEST": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t2"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t0"
+            ]
+          ]
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t2"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t0"
+            ]
+          ]
+        },
+        "M_MINUS_RELATIONAL_MAPPING": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_TYPE_DISCIPLINE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t2"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t0"
+            ]
+          ]
+        },
+        "P0_SURFACE_SIMILARITY": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P1_SME_STRUCTURE_MAPPING": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t2"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t0"
+            ]
+          ]
+        },
+        "P2_COMPLETE_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t2"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t0"
+            ]
+          ]
+        },
+        "P3_FIXED_LESSON_INJECTION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "P4_INVARIANCE_PARENT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "SURFACE_DECOY",
+      "instance_id": "SURFACE_DECOY-00022"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_NO_TYPE_RESPECTING_MAP",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "TRANSFER_VALID",
+          "source": "P2+P4",
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t2"
+            ],
+            [
+              "d2",
+              "t1"
+            ]
+          ]
+        },
+        "M_F2_TRANSFER_DISCOVERY_FULL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t2"
+            ],
+            [
+              "d2",
+              "t1"
+            ]
+          ]
+        },
+        "M_MINUS_INVARIANCE_TEST": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t2"
+            ],
+            [
+              "d2",
+              "t1"
+            ]
+          ]
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "x1"
+            ],
+            [
+              "d1",
+              "t2"
+            ],
+            [
+              "d2",
+              "t1"
+            ]
+          ]
+        },
+        "M_MINUS_RELATIONAL_MAPPING": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_TYPE_DISCIPLINE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t2"
+            ],
+            [
+              "d2",
+              "t1"
+            ]
+          ]
+        },
+        "P0_SURFACE_SIMILARITY": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P1_SME_STRUCTURE_MAPPING": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t2"
+            ],
+            [
+              "d2",
+              "t1"
+            ]
+          ]
+        },
+        "P2_COMPLETE_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t2"
+            ],
+            [
+              "d2",
+              "t1"
+            ]
+          ]
+        },
+        "P3_FIXED_LESSON_INJECTION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "P4_INVARIANCE_PARENT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "SURFACE_DECOY",
+      "instance_id": "SURFACE_DECOY-00035"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_DIRECTION_REVERSAL",
+          "source": "P2",
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "M_F2_TRANSFER_DISCOVERY_FULL": {
+          "disposition": "BLOCK_DIRECTION_REVERSAL",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "M_MINUS_INVARIANCE_TEST": {
+          "disposition": "BLOCK_DIRECTION_REVERSAL",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t4"
+            ],
+            [
+              "d1",
+              "t2"
+            ],
+            [
+              "d2",
+              "t1"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t0"
+            ]
+          ]
+        },
+        "M_MINUS_RELATIONAL_MAPPING": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_TYPE_DISCIPLINE": {
+          "disposition": "BLOCK_DIRECTION_REVERSAL",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "x0"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "P0_SURFACE_SIMILARITY": {
+          "disposition": "BLOCK_DIRECTION_REVERSAL",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "P1_SME_STRUCTURE_MAPPING": {
+          "disposition": "BLOCK_DIRECTION_REVERSAL",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "P2_COMPLETE_HOMOMORPHISM": {
+          "disposition": "BLOCK_DIRECTION_REVERSAL",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "P3_FIXED_LESSON_INJECTION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "P4_INVARIANCE_PARENT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "DIRECTION_REVERSAL",
+      "instance_id": "DIRECTION_REVERSAL-00001"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_DIRECTION_REVERSAL",
+          "source": "P2",
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "M_F2_TRANSFER_DISCOVERY_FULL": {
+          "disposition": "BLOCK_DIRECTION_REVERSAL",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "M_MINUS_INVARIANCE_TEST": {
+          "disposition": "BLOCK_DIRECTION_REVERSAL",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t4"
+            ],
+            [
+              "d2",
+              "t3"
+            ],
+            [
+              "d3",
+              "t2"
+            ],
+            [
+              "d4",
+              "t1"
+            ]
+          ]
+        },
+        "M_MINUS_RELATIONAL_MAPPING": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_TYPE_DISCIPLINE": {
+          "disposition": "BLOCK_DIRECTION_REVERSAL",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "P0_SURFACE_SIMILARITY": {
+          "disposition": "BLOCK_DIRECTION_REVERSAL",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "P1_SME_STRUCTURE_MAPPING": {
+          "disposition": "BLOCK_DIRECTION_REVERSAL",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "P2_COMPLETE_HOMOMORPHISM": {
+          "disposition": "BLOCK_DIRECTION_REVERSAL",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "P3_FIXED_LESSON_INJECTION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "P4_INVARIANCE_PARENT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "DIRECTION_REVERSAL",
+      "instance_id": "DIRECTION_REVERSAL-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_DIRECTION_REVERSAL",
+          "source": "P2",
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_F2_TRANSFER_DISCOVERY_FULL": {
+          "disposition": "BLOCK_DIRECTION_REVERSAL",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_INVARIANCE_TEST": {
+          "disposition": "BLOCK_DIRECTION_REVERSAL",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "x1"
+            ],
+            [
+              "d1",
+              "t0"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_RELATIONAL_MAPPING": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_TYPE_DISCIPLINE": {
+          "disposition": "BLOCK_DIRECTION_REVERSAL",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P0_SURFACE_SIMILARITY": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "x1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P1_SME_STRUCTURE_MAPPING": {
+          "disposition": "BLOCK_DIRECTION_REVERSAL",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P2_COMPLETE_HOMOMORPHISM": {
+          "disposition": "BLOCK_DIRECTION_REVERSAL",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P3_FIXED_LESSON_INJECTION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "P4_INVARIANCE_PARENT": {
+          "disposition": "BLOCK_INVARIANT_VIOLATION",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "DIRECTION_REVERSAL",
+      "instance_id": "DIRECTION_REVERSAL-00003"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_MIXED_TYPED_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+          "source": "P2",
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "x1"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_F2_TRANSFER_DISCOVERY_FULL": {
+          "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "x1"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_MINUS_INVARIANCE_TEST": {
+          "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "x1"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "x1"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_MINUS_RELATIONAL_MAPPING": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_TYPE_DISCIPLINE": {
+          "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "x1"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P0_SURFACE_SIMILARITY": {
+          "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P1_SME_STRUCTURE_MAPPING": {
+          "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "x1"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P2_COMPLETE_HOMOMORPHISM": {
+          "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "x1"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P3_FIXED_LESSON_INJECTION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "P4_INVARIANCE_PARENT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "RELATION_TYPE_MISMATCH",
+      "instance_id": "RELATION_TYPE_MISMATCH-00001"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_MIXED_TYPED_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+          "source": "P2",
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "M_F2_TRANSFER_DISCOVERY_FULL": {
+          "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "M_MINUS_INVARIANCE_TEST": {
+          "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "x0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "M_MINUS_RELATIONAL_MAPPING": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_TYPE_DISCIPLINE": {
+          "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "x0"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "P0_SURFACE_SIMILARITY": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "x0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "P1_SME_STRUCTURE_MAPPING": {
+          "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "P2_COMPLETE_HOMOMORPHISM": {
+          "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ],
+            [
+              "d4",
+              "t4"
+            ]
+          ]
+        },
+        "P3_FIXED_LESSON_INJECTION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "P4_INVARIANCE_PARENT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "RELATION_TYPE_MISMATCH",
+      "instance_id": "RELATION_TYPE_MISMATCH-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+          "source": "P2",
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_F2_TRANSFER_DISCOVERY_FULL": {
+          "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_MINUS_INVARIANCE_TEST": {
+          "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "x0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t3"
+            ],
+            [
+              "d3",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_RELATIONAL_MAPPING": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_TYPE_DISCIPLINE": {
+          "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P0_SURFACE_SIMILARITY": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "x0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P1_SME_STRUCTURE_MAPPING": {
+          "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P2_COMPLETE_HOMOMORPHISM": {
+          "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P3_FIXED_LESSON_INJECTION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "P4_INVARIANCE_PARENT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "RELATION_TYPE_MISMATCH",
+      "instance_id": "RELATION_TYPE_MISMATCH-00003"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_INVARIANT_VIOLATION",
+          "source": "P4",
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_F2_TRANSFER_DISCOVERY_FULL": {
+          "disposition": "BLOCK_INVARIANT_VIOLATION",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_MINUS_INVARIANCE_TEST": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "x0"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_MINUS_RELATIONAL_MAPPING": {
+          "disposition": "BLOCK_INVARIANT_VIOLATION",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "M_MINUS_TYPE_DISCIPLINE": {
+          "disposition": "BLOCK_INVARIANT_VIOLATION",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P0_SURFACE_SIMILARITY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P1_SME_STRUCTURE_MAPPING": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P2_COMPLETE_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P3_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ],
+            [
+              "d3",
+              "t3"
+            ]
+          ]
+        },
+        "P4_INVARIANCE_PARENT": {
+          "disposition": "BLOCK_INVARIANT_VIOLATION",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "INVARIANT_BREAKING_EMBEDDING",
+      "instance_id": "INVARIANT_BREAKING_EMBEDDING-00001"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_INVARIANT_VIOLATION",
+          "source": "P4",
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_F2_TRANSFER_DISCOVERY_FULL": {
+          "disposition": "BLOCK_INVARIANT_VIOLATION",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_INVARIANCE_TEST": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "x0"
+            ]
+          ]
+        },
+        "M_MINUS_RELATIONAL_MAPPING": {
+          "disposition": "BLOCK_INVARIANT_VIOLATION",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_TYPE_DISCIPLINE": {
+          "disposition": "BLOCK_INVARIANT_VIOLATION",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P0_SURFACE_SIMILARITY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P1_SME_STRUCTURE_MAPPING": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P2_COMPLETE_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P3_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P4_INVARIANCE_PARENT": {
+          "disposition": "BLOCK_INVARIANT_VIOLATION",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "INVARIANT_BREAKING_EMBEDDING",
+      "instance_id": "INVARIANT_BREAKING_EMBEDDING-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_DIRECTION_REVERSAL",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_INVARIANT_VIOLATION",
+          "source": "P4",
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_F2_TRANSFER_DISCOVERY_FULL": {
+          "disposition": "BLOCK_INVARIANT_VIOLATION",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_INVARIANCE_TEST": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "x0"
+            ],
+            [
+              "d1",
+              "t0"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_RELATIONAL_MAPPING": {
+          "disposition": "BLOCK_INVARIANT_VIOLATION",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "M_MINUS_TYPE_DISCIPLINE": {
+          "disposition": "BLOCK_INVARIANT_VIOLATION",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P0_SURFACE_SIMILARITY": {
+          "disposition": "BLOCK_NO_HOMOMORPHISM",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "x0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P1_SME_STRUCTURE_MAPPING": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P2_COMPLETE_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P3_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "d0",
+              "t0"
+            ],
+            [
+              "d1",
+              "t1"
+            ],
+            [
+              "d2",
+              "t2"
+            ]
+          ]
+        },
+        "P4_INVARIANCE_PARENT": {
+          "disposition": "BLOCK_INVARIANT_VIOLATION",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "INVARIANT_BREAKING_EMBEDDING",
+      "instance_id": "INVARIANT_BREAKING_EMBEDDING-00003"
+    }
+  ],
+  "label": "DEVELOPMENT",
+  "schema_version": "orion.v2.fm-exact.results.v1",
+  "split_seed": "FM10-DEV-20260902",
+  "suite": "FM10"
+}

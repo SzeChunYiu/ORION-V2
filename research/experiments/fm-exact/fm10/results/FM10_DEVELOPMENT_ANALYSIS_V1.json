@@ -1,0 +1,1115 @@
+{
+  "cost": {
+    "M_wall_ms": 3.647749,
+    "P_wall_ms": 1.082418,
+    "flag": "COST_ADVANTAGE_PARENT",
+    "ratio_P_over_M": 0.2967358773863005,
+    "rule": "wall-clock flag at 2x; reported only, routes nothing"
+  },
+  "custody_sha256": "b3fc3433d9378f86becd7398b9b2488fb000d9a4e1d04514ffd32e1bfaa6f18f",
+  "gates": [
+    {
+      "applicable": true,
+      "detail": {
+        "fixtures": [
+          {
+            "expected": "TRANSFER_VALID",
+            "name": "KA-01-ISO",
+            "oracle": "TRANSFER_VALID",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_NO_TYPE_RESPECTING_MAP",
+            "name": "KA-02-NO_TYPED_MAP",
+            "oracle": "BLOCK_NO_TYPE_RESPECTING_MAP",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_RELATION_TYPE_MISMATCH",
+            "name": "KA-03-RELTYPE",
+            "oracle": "BLOCK_RELATION_TYPE_MISMATCH",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_NO_HOMOMORPHISM",
+            "name": "KA-04-ABSENT",
+            "oracle": "BLOCK_NO_HOMOMORPHISM",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_DIRECTION_REVERSAL",
+            "name": "KA-05-REVERSAL",
+            "oracle": "BLOCK_DIRECTION_REVERSAL",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_MIXED_TYPED_OBSTRUCTION",
+            "name": "KA-06-MIXED",
+            "oracle": "BLOCK_MIXED_TYPED_OBSTRUCTION",
+            "passed": true
+          },
+          {
+            "expected": "TRANSFER_VALID",
+            "name": "KA-07-SURFACE_DECOY",
+            "oracle": "TRANSFER_VALID",
+            "passed": true
+          },
+          {
+            "expected": "TRANSFER_VALID",
+            "name": "KA-08-EMBEDDING_IN_LARGER_TARGET",
+            "oracle": "TRANSFER_VALID",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_INVARIANT_VIOLATION",
+            "name": "KA-09-INVARIANT_BREAK",
+            "oracle": "BLOCK_INVARIANT_VIOLATION",
+            "passed": true
+          },
+          {
+            "expected": "TRANSFER_VALID",
+            "name": "KA-10-INVARIANT_INTACT",
+            "oracle": "TRANSFER_VALID",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_RELATION_TYPE_MISMATCH",
+            "name": "KA-11-OBSTRUCTION_DOMINATES_INVARIANT",
+            "oracle": "BLOCK_RELATION_TYPE_MISMATCH",
+            "passed": true
+          }
+        ]
+      },
+      "gate": "G0a_KNOWN_ANSWER",
+      "hard": true,
+      "min_required_evaluated": 8,
+      "n_evaluated": 11,
+      "n_violations": 0,
+      "rule": "every hand-authored fixture's disposition is reproduced by the exhaustive oracle",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "n_disagreements": 0,
+        "n_evaluated": 21
+      },
+      "gate": "G0b_ORACLE_SELF_AGREEMENT",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 21,
+      "n_violations": 0,
+      "rule": "exhaustive enumeration and the independent branch-and-bound search agree on disposition, min_missing, optimal profile and optimal-map count for every instance of the split",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "constant_arm_rates": {
+          "C_ALWAYS_BLOCK": 0.2857142857142857,
+          "C_ALWAYS_TRANSFER": 0.2857142857142857
+        },
+        "random_rate": 0.09523809523809523,
+        "shuffled_label_null": {
+          "exact_against_shuffled": 5,
+          "n": 21,
+          "rate": 0.23809523809523808,
+          "seed": 20260902
+        },
+        "violations": []
+      },
+      "gate": "G0c_NULL_CALIBRATION",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 4,
+      "n_violations": 0,
+      "rule": "constant-response arms <= 0.4, random arm <= 0.4, M against within-split shuffled oracle labels <= 0.4",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "below_minimum": {},
+        "counts": {
+          "DIRECTION_REVERSAL": 3,
+          "INVARIANT_BREAKING_EMBEDDING": 3,
+          "RELATION_TYPE_MISMATCH": 3,
+          "SURFACE_DECOY": 3
+        },
+        "minimum": 3
+      },
+      "gate": "G0d_DECOY_COVERAGE",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 4,
+      "n_violations": 0,
+      "rule": "every registered decoy family carries >= 3 instances in the split",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "planted": [
+          {
+            "description": "a deliberately incomplete search (first typed map, no optimisation) must disagree with exhaustive enumeration on a hand-built instance",
+            "fired": true,
+            "gate": "G0b_ORACLE_SELF_AGREEMENT",
+            "name": "first_map_only_pseudo_oracle_is_detected"
+          },
+          {
+            "description": "the known-answer comparison must reject a deliberately wrong expected disposition",
+            "fired": true,
+            "gate": "G0a_KNOWN_ANSWER",
+            "name": "wrong_expected_label_is_detected"
+          },
+          {
+            "description": "the over-transfer counter must count C_ALWAYS_TRANSFER on a blocked instance",
+            "fired": true,
+            "gate": "G2_ANTI_PERMISSIVENESS",
+            "name": "over_transferring_arm_is_detected"
+          },
+          {
+            "description": "a synthetic per-arm table where every arm scores 1.0 must FAIL the discrimination gate (the FM/FG R2 ceiling defect)",
+            "fired": true,
+            "gate": "G0f_FAMILY_DISCRIMINATION",
+            "name": "degenerate_all_ceiling_split_is_detected"
+          },
+          {
+            "description": "M_MINUS_INVARIANCE_TEST must be wrong on a hand-built invariant-break instance on which M is right",
+            "fired": true,
+            "gate": "G3_MECHANISM_BY_OMISSION",
+            "name": "invariance_ablation_loses_the_invariant_family"
+          }
+        ]
+      },
+      "gate": "G0e_PLANTED_POSITIVES",
+      "hard": true,
+      "min_required_evaluated": 3,
+      "n_evaluated": 5,
+      "n_violations": 0,
+      "rule": "every registered planted positive trips its own gate predicate",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "halves": {
+          "separating": {
+            "n_evaluated": 4,
+            "threshold": 0.85,
+            "violation": false,
+            "weak_arms_at_or_below_threshold": {
+              "M_MINUS_RELATIONAL_MAPPING": 0.5714285714285714,
+              "P0_SURFACE_SIMILARITY": 0.5238095238095238,
+              "P3_FIXED_LESSON_INJECTION": 0.42857142857142855,
+              "P4_INVARIANCE_PARENT": 0.42857142857142855
+            }
+          },
+          "solvable": {
+            "best_arm": "F0_PARENT_FEDERATION",
+            "best_rate": 1.0,
+            "n_evaluated": 11,
+            "threshold": 0.95,
+            "violation": false
+          }
+        },
+        "per_arm_exact": {
+          "C_ALWAYS_BLOCK": 0.2857142857142857,
+          "C_ALWAYS_TRANSFER": 0.2857142857142857,
+          "C_RANDOM_DISPOSITION": 0.09523809523809523,
+          "F0_PARENT_FEDERATION": 1.0,
+          "M_F2_TRANSFER_DISCOVERY_FULL": 1.0,
+          "M_MINUS_INVARIANCE_TEST": 0.8571428571428571,
+          "M_MINUS_OBSTRUCTION_SEARCH": 0.38095238095238093,
+          "M_MINUS_RELATIONAL_MAPPING": 0.5714285714285714,
+          "M_MINUS_TYPE_DISCIPLINE": 1.0,
+          "P0_SURFACE_SIMILARITY": 0.5238095238095238,
+          "P1_SME_STRUCTURE_MAPPING": 0.8571428571428571,
+          "P2_COMPLETE_HOMOMORPHISM": 0.8571428571428571,
+          "P3_FIXED_LESSON_INJECTION": 0.42857142857142855,
+          "P4_INVARIANCE_PARENT": 0.42857142857142855
+        }
+      },
+      "gate": "G0f_FAMILY_DISCRIMINATION",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 2,
+      "n_violations": 0,
+      "rule": "non-degenerate split, two independent halves: some arm >= 0.95 (not at floor) AND some registered weak arm <= 0.85 (not at ceiling); guards against the families that made FM/FG R2 uninformative",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "counter_liveness_control": {
+          "ablation_vs_parent_discordance": {
+            "M_MINUS_INVARIANCE_TEST": 3,
+            "M_MINUS_OBSTRUCTION_SEARCH": 13,
+            "M_MINUS_RELATIONAL_MAPPING": 9,
+            "M_MINUS_TYPE_DISCIPLINE": 0
+          },
+          "counter_is_live": true
+        },
+        "decision_identity_rate": 1.0,
+        "paired": {
+          "diff_x_minus_y": 0.0,
+          "discordant": 0,
+          "exact_p_two_sided": 1.0,
+          "n": 21,
+          "wald_ci95": [
+            0.0,
+            0.0
+          ],
+          "x_only": 0,
+          "y_only": 0
+        },
+        "per_family": {
+          "DIRECTION_REVERSAL": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "INVARIANT_BREAKING_EMBEDDING": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "ISOMORPHIC_TRANSFER": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "NON_HOMOMORPHISM": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "PARTIAL_HOMOMORPHISM": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "RELATION_TYPE_MISMATCH": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "SURFACE_DECOY": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          }
+        }
+      },
+      "gate": "G1a_PARENT_REPRODUCES_M",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 21,
+      "n_violations": 0,
+      "rule": "F0_PARENT_FEDERATION reproduces M_F2_TRANSFER_DISCOVERY_FULL's disposition on >= 99.5% of instances and no family exceeds 5% discordance; AND the discordance counter is shown live on this split by at least one ablation arm disagreeing with the parent",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "discordant_pairs": 0,
+        "paired": {
+          "diff_x_minus_y": 0.0,
+          "discordant": 0,
+          "exact_p_two_sided": 1.0,
+          "n": 21,
+          "wald_ci95": [
+            0.0,
+            0.0
+          ],
+          "x_only": 0,
+          "y_only": 0
+        },
+        "per_family": {
+          "DIRECTION_REVERSAL": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "INVARIANT_BREAKING_EMBEDDING": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "ISOMORPHIC_TRANSFER": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "NON_HOMOMORPHISM": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "PARTIAL_HOMOMORPHISM": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "RELATION_TYPE_MISMATCH": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "SURFACE_DECOY": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          }
+        }
+      },
+      "gate": "G1b_M_ADVANTAGE",
+      "hard": false,
+      "min_required_evaluated": 1,
+      "n_evaluated": 21,
+      "n_violations": 1,
+      "rule": "paired instance-exact difference (M_F2_TRANSFER_DISCOVERY_FULL - F0_PARENT_FEDERATION) > 0, exact two-sided p <= 0.05, and >= 1 family with >= 5 M-only-exact instances",
+      "verdict": "NOT_FIRED"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "M_over_accept": 0,
+        "P_over_accept": 0,
+        "n_blocked": 15
+      },
+      "gate": "G2_ANTI_PERMISSIVENESS",
+      "hard": true,
+      "min_required_evaluated": 10,
+      "n_evaluated": 15,
+      "n_violations": 0,
+      "rule": "on instances the oracle blocks, M_F2_TRANSFER_DISCOVERY_FULL accepts no more transfers than F0_PARENT_FEDERATION",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": false,
+      "detail": {
+        "checks": {},
+        "claimed_families": []
+      },
+      "gate": "G3_MECHANISM_BY_OMISSION",
+      "hard": false,
+      "min_required_evaluated": 1,
+      "n_evaluated": 0,
+      "n_violations": 0,
+      "rule": "for every family with a claimed M advantage, the matching omission ablation's exact rate is <= the parent's on that family",
+      "verdict": "NOT_APPLICABLE"
+    }
+  ],
+  "generator_rejections": {
+    "DIRECTION_REVERSAL": 0,
+    "INVARIANT_BREAKING_EMBEDDING": 0,
+    "ISOMORPHIC_TRANSFER": 1,
+    "NON_HOMOMORPHISM": 0,
+    "PARTIAL_HOMOMORPHISM": 0,
+    "RELATION_TYPE_MISMATCH": 0,
+    "SURFACE_DECOY": 32
+  },
+  "holm_across_families": {
+    "DIRECTION_REVERSAL": {
+      "holm_p": 1.0,
+      "m": 7,
+      "rank": 5,
+      "raw_p": 1.0
+    },
+    "INVARIANT_BREAKING_EMBEDDING": {
+      "holm_p": 1.0,
+      "m": 7,
+      "rank": 7,
+      "raw_p": 1.0
+    },
+    "ISOMORPHIC_TRANSFER": {
+      "holm_p": 1.0,
+      "m": 7,
+      "rank": 1,
+      "raw_p": 1.0
+    },
+    "NON_HOMOMORPHISM": {
+      "holm_p": 1.0,
+      "m": 7,
+      "rank": 3,
+      "raw_p": 1.0
+    },
+    "PARTIAL_HOMOMORPHISM": {
+      "holm_p": 1.0,
+      "m": 7,
+      "rank": 2,
+      "raw_p": 1.0
+    },
+    "RELATION_TYPE_MISMATCH": {
+      "holm_p": 1.0,
+      "m": 7,
+      "rank": 6,
+      "raw_p": 1.0
+    },
+    "SURFACE_DECOY": {
+      "holm_p": 1.0,
+      "m": 7,
+      "rank": 4,
+      "raw_p": 1.0
+    }
+  },
+  "label": "DEVELOPMENT",
+  "n_instances": 21,
+  "results_sha256": "100c5718d99aa39dbfc8a03d48fec5329b4fff1dc70a24a6568e8c75da2ec1cd",
+  "route": {
+    "cost_flag": "COST_ADVANTAGE_PARENT",
+    "reason": "F0_PARENT_FEDERATION reproduces M_F2_TRANSFER_DISCOVERY_FULL's dispositions (identity 1.0000)",
+    "route": "PARENT_SUFFICIENT"
+  },
+  "schema_version": "orion.v2.fm-exact.analysis.v1",
+  "score": {
+    "per_arm": {
+      "C_ALWAYS_BLOCK": {
+        "exact": 6,
+        "exact_rate": 0.2857142857142857,
+        "n": 21,
+        "over_accept": 0,
+        "per_family": {
+          "DIRECTION_REVERSAL": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "INVARIANT_BREAKING_EMBEDDING": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "ISOMORPHIC_TRANSFER": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "NON_HOMOMORPHISM": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_HOMOMORPHISM": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "RELATION_TYPE_MISMATCH": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "SURFACE_DECOY": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          }
+        },
+        "under_accept": 6,
+        "wall_ms": 0.0125
+      },
+      "C_ALWAYS_TRANSFER": {
+        "exact": 6,
+        "exact_rate": 0.2857142857142857,
+        "n": 21,
+        "over_accept": 15,
+        "per_family": {
+          "DIRECTION_REVERSAL": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "INVARIANT_BREAKING_EMBEDDING": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "ISOMORPHIC_TRANSFER": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NON_HOMOMORPHISM": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "PARTIAL_HOMOMORPHISM": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "RELATION_TYPE_MISMATCH": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "SURFACE_DECOY": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.023833
+      },
+      "C_RANDOM_DISPOSITION": {
+        "exact": 2,
+        "exact_rate": 0.09523809523809523,
+        "n": 21,
+        "over_accept": 6,
+        "per_family": {
+          "DIRECTION_REVERSAL": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "INVARIANT_BREAKING_EMBEDDING": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "ISOMORPHIC_TRANSFER": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "NON_HOMOMORPHISM": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "PARTIAL_HOMOMORPHISM": {
+            "exact": 1,
+            "exact_rate": 0.3333333333333333,
+            "n": 3
+          },
+          "RELATION_TYPE_MISMATCH": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "SURFACE_DECOY": {
+            "exact": 1,
+            "exact_rate": 0.3333333333333333,
+            "n": 3
+          }
+        },
+        "under_accept": 5,
+        "wall_ms": 0.302584
+      },
+      "F0_PARENT_FEDERATION": {
+        "exact": 21,
+        "exact_rate": 1.0,
+        "n": 21,
+        "over_accept": 0,
+        "per_family": {
+          "DIRECTION_REVERSAL": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "INVARIANT_BREAKING_EMBEDDING": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "ISOMORPHIC_TRANSFER": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NON_HOMOMORPHISM": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_HOMOMORPHISM": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "RELATION_TYPE_MISMATCH": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "SURFACE_DECOY": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 1.082418
+      },
+      "M_F2_TRANSFER_DISCOVERY_FULL": {
+        "exact": 21,
+        "exact_rate": 1.0,
+        "n": 21,
+        "over_accept": 0,
+        "per_family": {
+          "DIRECTION_REVERSAL": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "INVARIANT_BREAKING_EMBEDDING": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "ISOMORPHIC_TRANSFER": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NON_HOMOMORPHISM": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_HOMOMORPHISM": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "RELATION_TYPE_MISMATCH": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "SURFACE_DECOY": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 3.647749
+      },
+      "M_MINUS_INVARIANCE_TEST": {
+        "exact": 18,
+        "exact_rate": 0.8571428571428571,
+        "n": 21,
+        "over_accept": 3,
+        "per_family": {
+          "DIRECTION_REVERSAL": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "INVARIANT_BREAKING_EMBEDDING": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "ISOMORPHIC_TRANSFER": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NON_HOMOMORPHISM": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_HOMOMORPHISM": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "RELATION_TYPE_MISMATCH": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "SURFACE_DECOY": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.969456
+      },
+      "M_MINUS_OBSTRUCTION_SEARCH": {
+        "exact": 8,
+        "exact_rate": 0.38095238095238093,
+        "n": 21,
+        "over_accept": 0,
+        "per_family": {
+          "DIRECTION_REVERSAL": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "INVARIANT_BREAKING_EMBEDDING": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "ISOMORPHIC_TRANSFER": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "NON_HOMOMORPHISM": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_HOMOMORPHISM": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "RELATION_TYPE_MISMATCH": {
+            "exact": 1,
+            "exact_rate": 0.3333333333333333,
+            "n": 3
+          },
+          "SURFACE_DECOY": {
+            "exact": 1,
+            "exact_rate": 0.3333333333333333,
+            "n": 3
+          }
+        },
+        "under_accept": 5,
+        "wall_ms": 0.362042
+      },
+      "M_MINUS_RELATIONAL_MAPPING": {
+        "exact": 12,
+        "exact_rate": 0.5714285714285714,
+        "n": 21,
+        "over_accept": 0,
+        "per_family": {
+          "DIRECTION_REVERSAL": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "INVARIANT_BREAKING_EMBEDDING": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "ISOMORPHIC_TRANSFER": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NON_HOMOMORPHISM": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_HOMOMORPHISM": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "RELATION_TYPE_MISMATCH": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "SURFACE_DECOY": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          }
+        },
+        "under_accept": 3,
+        "wall_ms": 0.231833
+      },
+      "M_MINUS_TYPE_DISCIPLINE": {
+        "exact": 21,
+        "exact_rate": 1.0,
+        "n": 21,
+        "over_accept": 0,
+        "per_family": {
+          "DIRECTION_REVERSAL": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "INVARIANT_BREAKING_EMBEDDING": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "ISOMORPHIC_TRANSFER": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NON_HOMOMORPHISM": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_HOMOMORPHISM": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "RELATION_TYPE_MISMATCH": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "SURFACE_DECOY": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 39.071124
+      },
+      "P0_SURFACE_SIMILARITY": {
+        "exact": 11,
+        "exact_rate": 0.5238095238095238,
+        "n": 21,
+        "over_accept": 2,
+        "per_family": {
+          "DIRECTION_REVERSAL": {
+            "exact": 2,
+            "exact_rate": 0.6666666666666666,
+            "n": 3
+          },
+          "INVARIANT_BREAKING_EMBEDDING": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "ISOMORPHIC_TRANSFER": {
+            "exact": 2,
+            "exact_rate": 0.6666666666666666,
+            "n": 3
+          },
+          "NON_HOMOMORPHISM": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_HOMOMORPHISM": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "RELATION_TYPE_MISMATCH": {
+            "exact": 1,
+            "exact_rate": 0.3333333333333333,
+            "n": 3
+          },
+          "SURFACE_DECOY": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          }
+        },
+        "under_accept": 4,
+        "wall_ms": 0.539086
+      },
+      "P1_SME_STRUCTURE_MAPPING": {
+        "exact": 18,
+        "exact_rate": 0.8571428571428571,
+        "n": 21,
+        "over_accept": 3,
+        "per_family": {
+          "DIRECTION_REVERSAL": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "INVARIANT_BREAKING_EMBEDDING": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "ISOMORPHIC_TRANSFER": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NON_HOMOMORPHISM": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_HOMOMORPHISM": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "RELATION_TYPE_MISMATCH": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "SURFACE_DECOY": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 3.065707
+      },
+      "P2_COMPLETE_HOMOMORPHISM": {
+        "exact": 18,
+        "exact_rate": 0.8571428571428571,
+        "n": 21,
+        "over_accept": 3,
+        "per_family": {
+          "DIRECTION_REVERSAL": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "INVARIANT_BREAKING_EMBEDDING": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "ISOMORPHIC_TRANSFER": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NON_HOMOMORPHISM": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_HOMOMORPHISM": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "RELATION_TYPE_MISMATCH": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "SURFACE_DECOY": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 1.413874
+      },
+      "P3_FIXED_LESSON_INJECTION": {
+        "exact": 9,
+        "exact_rate": 0.42857142857142855,
+        "n": 21,
+        "over_accept": 3,
+        "per_family": {
+          "DIRECTION_REVERSAL": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "INVARIANT_BREAKING_EMBEDDING": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "ISOMORPHIC_TRANSFER": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NON_HOMOMORPHISM": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "PARTIAL_HOMOMORPHISM": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "RELATION_TYPE_MISMATCH": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "SURFACE_DECOY": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          }
+        },
+        "under_accept": 3,
+        "wall_ms": 0.249621
+      },
+      "P4_INVARIANCE_PARENT": {
+        "exact": 9,
+        "exact_rate": 0.42857142857142855,
+        "n": 21,
+        "over_accept": 10,
+        "per_family": {
+          "DIRECTION_REVERSAL": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "INVARIANT_BREAKING_EMBEDDING": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "ISOMORPHIC_TRANSFER": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NON_HOMOMORPHISM": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "PARTIAL_HOMOMORPHISM": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "RELATION_TYPE_MISMATCH": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "SURFACE_DECOY": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.110333
+      }
+    }
+  },
+  "suite": "FM10"
+}

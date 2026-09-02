@@ -1,0 +1,4438 @@
+{
+  "instances": [
+    {
+      "expected": {
+        "best_profile": {
+          "ABSENT": 0,
+          "MET": 5,
+          "MISSING": 0,
+          "RELTYPE": 0,
+          "REVERSAL": 0
+        },
+        "broken_invariants": [],
+        "disposition": "TRANSFER_VALID",
+        "min_missing": 0,
+        "n_maps": 6,
+        "n_optimal_maps": 1,
+        "witness": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ],
+          [
+            "d3",
+            "t3"
+          ]
+        ]
+      },
+      "family": "ISOMORPHIC_TRANSFER",
+      "instance": {
+        "donor": {
+          "domain_id": "DONOR",
+          "facts": [
+            [
+              "acts_on",
+              "MEREOLOGICAL",
+              [
+                "d3",
+                "d1"
+              ]
+            ],
+            [
+              "acts_on",
+              "ORDER",
+              [
+                "d2",
+                "d3"
+              ]
+            ],
+            [
+              "measures",
+              "CAUSAL",
+              [
+                "d0",
+                "d1"
+              ]
+            ],
+            [
+              "measures",
+              "CAUSAL",
+              [
+                "d3",
+                "d0"
+              ]
+            ],
+            [
+              "part_of",
+              "CAUSAL",
+              [
+                "d0",
+                "d2"
+              ]
+            ]
+          ],
+          "invariant_ids": [
+            "ACYCLIC:part_of",
+            "ACYCLIC:acts_on"
+          ],
+          "node_types": [
+            [
+              "d0",
+              "AGENT"
+            ],
+            [
+              "d1",
+              "OBJECT"
+            ],
+            [
+              "d2",
+              "QUANTITY"
+            ],
+            [
+              "d3",
+              "OBJECT"
+            ]
+          ],
+          "nodes": [
+            "d0",
+            "d1",
+            "d2",
+            "d3"
+          ],
+          "structure_id": "D2"
+        },
+        "family": "ISOMORPHIC_TRANSFER",
+        "instance_id": "ISOMORPHIC_TRANSFER-00002",
+        "seed": 14739740983495576015,
+        "surface_pairs": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ],
+          [
+            "d3",
+            "t3"
+          ]
+        ],
+        "target": {
+          "domain_id": "TARGET",
+          "facts": [
+            [
+              "acts_on",
+              "MEREOLOGICAL",
+              [
+                "t3",
+                "t1"
+              ]
+            ],
+            [
+              "acts_on",
+              "ORDER",
+              [
+                "t2",
+                "t3"
+              ]
+            ],
+            [
+              "measures",
+              "CAUSAL",
+              [
+                "t0",
+                "t1"
+              ]
+            ],
+            [
+              "measures",
+              "CAUSAL",
+              [
+                "t3",
+                "t0"
+              ]
+            ],
+            [
+              "measures",
+              "ORDER",
+              [
+                "t3",
+                "t0"
+              ]
+            ],
+            [
+              "part_of",
+              "CAUSAL",
+              [
+                "t0",
+                "t2"
+              ]
+            ]
+          ],
+          "invariant_ids": [],
+          "node_types": [
+            [
+              "x1",
+              "OBJECT"
+            ],
+            [
+              "t1",
+              "OBJECT"
+            ],
+            [
+              "t2",
+              "QUANTITY"
+            ],
+            [
+              "t3",
+              "OBJECT"
+            ],
+            [
+              "x0",
+              "PROCESS"
+            ],
+            [
+              "t0",
+              "AGENT"
+            ]
+          ],
+          "nodes": [
+            "x1",
+            "t1",
+            "t2",
+            "t3",
+            "x0",
+            "t0"
+          ],
+          "structure_id": "T2"
+        }
+      },
+      "instance_id": "ISOMORPHIC_TRANSFER-00002"
+    },
+    {
+      "expected": {
+        "best_profile": {
+          "ABSENT": 0,
+          "MET": 3,
+          "MISSING": 0,
+          "RELTYPE": 0,
+          "REVERSAL": 0
+        },
+        "broken_invariants": [],
+        "disposition": "TRANSFER_VALID",
+        "min_missing": 0,
+        "n_maps": 18,
+        "n_optimal_maps": 3,
+        "witness": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ],
+          [
+            "d3",
+            "t3"
+          ],
+          [
+            "d4",
+            "t4"
+          ]
+        ]
+      },
+      "family": "ISOMORPHIC_TRANSFER",
+      "instance": {
+        "donor": {
+          "domain_id": "DONOR",
+          "facts": [
+            [
+              "acts_on",
+              "MEREOLOGICAL",
+              [
+                "d2",
+                "d1"
+              ]
+            ],
+            [
+              "causes",
+              "MEREOLOGICAL",
+              [
+                "d2",
+                "d0"
+              ]
+            ],
+            [
+              "measures",
+              "CAUSAL",
+              [
+                "d0",
+                "d2"
+              ]
+            ]
+          ],
+          "invariant_ids": [
+            "ACYCLIC:measures"
+          ],
+          "node_types": [
+            [
+              "d0",
+              "QUANTITY"
+            ],
+            [
+              "d1",
+              "OBJECT"
+            ],
+            [
+              "d2",
+              "QUANTITY"
+            ],
+            [
+              "d3",
+              "QUANTITY"
+            ],
+            [
+              "d4",
+              "AGENT"
+            ]
+          ],
+          "nodes": [
+            "d0",
+            "d1",
+            "d2",
+            "d3",
+            "d4"
+          ],
+          "structure_id": "D3"
+        },
+        "family": "ISOMORPHIC_TRANSFER",
+        "instance_id": "ISOMORPHIC_TRANSFER-00003",
+        "seed": 10086523823137809899,
+        "surface_pairs": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ],
+          [
+            "d3",
+            "t3"
+          ],
+          [
+            "d4",
+            "t4"
+          ]
+        ],
+        "target": {
+          "domain_id": "TARGET",
+          "facts": [
+            [
+              "acts_on",
+              "MEREOLOGICAL",
+              [
+                "t2",
+                "t1"
+              ]
+            ],
+            [
+              "causes",
+              "MEREOLOGICAL",
+              [
+                "t1",
+                "x0"
+              ]
+            ],
+            [
+              "causes",
+              "MEREOLOGICAL",
+              [
+                "t2",
+                "t0"
+              ]
+            ],
+            [
+              "greater_than",
+              "MEREOLOGICAL",
+              [
+                "x0",
+                "x1"
+              ]
+            ],
+            [
+              "measures",
+              "CAUSAL",
+              [
+                "t0",
+                "t2"
+              ]
+            ]
+          ],
+          "invariant_ids": [],
+          "node_types": [
+            [
+              "t4",
+              "AGENT"
+            ],
+            [
+              "t2",
+              "QUANTITY"
+            ],
+            [
+              "t0",
+              "QUANTITY"
+            ],
+            [
+              "t3",
+              "QUANTITY"
+            ],
+            [
+              "x0",
+              "AGENT"
+            ],
+            [
+              "t1",
+              "OBJECT"
+            ],
+            [
+              "x1",
+              "AGENT"
+            ]
+          ],
+          "nodes": [
+            "t4",
+            "t2",
+            "t0",
+            "t3",
+            "x0",
+            "t1",
+            "x1"
+          ],
+          "structure_id": "T3"
+        }
+      },
+      "instance_id": "ISOMORPHIC_TRANSFER-00003"
+    },
+    {
+      "expected": {
+        "best_profile": {
+          "ABSENT": 0,
+          "MET": 4,
+          "MISSING": 0,
+          "RELTYPE": 0,
+          "REVERSAL": 0
+        },
+        "broken_invariants": [],
+        "disposition": "TRANSFER_VALID",
+        "min_missing": 0,
+        "n_maps": 6,
+        "n_optimal_maps": 1,
+        "witness": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ]
+        ]
+      },
+      "family": "ISOMORPHIC_TRANSFER",
+      "instance": {
+        "donor": {
+          "domain_id": "DONOR",
+          "facts": [
+            [
+              "acts_on",
+              "MEREOLOGICAL",
+              [
+                "d2",
+                "d0"
+              ]
+            ],
+            [
+              "causes",
+              "ORDER",
+              [
+                "d2",
+                "d0"
+              ]
+            ],
+            [
+              "greater_than",
+              "MEREOLOGICAL",
+              [
+                "d0",
+                "d1"
+              ]
+            ],
+            [
+              "measures",
+              "ORDER",
+              [
+                "d0",
+                "d1"
+              ]
+            ]
+          ],
+          "invariant_ids": [
+            "FUNCTIONAL:acts_on"
+          ],
+          "node_types": [
+            [
+              "d0",
+              "PROCESS"
+            ],
+            [
+              "d1",
+              "QUANTITY"
+            ],
+            [
+              "d2",
+              "QUANTITY"
+            ]
+          ],
+          "nodes": [
+            "d0",
+            "d1",
+            "d2"
+          ],
+          "structure_id": "D4"
+        },
+        "family": "ISOMORPHIC_TRANSFER",
+        "instance_id": "ISOMORPHIC_TRANSFER-00004",
+        "seed": 11764443645206622768,
+        "surface_pairs": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ]
+        ],
+        "target": {
+          "domain_id": "TARGET",
+          "facts": [
+            [
+              "acts_on",
+              "MEREOLOGICAL",
+              [
+                "t2",
+                "t0"
+              ]
+            ],
+            [
+              "causes",
+              "ORDER",
+              [
+                "t2",
+                "t0"
+              ]
+            ],
+            [
+              "causes",
+              "ORDER",
+              [
+                "t2",
+                "x1"
+              ]
+            ],
+            [
+              "greater_than",
+              "MEREOLOGICAL",
+              [
+                "t0",
+                "t1"
+              ]
+            ],
+            [
+              "measures",
+              "ORDER",
+              [
+                "t0",
+                "t1"
+              ]
+            ],
+            [
+              "part_of",
+              "FUNCTIONAL",
+              [
+                "x0",
+                "t1"
+              ]
+            ]
+          ],
+          "invariant_ids": [],
+          "node_types": [
+            [
+              "x0",
+              "QUANTITY"
+            ],
+            [
+              "t0",
+              "PROCESS"
+            ],
+            [
+              "x1",
+              "AGENT"
+            ],
+            [
+              "t2",
+              "QUANTITY"
+            ],
+            [
+              "t1",
+              "QUANTITY"
+            ]
+          ],
+          "nodes": [
+            "x0",
+            "t0",
+            "x1",
+            "t2",
+            "t1"
+          ],
+          "structure_id": "T4"
+        }
+      },
+      "instance_id": "ISOMORPHIC_TRANSFER-00004"
+    },
+    {
+      "expected": {
+        "best_profile": {
+          "ABSENT": 1,
+          "MET": 4,
+          "MISSING": 1,
+          "RELTYPE": 0,
+          "REVERSAL": 0
+        },
+        "broken_invariants": [],
+        "disposition": "BLOCK_NO_HOMOMORPHISM",
+        "min_missing": 1,
+        "n_maps": 2,
+        "n_optimal_maps": 1,
+        "witness": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ],
+          [
+            "d3",
+            "t3"
+          ]
+        ]
+      },
+      "family": "PARTIAL_HOMOMORPHISM",
+      "instance": {
+        "donor": {
+          "domain_id": "DONOR",
+          "facts": [
+            [
+              "acts_on",
+              "ORDER",
+              [
+                "d2",
+                "d3"
+              ]
+            ],
+            [
+              "causes",
+              "MEREOLOGICAL",
+              [
+                "d1",
+                "d0"
+              ]
+            ],
+            [
+              "causes",
+              "MEREOLOGICAL",
+              [
+                "d1",
+                "d2"
+              ]
+            ],
+            [
+              "causes",
+              "ORDER",
+              [
+                "d1",
+                "d3"
+              ]
+            ],
+            [
+              "greater_than",
+              "FUNCTIONAL",
+              [
+                "d0",
+                "d2"
+              ]
+            ]
+          ],
+          "invariant_ids": [
+            "FUNCTIONAL:acts_on",
+            "ANTISYMMETRIC:causes"
+          ],
+          "node_types": [
+            [
+              "d0",
+              "OBJECT"
+            ],
+            [
+              "d1",
+              "PROCESS"
+            ],
+            [
+              "d2",
+              "AGENT"
+            ],
+            [
+              "d3",
+              "QUANTITY"
+            ]
+          ],
+          "nodes": [
+            "d0",
+            "d1",
+            "d2",
+            "d3"
+          ],
+          "structure_id": "D1"
+        },
+        "family": "PARTIAL_HOMOMORPHISM",
+        "instance_id": "PARTIAL_HOMOMORPHISM-00001",
+        "seed": 958548116227262597,
+        "surface_pairs": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ],
+          [
+            "d3",
+            "t3"
+          ]
+        ],
+        "target": {
+          "domain_id": "TARGET",
+          "facts": [
+            [
+              "acts_on",
+              "ORDER",
+              [
+                "t2",
+                "t3"
+              ]
+            ],
+            [
+              "causes",
+              "MEREOLOGICAL",
+              [
+                "t0",
+                "t2"
+              ]
+            ],
+            [
+              "causes",
+              "MEREOLOGICAL",
+              [
+                "t1",
+                "t0"
+              ]
+            ],
+            [
+              "causes",
+              "MEREOLOGICAL",
+              [
+                "x0",
+                "t0"
+              ]
+            ],
+            [
+              "causes",
+              "ORDER",
+              [
+                "t0",
+                "t3"
+              ]
+            ],
+            [
+              "causes",
+              "ORDER",
+              [
+                "t1",
+                "t3"
+              ]
+            ],
+            [
+              "greater_than",
+              "FUNCTIONAL",
+              [
+                "t0",
+                "t2"
+              ]
+            ]
+          ],
+          "invariant_ids": [],
+          "node_types": [
+            [
+              "t0",
+              "OBJECT"
+            ],
+            [
+              "x0",
+              "AGENT"
+            ],
+            [
+              "t2",
+              "AGENT"
+            ],
+            [
+              "t3",
+              "QUANTITY"
+            ],
+            [
+              "t1",
+              "PROCESS"
+            ]
+          ],
+          "nodes": [
+            "t0",
+            "x0",
+            "t2",
+            "t3",
+            "t1"
+          ],
+          "structure_id": "T1"
+        }
+      },
+      "instance_id": "PARTIAL_HOMOMORPHISM-00001"
+    },
+    {
+      "expected": {
+        "best_profile": {
+          "ABSENT": 1,
+          "MET": 4,
+          "MISSING": 1,
+          "RELTYPE": 0,
+          "REVERSAL": 0
+        },
+        "broken_invariants": [
+          "ACYCLIC:acts_on"
+        ],
+        "disposition": "BLOCK_NO_HOMOMORPHISM",
+        "min_missing": 1,
+        "n_maps": 2,
+        "n_optimal_maps": 1,
+        "witness": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ],
+          [
+            "d3",
+            "t3"
+          ]
+        ]
+      },
+      "family": "PARTIAL_HOMOMORPHISM",
+      "instance": {
+        "donor": {
+          "domain_id": "DONOR",
+          "facts": [
+            [
+              "acts_on",
+              "ORDER",
+              [
+                "d1",
+                "d3"
+              ]
+            ],
+            [
+              "greater_than",
+              "FUNCTIONAL",
+              [
+                "d2",
+                "d1"
+              ]
+            ],
+            [
+              "measures",
+              "MEREOLOGICAL",
+              [
+                "d2",
+                "d0"
+              ]
+            ],
+            [
+              "measures",
+              "ORDER",
+              [
+                "d1",
+                "d2"
+              ]
+            ],
+            [
+              "part_of",
+              "MEREOLOGICAL",
+              [
+                "d3",
+                "d0"
+              ]
+            ]
+          ],
+          "invariant_ids": [
+            "FUNCTIONAL:acts_on",
+            "ACYCLIC:acts_on"
+          ],
+          "node_types": [
+            [
+              "d0",
+              "AGENT"
+            ],
+            [
+              "d1",
+              "PROCESS"
+            ],
+            [
+              "d2",
+              "OBJECT"
+            ],
+            [
+              "d3",
+              "PROCESS"
+            ]
+          ],
+          "nodes": [
+            "d0",
+            "d1",
+            "d2",
+            "d3"
+          ],
+          "structure_id": "D2"
+        },
+        "family": "PARTIAL_HOMOMORPHISM",
+        "instance_id": "PARTIAL_HOMOMORPHISM-00002",
+        "seed": 9742142096247695159,
+        "surface_pairs": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ],
+          [
+            "d3",
+            "t3"
+          ]
+        ],
+        "target": {
+          "domain_id": "TARGET",
+          "facts": [
+            [
+              "acts_on",
+              "MEREOLOGICAL",
+              [
+                "t3",
+                "t1"
+              ]
+            ],
+            [
+              "acts_on",
+              "ORDER",
+              [
+                "t1",
+                "t3"
+              ]
+            ],
+            [
+              "greater_than",
+              "FUNCTIONAL",
+              [
+                "t2",
+                "t1"
+              ]
+            ],
+            [
+              "measures",
+              "ORDER",
+              [
+                "t1",
+                "t2"
+              ]
+            ],
+            [
+              "part_of",
+              "MEREOLOGICAL",
+              [
+                "t3",
+                "t0"
+              ]
+            ],
+            [
+              "part_of",
+              "ORDER",
+              [
+                "t2",
+                "x0"
+              ]
+            ]
+          ],
+          "invariant_ids": [],
+          "node_types": [
+            [
+              "t0",
+              "AGENT"
+            ],
+            [
+              "t1",
+              "PROCESS"
+            ],
+            [
+              "t2",
+              "OBJECT"
+            ],
+            [
+              "x0",
+              "QUANTITY"
+            ],
+            [
+              "t3",
+              "PROCESS"
+            ]
+          ],
+          "nodes": [
+            "t0",
+            "t1",
+            "t2",
+            "x0",
+            "t3"
+          ],
+          "structure_id": "T2"
+        }
+      },
+      "instance_id": "PARTIAL_HOMOMORPHISM-00002"
+    },
+    {
+      "expected": {
+        "best_profile": {
+          "ABSENT": 1,
+          "MET": 2,
+          "MISSING": 1,
+          "RELTYPE": 0,
+          "REVERSAL": 0
+        },
+        "broken_invariants": [],
+        "disposition": "BLOCK_NO_HOMOMORPHISM",
+        "min_missing": 1,
+        "n_maps": 6,
+        "n_optimal_maps": 2,
+        "witness": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ]
+        ]
+      },
+      "family": "PARTIAL_HOMOMORPHISM",
+      "instance": {
+        "donor": {
+          "domain_id": "DONOR",
+          "facts": [
+            [
+              "causes",
+              "CAUSAL",
+              [
+                "d0",
+                "d1"
+              ]
+            ],
+            [
+              "causes",
+              "ORDER",
+              [
+                "d1",
+                "d0"
+              ]
+            ],
+            [
+              "measures",
+              "ORDER",
+              [
+                "d0",
+                "d2"
+              ]
+            ]
+          ],
+          "invariant_ids": [
+            "ACYCLIC:measures",
+            "ANTISYMMETRIC:measures"
+          ],
+          "node_types": [
+            [
+              "d0",
+              "QUANTITY"
+            ],
+            [
+              "d1",
+              "AGENT"
+            ],
+            [
+              "d2",
+              "AGENT"
+            ]
+          ],
+          "nodes": [
+            "d0",
+            "d1",
+            "d2"
+          ],
+          "structure_id": "D3"
+        },
+        "family": "PARTIAL_HOMOMORPHISM",
+        "instance_id": "PARTIAL_HOMOMORPHISM-00003",
+        "seed": 15094355082251473227,
+        "surface_pairs": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ]
+        ],
+        "target": {
+          "domain_id": "TARGET",
+          "facts": [
+            [
+              "acts_on",
+              "ORDER",
+              [
+                "t2",
+                "t0"
+              ]
+            ],
+            [
+              "causes",
+              "CAUSAL",
+              [
+                "t0",
+                "t1"
+              ]
+            ],
+            [
+              "causes",
+              "ORDER",
+              [
+                "t1",
+                "t0"
+              ]
+            ],
+            [
+              "greater_than",
+              "MEREOLOGICAL",
+              [
+                "t2",
+                "x0"
+              ]
+            ],
+            [
+              "part_of",
+              "MEREOLOGICAL",
+              [
+                "t0",
+                "t1"
+              ]
+            ]
+          ],
+          "invariant_ids": [],
+          "node_types": [
+            [
+              "t2",
+              "AGENT"
+            ],
+            [
+              "x0",
+              "AGENT"
+            ],
+            [
+              "t1",
+              "AGENT"
+            ],
+            [
+              "t0",
+              "QUANTITY"
+            ]
+          ],
+          "nodes": [
+            "t2",
+            "x0",
+            "t1",
+            "t0"
+          ],
+          "structure_id": "T3"
+        }
+      },
+      "instance_id": "PARTIAL_HOMOMORPHISM-00003"
+    },
+    {
+      "expected": {
+        "best_profile": {
+          "ABSENT": 2,
+          "MET": 2,
+          "MISSING": 2,
+          "RELTYPE": 0,
+          "REVERSAL": 0
+        },
+        "broken_invariants": [],
+        "disposition": "BLOCK_NO_HOMOMORPHISM",
+        "min_missing": 2,
+        "n_maps": 2,
+        "n_optimal_maps": 1,
+        "witness": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ]
+        ]
+      },
+      "family": "NON_HOMOMORPHISM",
+      "instance": {
+        "donor": {
+          "domain_id": "DONOR",
+          "facts": [
+            [
+              "causes",
+              "MEREOLOGICAL",
+              [
+                "d1",
+                "d2"
+              ]
+            ],
+            [
+              "greater_than",
+              "FUNCTIONAL",
+              [
+                "d2",
+                "d1"
+              ]
+            ],
+            [
+              "measures",
+              "CAUSAL",
+              [
+                "d2",
+                "d1"
+              ]
+            ],
+            [
+              "part_of",
+              "CAUSAL",
+              [
+                "d2",
+                "d1"
+              ]
+            ]
+          ],
+          "invariant_ids": [
+            "ACYCLIC:greater_than"
+          ],
+          "node_types": [
+            [
+              "d0",
+              "OBJECT"
+            ],
+            [
+              "d1",
+              "OBJECT"
+            ],
+            [
+              "d2",
+              "QUANTITY"
+            ]
+          ],
+          "nodes": [
+            "d0",
+            "d1",
+            "d2"
+          ],
+          "structure_id": "D1"
+        },
+        "family": "NON_HOMOMORPHISM",
+        "instance_id": "NON_HOMOMORPHISM-00001",
+        "seed": 17589986477789131185,
+        "surface_pairs": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ]
+        ],
+        "target": {
+          "domain_id": "TARGET",
+          "facts": [
+            [
+              "causes",
+              "CAUSAL",
+              [
+                "t2",
+                "x0"
+              ]
+            ],
+            [
+              "greater_than",
+              "FUNCTIONAL",
+              [
+                "t2",
+                "t1"
+              ]
+            ],
+            [
+              "measures",
+              "CAUSAL",
+              [
+                "t2",
+                "t1"
+              ]
+            ]
+          ],
+          "invariant_ids": [],
+          "node_types": [
+            [
+              "t0",
+              "OBJECT"
+            ],
+            [
+              "x0",
+              "AGENT"
+            ],
+            [
+              "x1",
+              "AGENT"
+            ],
+            [
+              "t2",
+              "QUANTITY"
+            ],
+            [
+              "t1",
+              "OBJECT"
+            ]
+          ],
+          "nodes": [
+            "t0",
+            "x0",
+            "x1",
+            "t2",
+            "t1"
+          ],
+          "structure_id": "T1"
+        }
+      },
+      "instance_id": "NON_HOMOMORPHISM-00001"
+    },
+    {
+      "expected": {
+        "best_profile": {
+          "ABSENT": 1,
+          "MET": 2,
+          "MISSING": 2,
+          "RELTYPE": 0,
+          "REVERSAL": 1
+        },
+        "broken_invariants": [],
+        "disposition": "BLOCK_NO_HOMOMORPHISM",
+        "min_missing": 2,
+        "n_maps": 12,
+        "n_optimal_maps": 1,
+        "witness": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ],
+          [
+            "d3",
+            "t3"
+          ]
+        ]
+      },
+      "family": "NON_HOMOMORPHISM",
+      "instance": {
+        "donor": {
+          "domain_id": "DONOR",
+          "facts": [
+            [
+              "acts_on",
+              "CAUSAL",
+              [
+                "d2",
+                "d3"
+              ]
+            ],
+            [
+              "greater_than",
+              "MEREOLOGICAL",
+              [
+                "d1",
+                "d0"
+              ]
+            ],
+            [
+              "measures",
+              "ORDER",
+              [
+                "d0",
+                "d3"
+              ]
+            ],
+            [
+              "part_of",
+              "ORDER",
+              [
+                "d2",
+                "d1"
+              ]
+            ]
+          ],
+          "invariant_ids": [
+            "ACYCLIC:part_of",
+            "FUNCTIONAL:part_of"
+          ],
+          "node_types": [
+            [
+              "d0",
+              "AGENT"
+            ],
+            [
+              "d1",
+              "AGENT"
+            ],
+            [
+              "d2",
+              "QUANTITY"
+            ],
+            [
+              "d3",
+              "PROCESS"
+            ]
+          ],
+          "nodes": [
+            "d0",
+            "d1",
+            "d2",
+            "d3"
+          ],
+          "structure_id": "D2"
+        },
+        "family": "NON_HOMOMORPHISM",
+        "instance_id": "NON_HOMOMORPHISM-00002",
+        "seed": 18206243854937851288,
+        "surface_pairs": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ],
+          [
+            "d3",
+            "t3"
+          ]
+        ],
+        "target": {
+          "domain_id": "TARGET",
+          "facts": [
+            [
+              "acts_on",
+              "CAUSAL",
+              [
+                "t2",
+                "t3"
+              ]
+            ],
+            [
+              "greater_than",
+              "FUNCTIONAL",
+              [
+                "x1",
+                "t3"
+              ]
+            ],
+            [
+              "measures",
+              "ORDER",
+              [
+                "t3",
+                "t0"
+              ]
+            ],
+            [
+              "part_of",
+              "ORDER",
+              [
+                "t2",
+                "t1"
+              ]
+            ]
+          ],
+          "invariant_ids": [],
+          "node_types": [
+            [
+              "t0",
+              "AGENT"
+            ],
+            [
+              "x1",
+              "AGENT"
+            ],
+            [
+              "x0",
+              "QUANTITY"
+            ],
+            [
+              "t2",
+              "QUANTITY"
+            ],
+            [
+              "t3",
+              "PROCESS"
+            ],
+            [
+              "t1",
+              "AGENT"
+            ]
+          ],
+          "nodes": [
+            "t0",
+            "x1",
+            "x0",
+            "t2",
+            "t3",
+            "t1"
+          ],
+          "structure_id": "T2"
+        }
+      },
+      "instance_id": "NON_HOMOMORPHISM-00002"
+    },
+    {
+      "expected": {
+        "best_profile": {
+          "ABSENT": 2,
+          "MET": 2,
+          "MISSING": 3,
+          "RELTYPE": 1,
+          "REVERSAL": 0
+        },
+        "broken_invariants": [],
+        "disposition": "BLOCK_NO_HOMOMORPHISM",
+        "min_missing": 3,
+        "n_maps": 2,
+        "n_optimal_maps": 1,
+        "witness": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ]
+        ]
+      },
+      "family": "NON_HOMOMORPHISM",
+      "instance": {
+        "donor": {
+          "domain_id": "DONOR",
+          "facts": [
+            [
+              "acts_on",
+              "CAUSAL",
+              [
+                "d1",
+                "d0"
+              ]
+            ],
+            [
+              "causes",
+              "CAUSAL",
+              [
+                "d2",
+                "d0"
+              ]
+            ],
+            [
+              "greater_than",
+              "CAUSAL",
+              [
+                "d0",
+                "d2"
+              ]
+            ],
+            [
+              "greater_than",
+              "FUNCTIONAL",
+              [
+                "d1",
+                "d0"
+              ]
+            ],
+            [
+              "measures",
+              "ORDER",
+              [
+                "d0",
+                "d1"
+              ]
+            ]
+          ],
+          "invariant_ids": [
+            "ACYCLIC:acts_on",
+            "ANTISYMMETRIC:measures"
+          ],
+          "node_types": [
+            [
+              "d0",
+              "PROCESS"
+            ],
+            [
+              "d1",
+              "OBJECT"
+            ],
+            [
+              "d2",
+              "PROCESS"
+            ]
+          ],
+          "nodes": [
+            "d0",
+            "d1",
+            "d2"
+          ],
+          "structure_id": "D3"
+        },
+        "family": "NON_HOMOMORPHISM",
+        "instance_id": "NON_HOMOMORPHISM-00003",
+        "seed": 13470305546708214635,
+        "surface_pairs": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ]
+        ],
+        "target": {
+          "domain_id": "TARGET",
+          "facts": [
+            [
+              "causes",
+              "CAUSAL",
+              [
+                "t2",
+                "t0"
+              ]
+            ],
+            [
+              "greater_than",
+              "CAUSAL",
+              [
+                "t0",
+                "t1"
+              ]
+            ],
+            [
+              "greater_than",
+              "FUNCTIONAL",
+              [
+                "t1",
+                "t0"
+              ]
+            ],
+            [
+              "measures",
+              "FUNCTIONAL",
+              [
+                "t0",
+                "t1"
+              ]
+            ]
+          ],
+          "invariant_ids": [],
+          "node_types": [
+            [
+              "t1",
+              "OBJECT"
+            ],
+            [
+              "t2",
+              "PROCESS"
+            ],
+            [
+              "x0",
+              "AGENT"
+            ],
+            [
+              "t0",
+              "PROCESS"
+            ],
+            [
+              "x1",
+              "QUANTITY"
+            ]
+          ],
+          "nodes": [
+            "t1",
+            "t2",
+            "x0",
+            "t0",
+            "x1"
+          ],
+          "structure_id": "T3"
+        }
+      },
+      "instance_id": "NON_HOMOMORPHISM-00003"
+    },
+    {
+      "expected": {
+        "best_profile": {
+          "ABSENT": 0,
+          "MET": 4,
+          "MISSING": 0,
+          "RELTYPE": 0,
+          "REVERSAL": 0
+        },
+        "broken_invariants": [],
+        "disposition": "TRANSFER_VALID",
+        "min_missing": 0,
+        "n_maps": 12,
+        "n_optimal_maps": 2,
+        "witness": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t4"
+          ],
+          [
+            "d3",
+            "x0"
+          ],
+          [
+            "d4",
+            "t2"
+          ]
+        ]
+      },
+      "family": "SURFACE_DECOY",
+      "instance": {
+        "donor": {
+          "domain_id": "DONOR",
+          "facts": [
+            [
+              "causes",
+              "FUNCTIONAL",
+              [
+                "d1",
+                "d2"
+              ]
+            ],
+            [
+              "measures",
+              "CAUSAL",
+              [
+                "d1",
+                "d4"
+              ]
+            ],
+            [
+              "measures",
+              "ORDER",
+              [
+                "d2",
+                "d0"
+              ]
+            ],
+            [
+              "part_of",
+              "ORDER",
+              [
+                "d1",
+                "d2"
+              ]
+            ]
+          ],
+          "invariant_ids": [
+            "ACYCLIC:part_of",
+            "ANTISYMMETRIC:causes"
+          ],
+          "node_types": [
+            [
+              "d0",
+              "AGENT"
+            ],
+            [
+              "d1",
+              "OBJECT"
+            ],
+            [
+              "d2",
+              "AGENT"
+            ],
+            [
+              "d3",
+              "PROCESS"
+            ],
+            [
+              "d4",
+              "AGENT"
+            ]
+          ],
+          "nodes": [
+            "d0",
+            "d1",
+            "d2",
+            "d3",
+            "d4"
+          ],
+          "structure_id": "D1"
+        },
+        "family": "SURFACE_DECOY",
+        "instance_id": "SURFACE_DECOY-00001",
+        "seed": 11466723976690900638,
+        "surface_pairs": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ],
+          [
+            "d3",
+            "t3"
+          ],
+          [
+            "d4",
+            "t4"
+          ]
+        ],
+        "target": {
+          "domain_id": "TARGET",
+          "facts": [
+            [
+              "causes",
+              "CAUSAL",
+              [
+                "x1",
+                "t1"
+              ]
+            ],
+            [
+              "causes",
+              "FUNCTIONAL",
+              [
+                "t1",
+                "t4"
+              ]
+            ],
+            [
+              "causes",
+              "MEREOLOGICAL",
+              [
+                "x1",
+                "x0"
+              ]
+            ],
+            [
+              "measures",
+              "CAUSAL",
+              [
+                "t1",
+                "t2"
+              ]
+            ],
+            [
+              "measures",
+              "MEREOLOGICAL",
+              [
+                "t0",
+                "x1"
+              ]
+            ],
+            [
+              "measures",
+              "ORDER",
+              [
+                "t4",
+                "t0"
+              ]
+            ],
+            [
+              "part_of",
+              "ORDER",
+              [
+                "t1",
+                "t4"
+              ]
+            ]
+          ],
+          "invariant_ids": [],
+          "node_types": [
+            [
+              "t4",
+              "AGENT"
+            ],
+            [
+              "t1",
+              "OBJECT"
+            ],
+            [
+              "t2",
+              "AGENT"
+            ],
+            [
+              "x1",
+              "QUANTITY"
+            ],
+            [
+              "x0",
+              "PROCESS"
+            ],
+            [
+              "t3",
+              "PROCESS"
+            ],
+            [
+              "t0",
+              "AGENT"
+            ]
+          ],
+          "nodes": [
+            "t4",
+            "t1",
+            "t2",
+            "x1",
+            "x0",
+            "t3",
+            "t0"
+          ],
+          "structure_id": "T1"
+        }
+      },
+      "instance_id": "SURFACE_DECOY-00001"
+    },
+    {
+      "expected": {
+        "best_profile": {
+          "ABSENT": 0,
+          "MET": 6,
+          "MISSING": 0,
+          "RELTYPE": 0,
+          "REVERSAL": 0
+        },
+        "broken_invariants": [],
+        "disposition": "TRANSFER_VALID",
+        "min_missing": 0,
+        "n_maps": 2,
+        "n_optimal_maps": 1,
+        "witness": [
+          [
+            "d0",
+            "t2"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t0"
+          ]
+        ]
+      },
+      "family": "SURFACE_DECOY",
+      "instance": {
+        "donor": {
+          "domain_id": "DONOR",
+          "facts": [
+            [
+              "acts_on",
+              "FUNCTIONAL",
+              [
+                "d2",
+                "d0"
+              ]
+            ],
+            [
+              "acts_on",
+              "ORDER",
+              [
+                "d1",
+                "d0"
+              ]
+            ],
+            [
+              "causes",
+              "CAUSAL",
+              [
+                "d1",
+                "d0"
+              ]
+            ],
+            [
+              "greater_than",
+              "CAUSAL",
+              [
+                "d2",
+                "d1"
+              ]
+            ],
+            [
+              "measures",
+              "CAUSAL",
+              [
+                "d0",
+                "d1"
+              ]
+            ],
+            [
+              "measures",
+              "ORDER",
+              [
+                "d2",
+                "d1"
+              ]
+            ]
+          ],
+          "invariant_ids": [
+            "FUNCTIONAL:measures",
+            "ANTISYMMETRIC:measures"
+          ],
+          "node_types": [
+            [
+              "d0",
+              "QUANTITY"
+            ],
+            [
+              "d1",
+              "AGENT"
+            ],
+            [
+              "d2",
+              "QUANTITY"
+            ]
+          ],
+          "nodes": [
+            "d0",
+            "d1",
+            "d2"
+          ],
+          "structure_id": "D22"
+        },
+        "family": "SURFACE_DECOY",
+        "instance_id": "SURFACE_DECOY-00022",
+        "seed": 16538872598292562819,
+        "surface_pairs": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ]
+        ],
+        "target": {
+          "domain_id": "TARGET",
+          "facts": [
+            [
+              "acts_on",
+              "FUNCTIONAL",
+              [
+                "t0",
+                "t2"
+              ]
+            ],
+            [
+              "acts_on",
+              "MEREOLOGICAL",
+              [
+                "x0",
+                "t0"
+              ]
+            ],
+            [
+              "acts_on",
+              "ORDER",
+              [
+                "t1",
+                "t2"
+              ]
+            ],
+            [
+              "causes",
+              "CAUSAL",
+              [
+                "t1",
+                "t2"
+              ]
+            ],
+            [
+              "causes",
+              "CAUSAL",
+              [
+                "x0",
+                "t1"
+              ]
+            ],
+            [
+              "greater_than",
+              "CAUSAL",
+              [
+                "t0",
+                "t1"
+              ]
+            ],
+            [
+              "measures",
+              "CAUSAL",
+              [
+                "t2",
+                "t1"
+              ]
+            ],
+            [
+              "measures",
+              "ORDER",
+              [
+                "t0",
+                "t1"
+              ]
+            ],
+            [
+              "part_of",
+              "CAUSAL",
+              [
+                "t0",
+                "t1"
+              ]
+            ]
+          ],
+          "invariant_ids": [],
+          "node_types": [
+            [
+              "t2",
+              "QUANTITY"
+            ],
+            [
+              "x0",
+              "PROCESS"
+            ],
+            [
+              "t1",
+              "AGENT"
+            ],
+            [
+              "t0",
+              "QUANTITY"
+            ]
+          ],
+          "nodes": [
+            "t2",
+            "x0",
+            "t1",
+            "t0"
+          ],
+          "structure_id": "T22"
+        }
+      },
+      "instance_id": "SURFACE_DECOY-00022"
+    },
+    {
+      "expected": {
+        "best_profile": {
+          "ABSENT": 0,
+          "MET": 5,
+          "MISSING": 0,
+          "RELTYPE": 0,
+          "REVERSAL": 0
+        },
+        "broken_invariants": [],
+        "disposition": "TRANSFER_VALID",
+        "min_missing": 0,
+        "n_maps": 6,
+        "n_optimal_maps": 1,
+        "witness": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t2"
+          ],
+          [
+            "d2",
+            "t1"
+          ]
+        ]
+      },
+      "family": "SURFACE_DECOY",
+      "instance": {
+        "donor": {
+          "domain_id": "DONOR",
+          "facts": [
+            [
+              "acts_on",
+              "CAUSAL",
+              [
+                "d2",
+                "d0"
+              ]
+            ],
+            [
+              "acts_on",
+              "MEREOLOGICAL",
+              [
+                "d1",
+                "d0"
+              ]
+            ],
+            [
+              "causes",
+              "MEREOLOGICAL",
+              [
+                "d2",
+                "d0"
+              ]
+            ],
+            [
+              "measures",
+              "FUNCTIONAL",
+              [
+                "d0",
+                "d2"
+              ]
+            ],
+            [
+              "part_of",
+              "ORDER",
+              [
+                "d2",
+                "d1"
+              ]
+            ]
+          ],
+          "invariant_ids": [
+            "ACYCLIC:acts_on"
+          ],
+          "node_types": [
+            [
+              "d0",
+              "QUANTITY"
+            ],
+            [
+              "d1",
+              "OBJECT"
+            ],
+            [
+              "d2",
+              "OBJECT"
+            ]
+          ],
+          "nodes": [
+            "d0",
+            "d1",
+            "d2"
+          ],
+          "structure_id": "D35"
+        },
+        "family": "SURFACE_DECOY",
+        "instance_id": "SURFACE_DECOY-00035",
+        "seed": 526818295681255762,
+        "surface_pairs": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ]
+        ],
+        "target": {
+          "domain_id": "TARGET",
+          "facts": [
+            [
+              "acts_on",
+              "CAUSAL",
+              [
+                "t1",
+                "t0"
+              ]
+            ],
+            [
+              "acts_on",
+              "MEREOLOGICAL",
+              [
+                "t2",
+                "t0"
+              ]
+            ],
+            [
+              "causes",
+              "MEREOLOGICAL",
+              [
+                "t1",
+                "t0"
+              ]
+            ],
+            [
+              "measures",
+              "FUNCTIONAL",
+              [
+                "t0",
+                "t1"
+              ]
+            ],
+            [
+              "part_of",
+              "FUNCTIONAL",
+              [
+                "t0",
+                "x1"
+              ]
+            ],
+            [
+              "part_of",
+              "FUNCTIONAL",
+              [
+                "t1",
+                "t0"
+              ]
+            ],
+            [
+              "part_of",
+              "ORDER",
+              [
+                "t1",
+                "t2"
+              ]
+            ]
+          ],
+          "invariant_ids": [],
+          "node_types": [
+            [
+              "t2",
+              "OBJECT"
+            ],
+            [
+              "x1",
+              "QUANTITY"
+            ],
+            [
+              "t0",
+              "QUANTITY"
+            ],
+            [
+              "t1",
+              "OBJECT"
+            ],
+            [
+              "x0",
+              "QUANTITY"
+            ]
+          ],
+          "nodes": [
+            "t2",
+            "x1",
+            "t0",
+            "t1",
+            "x0"
+          ],
+          "structure_id": "T35"
+        }
+      },
+      "instance_id": "SURFACE_DECOY-00035"
+    },
+    {
+      "expected": {
+        "best_profile": {
+          "ABSENT": 0,
+          "MET": 5,
+          "MISSING": 1,
+          "RELTYPE": 0,
+          "REVERSAL": 1
+        },
+        "broken_invariants": [],
+        "disposition": "BLOCK_DIRECTION_REVERSAL",
+        "min_missing": 1,
+        "n_maps": 4,
+        "n_optimal_maps": 1,
+        "witness": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ],
+          [
+            "d3",
+            "t3"
+          ],
+          [
+            "d4",
+            "t4"
+          ]
+        ]
+      },
+      "family": "DIRECTION_REVERSAL",
+      "instance": {
+        "donor": {
+          "domain_id": "DONOR",
+          "facts": [
+            [
+              "acts_on",
+              "FUNCTIONAL",
+              [
+                "d4",
+                "d3"
+              ]
+            ],
+            [
+              "causes",
+              "FUNCTIONAL",
+              [
+                "d0",
+                "d3"
+              ]
+            ],
+            [
+              "part_of",
+              "CAUSAL",
+              [
+                "d2",
+                "d3"
+              ]
+            ],
+            [
+              "part_of",
+              "CAUSAL",
+              [
+                "d4",
+                "d2"
+              ]
+            ],
+            [
+              "part_of",
+              "MEREOLOGICAL",
+              [
+                "d2",
+                "d3"
+              ]
+            ],
+            [
+              "part_of",
+              "ORDER",
+              [
+                "d3",
+                "d0"
+              ]
+            ]
+          ],
+          "invariant_ids": [
+            "FUNCTIONAL:causes"
+          ],
+          "node_types": [
+            [
+              "d0",
+              "AGENT"
+            ],
+            [
+              "d1",
+              "OBJECT"
+            ],
+            [
+              "d2",
+              "OBJECT"
+            ],
+            [
+              "d3",
+              "QUANTITY"
+            ],
+            [
+              "d4",
+              "AGENT"
+            ]
+          ],
+          "nodes": [
+            "d0",
+            "d1",
+            "d2",
+            "d3",
+            "d4"
+          ],
+          "structure_id": "D1"
+        },
+        "family": "DIRECTION_REVERSAL",
+        "instance_id": "DIRECTION_REVERSAL-00001",
+        "seed": 8307302839445321818,
+        "surface_pairs": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ],
+          [
+            "d3",
+            "t3"
+          ],
+          [
+            "d4",
+            "t4"
+          ]
+        ],
+        "target": {
+          "domain_id": "TARGET",
+          "facts": [
+            [
+              "acts_on",
+              "FUNCTIONAL",
+              [
+                "t4",
+                "t3"
+              ]
+            ],
+            [
+              "causes",
+              "FUNCTIONAL",
+              [
+                "t0",
+                "t3"
+              ]
+            ],
+            [
+              "greater_than",
+              "MEREOLOGICAL",
+              [
+                "x0",
+                "t3"
+              ]
+            ],
+            [
+              "measures",
+              "FUNCTIONAL",
+              [
+                "t2",
+                "t4"
+              ]
+            ],
+            [
+              "measures",
+              "FUNCTIONAL",
+              [
+                "t3",
+                "x0"
+              ]
+            ],
+            [
+              "part_of",
+              "CAUSAL",
+              [
+                "t2",
+                "t3"
+              ]
+            ],
+            [
+              "part_of",
+              "CAUSAL",
+              [
+                "t4",
+                "t2"
+              ]
+            ],
+            [
+              "part_of",
+              "MEREOLOGICAL",
+              [
+                "t3",
+                "t2"
+              ]
+            ],
+            [
+              "part_of",
+              "ORDER",
+              [
+                "t3",
+                "t0"
+              ]
+            ]
+          ],
+          "invariant_ids": [],
+          "node_types": [
+            [
+              "t4",
+              "AGENT"
+            ],
+            [
+              "t2",
+              "OBJECT"
+            ],
+            [
+              "t0",
+              "AGENT"
+            ],
+            [
+              "x0",
+              "PROCESS"
+            ],
+            [
+              "t1",
+              "OBJECT"
+            ],
+            [
+              "t3",
+              "QUANTITY"
+            ]
+          ],
+          "nodes": [
+            "t4",
+            "t2",
+            "t0",
+            "x0",
+            "t1",
+            "t3"
+          ],
+          "structure_id": "T1"
+        }
+      },
+      "instance_id": "DIRECTION_REVERSAL-00001"
+    },
+    {
+      "expected": {
+        "best_profile": {
+          "ABSENT": 0,
+          "MET": 2,
+          "MISSING": 1,
+          "RELTYPE": 0,
+          "REVERSAL": 1
+        },
+        "broken_invariants": [],
+        "disposition": "BLOCK_DIRECTION_REVERSAL",
+        "min_missing": 1,
+        "n_maps": 4,
+        "n_optimal_maps": 1,
+        "witness": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ],
+          [
+            "d3",
+            "t3"
+          ],
+          [
+            "d4",
+            "t4"
+          ]
+        ]
+      },
+      "family": "DIRECTION_REVERSAL",
+      "instance": {
+        "donor": {
+          "domain_id": "DONOR",
+          "facts": [
+            [
+              "greater_than",
+              "CAUSAL",
+              [
+                "d1",
+                "d3"
+              ]
+            ],
+            [
+              "measures",
+              "MEREOLOGICAL",
+              [
+                "d0",
+                "d4"
+              ]
+            ],
+            [
+              "part_of",
+              "ORDER",
+              [
+                "d2",
+                "d4"
+              ]
+            ]
+          ],
+          "invariant_ids": [
+            "ANTISYMMETRIC:part_of"
+          ],
+          "node_types": [
+            [
+              "d0",
+              "OBJECT"
+            ],
+            [
+              "d1",
+              "QUANTITY"
+            ],
+            [
+              "d2",
+              "PROCESS"
+            ],
+            [
+              "d3",
+              "PROCESS"
+            ],
+            [
+              "d4",
+              "QUANTITY"
+            ]
+          ],
+          "nodes": [
+            "d0",
+            "d1",
+            "d2",
+            "d3",
+            "d4"
+          ],
+          "structure_id": "D2"
+        },
+        "family": "DIRECTION_REVERSAL",
+        "instance_id": "DIRECTION_REVERSAL-00002",
+        "seed": 13940561113860963432,
+        "surface_pairs": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ],
+          [
+            "d3",
+            "t3"
+          ],
+          [
+            "d4",
+            "t4"
+          ]
+        ],
+        "target": {
+          "domain_id": "TARGET",
+          "facts": [
+            [
+              "acts_on",
+              "MEREOLOGICAL",
+              [
+                "t4",
+                "t0"
+              ]
+            ],
+            [
+              "causes",
+              "CAUSAL",
+              [
+                "x0",
+                "t0"
+              ]
+            ],
+            [
+              "greater_than",
+              "CAUSAL",
+              [
+                "t1",
+                "t3"
+              ]
+            ],
+            [
+              "greater_than",
+              "ORDER",
+              [
+                "t1",
+                "t2"
+              ]
+            ],
+            [
+              "measures",
+              "MEREOLOGICAL",
+              [
+                "t0",
+                "t4"
+              ]
+            ],
+            [
+              "part_of",
+              "ORDER",
+              [
+                "t4",
+                "t2"
+              ]
+            ]
+          ],
+          "invariant_ids": [],
+          "node_types": [
+            [
+              "x0",
+              "AGENT"
+            ],
+            [
+              "t4",
+              "QUANTITY"
+            ],
+            [
+              "t0",
+              "OBJECT"
+            ],
+            [
+              "t1",
+              "QUANTITY"
+            ],
+            [
+              "t3",
+              "PROCESS"
+            ],
+            [
+              "t2",
+              "PROCESS"
+            ]
+          ],
+          "nodes": [
+            "x0",
+            "t4",
+            "t0",
+            "t1",
+            "t3",
+            "t2"
+          ],
+          "structure_id": "T2"
+        }
+      },
+      "instance_id": "DIRECTION_REVERSAL-00002"
+    },
+    {
+      "expected": {
+        "best_profile": {
+          "ABSENT": 0,
+          "MET": 2,
+          "MISSING": 1,
+          "RELTYPE": 0,
+          "REVERSAL": 1
+        },
+        "broken_invariants": [
+          "ACYCLIC:part_of"
+        ],
+        "disposition": "BLOCK_DIRECTION_REVERSAL",
+        "min_missing": 1,
+        "n_maps": 6,
+        "n_optimal_maps": 1,
+        "witness": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ]
+        ]
+      },
+      "family": "DIRECTION_REVERSAL",
+      "instance": {
+        "donor": {
+          "domain_id": "DONOR",
+          "facts": [
+            [
+              "part_of",
+              "MEREOLOGICAL",
+              [
+                "d0",
+                "d1"
+              ]
+            ],
+            [
+              "part_of",
+              "MEREOLOGICAL",
+              [
+                "d1",
+                "d2"
+              ]
+            ],
+            [
+              "part_of",
+              "ORDER",
+              [
+                "d1",
+                "d2"
+              ]
+            ]
+          ],
+          "invariant_ids": [
+            "ACYCLIC:part_of"
+          ],
+          "node_types": [
+            [
+              "d0",
+              "PROCESS"
+            ],
+            [
+              "d1",
+              "PROCESS"
+            ],
+            [
+              "d2",
+              "OBJECT"
+            ]
+          ],
+          "nodes": [
+            "d0",
+            "d1",
+            "d2"
+          ],
+          "structure_id": "D3"
+        },
+        "family": "DIRECTION_REVERSAL",
+        "instance_id": "DIRECTION_REVERSAL-00003",
+        "seed": 1664798057362566789,
+        "surface_pairs": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ]
+        ],
+        "target": {
+          "domain_id": "TARGET",
+          "facts": [
+            [
+              "greater_than",
+              "FUNCTIONAL",
+              [
+                "t0",
+                "t1"
+              ]
+            ],
+            [
+              "part_of",
+              "MEREOLOGICAL",
+              [
+                "t0",
+                "t1"
+              ]
+            ],
+            [
+              "part_of",
+              "MEREOLOGICAL",
+              [
+                "t1",
+                "t2"
+              ]
+            ],
+            [
+              "part_of",
+              "ORDER",
+              [
+                "t1",
+                "t0"
+              ]
+            ],
+            [
+              "part_of",
+              "ORDER",
+              [
+                "t2",
+                "t1"
+              ]
+            ]
+          ],
+          "invariant_ids": [],
+          "node_types": [
+            [
+              "x1",
+              "PROCESS"
+            ],
+            [
+              "x0",
+              "AGENT"
+            ],
+            [
+              "t2",
+              "OBJECT"
+            ],
+            [
+              "t0",
+              "PROCESS"
+            ],
+            [
+              "t1",
+              "PROCESS"
+            ]
+          ],
+          "nodes": [
+            "x1",
+            "x0",
+            "t2",
+            "t0",
+            "t1"
+          ],
+          "structure_id": "T3"
+        }
+      },
+      "instance_id": "DIRECTION_REVERSAL-00003"
+    },
+    {
+      "expected": {
+        "best_profile": {
+          "ABSENT": 0,
+          "MET": 2,
+          "MISSING": 2,
+          "RELTYPE": 2,
+          "REVERSAL": 0
+        },
+        "broken_invariants": [],
+        "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+        "min_missing": 2,
+        "n_maps": 8,
+        "n_optimal_maps": 2,
+        "witness": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "x1"
+          ],
+          [
+            "d3",
+            "t3"
+          ]
+        ]
+      },
+      "family": "RELATION_TYPE_MISMATCH",
+      "instance": {
+        "donor": {
+          "domain_id": "DONOR",
+          "facts": [
+            [
+              "acts_on",
+              "CAUSAL",
+              [
+                "d1",
+                "d3"
+              ]
+            ],
+            [
+              "measures",
+              "FUNCTIONAL",
+              [
+                "d1",
+                "d3"
+              ]
+            ],
+            [
+              "measures",
+              "MEREOLOGICAL",
+              [
+                "d3",
+                "d0"
+              ]
+            ],
+            [
+              "part_of",
+              "ORDER",
+              [
+                "d3",
+                "d1"
+              ]
+            ]
+          ],
+          "invariant_ids": [
+            "ACYCLIC:part_of",
+            "FUNCTIONAL:part_of"
+          ],
+          "node_types": [
+            [
+              "d0",
+              "QUANTITY"
+            ],
+            [
+              "d1",
+              "AGENT"
+            ],
+            [
+              "d2",
+              "OBJECT"
+            ],
+            [
+              "d3",
+              "AGENT"
+            ]
+          ],
+          "nodes": [
+            "d0",
+            "d1",
+            "d2",
+            "d3"
+          ],
+          "structure_id": "D1"
+        },
+        "family": "RELATION_TYPE_MISMATCH",
+        "instance_id": "RELATION_TYPE_MISMATCH-00001",
+        "seed": 5887375100676480188,
+        "surface_pairs": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ],
+          [
+            "d3",
+            "t3"
+          ]
+        ],
+        "target": {
+          "domain_id": "TARGET",
+          "facts": [
+            [
+              "acts_on",
+              "MEREOLOGICAL",
+              [
+                "t2",
+                "x0"
+              ]
+            ],
+            [
+              "acts_on",
+              "ORDER",
+              [
+                "t1",
+                "t3"
+              ]
+            ],
+            [
+              "measures",
+              "FUNCTIONAL",
+              [
+                "t1",
+                "t3"
+              ]
+            ],
+            [
+              "measures",
+              "FUNCTIONAL",
+              [
+                "t3",
+                "t0"
+              ]
+            ],
+            [
+              "measures",
+              "MEREOLOGICAL",
+              [
+                "t0",
+                "x0"
+              ]
+            ],
+            [
+              "part_of",
+              "ORDER",
+              [
+                "t3",
+                "t1"
+              ]
+            ]
+          ],
+          "invariant_ids": [],
+          "node_types": [
+            [
+              "t0",
+              "QUANTITY"
+            ],
+            [
+              "t1",
+              "AGENT"
+            ],
+            [
+              "x1",
+              "OBJECT"
+            ],
+            [
+              "t3",
+              "AGENT"
+            ],
+            [
+              "x0",
+              "QUANTITY"
+            ],
+            [
+              "t2",
+              "OBJECT"
+            ]
+          ],
+          "nodes": [
+            "t0",
+            "t1",
+            "x1",
+            "t3",
+            "x0",
+            "t2"
+          ],
+          "structure_id": "T1"
+        }
+      },
+      "instance_id": "RELATION_TYPE_MISMATCH-00001"
+    },
+    {
+      "expected": {
+        "best_profile": {
+          "ABSENT": 0,
+          "MET": 2,
+          "MISSING": 1,
+          "RELTYPE": 1,
+          "REVERSAL": 0
+        },
+        "broken_invariants": [],
+        "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+        "min_missing": 1,
+        "n_maps": 4,
+        "n_optimal_maps": 1,
+        "witness": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ],
+          [
+            "d3",
+            "t3"
+          ],
+          [
+            "d4",
+            "t4"
+          ]
+        ]
+      },
+      "family": "RELATION_TYPE_MISMATCH",
+      "instance": {
+        "donor": {
+          "domain_id": "DONOR",
+          "facts": [
+            [
+              "acts_on",
+              "CAUSAL",
+              [
+                "d4",
+                "d0"
+              ]
+            ],
+            [
+              "causes",
+              "FUNCTIONAL",
+              [
+                "d2",
+                "d3"
+              ]
+            ],
+            [
+              "causes",
+              "MEREOLOGICAL",
+              [
+                "d2",
+                "d4"
+              ]
+            ]
+          ],
+          "invariant_ids": [
+            "ACYCLIC:causes",
+            "FUNCTIONAL:acts_on"
+          ],
+          "node_types": [
+            [
+              "d0",
+              "OBJECT"
+            ],
+            [
+              "d1",
+              "PROCESS"
+            ],
+            [
+              "d2",
+              "AGENT"
+            ],
+            [
+              "d3",
+              "QUANTITY"
+            ],
+            [
+              "d4",
+              "AGENT"
+            ]
+          ],
+          "nodes": [
+            "d0",
+            "d1",
+            "d2",
+            "d3",
+            "d4"
+          ],
+          "structure_id": "D2"
+        },
+        "family": "RELATION_TYPE_MISMATCH",
+        "instance_id": "RELATION_TYPE_MISMATCH-00002",
+        "seed": 6087196066148644368,
+        "surface_pairs": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ],
+          [
+            "d3",
+            "t3"
+          ],
+          [
+            "d4",
+            "t4"
+          ]
+        ],
+        "target": {
+          "domain_id": "TARGET",
+          "facts": [
+            [
+              "acts_on",
+              "CAUSAL",
+              [
+                "t4",
+                "t0"
+              ]
+            ],
+            [
+              "acts_on",
+              "FUNCTIONAL",
+              [
+                "t2",
+                "t4"
+              ]
+            ],
+            [
+              "causes",
+              "CAUSAL",
+              [
+                "t2",
+                "t3"
+              ]
+            ],
+            [
+              "causes",
+              "MEREOLOGICAL",
+              [
+                "t2",
+                "t4"
+              ]
+            ],
+            [
+              "greater_than",
+              "FUNCTIONAL",
+              [
+                "t3",
+                "t4"
+              ]
+            ]
+          ],
+          "invariant_ids": [],
+          "node_types": [
+            [
+              "x0",
+              "OBJECT"
+            ],
+            [
+              "t0",
+              "OBJECT"
+            ],
+            [
+              "t2",
+              "AGENT"
+            ],
+            [
+              "t4",
+              "AGENT"
+            ],
+            [
+              "t1",
+              "PROCESS"
+            ],
+            [
+              "t3",
+              "QUANTITY"
+            ]
+          ],
+          "nodes": [
+            "x0",
+            "t0",
+            "t2",
+            "t4",
+            "t1",
+            "t3"
+          ],
+          "structure_id": "T2"
+        }
+      },
+      "instance_id": "RELATION_TYPE_MISMATCH-00002"
+    },
+    {
+      "expected": {
+        "best_profile": {
+          "ABSENT": 0,
+          "MET": 2,
+          "MISSING": 1,
+          "RELTYPE": 1,
+          "REVERSAL": 0
+        },
+        "broken_invariants": [],
+        "disposition": "BLOCK_RELATION_TYPE_MISMATCH",
+        "min_missing": 1,
+        "n_maps": 12,
+        "n_optimal_maps": 1,
+        "witness": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ],
+          [
+            "d3",
+            "t3"
+          ]
+        ]
+      },
+      "family": "RELATION_TYPE_MISMATCH",
+      "instance": {
+        "donor": {
+          "domain_id": "DONOR",
+          "facts": [
+            [
+              "acts_on",
+              "CAUSAL",
+              [
+                "d3",
+                "d2"
+              ]
+            ],
+            [
+              "acts_on",
+              "MEREOLOGICAL",
+              [
+                "d1",
+                "d2"
+              ]
+            ],
+            [
+              "measures",
+              "ORDER",
+              [
+                "d0",
+                "d2"
+              ]
+            ]
+          ],
+          "invariant_ids": [
+            "ANTISYMMETRIC:measures"
+          ],
+          "node_types": [
+            [
+              "d0",
+              "OBJECT"
+            ],
+            [
+              "d1",
+              "QUANTITY"
+            ],
+            [
+              "d2",
+              "QUANTITY"
+            ],
+            [
+              "d3",
+              "QUANTITY"
+            ]
+          ],
+          "nodes": [
+            "d0",
+            "d1",
+            "d2",
+            "d3"
+          ],
+          "structure_id": "D3"
+        },
+        "family": "RELATION_TYPE_MISMATCH",
+        "instance_id": "RELATION_TYPE_MISMATCH-00003",
+        "seed": 2374494820806013743,
+        "surface_pairs": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ],
+          [
+            "d3",
+            "t3"
+          ]
+        ],
+        "target": {
+          "domain_id": "TARGET",
+          "facts": [
+            [
+              "acts_on",
+              "MEREOLOGICAL",
+              [
+                "t1",
+                "t2"
+              ]
+            ],
+            [
+              "acts_on",
+              "ORDER",
+              [
+                "t3",
+                "t2"
+              ]
+            ],
+            [
+              "causes",
+              "ORDER",
+              [
+                "t1",
+                "x0"
+              ]
+            ],
+            [
+              "measures",
+              "ORDER",
+              [
+                "t0",
+                "t2"
+              ]
+            ]
+          ],
+          "invariant_ids": [],
+          "node_types": [
+            [
+              "x0",
+              "OBJECT"
+            ],
+            [
+              "t1",
+              "QUANTITY"
+            ],
+            [
+              "t0",
+              "OBJECT"
+            ],
+            [
+              "t3",
+              "QUANTITY"
+            ],
+            [
+              "t2",
+              "QUANTITY"
+            ]
+          ],
+          "nodes": [
+            "x0",
+            "t1",
+            "t0",
+            "t3",
+            "t2"
+          ],
+          "structure_id": "T3"
+        }
+      },
+      "instance_id": "RELATION_TYPE_MISMATCH-00003"
+    },
+    {
+      "expected": {
+        "best_profile": {
+          "ABSENT": 0,
+          "MET": 6,
+          "MISSING": 0,
+          "RELTYPE": 0,
+          "REVERSAL": 0
+        },
+        "broken_invariants": [
+          "ACYCLIC:part_of"
+        ],
+        "disposition": "BLOCK_INVARIANT_VIOLATION",
+        "min_missing": 0,
+        "n_maps": 6,
+        "n_optimal_maps": 1,
+        "witness": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ],
+          [
+            "d3",
+            "t3"
+          ]
+        ]
+      },
+      "family": "INVARIANT_BREAKING_EMBEDDING",
+      "instance": {
+        "donor": {
+          "domain_id": "DONOR",
+          "facts": [
+            [
+              "causes",
+              "FUNCTIONAL",
+              [
+                "d1",
+                "d0"
+              ]
+            ],
+            [
+              "causes",
+              "FUNCTIONAL",
+              [
+                "d1",
+                "d2"
+              ]
+            ],
+            [
+              "causes",
+              "MEREOLOGICAL",
+              [
+                "d3",
+                "d2"
+              ]
+            ],
+            [
+              "greater_than",
+              "MEREOLOGICAL",
+              [
+                "d0",
+                "d1"
+              ]
+            ],
+            [
+              "measures",
+              "CAUSAL",
+              [
+                "d1",
+                "d3"
+              ]
+            ],
+            [
+              "part_of",
+              "FUNCTIONAL",
+              [
+                "d0",
+                "d2"
+              ]
+            ]
+          ],
+          "invariant_ids": [
+            "ACYCLIC:part_of"
+          ],
+          "node_types": [
+            [
+              "d0",
+              "OBJECT"
+            ],
+            [
+              "d1",
+              "OBJECT"
+            ],
+            [
+              "d2",
+              "QUANTITY"
+            ],
+            [
+              "d3",
+              "AGENT"
+            ]
+          ],
+          "nodes": [
+            "d0",
+            "d1",
+            "d2",
+            "d3"
+          ],
+          "structure_id": "D1"
+        },
+        "family": "INVARIANT_BREAKING_EMBEDDING",
+        "instance_id": "INVARIANT_BREAKING_EMBEDDING-00001",
+        "seed": 13711434601702295840,
+        "surface_pairs": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ],
+          [
+            "d3",
+            "t3"
+          ]
+        ],
+        "target": {
+          "domain_id": "TARGET",
+          "facts": [
+            [
+              "causes",
+              "FUNCTIONAL",
+              [
+                "t1",
+                "t0"
+              ]
+            ],
+            [
+              "causes",
+              "FUNCTIONAL",
+              [
+                "t1",
+                "t2"
+              ]
+            ],
+            [
+              "causes",
+              "MEREOLOGICAL",
+              [
+                "t3",
+                "t2"
+              ]
+            ],
+            [
+              "greater_than",
+              "MEREOLOGICAL",
+              [
+                "t0",
+                "t1"
+              ]
+            ],
+            [
+              "measures",
+              "CAUSAL",
+              [
+                "t1",
+                "t3"
+              ]
+            ],
+            [
+              "measures",
+              "CAUSAL",
+              [
+                "t2",
+                "x0"
+              ]
+            ],
+            [
+              "part_of",
+              "CAUSAL",
+              [
+                "t2",
+                "t0"
+              ]
+            ],
+            [
+              "part_of",
+              "FUNCTIONAL",
+              [
+                "t0",
+                "t2"
+              ]
+            ],
+            [
+              "part_of",
+              "FUNCTIONAL",
+              [
+                "t0",
+                "t3"
+              ]
+            ]
+          ],
+          "invariant_ids": [],
+          "node_types": [
+            [
+              "t2",
+              "QUANTITY"
+            ],
+            [
+              "t3",
+              "AGENT"
+            ],
+            [
+              "t0",
+              "OBJECT"
+            ],
+            [
+              "x0",
+              "OBJECT"
+            ],
+            [
+              "t1",
+              "OBJECT"
+            ]
+          ],
+          "nodes": [
+            "t2",
+            "t3",
+            "t0",
+            "x0",
+            "t1"
+          ],
+          "structure_id": "T1"
+        }
+      },
+      "instance_id": "INVARIANT_BREAKING_EMBEDDING-00001"
+    },
+    {
+      "expected": {
+        "best_profile": {
+          "ABSENT": 0,
+          "MET": 6,
+          "MISSING": 0,
+          "RELTYPE": 0,
+          "REVERSAL": 0
+        },
+        "broken_invariants": [
+          "FUNCTIONAL:causes"
+        ],
+        "disposition": "BLOCK_INVARIANT_VIOLATION",
+        "min_missing": 0,
+        "n_maps": 6,
+        "n_optimal_maps": 1,
+        "witness": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ]
+        ]
+      },
+      "family": "INVARIANT_BREAKING_EMBEDDING",
+      "instance": {
+        "donor": {
+          "domain_id": "DONOR",
+          "facts": [
+            [
+              "causes",
+              "FUNCTIONAL",
+              [
+                "d0",
+                "d1"
+              ]
+            ],
+            [
+              "causes",
+              "FUNCTIONAL",
+              [
+                "d1",
+                "d2"
+              ]
+            ],
+            [
+              "greater_than",
+              "CAUSAL",
+              [
+                "d1",
+                "d0"
+              ]
+            ],
+            [
+              "measures",
+              "CAUSAL",
+              [
+                "d1",
+                "d0"
+              ]
+            ],
+            [
+              "measures",
+              "MEREOLOGICAL",
+              [
+                "d2",
+                "d0"
+              ]
+            ],
+            [
+              "part_of",
+              "MEREOLOGICAL",
+              [
+                "d1",
+                "d0"
+              ]
+            ]
+          ],
+          "invariant_ids": [
+            "FUNCTIONAL:causes",
+            "ANTISYMMETRIC:causes"
+          ],
+          "node_types": [
+            [
+              "d0",
+              "PROCESS"
+            ],
+            [
+              "d1",
+              "QUANTITY"
+            ],
+            [
+              "d2",
+              "QUANTITY"
+            ]
+          ],
+          "nodes": [
+            "d0",
+            "d1",
+            "d2"
+          ],
+          "structure_id": "D2"
+        },
+        "family": "INVARIANT_BREAKING_EMBEDDING",
+        "instance_id": "INVARIANT_BREAKING_EMBEDDING-00002",
+        "seed": 14678609898565561902,
+        "surface_pairs": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ]
+        ],
+        "target": {
+          "domain_id": "TARGET",
+          "facts": [
+            [
+              "causes",
+              "FUNCTIONAL",
+              [
+                "t0",
+                "t1"
+              ]
+            ],
+            [
+              "causes",
+              "FUNCTIONAL",
+              [
+                "t1",
+                "t2"
+              ]
+            ],
+            [
+              "causes",
+              "ORDER",
+              [
+                "t0",
+                "x0"
+              ]
+            ],
+            [
+              "greater_than",
+              "CAUSAL",
+              [
+                "t1",
+                "t0"
+              ]
+            ],
+            [
+              "greater_than",
+              "FUNCTIONAL",
+              [
+                "x0",
+                "t1"
+              ]
+            ],
+            [
+              "measures",
+              "CAUSAL",
+              [
+                "t0",
+                "x0"
+              ]
+            ],
+            [
+              "measures",
+              "CAUSAL",
+              [
+                "t1",
+                "t0"
+              ]
+            ],
+            [
+              "measures",
+              "FUNCTIONAL",
+              [
+                "x0",
+                "t2"
+              ]
+            ],
+            [
+              "measures",
+              "MEREOLOGICAL",
+              [
+                "t2",
+                "t0"
+              ]
+            ],
+            [
+              "part_of",
+              "MEREOLOGICAL",
+              [
+                "t1",
+                "t0"
+              ]
+            ]
+          ],
+          "invariant_ids": [],
+          "node_types": [
+            [
+              "t1",
+              "QUANTITY"
+            ],
+            [
+              "t0",
+              "PROCESS"
+            ],
+            [
+              "x0",
+              "QUANTITY"
+            ],
+            [
+              "t2",
+              "QUANTITY"
+            ]
+          ],
+          "nodes": [
+            "t1",
+            "t0",
+            "x0",
+            "t2"
+          ],
+          "structure_id": "T2"
+        }
+      },
+      "instance_id": "INVARIANT_BREAKING_EMBEDDING-00002"
+    },
+    {
+      "expected": {
+        "best_profile": {
+          "ABSENT": 0,
+          "MET": 3,
+          "MISSING": 0,
+          "RELTYPE": 0,
+          "REVERSAL": 0
+        },
+        "broken_invariants": [
+          "ACYCLIC:greater_than"
+        ],
+        "disposition": "BLOCK_INVARIANT_VIOLATION",
+        "min_missing": 0,
+        "n_maps": 6,
+        "n_optimal_maps": 1,
+        "witness": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ]
+        ]
+      },
+      "family": "INVARIANT_BREAKING_EMBEDDING",
+      "instance": {
+        "donor": {
+          "domain_id": "DONOR",
+          "facts": [
+            [
+              "causes",
+              "CAUSAL",
+              [
+                "d0",
+                "d2"
+              ]
+            ],
+            [
+              "greater_than",
+              "MEREOLOGICAL",
+              [
+                "d2",
+                "d0"
+              ]
+            ],
+            [
+              "part_of",
+              "ORDER",
+              [
+                "d2",
+                "d1"
+              ]
+            ]
+          ],
+          "invariant_ids": [
+            "ACYCLIC:greater_than"
+          ],
+          "node_types": [
+            [
+              "d0",
+              "OBJECT"
+            ],
+            [
+              "d1",
+              "OBJECT"
+            ],
+            [
+              "d2",
+              "PROCESS"
+            ]
+          ],
+          "nodes": [
+            "d0",
+            "d1",
+            "d2"
+          ],
+          "structure_id": "D3"
+        },
+        "family": "INVARIANT_BREAKING_EMBEDDING",
+        "instance_id": "INVARIANT_BREAKING_EMBEDDING-00003",
+        "seed": 16392492191626697390,
+        "surface_pairs": [
+          [
+            "d0",
+            "t0"
+          ],
+          [
+            "d1",
+            "t1"
+          ],
+          [
+            "d2",
+            "t2"
+          ]
+        ],
+        "target": {
+          "domain_id": "TARGET",
+          "facts": [
+            [
+              "causes",
+              "CAUSAL",
+              [
+                "t0",
+                "t2"
+              ]
+            ],
+            [
+              "greater_than",
+              "CAUSAL",
+              [
+                "t0",
+                "t2"
+              ]
+            ],
+            [
+              "greater_than",
+              "MEREOLOGICAL",
+              [
+                "t2",
+                "t0"
+              ]
+            ],
+            [
+              "part_of",
+              "ORDER",
+              [
+                "t1",
+                "t0"
+              ]
+            ],
+            [
+              "part_of",
+              "ORDER",
+              [
+                "t2",
+                "t1"
+              ]
+            ]
+          ],
+          "invariant_ids": [],
+          "node_types": [
+            [
+              "x0",
+              "OBJECT"
+            ],
+            [
+              "t0",
+              "OBJECT"
+            ],
+            [
+              "t1",
+              "OBJECT"
+            ],
+            [
+              "t2",
+              "PROCESS"
+            ]
+          ],
+          "nodes": [
+            "x0",
+            "t0",
+            "t1",
+            "t2"
+          ],
+          "structure_id": "T3"
+        }
+      },
+      "instance_id": "INVARIANT_BREAKING_EMBEDDING-00003"
+    }
+  ],
+  "label": "DEVELOPMENT",
+  "schema_version": "orion.v2.fm-exact.results.v1.expected-custody",
+  "suite": "FM10"
+}
