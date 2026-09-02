@@ -162,7 +162,33 @@ E30-R11 documented 2–6 tasks per arm flipping across reps, so 5 would reduce t
 misclassification; but repetitions buy reliability, not power — the test is on tasks, and
 the 7-discordant-task floor is unchanged. R12 stays at 3.
 
-## 8. Evaluation lane
+## 8. Execution-lane contract — registered, not improvised
+
+E30-R11 diagnosed two failure signatures that produce `EXECUTION_FAILED_MODEL_RESPONSE`
+envelopes carrying no model output, and repaired both. One repair was campaign-local and
+never reached `main`, so any later run silently inherits the defect; the other was a
+procedure rather than code. Both are registered here **before** dispatch so R12's
+execution lane is identical to R11's terminal one by declaration.
+
+1. **Strict-parse reject.** The model emits literal newlines inside JSON string values,
+   which `json.loads`' default `strict=True` rejects ("Invalid control character at line
+   N") although `strict=False` decodes the identical object. `_json_object` in
+   `scripts/orion_claude_arms.py` now passes `strict=False`. This is decoder tolerance
+   only: same bytes, same Python object, with prompts, schema, model, temperature, arm
+   structure and scoring untouched. It accounted for 4 of E30-R11's 13 stuck cells.
+2. **Truncation starvation.** The served model emits a thinking block counted inside
+   `max_tokens`; on the largest tasks the thinking consumes the whole per-call budget
+   before the JSON closes (`stop_reason=max_tokens`, zero visible text). The primary
+   budget is `ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET=6000` — the budget under which 466 of
+   E30-R11's 480 envelopes completed — and from pass 7 the dispatch loop applies R11's
+   registered raise to 36000 (12000 per call on the 3-call arms), **only** to envelopes
+   that carry no model output. That is an execution-resource raise, not resampling: a
+   `COMPLETED_PROPOSAL_ONLY` response is never re-rolled.
+
+The outcome receipt reports envelopes completed at the primary budget, envelopes completed
+only after escalation, and envelopes never completed, by signature.
+
+## 9. Evaluation lane
 
 `e30_r12_fullreg_eval.py` registers an `e30r12` cell on PC-R6's evaluator and delegates.
 The PC-R6 evaluator is **imported, not forked**, so R12's apply rates are produced by
@@ -172,7 +198,7 @@ provisioning, patch application and compile. No imputation: non-applying, non-co
 and timed-out evaluations carry `critical_new_failure_count = None` with a reason code and
 are excluded from denominators with a count. Per-task suite timeout 900 s.
 
-## 9. Gates
+## 10. Gates
 
 | Gate | Hard | Statement | On failure |
 |---|---|---|---|
@@ -187,7 +213,7 @@ PC-R6's GR0(a) checked against a pre-existing frozen vector. R12 has none, so GR
 replaced by self-consistency: R12 runs **both** evaluators over its own 480 proposals and
 requires exact agreement. GR0b transfers verbatim.
 
-## 10. Pre-registered routing
+## 11. Pre-registered routing
 
 | Case | Terminal |
 |---|---|
@@ -205,7 +231,7 @@ requires exact agreement. GR0b transfers verbatim.
 adverse terminals precede favourable ones, and `PARENT_SUFFICIENT` precedes
 `NO_ARM_SEPARATION` because it is the more specific description of the same state.
 
-## 11. No-rescue clause
+## 12. No-rescue clause
 
 R12 may not: revise, re-score, re-analyze or reinterpret E30-R11's, E60's or PC-R6's
 endpoints; present itself as a correction of E30-R11; use the apply-rate diagnostic to
@@ -218,7 +244,7 @@ output, may be re-dispatched, exactly as E30-R11's guarded redispatch did.
 **If the arms still do not separate once patches actually apply, that is a real and
 important result, and it is reported as plainly as a positive would be.**
 
-## 12. Custody
+## 13. Custody
 
 Seed `20260902`. Dispatch is gated on
 `E30_R12_COORDINATOR_AUTHORIZATION.json` carrying `human_written = true`, the operator's

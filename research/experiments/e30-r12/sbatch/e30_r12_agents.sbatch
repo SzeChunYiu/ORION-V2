@@ -24,7 +24,13 @@ source "$(dirname "$0")/e30_r12_common.sh"
 set -a; source "$HOME/.orion-campaign.env"; set +a
 export ANTHROPIC_MODEL="${E30R12_REQUESTED_MODEL:-glm-5.3}"
 export ORION_ARM_SERVED_MODEL="${E30R12_SERVED_MODEL:-glm-5.3}"
-export ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET=6000
+# Registered execution-resource contract (design, execution_lane_contract): the primary
+# budget is the one under which 466 of E30-R11's 480 envelopes completed; passes 7+ apply
+# R11's registered raise, and ONLY to envelopes that carry no model output.
+PRIMARY_BUDGET=${E30R12_PRIMARY_BUDGET:-6000}
+ESCALATED_BUDGET=${E30R12_ESCALATED_BUDGET:-36000}
+ESCALATE_FROM_PASS=${E30R12_ESCALATE_FROM_PASS:-7}
+export ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET="$PRIMARY_BUDGET"
 export ORION_ARM_HTTP_RETRIES=10
 
 # ---- coordinator authorization gate (design section 12) ----
@@ -87,7 +93,10 @@ for rep in ("1", "2", "3"):
 print(f"pass_pending={pending}", file=sys.stderr)
 SCAN
   N=$(grep -c . "$RUN/e30r12-pending.tsv" || true)
-  echo "PASS $PASS pending=$N"
+  if [ "$PASS" -ge "$ESCALATE_FROM_PASS" ]; then
+    export ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET="$ESCALATED_BUDGET"
+  fi
+  echo "PASS $PASS pending=$N budget=$ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET"
   [ "$N" -eq 0 ] && { echo "ALL_RESPONSES_REAL"; break; }
   WORKER=$(mktemp /tmp/e30r12.XXXXXX.sh)
   cat > "$WORKER" <<W
@@ -96,6 +105,7 @@ set -uo pipefail
 REP="\$1"; ARM="\$2"; TASK="\$3"
 RUN="$RUN"; PY="$PY"; SRC="$R12SRC"
 export PYTHONPATH="$R12SRC/src"
+# ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET is inherited from the pass loop through xargs.
 RESP="\$RUN/confirmatory-r\$REP/responses/\$ARM/\$TASK.json"
 if [ -f "\$RESP" ]; then
   ST=\$("\$PY" -c "import json,sys;print(json.load(open(sys.argv[1])).get('status'))" "\$RESP" 2>/dev/null || echo BROKEN)

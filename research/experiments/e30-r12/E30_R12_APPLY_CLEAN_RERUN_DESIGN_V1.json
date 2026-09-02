@@ -421,5 +421,32 @@
     "PARENT_SUFFICIENT",
     "NO_ARM_SEPARATION"
   ],
-  "routing_precedence_note": "Evaluated in this order; the first matching case is the terminal. Hard-gate and adverse terminals precede favourable ones, and PARENT_SUFFICIENT precedes NO_ARM_SEPARATION because it is the more specific description of the same state."
+  "routing_precedence_note": "Evaluated in this order; the first matching case is the terminal. Hard-gate and adverse terminals precede favourable ones, and PARENT_SUFFICIENT precedes NO_ARM_SEPARATION because it is the more specific description of the same state.",
+  "execution_lane_contract": {
+    "why_registered": "E30-R11 diagnosed two execution-lane failure signatures that produce EXECUTION_FAILED_MODEL_RESPONSE envelopes containing no model output, and repaired both. One repair (the decoder tolerance) was campaign-local and never reached main, so R12 would silently inherit the defect; the other (a token-budget raise on envelope failures) was a procedure, not code. Both are registered here BEFORE dispatch so R12's execution lane is identical to R11's terminal one by declaration rather than by improvisation mid-run.",
+    "signature_1_strict_parse_reject": {
+      "mechanism": "the model emits literal newlines inside JSON string values; json.loads with the default strict=True rejects them although strict=False decodes the identical object",
+      "repair": "scripts/orion_claude_arms.py _json_object uses strict=False",
+      "class": "decoder tolerance -- same bytes, same object; prompts, schema, model, temperature, arm structure and scoring untouched",
+      "e30_r11_precedent": "E30_R11_EXECUTION_LANE_THINKING_BUDGET_JSON_STRICT_REPAIR (4 of 13 stuck cells)"
+    },
+    "signature_2_truncation_starved": {
+      "mechanism": "the served model emits a thinking block counted inside max_tokens; on the largest tasks the thinking consumes the whole per-call budget before the required JSON closes (stop_reason=max_tokens, zero visible text)",
+      "primary_budget": {
+        "ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET": 6000,
+        "note": "identical to the budget under which 466 of E30-R11's 480 envelopes completed, so R12's arms are resourced as R11's were"
+      },
+      "escalated_budget": {
+        "ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET": 36000,
+        "applies_from_pass": 7,
+        "note": "12000 per call on the 3-call arms; E30-R11's registered execution-resource raise, applied ONLY to envelopes that carry no model output"
+      },
+      "class": "execution-resource raise on envelope failure; NOT resampling -- a COMPLETED_PROPOSAL_ONLY response is never re-rolled (no-rescue clause)"
+    },
+    "reported_in_the_receipt": [
+      "envelopes completed at the primary budget",
+      "envelopes completed only after escalation",
+      "envelopes never completed, by failure signature"
+    ]
+  }
 }

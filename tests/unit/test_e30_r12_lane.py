@@ -578,3 +578,31 @@ def test_agents_gate_on_authorization_and_import_provenance():
 def test_suite_and_rollup_refuse_without_a_gr0_pass():
     for name in ("e30_r12_fullreg_suite.sbatch", "e30_r12_fullreg_gr0_verify.sbatch"):
         assert "gr0_status" in (SBATCH / name).read_text(), name
+
+
+# ------------------------------------------------------- execution-lane contract
+def test_json_decoder_tolerates_literal_newlines_in_string_values():
+    """E30-R11's campaign-local repair, never upstreamed: 4 of its 13 stuck cells."""
+    raw = 'noise {"patch": "line one\nline two", "diagnosis": "d"} trailer'
+    value = arms_module._json_object(raw)
+    assert value["patch"] == "line one\nline two"
+    with pytest.raises(ValueError):
+        arms_module._json_object("no object here")
+
+
+def test_agents_escalate_the_token_budget_only_on_later_passes():
+    text = (SBATCH / "e30_r12_agents.sbatch").read_text()
+    assert "PRIMARY_BUDGET=${E30R12_PRIMARY_BUDGET:-6000}" in text
+    assert "ESCALATED_BUDGET=${E30R12_ESCALATED_BUDGET:-36000}" in text
+    assert "ESCALATE_FROM_PASS=${E30R12_ESCALATE_FROM_PASS:-7}" in text
+
+
+def test_design_registers_the_execution_lane_contract():
+    design = json.loads((R12 / "E30_R12_APPLY_CLEAN_RERUN_DESIGN_V1.json").read_text())
+    contract = design["execution_lane_contract"]
+    assert contract["signature_2_truncation_starved"]["primary_budget"][
+        "ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET"] == 6000
+    assert contract["signature_2_truncation_starved"]["escalated_budget"][
+        "ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET"] == 36000
+    assert "NOT resampling" in contract["signature_2_truncation_starved"]["class"]
+    assert "strict=False" in contract["signature_1_strict_parse_reject"]["repair"]

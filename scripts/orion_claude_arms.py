@@ -59,7 +59,15 @@ def _json_object(text: str) -> dict[str, Any]:
     start, end = text.find("{"), text.rfind("}")
     if start < 0 or end < start:
         raise ValueError("model did not return a JSON object")
-    value = json.loads(text[start : end + 1])
+    # strict=False: the model emits literal newlines inside JSON string values, which
+    # the default strict decoder rejects ("Invalid control character at line N") even
+    # though it decodes to the identical object.  E30-R11 diagnosed this as one of two
+    # execution-lane failure signatures and repaired it campaign-locally
+    # (E30_R11_EXECUTION_LANE_THINKING_BUDGET_JSON_STRICT_REPAIR, 4 of 13 stuck cells);
+    # the repair never reached main, so every later run inherits the defect.  It is a
+    # decoder tolerance only: same bytes, same Python object, and prompts, schema,
+    # model, temperature, arm structure and scoring are untouched.
+    value = json.loads(text[start : end + 1], strict=False)
     if not isinstance(value, dict):
         raise ValueError("model JSON result is not an object")
     return value
