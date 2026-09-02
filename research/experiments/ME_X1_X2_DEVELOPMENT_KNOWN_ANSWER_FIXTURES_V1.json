@@ -1,0 +1,292 @@
+{
+  "schema_version": "orion-v2.me-x1-x2-development-known-answer-fixtures.v1",
+  "state_date": "2026-09-01",
+  "status": "DEVELOPMENT_ONLY_NOT_PROTECTED_EVIDENCE",
+  "purpose": "Validate harness semantics, transition labels, obstruction routing, negative controls and cost accounting before independently generated protected suites.",
+  "leakage_warning": "These cases and expected labels are public development fixtures. They cannot support confirmatory capability or field claims.",
+  "allowed_transition_actions": [
+    "UPDATE",
+    "PRESERVE",
+    "SELECTIVELY_REOPEN",
+    "REVALIDATE",
+    "REQUEST_NEW_EVIDENCE",
+    "BLOCK_TRANSPORT",
+    "DEFER_CANNOT_CHECK",
+    "ABSTAIN_AUTHORITY"
+  ],
+  "allowed_obstruction_classes": [
+    "SEARCH_INSUFFICIENT",
+    "MISSING_PREMISE_OR_DATA",
+    "MODEL_FAMILY_INADEQUATE",
+    "REPRESENTATION_INSUFFICIENT",
+    "PROBE_ACTION_INSUFFICIENT",
+    "MEASUREMENT_OR_EVALUATOR_BLIND",
+    "FORMALISM_OR_OPERATOR_INSUFFICIENT",
+    "PROBLEM_OBJECTIVE_MISSPECIFIED",
+    "TOOL_INSTRUMENT_INADEQUATE",
+    "WORKFLOW_INADEQUATE",
+    "NO_ESCALATION_NEEDED",
+    "CANNOT_IDENTIFY"
+  ],
+  "intervention_levels": {
+    "0": "ACTION_PARAMETER",
+    "1": "LOCAL_REPAIR_COMPOSITION",
+    "2": "MODEL_HYPOTHESIS_EXPANSION",
+    "3": "REPRESENTATION_REGIME_TRANSITION",
+    "4": "PROBLEM_OBJECTIVE_REFORMULATION",
+    "5": "METHOD_TOOL_INSTRUMENT_INVENTION",
+    "6": "WORKFLOW_META_SKILL_REVISION",
+    "7": "FRAMEWORK_REVISION",
+    "8": "CONSTITUTION_PROPOSAL_EXTERNAL_AUTHORITY_ONLY",
+    "null": "NO_JUSTIFIED_INTERVENTION_LEVEL"
+  },
+  "x1_transition_cases": [
+    {
+      "case_id": "X1-DEV-001",
+      "family": "CLAIM_BINDING_ERROR",
+      "summary": "A numerical solver correctly computes the registered output for model B, but the execution receipt is attached to the scientific claim for model A.",
+      "local_execution_valid": true,
+      "evidence_valid_for_some_claim": true,
+      "expected_action": "REVALIDATE",
+      "forbidden_actions": ["UPDATE"],
+      "critical_condition": "claim_identity_binding",
+      "rationale": "Execution correctness does not warrant updating a different claim identity."
+    },
+    {
+      "case_id": "X1-DEV-002",
+      "family": "CLAIM_BINDING_ERROR_NEGATIVE_CONTROL",
+      "summary": "The numerical solver output, model identity and registered claim identity all match; the evaluator covers the claimed quantity.",
+      "local_execution_valid": true,
+      "expected_action": "UPDATE",
+      "critical_condition": "claim_identity_binding_satisfied",
+      "negative_control": true
+    },
+    {
+      "case_id": "X1-DEV-003",
+      "family": "MEASUREMENT_CALIBRATION_BREAK",
+      "summary": "The computation is numerically correct, but the instrument calibration curve used to convert raw signal to concentration has been invalidated for the current temperature range.",
+      "local_execution_valid": true,
+      "expected_action": "REVALIDATE",
+      "forbidden_actions": ["UPDATE"],
+      "critical_condition": "measurement_comparability_invalidated"
+    },
+    {
+      "case_id": "X1-DEV-004",
+      "family": "HIDDEN_DEPENDENCE",
+      "summary": "Three apparently independent supporting studies are discovered to derive from the same underlying dataset; the claim required two independent sufficient support routes.",
+      "local_execution_valid": true,
+      "expected_action": "SELECTIVELY_REOPEN",
+      "critical_condition": "support_independence_defeated",
+      "preserve_unaffected_commitments": true
+    },
+    {
+      "case_id": "X1-DEV-005",
+      "family": "HIDDEN_DEPENDENCE_NEGATIVE_CONTROL",
+      "summary": "Three support routes are independently collected with distinct data provenance and each still satisfies its registered evaluator.",
+      "expected_action": "PRESERVE",
+      "critical_condition": "independent_support_routes_remain_valid",
+      "negative_control": true
+    },
+    {
+      "case_id": "X1-DEV-006",
+      "family": "INVALID_TRANSPORT",
+      "summary": "A treatment effect is valid in donor context c, but the registered causal transport witness to target context d fails because a target effect modifier differs outside the permitted scope.",
+      "expected_action": "BLOCK_TRANSPORT",
+      "forbidden_actions": ["UPDATE"],
+      "critical_condition": "typed_transport_witness_invalid"
+    },
+    {
+      "case_id": "X1-DEV-007",
+      "family": "DEFEATED_PREREQUISITE_WITH_INDEPENDENT_ROUTE",
+      "summary": "One prerequisite route supporting conclusion Q is retracted, but a second pre-registered sufficient and independent route remains valid.",
+      "expected_action": "PRESERVE",
+      "critical_condition": "at_least_one_registered_sufficient_route_remains",
+      "negative_control": true
+    },
+    {
+      "case_id": "X1-DEV-008",
+      "family": "DEFEATED_ALL_SUFFICIENT_ROUTES",
+      "summary": "Every registered sufficient route for conclusion Q depends on a calibration theorem whose assumptions are now false in the active regime.",
+      "expected_action": "SELECTIVELY_REOPEN",
+      "critical_condition": "all_registered_sufficient_routes_defeated"
+    },
+    {
+      "case_id": "X1-DEV-009",
+      "family": "BLIND_EVALUATOR",
+      "summary": "A benchmark reports high accuracy but was constructed without the rare failure mode used to justify the safety conclusion.",
+      "local_execution_valid": true,
+      "expected_action": "DEFER_CANNOT_CHECK",
+      "critical_condition": "evaluator_not_sensitive_to_claimed_failure_class"
+    },
+    {
+      "case_id": "X1-DEV-010",
+      "family": "AUTHORITY_MISMATCH",
+      "summary": "Evidence is sufficient to update an internal scientific belief but the system has no external authority to change a clinical operating protocol.",
+      "expected_action": "ABSTAIN_AUTHORITY",
+      "critical_condition": "requested_action_exceeds_external_authority",
+      "internal_belief_update_may_still_be_warranted": true
+    },
+    {
+      "case_id": "X1-DEV-011",
+      "family": "FORMAL_PROOF_WRONG_SPECIFICATION",
+      "summary": "Lean verifies the theorem after a condition was accidentally dropped during autoformalization; the proof is valid for the weakened statement but not faithful to the intended problem.",
+      "local_execution_valid": true,
+      "expected_action": "REVALIDATE",
+      "critical_condition": "formal_validity_without_specification_fidelity"
+    },
+    {
+      "case_id": "X1-DEV-012",
+      "family": "LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION",
+      "summary": "Three local models agree on every registered pairwise overlap, but the global synthesis requires a separately registered witness that is absent.",
+      "local_pairwise_compatibility": true,
+      "expected_action": "DEFER_CANNOT_CHECK",
+      "critical_condition": "pairwise_compatibility_not_global_witness"
+    },
+    {
+      "case_id": "X1-DEV-013",
+      "family": "FULLY_WARRANTED_UPDATE",
+      "summary": "Claim identity, source provenance, dependence assumptions, calibration, evaluator sensitivity, transport scope and authority all satisfy the registered contracts.",
+      "expected_action": "UPDATE",
+      "critical_condition": "all_registered_transition_conditions_satisfied",
+      "negative_control": true
+    },
+    {
+      "case_id": "X1-DEV-014",
+      "family": "MISSING_SOURCE_IDENTITY",
+      "summary": "A result is quoted correctly in prose but the exact dataset/version/source artifact used cannot be recovered, and the decision contract requires source-bound evidence.",
+      "expected_action": "DEFER_CANNOT_CHECK",
+      "critical_condition": "required_evidence_identity_unrecoverable"
+    }
+  ],
+  "x2_obstruction_cases": [
+    {
+      "case_id": "X2-DEV-001",
+      "observed_symptom": "The proof search timed out after exploring only a small fraction of a finite registered tactic space; a successful route exists in the same representation and tool set.",
+      "expected_obstruction": "SEARCH_INSUFFICIENT",
+      "oracle_minimum_level": 0,
+      "expected_high_level_action": "CONTINUE_CURRENT_REGIME",
+      "decoy": "Representation change is available but unnecessary."
+    },
+    {
+      "case_id": "X2-DEV-002",
+      "observed_symptom": "A scientific model appears inconsistent with observations, but a required covariate was never measured and competing models make identical predictions on all currently observed variables.",
+      "expected_obstruction": "MISSING_PREMISE_OR_DATA",
+      "oracle_minimum_level": 0,
+      "expected_high_level_action": "REQUEST_NEW_EVIDENCE",
+      "decoy": "Model-family expansion cannot resolve missing observation alone."
+    },
+    {
+      "case_id": "X2-DEV-003",
+      "observed_symptom": "Posterior predictive checks systematically reject every member of the current mechanistic model family; a registered alternative family contains the true generator.",
+      "expected_obstruction": "MODEL_FAMILY_INADEQUATE",
+      "oracle_minimum_level": 2,
+      "expected_high_level_action": "EXPAND_MODEL_FAMILY"
+    },
+    {
+      "case_id": "X2-DEV-004",
+      "observed_symptom": "Two states that require different target decisions are provably mapped to the same feature representation; no classifier in the current representation can distinguish them.",
+      "expected_obstruction": "REPRESENTATION_INSUFFICIENT",
+      "oracle_minimum_level": 3,
+      "expected_high_level_action": "CHANGE_REPRESENTATION"
+    },
+    {
+      "case_id": "X2-DEV-005",
+      "observed_symptom": "Two causal hypotheses remain observationally equivalent under all current passive measurements but differ under a known intervention available with the existing instrument.",
+      "expected_obstruction": "PROBE_ACTION_INSUFFICIENT",
+      "oracle_minimum_level": 0,
+      "expected_high_level_action": "RUN_DISCRIMINATING_INTERVENTION"
+    },
+    {
+      "case_id": "X2-DEV-006",
+      "observed_symptom": "The model seems to fail only above 40C, but the sensor calibration standard is undefined above 40C; no current evaluator can determine whether model or measurement is responsible.",
+      "expected_obstruction": "MEASUREMENT_OR_EVALUATOR_BLIND",
+      "oracle_minimum_level": 5,
+      "expected_high_level_action": "CHANGE_OR_VALIDATE_MEASUREMENT_EVALUATOR"
+    },
+    {
+      "case_id": "X2-DEV-007",
+      "observed_symptom": "A theorem family is expressible, but the registered proof language lacks the induction/recursion operator required to state the invariant-preserving step.",
+      "expected_obstruction": "FORMALISM_OR_OPERATOR_INSUFFICIENT",
+      "oracle_minimum_level": 3,
+      "expected_high_level_action": "EXTEND_OR_CHANGE_FORMAL_REPRESENTATION"
+    },
+    {
+      "case_id": "X2-DEV-008",
+      "observed_symptom": "The optimization system achieves the registered objective, yet every acceptable scientific outcome is poor because the objective omitted the actual decision criterion.",
+      "expected_obstruction": "PROBLEM_OBJECTIVE_MISSPECIFIED",
+      "oracle_minimum_level": 4,
+      "expected_high_level_action": "REFORMULATE_PROBLEM_OBJECTIVE"
+    },
+    {
+      "case_id": "X2-DEV-009",
+      "observed_symptom": "The scientific plan is valid, but the current instrument cannot measure the required variable at the needed temporal resolution; an available higher-resolution instrument can.",
+      "expected_obstruction": "TOOL_INSTRUMENT_INADEQUATE",
+      "oracle_minimum_level": 5,
+      "expected_high_level_action": "CHANGE_TOOL_INSTRUMENT"
+    },
+    {
+      "case_id": "X2-DEV-010",
+      "observed_symptom": "Individual analysis tools work, but intermediate unit metadata is systematically discarded between stages, corrupting later comparisons; a workflow-level state contract fixes the loss.",
+      "expected_obstruction": "WORKFLOW_INADEQUATE",
+      "oracle_minimum_level": 6,
+      "expected_high_level_action": "REVISE_WORKFLOW"
+    },
+    {
+      "case_id": "X2-DEV-011",
+      "observed_symptom": "A local solver failed once because of a transient numerical tolerance; rerunning with the registered stable tolerance succeeds with no model or representation change.",
+      "expected_obstruction": "NO_ESCALATION_NEEDED",
+      "oracle_minimum_level": 0,
+      "expected_high_level_action": "LOCAL_REPAIR",
+      "negative_control": true
+    },
+    {
+      "case_id": "X2-DEV-012",
+      "observed_symptom": "The observed discrepancy is jointly compatible with model misspecification, sensor drift and an unmeasured confounder; no available probe discriminates them within the declared budget.",
+      "expected_obstruction": "CANNOT_IDENTIFY",
+      "oracle_minimum_level": null,
+      "expected_high_level_action": "DEFER_CANNOT_IDENTIFY"
+    },
+    {
+      "case_id": "X2-DEV-013",
+      "observed_symptom": "Predictive checks reject the current model after a unit-conversion bug is introduced in preprocessing; correcting the bug restores fit without changing the model family.",
+      "expected_obstruction": "NO_ESCALATION_NEEDED",
+      "oracle_minimum_level": 1,
+      "expected_high_level_action": "LOCAL_REPAIR",
+      "decoy": "MDA-style model expansion is specifically the wrong intervention."
+    },
+    {
+      "case_id": "X2-DEV-014",
+      "observed_symptom": "A proof search repeatedly fails because one known library lemma was not retrieved; once retrieved, the existing proof representation closes immediately.",
+      "expected_obstruction": "MISSING_PREMISE_OR_DATA",
+      "oracle_minimum_level": 1,
+      "expected_high_level_action": "RETRIEVE_EXISTING_LEMMA",
+      "decoy": "Inventing a new representation or lemma is unnecessary."
+    },
+    {
+      "case_id": "X2-DEV-015",
+      "observed_symptom": "Many local models fit their own contexts, all registered overlaps are pairwise consistent, but a global synthesis claim requires a witness not derivable from pairwise checks.",
+      "expected_obstruction": "FORMALISM_OR_OPERATOR_INSUFFICIENT",
+      "oracle_minimum_level": 1,
+      "expected_high_level_action": "REQUEST_GLOBAL_WITNESS_OR_REPORT_OBSTRUCTION",
+      "note": "This is deliberately debatable; native/global-structure parent review should challenge whether the ORION obstruction label is appropriate."
+    },
+    {
+      "case_id": "X2-DEV-016",
+      "observed_symptom": "The evaluator score stops improving, but the registered criterion is already satisfied and all obligations are discharged.",
+      "expected_obstruction": "NO_ESCALATION_NEEDED",
+      "oracle_minimum_level": 0,
+      "expected_high_level_action": "STOP_WITH_WARRANTED_TERMINAL",
+      "negative_control": true,
+      "decoy": "Flatness must not trigger representation or workflow change."
+    }
+  ],
+  "required_development_checks": [
+    "all_expected_actions_are_in_allowed_transition_actions",
+    "all_obstruction_labels_are_registered",
+    "every_high_level_obstruction_family_has_at_least_one_false_escalation_decoy",
+    "positive_and_negative_controls_are_retained",
+    "CANNOT_CHECK_or_CANNOT_IDENTIFY_cases_are_present",
+    "development_fixture_performance_is_never_reported_as_confirmatory_field_evidence"
+  ],
+  "protected_suite_rule": "Protected ME-X1/X2 cases must be generated or independently authored after the protocol and harness are frozen, with outcome labels held out from the evaluated systems and no post-hoc taxonomy edits."
+}

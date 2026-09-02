@@ -1,0 +1,148 @@
+{
+  "authority": {
+    "engineering_tests_grant_scientific_evidence": false,
+    "grants_field_status": false,
+    "grants_machine_epistemics_residual": false,
+    "grants_publication_readiness": false,
+    "grants_submission_readiness": false
+  },
+  "engineering_verification": {
+    "ci_equivalent_blinded_stub": {
+      "arm_count": 2,
+      "evidence_class": "ENGINEERING_ONLY_SYNTHETIC_FIXED_SEED",
+      "expected_responses": 16,
+      "private_oracle_absent_during_children": true,
+      "private_oracle_restored_hash_exact": true,
+      "status": "PASS",
+      "task_count": 8,
+      "validated_responses": 16
+    },
+    "environment": {
+      "codex_cli": "UNAVAILABLE_NOT_SUBSTITUTED",
+      "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+      "pytest": "9.0.2",
+      "python": "3.13.5"
+    },
+    "exact_focused_suite": {
+      "failed": 0,
+      "passed": 15,
+      "scope": [
+        "tests/unit/test_scientific_development_wave6.py",
+        "tests/unit/test_recursive_generalization_wave6.py",
+        "tests/unit/test_scientific_development_scripts_wave6.py",
+        "tests/unit/test_sd70_execution_integrity.py"
+      ],
+      "status": "PASS",
+      "tests": 15
+    },
+    "local_logs": [
+      {
+        "bytes": 99,
+        "path": "FOCUSED_TEST_LOG.txt",
+        "sha256": "bdf8b6b8a1d0bd2800ad7c388b876a876e1a105b3966f28f1f3ba383c42d1bbe"
+      },
+      {
+        "bytes": 464,
+        "path": "REFERENCE_CHECK_LOG.txt",
+        "sha256": "c70f7e52744dc724f3b81e49b052587a1ab9795d4a33b45d174ea19a65d67f15"
+      },
+      {
+        "bytes": 512,
+        "path": "SD_REFERENCE_RECEIPT.json",
+        "sha256": "7dd0da44f0cae9822fc13c5fad23375816718629a2c318b9761297f8e37db4cb"
+      },
+      {
+        "bytes": 304,
+        "path": "CI_EQUIVALENT_STUB_LOG.txt",
+        "sha256": "0944f41c7799958b094af9c0c842960cf1217d0a19f0f6dadeff6317e3ac1cb3"
+      }
+    ],
+    "reference_calibration": {
+      "all_authority_flags_false": true,
+      "all_reference_checks_pass": true,
+      "status": "REFERENCE_SEMANTICS_CALIBRATION_ONLY"
+    },
+    "touched_file_blob_identity": {
+      "all_local_files_match_github_git_blob_sha1": true,
+      "files": [
+        {
+          "bytes": 9953,
+          "git_blob_sha1": "f3ac4b19c6058bddf81dcfdd06eff50175af5a31",
+          "path": "scripts/run_scientific_development_meta_suite.py",
+          "sha256": "5b324bcc7b543b8200a5bb1aeb84311f4d324cc5acc98ddce4321f0daf318ae2"
+        },
+        {
+          "bytes": 6688,
+          "git_blob_sha1": "88a81de14bd2a1305bbd59a16f068763860abc0b",
+          "path": "tests/unit/test_sd70_execution_integrity.py",
+          "sha256": "0b2a3dbd990986241870f2ca2b02df712dbeec9821a414550115d53761f38e74"
+        },
+        {
+          "bytes": 1270,
+          "git_blob_sha1": "72fb9b606e9195fc5a4583f4ba33ceb50fc785b6",
+          "path": "research/experiments/results/issue50/sd70/SD70_IMPLEMENTATION_FAILURE_COUNTEREXAMPLE_V1.json",
+          "sha256": "aa2ecdcc82ab3c95c171b9c6ac810b732588fd2956c36a04145ad70bf96776d7"
+        },
+        {
+          "bytes": 9397,
+          "git_blob_sha1": "9b19ccbf0124d7888ffb248859f302ce394c1f43",
+          "path": "research/experiments/results/issue50/sd70/SD70_PREOUTCOME_EXECUTION_CHECKPOINT_V1.json",
+          "sha256": "e84f0f48a593ae9690dada01ee1a9da3640781d6370c40f8acf76649db1f3be5"
+        },
+        {
+          "bytes": 10711,
+          "git_blob_sha1": "654252ca9439e3fbd81ea8ac14953eb2d0f10475",
+          "path": "research/experiments/results/issue50/sd70/SD70_PREOUTCOME_TERMINAL_RECEIPT_V1.md",
+          "sha256": "8e613b9ef66b5f638cce22f24fd50fc29abf6ac2634f2e960210b8778ff6b38b"
+        },
+        {
+          "bytes": 6377,
+          "git_blob_sha1": "e8c02beef1cfd958b72fae20489f550813868d54",
+          "path": "research/experiments/SCIENTIFIC_DEVELOPMENT_SD70_PROSPECTIVE_PROTOCOL_V2.json",
+          "sha256": "ece7f94a380c8f530096cc08996a7f9a20407604a239814866944a75907d067f"
+        },
+        {
+          "bytes": 7746,
+          "git_blob_sha1": "87b737ef61209e58e6268d782019908d2d694622",
+          "path": "research/experiments/SCIENTIFIC_DEVELOPMENT_EXECUTION_BACKLOG_V1.json",
+          "sha256": "7c74573f5785186898c33da261255b6ab5a38a38751118b2ee77dec7ac84c5f5"
+        },
+        {
+          "bytes": 8630,
+          "git_blob_sha1": "46809cd6edd2354565439206cbd6ab25616e22d1",
+          "path": ".github/workflows/wave6-scientific-development.yml",
+          "sha256": "29a7d3c123c2fbb3244f27199043890c5335ed49295caf14ca9c03eb39a4e942"
+        }
+      ],
+      "status": "PASS"
+    }
+  },
+  "github_ci": {
+    "check_runs_found": 0,
+    "green_claimed": false,
+    "queried_head": "d7c8605062367bc4e8e8babe14cbdf87df28eefe",
+    "status": "CANNOT_CHECK",
+    "workflow_runs_found": 0
+  },
+  "protected_execution": {
+    "model_arm_dispatch_executed": false,
+    "protected_outcomes_inspected": false,
+    "protected_suite_generated": false,
+    "scheduled_v1_run_disposition": "HOLD_OR_CANCEL_O2_SD70_R1__DO_NOT_EXECUTE_V1"
+  },
+  "repository_updates": {
+    "issue_50_comment_id": 5489766070,
+    "pr_137_comment_id": 5489767822
+  },
+  "schema_version": "orion.v2.sd70.verification-manifest.v1",
+  "study_id": "SD70-V1",
+  "terminal": "REQUIRES_NEW_PROSPECTIVE_VERSION",
+  "verification_subject": {
+    "base_main": "4165dd2d3c621d9f60e0ff492560baf3afbf7c5f",
+    "branch": "codex/machine-epistemics-hardening-wave",
+    "head_before_manifest": "d7c8605062367bc4e8e8babe14cbdf87df28eefe",
+    "pr": 137,
+    "repository": "SzeChunYiu/ORION-V2"
+  },
+  "verification_utc": "2026-09-01T06:20:50Z"
+}

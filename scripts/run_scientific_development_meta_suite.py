@@ -73,6 +73,40 @@ def _arm_command() -> list[str]:
     return [sys.executable, str(ROOT / "scripts/orion_scientific_development_arms.py")]
 
 
+def _validate_response(request: Path, response: Path, arm: str) -> dict[str, object]:
+    result: dict[str, object] = {
+        "arm": arm,
+        "task": request.stem,
+        "response": str(response),
+        "valid": False,
+    }
+    if not response.is_file():
+        result["error"] = "MISSING_RESPONSE"
+        return result
+    try:
+        request_data = json.loads(request.read_text(encoding="utf-8"))
+        response_data = json.loads(response.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        result["error"] = f"UNREADABLE_RESPONSE:{type(exc).__name__}:{exc}"
+        return result
+    result["status"] = response_data.get("status")
+    if response_data.get("task_id") != request_data.get("task_id"):
+        result["error"] = "TASK_ID_MISMATCH"
+        return result
+    if response_data.get("arm_id") != arm or request_data.get("arm_id") != arm:
+        result["error"] = "ARM_ID_MISMATCH"
+        return result
+    if response_data.get("status") != "COMPLETED_PROPOSAL_ONLY":
+        result["error"] = "NONCOMPLETED_RESPONSE_STATUS"
+        return result
+    candidates = set(request_data.get("task", {}).get("candidate_actions", []))
+    if response_data.get("selected_action") not in candidates:
+        result["error"] = "SELECTED_ACTION_OUTSIDE_FROZEN_CANDIDATES"
+        return result
+    result["valid"] = True
+    return result
+
+
 def dispatch(workdir: Path, arms: list[str], max_concurrency: int, overwrite: bool) -> None:
     private_path = (workdir / "private_oracle.json").resolve()
     private_bytes = private_path.read_bytes()
@@ -86,13 +120,18 @@ def dispatch(workdir: Path, arms: list[str], max_concurrency: int, overwrite: bo
     env = os.environ.copy()
     env["ORION_GOLD_ACCESS"] = "NONE"
     env["ORION_OUTCOME_ACCESS"] = "NONE"
+    expected = []
     jobs = []
     for arm in arms:
         for request in sorted((workdir / "requests" / arm).glob("*.json")):
             response = workdir / "responses" / arm / request.name
+            expected.append((arm, request, response))
             if response.exists() and not overwrite:
                 continue
             jobs.append((arm, request, response))
+    if not expected:
+        private_path.write_bytes(private_bytes)
+        raise RuntimeError("no frozen SD70 requests were found")
 
     def run_one(job):
         arm, request, response = job
@@ -100,21 +139,34 @@ def dispatch(workdir: Path, arms: list[str], max_concurrency: int, overwrite: bo
         completed = subprocess.run(_arm_command() + ["--request", str(request), "--response", str(response)], cwd=ROOT, env=env, check=False)
         return {"arm": arm, "task": request.stem, "returncode": completed.returncode}
 
-    results = []
+    process_results = []
     try:
         with ThreadPoolExecutor(max_workers=max_concurrency) as pool:
             futures = [pool.submit(run_one, job) for job in jobs]
             for future in as_completed(futures):
-                results.append(future.result())
+                process_results.append(future.result())
     finally:
         if private_path.exists():
             raise RuntimeError("private oracle unexpectedly reappeared during dispatch")
         private_path.write_bytes(private_bytes)
         if hashlib.sha256(private_path.read_bytes()).hexdigest() != commitment:
             raise RuntimeError("private oracle restoration hash mismatch")
-    _write(workdir / "DISPATCH_RECEIPT.json", {"jobs": results, "all_returncodes_zero": all(item["returncode"] == 0 for item in results)})
-    if not all(item["returncode"] == 0 for item in results):
-        raise RuntimeError("one or more arm jobs failed")
+    response_results = [_validate_response(request, response, arm) for arm, request, response in expected]
+    all_returncodes_zero = all(item["returncode"] == 0 for item in process_results)
+    all_responses_completed = all(bool(item["valid"]) for item in response_results)
+    _write(workdir / "DISPATCH_RECEIPT.json", {
+        "jobs": process_results,
+        "responses": response_results,
+        "expected_response_count": len(expected),
+        "executed_job_count": len(jobs),
+        "all_returncodes_zero": all_returncodes_zero,
+        "all_responses_completed": all_responses_completed,
+        "dispatch_integrity_passed": all_returncodes_zero and all_responses_completed,
+    })
+    if not all_returncodes_zero:
+        raise RuntimeError("one or more arm processes failed")
+    if not all_responses_completed:
+        raise RuntimeError("one or more arm responses failed integrity validation")
 
 
 def evaluate(workdir: Path, arms: list[str]) -> None:
@@ -122,11 +174,21 @@ def evaluate(workdir: Path, arms: list[str]) -> None:
     oracle = {item["task_id"]: item["correct_action"] for item in private["tasks"]}
     summaries = {}
     for arm in arms:
-        responses = []
-        for path in sorted((workdir / "responses" / arm).glob("*.json")):
-            item = json.loads(path.read_text(encoding="utf-8"))
-            responses.append({"task_id": item["task_id"], "selected_action": item.get("selected_action")})
-        correct = sum(item["selected_action"] == oracle.get(item["task_id"]) for item in responses)
+        request_paths = sorted((workdir / "requests" / arm).glob("*.json"))
+        expected_ids = {path.stem for path in request_paths}
+        if expected_ids != set(oracle):
+            raise RuntimeError(f"request/oracle task identities differ for arm {arm}")
+        validations = [
+            _validate_response(path, workdir / "responses" / arm / path.name, arm)
+            for path in request_paths
+        ]
+        if not all(bool(item["valid"]) for item in validations):
+            raise RuntimeError(f"response integrity failed for arm {arm}")
+        responses = [
+            json.loads((workdir / "responses" / arm / path.name).read_text(encoding="utf-8"))
+            for path in request_paths
+        ]
+        correct = sum(item["selected_action"] == oracle[item["task_id"]] for item in responses)
         summaries[arm] = {"completed": len(responses), "correct": correct, "accuracy": correct / len(oracle) if oracle else 0.0}
     _write(workdir / "EVALUATION_SUMMARY.json", {
         "schema_version": "orion.v2.sd70-arm-evaluation.v1",

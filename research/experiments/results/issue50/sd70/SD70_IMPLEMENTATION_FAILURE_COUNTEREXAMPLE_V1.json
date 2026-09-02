@@ -1,0 +1,31 @@
+{
+  "schema_version": "orion.v2.sd70.implementation-counterexample.v1",
+  "counterexample_id": "SD70-FAILOPEN-MODEL-RESPONSE-V1",
+  "captured_utc": "2026-09-01T06:04:56Z",
+  "protected_outcomes_used": false,
+  "fixture_class": "SYNTHETIC_KNOWN_ANSWER_ENGINEERING_ONLY",
+  "source_runner": {
+    "repository_commit": "4165dd2d3c621d9f60e0ff492560baf3afbf7c5f",
+    "git_blob_sha1": "89a4843eb1ea7af173adba91242321a58efeba04",
+    "sha256": "935ec12be7a82f31e8194c0fc9442d7aebe86c1c9e977d8f2316367ae1874f07"
+  },
+  "fixture": {
+    "task_count": 1,
+    "arm": "F2_RECURSIVE_META_DISCOVERY_FULL",
+    "child_process_exit_code": 0,
+    "response_status": "EXECUTION_FAILED_MODEL_RESPONSE",
+    "selected_action": null,
+    "private_oracle_present_during_child": false
+  },
+  "observed": {
+    "dispatch_disposition": "RETURNED_SUCCESS",
+    "dispatch_all_returncodes_zero": true,
+    "evaluation_completed": 1,
+    "evaluation_correct": 0,
+    "evaluation_accuracy": 0.0
+  },
+  "expected_fail_closed_behavior": "Dispatch must reject a non-COMPLETED_PROPOSAL_ONLY response and evaluation must not count it as completed.",
+  "defect_classification": "IMPLEMENTATION_FIDELITY_DEFECT",
+  "scientific_design_changed_by_repair": false,
+  "scientific_evidence_authorized": false
+}

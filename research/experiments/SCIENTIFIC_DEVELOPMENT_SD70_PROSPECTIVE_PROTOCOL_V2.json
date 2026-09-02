@@ -1,0 +1,134 @@
+{
+  "schema_version": "orion.v2.sd70.prospective-protocol.v2",
+  "protocol_id": "ORION-SD70-SYNTHETIC-META-POLICY-V2",
+  "study_id": "SD70-V2",
+  "status": "PROSPECTIVE_PREOUTCOME_DRAFT__NOT_EXECUTION_AUTHORIZED",
+  "created_after_v1_terminal": "REQUIRES_NEW_PROSPECTIVE_VERSION",
+  "protected_v1_outcomes_used": false,
+  "question": "On fresh synthetic hidden-policy episodes, does a recursive meta-discovery arm improve exact held-out action selection over the strongest faithful mature rule-induction parent under matched public information and prospectively fixed resource limits?",
+  "scope": {
+    "supports_if_valid": "synthetic rule-induction mechanism evidence within the frozen generator family",
+    "does_not_support": [
+      "naturalistic scientific-development superiority",
+      "science-of-science superiority",
+      "general Machine Epistemics field residual",
+      "causal law",
+      "publication readiness"
+    ]
+  },
+  "execution_authorization_blockers": [
+    "Implement and validate all deterministic parent baselines on development-only fixtures.",
+    "Freeze the strongest-parent selection rule without protected outcomes.",
+    "Freeze task count and minimum effect using a prospective power analysis.",
+    "Freeze exact model, tool, token, time, retry, and failure budgets for every model arm.",
+    "Freeze an independent evaluator script implementing every primary outcome, uncertainty interval, gate, ablation, and terminal.",
+    "Create and hash a physical per-arm information manifest; instructions alone are insufficient isolation.",
+    "Commit a master-seed commitment before protected generation and separate development seeds from protected seeds."
+  ],
+  "required_arms": [
+    {
+      "id": "TARGET_ONLY_NEGATIVE_CONTROL",
+      "implementation": "deterministic or model control receiving only held-out context and candidate actions through a physically sanitized request"
+    },
+    {
+      "id": "SIMPLE_FREQUENCY_PARENT",
+      "implementation": "deterministic global success-minus-failure frequency with prospectively frozen tie break"
+    },
+    {
+      "id": "MATCHED_CASE_PARENT",
+      "implementation": "deterministic nearest-context or kernel parent with prospectively frozen distance, weighting, and tie break"
+    },
+    {
+      "id": "STRONGEST_GENERATOR_FAITHFUL_PARENT",
+      "implementation": "mature regularized multiclass or pairwise linear-rule learner selected before protected outcomes by development-only benchmarking"
+    },
+    {
+      "id": "FIXED_META_LESSON",
+      "implementation": "fixed non-recursive heuristic with no protected tuning"
+    },
+    {
+      "id": "F0_PARENT_FEDERATION",
+      "implementation": "prospectively frozen composition of the parent outputs with no extra information"
+    },
+    {
+      "id": "F2_STATIC_NO_RECURSION",
+      "implementation": "same model/tool/budget as full arm; recursion disabled"
+    },
+    {
+      "id": "F2_RECURSIVE_META_DISCOVERY_FULL",
+      "implementation": "same model/tool/budget; full registered mechanism"
+    }
+  ],
+  "information_contract": {
+    "common_public_surface": [
+      "training trajectories",
+      "held-out context",
+      "candidate actions",
+      "task instruction"
+    ],
+    "target_only_surface": [
+      "held-out context",
+      "candidate actions"
+    ],
+    "private_surface": [
+      "seed",
+      "latent weights",
+      "query bits",
+      "correct action"
+    ],
+    "enforcement": "separate hashed request artifacts per arm; solver sandbox cannot read any other arm or oracle artifact"
+  },
+  "primary_outcomes_to_freeze": [
+    {
+      "id": "protected_decision_quality",
+      "required_definition": "paired exact-action correctness and a prospectively frozen effect estimand against the strongest faithful parent"
+    },
+    {
+      "id": "critical_false_direction",
+      "required_definition": "prospectively operationalized high-consequence contradiction rate, or explicitly declared not identifiable for this generator"
+    },
+    {
+      "id": "resource_cost",
+      "required_definition": "calls, input/output tokens, tool calls, retries, wall time, and compute with a single aggregation rule"
+    },
+    {
+      "id": "parent_non_regression",
+      "required_definition": "prospectively frozen non-inferiority margin and confidence procedure versus the strongest faithful parent"
+    }
+  ],
+  "mandatory_controls": [
+    "label-permutation negative control",
+    "query-to-task shuffle negative control",
+    "no-failure-evidence ablation",
+    "no-parent-federation ablation",
+    "no-recursion ablation",
+    "physically sanitized target-only control"
+  ],
+  "missingness_rule_to_freeze": {
+    "global_integrity_gate": "A common infrastructure failure above a prospectively fixed threshold yields CANNOT_CHECK before efficacy comparison.",
+    "arm_specific_failure": "Must be assigned prospectively as failure, censoring, or rerun; no silent replacement is permitted.",
+    "current_status": "THRESHOLDS_NOT_YET_FROZEN"
+  },
+  "decision_rules_to_freeze": {
+    "PARENT_SUFFICIENT": "Strongest faithful parent ties or exceeds F2, or F2 fails the prospectively frozen residual/effect, non-regression, cost, or mechanism gates.",
+    "PROSPECTIVE_META_POLICY_RESIDUAL": "F2 exceeds the strongest faithful parent by the preregistered minimum effect with corrected uncertainty, no information/resource advantage, required ablations, and behaving negative controls.",
+    "FIXED_META_LESSON_SUFFICIENT": "Fixed lesson meets or exceeds F2 under all gates.",
+    "CANNOT_CHECK": "Integrity, missingness, evaluator, or identifiability gate fails.",
+    "current_status": "NUMERIC_THRESHOLDS_NOT_YET_FROZEN"
+  },
+  "outcome_custody": {
+    "seed_commitment_before_generation": true,
+    "oracle_absent_during_all_solver_calls": true,
+    "raw_responses_frozen_before_oracle_restore": true,
+    "evaluator_logically_separate_from_contested_solver": true,
+    "no_threshold_or_baseline_change_after_oracle_access": true
+  },
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_causal_law": false,
+    "grants_field_status": false,
+    "grants_submission_readiness": false,
+    "grants_publication_readiness": false
+  },
+  "single_next_action": "Implement and development-test the strongest generator-faithful parent suite and freeze its selection rule before any protected seed is generated."
+}
