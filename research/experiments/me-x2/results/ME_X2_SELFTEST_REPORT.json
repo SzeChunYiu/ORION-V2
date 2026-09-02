@@ -1,0 +1,694 @@
+{
+  "known_answer": [
+    {
+      "decision_correct": {
+        "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": true,
+        "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": true
+      },
+      "expected": {
+        "identifiable": true,
+        "oracle_class": "SEARCH_INSUFFICIENT",
+        "oracle_cost": 1,
+        "oracle_level": 0,
+        "oracle_locus": "PROCESS_TOOL_WORKFLOW",
+        "probe_identifiable": true
+      },
+      "name": "KA-01-SEARCH_INSUFFICIENT",
+      "oracle": {
+        "identifiable": true,
+        "oracle_class": "SEARCH_INSUFFICIENT",
+        "oracle_cost": 1,
+        "oracle_level": 0,
+        "oracle_locus": "PROCESS_TOOL_WORKFLOW",
+        "probe_identifiable": true
+      },
+      "passed": true
+    },
+    {
+      "decision_correct": {
+        "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": true,
+        "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": true
+      },
+      "expected": {
+        "identifiable": true,
+        "oracle_class": "MISSING_PREMISE_OR_DATA",
+        "oracle_cost": 3,
+        "oracle_level": 1,
+        "oracle_locus": "EPISTEMIC_MODEL",
+        "probe_identifiable": true
+      },
+      "name": "KA-02-MISSING_PREMISE_OR_DATA",
+      "oracle": {
+        "identifiable": true,
+        "oracle_class": "MISSING_PREMISE_OR_DATA",
+        "oracle_cost": 3,
+        "oracle_level": 1,
+        "oracle_locus": "EPISTEMIC_MODEL",
+        "probe_identifiable": true
+      },
+      "passed": true
+    },
+    {
+      "decision_correct": {
+        "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": true,
+        "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": true
+      },
+      "expected": {
+        "identifiable": true,
+        "oracle_class": "MODEL_FAMILY_INADEQUATE",
+        "oracle_cost": 6,
+        "oracle_level": 2,
+        "oracle_locus": "EPISTEMIC_MODEL",
+        "probe_identifiable": true
+      },
+      "name": "KA-03-MODEL_FAMILY_INADEQUATE",
+      "oracle": {
+        "identifiable": true,
+        "oracle_class": "MODEL_FAMILY_INADEQUATE",
+        "oracle_cost": 6,
+        "oracle_level": 2,
+        "oracle_locus": "EPISTEMIC_MODEL",
+        "probe_identifiable": true
+      },
+      "passed": true
+    },
+    {
+      "decision_correct": {
+        "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": true,
+        "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": true
+      },
+      "expected": {
+        "identifiable": true,
+        "oracle_class": "REPRESENTATION_INSUFFICIENT",
+        "oracle_cost": 10,
+        "oracle_level": 3,
+        "oracle_locus": "REPRESENTATION_REGIME",
+        "probe_identifiable": true
+      },
+      "name": "KA-04-REPRESENTATION_INSUFFICIENT",
+      "oracle": {
+        "identifiable": true,
+        "oracle_class": "REPRESENTATION_INSUFFICIENT",
+        "oracle_cost": 10,
+        "oracle_level": 3,
+        "oracle_locus": "REPRESENTATION_REGIME",
+        "probe_identifiable": true
+      },
+      "passed": true
+    },
+    {
+      "decision_correct": {
+        "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": true,
+        "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": true
+      },
+      "expected": {
+        "identifiable": true,
+        "oracle_class": "PROBE_ACTION_INSUFFICIENT",
+        "oracle_cost": 2,
+        "oracle_level": 0,
+        "oracle_locus": "OBSERVATION_MEASUREMENT",
+        "probe_identifiable": true
+      },
+      "name": "KA-05-PROBE_ACTION_INSUFFICIENT",
+      "oracle": {
+        "identifiable": true,
+        "oracle_class": "PROBE_ACTION_INSUFFICIENT",
+        "oracle_cost": 2,
+        "oracle_level": 0,
+        "oracle_locus": "OBSERVATION_MEASUREMENT",
+        "probe_identifiable": true
+      },
+      "passed": true
+    },
+    {
+      "decision_correct": {
+        "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": true,
+        "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": true
+      },
+      "expected": {
+        "identifiable": true,
+        "oracle_class": "MEASUREMENT_OR_EVALUATOR_BLIND",
+        "oracle_cost": 18,
+        "oracle_level": 5,
+        "oracle_locus": "OBSERVATION_MEASUREMENT",
+        "probe_identifiable": true
+      },
+      "name": "KA-06-MEASUREMENT_OR_EVALUATOR_BLIND",
+      "oracle": {
+        "identifiable": true,
+        "oracle_class": "MEASUREMENT_OR_EVALUATOR_BLIND",
+        "oracle_cost": 18,
+        "oracle_level": 5,
+        "oracle_locus": "OBSERVATION_MEASUREMENT",
+        "probe_identifiable": true
+      },
+      "passed": true
+    },
+    {
+      "decision_correct": {
+        "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": true,
+        "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": true
+      },
+      "expected": {
+        "identifiable": true,
+        "oracle_class": "FORMALISM_OR_OPERATOR_INSUFFICIENT",
+        "oracle_cost": 11,
+        "oracle_level": 3,
+        "oracle_locus": "REPRESENTATION_REGIME",
+        "probe_identifiable": true
+      },
+      "name": "KA-07-FORMALISM_OR_OPERATOR_INSUFFICIENT",
+      "oracle": {
+        "identifiable": true,
+        "oracle_class": "FORMALISM_OR_OPERATOR_INSUFFICIENT",
+        "oracle_cost": 11,
+        "oracle_level": 3,
+        "oracle_locus": "REPRESENTATION_REGIME",
+        "probe_identifiable": true
+      },
+      "passed": true
+    },
+    {
+      "decision_correct": {
+        "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": true,
+        "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": true
+      },
+      "expected": {
+        "identifiable": true,
+        "oracle_class": "PROBLEM_OBJECTIVE_MISSPECIFIED",
+        "oracle_cost": 13,
+        "oracle_level": 4,
+        "oracle_locus": "PROBLEM_CRITERION",
+        "probe_identifiable": true
+      },
+      "name": "KA-08-PROBLEM_OBJECTIVE_MISSPECIFIED",
+      "oracle": {
+        "identifiable": true,
+        "oracle_class": "PROBLEM_OBJECTIVE_MISSPECIFIED",
+        "oracle_cost": 13,
+        "oracle_level": 4,
+        "oracle_locus": "PROBLEM_CRITERION",
+        "probe_identifiable": true
+      },
+      "passed": true
+    },
+    {
+      "decision_correct": {
+        "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": true,
+        "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": true
+      },
+      "expected": {
+        "identifiable": true,
+        "oracle_class": "TOOL_INSTRUMENT_INADEQUATE",
+        "oracle_cost": 18,
+        "oracle_level": 5,
+        "oracle_locus": "OBSERVATION_MEASUREMENT",
+        "probe_identifiable": true
+      },
+      "name": "KA-09-TOOL_INSTRUMENT_INADEQUATE",
+      "oracle": {
+        "identifiable": true,
+        "oracle_class": "TOOL_INSTRUMENT_INADEQUATE",
+        "oracle_cost": 18,
+        "oracle_level": 5,
+        "oracle_locus": "OBSERVATION_MEASUREMENT",
+        "probe_identifiable": true
+      },
+      "passed": true
+    },
+    {
+      "decision_correct": {
+        "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": true,
+        "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": true
+      },
+      "expected": {
+        "identifiable": true,
+        "oracle_class": "WORKFLOW_INADEQUATE",
+        "oracle_cost": 25,
+        "oracle_level": 6,
+        "oracle_locus": "PROCESS_TOOL_WORKFLOW",
+        "probe_identifiable": true
+      },
+      "name": "KA-10-WORKFLOW_INADEQUATE",
+      "oracle": {
+        "identifiable": true,
+        "oracle_class": "WORKFLOW_INADEQUATE",
+        "oracle_cost": 25,
+        "oracle_level": 6,
+        "oracle_locus": "PROCESS_TOOL_WORKFLOW",
+        "probe_identifiable": true
+      },
+      "passed": true
+    },
+    {
+      "decision_correct": {
+        "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": true,
+        "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": true
+      },
+      "expected": {
+        "identifiable": true,
+        "oracle_class": "NO_ESCALATION_NEEDED",
+        "oracle_cost": 3,
+        "oracle_level": 1,
+        "oracle_locus": "PROCESS_TOOL_WORKFLOW",
+        "probe_identifiable": true
+      },
+      "name": "KA-11-NO_ESCALATION_NEEDED_DECOY",
+      "oracle": {
+        "identifiable": true,
+        "oracle_class": "NO_ESCALATION_NEEDED",
+        "oracle_cost": 3,
+        "oracle_level": 1,
+        "oracle_locus": "PROCESS_TOOL_WORKFLOW",
+        "probe_identifiable": true
+      },
+      "passed": true
+    },
+    {
+      "decision_correct": {
+        "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": true,
+        "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": true
+      },
+      "expected": {
+        "identifiable": false,
+        "oracle_class": "CANNOT_IDENTIFY",
+        "oracle_cost": null,
+        "oracle_level": null,
+        "oracle_locus": "CANNOT_IDENTIFY",
+        "probe_identifiable": false
+      },
+      "name": "KA-12-CANNOT_IDENTIFY",
+      "oracle": {
+        "identifiable": false,
+        "oracle_class": "CANNOT_IDENTIFY",
+        "oracle_cost": null,
+        "oracle_level": null,
+        "oracle_locus": "CANNOT_IDENTIFY",
+        "probe_identifiable": false
+      },
+      "passed": true
+    },
+    {
+      "decision_correct": {
+        "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": true,
+        "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": true
+      },
+      "expected": {
+        "identifiable": false,
+        "oracle_class": "MODEL_FAMILY_INADEQUATE",
+        "oracle_cost": 7,
+        "oracle_level": 2,
+        "oracle_locus": "CANNOT_IDENTIFY",
+        "probe_identifiable": false
+      },
+      "name": "KA-13-SAME_FIX_LOCUS_UNRESOLVED",
+      "oracle": {
+        "identifiable": false,
+        "oracle_class": "MODEL_FAMILY_INADEQUATE",
+        "oracle_cost": 7,
+        "oracle_level": 2,
+        "oracle_locus": "CANNOT_IDENTIFY",
+        "probe_identifiable": false
+      },
+      "passed": true
+    },
+    {
+      "decision_correct": {
+        "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": true,
+        "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": true
+      },
+      "expected": {
+        "identifiable": true,
+        "oracle_class": "NO_ESCALATION_NEEDED",
+        "oracle_cost": 1,
+        "oracle_level": 0,
+        "oracle_locus": "NO_MATERIAL_DISCREPANCY",
+        "probe_identifiable": true
+      },
+      "name": "KA-14-NO_ESCALATION_NEEDED_CRITERION_MET",
+      "oracle": {
+        "identifiable": true,
+        "oracle_class": "NO_ESCALATION_NEEDED",
+        "oracle_cost": 1,
+        "oracle_level": 0,
+        "oracle_locus": "NO_MATERIAL_DISCREPANCY",
+        "probe_identifiable": true
+      },
+      "passed": true
+    }
+  ],
+  "null_calibration": {
+    "M_decision_rate": 0.8333333333333334,
+    "M_within_pair_swap_rate": 0.0,
+    "n_identifiable": 23,
+    "never_intervene_correct_on_identifiable": 0,
+    "pass": true,
+    "random_decision_rate": 0.20833333333333334,
+    "rule": "NEVER_INTERVENE decision-correct = 0 on identifiable instances; RANDOM <= 0.25; M scored against the partner's oracle <= M's true rate - 0.30",
+    "swap_n": 24
+  },
+  "oracle_agreement": true,
+  "parent_fidelity": [
+    {
+      "parent": "GDE",
+      "passed": true,
+      "test": "single observation eliminates exactly the inconsistent hypothesis"
+    },
+    {
+      "parent": "GDE",
+      "passed": true,
+      "test": "two observations intersect candidate sets"
+    },
+    {
+      "parent": "GDE",
+      "passed": true,
+      "test": "designed table trusts the evaluator (laundered row not applied)"
+    },
+    {
+      "parent": "GDE",
+      "passed": true,
+      "test": "repair recurrence eliminates the resolved hypotheses"
+    },
+    {
+      "parent": "VOI",
+      "passed": true,
+      "test": "expected cost of best immediate act"
+    },
+    {
+      "parent": "VOI",
+      "passed": true,
+      "test": "perfect probe value = 13 - 5.5 - 2 = 5.5"
+    },
+    {
+      "parent": "VOI",
+      "passed": true,
+      "test": "non-splitting probe value = -cost"
+    },
+    {
+      "parent": "PLANNER",
+      "passed": true,
+      "test": "cheap repair-as-test first: 3 + 0.5*8 = 7 < 8"
+    },
+    {
+      "parent": "PLANNER",
+      "passed": true,
+      "test": "perfect 1-cost probe first: 1 + 0.5*3 + 0.5*8 = 6.5"
+    },
+    {
+      "parent": "PLANNER",
+      "passed": true,
+      "test": "tau gate admits a level-2 act only when it resolves the whole candidate set"
+    },
+    {
+      "parent": "PLANNER",
+      "passed": true,
+      "test": "no admissible act -> declare at the failure penalty"
+    },
+    {
+      "parent": "PLANNER",
+      "passed": true,
+      "test": "budget-infeasible act excluded"
+    },
+    {
+      "parent": "TEST_SEQUENCING",
+      "passed": true,
+      "test": "a repair that resolves the target is its own test and fix (3 < probe 1 + fix 8)"
+    },
+    {
+      "parent": "TEST_SEQUENCING",
+      "passed": true,
+      "test": "probe route when no repair resolves the target (pA separates both: 1 + 8 = 9)"
+    },
+    {
+      "parent": "TEST_SEQUENCING",
+      "passed": true,
+      "test": "unaffordable -> None"
+    },
+    {
+      "parent": "ABSTENTION",
+      "passed": true,
+      "test": "posterior below tau abstains"
+    },
+    {
+      "parent": "ABSTENTION",
+      "passed": true,
+      "test": "shared class reaches tau"
+    },
+    {
+      "parent": "TAXONOMY",
+      "passed": true,
+      "test": "every registered pattern maps to an intervention kind of its template"
+    },
+    {
+      "parent": "TAXONOMY",
+      "passed": true,
+      "test": "standard fix first, then ascending level"
+    },
+    {
+      "parent": "TAXONOMY",
+      "passed": true,
+      "test": "NO_MAPPING pattern registered as hostile counterexample"
+    },
+    {
+      "parent": "MDA",
+      "passed": true,
+      "test": "expansion fires only after criticism rejection with a model-locus candidate"
+    }
+  ],
+  "passed": true,
+  "schema_version": "orion.v2.me-x2.exact-study-analysis.v1.selftest",
+  "selftest_arm_decision_rates": {
+    "B0_RETRY_SEARCH": 0.20833333333333334,
+    "B1_UNCERTAINTY_ABSTENTION": 0.5833333333333334,
+    "B2_FAILURE_TAXONOMY_DIAGNOSIS": 0.375,
+    "B3_EQUAL_EXTRA_SEARCH_1_5X": 0.9583333333333334,
+    "B3_MODEL_BASED_DIAGNOSIS_VOI": 0.75,
+    "B4_MDA_MODEL_EXPANSION": 0.75,
+    "B5_NO_ABSTENTION_GATE": 0.9583333333333334,
+    "B5_R1_VERDICT_ONLY": 0.625,
+    "B5_R2_PLUS_CANDIDATE_SET": 0.6666666666666666,
+    "B5_R3_PLUS_DISCRIMINATOR_TABLES": 0.7916666666666666,
+    "B5_R4_PLUS_DISPOSITION_RECORDS": 0.9166666666666666,
+    "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": 1.0,
+    "C_NEVER_INTERVENE": 0.041666666666666664,
+    "C_RANDOM_POLICY": 0.20833333333333334,
+    "M_ALWAYS_ESCALATE_WHEN_STUCK": 0.125,
+    "M_LOCUS_LABELS_SHUFFLED": 0.20833333333333334,
+    "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": 0.8333333333333334,
+    "M_MINUS_DIAGNOSTIC_EVALUATOR_GATE": 0.7916666666666666,
+    "M_MINUS_LOCUS_DIAGNOSIS": 0.4166666666666667,
+    "M_MINUS_LOWER_LEVEL_DISPOSITION": 0.8333333333333334,
+    "M_MINUS_PROSPECTIVE_DISCRIMINATOR": 0.75,
+    "M_NEVER_ESCALATE": 0.4166666666666667
+  },
+  "separation": {
+    "cases": {
+      "SEP-P": {
+        "arms": {
+          "B5_R1_VERDICT_ONLY": {
+            "ci_cost": null,
+            "class_correct": false,
+            "confidence": null,
+            "correct_ci": false,
+            "cost": 8,
+            "decision_correct": false,
+            "decision_seq": [
+              [
+                "INTERVENE",
+                "expand_model_family"
+              ]
+            ],
+            "declared_class": "MODEL_FAMILY_INADEQUATE",
+            "declared_locus": "EPISTEMIC_MODEL",
+            "false_ci": false,
+            "false_escalation": true,
+            "false_model_attribution": true,
+            "false_representation_attribution": false,
+            "false_world_change": false,
+            "locus_correct": false,
+            "max_level": 2,
+            "missed_escalation": false,
+            "recurrence": 0,
+            "regret": 5,
+            "spec_damage": false,
+            "success": true
+          },
+          "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": {
+            "ci_cost": null,
+            "class_correct": true,
+            "confidence": 1.0,
+            "correct_ci": false,
+            "cost": 3,
+            "decision_correct": true,
+            "decision_seq": [
+              [
+                "INTERVENE",
+                "fix_unit_conversion"
+              ]
+            ],
+            "declared_class": "NO_ESCALATION_NEEDED",
+            "declared_locus": "PROCESS_TOOL_WORKFLOW",
+            "false_ci": false,
+            "false_escalation": false,
+            "false_model_attribution": false,
+            "false_representation_attribution": false,
+            "false_world_change": false,
+            "locus_correct": true,
+            "max_level": 1,
+            "missed_escalation": false,
+            "recurrence": 0,
+            "regret": 0,
+            "spec_damage": false,
+            "success": true
+          },
+          "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": {
+            "ci_cost": null,
+            "class_correct": true,
+            "confidence": 1.0,
+            "correct_ci": false,
+            "cost": 3,
+            "decision_correct": true,
+            "decision_seq": [
+              [
+                "INTERVENE",
+                "fix_unit_conversion"
+              ]
+            ],
+            "declared_class": "NO_ESCALATION_NEEDED",
+            "declared_locus": "PROCESS_TOOL_WORKFLOW",
+            "false_ci": false,
+            "false_escalation": false,
+            "false_model_attribution": false,
+            "false_representation_attribution": false,
+            "false_world_change": false,
+            "locus_correct": true,
+            "max_level": 1,
+            "missed_escalation": false,
+            "recurrence": 0,
+            "regret": 0,
+            "spec_damage": false,
+            "success": true
+          }
+        },
+        "oracle": {
+          "identifiable": true,
+          "oracle_class": "NO_ESCALATION_NEEDED",
+          "oracle_cost": 3,
+          "oracle_level": 1,
+          "oracle_locus": "PROCESS_TOOL_WORKFLOW",
+          "probe_identifiable": false
+        },
+        "oracle_matches_hand_answer": true
+      },
+      "SEP-Q": {
+        "arms": {
+          "B5_R1_VERDICT_ONLY": {
+            "ci_cost": null,
+            "class_correct": true,
+            "confidence": null,
+            "correct_ci": false,
+            "cost": 8,
+            "decision_correct": true,
+            "decision_seq": [
+              [
+                "INTERVENE",
+                "expand_model_family"
+              ]
+            ],
+            "declared_class": "MODEL_FAMILY_INADEQUATE",
+            "declared_locus": "EPISTEMIC_MODEL",
+            "false_ci": false,
+            "false_escalation": false,
+            "false_model_attribution": false,
+            "false_representation_attribution": false,
+            "false_world_change": false,
+            "locus_correct": true,
+            "max_level": 2,
+            "missed_escalation": false,
+            "recurrence": 0,
+            "regret": 0,
+            "spec_damage": false,
+            "success": true
+          },
+          "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": {
+            "ci_cost": null,
+            "class_correct": true,
+            "confidence": 1.0,
+            "correct_ci": false,
+            "cost": 11,
+            "decision_correct": true,
+            "decision_seq": [
+              [
+                "INTERVENE",
+                "fix_unit_conversion"
+              ],
+              [
+                "INTERVENE",
+                "expand_model_family"
+              ]
+            ],
+            "declared_class": "MODEL_FAMILY_INADEQUATE",
+            "declared_locus": "EPISTEMIC_MODEL",
+            "false_ci": false,
+            "false_escalation": false,
+            "false_model_attribution": false,
+            "false_representation_attribution": false,
+            "false_world_change": false,
+            "locus_correct": true,
+            "max_level": 2,
+            "missed_escalation": false,
+            "recurrence": 1,
+            "regret": 3,
+            "spec_damage": false,
+            "success": true
+          },
+          "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": {
+            "ci_cost": null,
+            "class_correct": true,
+            "confidence": 1.0,
+            "correct_ci": false,
+            "cost": 11,
+            "decision_correct": true,
+            "decision_seq": [
+              [
+                "INTERVENE",
+                "fix_unit_conversion"
+              ],
+              [
+                "INTERVENE",
+                "expand_model_family"
+              ]
+            ],
+            "declared_class": "MODEL_FAMILY_INADEQUATE",
+            "declared_locus": "EPISTEMIC_MODEL",
+            "false_ci": false,
+            "false_escalation": false,
+            "false_model_attribution": false,
+            "false_representation_attribution": false,
+            "false_world_change": false,
+            "locus_correct": true,
+            "max_level": 2,
+            "missed_escalation": false,
+            "recurrence": 1,
+            "regret": 3,
+            "spec_damage": false,
+            "success": true
+          }
+        },
+        "oracle": {
+          "identifiable": true,
+          "oracle_class": "MODEL_FAMILY_INADEQUATE",
+          "oracle_cost": 8,
+          "oracle_level": 2,
+          "oracle_locus": "EPISTEMIC_MODEL",
+          "probe_identifiable": false
+        },
+        "oracle_matches_hand_answer": true
+      }
+    },
+    "passed": true,
+    "structure_exchange_exact_on_both": true,
+    "verdict_only_fails_at_least_one": true,
+    "verdict_only_outputs_identical_on_P_and_Q": true
+  }
+}
