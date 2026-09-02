@@ -43,7 +43,7 @@ ESEARCH = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
 EFETCH = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
 ARMS = ("P_D_FULL", "P_D_MINUS_DEPENDENCE", "STRONGEST_ASSURANCE_FEDERATION")
 INCONCLUSIVE = "INCONCLUSIVE_INSUFFICIENT_INDEPENDENT_SUPPORT"
-NCT_RE = re.compile(r"NCT\s?-?\d{8,}", re.IGNORECASE)  # \d{8,}: live typo "NCT035008353" (9 digits)
+NCT_RE = re.compile(r"NCT\s?-?\d{7,}", re.IGNORECASE)  # \d{7,}: live typos "NCT035008353" (9 digits), "NCT1108991" (7)
 # every registry-id shape we know of; all are replaced by the same neutral marker so the
 # redaction itself carries no per-record information. No leading word boundary: live
 # records glue the id to the preceding word ("identifierNCT00445770", verified 2026-09-02).
