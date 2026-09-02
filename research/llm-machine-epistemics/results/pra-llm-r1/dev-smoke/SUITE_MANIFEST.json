@@ -1,0 +1,37 @@
+{
+  "design_id": "ORION51.PRA_REAL_LLM_AUDIT.design.v1",
+  "schema_version": "orion.v2.pra.real-llm-audit-stage-result.v1",
+  "splits": {
+    "dev": {
+      "instances_per_family": {
+        "F0_ACQ": 4,
+        "F1_P0": 4,
+        "F2_P1": 4,
+        "F3_P2_CANON": 4,
+        "F3_P2_INDEP": 4,
+        "F3_P2_MIRROR": 4,
+        "F3_P2_RECON": 4,
+        "F3_P2_TIE": 4
+      },
+      "n_instances": 32,
+      "path": "/projects/hep/fs9/users/scyiu/orion-v2-pra-llm/campaign-pra-llm-r1/dev-smoke/suite/suite_dev.json",
+      "sha256": "98c8cbb54e5560d954c0a7805ae2fca37aa2777751228baf4701d30c185bf2ba"
+    },
+    "protected": {
+      "instances_per_family": {
+        "F0_ACQ": 40,
+        "F1_P0": 60,
+        "F2_P1": 60,
+        "F3_P2_CANON": 120,
+        "F3_P2_INDEP": 60,
+        "F3_P2_MIRROR": 60,
+        "F3_P2_RECON": 60,
+        "F3_P2_TIE": 40
+      },
+      "n_instances": 500,
+      "path": "/projects/hep/fs9/users/scyiu/orion-v2-pra-llm/campaign-pra-llm-r1/dev-smoke/suite/suite_protected.json",
+      "sha256": "21b5b0f7263a49732a9d7c6ba4c417b825e363d2ed06df66d1b3a6a26551b2ae"
+    }
+  },
+  "stage": "generate-suite"
+}
