@@ -871,7 +871,7 @@ def check_bounds(machines: Iterable[Machine], require_pc: bool, conj_examples: l
     lb_viol = fano_viol = lb_tight = fano_tight = both_tight = 0
     om_ub_delta_viol = om_fano_viol = label_eq_delta_viol = 0
     omega_pos = ub_delta_tight_pos = ub_fano_tight_pos = conj_viol = 0
-    mach_pc = mach_terminal = 0
+    mach_pc = mach_terminal = mach_label_applicable = 0
     fano_parts = fano_parts_ungated = fano_viol_ungated = mach_fano_viol_ungated = 0
     for m in machines:
         pr = premium(m)
@@ -927,6 +927,10 @@ def check_bounds(machines: Iterable[Machine], require_pc: bool, conj_examples: l
                 if len(conj_examples) < 3:
                     conj_examples.append({"machine": m.to_json(), "omega": om, "conjectured_lb": c1})
         if terminal_pc:
+            # The label identity is only defined where the labelling construction of (ii)
+            # is: one-step terminal models (and, when require_pc, congruent ones).  Record
+            # the denominator so a zero here is never read as a universal result.
+            mach_label_applicable += 1
             ubl = upper_bound_label(m, pr)
             if abs(ubl - ubd) > TOL:
                 label_eq_delta_viol += 1
@@ -940,6 +944,7 @@ def check_bounds(machines: Iterable[Machine], require_pc: bool, conj_examples: l
                 ub_fano_tight_pos += 1
     return {"family": tag, "machines": n, "static_partitions": parts, "omega_positive": omega_pos,
             "machines_pc": mach_pc, "machines_terminal_model": mach_terminal,
+            "T2_label_applicable_machines": mach_label_applicable,
             "T1_fano_applicable_partitions": fano_parts,
             "T1_fano_terminal_partitions_ungated_by_pc": fano_parts_ungated,
             "T1_fano_ub_violations_ungated_by_pc": fano_viol_ungated,
@@ -1274,6 +1279,7 @@ def run(full: bool, seed: int = 20260902, cap: int | None = None) -> dict:
             "label_formula_ne_delta": nonpc_row["T2_label_formula_ne_delta"],
             "omega_gt_fano_violations": nonpc_row["T2_omega_gt_fano_violations"],
             "machines": nonpc_row["machines"], "machines_pc": nonpc_row["machines_pc"],
+            "label_applicable_machines": nonpc_row["T2_label_applicable_machines"],
             "static_partitions": nonpc_row["static_partitions"],
             "fano_applicable_partitions": nonpc_row["T1_fano_applicable_partitions"],
             "fano_terminal_partitions_ungated_by_pc":
