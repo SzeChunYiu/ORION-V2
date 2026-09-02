@@ -102,7 +102,31 @@ delta. The array was held before it could start (`scontrol hold 3563453`).
 
 ## 5. Dispatch
 
-DISPATCH_RECORD
+- Design/runner/analysis PR **#162** squash-merged as main `400dd745d9bb03653190f3d4a6a47dd3bb45658d`.
+  Checks before merge: all five CI workflows `conclusion=success` (`reference-tests`,
+  `stochastic-reference`, `foundation-reference`, `native-recovery`, `unified-reference`);
+  `Cursor Bugbot` concluded **`neutral`** (declined to review — no comments posted; it had returned
+  `success` on the Stage-2b PR). `neutral` is not a failing conclusion, and no check was pending at
+  merge time.
+- Deploy (2026-09-02 14:43 UTC): `orion-v2-wave6` clone reset to `400dd745…`; campaign-dir copies
+  sha256-verified against §1 — runner `092a6281…`, analysis `bb11b953…`, chain sbatch `9a64af97…`,
+  eval sbatch `b8cc3701…`. Runner `selftest` and analysis `selftest` (full battery) both 0 failures
+  on the LUNARC campaign venv (Python 3.11.5).
+- **Endpoint probe passed under the new pin**: requested `glm-5.2`, `frozen_served_model` `glm-5.3`,
+  `response_model_id` **`glm-5.3`**, `parsed_ok: true`, 2026-09-02T14:43:21Z
+  (`run/endpoint_probe.json`). The served id matches the frozen pin, so the assertion admits the run.
+- Superseded Stage-2b array `3563453` **cancelled** (it had never left `JobHeldUser`; its campaign
+  dir held only `endpoint_probe.json` — no chains, no results).
+- **Chain array SLURM job `3564928`** (`o2-e40m5p2c-chain`, `0-59%8`, lu48, 8 cpu / 64 G / 3 h per
+  task), submitted 2026-09-02 16:43:21 CEST, eligible immediately. Tasks 0–47 are the F2 seed
+  replicas, tasks 48–59 the in-campaign F0 federation chains; each task re-probes the endpoint
+  (served-model assertion) before touching its chain dir and exits 75 if the lane is walled or the
+  served model changes.
+- Expected completion: 60 chains × 12–24 min at 8 concurrent ⇒ ≈2.5 h of scheduled work; wall-clock
+  depends on lu48 queueing (146 nodes allocated, 40 mixed at submission).
+- Eval job **not** submitted (unblinding is an operator decision): once
+  `e40_matched_runner_m5p_stage2c.py status` reports `all_settled`, run
+  `sbatch e40_m5p_stage2c_eval_r1.sbatch` from the campaign dir.
 
 ## 6. Standing guard (what changes for future campaigns)
 
