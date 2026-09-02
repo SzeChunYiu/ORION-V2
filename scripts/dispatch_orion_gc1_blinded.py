@@ -39,7 +39,14 @@ def main() -> int:
     parser.add_argument("--arms", required=True)
     parser.add_argument("--max-concurrency", type=int, default=2)
     parser.add_argument("--overwrite-responses", action="store_true")
+    parser.add_argument(
+        "--runner-script", type=Path,
+        default=Path(__file__).resolve().parent / "run_orion_generated_composition_suite.py",
+        help="suite runner exposing a `dispatch` action (default: GC1; E70-GC2 passes its own runner)",
+    )
     args = parser.parse_args()
+    if not args.runner_script.is_file():
+        raise BlindDispatchError(f"runner script not found: {args.runner_script}")
 
     private_root = (args.workdir / "private").resolve()
     if not private_root.is_dir():
@@ -71,14 +78,14 @@ def main() -> int:
     environment = os.environ.copy()
     for name in list(environment):
         if "PRIVATE" in name.upper() or "GOLD" in name.upper() or "ORACLE" in name.upper():
-            if name.startswith("ORION_GC1_") or name.startswith("ORION_GOLD"):
+            if name.startswith(("ORION_GC1_", "ORION_GC2_", "ORION_GOLD")):
                 environment.pop(name, None)
     environment["ORION_GOLD_ACCESS"] = "NONE"
     environment["ORION_OUTCOME_ACCESS"] = "NONE"
 
     command = [
         sys.executable,
-        str(Path(__file__).resolve().parent / "run_orion_generated_composition_suite.py"),
+        str(args.runner_script.resolve()),
         "dispatch",
         "--workdir",
         str(args.workdir),

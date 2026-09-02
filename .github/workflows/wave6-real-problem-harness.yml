@@ -11,6 +11,11 @@ on:
       - "scripts/run_orion_agent_in_container.py"
       - "scripts/audit_orion_diff_interface.py"
       - "scripts/run_orion_generated_composition_suite.py"
+      - "scripts/run_orion_generated_composition_gc2_suite.py"
+      - "scripts/run_orion_generated_composition_gc2_pilot.sh"
+      - "research/experiments/e70-gc2/E70_GC2_OFFCEILING_DESIGN_V1.json"
+      - "tests/unit/test_generated_composition_gc2_suite.py"
+      - "tests/unit/fixtures_gc2_fake_arm.py"
       - "scripts/dispatch_orion_gc1_blinded.py"
       - "scripts/run_orion_generated_composition_pilot.sh"
       - "scripts/materialize_orion_solver_workspaces.py"
@@ -42,6 +47,11 @@ on:
       - "scripts/run_orion_agent_in_container.py"
       - "scripts/audit_orion_diff_interface.py"
       - "scripts/run_orion_generated_composition_suite.py"
+      - "scripts/run_orion_generated_composition_gc2_suite.py"
+      - "scripts/run_orion_generated_composition_gc2_pilot.sh"
+      - "research/experiments/e70-gc2/E70_GC2_OFFCEILING_DESIGN_V1.json"
+      - "tests/unit/test_generated_composition_gc2_suite.py"
+      - "tests/unit/fixtures_gc2_fake_arm.py"
       - "scripts/dispatch_orion_gc1_blinded.py"
       - "scripts/run_orion_generated_composition_pilot.sh"
       - "scripts/materialize_orion_solver_workspaces.py"
@@ -94,6 +104,8 @@ jobs:
           python -m py_compile scripts/run_orion_agent_in_container.py
           python -m py_compile scripts/audit_orion_diff_interface.py
           python -m py_compile scripts/run_orion_generated_composition_suite.py
+          python -m py_compile scripts/run_orion_generated_composition_gc2_suite.py
+          bash -n scripts/run_orion_generated_composition_gc2_pilot.sh
           python -m py_compile scripts/dispatch_orion_gc1_blinded.py
           python -m py_compile scripts/materialize_orion_solver_workspaces.py
           python -m py_compile scripts/validate_orion_agent_responses.py
@@ -107,6 +119,7 @@ jobs:
             tests/unit/test_knowledge_metabolism_wave6.py \
             tests/unit/test_unified_diff_interface_wave6.py \
             tests/unit/test_generated_composition_suite_wave6.py \
+            tests/unit/test_generated_composition_gc2_suite.py \
             tests/unit/test_agent_container_adapter_wave6.py \
             tests/unit/test_real_problem_suite_runner_wave6.py \
             tests/unit/test_real_problem_evaluator_analysis_wave6.py \

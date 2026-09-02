@@ -1,0 +1,265 @@
+{
+  "schema_version": "orion.v2.generated-composition-gc2-offceiling-design.v1",
+  "suite_id": "E70-GC2",
+  "design_id": "E70_GC2_OFFCEILING_DESIGN_V1",
+  "status": "PROSPECTIVE_SECONDARY_ANTI_COPY_PROTOCOL_NO_RESULTS",
+  "freeze_date": "2026-09-02",
+  "parent": {
+    "suite": "E70-GC1",
+    "receipt": "research/experiments/results/issue45/e70-gc1-r1/E70_GC1_R1_OUTCOME_RECEIPT.md",
+    "finding": "syntax-normalized endpoint 24/24 for all four arms; raw variance = unified-diff hunk-header miscount; family semantically saturated for gpt-5.6-terra"
+  },
+  "issue": 45,
+  "phase": "Phase 5 anti-memorization / active-solving controls [E70]",
+  "domain": "fresh_generated_executable_multi_file_source_composition",
+  "purpose": "Test whether the ORION metabolic lifecycle (F2) improves count-robust native success over its parent federation (F0) and simpler controls on generated composition tasks whose semantic difficulty is calibrated OFF ceiling for the bound model, with hidden regression, counterfactual and surface-trap checks that did not exist before freeze.",
+  "arms": [
+    "SIMPLE_DIRECT",
+    "SAME_MODEL_REFLECTION",
+    "F0_PARENT_FEDERATION",
+    "F2_ORION_METABOLIC_FULL"
+  ],
+  "arm_executable": "scripts/orion_codex_arms.py (unchanged from E70-GC1; one codex exec call per response; prompt identical)",
+  "model_binding": {
+    "executor": "codex-cli 0.150.1",
+    "model": "gpt-5.6-terra",
+    "note": "same binding as E70-GC1 R1"
+  },
+  "difficulty_ladder": {
+    "frozen": true,
+    "order": [
+      "L1",
+      "L2",
+      "L3"
+    ],
+    "L0_reference": "E70-GC1 family (4 fragments, 1 file) \u2014 known saturated; not a rung",
+    "L1": {
+      "title": "distractor + erratum + offset unit + 2-file normalization contract",
+      "fragments": 6,
+      "editable_files": [
+        "solver.py",
+        "normalize.py"
+      ],
+      "mechanics": [
+        "superseded revision fragment (explicit distractor)",
+        "erratum overriding a threshold and revoking one documented source",
+        "three-unit normalization incl. affine offset unit",
+        "normalize.to_primary hidden contract (cross-file)",
+        "public regression tests",
+        "hidden families: regression, forced edge, random(120), counterfactual twins(16 pairs), surface traps, normalize contract(24)"
+      ]
+    },
+    "L2": {
+      "title": "L1 + unit alias chain + codebook file + tie-break + ambiguity band",
+      "fragments": 9,
+      "editable_files": [
+        "solver.py",
+        "normalize.py",
+        "codebook.py"
+      ],
+      "mechanics": [
+        "legacy alias unit + retired alias token (trap)",
+        "stale/incomplete codebook.py that must be completed (cross-file)",
+        "tie-break rule on score==high-1 with even y",
+        "ambiguity band conditional on primary authority",
+        "hidden families as L1 with random(160), counterfactual(24 pairs), normalize(32), codebook contract"
+      ]
+    },
+    "L3": {
+      "title": "L2 + order-dependent per-source accept quota (decide_batch)",
+      "fragments": 10,
+      "editable_files": [
+        "solver.py",
+        "normalize.py",
+        "codebook.py"
+      ],
+      "mechanics": [
+        "solver.decide_batch(records) with per-source accept quota consumed in record order",
+        "12 hidden batch checks of 10 records"
+      ]
+    },
+    "generator_self_check": "for every generated task the reference solution passes 100% of hidden checks and the incomplete baseline does not (asserted at generation; recorded in FROZEN_TASKS.generator_self_check)"
+  },
+  "calibration": {
+    "purpose": "choose the lowest rung whose SIMPLE_DIRECT count-robust success on a development split lies in the window; outcome-blind with respect to every other arm and to the protected seed",
+    "arm": "SIMPLE_DIRECT",
+    "endpoint": "count_robust_hidden_oracle_success",
+    "window": [
+      0.3,
+      0.7
+    ],
+    "window_rule": "point estimate inclusive; Wilson 95% interval reported, not used for the decision",
+    "dev_seed": 20260902,
+    "dev_tasks_per_level": 16,
+    "reps": 1,
+    "ladder_order": [
+      "L1",
+      "L2",
+      "L3"
+    ],
+    "procedure": "ascend L1->L2->L3 sequentially; stop at the first rung inside the window (WINDOW_HIT, rung frozen as protected.ladder_level); all rungs above the window -> SUITE_STILL_SATURATED (stop, no protected generation); a rung below the window after a rung above it -> LADDER_OVERSHOT_NO_WINDOW_HIT (stop, no protected generation, ladder is not re-tuned post hoc); below the window at L1 -> SUITE_AT_FLOOR_AT_FIRST_RUNG (stop)",
+    "dev_split_never_reused": "dev tasks use dev_seed and a dev nonce; the protected split uses protected.seed and a fresh nonce; no dev task is dispatched to any arm other than SIMPLE_DIRECT and no dev outcome for the protected arms exists",
+    "receipt": "research/experiments/e70-gc2/E70_GC2_CALIBRATION_RECEIPT_DEV.json"
+  },
+  "endpoints": {
+    "primary": {
+      "name": "count_robust_hidden_oracle_success",
+      "definition": "the emitted unified diff, after the registered arm-blind syntax-only canonicalization (src/orion_v2/unified_diff_interface.py: recompute hunk old/new counts from the hunk body, normalize a/b file headers bound by the diff --git line, blank context markers; never infer paths, start lines or semantic lines), applies with git apply to a fresh copy of the public workspace restricted to the editable files, and every hidden check (decide records, normalize contract, codebook contract, batch checks) passes",
+      "registered_normalization": [
+        "research/evaluation/E20_PATCH_SERIALIZATION_CONFOUND_AUDIT_V1.md",
+        "research/experiments/E30_SYNTAX_SENSITIVITY_CONTROL_FREEZE_V1.json"
+      ],
+      "fail_closed": "INVALID_NOT_CANONICALIZABLE, patch touching a non-editable file, rename, import failure, runtime error or timeout all count as failure"
+    },
+    "secondary": [
+      {
+        "name": "raw_hidden_oracle_success",
+        "role": "interface-fidelity endpoint (header-exact raw apply; GC1 primary)"
+      },
+      {
+        "name": "count_robust_patch_apply_success"
+      },
+      {
+        "name": "raw_patch_apply_success"
+      },
+      {
+        "name": "count_robust_hidden_accuracy",
+        "role": "continuous descriptive"
+      },
+      {
+        "name": "count_robust_family_accuracy",
+        "role": "per hidden family (regression, edge_*, random, counterfactual_base/twin, surface_trap_*, normalize_contract, codebook_contract, batch_quota) \u2014 descriptive breakdown"
+      },
+      {
+        "name": "model_tokens"
+      },
+      {
+        "name": "model_wall_time_seconds"
+      },
+      {
+        "name": "patch_size_bytes"
+      }
+    ]
+  },
+  "power": {
+    "method": "simulation-based, task-level exact two-sided discordant (sign) test on majority-of-reps task outcomes; Beta task heterogeneity; logit-shift treatment effect",
+    "seed": 20260902,
+    "risk_difference_mde": 0.15,
+    "alpha_two_sided": 0.05,
+    "target_power": 0.8,
+    "reps_per_task": 3,
+    "assumed_control_rate": 0.5,
+    "beta_concentration": 4,
+    "n_grid": [
+      40,
+      48,
+      56,
+      64,
+      72,
+      80,
+      88,
+      96,
+      104,
+      112,
+      120,
+      128,
+      136,
+      144,
+      152,
+      160
+    ],
+    "simulations_per_n": 1000,
+    "result": "research/experiments/e70-gc2/E70_GC2_POWER_ANALYSIS.json",
+    "selected_n_rule": "smallest grid n whose simulated power minus two Monte-Carlo standard errors (sqrt(p(1-p)/sims)) is >= target_power at the registered alpha for G1; frozen into protected.task_count before calibration",
+    "selected_n": 96,
+    "selected_n_evidence": {
+      "n80_power": 0.807,
+      "n88_power": 0.814,
+      "n96_power": 0.884,
+      "mc_se_at_0.8_1000_sims": 0.0126,
+      "reading": "80 and 88 clear 0.80 only within MC noise; 96 clears it with margin"
+    }
+  },
+  "protected": {
+    "seed": 20260912,
+    "nonce": "drawn at generation (os.urandom); sha256 committed in FROZEN_TASKS.json; nonce bytes only under private/ (absent during dispatch)",
+    "ladder_level": null,
+    "task_count": 96,
+    "reps_per_task": 3,
+    "cells": "96 tasks x 4 arms x 3 reps = 1152 model responses",
+    "campaign": "orion-v2-e45/campaign-e70-gc2-r1 (LUNARC lu48, account lu2026-2-51) or the recorded fallback host with the same oracle-absent machinery",
+    "dispatch": "scripts/dispatch_orion_gc1_blinded.py --runner-script scripts/run_orion_generated_composition_gc2_suite.py (private/ hashed, removed before any child process, restored and hash-verified after)",
+    "pipeline": "scripts/run_orion_generated_composition_gc2_pilot.sh"
+  },
+  "analysis": {
+    "alpha": 0.05,
+    "unit": "frozen task; task outcome = majority over 3 nested reps (registered); all-reps and any-rep aggregations and rep-level rates reported descriptively",
+    "test": "exact two-sided discordant (sign) test with paired bootstrap CI95 (10000 reps, seed) on the risk difference",
+    "multiplicity": "fixed-sequence gatekeeping G1 (F2 vs F0) -> G2 (F2 vs SIMPLE_DIRECT) -> G3 (F2 vs SAME_MODEL_REFLECTION), each at alpha, later gates tested only if the earlier one rejects in F2's favour; Holm over the 3-contrast family reported as robustness",
+    "parent_sufficiency": "F0 vs SIMPLE_DIRECT descriptive, uncorrected, outside the family",
+    "conventions": "E30-R11 / E60 task-level paired conventions",
+    "post_outcome_diagnostics": [
+      "identical canonical patch rate across arms (rep 1)",
+      "per-family accuracy breakdown"
+    ]
+  },
+  "gates": {
+    "G0": {
+      "validity": [
+        "custody: PRIVATE_ORACLE_COMMITMENT/RESTORATION hashes match; no private bytes in request envelopes",
+        "calibration WINDOW_HIT on the dev split at the frozen rung",
+        "all cells evaluated (no missing/unscorable cells; a missing cell is regenerated one-shot from its frozen request before analysis, never after outcome access)",
+        "generator self-check recorded"
+      ],
+      "protected_ceiling_rate": 0.95,
+      "protected_floor_rate": 0.05,
+      "reading": "SIMPLE_DIRECT count-robust rep-level rate >= 0.95 on the protected split -> SUITE_STILL_SATURATED (terminal, honest); <= 0.05 -> SUITE_AT_FLOOR"
+    },
+    "G1": "F2 vs F0_PARENT_FEDERATION on the primary endpoint (exact discordant, alpha 0.05)",
+    "G2": "F2 vs SIMPLE_DIRECT, tested only if G1 rejects in F2's favour",
+    "G3": "F2 vs SAME_MODEL_REFLECTION, tested only if G2 rejects in F2's favour",
+    "anti_memorization_controls_phase5": {
+      "gold_withheld": true,
+      "fresh_evaluator_workspaces": true,
+      "network_retrieval_off": "instructed + codex --sandbox read-only; not provably enforced at the network layer (recorded limitation, as in GC1)",
+      "post_freeze_identifier_label_unit_permutations": true,
+      "hidden_regression_tests": true,
+      "dynamic_counterfactual_variants": "counterfactual twin pairs + surface traps in the hidden set",
+      "source_use_receipts": "source_ids_used + stage receipts per response",
+      "surface_template_trap_cases": true,
+      "post_outcome_solution_similarity_diagnostic_only": true,
+      "seed_commitment": "protected nonce sha256 in FROZEN_TASKS, nonce bytes only in private/"
+    }
+  },
+  "routing": {
+    "POSITIVE_F2_BEATS_PARENT_AND_SIMPLE": "G1 and G2 reject in F2's favour",
+    "PARTIAL_F2_BEATS_PARENT_NOT_SIMPLE": "G1 rejects, G2 does not",
+    "NEGATIVE_COMPONENT_HARM_F2_BELOW_PARENT": "G1 rejects in F0's favour",
+    "NEGATIVE_PARENT_SUFFICIENT": "G1 not rejected while F0 beats SIMPLE_DIRECT descriptively",
+    "NEGATIVE_NO_DETECTABLE_F2_GAIN_AT_MDE": "G1 not rejected on the powered n; no direction certified",
+    "SUITE_STILL_SATURATED": "calibration finds every rung above the window, or the protected SIMPLE_DIRECT rate >= 0.95",
+    "SUITE_AT_FLOOR": "protected SIMPLE_DIRECT rate <= 0.05",
+    "G0_FAIL_*": "custody / completeness failure; no scientific reading"
+  },
+  "no_rescue_clause": "After any protected outcome is inspected: no change to the generator, ladder, canonicalizer, evaluator, checks, arms, seeds, task count, aggregation or gates; no re-dispatch of an evaluated cell; no normalization beyond the registered syntax-only canonicalization; no post hoc rung change. A defect found after outcome access requires a new run identity (E70-GC2 R2) with a new nonce.",
+  "custody": {
+    "hidden_oracle_absent_during_dispatch": "scripts/dispatch_orion_gc1_blinded.py commitment/restoration receipts",
+    "manifests": "sha256 manifests of non-response and response files archived with the outcome receipt; response bodies referenced by hash",
+    "code_identity": "run-relevant blobs (design JSON, gc2 suite, dispatcher, arm executable, unified_diff_interface.py, pilot shell) bound by sha256 in the outcome receipt"
+  },
+  "interpretation": {
+    "positive": "F2 improves count-robust hidden-oracle success versus F0 and SIMPLE without unreported resource advantage",
+    "negative": "F2 ties/loses to parent or simpler controls on the powered, off-ceiling suite",
+    "boundary": "secondary fresh anti-copy/composition evidence only; cannot replace naturalistic E30/E40/E50 evidence; does not prove absence of training-data influence"
+  },
+  "resource_contract": {
+    "default_cpu_cores": 2,
+    "default_memory_gb": 4
+  },
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_active_solving_proof": false,
+    "grants_field_status": false,
+    "grants_submission_readiness": false
+  }
+}
