@@ -60,8 +60,11 @@ GOT=$(sha256sum "$ADAPTER" | cut -c1-64)
 # failure to reach the anchor sha must abort setup rather than silently continue.
 : "${R12_SOURCE_SHA:?set R12_SOURCE_SHA to the merged PR sha}"
 test -d "$R12SRC/.git" || { echo "R12SRC is not a git clone: $R12SRC"; exit 3; }
-git -C "$R12SRC" fetch --all --tags
-git -C "$R12SRC" checkout --force "$R12_SOURCE_SHA"
+# A clone pre-staged at the anchor needs no network; anything else must reach it.
+if [ "$(git -C "$R12SRC" rev-parse HEAD)" != "$R12_SOURCE_SHA" ]; then
+  git -C "$R12SRC" fetch --all --tags
+  git -C "$R12SRC" checkout --force "$R12_SOURCE_SHA"
+fi
 HEAD_SHA=$(git -C "$R12SRC" rev-parse HEAD)
 [ "$HEAD_SHA" = "$R12_SOURCE_SHA" ] || { echo "SOURCE_SHA_MISMATCH $HEAD_SHA != $R12_SOURCE_SHA"; exit 3; }
 echo "$HEAD_SHA" > "$R12/infra/source_head.txt"
