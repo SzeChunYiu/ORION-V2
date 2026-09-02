@@ -4,6 +4,7 @@ import json
 
 import pytest
 
+from orion_v2.unified_diff_interface import audit_and_canonicalize_unified_diff
 from scripts.orion_claude_arms import _context, _provider_call, arm_call_count, run_arm
 
 
@@ -20,6 +21,38 @@ def test_simple_direct_returns_patch_schema() -> None:
     assert len(calls) == 1
     assert response["status"] == "COMPLETED_PROPOSAL_ONLY"
     assert response["proposed_patch_or_artifact"]["type"] == "unified_diff"
+    assert response["schema_version"] == "orion.v2.agent-response.v1"
+    assert response["patch_emission_receipt"]["schema_version"] == "orion.v2.patch-emission.v1"
+
+
+def test_emitted_patch_needs_no_downstream_canonicalization() -> None:
+    """Arms emit canonical diffs, so the frozen syntax-only pass is a no-op."""
+    def call(prompt: str) -> tuple[str, dict[str, int]]:
+        return (
+            '{"patch":"diff --git a/a.py b/a.py\\n--- a.py\\n+++ a.py\\n'
+            '@@ -1,9 +1,9 @@\\n ctx\\n-x=1\\n+x=2", "diagnosis":"constant", "falsifier":"test"}',
+            {"input_tokens": 4, "output_tokens": 8},
+        )
+
+    response = run_arm(_request("SIMPLE_DIRECT"), call=call, workspace_context="context")
+    emitted = response["proposed_patch_or_artifact"]["content"]
+    audit = audit_and_canonicalize_unified_diff(emitted)
+    assert audit.valid_or_canonicalizable and audit.changed is False
+    assert "--- a/a.py" in emitted and "@@ -1,2 +1,2 @@" in emitted
+    receipt = response["patch_emission_receipt"]
+    assert receipt["extracted_was_header_exact"] is False
+    assert receipt["diff_git_header_synthesized"] is False
+    assert receipt["authority"]["may_change_semantic_edit"] is False
+
+
+def test_model_output_without_a_diff_fails_closed() -> None:
+    def call(prompt: str) -> tuple[str, dict[str, int]]:
+        return ('{"patch":"I found no safe repair.", "diagnosis":"none", "falsifier":"test"}',
+                {"input_tokens": 1, "output_tokens": 1})
+
+    response = run_arm(_request("SIMPLE_DIRECT"), call=call, workspace_context="context")
+    assert response["status"] == "EXECUTION_FAILED_MODEL_RESPONSE"
+    assert response["proposed_patch_or_artifact"] is None
 
 
 def test_full_f2_has_each_required_stage() -> None:

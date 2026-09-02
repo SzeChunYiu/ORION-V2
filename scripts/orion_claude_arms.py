@@ -18,6 +18,8 @@ import urllib.request
 from pathlib import Path
 from typing import Any, Callable
 
+from orion_v2.patch_emission import PatchEmissionError, emit_apply_clean_patch
+
 FULL_STAGES = (
     "INGEST", "DECOMPOSE", "SORT", "NATIVE_RECONSTRUCT", "REDUCE", "ABSORB",
     "RECOMBINE", "CHALLENGE", "ASSIMILATE_OR_RECYCLE",
@@ -56,11 +58,21 @@ PRIOR STAGE OUTPUT:
 """
 
 
-def _parse_patch(text: str) -> tuple[str, str, list[str], Any, list[str], str]:
+def _parse_patch(text: str, workspace: Path | None = None) -> tuple[Any, str, list[str], Any, list[str], str]:
+    """Parse the model JSON and emit an apply-clean unified diff.
+
+    The diff is canonicalized at emission (see ``orion_v2.patch_emission``) so the
+    harness measures reasoning rather than hunk-header arithmetic. The emission is
+    gold-blind: only the solver workspace the arm already reads is consulted.
+    """
     data = _json_object(text)
     patch = data.get("patch")
-    if not isinstance(patch, str) or not patch.lstrip().startswith("diff --git "):
+    if not isinstance(patch, str):
         raise ValueError("model JSON lacks a unified diff patch")
+    try:
+        emission = emit_apply_clean_patch(patch, workspace=workspace)
+    except PatchEmissionError as exc:
+        raise ValueError(f"model JSON lacks a unified diff patch: {exc}") from exc
     diagnosis = str(data.get("diagnosis", "model-proposed patch"))
     assumptions = data.get("assumptions", [])
     tests = data.get("discriminator_or_tests", [])
@@ -71,7 +83,7 @@ def _parse_patch(text: str) -> tuple[str, str, list[str], Any, list[str], str]:
     assumptions = [str(x) for x in assumptions if str(x).strip()] or ["gold and fixed version remain unavailable"]
     tests = [str(x) for x in tests if str(x).strip()] or ["run native BugsInPy evaluator"]
     falsifier = str(data.get("falsifier", "native evaluator rejects the patch"))
-    return patch, diagnosis, assumptions, data.get("uncertainty", "UNRESOLVED"), tests, falsifier
+    return emission, diagnosis, assumptions, data.get("uncertainty", "UNRESOLVED"), tests, falsifier
 
 
 def arm_call_count(arm: str) -> int:
@@ -82,6 +94,14 @@ def arm_call_count(arm: str) -> int:
     return 1
 
 
+def _solver_workspace(request: dict[str, Any]) -> Path | None:
+    raw = str(request.get("task", {}).get("solver_workspace", "")).strip()
+    if not raw:
+        return None
+    workspace = Path(raw)
+    return workspace if workspace.is_dir() else None
+
+
 def run_arm(
     request: dict[str, Any],
     *,
@@ -89,6 +109,7 @@ def run_arm(
     workspace_context: str,
 ) -> dict[str, Any]:
     arm = str(request["arm_id"])
+    workspace = _solver_workspace(request)
     calls: list[dict[str, int]] = []
 
     def ask(prompt: str) -> str:
@@ -140,11 +161,11 @@ def run_arm(
                 }
         else:
             final = ask(_final_prompt(workspace_context))
-        patch, diagnosis, assumptions, uncertainty, tests, falsifier = _parse_patch(final)
+        emission, diagnosis, assumptions, uncertainty, tests, falsifier = _parse_patch(final, workspace)
         response: dict[str, Any] = {
             "schema_version": "orion.v2.agent-response.v1", "task_id": request["task_id"], "arm_id": arm,
-            "status": "COMPLETED_PROPOSAL_ONLY", "proposed_patch_or_artifact": {"type": "unified_diff", "content": patch},
-            "diagnosis": diagnosis, "source_ids_used": ["gold-blind-solver-workspace"], "assumptions": assumptions,
+            "status": "COMPLETED_PROPOSAL_ONLY", "proposed_patch_or_artifact": {"type": "unified_diff", "content": emission.patch},
+            "patch_emission_receipt": emission.receipt, "diagnosis": diagnosis, "source_ids_used": ["gold-blind-solver-workspace"], "assumptions": assumptions,
             "uncertainty": uncertainty, "discriminator_or_tests": tests, "falsifier": falsifier,
             "requested_authority": "EXECUTION_TEST_ONLY", "scientific_truth_authorized": False,
             "field_status_authorized": False, "publication_readiness_authorized": False,

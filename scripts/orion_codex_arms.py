@@ -12,6 +12,13 @@ import time
 from pathlib import Path
 from typing import Any
 
+from orion_v2.patch_emission import (
+    PatchEmissionError,
+    emit_apply_clean_patch,
+    extract_unified_diff,
+    synthesize_diff_git_headers,
+)
+
 
 STAGES = (
     "INGEST", "DECOMPOSE", "SORT", "NATIVE_RECONSTRUCT", "REDUCE", "ABSORB",
@@ -80,27 +87,16 @@ FAILURE OBSERVATION: {json.dumps(baseline, sort_keys=True)}
 
 
 def _normalize_patch(patch: str) -> str:
-    patch = patch.strip() + "\n"
-    if patch.startswith("diff --git "):
-        return patch
-    lines = patch.splitlines(keepends=True)
-    output: list[str] = []
-    found = False
-    index = 0
-    while index < len(lines):
-        if lines[index].startswith("--- ") and index + 1 < len(lines) and lines[index + 1].startswith("+++ "):
-            old = lines[index][4:].strip().removeprefix("a/")
-            new = lines[index + 1][4:].strip().removeprefix("b/")
-            path = new if old == "/dev/null" else old
-            if new != "/dev/null" and old != "/dev/null" and old != new:
-                raise ValueError("Codex diff renames a path; rename patches are outside this runner")
-            output.append(f"diff --git a/{path} b/{path}\n")
-            found = True
-        output.append(lines[index])
-        index += 1
-    if not found:
-        raise ValueError("Codex result is not a repository-rooted unified diff")
-    return "".join(output)
+    """Extract the diff from model output and add any implied ``diff --git`` header.
+
+    Header synthesis only; canonicalization happens in :func:`emit_apply_clean_patch`,
+    which ``execute`` calls directly. Retained as the named entry point for that stage
+    so it stays independently testable.
+    """
+    try:
+        return synthesize_diff_git_headers(extract_unified_diff(patch))
+    except PatchEmissionError as exc:
+        raise ValueError(str(exc)) from exc
 
 
 def execute(request: dict[str, Any]) -> dict[str, Any]:
@@ -129,7 +125,10 @@ def execute(request: dict[str, Any]) -> dict[str, Any]:
         if completed.returncode != 0 or not output_path.exists():
             raise RuntimeError(f"Codex CLI failed ({completed.returncode}): {completed.stdout[-2000:]}")
         data = json.loads(output_path.read_text())
-    patch = _normalize_patch(str(data["patch"]))
+    try:
+        emission = emit_apply_clean_patch(str(data["patch"]), workspace=workspace)
+    except PatchEmissionError as exc:
+        raise ValueError(str(exc)) from exc
     token_matches = re.findall(r"tokens used\s*\n\s*([0-9,]+)", completed.stdout)
     total_tokens = int(token_matches[-1].replace(",", "")) if token_matches else None
     arm = str(request["arm_id"])
@@ -137,7 +136,8 @@ def execute(request: dict[str, Any]) -> dict[str, Any]:
         "schema_version": "orion.v2.agent-response.v1",
         "task_id": request["task_id"], "arm_id": arm,
         "status": "COMPLETED_PROPOSAL_ONLY",
-        "proposed_patch_or_artifact": {"type": "unified_diff", "content": patch},
+        "proposed_patch_or_artifact": {"type": "unified_diff", "content": emission.patch},
+        "patch_emission_receipt": emission.receipt,
         "diagnosis": str(data["diagnosis"]),
         "source_ids_used": ["gold-blind-solver-workspace"],
         "assumptions": [str(item) for item in data["assumptions"]],
