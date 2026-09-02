@@ -1,0 +1,98 @@
+name: e30-r12-lane
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "research/experiments/e30-r12/**"
+      - "tests/unit/test_e30_r12_lane.py"
+      - "scripts/orion_claude_arms.py"
+      - "research/experiments/pc-r6/pc_r6_fullreg_eval.py"
+      - "research/experiments/results/issue45/e30-r11/drivers/e30_r11_arm_eval_frozen_lane.py"
+      - "scripts/analyze_orion_real_problem_results.py"
+      - ".github/workflows/e30-r12-lane.yml"
+  pull_request:
+    paths:
+      - "research/experiments/e30-r12/**"
+      - "tests/unit/test_e30_r12_lane.py"
+      - "scripts/orion_claude_arms.py"
+      - "research/experiments/pc-r6/pc_r6_fullreg_eval.py"
+      - "research/experiments/results/issue45/e30-r11/drivers/e30_r11_arm_eval_frozen_lane.py"
+      - "scripts/analyze_orion_real_problem_results.py"
+      - ".github/workflows/e30-r12-lane.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  r12-lane:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ORION and test tooling
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e . pytest
+
+      - name: Compile the R12 lane, the imported PC-R6 runner and the pinned analyzer
+        run: |
+          python -m py_compile research/experiments/e30-r12/e30_r12_power_note.py
+          python -m py_compile research/experiments/e30-r12/e30_r12_fullreg_eval.py
+          python -m py_compile research/experiments/e30-r12/e30_r12_analysis.py
+          python -m py_compile research/experiments/pc-r6/pc_r6_fullreg_eval.py
+          python -m py_compile scripts/analyze_orion_real_problem_results.py
+          python -m py_compile scripts/orion_claude_arms.py
+          for f in research/experiments/e30-r12/sbatch/*.sbatch \
+                   research/experiments/e30-r12/sbatch/e30_r12_common.sh; do bash -n "$f"; done
+
+      - name: Frozen adapter identity (asserted by the imported runner at run time)
+        run: |
+          test "$(sha256sum research/experiments/results/issue45/e30-r11/drivers/e30_r11_arm_eval_frozen_lane.py | cut -c1-64)" = "829abb411ccf0bd71182eea4c11d2e07fae60f3b743872f7b4fce0a8635aae93"
+
+      - name: Run the E30-R12 lane tests
+        run: |
+          python -m pytest -q tests/unit/test_e30_r12_lane.py
+
+      - name: The design is registered, prospective, and does not touch frozen endpoints
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          design = json.loads(Path(
+              "research/experiments/e30-r12/E30_R12_APPLY_CLEAN_RERUN_DESIGN_V1.json").read_text())
+          assert design["status"] == "PROSPECTIVE_REGISTERED_DESIGN_NO_RESULTS"
+          assert design["relationship_to_e30_r11"]["r12_may_revise_them"] is False
+          assert design["relationship_to_e30_r11"]["r12_is_a_reanalysis"] is False
+          assert design["authority"] == {
+              "grants_scientific_truth": False, "grants_field_status": False,
+              "grants_supertheory_status": False, "grants_publication_readiness": False,
+              "parent_sufficiency_is_valid_terminal": True,
+              "no_arm_separation_is_valid_terminal": True}
+          # No outcome may appear in a prospective design.
+          text = json.dumps(design)
+          for forbidden in ("observed_", "measured_success", "result_", "p_value"):
+              assert forbidden not in text, forbidden
+          print("design freeze intact")
+          PY
+
+      - name: E30-R11, E60 and PC-R6 archives are untouched by this PR
+        run: |
+          git fetch origin main --depth=1
+          CHANGED=$(git diff --name-only origin/main...HEAD -- \
+            research/experiments/results/issue45/e30-r11 \
+            research/experiments/results/issue45/e60-r1-component-ablation \
+            research/experiments/results/issue45/pc-r6 \
+            research/experiments/pc-r6 || true)
+          if [ -n "$CHANGED" ]; then
+            echo "R12 must not modify frozen terminal archives:"; echo "$CHANGED"; exit 1
+          fi
+          echo "frozen archives untouched"
