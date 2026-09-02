@@ -1,0 +1,60 @@
+name: pc-r6-fullreg-lane
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "research/experiments/pc-r6/**"
+      - "tests/unit/test_pc_r6_lane.py"
+      - "research/experiments/results/issue45/e30-r11/drivers/e30_r11_arm_eval_frozen_lane.py"
+      - "scripts/bugsinpy_project_runtime.py"
+      - "scripts/analyze_orion_real_problem_results.py"
+      - ".github/workflows/pc-r6-fullreg-lane.yml"
+  pull_request:
+    paths:
+      - "research/experiments/pc-r6/**"
+      - "tests/unit/test_pc_r6_lane.py"
+      - "research/experiments/results/issue45/e30-r11/drivers/e30_r11_arm_eval_frozen_lane.py"
+      - "scripts/bugsinpy_project_runtime.py"
+      - "scripts/analyze_orion_real_problem_results.py"
+      - ".github/workflows/pc-r6-fullreg-lane.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lane-end-to-end:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install test tooling
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pytest
+          git config --global user.email "ci@orion-v2.invalid"
+          git config --global user.name "orion-ci"
+
+      - name: Compile runner, analysis and the frozen adapter it imports
+        run: |
+          python -m py_compile research/experiments/pc-r6/pc_r6_fullreg_eval.py
+          python -m py_compile research/experiments/pc-r6/pc_r6_fullreg_analysis.py
+          python -m py_compile research/experiments/results/issue45/e30-r11/drivers/e30_r11_arm_eval_frozen_lane.py
+          python -m py_compile scripts/bugsinpy_project_runtime.py
+          python -m py_compile scripts/analyze_orion_real_problem_results.py
+          for f in research/experiments/pc-r6/sbatch/*.sbatch research/experiments/pc-r6/sbatch/pc_r6_common.sh; do bash -n "$f"; done
+
+      - name: Frozen adapter identity (sha256 asserted by the runner)
+        run: |
+          test "$(sha256sum research/experiments/results/issue45/e30-r11/drivers/e30_r11_arm_eval_frozen_lane.py | cut -c1-64)" = "829abb411ccf0bd71182eea4c11d2e07fae60f3b743872f7b4fce0a8635aae93"
+
+      - name: Run the PC-R6 lane tests (synthetic campaign, main() end-to-end)
+        run: |
+          python -m pytest -q tests/unit/test_pc_r6_lane.py
