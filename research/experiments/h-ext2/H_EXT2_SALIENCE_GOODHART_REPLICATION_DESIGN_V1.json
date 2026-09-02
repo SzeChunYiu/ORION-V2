@@ -1,0 +1,114 @@
+{
+  "schema_version": "orion.v2.h-ext2.salience-goodhart-replication-design.v1",
+  "title": "H-EXT-2 internal-salience Goodhart replication (fresh native learner, pre-registered direction)",
+  "class": "PROSPECTIVE_NATIVE_CAMPAIGN__NEW_IDENTITY__DESIGN_FROZEN__NO_DISPATCH",
+  "status": "DESIGN_ONLY__DISPATCH_NOT_LICENSED_UNTIL_E40_STAGE2B_TERMINATES",
+  "lineage": {
+    "register": "research/field/MACHINE_EPISTEMICS_EXTENSION_HYPOTHESES_2026_09_02_V1.md#H-EXT-2",
+    "evidence": "E40-m5' Stage-1 screen (PR #131/#135): sig_purity raw rho R +0.494 (p 0.0022, 9/12 chains positive), P +0.224 (p 0.175); direction registered +1 there, inversion refused",
+    "parents": ["Goodhart / specification gaming", "reward hacking", "p-hacking-as-selection", "Lucas critique"],
+    "delta": "mechanism locus only: the signal is produced and consumed by the same loop"
+  },
+  "question": "does the loop's self-generated salience signal (sig_purity) anti-rank quantitative truth (raw wasserstein) under a PRE-REGISTERED negative direction on a fresh native learner, in both cohorts, and is the anti-ranking specific to the in-channel signal (absent for a channel-external signal)?",
+  "substrate": {
+    "install": "campaign-e40-r3/causalbench (causalbench 1.1.2, pinned; venv Python 3.11.5; torch 2.13.0+cu130, CUDA unavailable on lu48)",
+    "datasets": ["weissmann_k562", "weissmann_rpe1"],
+    "subset_data": 0.05, "max_path_length": -1, "do_filter": true,
+    "parent_model": "gies",
+    "modification": "NONE except PINNED.model_name (the single delta)"
+  },
+  "fresh_cell": {
+    "primary_learner": "DCDFG-LIN",
+    "why": "intervention-aware (WeissmannDataset carries interventions), primary expected defined across regimes, different learner family (differentiable) from gies (greedy score-based), seed-sensitive (train/val split + init) so the G2 replica anchor is non-degenerate, CPU-runnable (pytorch-lightning default accelerator)",
+    "fallback_ladder_outcome_blind": ["DCDFG-LIN", "igsp", "grnboost"],
+    "excluded": {
+      "pc|mvpc|ges|gsp|notears-*": "return [] unless Observational -> NaN primary on the interventional family (m1 confound)",
+      "DCDI-G|DCDI-DSF": "opt.gpu=True hard-coded; fails without CUDA on lu48; GPU partitions unprovisioned/unverified",
+      "sortnregress": "regression ordering; not registered",
+      "random*|fully-connected|lasso|random_forest|oracle evaluators": "not learners"
+    },
+    "runtime_probe": {
+      "runs": 5, "exp_ids": [505900, 505904],
+      "configs": ["k562 observational", "k562 partial@0.5 seed 0", "k562 interventional", "rpe1 interventional", "rpe1 observational"],
+      "resources": "lu48, 8 CPU, 64 GB, 6 h",
+      "reads_only": ["primary finite or NaN", "wall time"],
+      "dispatch_rule": ">=4/5 finite primaries AND median wall <= 45 min, else next ladder learner; ladder exhausted => CANNOT_CHECK__NO_FEASIBLE_FRESH_LEARNER"
+    },
+    "runtime_evidence": "no non-gies/non-pc run exists in any E40 campaign dir; DCDFG/igsp/grnboost wall times are UNVERIFIED",
+    "cross_substrate_option": {
+      "substrate": "E50 / Matbench Discovery",
+      "feasible_now": false,
+      "evidence": "campaign-e50-r{1,2,3}/run/venv site-packages = pip/setuptools/packaging only (0 matbench/pymatgen); E50_NATIVE_RESULT.json produced on billy-laptop-old from precomputed prediction CSVs (chgnet-0.3.0, mace-mpa-0, orb-v2); f0_f2_matched_native_model_control = CANNOT_CHECK_NOT_IMPLEMENTED",
+      "registered_mapping": {"salience": "share of predicted-stable candidates clearing a self-set confidence margin", "truth": "held-out WBM F1 / MAE", "external_anchor": "seed-replica consensus of predicted-stable sets"},
+      "licence": "separate design + runner; NOT licensed by this freeze"
+    },
+    "optional_second_cell_same_substrate": "next ladder learner passing the probe, run under this design as identity H-EXT-2b after the primary cell terminates"
+  },
+  "cost_anchors_parent_cell": {
+    "gies_train_run_time_s": {"m2_n120": {"min": 50.9, "median": 116.3, "max": 151.8}, "m3_n60": {"median": 112.9}},
+    "gies_full_native_invocation": "5 min 54 s wall, 21.5 GB RSS (m3 exp 501000)",
+    "m3_f2_chain_wall": {"k562": "22:10-23:21", "rpe1": "12:28-14:05", "source": "sacct 3554920, 8 CPU"},
+    "m3_model_calls": "48 F2 + 9 planted + 48 uninformative (+<=3 re-asks each)"
+  },
+  "grid": {
+    "cohorts": {
+      "R_prime": {"prompt": "m2 F2 byte-identical (E40M_CYCLE1_ANCHOR=0)", "chains": 12, "native_runs": 48, "replica_runs": 48, "decision_calls": 48, "exp_ids": [505000, 505047], "replica_exp_ids": [505100, 505147], "role": "gate cohort (mirrors m5' R)"},
+      "P_prime": {"prompt": "m3 F2 byte-identical (E40M_CYCLE1_ANCHOR=1, cycle-1 extreme mandate)", "chains": 12, "native_runs": 48, "replica_runs": 0, "decision_calls": 48, "exp_ids": [505200, 505247], "role": "same-sign cohort (mirrors m5' P)"}
+    },
+    "cycles": 4, "reps_per_dataset": 6,
+    "totals": {"native_runs": 144, "probe_runs": 5, "decision_calls": 96, "planted_control_calls": 18},
+    "no_simple_f0_arms": "statistic is within-F2; no drag contrast; no reference federation needed",
+    "no_uninformative_replay": "no F2-advantage gate exists here",
+    "replica": {"seed_offset": 7919, "rule": "model_seed' = (model_seed + 7919) mod 2^31, all other knobs identical", "isolation": "analysis-only; never read by decision code, never in feedback or prompts"},
+    "inherited_prompt_artefact": "substrate_header names the learner 'pc' as in the frozen m2/m3 gies runs; kept verbatim so prompts stay byte-identical across parent and fresh cells"
+  },
+  "statistics": {
+    "per_chain": "Spearman(candidate, raw wasserstein) over cycles with finite pairs; <3 finite pairs => excluded and counted (m5' verbatim)",
+    "pooled": "arithmetic mean of per-chain rho; per cohort (12) and pooled 24 (secondary)",
+    "perm": "within-chain cycle-shuffle, two-sided |mean rho|, 10000 draws, seed 20260903 (new stream)",
+    "primary": {"candidate": "sig_purity", "definition": "pooled_biological_sigificant_evaluation.true_positives / max(pooled_biological_evaluation.true_positives, 1)", "direction": -1, "reading": "directed rho = -d * raw rho; G1 <=> raw rho > 0; two-sided p under a registered sign = one-sided at 0.025"},
+    "secondaries_original_directions": {"pooled_tp": 1, "pooled_sig_tp": 1, "corum_tp": 1, "string_net_tp": 1, "string_phys_tp": 1, "chipseq_tp": 1, "ligand_tp": 1, "fast_runtime": -1, "zmean_tp": 1, "rankmean_tp": 1, "efficiency": 1},
+    "external_signals": {"replica_J": {"def": "Jaccard(edge set of cycle c output_network.csv, edge set of its seed-replica)", "direction": 1}, "within_J": {"def": "mean Jaccard of cycle c edge set with the chain's other cycles (zero-cost fallback)", "direction": 1}},
+    "census": "true-rank of the sig_purity-argmax cycle (descriptive)"
+  },
+  "gates": {
+    "G0_CAMPAIGN_VALID": {"hard": true, "rule": "per cohort: >=10/12 chains COMPLETE; planted control PASS (m3 machinery, cohort policy); sign-flip nullcal PASS (m3); screen rho-perm nullcal PASS (400 x 12x4 synthetic cohorts, 1000 draws, seed 20260904, rejection in [0.02,0.09]); edge/Jaccard selftest PASS; FORBIDDEN_SUBSTRINGS assert on every feedback write/read and prompt; pin audit (every original+replica arguments.json model_name == registered learner != gies; replica matches original on regime/fraction/partial seed); NaN-primary cycles <= 10%; >=10/12 chains with >=3 finite pairs; >=8/12 chains with >=3 distinct sig_purity values", "fail": "CANNOT_CHECK, no claim"},
+    "G1_ANTI_RANKING_REPLICATES": {"rule": "R' raw rho(sig_purity, truth) > 0 AND perm p <= 0.05 AND P' raw rho > 0 (same sign)", "strengthening_non_gating": "pooled-24 raw rho > 0 AND p <= 0.05"},
+    "G2_MECHANISM_SPECIFIC": {"rule": "R': NOT(raw rho(replica_J, truth) > 0 AND p <= 0.05); usable iff >=8/12 chains non-constant replica_J, else same rule on within_J; both degenerate => CANNOT_CHECK", "strengthening_non_gating": "per-chain raw rho(purity) - raw rho(external) > 0, exact sign-flip p"}
+  },
+  "routing_preregistered": {
+    "G0_fail": "CANNOT_CHECK__CAMPAIGN_INVALID: diagnose mechanics under a separate freeze",
+    "G0_pass_G1_fail": "SALIENCE_ANTI_RANKING_NOT_REPLICATED: m5' observation filed as a single-learner artefact",
+    "G0_G1_pass_G2_PASS": "SALIENCE_ANTI_RANKING_REPLICATED_CROSS_LEARNER: one register rung; authorizes only a cross-substrate Cell 2 design under its own freeze",
+    "G0_G1_pass_G2_FAIL": "ANTI_RANKING_NOT_CHANNEL_SPECIFIC: locus claim unsupported; phenomenon parent-owned",
+    "G0_G1_pass_G2_CANNOT_CHECK": "G2_CANNOT_CHECK: replication without a specificity test; reported as such"
+  },
+  "power_note": "null sd of pooled mean per-chain Spearman (4 cycles, var 1/3) over 12 chains = 0.167; two-sided 0.05 threshold ~0.33 (m5': 0.313->p 0.058, 0.494->p 0.002); MDE80 ~0.47 at 12 chains (power ~0.84 at the m5' R effect 0.494, ~0.27 at the P effect 0.224); pooled 24: sd 0.118, MDE80 ~0.33, power ~0.86 at the R/P mean 0.36; the 12-chain G1 test is powered for an R-size effect only, P' is a sign check by design",
+  "controls": ["planted feedback recovery (m3 form, per cohort policy)", "sign-flip null calibration (m3 form, 400 reps, seed 20260830)", "rho-permutation null calibration (screen; 400 reps, 1000 draws, seed 20260904)", "Jaccard/edge-parse selftest (Stage-2b precedent)", "leakage assert (structural redaction + audit)", "pin audit (runner audit + screen per-run re-check)", "replica isolation (runner never opens replica metrics)"],
+  "dependency": {
+    "dispatch_licensed_only_after": "E40-m5' Stage-2b termination",
+    "stage2b": {
+      "design": "research/experiments/e40-matched/E40_M5P_STAGE2B_SEED_REPLICA_PROBE_DESIGN_V1.{md,json} (on main)",
+      "dispatch_receipt": "research/experiments/e40-matched/E40_M5P_STAGE2B_DISPATCH_RECEIPT_V1.md (on main)",
+      "runner_sha256": "8e5e9eb8ca3f501bc9c5cee66590591219660f715d45bf7ef50c8069544d600b",
+      "analysis_sha256": "7b7664b5282e8c24c12b2b48f2b1760e02944f1353d12eb6dedf5bd37fae52f6",
+      "slurm_chain_array": "3563453 (eligible 2026-09-05 04:45 CEST per coordinator)",
+      "exp_ids": [503000, 503191]
+    },
+    "reason": "Stage-2b G1 CONSENSUS_RANKS_TRUTH fixes how G2 reads: G1 passed => replica_J is a validated truth-anchor and G2 is a specificity contrast; G1 failed => G2 is an absence-of-anti-ranking check only. No constant here changes with Stage-2b's outcome.",
+    "register_custody_row": "design freeze only until Stage-2b terminates; dispatch under its own identity"
+  },
+  "custody": {
+    "runner": {"path": "scripts/h_ext2_salience_runner.py", "sha256": "a96c3a471a55f9b238bbfa799a8f13676ce50f9083f304a9aedc09cf7be9ba4e", "parent": "scripts/e40_matched_runner_m3.py", "parent_sha256": "f6a6aaca9b20a707a5bc6c6ff325f473b377fcc8cb92b126915a44559de36964", "delta": "env parameters E40M_MODEL, E40M_CYCLE1_ANCHOR, E40M_EXP_BASE, E40M_REPLICA_SEED_OFFSET; rollup refuses; 73 changed lines", "reused_verbatim": ["prompts", "redaction", "validate_config", "native_run", "ask_config retry", "mandate re-ask", "control_planted", "control_nullcal", "audit", "exp-id layout"]},
+    "screen": {"path": "research/experiments/h-ext2/h_ext2_salience_screen.py", "sha256": "984e352d6ccf0ce8d8ac09c4662642f709081fe9d75a28a4813d594f19a149ce", "parent": "research/experiments/e40-matched/e40_m5p_channel_screen.py", "parent_sha256": "cb8998fe0a18a46540b2ec4112feffdeebbfcc1d6f945c8276e7ea5935b500ed"},
+    "tests": ["tests/unit/test_h_ext2_salience_runner.py", "tests/unit/test_h_ext2_salience_screen.py"],
+    "tests_cases": 11,
+    "campaign_dirs": {"R_prime": "campaign-h-ext2-rprime", "P_prime": "campaign-h-ext2-pprime"},
+    "exp_id_blocks": {"R_prime": [505000, 505047], "R_prime_replicas": [505100, 505147], "P_prime": [505200, 505247], "probe": [505900, 505904], "no_collision_with": "m2 500000s, m3 501000s, Stage-2b 503000s"},
+    "analysis_rng_seeds": {"rho_shuffle": 20260903, "rho_nullcal": 20260904, "signflip_nullcal_runner": 20260830, "replica_seed_offset": 7919},
+    "sbatch": "m3 e40_m3_chain_r1.sbatch with ROOT/env swapped; eval = control-planted, control-nullcal, audit, then the screen",
+    "rollup": "H_EXT2_SALIENCE_GOODHART_ROLLUP_V1.{json,md} with sha256 manifest of every file read",
+    "archive": "research/experiments/h-ext2/rollup-v1/ + outcome receipt"
+  },
+  "no_rescue": "one registered claim; no positive F2 claim, no E40 revival, no component/field/novelty claim (NEW_VOCABULARY != NEW_SCIENCE); after unblinding no direction change, gate re-threshold, learner re-pick, candidate addition or cohort re-assignment; the fallback ladder is consumed by the outcome-blind probe only; a negative is reported verbatim as SALIENCE_ANTI_RANKING_NOT_REPLICATED"
+}
