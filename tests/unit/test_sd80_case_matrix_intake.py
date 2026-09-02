@@ -81,9 +81,17 @@ def test_mlrc_recorded_but_not_counted():
 
 
 def test_source_manifest_hashes_match_raw_files():
+    """Every manifest entry must exist and hash exactly, and the manifest must
+    cover every committed raw snapshot: a source file that is present but
+    unhashed is as much a custody hole as a hash mismatch."""
     data = json.loads(CASES.read_text())
     raw = SD80 / "sources/raw"
-    for name, rec in data["source_manifest_sha256"].items():
-        p = raw / name
-        assert p.exists(), name
-        assert hashlib.sha256(p.read_bytes()).hexdigest() == rec["sha256"], name
+    manifest = data["source_manifest_sha256"]
+    assert manifest, "empty source manifest"
+    for name, rec in manifest.items():
+        path = raw / name
+        assert path.exists(), f"manifest entry absent from the tree: {name}"
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == rec["sha256"], name
+        assert path.stat().st_size == rec["bytes"], name
+    on_disk = {f.name for f in raw.iterdir() if f.is_file()}
+    assert on_disk == set(manifest), f"manifest/tree mismatch: {sorted(on_disk ^ set(manifest))}"

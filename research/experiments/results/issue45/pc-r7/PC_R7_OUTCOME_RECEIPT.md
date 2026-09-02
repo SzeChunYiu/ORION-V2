@@ -1,9 +1,9 @@
 # PC-R7 Outcome Receipt — naturalistic obligation cell
 
 **Receipt ID:** `PC_R7_OUTCOME_RECEIPT`  
-**Date:** 2026-09-02T13:49:10Z  
+**Date:** 2026-09-02T14:05:48Z
 **Design (frozen, unaltered):** `research/experiments/pc-r7/PC_R7_NATURALISTIC_OBLIGATION_CELL_DESIGN_V1.{md,json}`  
-**Intake:** `research/experiments/sd80/SD80_CASE_MATRIX_INTAKE_V1.{md,json}` (cases sha256 `a13eff3558abf2090b4cbb767ee5a35c9d7641da9ed93788725cc51294f41ed0`)  
+**Intake:** `research/experiments/sd80/SD80_CASE_MATRIX_INTAKE_V1.{md,json}` (cases sha256 `0bd039d134b6f641fe267e69f5983e2533f66bd4e2bfaa02fb083b2fa6ed5d5f`)  
 **Host:** Mac (intake, hashing, tagging orchestration); LUNARC unreachable during intake (expired 2FA socket); billy-old reserved for any arm compute
 
 ## Terminal: `INSUFFICIENT_ELIGIBLE_NATURALISTIC_CASES` (PC-R7 §6 row 1 — contraction terminal)

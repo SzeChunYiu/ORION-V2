@@ -1,8 +1,8 @@
 # SD80 Case-Matrix Intake V1 — naturalistic witness sources + PC-R7 obligation-provenance tagging calibration
 
 **Class:** `CASE_MATRIX_INTAKE__NO_ARM_RUN__NO_OUTCOME_ACCESS_BY_TAGGERS_OR_ARMS`  
-**Computed:** 2026-09-02T13:49:10Z · **Host:** Mac (intake, hashing, tagging orchestration); LUNARC unreachable during intake (expired 2FA socket); billy-old reserved for any arm compute  
-**Frozen inputs:** PC-R7 design (`research/experiments/pc-r7/`), FM80 protocol (`research/experiments/`), tagging rule `SD80_PC_R7_OBLIGATION_PROVENANCE_TAGGING_RULE_V1.md` (sha256 `e8f782a581e22cd7…`), cases file sha256 `a13eff3558abf209…`, hidden-key file sha256 `91237f3e6db8cd61…`.
+**Computed:** 2026-09-02T14:05:48Z · **Host:** Mac (intake, hashing, tagging orchestration); LUNARC unreachable during intake (expired 2FA socket); billy-old reserved for any arm compute  
+**Frozen inputs:** PC-R7 design (`research/experiments/pc-r7/`), FM80 protocol (`research/experiments/`), tagging rule `SD80_PC_R7_OBLIGATION_PROVENANCE_TAGGING_RULE_V1.md` (sha256 `e8f782a581e22cd7…`), cases file sha256 `0bd039d134b6f641…`, hidden-key file sha256 `91237f3e6db8cd61…`.
 
 ## Terminal: `INSUFFICIENT_ELIGIBLE_NATURALISTIC_CASES`
 
