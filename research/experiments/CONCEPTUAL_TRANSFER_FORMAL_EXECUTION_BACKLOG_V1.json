@@ -1,6 +1,6 @@
 {
   "schema_version": "orion.v2.formal-transfer-execution-backlog.v1",
-  "status": "PROSPECTIVE_BACKLOG_NO_PROTECTED_RESULTS",
+  "status": "IN_EXECUTION_EXACT_KNOWN_ANSWER_SUITES",
   "owner_issue": 48,
   "protocols": [
     "research/experiments/CONCEPTUAL_TRANSFER_DISCOVERY_PROTOCOL_V2_ALL_SCIENCE_MATHEMATICS_FIRST.json",
@@ -17,55 +17,92 @@
       "id": "FM10",
       "title": "Finite relational mapping benchmark",
       "action": "Generate >=120 fresh small typed relational structures with exact hidden mappings/non-mappings and surface decoys; dispatch frozen arms; score with exhaustive oracle.",
-      "depends_on": ["FM00"]
+      "depends_on": [
+        "FM00"
+      ],
+      "status": "DESIGN_FROZEN_DEVELOPMENT_COMPLETE_PROTECTED_PENDING",
+      "exact_study": {
+        "design": "research/experiments/fm-exact/FM10_FINITE_RELATIONAL_MAPPING_EXACT_STUDY_DESIGN_V1.{md,json}",
+        "code": "research/experiments/fm-exact/{fm_core,fm_run,fm10_suite}.py",
+        "parent_fidelity": "research/experiments/fm-exact/FM_PARENT_FIDELITY_RECEIPT_V1.md",
+        "protected_tasks": 126,
+        "note": "supersedes nothing; the FM/FG R2 LLM-dispatch fm10 cell sat at ceiling (all five arms 1.000) and could not discriminate"
+      }
     },
     {
       "id": "FM20",
       "title": "Anti-unification/generalization benchmark",
       "action": "Generate >=120 symbolic generalization tasks and compare fixed lessons, semantic retrieval, applicable anti-unification/LGG parent, strongest formal parent, F0/static F2/full transfer discovery.",
-      "depends_on": ["FM00"]
+      "depends_on": [
+        "FM00"
+      ]
     },
     {
       "id": "FM30",
       "title": "Formal Concept Analysis concept revision",
       "action": "Generate >=96 formal contexts with exact Galois closures plus hidden revision/counterexample cases; test specialize/split/merge/bridge/no-change and old-case retention.",
-      "depends_on": ["FM00"]
+      "depends_on": [
+        "FM00"
+      ]
     },
     {
       "id": "FM40",
       "title": "Invariance/equivariance discovery",
       "action": "Generate >=120 finite transformation-action tasks with true, equivariant, false and regime-bounded invariants; test unseen transformations and false-invariance controls.",
-      "depends_on": ["FM00"]
+      "depends_on": [
+        "FM00"
+      ]
     },
     {
       "id": "FM50",
       "title": "Functoriality and commuting diagrams",
       "action": "Generate >=96 finite-category tasks only where categorical semantics are valid; score identity/composition/diagram preservation and false equivalence.",
-      "depends_on": ["FM00"]
+      "depends_on": [
+        "FM00"
+      ]
     },
     {
       "id": "FM60",
       "title": "Obstruction and counterexample discovery",
       "action": "Generate >=120 conjecture/transfer tasks with zero, one or multiple hidden obstructions; exact finite-model or proof witness must be found before claim acceptance.",
-      "depends_on": ["FM00"]
+      "depends_on": [
+        "FM00"
+      ]
     },
     {
       "id": "FM70",
       "title": "Prospective regime selector",
       "action": "Train selector only on designated development folds using pre-outcome features; compare held-out always-SIMPLE/F0/F2/ABSTAIN policies and resource Pareto frontier.",
-      "depends_on": ["FM10", "FM20", "FM30", "FM40", "FM50", "FM60"]
+      "depends_on": [
+        "FM10",
+        "FM20",
+        "FM30",
+        "FM40",
+        "FM50",
+        "FM60"
+      ]
     },
     {
       "id": "FM80",
       "title": "Naturalistic mathematics-science transfer",
       "action": "Prospectively freeze >=3 materially distinct domains including >=1 mathematical/formal and >=2 empirical sciences; use strongest native parents, formal witnesses and independent scientific adjudication.",
-      "depends_on": ["FM10", "FM20", "FM30", "FM40", "FM50", "FM60"]
+      "depends_on": [
+        "FM10",
+        "FM20",
+        "FM30",
+        "FM40",
+        "FM50",
+        "FM60"
+      ]
     },
     {
       "id": "FM90",
       "title": "Paper result import and contraction",
       "action": "Validate hashes/receipts, bind exact outcomes to P-A/P-B/P-C/flagship claim ledgers, retain parent wins/negative results, and apply issue #47 successor/contraction rules before manuscript result claims.",
-      "depends_on": ["FM70", "FM80"]
+      "depends_on": [
+        "FM70",
+        "FM80"
+      ]
     }
   ],
   "global_rules": [

@@ -1,0 +1,286 @@
+{
+  "generator_rejections": {
+    "DIRECTION_REVERSAL": 0,
+    "INVARIANT_BREAKING_EMBEDDING": 0,
+    "ISOMORPHIC_TRANSFER": 1,
+    "NON_HOMOMORPHISM": 0,
+    "PARTIAL_HOMOMORPHISM": 0,
+    "RELATION_TYPE_MISMATCH": 0,
+    "SURFACE_DECOY": 3
+  },
+  "known_answer": [
+    {
+      "expected": "TRANSFER_VALID",
+      "name": "KA-01-ISO",
+      "oracle": "TRANSFER_VALID",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_NO_TYPE_RESPECTING_MAP",
+      "name": "KA-02-NO_TYPED_MAP",
+      "oracle": "BLOCK_NO_TYPE_RESPECTING_MAP",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_RELATION_TYPE_MISMATCH",
+      "name": "KA-03-RELTYPE",
+      "oracle": "BLOCK_RELATION_TYPE_MISMATCH",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_NO_HOMOMORPHISM",
+      "name": "KA-04-ABSENT",
+      "oracle": "BLOCK_NO_HOMOMORPHISM",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_DIRECTION_REVERSAL",
+      "name": "KA-05-REVERSAL",
+      "oracle": "BLOCK_DIRECTION_REVERSAL",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_MIXED_TYPED_OBSTRUCTION",
+      "name": "KA-06-MIXED",
+      "oracle": "BLOCK_MIXED_TYPED_OBSTRUCTION",
+      "passed": true
+    },
+    {
+      "expected": "TRANSFER_VALID",
+      "name": "KA-07-SURFACE_DECOY",
+      "oracle": "TRANSFER_VALID",
+      "passed": true
+    },
+    {
+      "expected": "TRANSFER_VALID",
+      "name": "KA-08-EMBEDDING_IN_LARGER_TARGET",
+      "oracle": "TRANSFER_VALID",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_INVARIANT_VIOLATION",
+      "name": "KA-09-INVARIANT_BREAK",
+      "oracle": "BLOCK_INVARIANT_VIOLATION",
+      "passed": true
+    },
+    {
+      "expected": "TRANSFER_VALID",
+      "name": "KA-10-INVARIANT_INTACT",
+      "oracle": "TRANSFER_VALID",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_RELATION_TYPE_MISMATCH",
+      "name": "KA-11-OBSTRUCTION_DOMINATES_INVARIANT",
+      "oracle": "BLOCK_RELATION_TYPE_MISMATCH",
+      "passed": true
+    }
+  ],
+  "null_calibration": {
+    "applicable": true,
+    "detail": {
+      "constant_arm_rates": {
+        "C_ALWAYS_BLOCK": 0.2857142857142857,
+        "C_ALWAYS_TRANSFER": 0.2857142857142857
+      },
+      "random_rate": 0.21428571428571427,
+      "shuffled_label_null": {
+        "exact_against_shuffled": 3,
+        "n": 14,
+        "rate": 0.21428571428571427,
+        "seed": 20260902
+      },
+      "violations": []
+    },
+    "gate": "G0c_NULL_CALIBRATION",
+    "hard": true,
+    "min_required_evaluated": 1,
+    "n_evaluated": 4,
+    "n_violations": 0,
+    "rule": "constant-response arms <= 0.4, random arm <= 0.4, M against within-split shuffled oracle labels <= 0.4",
+    "verdict": "PASS"
+  },
+  "oracle_agreement": {
+    "n_disagreements": 0,
+    "n_evaluated": 14
+  },
+  "parent_fidelity": [
+    {
+      "detail": "{'planet': 'electron', 'sun': 'nucleus'}",
+      "parent": "P1_SME_STRUCTURE_MAPPING",
+      "passed": true,
+      "test": "rutherford_analogy_recovers_sun_to_nucleus"
+    },
+    {
+      "detail": "TRANSFER_VALID",
+      "parent": "P1_SME_STRUCTURE_MAPPING",
+      "passed": true,
+      "test": "rutherford_analogy_is_a_valid_transfer"
+    },
+    {
+      "detail": "{'a': 'p', 'b': 'r', 'c': 'q'}",
+      "parent": "P1_SME_STRUCTURE_MAPPING",
+      "passed": true,
+      "test": "one_to_one_correspondence_enforced"
+    },
+    {
+      "detail": "{'a': 'p', 'b': 'q', 'c': 'r'}",
+      "parent": "P1_SME_STRUCTURE_MAPPING",
+      "passed": true,
+      "test": "systematicity_prefers_the_connected_system"
+    },
+    {
+      "detail": "scope note, not a defect: FFG-1989 merges match hypotheses greedily",
+      "parent": "P1_SME_STRUCTURE_MAPPING",
+      "passed": true,
+      "test": "documented_boundary_greedy_merge_without_backtracking"
+    },
+    {
+      "detail": "",
+      "parent": "P2_COMPLETE_HOMOMORPHISM",
+      "passed": true,
+      "test": "exact_embedding_is_found"
+    },
+    {
+      "detail": "",
+      "parent": "P2_COMPLETE_HOMOMORPHISM",
+      "passed": true,
+      "test": "no_type_respecting_map_is_reported_as_such"
+    },
+    {
+      "detail": "",
+      "parent": "P2_COMPLETE_HOMOMORPHISM",
+      "passed": true,
+      "test": "relation_type_mismatch_is_distinguished_from_absence"
+    },
+    {
+      "detail": "",
+      "parent": "P2_COMPLETE_HOMOMORPHISM",
+      "passed": true,
+      "test": "symmetric_types_absorb_a_relabelling"
+    },
+    {
+      "detail": "scope note: P2 is fact-level and cannot see the invariant stratum",
+      "parent": "P2_COMPLETE_HOMOMORPHISM",
+      "passed": true,
+      "test": "documented_boundary_blind_to_registered_invariants"
+    },
+    {
+      "detail": "",
+      "parent": "P4_INVARIANCE_PARENT",
+      "passed": true,
+      "test": "acyclicity_holds_in_a_dag"
+    },
+    {
+      "detail": "",
+      "parent": "P4_INVARIANCE_PARENT",
+      "passed": true,
+      "test": "acyclicity_fails_on_a_two_cycle"
+    },
+    {
+      "detail": "",
+      "parent": "P4_INVARIANCE_PARENT",
+      "passed": true,
+      "test": "antisymmetry_fails_on_a_two_cycle"
+    },
+    {
+      "detail": "",
+      "parent": "P4_INVARIANCE_PARENT",
+      "passed": true,
+      "test": "functionality_fails_when_a_source_has_two_images"
+    },
+    {
+      "detail": "",
+      "parent": "P4_INVARIANCE_PARENT",
+      "passed": true,
+      "test": "longer_cycle_is_detected"
+    },
+    {
+      "detail": "",
+      "parent": "P4_INVARIANCE_PARENT",
+      "passed": true,
+      "test": "blocks_a_perfect_embedding_whose_invariant_fails"
+    },
+    {
+      "detail": "scope note: P4 performs no alignment",
+      "parent": "P4_INVARIANCE_PARENT",
+      "passed": true,
+      "test": "documented_boundary_blind_to_mapping_obstructions"
+    },
+    {
+      "detail": "",
+      "parent": "P0_SURFACE_SIMILARITY",
+      "passed": true,
+      "test": "prefers_the_name_similar_target_node"
+    },
+    {
+      "detail": "",
+      "parent": "P3_FIXED_LESSON_INJECTION",
+      "passed": true,
+      "test": "blocks_when_the_surface_correspondence_misses_a_fact"
+    },
+    {
+      "detail": "",
+      "parent": "P3_FIXED_LESSON_INJECTION",
+      "passed": true,
+      "test": "transfers_when_the_surface_correspondence_is_perfect"
+    },
+    {
+      "detail": "",
+      "parent": "REFERENCE_MODULE",
+      "passed": true,
+      "test": "assess_partial_homomorphism_agrees_with_profile_map"
+    }
+  ],
+  "passed": true,
+  "planted_positives": [
+    {
+      "description": "a deliberately incomplete search (first typed map, no optimisation) must disagree with exhaustive enumeration on a hand-built instance",
+      "fired": true,
+      "gate": "G0b_ORACLE_SELF_AGREEMENT",
+      "name": "first_map_only_pseudo_oracle_is_detected"
+    },
+    {
+      "description": "the known-answer comparison must reject a deliberately wrong expected disposition",
+      "fired": true,
+      "gate": "G0a_KNOWN_ANSWER",
+      "name": "wrong_expected_label_is_detected"
+    },
+    {
+      "description": "the over-transfer counter must count C_ALWAYS_TRANSFER on a blocked instance",
+      "fired": true,
+      "gate": "G2_ANTI_PERMISSIVENESS",
+      "name": "over_transferring_arm_is_detected"
+    },
+    {
+      "description": "a synthetic per-arm table where every arm scores 1.0 must FAIL the discrimination gate (the FM/FG R2 ceiling defect)",
+      "fired": true,
+      "gate": "G0f_FAMILY_DISCRIMINATION",
+      "name": "degenerate_all_ceiling_split_is_detected"
+    },
+    {
+      "description": "M_MINUS_INVARIANCE_TEST must be wrong on a hand-built invariant-break instance on which M is right",
+      "fired": true,
+      "gate": "G3_MECHANISM_BY_OMISSION",
+      "name": "invariance_ablation_loses_the_invariant_family"
+    }
+  ],
+  "schema_version": "orion.v2.fm-exact.analysis.v1.selftest",
+  "selftest_arm_exact": {
+    "C_ALWAYS_BLOCK": 0.2857142857142857,
+    "C_ALWAYS_TRANSFER": 0.2857142857142857,
+    "C_RANDOM_DISPOSITION": 0.21428571428571427,
+    "F0_PARENT_FEDERATION": 1.0,
+    "M_F2_TRANSFER_DISCOVERY_FULL": 1.0,
+    "M_MINUS_INVARIANCE_TEST": 0.8571428571428571,
+    "M_MINUS_OBSTRUCTION_SEARCH": 0.42857142857142855,
+    "M_MINUS_RELATIONAL_MAPPING": 0.5714285714285714,
+    "M_MINUS_TYPE_DISCIPLINE": 1.0,
+    "P0_SURFACE_SIMILARITY": 0.6428571428571429,
+    "P1_SME_STRUCTURE_MAPPING": 0.8571428571428571,
+    "P2_COMPLETE_HOMOMORPHISM": 0.8571428571428571,
+    "P3_FIXED_LESSON_INJECTION": 0.42857142857142855,
+    "P4_INVARIANCE_PARENT": 0.42857142857142855
+  },
+  "suite": "FM10"
+}
