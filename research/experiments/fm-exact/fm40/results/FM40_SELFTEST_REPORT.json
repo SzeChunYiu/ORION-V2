@@ -1,0 +1,314 @@
+{
+  "generator_rejections": {
+    "PARTIAL_REGIME_INVARIANCE|no_proper_rescuing_regime": 2,
+    "SURFACE_ONLY_SYMMETRY|family_disposition_mismatch": 1,
+    "UNSEEN_TRANSFORMATION_BREAK|family_disposition_mismatch": 1,
+    "UNSEEN_TRANSFORMATION_BREAK|shape_incompatible_with_recipe": 9
+  },
+  "known_answer": [
+    {
+      "expected": "TRANSFER_VALID",
+      "name": "KA-01-INVARIANT_SORTED_HISTOGRAM",
+      "oracle": "TRANSFER_VALID",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+      "name": "KA-02-EQUIVARIANT_HISTOGRAM",
+      "oracle": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_NON_INVARIANT",
+      "name": "KA-03-NON_INVARIANT_SITE_INDEXED",
+      "oracle": "BLOCK_NON_INVARIANT",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_SURFACE_SYMMETRY_ONLY",
+      "name": "KA-04-SURFACE_ONLY_SYMMETRY",
+      "oracle": "BLOCK_SURFACE_SYMMETRY_ONLY",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_REGIME_BOUNDED_INVARIANT",
+      "name": "KA-05-REGIME_BOUNDED_INVARIANT",
+      "oracle": "BLOCK_REGIME_BOUNDED_INVARIANT",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_REGIME_BOUNDED_INVARIANT",
+      "name": "KA-06-REGIME_DOMINATES_SURFACE",
+      "oracle": "BLOCK_REGIME_BOUNDED_INVARIANT",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_NON_INVARIANT",
+      "name": "KA-07-UNSEEN_TRANSFORMATION_BREAK",
+      "oracle": "BLOCK_NON_INVARIANT",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+      "name": "KA-08-UNSEEN_TRANSFORMATION_EQUIVARIANCE",
+      "oracle": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+      "passed": true
+    },
+    {
+      "expected": "TRANSFER_VALID",
+      "name": "KA-09-INVARIANT_UNDER_A_SITE_ONLY_GROUP",
+      "oracle": "TRANSFER_VALID",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+      "name": "KA-10-MAJORITY_COLOUR_IS_EQUIVARIANT",
+      "oracle": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_REGIME_BOUNDED_INVARIANT",
+      "name": "KA-11-ADJACENCY_REGIME_ON_FOUR_SITES",
+      "oracle": "BLOCK_REGIME_BOUNDED_INVARIANT",
+      "passed": true
+    }
+  ],
+  "null_calibration": {
+    "applicable": true,
+    "detail": {
+      "constant_arm_rates": {
+        "C_ALWAYS_INVARIANT": 0.14285714285714285,
+        "C_ALWAYS_NON_INVARIANT": 0.2857142857142857
+      },
+      "random_rate": 0.07142857142857142,
+      "shuffled_label_null": {
+        "exact_against_shuffled": 2,
+        "n": 14,
+        "rate": 0.14285714285714285,
+        "seed": 20260902
+      },
+      "violations": []
+    },
+    "gate": "G0c_NULL_CALIBRATION",
+    "hard": true,
+    "min_required_evaluated": 1,
+    "n_evaluated": 4,
+    "n_violations": 0,
+    "rule": "constant-response arms <= 0.4, random arm <= 0.4, M against within-split shuffled oracle labels <= 0.4",
+    "verdict": "PASS"
+  },
+  "oracle_agreement": {
+    "n_disagreements": 0,
+    "n_evaluated": 14
+  },
+  "parent_fidelity": [
+    {
+      "detail": "",
+      "parent": "GROUP_ACTION",
+      "passed": true,
+      "test": "composition_is_a_left_action"
+    },
+    {
+      "detail": "12",
+      "parent": "GROUP_ACTION",
+      "passed": true,
+      "test": "site_S3_times_colour_swap_closes_to_order_12"
+    },
+    {
+      "detail": "",
+      "parent": "GROUP_ACTION",
+      "passed": true,
+      "test": "every_closure_element_is_a_permutation_of_the_domain"
+    },
+    {
+      "detail": "",
+      "parent": "GROUP_ACTION",
+      "passed": true,
+      "test": "cayley_saturation_and_breadth_first_closure_agree"
+    },
+    {
+      "detail": "the subgroup theorem oracle 2 rests on",
+      "parent": "GROUP_ACTION",
+      "passed": true,
+      "test": "invariance_under_generators_implies_invariance_under_the_group"
+    },
+    {
+      "detail": "",
+      "parent": "P1_ORBIT_STABILISER",
+      "passed": true,
+      "test": "cyclic_rotation_on_three_binary_sites_has_four_orbits"
+    },
+    {
+      "detail": "",
+      "parent": "P1_ORBIT_STABILISER",
+      "passed": true,
+      "test": "sorted_histogram_is_constant_on_every_orbit"
+    },
+    {
+      "detail": "",
+      "parent": "P1_ORBIT_STABILISER",
+      "passed": true,
+      "test": "a_site_indexed_property_is_not_constant_on_orbits"
+    },
+    {
+      "detail": "scope note: orbit constancy decides invariance only",
+      "parent": "P1_ORBIT_STABILISER",
+      "passed": true,
+      "test": "documented_boundary_cannot_see_a_value_space_action"
+    },
+    {
+      "detail": "",
+      "parent": "P2_EQUIVARIANCE_SOLVER",
+      "passed": true,
+      "test": "a_colour_permutation_makes_the_histogram_equivariant"
+    },
+    {
+      "detail": "",
+      "parent": "P2_EQUIVARIANCE_SOLVER",
+      "passed": true,
+      "test": "an_invariant_property_is_reported_as_such"
+    },
+    {
+      "detail": "",
+      "parent": "P2_EQUIVARIANCE_SOLVER",
+      "passed": true,
+      "test": "a_genuine_break_is_reported_as_non_invariant"
+    },
+    {
+      "detail": "rotation x colour swap on three binary sites closes to order 6",
+      "parent": "P2_EQUIVARIANCE_SOLVER",
+      "passed": true,
+      "test": "the_solver_reaches_elements_that_are_not_generators"
+    },
+    {
+      "detail": "scope note: P2 has no sub-regime and no surface encoding",
+      "parent": "P2_EQUIVARIANCE_SOLVER",
+      "passed": true,
+      "test": "documented_boundary_blind_to_the_regime_and_surface_strata"
+    },
+    {
+      "detail": "the false-invariance behaviour the surface family exists to expose",
+      "parent": "P0_SURFACE_SYMMETRY_SCAN",
+      "passed": true,
+      "test": "declares_invariance_from_a_symmetric_re_description_while_the_property_breaks"
+    },
+    {
+      "detail": "",
+      "parent": "P0_SURFACE_SYMMETRY_SCAN",
+      "passed": true,
+      "test": "declares_non_invariance_when_the_encoding_itself_moves"
+    },
+    {
+      "detail": "",
+      "parent": "P3_AUGMENTATION_EMPIRICAL",
+      "passed": true,
+      "test": "exact_on_the_witnessed_subgroup"
+    },
+    {
+      "detail": "scope note: measured symmetry is symmetry under the augmentations you have",
+      "parent": "P3_AUGMENTATION_EMPIRICAL",
+      "passed": true,
+      "test": "documented_boundary_misses_an_unwitnessed_breaking_element"
+    },
+    {
+      "detail": "",
+      "parent": "P4_REGIME_RESTRICTION",
+      "passed": true,
+      "test": "finds_the_registered_sub_regime_on_which_the_property_is_invariant"
+    },
+    {
+      "detail": "",
+      "parent": "P4_REGIME_RESTRICTION",
+      "passed": true,
+      "test": "declines_when_the_declaration_covers_the_whole_domain"
+    },
+    {
+      "detail": "scope note: P4 has no value-space action",
+      "parent": "P4_REGIME_RESTRICTION",
+      "passed": true,
+      "test": "documented_boundary_reports_an_equivariant_property_as_broken"
+    },
+    {
+      "detail": "",
+      "parent": "P5_FIXED_LESSON_TABLE",
+      "passed": true,
+      "test": "reproduces_the_frozen_lesson_for_a_covered_property"
+    },
+    {
+      "detail": "scope note: a name-keyed table cannot see which group is acting",
+      "parent": "P5_FIXED_LESSON_TABLE",
+      "passed": true,
+      "test": "documented_boundary_the_same_property_under_a_different_group"
+    },
+    {
+      "detail": "",
+      "parent": "ORACLE_CROSS_THEOREM",
+      "passed": true,
+      "test": "block_system_criterion_and_pointwise_relation_agree"
+    },
+    {
+      "detail": "",
+      "parent": "REFERENCE_MODULE",
+      "passed": true,
+      "test": "assess_invariance_agrees_with_the_suites_own_invariance_primitive"
+    }
+  ],
+  "passed": true,
+  "planted_positives": [
+    {
+      "description": "a deliberately incomplete oracle that classifies using only the witnessed transformations must disagree with the exhaustive closure",
+      "fired": true,
+      "gate": "G0b_ORACLE_SELF_AGREEMENT",
+      "name": "witnessed_only_pseudo_oracle_is_detected"
+    },
+    {
+      "description": "the known-answer comparison must reject a deliberately wrong expected disposition",
+      "fired": true,
+      "gate": "G0a_KNOWN_ANSWER",
+      "name": "wrong_expected_label_is_detected"
+    },
+    {
+      "description": "the over-acceptance counter must count C_ALWAYS_INVARIANT on an instance whose property the oracle reports as broken",
+      "fired": true,
+      "gate": "G2_ANTI_PERMISSIVENESS",
+      "name": "false_invariance_claim_is_counted"
+    },
+    {
+      "description": "a synthetic per-arm table where every arm scores 1.0 must FAIL the discrimination gate (the FM/FG R2 ceiling defect, which the R2 fm40 cell exhibited with 1.000 for all five arms)",
+      "fired": true,
+      "gate": "G0f_FAMILY_DISCRIMINATION",
+      "name": "degenerate_all_ceiling_split_is_detected"
+    },
+    {
+      "description": "M_MINUS_SURFACE_AUDIT must be wrong on a hand-built surface-only instance on which M is right",
+      "fired": true,
+      "gate": "G3_MECHANISM_BY_OMISSION",
+      "name": "surface_audit_ablation_loses_the_surface_family"
+    },
+    {
+      "description": "M's own pipeline, run with a shortened value-action sample schedule, must return a different disposition from the federation: the decision-identity counter has a subject that can move",
+      "fired": true,
+      "gate": "G1a_PARENT_REPRODUCES_M",
+      "name": "mechanic_can_diverge_from_its_own_comparator"
+    }
+  ],
+  "schema_version": "orion.v2.fm-exact.analysis.v1.selftest",
+  "selftest_arm_exact": {
+    "C_ALWAYS_INVARIANT": 0.14285714285714285,
+    "C_ALWAYS_NON_INVARIANT": 0.2857142857142857,
+    "C_RANDOM_DISPOSITION": 0.07142857142857142,
+    "F0_PARENT_FEDERATION": 1.0,
+    "M_F2_INVARIANCE_DISCOVERY_FULL": 1.0,
+    "M_MINUS_EQUIVARIANCE_TEST": 0.7142857142857143,
+    "M_MINUS_REGIME_RESTRICTION": 0.8571428571428571,
+    "M_MINUS_SURFACE_AUDIT": 0.8571428571428571,
+    "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": 0.5,
+    "P0_SURFACE_SYMMETRY_SCAN": 0.35714285714285715,
+    "P1_ORBIT_STABILISER": 0.42857142857142855,
+    "P2_EQUIVARIANCE_SOLVER": 0.7142857142857143,
+    "P3_AUGMENTATION_EMPIRICAL": 0.21428571428571427,
+    "P4_REGIME_RESTRICTION": 0.5714285714285714,
+    "P5_FIXED_LESSON_TABLE": 0.5
+  },
+  "suite": "FM40"
+}

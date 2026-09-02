@@ -69,7 +69,15 @@
       "action": "Generate >=120 finite transformation-action tasks with true, equivariant, false and regime-bounded invariants; test unseen transformations and false-invariance controls.",
       "depends_on": [
         "FM00"
-      ]
+      ],
+      "status": "DESIGN_FROZEN_DEVELOPMENT_COMPLETE_PROTECTED_PENDING",
+      "exact_study": {
+        "design": "research/experiments/fm-exact/FM40_INVARIANCE_EQUIVARIANCE_DISCOVERY_EXACT_STUDY_DESIGN_V1.{md,json}",
+        "code": "research/experiments/fm-exact/{fm_core,fm_run,fm40_suite}.py",
+        "parent_fidelity": "research/experiments/fm-exact/FM_PARENT_FIDELITY_RECEIPT_FM40_V1.md",
+        "protected_tasks": 126,
+        "note": "supersedes nothing; the FM/FG R2 LLM-dispatch fm40 cell sat at ceiling (all five arms 1.000) and could not discriminate, which is the degeneracy G0f now gates"
+      }
     },
     {
       "id": "FM50",

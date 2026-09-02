@@ -1,0 +1,166 @@
+{
+  "schema_version": "orion.v2.fm-exact.study-design.v1",
+  "study_id": "FM40",
+  "title": "Invariance/equivariance discovery over finite transformation actions",
+  "owner_issues": [
+    48,
+    50
+  ],
+  "protocols": [
+    "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_MECHANICS_PROTOCOL_V1.json",
+    "research/experiments/CONCEPTUAL_TRANSFER_DISCOVERY_PROTOCOL_V2_ALL_SCIENCE_MATHEMATICS_FIRST.json",
+    "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_EXECUTION_BACKLOG_V1.json"
+  ],
+  "status": "FROZEN_PROSPECTIVE_DESIGN_NO_PROTECTED_OUTCOME_ACCESS",
+  "frozen_before_protected_outcome_access": true,
+  "endpoint": {
+    "primary": "per-instance exact transfer disposition over a finite group action, including the exact obstruction stratum",
+    "dispositions": [
+      "TRANSFER_VALID",
+      "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+      "BLOCK_REGIME_BOUNDED_INVARIANT",
+      "BLOCK_SURFACE_SYMMETRY_ONLY",
+      "BLOCK_NON_INVARIANT"
+    ],
+    "disposition_naming": "TRANSFER_VALID is the FM-series name for the unrestricted-transfer disposition and means exactly INVARIANT-UNDER-THE-WHOLE-GROUP. The name is chosen deliberately: the shared runner's over-acceptance counter and the G2 anti-permissiveness gate are keyed on that string, so with this naming G2 becomes FM40's FALSE-INVARIANCE gate over a real denominator (the oracle-blocked instances), and without it G2 would print a full denominator over an effective denominator of zero.",
+    "secondary": [
+      "over_accept (a false-invariance claim)",
+      "under_accept",
+      "per_family_exact_rate",
+      "wall_clock_cost"
+    ],
+    "note": "Testing invariance under a given generating set is a two-line check, so it is deliberately NOT the endpoint: a study built on it would report parent sufficiency by construction. The endpoint adds a value-space action stratum (equivariance discovery), a registered sub-regime stratum, a surface-encoding stratum, and unseen transformations that a witnessed subgroup cannot reach."
+  },
+  "model": {
+    "domain": "every colouring of m sites with q colours; registered shapes (m,q) in {(3,2),(3,3),(4,2)}, so 8 <= |X| <= 27",
+    "group": "a subgroup of S_m x S_q acting by (sigma,tau).x = y with y[sigma(i)] = tau(x[i]); published as a generating set and closed by the study, with a registered cap of 64 elements",
+    "property": "a named finite-valued function p on X drawn from a registered vocabulary (sorted colour histogram, colour histogram, number of distinct colours, constancy, adjacent-equal count, majority colour with a tie sentinel, colour at a site, count/parity of a colour, equality of a site pair)",
+    "surface_encoding": "a second, different named function e on X: the registered lossy re-description whose symmetry is not the property's symmetry",
+    "regime": "a declared set of values of a registered tag function; the sub-regime is the preimage, and its properness and G-stability are verified exhaustively rather than argued from the tag",
+    "witnessed_transformations": "a published subset W of the group whose generated subgroup is a proper subgroup of G in the two UNSEEN_TRANSFORMATION_* families; this is what the augmentation-empirical parent is allowed to see"
+  },
+  "families": [
+    "FULL_INVARIANCE",
+    "EQUIVARIANT_ACTION",
+    "NON_INVARIANT",
+    "SURFACE_ONLY_SYMMETRY",
+    "PARTIAL_REGIME_INVARIANCE",
+    "UNSEEN_TRANSFORMATION_BREAK",
+    "UNSEEN_TRANSFORMATION_EQUIVARIANCE"
+  ],
+  "protocol_family_coverage": {
+    "invariant": "FULL_INVARIANCE",
+    "equivariant": "EQUIVARIANT_ACTION, UNSEEN_TRANSFORMATION_EQUIVARIANCE",
+    "non_invariant": "NON_INVARIANT, UNSEEN_TRANSFORMATION_BREAK",
+    "surface_only_symmetry": "SURFACE_ONLY_SYMMETRY",
+    "partial_regime_invariance": "PARTIAL_REGIME_INVARIANCE"
+  },
+  "protocol_primary_coverage": {
+    "invariant_discovery": "FULL_INVARIANCE and EQUIVARIANT_ACTION; the mechanic must discover the value-space action, not merely test a supplied one",
+    "false_invariance": "SURFACE_ONLY_SYMMETRY plus the over-acceptance counter, which G2 gates on every oracle-blocked instance",
+    "unseen_transformation_generalization": "UNSEEN_TRANSFORMATION_BREAK and UNSEEN_TRANSFORMATION_EQUIVARIANCE, where the answer read off the witnessed subgroup alone is wrong"
+  },
+  "decoy_families": [
+    "SURFACE_ONLY_SYMMETRY",
+    "PARTIAL_REGIME_INVARIANCE",
+    "UNSEEN_TRANSFORMATION_BREAK",
+    "UNSEEN_TRANSFORMATION_EQUIVARIANCE"
+  ],
+  "sizes": {
+    "minimum_tasks_required_by_issue_50_C1": 120,
+    "protected_per_family": 18,
+    "protected_total": 126,
+    "development_per_family": 3,
+    "development_total": 21,
+    "selftest_per_family": 2
+  },
+  "oracle": {
+    "primary": "oracle_element_closure: materialise the whole group by breadth-first frontier expansion and classify every element pointwise by the relation R_g = {(p(x), p(g.x))} as FIXING, COVARIANT (a well-defined injection on values) or BREAKING",
+    "independent_cross_check": "oracle_generator_blocks: never materialise the group. The stabiliser of p and the set of block-preserving elements are both subgroups, so the generators decide both questions; each generator is decided by set-image block-system tests on the level-set partition, and orbits come from union-find over generator images",
+    "why_the_cross_check_is_independent": "The two algorithms rest on different theorems and touch different objects: one enumerates up to 64 group elements and compares values pointwise, the other looks only at the published generators and compares set images of level sets. A wrong closure in the first or a misapplied subgroup argument in the second makes them disagree, and G0b fires.",
+    "agreement_fields": [
+      "disposition",
+      "invariant_under_G",
+      "equivariant_under_G",
+      "regime_bounded_invariant",
+      "surface_encoding_invariant_under_G",
+      "invariant_under_witnessed_subgroup",
+      "n_orbits",
+      "n_property_values"
+    ],
+    "classification_order": "invariance dominates equivariance; a genuine break is rescued first by the registered sub-regime (an actionable positive: transfer is valid inside it), then diagnosed as surface-only (the break is invisible in the re-description), and otherwise reported as an outright non-invariance. Fixture KA-06 pins the regime-over-surface precedence.",
+    "regime_scope": "the sub-regime is verified proper, non-empty and G-stable on the whole domain, and p is required to be invariant there under every group element; the tag being G-invariant is not accepted as an argument for stability"
+  },
+  "arms": {
+    "P0_SURFACE_SYMMETRY_SCAN": "feature-level symmetry screen: tests the registered surface encoding for invariance and reports the property's disposition from that alone",
+    "P1_ORBIT_STABILISER": "orbit/stabiliser computation: the orbit partition of the domain under the group action, with invariance iff the property is constant on every orbit",
+    "P2_EQUIVARIANCE_SOLVER": "value-space action solver: materialises the group and accepts an induced value action iff the relation is a well-defined injection",
+    "P3_AUGMENTATION_EMPIRICAL": "empirical symmetry detection from witnessed transformations, the standard applied practice",
+    "P4_REGIME_RESTRICTION": "sub-regime restriction parent: properness, G-stability and restricted invariance of the registered declaration",
+    "P5_FIXED_LESSON_TABLE": "the protocol's frozen transfer-lesson table, keyed on the property name and blind to the acting group",
+    "F0_PARENT_FEDERATION": "strongest faithful parent federation: P2 decides the invariance/equivariance stratum; only on an outright break is P4 consulted; only when P4 declines is P0 consulted, whose invariant verdict on a broken property is the surface-only diagnosis",
+    "M_F2_INVARIANCE_DISCOVERY_FULL": "ORION L2 invariance/equivariance discovery over orion_v2.transfer_formal_mechanics",
+    "M_MINUS_EQUIVARIANCE_TEST": "ablation: no value-action discovery, every non-fixing element is a break",
+    "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": "ablation: the pipeline runs on the witnessed subgroup only",
+    "M_MINUS_REGIME_RESTRICTION": "ablation: no native regime recovery",
+    "M_MINUS_SURFACE_AUDIT": "ablation: no surface audit",
+    "C_ALWAYS_INVARIANT": "constant control",
+    "C_ALWAYS_NON_INVARIANT": "constant control",
+    "C_RANDOM_DISPOSITION": "random control"
+  },
+  "primary_comparator": "F0_PARENT_FEDERATION",
+  "comparator_justification": "No single parent family owns the endpoint. Orbit/stabiliser computation decides invariance exactly and has no notion of an action on the value space. The equivariance solver owns the invariance/equivariance stratum and knows nothing about sub-regimes or surface encodings. Empirical augmentation testing is exact on the witnessed subgroup and structurally blind outside it. The frozen lesson table cannot see which group is acting. The strongest faithful comparator is therefore their federation under a rule fixed before any outcome and blind to it, exactly as ME-X4's B5 was.",
+  "gates": {
+    "G0a_KNOWN_ANSWER": "every hand-authored fixture's disposition is reproduced by the exhaustive oracle (>= 8 fixtures required; 11 registered)",
+    "G0b_ORACLE_SELF_AGREEMENT": "the two independent oracle algorithms agree on disposition and on every stratum field for every instance of the split",
+    "G0c_NULL_CALIBRATION": "constant-response arms <= 0.40, random arm <= 0.40, M against within-split shuffled oracle labels <= 0.40",
+    "G0d_DECOY_COVERAGE": "each registered decoy family carries >= 3 instances",
+    "G0e_PLANTED_POSITIVES": "every registered planted positive trips its own gate predicate (>= 3 required; 6 registered)",
+    "G0f_FAMILY_DISCRIMINATION": "two independent halves, each with its own denominator: SOLVABLE (some non-control arm >= 0.95, not at floor) AND SEPARATING (some registered weak arm <= 0.85, not at ceiling); this is the gate the FM/FG R2 fm40 cell would have failed with 1.000 for all five arms",
+    "G1a_PARENT_REPRODUCES_M": "F0 reproduces M's disposition on >= 99.5% of instances and no family exceeds 5% discordance; AND the discordance counter is shown live on the same split by at least one ablation arm disagreeing with the parent",
+    "G1b_M_ADVANTAGE": "detector: paired instance-exact difference (M - F0) > 0, exact two-sided p <= 0.05, and >= 1 family with >= 5 M-only-exact instances",
+    "G2_ANTI_PERMISSIVENESS": "FM40's false-invariance gate: on instances the oracle blocks, M claims unrestricted invariance no more often than F0 (>= 10 blocked instances required)",
+    "G3_MECHANISM_BY_OMISSION": "applicable only if G1b fires: for every family with a claimed M advantage, the matching omission ablation's exact rate is <= the parent's on that family",
+    "multiplicity": "Holm across the seven per-family paired tests, reported for every run"
+  },
+  "gate_reporting_rule": "Every gate reports the number of instances its rule was actually evaluated on alongside the violation count. A gate whose denominator is below its registered minimum returns CANNOT_CHECK and never PASS: 'could not check' is never 'checked and fine'. A zero produced by a counter that could not have been nonzero on this split is not evidence of agreement, so G1a additionally carries a liveness control and a planted positive that moves M itself.",
+  "generator_rule": "The generator PROPOSES a family; the exhaustive oracle VERIFIES it. Beyond the disposition, four structural preconditions the oracle does not itself express are checked and rejected on: the witnessed subgroup must be a proper subgroup that fixes the property in both UNSEEN_TRANSFORMATION_* families; the surface encoding must NOT be G-invariant in the two families whose registered answer is BLOCK_NON_INVARIANT, so they cannot collapse into the surface class; the surface encoding must be a different function from the property; and the group must be non-trivial with a non-degenerate property. Rejections are counted under 'family|reason' keys, published in every results file, and sum to the true rejection total.",
+  "routes": [
+    "PARENT_SUFFICIENT",
+    "FM_RESIDUAL_CANDIDATE",
+    "M_OVER_ACCEPTS",
+    "CANNOT_CHECK"
+  ],
+  "pre_registered_expectation": "PARENT_SUFFICIENT. Three sibling exact studies (ME-X1, ME-X2, ME-X4) already found the strongest faithful parent sufficient; a residual here would require correspondingly hard scrutiny.",
+  "seed_commitment": {
+    "protected_seed_sha256": "7431279476019dd15235002757be9fe80f3ad739cfc7964abd7aca83eaa5b93a",
+    "custody_path": "~/.orion-custody/fm/FM40_PROTECTED_SEED_V1.txt",
+    "hash_convention": "sha256 of the file's bytes after strip(), which is exactly what fm_run.stage_protected recomputes",
+    "development_seed_public": "FM40-DEV-20260902",
+    "selftest_seed_public": "FM40-SELFTEST"
+  },
+  "execution_rule": {
+    "protected_runs_allowed": 1,
+    "authorization_file": "PROTECTED_RUN_AUTHORIZATION.json (human-written token, names this suite, acknowledges this file's sha256)",
+    "analysis_runs_on_protected": 1,
+    "post_outcome_change_allowed": false
+  },
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_F2_superiority": false,
+    "grants_field_status": false,
+    "grants_submission_readiness": false
+  },
+  "mechanic_independence": {
+    "statement": "M calls no parent, no federation and no oracle function. It closes the group by Cayley saturation rather than breadth-first frontier expansion; it tests invariance by set-image fixation of the level-set partition rather than pointwise on values; it discovers the value action by bounded sampling with exhaustive verification through orion_v2.transfer_formal_mechanics.assess_invariance rather than by direct construction; and it DISCOVERS the maximal orbit-union on which the property is constant before comparing the registered declaration against it.",
+    "why": "FM10's blocking defect was an M that issued the same calls as F0, which made G1a's decision identity an algebraic identity rather than a measurement: discordance could not have been nonzero while the gate printed a full denominator.",
+    "divergence_is_demonstrated_not_asserted": "M's value-action discovery is sound but not complete: a candidate rho built from a bounded sample and refuted by exhaustive verification is discarded, and if the schedule runs out the element is reported as breaking. A registered planted positive runs M's own pipeline with a shortened schedule and shows it returning a different disposition from the federation, so the decision-identity counter has a subject that can move. At the registered schedule the final stratified round represents every property value, so M and F0 are expected to coincide by mathematics rather than by shared code, and that coincidence is what the run measures.",
+    "acknowledged_overlap": "P2_EQUIVARIANCE_SOLVER is the first oracle algorithm's element classification without the regime and surface strata. This is defensible - a group-element solver genuinely is the mature parent for the invariance/equivariance question - but P2's row is therefore not independent parent evidence and is reported as such."
+  },
+  "known_definitional_results": [
+    "F0_PARENT_FEDERATION is exact by composition: each of its three sub-decisions is a complete decision procedure for its own stratum and the combination rule reproduces the registered classification order. Its 1.000 is a statement about the stratification, not a horse-race win, and it is labelled as such.",
+    "P2_EQUIVARIANCE_SOLVER is the first oracle algorithm minus the regime and surface strata, so its 1.00 on the invariance/equivariance families and 0.00 on the regime and surface families are both by construction.",
+    "SURFACE_ONLY_SYMMETRY instances carry a surface encoding chosen from the always-G-invariant vocabulary, so P0_SURFACE_SYMMETRY_SCAN scoring 0.00 on that family is definitional, not measured; the informative number is its over-acceptance count, which is what false invariance costs.",
+    "Instances of the two UNSEEN_TRANSFORMATION_* families are rejected and resampled unless the witnessed subgroup is proper and fixes the property, so P3_AUGMENTATION_EMPIRICAL scoring 0.00 there is definitional too. Rejection counts are published per family and reason."
+  ]
+}
