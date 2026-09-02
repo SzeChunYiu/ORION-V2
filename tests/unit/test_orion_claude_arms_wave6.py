@@ -40,7 +40,7 @@ def test_emitted_patch_needs_no_downstream_canonicalization() -> None:
     assert audit.valid_or_canonicalizable and audit.changed is False
     assert "--- a/a.py" in emitted and "@@ -1,2 +1,2 @@" in emitted
     receipt = response["patch_emission_receipt"]
-    assert receipt["raw_was_header_exact"] is False
+    assert receipt["extracted_was_header_exact"] is False
     assert receipt["diff_git_header_synthesized"] is False
     assert receipt["authority"]["may_change_semantic_edit"] is False
 

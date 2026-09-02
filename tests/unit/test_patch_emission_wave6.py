@@ -162,7 +162,7 @@ def test_gc1_overcount_rejected_raw_but_apply_clean_after_emission(tmp_path: Pat
     workspace = _workspace(tmp_path)
     assert not _applies(workspace, GC1_OVERCOUNT)
     emission = emit_apply_clean_patch(GC1_OVERCOUNT, workspace=workspace)
-    assert emission.receipt["raw_was_apply_clean"] is False
+    assert emission.receipt["extracted_was_apply_clean"] is False
     assert _applies(workspace, emission.patch)
     assert "@@ -2,3 +2,3 @@" in emission.patch
 
@@ -263,14 +263,14 @@ def test_receipt_preserves_the_raw_header_exact_endpoint(tmp_path: Path) -> None
         "         return 'HIGH'\n"
     )
     clean = emit_apply_clean_patch(already_canonical, workspace=workspace)
-    assert clean.receipt["raw_was_header_exact"] is True
-    assert clean.receipt["raw_was_apply_clean"] is True
+    assert clean.receipt["extracted_was_header_exact"] is True
+    assert clean.receipt["extracted_was_apply_clean"] is True
     assert clean.receipt["normalizations"] == []
     assert clean.patch == already_canonical
 
     dirty = emit_apply_clean_patch(GC1_OVERCOUNT, workspace=workspace)
-    assert dirty.receipt["raw_was_header_exact"] is False
-    assert dirty.receipt["raw_was_apply_clean"] is False
+    assert dirty.receipt["extracted_was_header_exact"] is False
+    assert dirty.receipt["extracted_was_apply_clean"] is False
     assert any("normalized hunk counts" in reason for reason in dirty.receipt["normalizations"])
     assert dirty.receipt["raw_sha256"] == hashlib.sha256(GC1_OVERCOUNT.encode()).hexdigest()
     assert dirty.receipt["emitted_sha256"] != dirty.receipt["raw_sha256"]
@@ -289,7 +289,7 @@ def test_emission_degrades_honestly_without_a_workspace() -> None:
     emission = emit_apply_clean_patch(GC1_OVERCOUNT)
     assert emission.receipt["emission_status"] == "CANONICAL_APPLY_CHECK_NOT_VERIFIED"
     assert emission.receipt["emitted_apply_check"] == "NOT_VERIFIED_NO_WORKSPACE"
-    assert emission.receipt["raw_was_apply_clean"] is None
+    assert emission.receipt["extracted_was_apply_clean"] is None
     assert audit_and_canonicalize_unified_diff(emission.patch).changed is False
 
 
@@ -348,3 +348,95 @@ def test_frozen_e30_control_code_is_unmodified() -> None:
     for relative, prefix in pinned.items():
         digest = hashlib.sha256((REPO_ROOT / relative).read_bytes()).hexdigest()
         assert digest.startswith(prefix), f"{relative} broke the E30 freeze pin"
+
+
+# --- the response validator's own guard, checked in both directions -------------
+
+def _validated_response(mutate=None) -> list[str]:
+    from scripts.orion_claude_arms import run_arm
+    from scripts.validate_orion_agent_responses import validate_response
+
+    def call(prompt: str) -> tuple[str, dict[str, int]]:
+        return (
+            '{"patch":"diff --git a/a.py b/a.py\\n--- a.py\\n+++ a.py\\n'
+            '@@ -1,9 +1,9 @@\\n ctx\\n-x=1\\n+x=2", "diagnosis":"constant", "falsifier":"native evaluator"}',
+            {"input_tokens": 4, "output_tokens": 8},
+        )
+
+    request = {
+        "task_id": "bugsinpy-demo-1", "arm_id": "SIMPLE_DIRECT",
+        "task": {"project": "demo", "bug_id": 1, "solver_workspace": ""},
+    }
+    response = run_arm(request, call=call, workspace_context="context")
+    if mutate is not None:
+        mutate(response["patch_emission_receipt"])
+    return validate_response(
+        response,
+        expected_task_id="bugsinpy-demo-1",
+        expected_arm_id="SIMPLE_DIRECT",
+        required_fields=("proposed_patch_or_artifact", "diagnosis", "falsifier"),
+    )
+
+
+def test_validator_accepts_a_real_emitting_arm_response() -> None:
+    """No-alarm case: a guard that misfires on real output gets switched off."""
+    assert _validated_response() == []
+
+
+@pytest.mark.parametrize(
+    ("label", "mutate", "expected"),
+    [
+        (
+            "authority claiming semantic edits",
+            lambda receipt: receipt["authority"].update({"may_change_semantic_edit": True}),
+            "claims authority beyond serialization",
+        ),
+        (
+            "authority claiming frozen-campaign rescoring",
+            lambda receipt: receipt["authority"].update({"may_rescore_a_frozen_campaign": True}),
+            "claims authority beyond serialization",
+        ),
+        (
+            "gold access not disclaimed",
+            lambda receipt: receipt["authority"].update({"gold_or_fixed_patch_access": "USED"}),
+            "must record gold-blind emission",
+        ),
+        (
+            "authority block replaced by a non-object",
+            lambda receipt: receipt.__setitem__("authority", "none"),
+            "must record gold-blind emission",
+        ),
+        (
+            "unknown receipt schema version",
+            lambda receipt: receipt.__setitem__("schema_version", "orion.v2.patch-emission.v9"),
+            "unexpected patch_emission_receipt schema_version",
+        ),
+        (
+            "missing fidelity endpoint",
+            lambda receipt: receipt.pop("extracted_was_header_exact"),
+            "missing required key: extracted_was_header_exact",
+        ),
+        (
+            "receipt is not an object",
+            None,
+            "patch_emission_receipt must be an object when supplied",
+        ),
+    ],
+)
+def test_validator_rejects_a_receipt_that_oversteps(label: str, mutate, expected: str) -> None:
+    if mutate is None:
+        from scripts.validate_orion_agent_responses import validate_response
+
+        errors = validate_response(
+            {
+                "schema_version": "orion.v2.agent-response.v1", "task_id": "t", "arm_id": "a",
+                "status": "COMPLETED_PROPOSAL_ONLY", "requested_authority": "EXECUTION_TEST_ONLY",
+                "proposed_patch_or_artifact": {"type": "unified_diff", "content": "diff"},
+                "falsifier": "native evaluator", "uncertainty": "UNRESOLVED",
+                "patch_emission_receipt": "not-an-object",
+            },
+            expected_task_id="t", expected_arm_id="a", required_fields=(),
+        )
+    else:
+        errors = _validated_response(mutate)
+    assert any(expected in error for error in errors), f"{label}: guard did not fire ({errors})"

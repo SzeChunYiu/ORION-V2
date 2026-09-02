@@ -32,8 +32,8 @@ The canonicalization itself is delegated verbatim to
 modified by this module.
 
 The receipt returned alongside the patch preserves the raw interface-fidelity
-endpoint (``raw_was_header_exact``, ``raw_was_apply_clean``, ``raw_sha256`` and the
-list of normalizations applied), so a future run can still report the raw
+endpoint (``extracted_was_header_exact``, ``extracted_was_apply_clean``, the artifact
+hashes and the list of normalizations applied), so a future run can still report the raw
 header-exact lane from the response alone even though arms now emit canonical form.
 """
 
@@ -218,10 +218,15 @@ def emit_apply_clean_patch(raw_text: str, *, workspace: Path | str | None = None
         "extraction_changed_raw": headed != raw_text,
         "diff_git_header_synthesized": headed != extracted,
         # Interface-fidelity endpoint, preserved so future runs can still report the
-        # raw header-exact lane from the response alone.
-        "raw_was_header_exact": canonicalizable and not audit.changed,
-        "raw_was_apply_clean": {"PASSED": True, "FAILED": False}.get(raw_status),
-        "raw_apply_check": raw_status,
+        # header-exact lane from the response alone. These three describe the
+        # *extracted* artifact (``extracted_sha256``: post-extraction, post-header
+        # synthesis, pre-canonicalization) — not ``raw_sha256``, which is the model
+        # text before extraction. Extracted is the artifact directly comparable to
+        # the archived GC1/GC2 raw lane, whose responses were likewise stored after
+        # header synthesis.
+        "extracted_was_header_exact": canonicalizable and not audit.changed,
+        "extracted_was_apply_clean": {"PASSED": True, "FAILED": False}.get(raw_status),
+        "extracted_apply_check": raw_status,
         "emitted_apply_check": emitted_status,
         "emitted_apply_check_error": emitted_error,
         "normalizations": list(audit.reasons),

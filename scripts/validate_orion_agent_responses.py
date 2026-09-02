@@ -128,19 +128,30 @@ def validate_response(
         else:
             if receipt.get("schema_version") != "orion.v2.patch-emission.v1":
                 errors.append("unexpected patch_emission_receipt schema_version")
-            for key in ("emission_status", "raw_sha256", "emitted_sha256", "raw_was_header_exact"):
+            for key in (
+                "emission_status", "raw_sha256", "emitted_sha256", "extracted_was_header_exact",
+            ):
                 if key not in receipt:
                     errors.append(f"patch_emission_receipt missing required key: {key}")
             authority = receipt.get("authority")
-            if not isinstance(authority, dict) or authority.get(
-                "gold_or_fixed_patch_access"
-            ) != "FORBIDDEN_NOT_USED":
+            if not isinstance(authority, dict):
                 errors.append("patch_emission_receipt must record gold-blind emission")
-            if any(authority.get(key) is True for key in (
-                "may_change_semantic_edit", "may_guess_paths", "may_relocate_hunks",
-                "may_rescore_a_frozen_campaign",
-            ) if isinstance(authority, dict)):
-                errors.append("patch_emission_receipt claims authority beyond serialization")
+            else:
+                if authority.get("gold_or_fixed_patch_access") != "FORBIDDEN_NOT_USED":
+                    errors.append("patch_emission_receipt must record gold-blind emission")
+                claimed = [
+                    key
+                    for key in (
+                        "may_change_semantic_edit", "may_guess_paths",
+                        "may_relocate_hunks", "may_rescore_a_frozen_campaign",
+                    )
+                    if authority.get(key) is True
+                ]
+                if claimed:
+                    errors.append(
+                        "patch_emission_receipt claims authority beyond serialization: "
+                        + ", ".join(claimed)
+                    )
 
     if response.get("scientific_truth_authorized") is True:
         errors.append("agent response cannot authorize scientific truth")

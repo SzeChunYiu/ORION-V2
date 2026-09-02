@@ -89,7 +89,9 @@ FAILURE OBSERVATION: {json.dumps(baseline, sort_keys=True)}
 def _normalize_patch(patch: str) -> str:
     """Extract the diff from model output and add any implied ``diff --git`` header.
 
-    Header synthesis only; canonicalization happens in :func:`emit_apply_clean_patch`.
+    Header synthesis only; canonicalization happens in :func:`emit_apply_clean_patch`,
+    which ``execute`` calls directly. Retained as the named entry point for that stage
+    so it stays independently testable.
     """
     try:
         return synthesize_diff_git_headers(extract_unified_diff(patch))

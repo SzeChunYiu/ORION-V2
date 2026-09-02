@@ -69,6 +69,12 @@ It never opens a gold, fixed or reference patch, never invents a path, never add
 removes, reorders or rewrites an edit line, and never mutates the workspace
 (`git apply --check` only). The receipt records this as non-authority.
 
+**Validator guard tested in both directions.** `scripts/validate_orion_agent_responses.py`
+accepts a real emitting-arm response with no errors (the no-alarm case) and rejects a
+receipt that claims semantic-edit, path-guessing, hunk-relocation or frozen-campaign
+rescoring authority, that fails to disclaim gold access, that carries an unknown
+receipt schema version, or that drops the fidelity endpoint.
+
 **Frozen control untouched:** `src/orion_v2/unified_diff_interface.py` and the three
 other files pinned by sha256 in `E30_SYNTAX_SENSITIVITY_CONTROL_FREEZE_V1.json` are
 byte-unchanged. Emission is a new layer that imports the frozen canonicalizer. CI
@@ -81,11 +87,18 @@ receipt keeps it reconstructible from the response alone:
 
 | Field | Meaning |
 | --- | --- |
-| `raw_was_header_exact` | the raw emission needed no canonicalization |
-| `raw_was_apply_clean` | `git apply --check` accepted the raw emission (`null` if unverifiable) |
-| `raw_sha256`, `emitted_sha256` | identity of both forms |
+| `extracted_was_header_exact` | the extracted artifact needed no canonicalization |
+| `extracted_was_apply_clean` | `git apply --check` accepted it (`null` if unverifiable) |
+| `extracted_apply_check` | the check outcome, including why it could not be run |
+| `raw_sha256`, `extracted_sha256`, `emitted_sha256` | identity of all three forms |
 | `normalizations` | the frozen canonicalizer's own reason strings |
 | `emission_status` | `APPLY_CLEAN_BY_CONSTRUCTION`, `CANONICAL_BUT_APPLY_CHECK_FAILED`, `CANONICAL_APPLY_CHECK_NOT_VERIFIED`, or `NOT_CANONICALIZABLE_EMITTED_UNCHANGED` |
+
+The fidelity fields are named for their referent. They describe the **extracted**
+artifact — post-extraction and post-header-synthesis, pre-canonicalization — not
+`raw_sha256`, which is the model text before extraction. Extracted is the form
+directly comparable to the archived GC1/GC2 raw lane, whose responses were themselves
+stored after the codex arm's header synthesis, so the comparison is like-for-like.
 
 **Never degrades an artifact.** A patch the frozen canonicalizer rejects is emitted
 unchanged with `NOT_CANONICALIZABLE_EMITTED_UNCHANGED`; emission is never worse than
