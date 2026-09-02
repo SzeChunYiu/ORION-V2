@@ -27,7 +27,7 @@ pass.
 | `mex2v2_arms.py` | `458c8fa09589a1519c2ce6a10dbeb591f30bb5f0cbb05789c6a98dbd79166364` |
 | `mex2v2_provenance.py` | `ac9e54c7d6079298d7a0c9a3154e8839d2e9097b412f6725ab95af87986c2517` |
 | `mex2v2_run.py` | `274c8a64d50b5ddd665dbe932491634383080af06caa285d5f75635eb6c61ebc` |
-| `ME_X2_V2_LOOKAHEAD_REACHABILITY_REVIVAL_DESIGN_V2.json` | `c81b96225cc544358ec6445a3f383be149e8fd9179be667998ba79ec96a62b7d` |
+| `ME_X2_V2_LOOKAHEAD_REACHABILITY_REVIVAL_DESIGN_V2.json` | `9ea8c8cd890a0f2e2df1395e58a49f10708e5b0a48f13474c9044fba61a800de` |
 | `ME_X2_V2_LEVER_KNOWN_ANSWER_FIXTURES_V2.json` | `d0f75302f7c342966e2c3c8410bb22d54df91c6e5aba10ca45d9402ff1ddf21a` |
 | `results/ME_X2_V2_DEVELOPMENT_RESULTS_V2.json` | `533b38af3f8965b3ae34f43f21a66bdfa5073b6502ed6465790fcd452f209485` |
 | `results/ME_X2_V2_DEVELOPMENT_EXPECTED_CUSTODY_V2.json` | `cb7d75876ae4a5169ab301689e07db1a6bedace83d1e077a3fc1292c64b03131` |
@@ -47,7 +47,11 @@ Every frozen V1 file is byte-identical to the hash published in
 `mex2_catalogue.py`, `mex2_oracle.py`, `mex2_generator.py`, `mex2_parents.py`,
 `mex2_arms.py`, `mex2_run.py` and the V1 design JSON
 (`bb63685c…`). **8/8 match.** The V2 lane adds files in its own directory and
-touches nothing in `me-x2/`; V1 has no protected output and is not re-scored.
+touches nothing in `me-x2/`. V1's protected run is complete (PR #164, main
+`776d3a1`, route `PARENT_SUFFICIENT (B5_DOMINATES)`, `M` 0.963 vs `B5` 0.983,
+p = 0.0032, all 43 of `M`'s losses false `CANNOT_IDENTIFY`); its artifacts are
+immutable, are **read by no V2 module** — asserted by a unit test — and are not
+re-scored here.
 
 The comparator side of the study is therefore not a re-implementation: the unit
 tests assert that `B5`, every ladder rung, every parent, both controls and V1's
@@ -241,6 +245,31 @@ generator, which G0d freezes byte-identical and which this probe re-checks.
    pre-registered expectation, so that a horizon-shaped residual on the protected
    split reads as `PARENT_SUFFICIENT` with the residual **interface-standard, not
    control**, and not as a lever defect.
+
+## 7b. Post-freeze factual amendment (V1's protected outcome)
+
+This lane was authored from a checkout predating PR #164 and first described V1's
+route from the registered expectation and the discarded pre-merge dry run. On
+rebasing onto main, V1's protected outcome receipt was found and every
+parent-lane description was corrected to cite it — which strengthens the lane's
+premise, since the failure signature is now measured rather than predicted (43 of
+43 of `M`'s losses are false `CANNOT_IDENTIFY`, 0 false escalations, 140/140
+correct `CANNOT_IDENTIFY`).
+
+**Nothing mechanical changed.** No lever, gate, threshold, stratum weight, arm,
+seed or routing rule differs from the frozen version; V2's committed seed is
+unrelated to V1's; and no V1 protected number informed any V2 design choice — the
+levers, the L1 key ordering, the gates and the fixtures were all frozen and
+committed before this amendment. V1's frozen code and design JSON are
+byte-identical on main to the hashes G0d checks, which is why this is a
+description change rather than a re-freeze. The design-JSON hash moved with the
+text, and the table in §1 is the current one.
+
+The correction was **found by this lane's own test**: `test_v1_lane_artifacts…`
+asserted that V1 had no protected output, and it failed in CI against the merged
+tree. The test now asserts the claim that actually matters — no V2 file writes
+into the V1 directory, no V2 module reads V1's protected artifacts or seed, and
+V1's frozen code is byte-identical.
 
 ## 8. Estimated protected-run cost
 

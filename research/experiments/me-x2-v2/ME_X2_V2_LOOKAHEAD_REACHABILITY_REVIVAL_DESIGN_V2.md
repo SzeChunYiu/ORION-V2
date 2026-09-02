@@ -10,18 +10,37 @@ pre-registered expectation (§1.3).
 
 **Parent lane.** `research/experiments/me-x2` (design sha256
 `bb63685c02da55e7c7ebdf72541e862bcc92661b07a1074e33b8371a35e5d7c9`). V1's
-registered expectation and its discarded protected-scale dry run (public seed
-`ME-X2-DRYRUN-20260902`, results sha256 `3372a7c5…`, custody `71684694…`,
-artifacts discarded) both route `PARENT_SUFFICIENT` with `B5` ahead of `M`.
-**V1's result and artifacts are immutable and are not re-scored here.** No
-number from that dry run is evidence and none enters this design; it supplied
-only the failure signature this lane revives against:
+**protected run is complete** (PR #164, main `776d3a1`,
+`ME_X2_OUTCOME_RECEIPT.md`): route `PARENT_SUFFICIENT (B5_DOMINATES)`, `M` 0.963
+against `B5` 0.983 on the primary endpoint, paired diff −0.020, exact p = 0.0032,
+95% CI [−0.033, −0.007]. **V1's result and artifacts are immutable, are read by
+no V2 module, and are not re-scored here.** What V1 supplies to this lane is the
+failure signature, now measured rather than predicted:
 
 > `M` takes the **cheapest** admissible discriminator with no lookahead, spends
 > part of the budget on a weakly discriminating action, and its **fail-closed**
 > reachability rule then correctly reports that no live hypothesis is
-> establishable, so `M` declares `CANNOT_IDENTIFY`. Nearly all of `M`'s losses
-> are false `CANNOT_IDENTIFY`; `M` never over-escalates.
+> establishable, so `M` declares `CANNOT_IDENTIFY`. Of the 62 discordant
+> instances, **all 43 that `B5` wins are `M` declaring `CANNOT_IDENTIFY` where
+> the episode was decidable**, and all 19 that `M` wins are `B5` escalating above
+> the oracle level. `M` carries **0** false escalations against `B5`'s 21 and
+> **140/140** correct `CANNOT_IDENTIFY` against `B5`'s 135/140.
+
+V1's own receipt states the consequence plainly: *M's conservatism is not a
+separate virtue that happens to accompany the loss — it is the loss*, and V1's G2
+passes **because** `M` abstains. That is exactly what makes G2 this lane's live
+gate (§1.3) and why it is evaluated against V1's `M` as well as against `B5`.
+
+**Post-freeze factual amendment.** This lane was authored from a checkout
+predating V1's protected run and first described V1's route from the registered
+expectation and the discarded pre-merge dry run (`ME-X2-DRYRUN-20260902`,
+artifacts discarded, never evidence). On rebasing onto main the protected outcome
+receipt was found and the paragraph above was corrected to cite it. **Nothing
+mechanical changed**: no lever, gate, threshold, stratum weight, arm, seed or
+routing rule differs from the frozen version, V2's protected seed is unrelated to
+V1's, and no V1 protected number informed any V2 design choice. V1's frozen code
+and design JSON are byte-identical on main to the hashes G0d checks, which is why
+this is a description change and not a re-freeze.
 
 **Status:** frozen design + lever known-answer fixtures + development split.
 **No protected outcome has been generated or inspected.** The protected stage
@@ -260,7 +279,11 @@ it can only inflate G5(c) if left in.
   specification damage ≤ `B5`'s (V1's clause), **and both ≤ V1's `M`**. A revival
   may not buy decisions with escalation harm.
 - **G3 `MEDIATION`** (only if G1b): as V1, with the `M2` locus ablations.
-- **G4 `INTERFACE_LADDER`:** as V1.
+- **G4 `INTERFACE_LADDER`:** as V1, including V1's own caveat: `gap_null` is
+  computed as ¬G1b, so `RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL` fires both
+  when the arm ties `B5` and when `B5` strictly beats it. V2 inherits the
+  computation unchanged for comparability, so the terminal must never be quoted
+  alone — read it beside the route and the lever verdict.
 - **G5 `LEVER_ATTRIBUTION` (new):**
   (a) paired `M2` − `M_V1` decision-correct > 0 at exact two-sided p ≤ 0.05;
   (b) neither single-lever arm improves on `M_V1` by more than the conjunction

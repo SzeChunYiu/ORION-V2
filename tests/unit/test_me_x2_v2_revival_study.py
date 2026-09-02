@@ -340,7 +340,13 @@ def test_design_markdown_and_json_agree_on_the_commitment_and_seeds() -> None:
     assert "No protected outcome has been generated or inspected" in md
 
 
-def test_v1_lane_artifacts_are_untouched_by_this_lane() -> None:
-    """V1's result is immutable: no V2 file lives in the V1 directory and V1 has no protected output."""
+def test_v1_lane_artifacts_are_untouched_and_unread_by_this_lane() -> None:
+    """V1's result is immutable. V1's protected run is complete (PR #164), so this lane must not
+    write into the V1 directory and must not read V1's protected artifacts: the V2 comparison runs
+    on its own committed seed and inherits nothing from V1's outcome."""
     assert not list(MEX2.glob("mex2v2_*")) and not list(MEX2.glob("ME_X2_V2_*"))
-    assert not list((MEX2 / "results").glob("ME_X2_PROTECTED_*"))
+    for f in sorted(MEX2V2.glob("*.py")) + sorted(MEX2V2.glob("*.json")) + sorted(MEX2V2.glob("*.md")):
+        src = f.read_text()
+        assert "ME_X2_PROTECTED" not in src, f"{f.name} references V1's protected artifacts"
+        assert "PROTECTED_SEED_V1" not in src and "MEX2_PROTECTED_SEED_FILE" not in src, f.name
+    assert mex2v2_provenance.check()["all_match"], "V1's frozen code and design must be byte-identical"
