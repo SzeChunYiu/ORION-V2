@@ -61,6 +61,12 @@ def test_parse_and_redaction_strip_registry_ids() -> None:
     assert set(vis) == set(DESIGN["corpus"]["arm_visible_record_fields"])
 
 
+def test_redaction_without_leading_word_boundary() -> None:
+    assert "NCT" not in mod.redact("ClinicalTrials.gov identifierNCT00445770.")
+    assert "NCT" not in mod.redact("registered (NCT 01234567) and ISRCTN12345678; EudraCT 2015-001234-56")
+    assert mod.redact("The ONCT trial") == "The ONCT trial"
+
+
 def test_eligibility_rules() -> None:
     recs = mod.parse_articles(_corpus_xml(1, 1, "12").encode())
     assert mod.eligible(recs[0], DESIGN) == (True, "ok")

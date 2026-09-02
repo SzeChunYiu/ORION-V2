@@ -43,32 +43,33 @@ ESEARCH = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
 EFETCH = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
 ARMS = ("P_D_FULL", "P_D_MINUS_DEPENDENCE", "STRONGEST_ASSURANCE_FEDERATION")
 INCONCLUSIVE = "INCONCLUSIVE_INSUFFICIENT_INDEPENDENT_SUPPORT"
-NCT_RE = re.compile(r"\bNCT\s?-?\d{8}\b", re.IGNORECASE)
+NCT_RE = re.compile(r"NCT\s?-?\d{8}(?!\d)", re.IGNORECASE)
 # every registry-id shape we know of; all are replaced by the same neutral marker so the
-# redaction itself carries no per-record information
+# redaction itself carries no per-record information. No leading word boundary: live
+# records glue the id to the preceding word ("identifierNCT00445770", verified 2026-09-02).
 REGISTRY_RES = [
     NCT_RE,
-    re.compile(r"\bISRCTN\s?-?\d{6,8}\b", re.IGNORECASE),
-    re.compile(r"\b\d{4}-\d{6}-\d{2}(?:-\d{2})?\b"),            # EudraCT / EU CT
-    re.compile(r"\bChiCTR-?[A-Z]*-?\d{6,12}\b", re.IGNORECASE),
-    re.compile(r"\bACTRN\s?\d{14}[a-z]?\b", re.IGNORECASE),
-    re.compile(r"\bUMIN\s?-?\d{9}\b", re.IGNORECASE),
-    re.compile(r"\bDRKS\s?\d{8}\b", re.IGNORECASE),
-    re.compile(r"\bCTRI/\d{4}/\d{2}/\d{6}\b", re.IGNORECASE),
-    re.compile(r"\bNTR\s?\d{3,5}\b"),
-    re.compile(r"\bNL\s?\d{4,5}\b"),
-    re.compile(r"\bJPRN-[A-Za-z0-9]+\b"),
-    re.compile(r"\bjRCT[a-z]?\d{9,10}\b", re.IGNORECASE),
-    re.compile(r"\bKCT\s?\d{7}\b"),
-    re.compile(r"\bIRCT\s?\d{8,20}N?\d*\b", re.IGNORECASE),
-    re.compile(r"\bPACTR\s?\d{15,16}\b", re.IGNORECASE),
-    re.compile(r"\bCRD42\d{7}\b"),                              # PROSPERO
-    re.compile(r"\bTCTR\s?\d{11}\b", re.IGNORECASE),
-    re.compile(r"\bRBR-[a-z0-9]{6,8}\b", re.IGNORECASE),
-    re.compile(r"\bSLCTR/\d{4}/\d{3}\b", re.IGNORECASE),
-    re.compile(r"\bEUCTR\d{4}-\d{6}-\d{2}-[A-Z]{2}\b"),
-    re.compile(r"\bPMID:?\s?\d{6,9}\b", re.IGNORECASE),
-    re.compile(r"\b10\.\d{4,9}/[^\s,;)]+", re.IGNORECASE),        # DOI
+    re.compile(r"ISRCTN\s?-?\d{6,8}(?!\d)", re.IGNORECASE),
+    re.compile(r"(?<!\d)\d{4}-\d{6}-\d{2}(?:-\d{2})?(?!\d)"),         # EudraCT / EU CT
+    re.compile(r"ChiCTR-?[A-Z]*-?\d{6,12}(?!\d)", re.IGNORECASE),
+    re.compile(r"ACTRN\s?\d{14}[a-z]?(?![A-Za-z0-9])", re.IGNORECASE),
+    re.compile(r"UMIN\s?-?\d{9}(?!\d)", re.IGNORECASE),
+    re.compile(r"DRKS\s?\d{8}(?!\d)", re.IGNORECASE),
+    re.compile(r"CTRI/\d{4}/\d{2}/\d{6}(?!\d)", re.IGNORECASE),
+    re.compile(r"\bNTR\s?\d{3,5}(?!\d)"),
+    re.compile(r"\bNL\s?\d{4,5}(?!\d)"),
+    re.compile(r"JPRN-[A-Za-z0-9]+\b"),
+    re.compile(r"jRCT[a-z]?\d{9,10}(?!\d)", re.IGNORECASE),
+    re.compile(r"\bKCT\s?\d{7}(?!\d)"),
+    re.compile(r"IRCT\s?\d{8,20}N?\d*(?![A-Za-z0-9])", re.IGNORECASE),
+    re.compile(r"PACTR\s?\d{15,16}(?!\d)", re.IGNORECASE),
+    re.compile(r"CRD42\d{7}(?!\d)"),                                  # PROSPERO
+    re.compile(r"TCTR\s?\d{11}(?!\d)", re.IGNORECASE),
+    re.compile(r"RBR-[a-z0-9]{6,8}\b", re.IGNORECASE),
+    re.compile(r"SLCTR/\d{4}/\d{3}(?!\d)", re.IGNORECASE),
+    re.compile(r"EUCTR\d{4}-\d{6}-\d{2}-[A-Z]{2}\b"),
+    re.compile(r"PMID:?\s?\d{6,9}(?!\d)", re.IGNORECASE),
+    re.compile(r"\b10\.\d{4,9}/[^\s,;)]+", re.IGNORECASE),            # DOI
 ]
 REDACTION_MARK = "[REGISTRY-ID]"
 REGISTRATION_LABEL_RE = re.compile(r"REGIST|CLINICALTRIALS|TRIAL REG", re.IGNORECASE)
