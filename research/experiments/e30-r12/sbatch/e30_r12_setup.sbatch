@@ -19,7 +19,12 @@
 # copytree()s out of it into per-evaluation scratch, so the tree stays byte-identical
 # and R11's custody is untouched.
 set -euo pipefail
-source "$(dirname "$0")/e30_r12_common.sh"
+# SLURM copies the batch script into its per-job spool directory, so `dirname "$0"` is
+# /var/spool/slurm/... and not this file's location in the source tree. Resolve the
+# shared bindings from $R12 (exported by the submitting environment) instead.
+: "${R12:?set R12=<campaign dir> in the submitting environment (sbatch --export)}"
+SBATCH_DIR="${E30R12_SBATCH_DIR:-$R12/source/research/experiments/e30-r12/sbatch}"
+source "$SBATCH_DIR/e30_r12_common.sh"
 set -a; source "$HOME/.orion-campaign.env"; set +a
 
 test -d "$R11" || { echo "R11 campaign missing"; exit 2; }

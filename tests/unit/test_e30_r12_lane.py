@@ -575,6 +575,17 @@ def test_agents_gate_on_authorization_and_import_provenance():
     assert "COMPLETED_PROPOSAL_ONLY" in text and "SKIP" in text
 
 
+def test_sbatch_scripts_do_not_resolve_their_own_directory():
+    """SLURM runs a spool COPY of the script, so `dirname "$0"` points at /var/spool."""
+    for path in sorted(SBATCH.glob("*.sbatch")):
+        text = path.read_text()
+        # The comment explaining why mentions it; what must not appear is the usage.
+        assert 'source "$(dirname' not in text, path.name
+        assert '$(dirname "$0")/e30_r12_common.sh' not in text, path.name
+        assert "e30_r12_common.sh" in text, path.name
+        assert 'SBATCH_DIR="${E30R12_SBATCH_DIR:-$R12/source' in text, path.name
+
+
 def test_suite_and_rollup_refuse_without_a_gr0_pass():
     for name in ("e30_r12_fullreg_suite.sbatch", "e30_r12_fullreg_gr0_verify.sbatch"):
         assert "gr0_status" in (SBATCH / name).read_text(), name

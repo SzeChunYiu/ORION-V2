@@ -20,7 +20,12 @@
 # dataset.  A pass whose workers all die that way leaves the pending set unchanged and
 # the final stock check refuses to chain evaluation.
 set -euo pipefail
-source "$(dirname "$0")/e30_r12_common.sh"
+# SLURM copies the batch script into its per-job spool directory, so `dirname "$0"` is
+# /var/spool/slurm/... and not this file's location in the source tree. Resolve the
+# shared bindings from $R12 (exported by the submitting environment) instead.
+: "${R12:?set R12=<campaign dir> in the submitting environment (sbatch --export)}"
+SBATCH_DIR="${E30R12_SBATCH_DIR:-$R12/source/research/experiments/e30-r12/sbatch}"
+source "$SBATCH_DIR/e30_r12_common.sh"
 set -a; source "$HOME/.orion-campaign.env"; set +a
 export ANTHROPIC_MODEL="${E30R12_REQUESTED_MODEL:-glm-5.3}"
 export ORION_ARM_SERVED_MODEL="${E30R12_SERVED_MODEL:-glm-5.3}"

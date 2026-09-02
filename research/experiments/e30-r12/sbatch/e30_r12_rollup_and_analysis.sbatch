@@ -10,7 +10,12 @@
 # Rollup, then the registered analysis.  The analysis refuses to start without a GR0
 # PASS receipt and computes no gate until the served-model homogeneity check is done.
 set -euo pipefail
-source "$(dirname "$0")/e30_r12_common.sh"
+# SLURM copies the batch script into its per-job spool directory, so `dirname "$0"` is
+# /var/spool/slurm/... and not this file's location in the source tree. Resolve the
+# shared bindings from $R12 (exported by the submitting environment) instead.
+: "${R12:?set R12=<campaign dir> in the submitting environment (sbatch --export)}"
+SBATCH_DIR="${E30R12_SBATCH_DIR:-$R12/source/research/experiments/e30-r12/sbatch}"
+source "$SBATCH_DIR/e30_r12_common.sh"
 "$PY" "$RUNNER" --stage rollup "${COMMON[@]}"
 "$PY" -c "
 import json,sys

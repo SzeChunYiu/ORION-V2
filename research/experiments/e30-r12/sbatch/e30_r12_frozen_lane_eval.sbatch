@@ -11,7 +11,12 @@
 # This produces the vector GR0a checks the full-regression lane against: two
 # independent evaluators over the same proposals must agree bit-exactly.
 set -euo pipefail
-source "$(dirname "$0")/e30_r12_common.sh"
+# SLURM copies the batch script into its per-job spool directory, so `dirname "$0"` is
+# /var/spool/slurm/... and not this file's location in the source tree. Resolve the
+# shared bindings from $R12 (exported by the submitting environment) instead.
+: "${R12:?set R12=<campaign dir> in the submitting environment (sbatch --export)}"
+SBATCH_DIR="${E30R12_SBATCH_DIR:-$R12/source/research/experiments/e30-r12/sbatch}"
+source "$SBATCH_DIR/e30_r12_common.sh"
 LOGI="$LOGD/frozenlane-items"; mkdir -p "$LOGI"
 R12="$R12" "$PY" - > "$RUN/e30r12-eval-pending.tsv" <<'PY'
 import json, os, sys
