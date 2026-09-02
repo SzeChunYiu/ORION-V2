@@ -1,0 +1,235 @@
+{
+  "backend": {
+    "backend": "hf",
+    "device": "cuda:0",
+    "device_map": {
+      "": "cuda"
+    },
+    "dtype": "torch.bfloat16",
+    "gpu_names": [
+      "NVIDIA A100 80GB PCIe"
+    ],
+    "hidden_size": 5120,
+    "model_id": "mistralai/Mistral-Small-24B-Instruct-2501",
+    "n_gpus_visible": 1,
+    "n_layers": 40,
+    "revision_requested": "9527884be6e5616bdd54de542f9ae13384489724",
+    "revision_resolved": "9527884be6e5616bdd54de542f9ae13384489724",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.51.3"
+  },
+  "by_family": {
+    "F0_ACQ": {
+      "maintain": {
+        "acc": null,
+        "correct": 0,
+        "n": 0,
+        "wilson95": [
+          null,
+          null
+        ]
+      },
+      "update": {
+        "acc": null,
+        "correct": 0,
+        "n": 0,
+        "wilson95": [
+          null,
+          null
+        ]
+      }
+    },
+    "F1_P0": {
+      "maintain": {
+        "acc": 1.0,
+        "correct": 4,
+        "n": 4,
+        "wilson95": [
+          0.5101091596030786,
+          0.9999999999999999
+        ]
+      },
+      "update": {
+        "acc": 1.0,
+        "correct": 4,
+        "n": 4,
+        "wilson95": [
+          0.5101091596030786,
+          0.9999999999999999
+        ]
+      }
+    },
+    "F2_P1": {
+      "maintain": {
+        "acc": 1.0,
+        "correct": 4,
+        "n": 4,
+        "wilson95": [
+          0.5101091596030786,
+          0.9999999999999999
+        ]
+      },
+      "update": {
+        "acc": null,
+        "correct": 0,
+        "n": 0,
+        "wilson95": [
+          null,
+          null
+        ]
+      }
+    },
+    "F3_P2_CANON": {
+      "maintain": {
+        "acc": 1.0,
+        "correct": 4,
+        "n": 4,
+        "wilson95": [
+          0.5101091596030786,
+          0.9999999999999999
+        ]
+      },
+      "update": {
+        "acc": 1.0,
+        "correct": 4,
+        "n": 4,
+        "wilson95": [
+          0.5101091596030786,
+          0.9999999999999999
+        ]
+      }
+    },
+    "F3_P2_CANON_SF": {
+      "maintain": {
+        "acc": 1.0,
+        "correct": 4,
+        "n": 4,
+        "wilson95": [
+          0.5101091596030786,
+          0.9999999999999999
+        ]
+      },
+      "update": {
+        "acc": 1.0,
+        "correct": 4,
+        "n": 4,
+        "wilson95": [
+          0.5101091596030786,
+          0.9999999999999999
+        ]
+      }
+    },
+    "F3_P2_INDEP": {
+      "maintain": {
+        "acc": 1.0,
+        "correct": 4,
+        "n": 4,
+        "wilson95": [
+          0.5101091596030786,
+          0.9999999999999999
+        ]
+      },
+      "update": {
+        "acc": 1.0,
+        "correct": 4,
+        "n": 4,
+        "wilson95": [
+          0.5101091596030786,
+          0.9999999999999999
+        ]
+      }
+    },
+    "F3_P2_MIRROR": {
+      "maintain": {
+        "acc": 1.0,
+        "correct": 8,
+        "n": 8,
+        "wilson95": [
+          0.6755924316585924,
+          1.0
+        ]
+      },
+      "update": {
+        "acc": null,
+        "correct": 0,
+        "n": 0,
+        "wilson95": [
+          null,
+          null
+        ]
+      }
+    },
+    "F3_P2_RECON": {
+      "maintain": {
+        "acc": 1.0,
+        "correct": 4,
+        "n": 4,
+        "wilson95": [
+          0.5101091596030786,
+          0.9999999999999999
+        ]
+      },
+      "update": {
+        "acc": 1.0,
+        "correct": 4,
+        "n": 4,
+        "wilson95": [
+          0.5101091596030786,
+          0.9999999999999999
+        ]
+      }
+    },
+    "F3_P2_TIE": {
+      "maintain": {
+        "acc": null,
+        "correct": 0,
+        "n": 0,
+        "wilson95": [
+          null,
+          null
+        ]
+      },
+      "update": {
+        "acc": null,
+        "correct": 0,
+        "n": 0,
+        "wilson95": [
+          null,
+          null
+        ]
+      }
+    }
+  },
+  "condition": "R0",
+  "gate": "GPC",
+  "maintain_accuracy_R0": {
+    "acc": 1.0,
+    "correct": 32,
+    "n": 32,
+    "wilson95": [
+      0.8928208002353198,
+      1.0000000000000002
+    ]
+  },
+  "maintain_ok": true,
+  "min_maintain_accuracy_R0": 0.75,
+  "min_update_accuracy_R0": 0.75,
+  "model": "mistral-small-24b-instruct-2501",
+  "n_instances": 36,
+  "pass": true,
+  "schema_version": "orion.v2.pra.real-llm-audit-stage-result.v1",
+  "split": "dev",
+  "split_rule": "dev split only",
+  "stage": "competence-gate",
+  "update_accuracy_R0": {
+    "acc": 1.0,
+    "correct": 20,
+    "n": 20,
+    "wilson95": [
+      0.8388748398148705,
+      1.0000000000000002
+    ]
+  },
+  "update_ok": true,
+  "verdict": "COMPETENT__MODEL_RETAINED"
+}

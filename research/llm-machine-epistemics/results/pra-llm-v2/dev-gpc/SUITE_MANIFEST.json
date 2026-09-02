@@ -1,0 +1,27 @@
+{
+  "design_id": "ORION51.PRA_REAL_LLM_AUDIT.design.v2",
+  "schema_version": "orion.v2.pra.real-llm-audit-stage-result.v1",
+  "splits": {
+    "dev": {
+      "instances_per_family": {
+        "F0_ACQ": 4,
+        "F1_P0": 4,
+        "F2_P1": 4,
+        "F3_P2_CANON": 4,
+        "F3_P2_CANON_SF": 4,
+        "F3_P2_INDEP": 4,
+        "F3_P2_MIRROR": 4,
+        "F3_P2_RECON": 4,
+        "F3_P2_TIE": 4
+      },
+      "n_instances": 36,
+      "path": "/projects/hep/fs9/users/scyiu/orion-v2-pra-llm/campaign-pra-llm-v2/dev-gpc/suite/suite_dev.json",
+      "sha256": "a8c58107bd53f9f55d3e53df9edbc59d6879bc82cee1294eb38b106217383842"
+    },
+    "protected": {
+      "commitment_sha256": "PENDING_UNTIL_GPC_DEV_PASS",
+      "status": "SEALED_SEED_NOT_SUPPLIED__SPLIT_NOT_GENERATED"
+    }
+  },
+  "stage": "generate-suite"
+}
