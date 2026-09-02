@@ -1,0 +1,62 @@
+# FM10 analysis — PROTECTED
+
+Instances: 126; results sha256 `e2556b000e4db6d637807d83ab1c369f4b6f11d8bcd4e3f0861325969cf131c8`.
+
+
+## Per-arm exactness
+
+| arm | exact | rate | over-accept | under-accept |
+|---|---|---|---|---|
+| P0_SURFACE_SIMILARITY | 77/126 | 0.611 | 15 | 23 |
+| P1_SME_STRUCTURE_MAPPING | 104/126 | 0.825 | 18 | 0 |
+| P2_COMPLETE_HOMOMORPHISM | 108/126 | 0.857 | 18 | 0 |
+| P3_FIXED_LESSON_INJECTION | 54/126 | 0.429 | 18 | 18 |
+| P4_INVARIANCE_PARENT | 54/126 | 0.429 | 68 | 0 |
+| F0_PARENT_FEDERATION | 126/126 | 1.000 | 0 | 0 |
+| M_F2_TRANSFER_DISCOVERY_FULL | 126/126 | 1.000 | 0 | 0 |
+| M_MINUS_RELATIONAL_MAPPING | 72/126 | 0.571 | 0 | 18 |
+| M_MINUS_INVARIANCE_TEST | 108/126 | 0.857 | 18 | 0 |
+| M_MINUS_OBSTRUCTION_SEARCH | 53/126 | 0.421 | 0 | 30 |
+| M_MINUS_TYPE_DISCIPLINE | 124/126 | 0.984 | 2 | 0 |
+| C_ALWAYS_TRANSFER | 36/126 | 0.286 | 90 | 0 |
+| C_ALWAYS_BLOCK | 36/126 | 0.286 | 0 | 36 |
+| C_RANDOM_DISPOSITION | 24/126 | 0.190 | 14 | 30 |
+
+## Per-family exact rate
+
+| arm | ISOMORPHIC_TRANSFER | PARTIAL_HOMOMORPHISM | NON_HOMOMORPHISM | SURFACE_DECOY | DIRECTION_REVERSAL | RELATION_TYPE_MISMATCH | INVARIANT_BREAKING_EMBEDDING |
+|---|---|---|---|---|---|---|---|
+| P0_SURFACE_SIMILARITY | 0.72 | 1.00 | 1.00 | 0.00 | 0.78 | 0.78 | 0.00 |
+| P1_SME_STRUCTURE_MAPPING | 1.00 | 1.00 | 1.00 | 1.00 | 0.83 | 0.94 | 0.00 |
+| P2_COMPLETE_HOMOMORPHISM | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 0.00 |
+| P3_FIXED_LESSON_INJECTION | 1.00 | 1.00 | 1.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| P4_INVARIANCE_PARENT | 1.00 | 0.00 | 0.00 | 1.00 | 0.00 | 0.00 | 1.00 |
+| F0_PARENT_FEDERATION | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 |
+| M_F2_TRANSFER_DISCOVERY_FULL | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 |
+| M_MINUS_RELATIONAL_MAPPING | 1.00 | 1.00 | 1.00 | 0.00 | 0.00 | 0.00 | 1.00 |
+| M_MINUS_INVARIANCE_TEST | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 0.00 |
+| M_MINUS_OBSTRUCTION_SEARCH | 0.11 | 1.00 | 1.00 | 0.22 | 0.28 | 0.11 | 0.22 |
+| M_MINUS_TYPE_DISCIPLINE | 1.00 | 1.00 | 1.00 | 1.00 | 0.89 | 1.00 | 1.00 |
+| C_ALWAYS_TRANSFER | 1.00 | 0.00 | 0.00 | 1.00 | 0.00 | 0.00 | 0.00 |
+| C_ALWAYS_BLOCK | 0.00 | 1.00 | 1.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| C_RANDOM_DISPOSITION | 0.17 | 0.06 | 0.17 | 0.17 | 0.39 | 0.22 | 0.17 |
+
+## Gates (verdict, violations / instances evaluated)
+
+| gate | verdict | violations | n evaluated | hard |
+|---|---|---|---|---|
+| G0a_KNOWN_ANSWER | **PASS** | 0 | 11 | True |
+| G0b_ORACLE_SELF_AGREEMENT | **PASS** | 0 | 126 | True |
+| G0c_NULL_CALIBRATION | **PASS** | 0 | 4 | True |
+| G0d_DECOY_COVERAGE | **PASS** | 0 | 4 | True |
+| G0e_PLANTED_POSITIVES | **PASS** | 0 | 5 | True |
+| G0f_FAMILY_DISCRIMINATION | **PASS** | 0 | 2 | True |
+| G1a_PARENT_REPRODUCES_M | **PASS** | 0 | 126 | True |
+| G1b_M_ADVANTAGE | **NOT_FIRED** | 1 | 126 | False |
+| G2_ANTI_PERMISSIVENESS | **PASS** | 0 | 90 | True |
+| G3_MECHANISM_BY_OMISSION | **NOT_APPLICABLE** | 0 | 0 | False |
+
+## Route
+
+`PARENT_SUFFICIENT` — F0_PARENT_FEDERATION reproduces M_F2_TRANSFER_DISCOVERY_FULL's dispositions (identity 1.0000). Cost flag: `COST_ADVANTAGE_PARENT`.
+
