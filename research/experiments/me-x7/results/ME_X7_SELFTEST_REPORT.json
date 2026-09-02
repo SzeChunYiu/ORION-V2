@@ -1,0 +1,620 @@
+{
+  "known_answer": [
+    {
+      "expected": {
+        "defect_class": "WRONG_PROBLEM_OR_SPECIFICATION",
+        "verdict": "REJECT"
+      },
+      "name": "KA-WRONG_PROBLEM_OR_SPECIFICATION-MODE_FORMAL",
+      "oracle": {
+        "defect_class": "WRONG_PROBLEM_OR_SPECIFICATION",
+        "verdict": "REJECT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": "WRONG_PROBLEM_OR_SPECIFICATION",
+        "verdict": "REJECT"
+      },
+      "name": "KA-WRONG_PROBLEM_OR_SPECIFICATION-MODE_COMPUTATIONAL",
+      "oracle": {
+        "defect_class": "WRONG_PROBLEM_OR_SPECIFICATION",
+        "verdict": "REJECT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": "STALE_OR_WRONG_SOURCE",
+        "verdict": "REJECT"
+      },
+      "name": "KA-STALE_OR_WRONG_SOURCE-MODE_FORMAL",
+      "oracle": {
+        "defect_class": "STALE_OR_WRONG_SOURCE",
+        "verdict": "REJECT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": "STALE_OR_WRONG_SOURCE",
+        "verdict": "REJECT"
+      },
+      "name": "KA-STALE_OR_WRONG_SOURCE-MODE_COMPUTATIONAL",
+      "oracle": {
+        "defect_class": "STALE_OR_WRONG_SOURCE",
+        "verdict": "REJECT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": "HIDDEN_DEPENDENCE",
+        "verdict": "REJECT"
+      },
+      "name": "KA-HIDDEN_DEPENDENCE-MODE_FORMAL",
+      "oracle": {
+        "defect_class": "HIDDEN_DEPENDENCE",
+        "verdict": "REJECT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": "HIDDEN_DEPENDENCE",
+        "verdict": "REJECT"
+      },
+      "name": "KA-HIDDEN_DEPENDENCE-MODE_COMPUTATIONAL",
+      "oracle": {
+        "defect_class": "HIDDEN_DEPENDENCE",
+        "verdict": "REJECT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": "CODE_OR_PROOF_MISMATCH",
+        "verdict": "REJECT"
+      },
+      "name": "KA-CODE_OR_PROOF_MISMATCH-MODE_FORMAL",
+      "oracle": {
+        "defect_class": "CODE_OR_PROOF_MISMATCH",
+        "verdict": "REJECT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": "CODE_OR_PROOF_MISMATCH",
+        "verdict": "REJECT"
+      },
+      "name": "KA-CODE_OR_PROOF_MISMATCH-MODE_COMPUTATIONAL",
+      "oracle": {
+        "defect_class": "CODE_OR_PROOF_MISMATCH",
+        "verdict": "REJECT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": "SEED_OR_VERSION_MISMATCH",
+        "verdict": "REJECT"
+      },
+      "name": "KA-SEED_OR_VERSION_MISMATCH-MODE_FORMAL",
+      "oracle": {
+        "defect_class": "SEED_OR_VERSION_MISMATCH",
+        "verdict": "REJECT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": "SEED_OR_VERSION_MISMATCH",
+        "verdict": "REJECT"
+      },
+      "name": "KA-SEED_OR_VERSION_MISMATCH-MODE_COMPUTATIONAL",
+      "oracle": {
+        "defect_class": "SEED_OR_VERSION_MISMATCH",
+        "verdict": "REJECT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": "INVALID_CALIBRATION",
+        "verdict": "REJECT"
+      },
+      "name": "KA-INVALID_CALIBRATION-MODE_COMPUTATIONAL",
+      "oracle": {
+        "defect_class": "INVALID_CALIBRATION",
+        "verdict": "REJECT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": "INVALID_TRANSPORT",
+        "verdict": "REJECT"
+      },
+      "name": "KA-INVALID_TRANSPORT-MODE_FORMAL",
+      "oracle": {
+        "defect_class": "INVALID_TRANSPORT",
+        "verdict": "REJECT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": "INVALID_TRANSPORT",
+        "verdict": "REJECT"
+      },
+      "name": "KA-INVALID_TRANSPORT-MODE_COMPUTATIONAL",
+      "oracle": {
+        "defect_class": "INVALID_TRANSPORT",
+        "verdict": "REJECT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": "OMITTED_FAILED_ROUTE",
+        "verdict": "REJECT"
+      },
+      "name": "KA-OMITTED_FAILED_ROUTE-MODE_FORMAL",
+      "oracle": {
+        "defect_class": "OMITTED_FAILED_ROUTE",
+        "verdict": "REJECT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": "OMITTED_FAILED_ROUTE",
+        "verdict": "REJECT"
+      },
+      "name": "KA-OMITTED_FAILED_ROUTE-MODE_COMPUTATIONAL",
+      "oracle": {
+        "defect_class": "OMITTED_FAILED_ROUTE",
+        "verdict": "REJECT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": "EVALUATOR_BLIND_SPOT",
+        "verdict": "REJECT"
+      },
+      "name": "KA-EVALUATOR_BLIND_SPOT-MODE_FORMAL",
+      "oracle": {
+        "defect_class": "EVALUATOR_BLIND_SPOT",
+        "verdict": "REJECT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": "EVALUATOR_BLIND_SPOT",
+        "verdict": "REJECT"
+      },
+      "name": "KA-EVALUATOR_BLIND_SPOT-MODE_COMPUTATIONAL",
+      "oracle": {
+        "defect_class": "EVALUATOR_BLIND_SPOT",
+        "verdict": "REJECT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": "AUTHORITY_OVERREACH",
+        "verdict": "REJECT"
+      },
+      "name": "KA-AUTHORITY_OVERREACH-MODE_FORMAL",
+      "oracle": {
+        "defect_class": "AUTHORITY_OVERREACH",
+        "verdict": "REJECT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": "AUTHORITY_OVERREACH",
+        "verdict": "REJECT"
+      },
+      "name": "KA-AUTHORITY_OVERREACH-MODE_COMPUTATIONAL",
+      "oracle": {
+        "defect_class": "AUTHORITY_OVERREACH",
+        "verdict": "REJECT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": "REPRESENTATION_CHANGE_LOSES_INFORMATION",
+        "verdict": "REJECT"
+      },
+      "name": "KA-REPRESENTATION_CHANGE_LOSES_INFORMATION-MODE_FORMAL",
+      "oracle": {
+        "defect_class": "REPRESENTATION_CHANGE_LOSES_INFORMATION",
+        "verdict": "REJECT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": "REPRESENTATION_CHANGE_LOSES_INFORMATION",
+        "verdict": "REJECT"
+      },
+      "name": "KA-REPRESENTATION_CHANGE_LOSES_INFORMATION-MODE_COMPUTATIONAL",
+      "oracle": {
+        "defect_class": "REPRESENTATION_CHANGE_LOSES_INFORMATION",
+        "verdict": "REJECT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": null,
+        "verdict": "ACCEPT"
+      },
+      "name": "KA-NO_DEFECT_WARRANTED-MODE_FORMAL",
+      "oracle": {
+        "defect_class": null,
+        "verdict": "ACCEPT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": null,
+        "verdict": "ACCEPT"
+      },
+      "name": "KA-NO_DEFECT_WARRANTED-MODE_COMPUTATIONAL",
+      "oracle": {
+        "defect_class": null,
+        "verdict": "ACCEPT"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": null,
+        "verdict": "CANNOT_CHECK"
+      },
+      "name": "KA-CENSORED_UNDECIDABLE-MODE_FORMAL",
+      "oracle": {
+        "defect_class": null,
+        "verdict": "CANNOT_CHECK"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "defect_class": null,
+        "verdict": "CANNOT_CHECK"
+      },
+      "name": "KA-CENSORED_UNDECIDABLE-MODE_COMPUTATIONAL",
+      "oracle": {
+        "defect_class": null,
+        "verdict": "CANNOT_CHECK"
+      },
+      "passed": true
+    }
+  ],
+  "null_calibration": {
+    "M_vs_shuffled_labels_exact_rate": 0.041666666666666664,
+    "always_accept_exact_where_oracle_rejects": {
+      "hit": 0,
+      "n_evaluated": 21
+    },
+    "always_cannot_check_exact_where_decidable": {
+      "hit": 0,
+      "n_evaluated": 23
+    },
+    "ceiling": 0.15,
+    "n_evaluated": 21,
+    "n_evaluated_shuffled": 24,
+    "pass": true,
+    "random_verdict_exact_rate": 0.08,
+    "rule": "the degenerate always-accept and always-abstain controls score 0 where their answer is wrong; random and shuffled-label nulls stay under the ceiling"
+  },
+  "oracle_agreement": {
+    "cross_implementation_agree": {
+      "n": 25,
+      "ok": 25
+    },
+    "exhaustive_agree": {
+      "n": 25,
+      "ok": 25
+    },
+    "n_evaluated": 25,
+    "pass": true,
+    "planter_agree": {
+      "n": 25,
+      "ok": 25
+    },
+    "rule": "direct rule == exhaustive enumeration; the planter's declared defect == the full-structure recomputation (exactly one INVALID check, no censoring); the arms' independent module implementation == the oracle's check table at full visibility"
+  },
+  "parent_fidelity": [
+    {
+      "case": "empty-from-unit-pair",
+      "expected": true,
+      "got": true,
+      "parent": "RESOLUTION_CHECKER",
+      "passed": true
+    },
+    {
+      "case": "two-step-refutation",
+      "expected": true,
+      "got": true,
+      "parent": "RESOLUTION_CHECKER",
+      "passed": true
+    },
+    {
+      "case": "unsound-resolvent-rejected",
+      "expected": false,
+      "got": false,
+      "parent": "RESOLUTION_CHECKER",
+      "passed": true
+    },
+    {
+      "case": "no-pivot-rejected",
+      "expected": false,
+      "got": false,
+      "parent": "RESOLUTION_CHECKER",
+      "passed": true
+    },
+    {
+      "case": "incomplete-refutation-rejected",
+      "expected": false,
+      "got": false,
+      "parent": "RESOLUTION_CHECKER",
+      "passed": true
+    },
+    {
+      "case": "bad-index-rejected",
+      "expected": false,
+      "got": false,
+      "parent": "RESOLUTION_CHECKER",
+      "passed": true
+    },
+    {
+      "case": "encode-decode-round-trip",
+      "expected": true,
+      "got": true,
+      "parent": "RESOLUTION_CHECKER",
+      "passed": true
+    },
+    {
+      "case": "deterministic-same-inputs",
+      "expected": true,
+      "got": true,
+      "parent": "REPLAY_MACHINE",
+      "passed": true
+    },
+    {
+      "case": "seed-change-diverges",
+      "expected": true,
+      "got": true,
+      "parent": "REPLAY_MACHINE",
+      "passed": true
+    },
+    {
+      "case": "env-change-diverges",
+      "expected": true,
+      "got": true,
+      "parent": "REPLAY_MACHINE",
+      "passed": true
+    },
+    {
+      "case": "program-change-diverges",
+      "expected": true,
+      "got": true,
+      "parent": "REPLAY_MACHINE",
+      "passed": true
+    },
+    {
+      "case": "transitive-revocation-hits-descendant",
+      "expected": [
+        "s0"
+      ],
+      "got": [
+        "s0"
+      ],
+      "parent": "PROVENANCE_LINEAGE",
+      "passed": true
+    },
+    {
+      "case": "revocation-does-not-splash",
+      "expected": [
+        "s1"
+      ],
+      "got": [
+        "s1"
+      ],
+      "parent": "PROVENANCE_LINEAGE",
+      "passed": true
+    },
+    {
+      "case": "no-revocation-no-hit",
+      "expected": [],
+      "got": [],
+      "parent": "PROVENANCE_LINEAGE",
+      "passed": true
+    },
+    {
+      "case": "no-edges-all-independent",
+      "expected": 3,
+      "got": 3,
+      "parent": "DEPENDENCE_AUDIT",
+      "passed": true
+    },
+    {
+      "case": "confirmed-edge-merges",
+      "expected": 2,
+      "got": 2,
+      "parent": "DEPENDENCE_AUDIT",
+      "passed": true
+    },
+    {
+      "case": "suspected-edge-ignored-when-excluded",
+      "expected": 2,
+      "got": 2,
+      "parent": "DEPENDENCE_AUDIT",
+      "passed": true
+    },
+    {
+      "case": "suspected-edge-merges-when-included",
+      "expected": 1,
+      "got": 1,
+      "parent": "DEPENDENCE_AUDIT",
+      "passed": true
+    },
+    {
+      "case": "challenged-solution-suspects-top",
+      "expected": true,
+      "got": true,
+      "parent": "ASSURANCE_CASE",
+      "passed": true
+    },
+    {
+      "case": "unrelated-node-does-not-suspect-top",
+      "expected": false,
+      "got": false,
+      "parent": "ASSURANCE_CASE",
+      "passed": true
+    },
+    {
+      "case": "score-0.95",
+      "expected": "ACCEPT",
+      "got": "ACCEPT",
+      "parent": "SELECTIVE_ABSTENTION",
+      "passed": true
+    },
+    {
+      "case": "score-0.05",
+      "expected": "REJECT",
+      "got": "REJECT",
+      "parent": "SELECTIVE_ABSTENTION",
+      "passed": true
+    },
+    {
+      "case": "score-0.5",
+      "expected": "CANNOT_CHECK",
+      "got": "CANNOT_CHECK",
+      "parent": "SELECTIVE_ABSTENTION",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "planted_positives": [
+    {
+      "must_be_rejected": true,
+      "name": "G0B_TRIPS_ON_NON_PLANTING_PLANTER",
+      "note": "expected REJECT for AUTHORITY_OVERREACH, got ACCEPT",
+      "passed": true,
+      "planter_agreed": false
+    },
+    {
+      "must_be_rejected": true,
+      "name": "G0B_TRIPS_ON_DOUBLE_PLANT",
+      "note": "expected exactly C_AUTHORITY INVALID, got ('C_CALIBRATION', 'C_AUTHORITY')",
+      "passed": true,
+      "planter_agreed": false
+    },
+    {
+      "must_be_rejected": true,
+      "name": "G0B_TRIPS_ON_DIRTY_CLEAN_CASE",
+      "note": "expected ACCEPT, got REJECT (('C_SPEC_BINDING',)())",
+      "passed": true,
+      "planter_agreed": false
+    },
+    {
+      "must_be_rejected": false,
+      "name": "G0B_ACCEPTS_A_CORRECT_PLANT",
+      "note": "",
+      "passed": true,
+      "planter_agreed": true
+    }
+  ],
+  "schema_version": "orion.v2.me-x7.exact-study-analysis.v1.selftest",
+  "selftest_arm_exact": {
+    "A0_PROOF_CERTIFICATE_ONLY": 0.16,
+    "A1_PROVENANCE_ONLY": 0.16,
+    "A2_REPLAY_ONLY": 0.2,
+    "A3_ASSURANCE_CASE": 0.16,
+    "A4_DEPENDENCE_AUDIT": 0.16,
+    "A5_CALIBRATED_ABSTENTION": 0.08,
+    "B5_STRONGEST_FAITHFUL_AUDIT_PARENT": 1.0,
+    "C_ALWAYS_ACCEPT": 0.08,
+    "C_ALWAYS_CANNOT_CHECK": 0.08,
+    "C_RANDOM_VERDICT": 0.08,
+    "L1_OUTPUT_ONLY": 0.08,
+    "L2_PLUS_PROVENANCE": 0.16,
+    "L3_PLUS_PROBLEM_ARTIFACT": 0.32,
+    "L4_PLUS_VERSION_CALIBRATION_TRANSPORT": 0.56,
+    "L5_PLUS_DEPENDENCE_ROUTE_AUTHORITY_PRESERVATION": 0.92,
+    "L6_FULL_WITNESS": 1.0,
+    "M_CLAIM_SUFFICIENT_WITNESS": 1.0,
+    "M_MINUS_ARTIFACT": 0.76,
+    "M_MINUS_ASSUMPTION_VERSION": 0.84,
+    "M_MINUS_AUTHORITY_CEILING": 0.84,
+    "M_MINUS_CALIBRATION": 0.88,
+    "M_MINUS_DEPENDENCE": 0.84,
+    "M_MINUS_EVALUATOR_CONTRACT": 0.92,
+    "M_MINUS_PRESERVATION": 0.84,
+    "M_MINUS_PROBLEM_BINDING": 0.84,
+    "M_MINUS_PROVENANCE": 0.84,
+    "M_MINUS_REGISTRY_RESOLUTION": 0.92,
+    "M_MINUS_ROUTE_LEDGER": 0.84,
+    "M_MINUS_TRANSPORT": 0.84,
+    "S0_OPAQUE_OUTPUT_ONLY": 0.08,
+    "S1_PROVENANCE_PLUS_OUTPUT": 0.16,
+    "S2_FULL_HUMAN_STYLE_TRACE": 0.24,
+    "S3_PROOF_OR_CERTIFICATE_PARENT": 0.28
+  },
+  "separation": {
+    "cases": {
+      "SEP-P": {
+        "arms": {
+          "B5_STRONGEST_FAITHFUL_AUDIT_PARENT": {
+            "detected_class": "HIDDEN_DEPENDENCE",
+            "verdict": "REJECT"
+          },
+          "M_CLAIM_SUFFICIENT_WITNESS": {
+            "detected_class": "HIDDEN_DEPENDENCE",
+            "verdict": "REJECT"
+          },
+          "M_MINUS_REGISTRY_RESOLUTION": {
+            "detected_class": null,
+            "verdict": "ACCEPT"
+          }
+        },
+        "oracle_class": "HIDDEN_DEPENDENCE",
+        "oracle_verdict": "REJECT"
+      },
+      "SEP-Q": {
+        "arms": {
+          "B5_STRONGEST_FAITHFUL_AUDIT_PARENT": {
+            "detected_class": null,
+            "verdict": "ACCEPT"
+          },
+          "M_CLAIM_SUFFICIENT_WITNESS": {
+            "detected_class": null,
+            "verdict": "ACCEPT"
+          },
+          "M_MINUS_REGISTRY_RESOLUTION": {
+            "detected_class": null,
+            "verdict": "ACCEPT"
+          }
+        },
+        "oracle_class": null,
+        "oracle_verdict": "ACCEPT"
+      }
+    },
+    "identity_exporting_exact_on_both": true,
+    "oracle_verdicts_differ": true,
+    "passed": true,
+    "self_contained_outputs_identical_on_P_and_Q": true
+  }
+}

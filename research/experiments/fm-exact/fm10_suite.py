@@ -1577,6 +1577,13 @@ SPEC = SuiteSpec(
     dev_per_family=3,
     protected_per_family=18,  # 7 x 18 = 126 >= 120
     design_json="FM10_FINITE_RELATIONAL_MAPPING_EXACT_STUDY_DESIGN_V1.json",
+    oracle_agreement_fields=(
+        "disposition",
+        "min_missing",
+        "best_profile",
+        "n_optimal_maps",
+        "broken_invariants",
+    ),
     generate=generate_split,
     oracle=oracle_exhaustive,
     cross_check=oracle_branch_and_bound,

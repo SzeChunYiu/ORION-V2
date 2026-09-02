@@ -1,0 +1,64 @@
+# FM40 analysis — DEVELOPMENT
+
+Instances: 21; results sha256 `7c3d608fe077d0ee2536ffc90bac0d5049b4173ee8f5d2c8166f5e2c35d47c50`.
+
+
+## Per-arm exactness
+
+| arm | exact | rate | over-accept | under-accept |
+|---|---|---|---|---|
+| P0_SURFACE_SYMMETRY_SCAN | 8/21 | 0.381 | 11 | 1 |
+| P1_ORBIT_STABILISER | 9/21 | 0.429 | 0 | 0 |
+| P2_EQUIVARIANCE_SOLVER | 15/21 | 0.714 | 0 | 0 |
+| P3_AUGMENTATION_EMPIRICAL | 6/21 | 0.286 | 9 | 0 |
+| P4_REGIME_RESTRICTION | 12/21 | 0.571 | 0 | 0 |
+| P5_FIXED_LESSON_TABLE | 11/21 | 0.524 | 0 | 2 |
+| F0_PARENT_FEDERATION | 21/21 | 1.000 | 0 | 0 |
+| M_F2_INVARIANCE_DISCOVERY_FULL | 21/21 | 1.000 | 0 | 0 |
+| M_MINUS_EQUIVARIANCE_TEST | 15/21 | 0.714 | 0 | 0 |
+| M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE | 9/21 | 0.429 | 9 | 0 |
+| M_MINUS_REGIME_RESTRICTION | 18/21 | 0.857 | 0 | 0 |
+| M_MINUS_SURFACE_AUDIT | 18/21 | 0.857 | 0 | 0 |
+| C_ALWAYS_INVARIANT | 3/21 | 0.143 | 18 | 0 |
+| C_ALWAYS_NON_INVARIANT | 6/21 | 0.286 | 0 | 3 |
+| C_RANDOM_DISPOSITION | 4/21 | 0.190 | 1 | 1 |
+
+## Per-family exact rate
+
+| arm | FULL_INVARIANCE | EQUIVARIANT_ACTION | NON_INVARIANT | SURFACE_ONLY_SYMMETRY | PARTIAL_REGIME_INVARIANCE | UNSEEN_TRANSFORMATION_BREAK | UNSEEN_TRANSFORMATION_EQUIVARIANCE |
+|---|---|---|---|---|---|---|---|
+| P0_SURFACE_SYMMETRY_SCAN | 0.67 | 0.00 | 1.00 | 0.00 | 0.00 | 1.00 | 0.00 |
+| P1_ORBIT_STABILISER | 1.00 | 0.00 | 1.00 | 0.00 | 0.00 | 1.00 | 0.00 |
+| P2_EQUIVARIANCE_SOLVER | 1.00 | 1.00 | 1.00 | 0.00 | 0.00 | 1.00 | 1.00 |
+| P3_AUGMENTATION_EMPIRICAL | 1.00 | 0.00 | 1.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| P4_REGIME_RESTRICTION | 1.00 | 0.00 | 1.00 | 0.00 | 1.00 | 1.00 | 0.00 |
+| P5_FIXED_LESSON_TABLE | 0.33 | 0.33 | 1.00 | 0.00 | 0.00 | 1.00 | 1.00 |
+| F0_PARENT_FEDERATION | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 |
+| M_F2_INVARIANCE_DISCOVERY_FULL | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 |
+| M_MINUS_EQUIVARIANCE_TEST | 1.00 | 0.00 | 1.00 | 1.00 | 1.00 | 1.00 | 0.00 |
+| M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE | 1.00 | 0.67 | 0.00 | 1.00 | 0.33 | 0.00 | 0.00 |
+| M_MINUS_REGIME_RESTRICTION | 1.00 | 1.00 | 1.00 | 1.00 | 0.00 | 1.00 | 1.00 |
+| M_MINUS_SURFACE_AUDIT | 1.00 | 1.00 | 1.00 | 0.00 | 1.00 | 1.00 | 1.00 |
+| C_ALWAYS_INVARIANT | 1.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| C_ALWAYS_NON_INVARIANT | 0.00 | 0.00 | 1.00 | 0.00 | 0.00 | 1.00 | 0.00 |
+| C_RANDOM_DISPOSITION | 0.67 | 0.33 | 0.00 | 0.00 | 0.33 | 0.00 | 0.00 |
+
+## Gates (verdict, violations / instances evaluated)
+
+| gate | verdict | violations | n evaluated | hard |
+|---|---|---|---|---|
+| G0a_KNOWN_ANSWER | **PASS** | 0 | 11 | True |
+| G0b_ORACLE_SELF_AGREEMENT | **PASS** | 0 | 21 | True |
+| G0c_NULL_CALIBRATION | **PASS** | 0 | 4 | True |
+| G0d_DECOY_COVERAGE | **PASS** | 0 | 4 | True |
+| G0e_PLANTED_POSITIVES | **PASS** | 0 | 6 | True |
+| G0f_FAMILY_DISCRIMINATION | **PASS** | 0 | 2 | True |
+| G1a_PARENT_REPRODUCES_M | **PASS** | 0 | 21 | True |
+| G1b_M_ADVANTAGE | **NOT_FIRED** | 1 | 21 | False |
+| G2_ANTI_PERMISSIVENESS | **PASS** | 0 | 18 | True |
+| G3_MECHANISM_BY_OMISSION | **NOT_APPLICABLE** | 0 | 0 | False |
+
+## Route
+
+`PARENT_SUFFICIENT` — F0_PARENT_FEDERATION reproduces M_F2_INVARIANCE_DISCOVERY_FULL's dispositions (identity 1.0000). Cost flag: `COST_ADVANTAGE_PARENT`.
+

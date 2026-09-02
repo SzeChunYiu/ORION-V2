@@ -1,0 +1,136 @@
+{
+  "schema_version": "orion.v2.fm-exact.study-design.v1",
+  "study_id": "FM30",
+  "title": "Formal concept closure and revision with transition class, retention and hidden cases",
+  "owner_issues": [
+    48,
+    50
+  ],
+  "protocols": [
+    "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_MECHANICS_PROTOCOL_V1.json",
+    "research/experiments/CONCEPTUAL_TRANSFER_DISCOVERY_PROTOCOL_V2_ALL_SCIENCE_MATHEMATICS_FIRST.json",
+    "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_EXECUTION_BACKLOG_V1.json"
+  ],
+  "status": "FROZEN_PROSPECTIVE_DESIGN_NO_PROTECTED_OUTCOME_ACCESS",
+  "frozen_before_protected_outcome_access": true,
+  "endpoint": {
+    "primary": "the triple (transition class, old-valid-case retention verdict, hidden object's membership), scored as one exact match - the protocol's three FM30 primaries",
+    "transitions": [
+      "NO_CHANGE",
+      "SPECIALIZE",
+      "SPLIT",
+      "MERGE",
+      "BRIDGE"
+    ],
+    "note": "Computing a Galois closure is deliberately NOT the endpoint: the Ganter-Wille derivation operators decide it exactly, so a study built on it would report parent sufficiency by construction.",
+    "registered_precedence": [
+      "SPLIT",
+      "MERGE",
+      "BRIDGE",
+      "SPECIALIZE",
+      "NO_CHANGE"
+    ],
+    "precedence_note": "More than one predicate can hold on a single revision - adding an attribute that covers a union both merges and specializes - so the class is the highest-precedence predicate that holds and the FULL hold-set is published in every oracle answer. Fixture KA-09 pins this.",
+    "scope_convention": "The transition class is computed on K1 restricted to the objects that already existed in K0, because it is a statement about how existing concepts move. Without the restriction the hidden probe object joins the tracked extent and destroys it in every family at once - an artifact of the probe. The hidden object's membership is a separate primary computed on the full K1.",
+    "split_definition": "K1 has at least two maximal concept extents strictly inside the tracked extent where K0 had at most one. Requiring the tracked extent to stop being closed would be wrong (adding an attribute to part of it leaves the whole closed) and requiring the sub-extents to cover it would be wrong too (an object with no distinguishing attribute belongs to none).",
+    "retention_definition": "Every member of the tracked extent still satisfies the concept's defining intent after the revision. Defining retention as 'the survivors are still covered' would be tautological - the survivors are covered by construction - so the registered property is that there ARE no casualties. A registered fraction of revisions retract one incidence pair from a tracked member, which is the protocol's counterexample-driven revision and is what gives this endpoint a denominator."
+  },
+  "families": [
+    "NO_CHANGE",
+    "SPECIALIZE",
+    "SPLIT",
+    "MERGE",
+    "BRIDGE"
+  ],
+  "decoy_families": [
+    "SPLIT",
+    "MERGE",
+    "BRIDGE",
+    "SPECIALIZE"
+  ],
+  "sizes": {
+    "minimum_tasks_required_by_issue_50_C1": 96,
+    "protected_per_family": 20,
+    "protected_total": 100,
+    "development_per_family": 3,
+    "development_total": 15,
+    "selftest_per_family": 2
+  },
+  "oracle": {
+    "primary": "concepts_powerset: close every object subset with the derivation operators",
+    "independent_cross_check": "concepts_next_closure: Ganter's NextClosure over closed attribute sets in lectic order, never materialising the powerset",
+    "agreement_fields": [
+      "transition",
+      "retention_ok",
+      "hidden_in_extent",
+      "n_concepts_k0",
+      "n_concepts_k1"
+    ]
+  },
+  "arms": {
+    "P0_FIXED_LESSON_INJECTION": "frozen revision-lesson table",
+    "P1_GALOIS_CLOSURE": "Ganter-Wille derivation operators and closure",
+    "P2_LATTICE_ORDER_GEOMETRY": "concept-lattice extent geometry",
+    "P3_ATTRIBUTE_EXPLORATION": "implication counterexamples (Ganter)",
+    "F0_PARENT_FEDERATION": "extent geometry decides first (split/merge are structural facts), then the implication parent may report a bridge, then the closure parent decides specialization versus no change",
+    "M_F2_CONCEPTUAL_DEVELOPMENT_FULL": "ORION L3 conceptual development",
+    "M_MINUS_EXTENT_GEOMETRY": "ablation",
+    "M_MINUS_BRIDGE_DETECTION": "ablation",
+    "M_MINUS_CLOSURE_RECOMPUTATION": "ablation",
+    "M_MINUS_OLD_CASE_RETENTION": "ablation",
+    "C_ALWAYS_NO_CHANGE": "constant control",
+    "C_ALWAYS_SPECIALIZE": "constant control",
+    "C_RANDOM_TRANSITION": "random control"
+  },
+  "primary_comparator": "F0_PARENT_FEDERATION",
+  "comparator_justification": "No single parent owns the endpoint. Galois closure gives the lattices but classifies no transition between them. Extent geometry owns split and merge but never inspects intents. Attribute exploration owns implication counterexamples but computes no lattice. The strongest faithful comparator is their federation under a pre-registered, outcome-blind rule.",
+  "mechanic_independence": {
+    "statement": "M never enumerates a concept lattice. It works outward from the tracked concept, closing one seed per attribute with the reference module's formal_concept_closure and comparing sub-concept counts before and after, then testing merge and specialization on chosen seeds.",
+    "why": "Closing a handful of seeds gives a LOWER BOUND on the number of sub-concepts, and comparing two lower bounds can flip an inequality that the full lattice resolves the other way. M can therefore diverge from the federation, and G1a is a measurement.",
+    "measured_on_development": "On a 100-instance development probe M scores 0.980 against the federation's 1.000, diverging on 2 bridge instances where its attribute-seeded sub-concept count reaches two while the full lattice's maximal proper sub-extent count does not. Verified not to be a scope artifact: restricting M to the pre-existing objects changes neither instance. Three earlier divergences were defects in M and were repaired: it reported MERGE for concepts that were already merged, its split test counted attribute-cuts that are not concepts, and an earlier draft looked only at new attributes and so missed splits formed by an old attribute together with a new one."
+  },
+  "gates": {
+    "G0a_KNOWN_ANSWER": "every hand-authored fixture reproduced by the exhaustive oracle (>= 8)",
+    "G0b_ORACLE_SELF_AGREEMENT": "powerset closure and NextClosure agree on every context of every instance",
+    "G0c_NULL_CALIBRATION": "constant arms <= 0.40, random <= 0.40, shuffled-label null <= 0.40",
+    "G0d_DECOY_COVERAGE": "each registered decoy family >= 3 instances",
+    "G0e_PLANTED_POSITIVES": "every planted positive trips its own gate predicate (>= 3)",
+    "G0f_FAMILY_DISCRIMINATION": "two halves with separate denominators: SOLVABLE and SEPARATING",
+    "G1a_PARENT_REPRODUCES_M": "F0 reproduces M's endpoint on >= 99.5% of instances, no family above 5% discordance, AND the discordance counter is shown live by at least one ablation",
+    "G1b_M_ADVANTAGE": "detector",
+    "G2_ANTI_PERMISSIVENESS": "non-compensatory endpoint for this suite is OLD-VALID-CASE LOSS, not over-acceptance: on instances where the oracle says retention fails, M claims retention no more often than F0 (>= 10 such instances required, else CANNOT_CHECK); AND the counter is shown live on those same instances",
+    "G3_MECHANISM_BY_OMISSION": "applicable only if G1b fires",
+    "multiplicity": "Holm across the five per-family paired tests"
+  },
+  "gate_reporting_rule": "Every gate reports the instances its rule was actually evaluated on; below its registered minimum it returns CANNOT_CHECK and never PASS, and the route line names every hard gate that could not be evaluated. Counters that report zero carry liveness controls.",
+  "routes": [
+    "PARENT_SUFFICIENT",
+    "FM_RESIDUAL_CANDIDATE",
+    "M_OVER_ACCEPTS",
+    "CANNOT_CHECK"
+  ],
+  "route_note": "If G1a fails because M is WORSE than the federation, the route is still PARENT_SUFFICIENT and that is recorded explicitly rather than presented as a study defect.",
+  "pre_registered_expectation": "PARENT_SUFFICIENT, with M expected to fall slightly short of the federation on the development probe's evidence.",
+  "reproducibility": {
+    "hash_seed_independence": "verified across PYTHONHASHSEED 0/1/12345 by test_generator_is_independent_of_python_hash_seed",
+    "determinism": "two consecutive runs are byte-identical"
+  },
+  "seed_commitment": {
+    "protected_seed_sha256": "af34cfe913bff1ef0f661b1ee4b46ff68360fa3a6bea2d06b776ca2b35857e4a",
+    "custody_path": "~/.orion-custody/fm/FM30_PROTECTED_SEED_V1.txt",
+    "development_seed_public": "FM30-DEV-20260902",
+    "selftest_seed_public": "FM30-SELFTEST"
+  },
+  "execution_rule": {
+    "protected_runs_allowed": 1,
+    "authorization_file": "PROTECTED_RUN_AUTHORIZATION.json",
+    "analysis_runs_on_protected": 1,
+    "post_outcome_design_change_allowed": false
+  },
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_F2_superiority": false,
+    "grants_field_status": false,
+    "grants_submission_readiness": false
+  }
+}

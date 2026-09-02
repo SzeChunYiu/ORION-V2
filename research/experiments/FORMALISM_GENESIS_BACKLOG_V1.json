@@ -1,18 +1,100 @@
 {
   "schema_version": "orion.v2.formalism-genesis-backlog.v1",
-  "status": "PROSPECTIVE_BACKLOG",
+  "status": "PARTIALLY_EXECUTED",
   "owner_issue": 48,
   "tasks": [
-    {"id": "FG00", "action": "run unit tests and exact reference semantics", "terminal": "REFERENCE_ONLY"},
-    {"id": "FG10", "action": "generate and execute >=160 representation-collision tasks", "depends_on": ["FG00"]},
-    {"id": "FG20", "action": "generate and execute >=120 generalized-object/closure tasks", "depends_on": ["FG00"]},
-    {"id": "FG30", "action": "generate and execute >=160 relation-operation-invariant tasks", "depends_on": ["FG00"]},
-    {"id": "FG40", "action": "generate and execute >=120 axiom/rule-synthesis tasks with exact countermodels", "depends_on": ["FG00"]},
-    {"id": "FG50", "action": "generate and execute >=120 rival-formalism semantics/equivalence tasks", "depends_on": ["FG00"]},
-    {"id": "FG60", "action": "generate and execute >=120 conservative-extension/recovery tasks", "depends_on": ["FG00"]},
-    {"id": "FG70", "action": "run balanced new-formalism-vs-parent-vs-local-patch decision study", "depends_on": ["FG10", "FG20", "FG30", "FG40", "FG50", "FG60"]},
-    {"id": "FG80", "action": "run >=80 fresh post-freeze mini-frontier episodes requiring intermediate representation invention", "depends_on": ["FG70"]},
-    {"id": "FG90", "action": "exploratory real-frontier lane; no positive claim without independent proof/empirical verification", "depends_on": ["FG80"]}
+    {
+      "id": "FG00",
+      "action": "run unit tests and exact reference semantics",
+      "terminal": "REFERENCE_ONLY",
+      "execution_status": "EXECUTED_REFERENCE_ONLY",
+      "note": "unit tests and exact reference semantics run in CI (wave6-formalism-genesis) and in the FG70 selftest stage: 42/42 parent native known-answer checks, 6/6 hand-authored known-answer fixtures, oracle two-method agreement"
+    },
+    {
+      "id": "FG10",
+      "action": "generate and execute >=160 representation-collision tasks",
+      "depends_on": [
+        "FG00"
+      ],
+      "execution_status": "UNRUN"
+    },
+    {
+      "id": "FG20",
+      "action": "generate and execute >=120 generalized-object/closure tasks",
+      "depends_on": [
+        "FG00"
+      ],
+      "execution_status": "UNRUN"
+    },
+    {
+      "id": "FG30",
+      "action": "generate and execute >=160 relation-operation-invariant tasks",
+      "depends_on": [
+        "FG00"
+      ],
+      "execution_status": "UNRUN"
+    },
+    {
+      "id": "FG40",
+      "action": "generate and execute >=120 axiom/rule-synthesis tasks with exact countermodels",
+      "depends_on": [
+        "FG00"
+      ],
+      "execution_status": "UNRUN"
+    },
+    {
+      "id": "FG50",
+      "action": "generate and execute >=120 rival-formalism semantics/equivalence tasks",
+      "depends_on": [
+        "FG00"
+      ],
+      "execution_status": "UNRUN"
+    },
+    {
+      "id": "FG60",
+      "action": "generate and execute >=120 conservative-extension/recovery tasks",
+      "depends_on": [
+        "FG00"
+      ],
+      "execution_status": "UNRUN"
+    },
+    {
+      "id": "FG70",
+      "action": "run balanced new-formalism-vs-parent-vs-local-patch decision study",
+      "depends_on": [
+        "FG10",
+        "FG20",
+        "FG30",
+        "FG40",
+        "FG50",
+        "FG60"
+      ],
+      "design": "research/experiments/fg/FG70_FORMALISM_NEEDED_OR_NOT_EXACT_STUDY_DESIGN_V1.{md,json}",
+      "parent_fidelity_receipt": "research/experiments/fg/FG_PARENT_FIDELITY_RECEIPT_V1.md",
+      "execution_status": "EXECUTED_PROTECTED",
+      "protected_outcome": "research/experiments/fg/FG70_OUTCOME_RECEIPT.md",
+      "protected_count": 168,
+      "registered_minimum": 160,
+      "route": "PARENT_SUFFICIENT",
+      "co_primary_anti_invention": "PASS (M false-invention rate 0.000 over 140 eligible instances)",
+      "registered_prediction": "P-FG70-1 CONFIRMED (ordering, not verification, prevents false formalism invention)"
+    },
+    {
+      "id": "FG80",
+      "action": "run >=80 fresh post-freeze mini-frontier episodes requiring intermediate representation invention",
+      "depends_on": [
+        "FG70"
+      ],
+      "execution_status": "UNRUN"
+    },
+    {
+      "id": "FG90",
+      "action": "exploratory real-frontier lane; no positive claim without independent proof/empirical verification",
+      "depends_on": [
+        "FG80"
+      ],
+      "execution_status": "UNRUN"
+    }
   ],
   "preserve": [
     "parent_sufficiency",
@@ -23,5 +105,35 @@
     "old_case_regressions",
     "negative_hidden_results",
     "cannot_check"
-  ]
+  ],
+  "series_identity": {
+    "id": "ORION-FG-L5-EXACT-V1",
+    "owner_issue": 50,
+    "owner_issue_section": "L5",
+    "class": "exact-oracle known-answer studies; zero model calls; deterministic",
+    "workdir": "research/experiments/fg/",
+    "disambiguation": {
+      "not_to_be_confused_with": "FM_FG_GENERATED_EXACT_CAMPAIGN (research/experiments/fmfg-r1, fmfg-r2)",
+      "that_campaign_owner_issue": 48,
+      "that_campaign_object": "language-model solver arms over generated formal-discovery tasks; 1712 tasks x 5 arms = 8560 dispatches",
+      "that_campaign_arms": [
+        "TARGET_ONLY_DIRECT",
+        "STRONGEST_DOMAIN_FORMAL_PARENT",
+        "F0_PARENT_FEDERATION",
+        "F2_STATIC_NO_FORMAL_DISCOVERY",
+        "F2_FORMAL_DISCOVERY_FULL"
+      ],
+      "that_campaign_terminal": "REGISTERED_SCALE_NULL",
+      "why_the_labels_collide": "both series use the study labels FG10..FG90 registered in FORMALISM_GENESIS_PROTOCOL_V1.json",
+      "relation": "prior, not comparator: this series shares no generator, oracle, arm or task with it, does not replicate it and does not contradict it",
+      "frozen": "the fmfg-r2 receipts are frozen and are not modified by this series"
+    }
+  },
+  "ordering_deviation": {
+    "executed_first": "FG70",
+    "reason": "the backlog depends_on for FG70 is a taxonomy dependency, not a data dependency: FG70 consumes the deficit families its own design fixes, not the other suites' outcomes. It is executed first because false formalism invention is the failure issue #50 SS-L5 singles out, and because the fmfg-r2 prior shows the other non-frontier suites are ceiling-heavy.",
+    "affected_suites": "none; no other FG suite reads an FG70 outcome"
+  },
+  "owner_issue_note": "this backlog was registered under issue #48; the current registered question, the collision diagnostic C_F and the mandated search order are fixed by issue #50 section L5, which the ORION-FG-L5-EXACT-V1 series serves",
+  "status_note": "was PROSPECTIVE_BACKLOG until 2026-09-02; FG70 has an executed protected outcome, so the freeze marker is retired for that task only. Every other task remains prospective and unrun."
 }

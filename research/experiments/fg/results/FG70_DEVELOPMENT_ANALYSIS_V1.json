@@ -1,0 +1,1096 @@
+{
+  "authority": {
+    "grants_field_status": false,
+    "grants_new_mathematical_theory": false,
+    "grants_scientific_truth": false,
+    "grants_submission_readiness": false
+  },
+  "gates": {
+    "G0b_ORACLE_SELF_AGREEMENT": {
+      "instances_evaluated": 36,
+      "rule": "method A (bucket + bitmask cover) == method B (partition meet) on every instance",
+      "verdict": "PASS",
+      "violations": 0
+    },
+    "G0c_NULL_CALIBRATION": {
+      "checks": {
+        "planted_positive_C_ALWAYS_INVENT_false_invention_rate": 0.8,
+        "planted_positive_C_NEVER_CHANGE_missed_deficit_rate": 1.0,
+        "planted_positive_M_MINUS_ORDER_AND_GATE_false_invention_rate": 0.8,
+        "random_control_accuracy": 0.1111111111111111,
+        "shuffled_label_null_accuracy": 0.1388888888888889
+      },
+      "false_invention_denominator": 30,
+      "instances_evaluated": 36,
+      "rule": "random <= 0.25; shuffled-label null <= 0.3; planted positive C_ALWAYS_INVENT >= 0.5 (trips G2M); order+gate double ablation > 0 (trips G2M); planted positive C_NEVER_CHANGE >= 0.5 (trips G2). Every no-alarm gate must be shown to fire.",
+      "verdict": "PASS"
+    },
+    "G1a_FEDERATION_REPRODUCES_M": {
+      "decision_identity": 1.0,
+      "instances_evaluated": 36,
+      "rule": "identity >= 0.995 and no stratum > 0.05",
+      "verdict": "PASS",
+      "worst_stratum_discordance": 0.0
+    },
+    "G1b_M_ADVANTAGE": {
+      "federation_only_correct": 0,
+      "instances_evaluated": 36,
+      "m_only_correct": 0,
+      "mcnemar_exact_two_sided_p": 1.0,
+      "rule": "paired exact two-sided p <= 0.05 with M ahead",
+      "verdict": "NOT_FIRED"
+    },
+    "G2M_ANTI_INVENTION": {
+      "co_primary": true,
+      "empty_denominator_strata": [],
+      "federation_false_inventions": 0,
+      "instances_evaluated": 30,
+      "m_false_invention_rate": 0.0,
+      "m_false_inventions": 0,
+      "non_compensatory": true,
+      "per_stratum_denominator": {
+        "ADD_ONE_OBSERVATION": 6,
+        "LOCAL_PATCH": 6,
+        "NO_CHANGE": 6,
+        "PARENT_FORMALISM_SUFFICIENT": 6,
+        "REPRESENTATION_CHANGE": 6
+      },
+      "rule": "M's false-invention count <= the federation's AND rate <= 0.02; hard-fails if any non-NEW_PRIMITIVE stratum has an empty denominator",
+      "verdict": "PASS"
+    },
+    "G2_ANTI_CONSERVATISM": {
+      "federation_missed_deficits": 0,
+      "instances_evaluated": 30,
+      "m_missed_deficits": 0,
+      "planted_positive_C_NEVER_CHANGE_missed_deficits": 30,
+      "rule": "M's missed-deficit count <= the federation's, over instances whose truth is not NO_CHANGE; the planted positive C_NEVER_CHANGE must show the counter can fire",
+      "verdict": "PASS"
+    },
+    "G3_MECHANISM_BY_OMISSION": {
+      "instances_evaluated": 36,
+      "invention_factorial": {
+        "C_ALWAYS_INVENT": {
+          "accuracy": 0.3333333333333333,
+          "denominator": 30,
+          "false_inventions": 24
+        },
+        "M_EAGER_INVENT": {
+          "accuracy": 0.5,
+          "denominator": 30,
+          "false_inventions": 9
+        },
+        "M_FG_SEARCH_ORDER": {
+          "accuracy": 1.0,
+          "denominator": 30,
+          "false_inventions": 0
+        },
+        "M_MINUS_ADMISSION_GATE": {
+          "accuracy": 1.0,
+          "denominator": 30,
+          "false_inventions": 0
+        },
+        "M_MINUS_COST_ORDER": {
+          "accuracy": 0.75,
+          "denominator": 30,
+          "false_inventions": 0
+        },
+        "M_MINUS_ORDER_AND_GATE": {
+          "accuracy": 0.3333333333333333,
+          "denominator": 30,
+          "false_inventions": 24
+        }
+      },
+      "rows": [
+        {
+          "ablation": "M_MINUS_DEFICIT_CHECK",
+          "ablation_correct": 0,
+          "ablation_degrades": true,
+          "federation_correct": 6,
+          "m_correct": 6,
+          "n": 6,
+          "stratum": "NO_CHANGE"
+        },
+        {
+          "ablation": "M_MINUS_PARENT_SEARCH",
+          "ablation_correct": 0,
+          "ablation_degrades": true,
+          "federation_correct": 6,
+          "m_correct": 6,
+          "n": 6,
+          "stratum": "PARENT_FORMALISM_SUFFICIENT"
+        },
+        {
+          "ablation": "M_MINUS_DATA_TIER",
+          "ablation_correct": 0,
+          "ablation_degrades": true,
+          "federation_correct": 6,
+          "m_correct": 6,
+          "n": 6,
+          "stratum": "ADD_ONE_OBSERVATION"
+        },
+        {
+          "ablation": "M_MINUS_PATCH_TIER",
+          "ablation_correct": 0,
+          "ablation_degrades": true,
+          "federation_correct": 6,
+          "m_correct": 6,
+          "n": 6,
+          "stratum": "LOCAL_PATCH"
+        },
+        {
+          "ablation": "M_MINUS_REPRESENTATION_TIER",
+          "ablation_correct": 0,
+          "ablation_degrades": true,
+          "federation_correct": 6,
+          "m_correct": 6,
+          "n": 6,
+          "stratum": "REPRESENTATION_CHANGE"
+        },
+        {
+          "ablation": "M_MINUS_INVENTION_TIER",
+          "ablation_correct": 0,
+          "ablation_degrades": true,
+          "federation_correct": 6,
+          "m_correct": 6,
+          "n": 6,
+          "stratum": "NEW_PRIMITIVE"
+        }
+      ],
+      "rule": "2x2 omission of the registered cost order and of the fail-closed admission gate",
+      "verdict": "REPORTED"
+    }
+  },
+  "holm": {
+    "adjusted_p": {
+      "FG70": 1.0
+    },
+    "family": "FG10..FG70 G1b paired exact tests",
+    "members_available_at_this_run": [
+      "FG70"
+    ],
+    "note": "the family is completed by the FG series rollup; with one member the adjustment is the identity",
+    "raw_p": {
+      "FG70": 1.0
+    }
+  },
+  "instances": 36,
+  "label": "DEVELOPMENT",
+  "per_arm": {
+    "B_STRONGEST_FAITHFUL_PARENT_FEDERATION": {
+      "accuracy": 1.0,
+      "cannot_check": 0,
+      "correct": 36,
+      "false_invention": 0,
+      "missed_deficit": 0,
+      "over_escalation": 0,
+      "under_escalation": 0
+    },
+    "C_ALWAYS_INVENT": {
+      "accuracy": 0.3333333333333333,
+      "cannot_check": 0,
+      "correct": 12,
+      "false_invention": 24,
+      "missed_deficit": 0,
+      "over_escalation": 24,
+      "under_escalation": 0
+    },
+    "C_NEVER_CHANGE": {
+      "accuracy": 0.16666666666666666,
+      "cannot_check": 0,
+      "correct": 6,
+      "false_invention": 0,
+      "missed_deficit": 30,
+      "over_escalation": 0,
+      "under_escalation": 30
+    },
+    "C_NEVER_INVENT": {
+      "accuracy": 0.8333333333333334,
+      "cannot_check": 0,
+      "correct": 30,
+      "false_invention": 0,
+      "missed_deficit": 0,
+      "over_escalation": 0,
+      "under_escalation": 6
+    },
+    "C_RANDOM_TERMINAL": {
+      "accuracy": 0.1111111111111111,
+      "cannot_check": 0,
+      "correct": 4,
+      "false_invention": 7,
+      "missed_deficit": 3,
+      "over_escalation": 19,
+      "under_escalation": 13
+    },
+    "M_EAGER_INVENT": {
+      "accuracy": 0.5,
+      "cannot_check": 0,
+      "correct": 18,
+      "false_invention": 9,
+      "missed_deficit": 0,
+      "over_escalation": 18,
+      "under_escalation": 0
+    },
+    "M_FG_SEARCH_ORDER": {
+      "accuracy": 1.0,
+      "cannot_check": 0,
+      "correct": 36,
+      "false_invention": 0,
+      "missed_deficit": 0,
+      "over_escalation": 0,
+      "under_escalation": 0
+    },
+    "M_MINUS_ADMISSION_GATE": {
+      "accuracy": 1.0,
+      "cannot_check": 0,
+      "correct": 36,
+      "false_invention": 0,
+      "missed_deficit": 0,
+      "over_escalation": 0,
+      "under_escalation": 0
+    },
+    "M_MINUS_COST_ORDER": {
+      "accuracy": 0.75,
+      "cannot_check": 0,
+      "correct": 27,
+      "false_invention": 0,
+      "missed_deficit": 0,
+      "over_escalation": 9,
+      "under_escalation": 0
+    },
+    "M_MINUS_DATA_TIER": {
+      "accuracy": 0.8333333333333334,
+      "cannot_check": 0,
+      "correct": 30,
+      "false_invention": 5,
+      "missed_deficit": 0,
+      "over_escalation": 6,
+      "under_escalation": 0
+    },
+    "M_MINUS_DEFICIT_CHECK": {
+      "accuracy": 0.8333333333333334,
+      "cannot_check": 0,
+      "correct": 30,
+      "false_invention": 0,
+      "missed_deficit": 0,
+      "over_escalation": 6,
+      "under_escalation": 0
+    },
+    "M_MINUS_INVENTION_TIER": {
+      "accuracy": 0.8333333333333334,
+      "cannot_check": 6,
+      "correct": 30,
+      "false_invention": 0,
+      "missed_deficit": 0,
+      "over_escalation": 0,
+      "under_escalation": 0
+    },
+    "M_MINUS_ORDER_AND_GATE": {
+      "accuracy": 0.3333333333333333,
+      "cannot_check": 0,
+      "correct": 12,
+      "false_invention": 24,
+      "missed_deficit": 0,
+      "over_escalation": 24,
+      "under_escalation": 0
+    },
+    "M_MINUS_PARENT_SEARCH": {
+      "accuracy": 0.8333333333333334,
+      "cannot_check": 0,
+      "correct": 30,
+      "false_invention": 0,
+      "missed_deficit": 0,
+      "over_escalation": 6,
+      "under_escalation": 0
+    },
+    "M_MINUS_PATCH_TIER": {
+      "accuracy": 0.8333333333333334,
+      "cannot_check": 0,
+      "correct": 30,
+      "false_invention": 4,
+      "missed_deficit": 0,
+      "over_escalation": 6,
+      "under_escalation": 0
+    },
+    "M_MINUS_REPRESENTATION_TIER": {
+      "accuracy": 0.8333333333333334,
+      "cannot_check": 0,
+      "correct": 30,
+      "false_invention": 6,
+      "missed_deficit": 0,
+      "over_escalation": 6,
+      "under_escalation": 0
+    },
+    "P1_LGG_ANTIUNIFICATION": {
+      "accuracy": 0.5277777777777778,
+      "cannot_check": 5,
+      "correct": 19,
+      "false_invention": 4,
+      "missed_deficit": 0,
+      "over_escalation": 12,
+      "under_escalation": 0
+    },
+    "P2_FCA_GALOIS_CLOSURE": {
+      "accuracy": 0.8333333333333334,
+      "cannot_check": 0,
+      "correct": 30,
+      "false_invention": 4,
+      "missed_deficit": 0,
+      "over_escalation": 6,
+      "under_escalation": 0
+    },
+    "P3_MDL_ABSTRACTION_SEARCH": {
+      "accuracy": 0.7777777777777778,
+      "cannot_check": 0,
+      "correct": 28,
+      "false_invention": 0,
+      "missed_deficit": 0,
+      "over_escalation": 2,
+      "under_escalation": 6
+    },
+    "P4_MODEL_COUNTERMODEL_SEARCH": {
+      "accuracy": 0.6666666666666666,
+      "cannot_check": 0,
+      "correct": 24,
+      "false_invention": 8,
+      "missed_deficit": 0,
+      "over_escalation": 12,
+      "under_escalation": 0
+    },
+    "P5_CONSERVATIVE_EXTENSION_CHECK": {
+      "accuracy": 0.3333333333333333,
+      "cannot_check": 20,
+      "correct": 12,
+      "false_invention": 4,
+      "missed_deficit": 0,
+      "over_escalation": 4,
+      "under_escalation": 0
+    },
+    "P6_THEORY_REVISION_BASELINE": {
+      "accuracy": 0.3333333333333333,
+      "cannot_check": 22,
+      "correct": 12,
+      "false_invention": 0,
+      "missed_deficit": 0,
+      "over_escalation": 2,
+      "under_escalation": 0
+    }
+  },
+  "per_arm_stratum": {
+    "B_STRONGEST_FAITHFUL_PARENT_FEDERATION": {
+      "ADD_ONE_OBSERVATION": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "LOCAL_PATCH": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NEW_PRIMITIVE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NO_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "PARENT_FORMALISM_SUFFICIENT": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "REPRESENTATION_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      }
+    },
+    "C_ALWAYS_INVENT": {
+      "ADD_ONE_OBSERVATION": {
+        "correct": 0,
+        "false_invention": 6,
+        "n": 6
+      },
+      "LOCAL_PATCH": {
+        "correct": 0,
+        "false_invention": 6,
+        "n": 6
+      },
+      "NEW_PRIMITIVE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NO_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "PARENT_FORMALISM_SUFFICIENT": {
+        "correct": 0,
+        "false_invention": 6,
+        "n": 6
+      },
+      "REPRESENTATION_CHANGE": {
+        "correct": 0,
+        "false_invention": 6,
+        "n": 6
+      }
+    },
+    "C_NEVER_CHANGE": {
+      "ADD_ONE_OBSERVATION": {
+        "correct": 0,
+        "false_invention": 0,
+        "n": 6
+      },
+      "LOCAL_PATCH": {
+        "correct": 0,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NEW_PRIMITIVE": {
+        "correct": 0,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NO_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "PARENT_FORMALISM_SUFFICIENT": {
+        "correct": 0,
+        "false_invention": 0,
+        "n": 6
+      },
+      "REPRESENTATION_CHANGE": {
+        "correct": 0,
+        "false_invention": 0,
+        "n": 6
+      }
+    },
+    "C_NEVER_INVENT": {
+      "ADD_ONE_OBSERVATION": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "LOCAL_PATCH": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NEW_PRIMITIVE": {
+        "correct": 0,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NO_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "PARENT_FORMALISM_SUFFICIENT": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "REPRESENTATION_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      }
+    },
+    "C_RANDOM_TERMINAL": {
+      "ADD_ONE_OBSERVATION": {
+        "correct": 1,
+        "false_invention": 1,
+        "n": 6
+      },
+      "LOCAL_PATCH": {
+        "correct": 0,
+        "false_invention": 2,
+        "n": 6
+      },
+      "NEW_PRIMITIVE": {
+        "correct": 1,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NO_CHANGE": {
+        "correct": 0,
+        "false_invention": 2,
+        "n": 6
+      },
+      "PARENT_FORMALISM_SUFFICIENT": {
+        "correct": 1,
+        "false_invention": 2,
+        "n": 6
+      },
+      "REPRESENTATION_CHANGE": {
+        "correct": 1,
+        "false_invention": 0,
+        "n": 6
+      }
+    },
+    "M_EAGER_INVENT": {
+      "ADD_ONE_OBSERVATION": {
+        "correct": 0,
+        "false_invention": 5,
+        "n": 6
+      },
+      "LOCAL_PATCH": {
+        "correct": 0,
+        "false_invention": 4,
+        "n": 6
+      },
+      "NEW_PRIMITIVE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NO_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "PARENT_FORMALISM_SUFFICIENT": {
+        "correct": 0,
+        "false_invention": 0,
+        "n": 6
+      },
+      "REPRESENTATION_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      }
+    },
+    "M_FG_SEARCH_ORDER": {
+      "ADD_ONE_OBSERVATION": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "LOCAL_PATCH": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NEW_PRIMITIVE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NO_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "PARENT_FORMALISM_SUFFICIENT": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "REPRESENTATION_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      }
+    },
+    "M_MINUS_ADMISSION_GATE": {
+      "ADD_ONE_OBSERVATION": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "LOCAL_PATCH": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NEW_PRIMITIVE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NO_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "PARENT_FORMALISM_SUFFICIENT": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "REPRESENTATION_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      }
+    },
+    "M_MINUS_COST_ORDER": {
+      "ADD_ONE_OBSERVATION": {
+        "correct": 5,
+        "false_invention": 0,
+        "n": 6
+      },
+      "LOCAL_PATCH": {
+        "correct": 4,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NEW_PRIMITIVE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NO_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "PARENT_FORMALISM_SUFFICIENT": {
+        "correct": 0,
+        "false_invention": 0,
+        "n": 6
+      },
+      "REPRESENTATION_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      }
+    },
+    "M_MINUS_DATA_TIER": {
+      "ADD_ONE_OBSERVATION": {
+        "correct": 0,
+        "false_invention": 5,
+        "n": 6
+      },
+      "LOCAL_PATCH": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NEW_PRIMITIVE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NO_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "PARENT_FORMALISM_SUFFICIENT": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "REPRESENTATION_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      }
+    },
+    "M_MINUS_DEFICIT_CHECK": {
+      "ADD_ONE_OBSERVATION": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "LOCAL_PATCH": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NEW_PRIMITIVE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NO_CHANGE": {
+        "correct": 0,
+        "false_invention": 0,
+        "n": 6
+      },
+      "PARENT_FORMALISM_SUFFICIENT": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "REPRESENTATION_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      }
+    },
+    "M_MINUS_INVENTION_TIER": {
+      "ADD_ONE_OBSERVATION": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "LOCAL_PATCH": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NEW_PRIMITIVE": {
+        "correct": 0,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NO_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "PARENT_FORMALISM_SUFFICIENT": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "REPRESENTATION_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      }
+    },
+    "M_MINUS_ORDER_AND_GATE": {
+      "ADD_ONE_OBSERVATION": {
+        "correct": 0,
+        "false_invention": 6,
+        "n": 6
+      },
+      "LOCAL_PATCH": {
+        "correct": 0,
+        "false_invention": 6,
+        "n": 6
+      },
+      "NEW_PRIMITIVE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NO_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "PARENT_FORMALISM_SUFFICIENT": {
+        "correct": 0,
+        "false_invention": 6,
+        "n": 6
+      },
+      "REPRESENTATION_CHANGE": {
+        "correct": 0,
+        "false_invention": 6,
+        "n": 6
+      }
+    },
+    "M_MINUS_PARENT_SEARCH": {
+      "ADD_ONE_OBSERVATION": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "LOCAL_PATCH": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NEW_PRIMITIVE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NO_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "PARENT_FORMALISM_SUFFICIENT": {
+        "correct": 0,
+        "false_invention": 0,
+        "n": 6
+      },
+      "REPRESENTATION_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      }
+    },
+    "M_MINUS_PATCH_TIER": {
+      "ADD_ONE_OBSERVATION": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "LOCAL_PATCH": {
+        "correct": 0,
+        "false_invention": 4,
+        "n": 6
+      },
+      "NEW_PRIMITIVE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NO_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "PARENT_FORMALISM_SUFFICIENT": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "REPRESENTATION_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      }
+    },
+    "M_MINUS_REPRESENTATION_TIER": {
+      "ADD_ONE_OBSERVATION": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "LOCAL_PATCH": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NEW_PRIMITIVE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NO_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "PARENT_FORMALISM_SUFFICIENT": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "REPRESENTATION_CHANGE": {
+        "correct": 0,
+        "false_invention": 6,
+        "n": 6
+      }
+    },
+    "P1_LGG_ANTIUNIFICATION": {
+      "ADD_ONE_OBSERVATION": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "LOCAL_PATCH": {
+        "correct": 0,
+        "false_invention": 4,
+        "n": 6
+      },
+      "NEW_PRIMITIVE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NO_CHANGE": {
+        "correct": 1,
+        "false_invention": 0,
+        "n": 6
+      },
+      "PARENT_FORMALISM_SUFFICIENT": {
+        "correct": 0,
+        "false_invention": 0,
+        "n": 6
+      },
+      "REPRESENTATION_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      }
+    },
+    "P2_FCA_GALOIS_CLOSURE": {
+      "ADD_ONE_OBSERVATION": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "LOCAL_PATCH": {
+        "correct": 0,
+        "false_invention": 4,
+        "n": 6
+      },
+      "NEW_PRIMITIVE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NO_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "PARENT_FORMALISM_SUFFICIENT": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "REPRESENTATION_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      }
+    },
+    "P3_MDL_ABSTRACTION_SEARCH": {
+      "ADD_ONE_OBSERVATION": {
+        "correct": 5,
+        "false_invention": 0,
+        "n": 6
+      },
+      "LOCAL_PATCH": {
+        "correct": 5,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NEW_PRIMITIVE": {
+        "correct": 0,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NO_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "PARENT_FORMALISM_SUFFICIENT": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "REPRESENTATION_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      }
+    },
+    "P4_MODEL_COUNTERMODEL_SEARCH": {
+      "ADD_ONE_OBSERVATION": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "LOCAL_PATCH": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NEW_PRIMITIVE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NO_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "PARENT_FORMALISM_SUFFICIENT": {
+        "correct": 0,
+        "false_invention": 2,
+        "n": 6
+      },
+      "REPRESENTATION_CHANGE": {
+        "correct": 0,
+        "false_invention": 6,
+        "n": 6
+      }
+    },
+    "P5_CONSERVATIVE_EXTENSION_CHECK": {
+      "ADD_ONE_OBSERVATION": {
+        "correct": 0,
+        "false_invention": 0,
+        "n": 6
+      },
+      "LOCAL_PATCH": {
+        "correct": 0,
+        "false_invention": 4,
+        "n": 6
+      },
+      "NEW_PRIMITIVE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NO_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "PARENT_FORMALISM_SUFFICIENT": {
+        "correct": 0,
+        "false_invention": 0,
+        "n": 6
+      },
+      "REPRESENTATION_CHANGE": {
+        "correct": 0,
+        "false_invention": 0,
+        "n": 6
+      }
+    },
+    "P6_THEORY_REVISION_BASELINE": {
+      "ADD_ONE_OBSERVATION": {
+        "correct": 0,
+        "false_invention": 0,
+        "n": 6
+      },
+      "LOCAL_PATCH": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NEW_PRIMITIVE": {
+        "correct": 0,
+        "false_invention": 0,
+        "n": 6
+      },
+      "NO_CHANGE": {
+        "correct": 6,
+        "false_invention": 0,
+        "n": 6
+      },
+      "PARENT_FORMALISM_SUFFICIENT": {
+        "correct": 0,
+        "false_invention": 0,
+        "n": 6
+      },
+      "REPRESENTATION_CHANGE": {
+        "correct": 0,
+        "false_invention": 0,
+        "n": 6
+      }
+    }
+  },
+  "route": "PARENT_SUFFICIENT",
+  "schema_version": "orion.v2.fg70.exact-study-analysis.v1",
+  "series_id": "ORION-FG-L5-EXACT-V1",
+  "strata": [
+    "NO_CHANGE",
+    "PARENT_FORMALISM_SUFFICIENT",
+    "ADD_ONE_OBSERVATION",
+    "LOCAL_PATCH",
+    "REPRESENTATION_CHANGE",
+    "NEW_PRIMITIVE"
+  ],
+  "suite": "FG70"
+}

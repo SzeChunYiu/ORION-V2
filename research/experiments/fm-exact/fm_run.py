@@ -61,6 +61,12 @@ AUTH_FILE = HERE / "PROTECTED_RUN_AUTHORIZATION.json"
 SHUFFLE_SEED = 20260902
 
 
+def oracle_disagrees(spec, a, b) -> bool:
+    """True when the two independent oracle algorithms differ on any declared field."""
+    da, db = a.as_dict(), b.as_dict()
+    return any(da.get(f) != db.get(f) for f in spec.oracle_agreement_fields)
+
+
 def load_suite(suite_id: str):
     if suite_id not in SUITES:
         raise SystemExit(f"unknown suite {suite_id}; known: {sorted(SUITES)}")
@@ -124,7 +130,10 @@ def run_instances(spec, pairs, label: str, public_seed: str | None):
 
 
 def score(spec, results: dict, custody: dict) -> dict:
-    exp = {c["instance_id"]: c["expected"]["disposition"] for c in custody["instances"]}
+    arm_key = spec.endpoint_key or (lambda rec: rec["disposition"])
+    exp_key = spec.oracle_endpoint_key or (lambda e: e["disposition"])
+    exp = {c["instance_id"]: exp_key(c["expected"]) for c in custody["instances"]}
+    expected_full = {c["instance_id"]: c["expected"] for c in custody["instances"]}
     fam = {c["instance_id"]: c["family"] for c in custody["instances"]}
     order = [r["instance_id"] for r in results["instances"]]
     labels = [exp[i] for i in order]
@@ -137,17 +146,26 @@ def score(spec, results: dict, custody: dict) -> dict:
         by_family: dict[str, list[bool]] = {f: [] for f in spec.families}
         over = under = 0
         for rec in results["instances"]:
-            got = rec["arms"][arm]["disposition"]
+            got = arm_key(rec["arms"][arm])
             want = exp[rec["instance_id"]]
             ok = got == want
             hits.append(ok)
             pred.append(got)
             by_family[rec["family"]].append(ok)
             if not ok:
-                if want != "TRANSFER_VALID" and got == "TRANSFER_VALID":
-                    over += 1  # accepted a transfer the oracle blocks
-                elif want == "TRANSFER_VALID" and got != "TRANSFER_VALID":
-                    under += 1
+                e = expected_full[rec["instance_id"]]
+                if spec.unsafe_scope is not None and spec.unsafe_claim is not None:
+                    if spec.unsafe_scope(e) and spec.unsafe_claim(rec["arms"][arm], e):
+                        over += 1
+                else:
+                    gd = rec["arms"][arm]["disposition"]
+                    wd = e["disposition"]
+                    g_ok = not gd.startswith("BLOCK") and not gd.startswith("REJECT")
+                    w_ok = not wd.startswith("BLOCK") and not wd.startswith("REJECT")
+                    if g_ok and not w_ok:
+                        over += 1
+                    elif w_ok and not g_ok:
+                        under += 1
         raw[arm] = hits
         preds[arm] = pred
         per_arm[arm] = {
@@ -169,6 +187,8 @@ def score(spec, results: dict, custody: dict) -> dict:
     return {
         "order": order,
         "labels": labels,
+        "expected_full": [expected_full[i] for i in order],
+        "_records": [r["arms"] for r in results["instances"]],
         "families": [fam[i] for i in order],
         "per_arm": per_arm,
         "_raw": raw,
@@ -293,6 +313,15 @@ def gates(spec, sc: dict, selftest: dict | None, rejects: dict | None) -> dict:
         detail={
             "decision_identity_rate": identity_rate,
             "per_family": per_family_disc,
+            "per_family_effective_allowance": {
+                f: int(0.05 * v["n"]) for f, v in per_family_disc.items()
+            },
+            "per_family_threshold_note": (
+                "the 5% per-family rule is reported with the integer number of "
+                "discordant instances it actually permits at this family size; "
+                "where that is 0 the rule is exactly 'no discordance in this "
+                "family', which is what it is enforcing"
+            ),
             "paired": ps,
             "counter_liveness_control": {
                 "ablation_vs_parent_discordance": control,
@@ -320,19 +349,48 @@ def gates(spec, sc: dict, selftest: dict | None, rejects: dict | None) -> dict:
     G.append(g1b)
 
     # ---- G2 anti-conservatism / anti-permissiveness ----------------------
-    blocked_idx = [i for i, lab in enumerate(sc["labels"]) if lab != "TRANSFER_VALID"]
-    m_over = sum(
-        1 for i in blocked_idx if sc["_preds"][M][i] == "TRANSFER_VALID"
-    )
-    p_over = sum(1 for i in blocked_idx if sc["_preds"][P][i] == "TRANSFER_VALID")
+    if spec.unsafe_scope is not None and spec.unsafe_claim is not None:
+        scope = [i for i, e in enumerate(sc["expected_full"]) if spec.unsafe_scope(e)]
+
+        def _unsafe(arm: str, i: int) -> bool:
+            return bool(spec.unsafe_claim(sc["_records"][i][arm], sc["expected_full"][i]))
+    else:
+        def _accepts(label: str) -> bool:
+            return not label.startswith("BLOCK") and not label.startswith("REJECT")
+
+        scope = [i for i, lab in enumerate(sc["labels"]) if not _accepts(lab)]
+
+        def _unsafe(arm: str, i: int) -> bool:
+            return _accepts(sc["_preds"][arm][i])
+
+    m_over = sum(1 for i in scope if _unsafe(M, i))
+    p_over = sum(1 for i in scope if _unsafe(P, i))
+    # Liveness control for the unsafe-claim counter.  "0 <= 0 over a large
+    # denominator" is not evidence unless the counter can register a nonzero on
+    # these very instances: a gate that passes on 0 <= 0 with no demonstration
+    # that it could fire is a known defective shape.
+    over_by_arm = {a: sum(1 for i in scope if _unsafe(a, i)) for a in per_arm}
+    max_over = max(over_by_arm.values()) if over_by_arm else 0
     G.append(
         GateResult(
             "G2_ANTI_PERMISSIVENESS",
-            f"on instances the oracle blocks, {M} accepts no more transfers than {P}",
-            n_evaluated=len(blocked_idx),
-            n_violations=0 if m_over <= p_over else 1,
+            f"on the instances in scope, {M} makes no more unsafe claims "
+            f"({spec.unsafe_name}) than {P}; AND the counter is shown live on "
+            "those same instances by at least one arm registering a nonzero count",
+            n_evaluated=len(scope),
+            n_violations=(0 if (m_over <= p_over and max_over > 0) else 1),
             requires_evaluated=10,
-            detail={"M_over_accept": m_over, "P_over_accept": p_over, "n_blocked": len(blocked_idx)},
+            detail={
+                "unsafe_endpoint": spec.unsafe_name,
+                "M_unsafe_claims": m_over,
+                "P_unsafe_claims": p_over,
+                "n_in_scope": len(scope),
+                "counter_liveness_control": {
+                    "unsafe_claims_by_arm": over_by_arm,
+                    "max_any_arm": max_over,
+                    "counter_is_live": max_over > 0,
+                },
+            },
         )
     )
 
@@ -399,8 +457,16 @@ def gates(spec, sc: dict, selftest: dict | None, rejects: dict | None) -> dict:
             "no significant M advantage over the strongest faithful parent",
         )
 
+    unchecked_hard = [g.name for g in G if g.hard and g.applicable and g.verdict == "CANNOT_CHECK"]
+    if unchecked_hard:
+        reason += (
+            f"; NOTE {len(unchecked_hard)} hard gate(s) could not be evaluated on "
+            f"this split and are NOT reported as passing: {unchecked_hard}"
+        )
+
     return {
         "gates": [g.as_dict() for g in G],
+        "unchecked_hard_gates": unchecked_hard,
         "cost": cost,
         "generator_rejections": rejects or {},
         "route": {"route": route, "reason": reason, "cost_flag": cost["flag"]},
@@ -443,8 +509,7 @@ def stage_selftest(spec, out: Path) -> int:
     pairs, rejects = spec.generate("selftest", f"{spec.suite_id}-SELFTEST", {f: 2 for f in spec.families})
     dis = 0
     for inst, _ in pairs:
-        a, b = spec.oracle(inst), spec.cross_check(inst)
-        if a.disposition != b.disposition or a.as_dict()["best_profile"] != b.as_dict()["best_profile"]:
+        if oracle_disagrees(spec, spec.oracle(inst), spec.cross_check(inst)):
             dis += 1
     rep["oracle_agreement"] = {"n_evaluated": len(pairs), "n_disagreements": dis}
     ok &= dis == 0
@@ -477,8 +542,7 @@ def _run_split(spec, label: str, split: str, seed: str, per_family: int, out: Pa
     res, cus = run_instances(spec, pairs, label, public)
     dis = 0
     for inst, ans in pairs:
-        b = spec.cross_check(inst)
-        if b.disposition != ans.disposition or b.as_dict()["best_profile"] != ans.as_dict()["best_profile"]:
+        if oracle_disagrees(spec, ans, spec.cross_check(inst)):
             dis += 1
     res["_oracle_agreement"] = {"n_evaluated": len(pairs), "n_disagreements": dis}
     res["_generator_rejections"] = rejects

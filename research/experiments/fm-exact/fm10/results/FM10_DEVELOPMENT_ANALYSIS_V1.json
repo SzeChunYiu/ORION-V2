@@ -1,9 +1,9 @@
 {
   "cost": {
-    "M_wall_ms": 3.647749,
-    "P_wall_ms": 1.082418,
+    "M_wall_ms": 1.97929,
+    "P_wall_ms": 0.676083,
     "flag": "COST_ADVANTAGE_PARENT",
-    "ratio_P_over_M": 0.2967358773863005,
+    "ratio_P_over_M": 0.34157854584219594,
     "rule": "wall-clock flag at 2x; reported only, routes nothing"
   },
   "custody_sha256": "b3fc3433d9378f86becd7398b9b2488fb000d9a4e1d04514ffd32e1bfaa6f18f",
@@ -306,7 +306,17 @@
             "discordant": 0,
             "n": 3
           }
-        }
+        },
+        "per_family_effective_allowance": {
+          "DIRECTION_REVERSAL": 0,
+          "INVARIANT_BREAKING_EMBEDDING": 0,
+          "ISOMORPHIC_TRANSFER": 0,
+          "NON_HOMOMORPHISM": 0,
+          "PARTIAL_HOMOMORPHISM": 0,
+          "RELATION_TYPE_MISMATCH": 0,
+          "SURFACE_DECOY": 0
+        },
+        "per_family_threshold_note": "the 5% per-family rule is reported with the integer number of discordant instances it actually permits at this family size; where that is 0 the rule is exactly 'no discordance in this family', which is what it is enforcing"
       },
       "gate": "G1a_PARENT_REPRODUCES_M",
       "hard": true,
@@ -390,6 +400,26 @@
       "detail": {
         "M_over_accept": 0,
         "P_over_accept": 0,
+        "counter_liveness_control": {
+          "counter_is_live": true,
+          "max_over_accept_any_arm": 15,
+          "over_accept_by_arm": {
+            "C_ALWAYS_BLOCK": 0,
+            "C_ALWAYS_TRANSFER": 15,
+            "C_RANDOM_DISPOSITION": 6,
+            "F0_PARENT_FEDERATION": 0,
+            "M_F2_TRANSFER_DISCOVERY_FULL": 0,
+            "M_MINUS_INVARIANCE_TEST": 3,
+            "M_MINUS_OBSTRUCTION_SEARCH": 0,
+            "M_MINUS_RELATIONAL_MAPPING": 0,
+            "M_MINUS_TYPE_DISCIPLINE": 0,
+            "P0_SURFACE_SIMILARITY": 2,
+            "P1_SME_STRUCTURE_MAPPING": 3,
+            "P2_COMPLETE_HOMOMORPHISM": 3,
+            "P3_FIXED_LESSON_INJECTION": 3,
+            "P4_INVARIANCE_PARENT": 10
+          }
+        },
         "n_blocked": 15
       },
       "gate": "G2_ANTI_PERMISSIVENESS",
@@ -397,7 +427,7 @@
       "min_required_evaluated": 10,
       "n_evaluated": 15,
       "n_violations": 0,
-      "rule": "on instances the oracle blocks, M_F2_TRANSFER_DISCOVERY_FULL accepts no more transfers than F0_PARENT_FEDERATION",
+      "rule": "on instances the oracle blocks, M_F2_TRANSFER_DISCOVERY_FULL accepts no more transfers than F0_PARENT_FEDERATION; AND the over-acceptance counter is shown live on these same instances by at least one arm registering a nonzero count",
       "verdict": "PASS"
     },
     {
@@ -522,7 +552,7 @@
           }
         },
         "under_accept": 6,
-        "wall_ms": 0.0125
+        "wall_ms": 0.006916
       },
       "C_ALWAYS_TRANSFER": {
         "exact": 6,
@@ -567,7 +597,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.023833
+        "wall_ms": 0.009666
       },
       "C_RANDOM_DISPOSITION": {
         "exact": 2,
@@ -612,7 +642,7 @@
           }
         },
         "under_accept": 5,
-        "wall_ms": 0.302584
+        "wall_ms": 0.151749
       },
       "F0_PARENT_FEDERATION": {
         "exact": 21,
@@ -657,7 +687,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 1.082418
+        "wall_ms": 0.676083
       },
       "M_F2_TRANSFER_DISCOVERY_FULL": {
         "exact": 21,
@@ -702,7 +732,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 3.647749
+        "wall_ms": 1.97929
       },
       "M_MINUS_INVARIANCE_TEST": {
         "exact": 18,
@@ -747,7 +777,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.969456
+        "wall_ms": 0.55354
       },
       "M_MINUS_OBSTRUCTION_SEARCH": {
         "exact": 8,
@@ -792,7 +822,7 @@
           }
         },
         "under_accept": 5,
-        "wall_ms": 0.362042
+        "wall_ms": 0.224166
       },
       "M_MINUS_RELATIONAL_MAPPING": {
         "exact": 12,
@@ -837,7 +867,7 @@
           }
         },
         "under_accept": 3,
-        "wall_ms": 0.231833
+        "wall_ms": 0.136168
       },
       "M_MINUS_TYPE_DISCIPLINE": {
         "exact": 21,
@@ -882,7 +912,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 39.071124
+        "wall_ms": 29.476667
       },
       "P0_SURFACE_SIMILARITY": {
         "exact": 11,
@@ -927,7 +957,7 @@
           }
         },
         "under_accept": 4,
-        "wall_ms": 0.539086
+        "wall_ms": 0.262248
       },
       "P1_SME_STRUCTURE_MAPPING": {
         "exact": 18,
@@ -972,7 +1002,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 3.065707
+        "wall_ms": 1.657206
       },
       "P2_COMPLETE_HOMOMORPHISM": {
         "exact": 18,
@@ -1017,7 +1047,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 1.413874
+        "wall_ms": 0.711416
       },
       "P3_FIXED_LESSON_INJECTION": {
         "exact": 9,
@@ -1062,7 +1092,7 @@
           }
         },
         "under_accept": 3,
-        "wall_ms": 0.249621
+        "wall_ms": 0.133288
       },
       "P4_INVARIANCE_PARENT": {
         "exact": 9,
@@ -1107,9 +1137,10 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.110333
+        "wall_ms": 0.050376
       }
     }
   },
-  "suite": "FM10"
+  "suite": "FM10",
+  "unchecked_hard_gates": []
 }

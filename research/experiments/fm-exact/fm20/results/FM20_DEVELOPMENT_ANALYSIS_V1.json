@@ -1,0 +1,931 @@
+{
+  "cost": {
+    "M_wall_ms": 0.374456,
+    "P_wall_ms": 0.289082,
+    "flag": "COST_PARITY_WITHIN_2X",
+    "ratio_P_over_M": 0.7720052556241588,
+    "rule": "wall-clock flag at 2x; reported only, routes nothing"
+  },
+  "custody_sha256": "85ec0d4f2b86427b79c3f783337b290fb1f9bfa4d5b08218954061f531e4e91c",
+  "gates": [
+    {
+      "applicable": true,
+      "detail": {
+        "fixtures": [
+          {
+            "expected": "ACCEPT_LGG",
+            "name": "KA-01-SIMPLE_LGG",
+            "oracle": "ACCEPT_LGG",
+            "passed": true
+          },
+          {
+            "expected": "ACCEPT_LGG",
+            "name": "KA-02-SHARED_VARIABLE",
+            "oracle": "ACCEPT_LGG",
+            "passed": true
+          },
+          {
+            "expected": "REJECT_OVER_GENERAL",
+            "name": "KA-03-OVER_GENERAL",
+            "oracle": "REJECT_OVER_GENERAL",
+            "passed": true
+          },
+          {
+            "expected": "REJECT_NO_COMMON_STRUCTURE",
+            "name": "KA-04-VACUOUS",
+            "oracle": "REJECT_NO_COMMON_STRUCTURE",
+            "passed": true
+          },
+          {
+            "expected": "REJECT_NO_COMMON_STRUCTURE",
+            "name": "KA-05-VACUITY_DOMINATES_OVER_GENERALITY",
+            "oracle": "REJECT_NO_COMMON_STRUCTURE",
+            "passed": true
+          },
+          {
+            "expected": "ACCEPT_LGG",
+            "name": "KA-06-NESTED",
+            "oracle": "ACCEPT_LGG",
+            "passed": true
+          },
+          {
+            "expected": "ACCEPT_LGG",
+            "name": "KA-07-THREE_POSITIVES",
+            "oracle": "ACCEPT_LGG",
+            "passed": true
+          },
+          {
+            "expected": "ACCEPT_LGG",
+            "name": "KA-08-IDENTICAL_POSITIVES",
+            "oracle": "ACCEPT_LGG",
+            "passed": true
+          },
+          {
+            "expected": "ACCEPT_LGG",
+            "name": "KA-09-DEEP_SHARED_SKELETON",
+            "oracle": "ACCEPT_LGG",
+            "passed": true
+          },
+          {
+            "expected": "ACCEPT_LGG",
+            "name": "KA-10-NEGATIVE_OUTSIDE_PATTERN",
+            "oracle": "ACCEPT_LGG",
+            "passed": true
+          }
+        ]
+      },
+      "gate": "G0a_KNOWN_ANSWER",
+      "hard": true,
+      "min_required_evaluated": 8,
+      "n_evaluated": 10,
+      "n_violations": 0,
+      "rule": "every hand-authored fixture's disposition is reproduced by the exhaustive oracle",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "n_disagreements": 0,
+        "n_evaluated": 15
+      },
+      "gate": "G0b_ORACLE_SELF_AGREEMENT",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 15,
+      "n_violations": 0,
+      "rule": "exhaustive enumeration and the independent branch-and-bound search agree on disposition, min_missing, optimal profile and optimal-map count for every instance of the split",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "constant_arm_rates": {
+          "C_ALWAYS_ACCEPT": 0.0,
+          "C_ALWAYS_REJECT": 0.0
+        },
+        "random_rate": 0.06666666666666667,
+        "shuffled_label_null": {
+          "exact_against_shuffled": 3,
+          "n": 15,
+          "rate": 0.2,
+          "seed": 20260902
+        },
+        "violations": []
+      },
+      "gate": "G0c_NULL_CALIBRATION",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 4,
+      "n_violations": 0,
+      "rule": "constant-response arms <= 0.4, random arm <= 0.4, M against within-split shuffled oracle labels <= 0.4",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "below_minimum": {},
+        "counts": {
+          "DISTRACTOR_REGULARITY": 3,
+          "NO_VALID_COMMON_ABSTRACTION": 3,
+          "OVER_GENERALIZATION": 3,
+          "UNDER_GENERALIZATION": 3
+        },
+        "minimum": 3
+      },
+      "gate": "G0d_DECOY_COVERAGE",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 4,
+      "n_violations": 0,
+      "rule": "every registered decoy family carries >= 3 instances in the split",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "planted": [
+          {
+            "description": "the fixed-lesson generalizer (fresh variable per disagreement, no sharing) must disagree with the exhaustive lattice minimum on a term with repeated structure",
+            "fired": true,
+            "gate": "G0b_ORACLE_SELF_AGREEMENT",
+            "name": "position_wise_variablisation_pseudo_oracle_is_detected"
+          },
+          {
+            "description": "a deliberately wrong expected disposition must fail the comparison",
+            "fired": true,
+            "gate": "G0a_KNOWN_ANSWER",
+            "name": "wrong_expected_label_is_detected"
+          },
+          {
+            "description": "C_ALWAYS_ACCEPT must be counted as over-accepting on an instance the oracle rejects",
+            "fired": true,
+            "gate": "G2_ANTI_PERMISSIVENESS",
+            "name": "over_accepting_arm_is_detected"
+          },
+          {
+            "description": "a synthetic per-arm table where every arm scores 1.0 must FAIL the discrimination gate",
+            "fired": true,
+            "gate": "G0f_FAMILY_DISCRIMINATION",
+            "name": "degenerate_all_ceiling_split_is_detected"
+          },
+          {
+            "description": "M_MINUS_COMPRESSION_CRITERION must be wrong on a vacuous instance where M is right",
+            "fired": true,
+            "gate": "G3_MECHANISM_BY_OMISSION",
+            "name": "compression_ablation_loses_the_vacuity_family"
+          },
+          {
+            "description": "the exhaustive enumeration reports a unique minimum on a term where one exists, so the uniqueness field is computed rather than assumed",
+            "fired": true,
+            "gate": "G0b_ORACLE_SELF_AGREEMENT",
+            "name": "lattice_minimum_uniqueness_is_actually_verified"
+          }
+        ]
+      },
+      "gate": "G0e_PLANTED_POSITIVES",
+      "hard": true,
+      "min_required_evaluated": 3,
+      "n_evaluated": 6,
+      "n_violations": 0,
+      "rule": "every registered planted positive trips its own gate predicate",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "halves": {
+          "separating": {
+            "n_evaluated": 4,
+            "threshold": 0.85,
+            "violation": false,
+            "weak_arms_at_or_below_threshold": {
+              "M_MINUS_LEAST_GENERALITY": 0.3333333333333333,
+              "P0_FIXED_LESSON_INJECTION": 0.8,
+              "P1_PLOTKIN_LGG": 0.6,
+              "P3_MDL_COMPRESSION": 0.7333333333333333
+            }
+          },
+          "solvable": {
+            "best_arm": "F0_PARENT_FEDERATION",
+            "best_rate": 1.0,
+            "n_evaluated": 10,
+            "threshold": 0.95,
+            "violation": false
+          }
+        },
+        "per_arm_exact": {
+          "C_ALWAYS_ACCEPT": 0.0,
+          "C_ALWAYS_REJECT": 0.0,
+          "C_RANDOM_DISPOSITION": 0.06666666666666667,
+          "F0_PARENT_FEDERATION": 1.0,
+          "M_F2_ABSTRACTION_INDUCTION_FULL": 1.0,
+          "M_MINUS_COMPRESSION_CRITERION": 0.8,
+          "M_MINUS_LEAST_GENERALITY": 0.3333333333333333,
+          "M_MINUS_NEGATIVE_CHALLENGE": 0.8,
+          "M_MINUS_VARIABLE_IDENTITY": 0.8666666666666667,
+          "P0_FIXED_LESSON_INJECTION": 0.8,
+          "P1_PLOTKIN_LGG": 0.6,
+          "P2_CANDIDATE_ELIMINATION": 0.8,
+          "P3_MDL_COMPRESSION": 0.7333333333333333
+        }
+      },
+      "gate": "G0f_FAMILY_DISCRIMINATION",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 2,
+      "n_violations": 0,
+      "rule": "non-degenerate split, two independent halves: some arm >= 0.95 (not at floor) AND some registered weak arm <= 0.85 (not at ceiling); guards against the families that made FM/FG R2 uninformative",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "counter_liveness_control": {
+          "ablation_vs_parent_discordance": {
+            "M_MINUS_COMPRESSION_CRITERION": 3,
+            "M_MINUS_LEAST_GENERALITY": 10,
+            "M_MINUS_NEGATIVE_CHALLENGE": 3,
+            "M_MINUS_VARIABLE_IDENTITY": 2
+          },
+          "counter_is_live": true
+        },
+        "decision_identity_rate": 1.0,
+        "paired": {
+          "diff_x_minus_y": 0.0,
+          "discordant": 0,
+          "exact_p_two_sided": 1.0,
+          "n": 15,
+          "wald_ci95": [
+            0.0,
+            0.0
+          ],
+          "x_only": 0,
+          "y_only": 0
+        },
+        "per_family": {
+          "DISTRACTOR_REGULARITY": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "LEAST_GENERAL_PATTERN": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "NO_VALID_COMMON_ABSTRACTION": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "OVER_GENERALIZATION": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "UNDER_GENERALIZATION": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          }
+        },
+        "per_family_effective_allowance": {
+          "DISTRACTOR_REGULARITY": 0,
+          "LEAST_GENERAL_PATTERN": 0,
+          "NO_VALID_COMMON_ABSTRACTION": 0,
+          "OVER_GENERALIZATION": 0,
+          "UNDER_GENERALIZATION": 0
+        },
+        "per_family_threshold_note": "the 5% per-family rule is reported with the integer number of discordant instances it actually permits at this family size; where that is 0 the rule is exactly 'no discordance in this family', which is what it is enforcing"
+      },
+      "gate": "G1a_PARENT_REPRODUCES_M",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 15,
+      "n_violations": 0,
+      "rule": "F0_PARENT_FEDERATION reproduces M_F2_ABSTRACTION_INDUCTION_FULL's disposition on >= 99.5% of instances and no family exceeds 5% discordance; AND the discordance counter is shown live on this split by at least one ablation arm disagreeing with the parent",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "discordant_pairs": 0,
+        "paired": {
+          "diff_x_minus_y": 0.0,
+          "discordant": 0,
+          "exact_p_two_sided": 1.0,
+          "n": 15,
+          "wald_ci95": [
+            0.0,
+            0.0
+          ],
+          "x_only": 0,
+          "y_only": 0
+        },
+        "per_family": {
+          "DISTRACTOR_REGULARITY": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "LEAST_GENERAL_PATTERN": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "NO_VALID_COMMON_ABSTRACTION": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "OVER_GENERALIZATION": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "UNDER_GENERALIZATION": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          }
+        }
+      },
+      "gate": "G1b_M_ADVANTAGE",
+      "hard": false,
+      "min_required_evaluated": 1,
+      "n_evaluated": 15,
+      "n_violations": 1,
+      "rule": "paired instance-exact difference (M_F2_ABSTRACTION_INDUCTION_FULL - F0_PARENT_FEDERATION) > 0, exact two-sided p <= 0.05, and >= 1 family with >= 5 M-only-exact instances",
+      "verdict": "NOT_FIRED"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "M_over_accept": 0,
+        "P_over_accept": 0,
+        "counter_liveness_control": {
+          "counter_is_live": true,
+          "max_over_accept_any_arm": 6,
+          "over_accept_by_arm": {
+            "C_ALWAYS_ACCEPT": 6,
+            "C_ALWAYS_REJECT": 0,
+            "C_RANDOM_DISPOSITION": 2,
+            "F0_PARENT_FEDERATION": 0,
+            "M_F2_ABSTRACTION_INDUCTION_FULL": 0,
+            "M_MINUS_COMPRESSION_CRITERION": 2,
+            "M_MINUS_LEAST_GENERALITY": 6,
+            "M_MINUS_NEGATIVE_CHALLENGE": 3,
+            "M_MINUS_VARIABLE_IDENTITY": 0,
+            "P0_FIXED_LESSON_INJECTION": 3,
+            "P1_PLOTKIN_LGG": 6,
+            "P2_CANDIDATE_ELIMINATION": 2,
+            "P3_MDL_COMPRESSION": 3
+          }
+        },
+        "n_blocked": 6
+      },
+      "gate": "G2_ANTI_PERMISSIVENESS",
+      "hard": true,
+      "min_required_evaluated": 10,
+      "n_evaluated": 6,
+      "n_violations": 0,
+      "rule": "on instances the oracle blocks, M_F2_ABSTRACTION_INDUCTION_FULL accepts no more transfers than F0_PARENT_FEDERATION; AND the over-acceptance counter is shown live on these same instances by at least one arm registering a nonzero count",
+      "verdict": "CANNOT_CHECK"
+    },
+    {
+      "applicable": false,
+      "detail": {
+        "checks": {},
+        "claimed_families": []
+      },
+      "gate": "G3_MECHANISM_BY_OMISSION",
+      "hard": false,
+      "min_required_evaluated": 1,
+      "n_evaluated": 0,
+      "n_violations": 0,
+      "rule": "for every family with a claimed M advantage, the matching omission ablation's exact rate is <= the parent's on that family",
+      "verdict": "NOT_APPLICABLE"
+    }
+  ],
+  "generator_rejections": {
+    "DISTRACTOR_REGULARITY": 0,
+    "LEAST_GENERAL_PATTERN": 1,
+    "NO_VALID_COMMON_ABSTRACTION": 0,
+    "OVER_GENERALIZATION": 1,
+    "UNDER_GENERALIZATION": 0
+  },
+  "holm_across_families": {
+    "DISTRACTOR_REGULARITY": {
+      "holm_p": 1.0,
+      "m": 5,
+      "rank": 2,
+      "raw_p": 1.0
+    },
+    "LEAST_GENERAL_PATTERN": {
+      "holm_p": 1.0,
+      "m": 5,
+      "rank": 1,
+      "raw_p": 1.0
+    },
+    "NO_VALID_COMMON_ABSTRACTION": {
+      "holm_p": 1.0,
+      "m": 5,
+      "rank": 5,
+      "raw_p": 1.0
+    },
+    "OVER_GENERALIZATION": {
+      "holm_p": 1.0,
+      "m": 5,
+      "rank": 3,
+      "raw_p": 1.0
+    },
+    "UNDER_GENERALIZATION": {
+      "holm_p": 1.0,
+      "m": 5,
+      "rank": 4,
+      "raw_p": 1.0
+    }
+  },
+  "label": "DEVELOPMENT",
+  "n_instances": 15,
+  "results_sha256": "735f7ebfdd01c6d8d03a167780324c59b67334ac8419d4a3e086c7aedfe29604",
+  "route": {
+    "cost_flag": "COST_PARITY_WITHIN_2X",
+    "reason": "F0_PARENT_FEDERATION reproduces M_F2_ABSTRACTION_INDUCTION_FULL's dispositions (identity 1.0000); NOTE 1 hard gate(s) could not be evaluated on this split and are NOT reported as passing: ['G2_ANTI_PERMISSIVENESS']",
+    "route": "PARENT_SUFFICIENT"
+  },
+  "schema_version": "orion.v2.fm-exact.analysis.v1",
+  "score": {
+    "per_arm": {
+      "C_ALWAYS_ACCEPT": {
+        "exact": 0,
+        "exact_rate": 0.0,
+        "n": 15,
+        "over_accept": 6,
+        "per_family": {
+          "DISTRACTOR_REGULARITY": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "LEAST_GENERAL_PATTERN": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "NO_VALID_COMMON_ABSTRACTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "OVER_GENERALIZATION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "UNDER_GENERALIZATION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.016502
+      },
+      "C_ALWAYS_REJECT": {
+        "exact": 0,
+        "exact_rate": 0.0,
+        "n": 15,
+        "over_accept": 0,
+        "per_family": {
+          "DISTRACTOR_REGULARITY": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "LEAST_GENERAL_PATTERN": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "NO_VALID_COMMON_ABSTRACTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "OVER_GENERALIZATION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "UNDER_GENERALIZATION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          }
+        },
+        "under_accept": 9,
+        "wall_ms": 0.011752
+      },
+      "C_RANDOM_DISPOSITION": {
+        "exact": 1,
+        "exact_rate": 0.06666666666666667,
+        "n": 15,
+        "over_accept": 2,
+        "per_family": {
+          "DISTRACTOR_REGULARITY": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "LEAST_GENERAL_PATTERN": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "NO_VALID_COMMON_ABSTRACTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "OVER_GENERALIZATION": {
+            "exact": 1,
+            "exact_rate": 0.3333333333333333,
+            "n": 3
+          },
+          "UNDER_GENERALIZATION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          }
+        },
+        "under_accept": 7,
+        "wall_ms": 0.11971
+      },
+      "F0_PARENT_FEDERATION": {
+        "exact": 15,
+        "exact_rate": 1.0,
+        "n": 15,
+        "over_accept": 0,
+        "per_family": {
+          "DISTRACTOR_REGULARITY": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "LEAST_GENERAL_PATTERN": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NO_VALID_COMMON_ABSTRACTION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "OVER_GENERALIZATION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "UNDER_GENERALIZATION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.289082
+      },
+      "M_F2_ABSTRACTION_INDUCTION_FULL": {
+        "exact": 15,
+        "exact_rate": 1.0,
+        "n": 15,
+        "over_accept": 0,
+        "per_family": {
+          "DISTRACTOR_REGULARITY": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "LEAST_GENERAL_PATTERN": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NO_VALID_COMMON_ABSTRACTION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "OVER_GENERALIZATION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "UNDER_GENERALIZATION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.374456
+      },
+      "M_MINUS_COMPRESSION_CRITERION": {
+        "exact": 12,
+        "exact_rate": 0.8,
+        "n": 15,
+        "over_accept": 2,
+        "per_family": {
+          "DISTRACTOR_REGULARITY": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "LEAST_GENERAL_PATTERN": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NO_VALID_COMMON_ABSTRACTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "OVER_GENERALIZATION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "UNDER_GENERALIZATION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.277542
+      },
+      "M_MINUS_LEAST_GENERALITY": {
+        "exact": 5,
+        "exact_rate": 0.3333333333333333,
+        "n": 15,
+        "over_accept": 6,
+        "per_family": {
+          "DISTRACTOR_REGULARITY": {
+            "exact": 2,
+            "exact_rate": 0.6666666666666666,
+            "n": 3
+          },
+          "LEAST_GENERAL_PATTERN": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "NO_VALID_COMMON_ABSTRACTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "OVER_GENERALIZATION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "UNDER_GENERALIZATION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.031583
+      },
+      "M_MINUS_NEGATIVE_CHALLENGE": {
+        "exact": 12,
+        "exact_rate": 0.8,
+        "n": 15,
+        "over_accept": 3,
+        "per_family": {
+          "DISTRACTOR_REGULARITY": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "LEAST_GENERAL_PATTERN": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NO_VALID_COMMON_ABSTRACTION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "OVER_GENERALIZATION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "UNDER_GENERALIZATION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.272292
+      },
+      "M_MINUS_VARIABLE_IDENTITY": {
+        "exact": 13,
+        "exact_rate": 0.8666666666666667,
+        "n": 15,
+        "over_accept": 0,
+        "per_family": {
+          "DISTRACTOR_REGULARITY": {
+            "exact": 1,
+            "exact_rate": 0.3333333333333333,
+            "n": 3
+          },
+          "LEAST_GENERAL_PATTERN": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NO_VALID_COMMON_ABSTRACTION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "OVER_GENERALIZATION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "UNDER_GENERALIZATION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 2,
+        "wall_ms": 1.937374
+      },
+      "P0_FIXED_LESSON_INJECTION": {
+        "exact": 12,
+        "exact_rate": 0.8,
+        "n": 15,
+        "over_accept": 3,
+        "per_family": {
+          "DISTRACTOR_REGULARITY": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "LEAST_GENERAL_PATTERN": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NO_VALID_COMMON_ABSTRACTION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "OVER_GENERALIZATION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "UNDER_GENERALIZATION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.16875
+      },
+      "P1_PLOTKIN_LGG": {
+        "exact": 9,
+        "exact_rate": 0.6,
+        "n": 15,
+        "over_accept": 6,
+        "per_family": {
+          "DISTRACTOR_REGULARITY": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "LEAST_GENERAL_PATTERN": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NO_VALID_COMMON_ABSTRACTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "OVER_GENERALIZATION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "UNDER_GENERALIZATION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.176538
+      },
+      "P2_CANDIDATE_ELIMINATION": {
+        "exact": 12,
+        "exact_rate": 0.8,
+        "n": 15,
+        "over_accept": 2,
+        "per_family": {
+          "DISTRACTOR_REGULARITY": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "LEAST_GENERAL_PATTERN": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NO_VALID_COMMON_ABSTRACTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "OVER_GENERALIZATION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "UNDER_GENERALIZATION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.179126
+      },
+      "P3_MDL_COMPRESSION": {
+        "exact": 11,
+        "exact_rate": 0.7333333333333333,
+        "n": 15,
+        "over_accept": 3,
+        "per_family": {
+          "DISTRACTOR_REGULARITY": {
+            "exact": 2,
+            "exact_rate": 0.6666666666666666,
+            "n": 3
+          },
+          "LEAST_GENERAL_PATTERN": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "NO_VALID_COMMON_ABSTRACTION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "OVER_GENERALIZATION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "UNDER_GENERALIZATION": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 2.174876
+      }
+    }
+  },
+  "suite": "FM20",
+  "unchecked_hard_gates": [
+    "G2_ANTI_PERMISSIVENESS"
+  ]
+}

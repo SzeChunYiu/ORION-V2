@@ -1,0 +1,6518 @@
+{
+  "instances": [
+    {
+      "expected": {
+        "escalation_witness": {
+          "length": 2
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              1,
+              2,
+              1
+            ]
+          ],
+          "rhs_chain": [
+            [
+              1,
+              0,
+              1,
+              1,
+              1
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L1_DIRECT",
+        "minimal_action": "CONTINUE_DIRECT_PROOF_SEARCH",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE",
+        "truth_witness": {
+          "derivation": [
+            [
+              1,
+              2,
+              1
+            ],
+            [
+              1,
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              1,
+              1,
+              1
+            ]
+          ],
+          "length": 2
+        },
+        "validity": "VERIFIED"
+      },
+      "family": "F1_DIRECT_SEARCH",
+      "hidden": {
+        "fidelity": "FAITHFUL",
+        "min_len_base": 2,
+        "oracle_action": "CONTINUE_DIRECT_PROOF_SEARCH",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE"
+      },
+      "task": {
+        "alt": null,
+        "alt_defining_word": [],
+        "alt_label": "",
+        "alt_map": [],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                0,
+                1
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                0,
+                1
+              ],
+              [
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                2
+              ],
+              [
+                0
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            1,
+            2,
+            1
+          ],
+          "rhs": [
+            1,
+            0,
+            1,
+            1,
+            1
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            1,
+            2,
+            1
+          ],
+          "rhs": [
+            1,
+            0,
+            1,
+            1,
+            1
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              1,
+              2,
+              1
+            ],
+            [
+              0
+            ]
+          ],
+          [
+            [
+              2,
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              1,
+              0
+            ]
+          ]
+        ],
+        "surface_cues": [],
+        "task_id": "F1-0001-1a85fb",
+        "transfer_of": null
+      },
+      "task_id": "F1-0001-1a85fb"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "length": 2
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              2,
+              0
+            ]
+          ],
+          "rhs_chain": [
+            [
+              2,
+              1,
+              1,
+              0
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L1_DIRECT",
+        "minimal_action": "CONTINUE_DIRECT_PROOF_SEARCH",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE",
+        "truth_witness": {
+          "derivation": [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              2,
+              1,
+              1,
+              0
+            ]
+          ],
+          "length": 2
+        },
+        "validity": "VERIFIED"
+      },
+      "family": "F1_DIRECT_SEARCH",
+      "hidden": {
+        "fidelity": "FAITHFUL",
+        "min_len_base": 2,
+        "oracle_action": "CONTINUE_DIRECT_PROOF_SEARCH",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE"
+      },
+      "task": {
+        "alt": null,
+        "alt_defining_word": [],
+        "alt_label": "",
+        "alt_map": [],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                0,
+                2
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                2
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            2,
+            0
+          ],
+          "rhs": [
+            2,
+            1,
+            1,
+            0
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            2,
+            0
+          ],
+          "rhs": [
+            2,
+            1,
+            1,
+            0
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              0,
+              2
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          [
+            [
+              0
+            ],
+            [
+              1,
+              0,
+              2
+            ]
+          ],
+          [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              1,
+              0,
+              0
+            ]
+          ]
+        ],
+        "surface_cues": [],
+        "task_id": "F1-0003-6663be",
+        "transfer_of": null
+      },
+      "task_id": "F1-0003-6663be"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "length": 2
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              1,
+              1,
+              0,
+              1
+            ]
+          ],
+          "rhs_chain": [
+            [
+              2,
+              0,
+              0,
+              0,
+              1
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L1_DIRECT",
+        "minimal_action": "CONTINUE_DIRECT_PROOF_SEARCH",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE",
+        "truth_witness": {
+          "derivation": [
+            [
+              1,
+              1,
+              0,
+              1
+            ],
+            [
+              2,
+              1,
+              1,
+              0,
+              1
+            ],
+            [
+              2,
+              0,
+              0,
+              0,
+              1
+            ]
+          ],
+          "length": 2
+        },
+        "validity": "VERIFIED"
+      },
+      "family": "F1_DIRECT_SEARCH",
+      "hidden": {
+        "fidelity": "FAITHFUL",
+        "min_len_base": 2,
+        "oracle_action": "CONTINUE_DIRECT_PROOF_SEARCH",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE"
+      },
+      "task": {
+        "alt": null,
+        "alt_defining_word": [],
+        "alt_label": "",
+        "alt_map": [],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                1
+              ],
+              [
+                1
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "rhs": [
+            2,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "rhs": [
+            2,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              2,
+              1
+            ]
+          ],
+          [
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              2,
+              1,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              1
+            ],
+            [
+              2,
+              2,
+              1
+            ]
+          ]
+        ],
+        "surface_cues": [],
+        "task_id": "F1-0008-e3ea85",
+        "transfer_of": null
+      },
+      "task_id": "F1-0008-e3ea85"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "lemma": [
+            [
+              1
+            ],
+            [
+              2,
+              1,
+              0,
+              1
+            ]
+          ]
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          "rhs_chain": [
+            [
+              2,
+              2,
+              1,
+              2,
+              1
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L2_RETRIEVE",
+        "minimal_action": "RETRIEVE_EXISTING_LEMMA",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE",
+        "truth_witness": {
+          "derivation": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              0,
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              0,
+              1,
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              0,
+              1,
+              1,
+              2,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              0,
+              1,
+              2,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              0,
+              2,
+              1,
+              1
+            ],
+            [
+              2,
+              1,
+              0,
+              0,
+              2,
+              1,
+              1
+            ],
+            [
+              2,
+              1,
+              2,
+              1,
+              0,
+              2,
+              1,
+              1
+            ],
+            [
+              2,
+              2,
+              1,
+              0,
+              2,
+              1,
+              1
+            ],
+            [
+              2,
+              2,
+              1,
+              2,
+              1,
+              2,
+              1,
+              1
+            ],
+            [
+              2,
+              2,
+              1,
+              2,
+              2,
+              1,
+              1
+            ],
+            [
+              2,
+              2,
+              1,
+              2,
+              0,
+              1
+            ],
+            [
+              2,
+              2,
+              1,
+              2,
+              1
+            ]
+          ],
+          "length": 14
+        },
+        "validity": "VERIFIED"
+      },
+      "family": "F2_MISSING_LEMMA",
+      "hidden": {
+        "fidelity": "FAITHFUL",
+        "lemma": [
+          [
+            1
+          ],
+          [
+            2,
+            1,
+            0,
+            1
+          ]
+        ],
+        "min_len_with_lemma": 10,
+        "oracle_action": "RETRIEVE_EXISTING_LEMMA",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE"
+      },
+      "task": {
+        "alt": null,
+        "alt_defining_word": [],
+        "alt_label": "",
+        "alt_map": [],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                0,
+                1
+              ],
+              [
+                1
+              ]
+            ],
+            [
+              [
+                1,
+                2
+              ],
+              [
+                2
+              ]
+            ],
+            [
+              [
+                2,
+                1
+              ],
+              [
+                0
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            1,
+            1,
+            1
+          ],
+          "rhs": [
+            2,
+            2,
+            1,
+            2,
+            1
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            1,
+            1,
+            1
+          ],
+          "rhs": [
+            2,
+            2,
+            1,
+            2,
+            1
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              1
+            ],
+            [
+              2,
+              1,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              2,
+              1
+            ],
+            [
+              0
+            ]
+          ],
+          [
+            [
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          [
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              2,
+              1,
+              0,
+              2
+            ]
+          ]
+        ],
+        "surface_cues": [],
+        "task_id": "F2-0008-ec914b",
+        "transfer_of": null
+      },
+      "task_id": "F2-0008-ec914b"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "lemma": [
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              2,
+              2,
+              2
+            ]
+          ]
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              1,
+              1,
+              2
+            ]
+          ],
+          "rhs_chain": [
+            [
+              0,
+              2,
+              2,
+              2,
+              0
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L2_RETRIEVE",
+        "minimal_action": "RETRIEVE_EXISTING_LEMMA",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE",
+        "truth_witness": {
+          "derivation": [
+            [
+              1,
+              1,
+              2
+            ],
+            [
+              1,
+              1,
+              0,
+              2
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              1,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              2,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              2,
+              0
+            ],
+            [
+              0,
+              2,
+              2,
+              2,
+              0
+            ]
+          ],
+          "length": 8
+        },
+        "validity": "VERIFIED"
+      },
+      "family": "F2_MISSING_LEMMA",
+      "hidden": {
+        "fidelity": "FAITHFUL",
+        "lemma": [
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            2,
+            2,
+            2
+          ]
+        ],
+        "min_len_with_lemma": 6,
+        "oracle_action": "RETRIEVE_EXISTING_LEMMA",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE"
+      },
+      "task": {
+        "alt": null,
+        "alt_defining_word": [],
+        "alt_label": "",
+        "alt_map": [],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                0,
+                2
+              ],
+              [
+                1
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                1
+              ],
+              [
+                0
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            1,
+            1,
+            2
+          ],
+          "rhs": [
+            0,
+            2,
+            2,
+            2,
+            0
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            1,
+            1,
+            2
+          ],
+          "rhs": [
+            0,
+            2,
+            2,
+            2,
+            0
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              2,
+              2,
+              2
+            ]
+          ],
+          [
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              1,
+              1,
+              2
+            ],
+            [
+              0,
+              0,
+              2
+            ]
+          ],
+          [
+            [
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "surface_cues": [],
+        "task_id": "F2-0010-59393c",
+        "transfer_of": null
+      },
+      "task_id": "F2-0010-59393c"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "lemma": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              2,
+              0
+            ]
+          ],
+          "rhs_chain": [
+            [
+              2,
+              0,
+              0,
+              0,
+              1
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L2_RETRIEVE",
+        "minimal_action": "RETRIEVE_EXISTING_LEMMA",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE",
+        "truth_witness": {
+          "derivation": [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              2,
+              1,
+              1,
+              0
+            ],
+            [
+              2,
+              2,
+              0
+            ],
+            [
+              1,
+              1,
+              2,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              0,
+              1
+            ],
+            [
+              2,
+              1,
+              0,
+              1
+            ],
+            [
+              2,
+              1,
+              2,
+              0,
+              0,
+              1
+            ],
+            [
+              2,
+              1,
+              1,
+              1,
+              0,
+              0,
+              1
+            ],
+            [
+              2,
+              1,
+              1,
+              0,
+              0,
+              1
+            ],
+            [
+              2,
+              1,
+              1,
+              2,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              2,
+              1,
+              2,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              2,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              2,
+              1,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              2,
+              0,
+              0,
+              0,
+              1
+            ]
+          ],
+          "length": 17
+        },
+        "validity": "VERIFIED"
+      },
+      "family": "F2_MISSING_LEMMA",
+      "hidden": {
+        "fidelity": "FAITHFUL",
+        "lemma": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "min_len_with_lemma": 7,
+        "oracle_action": "RETRIEVE_EXISTING_LEMMA",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE"
+      },
+      "task": {
+        "alt": null,
+        "alt_defining_word": [],
+        "alt_label": "",
+        "alt_map": [],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                1,
+                1
+              ],
+              [
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                1
+              ],
+              [
+                2
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            2,
+            0
+          ],
+          "rhs": [
+            2,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            2,
+            0
+          ],
+          "rhs": [
+            2,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              1,
+              2,
+              1
+            ],
+            [
+              1,
+              2,
+              1,
+              2
+            ]
+          ],
+          [
+            [
+              2
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              1
+            ],
+            [
+              1,
+              2,
+              0
+            ]
+          ]
+        ],
+        "surface_cues": [],
+        "task_id": "F2-0040-5bf1c8",
+        "transfer_of": null
+      },
+      "task_id": "F2-0040-5bf1c8"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "alt_statement": {
+            "lhs": [
+              1,
+              0,
+              2,
+              0
+            ],
+            "rhs": [
+              1,
+              0,
+              2,
+              2,
+              0
+            ]
+          }
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              1,
+              0,
+              2,
+              0
+            ]
+          ],
+          "rhs_chain": [
+            [
+              1,
+              0,
+              2,
+              2,
+              0
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L4_REPRESENTATION",
+        "minimal_action": "CHANGE_REPRESENTATION",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE",
+        "truth_witness": {
+          "derivation": [
+            [
+              1,
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              0,
+              1,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              0,
+              1,
+              2,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              0,
+              2,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              2,
+              2,
+              0
+            ]
+          ],
+          "length": 5
+        },
+        "validity": "VERIFIED"
+      },
+      "family": "F3_REPRESENTATION_CHANGE",
+      "hidden": {
+        "alt_defining_word": [
+          0,
+          1
+        ],
+        "fidelity": "FAITHFUL",
+        "min_len_alt": 9,
+        "oracle_action": "CHANGE_REPRESENTATION",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "theories_agree": true,
+        "truth": "PROVABLE"
+      },
+      "task": {
+        "alt": {
+          "alphabet": 4,
+          "axioms": [
+            [
+              [
+                1,
+                2
+              ],
+              [
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                2,
+                2
+              ],
+              [
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                3
+              ],
+              [
+                2,
+                0
+              ]
+            ],
+            [
+              [
+                3
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "pid": "P1"
+        },
+        "alt_defining_word": [
+          0,
+          1
+        ],
+        "alt_label": "generator d := ab",
+        "alt_map": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                1,
+                2
+              ],
+              [
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                0,
+                1
+              ],
+              [
+                2,
+                0
+              ]
+            ],
+            [
+              [
+                2,
+                2,
+                2
+              ],
+              [
+                1
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            1,
+            0,
+            2,
+            0
+          ],
+          "rhs": [
+            1,
+            0,
+            2,
+            2,
+            0
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            1,
+            0,
+            2,
+            0
+          ],
+          "rhs": [
+            1,
+            0,
+            2,
+            2,
+            0
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2,
+              2,
+              2
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              2,
+              2
+            ]
+          ],
+          [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              0,
+              1
+            ]
+          ]
+        ],
+        "surface_cues": [
+          "a change of generators is offered",
+          "an alternative presentation is available"
+        ],
+        "task_id": "F3-0691-a4ddaa",
+        "transfer_of": null
+      },
+      "task_id": "F3-0691-a4ddaa"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "alt_statement": {
+            "lhs": [
+              1,
+              1,
+              2,
+              0
+            ],
+            "rhs": [
+              3,
+              1,
+              2
+            ]
+          }
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              1,
+              1,
+              2,
+              0
+            ]
+          ],
+          "rhs_chain": [
+            [
+              0,
+              1,
+              1,
+              2
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L4_REPRESENTATION",
+        "minimal_action": "CHANGE_REPRESENTATION",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE",
+        "truth_witness": {
+          "derivation": [
+            [
+              1,
+              1,
+              2,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              2,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              1,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              1,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              1,
+              1,
+              2
+            ]
+          ],
+          "length": 12
+        },
+        "validity": "VERIFIED"
+      },
+      "family": "F3_REPRESENTATION_CHANGE",
+      "hidden": {
+        "alt_defining_word": [
+          0,
+          1
+        ],
+        "fidelity": "FAITHFUL",
+        "min_len_alt": 13,
+        "oracle_action": "CHANGE_REPRESENTATION",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "theories_agree": true,
+        "truth": "PROVABLE"
+      },
+      "task": {
+        "alt": {
+          "alphabet": 4,
+          "axioms": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1
+              ]
+            ],
+            [
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                0,
+                2
+              ]
+            ],
+            [
+              [
+                3
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "pid": "P1"
+        },
+        "alt_defining_word": [
+          0,
+          1
+        ],
+        "alt_label": "generator d := ab",
+        "alt_map": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1
+              ]
+            ],
+            [
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            1,
+            1,
+            2,
+            0
+          ],
+          "rhs": [
+            0,
+            1,
+            1,
+            2
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            1,
+            1,
+            2,
+            0
+          ],
+          "rhs": [
+            0,
+            1,
+            1,
+            2
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              2,
+              0,
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          [
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ]
+          ]
+        ],
+        "surface_cues": [
+          "a change of generators is offered",
+          "an alternative presentation is available"
+        ],
+        "task_id": "F3-0751-f2f3c2",
+        "transfer_of": null
+      },
+      "task_id": "F3-0751-f2f3c2"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "alt_statement": {
+            "lhs": [
+              0,
+              2,
+              0,
+              0
+            ],
+            "rhs": [
+              0,
+              2,
+              1,
+              0,
+              2
+            ]
+          }
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              0,
+              2,
+              0,
+              0
+            ]
+          ],
+          "rhs_chain": [
+            [
+              0,
+              2,
+              1,
+              0,
+              2
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L4_REPRESENTATION",
+        "minimal_action": "CHANGE_REPRESENTATION",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE",
+        "truth_witness": {
+          "derivation": [
+            [
+              0,
+              2,
+              0,
+              0
+            ],
+            [
+              0,
+              2,
+              1,
+              2,
+              0
+            ],
+            [
+              0,
+              2,
+              1,
+              2,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              1,
+              2,
+              1,
+              2,
+              0,
+              2
+            ],
+            [
+              0,
+              2,
+              1,
+              2,
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              2,
+              1,
+              0,
+              2
+            ]
+          ],
+          "length": 5
+        },
+        "validity": "VERIFIED"
+      },
+      "family": "F3_REPRESENTATION_CHANGE",
+      "hidden": {
+        "alt_defining_word": [
+          1,
+          2
+        ],
+        "fidelity": "FAITHFUL",
+        "min_len_alt": 6,
+        "oracle_action": "CHANGE_REPRESENTATION",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "theories_agree": true,
+        "truth": "PROVABLE"
+      },
+      "task": {
+        "alt": {
+          "alphabet": 4,
+          "axioms": [
+            [
+              [
+                3
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                3
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            [
+              [
+                3,
+                0
+              ],
+              [
+                1
+              ]
+            ]
+          ],
+          "pid": "P1"
+        },
+        "alt_defining_word": [
+          1,
+          2
+        ],
+        "alt_label": "generator d := bc",
+        "alt_map": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                1,
+                2
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                1
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            0,
+            2,
+            0,
+            0
+          ],
+          "rhs": [
+            0,
+            2,
+            1,
+            0,
+            2
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            0,
+            2,
+            0,
+            0
+          ],
+          "rhs": [
+            0,
+            2,
+            1,
+            0,
+            2
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              2,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              2,
+              2
+            ],
+            [
+              1,
+              2,
+              2,
+              2
+            ]
+          ]
+        ],
+        "surface_cues": [
+          "a change of generators is offered",
+          "an alternative presentation is available"
+        ],
+        "task_id": "F3-0762-23d2ef",
+        "transfer_of": null
+      },
+      "task_id": "F3-0762-23d2ef"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "length": 2
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              0,
+              2,
+              1
+            ]
+          ],
+          "rhs_chain": [
+            [
+              0,
+              2,
+              2,
+              2,
+              1
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L1_DIRECT",
+        "minimal_action": "CONTINUE_DIRECT_PROOF_SEARCH",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE",
+        "truth_witness": {
+          "derivation": [
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              2,
+              2,
+              1
+            ],
+            [
+              0,
+              2,
+              2,
+              2,
+              1
+            ]
+          ],
+          "length": 2
+        },
+        "validity": "VERIFIED"
+      },
+      "family": "F4_DECEPTIVE_CHANGE",
+      "hidden": {
+        "alt_expansions": 9,
+        "base_expansions": 3,
+        "fidelity": "FAITHFUL",
+        "min_len_base": 2,
+        "oracle_action": "CONTINUE_DIRECT_PROOF_SEARCH",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE"
+      },
+      "task": {
+        "alt": {
+          "alphabet": 4,
+          "axioms": [
+            [
+              [
+                1,
+                1
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                3
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                3
+              ],
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "pid": "P1"
+        },
+        "alt_defining_word": [
+          0,
+          2
+        ],
+        "alt_label": "generator d := ac",
+        "alt_map": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                0,
+                2
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                1,
+                1
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            0,
+            2,
+            1
+          ],
+          "rhs": [
+            0,
+            2,
+            2,
+            2,
+            1
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            0,
+            2,
+            1
+          ],
+          "rhs": [
+            0,
+            2,
+            2,
+            2,
+            1
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              2,
+              2
+            ]
+          ],
+          [
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              2,
+              0,
+              1
+            ],
+            [
+              2,
+              0,
+              2,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              2,
+              0,
+              2
+            ]
+          ]
+        ],
+        "surface_cues": [
+          "a change of generators is offered",
+          "statement is symmetric under reversal",
+          "the left side factors through the offered generator"
+        ],
+        "task_id": "F4-0004-982a5a",
+        "transfer_of": null
+      },
+      "task_id": "F4-0004-982a5a"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "length": 3
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              2,
+              0,
+              0,
+              0
+            ]
+          ],
+          "rhs_chain": [
+            [
+              2,
+              1,
+              0,
+              0
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L1_DIRECT",
+        "minimal_action": "CONTINUE_DIRECT_PROOF_SEARCH",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE",
+        "truth_witness": {
+          "derivation": [
+            [
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              2,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              2,
+              2,
+              2,
+              0,
+              0
+            ],
+            [
+              2,
+              1,
+              0,
+              0
+            ]
+          ],
+          "length": 3
+        },
+        "validity": "VERIFIED"
+      },
+      "family": "F4_DECEPTIVE_CHANGE",
+      "hidden": {
+        "alt_expansions": 6,
+        "base_expansions": 5,
+        "fidelity": "FAITHFUL",
+        "min_len_base": 3,
+        "oracle_action": "CONTINUE_DIRECT_PROOF_SEARCH",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE"
+      },
+      "task": {
+        "alt": {
+          "alphabet": 4,
+          "axioms": [
+            [
+              [
+                2,
+                1
+              ],
+              [
+                2
+              ]
+            ],
+            [
+              [
+                2,
+                2
+              ],
+              [
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                2
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              [
+                3
+              ],
+              [
+                2,
+                0
+              ]
+            ]
+          ],
+          "pid": "P1"
+        },
+        "alt_defining_word": [
+          2,
+          0
+        ],
+        "alt_label": "generator d := ca",
+        "alt_map": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                2,
+                1
+              ],
+              [
+                2
+              ]
+            ],
+            [
+              [
+                2,
+                2
+              ],
+              [
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                2
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            2,
+            0,
+            0,
+            0
+          ],
+          "rhs": [
+            2,
+            1,
+            0,
+            0
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            2,
+            0,
+            0,
+            0
+          ],
+          "rhs": [
+            2,
+            1,
+            0,
+            0
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ],
+          [
+            [
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              1
+            ],
+            [
+              2,
+              1,
+              2,
+              1
+            ]
+          ],
+          [
+            [
+              2
+            ],
+            [
+              2,
+              2,
+              1,
+              2
+            ]
+          ]
+        ],
+        "surface_cues": [
+          "a change of generators is offered",
+          "statement is symmetric under reversal",
+          "the left side factors through the offered generator"
+        ],
+        "task_id": "F4-0005-100e01",
+        "transfer_of": null
+      },
+      "task_id": "F4-0005-100e01"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "length": 2
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              0,
+              2
+            ]
+          ],
+          "rhs_chain": [
+            [
+              1,
+              1,
+              2,
+              2
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L1_DIRECT",
+        "minimal_action": "CONTINUE_DIRECT_PROOF_SEARCH",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE",
+        "truth_witness": {
+          "derivation": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              1,
+              2
+            ],
+            [
+              1,
+              1,
+              2,
+              2
+            ]
+          ],
+          "length": 2
+        },
+        "validity": "VERIFIED"
+      },
+      "family": "F4_DECEPTIVE_CHANGE",
+      "hidden": {
+        "alt_expansions": 3,
+        "base_expansions": 2,
+        "fidelity": "FAITHFUL",
+        "min_len_base": 2,
+        "oracle_action": "CONTINUE_DIRECT_PROOF_SEARCH",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE"
+      },
+      "task": {
+        "alt": {
+          "alphabet": 4,
+          "axioms": [
+            [
+              [
+                1,
+                1
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                2,
+                2
+              ],
+              [
+                2
+              ]
+            ],
+            [
+              [
+                3
+              ],
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "pid": "P1"
+        },
+        "alt_defining_word": [
+          0,
+          2
+        ],
+        "alt_label": "generator d := ac",
+        "alt_map": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                1,
+                1
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                2,
+                2
+              ],
+              [
+                2
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            0,
+            2
+          ],
+          "rhs": [
+            1,
+            1,
+            2,
+            2
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            0,
+            2
+          ],
+          "rhs": [
+            1,
+            1,
+            2,
+            2
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              2,
+              2,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              2,
+              1
+            ]
+          ],
+          [
+            [
+              1,
+              1
+            ],
+            [
+              0
+            ]
+          ]
+        ],
+        "surface_cues": [
+          "a change of generators is offered",
+          "statement is symmetric under reversal",
+          "the left side factors through the offered generator"
+        ],
+        "task_id": "F4-0016-0d2c8e",
+        "transfer_of": null
+      },
+      "task_id": "F4-0016-0d2c8e"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "model": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "size": 2
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              1,
+              2,
+              2,
+              0
+            ]
+          ],
+          "rhs_chain": [
+            [
+              2
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L0_REFUTE",
+        "minimal_action": "GENERATE_COUNTEREXAMPLE_OR_SMALL_MODEL",
+        "terminal": "REFUTED_WITH_COUNTERMODEL",
+        "truth": "REFUTABLE",
+        "truth_witness": {
+          "model": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "size": 2
+        },
+        "validity": "REFUTED"
+      },
+      "family": "F5_PROBE_OR_COUNTEREXAMPLE_NEEDED",
+      "hidden": {
+        "countermodel": {
+          "model": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "size": 2
+        },
+        "fidelity": "FAITHFUL",
+        "oracle_action": "GENERATE_COUNTEREXAMPLE_OR_SMALL_MODEL",
+        "terminal": "REFUTED_WITH_COUNTERMODEL",
+        "truth": "REFUTABLE"
+      },
+      "task": {
+        "alt": null,
+        "alt_defining_word": [],
+        "alt_label": "",
+        "alt_map": [],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                0
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            1,
+            2,
+            2,
+            0
+          ],
+          "rhs": [
+            2
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            1,
+            2,
+            2,
+            0
+          ],
+          "rhs": [
+            2
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              2,
+              0
+            ],
+            [
+              1,
+              1,
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              1,
+              0,
+              1
+            ]
+          ]
+        ],
+        "surface_cues": [],
+        "task_id": "F5-0000-5f44ae",
+        "transfer_of": null
+      },
+      "task_id": "F5-0000-5f44ae"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "model": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "size": 2
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              2,
+              2
+            ]
+          ],
+          "rhs_chain": [
+            [
+              2
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L0_REFUTE",
+        "minimal_action": "GENERATE_COUNTEREXAMPLE_OR_SMALL_MODEL",
+        "terminal": "REFUTED_WITH_COUNTERMODEL",
+        "truth": "REFUTABLE",
+        "truth_witness": {
+          "model": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "size": 2
+        },
+        "validity": "REFUTED"
+      },
+      "family": "F5_PROBE_OR_COUNTEREXAMPLE_NEEDED",
+      "hidden": {
+        "countermodel": {
+          "model": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "size": 2
+        },
+        "fidelity": "FAITHFUL",
+        "oracle_action": "GENERATE_COUNTEREXAMPLE_OR_SMALL_MODEL",
+        "terminal": "REFUTED_WITH_COUNTERMODEL",
+        "truth": "REFUTABLE"
+      },
+      "task": {
+        "alt": null,
+        "alt_defining_word": [],
+        "alt_label": "",
+        "alt_map": [],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                1,
+                2
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                1,
+                2,
+                2
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            2,
+            2
+          ],
+          "rhs": [
+            2
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            2,
+            2
+          ],
+          "rhs": [
+            2
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              2,
+              2
+            ]
+          ],
+          [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              1,
+              2
+            ]
+          ]
+        ],
+        "surface_cues": [],
+        "task_id": "F5-0001-7d89c1",
+        "transfer_of": null
+      },
+      "task_id": "F5-0001-7d89c1"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "model": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "size": 2
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              1,
+              0,
+              2
+            ]
+          ],
+          "rhs_chain": [
+            [
+              2
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L0_REFUTE",
+        "minimal_action": "GENERATE_COUNTEREXAMPLE_OR_SMALL_MODEL",
+        "terminal": "REFUTED_WITH_COUNTERMODEL",
+        "truth": "REFUTABLE",
+        "truth_witness": {
+          "model": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "size": 2
+        },
+        "validity": "REFUTED"
+      },
+      "family": "F5_PROBE_OR_COUNTEREXAMPLE_NEEDED",
+      "hidden": {
+        "countermodel": {
+          "model": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "size": 2
+        },
+        "fidelity": "FAITHFUL",
+        "oracle_action": "GENERATE_COUNTEREXAMPLE_OR_SMALL_MODEL",
+        "terminal": "REFUTED_WITH_COUNTERMODEL",
+        "truth": "REFUTABLE"
+      },
+      "task": {
+        "alt": null,
+        "alt_defining_word": [],
+        "alt_label": "",
+        "alt_map": [],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                1,
+                1,
+                2
+              ],
+              [
+                2
+              ]
+            ],
+            [
+              [
+                2,
+                1
+              ],
+              [
+                2,
+                0
+              ]
+            ],
+            [
+              [
+                2,
+                2
+              ],
+              [
+                2,
+                1
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            1,
+            0,
+            2
+          ],
+          "rhs": [
+            2
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            1,
+            0,
+            2
+          ],
+          "rhs": [
+            2
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              1,
+              1,
+              2
+            ],
+            [
+              2
+            ]
+          ],
+          [
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              2,
+              1,
+              0
+            ]
+          ],
+          [
+            [
+              2,
+              1,
+              1
+            ],
+            [
+              2,
+              2,
+              0
+            ]
+          ]
+        ],
+        "surface_cues": [],
+        "task_id": "F5-0002-8f03f1",
+        "transfer_of": null
+      },
+      "task_id": "F5-0002-8f03f1"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "hit_cap": false,
+          "saturated": true
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              0,
+              2,
+              0,
+              1
+            ]
+          ],
+          "rhs_chain": [
+            [
+              1,
+              0
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L5_DEFER",
+        "minimal_action": "DEFER_CANNOT_IDENTIFY",
+        "terminal": "UNSOLVED_WITHIN_BUDGET",
+        "truth": "UNDETERMINED",
+        "truth_witness": {
+          "hit_cap": false,
+          "saturated": true
+        },
+        "validity": "DEFERRED"
+      },
+      "family": "F6_UNDERDETERMINED_OR_CANNOT_CHECK",
+      "hidden": {
+        "fidelity": "FAITHFUL",
+        "oracle_action": "DEFER_CANNOT_IDENTIFY",
+        "terminal": "UNSOLVED_WITHIN_BUDGET",
+        "truth": "UNDETERMINED",
+        "witness": {
+          "hit_cap": false,
+          "saturated": true
+        }
+      },
+      "task": {
+        "alt": null,
+        "alt_defining_word": [],
+        "alt_label": "",
+        "alt_map": [],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                0,
+                2
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              [
+                1,
+                2
+              ],
+              [
+                0
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            0,
+            2,
+            0,
+            1
+          ],
+          "rhs": [
+            1,
+            0
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            0,
+            2,
+            0,
+            1
+          ],
+          "rhs": [
+            1,
+            0
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              2,
+              2
+            ]
+          ],
+          [
+            [
+              1,
+              2,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              0
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        ],
+        "surface_cues": [],
+        "task_id": "F6-0041-95143e",
+        "transfer_of": null
+      },
+      "task_id": "F6-0041-95143e"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "hit_cap": false,
+          "saturated": true
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              2,
+              1
+            ]
+          ],
+          "rhs_chain": [
+            [
+              2,
+              0
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L5_DEFER",
+        "minimal_action": "DEFER_CANNOT_IDENTIFY",
+        "terminal": "UNSOLVED_WITHIN_BUDGET",
+        "truth": "UNDETERMINED",
+        "truth_witness": {
+          "hit_cap": false,
+          "saturated": true
+        },
+        "validity": "DEFERRED"
+      },
+      "family": "F6_UNDERDETERMINED_OR_CANNOT_CHECK",
+      "hidden": {
+        "fidelity": "FAITHFUL",
+        "oracle_action": "DEFER_CANNOT_IDENTIFY",
+        "terminal": "UNSOLVED_WITHIN_BUDGET",
+        "truth": "UNDETERMINED",
+        "witness": {
+          "hit_cap": false,
+          "saturated": true
+        }
+      },
+      "task": {
+        "alt": null,
+        "alt_defining_word": [],
+        "alt_label": "",
+        "alt_map": [],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                1
+              ],
+              [
+                2
+              ]
+            ],
+            [
+              [
+                2,
+                1,
+                2
+              ],
+              [
+                1
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            2,
+            1
+          ],
+          "rhs": [
+            2,
+            0
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            2,
+            1
+          ],
+          "rhs": [
+            2,
+            0
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              2,
+              2
+            ]
+          ],
+          [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              2,
+              0
+            ]
+          ],
+          [
+            [
+              2,
+              0,
+              2
+            ],
+            [
+              1,
+              2,
+              1,
+              0
+            ]
+          ]
+        ],
+        "surface_cues": [],
+        "task_id": "F6-0134-f0ff99",
+        "transfer_of": null
+      },
+      "task_id": "F6-0134-f0ff99"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "hit_cap": false,
+          "saturated": true
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              0,
+              1,
+              2
+            ]
+          ],
+          "rhs_chain": [
+            [
+              2,
+              0,
+              2
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L5_DEFER",
+        "minimal_action": "DEFER_CANNOT_IDENTIFY",
+        "terminal": "UNSOLVED_WITHIN_BUDGET",
+        "truth": "UNDETERMINED",
+        "truth_witness": {
+          "hit_cap": false,
+          "saturated": true
+        },
+        "validity": "DEFERRED"
+      },
+      "family": "F6_UNDERDETERMINED_OR_CANNOT_CHECK",
+      "hidden": {
+        "fidelity": "FAITHFUL",
+        "oracle_action": "DEFER_CANNOT_IDENTIFY",
+        "terminal": "UNSOLVED_WITHIN_BUDGET",
+        "truth": "UNDETERMINED",
+        "witness": {
+          "hit_cap": false,
+          "saturated": true
+        }
+      },
+      "task": {
+        "alt": null,
+        "alt_defining_word": [],
+        "alt_label": "",
+        "alt_map": [],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                1,
+                0
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                2,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                2
+              ],
+              [
+                0
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            0,
+            1,
+            2
+          ],
+          "rhs": [
+            2,
+            0,
+            2
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            0,
+            1,
+            2
+          ],
+          "rhs": [
+            2,
+            0,
+            2
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              2
+            ],
+            [
+              2,
+              1,
+              0,
+              2
+            ]
+          ],
+          [
+            [
+              0
+            ],
+            [
+              1,
+              1,
+              1,
+              0
+            ]
+          ]
+        ],
+        "surface_cues": [],
+        "task_id": "F6-0168-1ae32a",
+        "transfer_of": null
+      },
+      "task_id": "F6-0168-1ae32a"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "length": 3
+        },
+        "fidelity": "MATERIALLY_WEAKENED",
+        "fidelity_witness": {
+          "formal_holds": true,
+          "intent_holds": false,
+          "model": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "route": "SEPARATING_MODEL",
+          "size": 2
+        },
+        "level": "L1_DIRECT",
+        "minimal_action": "REFORMULATE_FORMAL_STATEMENT_WITH_PRESERVATION_CHECK",
+        "terminal": "FORMALLY_VERIFIED_BUT_INTENT_MISMATCH",
+        "truth": "PROVABLE",
+        "truth_witness": {
+          "derivation": [
+            [
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              2,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              1,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              1,
+              0,
+              0
+            ]
+          ],
+          "length": 3
+        },
+        "validity": "VERIFIED"
+      },
+      "family": "F7_SPECIFICATION_MISMATCH",
+      "hidden": {
+        "f7_subtype": "MATERIALLY_WEAKENED",
+        "fidelity": "MATERIALLY_WEAKENED",
+        "fidelity_witness": {
+          "formal_holds": true,
+          "intent_holds": false,
+          "model": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "route": "SEPARATING_MODEL",
+          "size": 2
+        },
+        "oracle_action": "REFORMULATE_FORMAL_STATEMENT_WITH_PRESERVATION_CHECK",
+        "terminal": "FORMALLY_VERIFIED_BUT_INTENT_MISMATCH",
+        "truth": "PROVABLE"
+      },
+      "task": {
+        "alt": null,
+        "alt_defining_word": [],
+        "alt_label": "",
+        "alt_map": [],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                0
+              ]
+            ],
+            [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                2
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "rhs": [
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            0,
+            1
+          ],
+          "rhs": [
+            1,
+            0,
+            0
+          ]
+        },
+        "intent_invariants": [
+          "every operator occurrence in the intended equation must appear in the formal statement"
+        ],
+        "library": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              0,
+              1,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ]
+          ],
+          [
+            [
+              1,
+              2,
+              2
+            ],
+            [
+              1,
+              0,
+              0,
+              0
+            ]
+          ]
+        ],
+        "surface_cues": [
+          "the target resembles a normal-form identity"
+        ],
+        "task_id": "F7-0000-5bc096",
+        "transfer_of": null
+      },
+      "task_id": "F7-0000-5bc096"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "length": 1
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              2,
+              2,
+              0,
+              0
+            ],
+            [
+              2,
+              1,
+              0
+            ]
+          ],
+          "rhs_chain": [
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              2,
+              2,
+              0,
+              0
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L1_DIRECT",
+        "minimal_action": "CONTINUE_DIRECT_PROOF_SEARCH",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE",
+        "truth_witness": {
+          "derivation": [
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              2,
+              2,
+              0,
+              0
+            ]
+          ],
+          "length": 1
+        },
+        "validity": "VERIFIED"
+      },
+      "family": "F7_SPECIFICATION_MISMATCH",
+      "hidden": {
+        "f7_subtype": "FAITHFUL",
+        "fidelity": "FAITHFUL",
+        "oracle_action": "CONTINUE_DIRECT_PROOF_SEARCH",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE"
+      },
+      "task": {
+        "alt": null,
+        "alt_defining_word": [],
+        "alt_label": "",
+        "alt_map": [],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                2
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                1
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            2,
+            1,
+            0
+          ],
+          "rhs": [
+            2,
+            2,
+            0,
+            0
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            2,
+            2,
+            0,
+            0
+          ],
+          "rhs": [
+            2,
+            1,
+            0
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              2,
+              0
+            ],
+            [
+              1
+            ]
+          ]
+        ],
+        "surface_cues": [
+          "statement is symmetric under reversal"
+        ],
+        "task_id": "F7-0013-461ee7",
+        "transfer_of": null
+      },
+      "task_id": "F7-0013-461ee7"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "model": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "size": 2
+        },
+        "fidelity": "ABSTRACTION_ELEVATION",
+        "fidelity_witness": {
+          "formal_holds": true,
+          "intent_holds": false,
+          "model": [
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "route": "SEPARATING_MODEL",
+          "size": 3
+        },
+        "level": "L0_REFUTE",
+        "minimal_action": "REFORMULATE_FORMAL_STATEMENT_WITH_PRESERVATION_CHECK",
+        "terminal": "REFUTED_WITH_COUNTERMODEL",
+        "truth": "REFUTABLE",
+        "truth_witness": {
+          "model": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "size": 2
+        },
+        "validity": "REFUTED"
+      },
+      "family": "F7_SPECIFICATION_MISMATCH",
+      "hidden": {
+        "adjudication_pid": "P1",
+        "f7_subtype": "ABSTRACTION_ELEVATION",
+        "fidelity": "ABSTRACTION_ELEVATION",
+        "fidelity_witness": {
+          "formal_holds": true,
+          "intent_holds": false,
+          "model": [
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "route": "SEPARATING_MODEL",
+          "size": 3
+        },
+        "intent_translated": {
+          "lhs": [
+            1,
+            0
+          ],
+          "rhs": [
+            2,
+            0
+          ]
+        },
+        "oracle_action": "REFORMULATE_FORMAL_STATEMENT_WITH_PRESERVATION_CHECK",
+        "terminal": "REFUTED_WITH_COUNTERMODEL",
+        "truth": "REFUTABLE"
+      },
+      "task": {
+        "alt": {
+          "alphabet": 4,
+          "axioms": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                2
+              ]
+            ],
+            [
+              [
+                2,
+                2
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            [
+              [
+                3
+              ],
+              [
+                0,
+                2
+              ]
+            ],
+            [
+              [
+                3
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          ],
+          "pid": "P1"
+        },
+        "alt_defining_word": [
+          0,
+          2
+        ],
+        "alt_label": "generator d := ac",
+        "alt_map": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                2
+              ]
+            ],
+            [
+              [
+                0,
+                2
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                2,
+                2
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            1,
+            3
+          ],
+          "rhs": [
+            2,
+            0
+          ]
+        },
+        "formal_pid": "P1",
+        "intent": {
+          "lhs": [
+            1,
+            0
+          ],
+          "rhs": [
+            2,
+            0
+          ]
+        },
+        "intent_invariants": [
+          "the formal statement must not quantify over generators absent from the intended equation"
+        ],
+        "library": [
+          [
+            [
+              2
+            ],
+            [
+              0,
+              0,
+              2
+            ]
+          ],
+          [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              2
+            ],
+            [
+              2,
+              0,
+              0
+            ]
+          ]
+        ],
+        "surface_cues": [
+          "the left side factors through the offered generator"
+        ],
+        "task_id": "F7-0017-91b61c",
+        "transfer_of": null
+      },
+      "task_id": "F7-0017-91b61c"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "lemma": [
+            [
+              1,
+              0
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              1,
+              1,
+              2
+            ]
+          ],
+          "rhs_chain": [
+            [
+              0,
+              2,
+              1,
+              1,
+              2
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L2_RETRIEVE",
+        "minimal_action": "RETRIEVE_EXISTING_LEMMA",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE",
+        "truth_witness": {
+          "derivation": [
+            [
+              1,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              0,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              2,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              0,
+              2,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              0,
+              2,
+              0,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              1,
+              1,
+              2
+            ]
+          ],
+          "length": 5
+        },
+        "validity": "VERIFIED"
+      },
+      "family": "F8_TRANSFER",
+      "hidden": {
+        "fidelity": "FAITHFUL",
+        "lemma": [
+          [
+            0,
+            2,
+            2,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "min_len_with_lemma": 5,
+        "oracle_action": "INVENT_LOCAL_LEMMA",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "transfer_role": "SOURCE",
+        "truth": "PROVABLE"
+      },
+      "task": {
+        "alt": null,
+        "alt_defining_word": [],
+        "alt_label": "",
+        "alt_map": [],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                0,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            1,
+            1,
+            2
+          ],
+          "rhs": [
+            0,
+            2,
+            1,
+            1,
+            2
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            1,
+            1,
+            2
+          ],
+          "rhs": [
+            0,
+            2,
+            1,
+            1,
+            2
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              1,
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          [
+            [
+              1
+            ],
+            [
+              0,
+              2,
+              0
+            ]
+          ],
+          [
+            [
+              2,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ]
+          ]
+        ],
+        "surface_cues": [],
+        "task_id": "F8-0064-ea0143s",
+        "transfer_of": null
+      },
+      "task_id": "F8-0064-ea0143s"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "lemma": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ]
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              0,
+              0,
+              2
+            ]
+          ],
+          "rhs_chain": [
+            [
+              0,
+              1,
+              1,
+              1,
+              1
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L3_INVENT",
+        "minimal_action": "INVENT_LOCAL_LEMMA",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE",
+        "truth_witness": {
+          "derivation": [
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              0,
+              1
+            ],
+            [
+              2,
+              2,
+              1
+            ],
+            [
+              2,
+              0,
+              2,
+              1
+            ],
+            [
+              2,
+              0,
+              0,
+              2,
+              1
+            ],
+            [
+              2,
+              0,
+              0,
+              0,
+              2,
+              1
+            ],
+            [
+              2,
+              0,
+              0,
+              0,
+              0,
+              2,
+              1
+            ],
+            [
+              2,
+              0,
+              0,
+              0,
+              0,
+              2,
+              0,
+              1
+            ],
+            [
+              2,
+              0,
+              0,
+              0,
+              1,
+              1
+            ],
+            [
+              2,
+              0,
+              0,
+              2,
+              1,
+              1
+            ],
+            [
+              2,
+              0,
+              0,
+              0,
+              2,
+              1,
+              1
+            ],
+            [
+              2,
+              0,
+              0,
+              0,
+              2,
+              0,
+              1,
+              1
+            ],
+            [
+              2,
+              0,
+              0,
+              1,
+              1,
+              1
+            ],
+            [
+              2,
+              0,
+              2,
+              1,
+              1,
+              1
+            ],
+            [
+              2,
+              0,
+              2,
+              0,
+              1,
+              1,
+              1
+            ],
+            [
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              1,
+              1,
+              1
+            ]
+          ],
+          "length": 19
+        },
+        "validity": "VERIFIED"
+      },
+      "family": "F8_TRANSFER",
+      "hidden": {
+        "fidelity": "FAITHFUL",
+        "min_len_with_lemma": 13,
+        "oracle_action": "INVENT_LOCAL_LEMMA",
+        "reusable_lemma": [
+          [
+            0,
+            2,
+            2,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "transfer_role": "TARGET",
+        "truth": "PROVABLE"
+      },
+      "task": {
+        "alt": null,
+        "alt_defining_word": [],
+        "alt_label": "",
+        "alt_map": [],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                0,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            0,
+            0,
+            2
+          ],
+          "rhs": [
+            0,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            0,
+            0,
+            2
+          ],
+          "rhs": [
+            0,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              1
+            ],
+            [
+              0,
+              2,
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              1,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              1,
+              2
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              2,
+              1,
+              0
+            ]
+          ]
+        ],
+        "surface_cues": [],
+        "task_id": "F8-0064-ea0143t",
+        "transfer_of": "F8-0064-ea0143s"
+      },
+      "task_id": "F8-0064-ea0143t"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "lemma": [
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ]
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              1,
+              2
+            ]
+          ],
+          "rhs_chain": [
+            [
+              2,
+              1,
+              1,
+              0,
+              2
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L3_INVENT",
+        "minimal_action": "INVENT_LOCAL_LEMMA",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE",
+        "truth_witness": {
+          "derivation": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              2,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              1
+            ],
+            [
+              1,
+              1,
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              0,
+              1,
+              2
+            ],
+            [
+              2,
+              0,
+              1,
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              0,
+              2,
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              0,
+              2,
+              0,
+              1,
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              2,
+              0,
+              1,
+              2,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              1,
+              1,
+              2,
+              0,
+              1
+            ],
+            [
+              2,
+              1,
+              2,
+              0,
+              1
+            ],
+            [
+              2,
+              1,
+              1,
+              0,
+              1,
+              0,
+              1
+            ],
+            [
+              2,
+              1,
+              1,
+              0,
+              2
+            ]
+          ],
+          "length": 15
+        },
+        "validity": "VERIFIED"
+      },
+      "family": "F8_TRANSFER",
+      "hidden": {
+        "fidelity": "FAITHFUL",
+        "lemma": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            1,
+            1
+          ]
+        ],
+        "min_len_with_lemma": 8,
+        "oracle_action": "INVENT_LOCAL_LEMMA",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "transfer_role": "SOURCE",
+        "truth": "PROVABLE"
+      },
+      "task": {
+        "alt": null,
+        "alt_defining_word": [],
+        "alt_label": "",
+        "alt_map": [],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                2
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                1
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            1,
+            2
+          ],
+          "rhs": [
+            2,
+            1,
+            1,
+            0,
+            2
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            1,
+            2
+          ],
+          "rhs": [
+            2,
+            1,
+            1,
+            0,
+            2
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              2
+            ],
+            [
+              2,
+              0,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              2,
+              2,
+              1
+            ],
+            [
+              2,
+              2,
+              2
+            ]
+          ],
+          [
+            [
+              2,
+              2
+            ],
+            [
+              1,
+              0,
+              1,
+              1
+            ]
+          ]
+        ],
+        "surface_cues": [],
+        "task_id": "F8-0092-a3e5efs",
+        "transfer_of": null
+      },
+      "task_id": "F8-0092-a3e5efs"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "lemma": [
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ]
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              1,
+              1,
+              0
+            ]
+          ],
+          "rhs_chain": [
+            [
+              2,
+              2,
+              0,
+              2
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L3_INVENT",
+        "minimal_action": "INVENT_LOCAL_LEMMA",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE",
+        "truth_witness": {
+          "derivation": [
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              2,
+              0
+            ],
+            [
+              1,
+              1,
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              2,
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              2,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              0,
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              0,
+              1,
+              2,
+              0
+            ],
+            [
+              1,
+              1,
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              0,
+              1,
+              2
+            ],
+            [
+              2,
+              0,
+              1,
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              0,
+              2,
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              0,
+              1,
+              1,
+              2
+            ],
+            [
+              2,
+              1,
+              2
+            ],
+            [
+              2,
+              2,
+              0,
+              2
+            ]
+          ],
+          "length": 15
+        },
+        "validity": "VERIFIED"
+      },
+      "family": "F8_TRANSFER",
+      "hidden": {
+        "fidelity": "FAITHFUL",
+        "min_len_with_lemma": 8,
+        "oracle_action": "INVENT_LOCAL_LEMMA",
+        "reusable_lemma": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            1,
+            1
+          ]
+        ],
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "transfer_role": "TARGET",
+        "truth": "PROVABLE"
+      },
+      "task": {
+        "alt": null,
+        "alt_defining_word": [],
+        "alt_label": "",
+        "alt_map": [],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                2
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                1
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            1,
+            1,
+            0
+          ],
+          "rhs": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            1,
+            1,
+            0
+          ],
+          "rhs": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              0,
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              2
+            ],
+            [
+              2,
+              0,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              2,
+              2,
+              2
+            ],
+            [
+              2,
+              2,
+              1
+            ]
+          ]
+        ],
+        "surface_cues": [],
+        "task_id": "F8-0092-a3e5eft",
+        "transfer_of": "F8-0092-a3e5efs"
+      },
+      "task_id": "F8-0092-a3e5eft"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "lemma": [
+            [
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              0,
+              2,
+              1
+            ]
+          ],
+          "rhs_chain": [
+            [
+              0,
+              1,
+              0,
+              0,
+              2
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L3_INVENT",
+        "minimal_action": "INVENT_LOCAL_LEMMA",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE",
+        "truth_witness": {
+          "derivation": [
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              2
+            ]
+          ],
+          "length": 8
+        },
+        "validity": "VERIFIED"
+      },
+      "family": "F8_TRANSFER",
+      "hidden": {
+        "fidelity": "FAITHFUL",
+        "lemma": [
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            1
+          ]
+        ],
+        "min_len_with_lemma": 4,
+        "oracle_action": "INVENT_LOCAL_LEMMA",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "transfer_role": "SOURCE",
+        "truth": "PROVABLE"
+      },
+      "task": {
+        "alt": null,
+        "alt_defining_word": [],
+        "alt_label": "",
+        "alt_map": [],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                0,
+                2
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                0,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                1
+              ],
+              [
+                0
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            0,
+            2,
+            1
+          ],
+          "rhs": [
+            0,
+            1,
+            0,
+            0,
+            2
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            0,
+            2,
+            1
+          ],
+          "rhs": [
+            0,
+            1,
+            0,
+            0,
+            2
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              0
+            ],
+            [
+              1,
+              1,
+              2,
+              2
+            ]
+          ],
+          [
+            [
+              1,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              2
+            ]
+          ],
+          [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ]
+        ],
+        "surface_cues": [],
+        "task_id": "F8-0099-50c941s",
+        "transfer_of": null
+      },
+      "task_id": "F8-0099-50c941s"
+    },
+    {
+      "expected": {
+        "escalation_witness": {
+          "lemma": [
+            [
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "fidelity": "FAITHFUL",
+        "fidelity_witness": {
+          "lhs_chain": [
+            [
+              1,
+              0,
+              2
+            ]
+          ],
+          "rhs_chain": [
+            [
+              0,
+              1,
+              0,
+              0,
+              1
+            ]
+          ],
+          "route": "INTERDERIVABLE"
+        },
+        "level": "L3_INVENT",
+        "minimal_action": "INVENT_LOCAL_LEMMA",
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "truth": "PROVABLE",
+        "truth_witness": {
+          "derivation": [
+            [
+              1,
+              0,
+              2
+            ],
+            [
+              1,
+              0,
+              2,
+              1
+            ],
+            [
+              1,
+              0,
+              2,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              2,
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              0,
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              1
+            ]
+          ],
+          "length": 10
+        },
+        "validity": "VERIFIED"
+      },
+      "family": "F8_TRANSFER",
+      "hidden": {
+        "fidelity": "FAITHFUL",
+        "min_len_with_lemma": 8,
+        "oracle_action": "INVENT_LOCAL_LEMMA",
+        "reusable_lemma": [
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            1
+          ]
+        ],
+        "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+        "transfer_role": "TARGET",
+        "truth": "PROVABLE"
+      },
+      "task": {
+        "alt": null,
+        "alt_defining_word": [],
+        "alt_label": "",
+        "alt_map": [],
+        "base": {
+          "alphabet": 3,
+          "axioms": [
+            [
+              [
+                0,
+                2
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                0,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                1
+              ],
+              [
+                0
+              ]
+            ]
+          ],
+          "pid": "P0"
+        },
+        "budget": {
+          "max_expansions": 5000,
+          "max_lemma_candidates": 12,
+          "max_model_checks": 2000,
+          "max_model_size": 3,
+          "max_word_len": 6,
+          "solve_expansions": 250
+        },
+        "formal": {
+          "lhs": [
+            1,
+            0,
+            2
+          ],
+          "rhs": [
+            0,
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "formal_pid": "P0",
+        "intent": {
+          "lhs": [
+            1,
+            0,
+            2
+          ],
+          "rhs": [
+            0,
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "intent_invariants": [
+          "schema variable must remain universally quantified"
+        ],
+        "library": [
+          [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              2
+            ]
+          ],
+          [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              1,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              1,
+              1
+            ]
+          ]
+        ],
+        "surface_cues": [],
+        "task_id": "F8-0099-50c941t",
+        "transfer_of": "F8-0099-50c941s"
+      },
+      "task_id": "F8-0099-50c941t"
+    }
+  ],
+  "label": "DEVELOPMENT",
+  "schema_version": "orion.v2.me-x3.exact-study-results.v1.expected-custody"
+}
