@@ -1,7 +1,7 @@
 # ME-X4 — Selective Reopening under Dynamic Evidence: Protected-Run Outcome Receipt (V1)
 
 **Design:** `ME_X4_SELECTIVE_REOPENING_EXACT_STUDY_DESIGN_V1.{md,json}` (PR #143, main `ee32108`), design-JSON sha256 `dd6c2602bc0759900e1659a8ad97a2d8e13e2df9969f689e322323f19b25b0cd`.
-**Authorization:** operator, in chat, 2026-09-02, verbatim *"run all the computation tasks.. finish all the researxh asap"*, recorded in `PROTECTED_RUN_AUTHORIZATION.json` (sha256 `fc1f7b1ac47f3bbc523ab4756e431e7062708b8aa0e2bf678ec321cd94c40f41`; carries the design sha256 and the seed commitment).
+**Authorization:** operator, in chat, 2026-09-02, verbatim *"run all the computation tasks.. finish all the researxh asap"*, recorded in `results/PROTECTED_RUN_AUTHORIZATION_ARCHIVED.json` (the file the runner consumed as `PROTECTED_RUN_AUTHORIZATION.json`, archived under a new name after the single run so the runner's guard is re-armed; content and sha256 unchanged `fc1f7b1ac47f3bbc523ab4756e431e7062708b8aa0e2bf678ec321cd94c40f41`; carries the design sha256 and the seed commitment).
 **Run:** Mac (local), 2026-09-02 09:54 UTC, `python3 mex4_run.py protected --out results`, **executed exactly once**, exit 0, 18.6 s CPU; the runner verified sha256(custody seed) = frozen commitment `1314772902394af2583d924bc7eeb15f492e5aa8480dae3ac8cf9a93bfe12af9` before generating; `analyze` ran once inside the same invocation. Code unchanged from main (`mex4_run.py` `f58f4664…`, `mex4_arms.py` `967fc646…`). **No post-outcome change to any design constant, gate, arm, oracle rule or seed.**
 
 **Seed reveal (per design §3):** `ME-X4-PROTECTED-4af0e016eac29b3757100c4807ecdba4e4bfad86ed31945a` — sha256 equals the commitment above; the 1 200-instance split regenerates byte-for-byte from it.
@@ -103,4 +103,4 @@ FIELD_STATUS_AUTHORITY  = NONE
 
 ## 8. Custody
 
-`PROTECTED_RUN_AUTHORIZATION.json` and `results/ME_X4_PROTECTED_*` are archived in this PR (force-added past the `.gitignore` that guards against unauthorized commits). Selftest report used for G0a is the one on main. The custody seed file remains in operator custody; its value is now public (above) and the split is reproducible by anyone from the frozen code on `ee32108`.
+The authorization file (archived as `results/PROTECTED_RUN_AUTHORIZATION_ARCHIVED.json`, byte-identical to the one consumed) and `results/ME_X4_PROTECTED_*` are archived in this PR (force-added past the `.gitignore` that guards against unauthorized commits). The live path `PROTECTED_RUN_AUTHORIZATION.json` is absent again, so `mex4_run.py protected` refuses (exit 3) and the design-time single-run invariant test holds; a second protected run would require a new, explicit authorization. Selftest report used for G0a is the one on main. The custody seed file remains in operator custody; its value is now public (above) and the split is reproducible by anyone from the frozen code on `ee32108`.
