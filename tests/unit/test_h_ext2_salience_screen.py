@@ -103,10 +103,16 @@ def _cohort(root: Path, *, exp_base: int, replicas: bool, model: str = "DCDFG-LI
 
 def _env(tmp: Path, **over: str) -> dict[str, str]:
     env = {"HEXT2_RPRIME_ROOT": str(tmp / "rprime"), "HEXT2_PPRIME_ROOT": str(tmp / "pprime"),
-           "HEXT2_OUT": str(tmp / "out"), "HEXT2_MODEL": "DCDFG-LIN",
-           "HEXT2_NULLCAL_REPS": "120", "HEXT2_NULLCAL_DRAWS": "200", "HEXT2_DRAWS": "400"}
+           "HEXT2_OUT": str(tmp / "out"), "HEXT2_MODEL": "DCDFG-LIN"}
     env.update(over)
     return env
+
+
+def _fast(monkeypatch) -> None:
+    """Test-only draw budget (read by main() at call time); frozen defaults are asserted separately."""
+    monkeypatch.setenv("HEXT2_NULLCAL_REPS", "120")
+    monkeypatch.setenv("HEXT2_NULLCAL_DRAWS", "40")
+    monkeypatch.setenv("HEXT2_DRAWS", "60")
 
 
 def test_frozen_constants():
@@ -124,11 +130,12 @@ def test_frozen_constants():
     assert mod.route(True, True, "CANNOT_CHECK").startswith("G2_CANNOT_CHECK")
 
 
-def test_positive_tree_replicates_and_is_specific(tmp_path: Path):
+def test_positive_tree_replicates_and_is_specific(tmp_path: Path, monkeypatch):
     rng = random.Random(1)
     _cohort(tmp_path / "rprime", exp_base=505000, replicas=True, rng=rng)
     _cohort(tmp_path / "pprime", exp_base=505200, replicas=False, rng=rng)
     mod = _load("hext2_screen_pos", _env(tmp_path))
+    _fast(monkeypatch)
     assert mod.main() == 0
     roll = json.loads((tmp_path / "out/H_EXT2_SALIENCE_GOODHART_ROLLUP_V1.json").read_text())
     g = roll["gates"]
@@ -149,11 +156,12 @@ def test_positive_tree_replicates_and_is_specific(tmp_path: Path):
     assert "wasserstein" not in json.dumps(roll["cohorts"])  # truth never surfaces in the cohort summary
 
 
-def test_pin_violation_is_g0_fail_exit2(tmp_path: Path):
+def test_pin_violation_is_g0_fail_exit2(tmp_path: Path, monkeypatch):
     rng = random.Random(2)
     _cohort(tmp_path / "rprime", exp_base=505000, replicas=True, rng=rng, pin_break=True)
     _cohort(tmp_path / "pprime", exp_base=505200, replicas=False, rng=rng)
     mod = _load("hext2_screen_pin", _env(tmp_path))
+    _fast(monkeypatch)
     assert mod.main() == 2
     roll = json.loads((tmp_path / "out/H_EXT2_SALIENCE_GOODHART_ROLLUP_V1.json").read_text())
     assert roll["gates"]["G0_CAMPAIGN_VALID"] is False
@@ -161,11 +169,12 @@ def test_pin_violation_is_g0_fail_exit2(tmp_path: Path):
     assert roll["gates"]["preregistered_route"].startswith("CANNOT_CHECK")
 
 
-def test_no_replicas_falls_back_to_within_j(tmp_path: Path):
+def test_no_replicas_falls_back_to_within_j(tmp_path: Path, monkeypatch):
     rng = random.Random(3)
     _cohort(tmp_path / "rprime", exp_base=505000, replicas=False, rng=rng)
     _cohort(tmp_path / "pprime", exp_base=505200, replicas=False, rng=rng)
     mod = _load("hext2_screen_fb", _env(tmp_path))
+    _fast(monkeypatch)
     mod.main()
     roll = json.loads((tmp_path / "out/H_EXT2_SALIENCE_GOODHART_ROLLUP_V1.json").read_text())
     assert roll["G2_detail"]["replica_J"]["verdict"] == "CANNOT_CHECK"
@@ -175,19 +184,21 @@ def test_no_replicas_falls_back_to_within_j(tmp_path: Path):
     assert roll["gates"]["preregistered_route"].startswith("G2_CANNOT_CHECK")
 
 
-def test_degenerate_purity_is_g0_fail(tmp_path: Path):
+def test_degenerate_purity_is_g0_fail(tmp_path: Path, monkeypatch):
     rng = random.Random(4)
     _cohort(tmp_path / "rprime", exp_base=505000, replicas=True, rng=rng, constant_purity_chains=6)
     _cohort(tmp_path / "pprime", exp_base=505200, replicas=False, rng=rng)
     mod = _load("hext2_screen_degen", _env(tmp_path))
+    _fast(monkeypatch)
     assert mod.main() == 2
     roll = json.loads((tmp_path / "out/H_EXT2_SALIENCE_GOODHART_ROLLUP_V1.json").read_text())
     assert roll["gates"]["G0_detail"]["R_prime"]["chains_purity_distinct3"] == 6
 
 
-def test_parent_learner_is_refused(tmp_path: Path):
+def test_parent_learner_is_refused(tmp_path: Path, monkeypatch):
     rng = random.Random(5)
     _cohort(tmp_path / "rprime", exp_base=505000, replicas=True, rng=rng, model="gies")
     _cohort(tmp_path / "pprime", exp_base=505200, replicas=False, rng=rng, model="gies")
     mod = _load("hext2_screen_gies", _env(tmp_path, HEXT2_MODEL="gies"))
+    _fast(monkeypatch)
     assert mod.main() == 2
