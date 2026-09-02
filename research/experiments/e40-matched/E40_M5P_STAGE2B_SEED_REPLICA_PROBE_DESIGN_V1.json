@@ -1,0 +1,102 @@
+{
+ "controls": [
+  "planted (m2/m3 verbatim)",
+  "null calibration 400 reps seed 20260830 (<1% pass)",
+  "FORBIDDEN_SUBSTRINGS leakage assert on write+read (executed)",
+  "Jaccard selftest: J(E,E)=1; J(E,shuffled) small; edge-parse round-trip"
+ ],
+ "custody": {
+  "analysis_rng_seeds": {
+   "rho_shuffle": 20260902
+  },
+  "archive": "rollup-m5p-stage2b/",
+  "campaign_dir": "campaign-e40-m5p-stage2b",
+  "decision_calls": "logged (prompt sha, raw response, model id, temperature 0)",
+  "exp_ids_from": 503000,
+  "rollup": "E40_M5P_STAGE2B_ROLLUP_V1.{json,md}",
+  "runner": "e40_matched_runner_m5p_stage2b.py"
+ },
+ "f0_reference": "frozen m2 F0 chains, read-only reuse (single-delta contrast)",
+ "gates": {
+  "G0_DRAG_PRESENT_UNDER_TERMINAL": "TERMINAL mean_d < 0 AND f0_wins >= 8/12 (validity; fail = CANNOT_CHECK)",
+  "G1_CONSENSUS_RANKS_TRUTH": "directed pooled rho (-raw) > 0 AND perm p <= 0.05 (pooled 12 cells)",
+  "G2_CONSENSUS_SHIPPING_CLOSES_DRAG": "CONSENSUS mean_d >= -0.001 AND perm p <= 0.10 (pooled 12 cells)",
+  "G3_ANTI_CONTROL_DISTINGUISHES": "PURITY fails to close drag (mean_d < -0.001 OR perm p > 0.10)",
+  "G4_SPLIT_CONSISTENT": "within each dataset stratum (6 cells): CONSENSUS mean_d > TERMINAL mean_d"
+ },
+ "grid": {
+  "cells": 12,
+  "cycles": 4,
+  "native_runs": 192,
+  "replicas_per_cell": 4,
+  "reps_per_dataset": 6
+ },
+ "lineage": {
+  "m5p_stage1_pr": 135,
+  "route": "GS1-fail row of E40_M5P_CHANNEL_SCREEN_DESIGN_V1 \u00a76"
+ },
+ "no_rescue": "single hypothesis probe; full pass authorizes only m6; G1-G4 fail with G0 pass terminates E40 line; post-unblinding inversion/re-pick/re-threshold forbidden",
+ "power_note": "12-cell primary contrasts: MDE ~0.003-0.004 wasserstein vs drag 0.007-0.011; G4 sign-check by design",
+ "probe_statistic": {
+  "definition": "per cell per cycle: mean pairwise Jaccard of replica output_network edge sets",
+  "name": "consensus_J",
+  "truth_anchor_analysis_only": "T_c = mean_k wasserstein_k(c)",
+  "truth_never_enters": [
+   "prompts",
+   "feedback",
+   "probe statistic"
+  ]
+ },
+ "replica_delta": {
+  "mandate_failure": "CANNOT_CHECK chain (excluded, counted, reported)",
+  "only_difference_from_m2_f2": "cycle-1 seed mandate per replica; cycles 2-4 byte-identical to m2 given replica history",
+  "seed_table": {
+   "f2r0": {
+    "model_seed": 11,
+    "partial_intervention_seed": 13
+   },
+   "f2r1": {
+    "model_seed": 29,
+    "partial_intervention_seed": 31
+   },
+   "f2r2": {
+    "model_seed": 47,
+    "partial_intervention_seed": 53
+   },
+   "f2r3": {
+    "model_seed": 71,
+    "partial_intervention_seed": 79
+   }
+  }
+ },
+ "routing": {
+  "G0_and_G1_G2_G3_G4_pass": "authorize m6 prospective confirm campaign under its own freeze (no revival claim from Stage-2b alone)",
+  "G0_fail": "CANNOT_CHECK disposition; diagnose campaign mechanics under a separate freeze",
+  "G0_pass_any_G1_G4_fail": "E40 line TERMINAL"
+ },
+ "schema_version": "orion.v2.e40-matched.m5p-stage2b-design.v1",
+ "shipping_counterfactuals": {
+  "CONSENSUS_ARGMAX": "argmax_c J_c (cell-level, earliest tie) -- the probe",
+  "ORACLE_BEST": "argmin_k wasserstein (replica-local) -- ceiling reference only",
+  "PURITY_ARGMAX": "argmax_c sig_purity (replica-local) -- registered anti-control",
+  "TERMINAL": "cycle 4 (baseline)"
+ },
+ "statistics": {
+  "contrast": "d = f0_best_primary - mean_k shipped_truth_k per cell (12 primary diffs; 48-diff per-replica secondary)",
+  "contrast_permutation": "exhaustive sign-flip 2^12 (m-series convention)",
+  "pooled_rho": "arithmetic mean of per-cell Spearman(J_c, T_c) over 4 cycles",
+  "rho_permutation": "within-cell cycle shuffle, two-sided, 10000 draws, seed 20260902"
+ },
+ "substrate": {
+  "datasets": [
+   "weissmann_k562",
+   "weissmann_rpe1"
+  ],
+  "do_filter": true,
+  "max_path_length": -1,
+  "model": "gies",
+  "modification": "NONE (pinned, m2/m3-identical)",
+  "subset_data": 0.05
+ },
+ "variant": "e40-m5p-stage2b-seed-replica-stability-probe"
+}
