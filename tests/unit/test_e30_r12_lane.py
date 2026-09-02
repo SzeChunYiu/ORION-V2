@@ -684,3 +684,9 @@ def test_rollup_sbatch_passes_the_gr0b_receipt_to_the_analysis():
     """Without it the registered E1 sensitivity denominator would silently exclude nothing."""
     text = (SBATCH / "e30_r12_rollup_and_analysis.sbatch").read_text()
     assert "--gr0b" in text and "PC_R6_GR0B_RECEIPT.json" in text
+
+
+def test_setup_creates_the_per_arm_response_directories():
+    """The evaluator derives the cell's arm set from responses/*; empty means no cell."""
+    text = (SBATCH / "e30_r12_setup.sbatch").read_text()
+    assert 'for ARM in $ARMS; do mkdir -p "$DSTREP/responses/$ARM"' in text

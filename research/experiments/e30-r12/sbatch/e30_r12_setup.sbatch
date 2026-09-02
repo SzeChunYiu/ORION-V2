@@ -34,6 +34,10 @@ mkdir -p "$RUN"
 for REP in 1 2 3; do
   SRCREP="$R11/run/confirmatory-r$REP"; DSTREP="$RUN/confirmatory-r$REP"
   mkdir -p "$DSTREP/responses" "$DSTREP/evaluations" "$DSTREP/aggregate" "$DSTREP/logs"
+  # Per-arm directories up front: the evaluator derives the cell's arm set from the
+  # responses/ subdirectories, so without them it cannot construct the cell at all and
+  # the layout is unvalidatable until the first response lands.
+  for ARM in $ARMS; do mkdir -p "$DSTREP/responses/$ARM" "$DSTREP/evaluations/$ARM"; done
   # Idempotent and LOUD: a swallowed copy failure here would leave the dispatch with
   # no requests, which the 480-request assertion below would then have to catch.
   [ -d "$DSTREP/requests" ] || cp -a "$SRCREP/requests" "$DSTREP/requests"
