@@ -191,8 +191,16 @@ def build_truth(truth: Path, e60_root: Path) -> None:
         effects[arm] = {"left_arm": "F2_ORION_METABOLIC_FULL", "right_arm": arm,
                         "success": {"paired_table": table}}
     (e60 / "component_effects.json").write_text(json.dumps(effects))
+    # supersede.sha256 lists the SUPERSEDED (old) rep artifacts, preserved under the
+    # campaign's repair dir; the live record must differ from them
     record = e60_root / "run/confirmatory-r1/evaluations/F2_MINUS_DECOMPOSITION" / f"{TASK}.json"
-    (e60 / "supersede.sha256").write_text(f"{sha(record)}  {record}\n")
+    repair = e60_root / "repair/superseded-r3-falsifier/evaluations/F2_MINUS_DECOMPOSITION"
+    repair.mkdir(parents=True)
+    old = repair / f"{TASK}.20260830T210446Z.json"
+    old.write_text(json.dumps({"task_id": TASK, "native_success": None, "superseded": True}))
+    ledger = f"{sha(old)}  {record}\n"
+    (e60 / "supersede.sha256").write_text(ledger)
+    (e60_root / "repair/superseded-r3-falsifier/supersede-20260830T210446Z.sha256").write_text(ledger)
 
 
 @pytest.fixture(scope="module")
@@ -466,6 +474,171 @@ def test_main_suite_rollup_and_analysis(campaign, tmp_path: Path):
     assert result["gates"]["GR2"]["status"] in {"NULL", "FIRED"}
     assert (analysis_out / "PC_R6_OUTCOME_RECEIPT.md").is_file()
     assert "mean-success" in (analysis_out / "PC_R6_OUTCOME_RECEIPT.md").read_text()
+
+
+# --------------------------------------------------------------------------- GR0(b) substrate cases
+ORDER_DEP_INIT = "STATE = [0]\n\n\ndef add(a, b):\n    return a - b\n"
+ORDER_DEP_GOOD = ORDER_DEP_INIT.replace("return a - b", "return a + b")
+ORDER_DEP_TEST = (
+    "import unittest\n\nimport black\n\n\nclass T(unittest.TestCase):\n"
+    "    def test_a_first(self):\n        black.STATE[0] += 1\n        self.assertTrue(True)\n\n"
+    "    def test_zz_registered(self):\n"
+    "        # passes in isolation once add() is fixed; fails after test_a_first ran\n"
+    "        self.assertEqual(black.add(2, 3), 5)\n        self.assertEqual(black.STATE[0], 0)\n"
+)
+FIXTURE_INIT = "def load(path):\n    with open(path) as handle:\n        return handle.read().strip()\n\n\ndef decode(x):\n    return x.lower()\n"
+FIXTURE_GOOD = FIXTURE_INIT.replace("x.lower()", "x.upper()")
+FIXTURE_TEST = (
+    "import unittest\n\nimport cookiecutter\n\n\nclass T(unittest.TestCase):\n"
+    "    def test_other(self):\n        self.assertEqual(cookiecutter.decode('a'), cookiecutter.decode('a'))\n\n"
+    "    def test_registered(self):\n"
+    "        self.assertEqual(cookiecutter.decode(cookiecutter.load('tests/data/non_ascii.json')), 'ABC')\n"
+)
+PLAIN_INIT = "def dec(x):\n    return x - 2\n"
+PLAIN_GOOD = PLAIN_INIT.replace("x - 2", "x - 1")
+PLAIN_TEST = (
+    "import unittest\n\nimport cookiecutter\n\n\nclass T(unittest.TestCase):\n"
+    "    def test_other(self):\n        self.assertTrue(True)\n\n"
+    "    def test_registered(self):\n        self.assertEqual(cookiecutter.dec(3), 2)\n"
+)
+
+
+def build_substrate_task(root: Path, project: str, bug_id: int, package_init: str, fixed_init: str,
+                         test_source: str, registered: str, fixture: tuple[str, str] | None = None) -> dict:
+    task_id = f"bugsinpy-{project}-{bug_id}"
+    ws = root / "evaluator_private" / task_id
+    (ws / project).mkdir(parents=True)
+    (ws / "tests").mkdir()
+    (ws / project / "__init__.py").write_text(package_init)
+    (ws / "tests/__init__.py").write_text("")
+    (ws / "tests/test_x.py").write_text(test_source)
+    (ws / ".gitignore").write_text("__pycache__/\n*.pyc\n.orion-e30-env/\n")
+    git(ws, "init", "-q", ".")
+    git(ws, "add", ".")
+    git(ws, "commit", "-q", "-m", "buggy")
+    buggy = git(ws, "rev-parse", "HEAD").strip()
+    (ws / project / "__init__.py").write_text(fixed_init)
+    if fixture:
+        (ws / fixture[0]).parent.mkdir(parents=True, exist_ok=True)
+        (ws / fixture[0]).write_text(fixture[1])
+    git(ws, "add", ".")
+    git(ws, "commit", "-q", "-m", "fixed")
+    fixed = git(ws, "rev-parse", "HEAD").strip()
+    git(ws, "reset", "-q", "--hard", buggy)  # buggy tree, fixed objects retained (BugsInPy checkout)
+    (ws / "bugsinpy_run_test.sh").write_text(f"python -m unittest -q {registered}\n")
+    (ws / "bugsinpy_requirements.txt").write_text("")
+    (ws / "bugsinpy_bug.info").write_text(
+        f'python_version="3.8.3"\nbuggy_commit_id="{buggy}"\nfixed_commit_id="{fixed}"\ntest_file="tests/test_x.py"\n')
+    gold = root / f"baseline_lanes/{task_id}/BugsInPy/projects/{project}/bugs/{bug_id}/bug_patch.txt"
+    gold.parent.mkdir(parents=True)
+    gold.write_text(diff(f"{project}/__init__.py", package_init, fixed_init))  # source-only, as BugsInPy
+    return {"task_id": task_id, "project": project, "bug_id": bug_id, "python_version": "3.8.3",
+            "expected_buggy_commit": buggy, "adapter": "bugsinpy", "benchmark_id": "bugsinpy"}
+
+
+@pytest.fixture(scope="module")
+def substrate_campaign(tmp_path_factory) -> dict:
+    base = tmp_path_factory.mktemp("pc_r6_gr0b")
+    e30 = base / lane.CELLS["e30r11"]["campaign"]
+    e30.mkdir()
+    tasks = [
+        build_substrate_task(e30, "black", 1, ORDER_DEP_INIT, ORDER_DEP_GOOD, ORDER_DEP_TEST,
+                             "tests.test_x.T.test_zz_registered"),
+        build_substrate_task(e30, "cookiecutter", 1, FIXTURE_INIT, FIXTURE_GOOD, FIXTURE_TEST,
+                             "tests.test_x.T.test_registered", fixture=("tests/data/non_ascii.json", "abc\n")),
+        build_substrate_task(e30, "cookiecutter", 2, PLAIN_INIT, PLAIN_GOOD, PLAIN_TEST,
+                             "tests.test_x.T.test_registered"),
+    ]
+    source = e30 / "source"
+    (source / "scripts").mkdir(parents=True)
+    for script in ("evaluate_orion_real_problem_responses_v2.py", "run_orion_real_problem_suite.py",
+                   "bugsinpy_project_runtime.py"):
+        shutil.copy(ROOT / "scripts" / script, source / "scripts" / script)
+    (source / "research/experiments").mkdir(parents=True)
+    shutil.copy(ROOT / "research/experiments/BUGSINPY_E30_RUNTIME_REGISTRY_V1.json",
+                source / "research/experiments/BUGSINPY_E30_RUNTIME_REGISTRY_V1.json")
+    cache = e30 / "offline-cache"
+    cache.mkdir()
+    (cache / "manifest.json").write_text(json.dumps({
+        "schema_version": "orion.v2.bugsinpy-offline-distribution-cache.v1", "artifacts": []}))
+    bindings = {}
+    for project in ("black", "cookiecutter"):
+        binding = e30 / f"{project}-prospective-binding.json"
+        binding.write_text(json.dumps({
+            "schema_version": "orion.v2.bugsinpy-prospective-runtime-binding.v2", "project": project,
+            "dependency_pins": {}, "requirement_dispositions": {}, "marker_decisions": {},
+            "legacy_build": {}, "distribution_overrides": {}, "distribution_override_prerequisites": {}}))
+        bindings[project] = {"path": str(binding), "compiler_compat_cflags": ""}
+    (e30 / "mirror").mkdir()
+    (e30 / "SETUP_RECEIPT.json").write_text(json.dumps({
+        "mirrors": [{"project": p, "mirror": str(e30 / "mirror"), "url": f"https://example.invalid/{p}"}
+                    for p in ("black", "cookiecutter")],
+        "prospective_bindings": bindings, "project_pythons": {"3.8.3": sys.executable},
+        "offline_cache": {"directory": str(cache), "manifest": str(cache / "manifest.json")}}))
+    rep = e30 / "run/confirmatory-r1"
+    (rep / "responses/F2_ORION_METABOLIC_FULL").mkdir(parents=True)
+    (rep / "frozen_tasks.json").write_text(json.dumps({"tasks": tasks}))
+    out = base / "out"
+    return {"e30": e30, "out": out, "common": [
+        "--e30-campaign", str(e30), "--cells", "e30r11", "--adapter", str(ADAPTER), "--out", str(out),
+        "--allow-partial-cells"]}
+
+
+def test_gr0b_order_dependent_module_and_missing_fixture_fallthrough(substrate_campaign):
+    out = substrate_campaign["out"]
+    assert lane.main(["--stage", "gr0b", *substrate_campaign["common"]]) == 0
+    receipt = json.loads((out / "PC_R6_GR0B_RECEIPT.json").read_text())
+    assert receipt["status"] == "PASS"
+    assert receipt["projects_controlled"] == 2
+    by_task = {item["task_id"]: item for item in receipt["tasks"]}
+    # black-like: the gold patch flips the registered binding (isolated run) but the
+    # module-level run fails the same test because an earlier test mutates state ->
+    # count stays 0, suite divergence is recorded, control PASSES (amendment A14)
+    black = by_task["bugsinpy-black-1"]
+    assert black["pass"] is True and black["gold_native_success"] is True
+    assert black["critical_new_failure_count"] == 0 and black["newly_passing_count"] == 0
+    assert black["baseline_passing_count"] == 1
+    assert black["registered_test_in_suite"]["gold"] == {"tests.test_x.T.test_zz_registered": "failed"}
+    assert black["suite_registered_test_divergence"] is True
+    # cookiecutter-like: the source-only gold patch cannot add the fixture the fixed
+    # commit introduces -> NOT_APPLICABLE, fall through to bug 2 (amendment A13)
+    assert [item["task_id"] for item in receipt["not_applicable"]] == ["bugsinpy-cookiecutter-1"]
+    na = receipt["not_applicable"][0]
+    assert na["gold_control_status"] == "GOLD_NOT_APPLICABLE_MISSING_FIXTURE:tests/data/non_ascii.json"
+    assert na["gold_native_success"] is False and na["pass"] is None
+    cc2 = by_task["bugsinpy-cookiecutter-2"]
+    assert cc2["pass"] is True and cc2["newly_passing_count"] == 1
+    assert "bugsinpy-cookiecutter-1" not in by_task
+    gold_record = json.loads((out / "records_gr0b/e30r11/gold/bugsinpy-cookiecutter-1.json").read_text())
+    assert gold_record["gold_or_fixed_solution_accessed"] is True
+    assert gold_record["pc_r6"]["gold_control_status"].startswith("GOLD_NOT_APPLICABLE_MISSING_FIXTURE")
+
+
+def test_gold_not_applicable_classifier_requires_every_condition(tmp_path: Path):
+    ws = tmp_path / "ws"
+    (ws / "pkg").mkdir(parents=True)
+    (ws / "pkg/__init__.py").write_text("x = 1\n")
+    git(ws, "init", "-q", ".")
+    git(ws, "add", ".")
+    git(ws, "commit", "-q", "-m", "buggy")
+    buggy = git(ws, "rev-parse", "HEAD").strip()
+    (ws / "data.json").write_text("{}")
+    git(ws, "add", ".")
+    git(ws, "commit", "-q", "-m", "fixed")
+    fixed = git(ws, "rev-parse", "HEAD").strip()
+    git(ws, "reset", "-q", "--hard", buggy)
+    (ws / "bugsinpy_bug.info").write_text(f'fixed_commit_id="{fixed}"\n')
+    manifest = lane.Manifest()
+    base = {"patch_apply_returncode": 0, "compile_status": "PASS", "native_success": False,
+            "stdout_tail": "FileNotFoundError: [Errno 2] No such file or directory: 'data.json'", "stderr_tail": ""}
+    assert lane.gold_not_applicable_reason(dict(base), ws, manifest, "t") == "GOLD_NOT_APPLICABLE_MISSING_FIXTURE:data.json"
+    assert lane.gold_not_applicable_reason({**base, "native_success": True}, ws, manifest, "t") is None
+    assert lane.gold_not_applicable_reason({**base, "compile_status": "FAIL_PROJECT_IMPORT"}, ws, manifest, "t") is None
+    assert lane.gold_not_applicable_reason({**base, "stdout_tail": "AssertionError: 1 != 0"}, ws, manifest, "t") is None
+    other = {**base, "stdout_tail": "FileNotFoundError: [Errno 2] No such file or directory: 'unrelated.json'"}
+    assert lane.gold_not_applicable_reason(other, ws, manifest, "t") is None  # not added by the fixed commit
+    (ws / "data.json").write_text("{}")
+    assert lane.gold_not_applicable_reason(dict(base), ws, manifest, "t") is None  # file present -> real failure
 
 
 # --------------------------------------------------------------------------- analysis statistics
