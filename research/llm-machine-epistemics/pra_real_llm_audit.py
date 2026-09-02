@@ -1284,9 +1284,16 @@ def analyse_model(design: dict, mdir: Path) -> dict:
         acc = {c: r["max_test_acc"] for c, r in res.items()}
         gp2["probe_max_test_acc"] = acc
         gp2["probe_n_test"] = {c: r["n_test"] for c, r in res.items()}
-        pos_ok = (acc.get("R0") or 0.0) >= g["GP2"]["probe_positive_control_min_acc"]
-        removed = (acc.get("R2_TRUE_REMOVAL", acc.get("R2")) or 1.0) <= g["GP2"]["probe_removed_max_acc"]
-        survived = (acc.get("R2_TEXT_REMOVED_KV_RETAINED") or 0.0) >= g["GP2"]["probe_survival_min_acc"]
+        def _acc(name: str, fallback: str | None = None):
+            v = acc.get(name)
+            if v is None and fallback is not None:
+                v = acc.get(fallback)
+            return v
+
+        r0_acc, rem_acc, kv_acc = _acc("R0"), _acc("R2_TRUE_REMOVAL", "R2"), _acc("R2_TEXT_REMOVED_KV_RETAINED")
+        pos_ok = r0_acc is not None and r0_acc >= g["GP2"]["probe_positive_control_min_acc"]
+        removed = rem_acc is not None and rem_acc <= g["GP2"]["probe_removed_max_acc"]
+        survived = kv_acc is not None and kv_acc >= g["GP2"]["probe_survival_min_acc"]
         gp2.update({"probe_positive_control_ok": pos_ok, "probe_R2_true_removal_at_chance": removed, "probe_kv_retained_decodes": survived})
     if kv:
         kr = kv["records"]

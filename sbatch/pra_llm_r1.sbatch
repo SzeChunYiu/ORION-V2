@@ -25,9 +25,13 @@ MODELS=(qwen2.5-7b-instruct mistral-7b-instruct-v0.3)
 MODEL="${MODELS[$SLURM_ARRAY_TASK_ID]}"
 mkdir -p "$WORK"
 sha256sum "$RUNNER" "$DESIGN"
-if [ ! -f "$WORK/suite/suite_protected.json" ]; then
-  "$PY" "$RUNNER" --stage generate-suite --workdir "$WORK" --design "$DESIGN" --backend hf
-fi
+# Suite generation is serialized across array tasks (flock) and re-checked inside the lock.
+mkdir -p "$WORK/suite"
+flock "$WORK/suite/.generate.lock" bash -c '
+  if [ ! -f "$0/suite/suite_protected.sha256.json" ]; then
+    "$1" "$2" --stage generate-suite --workdir "$0" --design "$3" --backend hf
+  fi' "$WORK" "$PY" "$RUNNER" "$DESIGN"
+test -f "$WORK/suite/suite_protected.sha256.json" || { echo "protected suite missing after generation"; exit 1; }
 for STAGE in present-gate revision probe kv-channel; do
   /usr/bin/time -f "TIMING model=$MODEL stage=$STAGE wall=%e s maxrss=%M KB" \
     "$PY" "$RUNNER" --stage "$STAGE" --workdir "$WORK" --design "$DESIGN" --backend hf --model "$MODEL" --split protected --protected-authorization "$AUTH"

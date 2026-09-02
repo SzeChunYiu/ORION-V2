@@ -167,3 +167,15 @@ def test_families_filter_and_strict_json(runner, tmp_path):
     assert "NaN" not in text and "Infinity" not in text
     probe = json.loads(text)
     assert probe["results"]["R0"]["status"] == "OK" and probe["results"]["R0"]["max_test_acc"] >= 0.8
+
+
+def test_zero_probe_accuracy_counts_as_removed(runner, tmp_path):
+    run_all(runner, tmp_path / "z", "planted")
+    probe_path = tmp_path / "z" / "runs" / "stub-planted__dev" / "probe.json"
+    probe = json.loads(probe_path.read_text())
+    probe["results"]["R2_TRUE_REMOVAL"]["max_test_acc"] = 0.0
+    probe_path.write_text(json.dumps(probe))
+    assert runner.main(["--stage", "rollup", "--workdir", str(tmp_path / "z"), "--backend", "stub", "--design", str(DESIGN)]) == 0
+    rollup = json.loads((tmp_path / "z" / "PRA_REAL_LLM_AUDIT_ROLLUP_V1__dev.json").read_text())
+    gp2 = rollup["models"]["stub-planted"]["GP2"]
+    assert gp2["probe_R2_true_removal_at_chance"] is True and gp2["GP2a_true_removal_effective"] is True

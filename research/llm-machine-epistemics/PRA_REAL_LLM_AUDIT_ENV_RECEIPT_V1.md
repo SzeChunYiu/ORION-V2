@@ -29,7 +29,8 @@ Both ungated, Apache-2.0, bf16, greedy, `max_new_tokens=160`, seed 51, batch 1.
 
 | file | sha256 |
 |---|---|
-| `pra_real_llm_audit.py` | `6e7018963391df06b9c4986fbe121ef0a7d60f51ce1caf021bf0ee936f5e4a08` |
+| `pra_real_llm_audit.py` (as run in the final smoke) | `6e7018963391df06b9c4986fbe121ef0a7d60f51ce1caf021bf0ee936f5e4a08` |
+| `pra_real_llm_audit.py` (frozen in the PR, after review fixes) | `e25d969fb20aee3e47f94daf95e330272ee58d10615743a135bd83c4e983e490` |
 | `PRA_REAL_LLM_AUDIT_DESIGN_V1.json` | `188bf0b3facb5824e6f7952636e44743c2183a5f15ee642458f43ed496e03658` |
 | dev suite `suite_dev.json` (seed 20260902, 32 instances) | `21a58a0fc0a5e82a0aacf24d05fa4052b149397948de8c762b1ee636939aa50b` |
 | protected suite `suite_protected.json` (seed 20260903, 500 instances; generated, hashed, never read) | `46c2b9cfbbcd4d871a2c3cffc632122a5a6e9cd0438545123272ff86f2af4876` |
@@ -77,6 +78,18 @@ Protected split per model: 1000 arms × 5 conditions = 5,000 status-line log-pro
 5,000 current-action generations + 5,000 revision generations + 480 kv-channel generations +
 1,440 probe forwards ≈ **5.5 h (Qwen) / 8 h (Mistral)** at measured rates; `pra_llm_r1.sbatch`
 requests 16 h per array task (2× margin). Peak host RSS 5.9 GB; GPU memory ≈16 GB.
+
+## 6b. Post-smoke review fixes (custody note)
+
+PR review flagged three items. Fixed before merge, without re-running the smoke because neither
+change touches a smoke stage's behaviour: (i) rollup GP2a read a probe accuracy of exactly `0.0`
+as missing (`or 1.0`) — now explicit `None` handling, unit-tested; (ii) `pra_llm_r1.sbatch` let
+both array tasks generate the protected suite concurrently — now serialized with `flock` and
+re-checked inside the lock. The third item (claim that `generate()` with a retained prefix cache
+re-feeds the prefix) was tested and refuted on LUNARC with transformers 4.51.3
+(`Qwen2.5-0.5B-Instruct`, CPU): cached-prefix and uncached-full-prompt greedy outputs are
+token-identical and first-step logits agree to 2e-5; `prepare_inputs_for_generation` slices
+`input_ids[:, cache_position]`. The KV-retained condition therefore measures literal KV survival.
 
 ## 7. Warnings observed (benign, recorded)
 
