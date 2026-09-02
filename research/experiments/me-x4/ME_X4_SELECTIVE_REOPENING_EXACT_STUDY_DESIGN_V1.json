@@ -1,0 +1,144 @@
+{
+  "schema_version": "orion.v2.me-x4.exact-study-design.v1",
+  "title": "ME-X4 selective reopening under dynamic evidence: exact known-answer study",
+  "state_date": "2026-09-02",
+  "status": "FROZEN_DESIGN__DEVELOPMENT_FIXTURES_ONLY__NO_PROTECTED_RUN",
+  "class": "EXACT_ORACLE_KNOWN_ANSWER__ZERO_MODEL_CALLS__DETERMINISTIC__NO_RESCUE",
+  "parent_protocols": {
+    "x4_protocol": "research/experiments/ME_X4_SELECTIVE_REOPENING_PROTOCOL_V1.md",
+    "decisive_studies_protocol": "research/experiments/MACHINE_EPISTEMICS_DECISIVE_STUDIES_PROTOCOL_V1.md (S0-S2, S6)",
+    "field_synthesis": "research/field/MACHINE_EPISTEMICS_FIELD_SYNTHESIS_V4.md (S7 selective reopening, S8 parent-owned territory, S10 residual forms)",
+    "ontology": "research/field/WORLD_MACHINE_SEPARATION_ONTOLOGY_V1.md (epistemic transition E_{t+1}=U(E_t,o,a,rho): every event here is an epistemic update, never an ontic change)",
+    "extension_hypothesis": "research/field/MACHINE_EPISTEMICS_EXTENSION_HYPOTHESES_2026_09_02_V1.md H-EXT-3 (interface-information residual), PR #138 main 2f3b561"
+  },
+  "question": "When evidence ancestry, calibration, transport or evaluator validity changes, does M (orion_v2 selective_reopen over typed support families) reopen exactly the commitments whose registered sufficient support failed while preserving independently supported commitments, beyond the strongest faithful parent federation B5 given the same registered information?",
+  "pre_registered_expectation": "On acyclic registered support graphs both M's fixed point and a JTMS/ATMS federation are exact for the frozen S2 semantics once the typed information crosses the module boundary; the expected route is PARENT_SUFFICIENT with ladder terminal RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL. This is registered as a successful terminal, not a failure.",
+  "registered_information": {
+    "world": "claims (context, failure class, scope, accepted_v0, alternative_of), evidence (claim, source, context, scope coverage, evaluator, calibration, data/model/instrument, supports), families (evidence ids, prerequisite claims, min_independent, required_relation), sources (VALID/RETRACTED/DISPUTED), calibrations (VALID/INVALID/UNDER_REVIEW), evaluators (coverage, uncertain), relations (typed by orion_v2.structural.RelationType), dependence declarations (CONFIRMED/SUSPECTED)",
+    "events": ["SOURCE_RETRACTED", "SOURCE_RETRACTION_DISPUTED", "SOURCE_CORRECTED", "CALIBRATION_INVALIDATED", "CALIBRATION_UNDER_REVIEW", "CALIBRATION_REVALIDATED", "DEPENDENCE_DISCOVERED", "DEPENDENCE_SUSPECTED", "RELATION_RETYPED", "EVALUATOR_COVERAGE_CHANGED", "CLAIM_FAILURE_CLASS_CHANGED", "CLAIM_SCOPE_CHANGED", "FAMILY_ADDED", "EVIDENCE_ADDED"],
+    "identical_across_arms": true,
+    "hidden_from_arms": "the oracle semantics implementation and the expected reopened/preserved/unresolved sets (custody file)"
+  },
+  "oracle_semantics": {
+    "atoms": {
+      "ev:e": "INVALID if source RETRACTED or calibration INVALID; UNKNOWN if source DISPUTED or calibration UNDER_REVIEW; else VALID",
+      "evc:e": "present iff evidence has an evaluator: VALID iff claim failure class in evaluator coverage; UNKNOWN if in evaluator.uncertain; else INVALID",
+      "tr:F:e": "present iff evidence context != claim context: INVALID if no relation; UNKNOWN if relation CANNOT_CHECK; VALID iff rank(relation) >= rank(family.required_relation)",
+      "ind:F": "present iff min_independent > 0: INVALID if components over CONFIRMED dependence < k; UNKNOWN if components over CONFIRMED+SUSPECTED < k; else VALID",
+      "scope:F": "present iff family has positive evidence: VALID iff union of evidence scope coverage covers claim scope",
+      "nocontra:c": "INVALID if any valid negative evidence against c; UNKNOWN if any censored; else VALID"
+    },
+    "relation_rank": {"ISOMORPHIC": 5, "BEHAVIORALLY_EQUIVALENT": 4, "PREDICTIVELY_EQUIVALENT": 3, "DECISION_DOMINATES": 2, "APPROXIMATELY_EQUIVALENT": 1, "INCOMPARABLE": 0, "DISTINGUISHED_BY": 0, "CANNOT_CHECK": "censored"},
+    "family": "AND(atoms) AND AND(prerequisite claims supported), Kleene three-valued",
+    "claim": "OR(families) AND nocontra, Kleene three-valued, bottom-up over the prerequisite DAG",
+    "dispositions": {"PRESERVED": "supported under every resolution of censored atoms", "REOPENED": "unsupported under every resolution", "UNRESOLVED": "depends on the resolution"},
+    "exhaustive_cross_check": "every version: Kleene evaluation must equal exhaustive enumeration over all 2^u resolutions (u <= 8 by generator cap); disagreement is a lane defect (G0b)",
+    "acyclicity": "prerequisite graphs are DAGs by construction; CANNOT_CHECK_CYCLE never arises; cyclic support is out of scope for this exact study"
+  },
+  "generator": {
+    "module": "mex4_generator.py",
+    "base_world": "4-8 accepted claims in <= 3 prerequisite layers; 1-3 families per claim; 0-3 evidence per family (prerequisite-only families allowed, 20%); 4-7 sources + one unused; 2 instruments x 1-2 calibrations + one unused; 3 evaluators with coverage subsets; typed relations among 3 contexts; independence requirement k=2 on 35% of >=2-evidence families; 50% instances carry a rejected alternative hypothesis with valid negative evidence",
+    "pre_event_validity": "every accepted claim supported with all atoms VALID at v0 (checked by the oracle; instances failing this are rejected)",
+    "planting": "per-stratum planter mutates the base world at v0 then emits 1-3 typed events; stratum invariant checked by the oracle; deterministic rejection sampling under the instance seed (max 400 attempts)",
+    "instance_seed": "int(sha256(f'{split_seed}|{stratum}|{index}')[:12], 16)",
+    "caps": {"censored_atoms_per_version": 8, "events_per_instance": 3, "evidence_per_family": 4}
+  },
+  "strata": {
+    "SOURCE_RETRACTED": {"protected_n": 100, "dev_n": 3, "invariant": "one claim with a family sharing the retracted source and an alternative family is PRESERVED; one claim with every family touching the source is REOPENED; no unresolved"},
+    "DEPENDENCE_DISCOVERED": {"protected_n": 100, "dev_n": 3, "invariant": "target family's ind atom INVALID (k=2 or 3); optional decoy family where the discovered edge leaves k satisfied or no requirement exists stays VALID; no unresolved"},
+    "CALIBRATION_INVALIDATED": {"protected_n": 100, "dev_n": 3, "invariant": "evidence under the invalidated calibration INVALID; a claim with evidence under a sibling calibration of the same instrument PRESERVED"},
+    "TRANSPORT_RELATION_INVALIDATED": {"protected_n": 100, "dev_n": 3, "invariant": "target transport atom INVALID (relation retyped below the family's required strength); optional decoy relation retyped but still sufficient; >= 1 preserved"},
+    "EVALUATOR_BLIND_OR_REPLACED": {"protected_n": 100, "dev_n": 3, "invariant": "variants BLIND / REPLACED_NARROWER / FAILURE_CLASS_CHANGED; >= 1 evc atom of the touched claim INVALID; a sibling claim evaluated by the same evaluator PRESERVED"},
+    "PROBLEM_SCOPE_CHANGED": {"protected_n": 100, "dev_n": 3, "invariant": "old family's scope atom INVALID; if a covering family exists the claim is PRESERVED, else REOPENED"},
+    "NEW_INDEPENDENT_SUPPORT": {"protected_n": 100, "dev_n": 3, "invariant": "final reopened = unresolved = empty; FAIL_THEN_ADD variant: target reopened at v1 and preserved at v2"},
+    "CORRECTION_RESTORES_SUPPORT": {"protected_n": 100, "dev_n": 3, "invariant": "target reopened at v1; after correction (source corrected or calibration revalidated) reopened = unresolved = empty"},
+    "PARTIAL_SUPPORT_FAILURE": {"protected_n": 100, "dev_n": 3, "invariant": "target claim with >= 2 families loses a strict subset and is PRESERVED; no unresolved"},
+    "ALL_SUFFICIENT_SUPPORT_FAILED": {"protected_n": 100, "dev_n": 3, "invariant": "variants SHARED_SOURCE / CONTRADICTION / SEQUENCE; target with >= 1 dependent claim is REOPENED; no unresolved"},
+    "CANNOT_CHECK_EDGE": {"protected_n": 100, "dev_n": 3, "invariant": "variants SOURCE_DISPUTED / CALIBRATION_REVIEW / DEPENDENCE_SUSPECTED / RELATION_CANNOT_CHECK / EVALUATOR_UNCERTAIN; >= 1 unresolved; sibling with alternative family PRESERVED when planted"},
+    "NO_REOPENING_NEEDED": {"protected_n": 100, "dev_n": 3, "invariant": "1-2 registered events touching used entities (scope narrowed, relation upgraded, evaluator widened, k-satisfied dependence, unused source/calibration, alternative's negative-evidence source retracted); reopened = unresolved = empty at every version"}
+  },
+  "splits": {
+    "development": {"seed": "ME-X4-DEV-20260902", "per_stratum": 3, "total": 36, "label": "DEVELOPMENT", "protected": false},
+    "protected": {"per_stratum": 100, "total": 1200, "label": "PROTECTED", "seed": "committed, see seed_commitment"},
+    "selftest": {"seed": "ME-X4-SELFTEST", "per_stratum": 1, "total": 12}
+  },
+  "seed_commitment": {
+    "protected_seed_sha256": "1314772902394af2583d924bc7eeb15f492e5aa8480dae3ac8cf9a93bfe12af9",
+    "custody": "operator custody outside the repository: ~/.orion-custody/me-x4/PROTECTED_SEED_V1.txt (mode 600); the runner checks sha256(seed) == commitment before any protected generation",
+    "reveal": "the seed string is appended to the outcome receipt after the protected run; anyone can then regenerate the split byte-for-byte"
+  },
+  "power": {
+    "primary_statistic": "paired instance-level exact-set match (all versions, all three sets) M vs B5; exact two-sided binomial test on discordant pairs (McNemar exact); estimand = P(M exact) - P(B5 exact)",
+    "n_protected": 1200,
+    "mde_pooled": "6 one-directional discordant instances (0.5%) reach exact p = 0.031; 8 reach p = 0.008",
+    "mde_per_stratum": "n=100: 5 one-directional discordants (5%) reach p = 0.0625, 6 reach p = 0.031",
+    "note": "the prior expectation is zero discordance; the test is two-sided so a B5 advantage is equally detectable"
+  },
+  "arms": {
+    "A0_PROVENANCE_ONLY_INVALIDATION": "orion_v2.provenance revocation descendants over the full graph (sources, calibrations, evaluators, relations, scope nodes, contradiction nodes, evidence, families, claims); no support families; censored = not revoked",
+    "A1_JTMS_CLASSICAL": "Doyle 1979 JTMS over registered families; untyped events (identity change = premise retraction); two-valued (censored = valid)",
+    "A2_ATMS_CLASSICAL": "de Kleer 1986 ATMS; untyped events; censored atoms as environments (three-valued via label lattice)",
+    "A3_AGM_KERNEL_CONTRACTION": "Hansson kernel contraction with entrenchment rules < evidence; Levi revision on contradiction; stateful base (no recovery of cut rules); two-valued",
+    "A4_BAYES_NOISY_OR": "noisy-OR support propagation, evidence reliability 0.9, structural witnesses 1.0, threshold 0.5, optimistic/pessimistic envelope on censored atoms",
+    "A5_ASSURANCE_CASE_UPDATE": "GSN change-impact: challenged elements -> suspect ancestors via supported-by / in-context-of; AND semantics; scope/evaluator/transport/independence as context elements; two-valued",
+    "B5_R1_VERDICT_ONLY": "typed modules; every module exports one per-claim verdict atom (DEFEATS_ALL -> INVALID, all-defeated-or-censored -> UNKNOWN, else VALID); JTMS propagation with envelope",
+    "B5_R2_PROV": "rung 2: provenance records (evidence-level statuses) cross the boundary; other modules verdict-level",
+    "B5_R3_PROV+DEP": "rung 3: + dependence ancestry (family-level independence witnesses)",
+    "B5_R4_PROV+DEP+TRANS+EVAL": "rung 4: + typed transport and evaluator witness statuses",
+    "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": "rung 5: full structure (every witness-level status incl. scope and contradiction) = everything M sees; primary comparator",
+    "M_ME_SELECTIVE_REOPENING": "orion_v2.provenance (revocation descendants) + orion_v2.evidence.assess_evidence_dependence (independence witnesses) + RelationType-typed transport + evaluator contract + ProblemContract scope -> orion_v2.reopening.selective_reopen run optimistic/pessimistic (existing reference semantics; no new M)",
+    "M_MINUS_DEPENDENCE_ANCESTRY": "M with the dependence module removed (no ind atoms)",
+    "M_MINUS_TYPED_TRANSPORT": "M with transport typing collapsed to 'relation changed -> defeated'",
+    "M_MINUS_EVALUATOR_CONTRACT": "M with evaluator typing collapsed to 'evaluator changed -> all its evidence defeated'",
+    "M_MINUS_SUPPORT_FAMILIES": "M with every claim's families merged into one AND family",
+    "M_GLOBAL_RESET_CONTROL": "any non-VALID atom anywhere -> all accepted commitments reopened",
+    "M_PROVENANCE_ONLY_CONTROL": "= A0",
+    "C_NEVER_REOPEN": "always PRESERVED",
+    "C_RANDOM_DISPOSITION": "uniform random disposition per commitment (seed = instance seed ^ 0x5EED)"
+  },
+  "b5_information_matching": "B5 receives the identical World, event history and accepted list; its modules reuse the parent-owned orion_v2 provenance and evidence-dependence reference implementations; engineering glue (verdict/witness export, envelope) is allowed; B5 is never artificially isolated",
+  "outcomes": {
+    "primary": ["instance exact-set match (all versions; reopened, preserved, unresolved all equal)", "final-version exact-set match", "over-reopening (arm REOPENED & oracle PRESERVED, commitment-level)", "under-reopening (oracle REOPENED & arm != REOPENED)", "invalid preservation (arm PRESERVED & oracle != PRESERVED)", "false / missed unresolved", "recovery after corrective evidence (commitments reopened at an earlier version and preserved at the final version: arm final = PRESERVED)", "cost (engine primitive operations + module operations; wall-clock reported, not gated)", "per-stratum error table"],
+    "secondary": ["B5 ladder rung exact rates and paired step tests (H-EXT-3)", "assigned-label shuffle null for M"]
+  },
+  "ablations": ["M_MINUS_DEPENDENCE_ANCESTRY", "M_MINUS_TYPED_TRANSPORT", "M_MINUS_EVALUATOR_CONTRACT", "M_MINUS_SUPPORT_FAMILIES", "M_GLOBAL_RESET_CONTROL", "M_PROVENANCE_ONLY_CONTROL"],
+  "gates": {
+    "G0a_KNOWN_ANSWER": {"hard": true, "rule": "12 hand-authored fixtures (one per stratum, hand-computed expected sets) and the H-EXT-3 separation pair reproduced by the oracle in selftest"},
+    "G0b_ORACLE_SELF_AGREEMENT": {"hard": true, "rule": "Kleene == exhaustive enumeration on every version of every instance; every instance valid at v0; stratum invariants satisfied (enforced at generation)"},
+    "G0c_NULL_CALIBRATION": {"hard": true, "rule": "C_NEVER_REOPEN exact = 0 on strata that require reopening/unresolved; C_RANDOM exact <= 10%; M scored against within-instance shuffled oracle labels exact <= 10%"},
+    "G1a_B5_REPRODUCES_M": {"rule": "M and B5 decisions identical (all versions) on >= 99.5% of instances and no stratum with > 5% discordance"},
+    "G1b_M_ADVANTAGE": {"rule": "paired instance-exact difference M - B5 > 0 with exact two-sided p <= 0.05 and >= 1 stratum with >= 5 M-only-exact instances"},
+    "G2_ANTI_CONSERVATISM": {"rule": "on NO_REOPENING_NEEDED and NEW_INDEPENDENT_SUPPORT, M's over-reopened commitments (all versions) <= B5's"},
+    "G3_MECHANISM": {"rule": "evaluated only if G1b: for each stratum with >= 5 M-only-exact instances, the matching omission ablation's exact rate on that stratum <= B5's (DEPENDENCE->MINUS_DEPENDENCE_ANCESTRY, TRANSPORT->MINUS_TYPED_TRANSPORT, EVALUATOR->MINUS_EVALUATOR_CONTRACT, all others->MINUS_SUPPORT_FAMILIES)"},
+    "G4_INTERFACE_LADDER": {"rule": "H-EXT-3: (a) monotonicity: no rung k+1 significantly worse than rung k (paired exact p <= 0.05 in the wrong direction is a violation); (b) rung-5 gap = the G1 paired test", "terminals": {"monotone_and_gap_null": "RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL", "monotone_and_gap_persists": "CONTROL_RESIDUAL_CANDIDATE_AT_FULL_STRUCTURE", "non_monotone": "LADDER_NON_MONOTONE (H-EXT-3 falsifier fires)"}},
+    "COST": {"rule": "ratio reported with a 2x flag; not a route by itself"}
+  },
+  "routing_preregistered": {
+    "G0_fail": "CANNOT_CHECK (lane defect: repair, re-freeze, no arm verdict)",
+    "G1a_pass": "PARENT_SUFFICIENT (selective reopening is parent-owned; with G4a: RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL)",
+    "G1b_pass_G2_fail": "M_OVER_REOPENS",
+    "G1b_pass_G2_pass_G3_pass": "ME_X4_RESIDUAL_CANDIDATE",
+    "G1b_pass_G2_pass_G3_fail": "CANNOT_CHECK (advantage not attributable to a named mechanism)",
+    "neither_G1a_nor_G1b": "PARENT_SUFFICIENT (B5 not worse, or discordance without significance)",
+    "cost_only_difference": "no route change; a cost-only claim requires a separate pre-registered scaling cell"
+  },
+  "separation_example": {
+    "family": "local compatibility / global obstruction (ME-X1 family 9 analogue)",
+    "P": "claim c: F1 = {e1, e2 | k=2}, F2 = {e3 transported ctx1->ctx0, requires PREDICTIVELY_EQUIVALENT}",
+    "Q": "claim c: F1 = {e1, e2, e3 transported | k=2 over e1,e2}, F2 = {e4 native}",
+    "events": "DEPENDENCE_DISCOVERED(e1,e2) then RELATION_RETYPED(ctx1->ctx0, APPROXIMATELY_EQUIVALENT)",
+    "claim": "every federation whose module boundary carries only family-anonymous per-claim verdicts from a fixed finite alphabet emits identical verdict tuples for P and Q (DEP: DEFEATS_SOME, TRANS: DEFEATS_SOME, others DEFEATS_NONE) and therefore fails on at least one of them; witness-level (structure) exchange is exact on both (P: REOPENED, Q: PRESERVED)",
+    "selftest_check": "verdict-only rung emits identical outputs on P and Q and errs on one; rung 5 and M exact on both"
+  },
+  "naturalistic_validation": "S7 of the X4 protocol is declared a SEPARATE later cell (native reviewers define reopening sets before arm outcomes); it is not part of this exact study and no claim from this study transfers to it",
+  "no_rescue_clause": "No stratum weight, oracle rule, arm, seed, or gate may change after the protected results file exists. Development-split tuning surface: bug fixes to arm glue validated by G0a known-answer tests before the seed is revealed. A protected result cannot be re-run under a new seed; a lane defect found mid-run halts the lane, is receipted, and re-freezes with a new design version.",
+  "custody": {
+    "code": ["mex4_model.py", "mex4_oracle.py", "mex4_generator.py", "mex4_parents.py", "mex4_arms.py", "mex4_run.py"],
+    "code_sha256_frozen_in": "ME_X4_PARENT_FIDELITY_RECEIPT_V1.md (this PR)",
+    "protected_authorization": "PROTECTED_RUN_AUTHORIZATION.json with human_written=true, human_written_token (>= 16 chars), acknowledged_design_sha256 == sha256 of this JSON; absent in this PR",
+    "outputs": ["results/ME_X4_<LABEL>_RESULTS_V1.json (arm outputs only)", "results/ME_X4_<LABEL>_EXPECTED_CUSTODY_V1.json (oracle sets + instances)", "results/ME_X4_<LABEL>_ANALYSIS_V1.{json,md}"],
+    "determinism": "byte-identical results on re-run (only RNGs: instance seeds, C_RANDOM_DISPOSITION seed, shuffle-null seed 20260902)",
+    "estimated_protected_cost": "1200 instances x 20 arms: about 1-3 CPU-minutes on a laptop core; run on laptop billy or LUNARC login, never as a heavy job"
+  },
+  "authority": {"grants_field_status": false, "grants_novelty": false, "grants_publication": false, "parent_sufficiency_is_valid_terminal": true}
+}
