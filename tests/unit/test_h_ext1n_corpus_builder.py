@@ -65,6 +65,12 @@ def test_redaction_without_leading_word_boundary() -> None:
     assert "NCT" not in mod.redact("ClinicalTrials.gov identifierNCT00445770.")
     assert "NCT" not in mod.redact("registered (NCT 01234567) and ISRCTN12345678; EudraCT 2015-001234-56")
     assert mod.redact("The ONCT trial") == "The ONCT trial"
+    assert "NCT" not in mod.redact("registration number: NCT035008353.")  # live 9-digit typo
+    rec = mod.parse_articles(_corpus_xml(1, 1, "13").encode())[0]
+    rec["grant_ids"] = ["NCT02998970", "CLINICALTRIALS.GOV NCT02545049", "R01HL0001", "HZC113782/NCT01313676"]
+    vis = mod.visible_record(rec, "r1")
+    assert "NCT" not in json.dumps(vis)
+    assert vis["grant_ids"] == ["R01HL0001", "HZC113782/[REGISTRY-ID]"]
 
 
 def test_eligibility_rules() -> None:

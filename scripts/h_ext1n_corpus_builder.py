@@ -43,13 +43,13 @@ ESEARCH = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
 EFETCH = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
 ARMS = ("P_D_FULL", "P_D_MINUS_DEPENDENCE", "STRONGEST_ASSURANCE_FEDERATION")
 INCONCLUSIVE = "INCONCLUSIVE_INSUFFICIENT_INDEPENDENT_SUPPORT"
-NCT_RE = re.compile(r"NCT\s?-?\d{8}(?!\d)", re.IGNORECASE)
+NCT_RE = re.compile(r"NCT\s?-?\d{8,}", re.IGNORECASE)  # \d{8,}: live typo "NCT035008353" (9 digits)
 # every registry-id shape we know of; all are replaced by the same neutral marker so the
 # redaction itself carries no per-record information. No leading word boundary: live
 # records glue the id to the preceding word ("identifierNCT00445770", verified 2026-09-02).
 REGISTRY_RES = [
     NCT_RE,
-    re.compile(r"ISRCTN\s?-?\d{6,8}(?!\d)", re.IGNORECASE),
+    re.compile(r"ISRCTN\s?-?\d{6,}", re.IGNORECASE),
     re.compile(r"(?<!\d)\d{4}-\d{6}-\d{2}(?:-\d{2})?(?!\d)"),         # EudraCT / EU CT
     re.compile(r"ChiCTR-?[A-Z]*-?\d{6,12}(?!\d)", re.IGNORECASE),
     re.compile(r"ACTRN\s?\d{14}[a-z]?(?![A-Za-z0-9])", re.IGNORECASE),
@@ -313,17 +313,29 @@ def eligible(rec: dict[str, Any], design: dict[str, Any]) -> tuple[bool, str]:
     return True, "ok"
 
 
+def _redact_list(values: list[str]) -> list[str]:
+    """Redact every string; drop entries that were nothing but a registry id (live
+    GrantList entries such as "NCT02998970" or "CLINICALTRIALS.GOV NCT02545049")."""
+    out = []
+    for v in values:
+        r = redact(str(v)).strip()
+        if r and r.replace(REDACTION_MARK, "").strip(" .:;,-/()") not in ("", "CLINICALTRIALS.GOV", "clinicaltrials.gov", "ClinicalTrials.gov"):
+            out.append(r)
+    return out
+
+
 def visible_record(rec: dict[str, Any], record_id: str) -> dict[str, Any]:
+    """Every string field passes through redact(); no field is exempt."""
     return {
         "record_id": record_id,
         "title": redact(rec["title"]),
         "abstract": redact(abstract_text(rec)),
-        "authors": list(rec["authors"]),
-        "journal": rec["journal"],
+        "authors": _redact_list(rec["authors"]),
+        "journal": redact(rec["journal"]),
         "year": rec["year"],
-        "publication_types": list(rec["pubtypes"]),
-        "grant_ids": list(rec["grant_ids"]),
-        "mesh_major": list(rec["mesh_major"]),
+        "publication_types": _redact_list(rec["pubtypes"]),
+        "grant_ids": _redact_list(rec["grant_ids"]),
+        "mesh_major": _redact_list(rec["mesh_major"]),
     }
 
 
