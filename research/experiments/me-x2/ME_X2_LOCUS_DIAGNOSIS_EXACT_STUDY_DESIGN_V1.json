@@ -1,0 +1,720 @@
+{
+ "ablations": [
+  "M_MINUS_LOCUS_DIAGNOSIS",
+  "M_LOCUS_LABELS_SHUFFLED",
+  "M_MINUS_DIAGNOSTIC_EVALUATOR_GATE",
+  "M_MINUS_LOWER_LEVEL_DISPOSITION",
+  "M_MINUS_PROSPECTIVE_DISCRIMINATOR",
+  "M_ALWAYS_ESCALATE_WHEN_STUCK",
+  "M_NEVER_ESCALATE",
+  "B3_EQUAL_EXTRA_SEARCH_1_5X"
+ ],
+ "arft_mapping_hypothesis": {
+  "frozen_before_outcomes": true,
+  "licensing_note": "ARFT (arXiv:2608.14905) itself is not licensed or executed here; B2 uses an equivalently strong pattern -> standard-fix taxonomy with complete trajectory access, which is the strongest form the addendum permits without the external artifact. This is a limitation of the study, recorded before outcomes.",
+  "rule": "ORION obstruction classes to external process-failure patterns; NO_MAPPING / ONE_TO_MANY / MANY_TO_ONE / MULTI_CAUSAL all allowed; agreement is secondary to intervention choice; the ORION taxonomy is not edited to improve agreement",
+  "table": {
+   "EXPERIMENT_NONDISCRIMINATION": {
+    "orion_classes": [
+     "SEARCH_INSUFFICIENT",
+     "TOOL_INSTRUMENT_INADEQUATE",
+     "MODEL_FAMILY_INADEQUATE",
+     "PROBE_ACTION_INSUFFICIENT",
+     "PROBLEM_OBJECTIVE_MISSPECIFIED",
+     "MEASUREMENT_OR_EVALUATOR_BLIND",
+     "NO_ESCALATION_NEEDED"
+    ],
+    "orion_mapping": "MANY_TO_ONE",
+    "standard_fix_kind": "expand_hypothesis_family"
+   },
+   "PIPELINE_STAGE_MISMATCH": {
+    "orion_classes": [
+     "WORKFLOW_INADEQUATE",
+     "NO_ESCALATION_NEEDED",
+     "MEASUREMENT_OR_EVALUATOR_BLIND",
+     "MODEL_FAMILY_INADEQUATE",
+     "PROBLEM_OBJECTIVE_MISSPECIFIED",
+     "TOOL_INSTRUMENT_INADEQUATE"
+    ],
+    "orion_mapping": "MANY_TO_ONE",
+    "standard_fix_kind": "workflow_state_contract"
+   },
+   "PREDICTIVE_RESIDUAL_AFTER_T0": {
+    "orion_classes": [
+     "MODEL_FAMILY_INADEQUATE",
+     "NO_ESCALATION_NEEDED",
+     "MISSING_PREMISE_OR_DATA",
+     "MEASUREMENT_OR_EVALUATOR_BLIND"
+    ],
+    "orion_mapping": "MANY_TO_ONE",
+    "standard_fix_kind": "expand_model_family"
+   },
+   "PROOF_SEARCH_FAILURE": {
+    "orion_classes": [
+     "SEARCH_INSUFFICIENT",
+     "MISSING_PREMISE_OR_DATA",
+     "REPRESENTATION_INSUFFICIENT",
+     "FORMALISM_OR_OPERATOR_INSUFFICIENT",
+     "PROBLEM_OBJECTIVE_MISSPECIFIED",
+     "MEASUREMENT_OR_EVALUATOR_BLIND",
+     "NO_ESCALATION_NEEDED",
+     "TOOL_INSTRUMENT_INADEQUATE"
+    ],
+    "orion_mapping": "MULTI_CAUSAL",
+    "standard_fix_kind": "change_encoding"
+   },
+   "SCORE_PLATEAU": {
+    "orion_classes": [
+     "REPRESENTATION_INSUFFICIENT",
+     "SEARCH_INSUFFICIENT",
+     "MODEL_FAMILY_INADEQUATE",
+     "NO_ESCALATION_NEEDED",
+     "PROBLEM_OBJECTIVE_MISSPECIFIED",
+     "MEASUREMENT_OR_EVALUATOR_BLIND"
+    ],
+    "orion_mapping": "ONE_TO_MANY",
+    "standard_fix_kind": "change_representation"
+   },
+   "UNMAPPED_AGENT_LOOP_PATTERN": {
+    "note": "hostile counterexample to universality: an agent-loop pattern (e.g. tool-call formatting loop) with no ORION obstruction class; not instantiated by the generator, registered so the mapping table is honest",
+    "orion_classes": [],
+    "orion_mapping": "NO_MAPPING",
+    "standard_fix_kind": null
+   }
+  }
+ },
+ "arm_semantics": {
+  "B0_RETRY_SEARCH": "repeat the cheapest registered intervention up to 3 times",
+  "B1_UNCERTAINTY_ABSTENTION": "Chow/selective-prediction threshold tau=0.9 on the class posterior over consistent candidates; cheapest probe otherwise",
+  "B2_FAILURE_TAXONOMY_DIAGNOSIS": "ARFT-equivalent pattern -> standard fix, then ascending level (S4.5 B2 / ARFT addendum)",
+  "B3_EQUAL_EXTRA_SEARCH_1_5X": "the same arm with 1.5x the budget: matched extra-search control",
+  "B3_MODEL_BASED_DIAGNOSIS_VOI": "GDE consistency-based candidate generation (de Kleer & Williams 1987) + myopic value of information / rational metareasoning (Howard 1966; Russell & Wefald 1991) with failure penalty 10x budget",
+  "B4_MDA_MODEL_EXPANSION": "model-discovery-agent style criticism -> model-family expansion (arXiv:2608.09696 style), otherwise B3",
+  "B5_NO_ABSTENTION_GATE": "the federation without the abstention gate (federation variant, not an M ablation)",
+  "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": "exact finite-horizon expected-cost planner over (candidate set, remaining budget) with the tau=0.9 abstention gate on level>=2 acts, over the typed diagnostic modules; Bayes-optimal test-and-repair sequencing under the uniform prior",
+  "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": "ORION reference semantics only: assess_discrepancy_locus (locus receipt, diagnostic-evaluator adequacy, CANNOT_IDENTIFY), route_frontier_action (witnessed obstruction, discriminator, lower-level disposition), JumpTrigger/JumpProposal/assess_jump/minimum_level (minimum-level policy), plus the fail-closed reachability rule (a discriminating action is admissible only if every establishable hypothesis stays establishable)"
+ },
+ "arms": {
+  "B0_RETRY_SEARCH": {
+   "budget_multiplier": 1.0,
+   "group": "baseline"
+  },
+  "B1_UNCERTAINTY_ABSTENTION": {
+   "budget_multiplier": 1.0,
+   "group": "baseline"
+  },
+  "B2_FAILURE_TAXONOMY_DIAGNOSIS": {
+   "budget_multiplier": 1.0,
+   "group": "baseline"
+  },
+  "B3_EQUAL_EXTRA_SEARCH_1_5X": {
+   "budget_multiplier": 1.5,
+   "group": "control"
+  },
+  "B3_MODEL_BASED_DIAGNOSIS_VOI": {
+   "budget_multiplier": 1.0,
+   "group": "baseline"
+  },
+  "B4_MDA_MODEL_EXPANSION": {
+   "budget_multiplier": 1.0,
+   "group": "baseline"
+  },
+  "B5_NO_ABSTENTION_GATE": {
+   "budget_multiplier": 1.0,
+   "group": "federation-variant"
+  },
+  "B5_R1_VERDICT_ONLY": {
+   "budget_multiplier": 1.0,
+   "group": "ladder"
+  },
+  "B5_R2_PLUS_CANDIDATE_SET": {
+   "budget_multiplier": 1.0,
+   "group": "ladder"
+  },
+  "B5_R3_PLUS_DISCRIMINATOR_TABLES": {
+   "budget_multiplier": 1.0,
+   "group": "ladder"
+  },
+  "B5_R4_PLUS_DISPOSITION_RECORDS": {
+   "budget_multiplier": 1.0,
+   "group": "ladder"
+  },
+  "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": {
+   "budget_multiplier": 1.0,
+   "group": "ladder"
+  },
+  "C_NEVER_INTERVENE": {
+   "budget_multiplier": 1.0,
+   "group": "control"
+  },
+  "C_RANDOM_POLICY": {
+   "budget_multiplier": 1.0,
+   "group": "control"
+  },
+  "M_ALWAYS_ESCALATE_WHEN_STUCK": {
+   "budget_multiplier": 1.0,
+   "group": "ablation"
+  },
+  "M_LOCUS_LABELS_SHUFFLED": {
+   "budget_multiplier": 1.0,
+   "group": "ablation"
+  },
+  "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": {
+   "budget_multiplier": 1.0,
+   "group": "M"
+  },
+  "M_MINUS_DIAGNOSTIC_EVALUATOR_GATE": {
+   "budget_multiplier": 1.0,
+   "group": "ablation"
+  },
+  "M_MINUS_LOCUS_DIAGNOSIS": {
+   "budget_multiplier": 1.0,
+   "group": "ablation"
+  },
+  "M_MINUS_LOWER_LEVEL_DISPOSITION": {
+   "budget_multiplier": 1.0,
+   "group": "ablation"
+  },
+  "M_MINUS_PROSPECTIVE_DISCRIMINATOR": {
+   "budget_multiplier": 1.0,
+   "group": "ablation"
+  },
+  "M_NEVER_ESCALATE": {
+   "budget_multiplier": 1.0,
+   "group": "ablation"
+  }
+ },
+ "authority": "None. Development numbers are development numbers; a protected outcome under this design decides only this study's registered question. No field status, novelty, architecture-adoption or publication authority is granted or implied. PARENT_SUFFICIENT is a successful scientific terminal.",
+ "b5_information_matching": {
+  "ladder_H_EXT_3": {
+   "B5_R1_VERDICT_ONLY": "per-claim class verdict only",
+   "B5_R2_PLUS_CANDIDATE_SET": "+ the consistent candidate set (tau gate, expected-cost act, no planning, no disposition feedback)",
+   "B5_R3_PLUS_DISCRIMINATOR_TABLES": "+ the registered discriminator tables (full sequential planning)",
+   "B5_R4_PLUS_DISPOSITION_RECORDS": "+ intervention-outcome dispositions fed back into the candidate set",
+   "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": "+ the diagnostic-evaluator contract (effective, not designed, tables) = everything M sees"
+  },
+  "rule": "rung 5 is the primary comparator; rungs 1-4 are ablations of B5, never of M. B5 reuses the parent-owned engines and any engineering glue it needs and is never artificially isolated."
+ },
+ "class": "EXACT_ORACLE_KNOWN_ANSWER__ZERO_MODEL_CALLS__DETERMINISTIC__NO_RESCUE",
+ "custody": {
+  "code": [
+   "mex2_model.py",
+   "mex2_catalogue.py",
+   "mex2_oracle.py",
+   "mex2_generator.py",
+   "mex2_parents.py",
+   "mex2_arms.py",
+   "mex2_run.py"
+  ],
+  "determinism": "results and custody files are byte-identical on re-run; wall-clock lives in a separate timing file",
+  "estimated_protected_cost": "1200 instances x 22 arms, deterministic, single core: ~20-60 CPU-seconds; budget 5 CPU-minutes; Mac local",
+  "outputs": [
+   "results/ME_X2_<LABEL>_RESULTS_V1.json (arm trajectories only)",
+   "results/ME_X2_<LABEL>_EXPECTED_CUSTODY_V1.json (oracle targets + instances incl. truth)",
+   "results/ME_X2_<LABEL>_TIMING_V1.json",
+   "results/ME_X2_<LABEL>_ANALYSIS_V1.{json,md}"
+  ],
+  "protected_authorization": "the protected stage refuses (exit 3) unless PROTECTED_RUN_AUTHORIZATION.json is present next to the runner with human_written=true, a human-written token >= 16 chars and acknowledged_design_sha256 = sha256 of this JSON, and refuses (exit 4) unless the custody seed hashes to the commitment. The file is absent in the design PR and the refusal paths are asserted by the unit tests.",
+  "stages": [
+   "selftest",
+   "dev",
+   "protected",
+   "analyze"
+  ]
+ },
+ "gates": {
+  "COST": "paired sign test on per-instance regret in registered cost units at p <= 0.05; wall-clock reported only, never a route by itself",
+  "G0a_KNOWN_ANSWER": "hard: 14 hand-authored fixtures (oracle targets computed by hand; M and B5 decision-correct) and the H-EXT-3 separation pair reproduced in selftest; every parent passes its native known-answer tests first",
+  "G0b_ORACLE_SELF_AGREEMENT": "hard: enumeration == branch-and-bound on every instance; a truth-agnostic decision-correct policy exists on every instance; variant invariants hold; decoy and inverse-decoy coverage (>= 5 per class on protected)",
+  "G0c_NULL_CALIBRATION": "hard: C_NEVER_INTERVENE decision-correct = 0 on identifiable instances; C_RANDOM_POLICY <= 0.25; M scored against the PARTNER instance's oracle (within-pair label swap) <= M's true rate - 0.30",
+  "G1a_B5_REPRODUCES_M": "M and B5 intervention/declaration sequences identical on >= 99.5% of instances and no stratum > 5% discordant",
+  "G1b_M_ADVANTAGE": "paired decision-correct difference (M - B5) > 0, exact two-sided p <= 0.05, and >= 1 stratum with >= 5 M-only-correct instances",
+  "G1c_B5_ADVANTAGE": "symmetric: difference < 0 with exact two-sided p <= 0.05",
+  "G2_ANTI_ESCALATION": "M's false escalations <= B5's and M's specification damage <= B5's",
+  "G3_MEDIATION": "only if G1b: (a) M's declared obstruction class is correct on >= 80% of the M-only-correct instances; (b) on every advantaged stratum both locus ablations (minus locus diagnosis, shuffled locus labels) score <= B5; (c) B3 with 1.5x budget does not reach M (paired exact p <= 0.05)",
+  "G4_INTERFACE_LADDER": "H-EXT-3: no rung k+1 significantly worse than rung k (paired exact p <= 0.05 in the wrong direction is a violation); rung-5 gap = the G1 paired test"
+ },
+ "generator": {
+  "apparent_class_rule": "1/2 the highest-typical-level live class, 1/4 the truth's class, 1/4 a uniformly random other live class; planted-CI pairs read as CANNOT_IDENTIFY with probability 1/2",
+  "hostile_decoys": "a decoy is an instance whose apparent class has a higher typical level than the oracle level (escalating on the symptom is punished); an inverse decoy is one whose apparent class has a lower typical level than the oracle level (refusing to escalate is punished). G0b requires >= 5 decoys per apparent class with typical level >= 1, >= 5 inverse decoys per level-0 class, and >= 5 apparent-CANNOT_IDENTIFY instances that are in fact identifiable, on the protected split.",
+  "pairs": "two instances share template, symptom, apparent class, live causes, probes, interventions, costs and budget; only the hidden truth differs. The stratum of an instance is its oracle class.",
+  "seed_rule": "instance seed = sha256(split_seed|stratum|index)[:12]; deterministic rejection sampling, max 400 attempts, PLAIN fallback after 200 (recorded in features.variant_fallback)",
+  "variant_cycle": [
+   "PLAIN",
+   "PLAIN",
+   "PARTIAL",
+   "SAME_FIX"
+  ],
+  "variants": {
+   "CI": "planted CANNOT_IDENTIFY: an inseparable rival with a different minimum fix and different class",
+   "PARTIAL": "identifiable only when a level<=1 repair-as-test is used",
+   "PLAIN": "probe-identifiable",
+   "SAME_FIX": "a rival with the same minimum fix is inseparable: locus CANNOT_IDENTIFY, intervention still determined"
+  }
+ },
+ "limitations_registered_before_outcomes": [
+  "synthetic ORION-authored episodes (decisive-studies S11.6: cannot alone support a field-level residual)",
+  "the registered outcome tables make diagnosis a finite decision problem; real episodes have unregistered hypotheses",
+  "ARFT is represented by an equivalent taxonomy, not the licensed artifact",
+  "the uniform prior over live causes is a modelling choice shared by every arm",
+  "the intervention lattice is the ORION Jump lattice, used as a comparator interface and not presumed correct (protocol V2 axis B)"
+ ],
+ "naturalistic_validation": "declared a separate later cell: independently authored or native-domain episodes with reviewer-defined loci and minimal interventions before arm outcomes. Nothing from this exact study transfers to it.",
+ "no_rescue_clause": "No stratum weight, oracle rule, arm, seed, gate or threshold changes after the protected results file exists. Development-only tuning surface: arm-glue bug fixes validated by the G0a known-answer tests before the seed is revealed. A protected result is never re-run under a new seed; a lane defect found mid-run halts the lane, is receipted, and re-freezes as V2.",
+ "oracle_semantics": {
+  "cross_check": "bitmask enumeration over all 2^n test subsets and an independent branch-and-bound DFS must agree on every instance (G0b)",
+  "identifiable": "some affordable test set separates the truth from every rival",
+  "indistinguishable_set_U": "the truth plus every rival that no affordable test set separates individually",
+  "oracle_class_locus": "the common class / locus over U, else CANNOT_IDENTIFY; if not identifiable up to U everything is CANNOT_IDENTIFY",
+  "oracle_level": "the common minimum-fix level over U when every member of U has the same minimum-fix intervention, else null (CANNOT_IDENTIFY terminal)",
+  "tests": "probes plus level<=1 interventions used as repair-as-test discriminators",
+  "total": "cost(test set) + cost(minimum fix of the truth), except that a repair in the set that already resolves the truth is the fix",
+  "uniform_decidability": "an instance is admitted only if one truth-agnostic policy tree is decision-correct for EVERY live cause taken as the truth (exact search over the registered actions). This forbids instances whose oracle target is unreachable without knowing the answer."
+ },
+ "outcomes": [
+  "obstruction classification accuracy",
+  "locus accuracy",
+  "confidence calibration (Brier, 5-bin ECE)",
+  "minimal-intervention level accuracy = primary decision-correct",
+  "verified task success",
+  "false escalation (a level above the oracle level applied)",
+  "missed escalation (no success where the oracle level exists)",
+  "false CANNOT_IDENTIFY",
+  "correct CANNOT_IDENTIFY",
+  "recurrence after a wrong intervention",
+  "specification damage (level-4 reformulation where the truth locus is not PROBLEM_CRITERION)",
+  "false world-change attribution",
+  "false model attribution",
+  "false representation attribution",
+  "regret vs the oracle minimal responsible intervention (registered cost units)",
+  "total cost",
+  "wall-clock (reported only)"
+ ],
+ "parent_protocols": {
+  "arft_addendum": "research/experiments/MACHINE_EPISTEMICS_DECISIVE_STUDIES_PROTOCOL_V1_ADDENDUM_ARFT.md (primary endpoint = intervention decision and outcome)",
+  "decisive_studies_protocol": "research/experiments/MACHINE_EPISTEMICS_DECISIVE_STUDIES_PROTOCOL_V1.md (S0-S2, S4)",
+  "development_fixtures": "research/experiments/ME_X1_X2_DEVELOPMENT_KNOWN_ANSWER_FIXTURES_V1.json (x2_obstruction_cases; vocabulary source, never protected evidence)",
+  "house_template": "research/experiments/me-x4/ (design/oracle/parents/arms/run/tests/receipt/custody conventions; ME-X4 terminal PARENT_SUFFICIENT, main 4929a44)",
+  "ontology": "research/field/WORLD_MACHINE_SEPARATION_ONTOLOGY_V1.md",
+  "reference_semantics": "src/orion_v2/ontic_epistemic_boundary.py, src/orion_v2/jump.py, src/orion_v2/epistemic_architecture.py, src/orion_v2/development_controller.py",
+  "x2_addendum": "research/experiments/MACHINE_EPISTEMICS_ME_X2_ONTIC_EPISTEMIC_DIAGNOSTIC_ADDENDUM_V1.md",
+  "x2_protocol": "research/experiments/ME_X2_LOCUS_DIAGNOSIS_PROTOCOL_V2.md"
+ },
+ "power": {
+  "expectation": "zero discordance; the test is two-sided so a B5 advantage is equally detectable (G1c)",
+  "mde": "6 one-directional discordants (0.5%) reach p = 0.031, 8 reach p = 0.008; per stratum n = 100, 6 discordants reach p = 0.031",
+  "pooled_n": 1200,
+  "primary_statistic": "paired per-instance decision-correct indicator, M vs B5; exact two-sided binomial (McNemar exact) on discordant pairs; estimand P(M correct) - P(B5 correct) with a paired Wald interval"
+ },
+ "pre_registered_expectation": "Parent sufficiency. The registered tables make the diagnostic problem a finite decision problem that an exact expected-cost planner over the same modules solves optimally; the expected route is PARENT_SUFFICIENT with ladder terminal RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL. This is a successful terminal, not a failure. The decisive content is (a) whether any stratum breaks it, (b) where single parents and the taxonomy/MDA arms break (attribution), (c) the H-EXT-3 ladder, (d) false/missed escalation and regret.",
+ "primary_endpoint": "INTERVENTION_DECISION_AND_OUTCOME (per the ARFT addendum): decision-correct = the episode terminates by the oracle minimum-level intervention succeeding with no higher-level intervention applied, or, where the oracle level is null, by a CANNOT_IDENTIFY declaration with no level>=2 intervention applied. Obstruction/locus label agreement is SECONDARY and is the mediation variable of G3.",
+ "question": "On registered scientific episodes whose observed symptom is shared by a matched pair but whose hidden cause differs, does M (ORION witnessed obstruction + locus receipt + lower-level disposition + minimum-level Jump policy) choose the oracle minimum responsible intervention more often than B5, the strongest faithful parent federation receiving the same registered information?",
+ "registered_information": {
+  "budget_parity": "every arm receives the same registered budget; the single exception is the registered control B3_EQUAL_EXTRA_SEARCH_1_5X, which receives 1.5x the budget (matched-extra-search control of protocol S6/S4.8)",
+  "hidden_from_arms": "the hidden truth, the oracle module, the oracle targets and the partner instance's truth (custody file)",
+  "identical_across_arms": true,
+  "instance": "symptom, trajectory pattern, apparent class, live cause hypotheses (each with obstruction class, discrepancy locus, canonical minimal fix), probes (cost, evaluator_mediated flag, nominal outcome, effective outcome table, designed outcome table), interventions (kind, Jump level, cost, resolves set), total budget",
+  "meta_evaluator_separation": "an evaluator_mediated probe returns its nominal outcome under every cause whose locus is EVALUATOR_VALIDATION (a blind scientific evaluator launders its own check). The designed table (what the check would report if the evaluator were valid) is registered separately; ladder rungs below the evaluator contract read the designed table, the diagnostic-evaluator contract reads the effective one. The diagnostic evaluator that decides whether evidence discriminates loci is never the scientific evaluator under diagnosis."
+ },
+ "routing_preregistered": {
+  "G0 fail": "CANNOT_CHECK (lane defect: repair, re-freeze, no arm verdict)",
+  "G1a pass": "PARENT_SUFFICIENT (ladder terminal RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL)",
+  "G1b pass and G2 fail": "M_OVER_ESCALATES",
+  "G1b pass and G2 pass and G3 fail": "CANNOT_CHECK (advantage not attributable to locus diagnosis)",
+  "G1b pass and G2 pass and G3 pass and cost flag COST_ADVANTAGE_B5": "QUALITY_COST_TRADEOFF_NO_DOMINANCE",
+  "G1b pass and G2 pass and G3 pass otherwise": "ME_X2_RESIDUAL_CANDIDATE",
+  "G1c pass": "PARENT_SUFFICIENT (B5_DOMINATES)",
+  "neither": "PARENT_SUFFICIENT (no advantage; discordance without significance)"
+ },
+ "schema_version": "orion.v2.me-x2.exact-study-design.v1",
+ "seed_commitment": {
+  "custody": "operator custody outside the repository: ~/.orion-custody/me-x2/PROTECTED_SEED_V1.txt (mode 600); the runner checks sha256(seed) == commitment before any protected generation",
+  "protected_seed_sha256": "4860b800dd43818f2c030c41746abec41068b1a7e998bd17208c5914b1390528",
+  "reveal": "the seed string is appended to the outcome receipt after the protected run; anyone can then regenerate the split byte-for-byte"
+ },
+ "separation_example": {
+  "claim": "a federation whose inter-module channel carries only a family-anonymous per-claim class verdict receives the identical verdict in P and Q and therefore errs on at least one of them; structure exchange (rung 5) and M are decision-correct on both. Asserted exactly in selftest.",
+  "construction": "identical symptom, probes, interventions, costs and budget; live causes PREPROCESS_BUG (locus PROCESS_TOOL_WORKFLOW, minimal fix level 1) and MODEL_INADEQUATE (locus EPISTEMIC_MODEL, minimal fix level 2, whose resolves set also covers PREPROCESS_BUG). The only probe is evaluator-mediated and rejects under both.",
+  "name": "SEP-P / SEP-Q (H-EXT-3)"
+ },
+ "splits": {
+  "development": {
+   "authority": "NEVER_PROTECTED_EVIDENCE",
+   "instances": 48,
+   "label": "DEVELOPMENT",
+   "pairs_per_stratum": 2,
+   "seed": "ME-X2-DEV-20260902"
+  },
+  "protected": {
+   "instances": 1200,
+   "label": "PROTECTED",
+   "pairs_per_stratum": 50,
+   "single_run": true
+  }
+ },
+ "state_date": "2026-09-02",
+ "status": "FROZEN_DESIGN__DEVELOPMENT_FIXTURES_ONLY__NO_PROTECTED_RUN",
+ "templates": {
+  "A_PLATEAU": {
+   "causes": [
+    {
+     "canonical_fix": "continue_search",
+     "cause_id": "LOCAL_OPTIMUM_MORE_SEARCH",
+     "locus": "PROCESS_TOOL_WORKFLOW",
+     "obstruction_class": "SEARCH_INSUFFICIENT"
+    },
+    {
+     "canonical_fix": "expand_model_family",
+     "cause_id": "MODEL_INADEQUATE_P",
+     "locus": "EPISTEMIC_MODEL",
+     "obstruction_class": "MODEL_FAMILY_INADEQUATE"
+    },
+    {
+     "canonical_fix": "change_representation",
+     "cause_id": "STATES_COLLAPSED",
+     "locus": "REPRESENTATION_REGIME",
+     "obstruction_class": "REPRESENTATION_INSUFFICIENT"
+    },
+    {
+     "canonical_fix": "build_validated_evaluator",
+     "cause_id": "EVALUATOR_SATURATED",
+     "locus": "EVALUATOR_VALIDATION",
+     "obstruction_class": "MEASUREMENT_OR_EVALUATOR_BLIND"
+    },
+    {
+     "canonical_fix": "stop_warranted_terminal",
+     "cause_id": "CRITERION_MET",
+     "locus": "NO_MATERIAL_DISCREPANCY",
+     "obstruction_class": "NO_ESCALATION_NEEDED"
+    },
+    {
+     "canonical_fix": "reformulate_objective",
+     "cause_id": "OBJECTIVE_OMITS_CRITERION",
+     "locus": "PROBLEM_CRITERION",
+     "obstruction_class": "PROBLEM_OBJECTIVE_MISSPECIFIED"
+    },
+    {
+     "canonical_fix": "reset_registered_parameters",
+     "cause_id": "HYPERPARAM_MISSET",
+     "locus": "PROCESS_TOOL_WORKFLOW",
+     "obstruction_class": "NO_ESCALATION_NEEDED"
+    }
+   ],
+   "n_causes": 7,
+   "n_interventions": 8,
+   "n_probes": 7,
+   "pattern": "SCORE_PLATEAU",
+   "symptom": "evaluator score stops improving"
+  },
+  "A_RESIDUAL": {
+   "causes": [
+    {
+     "canonical_fix": "refit_post_t0",
+     "cause_id": "TARGET_SHIFT_REFIT",
+     "locus": "TARGET_WORLD",
+     "obstruction_class": "NO_ESCALATION_NEEDED"
+    },
+    {
+     "canonical_fix": "expand_model_family",
+     "cause_id": "TARGET_NEW_REGIME",
+     "locus": "TARGET_WORLD",
+     "obstruction_class": "MODEL_FAMILY_INADEQUATE"
+    },
+    {
+     "canonical_fix": "recalibrate",
+     "cause_id": "SENSOR_DRIFT_RECAL",
+     "locus": "OBSERVATION_MEASUREMENT",
+     "obstruction_class": "NO_ESCALATION_NEEDED"
+    },
+    {
+     "canonical_fix": "build_calibration_instrument",
+     "cause_id": "SENSOR_BLIND_NO_STANDARD",
+     "locus": "OBSERVATION_MEASUREMENT",
+     "obstruction_class": "MEASUREMENT_OR_EVALUATOR_BLIND"
+    },
+    {
+     "canonical_fix": "expand_model_family",
+     "cause_id": "MODEL_INADEQUATE",
+     "locus": "EPISTEMIC_MODEL",
+     "obstruction_class": "MODEL_FAMILY_INADEQUATE"
+    },
+    {
+     "canonical_fix": "fix_unit_conversion",
+     "cause_id": "PREPROCESS_BUG",
+     "locus": "PROCESS_TOOL_WORKFLOW",
+     "obstruction_class": "NO_ESCALATION_NEEDED"
+    },
+    {
+     "canonical_fix": "measure_covariate",
+     "cause_id": "MISSING_COVARIATE",
+     "locus": "OBSERVATION_MEASUREMENT",
+     "obstruction_class": "MISSING_PREMISE_OR_DATA"
+    },
+    {
+     "canonical_fix": "build_validated_evaluator",
+     "cause_id": "EVALUATOR_BLIND",
+     "locus": "EVALUATOR_VALIDATION",
+     "obstruction_class": "MEASUREMENT_OR_EVALUATOR_BLIND"
+    },
+    {
+     "canonical_fix": "refresh_cache",
+     "cause_id": "STALE_CACHE",
+     "locus": "PROCESS_TOOL_WORKFLOW",
+     "obstruction_class": "NO_ESCALATION_NEEDED"
+    }
+   ],
+   "n_causes": 9,
+   "n_interventions": 11,
+   "n_probes": 7,
+   "pattern": "PREDICTIVE_RESIDUAL_AFTER_T0",
+   "symptom": "systematic model-observation residual after t0"
+  },
+  "B_PROOF": {
+   "causes": [
+    {
+     "canonical_fix": "continue_search",
+     "cause_id": "SEARCH_SHALLOW",
+     "locus": "PROCESS_TOOL_WORKFLOW",
+     "obstruction_class": "SEARCH_INSUFFICIENT"
+    },
+    {
+     "canonical_fix": "retrieve_lemma",
+     "cause_id": "MISSING_LEMMA",
+     "locus": "EPISTEMIC_MODEL",
+     "obstruction_class": "MISSING_PREMISE_OR_DATA"
+    },
+    {
+     "canonical_fix": "change_encoding",
+     "cause_id": "ENCODING_INSUFFICIENT",
+     "locus": "REPRESENTATION_REGIME",
+     "obstruction_class": "REPRESENTATION_INSUFFICIENT"
+    },
+    {
+     "canonical_fix": "extend_formalism_operator",
+     "cause_id": "OPERATOR_MISSING",
+     "locus": "REPRESENTATION_REGIME",
+     "obstruction_class": "FORMALISM_OR_OPERATOR_INSUFFICIENT"
+    },
+    {
+     "canonical_fix": "reformulate_specification",
+     "cause_id": "SPEC_WRONG",
+     "locus": "PROBLEM_CRITERION",
+     "obstruction_class": "PROBLEM_OBJECTIVE_MISSPECIFIED"
+    },
+    {
+     "canonical_fix": "build_semantic_alignment_evaluator",
+     "cause_id": "SEMANTIC_EVAL_CANNOT_ALIGN",
+     "locus": "EVALUATOR_VALIDATION",
+     "obstruction_class": "MEASUREMENT_OR_EVALUATOR_BLIND"
+    },
+    {
+     "canonical_fix": "rerun_stable_tolerance",
+     "cause_id": "TRANSIENT_TOOL_FAILURE",
+     "locus": "PROCESS_TOOL_WORKFLOW",
+     "obstruction_class": "NO_ESCALATION_NEEDED"
+    },
+    {
+     "canonical_fix": "adopt_capable_prover",
+     "cause_id": "PROVER_VERSION_INADEQUATE",
+     "locus": "PROCESS_TOOL_WORKFLOW",
+     "obstruction_class": "TOOL_INSTRUMENT_INADEQUATE"
+    }
+   ],
+   "n_causes": 8,
+   "n_interventions": 10,
+   "n_probes": 7,
+   "pattern": "PROOF_SEARCH_FAILURE",
+   "symptom": "proof search fails on the registered theorem"
+  },
+  "C_NONDISCRIM": {
+   "causes": [
+    {
+     "canonical_fix": "collect_more_samples",
+     "cause_id": "MORE_SAMPLES",
+     "locus": "OBSERVATION_MEASUREMENT",
+     "obstruction_class": "SEARCH_INSUFFICIENT"
+    },
+    {
+     "canonical_fix": "switch_instrument",
+     "cause_id": "CHANNEL_INSENSITIVE",
+     "locus": "OBSERVATION_MEASUREMENT",
+     "obstruction_class": "TOOL_INSTRUMENT_INADEQUATE"
+    },
+    {
+     "canonical_fix": "expand_hypothesis_family",
+     "cause_id": "HYPOTHESIS_FAMILY_INADEQUATE",
+     "locus": "EPISTEMIC_MODEL",
+     "obstruction_class": "MODEL_FAMILY_INADEQUATE"
+    },
+    {
+     "canonical_fix": "run_discriminating_intervention",
+     "cause_id": "INTERVENTION_NEEDED",
+     "locus": "OBSERVATION_MEASUREMENT",
+     "obstruction_class": "PROBE_ACTION_INSUFFICIENT"
+    },
+    {
+     "canonical_fix": "reformulate_criterion",
+     "cause_id": "CRITERION_UNIDENTIFIABLE",
+     "locus": "PROBLEM_CRITERION",
+     "obstruction_class": "PROBLEM_OBJECTIVE_MISSPECIFIED"
+    },
+    {
+     "canonical_fix": "build_validated_evaluator",
+     "cause_id": "EVALUATOR_BLIND_C",
+     "locus": "EVALUATOR_VALIDATION",
+     "obstruction_class": "MEASUREMENT_OR_EVALUATOR_BLIND"
+    },
+    {
+     "canonical_fix": "fix_analysis_script",
+     "cause_id": "ANALYSIS_BUG",
+     "locus": "PROCESS_TOOL_WORKFLOW",
+     "obstruction_class": "NO_ESCALATION_NEEDED"
+    }
+   ],
+   "n_causes": 7,
+   "n_interventions": 9,
+   "n_probes": 7,
+   "pattern": "EXPERIMENT_NONDISCRIMINATION",
+   "symptom": "competing hypotheses remain undiscriminated after the experiment"
+  },
+  "D_WORKFLOW": {
+   "causes": [
+    {
+     "canonical_fix": "patch_tool",
+     "cause_id": "LOCAL_TOOL_BUG",
+     "locus": "PROCESS_TOOL_WORKFLOW",
+     "obstruction_class": "NO_ESCALATION_NEEDED"
+    },
+    {
+     "canonical_fix": "workflow_state_contract",
+     "cause_id": "METADATA_LOSS",
+     "locus": "PROCESS_TOOL_WORKFLOW",
+     "obstruction_class": "WORKFLOW_INADEQUATE"
+    },
+    {
+     "canonical_fix": "add_metadata_passthrough",
+     "cause_id": "METADATA_LOSS_LOCAL_FIXABLE",
+     "locus": "PROCESS_TOOL_WORKFLOW",
+     "obstruction_class": "NO_ESCALATION_NEEDED"
+    },
+    {
+     "canonical_fix": "replace_validate_evaluator",
+     "cause_id": "INVALID_EVALUATOR",
+     "locus": "EVALUATOR_VALIDATION",
+     "obstruction_class": "MEASUREMENT_OR_EVALUATOR_BLIND"
+    },
+    {
+     "canonical_fix": "expand_model_family",
+     "cause_id": "WRONG_MODEL",
+     "locus": "EPISTEMIC_MODEL",
+     "obstruction_class": "MODEL_FAMILY_INADEQUATE"
+    },
+    {
+     "canonical_fix": "reformulate_criterion",
+     "cause_id": "WRONG_CRITERION",
+     "locus": "PROBLEM_CRITERION",
+     "obstruction_class": "PROBLEM_OBJECTIVE_MISSPECIFIED"
+    },
+    {
+     "canonical_fix": "rerun_clean",
+     "cause_id": "TRANSIENT_ENV",
+     "locus": "PROCESS_TOOL_WORKFLOW",
+     "obstruction_class": "NO_ESCALATION_NEEDED"
+    },
+    {
+     "canonical_fix": "adopt_capable_tool",
+     "cause_id": "TOOL_CAPABILITY_MISSING",
+     "locus": "PROCESS_TOOL_WORKFLOW",
+     "obstruction_class": "TOOL_INSTRUMENT_INADEQUATE"
+    }
+   ],
+   "n_causes": 8,
+   "n_interventions": 8,
+   "n_probes": 7,
+   "pattern": "PIPELINE_STAGE_MISMATCH",
+   "symptom": "pipeline output invalid; downstream comparison corrupted"
+  }
+ },
+ "title": "ME-X2 obstruction/locus classification and minimum escalation: exact known-answer study",
+ "vocabularies": {
+  "intervention_levels": {
+   "0": "ACTION_PARAMETER",
+   "1": "LOCAL_REPAIR_COMPOSITION",
+   "2": "MODEL_HYPOTHESIS_EXPANSION",
+   "3": "REPRESENTATION_REGIME_TRANSITION",
+   "4": "PROBLEM_OBJECTIVE_REFORMULATION",
+   "5": "METHOD_TOOL_INSTRUMENT_INVENTION",
+   "6": "WORKFLOW_META_SKILL_REVISION"
+  },
+  "level_cost_bands": {
+   "0": [
+    1,
+    2
+   ],
+   "1": [
+    3,
+    4
+   ],
+   "2": [
+    5,
+    8
+   ],
+   "3": [
+    9,
+    12
+   ],
+   "4": [
+    13,
+    16
+   ],
+   "5": [
+    17,
+    22
+   ],
+   "6": [
+    23,
+    30
+   ]
+  },
+  "loci": [
+   "TARGET_WORLD",
+   "OBSERVATION_MEASUREMENT",
+   "EPISTEMIC_MODEL",
+   "REPRESENTATION_REGIME",
+   "PROBLEM_CRITERION",
+   "EVALUATOR_VALIDATION",
+   "PROCESS_TOOL_WORKFLOW",
+   "NO_MATERIAL_DISCREPANCY",
+   "CANNOT_IDENTIFY"
+  ],
+  "note": "level cost bands are strictly increasing, so the minimum-level resolving intervention is also the minimum-cost one and level regret and cost regret cannot disagree",
+  "obstruction_classes": [
+   "SEARCH_INSUFFICIENT",
+   "MISSING_PREMISE_OR_DATA",
+   "MODEL_FAMILY_INADEQUATE",
+   "REPRESENTATION_INSUFFICIENT",
+   "PROBE_ACTION_INSUFFICIENT",
+   "MEASUREMENT_OR_EVALUATOR_BLIND",
+   "FORMALISM_OR_OPERATOR_INSUFFICIENT",
+   "PROBLEM_OBJECTIVE_MISSPECIFIED",
+   "TOOL_INSTRUMENT_INADEQUATE",
+   "WORKFLOW_INADEQUATE",
+   "NO_ESCALATION_NEEDED",
+   "CANNOT_IDENTIFY"
+  ],
+  "typical_level_per_class": {
+   "CANNOT_IDENTIFY": null,
+   "FORMALISM_OR_OPERATOR_INSUFFICIENT": 3,
+   "MEASUREMENT_OR_EVALUATOR_BLIND": 5,
+   "MISSING_PREMISE_OR_DATA": 1,
+   "MODEL_FAMILY_INADEQUATE": 2,
+   "NO_ESCALATION_NEEDED": 0,
+   "PROBE_ACTION_INSUFFICIENT": 0,
+   "PROBLEM_OBJECTIVE_MISSPECIFIED": 4,
+   "REPRESENTATION_INSUFFICIENT": 3,
+   "SEARCH_INSUFFICIENT": 0,
+   "TOOL_INSTRUMENT_INADEQUATE": 5,
+   "WORKFLOW_INADEQUATE": 6
+  }
+ }
+}
