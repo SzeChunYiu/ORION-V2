@@ -20,6 +20,7 @@ sys.exit(0 if r.get('complete') else 6)"
 "$PY" "$ANALYSIS" \
   --rollup "$R12/fullreg/E30_R12_FULLREG_RAW_ROLLUP_V1.json" \
   --gr0 "$R12/fullreg/PC_R6_GR0_RECEIPT.json" \
+  --gr0b "$R12/fullreg/PC_R6_GR0B_RECEIPT.json" \
   --campaign "$R12" --analyzer "$ANALYZER" --design "$DESIGN" \
   --served-model "${E30R12_SERVED_MODEL:-glm-5.3}" \
   --out "$R12/fullreg"

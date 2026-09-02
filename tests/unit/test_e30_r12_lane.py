@@ -661,3 +661,9 @@ def test_pc_r6_level_apply_failure_reproduces_the_interface_still_broken_termina
     result = _run(tmp_path, rollup, campaign=_campaign(tmp_path), gr0=_gr0(tmp_path))
     assert result["gates"]["GR1"]["status"] == "FAIL"
     assert result["routing"]["terminal"] == "INTERFACE_STILL_BROKEN"
+
+
+def test_rollup_sbatch_passes_the_gr0b_receipt_to_the_analysis():
+    """Without it the registered E1 sensitivity denominator would silently exclude nothing."""
+    text = (SBATCH / "e30_r12_rollup_and_analysis.sbatch").read_text()
+    assert "--gr0b" in text and "PC_R6_GR0B_RECEIPT.json" in text
