@@ -1,0 +1,184 @@
+{
+  "authority": {
+    "grants_field_status": false,
+    "grants_general_dependence_detector": false,
+    "grants_manuscript_change": false,
+    "grants_scientific_truth": false
+  },
+  "cell": "N1-EVAL",
+  "cell_id": "H-EXT-1N-SECONDARY",
+  "endpoints": {
+    "A_DETECTION": {
+      "M_only_correct": 41,
+      "OFF_only_correct": 0,
+      "acc_M_dependent": 0.9,
+      "definition": "acc(M) on the dependent strata NS1A+NS1C (n=80)",
+      "mcnemar_exact_p": 9.094947017729282e-13,
+      "n": 80,
+      "pass": true,
+      "threshold": 0.8
+    },
+    "B_PRESERVATION": {
+      "acc_M_independent": 1.0,
+      "definition": "acc(M) on the independent strata NS1B+NS1D (n=80)",
+      "n": 80,
+      "pass": true,
+      "threshold": 0.9
+    },
+    "C_PARENT_SUFFICIENCY": {
+      "M_only_correct": 0,
+      "PARENT_only_correct": 1,
+      "acc_M": 0.95,
+      "acc_PARENT": 0.95625,
+      "mcnemar_exact_p": 1.0,
+      "terminal": "STRONGEST_PARENT_SUFFICIENT_ON_NATURALISTIC_RECORDS"
+    }
+  },
+  "freeze_sha256": "0a9dace31ce97ecbeffaca947e0b291d9fe526f01821bd1f6ef8976782b47f41",
+  "gate_identity_note": "the H-EXT-1N gate question terminated at NO_CANDIDATE_GATE_ON_DEV; selected_gate=None; no gate is scored here",
+  "n_missing": 0,
+  "n_total": 160,
+  "pooled": {
+    "acc_M": 0.95,
+    "acc_OFF": 0.69375,
+    "acc_PARENT": 0.95625,
+    "n": 160
+  },
+  "reporting_only": {
+    "family_count_error_M": {
+      "+0": 152,
+      "+1": 8
+    },
+    "family_count_error_OFF": {
+      "+0": 111,
+      "+1": 27,
+      "+2": 22
+    },
+    "per_stratum": {
+      "NS1A": {
+        "M": 38,
+        "OFF": 18,
+        "PARENT": 39,
+        "n": 40
+      },
+      "NS1B": {
+        "M": 40,
+        "OFF": 40,
+        "PARENT": 40,
+        "n": 40
+      },
+      "NS1C": {
+        "M": 34,
+        "OFF": 13,
+        "PARENT": 34,
+        "n": 40
+      },
+      "NS1D": {
+        "M": 40,
+        "OFF": 40,
+        "PARENT": 40,
+        "n": 40
+      }
+    },
+    "per_topic": {
+      "arthritis, rheumatoid": {
+        "M": 12,
+        "OFF": 9,
+        "PARENT": 12,
+        "n": 12
+      },
+      "asthma": {
+        "M": 4,
+        "OFF": 3,
+        "PARENT": 4,
+        "n": 4
+      },
+      "breast neoplasms": {
+        "M": 24,
+        "OFF": 17,
+        "PARENT": 24,
+        "n": 24
+      },
+      "depressive disorder": {
+        "M": 12,
+        "OFF": 9,
+        "PARENT": 12,
+        "n": 12
+      },
+      "diabetes mellitus, type 2": {
+        "M": 26,
+        "OFF": 19,
+        "PARENT": 27,
+        "n": 28
+      },
+      "heart failure": {
+        "M": 19,
+        "OFF": 13,
+        "PARENT": 19,
+        "n": 20
+      },
+      "hypertension": {
+        "M": 10,
+        "OFF": 8,
+        "PARENT": 10,
+        "n": 12
+      },
+      "obesity": {
+        "M": 19,
+        "OFF": 12,
+        "PARENT": 19,
+        "n": 20
+      },
+      "pulmonary disease, chronic obstructive": {
+        "M": 6,
+        "OFF": 4,
+        "PARENT": 6,
+        "n": 8
+      },
+      "stroke": {
+        "M": 20,
+        "OFF": 17,
+        "PARENT": 20,
+        "n": 20
+      }
+    },
+    "witness_informativeness_vs_oracle": {
+      "G_A_PROVENANCE_WITNESS": {
+        "activations": 55,
+        "precision": 0.9818181818181818,
+        "recall": 0.675
+      },
+      "G_B_PLUS_XREF": {
+        "activations": 80,
+        "precision": 0.875,
+        "recall": 0.875
+      },
+      "G_C_PLUS_DECLARED": {
+        "activations": 132,
+        "precision": 0.5757575757575758,
+        "recall": 0.95
+      },
+      "G_D_PLUS_SHARED_TOKEN": {
+        "activations": 146,
+        "precision": 0.5342465753424658,
+        "recall": 0.975
+      },
+      "G_E_COUNT_GE4": {
+        "activations": 80,
+        "precision": 0.5,
+        "recall": 0.5
+      },
+      "G_F_ROOT_RATIO_GT1": {
+        "activations": 87,
+        "precision": 0.8850574712643678,
+        "recall": 0.9625
+      }
+    }
+  },
+  "schema_version": "orion.v2.h-ext1n-secondary-cell-result.v1",
+  "terminal": "DEPENDENCE_STRUCTURE_RECOVERABLE_FROM_NATURALISTIC_RECORDS",
+  "validity": {
+    "pass": true,
+    "reasons": []
+  }
+}

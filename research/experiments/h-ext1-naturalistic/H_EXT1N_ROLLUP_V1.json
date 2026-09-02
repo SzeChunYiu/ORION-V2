@@ -1,0 +1,111 @@
+{
+  "authority": {
+    "grants_field_status": false,
+    "grants_manuscript_change": false,
+    "grants_real_corpus_dependence_detection": false,
+    "grants_scientific_truth": false
+  },
+  "binding_cell": "N1-EVAL",
+  "binding_terminal": "NO_CANDIDATE_GATE_ON_DEV",
+  "cell": null,
+  "corpus_freeze": {
+    "by_split": {
+      "DEV": {
+        "NS1A": 20,
+        "NS1B": 20,
+        "NS1C": 20,
+        "NS1D": 20
+      },
+      "EVAL": {
+        "NS1A": 40,
+        "NS1B": 40,
+        "NS1C": 40,
+        "NS1D": 40
+      }
+    },
+    "by_stratum": {
+      "NS1A": 60,
+      "NS1B": 60,
+      "NS1C": 60,
+      "NS1D": 60
+    },
+    "host": "billy-old",
+    "n_dependent": 120,
+    "n_independent": 120,
+    "n_sets": 240,
+    "public_tasks_sha256": "a617bf1b59aa195ba0380b67d13dddcd3a5f51716ed331f926dd355bb685ad66"
+  },
+  "design_sha256": "b8c3847925f9d6aebfbb386b85c05c1e8e18cd51832047c7034fe63b78bd67f6",
+  "dev_cell_diagnostics_not_binding": {
+    "P_D_FULL": {
+      "accuracy": 0.95,
+      "correct": 76,
+      "missing_or_invalid": 0,
+      "run_valid": true,
+      "tasks": 80
+    },
+    "P_D_MINUS_DEPENDENCE": {
+      "accuracy": 0.65,
+      "correct": 52,
+      "missing_or_invalid": 0,
+      "run_valid": true,
+      "tasks": 80
+    },
+    "STRONGEST_ASSURANCE_FEDERATION": {
+      "accuracy": 0.9375,
+      "correct": 75,
+      "missing_or_invalid": 0,
+      "run_valid": true,
+      "tasks": 80
+    }
+  },
+  "gate_freeze": {
+    "design_sha256": "b8c3847925f9d6aebfbb386b85c05c1e8e18cd51832047c7034fe63b78bd67f6",
+    "dev_acc_M": 0.95,
+    "dev_acc_OFF": 0.65,
+    "dev_n": 80,
+    "dev_task_ids_sha256": "03b3201e771e2d2dd530fc337752ddc2d2de0887a873c4b252d16af71fbcd042",
+    "gate_sha256": null,
+    "selected_gate": null,
+    "terminal_if_none": "NO_CANDIDATE_GATE_ON_DEV"
+  },
+  "hypothesis_id": "H-EXT-1N",
+  "schema_version": "orion.v2.h-ext1n-rollup.v1",
+  "secondary_cell_separate_identity": {
+    "endpoints": {
+      "A_DETECTION": {
+        "M_only_correct": 41,
+        "OFF_only_correct": 0,
+        "acc_M_dependent": 0.9,
+        "definition": "acc(M) on the dependent strata NS1A+NS1C (n=80)",
+        "mcnemar_exact_p": 9.094947017729282e-13,
+        "n": 80,
+        "pass": true,
+        "threshold": 0.8
+      },
+      "B_PRESERVATION": {
+        "acc_M_independent": 1.0,
+        "definition": "acc(M) on the independent strata NS1B+NS1D (n=80)",
+        "n": 80,
+        "pass": true,
+        "threshold": 0.9
+      },
+      "C_PARENT_SUFFICIENCY": {
+        "M_only_correct": 0,
+        "PARENT_only_correct": 1,
+        "acc_M": 0.95,
+        "acc_PARENT": 0.95625,
+        "mcnemar_exact_p": 1.0,
+        "terminal": "STRONGEST_PARENT_SUFFICIENT_ON_NATURALISTIC_RECORDS"
+      }
+    },
+    "freeze_sha256": "0a9dace31ce97ecbeffaca947e0b291d9fe526f01821bd1f6ef8976782b47f41",
+    "pooled": {
+      "acc_M": 0.95,
+      "acc_OFF": 0.69375,
+      "acc_PARENT": 0.95625,
+      "n": 160
+    },
+    "terminal": "DEPENDENCE_STRUCTURE_RECOVERABLE_FROM_NATURALISTIC_RECORDS"
+  }
+}
