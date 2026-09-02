@@ -14,9 +14,11 @@ brief as if they were analysis output:
 | figure | what was wrong | truth |
 |---|---|---|
 | `NONE_PATCH_NOT_APPLIED` "78–83%" | paired the e30r11 minimum with the e60 maximum | **75.0%–82.5%** pooled |
-| "the frozen lane already recorded (311/480 patch-apply `rc=128`)" | no frozen-lane artifact records it | count correct; source is **this lane's own** `PC_R6_FULLREG_RAW_ROLLUP_V1.json` |
+| "the frozen lane already recorded (311/480 patch-apply `rc=128`)" | no result artifact under `results/issue45/e30-r11/` records patch-apply return codes, so the citation resolves to nothing (both lanes have 480 e30r11 evaluations, which is why it looked plausible) | count correct; source is **this lane's own** `PC_R6_FULLREG_RAW_ROLLUP_V1.json` |
 
-Neither was caught until the source was re-read by hand.
+Neither was caught until the source was re-read by hand. The second is the sharper case: its
+*value* verifies and only its *citation* resolves to nothing, so arithmetic review would never
+have found it.
 
 ## The convention
 

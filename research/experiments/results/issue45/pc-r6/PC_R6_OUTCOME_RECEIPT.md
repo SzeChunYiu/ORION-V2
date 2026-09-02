@@ -117,9 +117,20 @@ totals are **311 of the 480 e30r11 evaluations** and **381 of the 600 e60 evalua
 >
 > 1. The range was given as "78–83%". That pairs the e30r11 minimum with the e60 maximum and is
 >    supported under neither scoping. Correct: **75.0%–82.5%** pooled, as tabulated above.
-> 2. `311/480 patch-apply rc=128` was attributed to "the frozen lane", which records no such
->    count anywhere in the repository. The count is correct, but its source is **this lane's own
->    raw rollup**; the attribution has been replaced by the field it is computed from.
+> 2. `311/480 patch-apply rc=128` was attributed to "the frozen lane". No result artifact under
+>    `research/experiments/results/issue45/e30-r11/` records patch-apply return codes at all —
+>    `E30_R11_TERMINAL_RAW_ROLLUP.json` `.per_arm_totals.<arm>` carries only `evaluations`,
+>    `native_success`, `cannot_check` and `native_success_rate_over_120`, and the only `rc=128`
+>    in that tree is a single worked example in `E30_R11_EVALUATION_LANE_DEFECT_AND_ADAPTER.json`
+>    — so the attribution cannot be checked against that lane. The count itself is correct and
+>    reproducible from **this** lane's own raw rollup (field cited above). Both lanes have 480
+>    e30r11 evaluations (4 arms × 40 tasks × 3 reps; `E30_R11_TERMINAL_RAW_ROLLUP.json` sums to
+>    480 as well), so the denominator alone does not distinguish them — the likely origin of the
+>    misattribution.
+>
+> The second is the more instructive of the two: its *value* verifies, and only its *citation*
+> resolves to nothing. A reader checking the arithmetic finds it fine; a reader checking the
+> source finds no artifact.
 >
 > Both figures reached `papers/prospectuses/SILENT_FAILURE_MODES_ADMISSION_ASSESSMENT_V1.md` §2.1
 > before the source was re-read. The boundary marker, the rendered banner at the top of this

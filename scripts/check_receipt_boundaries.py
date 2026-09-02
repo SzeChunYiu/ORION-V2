@@ -226,13 +226,23 @@ def check_paths(paths: list[Path]) -> tuple[list[str], int]:
     return violations, checked
 
 
+SKIP_DIRS = {".git", ".github/cache", "node_modules", ".venv", "__pycache__"}
+
+
 def _collect(roots: list[Path]) -> list[Path]:
+    """Markdown files under `roots`, skipping VCS and vendored trees.
+
+    `.git` is a directory on a normal checkout and would otherwise be walked when the
+    scan root is `.`, so local and CI runs must skip it to agree.
+    """
     out: list[Path] = []
     for root in roots:
         if root.is_file():
             out.append(root)
-        else:
-            out.extend(sorted(root.rglob("*.md")))
+            continue
+        for path in sorted(root.rglob("*.md")):
+            if SKIP_DIRS.isdisjoint(part for part in path.parts):
+                out.append(path)
     return out
 
 
