@@ -368,6 +368,14 @@ class SuiteSpec:
     endpoint_key: Callable[[dict], str] | None = None
     oracle_endpoint_key: Callable[[Any], str] | None = None
 
+    # G2's non-compensatory endpoint, declared per suite.  For a transfer suite
+    # it is over-acceptance (accepting what the oracle blocks); for a conceptual
+    # revision suite it is old-valid-case loss.  A suite whose G2 scope would be
+    # empty must say so rather than let the gate pass vacuously.
+    unsafe_scope: Callable[[dict], bool] | None = None
+    unsafe_claim: Callable[[dict, dict], bool] | None = None
+    unsafe_name: str = "over-acceptance"
+
     generate: Callable[[str, str, dict[str, int]], list] = None  # type: ignore[assignment]
     oracle: Callable[[Any], Any] = None  # type: ignore[assignment]
     cross_check: Callable[[Any], Any] = None  # type: ignore[assignment]

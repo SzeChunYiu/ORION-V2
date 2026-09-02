@@ -1,0 +1,253 @@
+{
+  "generator_rejections": {
+    "BRIDGE": 27,
+    "MERGE": 6,
+    "NO_CHANGE": 0,
+    "SPECIALIZE": 0,
+    "SPLIT": 6
+  },
+  "known_answer": [
+    {
+      "expected": "NO_CHANGE",
+      "name": "KA-01-NO_CHANGE",
+      "oracle": "NO_CHANGE",
+      "passed": true
+    },
+    {
+      "expected": "SPECIALIZE",
+      "name": "KA-02-SPECIALIZE",
+      "oracle": "SPECIALIZE",
+      "passed": true
+    },
+    {
+      "expected": "SPLIT",
+      "name": "KA-03-SPLIT",
+      "oracle": "SPLIT",
+      "passed": true
+    },
+    {
+      "expected": "MERGE",
+      "name": "KA-04-MERGE",
+      "oracle": "MERGE",
+      "passed": true
+    },
+    {
+      "expected": "MERGE",
+      "name": "KA-09-PRECEDENCE_MERGE_OVER_SPECIALIZE",
+      "oracle": "MERGE",
+      "passed": true
+    },
+    {
+      "expected": "BRIDGE",
+      "name": "KA-05-BRIDGE",
+      "oracle": "BRIDGE",
+      "passed": true
+    },
+    {
+      "expected": "NO_CHANGE",
+      "name": "KA-06-EMPTY_INCIDENCE",
+      "oracle": "NO_CHANGE",
+      "passed": true
+    },
+    {
+      "expected": "NO_CHANGE",
+      "name": "KA-07-FULL_INCIDENCE",
+      "oracle": "NO_CHANGE",
+      "passed": true
+    },
+    {
+      "expected": "SPECIALIZE",
+      "name": "KA-08-SPECIALIZE_ON_A_SINGLETON",
+      "oracle": "SPECIALIZE",
+      "passed": true
+    }
+  ],
+  "null_calibration": {
+    "applicable": true,
+    "detail": {
+      "constant_arm_rates": {
+        "C_ALWAYS_NO_CHANGE": 0.1,
+        "C_ALWAYS_SPECIALIZE": 0.2
+      },
+      "random_rate": 0.2,
+      "shuffled_label_null": {
+        "exact_against_shuffled": 2,
+        "n": 10,
+        "rate": 0.2,
+        "seed": 20260902
+      },
+      "violations": []
+    },
+    "gate": "G0c_NULL_CALIBRATION",
+    "hard": true,
+    "min_required_evaluated": 1,
+    "n_evaluated": 4,
+    "n_violations": 0,
+    "rule": "constant-response arms <= 0.4, random arm <= 0.4, M against within-split shuffled oracle labels <= 0.4",
+    "verdict": "PASS"
+  },
+  "oracle_agreement": {
+    "n_disagreements": 0,
+    "n_evaluated": 10
+  },
+  "parent_fidelity": [
+    {
+      "detail": "['m1']",
+      "parent": "P1_GALOIS_CLOSURE",
+      "passed": true,
+      "test": "derivation_of_an_object_set_is_the_shared_attributes"
+    },
+    {
+      "detail": "['g1', 'g3']",
+      "parent": "P1_GALOIS_CLOSURE",
+      "passed": true,
+      "test": "derivation_of_an_attribute_set_is_the_common_objects"
+    },
+    {
+      "detail": "",
+      "parent": "P1_GALOIS_CLOSURE",
+      "passed": true,
+      "test": "empty_object_set_derives_every_attribute"
+    },
+    {
+      "detail": "",
+      "parent": "P1_GALOIS_CLOSURE",
+      "passed": true,
+      "test": "empty_attribute_set_derives_every_object"
+    },
+    {
+      "detail": "",
+      "parent": "P1_GALOIS_CLOSURE",
+      "passed": true,
+      "test": "closure_is_idempotent"
+    },
+    {
+      "detail": "",
+      "parent": "P1_GALOIS_CLOSURE",
+      "passed": true,
+      "test": "closure_is_extensive"
+    },
+    {
+      "detail": "",
+      "parent": "P1_GALOIS_CLOSURE",
+      "passed": true,
+      "test": "derivation_is_antitone"
+    },
+    {
+      "detail": "scope note: the closure parent classifies only intent growth",
+      "parent": "P1_GALOIS_CLOSURE",
+      "passed": true,
+      "test": "documented_boundary_no_extent_geometry"
+    },
+    {
+      "detail": "7 vs 7",
+      "parent": "ORACLE_PAIR",
+      "passed": true,
+      "test": "powerset_equals_next_closure_on_textbook"
+    },
+    {
+      "detail": "2 vs 2",
+      "parent": "ORACLE_PAIR",
+      "passed": true,
+      "test": "powerset_equals_next_closure_on_empty_incidence"
+    },
+    {
+      "detail": "1 vs 1",
+      "parent": "ORACLE_PAIR",
+      "passed": true,
+      "test": "powerset_equals_next_closure_on_full_incidence"
+    },
+    {
+      "detail": "3 vs 3",
+      "parent": "ORACLE_PAIR",
+      "passed": true,
+      "test": "powerset_equals_next_closure_on_chain"
+    },
+    {
+      "detail": "7",
+      "parent": "ORACLE_PAIR",
+      "passed": true,
+      "test": "concept_lattice_of_the_textbook_context_has_the_expected_size"
+    },
+    {
+      "detail": "",
+      "parent": "P2_LATTICE_ORDER_GEOMETRY",
+      "passed": true,
+      "test": "detects_a_split_of_a_tracked_extent"
+    },
+    {
+      "detail": "scope note: extent geometry never inspects intents",
+      "parent": "P2_LATTICE_ORDER_GEOMETRY",
+      "passed": true,
+      "test": "documented_boundary_blind_to_intent_growth"
+    },
+    {
+      "detail": "",
+      "parent": "P0_FIXED_LESSON_INJECTION",
+      "passed": true,
+      "test": "says_specialize_whenever_an_attribute_is_added"
+    },
+    {
+      "detail": "",
+      "parent": "P0_FIXED_LESSON_INJECTION",
+      "passed": true,
+      "test": "says_no_change_when_only_objects_are_added"
+    }
+  ],
+  "passed": true,
+  "planted_positives": [
+    {
+      "description": "a deliberately non-idempotent 'closure' (one derivation instead of two) must produce a different concept set from NextClosure",
+      "fired": true,
+      "gate": "G0b_ORACLE_SELF_AGREEMENT",
+      "name": "a_broken_closure_operator_is_detected"
+    },
+    {
+      "description": "a deliberately wrong expected transition must fail the comparison",
+      "fired": true,
+      "gate": "G0a_KNOWN_ANSWER",
+      "name": "wrong_expected_transition_is_detected"
+    },
+    {
+      "description": "M_MINUS_OLD_CASE_RETENTION must report retention_ok on an instance where the oracle says retention fails, if any such instance exists",
+      "fired": true,
+      "gate": "G2_ANTI_PERMISSIVENESS",
+      "name": "retention_violating_arm_is_detected"
+    },
+    {
+      "description": "a synthetic all-ceiling per-arm table must FAIL the gate",
+      "fired": true,
+      "gate": "G0f_FAMILY_DISCRIMINATION",
+      "name": "degenerate_all_ceiling_split_is_detected"
+    },
+    {
+      "description": "M_MINUS_EXTENT_GEOMETRY must be wrong on a hand-built split where M is right",
+      "fired": true,
+      "gate": "G3_MECHANISM_BY_OMISSION",
+      "name": "extent_geometry_ablation_loses_the_split_family"
+    },
+    {
+      "description": "a revision on which two transition predicates hold must be classified by the registered precedence, with the full hold-set published rather than the losing predicate silently dropped",
+      "fired": true,
+      "gate": "G0a_KNOWN_ANSWER",
+      "name": "registered_precedence_is_exercised_and_the_hold_set_published"
+    }
+  ],
+  "schema_version": "orion.v2.fm-exact.analysis.v1.selftest",
+  "selftest_arm_exact": {
+    "C_ALWAYS_NO_CHANGE": 0.1,
+    "C_ALWAYS_SPECIALIZE": 0.2,
+    "C_RANDOM_TRANSITION": 0.2,
+    "F0_PARENT_FEDERATION": 1.0,
+    "M_F2_CONCEPTUAL_DEVELOPMENT_FULL": 1.0,
+    "M_MINUS_BRIDGE_DETECTION": 0.8,
+    "M_MINUS_CLOSURE_RECOMPUTATION": 0.8,
+    "M_MINUS_EXTENT_GEOMETRY": 0.6,
+    "M_MINUS_OLD_CASE_RETENTION": 0.7,
+    "P0_FIXED_LESSON_INJECTION": 0.4,
+    "P1_GALOIS_CLOSURE": 0.4,
+    "P2_LATTICE_ORDER_GEOMETRY": 0.6,
+    "P3_ATTRIBUTE_EXPLORATION": 0.4
+  },
+  "suite": "FM30"
+}
