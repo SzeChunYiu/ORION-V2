@@ -37,8 +37,8 @@
     "M_MINUS_LEMMA_LEVEL"
   ],
   "budget": {
-    "max_expansions": 1800,
-    "max_lemma_candidates": 40,
+    "max_expansions": 5000,
+    "max_lemma_candidates": 12,
     "max_model_checks": 2000,
     "max_model_size": 3,
     "max_word_len": 6,
@@ -48,13 +48,13 @@
   "candidate": "M_ME_OBSTRUCTION_MINIMUM_ESCALATION",
   "code_sha256": {
     "mex3_arms.py": "6e073fea26fc327a1ea8e5f160a4164a4ff9c3785cc4105e1e7a9d4088f720a1",
-    "mex3_generator.py": "616871b8a665dcdd2a5177e1850c74c5c12791ca94d637fb8f397fa38b11b0f2",
+    "mex3_generator.py": "a7febb50c3ef1bb5e106e5f3ff142c33cf825347f824478067bf02be1e78a473",
     "mex3_lean.py": "5f6b41a30c26473bf36b8ee48d29ecb93525d76d6d8d725601ee5b7d5a2703da",
     "mex3_model.py": "e9d0209a747159b7b0845d1a221de072be3326da233a3349886496ad7e3af562",
     "mex3_oracle.py": "736003f17d2f2c44851b8b66ff56ff222384f599fb6a51bea1e369b04174129d",
-    "mex3_parents.py": "52dfbfe7bd9a4cfa802cc24dc1e7b86e4fb37fdacb281f52409f0f5ef9110fe2",
-    "mex3_run.py": "81b7103084b271f05eb106bfcb4e8a6a41c3e80f2def0b14604f7c43c22aaa19",
-    "mex3_verdict.py": "1a9bbc3460729adc8af8ed3f940f79bbbf3f4224eb077a33a250eee42ff10f40"
+    "mex3_parents.py": "9dab66b14ae072193ef2e6cfbc46f1531fcb85265ede0e854ec3476a9a36d459",
+    "mex3_run.py": "9c75d73ed25b8008d3e1797655b35381337ca69cd044c9650c3ce23d9be80b86",
+    "mex3_verdict.py": "e7e2cd8536d97ae384389fe079058c76eda7b15880326adbae21025ef00bd1e8"
   },
   "custody": {
     "protected_seed_sha256": "cb799f89499cea4a088c6df071e9ce12bff2fceb02c4adc06ab7ce4eecdbb3f8",
@@ -137,7 +137,7 @@
   ],
   "oracle_caps": {
     "expansions": 40000,
-    "lemma_pool_cap": 40,
+    "lemma_pool_cap": 12,
     "lemma_pool_max_word_len": 3,
     "model_size": 3,
     "word_len": 8

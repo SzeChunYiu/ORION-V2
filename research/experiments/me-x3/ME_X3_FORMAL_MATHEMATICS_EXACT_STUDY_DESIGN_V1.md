@@ -278,9 +278,22 @@ The protected split seed lives in `~/.orion-custody/me-x3/PROTECTED_SEED_V1.txt`
 its sha256 is frozen in the design JSON. `mex3_run.py protected` refuses to run
 unless `PROTECTED_RUN_AUTHORIZATION.json` is present next to it **and** the
 custody file's sha256 equals that commitment. Development results are labelled
-`DEVELOPMENT` and are never protected evidence; the federation's stage order and
-the two budget constants were fixed there, before any protected run, to avoid
-ceiling and floor effects.
+`DEVELOPMENT` and are never protected evidence; the federation's stage order, the
+two budget constants and the candidate-pool cap were fixed there, before any
+protected run.
+
+**How the budget was chosen, and what that costs.** The registered intervention
+space must be *reachable within the budget*, or the study measures budget
+starvation rather than decision quality: an earlier calibration left the lemma
+level affordable to the oracle (40 candidate trials) but not to any arm (about
+five), so `F2` and `F8` failed for every arm identically and the resulting
+"headroom" carried no information. The frozen setting is the smallest one in
+which an arm that goes straight to the correct level succeeds. The consequence,
+stated plainly: on the 27-instance development split both `M` and the top-rung
+federation reach 1.000, so the development split has no headroom left. The
+protected split's discrimination therefore rests on the larger draw, on the gap
+to the weaker parents, on the ablations, on the ladder and on cost — not on
+finding `M` above a starved `B5`.
 
 ## 9. Contamination and leakage
 

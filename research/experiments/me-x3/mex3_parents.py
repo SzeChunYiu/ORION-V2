@@ -17,8 +17,8 @@ from mex3_oracle import (
     models_of, satisfies,
 )
 
-B = Budget(max_word_len=6, max_expansions=1800, solve_expansions=250,
-           max_model_size=3, max_model_checks=2000, max_lemma_candidates=40)
+B = Budget(max_word_len=6, max_expansions=5000, solve_expansions=250,
+           max_model_size=3, max_model_checks=2000, max_lemma_candidates=12)
 P = Presentation("P0", 3, (((0, 1), (2,)), ((2, 2), (1,))))
 
 

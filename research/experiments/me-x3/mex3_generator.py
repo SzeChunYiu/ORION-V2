@@ -25,8 +25,8 @@ from mex3_oracle import (
 
 # ---- registered environment constants (frozen; mirrored in the design JSON) ---
 ALPHABET = 3
-TASK_BUDGET = Budget(max_word_len=6, max_expansions=1800, solve_expansions=250,
-                     max_model_size=3, max_model_checks=2000, max_lemma_candidates=40)
+TASK_BUDGET = Budget(max_word_len=6, max_expansions=5000, solve_expansions=250,
+                     max_model_size=3, max_model_checks=2000, max_lemma_candidates=12)
 ORACLE_WORD_LEN = 8
 ORACLE_EXPANSIONS = 40000
 ORACLE_MODEL_SIZE = 3

@@ -56,13 +56,13 @@ so the speedup is verified to be exact rather than assumed to be.
 | `A1_RETRIEVAL` | 0.444 | 0.926 | 0.407 | 0.407 | 1.000 | 0.000 | 0.000 | 374 |
 | `A2_SELF_REFLECT` | 0.296 | 0.926 | 0.259 | 0.259 | 1.000 | 0.000 | 0.000 | 271 |
 | `A3_DISCOVER_AND_PROVE_PARENT` | 0.593 | 0.926 | 0.519 | 0.519 | 1.000 | 0.000 | 0.000 | 335 |
-| `A4_LEMMA_ABSTRACTION_PARENT` | 0.519 | 0.926 | 0.593 | 0.481 | 1.000 | 0.000 | 0.333 | 622 |
-| `B5_R1_VERDICT_ONLY` | 0.741 | 1.000 | 0.889 | 0.741 | 0.000 | 0.000 | 0.333 | 612 |
-| `B5_R2_SATURATION` | 0.741 | 1.000 | 0.889 | 0.741 | 0.000 | 0.000 | 0.333 | 553 |
-| `B5_R3_FRONTIER` | 0.741 | 1.000 | 0.889 | 0.741 | 0.000 | 0.000 | 0.333 | 553 |
-| `B5_R4_SEMANTIC` | 0.889 | 1.000 | 0.889 | 0.889 | 0.000 | 0.000 | 0.333 | 553 |
-| `B5_STRONGEST_FAITHFUL_PARENT_FEDERATION` | 0.889 | 1.000 | 0.889 | 0.889 | 0.000 | 0.000 | 0.333 | 553 |
-| `M_ME_OBSTRUCTION_MINIMUM_ESCALATION` | 0.889 | 1.000 | 0.889 | 0.889 | 0.000 | 0.000 | 0.333 | 520 |
+| `A4_LEMMA_ABSTRACTION_PARENT` | 0.630 | 0.926 | 0.593 | 0.593 | 1.000 | 0.000 | 1.000 | 653 |
+| `B5_R1_VERDICT_ONLY` | 0.852 | 1.000 | 1.000 | 0.852 | 0.000 | 0.000 | 1.000 | 646 |
+| `B5_R2_SATURATION` | 0.852 | 1.000 | 1.000 | 0.852 | 0.000 | 0.000 | 1.000 | 542 |
+| `B5_R3_FRONTIER` | 0.852 | 1.000 | 1.000 | 0.852 | 0.000 | 0.000 | 1.000 | 542 |
+| `B5_R4_SEMANTIC` | 1.000 | 1.000 | 1.000 | 1.000 | 0.000 | 0.000 | 1.000 | 542 |
+| `B5_STRONGEST_FAITHFUL_PARENT_FEDERATION` | 1.000 | 1.000 | 1.000 | 1.000 | 0.000 | 0.000 | 1.000 | 542 |
+| `M_ME_OBSTRUCTION_MINIMUM_ESCALATION` | 1.000 | 1.000 | 1.000 | 1.000 | 0.000 | 0.000 | 1.000 | 509 |
 
 Read the `drift missed` column first. Every proof-only parent (`A0`–`A4`) misses
 **every** specification drift, because a system that treats proof success as
@@ -82,7 +82,9 @@ like: on an exhaustive finite oracle, control buys ordering, not reach.
 
 | subtype | n | M fidelity | A0 fidelity |
 |---|---|---|---|
-| (none drawn) | | | |
+| `ABSTRACTION_ELEVATION` | 1 | 1.000 | 0.000 |
+| `FAITHFUL` | 1 | 1.000 | 1.000 |
+| `MATERIALLY_WEAKENED` | 1 | 1.000 | 0.000 |
 
 The development split is far too small to cover the subtype space; the point of
 this table is that the scorer reports the realized draw rather than the
@@ -93,20 +95,20 @@ never detected on the protected split.
 
 | arm | joint | fidelity | minimal action | false change | drift missed | held-out reuse |
 |---|---|---|---|---|---|---|
-| `M_ALWAYS_CHANGE_REPRESENTATION_WHEN_STUCK` | 0.889 | 1.000 | 0.889 | 0.000 | 0.000 | 0.333 |
-| `M_EQUAL_EXTRA_SEARCH_INSTEAD_OF_TRANSFORM` | 0.741 | 1.000 | 0.741 | 0.000 | 0.000 | 0.333 |
-| `M_LOCUS_LABELS_SHUFFLED` | 0.741 | 1.000 | 0.741 | 0.000 | 0.000 | 0.333 |
-| `M_MINUS_COUNTEREXAMPLE_PROBE` | 0.741 | 1.000 | 0.778 | 0.000 | 0.000 | 0.333 |
-| `M_MINUS_FALSE_CHANGE_PENALTY` | 0.778 | 1.000 | 0.778 | 0.111 | 0.000 | 0.333 |
+| `M_ALWAYS_CHANGE_REPRESENTATION_WHEN_STUCK` | 1.000 | 1.000 | 1.000 | 0.000 | 0.000 | 1.000 |
+| `M_EQUAL_EXTRA_SEARCH_INSTEAD_OF_TRANSFORM` | 0.852 | 1.000 | 0.852 | 0.000 | 0.000 | 1.000 |
+| `M_LOCUS_LABELS_SHUFFLED` | 0.852 | 1.000 | 0.852 | 0.000 | 0.000 | 1.000 |
+| `M_MINUS_COUNTEREXAMPLE_PROBE` | 0.852 | 1.000 | 0.889 | 0.000 | 0.000 | 1.000 |
+| `M_MINUS_FALSE_CHANGE_PENALTY` | 0.889 | 1.000 | 0.889 | 0.111 | 0.000 | 1.000 |
 | `M_MINUS_LEMMA_INVENTION` | 0.815 | 1.000 | 0.815 | 0.000 | 0.000 | 0.333 |
 | `M_MINUS_LEMMA_LEVEL` | 0.667 | 1.000 | 0.667 | 0.000 | 0.000 | 0.333 |
-| `M_MINUS_LOWER_LEVEL_DISPOSITION` | 0.889 | 1.000 | 0.889 | 0.000 | 0.000 | 0.333 |
-| `M_MINUS_OBSTRUCTION_CLASS` | 0.741 | 1.000 | 0.741 | 0.000 | 0.000 | 0.333 |
-| `M_MINUS_PRESERVATION_CONTRACT` | 0.889 | 1.000 | 0.889 | 0.000 | 0.000 | 0.333 |
-| `M_MINUS_SPECIFICATION_PRESERVATION` | 0.815 | 0.926 | 0.815 | 0.000 | 1.000 | 0.333 |
-| `M_MINUS_TRANSFER_REUSE_TRACKING` | 0.889 | 1.000 | 0.889 | 0.000 | 0.000 | 0.333 |
-| `M_MINUS_UNRESOLVED_TERMINAL` | 0.778 | 1.000 | 0.778 | 0.000 | 0.000 | 0.333 |
-| `M_NEVER_CHANGE_REPRESENTATION` | 0.778 | 1.000 | 0.778 | 0.000 | 0.000 | 0.333 |
+| `M_MINUS_LOWER_LEVEL_DISPOSITION` | 1.000 | 1.000 | 1.000 | 0.000 | 0.000 | 1.000 |
+| `M_MINUS_OBSTRUCTION_CLASS` | 0.852 | 1.000 | 0.852 | 0.000 | 0.000 | 1.000 |
+| `M_MINUS_PRESERVATION_CONTRACT` | 1.000 | 1.000 | 1.000 | 0.000 | 0.000 | 1.000 |
+| `M_MINUS_SPECIFICATION_PRESERVATION` | 0.926 | 0.926 | 0.926 | 0.000 | 1.000 | 1.000 |
+| `M_MINUS_TRANSFER_REUSE_TRACKING` | 1.000 | 1.000 | 1.000 | 0.000 | 0.000 | 1.000 |
+| `M_MINUS_UNRESOLVED_TERMINAL` | 0.889 | 1.000 | 0.889 | 0.000 | 0.000 | 1.000 |
+| `M_NEVER_CHANGE_REPRESENTATION` | 0.889 | 1.000 | 0.889 | 0.000 | 0.000 | 1.000 |
 
 Each registered omission moves the column it is supposed to control:
 `M_MINUS_SPECIFICATION_PRESERVATION` loses fidelity and misses every drift;
@@ -121,7 +123,7 @@ described, and the F8 no-carry counterfactual is printed beside the rate.
 
 ## 5. Development route
 
-`PARENT_SUFFICIENT` — M 0.889 vs B5 0.889, paired exact p=1: no protected decision advantage over the strongest faithful federation (cost 520 vs 553 expansions, -6.1%)
+`PARENT_SUFFICIENT` — M 1.000 vs B5 1.000, paired exact p=1: no protected decision advantage over the strongest faithful federation (cost 509 vs 542 expansions, -6.1%)
 
 Ladder terminal: `RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL`.
 
@@ -134,15 +136,15 @@ reframed if it does not.
 | file | sha256 |
 |---|---|
 | `mex3_arms.py` | `6e073fea26fc327a1ea8e5f160a4164a4ff9c3785cc4105e1e7a9d4088f720a1` |
-| `mex3_generator.py` | `616871b8a665dcdd2a5177e1850c74c5c12791ca94d637fb8f397fa38b11b0f2` |
+| `mex3_generator.py` | `a7febb50c3ef1bb5e106e5f3ff142c33cf825347f824478067bf02be1e78a473` |
 | `mex3_lean.py` | `5f6b41a30c26473bf36b8ee48d29ecb93525d76d6d8d725601ee5b7d5a2703da` |
 | `mex3_model.py` | `e9d0209a747159b7b0845d1a221de072be3326da233a3349886496ad7e3af562` |
 | `mex3_oracle.py` | `736003f17d2f2c44851b8b66ff56ff222384f599fb6a51bea1e369b04174129d` |
-| `mex3_parents.py` | `52dfbfe7bd9a4cfa802cc24dc1e7b86e4fb37fdacb281f52409f0f5ef9110fe2` |
-| `mex3_run.py` | `81b7103084b271f05eb106bfcb4e8a6a41c3e80f2def0b14604f7c43c22aaa19` |
-| `mex3_verdict.py` | `1a9bbc3460729adc8af8ed3f940f79bbbf3f4224eb077a33a250eee42ff10f40` |
+| `mex3_parents.py` | `9dab66b14ae072193ef2e6cfbc46f1531fcb85265ede0e854ec3476a9a36d459` |
+| `mex3_run.py` | `9c75d73ed25b8008d3e1797655b35381337ca69cd044c9650c3ce23d9be80b86` |
+| `mex3_verdict.py` | `e7e2cd8536d97ae384389fe079058c76eda7b15880326adbae21025ef00bd1e8` |
 
-Design JSON sha256: `644f3c2cfcb2b5cde35746438156b6ac20faab2b01c52bc629d886aa6e193057`
+Design JSON sha256: `81beddaa7f7c909bbacd3959d110d266c281a4ce8a70bab0b1155f20ac1bcef0`
 Custody seed sha256: `cb799f89499cea4a088c6df071e9ce12bff2fceb02c4adc06ab7ce4eecdbb3f8`
 
 ## Terminal

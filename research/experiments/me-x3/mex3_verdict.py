@@ -31,7 +31,7 @@ from mex3_oracle import (
 )
 
 LEMMA_POOL_MAX_LEN = 3
-LEMMA_POOL_CAP = 40
+LEMMA_POOL_CAP = 12
 
 
 def _reach(pres: Presentation, start: Word, max_len: int, cap: int) -> dict[Word, int]:

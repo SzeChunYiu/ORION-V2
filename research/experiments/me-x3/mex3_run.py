@@ -593,7 +593,8 @@ def stage_analyze(results_path: Path, custody_path: Path, out: Path,
     selftest_ok = bool(json.loads(sp.read_text()).get("passed")) if sp.exists() else None
     sc = score(res, cus)
     gt = gates(sc, res, selftest_ok)
-    slim = {arm: {"per_family": s["per_family"], "pooled": s["pooled"]}
+    slim = {arm: {"per_family": s["per_family"], "per_f7_subtype": s["per_f7_subtype"],
+                  "pooled": s["pooled"]}
             for arm, s in sc["per_arm"].items()}
     analysis = {"schema_version": SCHEMA_ANALYSIS, "label": label,
                 "results_sha256": sha256_file(results_path),
