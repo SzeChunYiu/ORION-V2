@@ -177,6 +177,19 @@ def test_lean_emitter_produces_a_proof_term_not_a_reflection_certificate() -> No
     assert src.count("Derives.trans") == max(0, r.length - 1)
 
 
+def test_lean_negative_control_is_actually_corrupted() -> None:
+    """A 'bad' file byte-identical to its good counterpart is not a control."""
+    st = Statement((0, 1, 0, 1), (1,))
+    r = O.bfs_derivation(st.lhs, st.rhs, P.axioms, 6, 4000)
+    assert r.found and r.length >= 2
+    good = LEAN.emit_lean("t", 3, P.axioms, r.path, 6)
+    for k in range(r.length):
+        bad = LEAN.emit_lean("t_bad", 3, P.axioms, r.path, 6, corrupt_step=k)
+        assert bad is not None
+        assert bad.replace("_bad", "") != good
+    assert LEAN.emit_lean("t", 3, P.axioms, r.path, 6, corrupt_step=r.length) is None
+
+
 def test_lean_negative_control_needs_the_registered_error_signature() -> None:
     ok = LEAN.classify(1, "", "error: Type mismatch\n  Derives.ax0f [] []", "REJECT")
     assert ok[0] == "REJECTED_FOR_THE_REGISTERED_REASON"

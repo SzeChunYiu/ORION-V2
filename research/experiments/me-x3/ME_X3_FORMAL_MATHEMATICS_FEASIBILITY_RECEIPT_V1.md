@@ -91,14 +91,26 @@ instance, never as a successful rejection. "It did not compile" is not evidence.
 
 ## 4. Cross-check performed on the development split
 
-12 files (6 accepted derivations, 6 corrupted counterparts) emitted by
+40 files (20 accepted derivations, 20 corrupted counterparts) emitted by
 `mex3_lean.py build` and checked on LUNARC with Lean 4.33.1:
 
 | expectation | n | verdict |
 |---|---|---|
-| accept | 6 | 6 × exit 0 with `'thm' does not depend on any axioms` |
-| reject | 6 | 6 × exit 1 with `error: Type mismatch … Derives.ax…` |
+| accept | 20 | 20 × exit 0 with `'thm' does not depend on any axioms` |
+| reject | 20 | 20 × exit 1 with `error: Type mismatch … Derives.ax…` |
+| `CANNOT_CHECK` | — | 0 |
 | disagreements with the exhaustive oracle | — | **0** |
+
+**The first run of this cross-check found a negative control that was not one.**
+An earlier corruption strategy substituted a word inside the chain; when that word
+happened to appear only as a *destination*, the textual substitution matched
+nothing, the emitted "bad" file was byte-identical to its good counterpart, and
+Lean accepted it. The scorer reported `ACCEPTED_UNEXPECTEDLY` rather than passing
+it, which is the point of scoring negative controls by outcome instead of by
+intention. The emitter now corrupts a step's *stated destination* while keeping
+its axiom justification, so the justification's type provably differs from the
+stated type; and `build` re-reads the emitted text and refuses to ship a "bad"
+file identical to its good counterpart. Both guards are exercised by the tests.
 
 `leanchecker` independently re-checked an emitted `.olean` (exit 0), so the
 certificate survives a re-check by a program that did not elaborate it.

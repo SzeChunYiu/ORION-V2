@@ -65,7 +65,18 @@ def locate_step(a: Word, b: Word, axioms: Sequence[tuple[Word, Word]], max_len: 
 
 
 def emit_lean(name: str, alphabet: int, axioms: Sequence[tuple[Word, Word]],
-              path: Sequence[Word], max_len: int) -> Optional[str]:
+              path: Sequence[Word], max_len: int, corrupt_step: Optional[int] = None
+              ) -> Optional[str]:
+    """With `corrupt_step = k`, the k-th step keeps its axiom justification but is
+    *stated* to end one symbol further along, so its justification's type is not
+    the stated type and the kernel must reject it at a `Derives` term.
+
+    Corrupting the stated destination is what makes the negative control a
+    negative control. An earlier version substituted a word somewhere in the
+    chain; when that word happened to appear only as a destination the
+    substitution silently matched nothing and Lean accepted a file labelled
+    corrupt. The caller now also refuses to ship a "bad" file identical to its
+    good counterpart."""
     steps = []
     for a, b in zip(path, path[1:]):
         loc = locate_step(tuple(a), tuple(b), axioms, max_len)
@@ -84,28 +95,22 @@ def emit_lean(name: str, alphabet: int, axioms: Sequence[tuple[Word, Word]],
         L.append(f"  | ax{i}b (p s : Word) : Derives (p ++ {_w(v)} ++ s) (p ++ {_w(u)} ++ s)")
     L.append("")
     if not steps:
+        if corrupt_step is not None:
+            return None
         L += [f"theorem thm : Derives {_w(path[0])} {_w(path[0])} := Derives.refl {_w(path[0])}",
               "#print axioms thm"]
         return "\n".join(L) + "\n"
+    if corrupt_step is not None and not (0 <= corrupt_step < len(steps)):
+        return None
     body = ""
     for k, ((i, d, pre, suf), a, b) in enumerate(steps):
-        step = (f"(show Derives {_w(a)} {_w(b)} from Derives.ax{i}{d} {_w(pre)} {_w(suf)})")
+        stated = b + (((b[-1] + 1) % alphabet),) if k == corrupt_step else b
+        step = (f"(show Derives {_w(a)} {_w(stated)} from Derives.ax{i}{d} "
+                f"{_w(pre)} {_w(suf)})")
         body = step if k == 0 else f"(Derives.trans {body} {step})"
     L += [f"theorem thm : Derives {_w(path[0])} {_w(path[-1])} :=", f"  {body}",
           "#print axioms thm"]
     return "\n".join(L) + "\n"
-
-
-def corrupt(path: list[Word], alphabet: int) -> Optional[list[Word]]:
-    """Replace one intermediate word so that one step is no longer an axiom instance."""
-    if len(path) < 2:
-        return None
-    i = len(path) // 2 if len(path) > 2 else 1
-    bad = list(path)
-    w = list(bad[i])
-    w.append((w[-1] + 1) % alphabet if w else 0)
-    bad[i] = tuple(w)
-    return bad if bad != path else None
 
 
 def classify(returncode: int, stdout: str, stderr: str, expect: str) -> tuple[str, str]:
@@ -162,36 +167,15 @@ def build(results: Path, custody: Path, out: Path, limit: int) -> dict:
             continue
         gf = out / f"ok_{name}.lean"; gf.write_text(good)
         plan.append({"task_id": inst["task_id"], "file": gf.name, "expect": "ACCEPT"})
-        bad_path = corrupt(path, alphabet)
-        if bad_path:
-            steps_ok = all(locate_step(x, y, axioms, t["budget"]["max_word_len"])
-                           for x, y in zip(bad_path, bad_path[1:]))
-            if not steps_ok:
-                bad = emit_lean(name + "_bad", alphabet, axioms, bad_path,
-                                t["budget"]["max_word_len"])
-                if bad is None:
-                    # the corrupted chain has no axiom justification, which is the
-                    # point: emit it with the original step terms so the kernel
-                    # must reject the mismatched types.
-                    bad = _emit_forced_bad(name + "_bad", alphabet, axioms, path, bad_path,
-                                           t["budget"]["max_word_len"])
-                if bad:
-                    bf = out / f"bad_{name}.lean"; bf.write_text(bad)
-                    plan.append({"task_id": inst["task_id"], "file": bf.name,
-                                 "expect": "REJECT"})
+        k = len(path) // 2 if len(path) > 2 else 0
+        bad = emit_lean(name + "_bad", alphabet, axioms, path,
+                        t["budget"]["max_word_len"], corrupt_step=k)
+        if bad and bad.replace("_bad", "") != good:
+            bf = out / f"bad_{name}.lean"
+            bf.write_text(bad)
+            plan.append({"task_id": inst["task_id"], "file": bf.name, "expect": "REJECT"})
     (out / "PLAN.json").write_text(json.dumps(plan, indent=2, sort_keys=True))
     return {"n_files": len(plan), "dir": str(out)}
-
-
-def _emit_forced_bad(name, alphabet, axioms, good_path, bad_path, max_len) -> Optional[str]:
-    """Keep the original step justifications but state the corrupted endpoints:
-    the kernel must then reject the term as a type mismatch on `Derives`."""
-    src = emit_lean(name, alphabet, axioms, good_path, max_len)
-    if src is None:
-        return None
-    a, b = _w(good_path[len(good_path) // 2 if len(good_path) > 2 else 1]), \
-        _w(bad_path[len(bad_path) // 2 if len(bad_path) > 2 else 1])
-    return src.replace(f"show Derives {a} ", f"show Derives {b} ", 1)
 
 
 def main(argv=None) -> int:

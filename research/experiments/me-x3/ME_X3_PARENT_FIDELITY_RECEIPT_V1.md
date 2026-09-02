@@ -137,14 +137,14 @@ reframed if it does not.
 |---|---|
 | `mex3_arms.py` | `6e073fea26fc327a1ea8e5f160a4164a4ff9c3785cc4105e1e7a9d4088f720a1` |
 | `mex3_generator.py` | `a7febb50c3ef1bb5e106e5f3ff142c33cf825347f824478067bf02be1e78a473` |
-| `mex3_lean.py` | `5f6b41a30c26473bf36b8ee48d29ecb93525d76d6d8d725601ee5b7d5a2703da` |
+| `mex3_lean.py` | `5160144a0d8002fc74913c229e2d988ac44c2980392bdef1e9b1fccbed608de4` |
 | `mex3_model.py` | `e9d0209a747159b7b0845d1a221de072be3326da233a3349886496ad7e3af562` |
 | `mex3_oracle.py` | `736003f17d2f2c44851b8b66ff56ff222384f599fb6a51bea1e369b04174129d` |
 | `mex3_parents.py` | `9dab66b14ae072193ef2e6cfbc46f1531fcb85265ede0e854ec3476a9a36d459` |
 | `mex3_run.py` | `9c75d73ed25b8008d3e1797655b35381337ca69cd044c9650c3ce23d9be80b86` |
 | `mex3_verdict.py` | `e7e2cd8536d97ae384389fe079058c76eda7b15880326adbae21025ef00bd1e8` |
 
-Design JSON sha256: `81beddaa7f7c909bbacd3959d110d266c281a4ce8a70bab0b1155f20ac1bcef0`
+Design JSON sha256: `d13b7a7a30bb932afc899f2993dbf64ce4a15c4fb8f3041a50f48cd9c8d82ae9`
 Custody seed sha256: `cb799f89499cea4a088c6df071e9ce12bff2fceb02c4adc06ab7ce4eecdbb3f8`
 
 ## Terminal
