@@ -77,11 +77,13 @@
 | step | job | status |
 |---|---|---|
 | manifest (login node, read-only) | `--stage manifest` | `done 2026-09-02 (2858 entries: 1080 responses, 1080 frozen evaluation records, 5 gold patches, 80 workspace identities [HEAD + porcelain + deviating files], bindings, registry, adapter, truth anchors)` |
-| GR0(a) execute | `pc_r6_gr0a_array.sbatch` (`--array=0-79%24`, 2 CPU, 8 G, 3 h) | `submitted after merge — job id recorded in the PR follow-up / final report` |
-| GR0(b) gold control | `pc_r6_gr0b.sbatch` (2 CPU, 8 G, 4 h) | `submitted after merge — job id recorded in the PR follow-up / final report` |
-| GR0 verify + combine | `pc_r6_gr0_verify.sbatch` `--dependency=afterok:<gr0a>:<gr0b>` | `submitted after merge — job id recorded in the PR follow-up / final report` |
-| suite | `pc_r6_suite_array.sbatch` (`--array=0-79%24`, 2 CPU, 8 G, 12 h) `--dependency=afterok:<verify>` | `submitted after merge, dependency-gated on GR0 verify — job id recorded in the PR follow-up / final report` |
-| rollup | `pc_r6_rollup.sbatch` `--dependency=afterany:<suite>` | `submitted after merge — job id recorded in the PR follow-up / final report` |
+| GR0(a) execute | `pc_r6_gr0a_array.sbatch` (`--array=0-79%24`, 2 CPU, 8 G, 3 h) | **3563415** — 80/80 COMPLETED (runner v1, submitted from branch head `5d8f601` before the #141 merge; sha-identical). Collect: **e30r11 480/480, e60 600/600 bit-exact**, 0 mismatched, 0 missing; checker negative control PASS in both cells; E30 cross-check vs the 480 campaign records bit-exact; E60 anchors: 49/49 substantive checks PASS (arm_summaries counts per arm + per project, component_effects success paired tables) + supersede ledger (v2 semantics) |
+| GR0(b) gold control, attempt 1 | `pc_r6_gr0b.sbatch` | **3563416** FAILED (exit 1, 54 min): ansible-1 / fastapi-1 / pandas-1 PASS (count 0 over 57 / 11 / 259 baseline-passing tests); black-1 and cookiecutter-1 non-passing → §7 |
+| GR0 verify, attempt 1 | `pc_r6_gr0_verify.sbatch` | 3563417 DependencyNeverSatisfied → cancelled together with 3563418 (suite) and 3563419 (rollup); no suite compute spent |
+| GR0(b) gold control, attempt 2 (runner v2) | `pc_r6_gr0b.sbatch` (2 CPU, 8 G, 4 h) | **3563624** (submitted from branch head `8f41aeb`; runner sha `4c62a32e…` verified on LUNARC) |
+| GR0 verify + combine, attempt 2 | `pc_r6_gr0_verify.sbatch` `--dependency=afterok:3563624` (re-collects the 3563415 GR0(a) records under runner v2) | **3563625**; login-node pre-check of the v2 collect: GR0(a) PASS 480/480 + 600/600, supersede anchor PASS |
+| suite | `pc_r6_suite_array.sbatch` (`--array=0-79%24`, 2 CPU, 8 G, 12 h) `--dependency=afterok:3563625` | **3563626** (starts only on GR0 PASS) |
+| rollup | `pc_r6_rollup.sbatch` `--dependency=afterany:3563626` | **3563627** |
 | analysis | `pc_r6_fullreg_analysis.py` — **not chained; not run at dispatch**; refuses without a GR0 PASS receipt | deliberate manual step after the rollup is verified complete |
 
 Compute expectation from the frozen records: 480 + 600 registered-test evaluations took 3.4 + 4.7 CPU-h in
