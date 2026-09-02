@@ -1,0 +1,67 @@
+{
+  "schema_version": "orion.v2.h-ext1n-secondary-cell-freeze.v1",
+  "cell_id": "H-EXT-1N-SECONDARY",
+  "status": "FROZEN_BEFORE_EVAL_DISPATCH_NO_RESULTS",
+  "frozen_on": "2026-09-02",
+  "relation_to_h_ext1n": "SEPARATE IDENTITY. It does NOT rescue, revisit or reopen the H-EXT-1N gate question. That question terminated on the development split at NO_CANDIDATE_GATE_ON_DEV (H_EXT1N_GATE_FREEZE.json, selected_gate=null) and no gate is selected, scored or reported here. The frozen H-EXT-1N routing forbids scoring the EVAL split under the gate identity; this cell asks a different, pre-registered question of the same held-out sets.",
+  "question": "On held-out naturalistic evidence sets (N1-EVAL, 160 sets never seen during development), (A) can the dependence-aware arm recover the dependence structure that the ClinicalTrials.gov registration oracle defines, (B) does it preserve genuine independence rather than over-triggering, and (C) does the strongest assurance parent suffice?",
+  "motivation": "The P-D manuscript states it does not claim validated dependence detection in real scientific corpora, and the P-D kill/merge contract makes parent sufficiency a valid terminal. Both are answerable on this corpus with the arms already built. The development split is exhausted for gate selection but may not be used for these endpoints: it informed nothing about them, and they are frozen here before the EVAL split is dispatched.",
+  "cell": "N1-EVAL (160 sets: NS1A 40, NS1B 40, NS1C 40, NS1D 40), disjoint from N1-DEV by the frozen corpus split",
+  "corpus_freeze_sha256": "6b70fe410c0387b74bb929789fae17dc5ab4eb0946182c9f7004fb552d53f922",
+  "design_sha256": "b8c3847925f9d6aebfbb386b85c05c1e8e18cd51832047c7034fe63b78bd67f6",
+  "gate_freeze_sha256_at_freeze_time": "recorded in H_EXT1N_SECONDARY_CELL_RESULT.json at analysis time; selected_gate is null",
+  "arms": {
+    "M": "P_D_FULL",
+    "OFF": "P_D_MINUS_DEPENDENCE",
+    "PARENT": "STRONGEST_ASSURANCE_FEDERATION"
+  },
+  "substrate": "identical to N1-DEV: gpt-5.5 via codex exec --ephemeral (codex-cli 0.129.0-alpha.15) on billy-old, read-only sandbox, one call per instance per arm, FM/FG dispatch()/evaluate() unchanged",
+  "metric": "exact-match accuracy on both answer keys (decision AND independent_support_family_count), paired per instance",
+  "endpoints": {
+    "A_DETECTION": {
+      "definition": "acc(M) on the dependent strata NS1A+NS1C (n=80)",
+      "pass_iff": "acc >= 0.80 AND exact two-sided McNemar p < 0.01 for M vs OFF restricted to those strata",
+      "rationale": "0.80 is the floor below which the arm would be recovering less than four fifths of a dependence structure that is fully determined by the held-out registration id"
+    },
+    "B_PRESERVATION": {
+      "definition": "acc(M) on the independent strata NS1B+NS1D (n=80)",
+      "pass_iff": "acc >= 0.90",
+      "rationale": "over-triggering is the failure mode the H-EXT-1 receipt flagged (imprecise activation); a dependence arm that manufactures dependence where none exists fails here"
+    },
+    "C_PARENT_SUFFICIENCY": {
+      "definition": "paired M vs PARENT over all 160 sets, exact two-sided McNemar",
+      "route": {
+        "p >= 0.05": "STRONGEST_PARENT_SUFFICIENT_ON_NATURALISTIC_RECORDS",
+        "p < 0.05 and acc(M) > acc(PARENT)": "DEPENDENCE_AWARE_ARM_BEATS_STRONGEST_PARENT_ON_NATURALISTIC_RECORDS",
+        "p < 0.05 and acc(PARENT) > acc(M)": "STRONGEST_PARENT_BEATS_DEPENDENCE_AWARE_ARM_ON_NATURALISTIC_RECORDS"
+      }
+    }
+  },
+  "validity_gate": "all three arms present on all 160 sets (no missing/EXECUTION_FAILED); extract-time canary passes on every task; EVAL study's corpus_freeze_sha256 matches the frozen corpus; EVAL task ids disjoint from DEV task ids. Any failure -> CANNOT_CHECK_RUN_INVALID and no endpoint is read.",
+  "routing_precedence_top_down": [
+    {"condition": "validity gate fails", "terminal": "CANNOT_CHECK_RUN_INVALID"},
+    {"condition": "A fails", "terminal": "DEPENDENCE_NOT_DETECTED_IN_NATURALISTIC_RECORDS"},
+    {"condition": "B fails", "terminal": "DEPENDENCE_MODELLING_OVER_TRIGGERS_ON_NATURALISTIC_RECORDS"},
+    {"condition": "A and B pass", "terminal": "DEPENDENCE_STRUCTURE_RECOVERABLE_FROM_NATURALISTIC_RECORDS"}
+  ],
+  "parent_axis_is_reported_alongside_and_never_overrides_the_A_B_terminal": true,
+  "reporting_only_never_routing": [
+    "per-stratum n / M / OFF / PARENT counts",
+    "witness informativeness: for each of the six frozen H-EXT-1 candidate gates, activation precision and recall against the oracle-active strata NS1A/NS1C on EVAL (quantifies whether the witnesses carry dependence information even though no gate could improve accuracy on DEV)",
+    "per-topic accuracies",
+    "family-count error distribution (predicted minus true independent_support_family_count)"
+  ],
+  "no_rescue": "endpoints, thresholds, strata groupings and terminals are fixed by this file before the EVAL split is dispatched. No re-thresholding, stratum exclusion, arm substitution or metric change afterwards. A failed endpoint is recorded under its routed terminal; any repair is a new identity with its own freeze.",
+  "honest_limits": [
+    "OFF's failure on the dependent strata is close to tautological given its arm instruction (treat every item as independent); the informative quantities are M's detection rate and its preservation rate, not the M-OFF gap itself, which is reported for continuity with the P-D ablation and not as the discovery",
+    "the oracle is registration identity, so two separately registered publications of one programme count as independent; endpoint B therefore charges M for correctly noticing a dependence the oracle does not encode",
+    "one model family (gpt-5.5); abstracts and metadata only",
+    "records come from trials with at least two indexed publications, a selected slice of the literature"
+  ],
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_field_status": false,
+    "grants_manuscript_change": false,
+    "grants_general_dependence_detector": false
+  }
+}
