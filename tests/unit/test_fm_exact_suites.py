@@ -53,21 +53,23 @@ def test_discrimination_gate_fails_a_degenerate_ceiling_table(fm_path):
     from fm_core import discrimination_gate
 
     ceiling = discrimination_gate(
-        {"weak": 1.0, "strong": 1.0},
-        weak_arms=("weak",),
-        strong_arm="strong",
-        max_weak=0.85,
-        min_strong=0.95,
+        {"weak": 1.0, "strong": 1.0}, weak_arms=("weak",), max_weak=0.85, min_strong=0.95
     )
     assert ceiling.verdict == "FAIL", "the FM/FG R2 ceiling defect must be caught"
+    assert ceiling.detail["halves"]["separating"]["violation"] is True
+    assert ceiling.detail["halves"]["solvable"]["violation"] is False
+
+    floor = discrimination_gate(
+        {"weak": 0.2, "strong": 0.3}, weak_arms=("weak",), max_weak=0.85, min_strong=0.95
+    )
+    assert floor.verdict == "FAIL", "the FM/FG R2 floor defect must be caught too"
+    assert floor.detail["halves"]["solvable"]["violation"] is True
+
     good = discrimination_gate(
-        {"weak": 0.5, "strong": 1.0},
-        weak_arms=("weak",),
-        strong_arm="strong",
-        max_weak=0.85,
-        min_strong=0.95,
+        {"weak": 0.5, "strong": 1.0}, weak_arms=("weak",), max_weak=0.85, min_strong=0.95
     )
     assert good.verdict == "PASS"
+    assert good.n_evaluated == 2, "each half reports its own denominator"
 
 
 def test_exact_binomial_and_holm(fm_path):
@@ -147,6 +149,31 @@ def test_generated_family_intent_is_verified_not_assumed(fm_path, suite):
         assert ans.disposition in mod.EXPECTED_DISPOSITION[inst.family], (
             f"{inst.instance_id}: family {inst.family} produced {ans.disposition}"
         )
+
+
+@pytest.mark.parametrize("suite", SUITES)
+def test_mechanic_is_not_a_wrapper_of_its_own_comparator(fm_path, suite):
+    """G1a must be a measurement, not an algebraic identity.
+
+    The mechanic's discordance against the parent has to be *able* to be
+    nonzero.  Every ablation is a known-different mechanic, so at least one of
+    them must disagree with the parent on a real split; if none does, the
+    identity counter is dead and G1a's zero would mean nothing.
+    """
+    from fm_run import load_suite, run_instances, score
+
+    spec = load_suite(suite)
+    pairs, _ = spec.generate("unittest", f"{suite}-UNITTEST", {f: 2 for f in spec.families})
+    res, cus = run_instances(spec, pairs, "T", "seed")
+    sc = score(spec, res, cus)
+    P = spec.strongest_parent_arm
+    ablations = [a.name for a in spec.arms if a.kind == "ABLATION"]
+    discordance = {
+        a: sum(1 for x, y in zip(sc["_preds"][a], sc["_preds"][P]) if x != y) for a in ablations
+    }
+    assert any(v > 0 for v in discordance.values()), (
+        f"{suite}: no ablation disagrees with {P}; the G1a counter is dead: {discordance}"
+    )
 
 
 @pytest.mark.parametrize("suite", SUITES)

@@ -103,11 +103,39 @@ it: *P2 decides the mapping question; if and only if P2 finds a perfect
 fact-level embedding is P4 consulted, and it may veto.* Neither parent is used
 outside its native competence; neither ever sees the oracle.
 
-**Stated openly:** `M` and `P2` call the same complete search. The mapping
-sub-problem is exactly solvable and both solve it exactly, so the FM10 contrast
-is about typed composition and native recovery, not about search quality. A
-reader should judge FM10 as a test of whether ORION's transfer-discovery *loop*
-is anything more than the pre-registered composition of two mature parents.
+### M is an independent implementation, deliberately
+
+An earlier draft of `M` issued the same two calls as `F0` (complete search, then
+invariant check). That would have made `G1a`'s decision identity an **algebraic
+identity rather than a measurement**: discordance could not have been nonzero,
+and the gate would have printed `n_evaluated = 126` over an effective
+denominator of zero — the very defect this design is written to avoid, in mirror
+form.
+
+`M` therefore runs its own anytime alignment: greedy seeding on relational
+overlap, then local search over single reassignments and pairwise swaps,
+restarted from every seed, with candidates scored through
+`assess_partial_homomorphism`; native recovery checks the donor's invariants on
+the **image subgraph** first and escalates to the target's ambient structure.
+Local search is not guaranteed to reach the optimum, so `M` *can* diverge from
+the complete parent, and "the federation reproduces M" is something the run
+measures rather than something the code guarantees.
+
+`G1a` additionally carries a **liveness control**: at least one ablation arm
+must register discordance against the parent on the same split, or the identity
+counter is dead and its zero means nothing.
+
+### Two results that are definitional, and are labelled as such
+
+- `P2_COMPLETE_HOMOMORPHISM` is the same complete search as the branch-and-bound
+  oracle algorithm, minus the invariant check. A complete typed search genuinely
+  *is* the mature parent for the mapping question, so this is defensible — but
+  P2's row is not independent parent evidence, and its 1.00 on every fact-level
+  family and 0.00 on the invariant family are both by construction. Its
+  informative content is that neither property alone reaches the endpoint.
+- `SURFACE_DECOY` instances are rejected and resampled unless the surface
+  correspondence is genuinely invalid, so `P0`/`P3` scoring 0.00 on that family
+  is definitional, not measured. Rejection counts are published per family.
 
 Every parent passes its own native known-answer tests before it is used as a
 comparator; see `FM_PARENT_FIDELITY_RECEIPT_V1.md` (21/21 for FM10).
@@ -123,8 +151,8 @@ All gates are frozen here, before protected outcome access.
 | `G0c_NULL_CALIBRATION` | constant arms ≤ 0.40, random ≤ 0.40, M against within-split shuffled oracle labels ≤ 0.40 | yes |
 | `G0d_DECOY_COVERAGE` | each registered decoy family carries ≥ 3 instances | yes |
 | `G0e_PLANTED_POSITIVES` | every registered planted positive trips its own gate predicate (≥ 3) | yes |
-| `G0f_FAMILY_DISCRIMINATION` | strongest parent ≥ 0.95 **and** some registered weak arm ≤ 0.85 | yes |
-| `G1a_PARENT_REPRODUCES_M` | F0 reproduces M on ≥ 99.5% of instances, no family > 5% discordant | yes |
+| `G0f_FAMILY_DISCRIMINATION` | two halves, each with its own denominator: *solvable* (some non-control arm ≥ 0.95) **and** *separating* (some registered weak arm ≤ 0.85) | yes |
+| `G1a_PARENT_REPRODUCES_M` | F0 reproduces M on ≥ 99.5% of instances, no family > 5% discordant, **and** the discordance counter is shown live by ≥ 1 ablation disagreeing with the parent | yes |
 | `G1b_M_ADVANTAGE` | detector: paired diff > 0, exact two-sided p ≤ 0.05, ≥ 1 family with ≥ 5 M-only-exact | no |
 | `G2_ANTI_PERMISSIVENESS` | on oracle-blocked instances, M accepts no more transfers than F0 (≥ 10 blocked) | yes |
 | `G3_MECHANISM_BY_OMISSION` | if G1b fires: the matching omission ablation's rate ≤ the parent's on that family | no |

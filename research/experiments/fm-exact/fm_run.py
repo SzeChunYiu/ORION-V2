@@ -244,7 +244,7 @@ def gates(spec, sc: dict, selftest: dict | None, rejects: dict | None) -> dict:
         discrimination_gate(
             {a: per_arm[a]["exact_rate"] for a in per_arm},
             weak_arms=spec.weak_arms,
-            strong_arm=P,
+            exclude_from_ceiling=spec.constant_arms + (spec.random_arm,),
             max_weak=0.85,
             min_strong=0.95,
         )
@@ -267,18 +267,38 @@ def gates(spec, sc: dict, selftest: dict | None, rejects: dict | None) -> dict:
             "P_only_exact": sum(1 for i in idx if raw[P][i] and not raw[M][i]),
         }
     identity_rate = sum(identical) / n if n else 0.0
+    # Liveness control for the identity counter itself.  "M and the parent agree
+    # on every instance" is only evidence if the counter that produced the zero
+    # is capable of producing a nonzero on this very split.  Every ablation arm
+    # is a known-different mechanic; at least one must register discordance
+    # against the parent, or the counter is dead and G1a means nothing.
+    ablations = [a.name for a in spec.arms if a.kind == "ABLATION"]
+    control = {
+        a: sum(1 for i in range(n) if sc["_preds"][a][i] != sc["_preds"][P][i]) for a in ablations
+    }
+    counter_is_live = any(v > 0 for v in control.values())
     g1a = GateResult(
         "G1a_PARENT_REPRODUCES_M",
         f"{P} reproduces {M}'s disposition on >= 99.5% of instances and no "
-        "family exceeds 5% discordance",
+        "family exceeds 5% discordance; AND the discordance counter is shown "
+        "live on this split by at least one ablation arm disagreeing with the parent",
         n_evaluated=n,
         n_violations=(
             0
             if identity_rate >= 0.995
             and all(v["discordant"] / v["n"] <= 0.05 for v in per_family_disc.values())
+            and counter_is_live
             else 1
         ),
-        detail={"decision_identity_rate": identity_rate, "per_family": per_family_disc, "paired": ps},
+        detail={
+            "decision_identity_rate": identity_rate,
+            "per_family": per_family_disc,
+            "paired": ps,
+            "counter_liveness_control": {
+                "ablation_vs_parent_discordance": control,
+                "counter_is_live": counter_is_live,
+            },
+        },
     )
     G.append(g1a)
     m_advantage = (

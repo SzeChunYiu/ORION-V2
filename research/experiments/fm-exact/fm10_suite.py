@@ -741,28 +741,123 @@ def mechanic_full(inst: Instance) -> dict:
     structural description -> candidate discovery -> alignment -> bounded
     projection through `orion_v2.transfer_formal_mechanics` -> native recovery
     -> negative-transfer challenge -> disposition.
+
+    **This is an independent implementation, and deliberately so.**  An earlier
+    draft of M called the same complete search as the parent, which would have
+    made `G1a`'s decision identity an algebraic identity rather than a
+    measurement: discordance could not have been nonzero.  M instead runs its
+    own anytime alignment — greedy seeding on relational overlap, then local
+    search over single reassignments and pairwise swaps, restarted from every
+    seed — and scores candidates through `assess_partial_homomorphism`.  Local
+    search is not guaranteed to reach the optimum, so M *can* diverge from the
+    complete parent, and "the federation reproduces M" is something the run
+    measures rather than something the code guarantees.
     """
-    ans = oracle_branch_and_bound(inst)
-    if ans.witness is None:
+    donor, target = inst.donor, inst.target
+    dtypes, ttypes = donor.types, target.types
+    candidates = {d: [t for t in target.nodes if ttypes[t] == dtypes[d]] for d in donor.nodes}
+    if any(not v for v in candidates.values()):
         return {"disposition": "BLOCK_NO_TYPE_RESPECTING_MAP", "witness": None}
-    # bounded projection through the reference module (native validity check)
+
+    # --- structural description: donor nodes ordered by relational degree ---
+    degree = {d: sum(1 for f in donor.facts for a in f.args if a == d) for d in donor.nodes}
+    order = sorted(donor.nodes, key=lambda d: (-degree[d], len(candidates[d]), d))
+
+    def key_of(nm: dict[str, str]) -> tuple[int, int, int, int]:
+        return _profile_key(profile_map(donor, target, nm))
+
+    # --- candidate discovery: greedy seeding on relational overlap ----------
+    seeds: list[dict[str, str]] = []
+    for first in candidates[order[0]]:
+        nm: dict[str, str] = {order[0]: first}
+        used = {first}
+        ok = True
+        for d in order[1:]:
+            free = [t for t in candidates[d] if t not in used]
+            if not free:
+                ok = False
+                break
+            # pick the image maximising facts met among already-aligned nodes
+            best_t, best_met = None, -1
+            for t in free:
+                trial = dict(nm)
+                trial[d] = t
+                met = 0
+                for f in donor.facts:
+                    if all(a in trial for a in f.args):
+                        exact, bpa = _target_index(target)
+                        if _fact_status(f, tuple(trial[a] for a in f.args), exact, bpa) == "MET":
+                            met += 1
+                if met > best_met:
+                    best_t, best_met = t, met
+            nm[d] = best_t
+            used.add(best_t)
+        if ok and len(nm) == len(donor.nodes):
+            seeds.append(nm)
+    if not seeds:
+        return {"disposition": "BLOCK_NO_TYPE_RESPECTING_MAP", "witness": None}
+
+    # --- alignment refinement: local search to a local optimum -------------
+    best_nm, best_key = None, None
+    for seed in seeds:
+        nm = dict(seed)
+        cur = key_of(nm)
+        improved = True
+        while improved:
+            improved = False
+            for d in donor.nodes:  # single reassignment
+                for t in candidates[d]:
+                    if t == nm[d]:
+                        continue
+                    trial = dict(nm)
+                    holder = next((k for k, v in nm.items() if v == t), None)
+                    if holder is not None:
+                        continue  # taken; handled by the swap move
+                    trial[d] = t
+                    k = key_of(trial)
+                    if k < cur:
+                        nm, cur, improved = trial, k, True
+            for i, d1 in enumerate(donor.nodes):  # pairwise swap
+                for d2 in donor.nodes[i + 1 :]:
+                    if nm[d2] not in candidates[d1] or nm[d1] not in candidates[d2]:
+                        continue
+                    trial = dict(nm)
+                    trial[d1], trial[d2] = nm[d2], nm[d1]
+                    k = key_of(trial)
+                    if k < cur:
+                        nm, cur, improved = trial, k, True
+        if best_key is None or cur < best_key:
+            best_nm, best_key = nm, cur
+    witness = tuple(sorted(best_nm.items()))
+
+    # --- bounded projection through the reference module -------------------
     assessment = assess_partial_homomorphism(
-        inst.donor,
-        inst.target,
-        FormalTransferMap(node_map=ans.witness, relation_map=()),
+        donor, target, FormalTransferMap(node_map=witness, relation_map=())
     )
-    if assessment.critical_valid and assessment.mapped_fact_count == len(inst.donor.facts):
-        # native recovery: the donor's presupposed invariants must survive
-        broken = broken_invariants(inst)
+    if assessment.critical_valid and assessment.mapped_fact_count == len(donor.facts):
+        # --- native recovery: the donor's presupposed invariants must survive.
+        # Bounded projection first (the image subgraph), then escalation to the
+        # target's ambient structure, which is the registered scope.
+        image = frozenset(best_nm.values())
+        sub = FiniteRelationalStructure(
+            structure_id=target.structure_id + "|IMAGE",
+            domain_id=target.domain_id,
+            nodes=tuple(n for n in target.nodes if n in image),
+            node_types=tuple((n, ttypes[n]) for n in target.nodes if n in image),
+            facts=tuple(f for f in target.facts if all(a in image for a in f.args)),
+        )
+        broken = [i for i in donor.invariant_ids if not invariant_holds(sub, i)]
+        if not broken:
+            broken = [i for i in donor.invariant_ids if not invariant_holds(target, i)]
         if broken:
             return {
                 "disposition": "BLOCK_INVARIANT_VIOLATION",
-                "witness": ans.witness,
-                "broken": broken,
+                "witness": witness,
+                "broken": sorted(broken),
             }
-        return {"disposition": "TRANSFER_VALID", "witness": ans.witness}
-    prof = profile_map(inst.donor, inst.target, dict(ans.witness))
-    return {"disposition": classify_facts(prof), "witness": ans.witness}
+        return {"disposition": "TRANSFER_VALID", "witness": witness}
+    # --- negative-transfer challenge: classify the obstruction exactly ------
+    return {"disposition": classify_facts(profile_map(donor, target, best_nm)), "witness": witness}
 
 
 def ablation_minus_relational_mapping(inst: Instance) -> dict:
@@ -1408,7 +1503,6 @@ def planted_positives() -> list[PlantedPositive]:
         discrimination_gate(
             {a: 1.0 for a in ARM_FUNCTIONS},
             weak_arms=("C_RANDOM_DISPOSITION",),
-            strong_arm="P2_COMPLETE_HOMOMORPHISM",
             max_weak=0.60,
             min_strong=0.95,
         ).verdict

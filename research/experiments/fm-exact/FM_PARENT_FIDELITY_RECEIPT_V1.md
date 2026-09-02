@@ -18,10 +18,10 @@ byte-identical results and custody files (asserted by
 
 | file | sha256 |
 |---|---|
-| `fm_core.py` | `408a5b20f26b642935b41d1e1b391e447439cdff82f5362e3840c20bb4110cc6` |
-| `fm_run.py` | `f183c9a15b158a9933d6a9bbaf55a1c9d94ccd6ad960714d3bd8f3ef44382da6` |
-| `fm10_suite.py` | `0074f9cc8ae69ca0b9c29496fae494496dc381c94f82e06adb167baa73adff40` |
-| `FM10_..._DESIGN_V1.json` | `5d8cb8ee93258c17e2b0b054fd6406dbab06baa231892842f85011f0cff2a3ba` |
+| `fm_core.py` | `2b345a707d099e93a30d4b9431f206dd03c6f3fdad3edb85e3a175194e26a7ca` |
+| `fm_run.py` | `058acc3350603dbe6a247fb8ec739335993b0a27a0fa008251b49a210138b4ec` |
+| `fm10_suite.py` | `5bb0ca37ea3ebb1e5cc0f059fd2e2ed406a09b751e938dab1ffc4e31f7a08437` |
+| `FM10_..._DESIGN_V1.json` | `ae23f7cfba5409ec200d90051834260041521e12510520e7b7c2920a6332d90d` |
 | `fm10/results/FM10_DEVELOPMENT_RESULTS_V1.json` | `100c5718d99aa39dbfc8a03d48fec5329b4fff1dc70a24a6568e8c75da2ec1cd` |
 | `fm10/results/FM10_DEVELOPMENT_EXPECTED_CUSTODY_V1.json` | `b3fc3433d9378f86becd7398b9b2488fb000d9a4e1d04514ffd32e1bfaa6f18f` |
 | `fm10/results/FM10_SELFTEST_REPORT.json` | `08fa50bc18324dc855b97820b2bc703d2931026b3acaf6acda094c973dd74a0c` |
@@ -69,6 +69,33 @@ embedding was always the first map in identifier order, which made the
 the fix that ablation scores 0.468 on a same-size probe. This was an artifact of
 the generator, and it is exactly the class of defect the `G0f` discrimination
 gate exists to catch.
+
+## 3a. Independence of the mechanic from its own comparator
+
+An earlier draft of `M` issued the same two calls as `F0` (complete search, then
+invariant check), which would have made `G1a`'s decision identity an **algebraic
+identity rather than a measurement** — discordance could not have been nonzero,
+and the gate would have printed a full denominator over an effective denominator
+of zero. `M` was rewritten before any protected outcome existed: it now runs its
+own anytime alignment (greedy relational-overlap seeding, then local search over
+single reassignments and pairwise swaps, restarted from every seed, scored
+through `assess_partial_homomorphism`), with native recovery checking the donor's
+invariants on the image subgraph first and escalating to the ambient structure.
+Local search can fail to reach the optimum, so `M` *can* diverge.
+
+`G1a` now also carries a **liveness control**: on the development split the
+discordance counter registers 13 (`M_MINUS_OBSTRUCTION_SEARCH`), 9
+(`M_MINUS_RELATIONAL_MAPPING`) and 3 (`M_MINUS_INVARIANCE_TEST`) disagreements
+with the parent, so the zero it reports for `M` is a zero the counter was
+capable of not reporting.
+
+Two results in the tables below are **definitional and labelled as such**:
+`P2_COMPLETE_HOMOMORPHISM` is the branch-and-bound oracle algorithm minus the
+invariant check, so its 1.00 on every fact-level family and 0.00 on the invariant
+family are by construction (a complete typed search genuinely is the mature
+parent for the mapping question, which is why the arm is kept); and
+`SURFACE_DECOY` instances are rejected unless the surface correspondence is
+genuinely invalid, so `P0`/`P3` scoring 0.00 there is definitional too.
 
 ## 4. Planted positives (G0e): 5/5 fire
 

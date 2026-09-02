@@ -50,7 +50,7 @@ Instances: 21; results sha256 `100c5718d99aa39dbfc8a03d48fec5329b4fff1dc70a24a65
 | G0c_NULL_CALIBRATION | **PASS** | 0 | 4 | True |
 | G0d_DECOY_COVERAGE | **PASS** | 0 | 4 | True |
 | G0e_PLANTED_POSITIVES | **PASS** | 0 | 5 | True |
-| G0f_FAMILY_DISCRIMINATION | **PASS** | 0 | 14 | True |
+| G0f_FAMILY_DISCRIMINATION | **PASS** | 0 | 2 | True |
 | G1a_PARENT_REPRODUCES_M | **PASS** | 0 | 21 | True |
 | G1b_M_ADVANTAGE | **NOT_FIRED** | 1 | 21 | False |
 | G2_ANTI_PERMISSIVENESS | **PASS** | 0 | 15 | True |
@@ -58,5 +58,5 @@ Instances: 21; results sha256 `100c5718d99aa39dbfc8a03d48fec5329b4fff1dc70a24a65
 
 ## Route
 
-`PARENT_SUFFICIENT` — F0_PARENT_FEDERATION reproduces M_F2_TRANSFER_DISCOVERY_FULL's dispositions (identity 1.0000). Cost flag: `COST_PARITY_WITHIN_2X`.
+`PARENT_SUFFICIENT` — F0_PARENT_FEDERATION reproduces M_F2_TRANSFER_DISCOVERY_FULL's dispositions (identity 1.0000). Cost flag: `COST_ADVANTAGE_PARENT`.
 

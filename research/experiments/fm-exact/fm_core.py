@@ -204,41 +204,55 @@ def discrimination_gate(
     per_arm_exact: dict[str, float],
     *,
     weak_arms: Sequence[str],
-    strong_arm: str,
+    exclude_from_ceiling: Sequence[str] = (),
     max_weak: float,
     min_strong: float,
 ) -> GateResult:
     """Gate against an uninformative task family.
 
     The FM/FG R2 registered-scale campaign (2026-08-30) produced eight studies
-    at ceiling and one at floor: every arm scored the same and the comparison
+    at ceiling and one at floor: every arm scored the same, so the comparison
     could not have detected a difference had one existed.  A family that cannot
-    separate a deliberately weak arm from the strongest parent is a defect of
+    separate a deliberately weak arm from the best-performing arm is a defect of
     the generator, not a null result, so it is gated explicitly.
+
+    The gate has two independent halves and each reports its own denominator,
+    because a half whose subject is exact by construction would otherwise pass
+    automatically and inflate the appearance of a check:
+
+      * *solvable*: some arm reaches `min_strong` — the family is not at floor;
+      * *separating*: some registered weak arm is at or below `max_weak` — the
+        family is not at ceiling.
     """
-    strong = per_arm_exact.get(strong_arm)
-    viol = []
-    if strong is None or strong < min_strong:
-        viol.append(f"{strong_arm}={strong}")
-    if not any(per_arm_exact.get(a, 1.0) <= max_weak for a in weak_arms):
-        viol.append("no weak arm below max_weak")
+    eligible = {a: r for a, r in per_arm_exact.items() if a not in set(exclude_from_ceiling)}
+    best_arm = max(eligible, key=lambda a: eligible[a]) if eligible else None
+    best = eligible.get(best_arm, 0.0) if best_arm else 0.0
+    weak_hits = {a: per_arm_exact[a] for a in weak_arms if per_arm_exact.get(a, 1.0) <= max_weak}
+    halves = {
+        "solvable": {
+            "n_evaluated": len(eligible),
+            "best_arm": best_arm,
+            "best_rate": best,
+            "threshold": min_strong,
+            "violation": best < min_strong,
+        },
+        "separating": {
+            "n_evaluated": len(weak_arms),
+            "weak_arms_at_or_below_threshold": weak_hits,
+            "threshold": max_weak,
+            "violation": not weak_hits,
+        },
+    }
     return GateResult(
         name="G0f_FAMILY_DISCRIMINATION",
         rule=(
-            f"the split is non-degenerate: {strong_arm} >= {min_strong} and at "
-            f"least one of {list(weak_arms)} <= {max_weak} (guards against the "
-            "ceiling/floor families that made FM/FG R2 uninformative)"
+            f"non-degenerate split, two independent halves: some arm >= {min_strong} "
+            f"(not at floor) AND some registered weak arm <= {max_weak} (not at "
+            "ceiling); guards against the families that made FM/FG R2 uninformative"
         ),
-        n_evaluated=len(per_arm_exact),
-        n_violations=len(viol),
-        detail={
-            "per_arm_exact": per_arm_exact,
-            "weak_arms": list(weak_arms),
-            "strong_arm": strong_arm,
-            "max_weak": max_weak,
-            "min_strong": min_strong,
-            "violations": viol,
-        },
+        n_evaluated=2,
+        n_violations=sum(1 for h in halves.values() if h["violation"]),
+        detail={"halves": halves, "per_arm_exact": per_arm_exact},
     )
 
 

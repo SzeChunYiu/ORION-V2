@@ -2,7 +2,10 @@
   "schema_version": "orion.v2.fm-exact.study-design.v1",
   "study_id": "FM10",
   "title": "Finite relational mapping with exact obstruction classification",
-  "owner_issues": [48, 50],
+  "owner_issues": [
+    48,
+    50
+  ],
   "protocols": [
     "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_MECHANICS_PROTOCOL_V1.json",
     "research/experiments/CONCEPTUAL_TRANSFER_DISCOVERY_PROTOCOL_V2_ALL_SCIENCE_MATHEMATICS_FIRST.json",
@@ -21,7 +24,12 @@
       "BLOCK_MIXED_TYPED_OBSTRUCTION",
       "BLOCK_NO_HOMOMORPHISM"
     ],
-    "secondary": ["over_accept", "under_accept", "per_family_exact_rate", "wall_clock_cost"],
+    "secondary": [
+      "over_accept",
+      "under_accept",
+      "per_family_exact_rate",
+      "wall_clock_cost"
+    ],
     "note": "Mapping existence alone is exactly decidable by a complete search, so it is deliberately NOT the endpoint: a study built on it would report parent sufficiency by construction. The endpoint adds exact obstruction classification and a registered-invariant stratum that fact-level search cannot see."
   },
   "families": [
@@ -50,8 +58,19 @@
   "oracle": {
     "primary": "oracle_exhaustive: enumerate every injective type-respecting node map and take the lexicographically best obstruction profile",
     "independent_cross_check": "oracle_branch_and_bound: forward-checking backtracking search with a monotone admissible bound; never materialises the map space",
-    "agreement_fields": ["disposition", "min_missing", "best_profile", "n_optimal_maps", "broken_invariants"],
-    "profile_preference_order": ["MISSING", "ABSENT", "REVERSAL", "RELTYPE"],
+    "agreement_fields": [
+      "disposition",
+      "min_missing",
+      "best_profile",
+      "n_optimal_maps",
+      "broken_invariants"
+    ],
+    "profile_preference_order": [
+      "MISSING",
+      "ABSENT",
+      "REVERSAL",
+      "RELTYPE"
+    ],
     "invariant_scope": "registered donor invariants are evaluated on the target's WHOLE structure, not on the image subgraph; this scope choice is registered before any outcome and is what the INVARIANT_BREAKING_EMBEDDING family measures",
     "classification_order": "a fact-level obstruction dominates an invariant break; the invariant test fires only when a perfect fact-level embedding exists"
   },
@@ -73,21 +92,20 @@
   },
   "primary_comparator": "F0_PARENT_FEDERATION",
   "comparator_justification": "No single parent family owns the endpoint: a complete relational search is blind to the invariant stratum and an invariance parent is blind to the mapping strata. The strongest faithful comparator is therefore their federation under a pre-registered, outcome-blind combination rule, exactly as ME-X4's B5 was.",
-  "acknowledged_shared_implementation": "M and P2 both call the same complete search. This is stated up front and is not hidden: the mapping sub-problem is exactly solvable and both solve it exactly, so the FM10 contrast is about typed composition and native recovery, not about search quality.",
   "gates": {
     "G0a_KNOWN_ANSWER": "every hand-authored fixture's disposition is reproduced by the exhaustive oracle (>= 8 fixtures required)",
     "G0b_ORACLE_SELF_AGREEMENT": "the two independent oracle algorithms agree on every instance of the split",
     "G0c_NULL_CALIBRATION": "constant-response arms <= 0.40, random arm <= 0.40, M against within-split shuffled oracle labels <= 0.40",
     "G0d_DECOY_COVERAGE": "each registered decoy family carries >= 3 instances",
     "G0e_PLANTED_POSITIVES": "every registered planted positive trips its own gate predicate (>= 3 required)",
-    "G0f_FAMILY_DISCRIMINATION": "the split is non-degenerate: the strongest parent >= 0.95 and at least one registered weak arm <= 0.85",
-    "G1a_PARENT_REPRODUCES_M": "F0 reproduces M's disposition on >= 99.5% of instances and no family exceeds 5% discordance",
+    "G0f_FAMILY_DISCRIMINATION": "two independent halves, each with its own denominator: SOLVABLE (some non-control arm >= 0.95, not at floor) AND SEPARATING (some registered weak arm <= 0.85, not at ceiling)",
+    "G1a_PARENT_REPRODUCES_M": "F0 reproduces M's disposition on >= 99.5% of instances and no family exceeds 5% discordance; AND the discordance counter is shown live on the same split by at least one ablation arm disagreeing with the parent",
     "G1b_M_ADVANTAGE": "detector: paired instance-exact difference (M - F0) > 0, exact two-sided p <= 0.05, and >= 1 family with >= 5 M-only-exact instances",
     "G2_ANTI_PERMISSIVENESS": "on instances the oracle blocks, M accepts no more transfers than F0 (>= 10 blocked instances required)",
     "G3_MECHANISM_BY_OMISSION": "applicable only if G1b fires: for every family with a claimed M advantage, the matching omission ablation's exact rate is <= the parent's on that family",
     "multiplicity": "Holm across the seven per-family paired tests, reported for every run"
   },
-  "gate_reporting_rule": "Every gate reports the number of instances its rule was actually evaluated on alongside the violation count. A gate whose denominator is below its registered minimum returns CANNOT_CHECK and never PASS: 'could not check' is never 'checked and fine'.",
+  "gate_reporting_rule": "Every gate reports the number of instances its rule was actually evaluated on alongside the violation count. A gate whose denominator is below its registered minimum returns CANNOT_CHECK and never PASS: 'could not check' is never 'checked and fine'. A zero produced by a counter that could not have been nonzero on this split is not evidence of agreement, so G1a additionally carries a liveness control.",
   "routes": [
     "PARENT_SUFFICIENT",
     "FM_RESIDUAL_CANDIDATE",
@@ -112,5 +130,14 @@
     "grants_F2_superiority": false,
     "grants_field_status": false,
     "grants_submission_readiness": false
-  }
+  },
+  "mechanic_independence": {
+    "statement": "M does NOT call the parent's complete search. M runs its own anytime alignment: greedy seeding on relational overlap, then local search over single reassignments and pairwise swaps, restarted from every seed, scored through assess_partial_homomorphism; native recovery checks the donor's invariants on the image subgraph first and escalates to the target's ambient structure.",
+    "why": "An earlier draft had M and F0 issue the same two calls, which would have made G1a's decision identity an algebraic identity rather than a measurement: discordance could not have been nonzero. Local search is not guaranteed to reach the optimum, so M can diverge and 'the federation reproduces M' is measured.",
+    "acknowledged_overlap": "P2_COMPLETE_HOMOMORPHISM is the same complete search as the branch-and-bound oracle algorithm, minus the invariant check. This is defensible - a complete typed search genuinely is the mature parent for the mapping question - but P2's row is therefore not independent parent evidence and is reported as such."
+  },
+  "known_definitional_results": [
+    "SURFACE_DECOY instances are rejected and resampled unless the surface correspondence is invalid, so P0/P3 scoring 0.00 on that family is definitional, not measured; rejection counts are published per family.",
+    "P2 is exact on every fact-level family by construction (it is a complete search) and 0.00 on the invariant family by construction (it is fact-level). Its informative content is that neither property alone reaches the endpoint."
+  ]
 }
