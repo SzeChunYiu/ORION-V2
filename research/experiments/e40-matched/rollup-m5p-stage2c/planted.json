@@ -1,0 +1,89 @@
+{
+ "control": "planted_feedback_recovery",
+ "target": {
+  "training_regime": "partial_interventional",
+  "fraction_partial_intervention": 0.8
+ },
+ "replica_mandate": "f2r0",
+ "chosen": [
+  {
+   "training_regime": "interventional",
+   "fraction_partial_intervention": 0.5,
+   "partial_intervention_seed": 13,
+   "model_seed": 11,
+   "omission_estimation_size": 1000
+  },
+  {
+   "training_regime": "interventional",
+   "fraction_partial_intervention": 0.5,
+   "partial_intervention_seed": 13,
+   "model_seed": 11,
+   "omission_estimation_size": 1000
+  },
+  {
+   "training_regime": "interventional",
+   "fraction_partial_intervention": 0.5,
+   "partial_intervention_seed": 13,
+   "model_seed": 11,
+   "omission_estimation_size": 1000
+  },
+  {
+   "training_regime": "interventional",
+   "fraction_partial_intervention": 0.5,
+   "partial_intervention_seed": 13,
+   "model_seed": 11,
+   "omission_estimation_size": 1000
+  },
+  {
+   "training_regime": "interventional",
+   "fraction_partial_intervention": 0.5,
+   "partial_intervention_seed": 13,
+   "model_seed": 27,
+   "omission_estimation_size": 1000
+  },
+  {
+   "training_regime": "interventional",
+   "fraction_partial_intervention": 0.5,
+   "partial_intervention_seed": 13,
+   "model_seed": 11,
+   "omission_estimation_size": 1000
+  },
+  {
+   "training_regime": "partial_interventional",
+   "fraction_partial_intervention": 0.5,
+   "partial_intervention_seed": 13,
+   "model_seed": 11,
+   "omission_estimation_size": 1000
+  },
+  {
+   "training_regime": "partial_interventional",
+   "fraction_partial_intervention": 0.5,
+   "partial_intervention_seed": 13,
+   "model_seed": 11,
+   "omission_estimation_size": 1000
+  },
+  {
+   "training_regime": "partial_interventional",
+   "fraction_partial_intervention": 0.5,
+   "partial_intervention_seed": 13,
+   "model_seed": 11,
+   "omission_estimation_size": 1000
+  }
+ ],
+ "qualities": [
+  0.352649213636475,
+  0.352649213636475,
+  0.352649213636475,
+  0.352649213636475,
+  0.352649213636475,
+  0.352649213636475,
+  0.6411803884299545,
+  0.6411803884299545,
+  0.6411803884299545
+ ],
+ "in_basin_0p8_count": 0,
+ "of": 8,
+ "terminal_quality": 0.6411803884299545,
+ "verdict": "FAIL",
+ "rule": "last 3 cycles at planted quality >= 0.9 AND no post-arrival dip below 0.8"
+}
