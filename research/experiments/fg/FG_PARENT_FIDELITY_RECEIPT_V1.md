@@ -50,7 +50,7 @@ faithfully would be `CANNOT_CHECK`, never a strawman.
 |---|---|---|
 | `LGG` (Plotkin 1970) | 9/9 | classic pair lgg `f(a,b,a) ⊓ f(a,c,a) = f(a,?,a)`; identity on equal tuples; all-variable lgg on disjoint tuples; lgg of a set = iterated pair lgg; lgg subsumes every input; θ-subsumption rejects a constant mismatch; **exhaustive** least-generality check over the full pattern space; arity mismatch and empty-set errors raise |
 | `FCA` (Ganter & Wille) | 12/12 | object intent and attribute extent on the classic living-beings context; derivation of the empty object/attribute set; closure extensive, idempotent and monotone (four ordered pairs); every concept is a fixed point of the derivation pair; top and bottom concepts present; `milk → limbs` holds and `limbs → milk` does not; **the Galois adjunction `A ⊆ B′ ⟺ B ⊆ A′` is certified `SATISFIED` by `orion_v2.meta_formalization.assess_galois_connection`** over the full power-set posets |
-| `MDL` | 7/7 | `NO_CHANGE` costs nothing; a parent costs only its name; a new primitive costs its whole extension (66 + 1 bits at n = 12); residual collisions dominate any model term; the code is monotone in residuals; patch cost grows with patch size; **and the code's native order differs from the registered order** — MDL prices a derived term below a two-case patch, which the registered §L5 order reverses. The disagreement is reported, not repaired: a parent whose ordering were copied from M would not be an independent parent |
+| `MDL` | 7/7 | `NO_CHANGE` costs nothing; a parent costs only its name; a new primitive costs its whole extension (66 + 1 bits at n = 12); residual collisions dominate any model term; the code is monotone in residuals; patch cost grows with patch size; **and the code's native order differs from the registered order** — MDL prices a derived term below a two-case patch, which the registered §L5 order reverses. The disagreement is reported, not repaired: a parent whose ordering were copied from the registered order would not be an independent comparator, it would be M wearing a hat |
 | `MODEL_SEARCH` | 4/4 | first countermodel to `a → J`; no countermodel to `ab → J`; empty determiner set finds the first disagreement; constant target has no countermodel |
 | `CONSERVATIVE` | 5/5 | conservative, non-conservative and lost-consequence cases through `orion_v2.meta_formalization.assess_conservative_extension`; shrinking language yields `CANNOT_CHECK`; the check is non-authorizing |
 | `THEORY_REVISION` | 5/5 | Hansson kernel contraction removes one element per kernel; inclusion; vacuity; two kernels give two incisions; an empty kernel is ignored |
@@ -58,6 +58,26 @@ faithfully would be `CANNOT_CHECK`, never a strawman.
 Two of these parents are ORION reference modules reused rather than rebuilt, as
 the design requires ("the federation is never artificially isolated"):
 `assess_galois_connection` and `assess_conservative_extension`.
+
+## 2.1 What makes the false-invention number mean anything
+
+A false-invention rate is only informative if invention was actually on offer and
+would actually have worked. FG70 is therefore built so that **escalation is
+maximally tempting**: on every instance whose truth is
+`PARENT_FORMALISM_SUFFICIENT`, `ADD_ONE_OBSERVATION`, `LOCAL_PATCH` or
+`REPRESENTATION_CHANGE` — 112 of the 168 protected instances, 20 of the 36
+development instances — the world registers a relation whose connected
+components coincide with the decision classes. A new primitive is consequently
+**always available and always adequate** on exactly the instances where inventing
+one is the wrong answer.
+
+The consequence, which a reader will not infer and which the design and every
+receipt in this series must state plainly: **an arm that invents on those
+instances is never wrong because the primitive failed. It is wrong only because
+something cheaper sufficed.** The suite measures parsimony under maximal
+temptation, not the difficulty of finding a working primitive. A selftest
+(`ANTI_INVENTION_DENOMINATOR_IS_NON_EMPTY_AND_TEMPTING`) refuses to let the
+denominator pass without that property holding.
 
 ## 3. Development split (public seed `FG70-DEV-20260902`, 36 instances)
 
@@ -221,6 +241,74 @@ Two further selftest checks guard the denominators rather than the counters:
 - `G2M_ANTI_INVENTION` reports its per-stratum denominators and **hard-fails if
   any non-`NEW_PRIMITIVE` stratum has an empty denominator** (development:
   6/6/6/6/6, none empty; protected: 28 each, total 140).
+
+## 5.1 Gate defects found and repaired *before* the freeze
+
+Both were caught in this lane's own design, not in someone else's, and both are
+recorded here rather than only in the commit history: a design that documents the
+gates it had to fix before freezing is more credible than one that reports clean
+gates with no history.
+
+1. **G2 could not fire.** `missed_deficit` counts `terminal == NO_CHANGE` where
+   the truth is not `NO_CHANGE`. Every arm's first move is the shared collision
+   check, so under-detection is structurally unreachable and **every arm except
+   the random control scored 0**. The gate would have reported `PASS` on `0 ≤ 0`
+   over a denominator of 140 with no evidence it could fire at all — the exact
+   class of defect that has bitten this programme repeatedly (a counter nested
+   inside a guard that excludes the family under test). Repair: `C_NEVER_CHANGE`
+   added as a scored arm and as a G0c planted positive, plus a selftest
+   (`PLANTED_POSITIVE_ANTI_CONSERVATISM_GATE_FIRES`) that requires it to trip on
+   every fixture whose truth is not `NO_CHANGE`.
+2. **G3's per-stratum rule was unsatisfiable on three strata.** `NEW_PRIMITIVE`
+   was mapped to `M_MINUS_ADMISSION_GATE`, and `NO_CHANGE` and
+   `REPRESENTATION_CHANGE` fell through to a default. A fail-closed admission
+   gate can only ever *block*, so removing it cannot reduce accuracy on the
+   stratum where invention is correct: three of six rows were False by
+   construction, and any protected run in which G1b fired would have routed to
+   `CANNOT_CHECK` for reasons unrelated to mechanism. **A rule that cannot fail
+   is not a rule, and a rule that cannot pass is not one either.** Repair: every
+   stratum now has a like-for-like tier-omission ablation
+   (`M_MINUS_DEFICIT_CHECK`, `M_MINUS_PARENT_SEARCH`, `M_MINUS_DATA_TIER`,
+   `M_MINUS_PATCH_TIER`, `M_MINUS_REPRESENTATION_TIER`,
+   `M_MINUS_INVENTION_TIER`), each 0/6 against M's 6/6 on development, and the
+   admission gate's own mechanism is measured on the anti-invention axis by the
+   2×2 factorial of §4.
+
+A third defect, in the generator rather than a gate, is recorded in §1: three
+planters drew RNG values while iterating an unordered set, so the split did not
+reproduce across processes.
+
+## 5.2 Registered expectation for the protected run (recorded before it runs)
+
+The most interesting thing the development split has produced is a *pair*, and
+it is currently an n = 36 observation. It is registered here as a prediction so
+that confirmation is a confirmed prediction and not a post-hoc reading:
+
+> **P-FG70-1.** On the protected split, `P4_MODEL_COUNTERMODEL_SEARCH` will have
+> the highest false-invention count of any non-control arm, and
+> `P3_MDL_ABSTRACTION_SEARCH` will have a false-invention count of 0 together
+> with the lowest accuracy of any parent on the `NEW_PRIMITIVE` stratum.
+>
+> **Reading if it holds:** what prevents false formalism invention is the
+> *ordering* of the repair search, not the verification of the repair.
+> Countermodel search verifies every candidate exactly and still invents, because
+> it has no cost model and scans terminals alphabetically; MDL abstraction has a
+> cost model and never invents, but prices a new primitive so far above every
+> alternative that it is blind to genuine invention need. Neither is a failure of
+> verification. Both are failures of ordering, in opposite directions, and the
+> registered §L5 order is exactly an ordering prescription.
+>
+> **Reading if it fails:** the development ordering was n = 36 noise and the
+> claim is withdrawn; the false-invention behaviour of a parent is then not
+> predictable from whether it carries a cost model.
+
+Development values (n = 36, 30 eligible): `P4` 8 false inventions and 0/6 on
+NEW_PRIMITIVE for `P3`, whose false-invention count is 0. Protected denominators
+are 140 eligible and 28 per stratum.
+
+If P-FG70-1 holds it is not specific to FG70, so FG10 and FG20 will carry it as a
+**secondary axis** — the same two parents, the same two counters — without
+disturbing their own primaries.
 
 ## 6. Boundary
 
