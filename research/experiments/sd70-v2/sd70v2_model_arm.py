@@ -149,7 +149,10 @@ def execute(request: dict[str, Any]) -> dict[str, Any]:
             "--output-schema", str(schema_path), "--output-last-message", str(output_path),
             prompt,
         ]
-        completed = subprocess.run(command, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+        # stdin=DEVNULL: with an inherited non-tty stdin the CLI waits for
+        # additional prompt input and the call hangs to its timeout.
+        completed = subprocess.run(command, text=True, stdin=subprocess.DEVNULL,
+                                   stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                    timeout=timeout, check=False)
         usage = parse_events(completed.stdout)
         if completed.returncode != 0 or not output_path.exists():

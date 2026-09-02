@@ -15,8 +15,8 @@ outcome inspected.** The protected seed lives only in `~/.orion-custody/sd70-v2/
 | `sd70v2_generator.py` | `6163a3658349e416246a2331fe7a381f42104d132f32bbad168d5ad2fde1a56a` |
 | `sd70v2_parents.py` | `5883fae4c8fb5ddd13970037d76c67dc850c1ce97b332b8180ce969358365808` |
 | `sd70v2_stats.py` | `5c20d2a05868abc02c48c2b895f37bb38d37e897a2e3204eae45d167a239515c` |
-| `sd70v2_model_arm.py` | `7934f2be81d78f0894962148327cd9d7b56444c8ea37f8bb7f132342e5882262` |
-| `sd70v2_run.py` | `be3ffe9a406b1d9e8c4c50102db03378de2d64d37a3c5e099ec453364835322a` |
+| `sd70v2_model_arm.py` | `17e9dd812f8ae2afd0e1bcc76fc3d0d639430e342e9a141a7ca9154eae954349` |
+| `sd70v2_run.py` | `aa6faf35608b156b624f366dcc873a9e45a067adbdfbcecad1643da00328c1db` |
 | `SD70_V2_EXECUTION_DESIGN_V1.json` | `96d933e00cbc8d09222fd4e86e27d1fe8604164521aea1feedd483ddcbd28bf4` |
 | `results/SD70_V2_DEVELOPMENT_RESULTS_V1.json` | `fa98de121ac4423b033145d764fb460c66153eda419878f762d1f8add8467cc2` |
 | `results/SD70_V2_SELFTEST_V1.json` | `b110e7b60281783afe3110c862db1ea8597f2f8ba3106fe3ac0db4af919a50ec` |
@@ -91,6 +91,15 @@ pool and requests unreadable from inside the child; a planted perfect solver rou
 PROSPECTIVE_META_POLICY_RESIDUAL with every gate true; a failing solver is scored as failure and
 routes CANNOT_CHECK with one bounded rerun then no further attempts; wrong protected seed,
 tampered design and missing response are refused.
+
+## 5b. Post-freeze implementation fix (outcome-blind)
+
+A live probe on the execution host showed the Codex CLI reading additional
+prompt input from an inherited non-tty stdin, which would have hung every model
+call to its 600 s timeout. Both subprocess launches now pass
+`stdin=subprocess.DEVNULL`. This is an execution-fidelity fix: no arm, surface,
+outcome, threshold, gate, terminal or task distribution changed. Hashes above are
+post-fix.
 
 ## 6. Authority
 

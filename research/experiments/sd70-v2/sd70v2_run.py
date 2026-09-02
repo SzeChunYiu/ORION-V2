@@ -453,7 +453,8 @@ def stage_dispatch(workdir: Path, design: dict[str, Any], max_concurrency: int, 
                 tmp_req.write_bytes(G.canonical_bytes(request))
                 tmp_resp = Path(tmp) / "response.json"
                 completed = subprocess.run(_model_command() + ["--request", str(tmp_req), "--response", str(tmp_resp)],
-                                           cwd=tmp, env=env, check=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                                           cwd=tmp, env=env, check=False, stdin=subprocess.DEVNULL,
+                                           stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 if tmp_resp.exists():
                     data = _read(tmp_resp)
                     data["attempt"] = attempt
