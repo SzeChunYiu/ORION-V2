@@ -113,6 +113,59 @@ def test_dormant_two_step_and_shared_successor() -> None:
                    for p in mod.rgs_partitions(s.n))
 
 
+def test_fano_gate_zero_is_a_skip_not_a_pass_on_nonpc_family() -> None:
+    """The (ii) counter is PC-gated; without PC the same inequality does fail.
+
+    ``T1_fano_ub_violations == 0`` on the non-PC family must NOT be read as
+    "Delta <= sum_x phi_{k_x} held everywhere": the check is only run where (ii)
+    is asserted (terminal model AND PC).  Dropping PC must expose violations,
+    and the gated and ungated denominators must differ.
+    """
+    receipt = mod.run(full=False, seed=7)
+    row = next(r for r in receipt["A_T1_T2_bounds_by_family"]
+               if r["family"] == "random_terminal_nonPC")
+    assert row["T1_fano_ub_violations"] == 0                       # gated: no PC machine fails
+    assert row["T1_fano_ub_violations_ungated_by_pc"] > 0          # ungated: non-PC machines do
+    assert row["T1_machines_with_ungated_fano_ub_violation"] > 0
+    assert 0 < row["machines_pc"] < row["machines"]
+    assert row["T1_fano_applicable_partitions"] < row["T1_fano_terminal_partitions_ungated_by_pc"]
+    # every violation is on a non-PC machine, so the PC-gated pass is a real pass
+    assert row["machines_terminal_model"] == row["machines"]
+    # a congruent family must have no violation even ungated (control: no false alarm)
+    pc_row = next(r for r in receipt["A_T1_T2_bounds_by_family"] if r["family"].startswith("terminal_"))
+    assert pc_row["T1_fano_ub_violations_ungated_by_pc"] == 0
+    assert pc_row["T1_fano_terminal_partitions_ungated_by_pc"] > 0
+
+
+def test_card_non_ordering_is_not_a_max_over_classes_artifact() -> None:
+    """K maxes over predictive classes, the entropy cost averages; does that matter?
+
+    On every instance behind Remark A.5(d) the current histories occupy a single
+    predictive class, so max and total block count coincide and no ordering flips.
+    """
+    res = mod.check_b_card_definition()
+    assert res["instances_checked"] >= 5
+    assert res["instances_with_one_predictive_class"] == res["instances_checked"]
+    assert res["orderings_that_flip_under_total_count"] == 0
+    assert res["verdict"] == "NON_ORDERING_NOT_A_MAX_VS_MEAN_ARTIFACT"
+    orders = {r["ordering_max"] for r in res["instances"]}
+    assert {"omega_dyn<omega_card", "omega_dyn>omega_card"} <= orders  # both directions present
+    assert all(r["definitions_agree"] for r in res["instances"])
+    # control: the two definitions ARE different functionals once several
+    # predictive classes carry current histories, so the agreement above is a
+    # property of these instances and not of the two definitions.
+    separated = None
+    for m in mod.terminal_family(3, 1, mod.SETS_2, [mod.uniform_prior(3)], None):
+        cur = [h for h in range(m.n) if m.probs[h] > 0]
+        if len({m.P[h] for h in cur}) < 2:
+            continue
+        pi = tuple(range(m.n))  # discrete partition: one block per history
+        if mod.blocks_total_over_fibres(pi, m) > mod.blocks_per_fibre(pi, m):
+            separated = m
+            break
+    assert separated is not None, "no multi-class machine separates the two K definitions"
+
+
 def test_small_sweep_passes() -> None:
     receipt = mod.run(full=False, seed=7)
     assert receipt["A_L1_one_step_reduction"]["verdict"] == "PASS"

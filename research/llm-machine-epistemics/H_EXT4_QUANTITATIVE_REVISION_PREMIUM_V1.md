@@ -174,46 +174,47 @@ This is the paper's Proposition D.1/J3 with a general base partition in place of
 
 ## 7. Mechanised-check receipt
 
-Pure Python, exhaustive enumeration, `TOL = 1e-9` on floats (masses exact `Fraction`; entropies `log2` floats). Families (`--cap 60000`, deterministic stride subsample in enumeration order when a family exceeds the cap; cap and stride recorded in the JSON): `terminal_n0=2_x=1_A<=3_uniform+skewed`: size 14406, stride 1, examined 14406 (exhaustive); `terminal_n0=3_x=1_A<=3_uniform`: size 588245, stride 10, examined 58825; `terminal_n0=3_x=1_A<=2_skewed`: size 7290, stride 1, examined 7290 (exhaustive); `terminal_n0=4_x=1_A<=2_uniform`: size 98415, stride 2, examined 49208; `terminal_n0=3_x=2_A<=2_uniform`: size 98415, stride 2, examined 49208. Random families: 3000 general machines (`n <= 5`, arbitrary partial `delta`, masses on any state) and 3000 non-PC terminal machines, seed 20260902. The A.L1 lemma check enumerates all Bell(n) partitions of the full state set on the `n0=3, A<=2` family plus 200 non-PC machines; the bound sweep enumerates partitions of the current histories and extends them canonically to the zero-mass successors (justified by Lemma A.L1). Run: `python3 research/llm-machine-epistemics/h_ext4_premium_bounds.py --full --cap 60000 --json-out research/llm-machine-epistemics/H_EXT4_RESULT_V1.json` (158 s on a laptop-class core).
+Pure Python, exhaustive enumeration, `TOL = 1e-9` on floats (masses exact `Fraction`; entropies `log2` floats). The sweep is now run with no cap, so every enumerated terminal family is exhausted and no stride subsample is taken: `terminal_n0=2_x=1_A<=3_uniform+skewed`: size 14406, stride 1, examined 14406 (exhaustive); `terminal_n0=3_x=1_A<=3_uniform`: size 588245, stride 1, examined 588245 (exhaustive); `terminal_n0=3_x=1_A<=2_skewed`: size 7290, stride 1, examined 7290 (exhaustive); `terminal_n0=4_x=1_A<=2_uniform`: size 98415, stride 1, examined 98415 (exhaustive); `terminal_n0=3_x=2_A<=2_uniform`: size 98415, stride 1, examined 98415 (exhaustive). Random families: 3000 general machines (`n <= 5`, arbitrary partial `delta`, masses on any state) and 3000 non-PC terminal machines, seed 20260902. The A.L1 lemma check enumerates all Bell(n) partitions of the full state set on the `n0=3, A<=2` family plus 200 non-PC machines; the bound sweep enumerates partitions of the current histories and extends them canonically to the zero-mass successors (justified by Lemma A.L1). Run: `python3 research/llm-machine-epistemics/h_ext4_premium_bounds.py --full --json-out research/llm-machine-epistemics/H_EXT4_RESULT_V1.json`.
+
+**Scope of the A.1(ii) Fano-form check (receipt schema v2).** The Fano upper bound is asserted only for one-step terminal models satisfying PC, and `T1_fano_ub_violations` counts violations on exactly that hypothesis set; its denominator is `T1_fano_applicable_partitions`. A zero there is a pass on the machines where the bound is claimed, **not** a statement about the machines where it is not: on those the check is skipped, not passed. `T1_fano_ub_violations_ungated_by_pc` drops the PC gate (keeping the terminal model, without which `phi_{k_x}` is not the right-hand side of the bound at all) over `T1_fano_terminal_partitions_ungated_by_pc`, and records how often `Delta(Pi) > sum_x phi_{k_x}(R*_x(Pi))` actually fails. Both numbers are reported per family below.
 
 | Check | Instances | Outcome |
 |---|---|---|
+| A.1(i) `-log2(1-R*) <= Delta` — terminal_n0=2_x=1_A<=3_uniform+skewed | 19845 static partitions / 14406 machines | 0 violations; tight (Δ>0): 444 |
+| A.1(ii) `Delta <= Fano` — terminal_n0=2_x=1_A<=3_uniform+skewed | gated (terminal ∧ PC): 19845 partitions; ungated by PC (terminal): 19845 | 0 violations gated / 0 ungated (on 0 machines); PC machines 14406/14406, terminal 14406/14406; tight (Δ>0): 666; both tight: 222 |
+| A.2 `Omega <= min Delta(Pi_s)`; label formula = Δ; `Omega <= Fano` — terminal_n0=2_x=1_A<=3_uniform+skewed | 14406 machines (1332 with Ω>0) | 0 / 0 / 0 violations; Fano tight among Ω>0: 666 |
+| A.1(i) `-log2(1-R*) <= Delta` — terminal_n0=3_x=1_A<=3_uniform | 1179234 static partitions / 588245 machines | 0 violations; tight (Δ>0): 1014 |
+| A.1(ii) `Delta <= Fano` — terminal_n0=3_x=1_A<=3_uniform | gated (terminal ∧ PC): 1179234 partitions; ungated by PC (terminal): 1179234 | 0 violations gated / 0 ungated (on 0 machines); PC machines 588245/588245, terminal 588245/588245; tight (Δ>0): 7098; both tight: 1014 |
+| A.2 `Omega <= min Delta(Pi_s)`; label formula = Δ; `Omega <= Fano` — terminal_n0=3_x=1_A<=3_uniform | 588245 machines (103458 with Ω>0) | 0 / 0 / 0 violations; Fano tight among Ω>0: 7098 |
+| A.1(i) `-log2(1-R*) <= Delta` — terminal_n0=3_x=1_A<=2_skewed | 14904 static partitions / 7290 machines | 0 violations; tight (Δ>0): 30 |
+| A.1(ii) `Delta <= Fano` — terminal_n0=3_x=1_A<=2_skewed | gated (terminal ∧ PC): 14904 partitions; ungated by PC (terminal): 14904 | 0 violations gated / 0 ungated (on 0 machines); PC machines 7290/7290, terminal 7290/7290; tight (Δ>0): 360; both tight: 30 |
+| A.2 `Omega <= min Delta(Pi_s)`; label formula = Δ; `Omega <= Fano` — terminal_n0=3_x=1_A<=2_skewed | 7290 machines (1244 with Ω>0) | 0 / 0 / 0 violations; Fano tight among Ω>0: 360 |
+| A.1(i) `-log2(1-R*) <= Delta` — terminal_n0=4_x=1_A<=2_uniform | 306990 static partitions / 98415 machines | 0 violations; tight (Δ>0): 1362 |
+| A.1(ii) `Delta <= Fano` — terminal_n0=4_x=1_A<=2_uniform | gated (terminal ∧ PC): 306990 partitions; ungated by PC (terminal): 306990 | 0 violations gated / 0 ungated (on 0 machines); PC machines 98415/98415, terminal 98415/98415; tight (Δ>0): 2726; both tight: 1362 |
+| A.2 `Omega <= min Delta(Pi_s)`; label formula = Δ; `Omega <= Fano` — terminal_n0=4_x=1_A<=2_uniform | 98415 machines (24410 with Ω>0) | 0 / 0 / 0 violations; Fano tight among Ω>0: 2162 |
+| A.1(i) `-log2(1-R*) <= Delta` — terminal_n0=3_x=2_A<=2_uniform | 201204 static partitions / 98415 machines | 0 violations; tight (Δ>0): 0 |
+| A.1(ii) `Delta <= Fano` — terminal_n0=3_x=2_A<=2_uniform | gated (terminal ∧ PC): 201204 partitions; ungated by PC (terminal): 201204 | 0 violations gated / 0 ungated (on 0 machines); PC machines 98415/98415, terminal 98415/98415; tight (Δ>0): 5400; both tight: 0 |
+| A.2 `Omega <= min Delta(Pi_s)`; label formula = Δ; `Omega <= Fano` — terminal_n0=3_x=2_A<=2_uniform | 98415 machines (28248 with Ω>0) | 0 / 0 / 0 violations; Fano tight among Ω>0: 5400 |
+| A.1(i) `-log2(1-R*) <= Delta` — random_general_n<=5 | 17991 static partitions / 3000 machines | 0 violations; tight (Δ>0): 10 |
+| A.1(ii) `Delta <= Fano` — random_general_n<=5 | gated (terminal ∧ PC): 10 partitions; ungated by PC (terminal): 12 | 0 violations gated / 1 ungated (on 1 machines); PC machines 1508/3000, terminal 11/3000; tight (Δ>0): 0; both tight: 0 |
+| A.2 `Omega <= min Delta(Pi_s)`; label formula = Δ; `Omega <= Fano` — random_general_n<=5 | 3000 machines (1541 with Ω>0) | 0 / 0 / 0 violations; Fano tight among Ω>0: 0 |
+| A.1(i) `-log2(1-R*) <= Delta` — random_terminal_nonPC | 5460 static partitions / 3000 machines | 0 violations; tight (Δ>0): 49 |
+| A.1(ii) `Delta <= Fano` — random_terminal_nonPC | gated (terminal ∧ PC): 1962 partitions; ungated by PC (terminal): 5460 | 0 violations gated / 1308 ungated (on 991 machines); PC machines 1409/3000, terminal 3000/3000; tight (Δ>0): 23; both tight: 7 |
+| A.2 `Omega <= min Delta(Pi_s)`; label formula = Δ; `Omega <= Fano` — random_terminal_nonPC | 3000 machines (1363 with Ω>0) | 0 / 0 / 934 violations; Fano tight among Ω>0: 79 |
+| A.2 without PC (random non-PC terminal) | 3000 machines (1409 satisfy PC) | PC_LOAD_BEARING_FOR_FANO_FORM__LABEL_FORM_HOLDS: premium-level Fano-form violations 934, `Omega <= min Delta` violations 0, label-form violations 0; per-partition `Delta > Fano` ungated by PC 1308 of 5460 partitions on 991 machines, vs 0 on the 1962 PC partitions |
 | A.L1 one-step reduction lemma | 761547 partitions | PASS (0 mismatches) |
 | A.P1 ε-criterion = minimax cell regret ≤ ε | 5967 (cell, ε) pairs | PASS (0 mismatches) |
 | A.P2 garbling monotonicity of Bayes regret | 2649 nested pairs | 0 violations |
-| A.1(i) `-log2(1-R*) <= Delta` — terminal_n0=2_x=1_A<=3_uniform+skewed | 19845 static partitions / 14406 machines | 0 violations; tight (Δ>0): 444 |
-| A.1(ii) `Delta <= Fano` — terminal_n0=2_x=1_A<=3_uniform+skewed | same | 0 violations; tight (Δ>0): 666; both tight: 222 |
-| A.2 `Omega <= min Delta(Pi_s)`; label formula = Δ; `Omega <= Fano` — terminal_n0=2_x=1_A<=3_uniform+skewed | 14406 machines (1332 with Ω>0) | 0 / 0 / 0 violations; Fano tight among Ω>0: 666 |
-| A.1(i) `-log2(1-R*) <= Delta` — terminal_n0=3_x=1_A<=3_uniform | 117920 static partitions / 58825 machines | 0 violations; tight (Δ>0): 105 |
-| A.1(ii) `Delta <= Fano` — terminal_n0=3_x=1_A<=3_uniform | same | 0 violations; tight (Δ>0): 715; both tight: 105 |
-| A.2 `Omega <= min Delta(Pi_s)`; label formula = Δ; `Omega <= Fano` — terminal_n0=3_x=1_A<=3_uniform | 58825 machines (10333 with Ω>0) | 0 / 0 / 0 violations; Fano tight among Ω>0: 715 |
-| A.1(i) `-log2(1-R*) <= Delta` — terminal_n0=3_x=1_A<=2_skewed | 14904 static partitions / 7290 machines | 0 violations; tight (Δ>0): 30 |
-| A.1(ii) `Delta <= Fano` — terminal_n0=3_x=1_A<=2_skewed | same | 0 violations; tight (Δ>0): 360; both tight: 30 |
-| A.2 `Omega <= min Delta(Pi_s)`; label formula = Δ; `Omega <= Fano` — terminal_n0=3_x=1_A<=2_skewed | 7290 machines (1244 with Ω>0) | 0 / 0 / 0 violations; Fano tight among Ω>0: 360 |
-| A.1(i) `-log2(1-R*) <= Delta` — terminal_n0=4_x=1_A<=2_uniform | 153531 static partitions / 49208 machines | 0 violations; tight (Δ>0): 798 |
-| A.1(ii) `Delta <= Fano` — terminal_n0=4_x=1_A<=2_uniform | same | 0 violations; tight (Δ>0): 1330; both tight: 798 |
-| A.2 `Omega <= min Delta(Pi_s)`; label formula = Δ; `Omega <= Fano` — terminal_n0=4_x=1_A<=2_uniform | 49208 machines (12118 with Ω>0) | 0 / 0 / 0 violations; Fano tight among Ω>0: 1006 |
-| A.1(i) `-log2(1-R*) <= Delta` — terminal_n0=3_x=2_A<=2_uniform | 100609 static partitions / 49208 machines | 0 violations; tight (Δ>0): 0 |
-| A.1(ii) `Delta <= Fano` — terminal_n0=3_x=2_A<=2_uniform | same | 0 violations; tight (Δ>0): 2406; both tight: 0 |
-| A.2 `Omega <= min Delta(Pi_s)`; label formula = Δ; `Omega <= Fano` — terminal_n0=3_x=2_A<=2_uniform | 49208 machines (13944 with Ω>0) | 0 / 0 / 0 violations; Fano tight among Ω>0: 2406 |
-| A.1(i) `-log2(1-R*) <= Delta` — random_general_n<=5 | 17991 static partitions / 3000 machines | 0 violations; tight (Δ>0): 10 |
-| A.2 `Omega <= min Delta(Pi_s)`; label formula = Δ; `Omega <= Fano` — random_general_n<=5 | 3000 machines (1541 with Ω>0) | 0 / 0 / 0 violations; Fano tight among Ω>0: 0 |
-| A.1(i) `-log2(1-R*) <= Delta` — random_terminal_nonPC | 5460 static partitions / 3000 machines | 0 violations; tight (Δ>0): 49 |
-| A.1(ii) `Delta <= Fano` — random_terminal_nonPC | same | 0 violations; tight (Δ>0): 23; both tight: 7 |
-| A.2 `Omega <= min Delta(Pi_s)`; label formula = Δ; `Omega <= Fano` — random_terminal_nonPC | 3000 machines (1363 with Ω>0) | 0 / 0 / 934 violations; Fano tight among Ω>0: 79 |
-| A.2 without PC (random non-PC terminal) | 3000 machines | PC_LOAD_BEARING_FOR_FANO_FORM__LABEL_FORM_HOLDS: Fano-form violations 934, label-form violations 0 |
-| A.3 no converse bound | vanishing family | REFUTED: u=1/4: Ω=0.1887, R*≥0.250; u=3/10: Ω=0.0897, R*≥0.300; u=8/25: Ω=0.0383, R*≥0.320; u=33/100: Ω=0.0099, R*≥0.330; u=333/1000: Ω=0.0010, R*≥0.333 |
-| A.T3 witness table | 4 priors × 2 fibre layouts | q=1/2: Ω=1.0000=h_b(q)=True, Ω_card=1, Fano tight=True, lower tight=True; q=3/4: Ω=0.8113=h_b(q)=True, Ω_card=1, Fano tight=True, lower tight=False; q=9/10: Ω=0.4690=h_b(q)=True, Ω_card=1, Fano tight=True, lower tight=False; q=99/100: Ω=0.0808=h_b(q)=True, Ω_card=1, Fano tight=True, lower tight=False |
+| A.3 no converse bound | vanishing family (488 sweep violations of the candidate lower bound) | REFUTED: u=1/4: Ω=0.1887, R*≥0.250; u=3/10: Ω=0.0897, R*≥0.300; u=8/25: Ω=0.0383, R*≥0.320; u=33/100: Ω=0.0099, R*≥0.330; u=333/1000: Ω=0.0010, R*≥0.333 |
+| A.T3 witness table | 8 rows (priors × fibre layouts) | q=1/2: Ω=1.0000, Ω_card=1, Fano tight=True; q=3/4: Ω=0.8113, Ω_card=1, Fano tight=True; q=9/10: Ω=0.4690, Ω_card=1, Fano tight=True; q=99/100: Ω=0.0808, Ω_card=1, Fano tight=True |
 | B.1 `C* <= log2 K*` | 223171 machines | 0 violations |
 | B.3 orderings / zero-conditions | same | Ω_dyn>Ω_card: 6646; Ω_dyn<Ω_card: 45307; Ω_card=0<Ω_dyn: 4800; Ω_dyn=0<Ω_card: 0 (+ named fixture) |
+| B.4 is the Ω_card/Ω_dyn non-ordering a max-over-classes artifact? | 5 instances behind Remark A.5(d) | NON_ORDERING_NOT_A_MAX_VS_MEAN_ARTIFACT: all 5 have one predictive class among current histories, so max and total block count coincide; 0 orderings flip under a total-count K |
 | C.1 (b),(c) implications | 2526 random partitions | 0 / 0 violations; N1∧¬W2 instances: 152 |
-| C.2 dormant two-step | fixture | N1=True, W1=True, W2=False, RC=False; C_W1=0, C_W2=1, C_dyn=1 |
-| C.3 shared successor / chain equivalence | 1113 chain instances | word-compatible=True, recursive extension=False; chain violations 0 |
+| C.3 shared successor / chain equivalence | 1113 chain instances | chain violations 0 |
 | C.4 multi-step Fano form, depth-2 chains | 400 chains | 0 violations |
 
-Totals: 184937 machines and 430260 static-admissible partitions in the bound sweep; seed 20260902; exit code 0 = every proved statement confirmed on every instance, every refutation witnessed.
-
----
+Totals: 812771 machines and 1745628 static-admissible partitions in the bound sweep; seed 20260902; all five enumerated terminal families exhausted. Bound (i) holds on every one of the 1745628 partitions. Bound (ii) is asserted on 1724149 partitions (terminal ∧ PC) and holds on all of them; dropping PC over the 1727649 partitions of terminal models exposes 1309 violations on 992 machines, every one of them a machine that fails PC. Receipt schema `orion-v2.h-ext4-premium-bounds.v2`.
 
 ## 8. Files
 
