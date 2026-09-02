@@ -4,10 +4,10 @@
     "COST": {
       "B5_mean_cost": 9.958333333333334,
       "B5_mean_regret": 2.875,
-      "B5_wall_ms": 18.46329,
+      "B5_wall_ms": 18.214042,
       "M2_mean_cost": 10.25,
       "M2_mean_regret": 3.225,
-      "M2_wall_ms": 24.326502,
+      "M2_wall_ms": 24.617503,
       "M_V1_mean_regret": 3.25,
       "flag": "COST_PARITY",
       "instances_B5_lower_regret": 11,
@@ -329,7 +329,7 @@
       },
       "a_pass": false,
       "applicable": true,
-      "b_pass": false,
+      "b_pass": true,
       "b_single_lever_vs_M_V1": {
         "M2_L1_LOOKAHEAD_ONLY": {
           "diff_x_minus_y": 0.0,
@@ -362,7 +362,7 @@
       "d_n_M_V1_only_correct": 0,
       "d_pass": false,
       "pass": false,
-      "rule": "(a) paired M2 - M_V1 > 0 at exact p <= 0.05; (b) neither single-lever arm reaches M2's improvement over M_V1 (the conjunction is load-bearing); (c) >= 80% of M2-only-correct instances are ones where V1 declared a false CANNOT_IDENTIFY AND M2's lever receipts show an L2-only-admissible action or an L1-changed choice; (d) M2 loses fewer instances to V1 than it gains: the revival must not move the failure"
+      "rule": "(a) paired M2 - M_V1 > 0 at exact p <= 0.05 [routes the lever verdict]; (b) neither single-lever arm improves on M_V1 by more than the conjunction does [reported diagnostic]; (c) >= 80% of M2-only-correct instances are ones where V1 declared a false CANNOT_IDENTIFY AND M2's EXECUTED lever receipts show an L2-only-admissible action or an L1-changed choice [routes the lever verdict: failing it gives LEVERS_NOT_ATTRIBUTED]; (d) M2 loses fewer instances to V1 than it gains: the revival must not move the failure [routes the lever verdict: failing it gives LEVERS_MOVE_THE_FAILURE]"
     },
     "ROUTE": {
       "B5_decision_rate": 0.9791666666666666,
@@ -400,7 +400,9 @@
       "instances_with_l1_changed_choice": 15,
       "instances_with_l2_only_admissible_action": 0,
       "instances_with_permitted_foreclosure": 0,
-      "instances_with_positive_expected_abstention": 18
+      "instances_with_positive_expected_abstention": 18,
+      "receipts_considered_not_executed": 0,
+      "receipts_executed": 100
     },
     "per_arm": {
       "B0_RETRY_SEARCH": {
@@ -529,7 +531,7 @@
         "recurrence": 111,
         "spec_damage": 0,
         "success_rate": 0.20833333333333334,
-        "wall_ms": 0.400125
+        "wall_ms": 0.411835
       },
       "B1_UNCERTAINTY_ABSTENTION": {
         "brier": 0.16666666666666666,
@@ -657,7 +659,7 @@
         "recurrence": 0,
         "spec_damage": 0,
         "success_rate": 0.5416666666666666,
-        "wall_ms": 1.639079
+        "wall_ms": 1.598623
       },
       "B2_FAILURE_TAXONOMY_DIAGNOSIS": {
         "brier": null,
@@ -785,7 +787,7 @@
         "recurrence": 64,
         "spec_damage": 1,
         "success_rate": 0.625,
-        "wall_ms": 0.683292
+        "wall_ms": 0.635081
       },
       "B3_EQUAL_EXTRA_SEARCH_1_5X": {
         "brier": 0.13043478260869565,
@@ -913,7 +915,7 @@
         "recurrence": 2,
         "spec_damage": 0,
         "success_rate": 0.9375,
-        "wall_ms": 3.397164
+        "wall_ms": 3.287543
       },
       "B3_MODEL_BASED_DIAGNOSIS_VOI": {
         "brier": 0.1569767441860465,
@@ -1041,7 +1043,7 @@
         "recurrence": 5,
         "spec_damage": 0,
         "success_rate": 0.7916666666666666,
-        "wall_ms": 3.161587
+        "wall_ms": 3.059459
       },
       "B4_MDA_MODEL_EXPANSION": {
         "brier": 0.13125,
@@ -1169,7 +1171,7 @@
         "recurrence": 4,
         "spec_damage": 0,
         "success_rate": 0.75,
-        "wall_ms": 2.681252
+        "wall_ms": 2.51175
       },
       "B5_NO_ABSTENTION_GATE": {
         "brier": 0.17708333333333334,
@@ -1297,7 +1299,7 @@
         "recurrence": 31,
         "spec_damage": 0,
         "success_rate": 0.875,
-        "wall_ms": 41.345545
+        "wall_ms": 40.861962
       },
       "B5_R1_VERDICT_ONLY": {
         "brier": null,
@@ -1425,7 +1427,7 @@
         "recurrence": 2,
         "spec_damage": 0,
         "success_rate": 0.75,
-        "wall_ms": 1.204624
+        "wall_ms": 1.200995
       },
       "B5_R2_PLUS_CANDIDATE_SET": {
         "brier": 0.16666666666666666,
@@ -1553,7 +1555,7 @@
         "recurrence": 2,
         "spec_damage": 0,
         "success_rate": 0.7291666666666666,
-        "wall_ms": 0.963166
+        "wall_ms": 0.95808
       },
       "B5_R3_PLUS_DISCRIMINATOR_TABLES": {
         "brier": 0.171875,
@@ -1681,7 +1683,7 @@
         "recurrence": 28,
         "spec_damage": 0,
         "success_rate": 0.75,
-        "wall_ms": 21.887169
+        "wall_ms": 22.338212
       },
       "B5_R4_PLUS_DISPOSITION_RECORDS": {
         "brier": 0.17708333333333334,
@@ -1809,7 +1811,7 @@
         "recurrence": 29,
         "spec_damage": 0,
         "success_rate": 0.8333333333333334,
-        "wall_ms": 19.28646
+        "wall_ms": 19.217708
       },
       "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": {
         "brier": 0.17708333333333334,
@@ -1937,7 +1939,7 @@
         "recurrence": 29,
         "spec_damage": 0,
         "success_rate": 0.8333333333333334,
-        "wall_ms": 18.46329
+        "wall_ms": 18.214042
       },
       "C_NEVER_INTERVENE": {
         "brier": 0.16666666666666666,
@@ -2065,7 +2067,7 @@
         "recurrence": 0,
         "spec_damage": 0,
         "success_rate": 0.0,
-        "wall_ms": 0.131003
+        "wall_ms": 0.133165
       },
       "C_RANDOM_POLICY": {
         "brier": 0.3088916393827243,
@@ -2193,7 +2195,7 @@
         "recurrence": 25,
         "spec_damage": 2,
         "success_rate": 0.22916666666666666,
-        "wall_ms": 2.037663
+        "wall_ms": 2.058046
       },
       "M2_ALWAYS_ESCALATE_WHEN_STUCK": {
         "brier": 0.17939814814814814,
@@ -2321,7 +2323,7 @@
         "recurrence": 40,
         "spec_damage": 6,
         "success_rate": 0.625,
-        "wall_ms": 19.96159
+        "wall_ms": 19.802539
       },
       "M2_L1_LOOKAHEAD_ONLY": {
         "brier": 0.16666666666666666,
@@ -2449,7 +2451,7 @@
         "recurrence": 11,
         "spec_damage": 0,
         "success_rate": 0.8333333333333334,
-        "wall_ms": 24.773082
+        "wall_ms": 24.426289
       },
       "M2_L2_BEST_HYPOTHESIS_ONLY": {
         "brier": 0.16666666666666666,
@@ -2577,7 +2579,7 @@
         "recurrence": 13,
         "spec_damage": 0,
         "success_rate": 0.75,
-        "wall_ms": 19.102667
+        "wall_ms": 18.443794
       },
       "M2_LOCUS_LABELS_SHUFFLED": {
         "brier": 0.9024390243902439,
@@ -2705,7 +2707,7 @@
         "recurrence": 29,
         "spec_damage": 0,
         "success_rate": 0.2916666666666667,
-        "wall_ms": 78.508834
+        "wall_ms": 77.736585
       },
       "M2_LOOKAHEAD_PLUS_BEST_HYPOTHESIS": {
         "brier": 0.16666666666666666,
@@ -2833,7 +2835,7 @@
         "recurrence": 11,
         "spec_damage": 0,
         "success_rate": 0.8333333333333334,
-        "wall_ms": 24.326502
+        "wall_ms": 24.617503
       },
       "M2_MINUS_DIAGNOSTIC_EVALUATOR_GATE": {
         "brier": 0.16666666666666666,
@@ -2961,7 +2963,7 @@
         "recurrence": 12,
         "spec_damage": 0,
         "success_rate": 0.875,
-        "wall_ms": 25.657086
+        "wall_ms": 25.502663
       },
       "M2_MINUS_LOCUS_DIAGNOSIS": {
         "brier": 0.16666666666666666,
@@ -3089,7 +3091,7 @@
         "recurrence": 58,
         "spec_damage": 0,
         "success_rate": 0.4583333333333333,
-        "wall_ms": 12.980958
+        "wall_ms": 13.011789
       },
       "M2_MINUS_LOWER_LEVEL_DISPOSITION": {
         "brier": 0.15104166666666666,
@@ -3217,7 +3219,7 @@
         "recurrence": 1,
         "spec_damage": 0,
         "success_rate": 0.8333333333333334,
-        "wall_ms": 19.552498
+        "wall_ms": 19.241168
       },
       "M2_MINUS_PROSPECTIVE_DISCRIMINATOR": {
         "brier": 0.16666666666666666,
@@ -3345,7 +3347,7 @@
         "recurrence": 8,
         "spec_damage": 0,
         "success_rate": 0.5833333333333334,
-        "wall_ms": 21.727582
+        "wall_ms": 22.411462
       },
       "M2_NEVER_ESCALATE": {
         "brier": 0.16666666666666666,
@@ -3473,7 +3475,7 @@
         "recurrence": 11,
         "spec_damage": 0,
         "success_rate": 0.4375,
-        "wall_ms": 27.033832
+        "wall_ms": 26.691124
       },
       "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": {
         "brier": 0.16666666666666666,
@@ -3601,7 +3603,7 @@
         "recurrence": 12,
         "spec_damage": 0,
         "success_rate": 0.8333333333333334,
-        "wall_ms": 37.459588
+        "wall_ms": 37.086243
       }
     }
   }

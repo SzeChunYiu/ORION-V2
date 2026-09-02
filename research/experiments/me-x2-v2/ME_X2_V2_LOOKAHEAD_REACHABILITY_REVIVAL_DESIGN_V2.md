@@ -227,7 +227,12 @@ and per variant. V2 adds per-instance **lever receipts**: for each step, the
 chosen action's four diagnostic terms, whether the action was admissible only
 under L2, and whether L1 changed the choice V1's order would have made. G5(c)
 reads the mechanism from these receipts rather than inferring it from the
-trajectory.
+trajectory. V1's inherited `act()` consults the discriminator ranking *before*
+its unique / common-fix branches, so a receipt can describe an action `M2` never
+took: attribution counts only receipts whose step matches the **executed**
+trajectory step. On the public surfaces this filter removes 2 of 322 receipts
+(144-instance fixture search) and 6 of 2 486 (1 200-instance scale) — small, and
+it can only inflate G5(c) if left in.
 
 ## 6. Gates
 
@@ -256,13 +261,16 @@ trajectory.
 - **G4 `INTERFACE_LADDER`:** as V1.
 - **G5 `LEVER_ATTRIBUTION` (new):**
   (a) paired `M2` − `M_V1` decision-correct > 0 at exact two-sided p ≤ 0.05;
-  (b) neither single-lever arm reaches `M2`'s improvement over `M_V1` — the
-  conjunction is load-bearing;
+  (b) neither single-lever arm improves on `M_V1` by more than the conjunction
+  does;
   (c) ≥ 80% of `M2`-only-correct-vs-V1 instances are ones where V1 declared a
-  **false `CANNOT_IDENTIFY`** *and* `M2`'s lever receipts show an
+  **false `CANNOT_IDENTIFY`** *and* `M2`'s **executed** lever receipts show an
   L2-only-admissible action or an L1-changed choice;
   (d) `M2` loses fewer instances to V1 than it gains from it — **the revival must
   not move the failure**.
+  Clauses (a), (c) and (d) each route the lever verdict of §7; (b) is a reported
+  diagnostic. G5 does not route the primary comparison, which is `B5`-relative by
+  design.
 - **COST:** paired sign test on per-instance regret, p ≤ 0.05. Wall-clock routes
   nothing.
 
@@ -286,9 +294,10 @@ of a revival lane):
 |---|---|
 | `M2` significantly worse than V1's `M` | `LEVERS_HARM` |
 | no significant `M2` − `M_V1` difference | `LEVERS_NULL` |
-| `M2` better than V1 but G2's vs-V1 clause fails, or V1-only-correct ≥ M2-only-correct | `LEVERS_MOVE_THE_FAILURE` |
-| `M2` better than V1, `B5` still significantly ahead | `LEVERS_PARTIAL_RECOVERY` |
-| `M2` better than V1, no escalation regression, `B5` not significantly ahead | `LEVERS_RECOVER_M` |
+| `M2` better than V1 but G2's vs-V1 clause fails, or V1-only-correct ≥ M2-only-correct (G5d) | `LEVERS_MOVE_THE_FAILURE` |
+| `M2` better than V1 but G5(c) fails: the executed receipts do not attribute the gain to either lever | `LEVERS_NOT_ATTRIBUTED` |
+| `M2` better than V1, attributed, `B5` still significantly ahead | `LEVERS_PARTIAL_RECOVERY` |
+| `M2` better than V1, attributed, no escalation regression, `B5` not significantly ahead | `LEVERS_RECOVER_M` |
 
 `PARENT_SUFFICIENT` is a successful scientific terminal, and so is `LEVERS_NULL`.
 

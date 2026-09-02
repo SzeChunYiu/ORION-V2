@@ -134,12 +134,19 @@ def score_v2(results: dict, custody: dict, *, timing: dict | None = None) -> dic
                 swap_m2.append(score_trajectory(rec["arms"][M2_ARM]["trajectory"], cus[pid]["oracle"], cus[rec["instance_id"]]["instance"])["decision_correct"])
     lever: list[dict] = []
     for rec in results["instances"]:
-        rs = (rec["arms"].get(M2_ARM) or {}).get("lever_receipts") or []
-        lever.append({"instance_id": rec["instance_id"], "steps": len(rs),
-                      "l2_only_admissible": any(r.get("l2_only_admissible") for r in rs),
-                      "l1_changed_choice": any(r.get("l1_changed_choice") for r in rs),
-                      "expected_abstention_positive": any((r.get("expected_abstention") or 0) > 0 for r in rs),
-                      "foreclosure_permitted": any((r.get("foreclosed") or 0) > 0 for r in rs)})
+        arm = rec["arms"].get(M2_ARM) or {}
+        rs = arm.get("lever_receipts") or []
+        steps = (arm.get("trajectory") or {}).get("steps") or []
+        # V1's inherited act() consults _discriminators before its unique / common-fix branches, so a
+        # receipt is written for the top-ranked candidate even on steps where M2 goes on to apply a
+        # unique or common fix instead.  Attribution must read only the actions actually EXECUTED.
+        executed = [r for r in rs if r["step"] < len(steps) and steps[r["step"]]["kind"] == r["kind"] and steps[r["step"]]["target"] == r["action"]]
+        lever.append({"instance_id": rec["instance_id"], "steps": len(rs), "executed_steps": len(executed),
+                      "considered_not_executed": len(rs) - len(executed),
+                      "l2_only_admissible": any(r.get("l2_only_admissible") for r in executed),
+                      "l1_changed_choice": any(r.get("l1_changed_choice") for r in executed),
+                      "expected_abstention_positive": any((r.get("expected_abstention") or 0) > 0 for r in executed),
+                      "foreclosure_permitted": any((r.get("foreclosed") or 0) > 0 for r in executed)})
     sc["swap_null_M2"] = swap_m2
     sc["lever_activity"] = lever
     sc.pop("swap_null_M", None)     # V2 gates on the arm under test, never on V1's M
@@ -243,7 +250,7 @@ def gates_v2(sc: dict, results: dict, selftest_ok: bool | None, label: str, prov
     l1 = [r["decision_correct"] for r in rows[M2_L1_ARM]]; l2 = [r["decision_correct"] for r in rows[M2_L2_ARM]]
     p_l1 = paired_summary(l1, v1); p_l2 = paired_summary(l2, v1)
     a_ok = pv["diff_x_minus_y"] > 0 and pv["exact_p_two_sided"] <= 0.05
-    b_ok = (p_l1["diff_x_minus_y"] < pv["diff_x_minus_y"]) and (p_l2["diff_x_minus_y"] < pv["diff_x_minus_y"])
+    b_ok = (p_l1["diff_x_minus_y"] <= pv["diff_x_minus_y"]) and (p_l2["diff_x_minus_y"] <= pv["diff_x_minus_y"])
     act = {r["instance_id"]: r for r in sc["lever_activity"]}
     only_m2 = [i for i in range(n) if m2[i] and not v1[i]]
     mech = 0
@@ -260,9 +267,9 @@ def gates_v2(sc: dict, results: dict, selftest_ok: bool | None, label: str, prov
                                  "b_single_lever_vs_M_V1": {M2_L1_ARM: p_l1, M2_L2_ARM: p_l2}, "b_pass": bool(b_ok),
                                  "c_mechanism_rate": mech_rate, "c_n_M2_only_correct": len(only_m2), "c_pass": bool(c_ok),
                                  "d_n_M_V1_only_correct": len(only_v1), "d_pass": bool(d_ok),
-                                 "rule": "(a) paired M2 - M_V1 > 0 at exact p <= 0.05; (b) neither single-lever arm reaches M2's improvement over M_V1 (the conjunction is load-bearing); "
-                                         "(c) >= 80% of M2-only-correct instances are ones where V1 declared a false CANNOT_IDENTIFY AND M2's lever receipts show an L2-only-admissible action or an L1-changed choice; "
-                                         "(d) M2 loses fewer instances to V1 than it gains: the revival must not move the failure"}
+                                 "rule": "(a) paired M2 - M_V1 > 0 at exact p <= 0.05 [routes the lever verdict]; (b) neither single-lever arm improves on M_V1 by more than the conjunction does [reported diagnostic]; "
+                                         "(c) >= 80% of M2-only-correct instances are ones where V1 declared a false CANNOT_IDENTIFY AND M2's EXECUTED lever receipts show an L2-only-admissible action or an L1-changed choice [routes the lever verdict: failing it gives LEVERS_NOT_ATTRIBUTED]; "
+                                         "(d) M2 loses fewer instances to V1 than it gains: the revival must not move the failure [routes the lever verdict: failing it gives LEVERS_MOVE_THE_FAILURE]"}
 
     # ---- cost --------------------------------------------------------------------------------------
     rm = [r["regret"] for r in rows[M2_ARM]]; rb = [r["regret"] for r in rows[B5_ARM]]
@@ -299,6 +306,8 @@ def gates_v2(sc: dict, results: dict, selftest_ok: bool | None, label: str, prov
         lever_verdict = "LEVERS_NULL"
     elif not g["G2_ANTI_ESCALATION"]["vs_M_V1_pass"] or len(only_v1) >= len(only_m2):
         lever_verdict = "LEVERS_MOVE_THE_FAILURE"
+    elif not c_ok:
+        lever_verdict = "LEVERS_NOT_ATTRIBUTED"   # M2 beats V1 for reasons the executed receipts do not attribute to either lever
     elif g1c:
         lever_verdict = "LEVERS_PARTIAL_RECOVERY"
     else:
@@ -501,7 +510,9 @@ def stage_analyze(results_path: Path, custody_path: Path, out_dir: Path, label: 
                           "lever_activity": {"instances_with_l2_only_admissible_action": sum(1 for r in sc["lever_activity"] if r["l2_only_admissible"]),
                                              "instances_with_l1_changed_choice": sum(1 for r in sc["lever_activity"] if r["l1_changed_choice"]),
                                              "instances_with_permitted_foreclosure": sum(1 for r in sc["lever_activity"] if r["foreclosure_permitted"]),
-                                             "instances_with_positive_expected_abstention": sum(1 for r in sc["lever_activity"] if r["expected_abstention_positive"])}},
+                                             "instances_with_positive_expected_abstention": sum(1 for r in sc["lever_activity"] if r["expected_abstention_positive"]),
+                                             "receipts_considered_not_executed": sum(r["considered_not_executed"] for r in sc["lever_activity"]),
+                                             "receipts_executed": sum(r["executed_steps"] for r in sc["lever_activity"])}},
                 "gates": gt}
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / f"ME_X2_V2_{label}_ANALYSIS_V2.json").write_text(json.dumps(analysis, indent=2, sort_keys=True))

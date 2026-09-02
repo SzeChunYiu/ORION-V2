@@ -222,7 +222,7 @@ def test_dev_stage_end_to_end_labelled_development_and_deterministic(tmp_path: P
     ana = json.loads((tmp_path / "ME_X2_V2_DEVELOPMENT_ANALYSIS_V2.json").read_text())
     r = ana["gates"]["ROUTE"]
     assert r["route"] in {"PARENT_SUFFICIENT", "ME_X2_RESIDUAL_CANDIDATE", "M2_OVER_ESCALATES", "QUALITY_COST_TRADEOFF_NO_DOMINANCE", "CANNOT_CHECK"}
-    assert r["lever_verdict"] in {"LEVERS_RECOVER_M", "LEVERS_PARTIAL_RECOVERY", "LEVERS_MOVE_THE_FAILURE", "LEVERS_NULL", "LEVERS_HARM"}
+    assert r["lever_verdict"] in {"LEVERS_RECOVER_M", "LEVERS_PARTIAL_RECOVERY", "LEVERS_NOT_ATTRIBUTED", "LEVERS_MOVE_THE_FAILURE", "LEVERS_NULL", "LEVERS_HARM"}
     assert set(ana["gates"]) >= {"G0a_KNOWN_ANSWER", "G0b_ORACLE_SELF_AGREEMENT", "G0c_NULL_CALIBRATION", "G0d_V1_PROVENANCE",
                                  "G1a_B5_REPRODUCES_M2", "G1b_M2_ADVANTAGE", "G1c_B5_ADVANTAGE", "G2_ANTI_ESCALATION",
                                  "G3_MEDIATION", "G4_INTERFACE_LADDER", "G5_LEVER_ATTRIBUTION", "COST"}
@@ -231,6 +231,24 @@ def test_dev_stage_end_to_end_labelled_development_and_deterministic(tmp_path: P
 
 def test_dev_stage_refuses_more_than_the_cap(tmp_path: Path) -> None:
     assert mex2v2_run.main(["dev", "--out", str(tmp_path), "--pairs-per-stratum", "3"]) == 2
+
+
+def test_lever_receipts_count_only_executed_actions() -> None:
+    """V1's inherited act() consults the discriminator ranking before its unique / common-fix
+    branches, so a receipt can describe an action M2 never took. Attribution must not count those,
+    and the filter is not inert: it removes real receipts on the registered public surfaces."""
+    considered = executed = 0
+    for inst, _orc in mex2_generator.generate_split("fixture", "ME-X2-V2-FIXTURE-SEARCH-20260902", {s: 6 for s in mex2_model.STRATA}):
+        pol = mex2v2_arms.make_policy(SPECS[M2], "unit")
+        traj = mex2_oracle.Environment(inst).run(pol).as_dict()
+        for r in pol.lever_receipts:
+            step = traj["steps"][r["step"]] if r["step"] < len(traj["steps"]) else None
+            if step and step["kind"] == r["kind"] and step["target"] == r["action"]:
+                executed += 1
+            else:
+                considered += 1
+    assert considered >= 1, "the executed-only filter would be inert — say so rather than shipping a no-op"
+    assert executed > considered
 
 
 def test_gates_read_the_arm_under_test_not_v1s_m(tmp_path: Path) -> None:
@@ -243,6 +261,7 @@ def test_gates_read_the_arm_under_test_not_v1s_m(tmp_path: Path) -> None:
     assert g["G0c_NULL_CALIBRATION"]["M2_decision_rate"] == pytest.approx(sum(r["decision_correct"] for r in sc["_rows"][M2]) / len(pairs))
     assert g["G2_ANTI_ESCALATION"]["M_V1_false_escalation"] == sc["per_arm"][M_V1]["false_escalation"]
     assert g["G5_LEVER_ATTRIBUTION"]["a_paired_M2_vs_M_V1"]["n"] == len(pairs)
+    assert {"executed_steps", "considered_not_executed"} <= set(sc["lever_activity"][0])
 
 
 def test_g0d_failure_routes_cannot_check(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
@@ -308,7 +327,7 @@ def test_design_json_freezes_the_levers_commitment_arms_and_routing() -> None:
     assert d["parent_lane"]["v1_result_is_immutable"] is True
     assert d["strata_and_counts"]["protected_instances"] == 1200
     assert {r["route"] for r in d["routing"]["primary"]} >= {"PARENT_SUFFICIENT", "CANNOT_CHECK", "ME_X2_RESIDUAL_CANDIDATE", "M2_OVER_ESCALATES"}
-    assert {r["verdict"] for r in d["routing"]["lever_verdict"]} == {"LEVERS_HARM", "LEVERS_NULL", "LEVERS_MOVE_THE_FAILURE", "LEVERS_PARTIAL_RECOVERY", "LEVERS_RECOVER_M"}
+    assert {r["verdict"] for r in d["routing"]["lever_verdict"]} == {"LEVERS_HARM", "LEVERS_NULL", "LEVERS_MOVE_THE_FAILURE", "LEVERS_NOT_ATTRIBUTED", "LEVERS_PARTIAL_RECOVERY", "LEVERS_RECOVER_M"}
 
 
 def test_design_markdown_and_json_agree_on_the_commitment_and_seeds() -> None:

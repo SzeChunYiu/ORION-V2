@@ -15,8 +15,8 @@ something this PR skipped and not something an agent may authorize.
 the optional `g0scale` public probe. Selftest and the 48-instance development
 split complete in < 1 s wall each; the 1 200-instance three-arm probe took 5.5 s.
 Results and custody files byte-identical across two consecutive runs (asserted in
-the unit tests). This lane's 22 tests: 2.8 s; run in one session with the V1
-test file in both orders (module-name collision surface checked), 45 tests, all
+the unit tests). This lane's 23 tests: 2.8 s; run in one session with the V1
+test file in both orders (module-name collision surface checked), 46 tests, all
 pass.
 
 ## 1. Frozen code (sha256)
@@ -26,8 +26,8 @@ pass.
 | `mex2v2_levers.py` | `b626d3bfe93659eb52d98e19423400de80070544277d84bf355abaa7483b26c8` |
 | `mex2v2_arms.py` | `458c8fa09589a1519c2ce6a10dbeb591f30bb5f0cbb05789c6a98dbd79166364` |
 | `mex2v2_provenance.py` | `ac9e54c7d6079298d7a0c9a3154e8839d2e9097b412f6725ab95af87986c2517` |
-| `mex2v2_run.py` | `249985c1a759fe9763530927174716ba29fca7e21233bf4773b880ce50529473` |
-| `ME_X2_V2_LOOKAHEAD_REACHABILITY_REVIVAL_DESIGN_V2.json` | `1cbd0b1eb6ccd2053acfacc1231affaaeeb14c1cd4c5b0e7b3c236a64c6a3286` |
+| `mex2v2_run.py` | `274c8a64d50b5ddd665dbe932491634383080af06caa285d5f75635eb6c61ebc` |
+| `ME_X2_V2_LOOKAHEAD_REACHABILITY_REVIVAL_DESIGN_V2.json` | `6b7e06fcfb3d69986b064f33692d8e1446fd51722c7169c4a006aa46bd207ecf` |
 | `ME_X2_V2_LEVER_KNOWN_ANSWER_FIXTURES_V2.json` | `d0f75302f7c342966e2c3c8410bb22d54df91c6e5aba10ca45d9402ff1ddf21a` |
 | `results/ME_X2_V2_DEVELOPMENT_RESULTS_V2.json` | `533b38af3f8965b3ae34f43f21a66bdfa5073b6502ed6465790fcd452f209485` |
 | `results/ME_X2_V2_DEVELOPMENT_EXPECTED_CUSTODY_V2.json` | `cb7d75876ae4a5169ab301689e07db1a6bedace83d1e077a3fc1292c64b03131` |
@@ -168,7 +168,12 @@ prospective abstention term is positive (so L1's leading term is not degenerate)
 15 contain a step where L1 changes the choice V1's cheapest-first order would
 make, and 0 contain an action admissible only under L2 — on a surface with this
 much budget slack, L2 never has to bite, which is precisely why the fixtures of
-§4 exist.
+§4 exist. Attribution counts only receipts whose step matches the **executed**
+trajectory step: V1's inherited `act()` consults the discriminator ranking before
+its unique / common-fix branches, so a receipt can describe a candidate `M2` only
+considered. The filter is not inert — it removes 2 of 322 receipts on the
+144-instance fixture surface and 6 of 2 486 at 1 200-instance scale (0 of 100 on
+this development split) — and left in, it could only ever inflate G5(c).
 
 **G0c note.** The random control scores 0.271 on this 48-instance split
 (0.178 on the 1 200-instance probe below, 0.202 on V1's discarded dry run). The
@@ -216,7 +221,17 @@ generator, which G0d freezes byte-identical and which this probe re-checks.
    n-sensitivity note in §5 is a registration of *when* an inherited clause is
    enforced, made before the protected run and concerning the random control, not
    an arm under test.
-4. **What the levers do not fix, diagnosed rather than tuned away.** The two
+4. **Two attribution repairs after the first freeze pass, before the PR.** The
+   lever receipts were counting candidates that were only *considered*, which can
+   only inflate G5(c), the one clause that makes the mechanism auditable; scoring
+   now counts executed steps only (§5). And the lever verdict could return
+   `LEVERS_RECOVER_M` with a mechanism rate of 0 because it never read G5(c);
+   a distinct `LEVERS_NOT_ATTRIBUTED` verdict now sits ahead of both recovery
+   verdicts. G5(b) was also loosened from `<` to `≤` — an aggregate tie between a
+   single lever and the conjunction is a live possibility on this evidence and
+   would have failed the clause for the wrong reason — and G5(b) is registered as
+   a reported diagnostic while (a), (c) and (d) route the verdict.
+5. **What the levers do not fix, diagnosed rather than tuned away.** The two
    registered-limit fixtures fail for a different reason than the four recovered
    ones: an action that is individually harmless leaves, two steps later, a
    warranted level-5 fix unaffordable (in `LEVER-RES-02`, `M2` spends 2 + 3 + 4
