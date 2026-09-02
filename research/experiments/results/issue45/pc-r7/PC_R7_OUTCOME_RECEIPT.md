@@ -58,6 +58,16 @@ domains, and PC-R7 §1 requires both tags ≥ 15 **per domain**; MLRC fails
 eligibility item (g) rather than the tag population. Detail in
 `research/experiments/sd80/SD80_CASE_MATRIX_INTAKE_V1.md` §6.
 
+## Compute custody (no dispatch)
+
+LUNARC access was restored at 2026-09-02T14:13Z (`cosmos2.int.lunarc`, reachable
+via the billy-old ControlMaster route) and billy-old carries a working codex CLI
+(`0.129.0-alpha.15`). Neither was used for arms: PC-R7 §1 forbids the cell from
+running until both provenance tags reach 15 cases/domain, so dispatching arms on
+an available host would have broken the freeze rather than produced evidence.
+Host availability is recorded here so the non-run is attributable to the frozen
+design, not to a resource outage.
+
 ## No-rescue clause honoured
 
 - No generated-cell result re-read; no transfer claim; no endpoint, stratum
