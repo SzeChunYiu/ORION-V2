@@ -1,0 +1,327 @@
+{
+  "checks": [
+    {
+      "check": "PARENT_FIDELITY_NATIVE_KNOWN_ANSWER",
+      "detail": "[]",
+      "instances_evaluated": 42,
+      "passed": true
+    },
+    {
+      "check": "G0a_KNOWN_ANSWER_ORACLE",
+      "detail": "",
+      "instances_evaluated": 6,
+      "passed": true
+    },
+    {
+      "check": "G0a_KNOWN_ANSWER_M_EXACT",
+      "detail": "",
+      "instances_evaluated": 6,
+      "passed": true
+    },
+    {
+      "check": "G0a_KNOWN_ANSWER_FEDERATION_EXACT",
+      "detail": "",
+      "instances_evaluated": 6,
+      "passed": true
+    },
+    {
+      "check": "PLANTED_POSITIVE_ANTI_INVENTION_GATE_FIRES",
+      "detail": "C_ALWAYS_INVENT falsely invented on 4/4 fixtures whose truth is a cheaper repair; a gate that does not fire here is broken",
+      "instances_evaluated": 4,
+      "passed": true
+    },
+    {
+      "check": "PLANTED_POSITIVE_ANTI_CONSERVATISM_GATE_FIRES",
+      "detail": "C_NEVER_CHANGE missed the deficit on 5/5 fixtures whose truth is not NO_CHANGE; G2's counter is otherwise structurally unreachable because every arm's first move is the shared collision check",
+      "instances_evaluated": 5,
+      "passed": true
+    },
+    {
+      "check": "G0b_ORACLE_SELF_AGREEMENT_PROBE",
+      "detail": "",
+      "instances_evaluated": 12,
+      "passed": true
+    },
+    {
+      "check": "EVERY_STRATUM_HAS_A_DEGRADING_OMISSION_ABLATION",
+      "detail": "[{\"stratum\": \"NO_CHANGE\", \"ablation\": \"M_MINUS_DEFICIT_CHECK\", \"correct\": 0, \"n\": 2}, {\"stratum\": \"PARENT_FORMALISM_SUFFICIENT\", \"ablation\": \"M_MINUS_PARENT_SEARCH\", \"correct\": 0, \"n\": 2}, {\"stratum\": \"ADD_ONE_OBSERVATION\", \"ablation\": \"M_MINUS_DATA_TIER\", \"correct\": 0, \"n\": 2}, {\"stratum\": \"LOCAL_PATCH\", \"ablation\": \"M_MINUS_PATCH_TIER\", \"correct\": 0, \"n\": 2}, {\"stratum\": \"REPRESENTATION_CHANGE\", \"ablation\": \"M_MINUS_REPRESENTATION_TIER\", \"correct\": 0, \"n\": 2}, {\"stratum\": \"NEW_PRIMITIVE\", \"ablation\": \"M_MINUS_INVENTION_TIER\", \"correct\": 0, \"n\": 2}]",
+      "instances_evaluated": 6,
+      "passed": true
+    },
+    {
+      "check": "PLANTED_LABEL_IS_THE_CHEAPEST_TIER",
+      "detail": "",
+      "instances_evaluated": 12,
+      "passed": true
+    },
+    {
+      "check": "ANTI_INVENTION_DENOMINATOR_IS_NON_EMPTY_AND_TEMPTING",
+      "detail": "8/10 non-NEW_PRIMITIVE instances carry a *working* new primitive, so escalation is always available and always adequate",
+      "instances_evaluated": 10,
+      "passed": true
+    },
+    {
+      "check": "REFERENCE_MODULE_COLLISION_AGREEMENT",
+      "detail": "orion_v2.formalism_genesis.representation_collisions agrees with the oracle's collision set; necessary, not sufficient, for a residual",
+      "instances_evaluated": 12,
+      "passed": true
+    }
+  ],
+  "parent_fidelity": [
+    {
+      "detail": "",
+      "parent": "LGG",
+      "passed": true,
+      "test": "plotkin_lgg_pair_classic"
+    },
+    {
+      "detail": "",
+      "parent": "LGG",
+      "passed": true,
+      "test": "lgg_identical_is_identity"
+    },
+    {
+      "detail": "",
+      "parent": "LGG",
+      "passed": true,
+      "test": "lgg_disjoint_is_all_variables"
+    },
+    {
+      "detail": "",
+      "parent": "LGG",
+      "passed": true,
+      "test": "lgg_set_is_iterated_pair"
+    },
+    {
+      "detail": "",
+      "parent": "LGG",
+      "passed": true,
+      "test": "lgg_subsumes_every_input"
+    },
+    {
+      "detail": "",
+      "parent": "LGG",
+      "passed": true,
+      "test": "subsumption_rejects_constant_mismatch"
+    },
+    {
+      "detail": "",
+      "parent": "LGG",
+      "passed": true,
+      "test": "lgg_is_least_general_exhaustive"
+    },
+    {
+      "detail": "",
+      "parent": "LGG",
+      "passed": true,
+      "test": "lgg_arity_mismatch_raises"
+    },
+    {
+      "detail": "",
+      "parent": "LGG",
+      "passed": true,
+      "test": "lgg_empty_set_raises"
+    },
+    {
+      "detail": "",
+      "parent": "FCA",
+      "passed": true,
+      "test": "object_intent"
+    },
+    {
+      "detail": "",
+      "parent": "FCA",
+      "passed": true,
+      "test": "attribute_extent"
+    },
+    {
+      "detail": "",
+      "parent": "FCA",
+      "passed": true,
+      "test": "derivation_of_empty_object_set_is_all_attributes"
+    },
+    {
+      "detail": "",
+      "parent": "FCA",
+      "passed": true,
+      "test": "derivation_of_empty_attribute_set_is_all_objects"
+    },
+    {
+      "detail": "",
+      "parent": "FCA",
+      "passed": true,
+      "test": "closure_is_extensive"
+    },
+    {
+      "detail": "",
+      "parent": "FCA",
+      "passed": true,
+      "test": "closure_is_idempotent"
+    },
+    {
+      "detail": "",
+      "parent": "FCA",
+      "passed": true,
+      "test": "closure_is_monotone"
+    },
+    {
+      "detail": "",
+      "parent": "FCA",
+      "passed": true,
+      "test": "every_concept_is_a_fixed_point"
+    },
+    {
+      "detail": "",
+      "parent": "FCA",
+      "passed": true,
+      "test": "top_and_bottom_concepts_present"
+    },
+    {
+      "detail": "",
+      "parent": "FCA",
+      "passed": true,
+      "test": "implication_milk_implies_limbs"
+    },
+    {
+      "detail": "",
+      "parent": "FCA",
+      "passed": true,
+      "test": "implication_limbs_does_not_imply_milk"
+    },
+    {
+      "detail": "SATISFIED",
+      "parent": "FCA",
+      "passed": true,
+      "test": "galois_adjunction_satisfied"
+    },
+    {
+      "detail": "",
+      "parent": "MDL",
+      "passed": true,
+      "test": "no_change_costs_nothing"
+    },
+    {
+      "detail": "",
+      "parent": "MDL",
+      "passed": true,
+      "test": "parent_costs_only_its_name"
+    },
+    {
+      "detail": "",
+      "parent": "MDL",
+      "passed": true,
+      "test": "new_primitive_costs_its_extension"
+    },
+    {
+      "detail": "",
+      "parent": "MDL",
+      "passed": true,
+      "test": "residual_collisions_dominate"
+    },
+    {
+      "detail": "",
+      "parent": "MDL",
+      "passed": true,
+      "test": "code_is_monotone_in_residuals"
+    },
+    {
+      "detail": "",
+      "parent": "MDL",
+      "passed": true,
+      "test": "patch_cost_grows_with_patch_size"
+    },
+    {
+      "detail": "MDL prefers a derived term to a two-case patch; the registered search order prefers the patch. The disagreement is reported, not repaired.",
+      "parent": "MDL",
+      "passed": true,
+      "test": "native_order_differs_from_registered_order"
+    },
+    {
+      "detail": "",
+      "parent": "MODEL_SEARCH",
+      "passed": true,
+      "test": "countermodel_found_for_a_determines_J"
+    },
+    {
+      "detail": "",
+      "parent": "MODEL_SEARCH",
+      "passed": true,
+      "test": "no_countermodel_for_ab_determines_J"
+    },
+    {
+      "detail": "",
+      "parent": "MODEL_SEARCH",
+      "passed": true,
+      "test": "empty_determiner_set_finds_first_disagreement"
+    },
+    {
+      "detail": "",
+      "parent": "MODEL_SEARCH",
+      "passed": true,
+      "test": "constant_target_has_no_countermodel"
+    },
+    {
+      "detail": "",
+      "parent": "CONSERVATIVE",
+      "passed": true,
+      "test": "conservative_case"
+    },
+    {
+      "detail": "",
+      "parent": "CONSERVATIVE",
+      "passed": true,
+      "test": "nonconservative_case"
+    },
+    {
+      "detail": "",
+      "parent": "CONSERVATIVE",
+      "passed": true,
+      "test": "lost_old_consequence_case"
+    },
+    {
+      "detail": "",
+      "parent": "CONSERVATIVE",
+      "passed": true,
+      "test": "shrinking_language_cannot_check"
+    },
+    {
+      "detail": "",
+      "parent": "CONSERVATIVE",
+      "passed": true,
+      "test": "checks_are_non_authorizing"
+    },
+    {
+      "detail": "",
+      "parent": "THEORY_REVISION",
+      "passed": true,
+      "test": "kernel_contraction_removes_one_per_kernel"
+    },
+    {
+      "detail": "",
+      "parent": "THEORY_REVISION",
+      "passed": true,
+      "test": "contraction_is_inclusive"
+    },
+    {
+      "detail": "",
+      "parent": "THEORY_REVISION",
+      "passed": true,
+      "test": "vacuity_no_kernel_no_change"
+    },
+    {
+      "detail": "",
+      "parent": "THEORY_REVISION",
+      "passed": true,
+      "test": "two_kernels_two_incisions"
+    },
+    {
+      "detail": "",
+      "parent": "THEORY_REVISION",
+      "passed": true,
+      "test": "empty_kernel_is_ignored"
+    }
+  ],
+  "passed": true,
+  "series_id": "ORION-FG-L5-EXACT-V1",
+  "suite": "FG70"
+}
