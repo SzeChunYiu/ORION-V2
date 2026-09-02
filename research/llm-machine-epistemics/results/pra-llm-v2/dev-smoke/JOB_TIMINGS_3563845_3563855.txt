@@ -1,0 +1,56 @@
+===== JOB 3563845 TIMING =====
+TIMING part=smoke model=qwen2.5-32b-instruct stage=present-gate wall=610.25 s maxrss=4622268 KB
+TIMING part=smoke model=qwen2.5-32b-instruct stage=revision wall=555.65 s maxrss=4628340 KB
+TIMING part=smoke model=qwen2.5-32b-instruct stage=probe wall=31.95 s maxrss=4626000 KB
+TIMING part=smoke model=qwen2.5-32b-instruct stage=kv-channel wall=145.27 s maxrss=4628376 KB
+TIMING part=gpc model=qwen2.5-32b-instruct stage=revision wall=2761.23 s maxrss=4630016 KB
+TIMING part=smoke model=mistral-small-24b-instruct-2501 stage=present-gate wall=530.79 s maxrss=5655340 KB
+TIMING part=smoke model=mistral-small-24b-instruct-2501 stage=revision wall=326.78 s maxrss=5659412 KB
+TIMING part=smoke model=mistral-small-24b-instruct-2501 stage=probe wall=24.40 s maxrss=5659340 KB
+TIMING part=smoke model=mistral-small-24b-instruct-2501 stage=kv-channel wall=76.23 s maxrss=5649748 KB
+TIMING part=gpc model=mistral-small-24b-instruct-2501 stage=revision wall=1603.29 s maxrss=5659256 KB
+--- stage summaries:
+{"model": "stub", "split": "dev", "stage": "generate-suite", "summary": {"dev": {"instances_per_family": {"F0_ACQ": 4, "F1_P0": 4, "F2_P1": 4, "F3_P2_CANON": 4, "F3_P2_CANON_SF": 4, "F3_P2_INDEP": 4, "F3_P2_MIRROR": 4, "F3_P2_RECON": 4, "F3_P2_TIE": 4}, "n_instances": 36, "path": "/projects/hep/fs9/users/scyiu/orion-v2-pra-llm/campaign-pra-llm-v2/dev-smoke/suite/suite_dev.json", "sha256": "a8c5810
+{"model": "stub", "split": "dev", "stage": "generate-suite", "summary": {"dev": {"instances_per_family": {"F0_ACQ": 4, "F1_P0": 4, "F2_P1": 4, "F3_P2_CANON": 4, "F3_P2_CANON_SF": 4, "F3_P2_INDEP": 4, "F3_P2_MIRROR": 4, "F3_P2_RECON": 4, "F3_P2_TIE": 4}, "n_instances": 36, "path": "/projects/hep/fs9/users/scyiu/orion-v2-pra-llm/campaign-pra-llm-v2/dev-gpc/suite/suite_dev.json", "sha256": "a8c58107b
+{"model": "qwen2.5-32b-instruct", "split": "dev", "stage": "present-gate", "summary": {"n_model_calls": 160, "n_records": 80, "wall_seconds": 549.5134911732748}}
+{"model": "qwen2.5-32b-instruct", "split": "dev", "stage": "revision", "summary": {"n_model_calls": 80, "n_records": 80, "wall_seconds": 540.6259559728205}}
+{"model": "qwen2.5-32b-instruct", "split": "dev", "stage": "probe", "summary": {"conditions": {"R0": 1.0, "R1": 0.75, "R2": 0.75, "R2_TEXT_REMOVED_KV_RETAINED": 0.75, "R2_TRUE_REMOVAL": 0.75, "R3": 0.75}, "n_model_calls": 48, "wall_seconds": 11.531602894887328}}
+{"model": "qwen2.5-32b-instruct", "split": "dev", "stage": "kv-channel", "summary": {"n_model_calls": 16, "n_records": 16, "wall_seconds": 124.955944201909}}
+{"model": "qwen2.5-32b-instruct", "split": "dev", "stage": "revision", "summary": {"n_model_calls": 360, "n_records": 360, "wall_seconds": 2741.019813368097}}
+{"model": "qwen2.5-32b-instruct", "split": "dev", "stage": "competence-gate", "summary": {"maintain_accuracy_R0": 1.0, "pass": true, "update_accuracy_R0": 1.0, "verdict": "COMPETENT__MODEL_RETAINED"}}
+{"model": "mistral-small-24b-instruct-2501", "split": "dev", "stage": "present-gate", "summary": {"n_model_calls": 160, "n_records": 80, "wall_seconds": 463.8706125905737}}
+{"model": "mistral-small-24b-instruct-2501", "split": "dev", "stage": "revision", "summary": {"n_model_calls": 80, "n_records": 80, "wall_seconds": 313.3380864597857}}
+{"model": "mistral-small-24b-instruct-2501", "split": "dev", "stage": "probe", "summary": {"conditions": {"R0": 0.75, "R1": 0.75, "R2": 0.75, "R2_TEXT_REMOVED_KV_RETAINED": 1.0, "R2_TRUE_REMOVAL": 0.75, "R3": 0.75}, "n_model_calls": 48, "wall_seconds": 10.824729296378791}}
+{"model": "mistral-small-24b-instruct-2501", "split": "dev", "stage": "kv-channel", "summary": {"n_model_calls": 16, "n_records": 16, "wall_seconds": 62.238728010095656}}
+{"model": "mistral-small-24b-instruct-2501", "split": "dev", "stage": "revision", "summary": {"n_model_calls": 360, "n_records": 360, "wall_seconds": 1589.666421648115}}
+{"model": "mistral-small-24b-instruct-2501", "split": "dev", "stage": "competence-gate", "summary": {"maintain_accuracy_R0": 1.0, "pass": true, "update_accuracy_R0": 1.0, "verdict": "COMPETENT__MODEL_RETAINED"}}
+{"model": "stub", "split": "dev", "stage": "rollup", "summary": {"overall_terminal": "REGISTERED_NEGATIVE_OR_BOUNDARY__CURRENT_STATE_DEFICIT__NOT_PROSPECTIVE_EVIDENCE|INCOMPLETE__CONTROL_FAMILIES_MISSING", "terminals": {"mistral-small-24b-instruct-2501": "CURRENT_STATE_DEFICIT__NOT_PROSPECTIVE_EVIDENCE", "qwen2.5-32b-instruct": "INCOMPLETE__CONTROL_FAMILIES_MISSING"}}}
+{"model": "stub", "split": "dev", "stage": "rollup", "summary": {"overall_terminal": "REGISTERED_NEGATIVE_OR_BOUNDARY__INCOMPLETE__STAGES_MISSING", "terminals": {"mistral-small-24b-instruct-2501": "INCOMPLETE__STAGES_MISSING", "qwen2.5-32b-instruct": "INCOMPLETE__STAGES_MISSING"}}}
+===== JOB 3563855 TIMING =====
+TIMING part=smoke model=qwen2.5-32b-instruct stage=present-gate wall=862.76 s maxrss=4726820 KB
+TIMING part=smoke model=qwen2.5-32b-instruct stage=revision wall=736.34 s maxrss=4733244 KB
+TIMING part=smoke model=qwen2.5-32b-instruct stage=probe wall=38.20 s maxrss=4728956 KB
+TIMING part=smoke model=qwen2.5-32b-instruct stage=kv-channel wall=183.63 s maxrss=4731864 KB
+TIMING part=gpc model=qwen2.5-32b-instruct stage=revision wall=3512.40 s maxrss=4722204 KB
+TIMING part=smoke model=mistral-small-24b-instruct-2501 stage=present-gate wall=631.37 s maxrss=5743652 KB
+TIMING part=smoke model=mistral-small-24b-instruct-2501 stage=revision wall=417.14 s maxrss=5740984 KB
+TIMING part=smoke model=mistral-small-24b-instruct-2501 stage=probe wall=32.11 s maxrss=5747752 KB
+TIMING part=smoke model=mistral-small-24b-instruct-2501 stage=kv-channel wall=99.93 s maxrss=5729532 KB
+TIMING part=gpc model=mistral-small-24b-instruct-2501 stage=revision wall=2050.49 s maxrss=5740000 KB
+--- stage summaries:
+{"model": "stub", "split": "dev", "stage": "generate-suite", "summary": {"dev": {"instances_per_family": {"F0_ACQ": 4, "F1_P0": 4, "F2_P1": 4, "F3_P2_CANON": 4, "F3_P2_CANON_SF": 4, "F3_P2_INDEP": 4, "F3_P2_MIRROR": 4, "F3_P2_RECON": 4, "F3_P2_TIE": 4}, "n_instances": 36, "path": "/projects/hep/fs9/users/scyiu/orion-v2-pra-llm/campaign-pra-llm-v2/dev-smoke-2x40/suite/suite_dev.json", "sha256": "a8
+{"model": "stub", "split": "dev", "stage": "generate-suite", "summary": {"dev": {"instances_per_family": {"F0_ACQ": 4, "F1_P0": 4, "F2_P1": 4, "F3_P2_CANON": 4, "F3_P2_CANON_SF": 4, "F3_P2_INDEP": 4, "F3_P2_MIRROR": 4, "F3_P2_RECON": 4, "F3_P2_TIE": 4}, "n_instances": 36, "path": "/projects/hep/fs9/users/scyiu/orion-v2-pra-llm/campaign-pra-llm-v2/dev-gpc-2x40/suite/suite_dev.json", "sha256": "a8c5
+{"model": "qwen2.5-32b-instruct", "split": "dev", "stage": "present-gate", "summary": {"n_model_calls": 160, "n_records": 80, "wall_seconds": 716.8860524604097}}
+{"model": "qwen2.5-32b-instruct", "split": "dev", "stage": "revision", "summary": {"n_model_calls": 80, "n_records": 80, "wall_seconds": 712.3498196071014}}
+{"model": "qwen2.5-32b-instruct", "split": "dev", "stage": "probe", "summary": {"conditions": {"R0": 1.0, "R1": 0.75, "R2": 0.75, "R2_TEXT_REMOVED_KV_RETAINED": 0.75, "R2_TRUE_REMOVAL": 0.75, "R3": 0.75}, "n_model_calls": 48, "wall_seconds": 13.965570464730263}}
+{"model": "qwen2.5-32b-instruct", "split": "dev", "stage": "kv-channel", "summary": {"n_model_calls": 16, "n_records": 16, "wall_seconds": 160.22652172576636}}
+{"model": "qwen2.5-32b-instruct", "split": "dev", "stage": "revision", "summary": {"n_model_calls": 360, "n_records": 360, "wall_seconds": 3488.650245213881}}
+{"model": "qwen2.5-32b-instruct", "split": "dev", "stage": "competence-gate", "summary": {"maintain_accuracy_R0": 1.0, "pass": true, "update_accuracy_R0": 1.0, "verdict": "COMPETENT__MODEL_RETAINED"}}
+{"model": "mistral-small-24b-instruct-2501", "split": "dev", "stage": "present-gate", "summary": {"n_model_calls": 160, "n_records": 80, "wall_seconds": 578.3947181720287}}
+{"model": "mistral-small-24b-instruct-2501", "split": "dev", "stage": "revision", "summary": {"n_model_calls": 80, "n_records": 80, "wall_seconds": 398.3967891074717}}
+{"model": "mistral-small-24b-instruct-2501", "split": "dev", "stage": "probe", "summary": {"conditions": {"R0": 0.75, "R1": 0.75, "R2": 0.75, "R2_TEXT_REMOVED_KV_RETAINED": 1.0, "R2_TRUE_REMOVAL": 0.75, "R3": 0.75}, "n_model_calls": 48, "wall_seconds": 12.888476614840329}}
+{"model": "mistral-small-24b-instruct-2501", "split": "dev", "stage": "kv-channel", "summary": {"n_model_calls": 16, "n_records": 16, "wall_seconds": 81.46720724273473}}
+{"model": "mistral-small-24b-instruct-2501", "split": "dev", "stage": "revision", "summary": {"n_model_calls": 360, "n_records": 360, "wall_seconds": 2031.5353780193254}}
+{"model": "mistral-small-24b-instruct-2501", "split": "dev", "stage": "competence-gate", "summary": {"maintain_accuracy_R0": 1.0, "pass": true, "update_accuracy_R0": 1.0, "verdict": "COMPETENT__MODEL_RETAINED"}}
+{"model": "stub", "split": "dev", "stage": "rollup", "summary": {"overall_terminal": "REGISTERED_NEGATIVE_OR_BOUNDARY__CURRENT_STATE_DEFICIT__NOT_PROSPECTIVE_EVIDENCE|INCOMPLETE__CONTROL_FAMILIES_MISSING", "terminals": {"mistral-small-24b-instruct-2501": "CURRENT_STATE_DEFICIT__NOT_PROSPECTIVE_EVIDENCE", "qwen2.5-32b-instruct": "INCOMPLETE__CONTROL_FAMILIES_MISSING"}}}
+{"model": "stub", "split": "dev", "stage": "rollup", "summary": {"overall_terminal": "REGISTERED_NEGATIVE_OR_BOUNDARY__INCOMPLETE__STAGES_MISSING", "terminals": {"mistral-small-24b-instruct-2501": "INCOMPLETE__STAGES_MISSING", "qwen2.5-32b-instruct": "INCOMPLETE__STAGES_MISSING"}}}

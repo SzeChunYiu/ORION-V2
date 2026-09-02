@@ -195,8 +195,33 @@ whole of its role.
   digests in the unit tests); V1's own frozen seeds did terminate (its protected suite was generated
   and hashed), so V1 R1 is unaffected. Without this fix a sealed V2 seed could have hung the
   protected job.
-- **Replacement record (GPC on dev):** _filled at freeze from the dev GPC check — see the env
-  receipt §4; the list below is final._
-  - `qwen2.5-32b-instruct`: GPC_PENDING
-  - `mistral-small-24b-instruct-2501`: GPC_PENDING
-- **Registered risk (dev smoke, not evidence):** _filled at freeze — see the env receipt §5._
+- **Replacement record (GPC on dev): empty — no model was replaced.** Both models passed GPC on the
+  full dev split (36 instances / 72 arms, R0) at maintain 1.000 (n = 32) and update 1.000 (n = 20),
+  on both hardware configurations: `qwen2.5-32b-instruct` `COMPETENT__MODEL_RETAINED`,
+  `mistral-small-24b-instruct-2501` `COMPETENT__MODEL_RETAINED`. GPC is now exhausted; the protected
+  seed was sealed afterwards with commitment
+  `d53e374809bfd6f78e4b9a056bbdb237739b09a04cd716a75d0e45748ebc8925`. Env receipt §4.
+- **Recorded gap in GPC (disclosed, not fixed): GPC does not screen the competence GP0 requires.**
+  GPC scores the *future* action under R0; GP0 requires the *current*, pre-evidence action under R0
+  to be correct and identical across R0/R2/R3. The dev smoke separates them:
+  `mistral-small-24b-instruct-2501` passes GPC at 1.000/1.000 while failing GP0 at per-unit 0.500,
+  answering ESCALATE under R0 only on 4 of 8 canonical arms whose gold current action is RETAIN
+  (R2/R3/R4 current accuracy 1.000; log-prob equivalence and token budgets unaffected). So GPC's
+  stated rationale covers the `ORDINARY_REASONING_FAILURE` route but **not** the
+  `CURRENT_STATE_DEFICIT__NOT_PROSPECTIVE_EVIDENCE` route. Under §8 nothing changes now: the gate is
+  frozen, Mistral passed GPC and may not be replaced on a GP0 smoke reading, and no prompt is
+  touched. A current-action arm of GPC is a lead for a future design version. Env receipt §4a.
+- **Recorded intent-vs-text discrepancy in `protected_run.note`:** the note bars queueing the V2
+  protected job "while the V1 R1 array is pending or running". It was written about resource
+  contention on one partition, but its text is unqualified by partition. It is honoured **literally**
+  (the V2 protected job stays unqueued while V1 R1 is pending, even though it now targets a different
+  partition); narrowing it post-freeze would be exactly the post-hoc reading §8 forbids. A future
+  design version should say what it means.
+- **Protected-run partition:** `gpua100i`, 2 × A100-40GB, layer-wise sharding (`PRA_DEVICE=auto`),
+  chosen so the V2 protected run never competes with V1 R1 on `gpua100`; validated byte-identical
+  against 1 × A100-80GB over 1,760 generations (env receipt §9). `gpua40i` is infeasible: one A40 per
+  node, and 32B bf16 (65.5 GB) does not fit one 48 GB card.
+- **Registered risks from the dev smoke (n = 8, not evidence, not tuned away):** (i) Mistral-Small may
+  fail GP0 on the protected split for the R0-only reason above → `CURRENT_STATE_DEFICIT`; (ii) probe
+  `R2_TRUE_REMOVAL` accuracy sat at 0.75 (> the 0.65 bound) at n_test = 4 for both models, so GP2a
+  would fail at smoke scale; n_test = 48 on the protected split resolves it far better. Env receipt §5.

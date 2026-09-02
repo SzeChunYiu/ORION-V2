@@ -1,0 +1,303 @@
+{
+  "backend": {
+    "backend": "hf",
+    "device": "cuda:0",
+    "device_map": {
+      "lm_head": "1",
+      "model.embed_tokens": "0",
+      "model.layers.0": "0",
+      "model.layers.1": "0",
+      "model.layers.10": "0",
+      "model.layers.11": "0",
+      "model.layers.12": "0",
+      "model.layers.13": "0",
+      "model.layers.14": "0",
+      "model.layers.15": "0",
+      "model.layers.16": "0",
+      "model.layers.17": "0",
+      "model.layers.18": "0",
+      "model.layers.19": "0",
+      "model.layers.2": "0",
+      "model.layers.20": "0",
+      "model.layers.21": "0",
+      "model.layers.22": "0",
+      "model.layers.23": "0",
+      "model.layers.24": "0",
+      "model.layers.25": "0",
+      "model.layers.26": "0",
+      "model.layers.27": "0",
+      "model.layers.28": "0",
+      "model.layers.29": "0",
+      "model.layers.3": "0",
+      "model.layers.30": "0",
+      "model.layers.31": "1",
+      "model.layers.32": "1",
+      "model.layers.33": "1",
+      "model.layers.34": "1",
+      "model.layers.35": "1",
+      "model.layers.36": "1",
+      "model.layers.37": "1",
+      "model.layers.38": "1",
+      "model.layers.39": "1",
+      "model.layers.4": "0",
+      "model.layers.40": "1",
+      "model.layers.41": "1",
+      "model.layers.42": "1",
+      "model.layers.43": "1",
+      "model.layers.44": "1",
+      "model.layers.45": "1",
+      "model.layers.46": "1",
+      "model.layers.47": "1",
+      "model.layers.48": "1",
+      "model.layers.49": "1",
+      "model.layers.5": "0",
+      "model.layers.50": "1",
+      "model.layers.51": "1",
+      "model.layers.52": "1",
+      "model.layers.53": "1",
+      "model.layers.54": "1",
+      "model.layers.55": "1",
+      "model.layers.56": "1",
+      "model.layers.57": "1",
+      "model.layers.58": "1",
+      "model.layers.59": "1",
+      "model.layers.6": "0",
+      "model.layers.60": "1",
+      "model.layers.61": "1",
+      "model.layers.62": "1",
+      "model.layers.63": "1",
+      "model.layers.7": "0",
+      "model.layers.8": "0",
+      "model.layers.9": "0",
+      "model.norm": "1",
+      "model.rotary_emb": "1"
+    },
+    "dtype": "torch.bfloat16",
+    "gpu_names": [
+      "NVIDIA A100-PCIE-40GB",
+      "NVIDIA A100-PCIE-40GB"
+    ],
+    "hidden_size": 5120,
+    "model_id": "Qwen/Qwen2.5-32B-Instruct",
+    "n_gpus_visible": 2,
+    "n_layers": 64,
+    "revision_requested": "5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd",
+    "revision_resolved": "5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.51.3"
+  },
+  "by_family": {
+    "F0_ACQ": {
+      "maintain": {
+        "acc": null,
+        "correct": 0,
+        "n": 0,
+        "wilson95": [
+          null,
+          null
+        ]
+      },
+      "update": {
+        "acc": null,
+        "correct": 0,
+        "n": 0,
+        "wilson95": [
+          null,
+          null
+        ]
+      }
+    },
+    "F1_P0": {
+      "maintain": {
+        "acc": 1.0,
+        "correct": 4,
+        "n": 4,
+        "wilson95": [
+          0.5101091596030786,
+          0.9999999999999999
+        ]
+      },
+      "update": {
+        "acc": 1.0,
+        "correct": 4,
+        "n": 4,
+        "wilson95": [
+          0.5101091596030786,
+          0.9999999999999999
+        ]
+      }
+    },
+    "F2_P1": {
+      "maintain": {
+        "acc": 1.0,
+        "correct": 4,
+        "n": 4,
+        "wilson95": [
+          0.5101091596030786,
+          0.9999999999999999
+        ]
+      },
+      "update": {
+        "acc": null,
+        "correct": 0,
+        "n": 0,
+        "wilson95": [
+          null,
+          null
+        ]
+      }
+    },
+    "F3_P2_CANON": {
+      "maintain": {
+        "acc": 1.0,
+        "correct": 4,
+        "n": 4,
+        "wilson95": [
+          0.5101091596030786,
+          0.9999999999999999
+        ]
+      },
+      "update": {
+        "acc": 1.0,
+        "correct": 4,
+        "n": 4,
+        "wilson95": [
+          0.5101091596030786,
+          0.9999999999999999
+        ]
+      }
+    },
+    "F3_P2_CANON_SF": {
+      "maintain": {
+        "acc": 1.0,
+        "correct": 4,
+        "n": 4,
+        "wilson95": [
+          0.5101091596030786,
+          0.9999999999999999
+        ]
+      },
+      "update": {
+        "acc": 1.0,
+        "correct": 4,
+        "n": 4,
+        "wilson95": [
+          0.5101091596030786,
+          0.9999999999999999
+        ]
+      }
+    },
+    "F3_P2_INDEP": {
+      "maintain": {
+        "acc": 1.0,
+        "correct": 4,
+        "n": 4,
+        "wilson95": [
+          0.5101091596030786,
+          0.9999999999999999
+        ]
+      },
+      "update": {
+        "acc": 1.0,
+        "correct": 4,
+        "n": 4,
+        "wilson95": [
+          0.5101091596030786,
+          0.9999999999999999
+        ]
+      }
+    },
+    "F3_P2_MIRROR": {
+      "maintain": {
+        "acc": 1.0,
+        "correct": 8,
+        "n": 8,
+        "wilson95": [
+          0.6755924316585924,
+          1.0
+        ]
+      },
+      "update": {
+        "acc": null,
+        "correct": 0,
+        "n": 0,
+        "wilson95": [
+          null,
+          null
+        ]
+      }
+    },
+    "F3_P2_RECON": {
+      "maintain": {
+        "acc": 1.0,
+        "correct": 4,
+        "n": 4,
+        "wilson95": [
+          0.5101091596030786,
+          0.9999999999999999
+        ]
+      },
+      "update": {
+        "acc": 1.0,
+        "correct": 4,
+        "n": 4,
+        "wilson95": [
+          0.5101091596030786,
+          0.9999999999999999
+        ]
+      }
+    },
+    "F3_P2_TIE": {
+      "maintain": {
+        "acc": null,
+        "correct": 0,
+        "n": 0,
+        "wilson95": [
+          null,
+          null
+        ]
+      },
+      "update": {
+        "acc": null,
+        "correct": 0,
+        "n": 0,
+        "wilson95": [
+          null,
+          null
+        ]
+      }
+    }
+  },
+  "condition": "R0",
+  "gate": "GPC",
+  "maintain_accuracy_R0": {
+    "acc": 1.0,
+    "correct": 32,
+    "n": 32,
+    "wilson95": [
+      0.8928208002353198,
+      1.0000000000000002
+    ]
+  },
+  "maintain_ok": true,
+  "min_maintain_accuracy_R0": 0.75,
+  "min_update_accuracy_R0": 0.75,
+  "model": "qwen2.5-32b-instruct",
+  "n_instances": 36,
+  "pass": true,
+  "schema_version": "orion.v2.pra.real-llm-audit-stage-result.v1",
+  "split": "dev",
+  "split_rule": "dev split only",
+  "stage": "competence-gate",
+  "update_accuracy_R0": {
+    "acc": 1.0,
+    "correct": 20,
+    "n": 20,
+    "wilson95": [
+      0.8388748398148705,
+      1.0000000000000002
+    ]
+  },
+  "update_ok": true,
+  "verdict": "COMPETENT__MODEL_RETAINED"
+}
