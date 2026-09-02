@@ -2,32 +2,32 @@
 
 **DEVELOPMENT split: not protected evidence. Numbers below cannot support any confirmatory claim.**
 
-Results sha256 `aad8d1ac0b3e2ea3e7f2b05b7f0be50586b64e4cb0a5616f77da5cd80fe96f3d`; custody sha256 `7a37fa0be1f73b1ce5d6fd776ca42143a799e43ce78295aded10319b64829c0c`; instances 36.
+Results sha256 `ad2eeefa710749745f6e6f45201b0a0d87dfebd159a6bcef02acfd44ac9293e1`; custody sha256 `7a37fa0be1f73b1ce5d6fd776ca42143a799e43ce78295aded10319b64829c0c`; instances 36.
 
 ## Per-arm outcomes (§5)
 
 | arm | instance exact | final exact | over | under | invalid pres. | false unres. | missed unres. | recovery | engine ops | module ops | wall ms |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| A0_PROVENANCE_ONLY_INVALIDATION | 0.167 | 0.250 | 56 | 7 | 10 | 0 | 6 | 1.000 (n=5) | 395 | 0 | 11.8 |
-| A1_JTMS_CLASSICAL | 0.833 | 0.833 | 4 | 4 | 7 | 0 | 6 | 1.000 (n=5) | 8584 | 1883 | 15.8 |
-| A2_ATMS_CLASSICAL | 0.889 | 0.889 | 4 | 4 | 4 | 0 | 2 | 1.000 (n=5) | 251 | 1883 | 8.2 |
-| A3_AGM_KERNEL_CONTRACTION | 0.833 | 0.833 | 4 | 4 | 7 | 0 | 6 | 1.000 (n=5) | 5555 | 1883 | 4.1 |
-| A4_BAYES_NOISY_OR | 0.861 | 0.861 | 5 | 4 | 4 | 0 | 2 | 1.000 (n=5) | 892 | 1883 | 3.8 |
-| A5_ASSURANCE_CASE_UPDATE | 0.167 | 0.250 | 59 | 4 | 7 | 0 | 6 | 1.000 (n=5) | 358 | 2294 | 3.9 |
-| B5_R1_VERDICT_ONLY | 0.972 | 0.972 | 0 | 1 | 1 | 0 | 0 | 1.000 (n=5) | 6655 | 1586 | 23.6 |
-| B5_R2_PROV | 1.000 | 1.000 | 0 | 0 | 0 | 0 | 0 | 1.000 (n=5) | 7425 | 1586 | 25.1 |
-| B5_R3_PROV+DEP | 1.000 | 1.000 | 0 | 0 | 0 | 0 | 0 | 1.000 (n=5) | 6969 | 1586 | 20.8 |
-| B5_R4_PROV+DEP+TRANS+EVAL | 1.000 | 1.000 | 0 | 0 | 0 | 0 | 0 | 1.000 (n=5) | 7190 | 1586 | 21.3 |
-| B5_STRONGEST_FAITHFUL_PARENT_FEDERATION | 1.000 | 1.000 | 0 | 0 | 0 | 0 | 0 | 1.000 (n=5) | 8915 | 1586 | 21.1 |
-| M_ME_SELECTIVE_REOPENING | 1.000 | 1.000 | 0 | 0 | 0 | 0 | 0 | 1.000 (n=5) | 3021 | 1586 | 10.0 |
-| M_MINUS_DEPENDENCE_ANCESTRY | 0.944 | 0.944 | 0 | 4 | 4 | 0 | 0 | 1.000 (n=5) | 3021 | 1486 | 8.1 |
-| M_MINUS_TYPED_TRANSPORT | 1.000 | 1.000 | 0 | 0 | 0 | 0 | 0 | 1.000 (n=5) | 3021 | 1586 | 9.6 |
-| M_MINUS_EVALUATOR_CONTRACT | 0.944 | 0.944 | 4 | 0 | 0 | 0 | 2 | 1.000 (n=5) | 2926 | 1586 | 10.7 |
-| M_MINUS_SUPPORT_FAMILIES | 0.333 | 0.417 | 49 | 0 | 0 | 5 | 0 | 1.000 (n=5) | 2830 | 1586 | 10.4 |
-| M_GLOBAL_RESET_CONTROL | 0.083 | 0.139 | 174 | 0 | 0 | 0 | 6 | 0.800 (n=5) | 0 | 1586 | 8.4 |
-| M_PROVENANCE_ONLY_CONTROL | 0.167 | 0.250 | 56 | 7 | 10 | 0 | 6 | 1.000 (n=5) | 395 | 0 | 10.1 |
+| A0_PROVENANCE_ONLY_INVALIDATION | 0.167 | 0.250 | 56 | 7 | 10 | 0 | 6 | 1.000 (n=5) | 395 | 0 | 11.0 |
+| A1_JTMS_CLASSICAL | 0.833 | 0.833 | 4 | 4 | 7 | 0 | 6 | 1.000 (n=5) | 8584 | 1883 | 15.7 |
+| A2_ATMS_CLASSICAL | 0.889 | 0.889 | 4 | 4 | 4 | 0 | 2 | 1.000 (n=5) | 251 | 1883 | 8.3 |
+| A3_AGM_KERNEL_CONTRACTION | 0.833 | 0.833 | 4 | 4 | 7 | 0 | 6 | 1.000 (n=5) | 5359 | 1883 | 3.9 |
+| A4_BAYES_NOISY_OR | 0.861 | 0.861 | 5 | 4 | 4 | 0 | 2 | 1.000 (n=5) | 892 | 1883 | 3.4 |
+| A5_ASSURANCE_CASE_UPDATE | 0.167 | 0.250 | 59 | 4 | 7 | 0 | 6 | 1.000 (n=5) | 358 | 2294 | 3.5 |
+| B5_R1_VERDICT_ONLY | 0.972 | 0.972 | 0 | 1 | 1 | 0 | 0 | 1.000 (n=5) | 6655 | 1586 | 21.1 |
+| B5_R2_PROV | 1.000 | 1.000 | 0 | 0 | 0 | 0 | 0 | 1.000 (n=5) | 7425 | 1586 | 23.5 |
+| B5_R3_PROV+DEP | 1.000 | 1.000 | 0 | 0 | 0 | 0 | 0 | 1.000 (n=5) | 6969 | 1586 | 19.3 |
+| B5_R4_PROV+DEP+TRANS+EVAL | 1.000 | 1.000 | 0 | 0 | 0 | 0 | 0 | 1.000 (n=5) | 7190 | 1586 | 19.1 |
+| B5_STRONGEST_FAITHFUL_PARENT_FEDERATION | 1.000 | 1.000 | 0 | 0 | 0 | 0 | 0 | 1.000 (n=5) | 8915 | 1586 | 20.0 |
+| M_ME_SELECTIVE_REOPENING | 1.000 | 1.000 | 0 | 0 | 0 | 0 | 0 | 1.000 (n=5) | 3021 | 1586 | 10.5 |
+| M_MINUS_DEPENDENCE_ANCESTRY | 0.944 | 0.944 | 0 | 4 | 4 | 0 | 0 | 1.000 (n=5) | 3021 | 1486 | 8.4 |
+| M_MINUS_TYPED_TRANSPORT | 1.000 | 1.000 | 0 | 0 | 0 | 0 | 0 | 1.000 (n=5) | 3021 | 1586 | 9.2 |
+| M_MINUS_EVALUATOR_CONTRACT | 0.944 | 0.944 | 4 | 0 | 0 | 0 | 2 | 1.000 (n=5) | 2926 | 1586 | 9.7 |
+| M_MINUS_SUPPORT_FAMILIES | 0.333 | 0.417 | 49 | 0 | 0 | 5 | 0 | 1.000 (n=5) | 2830 | 1586 | 10.8 |
+| M_GLOBAL_RESET_CONTROL | 0.083 | 0.139 | 174 | 0 | 0 | 0 | 6 | 0.800 (n=5) | 0 | 1586 | 8.5 |
+| M_PROVENANCE_ONLY_CONTROL | 0.167 | 0.250 | 56 | 7 | 10 | 0 | 6 | 1.000 (n=5) | 395 | 0 | 10.6 |
 | C_NEVER_REOPEN | 0.361 | 0.444 | 0 | 31 | 37 | 0 | 6 | 1.000 (n=5) | 0 | 0 | 0.0 |
-| C_RANDOM_DISPOSITION | 0.000 | 0.000 | 60 | 23 | 12 | 89 | 4 | 0.000 (n=5) | 0 | 0 | 0.2 |
+| C_RANDOM_DISPOSITION | 0.000 | 0.000 | 60 | 23 | 12 | 89 | 4 | 0.000 (n=5) | 0 | 0 | 0.1 |
 
 ## Per-stratum instance-exact rate
 
@@ -60,4 +60,4 @@ Results sha256 `aad8d1ac0b3e2ea3e7f2b05b7f0be50586b64e4cb0a5616f77da5cd80fe96f3d
 
 ## Route
 
-`PARENT_SUFFICIENT` — B5 reproduces M's reopening/preservation/unresolved decisions. Ladder terminal: `RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL`. Cost: `COST_ADVANTAGE_M`.
+`PARENT_SUFFICIENT` — B5 reproduces M's reopening/preservation/unresolved decisions. Ladder terminal: `RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL`. Cost: `COST_PARITY_WITHIN_2X`.

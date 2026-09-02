@@ -465,6 +465,10 @@ class AGMEngine:
         ent: dict[str, int] = {}
         for fid, (c, at, prereqs) in struct.families.items():
             rules.append(Rule(f"rule:{fid}", frozenset(at) | frozenset(prereqs), c)); ent[f"rule:{fid}"] = 1
+            for a in at:
+                ent[a] = 2  # frozen policy: evidence atoms more entrenched than family rules
+        for c in struct.claims:
+            ent[f"neg:{c}"] = 2
         self.kb = KernelBase(set(), rules, ent); self.key = struct.key(); self.present = set(); self.contradicted = set()
 
     def run(self, struct: Structure, status: dict[str, str], accepted: tuple[str, ...], cost: dict) -> dict[str, str]:

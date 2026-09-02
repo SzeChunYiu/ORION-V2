@@ -122,6 +122,20 @@ def test_single_parents_break_where_their_semantics_predict() -> None:
     assert out["c0"] == "UNRESOLVED" and out["c1"] == "PRESERVED"
 
 
+def test_agm_arm_incision_cuts_rules_not_evidence() -> None:
+    f = {x["name"]: x for x in mex4_generator.known_answer_fixtures()}["KA-10-ALL_SUFFICIENT_SUPPORT_FAILED"]
+    spec = {s.name: s for s in mex4_arms.arm_specs()}["A3_AGM_KERNEL_CONTRACTION"]
+    r = mex4_arms.ArmRunner(spec, 7); w0 = f["world"]; w = w0; hist = []
+    for ev in f["events"]:
+        w = mex4_model.apply_event(w, ev); hist.append(ev)
+        out, _ = r.run_version(mex4_arms.ArmView(w0, w, list(hist), w0.accepted_ids()))
+    assert out["c0"] == "REOPENED" and out["c1"] == "REOPENED" and out["c2"] == "PRESERVED"
+    kb = r.agm.kb
+    assert {"ev:e1", "ev:e2", "ev:e3"} <= kb.atoms, "evidence atoms must survive the Levi revision"
+    assert "rule:c0.F1" not in kb.rules and "rule:c0.F2" not in kb.rules, "family rules of the contradicted claim must be cut"
+    assert r.agm.present <= kb.atoms
+
+
 def test_ablation_minus_support_families_over_reopens_partial_failure() -> None:
     f = {x["name"]: x for x in mex4_generator.known_answer_fixtures()}["KA-09-PARTIAL_SUPPORT_FAILURE"]
     assert _run_arm("M_MINUS_SUPPORT_FAMILIES", f["world"], f["events"])["c0"] == "REOPENED"

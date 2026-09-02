@@ -16,10 +16,10 @@ results and custody files byte-identical across two consecutive runs.
 | `mex4_oracle.py` | `9d387e3e97ae55f5d3a1689ab81512cbe9bc5766fb3c2f0472c1d1c8862f81ac` |
 | `mex4_generator.py` | `d8a4cb8d9f4849bf5069f32ab6417d0e3b12d811b649c2b59c31c4946eac673e` |
 | `mex4_parents.py` | `484213b497a51f8e1fc2a2df739b5ef218e76febce66a71e0e7d1aceade420b8` |
-| `mex4_arms.py` | `b26be5d9805aaadeaf2c0adeaea5a33921ce2541a4eb84bb94c1418d9cf688f3` |
+| `mex4_arms.py` | `967fc646ad61221b24038f89da39a8e2f21f45e7994df9d88c6c698c02da91a7` |
 | `mex4_run.py` | `f58f4664267bd55027d64cf713bc4f959b7fa0ac42c64cefeceae7d87ae94fbf` |
 | `ME_X4_SELECTIVE_REOPENING_EXACT_STUDY_DESIGN_V1.json` | `dd6c2602bc0759900e1659a8ad97a2d8e13e2df9969f689e322323f19b25b0cd` |
-| `results/ME_X4_DEVELOPMENT_RESULTS_V1.json` | `aad8d1ac0b3e2ea3e7f2b05b7f0be50586b64e4cb0a5616f77da5cd80fe96f3d` |
+| `results/ME_X4_DEVELOPMENT_RESULTS_V1.json` | `ad2eeefa710749745f6e6f45201b0a0d87dfebd159a6bcef02acfd44ac9293e1` |
 | `results/ME_X4_DEVELOPMENT_EXPECTED_CUSTODY_V1.json` | `7a37fa0be1f73b1ce5d6fd776ca42143a799e43ce78295aded10319b64829c0c` |
 
 Protected seed commitment (sha256 of the custody seed string):
@@ -118,7 +118,19 @@ claim; the design routes nothing on cost.
 to **≈ 20–60 CPU-seconds**; budget 3 CPU-minutes. Laptop billy or a LUNARC
 login shell; never a heavy job; never CI on the Mac mini.
 
-## 6. Authority
+## 6. Pre-merge defect disclosure
+
+Cursor Bugbot on PR #143 (commit `6c82097`) found that `AGMEngine._build`
+assigned entrenchment only to family rules, leaving evidence atoms at the
+default rank, so the kernel incision cut evidence instead of rules — the
+inverse of the frozen `rules < evidence` policy. The native fidelity test had
+passed because it supplied its own entrenchment map; the arm did not. Fixed
+before merge (atoms and `neg:` atoms ranked 2, rules 1) with a regression test
+(`test_agm_arm_incision_cuts_rules_not_evidence`). Development aggregates for
+the AGM arm are unchanged (0.833); hashes above are post-fix. No gate,
+constant or oracle rule changed.
+
+## 7. Authority
 
 Development numbers are development numbers. Nothing here grants field status,
 novelty, or publication authority. The route above is a prediction of what the

@@ -3,11 +3,11 @@
   "gates": {
     "COST": {
       "B5_ops": 10501,
-      "B5_wall_ms": 21.081332,
+      "B5_wall_ms": 19.99075,
       "M_ops": 4607,
-      "M_wall_ms": 9.960375,
-      "flag": "COST_ADVANTAGE_M",
-      "ratio_B5_over_M_wall": 2.1165199101439454,
+      "M_wall_ms": 10.52192,
+      "flag": "COST_PARITY_WITHIN_2X",
+      "ratio_B5_over_M_wall": 1.8999146543596606,
       "rule": "wall-clock flag at 2x (only commensurable scale; engine op counts are engine-native and reported only); no route by itself (a cost-only claim needs the separate scaling cell)"
     },
     "G0a_KNOWN_ANSWER": {
@@ -236,7 +236,7 @@
       "terminal": "RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL"
     },
     "ROUTE": {
-      "cost_flag": "COST_ADVANTAGE_M",
+      "cost_flag": "COST_PARITY_WITHIN_2X",
       "ladder_terminal": "RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL",
       "reason": "B5 reproduces M's reopening/preservation/unresolved decisions",
       "route": "PARENT_SUFFICIENT"
@@ -244,7 +244,7 @@
   },
   "label": "DEVELOPMENT",
   "n_instances": 36,
-  "results_sha256": "aad8d1ac0b3e2ea3e7f2b05b7f0be50586b64e4cb0a5616f77da5cd80fe96f3d",
+  "results_sha256": "ad2eeefa710749745f6e6f45201b0a0d87dfebd159a6bcef02acfd44ac9293e1",
   "schema_version": "orion.v2.me-x4.exact-study-analysis.v1",
   "score": {
     "per_arm": {
@@ -383,7 +383,7 @@
         "recovery_n": 5,
         "recovery_rate": 1.0,
         "under_reopen": 7,
-        "wall_ms": 11.811497
+        "wall_ms": 10.969168
       },
       "A1_JTMS_CLASSICAL": {
         "engine_ops": 8584,
@@ -520,7 +520,7 @@
         "recovery_n": 5,
         "recovery_rate": 1.0,
         "under_reopen": 4,
-        "wall_ms": 15.828956
+        "wall_ms": 15.695251
       },
       "A2_ATMS_CLASSICAL": {
         "engine_ops": 251,
@@ -657,10 +657,10 @@
         "recovery_n": 5,
         "recovery_rate": 1.0,
         "under_reopen": 4,
-        "wall_ms": 8.210497
+        "wall_ms": 8.335043
       },
       "A3_AGM_KERNEL_CONTRACTION": {
-        "engine_ops": 5555,
+        "engine_ops": 5359,
         "false_unresolved": 0,
         "final_exact_rate": 0.8333333333333334,
         "instance_exact_rate": 0.8333333333333334,
@@ -794,7 +794,7 @@
         "recovery_n": 5,
         "recovery_rate": 1.0,
         "under_reopen": 4,
-        "wall_ms": 4.127668
+        "wall_ms": 3.925293
       },
       "A4_BAYES_NOISY_OR": {
         "engine_ops": 892,
@@ -931,7 +931,7 @@
         "recovery_n": 5,
         "recovery_rate": 1.0,
         "under_reopen": 4,
-        "wall_ms": 3.78317
+        "wall_ms": 3.4475
       },
       "A5_ASSURANCE_CASE_UPDATE": {
         "engine_ops": 358,
@@ -1068,7 +1068,7 @@
         "recovery_n": 5,
         "recovery_rate": 1.0,
         "under_reopen": 4,
-        "wall_ms": 3.937832
+        "wall_ms": 3.524832
       },
       "B5_R1_VERDICT_ONLY": {
         "engine_ops": 6655,
@@ -1205,7 +1205,7 @@
         "recovery_n": 5,
         "recovery_rate": 1.0,
         "under_reopen": 1,
-        "wall_ms": 23.587997
+        "wall_ms": 21.091667
       },
       "B5_R2_PROV": {
         "engine_ops": 7425,
@@ -1342,7 +1342,7 @@
         "recovery_n": 5,
         "recovery_rate": 1.0,
         "under_reopen": 0,
-        "wall_ms": 25.099542
+        "wall_ms": 23.542917
       },
       "B5_R3_PROV+DEP": {
         "engine_ops": 6969,
@@ -1479,7 +1479,7 @@
         "recovery_n": 5,
         "recovery_rate": 1.0,
         "under_reopen": 0,
-        "wall_ms": 20.759212
+        "wall_ms": 19.287459
       },
       "B5_R4_PROV+DEP+TRANS+EVAL": {
         "engine_ops": 7190,
@@ -1616,7 +1616,7 @@
         "recovery_n": 5,
         "recovery_rate": 1.0,
         "under_reopen": 0,
-        "wall_ms": 21.317796
+        "wall_ms": 19.076792
       },
       "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": {
         "engine_ops": 8915,
@@ -1753,7 +1753,7 @@
         "recovery_n": 5,
         "recovery_rate": 1.0,
         "under_reopen": 0,
-        "wall_ms": 21.081332
+        "wall_ms": 19.99075
       },
       "C_NEVER_REOPEN": {
         "engine_ops": 0,
@@ -1890,7 +1890,7 @@
         "recovery_n": 5,
         "recovery_rate": 1.0,
         "under_reopen": 31,
-        "wall_ms": 0.018501
+        "wall_ms": 0.019917
       },
       "C_RANDOM_DISPOSITION": {
         "engine_ops": 0,
@@ -2027,7 +2027,7 @@
         "recovery_n": 5,
         "recovery_rate": 0.0,
         "under_reopen": 23,
-        "wall_ms": 0.166711
+        "wall_ms": 0.128085
       },
       "M_GLOBAL_RESET_CONTROL": {
         "engine_ops": 0,
@@ -2164,7 +2164,7 @@
         "recovery_n": 5,
         "recovery_rate": 0.8,
         "under_reopen": 0,
-        "wall_ms": 8.37504
+        "wall_ms": 8.461081
       },
       "M_ME_SELECTIVE_REOPENING": {
         "engine_ops": 3021,
@@ -2301,7 +2301,7 @@
         "recovery_n": 5,
         "recovery_rate": 1.0,
         "under_reopen": 0,
-        "wall_ms": 9.960375
+        "wall_ms": 10.52192
       },
       "M_MINUS_DEPENDENCE_ANCESTRY": {
         "engine_ops": 3021,
@@ -2438,7 +2438,7 @@
         "recovery_n": 5,
         "recovery_rate": 1.0,
         "under_reopen": 4,
-        "wall_ms": 8.129794
+        "wall_ms": 8.424712
       },
       "M_MINUS_EVALUATOR_CONTRACT": {
         "engine_ops": 2926,
@@ -2575,7 +2575,7 @@
         "recovery_n": 5,
         "recovery_rate": 1.0,
         "under_reopen": 0,
-        "wall_ms": 10.731632
+        "wall_ms": 9.702999
       },
       "M_MINUS_SUPPORT_FAMILIES": {
         "engine_ops": 2830,
@@ -2712,7 +2712,7 @@
         "recovery_n": 5,
         "recovery_rate": 1.0,
         "under_reopen": 0,
-        "wall_ms": 10.413289
+        "wall_ms": 10.844709
       },
       "M_MINUS_TYPED_TRANSPORT": {
         "engine_ops": 3021,
@@ -2849,7 +2849,7 @@
         "recovery_n": 5,
         "recovery_rate": 1.0,
         "under_reopen": 0,
-        "wall_ms": 9.6475
+        "wall_ms": 9.176292
       },
       "M_PROVENANCE_ONLY_CONTROL": {
         "engine_ops": 395,
@@ -2986,7 +2986,7 @@
         "recovery_n": 5,
         "recovery_rate": 1.0,
         "under_reopen": 7,
-        "wall_ms": 10.120084
+        "wall_ms": 10.60871
       }
     }
   }
