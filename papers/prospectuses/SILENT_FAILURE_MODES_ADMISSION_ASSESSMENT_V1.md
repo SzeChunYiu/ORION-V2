@@ -187,14 +187,29 @@ generalization the proposed paper would make**, published twenty years earlier, 
 denominator detector and the planted-positive detector under a single mechanism. This single
 citation closes the object's claim to a unifying contribution.
 
-**The empirical-census slot is already occupied.** Vacuity in temporal model checking has a
-practice literature reporting how often checks pass without checking: Beer, Ben-David, Eisner and
+**The empirical-census slot is already occupied — verified at source.** Beer, Ben-David, Eisner and
 Rodeh, *Efficient Detection of Vacuity in Temporal Model Checking*, Formal Methods in System Design
-18(2):141–163, 2001 (DOI 10.1023/A:1008779610539), and the later *Vacuity in practice: temporal
-antecedent failure*, FMSD 46(1), 2015 (DOI 10.1007/s10703-014-0221-0). The paper identities and
-their subject are confirmed; **the specific rate reported by Beer et al. (given as roughly 20% of
-formulas trivially valid on first runs, always indicating a real problem) is second-hand here and
-must be checked at source before any successor cites it.**
+18(2):141–163, 2001 (DOI 10.1023/A:1008779610539), p. 141, read from the primary PDF:
+
+> "Several years of experience in practical formal verification of hardware at IBM [3] have shown us
+> that during the first formal verification runs of a new hardware design, typically 20% of formulas
+> are found to be trivially valid, and that trivial validity always points to a real problem in
+> either the design or its specification or environment. Of the formulas which are found to be
+> non-trivially valid, examination of a non-trivial example trace discovers a problem for
+> approximately 10% of the formulas."
+
+That is a stronger statement than anything the proposed paper offers: a rate, a population, and the
+claim that such passes *always* indicate a real defect. Its limitation survives verification and must
+be stated with it — this is an IBM RuleBase experience report, not a methodologically specified
+census. A later systematic study occupies the same slot: *Vacuity in practice: temporal antecedent
+failure*, FMSD 46(1), 2015 (DOI 10.1007/s10703-014-0221-0).
+
+*Secondary, unverified.* The form of this quotation that circulates in the later literature
+("typically 20% of specifications pass vacuously … vacuous passes always point to a real problem") is
+reported to appear in quotation marks in Kupferman 2006 attributed to Beer et al., and does not match
+the FMSD 2001 wording above — possibly quoting the differently-titled CAV'97 predecessor. This could
+not be checked at source here. It is recorded only as a caution: a successor citing the 20% figure
+should bind the wording above, to FMSD 2001, page 141.
 
 **Field-level reduction, citations not bound.** Each remaining detector reduces to a mature field:
 checked-coverage and oracle-quality work for the denominator detector; mutation testing, metamorphic
@@ -209,9 +224,10 @@ measured-the-wrong-thing null.
 ```text
 PARENT_CITATIONS      = PARTIALLY_BOUND
 VERIFIED_INDEPENDENTLY = Kupferman 2006 (D1+D2 unification)
-IDENTITY_CONFIRMED     = Beer et al. 2001; Vacuity in practice 2015
-UNVERIFIED_AT_SOURCE   = the 20% vacuity rate; all agentic-benchmark census figures;
-                         the preregistration-and-exploration evidence of §7
+VERIFIED_AT_SOURCE     = Beer et al. 2001 p.141 — the 20% rate, quoted above
+IDENTITY_CONFIRMED     = Vacuity in practice, FMSD 46(1), 2015
+UNVERIFIED_AT_SOURCE   = the Kupferman-rendering quotation mismatch; all agentic-benchmark
+                         census figures; the preregistration-and-exploration evidence of §7
 DO_NOT_BIND            = any citation above without checking it at source first
 ```
 
