@@ -166,12 +166,23 @@ cell (`FAMILY_CELL` in `mex3_generator.py`).
 | `F5_PROBE_OR_COUNTEREXAMPLE_NEEDED` | `L0_REFUTE`, faithful | the next move is a probe, not a proof |
 | `F6_UNDERDETERMINED_OR_CANNOT_CHECK` | `L5_DEFER`, faithful | calibration, anti-fabrication |
 | `F7_SPECIFICATION_MISMATCH` | fidelity equals the registered subtype | verifier/specification separation |
-| `F8_TRANSFER` | source and held-out target both at the lemma level | one-off hack vs reusable capability |
+| `F8_TRANSFER` | source and held-out target both at the lemma level | held-out reach at the lemma level (see the registered limitation below) |
 
 F8 emits a **pair**: a source task and a held-out sibling frozen with it, before
-any arm runs, solvable within budget only by reusing the source's artefact. Only
-an arm's *own* invention is carried; reusing it is reported as the invention it
-was.
+any arm runs, solvable within budget only at the lemma level. Only an arm's *own*
+invention is carried; reusing it is reported as the invention it was.
+
+**Registered limitation.** The held-out target admits *independent re-invention*
+from the registered candidate pool as well as *reuse* of the source's artefact,
+so carrying the artefact is sufficient but not necessary. F8 therefore measures
+held-out solve rate at the lemma level, not reuse gain, and it does **not**
+support a strong reusability claim; the G3 row for F8 is expected to show no
+degradation for that structural reason rather than because transfer tracking is
+inert. The analysis prints the no-carry counterfactual
+(`M_MINUS_TRANSFER_REUSE_TRACKING`) beside the rate so the zero is visible rather
+than implied. A study that isolates reuse would have to make the target
+unreachable by any pool lemma except the source's, which is a different
+generator and a different identity.
 
 Surface cues (an alternative presentation offered under a suggestive label, a
 symmetric-looking statement) are visible to every arm on both `F3` and `F4`, so
@@ -219,7 +230,9 @@ certifies unreachability, versus an exhausted budget, which certifies nothing);
 ## 7. Outcomes and gates
 
 Reported **per family and per arm**, never collapsed into one scalar first:
-proof-validity accuracy (with witness re-checking), specification-intent match,
+proof-validity accuracy (with witness re-checking), specification-intent match
+(also broken down by registered drift subtype, with the realized draw reported,
+since a family average must not hide a subtype that is never detected),
 minimal-intervention accuracy, terminal accuracy, the joint endpoint, false
 representation-change rate, false-defer rate, missed-escalation rate,
 drift-missed rate, false-drift-alarm rate, held-out reuse rate, cost.

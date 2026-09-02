@@ -145,7 +145,6 @@ def _adjudication(task: Task) -> tuple[Presentation, Statement, Statement]:
     """Fidelity is adjudicated in the presentation the formal statement is written
     in; when that is the alternative presentation, the intent is translated."""
     if task.formal_pid == "P1" and task.alt is not None:
-        d = tuple(task.hidden.get("alt_defining_word", ())) if task.hidden else ()
         it = task.hidden.get("intent_translated") if task.hidden else None
         if it:
             return task.alt, Statement(tuple(it["lhs"]), tuple(it["rhs"])), task.formal
@@ -219,20 +218,11 @@ def m_invent(led: Ledger, task: Task, stmt: Statement, slice_: int
 
 
 def m_alt_statement(task: Task) -> Optional[Statement]:
-    if task.alt is None or not task.hidden.get("alt_defining_word"):
-        if task.alt is None:
-            return None
-    d = tuple(task.hidden.get("alt_defining_word", ())) if task.hidden else ()
-    if not d:
-        # recover the defining word from the alt presentation's defining relation
-        g = task.base.alphabet
-        for u, v in task.alt.axioms:
-            if u == (g,):
-                d = v; break
-        else:
-            return None
+    """The presented statement written in the offered alternative presentation."""
+    if task.alt is None or not task.alt_defining_word:
+        return None
     from mex3_generator import translate
-    g = task.base.alphabet
+    d, g = task.alt_defining_word, task.base.alphabet
     return Statement(translate(task.formal.lhs, d, g), translate(task.formal.rhs, d, g))
 
 

@@ -30,7 +30,7 @@ TASK_BUDGET = Budget(max_word_len=6, max_expansions=1800, solve_expansions=250,
 ORACLE_WORD_LEN = 8
 ORACLE_EXPANSIONS = 40000
 ORACLE_MODEL_SIZE = 3
-MAX_ATTEMPTS = 4000
+MAX_ATTEMPTS = 40000
 
 CUES = ("statement is symmetric under reversal", "an alternative presentation is available",
         "the target resembles a normal-form identity", "a change of generators is offered",
@@ -173,11 +173,12 @@ def library_noise(r: random.Random, pres: Presentation, k: int) -> list[tuple[Wo
 
 def _mk(task_id: str, family: str, seed: str, base: Presentation, intent: Statement,
         formal: Statement, hidden: dict, *, alt: Optional[Presentation] = None,
-        alt_label: str = "", alt_map: tuple[Word, ...] = (), library=(),
+        alt_label: str = "", alt_map: tuple[Word, ...] = (), alt_d: Word = (), library=(),
         invariants=("schema variable must remain universally quantified",),
         cues=(), formal_pid: str = "P0", transfer_of: Optional[str] = None) -> Task:
     return Task(task_id=task_id, family=family, seed=seed, base=base, alt=alt,
-                alt_label=alt_label, alt_map=alt_map, library=tuple(library),
+                alt_label=alt_label, alt_map=alt_map, alt_defining_word=tuple(alt_d),
+                library=tuple(library),
                 intent=intent, intent_invariants=tuple(invariants), formal=formal,
                 formal_pid=formal_pid, surface_cues=tuple(cues), budget=TASK_BUDGET,
                 transfer_of=transfer_of, hidden=hidden)
@@ -278,7 +279,7 @@ def gen_f3(r: random.Random, tid: str, seed: str) -> Optional[Task]:
               "min_len_alt": tr_alt.length, "theories_agree": True,
               "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED"}
     return _mk(tid, "F3_REPRESENTATION_CHANGE", seed, p, st, st, hidden, alt=alt,
-               alt_label=f"generator {word_str((g,))} := {word_str(d)}", alt_map=amap,
+               alt_label=f"generator {word_str((g,))} := {word_str(d)}", alt_map=amap, alt_d=d,
                library=library_noise(r, p, 3), cues=(CUES[3], CUES[1]))
 
 
@@ -309,7 +310,7 @@ def gen_f4(r: random.Random, tid: str, seed: str) -> Optional[Task]:
               "alt_expansions": tr_alt.expansions, "base_expansions": tr.expansions,
               "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED"}
     return _mk(tid, "F4_DECEPTIVE_CHANGE", seed, p, st, st, hidden, alt=alt,
-               alt_label=f"generator {word_str((g,))} := {word_str(d)}", alt_map=amap,
+               alt_label=f"generator {word_str((g,))} := {word_str(d)}", alt_map=amap, alt_d=d,
                library=library_noise(r, p, 4), cues=(CUES[3], CUES[0], CUES[4]))
 
 
@@ -466,7 +467,7 @@ def _f7_elevation(r, p, tid, seed):
                   "terminal": term}
         return _mk(tid, "F7_SPECIFICATION_MISMATCH", seed, p, intent, formal, hidden,
                    alt=alt, alt_label=f"generator {word_str((g,))} := {word_str(d)}",
-                   alt_map=amap, formal_pid="P1", library=library_noise(r, p, 3),
+                   alt_map=amap, alt_d=d, formal_pid="P1", library=library_noise(r, p, 3),
                    cues=(CUES[4],),
                    invariants=("the formal statement must not quantify over generators "
                                "absent from the intended equation",))

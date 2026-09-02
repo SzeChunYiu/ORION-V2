@@ -1,8 +1,8 @@
 # ME-X3 DEVELOPMENT analysis V1
 
 - instances: 27
-- results sha256: `22dfed16a6abcf21fc8e5042b75422420b7a891c49f56b315303e9a6e30cd8c4`
-- custody sha256: `09cea4921c659cb304f32f91f7a3cc293c86cf3fc74d423a3ad282a728592738`
+- results sha256: `88a621affd34d2e8c9d09811278d4aa8992a52e6b3cc1cf127c5c680146a1058`
+- custody sha256: `c59fb4c78b0a67429ea978dc85d912399e806ea428825835e44fad5473840ac6`
 
 **Route: PARENT_SUFFICIENT** — M 0.889 vs B5 0.889, paired exact p=1: no protected decision advantage over the strongest faithful federation (cost 520 vs 553 expansions, -6.1%)
 
@@ -25,7 +25,7 @@ Ladder terminal (H-EXT-3): `RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL`
 | `M_ME_OBSTRUCTION_MINIMUM_ESCALATION` | 0.889 | 1.000 | 0.889 | 0.889 | 0.889 | 0.000 | 0.111 | 0.000 | 0.000 | 0.333 | 519.6 |
 | `M_MINUS_OBSTRUCTION_CLASS` | 0.889 | 1.000 | 0.741 | 0.889 | 0.741 | 0.000 | 0.111 | 0.000 | 0.000 | 0.333 | 545.5 |
 | `M_MINUS_LOWER_LEVEL_DISPOSITION` | 0.889 | 1.000 | 0.889 | 0.889 | 0.889 | 0.000 | 0.111 | 0.000 | 0.000 | 0.333 | 510.4 |
-| `M_MINUS_FALSE_CHANGE_PENALTY` | 0.889 | 1.000 | 0.778 | 0.889 | 0.778 | 0.111 | 0.111 | 0.000 | 0.000 | 0.333 | 517.0 |
+| `M_MINUS_FALSE_CHANGE_PENALTY` | 0.889 | 1.000 | 0.778 | 0.889 | 0.778 | 0.111 | 0.111 | 0.000 | 0.000 | 0.333 | 516.9 |
 | `M_MINUS_SPECIFICATION_PRESERVATION` | 0.889 | 0.926 | 0.815 | 0.852 | 0.815 | 0.000 | 0.111 | 1.000 | 0.000 | 0.333 | 515.4 |
 | `M_MINUS_PRESERVATION_CONTRACT` | 0.889 | 1.000 | 0.889 | 0.889 | 0.889 | 0.000 | 0.111 | 0.000 | 0.000 | 0.333 | 519.6 |
 | `M_MINUS_UNRESOLVED_TERMINAL` | 0.778 | 1.000 | 0.778 | 0.778 | 0.778 | 0.000 | 0.000 | 0.000 | 0.000 | 0.333 | 519.6 |
@@ -49,6 +49,13 @@ Ladder terminal (H-EXT-3): `RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL`
 | `F8_TRANSFER` | 6 | 0.500 | 0.500 | 0 | 0 | +0.000 | 1 | TIED |
 
 A pooled average may not hide a family-specific failure; the table above is the primary report and the pooled row is secondary.
+
+## F8 held-out reuse: carry versus no-carry
+
+- M (carries its own invention): 0.333 (1/3)
+- M minus transfer tracking (no carry): 0.333 (1/3)
+
+The held-out target admits independent re-invention from the registered candidate pool as well as reuse of the source artefact, so a difference of zero here is the expected reading and F8 does not support a strong reusability claim. The counterfactual is printed so that this is visible rather than inferred from a passing rate.
 
 ## Gates
 

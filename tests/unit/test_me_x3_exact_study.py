@@ -109,13 +109,36 @@ def test_generator_is_deterministic(split) -> None:
     assert [v["minimal_action"] for _, v in split] == [v["minimal_action"] for _, v in again]
 
 
+def test_a_representation_change_witness_must_prove_the_translated_statement(split) -> None:
+    """A chain that is axiom-sound but proves something else earns no F3 credit."""
+    f3 = [(t, v) for t, v in split if t.family == "F3_REPRESENTATION_CHANGE"]
+    if not f3:
+        pytest.skip("no F3 instance in this split")
+    task, _ = f3[0]
+    stmt = A.m_alt_statement(task)
+    assert stmt is not None
+    r = O.bfs_derivation(stmt.lhs, stmt.rhs, task.alt.axioms,
+                         task.budget.max_word_len, task.budget.solve_expansions)
+    assert r.found
+    good = {"validity": "VERIFIED", "derivation": [list(w) for w in r.path],
+            "derivation_pid": "P1", "invented_lemma": None, "countermodel": None}
+    assert R._witness_ok(task.view(), good, {}) is True
+    # an axiom-sound chain between other endpoints must NOT pass
+    other = O.bfs_derivation(stmt.lhs, stmt.lhs + (0,), task.alt.axioms,
+                             task.budget.max_word_len, task.budget.solve_expansions)
+    if other.found and other.length > 0:
+        bad = dict(good, derivation=[list(w) for w in other.path])
+        assert R._witness_ok(task.view(), bad, {}) is False
+
+
 def test_the_arm_view_carries_no_oracle_information(split) -> None:
     for task, _ in split:
         view = task.view()
         blob = json.dumps(view)
         assert "hidden" not in view and "family" not in view
         for banned in ("oracle_action", "f7_subtype", "minimal_action", "terminal",
-                       "transfer_role", "fidelity_witness", "countermodel"):
+                       "transfer_role", "fidelity_witness", "countermodel",
+                       "truth", "level", "escalation_witness"):
             assert banned not in blob, (task.task_id, banned)
 
 
@@ -199,6 +222,8 @@ def test_design_json_matches_the_frozen_code_constants() -> None:
     assert d["budget"]["solve_expansions"] == G.TASK_BUDGET.solve_expansions
     assert d["oracle_caps"]["word_len"] == G.ORACLE_WORD_LEN
     assert d["oracle_caps"]["lemma_pool_cap"] == V.LEMMA_POOL_CAP
+    assert d["splits"]["rejection_sampling_max_attempts"] == G.MAX_ATTEMPTS
+    assert d["splits"]["protected"]["per_family"] == R.PROTECTED_PER_FAMILY
     assert d["arms"] == [s.name for s in A.arm_specs()]
     assert d["primary_comparator"] == A.B5_ARM and d["candidate"] == A.M_ARM
     assert d["verifier"]["mathlib"] is None

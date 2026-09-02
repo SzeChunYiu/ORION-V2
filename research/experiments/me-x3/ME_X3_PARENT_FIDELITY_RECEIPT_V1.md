@@ -78,6 +78,17 @@ crying wolf on the faithful controls.
 cheaper, which is what the pre-registered `PARENT_SUFFICIENT` expectation looks
 like: on an exhaustive finite oracle, control buys ordering, not reach.
 
+### 3.1 F7 by realized drift subtype
+
+| subtype | n | M fidelity | A0 fidelity |
+|---|---|---|---|
+| (none drawn) | | | |
+
+The development split is far too small to cover the subtype space; the point of
+this table is that the scorer reports the realized draw rather than the
+generator's proposal weights, so a family average cannot hide a subtype that is
+never detected on the protected split.
+
 ## 4. Ablations on the development split
 
 | arm | joint | fidelity | minimal action | false change | drift missed | held-out reuse |
@@ -98,8 +109,12 @@ Each registered omission moves the column it is supposed to control:
 `M_MINUS_SPECIFICATION_PRESERVATION` loses fidelity and misses every drift;
 `M_MINUS_FALSE_CHANGE_PENALTY` picks up a false representation-change rate;
 `M_NEVER_CHANGE_REPRESENTATION` loses the representation family;
-`M_MINUS_UNRESOLVED_TERMINAL` loses the underdetermined family. On the protected
-split these are gated (G3) rather than described.
+`M_MINUS_UNRESOLVED_TERMINAL` loses the underdetermined family.
+`M_MINUS_TRANSFER_REUSE_TRACKING` does **not** move, for the structural reason
+recorded as a limitation in §5 of the design: the held-out target admits
+independent re-invention as well as reuse, so F8 measures held-out reach rather
+than reuse gain. On the protected split these are gated (G3) rather than
+described, and the F8 no-carry counterfactual is printed beside the rate.
 
 ## 5. Development route
 
@@ -115,16 +130,16 @@ reframed if it does not.
 
 | file | sha256 |
 |---|---|
-| `mex3_arms.py` | `7d94a4c5c96473f71f89d49332b2202e8fd7a1f535f6f0f373c491cb975f0089` |
-| `mex3_generator.py` | `0976ecc8b575d9f200b26e64a5a5684108619f6409daee000b13f70186b4e21a` |
+| `mex3_arms.py` | `1c409b28f58b64bd6e0c98ed67a7c2078e0abc9766bf223e36066e7e849322cf` |
+| `mex3_generator.py` | `616871b8a665dcdd2a5177e1850c74c5c12791ca94d637fb8f397fa38b11b0f2` |
 | `mex3_lean.py` | `5f6b41a30c26473bf36b8ee48d29ecb93525d76d6d8d725601ee5b7d5a2703da` |
-| `mex3_model.py` | `4ada65bbe31cb95ebc94fd48859473c54cdec63417f438569c4c8c53e0ec6ae0` |
+| `mex3_model.py` | `e9d0209a747159b7b0845d1a221de072be3326da233a3349886496ad7e3af562` |
 | `mex3_oracle.py` | `736003f17d2f2c44851b8b66ff56ff222384f599fb6a51bea1e369b04174129d` |
 | `mex3_parents.py` | `52dfbfe7bd9a4cfa802cc24dc1e7b86e4fb37fdacb281f52409f0f5ef9110fe2` |
-| `mex3_run.py` | `aad0fc2291a124d7682e06f4c9a2a1f4990847f8147326b03506f4e01c810402` |
-| `mex3_verdict.py` | `c8e4365fa44a1ceb7975463a0a868c7f78e072f1c9be2033641fbd035b7d8bf9` |
+| `mex3_run.py` | `3857d93b7810c39a14914017bf1617d42e932ee03309cf139f97e58df35b18ba` |
+| `mex3_verdict.py` | `1a9bbc3460729adc8af8ed3f940f79bbbf3f4224eb077a33a250eee42ff10f40` |
 
-Design JSON sha256: `4bfc4857e750c02e4b38b33514f1847ea80dfc79451d86a59381af65af219c4a`
+Design JSON sha256: `5794e99be21f36257cb1ffa98ffd9544f9799188da5e4bea7993f9be46ea6d66`
 Custody seed sha256: `cb799f89499cea4a088c6df071e9ce12bff2fceb02c4adc06ab7ce4eecdbb3f8`
 
 ## Terminal
@@ -133,5 +148,6 @@ Custody seed sha256: `cb799f89499cea4a088c6df071e9ce12bff2fceb02c4adc06ab7ce4eec
 PARENT_FIDELITY = PASSED
 ORACLE_SELF_AGREEMENT = PASSED
 PROOF_ONLY_PARENTS_MISS_ALL_SPECIFICATION_DRIFT = TRUE
+F8_MEASURES_HELD_OUT_REACH_NOT_REUSE_GAIN = TRUE
 PROTECTED_OUTCOMES_INSPECTED = FALSE
 ```

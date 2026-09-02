@@ -120,8 +120,21 @@ def _witness_ok(task_view: dict, ans: dict, expected: dict) -> bool:
             return False
         pid = ans.get("derivation_pid") or "P0"
         if pid.startswith("P1") and alt is not None:
-            stmt = Statement(path[0], path[-1])
-            ok, _ = check_derivation(path, stmt, alt.axioms, task_view["budget"]["max_word_len"])
+            # A representation change earns credit only if the chain proves the
+            # TRANSLATION of the presented statement. Checking the chain against
+            # its own endpoints would test axiom-soundness alone and let any valid
+            # alt-presentation derivation collect F3 credit.
+            from mex3_generator import translate
+            g = base.alphabet
+            d = tuple(task_view.get("alt_defining_word") or ())
+            if task_view["formal_pid"] == "P1":
+                target = formal
+            elif not d:
+                return False
+            else:
+                target = Statement(translate(formal.lhs, d, g), translate(formal.rhs, d, g))
+            ok, _ = check_derivation(path, target, alt.axioms,
+                                     task_view["budget"]["max_word_len"])
             return ok
         aug = base
         lem = ans.get("invented_lemma")
@@ -141,25 +154,31 @@ def _witness_ok(task_view: dict, ans: dict, expected: dict) -> bool:
     return True
 
 
+def _blank() -> dict:
+    return {"n": 0, "validity": 0, "fidelity": 0, "action": 0, "terminal": 0,
+            "joint": 0, "witness": 0, "false_change": 0, "false_defer": 0,
+            "missed_escalation": 0, "drift_missed": 0, "drift_n": 0,
+            "false_drift_alarm": 0, "faithful_n": 0, "expansions": 0,
+            "module_calls": 0, "reuse_solved": 0, "reuse_n": 0}
+
+
 def score(results: dict, custody: dict) -> dict:
     exp = {c["task_id"]: c for c in custody["instances"]}
     arms = results["arms"]
     per_arm: dict[str, dict] = {}
     for arm in arms:
         fams: dict[str, dict] = {}
+        subs: dict[str, dict] = {}
         joint_flags: dict[str, bool] = {}
         for inst in results["instances"]:
             e = exp[inst["task_id"]]; v = e["expected"]; a = inst["arms"][arm]
             fam = inst["family"]
-            f = fams.setdefault(fam, {"n": 0, "validity": 0, "fidelity": 0, "action": 0,
-                                      "terminal": 0, "joint": 0, "witness": 0,
-                                      "false_change": 0, "false_defer": 0,
-                                      "missed_escalation": 0, "drift_missed": 0,
-                                      "drift_n": 0, "false_drift_alarm": 0,
-                                      "faithful_n": 0, "expansions": 0,
-                                      "module_calls": 0, "reuse_solved": 0,
-                                      "reuse_n": 0})
+            f = fams.setdefault(fam, _blank())
+            sub = e["hidden"].get("f7_subtype")
+            g_sub = subs.setdefault(sub, _blank()) if sub else None
             f["n"] += 1
+            if g_sub is not None:
+                g_sub["n"] += 1
             wok = _witness_ok(e["task"], a, v)
             f["witness"] += wok
             val = (a["validity"] == v["validity"]) and wok
@@ -170,6 +189,18 @@ def score(results: dict, custody: dict) -> dict:
             f["terminal"] += term
             j = val and fid and act
             f["joint"] += j
+            if g_sub is not None:
+                g_sub["witness"] += wok; g_sub["validity"] += val
+                g_sub["fidelity"] += fid; g_sub["action"] += act
+                g_sub["terminal"] += term; g_sub["joint"] += j
+                if v["fidelity"] in DRIFT_VERDICTS:
+                    g_sub["drift_n"] += 1
+                    if a["fidelity"] == "FAITHFUL":
+                        g_sub["drift_missed"] += 1
+                if v["fidelity"] == "FAITHFUL":
+                    g_sub["faithful_n"] += 1
+                    if a["fidelity"] != "FAITHFUL":
+                        g_sub["false_drift_alarm"] += 1
             joint_flags[inst["task_id"]] = bool(j)
             if v["level"] not in ("L4_REPRESENTATION",) and a["action"] == "CHANGE_REPRESENTATION":
                 f["false_change"] += 1
@@ -199,6 +230,7 @@ def score(results: dict, custody: dict) -> dict:
                 "module_calls", "reuse_solved", "reuse_n")}
         per_arm[arm] = {
             "per_family": {k: _rates(x) for k, x in sorted(fams.items())},
+            "per_f7_subtype": {k: _rates(x) for k, x in sorted(subs.items())},
             "pooled": _rates(tot), "joint_flags": joint_flags,
         }
     return {"per_arm": per_arm, "n_instances": len(results["instances"])}
@@ -322,8 +354,6 @@ def gates(sc: dict, results: dict, selftest_ok) -> dict:
           "note": "H-EXT-3: what crosses the federation's module boundary"}
 
     # ---- pre-registered route ------------------------------------------------
-    fid_pair = paired(
-        {k: True for k in all_ids}, {k: True for k in all_ids}, all_ids)  # placeholder shape
     m_fid = M["pooled"]["fidelity_rate"]; b_fid = B5["pooled"]["fidelity_rate"]
     m_val = M["pooled"]["validity_rate"]; b_val = B5["pooled"]["validity_rate"]
     if not g0["pass"]:
@@ -344,7 +374,10 @@ def gates(sc: dict, results: dict, selftest_ok) -> dict:
     elif m_fid > b_fid and m_val <= b_val + 1e-9:
         route, reason = ("SPECIFICATION_FIDELITY_RESIDUAL",
                          f"the advantage is on specification fidelity ({m_fid:.3f} vs "
-                         f"{b_fid:.3f}), not on proof validity ({m_val:.3f} vs {b_val:.3f})")
+                         f"{b_fid:.3f}), not on proof validity ({m_val:.3f} vs {b_val:.3f}). "
+                         "This branch is a descriptive sub-classification of a result "
+                         "already significant under G1's paired exact test, not an "
+                         "independent test of the fidelity endpoint")
     else:
         route, reason = "ME_RESIDUAL_SUPPORTED", "G1-G3 all passed on the joint endpoint"
     per_family_route = {
@@ -485,8 +518,43 @@ def render_md(a: dict) -> str:
                  f"{r['diff_x_minus_y']:+.3f} | {r['exact_p_two_sided']:.3g} | "
                  f"{g['ROUTE']['per_family'][fam]} |")
     L += ["", "A pooled average may not hide a family-specific failure; the table above is "
-              "the primary report and the pooled row is secondary.", "",
-          "## Gates", "", "| gate | pass | note |", "|---|---|---|"]
+              "the primary report and the pooled row is secondary.", ""]
+
+    # F7 by registered drift subtype: a family score cannot be allowed to hide a
+    # subtype (e.g. notational collapse) that is never detected.
+    subs = pa[M_ARM].get("per_f7_subtype") or {}
+    if subs:
+        L += ["## F7 by registered drift subtype (realized draw)", "",
+              "| subtype | n | M fidelity | B5 fidelity | A0 fidelity | M drift missed | "
+              "M false drift alarm |", "|---|---|---|---|---|---|---|"]
+        for sub, r in subs.items():
+            b = pa[B5_ARM].get("per_f7_subtype", {}).get(sub, {})
+            a0 = pa.get("A0_DIRECT", {}).get("per_f7_subtype", {}).get(sub, {})
+            L.append(f"| `{sub}` | {r['n']} | {r['fidelity_rate']:.3f} | "
+                     f"{b.get('fidelity_rate', float('nan')):.3f} | "
+                     f"{a0.get('fidelity_rate', float('nan')):.3f} | "
+                     f"{r['drift_missed_rate']:.3f} | {r['false_drift_alarm_rate']:.3f} |")
+        L += ["", "Counts are the realized draw after oracle-verified rejection sampling, "
+                  "not the generator's proposal weights.", ""]
+
+    # F8 no-carry counterfactual, reported next to the reuse rate so that a
+    # structurally guaranteed zero is visible rather than implied.
+    nc = pa.get("M_MINUS_TRANSFER_REUSE_TRACKING", {}).get("per_family", {}).get("F8_TRANSFER")
+    mf8 = pa[M_ARM]["per_family"].get("F8_TRANSFER")
+    if nc and mf8:
+        L += ["## F8 held-out reuse: carry versus no-carry", "",
+              f"- M (carries its own invention): {mf8['held_out_reuse_rate']:.3f} "
+              f"({mf8['reuse_solved']}/{mf8['reuse_n']})",
+              f"- M minus transfer tracking (no carry): {nc['held_out_reuse_rate']:.3f} "
+              f"({nc['reuse_solved']}/{nc['reuse_n']})",
+              "",
+              "The held-out target admits independent re-invention from the registered "
+              "candidate pool as well as reuse of the source artefact, so a difference "
+              "of zero here is the expected reading and F8 does not support a strong "
+              "reusability claim. The counterfactual is printed so that this is visible "
+              "rather than inferred from a passing rate.", ""]
+
+    L += ["## Gates", "", "| gate | pass | note |", "|---|---|---|"]
     for k in ("G0", "G1", "G2", "G3", "G4"):
         L.append(f"| {k} | {'PASS' if g[k]['pass'] else 'FAIL'} | {g[k].get('note', '')} |")
     L += ["", "## H-EXT-3 interface ladder", "", "| rung | joint rate |", "|---|---|"]

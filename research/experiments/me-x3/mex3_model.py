@@ -151,6 +151,7 @@ class Task:
     formal_pid: str                       # which presentation `formal` is written in
     surface_cues: tuple[str, ...]         # deceptive/attractive surface hints (visible)
     budget: Budget
+    alt_defining_word: Word = ()          # the alternative's defining word d (g := d)
     transfer_of: Optional[str] = None     # task_id of the F8 source, if this is a target
     hidden: dict = field(default_factory=dict, repr=False, compare=False)
 
@@ -162,6 +163,11 @@ class Task:
             "alt": self.alt.as_dict() if self.alt else None,
             "alt_label": self.alt_label,
             "alt_map": [list(w) for w in self.alt_map],
+            # The offered alternative presentation comes with its defining word:
+            # it is part of the offer (the label already states it), not oracle
+            # information, and every arm and the witness checker read it here so
+            # that neither has to re-derive it from a sorted axiom list.
+            "alt_defining_word": list(self.alt_defining_word),
             "library": [[list(u), list(v)] for u, v in self.library],
             "intent": self.intent.as_dict(),
             "intent_invariants": list(self.intent_invariants),

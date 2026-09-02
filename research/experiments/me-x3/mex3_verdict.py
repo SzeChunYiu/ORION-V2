@@ -121,7 +121,7 @@ def oracle_verdict(task: Task, oracle_word_len: int, oracle_expansions: int,
                 break
     if level is None and task.alt is not None and task.formal_pid == "P0":
         from mex3_generator import theories_agree
-        d = tuple(task.hidden.get("alt_defining_word", ()))
+        d = task.alt_defining_word
         if d and theories_agree(base, task.alt, oracle_model_size):
             g = base.alphabet
             st_alt = Statement(translate(formal.lhs, d, g), translate(formal.rhs, d, g))
