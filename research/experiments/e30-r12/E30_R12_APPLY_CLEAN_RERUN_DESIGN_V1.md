@@ -180,13 +180,27 @@ execution lane is identical to R11's terminal one by declaration.
    `max_tokens`; on the largest tasks the thinking consumes the whole per-call budget
    before the JSON closes (`stop_reason=max_tokens`, zero visible text). The primary
    budget is `ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET=6000` — the budget under which 466 of
-   E30-R11's 480 envelopes completed — and from pass 7 the dispatch loop applies R11's
+   E30-R11's 480 envelopes completed — and **from pass 3** the dispatch loop applies R11's
    registered raise to 36000 (12000 per call on the 3-call arms), **only** to envelopes
    that carry no model output. That is an execution-resource raise, not resampling: a
    `COMPLETED_PROPOSAL_ONLY` response is never re-rolled.
 
+   Pass 3 rather than a long plateau because the starvation is **deterministic at
+   temperature 0**, not noise. A pre-dispatch smoke call on the exact channel returned
+   `output_tokens` pinned exactly at the 6000 cap with zero visible text; the identical
+   request at 36000 used 3669. Further passes at the primary budget would re-truncate the
+   same cells — E30-R11's own loop plateaued at 13 and only the raise cleared them. Two
+   full passes preserve R11's resourcing for everything that can complete there.
+
+   The policy is identical across arms, so it cannot bias a paired contrast. Arms do starve
+   at different rates, because the total budget is divided by the arm's call count
+   (SIMPLE_DIRECT 1, F0 and F2 3) exactly as in E30-R11 — but an envelope failure is a
+   *missing datum*, not a failure outcome, so rescuing more of them reduces missingness
+   rather than favouring an arm.
+
 The outcome receipt reports envelopes completed at the primary budget, envelopes completed
-only after escalation, and envelopes never completed, by signature.
+only after escalation, envelopes never completed by signature, and actual wall-clock and
+model-call counts per arm.
 
 ## 9. Evaluation lane
 

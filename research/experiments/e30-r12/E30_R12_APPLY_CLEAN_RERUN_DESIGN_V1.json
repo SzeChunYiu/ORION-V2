@@ -438,15 +438,18 @@
       },
       "escalated_budget": {
         "ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET": 36000,
-        "applies_from_pass": 7,
-        "note": "12000 per call on the 3-call arms; E30-R11's registered execution-resource raise, applied ONLY to envelopes that carry no model output"
+        "applies_from_pass": 3,
+        "note": "12000 per call on the 3-call arms; E30-R11's registered execution-resource raise, applied ONLY to envelopes that carry no model output",
+        "why_pass_3": "The starvation is deterministic at temperature 0, not noise: a pre-dispatch smoke call on the exact channel returned output_tokens pinned exactly at the 6000 cap with zero visible text, and the identical request at 36000 used 3669. Passes at the primary budget beyond the first few therefore re-truncate the same cells -- E30-R11's own loop plateaued at 13 stuck cells and only the budget raise cleared them. Two full passes at the primary budget preserve R11's resourcing for every envelope that can complete there; the raise then applies only to envelopes carrying no model output. Fixed here, before authorization; changing it afterwards would be criterion drift."
       },
-      "class": "execution-resource raise on envelope failure; NOT resampling -- a COMPLETED_PROPOSAL_ONLY response is never re-rolled (no-rescue clause)"
+      "class": "execution-resource raise on envelope failure; NOT resampling -- a COMPLETED_PROPOSAL_ONLY response is never re-rolled (no-rescue clause)",
+      "within_study_symmetry": "The budget policy is identical across arms, so it cannot bias a paired contrast. Arms do starve at different rates because the total budget is divided by the arm's call count (SIMPLE_DIRECT 1 call, F2 and F0 3 calls) -- exactly as in E30-R11 -- but an envelope failure is a MISSING datum, not a failure outcome, so rescuing more of them reduces missingness rather than favouring an arm."
     },
     "reported_in_the_receipt": [
       "envelopes completed at the primary budget",
       "envelopes completed only after escalation",
-      "envelopes never completed, by failure signature"
+      "envelopes never completed, by failure signature",
+      "actual wall-clock and model-call counts per arm (D1's comparator came from a different lane's compute)"
     ]
   }
 }

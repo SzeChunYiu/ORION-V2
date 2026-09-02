@@ -594,7 +594,7 @@ def test_agents_escalate_the_token_budget_only_on_later_passes():
     text = (SBATCH / "e30_r12_agents.sbatch").read_text()
     assert "PRIMARY_BUDGET=${E30R12_PRIMARY_BUDGET:-6000}" in text
     assert "ESCALATED_BUDGET=${E30R12_ESCALATED_BUDGET:-36000}" in text
-    assert "ESCALATE_FROM_PASS=${E30R12_ESCALATE_FROM_PASS:-7}" in text
+    assert "ESCALATE_FROM_PASS=${E30R12_ESCALATE_FROM_PASS:-3}" in text
 
 
 def test_design_registers_the_execution_lane_contract():

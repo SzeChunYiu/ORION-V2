@@ -25,11 +25,11 @@ set -a; source "$HOME/.orion-campaign.env"; set +a
 export ANTHROPIC_MODEL="${E30R12_REQUESTED_MODEL:-glm-5.3}"
 export ORION_ARM_SERVED_MODEL="${E30R12_SERVED_MODEL:-glm-5.3}"
 # Registered execution-resource contract (design, execution_lane_contract): the primary
-# budget is the one under which 466 of E30-R11's 480 envelopes completed; passes 7+ apply
+# budget is the one under which 466 of E30-R11's 480 envelopes completed; passes 3+ apply
 # R11's registered raise, and ONLY to envelopes that carry no model output.
 PRIMARY_BUDGET=${E30R12_PRIMARY_BUDGET:-6000}
 ESCALATED_BUDGET=${E30R12_ESCALATED_BUDGET:-36000}
-ESCALATE_FROM_PASS=${E30R12_ESCALATE_FROM_PASS:-7}
+ESCALATE_FROM_PASS=${E30R12_ESCALATE_FROM_PASS:-3}
 export ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET="$PRIMARY_BUDGET"
 export ORION_ARM_HTTP_RETRIES=10
 
