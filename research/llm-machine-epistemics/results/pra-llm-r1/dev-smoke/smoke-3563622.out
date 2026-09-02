@@ -1,0 +1,15 @@
+name, memory.total [MiB], driver_version
+NVIDIA A100 80GB PCIe, 81920 MiB, 580.95.05
+6e7018963391df06b9c4986fbe121ef0a7d60f51ce1caf021bf0ee936f5e4a08  /projects/hep/fs9/users/scyiu/orion-v2-pra-llm/pra_real_llm_audit.py
+188bf0b3facb5824e6f7952636e44743c2183a5f15ee642458f43ed496e03658  /projects/hep/fs9/users/scyiu/orion-v2-pra-llm/PRA_REAL_LLM_AUDIT_DESIGN_V1.json
+{"model": "stub", "split": "dev", "stage": "generate-suite", "summary": {"dev": {"instances_per_family": {"F0_ACQ": 4, "F1_P0": 4, "F2_P1": 4, "F3_P2_CANON": 4, "F3_P2_INDEP": 4, "F3_P2_MIRROR": 4, "F3_P2_RECON": 4, "F3_P2_TIE": 4}, "n_instances": 32, "path": "/projects/hep/fs9/users/scyiu/orion-v2-pra-llm/campaign-pra-llm-r1/dev-smoke/suite/suite_dev.json", "sha256": "98c8cbb54e5560d954c0a7805ae2fca37aa2777751228baf4701d30c185bf2ba"}, "protected": {"instances_per_family": {"F0_ACQ": 40, "F1_P0": 60, "F2_P1": 60, "F3_P2_CANON": 120, "F3_P2_INDEP": 60, "F3_P2_MIRROR": 60, "F3_P2_RECON": 60, "F3_P2_TIE": 40}, "n_instances": 500, "path": "/projects/hep/fs9/users/scyiu/orion-v2-pra-llm/campaign-pra-llm-r1/dev-smoke/suite/suite_protected.json", "sha256": "21b5b0f7263a49732a9d7c6ba4c417b825e363d2ed06df66d1b3a6a26551b2ae"}}}
+{"model": "qwen2.5-7b-instruct", "split": "dev", "stage": "present-gate", "summary": {"n_model_calls": 160, "n_records": 80, "wall_seconds": 154.45198279619217}}
+{"model": "qwen2.5-7b-instruct", "split": "dev", "stage": "revision", "summary": {"n_model_calls": 80, "n_records": 80, "wall_seconds": 129.0443933950737}}
+{"model": "qwen2.5-7b-instruct", "split": "dev", "stage": "probe", "summary": {"conditions": {"R0": 1.0, "R1": 0.75, "R2": 0.5, "R2_TEXT_REMOVED_KV_RETAINED": 0.75, "R2_TRUE_REMOVAL": 0.5, "R3": 1.0}, "n_model_calls": 48, "wall_seconds": 3.5120120281353593}}
+{"model": "qwen2.5-7b-instruct", "split": "dev", "stage": "kv-channel", "summary": {"n_model_calls": 16, "n_records": 16, "wall_seconds": 31.6030131643638}}
+{"model": "mistral-7b-instruct-v0.3", "split": "dev", "stage": "present-gate", "summary": {"n_model_calls": 160, "n_records": 80, "wall_seconds": 252.492125576362}}
+{"model": "mistral-7b-instruct-v0.3", "split": "dev", "stage": "revision", "summary": {"n_model_calls": 80, "n_records": 80, "wall_seconds": 214.97286868654191}}
+{"model": "mistral-7b-instruct-v0.3", "split": "dev", "stage": "probe", "summary": {"conditions": {"R0": 1.0, "R1": 0.75, "R2": 0.75, "R2_TEXT_REMOVED_KV_RETAINED": 1.0, "R2_TRUE_REMOVAL": 0.75, "R3": 0.75}, "n_model_calls": 48, "wall_seconds": 4.0920808501541615}}
+{"model": "mistral-7b-instruct-v0.3", "split": "dev", "stage": "kv-channel", "summary": {"n_model_calls": 16, "n_records": 16, "wall_seconds": 36.43836017977446}}
+{"model": "stub", "split": "dev", "stage": "rollup", "summary": {"overall_terminal": "REGISTERED_NEGATIVE_OR_BOUNDARY__INCOMPLETE__CONTROL_FAMILIES_MISSING", "terminals": {"mistral-7b-instruct-v0.3": "INCOMPLETE__CONTROL_FAMILIES_MISSING", "qwen2.5-7b-instruct": "INCOMPLETE__CONTROL_FAMILIES_MISSING"}}}
+SMOKE_DONE

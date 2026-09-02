@@ -1,0 +1,278 @@
+{
+  "schema_version": "orion.v2.pra.real-llm-audit-design.v1",
+  "design_id": "ORION51.PRA_REAL_LLM_AUDIT.design.v1",
+  "issue": 51,
+  "status": "FROZEN_PRE_OUTCOME__PROTECTED_RUN_NOT_AUTHORIZED",
+  "scientific_authority": false,
+  "frozen_inputs": {
+    "protocol": "research/llm-machine-epistemics/PROSPECTIVE_REVISION_AUDIT_PROTOCOL_V2.md (section 16) as amended by PROTOCOL_V3.md, MANUSCRIPT_CORRECTION_REGISTER_V1.md CR-02/CR-03/CR-07/CR-08, PROSPECTIVE_REVISION_COMPATIBILITY_CRITERION_V1.md, PREDICTION_CHANNEL_AND_INTERVENTION_SCOPE_V1.md",
+    "manuscript": "ORION-paper v2-papers/llm-machine-epistemics/MANUSCRIPT_V13_SCHOLARLY_SURFACE_FINAL.md (not modified by this design)",
+    "runner": "research/llm-machine-epistemics/pra_real_llm_audit.py",
+    "design_doc": "research/llm-machine-epistemics/PRA_REAL_LLM_AUDIT_DESIGN_V1.md"
+  },
+  "registered_scope": {
+    "prediction_reference_protocol_rho": "registry_status_line: given the representation state, emit the registry status line 'Claim <id> is currently listed as <STATUS>.' (teacher-forced mean per-token log-probability of the registered continuation is the frozen surrogate)",
+    "present_linguistic_target": "the registered status-line continuation under rho",
+    "current_responsibility": "claim-status contract with action set {RETAIN, REOPEN, ESCALATE}; ANY_OPTIMAL_ACTION semantics; loss = 0/1 against the registered acceptable set",
+    "future_evidence_intervention_family": "controlled exogenous registry notices supplied identically to every representation condition: RETRACT(source), EXPRESSION_OF_CONCERN(source), DIRECT_REFUTATION(claim), ADMINISTRATIVE_NOTICE, RETRACT(source)+REGISTRY_ANNOTATION",
+    "future_responsibility": "same contract evaluated after the intervention",
+    "dormant_variable": "support_source (support_set for the independent-support family; current_defeat for the P1 family)",
+    "alternate_state_channels_enumerated": [
+      "remaining prompt text",
+      "KV cache (checked: Gate C)",
+      "residual/hidden activations (checked: Gate A, all layers)",
+      "fixed model parameters (controlled: nonce source identities, Gate D)",
+      "tool/session state (not present in this surface)",
+      "retrieval metadata (not present in this surface)"
+    ],
+    "parametric_side_information_control": "source identities are episode-local nonces (invented surname + year + registry code) that fixed parameters cannot know; claim texts are templated fictitious scientific claims"
+  },
+  "models": [
+    {
+      "alias": "qwen2.5-7b-instruct",
+      "hf_id": "Qwen/Qwen2.5-7B-Instruct",
+      "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+      "license": "Apache-2.0",
+      "gated": false,
+      "resolved_on": "2026-09-02 via HfApi.model_info().sha, snapshot pre-downloaded to LUNARC hf-cache"
+    },
+    {
+      "alias": "mistral-7b-instruct-v0.3",
+      "hf_id": "mistralai/Mistral-7B-Instruct-v0.3",
+      "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
+      "license": "Apache-2.0",
+      "gated": false,
+      "resolved_on": "2026-09-02 via HfApi.model_info().sha, snapshot pre-downloaded to LUNARC hf-cache"
+    }
+  ],
+  "decoding": {
+    "mode": "deterministic_greedy",
+    "do_sample": false,
+    "num_beams": 1,
+    "max_new_tokens": 160,
+    "dtype": "bfloat16",
+    "seed": 51,
+    "batch_size": 1,
+    "chat_template": "model default; contract and state placed in a single user turn (no system role, uniform across models)",
+    "answer_format": "brief reasoning (<=3 sentences) then a final line 'Answer: <ACTION>'; registered extraction = last 'Answer:' match, fallback last bare action word, else UNPARSEABLE (counted incorrect)"
+  },
+  "token_budget": {
+    "rule": "per (instance, arm) every R-condition is padded to the maximum unpadded token count across R0..R4: whole frozen filler lines, then single ' ignore' tokens until the count reaches the target (exact up to tokenizer merges; tolerance 4)",
+    "filler_line": "Filler line: this line is intentionally uninformative and must be ignored.",
+    "tolerance_tokens": 4,
+    "filler_token": " ignore"
+  },
+  "suite_generator": {
+    "seed": {
+      "dev": 20260902,
+      "protected": 20260903
+    },
+    "domains": 8,
+    "instances_per_family": {
+      "dev": {
+        "F0_ACQ": 4,
+        "F1_P0": 4,
+        "F2_P1": 4,
+        "F3_P2_CANON": 4,
+        "F3_P2_MIRROR": 4,
+        "F3_P2_INDEP": 4,
+        "F3_P2_RECON": 4,
+        "F3_P2_TIE": 4
+      },
+      "protected": {
+        "F0_ACQ": 40,
+        "F1_P0": 60,
+        "F2_P1": 60,
+        "F3_P2_CANON": 120,
+        "F3_P2_MIRROR": 60,
+        "F3_P2_INDEP": 60,
+        "F3_P2_RECON": 60,
+        "F3_P2_TIE": 40
+      }
+    },
+    "arms_per_instance": 2,
+    "leakage_controls": [
+      "nonce source identities per instance",
+      "domain rotation",
+      "claim identifier per instance",
+      "identical evidence text across arms except in F3_P2_RECON where the annotation IS the control",
+      "no surface feature encodes the gold action outside the registered evidence relation"
+    ]
+  },
+  "families": {
+    "F0_ACQ": {
+      "role": "acquisition-limit control",
+      "gold_future": "ESCALATE both arms",
+      "expected_terminal": "ACQUISITION_LIMIT__FULL_HISTORY_INSUFFICIENT"
+    },
+    "F1_P0": {
+      "role": "zero-extra-state control",
+      "gold_future": "REOPEN (direct refutation) or RETAIN (administrative notice) for both arms",
+      "expected": "no R2/R3 gap"
+    },
+    "F2_P1": {
+      "role": "current cross-channel",
+      "gold_current": "hValid RETAIN vs hDefeated REOPEN",
+      "contrast": "A: R1 vs R2 on current action"
+    },
+    "F3_P2_CANON": {
+      "role": "provenance/retraction canonical fixture, unique current action RETAIN",
+      "gold_future": "hA REOPEN vs hB RETAIN after RETRACT(A)",
+      "contrast": "B (load-bearing): R2 vs R3"
+    },
+    "F3_P2_MIRROR": {
+      "role": "maintain mirror",
+      "gold_future": "RETAIN both after RETRACT(Z)"
+    },
+    "F3_P2_INDEP": {
+      "role": "independent-support selective reopening",
+      "gold_future": "hAB RETAIN vs hA REOPEN after RETRACT(A)"
+    },
+    "F3_P2_RECON": {
+      "role": "future-evidence-reconstructs-variable negative control",
+      "gold_future": "annotation reveals support role; expected no R2/R3 gap"
+    },
+    "F3_P2_TIE": {
+      "role": "tie-semantics",
+      "gold_future": "hA {ESCALATE,REOPEN} vs hB {RETAIN,ESCALATE}: joint intersection {ESCALATE} nonempty -> compatible cell"
+    },
+    "alternate_channel_conditions_on_F3_P2_CANON": {
+      "R2_TEXT_REMOVED_KV_RETAINED": "alternate-channel-survival synthetic control (R0 prefix KV cache retained, R2 text continues)",
+      "R2_TRUE_REMOVAL": "alternate-channel-true-removal positive control (fresh cache, R2 text only)"
+    },
+    "F4_control_condition": "R4 dependency-ledger state on every family (contrast E: R3 vs R4)"
+  },
+  "representation_conditions": {
+    "R0": "complete record history (numbered lines)",
+    "R1": "deterministic prediction-preserving summary: claim, source roster, status line; collapses support_source and current_defeat",
+    "R2": "current-decision-sufficient state: claim, current support validity, status line",
+    "R3": "R2 + recorded support (the registered dormant variable)",
+    "R4": "R2 + full dependency ledger (controlled-future stronger-state control, Protocol V3 section 7)"
+  },
+  "probe": {
+    "kind": "mass_mean_difference_direction_linear_probe",
+    "capture": "hidden state of the last prompt token of the current_action prompt (pre-evidence), every layer including embeddings",
+    "families": [
+      "F3_P2_CANON"
+    ],
+    "conditions": [
+      "R0",
+      "R1",
+      "R2",
+      "R3",
+      "R2_TEXT_REMOVED_KV_RETAINED",
+      "R2_TRUE_REMOVAL"
+    ],
+    "label": "support_source (A=1, B=0)",
+    "train_fraction": 0.6,
+    "split_rule": "first 60% of instances in frozen instance order are train; remainder test; frozen before any outcome is inspected",
+    "reported": "test accuracy per layer; max over layers is the gate statistic"
+  },
+  "kv_channel": {
+    "families": [
+      "F3_P2_CANON"
+    ],
+    "mechanism": "forward the unpadded R0 state through the model with use_cache=True, keep past_key_values, then continue with the R2-based future_action chat prompt; TRUE_REMOVAL uses a fresh cache",
+    "representation_cost": "retained tokens (R0 prefix + R2 text vs R2 text)"
+  },
+  "metrics": [
+    "update_accuracy",
+    "maintain_accuracy",
+    "false_revision_rate",
+    "missed_revision_rate",
+    "current_regret (current action correctness)",
+    "representation_cost_retained_tokens",
+    "incompatible_cell_rate (joint intersection, primary structural metric, CR-02/CR-03)",
+    "pairwise_disjoint_collision_rate (secondary)"
+  ],
+  "statistics": {
+    "independent_unit": "instance (episode); arm-level decisions reported alongside and are nested",
+    "primary_test": "exact McNemar (two-sided binomial on discordant pairs) at instance level (instance correct iff every arm correct)",
+    "secondary_test": "exact McNemar at arm level",
+    "equivalence": "paired TOST on status-line mean log-prob differences with frozen margin; 90% CI must lie inside +-margin; non-significance is never read as equivalence",
+    "accuracy_intervals": "Wilson 95%",
+    "power_note": "N=120 canonical P2 instances: instance-level R2 accuracy is 0 by construction under deterministic decoding (identical prompts for hA/hB), so contrast B detects R3 instance accuracy >= 0.15 (exact binomial, alpha 0.05, power > 0.99 at R3 = 0.70); arm-level MDE for a paired McNemar at discordance 0.2-0.3 is 0.11-0.14 accuracy points (alpha 0.05, power 0.8); control families (N=60) detect |gap| >= 0.16-0.20 and are therefore read against the frozen max_control_gap 0.10 as a bound, not as a null"
+  },
+  "gates": {
+    "GP0": {
+      "name": "present_equivalence_on_P2",
+      "epsilon_pred_per_instance_nats_per_token": 0.15,
+      "epsilon_pred_mean_nats_per_token": 0.05,
+      "min_pass_fraction": 0.9,
+      "rule": "per (instance, arm): |logprob(R3)-logprob(R2)| <= eps AND current action identical across R0,R2,R3 AND current action correct AND token budgets matched; fraction passing >= 0.90 AND TOST equivalent on the mean difference",
+      "fail_terminal": "CURRENT_STATE_DEFICIT__NOT_PROSPECTIVE_EVIDENCE"
+    },
+    "GP1": {
+      "name": "R3_beats_R2_on_P2",
+      "min_accuracy_gain": 0.15,
+      "alpha": 0.05,
+      "r3_competence_floor": 0.7,
+      "rule": "instance-level exact McNemar p <= 0.05 AND arm-level accuracy gain >= 0.15, in BOTH models; R3 arm-level accuracy >= 0.70 distinguishes NO_MECHANISM_EFFECT from ORDINARY_REASONING_FAILURE"
+    },
+    "GP2": {
+      "name": "alternate_channel",
+      "probe_positive_control_min_acc": 0.8,
+      "probe_removed_max_acc": 0.65,
+      "probe_survival_min_acc": 0.8,
+      "kv_recovery_margin": 0.1,
+      "true_removal_deficit_min": 0.15,
+      "alpha": 0.05,
+      "rule": "GP2a (required): probe decodes support_source under R0 and R3 (>= 0.80), is at chance under R2_TRUE_REMOVAL (<= 0.65), and true-removal accuracy is below R0 by >= 0.15. GP2b (control quality): probe decodes under KV-retained (>= 0.80) and KV-retained accuracy >= R0 - 0.10 with contrast D p <= 0.05",
+      "gate_B_causal_use": "OMITTED prospectively -> CANNOT_CHECK_ALTERNATE_CHANNEL_CAUSAL_USE"
+    },
+    "GP3": {
+      "name": "controls",
+      "max_control_gap": 0.1,
+      "max_mirror_false_revision_R3": 0.1,
+      "rule": "F1_P0 shows |R2-R3| <= 0.10; F3_P2_RECON shows |R2-R3| <= 0.10; F3_P2_MIRROR false-revision rate under R3 <= 0.10"
+    }
+  },
+  "terminals": [
+    "P2_PROSPECTIVE_REVISION_STATE_REQUIRED",
+    "P0_CURRENT_AND_PROSPECTIVE_SUFFICIENT",
+    "NO_MECHANISM_EFFECT__PROSPECTIVE_AUGMENTATION_REDUNDANT",
+    "ORDINARY_REASONING_FAILURE_DESPITE_RETAINED_STATE",
+    "CURRENT_STATE_DEFICIT__NOT_PROSPECTIVE_EVIDENCE",
+    "INTERVENTION_DID_NOT_REMOVE_DORMANT_INFORMATION",
+    "CANNOT_CHECK_ALTERNATE_CHANNEL_RETENTION",
+    "CANNOT_CHECK_ALTERNATE_CHANNEL_CAUSAL_USE",
+    "CONTROL_FAILURE__SUITE_NOT_INTERPRETABLE",
+    "ACQUISITION_LIMIT__FULL_HISTORY_INSUFFICIENT",
+    "FUTURE_EVIDENCE_RECONSTRUCTS_DORMANT_STATE__NO_RETENTION_REQUIRED",
+    "P2_SINGLE_MODEL_ONLY__REGISTERED_BOUNDARY_RESULT"
+  ],
+  "routing": {
+    "full_pass": "GP0+GP1+GP2a+GP3 pass in BOTH models -> the manuscript MAY gain ONE registered empirical section under a NEW manuscript version and a NEW freeze; never automatic; claim authority stays with the freeze ledgers",
+    "any_fail": "reported as a registered negative or boundary result under the mapped terminal; P0-dominated suite is a valid negative; no family, prompt, threshold or gate may change post-outcome (no-rescue clause)"
+  },
+  "custody": {
+    "results_root_lunarc": "/projects/hep/fs9/users/scyiu/orion-v2-pra-llm/campaign-pra-llm-r1/",
+    "archive_in_repo": "research/llm-machine-epistemics/results/pra-llm-r1/PRA_REAL_LLM_AUDIT_ROLLUP_V1.{json,md}",
+    "logged_per_call": [
+      "prompt sha256",
+      "raw completion",
+      "parsed action",
+      "status-line log-probs",
+      "hidden-state probe results (float16 dumps)",
+      "token counts",
+      "seeds",
+      "model revision",
+      "runner sha256",
+      "design sha256",
+      "suite sha256"
+    ]
+  },
+  "protected_run": {
+    "authorized": false,
+    "authorization_token": "PROTECTED_RUN_AUTHORIZED_AFTER_DESIGN_REVIEW__ORION51_PRA_R1",
+    "note": "the runner refuses the protected split unless this token is passed explicitly; the dev split (seed 20260902) is the only split touched before authorization"
+  },
+  "no_rescue_clause": "No post-hoc change to families, instance counts, prompts, filler, tolerances, gate thresholds, probe split or terminal mapping. A defect discovered after unblinding is reported as CANNOT_CHECK for the affected component and fixed only under a new design version with a fresh protected seed.",
+  "environment": {
+    "lunarc_base": "/projects/hep/fs9/users/scyiu/orion-v2-pra-llm",
+    "venv": ".venv (Python 3.11.5, torch 2.6.0+cu124, transformers 4.51.3, accelerate 1.6.0, safetensors 0.8.0, numpy 2.2.6, scipy 1.17.1, scikit-learn 1.9.0)",
+    "hf_home": "/projects/hep/fs9/users/scyiu/orion-v2-pra-llm/hf-cache",
+    "partition": "gpua100",
+    "account": "lu2026-2-51"
+  }
+}
