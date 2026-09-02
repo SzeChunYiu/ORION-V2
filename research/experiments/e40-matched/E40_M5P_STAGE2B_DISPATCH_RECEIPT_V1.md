@@ -13,7 +13,7 @@ exp_ids **503000–503191** (192 native `gies` runs), 48 chains = 12 cells × 4 
 | `E40_M5P_STAGE2B_SEED_REPLICA_PROBE_DESIGN_V1.md` | `62993f3c86b6cda02e52a7b84b38ca6f8d2ebf49945a2dd762c447bf7741bd9d` |
 | `E40_M5P_STAGE2B_SEED_REPLICA_PROBE_DESIGN_V1.json` | `1c503930db07d370a0a7c24a4edeb1890b622c556b91bf15373fd30fd74ecefb` |
 | `scripts/e40_matched_runner_m5p_stage2b.py` (runner) | `8e5e9eb8ca3f501bc9c5cee66590591219660f715d45bf7ef50c8069544d600b` |
-| `research/experiments/e40-matched/e40_m5p_stage2b_analysis.py` (analysis + controls) | `e568b3ae6d213c1a0d4d929a612070fcd288dbfa11b6409d6e7133b12eee3b5d` |
+| `research/experiments/e40-matched/e40_m5p_stage2b_analysis.py` (analysis + controls) | `7b7664b5282e8c24c12b2b48f2b1760e02944f1353d12eb6dedf5bd37fae52f6` |
 | `tests/unit/test_e40_m5p_stage2b.py` | `10916630e17e4501dd081e58bc2106f840c2aa69af44334e57a1c896a557ec68` |
 | `sbatch/e40_m5p_stage2b_chain_r1.sbatch` | `1b26884496e6865617b13ca99df237e28d8ba34348416c78d633e900a0deb6a0` |
 | `sbatch/e40_m5p_stage2b_eval_r1.sbatch` | `b56c8e322819242e1fe4174403fcb14eb00901c620f9f2f19ae6f8a57efcc881` |
@@ -83,6 +83,7 @@ output_network.csv}; all feedback; CHAIN_COMPLETE/CANNOT_CHECK/config_1).
 | exclusion: 4 CANNOT_CHECK chains (one cell left with 1 replica) | counted 4; 3-replica cell evaluated on `f2r0,f2r1,f2r3`; 1-replica cell CANNOT_CHECK; contrasts n = 11 |
 | leaked feedback (`wasserstein` injected into one feedback file) | analysis aborts on read (`redaction failed`) |
 | seed-mandate drift in a COMPLETE chain | surfaces as CANNOT_CHECK (`… != mandated 71/79`) |
+| cross-interpreter determinism (one fixture tree, byte-identical on both hosts) | J, T, d, contrasts, ρ, perm p, gates hash-identical on CPython 3.13.12 (Mac) and 3.11.5 (LUNARC campaign venv) |
 
 Unit tests: `tests/unit/test_e40_m5p_stage2b.py` — 16 tests (byte-identity, mandate paths, numbering,
 leakage asserts, runner selftest, analysis controls + end-to-end fixtures); full `tests/unit` green
@@ -149,6 +150,14 @@ _pending: filled by the follow-up PR after `sbatch`._
    never observed under gies in m2/m3 (0 NaN primaries).
 7. **Array concurrency** `%8` (m2/m3 used `%6`): bounded endpoint load; wall ≈ 2 h if 8 slots are
    available.
+8. **Interpreter-independent sums.** A pre-freeze check on one shared fixture found the analysis
+   output differing between CPython 3.11 and 3.13 with identical inputs: plain `sum()` switched to
+   compensated (Neumaier) summation in 3.12, moving last-bit values of `mean`/`pearson` and flipping
+   `>=` ties in the permutation counts (null-fixture perm p 0.3433 vs 0.3405). Fixed before the freeze
+   by routing every sum in `mean`, `pearson` and `perm_paired_p` through `math.fsum` (correctly
+   rounded, identical everywhere); re-verified hash-identical across both interpreters (table above).
+   The frozen analysis interpreter for the real run is the LUNARC campaign venv (3.11.5); the fsum
+   form is also what the m6 freeze should inherit.
 
 ## 7. Custody
 

@@ -70,7 +70,11 @@ def _sha(path: Path) -> str:
 
 
 def mean(xs: list[float]) -> float:
-    return sum(xs) / len(xs)
+    # math.fsum: correctly-rounded sum, identical on every CPython (plain sum()
+    # switched to compensated summation in 3.12, which moved last-bit values and
+    # flipped >= ties in the permutation counts between 3.11 and 3.13 — verified
+    # on a shared fixture before the freeze). Interpreter-independent by design.
+    return math.fsum(xs) / len(xs)
 
 
 def _ranks(xs: list[float]) -> list[float]:
@@ -90,8 +94,8 @@ def _ranks(xs: list[float]) -> list[float]:
 
 def pearson(xs: list[float], ys: list[float]) -> float:
     mx, my = mean(xs), mean(ys)
-    num = sum((x - mx) * (y - my) for x, y in zip(xs, ys))
-    den = math.sqrt(sum((x - mx) ** 2 for x in xs) * sum((y - my) ** 2 for y in ys))
+    num = math.fsum((x - mx) * (y - my) for x, y in zip(xs, ys))
+    den = math.sqrt(math.fsum((x - mx) ** 2 for x in xs) * math.fsum((y - my) ** 2 for y in ys))
     return num / den if den else 0.0
 
 
@@ -101,16 +105,17 @@ def spearman(xs: list[float], ys: list[float]) -> float:
 
 def perm_paired_p(diffs: list[float]) -> float:
     """Verbatim m-series convention: one-sided P(T_perm >= T_obs), positive = F2 better.
-    Exhaustive sign-flip (2^n) for n <= 16; larger n is never fed here."""
+    Exhaustive sign-flip (2^n) for n <= 16; larger n is never fed here.
+    Sums via math.fsum (interpreter-independent; see mean())."""
     n = len(diffs)
     if n == 0:
         return 1.0
     assert n <= 16, "exhaustive sign-flip only (design §5); do not feed >16 diffs"
-    t_obs = sum(diffs) / n
+    t_obs = math.fsum(diffs) / n
     total = 2 ** n
     count = 0
     for mask in range(total):
-        t = sum(d if (mask >> i) & 1 else -d for i, d in enumerate(diffs)) / n
+        t = math.fsum(d if (mask >> i) & 1 else -d for i, d in enumerate(diffs)) / n
         if t >= t_obs:
             count += 1
     return count / total
