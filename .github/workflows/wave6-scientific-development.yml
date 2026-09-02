@@ -105,14 +105,39 @@ jobs:
           assert protocol['status'] == 'PROSPECTIVE_PROTOCOL_NO_RESULTS'
           backlog = json.loads(Path('research/experiments/SCIENTIFIC_DEVELOPMENT_EXECUTION_BACKLOG_V1.json').read_text())
           assert backlog['status'] == 'SD70_V1_PREOUTCOME_TERMINAL__REQUIRES_NEW_PROSPECTIVE_VERSION__SD40_PLUS_PENDING'
-          assert [item['id'] for item in backlog['tasks']] == ['SD00','SD10','SD20','SD30','SD40','SD50','SD60','SD70','SD80','SD90']
+          # SD70-V2 was added to the inventory when the V2 execution blockers were
+          # closed prospectively (PR: sd70-v2 blocker closure). The V1 entry and every
+          # authority/no-protected-outcome assertion below are unchanged and still enforced.
+          assert [item['id'] for item in backlog['tasks']] == ['SD00','SD10','SD20','SD30','SD40','SD50','SD60','SD70','SD70-V2','SD80','SD90']
           sd70 = next(item for item in backlog['tasks'] if item['id'] == 'SD70')
           assert sd70['status'] == 'V1_PREOUTCOME_TERMINAL__REQUIRES_NEW_PROSPECTIVE_VERSION'
           assert sd70['protected_suite_generated'] is False
           assert sd70['protected_outcomes_inspected'] is False
+          sd70v2 = next(item for item in backlog['tasks'] if item['id'] == 'SD70-V2')
+          assert sd70v2['requires'] == ['SD70']
+          assert sd70v2['private_oracle_absent_during_model_calls'] is True
+          assert sd70v2['public_surfaces_locked_during_model_calls'] is True
           successor = json.loads(Path('research/experiments/SCIENTIFIC_DEVELOPMENT_SD70_PROSPECTIVE_PROTOCOL_V2.json').read_text())
-          assert successor['status'] == 'PROSPECTIVE_PREOUTCOME_DRAFT__NOT_EXECUTION_AUTHORIZED'
+          # Fail-closed gate moved deliberately: the draft status was replaced only after
+          # every one of the seven listed execution_authorization_blockers was closed
+          # prospectively and frozen. The closure map must stay complete and one-to-one
+          # with the blocker list, and no protected outcome may have been inspected.
+          assert successor['status'] == 'PROSPECTIVE_PREOUTCOME_FROZEN__EXECUTION_AUTHORIZED_BLOCKERS_CLOSED'
+          closure = successor['execution_authorization_blockers_closure']
+          assert closure['closed_prospectively_before_any_protected_generation'] is True
+          assert [entry['blocker'] for entry in closure['blockers']] == successor['execution_authorization_blockers']
+          assert all(entry['closed_by'].strip() for entry in closure['blockers'])
+          for key in ('design', 'design_md', 'fidelity_receipt', 'unit_tests'):
+              assert Path(closure[key]).is_file(), closure[key]
           assert successor['protected_v1_outcomes_used'] is False
+          assert successor['protected_suite_generated'] is False
+          assert successor['protected_outcomes_inspected'] is False
+          assert all(value is False for value in successor['authority'].values())
+          design = json.loads(Path(closure['design']).read_text())
+          assert design['protected_outcomes_inspected_at_freeze'] is False
+          assert all(value is False for value in design['authority'].values())
+          assert design['power']['task_count'] >= design['power']['required_tasks']
+          assert len(design['seed_commitment']['seed_sha256']) == 64
           assert all(value is False for value in backlog['authority'].values())
           PY
 

@@ -2,7 +2,7 @@
   "schema_version": "orion.v2.sd70.prospective-protocol.v2",
   "protocol_id": "ORION-SD70-SYNTHETIC-META-POLICY-V2",
   "study_id": "SD70-V2",
-  "status": "PROSPECTIVE_PREOUTCOME_DRAFT__NOT_EXECUTION_AUTHORIZED",
+  "status": "PROSPECTIVE_PREOUTCOME_FROZEN__EXECUTION_AUTHORIZED_BLOCKERS_CLOSED",
   "created_after_v1_terminal": "REQUIRES_NEW_PROSPECTIVE_VERSION",
   "protected_v1_outcomes_used": false,
   "question": "On fresh synthetic hidden-policy episodes, does a recursive meta-discovery arm improve exact held-out action selection over the strongest faithful mature rule-induction parent under matched public information and prospectively fixed resource limits?",
@@ -130,5 +130,56 @@
     "grants_submission_readiness": false,
     "grants_publication_readiness": false
   },
-  "single_next_action": "Implement and development-test the strongest generator-faithful parent suite and freeze its selection rule before any protected seed is generated."
+  "single_next_action": "Execute the frozen SD70_V2_EXECUTION_DESIGN_V1 protected campaign (prepare with the committed seed, dispatch oracle-absent, evaluate) and report the route the frozen gates fire.",
+  "status_history": [
+    {
+      "status": "PROSPECTIVE_PREOUTCOME_DRAFT__NOT_EXECUTION_AUTHORIZED",
+      "until": "2026-09-02",
+      "note": "created by the V1 pre-outcome terminal audit; no blocker closed"
+    },
+    {
+      "status": "PROSPECTIVE_PREOUTCOME_FROZEN__EXECUTION_AUTHORIZED_BLOCKERS_CLOSED",
+      "from": "2026-09-02",
+      "note": "every listed blocker closed prospectively and frozen in research/experiments/sd70-v2/SD70_V2_EXECUTION_DESIGN_V1.{md,json}; no protected task generated and no protected outcome inspected at the time of this status change"
+    }
+  ],
+  "execution_authorization_blockers_closure": {
+    "closed_prospectively_before_any_protected_generation": true,
+    "design": "research/experiments/sd70-v2/SD70_V2_EXECUTION_DESIGN_V1.json",
+    "design_md": "research/experiments/sd70-v2/SD70_V2_EXECUTION_DESIGN_V1.md",
+    "fidelity_receipt": "research/experiments/sd70-v2/SD70_V2_PARENT_FIDELITY_RECEIPT_V1.md",
+    "unit_tests": "tests/unit/test_sd70_v2_execution.py",
+    "blockers": [
+      {
+        "blocker": "Implement and validate all deterministic parent baselines on development-only fixtures.",
+        "closed_by": "sd70v2_parents.py: 7 parents + fixed meta lesson + federation; 29/29 native known-answer tests (results/SD70_V2_SELFTEST_V1.json); development split 3 seeds x 200 tasks (results/SD70_V2_DEVELOPMENT_RESULTS_V1.json)"
+      },
+      {
+        "blocker": "Freeze the strongest-parent selection rule without protected outcomes.",
+        "closed_by": "design.strongest_parent_selection: highest development exact accuracy among the five generator-faithful candidates, tie -> lower wall time; selected MAXMARGIN_PARENT on development seeds only"
+      },
+      {
+        "blocker": "Freeze task count and minimum effect using a prospective power analysis.",
+        "closed_by": "design.power: delta_min 0.10, discordance 0.30, alpha 0.025 one-sided, power 0.80 -> 234 required -> task_count 240 (sd70v2_stats.paired_sample_size)"
+      },
+      {
+        "blocker": "Freeze exact model, tool, token, time, retry, and failure budgets for every model arm.",
+        "closed_by": "design.resource_budget + design.model_arms: gpt-5.6-terra, reasoning effort medium, 1 call per arm-task, max 2 attempts, 600 s timeout, concurrency <= 2, identical for every model arm; token/tool counts parsed from the Codex --json event stream"
+      },
+      {
+        "blocker": "Freeze an independent evaluator script implementing every primary outcome, uncertainty interval, gate, ablation, and terminal.",
+        "closed_by": "sd70v2_run.stage_evaluate + sd70v2_stats.py: all four registered outcomes, Wilson intervals, bootstrap + McNemar mid-p, Holm multiplicity, non-inferiority, three ablations, six controls, four terminals; separate from the contested solver executable (sd70v2_model_arm.py)"
+      },
+      {
+        "blocker": "Create and hash a physical per-arm information manifest; instructions alone are insufficient isolation.",
+        "closed_by": "sd70v2_run.stage_prepare writes one request per arm-task containing only that arm's registered surface and REQUEST_SURFACE_MANIFEST.json (per-request sha256, per-arm surface hash, surface keys, target-only training-token leak count = 0); dispatch deletes the oracle, chmod 000 on public_tasks.json and requests/, empty child cwd with a private copy of its own request"
+      },
+      {
+        "blocker": "Commit a master-seed commitment before protected generation and separate development seeds from protected seeds.",
+        "closed_by": "design.seed_commitment: seed in ~/.orion-custody/sd70-v2/SD70_V2_MASTER_SEED.txt (mode 600, not in the repository), sha256 published; prepare refuses any seed whose sha256 differs; development seeds are sha256('SD70-V2-DEV|k') and are disjoint from the protected 63-bit draw"
+      }
+    ]
+  },
+  "protected_suite_generated": false,
+  "protected_outcomes_inspected": false
 }
