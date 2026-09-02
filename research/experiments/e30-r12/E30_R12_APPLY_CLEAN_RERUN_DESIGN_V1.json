@@ -1,0 +1,425 @@
+{
+  "schema_version": "orion.v2.e30-r12-design.v1",
+  "study_id": "E30-R12",
+  "title": "Confirmatory BugsInPy re-run under arm-side apply-clean patch emission",
+  "state_date": "2026-09-02",
+  "status": "PROSPECTIVE_REGISTERED_DESIGN_NO_RESULTS",
+  "class": "new prospective confirmatory study with new model dispatch; NOT a re-analysis of E30-R11",
+  "anchor_commit": "8945cec775a5a26302e2a29f4c776f63f9f11162",
+  "question": "With patches canonicalized at emission so they actually apply, do the four registered solver arms separate on real BugsInPy repair, on the registered failing-test endpoint and on the full-regression critical-failure endpoint?",
+  "why_this_study_exists": {
+    "confound": "E30-R11's confirmatory null was measured through a defective interface. PC-R6 established that NONE_PATCH_NOT_APPLIED accounts for 78-83% of evaluations per arm on E30-R11's frozen proposals, and the frozen lane recorded 311/480 patch-apply rc=128. E70-GC1 localized the entire raw-endpoint variance between arms to unified-diff hunk-header miscounting (success_iff_header_unchanged = true for all four arms; the syntax-normalized endpoint was 24/24 for every arm). E70-GC2 found raw header-exact success 0/16 at every difficulty rung, 48/48 diffs needing canonicalization.",
+    "fix": "PR #168 (merge 8945cec) added src/orion_v2/patch_emission.py and wired it into scripts/orion_claude_arms.py and scripts/orion_codex_arms.py, canonicalizing at emission. A CI gate (patch-emission-interface) asserts the emission path stays gold-blind and non-mutating.",
+    "consequence": "Roughly four in five E30-R11 evaluations never tested a repair. The registered question has therefore never been asked under a working interface. R12 asks it."
+  },
+  "relationship_to_e30_r11": {
+    "e30_r11_endpoints": "FROZEN_TERMINAL",
+    "r12_may_revise_them": false,
+    "r12_is_a_reanalysis": false,
+    "shared": [
+      "the 8 projects",
+      "the 40 frozen task ids",
+      "the 4 arms",
+      "3 repetitions",
+      "the gold-blind and oracle-custody discipline",
+      "the registered primary endpoint"
+    ],
+    "changed": [
+      "arm-side apply-clean patch emission (8945cec)",
+      "served-model assertion, fail-closed",
+      "the full-regression co-primary endpoint is checkable from the start",
+      "a registered apply-rate diagnostic"
+    ]
+  },
+  "substrate": {
+    "benchmark_id": "bugsinpy",
+    "repository": "https://github.com/soarsmu/BugsInPy.git",
+    "commit": "11c5f1eea954a42132cfd06bf257766a7963e0fd",
+    "projects": [
+      "ansible",
+      "black",
+      "cookiecutter",
+      "fastapi",
+      "pandas",
+      "scrapy",
+      "tornado",
+      "tqdm"
+    ],
+    "task_count": 40,
+    "task_ids": [
+      "bugsinpy-ansible-1",
+      "bugsinpy-ansible-2",
+      "bugsinpy-ansible-3",
+      "bugsinpy-ansible-4",
+      "bugsinpy-ansible-5",
+      "bugsinpy-ansible-6",
+      "bugsinpy-black-1",
+      "bugsinpy-black-2",
+      "bugsinpy-black-3",
+      "bugsinpy-black-4",
+      "bugsinpy-black-5",
+      "bugsinpy-cookiecutter-1",
+      "bugsinpy-cookiecutter-2",
+      "bugsinpy-cookiecutter-3",
+      "bugsinpy-cookiecutter-4",
+      "bugsinpy-fastapi-1",
+      "bugsinpy-fastapi-2",
+      "bugsinpy-fastapi-3",
+      "bugsinpy-fastapi-4",
+      "bugsinpy-fastapi-5",
+      "bugsinpy-pandas-1",
+      "bugsinpy-pandas-2",
+      "bugsinpy-pandas-3",
+      "bugsinpy-pandas-4",
+      "bugsinpy-pandas-5",
+      "bugsinpy-scrapy-1",
+      "bugsinpy-scrapy-2",
+      "bugsinpy-scrapy-3",
+      "bugsinpy-scrapy-4",
+      "bugsinpy-scrapy-5",
+      "bugsinpy-tornado-1",
+      "bugsinpy-tornado-2",
+      "bugsinpy-tornado-3",
+      "bugsinpy-tornado-4",
+      "bugsinpy-tornado-5",
+      "bugsinpy-tqdm-1",
+      "bugsinpy-tqdm-2",
+      "bugsinpy-tqdm-3",
+      "bugsinpy-tqdm-4",
+      "bugsinpy-tqdm-5"
+    ],
+    "task_identity_source": "E30-R11 prepared/frozen_tasks.json (same 40 ids, same selection policy, re-materialized under the same pinned commit and per-project runtimes)",
+    "pinned_pool_for_scale_up": {
+      "numeric_bug_ids_total_at_pinned_commit": 501,
+      "numeric_bug_ids_within_the_8_registered_projects": 295,
+      "counted_on": "inputs/BugsInPy-base/projects/*/bugs, numeric ids only, all carrying bug.info"
+    }
+  },
+  "arms": [
+    {
+      "arm_id": "SIMPLE_DIRECT",
+      "model_calls": 1
+    },
+    {
+      "arm_id": "SAME_MODEL_REFLECTION",
+      "model_calls": 2
+    },
+    {
+      "arm_id": "F0_PARENT_FEDERATION",
+      "model_calls": 3
+    },
+    {
+      "arm_id": "F2_ORION_METABOLIC_FULL",
+      "model_calls": 3
+    }
+  ],
+  "repetitions": 3,
+  "expected_responses": 480,
+  "expected_evaluations": 480,
+  "model_binding": {
+    "channel": "anthropic_compatible",
+    "base_url": "https://api.z.ai/api/anthropic",
+    "requested_model": "glm-5.3",
+    "frozen_served_model": "glm-5.3",
+    "assertion": "every call reads data['model'] from the response body and raises ServedModelMismatch unless it equals ORION_ARM_SERVED_MODEL exactly; the exception is re-raised out of run_arm rather than being folded into an EXECUTION_FAILED_MODEL_RESPONSE envelope, so the arm exits non-zero",
+    "substrate_alert": "the z.ai Anthropic-compatible endpoint silently serves glm-5.3 for a glm-5.2 request (verified live 2026-09-02: requested glm-5.2 -> served 'glm-5.3'; requested glm-5.3 -> served 'glm-5.3'). Pinning the requested id is not sufficient; the served id is what is asserted.",
+    "per_envelope_record": "resource_receipt.served_model_ids (sorted unique list over the envelope's calls)",
+    "post_hoc_homogeneity_assertion": "the analysis refuses to compute any contrast unless every response envelope in both arms records exactly one served model id and all of them are identical across the whole campaign",
+    "codex_channel": "not used by this study; the codex CLI channel is unaffected by the substitution",
+    "stated_limitation": "E30-R11's response envelopes record no served model id and its campaign env requested glm-5.2, which this endpoint substitutes. R11's served model is therefore inferred, not verified, and R12-vs-R11 cross-study comparison is descriptive only. Within R12 every contrast is served-model homogeneous by assertion."
+  },
+  "endpoints": {
+    "E1_PRIMARY": {
+      "name": "registered_failing_test_fixed",
+      "definition": "the task's registered failing test passes after the arm's patch is applied and the workspace compiles, under the frozen per-project runtime",
+      "unit": "task, after within-task majority aggregation over the 3 repetitions",
+      "denominator": 40,
+      "registered_in": "ORION_REAL_PROBLEM_CONFIRMATORY_SUITE_V1.json primary_outcomes[0]"
+    },
+    "E2_CO_PRIMARY": {
+      "name": "any_critical_new_failure",
+      "definition": "at least one test passing in the baseline suite fails after the arm's patch is applied; derived exactly as PC-R6 section 3 derives critical_new_failure_count",
+      "unit": "task, after within-task majority aggregation over the 3 repetitions",
+      "direction": "non-inferiority, F2 must not exceed F0 by more than 0.02",
+      "companion": "full_regression_suite_passed = 1 iff the registered failing test passes AND critical_new_failure_count == 0",
+      "registered_in": "ORION_REAL_PROBLEM_CONFIRMATORY_SUITE_V1.json primary_outcomes[1..2]; margin fixed pre-outcome in ORION_REAL_PROBLEM_ANALYSIS_PLAN_V1.md section 7"
+    },
+    "D1_REGISTERED_DIAGNOSTIC": {
+      "name": "patch_apply_rate",
+      "definition": "the proportion of an arm's 120 evaluations whose patch application succeeds (git apply rc == 0)",
+      "unit": "evaluation (not task); reported per arm with an exact binomial interval",
+      "purpose": "make the effect of the emission fix measurable rather than assumed",
+      "historical_comparator": {
+        "source": "PC-R6 PC_R6_FULLREG_ROLLUP_V1 cell e30r11, measured by the same evaluator code on E30-R11's frozen proposals",
+        "patch_apply_fail_rate": {
+          "F2_ORION_METABOLIC_FULL": 0.8167,
+          "F0_PARENT_FEDERATION": 0.8,
+          "SAME_MODEL_REFLECTION": 0.8083,
+          "SIMPLE_DIRECT": 0.7833
+        },
+        "why_not_the_frozen_lane_311_of_480": "only the PC-R6 evaluator is the same code as R12's evaluator; the frozen lane's rc=128 count is a different application path and is not an apples-to-apples comparator"
+      },
+      "directional_prediction_registered_pre_dispatch": "every arm's apply-FAIL rate in R12 falls below its PC-R6 comparator; the pre-registered success criterion for the fix is that every arm's apply-fail rate is below 0.40",
+      "not_a_success_endpoint": "D1 cannot support any claim about arm separation or repair quality"
+    }
+  },
+  "task_dispositions_registered_pre_dispatch": {
+    "rule": "dispositions are keyed to machine-detected, arm-independent substrate condition codes emitted by the baseline pass, never to task names or to observed arm outcomes; applying them after seeing R12 outcomes would be criterion_mutation, a registered hard failure",
+    "conditions": [
+      {
+        "condition_code": "BASELINE_SUITE_NO_PASSING_TESTS",
+        "meaning": "the baseline suite for the task contains no test that passes before patching, so no test can become a new failure",
+        "E1": "RETAIN in the denominator",
+        "E2": "EXCLUDE WITH COUNT from every E2 contrast and report the excluded ids",
+        "expected_from_pc_r6": [
+          "bugsinpy-ansible-4",
+          "bugsinpy-fastapi-3"
+        ]
+      },
+      {
+        "condition_code": "REGISTERED_TEST_BASELINE_FAILS_IN_SUITE",
+        "meaning": "the registered failing test is order-dependent and already fails inside the full-module suite run, so full_regression_suite_passed is ill-defined for it",
+        "E1": "RETAIN in the denominator (E1 runs the registered test binding, not the module suite)",
+        "E2": "RETAIN for any_critical_new_failure; record full_regression_suite_passed as CANNOT_CHECK",
+        "expected_from_pc_r6": [
+          "bugsinpy-black-1"
+        ]
+      },
+      {
+        "condition_code": "REGISTERED_TEST_UNFIXABLE_BY_SOURCE_ONLY_PATCH",
+        "meaning": "the fixed commit adds a fixture the BugsInPy checkout never copies, so no source-only patch can flip the registered test",
+        "E1": "RETAIN in the primary denominator (arm-independent and concordant-negative by construction, so it carries no discordant information and cannot bias a paired contrast); ALSO report a pre-registered sensitivity denominator of 39 excluding it",
+        "E2": "RETAIN",
+        "expected_from_pc_r6": [
+          "bugsinpy-cookiecutter-1"
+        ],
+        "detection": "this one is not machine-detectable from the baseline pass; it is carried as a named pre-outcome substrate finding from PC-R6 GR0(b) and is applied only if the R12 GR0(b) gold control reproduces the same failure for the same task"
+      }
+    ],
+    "expected_denominators": {
+      "E1": 40,
+      "E1_sensitivity": 39,
+      "E2": "at most 38, exact count reported"
+    }
+  },
+  "statistics": {
+    "aggregation": "within task/arm over the 3 reps by majority, exactly as E60 and PC-R6; a task/arm cell with no checkable rep is None and is excluded from every paired contrast with no imputation",
+    "paired_test": "exact two-sided McNemar / sign-binomial on task-level discordant pairs",
+    "intervals": "paired task bootstrap, 10000 draws, PROJECT-stratified, seed 20260902",
+    "multiplicity": {
+      "E1_family": {
+        "size": 3,
+        "members": [
+          "F2 vs F0_PARENT_FEDERATION",
+          "F2 vs SIMPLE_DIRECT",
+          "F2 vs SAME_MODEL_REFLECTION"
+        ],
+        "correction": "Holm step-down, alpha 0.05"
+      },
+      "E2_family": {
+        "size": 3,
+        "members": [
+          "F2 vs F0_PARENT_FEDERATION",
+          "F2 vs SIMPLE_DIRECT",
+          "F2 vs SAME_MODEL_REFLECTION"
+        ],
+        "correction": "Holm step-down, alpha 0.05, computed independently of the E1 family"
+      },
+      "note": "two separate Holm families of three, one per endpoint, registered here so the co-primary's multiplicity is not ambiguous after the fact"
+    },
+    "unadjusted_intervals_retained": true,
+    "task_level_results_remain_visible": true
+  },
+  "power_note": {
+    "status": "REGISTERED_PRE_DISPATCH",
+    "generator": "e30_r12_power_note.py (pure arithmetic, exact enumeration, no outcome input)",
+    "first_step_alpha": 0.0166667,
+    "arithmetic_floor_at_n40": {
+      "min_all_one_directional_discordant_tasks": 7,
+      "implied_minimum_observable_risk_difference": 0.175
+    },
+    "mde_at_n40_by_discordance": [
+      {
+        "psi": 0.1,
+        "mde": null,
+        "power_at_registered_5pp_mid": 0.0116
+      },
+      {
+        "psi": 0.2,
+        "mde": null,
+        "power_at_registered_5pp_mid": 0.0185
+      },
+      {
+        "psi": 0.3,
+        "mde": 0.2675,
+        "power_at_registered_5pp_mid": 0.0168
+      },
+      {
+        "psi": 0.4,
+        "mde": 0.317,
+        "power_at_registered_5pp_mid": 0.0157
+      }
+    ],
+    "tasks_required_for_80pct_power_at_the_registered_5pp_mid": [
+      {
+        "psi": 0.1,
+        "n": 430
+      },
+      {
+        "psi": 0.2,
+        "n": 863
+      },
+      {
+        "psi": 0.3,
+        "n": 1287
+      },
+      {
+        "psi": 0.4,
+        "n": 1708
+      }
+    ],
+    "plain_statement": "40 tasks CANNOT detect a plausible effect. At n=40 the exact test cannot reject at any effect size unless at least 7 tasks are discordant in the same direction, i.e. a risk difference of at least 0.175; power against the programme's own registered 5-percentage-point minimum important difference is 1-2%. Detecting 5 pp at 80% power needs 430 tasks in the most favourable discordance regime and 863-1708 in plausible ones. BugsInPy at the pinned commit contains 501 numeric bugs in total and 295 within the 8 registered projects, so the registered 5 pp MID is NOT attainable on this benchmark at any task count under this test, and is attainable at psi=0.10 only by consuming most of the benchmark.",
+    "consequence_for_r12": "R12 is registered as an ESTIMATION AND DIAGNOSTIC study at n=40, comparable to E30-R11, not as a powered superiority test. Failure to reject is the expected outcome under any effect smaller than 0.175 and must never be reported as evidence of equivalence.",
+    "proposed_scale_up_if_a_powered_test_is_ever_wanted": {
+      "within_the_8_registered_projects": 295,
+      "whole_pinned_benchmark": 501,
+      "verdict": "even the whole benchmark is underpowered for 5 pp at psi >= 0.20; a powered confirmatory test of the registered MID requires either a materially larger real-problem substrate than BugsInPy or a registered MID raised to what n=40 (>= 0.175) or n=295 (see the note generator) can actually detect. Raising the MID after seeing outcomes is prohibited; it may only be re-registered for a future study before dispatch."
+    },
+    "repetitions_tradeoff": "3 repetitions match E30-R11 and satisfy the suite's minimum_stochastic_repetitions. E30-R11 documented 2-6 tasks per arm flipping success across reps, so 5 reps would reduce task-level misclassification. Repetitions buy reliability, not power: the test is on tasks, so the arithmetic floor of 7 discordant tasks is unchanged. R12 stays at 3."
+  },
+  "evaluation_lane": {
+    "runner": "e30_r12_fullreg_eval.py -- registers an e30r12 cell on the PC-R6 evaluator and delegates; the PC-R6 evaluator is IMPORTED, not forked, so apply rates are computed by literally the same code that produced the D1 comparator",
+    "imported_lane": "research/experiments/pc-r6/pc_r6_fullreg_eval.py",
+    "imported_frozen_adapter": {
+      "path": "research/experiments/results/issue45/e30-r11/drivers/e30_r11_arm_eval_frozen_lane.py",
+      "sha256": "829abb411ccf0bd71182eea4c11d2e07fae60f3b743872f7b4fce0a8635aae93"
+    },
+    "campaign_layout_required": "run/confirmatory-r{1,2,3}/{responses,evaluations}/<ARM>/<task_id>.json plus frozen_tasks.json, which is what scripts/run_orion_real_problem_suite.py already produces",
+    "no_imputation": true,
+    "suite_timeout_seconds": 900
+  },
+  "gates": [
+    {
+      "gate_id": "GR0a",
+      "name": "LANE_SELF_CONSISTENCY",
+      "hard": true,
+      "statement": "the full-regression lane's registered-failing-test result reproduces the campaign's own frozen-lane (e30_r11_arm_eval_frozen_lane.py) native_success vector bit-exactly for all 480 evaluations",
+      "why_it_differs_from_pc_r6": "PC-R6's GR0(a) checked against a pre-existing frozen vector; R12 has no prior vector, so R12 runs BOTH evaluators over its own 480 proposals and requires them to agree. Disagreement is a lane defect: halt, receipt, re-freeze.",
+      "failure_action": "HALT_NO_GATE_EVALUATION"
+    },
+    {
+      "gate_id": "GR0b",
+      "name": "GOLD_KNOWN_ANSWER_CONTROL",
+      "hard": true,
+      "statement": "on a frozen 5-task subset (one per project where available) the task's gold patch flips the registered failing test to passing AND yields critical_new_failure_count == 0 under the same suite definition",
+      "carried_verbatim_from": "PC_R6_FULL_REGRESSION_EVALUATOR_LANE_DESIGN_V1 GR0(b)",
+      "gold_access": "this stage and only this stage reads gold patches; its records are marked gold_or_fixed_solution_accessed = true and it runs after all arm responses are written",
+      "failure_action": "HALT_NO_GATE_EVALUATION"
+    },
+    {
+      "gate_id": "GR0c",
+      "name": "SERVED_MODEL_HOMOGENEITY",
+      "hard": true,
+      "statement": "every one of the 480 response envelopes records exactly one served model id and all 480 are identical and equal to the frozen served model",
+      "failure_action": "HALT_NO_CONTRAST_COMPUTED"
+    },
+    {
+      "gate_id": "GR1",
+      "name": "APPLY_RATE_DIAGNOSTIC",
+      "hard": false,
+      "statement": "D1: every arm's patch-apply FAIL rate is below 0.40, and below its PC-R6 comparator",
+      "interpretation": "GR1 measures whether the emission fix worked. GR1 failing does not invalidate E1/E2; it means R12 measured a still-broken interface and must say so."
+    },
+    {
+      "gate_id": "GR2",
+      "name": "PRIMARY_SEPARATION",
+      "hard": false,
+      "statement": "E1: any of the three F2-vs-control contrasts rejects at Holm-adjusted alpha 0.05",
+      "note": "given the power note, non-rejection is the expected outcome and is not evidence of equivalence"
+    },
+    {
+      "gate_id": "GR3",
+      "name": "CRITICAL_NON_INFERIORITY",
+      "hard": true,
+      "statement": "E2: upper bound of the one-sided 97.5% CI for RD(any_critical_new_failure: F2 - F0) <= 0.02",
+      "non_compensatory": "an E1 gain cannot offset a GR3 failure (analysis plan section 6)"
+    }
+  ],
+  "routing_preregistered": [
+    {
+      "case": "GR0a or GR0b or GR0c fails",
+      "terminal": "LANE_DEFECT: halt, receipt, re-freeze; no endpoint is read"
+    },
+    {
+      "case": "GR1 fails",
+      "terminal": "INTERFACE_STILL_BROKEN: R12 reports that emission-side canonicalization did not materially raise the apply rate; E1/E2 are reported with the measured apply rate attached to every number, and the study does not claim to have tested repair"
+    },
+    {
+      "case": "GR1 passes, GR2 null, GR3 passes",
+      "terminal": "NO_ARM_SEPARATION under a working interface, tail-safe at the registered margin. This is an EXPECTED AND LEGITIMATE TERMINAL, not a failure of the study. It says the metabolic architecture does not beat its controls on real BugsInPy repair once patches actually apply, at a task count that could only have detected a very large effect."
+    },
+    {
+      "case": "GR1 passes, GR2 null, and F0_PARENT_FEDERATION is numerically at or above F2 on E1",
+      "terminal": "PARENT_SUFFICIENT: the strongest native parent is sufficient on this substrate; a valid terminal that closes the F2-superiority line on real debugging"
+    },
+    {
+      "case": "GR1 passes, GR2 rejects in F2's favour, GR3 passes",
+      "terminal": "FIRST_REGISTERED_POSITIVE on real-problem repair; requires an independent replication under a new identity before any paper claim"
+    },
+    {
+      "case": "GR2 rejects against F2",
+      "terminal": "F2_HARMFUL on this substrate; reported as plainly as a positive"
+    },
+    {
+      "case": "GR3 fails",
+      "terminal": "CRITICAL_REGRESSION: non-compensatory. No F2 advantage of any size may be claimed from this cell."
+    }
+  ],
+  "no_rescue_clause": {
+    "r12_may_not": [
+      "revise, re-score, re-analyze or reinterpret E30-R11's, E60's or PC-R6's endpoints",
+      "present itself as a correction of E30-R11",
+      "use the apply-rate diagnostic to re-read E30-R11's null as anything other than what E30-R11's own terminal receipt states",
+      "change any endpoint, margin, family, disposition rule or suite definition after the first response is written",
+      "drop a task after observing which arm fails on it",
+      "re-roll a completed model response; only EXECUTION_FAILED_MODEL_RESPONSE envelopes (which contain no model output) may be re-dispatched, exactly as E30-R11's guarded redispatch did"
+    ],
+    "a_null_is_a_result": "if the arms still do not separate once patches apply, that is a real and important result and is reported as plainly as a positive would be"
+  },
+  "custody": {
+    "seed": 20260902,
+    "authorization_object": "E30_R12_COORDINATOR_AUTHORIZATION.json with human_written = true, the verbatim operator instruction, and acknowledged_design_sha256 == sha256 of this JSON; absent at design freeze, written before dispatch",
+    "code_frozen_in_this_pr": [
+      "research/experiments/e30-r12/e30_r12_power_note.py",
+      "research/experiments/e30-r12/e30_r12_fullreg_eval.py",
+      "research/experiments/e30-r12/e30_r12_analysis.py",
+      "research/experiments/e30-r12/sbatch/*.sbatch",
+      "scripts/orion_claude_arms.py (served-model assertion)"
+    ],
+    "gold_blindness": "arms read only the gold-blind solver workspace; gold patches are read only by GR0b, after all responses are written",
+    "outputs": [
+      "E30_R12_FULLREG_RAW_ROLLUP_V1.json",
+      "E30_R12_ROLLUP_V1.{json,md}",
+      "E30_R12_OUTCOME_RECEIPT.md",
+      "JOB_IDS.env"
+    ]
+  },
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_field_status": false,
+    "grants_supertheory_status": false,
+    "grants_publication_readiness": false,
+    "parent_sufficiency_is_valid_terminal": true,
+    "no_arm_separation_is_valid_terminal": true
+  },
+  "routing_precedence": [
+    "LANE_DEFECT",
+    "F2_HARMFUL",
+    "CRITICAL_REGRESSION",
+    "INTERFACE_STILL_BROKEN",
+    "FIRST_REGISTERED_POSITIVE",
+    "PARENT_SUFFICIENT",
+    "NO_ARM_SEPARATION"
+  ],
+  "routing_precedence_note": "Evaluated in this order; the first matching case is the terminal. Hard-gate and adverse terminals precede favourable ones, and PARENT_SUFFICIENT precedes NO_ARM_SEPARATION because it is the more specific description of the same state."
+}
