@@ -1,0 +1,1918 @@
+{
+  "_generator_rejections": {
+    "DISTRACTOR_REGULARITY": 0,
+    "LEAST_GENERAL_PATTERN": 1,
+    "NO_VALID_COMMON_ABSTRACTION": 0,
+    "OVER_GENERALIZATION": 1,
+    "UNDER_GENERALIZATION": 0
+  },
+  "_oracle_agreement": {
+    "n_disagreements": 0,
+    "n_evaluated": 15
+  },
+  "arms": [
+    "P0_FIXED_LESSON_INJECTION",
+    "P1_PLOTKIN_LGG",
+    "P2_CANDIDATE_ELIMINATION",
+    "P3_MDL_COMPRESSION",
+    "F0_PARENT_FEDERATION",
+    "M_F2_ABSTRACTION_INDUCTION_FULL",
+    "M_MINUS_VARIABLE_IDENTITY",
+    "M_MINUS_NEGATIVE_CHALLENGE",
+    "M_MINUS_COMPRESSION_CRITERION",
+    "M_MINUS_LEAST_GENERALITY",
+    "C_ALWAYS_ACCEPT",
+    "C_ALWAYS_REJECT",
+    "C_RANDOM_DISPOSITION"
+  ],
+  "instances": [
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": null
+        },
+        "C_ALWAYS_REJECT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "coverage": [
+            true,
+            false,
+            true
+          ],
+          "disposition": "REJECT_NO_COMMON_STRUCTURE",
+          "pattern": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "g(V0)"
+        },
+        "M_F2_ABSTRACTION_INDUCTION_FULL": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "g(V0)"
+        },
+        "M_MINUS_COMPRESSION_CRITERION": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "g(V0)"
+        },
+        "M_MINUS_LEAST_GENERALITY": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "V0"
+        },
+        "M_MINUS_NEGATIVE_CHALLENGE": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "g(V0)"
+        },
+        "M_MINUS_VARIABLE_IDENTITY": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "g(V0)"
+        },
+        "P0_FIXED_LESSON_INJECTION": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "g(V0)"
+        },
+        "P1_PLOTKIN_LGG": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "g(V0)"
+        },
+        "P2_CANDIDATE_ELIMINATION": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "g(V0)"
+        },
+        "P3_MDL_COMPRESSION": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "g(V0)"
+        }
+      },
+      "family": "LEAST_GENERAL_PATTERN",
+      "instance_id": "LEAST_GENERAL_PATTERN-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": null
+        },
+        "C_ALWAYS_REJECT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "coverage": [
+            true,
+            false,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(h(c,V0),g(a))"
+        },
+        "M_F2_ABSTRACTION_INDUCTION_FULL": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(h(c,V0),g(a))"
+        },
+        "M_MINUS_COMPRESSION_CRITERION": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(h(c,V0),g(a))"
+        },
+        "M_MINUS_LEAST_GENERALITY": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "V0"
+        },
+        "M_MINUS_NEGATIVE_CHALLENGE": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(h(c,V0),g(a))"
+        },
+        "M_MINUS_VARIABLE_IDENTITY": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(h(c,V0),g(a))"
+        },
+        "P0_FIXED_LESSON_INJECTION": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(h(c,V0),g(a))"
+        },
+        "P1_PLOTKIN_LGG": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(h(c,V0),g(a))"
+        },
+        "P2_CANDIDATE_ELIMINATION": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(h(c,V0),g(a))"
+        },
+        "P3_MDL_COMPRESSION": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(h(c,V0),g(a))"
+        }
+      },
+      "family": "LEAST_GENERAL_PATTERN",
+      "instance_id": "LEAST_GENERAL_PATTERN-00003"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": null
+        },
+        "C_ALWAYS_REJECT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "coverage": [
+            true,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(g(V0),h(c,b))"
+        },
+        "M_F2_ABSTRACTION_INDUCTION_FULL": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(g(V0),h(c,b))"
+        },
+        "M_MINUS_COMPRESSION_CRITERION": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(g(V0),h(c,b))"
+        },
+        "M_MINUS_LEAST_GENERALITY": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "V0"
+        },
+        "M_MINUS_NEGATIVE_CHALLENGE": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(g(V0),h(c,b))"
+        },
+        "M_MINUS_VARIABLE_IDENTITY": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(g(V0),h(c,b))"
+        },
+        "P0_FIXED_LESSON_INJECTION": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(g(V0),h(c,b))"
+        },
+        "P1_PLOTKIN_LGG": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(g(V0),h(c,b))"
+        },
+        "P2_CANDIDATE_ELIMINATION": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(g(V0),h(c,b))"
+        },
+        "P3_MDL_COMPRESSION": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(g(V0),h(c,b))"
+        }
+      },
+      "family": "LEAST_GENERAL_PATTERN",
+      "instance_id": "LEAST_GENERAL_PATTERN-00004"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": null
+        },
+        "C_ALWAYS_REJECT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(V0,g(V0))"
+        },
+        "M_F2_ABSTRACTION_INDUCTION_FULL": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(V0,g(V0))"
+        },
+        "M_MINUS_COMPRESSION_CRITERION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(V0,g(V0))"
+        },
+        "M_MINUS_LEAST_GENERALITY": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "V0"
+        },
+        "M_MINUS_NEGATIVE_CHALLENGE": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(V0,g(V0))"
+        },
+        "M_MINUS_VARIABLE_IDENTITY": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": "f(V0,g(V1))"
+        },
+        "P0_FIXED_LESSON_INJECTION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(V0,g(V1))"
+        },
+        "P1_PLOTKIN_LGG": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(V0,g(V0))"
+        },
+        "P2_CANDIDATE_ELIMINATION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(V0,g(V0))"
+        },
+        "P3_MDL_COMPRESSION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(V0,g(V0))"
+        }
+      },
+      "family": "DISTRACTOR_REGULARITY",
+      "instance_id": "DISTRACTOR_REGULARITY-00001"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": null
+        },
+        "C_ALWAYS_REJECT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "coverage": [
+            true,
+            false,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "coverage": [
+            true,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(h(V0,V1),h(V0,V1))"
+        },
+        "M_F2_ABSTRACTION_INDUCTION_FULL": {
+          "coverage": [
+            true,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(h(V0,V1),h(V0,V1))"
+        },
+        "M_MINUS_COMPRESSION_CRITERION": {
+          "coverage": [
+            true,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(h(V0,V1),h(V0,V1))"
+        },
+        "M_MINUS_LEAST_GENERALITY": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "V0"
+        },
+        "M_MINUS_NEGATIVE_CHALLENGE": {
+          "coverage": [
+            true,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(h(V0,V1),h(V0,V1))"
+        },
+        "M_MINUS_VARIABLE_IDENTITY": {
+          "coverage": [
+            true,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(h(V0,V1),h(V2,V3))"
+        },
+        "P0_FIXED_LESSON_INJECTION": {
+          "coverage": [
+            true,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(h(V0,V1),h(V2,V3))"
+        },
+        "P1_PLOTKIN_LGG": {
+          "coverage": [
+            true,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(h(V0,V1),h(V0,V1))"
+        },
+        "P2_CANDIDATE_ELIMINATION": {
+          "coverage": [
+            true,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(h(V0,V1),h(V0,V1))"
+        },
+        "P3_MDL_COMPRESSION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(V0,V0)"
+        }
+      },
+      "family": "DISTRACTOR_REGULARITY",
+      "instance_id": "DISTRACTOR_REGULARITY-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": null
+        },
+        "C_ALWAYS_REJECT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "coverage": [
+            true,
+            true,
+            false
+          ],
+          "disposition": "REJECT_NO_COMMON_STRUCTURE",
+          "pattern": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(V0,g(V0))"
+        },
+        "M_F2_ABSTRACTION_INDUCTION_FULL": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(V0,g(V0))"
+        },
+        "M_MINUS_COMPRESSION_CRITERION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(V0,g(V0))"
+        },
+        "M_MINUS_LEAST_GENERALITY": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "V0"
+        },
+        "M_MINUS_NEGATIVE_CHALLENGE": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(V0,g(V0))"
+        },
+        "M_MINUS_VARIABLE_IDENTITY": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": "h(V0,g(V1))"
+        },
+        "P0_FIXED_LESSON_INJECTION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(V0,g(V1))"
+        },
+        "P1_PLOTKIN_LGG": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(V0,g(V0))"
+        },
+        "P2_CANDIDATE_ELIMINATION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(V0,g(V0))"
+        },
+        "P3_MDL_COMPRESSION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(V0,g(V0))"
+        }
+      },
+      "family": "DISTRACTOR_REGULARITY",
+      "instance_id": "DISTRACTOR_REGULARITY-00003"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": null
+        },
+        "C_ALWAYS_REJECT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "coverage": [
+            false,
+            true,
+            false
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": "f(d,h(b,V0))"
+        },
+        "M_F2_ABSTRACTION_INDUCTION_FULL": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": "f(d,h(b,V0))"
+        },
+        "M_MINUS_COMPRESSION_CRITERION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": "f(d,h(b,V0))"
+        },
+        "M_MINUS_LEAST_GENERALITY": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "V0"
+        },
+        "M_MINUS_NEGATIVE_CHALLENGE": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(d,h(b,V0))"
+        },
+        "M_MINUS_VARIABLE_IDENTITY": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": "f(d,h(b,V0))"
+        },
+        "P0_FIXED_LESSON_INJECTION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(d,h(b,V0))"
+        },
+        "P1_PLOTKIN_LGG": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(d,h(b,V0))"
+        },
+        "P2_CANDIDATE_ELIMINATION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": "f(d,h(b,V0))"
+        },
+        "P3_MDL_COMPRESSION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(d,h(b,V0))"
+        }
+      },
+      "family": "OVER_GENERALIZATION",
+      "instance_id": "OVER_GENERALIZATION-00001"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": null
+        },
+        "C_ALWAYS_REJECT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": "f(V0,b)"
+        },
+        "M_F2_ABSTRACTION_INDUCTION_FULL": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": "f(V0,b)"
+        },
+        "M_MINUS_COMPRESSION_CRITERION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": "f(V0,b)"
+        },
+        "M_MINUS_LEAST_GENERALITY": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "V0"
+        },
+        "M_MINUS_NEGATIVE_CHALLENGE": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(V0,b)"
+        },
+        "M_MINUS_VARIABLE_IDENTITY": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": "f(V0,b)"
+        },
+        "P0_FIXED_LESSON_INJECTION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(V0,b)"
+        },
+        "P1_PLOTKIN_LGG": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(V0,b)"
+        },
+        "P2_CANDIDATE_ELIMINATION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": "f(V0,b)"
+        },
+        "P3_MDL_COMPRESSION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(V0,b)"
+        }
+      },
+      "family": "OVER_GENERALIZATION",
+      "instance_id": "OVER_GENERALIZATION-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": null
+        },
+        "C_ALWAYS_REJECT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": "f(g(V0),V1)"
+        },
+        "M_F2_ABSTRACTION_INDUCTION_FULL": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": "f(g(V0),V1)"
+        },
+        "M_MINUS_COMPRESSION_CRITERION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": "f(g(V0),V1)"
+        },
+        "M_MINUS_LEAST_GENERALITY": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "V0"
+        },
+        "M_MINUS_NEGATIVE_CHALLENGE": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(g(V0),V1)"
+        },
+        "M_MINUS_VARIABLE_IDENTITY": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": "f(g(V0),V1)"
+        },
+        "P0_FIXED_LESSON_INJECTION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(g(V0),V1)"
+        },
+        "P1_PLOTKIN_LGG": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(g(V0),V1)"
+        },
+        "P2_CANDIDATE_ELIMINATION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": "f(g(V0),V1)"
+        },
+        "P3_MDL_COMPRESSION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(g(V0),V1)"
+        }
+      },
+      "family": "OVER_GENERALIZATION",
+      "instance_id": "OVER_GENERALIZATION-00004"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "coverage": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": null
+        },
+        "C_ALWAYS_REJECT": {
+          "coverage": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "coverage": [
+            false,
+            true,
+            false,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(V0,V1)"
+        },
+        "M_F2_ABSTRACTION_INDUCTION_FULL": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(V0,V1)"
+        },
+        "M_MINUS_COMPRESSION_CRITERION": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(V0,V1)"
+        },
+        "M_MINUS_LEAST_GENERALITY": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "V0"
+        },
+        "M_MINUS_NEGATIVE_CHALLENGE": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(V0,V1)"
+        },
+        "M_MINUS_VARIABLE_IDENTITY": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(V0,V1)"
+        },
+        "P0_FIXED_LESSON_INJECTION": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(V0,V1)"
+        },
+        "P1_PLOTKIN_LGG": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(V0,V1)"
+        },
+        "P2_CANDIDATE_ELIMINATION": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(V0,V1)"
+        },
+        "P3_MDL_COMPRESSION": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "f(V0,V1)"
+        }
+      },
+      "family": "UNDER_GENERALIZATION",
+      "instance_id": "UNDER_GENERALIZATION-00001"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "coverage": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": null
+        },
+        "C_ALWAYS_REJECT": {
+          "coverage": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "coverage": [
+            true,
+            true,
+            true,
+            false
+          ],
+          "disposition": "REJECT_NO_COMMON_STRUCTURE",
+          "pattern": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(V0,h(b,V1))"
+        },
+        "M_F2_ABSTRACTION_INDUCTION_FULL": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(V0,h(b,V1))"
+        },
+        "M_MINUS_COMPRESSION_CRITERION": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(V0,h(b,V1))"
+        },
+        "M_MINUS_LEAST_GENERALITY": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "V0"
+        },
+        "M_MINUS_NEGATIVE_CHALLENGE": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(V0,h(b,V1))"
+        },
+        "M_MINUS_VARIABLE_IDENTITY": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(V0,h(b,V1))"
+        },
+        "P0_FIXED_LESSON_INJECTION": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(V0,h(b,V1))"
+        },
+        "P1_PLOTKIN_LGG": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(V0,h(b,V1))"
+        },
+        "P2_CANDIDATE_ELIMINATION": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(V0,h(b,V1))"
+        },
+        "P3_MDL_COMPRESSION": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(V0,h(b,V1))"
+        }
+      },
+      "family": "UNDER_GENERALIZATION",
+      "instance_id": "UNDER_GENERALIZATION-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "coverage": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": null
+        },
+        "C_ALWAYS_REJECT": {
+          "coverage": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "coverage": [
+            false,
+            true,
+            false,
+            false
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(h(d,d),f(V0,V1))"
+        },
+        "M_F2_ABSTRACTION_INDUCTION_FULL": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(h(d,d),f(V0,V1))"
+        },
+        "M_MINUS_COMPRESSION_CRITERION": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(h(d,d),f(V0,V1))"
+        },
+        "M_MINUS_LEAST_GENERALITY": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "V0"
+        },
+        "M_MINUS_NEGATIVE_CHALLENGE": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(h(d,d),f(V0,V1))"
+        },
+        "M_MINUS_VARIABLE_IDENTITY": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(h(d,d),f(V0,V1))"
+        },
+        "P0_FIXED_LESSON_INJECTION": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(h(d,d),f(V0,V1))"
+        },
+        "P1_PLOTKIN_LGG": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(h(d,d),f(V0,V1))"
+        },
+        "P2_CANDIDATE_ELIMINATION": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(h(d,d),f(V0,V1))"
+        },
+        "P3_MDL_COMPRESSION": {
+          "coverage": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "h(h(d,d),V0)"
+        }
+      },
+      "family": "UNDER_GENERALIZATION",
+      "instance_id": "UNDER_GENERALIZATION-00003"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": null
+        },
+        "C_ALWAYS_REJECT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_NO_COMMON_STRUCTURE",
+          "pattern": "V0"
+        },
+        "M_F2_ABSTRACTION_INDUCTION_FULL": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_NO_COMMON_STRUCTURE",
+          "pattern": "V0"
+        },
+        "M_MINUS_COMPRESSION_CRITERION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "V0"
+        },
+        "M_MINUS_LEAST_GENERALITY": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "V0"
+        },
+        "M_MINUS_NEGATIVE_CHALLENGE": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_NO_COMMON_STRUCTURE",
+          "pattern": "V0"
+        },
+        "M_MINUS_VARIABLE_IDENTITY": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_NO_COMMON_STRUCTURE",
+          "pattern": "V0"
+        },
+        "P0_FIXED_LESSON_INJECTION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_NO_COMMON_STRUCTURE",
+          "pattern": "V0"
+        },
+        "P1_PLOTKIN_LGG": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "V0"
+        },
+        "P2_CANDIDATE_ELIMINATION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "V0"
+        },
+        "P3_MDL_COMPRESSION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_NO_COMMON_STRUCTURE",
+          "pattern": "V0"
+        }
+      },
+      "family": "NO_VALID_COMMON_ABSTRACTION",
+      "instance_id": "NO_VALID_COMMON_ABSTRACTION-00001"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": null
+        },
+        "C_ALWAYS_REJECT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "coverage": [
+            true,
+            false,
+            false
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_NO_COMMON_STRUCTURE",
+          "pattern": "V0"
+        },
+        "M_F2_ABSTRACTION_INDUCTION_FULL": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_NO_COMMON_STRUCTURE",
+          "pattern": "V0"
+        },
+        "M_MINUS_COMPRESSION_CRITERION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": "V0"
+        },
+        "M_MINUS_LEAST_GENERALITY": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "V0"
+        },
+        "M_MINUS_NEGATIVE_CHALLENGE": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_NO_COMMON_STRUCTURE",
+          "pattern": "V0"
+        },
+        "M_MINUS_VARIABLE_IDENTITY": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_NO_COMMON_STRUCTURE",
+          "pattern": "V0"
+        },
+        "P0_FIXED_LESSON_INJECTION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_NO_COMMON_STRUCTURE",
+          "pattern": "V0"
+        },
+        "P1_PLOTKIN_LGG": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "V0"
+        },
+        "P2_CANDIDATE_ELIMINATION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": "V0"
+        },
+        "P3_MDL_COMPRESSION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_NO_COMMON_STRUCTURE",
+          "pattern": "V0"
+        }
+      },
+      "family": "NO_VALID_COMMON_ABSTRACTION",
+      "instance_id": "NO_VALID_COMMON_ABSTRACTION-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": null
+        },
+        "C_ALWAYS_REJECT": {
+          "coverage": [
+            false,
+            false,
+            false
+          ],
+          "disposition": "REJECT_OVER_GENERAL",
+          "pattern": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "coverage": [
+            true,
+            false,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_NO_COMMON_STRUCTURE",
+          "pattern": "V0"
+        },
+        "M_F2_ABSTRACTION_INDUCTION_FULL": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_NO_COMMON_STRUCTURE",
+          "pattern": "V0"
+        },
+        "M_MINUS_COMPRESSION_CRITERION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "V0"
+        },
+        "M_MINUS_LEAST_GENERALITY": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "V0"
+        },
+        "M_MINUS_NEGATIVE_CHALLENGE": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_NO_COMMON_STRUCTURE",
+          "pattern": "V0"
+        },
+        "M_MINUS_VARIABLE_IDENTITY": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_NO_COMMON_STRUCTURE",
+          "pattern": "V0"
+        },
+        "P0_FIXED_LESSON_INJECTION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_NO_COMMON_STRUCTURE",
+          "pattern": "V0"
+        },
+        "P1_PLOTKIN_LGG": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "V0"
+        },
+        "P2_CANDIDATE_ELIMINATION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "ACCEPT_LGG",
+          "pattern": "V0"
+        },
+        "P3_MDL_COMPRESSION": {
+          "coverage": [
+            true,
+            true,
+            true
+          ],
+          "disposition": "REJECT_NO_COMMON_STRUCTURE",
+          "pattern": "V0"
+        }
+      },
+      "family": "NO_VALID_COMMON_ABSTRACTION",
+      "instance_id": "NO_VALID_COMMON_ABSTRACTION-00003"
+    }
+  ],
+  "label": "DEVELOPMENT",
+  "schema_version": "orion.v2.fm-exact.results.v1",
+  "split_seed": "FM20-DEV-20260902",
+  "suite": "FM20"
+}

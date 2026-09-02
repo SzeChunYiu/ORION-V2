@@ -1,0 +1,130 @@
+{
+  "schema_version": "orion.v2.fm-exact.study-design.v1",
+  "study_id": "FM20",
+  "title": "Anti-unification and generalization with negatives, vacuity and held-out coverage",
+  "owner_issues": [
+    48,
+    50
+  ],
+  "protocols": [
+    "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_MECHANICS_PROTOCOL_V1.json",
+    "research/experiments/CONCEPTUAL_TRANSFER_DISCOVERY_PROTOCOL_V2_ALL_SCIENCE_MATHEMATICS_FIRST.json",
+    "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_EXECUTION_BACKLOG_V1.json"
+  ],
+  "status": "FROZEN_PROSPECTIVE_DESIGN_NO_PROTECTED_OUTCOME_ACCESS",
+  "frozen_before_protected_outcome_access": true,
+  "endpoint": {
+    "primary": "the pair (registered disposition, held-out coverage vector), scored as an exact match",
+    "dispositions": [
+      "ACCEPT_LGG",
+      "REJECT_OVER_GENERAL",
+      "REJECT_NO_COMMON_STRUCTURE"
+    ],
+    "secondary": [
+      "over_accept",
+      "under_accept",
+      "per_family_exact_rate",
+      "wall_clock_cost"
+    ],
+    "note": "Computing the LGG alone is deliberately NOT the endpoint: Plotkin's algorithm decides it exactly, so a study built on it would report parent sufficiency by construction. The endpoint adds negative examples, a vacuity criterion and held-out coverage prediction - the protocol's own FM20 primaries.",
+    "lattice_fact_the_design_depends_on": "Every common generalization of the positives is more general than or equal to their LGG (Plotkin 1970), so if the LGG covers a negative then so does every common generalization. There is therefore no 'specialize until consistent' disposition in pure anti-unification and the three dispositions are exhaustive.",
+    "registered_classification_order": "vacuity dominates over-generality: a bare variable is not an abstraction at all, so REJECT_NO_COMMON_STRUCTURE is returned even when negatives are also covered. Fixture KA-05 pins this."
+  },
+  "families": [
+    "LEAST_GENERAL_PATTERN",
+    "DISTRACTOR_REGULARITY",
+    "OVER_GENERALIZATION",
+    "UNDER_GENERALIZATION",
+    "NO_VALID_COMMON_ABSTRACTION"
+  ],
+  "decoy_families": [
+    "DISTRACTOR_REGULARITY",
+    "OVER_GENERALIZATION",
+    "UNDER_GENERALIZATION",
+    "NO_VALID_COMMON_ABSTRACTION"
+  ],
+  "sizes": {
+    "minimum_tasks_required_by_issue_50_C1": 120,
+    "protected_per_family": 25,
+    "protected_total": 125,
+    "development_per_family": 3,
+    "development_total": 15,
+    "selftest_per_family": 2
+  },
+  "oracle": {
+    "primary": "lgg_exhaustive: enumerate the generalization lattice of the first positive (antichains of positions x partitions whose blocks carry equal subterms), keep the covering patterns and take the unique minimum under the generality order",
+    "independent_cross_check": "lgg_plotkin: anti-unification proper, folding pairwise generalization with a substitution table keyed by the pair of disagreeing subterms",
+    "agreement_fields": [
+      "disposition",
+      "lgg",
+      "coverage"
+    ],
+    "uniqueness_is_verified": "the exhaustive method verifies that the lattice minimum is unique up to renaming rather than assuming Plotkin's theorem; a planted positive confirms the uniqueness field is computed"
+  },
+  "arms": {
+    "P0_FIXED_LESSON_INJECTION": "frozen rule: keep the common skeleton, fresh variable at every disagreement, no sharing",
+    "P1_PLOTKIN_LGG": "Plotkin 1970 / Reynolds 1970 anti-unification",
+    "P2_CANDIDATE_ELIMINATION": "Mitchell 1982 version spaces; specific boundary rejected when it covers a negative",
+    "P3_MDL_COMPRESSION": "minimum description length selection over the covering patterns",
+    "F0_PARENT_FEDERATION": "P1 supplies the term; P3's compression criterion may veto it as vacuous; P2's negative test may then veto it as over-general",
+    "M_F2_ABSTRACTION_INDUCTION_FULL": "ORION cover-driven specific-to-general abstraction induction",
+    "M_MINUS_VARIABLE_IDENTITY": "ablation: fresh variable at every disagreement",
+    "M_MINUS_NEGATIVE_CHALLENGE": "ablation",
+    "M_MINUS_COMPRESSION_CRITERION": "ablation",
+    "M_MINUS_LEAST_GENERALITY": "ablation: stop at the most general covering pattern",
+    "C_ALWAYS_ACCEPT": "constant control with no abstraction of its own",
+    "C_ALWAYS_REJECT": "constant control",
+    "C_RANDOM_DISPOSITION": "random control"
+  },
+  "primary_comparator": "F0_PARENT_FEDERATION",
+  "comparator_justification": "No single parent owns the endpoint. Plotkin's LGG produces the right term but has no notion of a negative example and no notion of vacuity. Candidate elimination owns the negatives but accepts a bare variable when no negative excludes it. MDL owns vacuity but chooses its own term and can generalize away a real shared regularity. The strongest faithful comparator is their federation under a pre-registered, outcome-blind rule.",
+  "mechanic_independence": {
+    "statement": "M does not call Plotkin's algorithm. It runs a cover-driven specific-to-general search of the kind used in inductive logic programming: start from the first positive, variablise the minimal set of positions where the current pattern fails to match the next positive (sharing a variable across positions carrying equal subterms), split a variable bound inconsistently, iterate until every positive is covered, then apply the compression criterion and the negative challenge.",
+    "why": "A cover-driven search can variablise a position higher in the term than necessary, so it can diverge from the least general generalization. 'The federation reproduces M' is therefore measured rather than guaranteed - the defect FM10 had to repair before its protected run.",
+    "measured_on_development": "On a 125-instance development probe the search initially diverged on 2 instances; both were traced to defects in M itself (a wrong fallback when a variable was bound inconsistently, and a variable-name collision that forced accidental sharing) and repaired before freezing. A broken mechanic is as much a strawman as a broken parent."
+  },
+  "gates": {
+    "G0a_KNOWN_ANSWER": "every hand-authored fixture reproduced by the exhaustive oracle (>= 8 fixtures)",
+    "G0b_ORACLE_SELF_AGREEMENT": "the two independent oracle algorithms agree on disposition, lgg and coverage on every instance",
+    "G0c_NULL_CALIBRATION": "constant-response arms <= 0.40, random arm <= 0.40, M against within-split shuffled oracle labels <= 0.40",
+    "G0d_DECOY_COVERAGE": "each registered decoy family carries >= 3 instances",
+    "G0e_PLANTED_POSITIVES": "every registered planted positive trips its own gate predicate (>= 3)",
+    "G0f_FAMILY_DISCRIMINATION": "two independent halves with separate denominators: SOLVABLE (some non-control arm >= 0.95) AND SEPARATING (some registered weak arm <= 0.85)",
+    "G1a_PARENT_REPRODUCES_M": "F0 reproduces M's endpoint on >= 99.5% of instances and no family exceeds 5% discordance; AND the discordance counter is shown live on the same split by at least one ablation arm disagreeing with the parent; the per-family 5% rule is reported alongside the integer number of discordant instances it actually permits at this family size, so a threshold that collapses to 'no discordance' is not read as something laxer",
+    "G1b_M_ADVANTAGE": "detector: paired exact difference (M - F0) > 0, exact two-sided p <= 0.05, >= 1 family with >= 5 M-only-exact instances",
+    "G2_ANTI_PERMISSIVENESS": "on instances the oracle rejects, M accepts no more abstractions than F0 (>= 10 rejected instances required, else CANNOT_CHECK); AND the over-acceptance counter is shown live on those same instances by at least one arm registering a nonzero count - an anti-conservatism gate passing on 0 <= 0 with no demonstration that it could fire is a known defective shape",
+    "G3_MECHANISM_BY_OMISSION": "applicable only if G1b fires",
+    "multiplicity": "Holm across the five per-family paired tests"
+  },
+  "gate_reporting_rule": "Every gate reports the number of instances its rule was actually evaluated on. A gate below its registered minimum returns CANNOT_CHECK and never PASS, and the route line names every hard gate that could not be evaluated. A zero produced by a counter that could not have been nonzero is not evidence, so G1a carries a liveness control.",
+  "routes": [
+    "PARENT_SUFFICIENT",
+    "FM_RESIDUAL_CANDIDATE",
+    "M_OVER_ACCEPTS",
+    "CANNOT_CHECK"
+  ],
+  "route_note": "If G1a fails because M is WORSE than the federation, the route is still PARENT_SUFFICIENT: the parent is at least as good. That is recorded explicitly rather than presented as a study defect.",
+  "pre_registered_expectation": "PARENT_SUFFICIENT.",
+  "seed_commitment": {
+    "protected_seed_sha256": "2b4eb309a77211c7aabbf4eb0fd760c8a31842888574b5c3a00f64f3a1291aae",
+    "custody_path": "~/.orion-custody/fm/FM20_PROTECTED_SEED_V1.txt",
+    "development_seed_public": "FM20-DEV-20260902",
+    "selftest_seed_public": "FM20-SELFTEST"
+  },
+  "execution_rule": {
+    "protected_runs_allowed": 1,
+    "authorization_file": "PROTECTED_RUN_AUTHORIZATION.json",
+    "analysis_runs_on_protected": 1,
+    "post_outcome_design_change_allowed": false
+  },
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_F2_superiority": false,
+    "grants_field_status": false,
+    "grants_submission_readiness": false
+  },
+  "reproducibility": {
+    "hash_seed_independence": "the generator draws only from ordered sequences, never while iterating an unordered set. Verified, not assumed: the split's canonical digest is identical under PYTHONHASHSEED 0, 1 and 12345, asserted by tests/unit/test_fm_exact_suites.py::test_generator_is_independent_of_python_hash_seed. Python randomises string hashing per process, so a generator without this property would make a committed seed regenerate a different split elsewhere.",
+    "determinism": "two consecutive runs produce byte-identical results and custody files"
+  }
+}
