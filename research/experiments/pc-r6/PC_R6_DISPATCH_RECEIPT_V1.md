@@ -10,7 +10,8 @@
 
 | artefact | path | sha256 |
 |---|---|---|
-| runner | `research/experiments/pc-r6/pc_r6_fullreg_eval.py` | `284d04df88f42844f5711eb2674045700e79776a740363d84893f9c9b8e0c025` |
+| runner (v2, re-frozen after GR0(b) defect, §7) | `research/experiments/pc-r6/pc_r6_fullreg_eval.py` | `4c62a32e0ea92752b8d94402b53a554caaae5ed9ad7e62320758945d857dba86` |
+| runner v1 (executed GR0(a) array 3563415; superseded) | same path at PR #141 merge `d1c7e92` | `284d04df88f42844f5711eb2674045700e79776a740363d84893f9c9b8e0c025` |
 | analysis | `research/experiments/pc-r6/pc_r6_fullreg_analysis.py` | `a7c689c013c2d511a9e471ca5ef7ba084ab1bec98134856b18cb1efd40da111b` |
 | frozen-lane adapter (imported verbatim, asserted at every run) | `research/experiments/results/issue45/e30-r11/drivers/e30_r11_arm_eval_frozen_lane.py` = LUNARC `R11/run/e30_r11_arm_eval_frozen_lane.py` | `829abb411ccf0bd71182eea4c11d2e07fae60f3b743872f7b4fce0a8635aae93` |
 | frozen analyzer (imported for §4 statistics) | `scripts/analyze_orion_real_problem_results.py` | `ef195f7b8d6edafb9b48f3873eeb3f4041fcce6d87aad288e7ede1865428e3f2` |
@@ -76,11 +77,13 @@
 | step | job | status |
 |---|---|---|
 | manifest (login node, read-only) | `--stage manifest` | `done 2026-09-02 (2858 entries: 1080 responses, 1080 frozen evaluation records, 5 gold patches, 80 workspace identities [HEAD + porcelain + deviating files], bindings, registry, adapter, truth anchors)` |
-| GR0(a) execute | `pc_r6_gr0a_array.sbatch` (`--array=0-79%24`, 2 CPU, 8 G, 3 h) | `submitted after merge — job id recorded in the PR follow-up / final report` |
-| GR0(b) gold control | `pc_r6_gr0b.sbatch` (2 CPU, 8 G, 4 h) | `submitted after merge — job id recorded in the PR follow-up / final report` |
-| GR0 verify + combine | `pc_r6_gr0_verify.sbatch` `--dependency=afterok:<gr0a>:<gr0b>` | `submitted after merge — job id recorded in the PR follow-up / final report` |
-| suite | `pc_r6_suite_array.sbatch` (`--array=0-79%24`, 2 CPU, 8 G, 12 h) `--dependency=afterok:<verify>` | `submitted after merge, dependency-gated on GR0 verify — job id recorded in the PR follow-up / final report` |
-| rollup | `pc_r6_rollup.sbatch` `--dependency=afterany:<suite>` | `submitted after merge — job id recorded in the PR follow-up / final report` |
+| GR0(a) execute | `pc_r6_gr0a_array.sbatch` (`--array=0-79%24`, 2 CPU, 8 G, 3 h) | **3563415** — 80/80 COMPLETED (runner v1, submitted from branch head `5d8f601` before the #141 merge; sha-identical). Collect: **e30r11 480/480, e60 600/600 bit-exact**, 0 mismatched, 0 missing; checker negative control PASS in both cells; E30 cross-check vs the 480 campaign records bit-exact; E60 anchors: 49/49 substantive checks PASS (arm_summaries counts per arm + per project, component_effects success paired tables) + supersede ledger (v2 semantics) |
+| GR0(b) gold control, attempt 1 | `pc_r6_gr0b.sbatch` | **3563416** FAILED (exit 1, 54 min): ansible-1 / fastapi-1 / pandas-1 PASS (count 0 over 57 / 11 / 259 baseline-passing tests); black-1 and cookiecutter-1 non-passing → §7 |
+| GR0 verify, attempt 1 | `pc_r6_gr0_verify.sbatch` | 3563417 DependencyNeverSatisfied → cancelled together with 3563418 (suite) and 3563419 (rollup); no suite compute spent |
+| GR0(b) gold control, attempt 2 (runner v2) | `pc_r6_gr0b.sbatch` (2 CPU, 8 G, 4 h) | **3563624** (submitted from branch head `8f41aeb`; runner sha `4c62a32e…` verified on LUNARC) |
+| GR0 verify + combine, attempt 2 | `pc_r6_gr0_verify.sbatch` `--dependency=afterok:3563624` (re-collects the 3563415 GR0(a) records under runner v2) | **3563625**; login-node pre-check of the v2 collect: GR0(a) PASS 480/480 + 600/600, supersede anchor PASS |
+| suite | `pc_r6_suite_array.sbatch` (`--array=0-79%24`, 2 CPU, 8 G, 12 h) `--dependency=afterok:3563625` | **3563626** (starts only on GR0 PASS) |
+| rollup | `pc_r6_rollup.sbatch` `--dependency=afterany:3563626` | **3563627** |
 | analysis | `pc_r6_fullreg_analysis.py` — **not chained; not run at dispatch**; refuses without a GR0 PASS receipt | deliberate manual step after the rollup is verified complete |
 
 Compute expectation from the frozen records: 480 + 600 registered-test evaluations took 3.4 + 4.7 CPU-h in
@@ -90,6 +93,35 @@ GR0(b) ≤ 1 h (parallel), suite array ≈ 2–4 h behind the verify gate.
 
 Logs: `/projects/hep/fs9/users/scyiu/orion-v2-pc-r6/logs/`. Campaign dir:
 `/projects/hep/fs9/users/scyiu/orion-v2-pc-r6/campaign-pc-r6-fullreg-e30r11-e60-20260902-774903e1/`.
+
+## 7. GR0(b) attempt-1 failure: diagnosis and re-freeze (2026-09-02)
+
+Job 3563416 returned `{"gr0b": "FAIL"}` with two non-passing tasks; each was traced to ONE cause and only
+that cause was changed. The frozen design (gates, margins, seed, families, suite definition) is untouched.
+
+| task | observation (from `records_gr0b/`) | attribution | change |
+|---|---|---|---|
+| `bugsinpy-black-1` | gold applies, compiles, registered binding passes (`Ran 1 test … OK`), suite count 0 over 128 baseline-passing tests — but `newly_passing_count = 0`: inside the 129-test module run `test_works_in_mono_process_only_environment` fails both at baseline and after gold (`exit_code 1 != 0`), i.e. an order-dependent test that only passes in isolation | **lane defect in amendment A6** (my precondition "gold flips ≥ 1 baseline-failing test inside the suite" assumed the suite-level outcome tracks the registered binding; false for state-dependent unittest modules). The design's GR0(b) criterion (binding flips AND count == 0) was satisfied | **A14:** the `newly_passing ≥ 1` precondition is dropped; the `baseline_passing ≥ 1` guard stays; the registered test's outcome inside the suite (baseline and gold) is recorded as `registered_test_in_suite` and `suite_registered_test_divergence` (informational). Substrate finding **F2** below |
+| `bugsinpy-cookiecutter-1` | gold applies, compiles, registered binding still FAILS: `FileNotFoundError: tests/test-generate-context/non_ascii.json`; count 0 over 10 baseline-passing tests | **substrate property, not a lane defect**: BugsInPy `bug_patch.txt` is source-only; the fixed commit `7f6804c` adds the fixture `tests/test-generate-context/non_ascii.json` (verified with `git show --name-only`), which the BugsInPy checkout never copies into the buggy tree. The gold control is therefore not applicable to this task; the frozen E30-R11 records show arms CAN pass it (SAME_MODEL_REFLECTION and SIMPLE_DIRECT 3/3 reps) because their proposals add the fixture themselves | **A13:** selection rule "one per project where available" made executable: within a project, tasks in bug_id order; a task is `GOLD_NOT_APPLICABLE_MISSING_FIXTURE:<path>` only when ALL of (patch applied, compile PASS, binding fails, output names a missing path, path absent from the frozen workspace, path added by the fixed commit) hold; then the next bug_id is tried (cookiecutter-2). Anything else remains a real FAIL. The extra gold patch read enters the gr0b read manifest (the frozen input manifest / campaign id are unchanged — no frozen proposal, workspace or anchor changed) |
+
+Also corrected in runner v2 (found by the GR0(a) collect, not by GR0(b)): **A15** — `supersede.sha256` lists the
+sha256 of the SUPERSEDED rep-3 `F2_MINUS_DECOMPOSITION/bugsinpy-scrapy-5` artifacts (preserved under the E60
+campaign's `repair/superseded-r3-falsifier/`), not of the live records. The v1 anchor check compared it with
+the live record and reported one false alarm (all 49 substantive E60 anchor checks passed). v2 checks that the
+in-repo ledger is byte-identical to the preserved `supersede-*.sha256`, that the listed sha matches the
+preserved copy, and that the live record differs from it.
+
+Substrate findings recorded for the analysis layer (no gate change): **F1** `bugsinpy-cookiecutter-1`'s
+registered failing test cannot be flipped by any source-only patch (the mean endpoint for this task measures
+whether a proposal recreates the missing fixture); **F2** `bugsinpy-black-1`'s registered test is
+order-dependent in the full-module run (baseline-failing in the suite → it can never be a critical new
+failure; `full_regression_suite_passed` still uses the registered binding, as designed).
+
+Reproduced by `tests/unit/test_pc_r6_lane.py::test_gr0b_order_dependent_module_and_missing_fixture_fallthrough`
+(synthetic black-like order-dependent module + cookiecutter-like fixture-missing task with fall-through) and
+`test_gold_not_applicable_classifier_requires_every_condition`; the supersede semantics are exercised by the
+E60 truth fixture. GR0(a) reproduction (480/480 + 600/600) is unaffected: those records come from runner v1
+and the comparator is unchanged.
 
 ## 6. Outputs (to be archived under `research/experiments/results/issue45/pc-r6/` when they land)
 

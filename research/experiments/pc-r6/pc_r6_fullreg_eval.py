@@ -43,6 +43,7 @@ import hashlib
 import importlib.util
 import json
 import os
+import re
 import shlex
 import signal
 import subprocess
@@ -53,7 +54,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
 
-LANE_VERSION = "orion.v2.pc-r6-fullreg-evaluator-lane.v1"
+LANE_VERSION = "orion.v2.pc-r6-fullreg-evaluator-lane.v2"
 DESIGN_ID = "PC_R6_FULL_REGRESSION_EVALUATOR_LANE_DESIGN_V1"
 SEED = 20260902
 SUITE_TIMEOUT_SECONDS = 900  # frozen, design section 3
@@ -98,9 +99,13 @@ BASELINE_ARM_ID = "PC_R6_BASELINE"
 GR0B_ARM_ID = "PC_R6_GOLD_CONTROL"
 GR0B_TASK_COUNT = 5
 GR0B_SELECTION_RULE = (
-    "projects in lexicographic order; lowest bug_id task per project; the first "
-    "five projects whose gold patch file exists and applies (amendment A4)"
+    "projects in lexicographic order; within a project tasks in bug_id order; a task "
+    "whose gold source patch cannot flip the registered failing test because the "
+    "frozen workspace lacks a fixture that only the fixed commit adds is "
+    "GOLD_NOT_APPLICABLE_MISSING_FIXTURE and the next bug_id of the same project is "
+    "tried; the first five projects with an applicable control (amendments A4, A13)"
 )
+_MISSING_FILE_RE = re.compile(r"No such file or directory: '([^']+)'")
 GOLD_PATCH_TEMPLATE = (
     "{campaign}/baseline_lanes/{task_id}/BugsInPy/projects/{project}/bugs/{bug_id}/bug_patch.txt"
 )
@@ -716,6 +721,64 @@ def run_baseline(lane: Lane, task_id: str, workdir: Path) -> dict[str, Any]:
     return baseline
 
 
+def registered_test_suite_outcomes(plan: dict[str, Any] | None, tests: dict[str, str]) -> dict[str, str | None]:
+    """Outcome of each registered test id inside the suite run (informational)."""
+    result: dict[str, str | None] = {}
+    if not plan:
+        return result
+    for line in plan["registered_lines"]:
+        tokens = shlex.split(line)
+        targets = [t for t in tokens[1:] if not t.startswith("-") and t not in ("-m", "pytest", "unittest")]
+        for target in targets:
+            if plan["runner_family"] == "unittest":
+                result[target] = tests.get(target)
+                continue
+            if "::" not in target:
+                continue
+            file_part, _, node = target.partition("::")
+            stem = Path(file_part).with_suffix("").as_posix().replace("/", ".")
+            name = node.split("::")[-1]
+            matches = [k for k in tests if k.split("::")[0].startswith(stem) and k.split("::", 1)[1].split("[")[0] == name]
+            result[target] = tests[matches[0]] if len(matches) == 1 else (
+                "AMBIGUOUS" if matches else None)
+    return result
+
+
+def gold_not_applicable_reason(record: dict[str, Any], workspace: Path, manifest: Manifest,
+                               label: str) -> str | None:
+    """Amendment A13: the gold SOURCE patch (BugsInPy bug_patch.txt) omits test-side
+    fixture files added by the fixed commit; when the registered failing test fails
+    identically after gold with a FileNotFoundError naming a path that (a) is absent
+    from the frozen workspace and (b) is added by the fixed commit, the control is not
+    applicable to that task (a substrate property shared by every arm), not a lane
+    defect.  Every condition is checked; anything else stays a real FAIL."""
+    if record.get("patch_apply_returncode") != 0 or record.get("compile_status") != "PASS":
+        return None
+    if record.get("native_success") is not False:
+        return None
+    text = str(record.get("stdout_tail", "")) + "\n" + str(record.get("stderr_tail", ""))
+    match = _MISSING_FILE_RE.search(text)
+    if not match or "FileNotFoundError" not in text:
+        return None
+    missing = match.group(1)
+    if (workspace / missing).exists():
+        return None
+    info_path = workspace / "bugsinpy_bug.info"
+    if not info_path.is_file():
+        return None
+    fixed = None
+    for line in manifest.read_text(info_path, f"{label}/bugsinpy_bug.info").splitlines():
+        if line.startswith("fixed_commit_id="):
+            fixed = line.split("=", 1)[1].strip().strip('"')
+    if not fixed:
+        return None
+    shown = subprocess.run(["git", "show", "--name-only", "--format=", fixed], cwd=str(workspace),
+                           stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=False)
+    if shown.returncode != 0 or missing not in shown.stdout.splitlines():
+        return None
+    return f"GOLD_NOT_APPLICABLE_MISSING_FIXTURE:{missing}"
+
+
 # --------------------------------------------------------------------------- stages
 def stage_manifest(args, cells: list[Cell], manifest: Manifest) -> int:
     e30 = next(cell for cell in cells if cell.name == "e30r11")
@@ -801,21 +864,25 @@ def workspace_identity(workspace: Path) -> dict[str, Any]:
     return {"head": head, "status_sha256": sha256_text(status), "deviating_files": deviating}
 
 
-def select_gr0b_tasks(e30: Cell, args) -> list[tuple[str, Path]]:
-    chosen: list[tuple[str, Path]] = []
+def gr0b_candidates(e30: Cell, args) -> dict[str, list[tuple[str, Path]]]:
+    """Per project (lexicographic), tasks in bug_id order whose gold patch file exists."""
     by_project: dict[str, list[dict[str, Any]]] = {}
     for task in e30.tasks.values():
         by_project.setdefault(str(task["project"]), []).append(task)
+    candidates: dict[str, list[tuple[str, Path]]] = {}
     for project in sorted(by_project):
-        if len(chosen) >= GR0B_TASK_COUNT:
-            break
-        task = min(by_project[project], key=lambda item: int(item["bug_id"]))
-        gold = Path(args.gold_patch_template.format(
-            campaign=e30.root, task_id=task["task_id"], project=project, bug_id=task["bug_id"]))
-        if not gold.is_file():
-            continue
-        chosen.append((task["task_id"], gold))
-    return chosen
+        for task in sorted(by_project[project], key=lambda item: int(item["bug_id"])):
+            gold = Path(args.gold_patch_template.format(
+                campaign=e30.root, task_id=task["task_id"], project=project, bug_id=task["bug_id"]))
+            if gold.is_file():
+                candidates.setdefault(project, []).append((task["task_id"], gold))
+    return candidates
+
+
+def select_gr0b_tasks(e30: Cell, args) -> list[tuple[str, Path]]:
+    """First candidate of the first five projects (the frozen-input manifest set)."""
+    candidates = gr0b_candidates(e30, args)
+    return [tasks[0] for _project, tasks in list(candidates.items())[:GR0B_TASK_COUNT]]
 
 
 def record_path(out: Path, kind: str, cell: str, rep: str | None, arm: str | None, task_id: str) -> Path:
@@ -918,16 +985,28 @@ def anchor_e60(cell: Cell, vector: dict[tuple[str, str, str], bool | None], trut
                manifest: Manifest) -> dict[str, Any]:
     """Bind the E60 per-evaluation vector to the in-repo frozen aggregates."""
     result: dict[str, Any] = {"checks": []}
-    supersede = manifest.read_text(truth_dir / "e60-r1-component-ablation/supersede.sha256",
-                                   "truth/e60-r1-component-ablation/supersede.sha256")
+    # supersede.sha256 lists the sha256 of the SUPERSEDED (old) rep-3 artifacts, preserved
+    # under repair/superseded-r3-falsifier/; the live record must differ from it and the
+    # preserved copy must match it (E60 receipt section 2.5)
+    supersede_path = truth_dir / "e60-r1-component-ablation/supersede.sha256"
+    supersede = manifest.read_text(supersede_path, "truth/e60-r1-component-ablation/supersede.sha256")
+    repair = cell.root / "repair" / "superseded-r3-falsifier"
+    repair_ledgers = sorted(repair.glob("supersede-*.sha256"))
+    result["checks"].append({
+        "check": "supersede_ledger_preserved_in_campaign_repair_dir",
+        "pass": any(sha256_file(p) == sha256_file(supersede_path) for p in repair_ledgers)})
+    preserved = {sha256_file(p): str(p.relative_to(cell.root)) for p in repair.glob("evaluations/*/*.json")}
     for line in supersede.splitlines():
         digest, _, path = line.partition("  ")
         if "/evaluations/" not in path:
             continue
+        digest = digest.strip()
         rel = path.split("/run/", 1)[1]
         local = cell.run / rel
-        ok = local.is_file() and sha256_file(local) == digest.strip()
-        result["checks"].append({"check": "supersede_sha256_evaluation_record", "path": rel, "pass": ok})
+        live_differs = local.is_file() and sha256_file(local) != digest
+        result["checks"].append({"check": "supersede_sha256_superseded_record_preserved_and_live_differs",
+                                 "path": rel, "preserved_copy": preserved.get(digest),
+                                 "pass": bool(live_differs and digest in preserved)})
     analysis = manifest.read_json(truth_dir / "e60-r1-component-ablation/E60_R1_COMPONENT_ABLATION_ANALYSIS.json",
                                   "truth/e60-r1-component-ablation/E60_R1_COMPONENT_ABLATION_ANALYSIS.json")
     task_level: dict[str, dict[str, bool | None]] = {}
@@ -1046,58 +1125,86 @@ def stage_gr0a_collect(args, cells: list[Cell], manifest: Manifest) -> int:
 def stage_gr0b(args, cells: list[Cell], manifest: Manifest) -> int:
     e30 = next(cell for cell in cells if cell.name == "e30r11")
     lane = Lane(e30, args.adapter, manifest, suite=True)
-    selected = select_gr0b_tasks(e30, args)
-    if len(selected) != GR0B_TASK_COUNT and not args.allow_partial_cells:
-        raise LaneError(f"gr0b selection yielded {len(selected)} tasks, expected {GR0B_TASK_COUNT}")
+    if len(gr0b_candidates(e30, args)) < GR0B_TASK_COUNT and not args.allow_partial_cells:
+        raise LaneError("gr0b needs gold patches for at least five projects")
     workdir = args.out / "scratch" / "records_gr0b"
-    results = []
+    results: list[dict[str, Any]] = []
+    not_applicable: list[dict[str, Any]] = []
     overall = True
-    for task_id, gold_path in selected:
-        base_path = record_path(args.out, "records_gr0b", "e30r11", None, None, task_id)
-        if base_path.is_file() and json.loads(base_path.read_text(encoding="utf-8")).get("lane_version") == LANE_VERSION:
-            baseline = json.loads(base_path.read_text(encoding="utf-8"))
-        else:
-            baseline = run_baseline(lane, task_id, workdir / "baseline")
-            write_json(base_path, baseline)
-        gold = manifest.read_text(gold_path, f"gold/{task_id}/bug_patch.txt")
-        response = {"status": "PC_R6_GOLD_PATCH_CONTROL", "task_id": task_id, "arm_id": GR0B_ARM_ID,
-                    "proposed_patch_or_artifact": {"type": "unified_diff", "content": gold}}
-        record = lane.run_one(rep=None, arm_id=GR0B_ARM_ID, task_id=task_id, response=response,
-                              workdir=workdir / "gold")
-        record["gold_or_fixed_solution_accessed"] = True
-        record["gold_patch_sha256"] = manifest.entries[f"gold/{task_id}/bug_patch.txt"]
-        merge_critical(record, baseline)
-        write_json(args.out / "records_gr0b" / "e30r11" / "gold" / f"{task_id}.json", record)
-        item = {
-            "task_id": task_id, "project": e30.tasks[task_id].get("project"),
-            "baseline_status": baseline["status"],
-            "bug_reproduced_at_baseline": baseline["bug_reproduced_at_baseline"],
-            "gold_patch_apply_returncode": record.get("patch_apply_returncode"),
-            "gold_compile_status": record.get("compile_status"),
-            "gold_native_success": record.get("native_success"),
-            "critical_new_failure_count": record.get("critical_new_failure_count"),
-            "critical_new_failure_status": record["pc_r6"].get("critical_new_failure_status"),
-            "baseline_passing_count": record["pc_r6"].get("baseline_passing_count"),
-            "newly_passing_count": record["pc_r6"].get("newly_passing_count"),
-            "suite_runner_family": (record["pc_r6"].get("suite_plan") or {}).get("runner_family"),
-        }
-        item["pass"] = bool(
-            baseline["status"] == "BASELINE_OK"
-            and baseline["bug_reproduced_at_baseline"]
-            and record.get("native_success") is True
-            and record.get("critical_new_failure_count") == 0
-            # lane-validity preconditions (amendment A6): the baseline must
-            # collect passing tests and the gold patch must flip at least one
-            # baseline-failing test inside the suite itself
-            and (record["pc_r6"].get("baseline_passing_count") or 0) >= 1
-            and (record["pc_r6"].get("newly_passing_count") or 0) >= 1)
-        overall = overall and item["pass"]
-        results.append(item)
-        print(json.dumps(item))
+    candidates = gr0b_candidates(e30, args)
+    projects_controlled = 0
+    for project, tasks in candidates.items():
+        if projects_controlled >= GR0B_TASK_COUNT:
+            break
+        for task_id, gold_path in tasks:
+            base_path = record_path(args.out, "records_gr0b", "e30r11", None, None, task_id)
+            if base_path.is_file() and json.loads(base_path.read_text(encoding="utf-8")).get("lane_version") == LANE_VERSION:
+                baseline = json.loads(base_path.read_text(encoding="utf-8"))
+            else:
+                baseline = run_baseline(lane, task_id, workdir / "baseline")
+                write_json(base_path, baseline)
+            gold = manifest.read_text(gold_path, f"gold/{task_id}/bug_patch.txt")
+            response = {"status": "PC_R6_GOLD_PATCH_CONTROL", "task_id": task_id, "arm_id": GR0B_ARM_ID,
+                        "proposed_patch_or_artifact": {"type": "unified_diff", "content": gold}}
+            record = lane.run_one(rep=None, arm_id=GR0B_ARM_ID, task_id=task_id, response=response,
+                                  workdir=workdir / "gold")
+            record["gold_or_fixed_solution_accessed"] = True
+            record["gold_patch_sha256"] = manifest.entries[f"gold/{task_id}/bug_patch.txt"]
+            merge_critical(record, baseline)
+            plan = record["pc_r6"].get("suite_plan")
+            in_suite = {
+                "baseline": registered_test_suite_outcomes(plan, (baseline.get("suite") or {}).get("tests", {})),
+                "gold": registered_test_suite_outcomes(plan, (record["pc_r6"].get("suite") or {}).get("tests", {})),
+            }
+            record["pc_r6"]["registered_test_in_suite"] = in_suite
+            not_applicable_reason = gold_not_applicable_reason(
+                record, e30.workspace(task_id), manifest, f"e30r11/evaluator_private/{task_id}")
+            record["pc_r6"]["gold_control_status"] = not_applicable_reason or "APPLICABLE"
+            write_json(args.out / "records_gr0b" / "e30r11" / "gold" / f"{task_id}.json", record)
+            item = {
+                "task_id": task_id, "project": project,
+                "baseline_status": baseline["status"],
+                "bug_reproduced_at_baseline": baseline["bug_reproduced_at_baseline"],
+                "gold_patch_apply_returncode": record.get("patch_apply_returncode"),
+                "gold_compile_status": record.get("compile_status"),
+                "gold_native_success": record.get("native_success"),
+                "critical_new_failure_count": record.get("critical_new_failure_count"),
+                "critical_new_failure_status": record["pc_r6"].get("critical_new_failure_status"),
+                "baseline_passing_count": record["pc_r6"].get("baseline_passing_count"),
+                "newly_passing_count": record["pc_r6"].get("newly_passing_count"),
+                "registered_test_in_suite": in_suite,
+                "suite_registered_test_divergence": bool(
+                    record.get("native_success") is True
+                    and in_suite["gold"] and all(v != "passed" for v in in_suite["gold"].values())),
+                "suite_runner_family": (plan or {}).get("runner_family"),
+            }
+            if not_applicable_reason:
+                item.update({"gold_control_status": not_applicable_reason, "pass": None})
+                not_applicable.append(item)
+                print(json.dumps(item))
+                continue
+            item["gold_control_status"] = "APPLICABLE"
+            item["pass"] = bool(
+                baseline["status"] == "BASELINE_OK"
+                and baseline["bug_reproduced_at_baseline"]
+                and record.get("native_success") is True
+                and record.get("critical_new_failure_count") == 0
+                # lane-validity precondition (amendment A6, relaxed by A14): the baseline
+                # suite must contain passing tests; the registered test's own outcome
+                # inside the suite run is recorded, not gated (order-dependent modules)
+                and (record["pc_r6"].get("baseline_passing_count") or 0) >= 1)
+            overall = overall and item["pass"]
+            results.append(item)
+            projects_controlled += 1
+            print(json.dumps(item))
+            break
+    if projects_controlled < GR0B_TASK_COUNT and not args.allow_partial_cells:
+        overall = False
     receipt = {
         "schema_version": "orion.v2.pc-r6-gr0b-receipt.v1", "lane_version": LANE_VERSION, "design": DESIGN_ID,
         "gate": "GR0(b) LANE_VALID: gold patch flips registered failing test AND critical_new_failure_count == 0",
         "selection_rule": GR0B_SELECTION_RULE, "generated_utc": utc_now(), "tasks": results,
+        "not_applicable": not_applicable, "projects_controlled": projects_controlled,
         "status": "PASS" if overall and results else "FAIL",
     }
     write_json(args.out / "PC_R6_GR0B_RECEIPT.json", receipt)
