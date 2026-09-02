@@ -30,7 +30,7 @@ STRONGEST_INSTANCE           = ALREADY_PUBLISHED_BY_PRA (V16 Appendix B.8, merge
 PARENT_COMPOSITION           = DOMINATES — residual empty; the unifying framework (Kupferman 2006)
                                and the empirical census both predate the object
 REVIVAL                      = SFM-D1 planted-defect detector-efficacy study (§8), not yet executed
-LATER_INSTANCES              = 7 arrived during assessment; gate unmoved (§2.2-§2.4)
+LATER_INSTANCES              = 9 arrived during assessment; gate unmoved (§2.2-§2.5)
 COST_OF_NOT_OPENING          = ZERO (every finding retains its existing owner and receipt)
 ```
 
@@ -101,21 +101,23 @@ cite across the marker), not a manuscript.
 
 ### 2.2 Instances that arrived after the assessment opened
 
-While this assessment was being written, seven further candidate modes were routed to it from five
+While this assessment was being written, nine further candidate modes were routed to it from six
 lanes. They are recorded because they change the assessment's facts and its revival design — and
 because what they do *not* change is the finding that matters most.
 
 | # | Mode | Source | Status |
 |---|---|---|---|
 | 7 | **Non-reproducible "frozen" artifact.** RNG draws ordered by iteration over an unordered `set`; per-process string-hash randomisation regenerates a *different* split from the *same* committed seed, while every seed record, sha256 and freeze receipt stays internally consistent and correct. | PR #181 (**open**) | **VERIFIED, one correction.** Three RNG-consuming set iterations, but all three are call sites in **one** function `_plant`, not "three planters"; the receipt's own wording is loose here. Mechanism confirmed by direct demonstration: the RNG sequence is unchanged, but hash order **binds those values to different keys**, after which the streams desynchronise. Custody mechanism is `load_authorized_seed()`, which binds the *seed string* and never the artifact generated from it — blind by construction. **Near-miss:** no protected artifact has ever existed on that branch. |
-| 8 | **Vacuous comparison.** Treatment arm and strongest-parent comparator dispatched to the same code, so a reported `1.000 vs 1.000` was `x == x`; said to vacate 8 of 11 gates. | PR #176 (**open**) | **LANE-REPORTED, not independently verified here.** Pre-freeze. |
-| 9 | **A defect that would have favoured the programme's own hypothesis** — a metadata error scoring as an advantage over the parents, routable to a spurious positive. | PR #176 (**open**) | **LANE-REPORTED.** Pre-freeze. Assessed in §7. |
+| 8 | **Vacuous comparison.** Treatment arm and strongest-parent comparator dispatched to the same code table with identical fields, so a reported `1.000 vs 1.000` was `x == x`. | PR #176 (**open**) | **VERIFIED, one correction.** The two arms are provably bit-identical, not merely observed to agree: same `kind`, `native=None`, same fields, one `MODULE_CHECK` table, zero `b5_*` functions. **"Eight of eleven gates" is a unit mismatch — it is 8 vacuous comparison *items* spanning **6 of 11 gates** (4 fully vacated, 2 partially).** The frozen receipt states it correctly; only a commit message mixed the units. Repair verified: 4 of 11 checks now run different code, the other 7 reported as shared. Realised in a development-labelled artifact; **no protected artifact ever existed**. |
+| 9 | **A defect that would have favoured the programme's own hypothesis** — a metadata error scoring as an advantage over the parents, routable toward `ME_X7_RESIDUAL_CANDIDATE`. | PR #176 (**open**) | **VERIFIED, two material corrections.** It **did not pre-exist: it was introduced by the repair of mode 8 and guarded 108 seconds later** — a defect created by fixing a defect, which is a different and stronger fact than the one briefed. And the advantage is **instance-level**: the routing gate additionally requires p ≤ 0.05 and ≥5 M-only-exact instances in one cell, so one instance could not flip the terminal. **Never instantiated** — zero occurrences in a 400-draw probe; the guard is a design invariant, adopted because "a probe is not a control". |
 | 10 | **Calibrating on a proxy while the reported primary was saturated** — the difficulty ladder sat inside its registered window on a proxy measure while the endpoint actually reported was at 1.0. | ME-F1 (pre-freeze) | **LANE-REPORTED.** Same shape as bundle 4, caught before rather than after. |
 | 11 | **Dateless current-state fields leaking the future into a retrospective split** — `cited_by_count` truncated at fetch date; OpenAlex `is_retracted` a dateless boolean. | ME-X6/7 scoping | **LANE-REPORTED.** No build existed. |
+| 14 | **A shell gate that could not fail even with a correct pattern.** Under `set -e`, a `!`-inverted command is exempt from errexit unless it is the last in its block; the render gate was followed by an `echo` and a `done`, so a real LaTeX error could not fail the build. Layered on top of the dead regex of mode 2B: **fixing the pattern would have left the gate exactly as inert.** | ORION-paper PR #82, merged `a43d9162` | **LANE-REPORTED, mechanism independently checkable in ten seconds.** Closed by a CI job that *proves the gate can fail* against a fixture of genuine violations. |
+| 15 | **Prose overstating a correct test's scope.** A docstring claimed "no arm imports the oracle module (asserted by a unit test)"; an arm does, and no test asserts that. The **test is not defective** — it bans three of twelve public names and is accurately named for the narrower property it checks. Latent hole: the ban list omits a per-family verdict function, so it fails open on what it forgot. | cross-study audit | **LANE-REPORTED.** Nothing leaked; the study's headline result stands. A documentation-scope defect with a latent test hole, not a compromised result. |
 | 13 | **A rendered summary standing in for a fact.** `gh run list` rendered in-progress runs as `[time]` (elapsed time); read as "timed out", the repair would have been to weaken or split a test suite that was never failing. | ME-X6/7 | **LANE-REPORTED.** No artifact touched, no result affected — the cleanest near-miss on record. Caught by a standing rule against trusting filtered command output for anything driving a decision. |
 | 12 | **A sentence nobody had executed** — "results and custody files are byte-identical on re-run" had never been tested by re-running. On execution, results and custody *were* byte-identical; the analysis file was not, because it quotes per-arm `wall_ms`. | ME-X6/7 | **LANE-REPORTED.** The underlying artifact was substantively correct: the claim was wider than the check, not false. |
 
-**Every one of modes 7–13 is a near-miss.** None produced a contaminated result.
+**Every one of modes 7–15 is a near-miss.** None contaminated a protected artifact. None produced a contaminated result.
 That is the opposite of a strengthening: a corpus increasingly composed of failures caught before
 they did anything cannot support a prevalence claim, and a paper built on it would be reporting that
 a careful programme is careful.
@@ -139,7 +141,15 @@ had executed* — and all three read as strength in a receipt (`0 violations`, `
 "byte-identical on re-run"). Generalized: **the artifacts that certify correctness — gates,
 comparators, custody records and the prose describing them — are themselves unverified claims until
 something executes them, and each fails in the direction that looks like strength.** The framing is
-that lane's and must be credited to it wherever it is used.
+that lane's and must be credited to it wherever it is used, as is the taxonomy and the
+directional-bias completion in §2.5.
+
+One attribution in the record could **not** be verified and must not be repeated: the claim that the
+*same lane* committed the recurrence while fixing it. Commit authorship is uniform across lanes in
+both repos, so the artifacts cannot support it. The recurrence itself is verified exactly — the same
+`if terminal_pc:` block, with the label counter three lines above the Fano counter it was fixing —
+and it spans two repositories and two PRs rather than one. The erroneous universal sentence lived on
+a feature branch for roughly 38 minutes and **never reached `main`**.
 
 This is a genuine advance and it is a better object than a list of modes. It explains why review does
 not catch these (a reviewer checks whether a claim is *defensible*, not whether it was *executed*),
@@ -180,11 +190,50 @@ the right thing.
 The principle's proper use is therefore **§8**: it specifies the revival design far better than the
 original list did, by naming the surfaces a planted-defect study must cover.
 
-**This assessment is closed to further instances.** Seven arrived while it was being written and the
+### 2.5 The thesis in its completed form, and the one thing it would need
+
+The lane that produced the principle later completed it, and the completed form is the best statement
+of this object that exists. Four disguises, each reading as strength: a counter behind an
+applicability guard (`0 violations`); two arms on one code path (`1.000 vs 1.000`); a determinism
+sentence nobody ran ("byte-identical on re-run"); a rendered status mistaken for an outcome
+(`[time]`). Modes 14 and 15 add two more: a gate the *shell* exempts from failing, and prose that
+overstates a correct test's scope. And the temporal-leakage mode (11) supplies the generalization
+that makes it one claim rather than a taxonomy: `cited_by_count` and `is_retracted` are perfectly
+correct fields whose misuse yields **stronger** apparent predictive validity. So leakage is not a
+separate data-hygiene concern sitting beside the certification failures — it fails in the same
+direction.
+
+**The completed thesis:** these are not random errors that happened to go unnoticed. They are
+**systematically biased toward looking like good results** — no violations, perfect agreement, exact
+reproduction, a definite status, strong prediction. That directional bias is why ordinary review does
+not catch them: review is tuned to challenge claims that look weak or overreaching, and every one of
+these looks like the opposite. It is also why the detectors must be **mechanical rather than
+critical** — no amount of careful reading finds an error whose signature is indistinguishable from
+success.
+
+The counter-example belongs inside the claim rather than beside it: mode 9 would have produced a
+false positive *for the programme's hypothesis*. That is the same direction — toward the appearance
+of a good result — for the science rather than for the methodology. Consistent, not exceptional.
+
+Mode 14 is the sharpest detector in the set and generalizes past everything else here: a CI job that
+**proves the gate can fail**, against a fixture of genuine violations. Where the other detectors ask
+what would have to run for a claim to be false, that one asks it of the checking apparatus itself,
+and it alone would have caught all three render-gate defects at once — including the layering, where
+repairing the obvious regex leaves the gate as inert as before.
+
+**What this changes: nothing at the gate, and everything below it.** This is now a real thesis with a
+mechanism, a direction, a detector family and fifteen illustrations. It is still a thesis about one
+programme, argued from a corpus that programme generated while knowing it was being assessed (§7),
+against parents that already own the unification (§5.1), with no prospective discriminator, no
+false-alarm rate, and no evaluation outside the derivation domain. **A good thesis with no admissible
+evidence is a good thesis, not a paper.** The correct disposition is unchanged and the correct next
+step is §8 — which the completed form now specifies well enough to execute.
+
+**This assessment is closed to further instances.** Nine arrived while it was being written and the
 gate did not move, because instances were never the binding constraint — criteria 3, 4, 6 and 7 are.
 Further modes should go to `FAILURE_LEDGER.md`, which is the programme's append-only register for
 exactly this and is bound to running code, and to the lane PRs that own them. A successor reopening
-this object needs the study in §8, not a fourteenth mode.
+this object needs the study in §8, not a sixteenth mode.
 
 ---
 
@@ -445,7 +494,7 @@ Recorded here so that no successor re-derives them:
   modelled. No such model exists here, and the corpus was assembled precisely in the way P-D warns
   against. This is the deepest reason the object cannot be its own evidence, and it is a P-D-owned
   argument rather than a new one.
-- **The corpus is now dominated by near-misses.** Of the thirteen modes on record, seven were caught
+- **The corpus is now dominated by near-misses.** Of the fifteen modes on record, nine were caught
   before any protected artifact existed and produced no contaminated result. Prevalence cannot be
   estimated from a sample selected on "was noticed, was survivable, and was volunteered", and the
   volunteering is itself the point: several modes exist in the record only because a lane disclosed
