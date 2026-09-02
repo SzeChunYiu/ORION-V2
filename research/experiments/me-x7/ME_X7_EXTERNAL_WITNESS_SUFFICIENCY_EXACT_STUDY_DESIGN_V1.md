@@ -335,9 +335,10 @@ in full.
   the P/Q separation pair, and the four planted positives are reproduced in the
   selftest report.
 - **G0b `ORACLE_SELF_AGREEMENT` (hard):** direct rule = exhaustive enumeration;
-  planter's declared defect = full-structure recomputation; arms' independent
-  module implementation = the oracle's check table. All three counted with
-  `n_evaluated`.
+  **both** arm check tables (M's and B5's, §2.4) = the oracle's check table at
+  full visibility; and, as a generator-validity check rather than a third
+  implementation, the planter's declared defect = the full-structure
+  recomputation. Each counted with `n_evaluated`.
 - **G0c `NULL_CALIBRATION` (hard):** `C_ALWAYS_ACCEPT` exact = 0 where the
   oracle rejects; `C_ALWAYS_CANNOT_CHECK` exact = 0 where the episode is
   decidable; `C_RANDOM_VERDICT` ≤ 0.15; M against shuffled labels ≤ 0.15.
