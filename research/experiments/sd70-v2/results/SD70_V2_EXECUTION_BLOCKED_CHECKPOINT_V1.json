@@ -1,0 +1,188 @@
+{
+  "authoritative_refs": {
+    "design_freeze_commit": "7e3ad77",
+    "design_freeze_pr": 152,
+    "main_commit_at_checkpoint": "fd7a4e44205480870315ef70609a2e1979fc09e6",
+    "owner_issue": 50
+  },
+  "authority": "This checkpoint grants nothing. It records that a frozen design remains unexecuted and why. No scientific claim, terminal, gate outcome, field status, submission readiness or publication readiness follows from it. SD70-V2 remains PROSPECTIVE with zero protected observations.",
+  "blocker": {
+    "id": "SD70-V2-BLOCK-1",
+    "one_stage_attribution": "MODEL_DISPATCH_CREDENTIAL",
+    "reproduction_lunarc": [
+      {
+        "host": "cosmos2.int.lunarc",
+        "observed": "which codex -> not found; which node -> not found; which npm -> not found"
+      },
+      {
+        "observed": "find /home/scyiu -maxdepth 6 -name codex -o -name auth.json -> 0 hits; find /projects/hep -maxdepth 6 -name auth.json -> 0 hits"
+      },
+      {
+        "observed": "the orion-v2-e45/codex-home path recorded in earlier session notes does not exist on any of /projects/hep/fs7..fs12 or /home/scyiu"
+      }
+    ],
+    "reproduction_mac": [
+      {
+        "command": "codex login status",
+        "exit_code": 1,
+        "output": "Not logged in"
+      },
+      {
+        "command": "codex exec --ephemeral --ignore-user-config --ignore-rules --skip-git-repo-check --sandbox read-only -C <empty tmp> --model gpt-5.6-terra -c model_reasoning_effort=\"medium\" --json 'Reply with exactly: OK'",
+        "exit_code": 1,
+        "observed": "5 websocket reconnect attempts, each HTTP 401 Unauthorized against wss://api.openai.com/v1/responses, then a turn.failed event: 'unexpected status 401 Unauthorized: Missing bearer or basic authentication in header'",
+        "request_ids": [
+          "req_f4c187b9e38b42199a7e5d02f82f37bb",
+          "req_54ca6cfb2b3846578ba99276ed170b92",
+          "req_5582fc42120d4347adfd82db97d6cf8d",
+          "req_5322100c37b64a7a848420cd6cfc83a0"
+        ]
+      },
+      {
+        "observation": "~/.codex/auth.json is absent. ~/.codex was recreated -- every entry, and the directory itself, carries mtime 2026-09-03 01:41 -- and holds the 0.147 sqlite layout (state_5.sqlite, goals_1.sqlite, logs_2.sqlite) with no config.toml and no auth.json."
+      },
+      {
+        "observation": "npm ls -g reports @openai/codex@0.147.0. The programme pin is 0.129.0-alpha.15. The version drift and the vanished auth.json are the same event; reinstalling the pin would restore the CLI but not the credential."
+      },
+      {
+        "observation": "no OPENAI_API_KEY or equivalent is present in the environment or in any codex config on this host"
+      }
+    ],
+    "resolution_requires": "an operator-performed `codex login` (interactive OAuth), optionally preceded by reinstalling the pinned @openai/codex@0.129.0-alpha.15. This agent is not permitted to authenticate on the operator's behalf.",
+    "summary": "The Codex CLI on every host reachable from this lane is logged out, so no model arm can be dispatched.",
+    "why_this_blocks_the_study": "SD70_V2_EXECUTION_DESIGN_V1 s5 dispatches 1140 Codex calls across five model arms (240x4 contested arms plus 3x60 model controls). The registered primary estimand is the paired difference acc(F2_RECURSIVE_META_DISCOVERY_FULL) - acc(MAXMARGIN_PARENT); both primary contrasts, the mechanism gate, all three ablations and the model negative control are model arms. The deterministic arms alone cannot address the registered question."
+  },
+  "checkpoint_utc": "2026-09-02T23:53:28Z",
+  "custody_state_verified": {
+    "authorization_search_control": "the same search over ORION-V2 and ORION-V2-wt returned 134 PROTECTED_RUN_AUTHORIZATION*.json paths in total and 27 for the ME-X2 study, so the search demonstrably matches when a file exists; 0 for research/experiments/sd70-v2/ and research/experiments/results/issue50/sd70/",
+    "guard_state": "UNSPENT -- no PROTECTED_RUN_AUTHORIZATION.json was written this session; the single-run guard remains armed for a future dispatch",
+    "protected_run_authorization_files_for_this_study": 0,
+    "protected_seed": {
+      "commitment_published_in_design_sha256": "4343cdae9fd451f5f4ca23e7a6bb33796deeb6e6d7f355e0a3a6e281bef3b51e",
+      "match": true,
+      "mode": "600",
+      "note": "the commitment is sha256 over the seed integer's decimal string, which is what stage_prepare re-checks; verified without printing the seed",
+      "path": "~/.orion-custody/sd70-v2/SD70_V2_MASTER_SEED.txt",
+      "present": true,
+      "recomputed_sha256_of_the_sealed_seed": "4343cdae9fd451f5f4ca23e7a6bb33796deeb6e6d7f355e0a3a6e281bef3b51e",
+      "revealed": false,
+      "seed_value_disclosed_here": false
+    },
+    "protected_tasks_generated": 0,
+    "protected_workdir_search": "find /Users/billy -maxdepth 6 -type d -name '*sd70*' -o -name '*SD70*'; the only hits are the repository directory, its git worktree metadata and the custody directory",
+    "protected_workdirs_found": 0
+  },
+  "frozen_state_verified": {
+    "code_sha256": {
+      "note": "value is [recomputed_sha256, equals_the_value_recorded_at_freeze]; all five frozen executables are unchanged since the freeze",
+      "sd70v2_generator.py": [
+        "6163a3658349e416246a2331fe7a381f42104d132f32bbad168d5ad2fde1a56a",
+        true
+      ],
+      "sd70v2_model_arm.py": [
+        "a35ef58cc243626a49cf1dc7cc8e8dcbbdbe7ed0739298cbc417010b95b80afb",
+        true
+      ],
+      "sd70v2_parents.py": [
+        "5883fae4c8fb5ddd13970037d76c67dc850c1ce97b332b8180ce969358365808",
+        true
+      ],
+      "sd70v2_run.py": [
+        "aa6faf35608b156b624f366dcc873a9e45a067adbdfbcecad1643da00328c1db",
+        true
+      ],
+      "sd70v2_stats.py": [
+        "5c20d2a05868abc02c48c2b895f37bb38d37e897a2e3204eae45d167a239515c",
+        true
+      ]
+    },
+    "design_sha256": {
+      "match": true,
+      "recomputed": "96d933e00cbc8d09222fd4e86e27d1fe8604164521aea1feedd483ddcbd28bf4",
+      "recorded_at_freeze": "96d933e00cbc8d09222fd4e86e27d1fe8604164521aea1feedd483ddcbd28bf4"
+    },
+    "method": "recomputed on the checkout at main fd7a4e4 and compared against the values recorded in SD70_V2_PARENT_FIDELITY_RECEIPT_V1.md at freeze",
+    "selftest_reexecuted": {
+      "byte_identical_across_both_interpreters": true,
+      "checks_failed": 0,
+      "checks_passed": 29,
+      "command": "sd70v2_run.py selftest",
+      "equals_frozen_results_file": true,
+      "interpreters_executed": [
+        "CPython 3.9.6 (/usr/bin/python3)",
+        "CPython 3.13.12 (miniforge)"
+      ],
+      "note": "this was executed, not asserted; both runs wrote a file whose sha256 equals results/SD70_V2_SELFTEST_V1.json",
+      "output_sha256": "b110e7b60281783afe3110c862db1ea8597f2f8ba3106fe3ac0db4af919a50ec"
+    },
+    "unit_tests_reexecuted": {
+      "files": [
+        "tests/unit/test_sd70_v2_execution.py",
+        "tests/unit/test_sd70_execution_integrity.py"
+      ],
+      "python_3_13_12": {
+        "failed": 0,
+        "passed": 16
+      },
+      "python_3_9_6": {
+        "cause": "TypeError: zip() takes no keyword arguments, raised inside the V1 generator scripts/generate_scientific_development_meta_benchmark.py:20, which uses zip(..., strict=True)",
+        "classification": "INTERPRETER_FLOOR_NOT_A_DEFECT",
+        "failed": 1,
+        "failing_test": "test_v2_generator_family_is_byte_identical_to_v1_public_tasks",
+        "passed": 15,
+        "reason": "zip(strict=) requires CPython 3.10+; the failure is a property of the interpreter chosen for the run, not of the SD70-V2 or V1 code. Recorded because a bare 'tests pass' claim would have hidden which interpreter produced it."
+      }
+    }
+  },
+  "landed_this_session": [
+    "research/experiments/sd70-v2/sd70v2_make_receipt.py -- the protected-outcome receipt renderer, with a refusal guard and its own exit code",
+    "tests/unit/test_sd70_v2_receipt_renderer_guard.py -- 9 tests covering the refusal cases and the healthy no-alarm case",
+    "research/experiments/sd70-v2/results/SD70_V2_EXECUTION_BLOCKED_CHECKPOINT_V1.json -- this file",
+    "research/experiments/sd70-v2/SD70_V2_EXECUTION_BLOCKED_RECEIPT_V1.md"
+  ],
+  "rejected_workarounds": [
+    {
+      "rejected_because": "it would generate the protected tasks from the sealed seed and spend the single-run authorization to buy an infrastructure artifact, converting a clean pre-dispatch state into an unusable post-dispatch one. The seed and the one-shot guard are the scarce goods.",
+      "workaround": "dispatch anyway and let the model arms 401"
+    },
+    {
+      "rejected_because": "SD70_V2_EXECUTION_DESIGN_V1 s5 pins gpt-5.6-terra. Substituting the model at dispatch time is a post-freeze change to a frozen constant; it would require a V3 design with a new freeze and a new seed commitment, not an environment variable.",
+      "workaround": "set ORION_CODEX_MODEL to a model that is reachable"
+    },
+    {
+      "rejected_because": "no registered outcome is decidable from deterministic arms alone; publishing that table as an SD70-V2 result would be a contrast that could not exist.",
+      "workaround": "run only the deterministic arms and report the parent table"
+    }
+  ],
+  "renderer_guard": {
+    "defects_this_guard_closes": [
+      "the pre-guard renderer coerced a null token counter to 0, printing an unmeasured cost as a measured zero",
+      "the pre-guard renderer indexed the primary contrasts unconditionally, so a rollup in which every model arm had failed would have rendered a delta between two accuracies nobody measured"
+    ],
+    "exit_codes": {
+      "0": "rendered",
+      "1": "usage or IO error",
+      "3": "COULD_NOT_RENDER (degenerate rollup)"
+    },
+    "no_alarm_case_asserted": "test_healthy_rollup_renders_and_raises_no_alarm renders a complete rollup at exit 0; the guard is not a blanket refusal",
+    "path": "research/experiments/sd70-v2/sd70v2_make_receipt.py",
+    "refuses_when": [
+      "a required model arm is absent from the rollup",
+      "a required model arm scored no task (n <= 0)",
+      "a required model arm failed on every task (arm_failures >= n)",
+      "a required model arm records no model call",
+      "a dispatched model arm reports total_tokens = null (a counter that never ran must not print as 0)",
+      "either registered primary contrast is absent"
+    ]
+  },
+  "repository": "SzeChunYiu/ORION-V2",
+  "schema_version": "orion.v2.sd70-v2.execution-blocked-checkpoint.v1",
+  "status": "EXECUTION_BLOCKED_PRE_DISPATCH",
+  "status_semantics": {
+    "distinct_from": "`CANNOT_CHECK` in SD70_V2_EXECUTION_DESIGN_V1 s10.1 is an evaluation-time verdict reached after dispatch. This checkpoint is reached before dispatch and therefore reports no accuracy, no delta and no gate.",
+    "is_a_scientific_terminal": false,
+    "is_the_evaluators_CANNOT_CHECK": false,
+    "meaning": "The frozen design was never dispatched. No protected task was generated, no protected outcome was inspected, and the single-run authorization was never armed or spent. This label records an infrastructure blocker upstream of stage `prepare`; it is not a result and it does not enter the SD70-V2 terminal set."
+  },
+  "study": "SD70-V2 SYNTHETIC_RECURSIVE_META_POLICY_V2 (owner issue #50)"
+}
