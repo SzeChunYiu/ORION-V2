@@ -19,5 +19,8 @@ DESIGN="$R12SRC/research/experiments/e30-r12/E30_R12_APPLY_CLEAN_RERUN_DESIGN_V1
 ARMS="SIMPLE_DIRECT SAME_MODEL_REFLECTION F0_PARENT_FEDERATION F2_ORION_METABOLIC_FULL"
 LOGD="$E45/logs-e30-r12"
 COMMON=(--e30r12-campaign "$R12" --adapter "$ADAPTER" --out "$R12/fullreg")
+# Exported because the drivers embed python heredocs that read them from os.environ;
+# a shell-local assignment here is invisible to those child processes.
+export E45 R11 R12 R12SRC RUN ADAPTER RUNNER ANALYSIS ANALYZER DESIGN LOGD PY
 mkdir -p "$LOGD" "$R12/fullreg" "$R12/infra"
 echo "E30-R12 job ${SLURM_JOB_ID:-local} array ${SLURM_ARRAY_TASK_ID:-n/a} host $(hostname) python=$($PY --version 2>&1)"

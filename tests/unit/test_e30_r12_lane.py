@@ -562,6 +562,12 @@ def test_common_pins_pythonpath_to_the_r12_source():
     text = (SBATCH / "e30_r12_common.sh").read_text()
     assert 'export PYTHONPATH="$R12SRC/src' in text
     assert "editable" in text.lower()
+    # The drivers embed python heredocs reading these from os.environ; a shell-local
+    # assignment is invisible to a child process (setup job 3566266 died on exactly that).
+    exported = next(line for line in text.splitlines()
+                    if line.startswith("export ") and " R12SRC" in line)
+    for name in ("E45", "R11", "R12", "R12SRC", "RUN", "ADAPTER", "PY"):
+        assert name in exported.split(), name
 
 
 def test_agents_gate_on_authorization_and_import_provenance():
