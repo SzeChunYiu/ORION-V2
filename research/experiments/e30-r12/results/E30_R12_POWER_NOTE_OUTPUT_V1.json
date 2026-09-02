@@ -1,0 +1,53 @@
+{
+  "schema_version": "orion.v2.e30-r12-power-note.v1",
+  "test": "exact two-sided McNemar / sign-binomial on task-level discordant pairs",
+  "multiplicity": "Holm step-down, family size 3, alpha 0.05",
+  "first_step_alpha": 0.016666666666666666,
+  "n_tasks": 40,
+  "registered_minimum_important_difference": 0.05,
+  "arithmetic_floor": {
+    "min_all_one_directional_discordant_tasks": 7,
+    "implied_minimum_observable_risk_difference": 0.175,
+    "meaning": "with fewer than 7 discordant tasks all pointing the same way the exact test cannot reach 0.01667 at any effect size"
+  },
+  "mde_at_n": [
+    {
+      "discordance_psi": 0.1,
+      "mde_risk_difference": null,
+      "power_at_registered_mid": 0.0116
+    },
+    {
+      "discordance_psi": 0.2,
+      "mde_risk_difference": null,
+      "power_at_registered_mid": 0.0185
+    },
+    {
+      "discordance_psi": 0.3,
+      "mde_risk_difference": 0.2675,
+      "power_at_registered_mid": 0.0168
+    },
+    {
+      "discordance_psi": 0.4,
+      "mde_risk_difference": 0.317,
+      "power_at_registered_mid": 0.0157
+    }
+  ],
+  "required_n_for_registered_mid": [
+    {
+      "discordance_psi": 0.1,
+      "tasks_for_80pct_power": 430
+    },
+    {
+      "discordance_psi": 0.2,
+      "tasks_for_80pct_power": 863
+    },
+    {
+      "discordance_psi": 0.3,
+      "tasks_for_80pct_power": 1287
+    },
+    {
+      "discordance_psi": 0.4,
+      "tasks_for_80pct_power": 1708
+    }
+  ]
+}
