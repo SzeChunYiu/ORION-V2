@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Prospective Revision Audit — frozen real-LLM runner (design V1, issue #51).
+"""Prospective Revision Audit — frozen real-LLM runner (designs V1 and V2, issue #51).
 
-Executes the pre-registered design in ``PRA_REAL_LLM_AUDIT_DESIGN_V1.json`` on
+Executes the pre-registered design in ``PRA_REAL_LLM_AUDIT_DESIGN_V1.json`` (or the
+V2 contingency ``PRA_REAL_LLM_AUDIT_DESIGN_V2.json``, selected with ``--design``) on
 frozen open-weight instruct models.  Stages:
 
   generate-suite  write the frozen instance suite (dev / protected split) + sha256
@@ -9,7 +10,15 @@ frozen open-weight instruct models.  Stages:
   revision        common later evidence -> future action per representation condition
   probe           mass-mean linear probe for the dormant variable on every layer
   kv-channel      R2 text with retained R0 KV cache vs true removal (Gate C)
+  competence-gate dev split only (design V2): pre-registered GPC model-competence check
   rollup          frozen statistics, gates, terminals, routing
+
+Design V2 differences handled here (no gate logic changes): the design schema
+``...design.v2`` is accepted; the protected seed may be sealed (the design carries only
+its sha256 commitment and the seed file is supplied with ``--protected-seed-file``);
+the registered secondary family ``F3_P2_CANON_SF`` (H-EXT-4 same-successor-fibre
+variant of the canonical fixture) is generated only when the design lists it, so V1
+suites are byte-identical to before.
 
 The runner grants no scientific authority: gates and terminals are computed
 mechanically from the frozen design and the protected split is never inspected
@@ -32,12 +41,13 @@ import random
 import re
 import sys
 import time
-from dataclasses import dataclass
 from itertools import combinations
 from pathlib import Path
 from typing import Any, Iterable
 
 DESIGN_SCHEMA = "orion.v2.pra.real-llm-audit-design.v1"
+DESIGN_SCHEMA_V2 = "orion.v2.pra.real-llm-audit-design.v2"
+DESIGN_SCHEMAS = (DESIGN_SCHEMA, DESIGN_SCHEMA_V2)
 SUITE_SCHEMA = "orion.v2.pra.real-llm-audit-suite.v1"
 RESULT_SCHEMA = "orion.v2.pra.real-llm-audit-stage-result.v1"
 ROLLUP_SCHEMA = "orion.v2.pra.real-llm-audit-rollup.v1"
@@ -54,6 +64,7 @@ FAMILIES = (
     "F3_P2_INDEP",
     "F3_P2_RECON",
     "F3_P2_TIE",
+    "F3_P2_CANON_SF",  # design V2 registered secondary family (H-EXT-4 same-successor-fibre variant)
 )
 HERE = Path(__file__).resolve().parent
 DEFAULT_DESIGN = HERE / "PRA_REAL_LLM_AUDIT_DESIGN_V1.json"
@@ -113,9 +124,32 @@ def read_json(path: Path) -> Any:
 
 def load_design(path: Path) -> dict:
     design = read_json(path)
-    if design.get("schema_version") != DESIGN_SCHEMA:
-        raise SystemExit(f"design schema mismatch: {design.get('schema_version')!r}")
+    if design.get("schema_version") not in DESIGN_SCHEMAS:
+        raise SystemExit(f"design schema mismatch: {design.get('schema_version')!r} (accepted: {DESIGN_SCHEMAS})")
     return design
+
+
+def rollup_basename(design: dict) -> str:
+    """Rollup file stem: V1 designs keep the historical name; V2 designs write a V2 rollup."""
+    return "PRA_REAL_LLM_AUDIT_ROLLUP_V2" if design.get("schema_version") == DESIGN_SCHEMA_V2 else "PRA_REAL_LLM_AUDIT_ROLLUP_V1"
+
+
+def resolve_split_seed(design: dict, split: str, protected_seed_file: str | None) -> int | None:
+    """Seed for a split. A V2 design may seal the protected seed: the design carries only
+    ``seed.protected_commitment_sha256`` and the seed file (``<int>:<salt>``) must hash to it."""
+    seeds = design["suite_generator"]["seed"]
+    if split in seeds:
+        return int(seeds[split])
+    commitment = seeds.get(f"{split}_commitment_sha256")
+    if not commitment:
+        raise SystemExit(f"design has neither a plain seed nor a commitment for split {split!r}")
+    if not protected_seed_file:
+        return None  # sealed and not supplied: the split cannot be generated
+    p = Path(protected_seed_file)
+    digest = sha256_file(p)
+    if digest != commitment:
+        raise SystemExit(f"sealed seed file sha256 {digest} does not match the design commitment {commitment}")
+    return int(p.read_text(encoding="utf-8").strip().split(":", 1)[0])
 
 
 # --------------------------------------------------------------------------- suite generation
@@ -240,8 +274,15 @@ def build_instance(family: str, index: int, rng: random.Random, split: str) -> d
     claim = _claim(rng)
     sources = {"A": _nonce_source(rng), "B": _nonce_source(rng), "Z": _nonce_source(rng)}
     while len({sources[k]["name"] for k in sources}) < 3:
-        sources["Z"] = _nonce_source(rng)
-    A, B, Z = sources["A"], sources["B"], sources["Z"]
+        # Regenerate the colliding source. V1 regenerated Z unconditionally, which never terminates when
+        # A and B collide (P ~ 1/6400 per instance; latent in V1, never triggered by V1's frozen seeds:
+        # the V1 suites are pinned byte-identical in the unit tests). Seeds on which V1 terminated
+        # consume randomness identically here, because only the A==B branch is new.
+        if sources["B"]["name"] == sources["A"]["name"]:
+            sources["B"] = _nonce_source(rng)
+        else:
+            sources["Z"] = _nonce_source(rng)
+    A, Z = sources["A"], sources["Z"]
     cid = claim["claim_id"]
     retract_A = f"Retraction notice: {A['name']} [{A['id']}] has been retracted by its publisher; its findings are no longer valid support for any claim."
     retract_Z = f"Retraction notice: {Z['name']} [{Z['id']}] has been retracted by its publisher; its findings are no longer valid support for any claim."
@@ -256,6 +297,25 @@ def build_instance(family: str, index: int, rng: random.Random, split: str) -> d
             _arm("hA", _history_lines(claim, sources, ["A"], []), {"support_set": ["A"]}, retract_A, ["RETAIN"], ["REOPEN"], "UPDATE_REQUIRED"),
             _arm("hB", _history_lines(claim, sources, ["B"], []), {"support_set": ["B"]}, retract_A, ["RETAIN"], ["RETAIN"], "MAINTAIN_REQUIRED"),
         ]
+    elif family == "F3_P2_CANON_SF":
+        # H-EXT-4 same-successor-fibre variant (design V2): identical evidence, identical successor
+        # linguistic target in both arms (the registry flags every claim whose file lists A, whatever
+        # the action), so the two successors sit in ONE predictive fibre and the R2/R3 gap is
+        # decision-driven only. Gold actions are exactly those of F3_P2_CANON.
+        retract_A_sf = (
+            retract_A
+            + f" Registry policy notice: because {A['name']} [{A['id']}] appears on the file of claim {cid}, "
+            f"the registry status line for claim {cid} now reads 'Claim {cid} is currently listed as FLAGGED.' "
+            "for every claim listing that source; the flag is an administrative marker, it is applied whether "
+            "or not the retracted source is the recorded basis, and it does not by itself change the claim's "
+            "accepted status under the contract."
+        )
+        arms = [
+            _arm("hA", _history_lines(claim, sources, ["A"], []), {"support_set": ["A"]}, retract_A_sf, ["RETAIN"], ["REOPEN"], "UPDATE_REQUIRED"),
+            _arm("hB", _history_lines(claim, sources, ["B"], []), {"support_set": ["B"]}, retract_A_sf, ["RETAIN"], ["RETAIN"], "MAINTAIN_REQUIRED"),
+        ]
+        for arm in arms:
+            arm["successor_linguistic_target"] = {"protocol_rho": "registry_status_line", "continuation": f"Claim {cid} is currently listed as FLAGGED.", "same_fibre_across_arms": True}
     elif family == "F3_P2_MIRROR":
         arms = [
             _arm("hA", _history_lines(claim, sources, ["A"], []), {"support_set": ["A"]}, retract_Z, ["RETAIN"], ["RETAIN"], "MAINTAIN_REQUIRED"),
@@ -324,18 +384,26 @@ def build_instance(family: str, index: int, rng: random.Random, split: str) -> d
     }
 
 
-def generate_suite(design: dict, split: str, scale: int | None = None) -> dict:
+def generate_suite(design: dict, split: str, scale: int | None = None, seed: int | None = None) -> dict:
     gen = design["suite_generator"]
-    seed = gen["seed"][split]
+    if seed is None:
+        seed = resolve_split_seed(design, split, None)
+        if seed is None:
+            raise SystemExit(f"split {split!r} has a sealed seed; pass --protected-seed-file to generate it")
     counts = dict(gen["instances_per_family"][split])
+    unknown = set(counts) - set(FAMILIES)
+    if unknown:
+        raise SystemExit(f"design lists unknown families: {sorted(unknown)}")
     if scale is not None:
         if split != "dev":
             raise SystemExit("instance-count override is permitted for the dev split only")
         counts = {k: scale for k in counts}
     rng = random.Random(seed)
     instances = []
+    # Families absent from the design are skipped without consuming randomness, so a V1 design
+    # renders byte-identical suites whether or not later families exist in FAMILIES.
     for family in FAMILIES:
-        for index in range(counts[family]):
+        for index in range(counts.get(family, 0)):
             instances.append(build_instance(family, index, rng, split))
     return {
         "schema_version": SUITE_SCHEMA,
@@ -602,11 +670,19 @@ class HFBackend(Backend):
         self.revision = revision
         torch.manual_seed(seed)
         self.tokenizer = AutoTokenizer.from_pretrained(model_id, revision=revision)
-        self.model = AutoModelForCausalLM.from_pretrained(
-            model_id, revision=revision, torch_dtype=getattr(torch, dtype), device_map=device
-        )
+        load_kwargs: dict[str, Any] = dict(revision=revision, torch_dtype=getattr(torch, dtype), device_map=device)
+        if device == "auto":
+            # Layer-wise sharding across every visible GPU (e.g. 2x A100-40GB when no A100-80GB is free);
+            # GPU-only placement is forced so accelerate never silently offloads layers to CPU.
+            n_gpu = torch.cuda.device_count()
+            per = int(torch.cuda.get_device_properties(0).total_memory * 0.92)
+            load_kwargs["max_memory"] = {i: per for i in range(n_gpu)}
+        self.model = AutoModelForCausalLM.from_pretrained(model_id, **load_kwargs)
         self.model.eval()
         self.device = self.model.device
+        self.device_map = getattr(self.model, "hf_device_map", None)
+        if self.device_map and any(str(v) in ("cpu", "disk") for v in self.device_map.values()):
+            raise SystemExit(f"model sharding placed layers off-GPU: {self.device_map}")
         self.resolved_revision = getattr(self.model.config, "_commit_hash", None) or revision
 
     def describe(self) -> dict:
@@ -621,6 +697,9 @@ class HFBackend(Backend):
             "transformers": transformers.__version__,
             "dtype": str(self.model.dtype),
             "device": str(self.device),
+            "device_map": {str(k): str(v) for k, v in self.device_map.items()} if isinstance(self.device_map, dict) else None,
+            "n_gpus_visible": int(self.torch.cuda.device_count()) if self.torch.cuda.is_available() else 0,
+            "gpu_names": [self.torch.cuda.get_device_name(i) for i in range(self.torch.cuda.device_count())] if self.torch.cuda.is_available() else [],
             "n_layers": int(self.model.config.num_hidden_layers),
             "hidden_size": int(self.model.config.hidden_size),
         }
@@ -767,7 +846,11 @@ def stage_generate_suite(args, design) -> dict:
     workdir = Path(args.workdir)
     out = {}
     for split in ("dev", "protected"):
-        suite = generate_suite(design, split, scale=args.suite_scale if split == "dev" else None)
+        seed = resolve_split_seed(design, split, getattr(args, "protected_seed_file", None))
+        if seed is None:
+            out[split] = {"status": "SEALED_SEED_NOT_SUPPLIED__SPLIT_NOT_GENERATED", "commitment_sha256": design["suite_generator"]["seed"].get(f"{split}_commitment_sha256")}
+            continue
+        suite = generate_suite(design, split, scale=args.suite_scale if split == "dev" else None, seed=seed)
         path = suite_path(workdir, split)
         write_json(path, suite)
         digest = sha256_file(path)
@@ -955,6 +1038,50 @@ def stage_kv_channel(args, design, backend: Backend) -> dict:
     result = {"schema_version": RESULT_SCHEMA, "stage": "kv-channel", "model": args.model, "split": args.split, "backend": backend.describe(), "n_model_calls": n_calls, "wall_seconds": elapsed(), "records": records}
     write_json(mdir / "kv_channel.json", result)
     return {"n_records": len(records), "wall_seconds": result["wall_seconds"], "n_model_calls": n_calls}
+
+
+def competence_gate(design: dict, revision_records: list[dict]) -> dict:
+    """Design V2 GPC: R0 maintain and update accuracy on the dev split, per model.
+
+    Reported only; it never enters GP0-GP3 or the terminal. A model failing GPC on dev is
+    replaced BEFORE the protected seed is sealed (the design's registered replacement rule)."""
+    g = design["gates"]["GPC"]
+    cond = g.get("condition", "R0")
+    r0 = [r for r in revision_records if r["condition"] == cond]
+    maintain = [r for r in r0 if r["class"] == "MAINTAIN_REQUIRED"]
+    update = [r for r in r0 if r["class"] == "UPDATE_REQUIRED"]
+    m_acc, u_acc = _accuracy(maintain), _accuracy(update)
+    by_family = {}
+    for fam in sorted({r["family"] for r in r0}):
+        by_family[fam] = {
+            "maintain": _accuracy([r for r in maintain if r["family"] == fam]),
+            "update": _accuracy([r for r in update if r["family"] == fam]),
+        }
+    m_ok = m_acc["n"] > 0 and m_acc["acc"] >= g["min_maintain_accuracy_R0"]
+    u_ok = u_acc["n"] > 0 and u_acc["acc"] >= g["min_update_accuracy_R0"]
+    return {
+        "gate": "GPC", "condition": cond, "split_rule": "dev split only",
+        "min_maintain_accuracy_R0": g["min_maintain_accuracy_R0"], "min_update_accuracy_R0": g["min_update_accuracy_R0"],
+        "maintain_accuracy_R0": m_acc, "update_accuracy_R0": u_acc, "by_family": by_family,
+        "maintain_ok": m_ok, "update_ok": u_ok, "pass": bool(m_ok and u_ok),
+        "verdict": "COMPETENT__MODEL_RETAINED" if (m_ok and u_ok) else "INCOMPETENT_ON_DEV__MODEL_MUST_BE_REPLACED_BEFORE_PROTECTED_SEED",
+    }
+
+
+def stage_competence_gate(args, design) -> dict:
+    if "GPC" not in design.get("gates", {}):
+        raise SystemExit("competence-gate requires a design that registers gates.GPC (design V2+)")
+    if args.split != "dev":
+        raise SystemExit("competence-gate is a dev-split-only stage by registration")
+    mdir = model_dir(Path(args.workdir), args.model, args.split)
+    rev_path = mdir / "revision.json"
+    if not rev_path.exists():
+        raise SystemExit(f"competence-gate needs {rev_path} (run --stage revision on the dev split first)")
+    revision = read_json(rev_path)
+    out = competence_gate(design, revision["records"])
+    result = {"schema_version": RESULT_SCHEMA, "stage": "competence-gate", "model": args.model, "split": args.split, "backend": revision.get("backend"), "n_instances": revision.get("n_instances"), **out}
+    write_json(mdir / "competence_gate.json", result)
+    return {"pass": out["pass"], "verdict": out["verdict"], "maintain_accuracy_R0": out["maintain_accuracy_R0"]["acc"], "update_accuracy_R0": out["update_accuracy_R0"]["acc"]}
 
 
 # --------------------------------------------------------------------------- statistics (pure Python)
@@ -1256,6 +1383,14 @@ def analyse_model(design: dict, mdir: Path) -> dict:
             } for c in CONDITIONS}
         r3_high = contrast_B["acc_y"] >= g["GP1"]["r3_competence_floor"] if p2 else False
         out["GP1"] = {"pass": gp1_pass, "contrast_B_R2_vs_R3_on_P2": contrast_B, "contrast_B_instance_level": contrast_B_inst, "update_only": upd, "maintain_only": mnt, "contrast_C_R3_vs_R0": contrast_C, "contrast_E_R3_vs_R4": contrast_E, "r3_competence_floor_met": r3_high, "metrics_by_family_condition": metrics, "certificates": cell_certificates(rr)}
+        # Design V2 registered secondary: the same contrast on the H-EXT-4 same-successor-fibre
+        # variant (predictive congruence holds by construction). Reported beside the primary, never gated.
+        sf = _by(rr, family="F3_P2_CANON_SF")
+        if sf:
+            out["GP1"]["contrast_B_same_fibre_R2_vs_R3"] = mcnemar(_pairs(sf, "R2", "R3"))
+            out["GP1"]["contrast_B_same_fibre_instance_level"] = mcnemar(_instance_pairs(sf, "R2", "R3"))
+            out["GP1"]["contrast_C_same_fibre_R3_vs_R0"] = mcnemar(_pairs(sf, "R3", "R0"))
+            out["GP1"]["same_fibre_r3_competence_floor_met"] = out["GP1"]["contrast_B_same_fibre_R2_vs_R3"]["acc_y"] >= g["GP1"]["r3_competence_floor"]
         # ---- GP3 controls
         p0 = _by(rr, family="F1_P0")
         recon = _by(rr, family="F3_P2_RECON")
@@ -1326,6 +1461,11 @@ def analyse_model(design: dict, mdir: Path) -> dict:
         gp2["pass"] = None
         gp2["terminal"] = "CANNOT_CHECK_ALTERNATE_CHANNEL_RETENTION"
     out["GP2"] = gp2
+    # Design V2: competence gate (dev split only) is carried into the rollup as a report, not a gate.
+    gpc_path = mdir / "competence_gate.json"
+    if gpc_path.exists():
+        gpc = read_json(gpc_path)
+        out["GPC"] = {k: gpc[k] for k in ("pass", "verdict", "maintain_accuracy_R0", "update_accuracy_R0", "by_family", "condition") if k in gpc}
     out["terminal"] = model_terminal(out)
     return out
 
@@ -1379,8 +1519,10 @@ def stage_rollup(args, design) -> dict:
         "models": per_model, "terminals": terminals, "GP1_all_models": gp1_all, "overall_terminal": overall, "routing": routing,
         "scientific_authority": False, "protected_split": args.split == "protected",
     }
-    write_json(workdir / f"PRA_REAL_LLM_AUDIT_ROLLUP_V1__{args.split}.json", rollup)
-    (workdir / f"PRA_REAL_LLM_AUDIT_ROLLUP_V1__{args.split}.md").write_text(rollup_markdown(rollup), encoding="utf-8")
+    stem = rollup_basename(design)
+    rollup["rollup_basename"] = stem
+    write_json(workdir / f"{stem}__{args.split}.json", rollup)
+    (workdir / f"{stem}__{args.split}.md").write_text(rollup_markdown(rollup), encoding="utf-8")
     return {"overall_terminal": overall, "terminals": terminals}
 
 
@@ -1391,14 +1533,22 @@ def _fmt(x) -> str:
 
 
 def rollup_markdown(r: dict) -> str:
-    lines = [f"# PRA real-LLM audit rollup V1 — split `{r['split']}`", "", f"design `{r['design_id']}` · runner sha256 `{r['runner_sha256'][:16]}…` · suite sha256 `{(r['suite_sha256'] or 'none')[:16]}…`", "", f"**Overall terminal:** `{r['overall_terminal']}`", "", f"**Routing:** {r['routing']}", "", "| model | GP0 | GP1 | GP2 | GP3 | terminal |", "|---|---|---|---|---|---|"]
+    version = "V2" if r.get("rollup_basename", "").endswith("V2") else "V1"
+    lines = [f"# PRA real-LLM audit rollup {version} — split `{r['split']}`", "", f"design `{r['design_id']}` · runner sha256 `{r['runner_sha256'][:16]}…` · suite sha256 `{(r['suite_sha256'] or 'none')[:16]}…`", "", f"**Overall terminal:** `{r['overall_terminal']}`", "", f"**Routing:** {r['routing']}", "", "| model | GP0 | GP1 | GP2 | GP3 | terminal |", "|---|---|---|---|---|---|"]
     for m, a in r["models"].items():
         lines.append(f"| {m} | {a['GP0'].get('pass')} | {a['GP1'].get('pass')} | {a['GP2'].get('pass')} | {a['GP3'].get('pass')} | `{a['terminal']}` |")
     for m, a in r["models"].items():
         lines += ["", f"## {m}", ""]
+        if a.get("GPC"):
+            gpc = a["GPC"]
+            lines.append(f"- GPC competence (dev split, {gpc.get('condition', 'R0')}): maintain {_fmt(gpc['maintain_accuracy_R0']['acc'])} (n={gpc['maintain_accuracy_R0']['n']}), update {_fmt(gpc['update_accuracy_R0']['acc'])} (n={gpc['update_accuracy_R0']['n']}) → `{gpc['verdict']}`")
         if a["GP1"].get("contrast_B_R2_vs_R3_on_P2"):
             cb = a["GP1"]["contrast_B_R2_vs_R3_on_P2"]
             lines.append(f"- Contrast B (R2→R3, P2 canonical): acc {_fmt(cb['acc_x'])} → {_fmt(cb['acc_y'])} (n={cb['n']}, discordant {cb['discordant_x_only']}/{cb['discordant_y_only']}, exact p={_fmt(cb['p_two_sided_exact'])})")
+        if a["GP1"].get("contrast_B_same_fibre_R2_vs_R3"):
+            cs = a["GP1"]["contrast_B_same_fibre_R2_vs_R3"]
+            csi = a["GP1"]["contrast_B_same_fibre_instance_level"]
+            lines.append(f"- Contrast B-SF (R2→R3, same-successor-fibre variant, secondary): acc {_fmt(cs['acc_x'])} → {_fmt(cs['acc_y'])} (n={cs['n']}, exact p={_fmt(cs['p_two_sided_exact'])}; instance-level p={_fmt(csi['p_two_sided_exact'])})")
         if a["GP0"].get("tost_R3_minus_R2"):
             t = a["GP0"]["tost_R3_minus_R2"]
             lines.append(f"- GP0 present equivalence: per-unit pass {_fmt(a['GP0']['per_unit_pass_fraction'])}; TOST mean Δlogprob {_fmt(t.get('mean_diff', float('nan')))} (equivalent={t.get('equivalent')})")
@@ -1421,7 +1571,8 @@ def rollup_markdown(r: dict) -> str:
 
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--stage", required=True, choices=["generate-suite", "present-gate", "revision", "probe", "kv-channel", "rollup", "all"])
+    p.add_argument("--stage", required=True, choices=["generate-suite", "present-gate", "revision", "probe", "kv-channel", "competence-gate", "rollup", "all"])
+    p.add_argument("--protected-seed-file", default=None, help="design V2: sealed protected seed file ('<int>:<salt>'); its sha256 must equal design.suite_generator.seed.protected_commitment_sha256")
     p.add_argument("--workdir", required=True)
     p.add_argument("--design", default=str(DEFAULT_DESIGN))
     p.add_argument("--model", default="stub", help="model alias from the design JSON (or 'stub')")
@@ -1432,7 +1583,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--max-instances", type=int, default=None, help="dev split only: cap total instances (round-robin across families)")
     p.add_argument("--families", default=None, help="dev split only: comma-separated family filter (smoke tests)")
     p.add_argument("--suite-scale", type=int, default=None, help="generate-suite: set dev instances per family (dev split only; protected counts are frozen)")
-    p.add_argument("--device", default="cuda")
+    p.add_argument("--device", default="cuda", help="'cuda' (one GPU) or 'auto' (layer-wise sharding across all visible GPUs, GPU-only)")
     return p
 
 
@@ -1452,6 +1603,10 @@ def main(argv: list[str] | None = None) -> int:
             summary[stage] = stage_generate_suite(args, design)
         elif stage == "rollup":
             summary[stage] = stage_rollup(args, design)
+        elif stage == "competence-gate":
+            if args.backend == "stub" and args.model == "stub":
+                args.model = f"stub-{args.stub_variant}"
+            summary[stage] = stage_competence_gate(args, design)
         else:
             if backend is None:
                 backend = make_backend(args, design)
