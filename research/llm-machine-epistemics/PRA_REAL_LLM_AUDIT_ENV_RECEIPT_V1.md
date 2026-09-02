@@ -32,8 +32,19 @@ Both ungated, Apache-2.0, bf16, greedy, `max_new_tokens=160`, seed 51, batch 1.
 | `pra_real_llm_audit.py` (as run in the final smoke) | `6e7018963391df06b9c4986fbe121ef0a7d60f51ce1caf021bf0ee936f5e4a08` |
 | `pra_real_llm_audit.py` (frozen in the PR, after review fixes) | `e25d969fb20aee3e47f94daf95e330272ee58d10615743a135bd83c4e983e490` |
 | `PRA_REAL_LLM_AUDIT_DESIGN_V1.json` | `188bf0b3facb5824e6f7952636e44743c2183a5f15ee642458f43ed496e03658` |
-| dev suite `suite_dev.json` (seed 20260902, 32 instances) | `21a58a0fc0a5e82a0aacf24d05fa4052b149397948de8c762b1ee636939aa50b` |
-| protected suite `suite_protected.json` (seed 20260903, 500 instances; generated, hashed, never read) | `46c2b9cfbbcd4d871a2c3cffc632122a5a6e9cd0438545123272ff86f2af4876` |
+| dev suite `suite_dev.json` (seed 20260902, 32 instances) | `98c8cbb54e5560d954c0a7805ae2fca37aa2777751228baf4701d30c185bf2ba` |
+| protected suite `suite_protected.json` (seed 20260903, 500 instances; generated, hashed, never read) | `21b5b0f7263a49732a9d7c6ba4c417b825e363d2ed06df66d1b3a6a26551b2ae` |
+
+**Suite-digest correction (2026-09-02).** The two suite rows previously recorded
+`21a58a0fc0a5e82a0aacf24d05fa4052b149397948de8c762b1ee636939aa50b` (dev) and
+`46c2b9cfbbcd4d871a2c3cffc632122a5a6e9cd0438545123272ff86f2af4876` (protected).
+Those are the digests of the superseded smoke attempts 1-3 in §4, not of the final smoke this
+receipt describes: the final iteration (job 3563622) added the explicit non-basis statement to the
+R0/R3 prompts, which changes the generated suite bytes and therefore both digests. The values in
+the table are the ones job 3563622 actually produced, confirmed by the `SUITE_MANIFEST.json`
+archived under `results/pra-llm-r1/dev-smoke/` in this same PR, by the job log `smoke-3563622.out`,
+and by regenerating both suites from the frozen runner `e25d969f…` and design `188bf0b3…`. Nothing
+else in this receipt changes — the design, the runner, the suites and the smoke are untouched.
 
 ## 4. Dev smoke history (dev split only; 8 instances = 4 `F3_P2_CANON` + 4 `F1_P0`)
 
