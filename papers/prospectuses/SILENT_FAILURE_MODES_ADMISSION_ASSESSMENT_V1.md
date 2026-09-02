@@ -262,10 +262,11 @@ recommended and no target adapter was invoked.
 `PROGRAMME_LEDGER_V0.md`: *"A candidate survives only if it has:"*
 
 **(1) a distinct scientific object not already owned by V1.** **FAIL.** §4: five of seven items are
-owned by PRA or P-C, and the strongest is already published.
+owned by PRA or P-C, and the strongest is already written into a manuscript another lane is landing.
 
-**(2) faithful reconstruction of strongest parent fields.** **NOT DONE.** No parent field has been
-reconstructed; §5 is a reduction sketch, not a reconstruction. Recoverable with work.
+**(2) faithful reconstruction of strongest parent fields.** **NOT DONE.** §5.1 reduces at field
+level and binds one parent; no field is *reconstructed*. This is the one criterion that is
+recoverable with work — and §5.1 indicates that doing the work closes the candidate faster.
 
 **(3) an explicit strongest donor-composed baseline.** **FAIL.** §5.1: the composition dominates,
 and one prior framework already unifies two of the five detectors under a single mechanism. This is
