@@ -272,7 +272,27 @@
     "lunarc_base": "/projects/hep/fs9/users/scyiu/orion-v2-pra-llm",
     "venv": ".venv (Python 3.11.5, torch 2.6.0+cu124, transformers 4.51.3, accelerate 1.6.0, safetensors 0.8.0, numpy 2.2.6, scipy 1.17.1, scikit-learn 1.9.0)",
     "hf_home": "/projects/hep/fs9/users/scyiu/orion-v2-pra-llm/hf-cache",
-    "partition": "gpua100",
-    "account": "lu2026-2-51"
+    "partition": "gpua100i",
+    "account": "lu2026-2-51",
+    "partition_amendment": {
+      "date": "2026-09-02",
+      "field": "environment.partition",
+      "from": "gpua100",
+      "to": "gpua100i",
+      "authority": "coordinator-authorised operational amendment (NOT operator consent; the protected-run authorization token is unchanged, so the run identity remains the operator-authorised one)",
+      "reason": "queue latency only: gpua100 had 16 pending jobs with all 6 nodes allocated and estimated job 3563787 start 2026-09-06T09:27, while gpua100i had 2 idle nodes; the pending array was cancelled and resubmitted unchanged on gpua100i",
+      "why_not_a_scientific_deviation": "gpua100i nodes cg18/cg19 carry the same GPU model (NVIDIA A100, sm_80, driver 580.95.05) in the 40GB SKU; both frozen 7B models are ~15GB in bf16 and load on one card unsharded, so 'one A100' is honoured literally. In this design JSON the partition appears only inside 'environment', alongside lunarc_base/venv/hf_home/account - it is a resource note, absent from models, decoding, frozen_inputs and from the no_rescue_clause enumeration (families, instance counts, prompts, filler, tolerances, gate thresholds, probe split, terminal mapping), none of which is touched.",
+      "determinism_evidence": "research/llm-machine-epistemics/results/pra-llm-v2/CROSS_HARDWARE_IDENTITY_V1.md: the larger Design V2 models produced byte-identical raw generations (1,760 of 1,760, parsed actions and completion text) on 1xA100-80GB versus 2xA100-40GB layer-sharded, the strictly harder direction than 7B unsharded on one card",
+      "unchanged": [
+        "models and pinned revisions",
+        "decoding (greedy, seed 51, bf16, max_new_tokens, batch size, chat template, answer format)",
+        "suite seeds, families, instance counts and the frozen suite digests",
+        "prompts, contract text, filler line and token-budget tolerance",
+        "probe definition and split, kv-channel mechanism",
+        "gate thresholds GP0-GP3, terminals, routing, no-rescue clause",
+        "protected_run.authorization_token"
+      ],
+      "sbatch": "sbatch/pra_llm_r1.sbatch --partition amended to match; --gres=gpu:a100:1, --mem=96G, --cpus-per-task=8 and --time=16:00:00 are unchanged and fit gpua100i (380GB RAM, 32 CPUs, 7-day limit)"
+    }
   }
 }
