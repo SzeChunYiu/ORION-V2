@@ -137,6 +137,10 @@ Fidelity is decided in the presentation the formal statement is written in.
   and is generated deliberately (an intended statement that is itself undecided
   within the frozen environment).
 
+The oracle's subtype label is the generator's *construction*, verified to be
+genuine drift by the existence of a separating model; the arms never see it and
+must recover it independently from the visible syntax plus their own witness.
+
 Registered drift subtypes, each a distinct syntactic operation with a semantic
 witness: `MATERIALLY_WEAKENED` (a context added to both sides),
 `MATERIALLY_STRENGTHENED` (a context dropped), `NOTATIONAL_COLLAPSE` (two
@@ -247,7 +251,7 @@ low ladder rungs lose — they can say "refuted" but cannot produce the certific
 | **G0** | oracle self-agreement (breadth-first vs iterative-deepening on minimal length; the definable-generator fast path vs brute-force model enumeration), hand-authored known-answer fixtures, parent fidelity, null calibration on a trivial identity |
 | **G1** | `M` vs the top-rung federation on the joint endpoint, paired exact binomial, α = 0.05, **per family and pooled** |
 | **G2** | anti-conservatism: on `F1`/`F4`, `M`'s false-change and false-defer rates, and its pooled false-drift-alarm rate, may not exceed `B5`'s by more than 0.05 |
-| **G3** | mechanism by omission: the registered ablation must degrade the family it controls |
+| **G3** | mechanism by omission: the registered ablation must degrade the family it controls. Two families carry **no** ablation, for structural reasons rather than convenient ones, and are reported as *not gated*: `F1` is a pure control family, so nothing should escalate on it and no omission can break it (G2 gates it instead); `F8`'s held-out target admits independent re-invention as well as reuse. Gating either would guarantee a failing row and say nothing |
 | **G4** | ladder monotonicity and terminal |
 
 **A pooled average may not hide a family-specific failure.** The per-family table

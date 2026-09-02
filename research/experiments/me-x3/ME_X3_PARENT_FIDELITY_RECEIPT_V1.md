@@ -96,7 +96,10 @@ never detected on the protected split.
 | `M_ALWAYS_CHANGE_REPRESENTATION_WHEN_STUCK` | 0.889 | 1.000 | 0.889 | 0.000 | 0.000 | 0.333 |
 | `M_EQUAL_EXTRA_SEARCH_INSTEAD_OF_TRANSFORM` | 0.741 | 1.000 | 0.741 | 0.000 | 0.000 | 0.333 |
 | `M_LOCUS_LABELS_SHUFFLED` | 0.741 | 1.000 | 0.741 | 0.000 | 0.000 | 0.333 |
+| `M_MINUS_COUNTEREXAMPLE_PROBE` | 0.741 | 1.000 | 0.778 | 0.000 | 0.000 | 0.333 |
 | `M_MINUS_FALSE_CHANGE_PENALTY` | 0.778 | 1.000 | 0.778 | 0.111 | 0.000 | 0.333 |
+| `M_MINUS_LEMMA_INVENTION` | 0.815 | 1.000 | 0.815 | 0.000 | 0.000 | 0.333 |
+| `M_MINUS_LEMMA_LEVEL` | 0.667 | 1.000 | 0.667 | 0.000 | 0.000 | 0.333 |
 | `M_MINUS_LOWER_LEVEL_DISPOSITION` | 0.889 | 1.000 | 0.889 | 0.000 | 0.000 | 0.333 |
 | `M_MINUS_OBSTRUCTION_CLASS` | 0.741 | 1.000 | 0.741 | 0.000 | 0.000 | 0.333 |
 | `M_MINUS_PRESERVATION_CONTRACT` | 0.889 | 1.000 | 0.889 | 0.000 | 0.000 | 0.333 |
@@ -130,16 +133,16 @@ reframed if it does not.
 
 | file | sha256 |
 |---|---|
-| `mex3_arms.py` | `1c409b28f58b64bd6e0c98ed67a7c2078e0abc9766bf223e36066e7e849322cf` |
+| `mex3_arms.py` | `6e073fea26fc327a1ea8e5f160a4164a4ff9c3785cc4105e1e7a9d4088f720a1` |
 | `mex3_generator.py` | `616871b8a665dcdd2a5177e1850c74c5c12791ca94d637fb8f397fa38b11b0f2` |
 | `mex3_lean.py` | `5f6b41a30c26473bf36b8ee48d29ecb93525d76d6d8d725601ee5b7d5a2703da` |
 | `mex3_model.py` | `e9d0209a747159b7b0845d1a221de072be3326da233a3349886496ad7e3af562` |
 | `mex3_oracle.py` | `736003f17d2f2c44851b8b66ff56ff222384f599fb6a51bea1e369b04174129d` |
 | `mex3_parents.py` | `52dfbfe7bd9a4cfa802cc24dc1e7b86e4fb37fdacb281f52409f0f5ef9110fe2` |
-| `mex3_run.py` | `3857d93b7810c39a14914017bf1617d42e932ee03309cf139f97e58df35b18ba` |
+| `mex3_run.py` | `81b7103084b271f05eb106bfcb4e8a6a41c3e80f2def0b14604f7c43c22aaa19` |
 | `mex3_verdict.py` | `1a9bbc3460729adc8af8ed3f940f79bbbf3f4224eb077a33a250eee42ff10f40` |
 
-Design JSON sha256: `5794e99be21f36257cb1ffa98ffd9544f9799188da5e4bea7993f9be46ea6d66`
+Design JSON sha256: `644f3c2cfcb2b5cde35746438156b6ac20faab2b01c52bc629d886aa6e193057`
 Custody seed sha256: `cb799f89499cea4a088c6df071e9ce12bff2fceb02c4adc06ab7ce4eecdbb3f8`
 
 ## Terminal

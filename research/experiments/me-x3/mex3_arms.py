@@ -483,7 +483,9 @@ def m_arm(task: Task, led: Ledger, state: ArmState, *,
           diagnose: bool = True, lower_first: bool = True, cue_driven: bool = False,
           spec: bool = True, preservation: bool = True, unresolved: bool = True,
           shuffle_labels: bool = False, always_change: bool = False,
-          never_change: bool = False, extra_search: bool = False) -> Answer:
+          never_change: bool = False, extra_search: bool = False,
+          probe_countermodel: bool = True, invent: bool = True,
+          lemma_level: bool = True) -> Answer:
     """The Machine-Epistemics controller and every registered ablation of it.
 
     It calls the same modules as `federation` at `R5_FULL_STRUCTURE` and receives
@@ -513,7 +515,7 @@ def m_arm(task: Task, led: Ledger, state: ArmState, *,
         return _answer("CONTINUE_DIRECT_PROOF_SEARCH", "VERIFIED", fid, led,
                        path=probe.path, pid=pres.pid)
     obstruction = "CANNOT_IDENTIFY"
-    cm = m_countermodel(led, pres, task.formal)
+    cm = m_countermodel(led, pres, task.formal) if probe_countermodel else None
     if cm is not None:
         # the statement is false: settle validity with the witness. The action is
         # still governed by the fidelity verdict (see `act_under_fidelity`).
@@ -532,6 +534,8 @@ def m_arm(task: Task, led: Ledger, state: ArmState, *,
     sl = B
 
     def try_lemma():
+        if not lemma_level:
+            return None
         car = _try_carried(led, task, state, sl)
         if car:
             lem, rr = car
@@ -542,12 +546,13 @@ def m_arm(task: Task, led: Ledger, state: ArmState, *,
             lem, rr = got
             return _answer("RETRIEVE_EXISTING_LEMMA", "VERIFIED", fid, led,
                            path=rr.path, lemma=lem, pid=pres.pid)
-        inv = m_invent(led, task, task.formal, sl)
-        if inv:
-            lem, rr = inv
-            state.remember(lem, "")
-            return _answer("INVENT_LOCAL_LEMMA", "VERIFIED", fid, led,
-                           path=rr.path, lemma=lem, pid=pres.pid)
+        if invent:
+            inv = m_invent(led, task, task.formal, sl)
+            if inv:
+                lem, rr = inv
+                state.remember(lem, "")
+                return _answer("INVENT_LOCAL_LEMMA", "VERIFIED", fid, led,
+                               path=rr.path, lemma=lem, pid=pres.pid)
         return None
 
     def try_repr():
@@ -649,4 +654,7 @@ def arm_specs() -> list[ArmSpec]:
         ArmSpec("M_ALWAYS_CHANGE_REPRESENTATION_WHEN_STUCK", m(always_change=True)),
         ArmSpec("M_NEVER_CHANGE_REPRESENTATION", m(never_change=True)),
         ArmSpec("M_EQUAL_EXTRA_SEARCH_INSTEAD_OF_TRANSFORM", m(extra_search=True)),
+        ArmSpec("M_MINUS_COUNTEREXAMPLE_PROBE", m(probe_countermodel=False)),
+        ArmSpec("M_MINUS_LEMMA_INVENTION", m(invent=False)),
+        ArmSpec("M_MINUS_LEMMA_LEVEL", m(lemma_level=False)),
     ]

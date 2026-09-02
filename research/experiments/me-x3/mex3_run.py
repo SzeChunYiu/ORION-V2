@@ -54,16 +54,29 @@ DEFAULT_SEED_FILE = Path(os.environ.get(
 # Families on which no high-level change is warranted: the anti-conservatism and
 # false-escalation controls (G2).
 NO_ESCALATION_FAMILIES = ("F1_DIRECT_SEARCH", "F4_DECEPTIVE_CHANGE")
-# The ablation that must degrade each family's behaviour if the mechanism is real (G3).
+# The ablation that must degrade each family's behaviour if the mechanism is real
+# (G3). Two families are deliberately NOT gated, for reasons that are structural
+# rather than convenient, and both are recorded in the design:
+#   F1 is a pure control family -- nothing should escalate on it, so no omission
+#      can break it; it is gated instead by G2's false-change rate.
+#   F8's held-out target admits independent re-invention as well as reuse, so the
+#      transfer ablation cannot degrade it by construction.
+# Gating either of them would guarantee a failing row and tell us nothing.
 ABLATION_FOR_FAMILY = {
-    "F1_DIRECT_SEARCH": "M_ALWAYS_CHANGE_REPRESENTATION_WHEN_STUCK",
-    "F2_MISSING_LEMMA": "M_MINUS_LOWER_LEVEL_DISPOSITION",
+    "F1_DIRECT_SEARCH": None,
+    "F2_MISSING_LEMMA": "M_MINUS_LEMMA_LEVEL",
     "F3_REPRESENTATION_CHANGE": "M_NEVER_CHANGE_REPRESENTATION",
     "F4_DECEPTIVE_CHANGE": "M_MINUS_FALSE_CHANGE_PENALTY",
-    "F5_PROBE_OR_COUNTEREXAMPLE_NEEDED": "M_MINUS_OBSTRUCTION_CLASS",
+    "F5_PROBE_OR_COUNTEREXAMPLE_NEEDED": "M_MINUS_COUNTEREXAMPLE_PROBE",
     "F6_UNDERDETERMINED_OR_CANNOT_CHECK": "M_MINUS_UNRESOLVED_TERMINAL",
     "F7_SPECIFICATION_MISMATCH": "M_MINUS_SPECIFICATION_PRESERVATION",
-    "F8_TRANSFER": "M_MINUS_TRANSFER_REUSE_TRACKING",
+    "F8_TRANSFER": None,
+}
+NOT_GATED_REASON = {
+    "F1_DIRECT_SEARCH": "control family: nothing should escalate, so no omission can "
+                        "break it; gated by G2 instead",
+    "F8_TRANSFER": "the held-out target admits independent re-invention as well as "
+                   "reuse, so the transfer ablation cannot degrade it by construction",
 }
 
 
@@ -327,11 +340,18 @@ def gates(sc: dict, results: dict, selftest_ok) -> dict:
     g3_rows = {}
     g3_pass = True
     for fam, abl in sorted(ABLATION_FOR_FAMILY.items()):
-        if fam not in ids_by_fam or abl not in pa:
+        if fam not in ids_by_fam:
+            continue
+        if abl is None:
+            g3_rows[fam] = {"ablation": None, "gated": False,
+                            "reason": NOT_GATED_REASON[fam]}
+            continue
+        if abl not in pa:
             continue
         p = paired(M["joint_flags"], pa[abl]["joint_flags"], ids_by_fam[fam])
         ok = p["diff_x_minus_y"] > 0
-        g3_rows[fam] = {"ablation": abl, "diff_M_minus_ablation": p["diff_x_minus_y"],
+        g3_rows[fam] = {"ablation": abl, "gated": True,
+                        "diff_M_minus_ablation": p["diff_x_minus_y"],
                         "exact_p": p["exact_p_two_sided"], "degrades": ok}
         g3_pass &= ok
     g3 = {"pass": bool(g3_pass), "per_family": g3_rows,

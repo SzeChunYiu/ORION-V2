@@ -1,7 +1,7 @@
 # ME-X3 DEVELOPMENT analysis V1
 
 - instances: 27
-- results sha256: `88a621affd34d2e8c9d09811278d4aa8992a52e6b3cc1cf127c5c680146a1058`
+- results sha256: `76c07c75a6d189087768eeae6206197f07c8e82c1a5d0c621da4b19a2345856e`
 - custody sha256: `c59fb4c78b0a67429ea978dc85d912399e806ea428825835e44fad5473840ac6`
 
 **Route: PARENT_SUFFICIENT** — M 0.889 vs B5 0.889, paired exact p=1: no protected decision advantage over the strongest faithful federation (cost 520 vs 553 expansions, -6.1%)
@@ -34,6 +34,9 @@ Ladder terminal (H-EXT-3): `RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL`
 | `M_ALWAYS_CHANGE_REPRESENTATION_WHEN_STUCK` | 0.889 | 1.000 | 0.889 | 0.889 | 0.889 | 0.000 | 0.111 | 0.000 | 0.000 | 0.333 | 510.4 |
 | `M_NEVER_CHANGE_REPRESENTATION` | 0.778 | 1.000 | 0.778 | 0.778 | 0.778 | 0.000 | 0.222 | 0.000 | 0.000 | 0.333 | 512.2 |
 | `M_EQUAL_EXTRA_SEARCH_INSTEAD_OF_TRANSFORM` | 0.889 | 1.000 | 0.741 | 0.889 | 0.741 | 0.000 | 0.111 | 0.000 | 0.000 | 0.333 | 545.5 |
+| `M_MINUS_COUNTEREXAMPLE_PROBE` | 0.741 | 1.000 | 0.778 | 0.741 | 0.741 | 0.000 | 0.222 | 0.000 | 0.000 | 0.333 | 596.5 |
+| `M_MINUS_LEMMA_INVENTION` | 0.889 | 1.000 | 0.815 | 0.889 | 0.815 | 0.000 | 0.111 | 0.000 | 0.000 | 0.333 | 376.5 |
+| `M_MINUS_LEMMA_LEVEL` | 0.815 | 1.000 | 0.667 | 0.815 | 0.667 | 0.000 | 0.185 | 0.000 | 0.000 | 0.333 | 199.7 |
 
 ## Per family: M vs B5 (paired, exact binomial)
 
@@ -64,7 +67,7 @@ The held-out target admits independent re-invention from the registered candidat
 | G0 | PASS | oracle self-agreement, known-answer fixtures, parent fidelity, null calibration |
 | G1 | FAIL | M is compared with the TOP-RUNG federation, which receives exactly what M receives; the ladder is a property of the federation's internal channel, never of M's privilege |
 | G2 | PASS | M may not buy accuracy by escalating or deferring more than B5 |
-| G3 | FAIL | a mechanism claim requires the named omission to break the exact behaviour it is supposed to control |
+| G3 | PASS | a mechanism claim requires the named omission to break the exact behaviour it is supposed to control |
 | G4 | PASS | H-EXT-3: what crosses the federation's module boundary |
 
 ## H-EXT-3 interface ladder

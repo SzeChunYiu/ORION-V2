@@ -21,7 +21,10 @@
     "M_LOCUS_LABELS_SHUFFLED",
     "M_ALWAYS_CHANGE_REPRESENTATION_WHEN_STUCK",
     "M_NEVER_CHANGE_REPRESENTATION",
-    "M_EQUAL_EXTRA_SEARCH_INSTEAD_OF_TRANSFORM"
+    "M_EQUAL_EXTRA_SEARCH_INSTEAD_OF_TRANSFORM",
+    "M_MINUS_COUNTEREXAMPLE_PROBE",
+    "M_MINUS_LEMMA_INVENTION",
+    "M_MINUS_LEMMA_LEVEL"
   ],
   "instances": [
     {
@@ -530,7 +533,115 @@
           "used_representation": "",
           "validity": "VERIFIED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 2,
+            "lemma_tries": 0,
+            "model_checks": 0,
+            "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              2,
+              1
+            ],
+            [
+              1,
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              1,
+              1,
+              1
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 2,
+            "lemma_tries": 0,
+            "model_checks": 0,
+            "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              2,
+              1
+            ],
+            [
+              1,
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              1,
+              1,
+              1
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 2,
+            "lemma_tries": 0,
+            "model_checks": 0,
+            "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              2,
+              1
+            ],
+            [
+              1,
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              1,
+              1,
+              1
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
           "action": "CONTINUE_DIRECT_PROOF_SEARCH",
           "cost": {
             "expansions": 2,
@@ -1290,7 +1401,106 @@
           "used_representation": "",
           "validity": "VERIFIED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 3,
+            "lemma_tries": 0,
+            "model_checks": 0,
+            "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              2,
+              1,
+              1,
+              0
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 3,
+            "lemma_tries": 0,
+            "model_checks": 0,
+            "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              2,
+              1,
+              1,
+              0
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 3,
+            "lemma_tries": 0,
+            "model_checks": 0,
+            "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              2,
+              1,
+              1,
+              0
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
           "action": "CONTINUE_DIRECT_PROOF_SEARCH",
           "cost": {
             "expansions": 3,
@@ -2096,7 +2306,121 @@
           "used_representation": "",
           "validity": "VERIFIED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 3,
+            "lemma_tries": 0,
+            "model_checks": 0,
+            "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              1,
+              0,
+              1
+            ],
+            [
+              2,
+              1,
+              1,
+              0,
+              1
+            ],
+            [
+              2,
+              0,
+              0,
+              0,
+              1
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 3,
+            "lemma_tries": 0,
+            "model_checks": 0,
+            "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              1,
+              0,
+              1
+            ],
+            [
+              2,
+              1,
+              1,
+              0,
+              1
+            ],
+            [
+              2,
+              0,
+              0,
+              0,
+              1
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 3,
+            "lemma_tries": 0,
+            "model_checks": 0,
+            "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              1,
+              0,
+              1
+            ],
+            [
+              2,
+              1,
+              1,
+              0,
+              1
+            ],
+            [
+              2,
+              0,
+              0,
+              0,
+              1
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
           "action": "CONTINUE_DIRECT_PROOF_SEARCH",
           "cost": {
             "expansions": 3,
@@ -3841,6 +4165,112 @@
           "used_representation": "",
           "validity": "VERIFIED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "RETRIEVE_EXISTING_LEMMA",
+          "cost": {
+            "expansions": 321,
+            "lemma_tries": 1,
+            "model_checks": 0,
+            "module_calls": 4
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              2,
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              2,
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              2,
+              1,
+              2,
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              2,
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              2,
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              2,
+              1
+            ],
+            [
+              2,
+              1,
+              0,
+              1,
+              2,
+              1
+            ],
+            [
+              2,
+              1,
+              0,
+              2,
+              1
+            ],
+            [
+              2,
+              1,
+              2,
+              1,
+              2,
+              1
+            ],
+            [
+              2,
+              2,
+              1,
+              2,
+              1
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": [
+            [
+              1
+            ],
+            [
+              2,
+              1,
+              0,
+              1
+            ]
+          ],
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
           "action": "RETRIEVE_EXISTING_LEMMA",
           "cost": {
@@ -3943,6 +4373,230 @@
               1
             ]
           ],
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "RETRIEVE_EXISTING_LEMMA",
+          "cost": {
+            "expansions": 321,
+            "lemma_tries": 1,
+            "model_checks": 20,
+            "module_calls": 5
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              2,
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              2,
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              2,
+              1,
+              2,
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              2,
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              2,
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              2,
+              1
+            ],
+            [
+              2,
+              1,
+              0,
+              1,
+              2,
+              1
+            ],
+            [
+              2,
+              1,
+              0,
+              2,
+              1
+            ],
+            [
+              2,
+              1,
+              2,
+              1,
+              2,
+              1
+            ],
+            [
+              2,
+              2,
+              1,
+              2,
+              1
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": [
+            [
+              1
+            ],
+            [
+              2,
+              1,
+              0,
+              1
+            ]
+          ],
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 360,
+            "lemma_tries": 0,
+            "model_checks": 20,
+            "module_calls": 5
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              1,
+              2,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              2,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              1,
+              2,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              2,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              2,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              2,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              0,
+              1
+            ],
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              2,
+              1,
+              2,
+              1
+            ],
+            [
+              2,
+              0,
+              1,
+              2,
+              1
+            ],
+            [
+              2,
+              0,
+              2,
+              1
+            ],
+            [
+              2,
+              2,
+              1,
+              2,
+              1
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
           "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
           "used_representation": "",
           "validity": "VERIFIED"
@@ -5627,6 +6281,74 @@
           "used_representation": "",
           "validity": "VERIFIED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "RETRIEVE_EXISTING_LEMMA",
+          "cost": {
+            "expansions": 219,
+            "lemma_tries": 1,
+            "model_checks": 0,
+            "module_calls": 4
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              1,
+              2
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              2,
+              2,
+              2,
+              0
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": [
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              2,
+              2,
+              2
+            ]
+          ],
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
           "action": "RETRIEVE_EXISTING_LEMMA",
           "cost": {
@@ -5691,6 +6413,147 @@
               2
             ]
           ],
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "RETRIEVE_EXISTING_LEMMA",
+          "cost": {
+            "expansions": 219,
+            "lemma_tries": 1,
+            "model_checks": 56,
+            "module_calls": 5
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              1,
+              2
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              2,
+              2,
+              2,
+              0
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": [
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              2,
+              2,
+              2
+            ]
+          ],
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 463,
+            "lemma_tries": 0,
+            "model_checks": 56,
+            "module_calls": 5
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              1,
+              2
+            ],
+            [
+              1,
+              1,
+              0,
+              2
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              1,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              2,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              2,
+              0
+            ],
+            [
+              0,
+              2,
+              2,
+              2,
+              0
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
           "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
           "used_representation": "",
           "validity": "VERIFIED"
@@ -7132,6 +7995,82 @@
           "used_representation": "",
           "validity": "VERIFIED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "RETRIEVE_EXISTING_LEMMA",
+          "cost": {
+            "expansions": 313,
+            "lemma_tries": 1,
+            "model_checks": 0,
+            "module_calls": 4
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              2,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              2,
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              2,
+              0,
+              0,
+              0,
+              1
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
           "action": "RETRIEVE_EXISTING_LEMMA",
           "cost": {
@@ -7207,6 +8146,99 @@
           "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
           "used_representation": "",
           "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "RETRIEVE_EXISTING_LEMMA",
+          "cost": {
+            "expansions": 313,
+            "lemma_tries": 1,
+            "model_checks": 116,
+            "module_calls": 5
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              2,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              2,
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              2,
+              0,
+              0,
+              0,
+              1
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 605,
+            "lemma_tries": 0,
+            "model_checks": 116,
+            "module_calls": 5
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
         },
         "M_MINUS_LOWER_LEVEL_DISPOSITION": {
           "action": "RETRIEVE_EXISTING_LEMMA",
@@ -8636,6 +9668,95 @@
           "used_representation": "generator d := ab",
           "validity": "VERIFIED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "CHANGE_REPRESENTATION",
+          "cost": {
+            "expansions": 340,
+            "lemma_tries": 3,
+            "model_checks": 0,
+            "module_calls": 7
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              3,
+              2,
+              0
+            ],
+            [
+              1,
+              3,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              1,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              1,
+              2,
+              2,
+              0
+            ],
+            [
+              1,
+              3,
+              2,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              3,
+              2,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              0,
+              2,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              2,
+              2,
+              0
+            ]
+          ],
+          "derivation_pid": "P1",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "generator d := ab",
+          "validity": "VERIFIED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
           "action": "CHANGE_REPRESENTATION",
           "cost": {
@@ -8643,6 +9764,184 @@
             "lemma_tries": 0,
             "model_checks": 0,
             "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              3,
+              2,
+              0
+            ],
+            [
+              1,
+              3,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              1,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              1,
+              2,
+              2,
+              0
+            ],
+            [
+              1,
+              3,
+              2,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              3,
+              2,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              0,
+              2,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              2,
+              2,
+              0
+            ]
+          ],
+          "derivation_pid": "P1",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "generator d := ab",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "CHANGE_REPRESENTATION",
+          "cost": {
+            "expansions": 340,
+            "lemma_tries": 3,
+            "model_checks": 265,
+            "module_calls": 8
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              3,
+              2,
+              0
+            ],
+            [
+              1,
+              3,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              1,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              1,
+              2,
+              2,
+              0
+            ],
+            [
+              1,
+              3,
+              2,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              3,
+              2,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              0,
+              2,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              2,
+              2,
+              0
+            ]
+          ],
+          "derivation_pid": "P1",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "generator d := ab",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
+          "action": "CHANGE_REPRESENTATION",
+          "cost": {
+            "expansions": 169,
+            "lemma_tries": 0,
+            "model_checks": 265,
+            "module_calls": 5
           },
           "countermodel": null,
           "derivation": [
@@ -10424,6 +11723,123 @@
           "used_representation": "generator d := ab",
           "validity": "VERIFIED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "CHANGE_REPRESENTATION",
+          "cost": {
+            "expansions": 166,
+            "lemma_tries": 3,
+            "model_checks": 0,
+            "module_calls": 7
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              1,
+              2,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              2,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              1,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              3,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              3,
+              1,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              3,
+              1,
+              1,
+              0,
+              1
+            ],
+            [
+              3,
+              1,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              3,
+              1,
+              0,
+              1,
+              1
+            ],
+            [
+              3,
+              0,
+              0,
+              0,
+              1,
+              1
+            ],
+            [
+              3,
+              0,
+              1,
+              1,
+              1
+            ],
+            [
+              3,
+              0,
+              0,
+              2
+            ],
+            [
+              3,
+              1,
+              2
+            ]
+          ],
+          "derivation_pid": "P1",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "generator d := ab",
+          "validity": "VERIFIED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
           "action": "CHANGE_REPRESENTATION",
           "cost": {
@@ -10431,6 +11847,240 @@
             "lemma_tries": 0,
             "model_checks": 0,
             "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              1,
+              2,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              2,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              1,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              3,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              3,
+              1,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              3,
+              1,
+              1,
+              0,
+              1
+            ],
+            [
+              3,
+              1,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              3,
+              1,
+              0,
+              1,
+              1
+            ],
+            [
+              3,
+              0,
+              0,
+              0,
+              1,
+              1
+            ],
+            [
+              3,
+              0,
+              1,
+              1,
+              1
+            ],
+            [
+              3,
+              0,
+              0,
+              2
+            ],
+            [
+              3,
+              1,
+              2
+            ]
+          ],
+          "derivation_pid": "P1",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "generator d := ab",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "CHANGE_REPRESENTATION",
+          "cost": {
+            "expansions": 166,
+            "lemma_tries": 3,
+            "model_checks": 182,
+            "module_calls": 8
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              1,
+              2,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              2,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              1,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              3,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              3,
+              1,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              3,
+              1,
+              1,
+              0,
+              1
+            ],
+            [
+              3,
+              1,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              3,
+              1,
+              0,
+              1,
+              1
+            ],
+            [
+              3,
+              0,
+              0,
+              0,
+              1,
+              1
+            ],
+            [
+              3,
+              0,
+              1,
+              1,
+              1
+            ],
+            [
+              3,
+              0,
+              0,
+              2
+            ],
+            [
+              3,
+              1,
+              2
+            ]
+          ],
+          "derivation_pid": "P1",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "generator d := ab",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
+          "action": "CHANGE_REPRESENTATION",
+          "cost": {
+            "expansions": 124,
+            "lemma_tries": 0,
+            "model_checks": 182,
+            "module_calls": 5
           },
           "countermodel": null,
           "derivation": [
@@ -11949,6 +13599,72 @@
           "used_representation": "generator d := bc",
           "validity": "VERIFIED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "CHANGE_REPRESENTATION",
+          "cost": {
+            "expansions": 108,
+            "lemma_tries": 3,
+            "model_checks": 0,
+            "module_calls": 7
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              0,
+              2,
+              0,
+              0
+            ],
+            [
+              0,
+              2,
+              3,
+              0
+            ],
+            [
+              0,
+              2,
+              3,
+              3
+            ],
+            [
+              0,
+              2,
+              3,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              3,
+              3,
+              0,
+              2
+            ],
+            [
+              0,
+              2,
+              3,
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              2,
+              1,
+              0,
+              2
+            ]
+          ],
+          "derivation_pid": "P1",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "generator d := bc",
+          "validity": "VERIFIED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
           "action": "CHANGE_REPRESENTATION",
           "cost": {
@@ -11956,6 +13672,138 @@
             "lemma_tries": 0,
             "model_checks": 0,
             "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              0,
+              2,
+              0,
+              0
+            ],
+            [
+              0,
+              2,
+              3,
+              0
+            ],
+            [
+              0,
+              2,
+              3,
+              3
+            ],
+            [
+              0,
+              2,
+              3,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              3,
+              3,
+              0,
+              2
+            ],
+            [
+              0,
+              2,
+              3,
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              2,
+              1,
+              0,
+              2
+            ]
+          ],
+          "derivation_pid": "P1",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "generator d := bc",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "CHANGE_REPRESENTATION",
+          "cost": {
+            "expansions": 108,
+            "lemma_tries": 3,
+            "model_checks": 134,
+            "module_calls": 8
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              0,
+              2,
+              0,
+              0
+            ],
+            [
+              0,
+              2,
+              3,
+              0
+            ],
+            [
+              0,
+              2,
+              3,
+              3
+            ],
+            [
+              0,
+              2,
+              3,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              3,
+              3,
+              0,
+              2
+            ],
+            [
+              0,
+              2,
+              3,
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              2,
+              1,
+              0,
+              2
+            ]
+          ],
+          "derivation_pid": "P1",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "generator d := bc",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
+          "action": "CHANGE_REPRESENTATION",
+          "cost": {
+            "expansions": 72,
+            "lemma_tries": 0,
+            "model_checks": 134,
+            "module_calls": 5
           },
           "countermodel": null,
           "derivation": [
@@ -12942,6 +14790,42 @@
           "used_representation": "",
           "validity": "VERIFIED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 3,
+            "lemma_tries": 0,
+            "model_checks": 0,
+            "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              2,
+              2,
+              1
+            ],
+            [
+              0,
+              2,
+              2,
+              2,
+              1
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
           "action": "CHANGE_REPRESENTATION",
           "cost": {
@@ -12984,6 +14868,78 @@
           "invented_lemma": null,
           "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
           "used_representation": "generator d := ac",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 3,
+            "lemma_tries": 0,
+            "model_checks": 0,
+            "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              2,
+              2,
+              1
+            ],
+            [
+              0,
+              2,
+              2,
+              2,
+              1
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 3,
+            "lemma_tries": 0,
+            "model_checks": 0,
+            "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              2,
+              2,
+              1
+            ],
+            [
+              0,
+              2,
+              2,
+              2,
+              1
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
           "validity": "VERIFIED"
         },
         "M_MINUS_LOWER_LEVEL_DISPOSITION": {
@@ -13864,6 +15820,50 @@
           "used_representation": "",
           "validity": "VERIFIED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 5,
+            "lemma_tries": 0,
+            "model_checks": 0,
+            "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              2,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              2,
+              2,
+              2,
+              0,
+              0
+            ],
+            [
+              2,
+              1,
+              0,
+              0
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
           "action": "CHANGE_REPRESENTATION",
           "cost": {
@@ -13911,6 +15911,94 @@
           "invented_lemma": null,
           "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
           "used_representation": "generator d := ca",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 5,
+            "lemma_tries": 0,
+            "model_checks": 0,
+            "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              2,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              2,
+              2,
+              2,
+              0,
+              0
+            ],
+            [
+              2,
+              1,
+              0,
+              0
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 5,
+            "lemma_tries": 0,
+            "model_checks": 0,
+            "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              2,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              2,
+              2,
+              2,
+              0,
+              0
+            ],
+            [
+              2,
+              1,
+              0,
+              0
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
           "validity": "VERIFIED"
         },
         "M_MINUS_LOWER_LEVEL_DISPOSITION": {
@@ -14693,6 +16781,39 @@
           "used_representation": "",
           "validity": "VERIFIED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 2,
+            "lemma_tries": 0,
+            "model_checks": 0,
+            "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              1,
+              2
+            ],
+            [
+              1,
+              1,
+              2,
+              2
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
           "action": "CHANGE_REPRESENTATION",
           "cost": {
@@ -14727,6 +16848,72 @@
           "invented_lemma": null,
           "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
           "used_representation": "generator d := ac",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 2,
+            "lemma_tries": 0,
+            "model_checks": 0,
+            "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              1,
+              2
+            ],
+            [
+              1,
+              1,
+              2,
+              2
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 2,
+            "lemma_tries": 0,
+            "model_checks": 0,
+            "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              1,
+              2
+            ],
+            [
+              1,
+              1,
+              2,
+              2
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
           "validity": "VERIFIED"
         },
         "M_MINUS_LOWER_LEVEL_DISPOSITION": {
@@ -15320,7 +17507,90 @@
           "used_representation": "",
           "validity": "REFUTED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 431,
+            "lemma_tries": 9,
+            "model_checks": 0,
+            "module_calls": 19
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
+          "action": "GENERATE_COUNTEREXAMPLE_OR_SMALL_MODEL",
+          "cost": {
+            "expansions": 8,
+            "lemma_tries": 0,
+            "model_checks": 32,
+            "module_calls": 4
+          },
+          "countermodel": {
+            "model": [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "size": 2
+          },
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "REFUTED_WITH_COUNTERMODEL",
+          "used_representation": "",
+          "validity": "REFUTED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "GENERATE_COUNTEREXAMPLE_OR_SMALL_MODEL",
+          "cost": {
+            "expansions": 8,
+            "lemma_tries": 0,
+            "model_checks": 32,
+            "module_calls": 4
+          },
+          "countermodel": {
+            "model": [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "size": 2
+          },
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "REFUTED_WITH_COUNTERMODEL",
+          "used_representation": "",
+          "validity": "REFUTED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
           "action": "GENERATE_COUNTEREXAMPLE_OR_SMALL_MODEL",
           "cost": {
             "expansions": 8,
@@ -15944,7 +18214,90 @@
           "used_representation": "",
           "validity": "REFUTED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 6,
+            "lemma_tries": 4,
+            "model_checks": 0,
+            "module_calls": 8
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
+          "action": "GENERATE_COUNTEREXAMPLE_OR_SMALL_MODEL",
+          "cost": {
+            "expansions": 1,
+            "lemma_tries": 0,
+            "model_checks": 651,
+            "module_calls": 4
+          },
+          "countermodel": {
+            "model": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "size": 2
+          },
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "REFUTED_WITH_COUNTERMODEL",
+          "used_representation": "",
+          "validity": "REFUTED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "GENERATE_COUNTEREXAMPLE_OR_SMALL_MODEL",
+          "cost": {
+            "expansions": 1,
+            "lemma_tries": 0,
+            "model_checks": 651,
+            "module_calls": 4
+          },
+          "countermodel": {
+            "model": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "size": 2
+          },
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "REFUTED_WITH_COUNTERMODEL",
+          "used_representation": "",
+          "validity": "REFUTED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
           "action": "GENERATE_COUNTEREXAMPLE_OR_SMALL_MODEL",
           "cost": {
             "expansions": 1,
@@ -16568,7 +18921,90 @@
           "used_representation": "",
           "validity": "REFUTED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 18,
+            "lemma_tries": 6,
+            "model_checks": 0,
+            "module_calls": 11
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
+          "action": "GENERATE_COUNTEREXAMPLE_OR_SMALL_MODEL",
+          "cost": {
+            "expansions": 2,
+            "lemma_tries": 0,
+            "model_checks": 1522,
+            "module_calls": 4
+          },
+          "countermodel": {
+            "model": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            "size": 2
+          },
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "REFUTED_WITH_COUNTERMODEL",
+          "used_representation": "",
+          "validity": "REFUTED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "GENERATE_COUNTEREXAMPLE_OR_SMALL_MODEL",
+          "cost": {
+            "expansions": 2,
+            "lemma_tries": 0,
+            "model_checks": 1522,
+            "module_calls": 4
+          },
+          "countermodel": {
+            "model": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            "size": 2
+          },
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "REFUTED_WITH_COUNTERMODEL",
+          "used_representation": "",
+          "validity": "REFUTED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
           "action": "GENERATE_COUNTEREXAMPLE_OR_SMALL_MODEL",
           "cost": {
             "expansions": 2,
@@ -17080,6 +19516,23 @@
           "used_representation": "",
           "validity": "DEFERRED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 1800,
+            "lemma_tries": 9,
+            "model_checks": 0,
+            "module_calls": 15
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
           "action": "DEFER_CANNOT_IDENTIFY",
           "cost": {
@@ -17087,6 +19540,40 @@
             "lemma_tries": 9,
             "model_checks": 58,
             "module_calls": 16
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 1350,
+            "lemma_tries": 3,
+            "model_checks": 58,
+            "module_calls": 8
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 600,
+            "lemma_tries": 0,
+            "model_checks": 58,
+            "module_calls": 5
           },
           "countermodel": null,
           "derivation": [],
@@ -17464,6 +19951,23 @@
           "used_representation": "",
           "validity": "DEFERRED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 1800,
+            "lemma_tries": 16,
+            "model_checks": 0,
+            "module_calls": 24
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
           "action": "DEFER_CANNOT_IDENTIFY",
           "cost": {
@@ -17471,6 +19975,40 @@
             "lemma_tries": 16,
             "model_checks": 132,
             "module_calls": 25
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 631,
+            "lemma_tries": 3,
+            "model_checks": 132,
+            "module_calls": 8
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 220,
+            "lemma_tries": 0,
+            "model_checks": 132,
+            "module_calls": 5
           },
           "countermodel": null,
           "derivation": [],
@@ -17848,6 +20386,23 @@
           "used_representation": "",
           "validity": "DEFERRED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 1800,
+            "lemma_tries": 17,
+            "model_checks": 0,
+            "module_calls": 28
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
           "action": "DEFER_CANNOT_IDENTIFY",
           "cost": {
@@ -17855,6 +20410,40 @@
             "lemma_tries": 17,
             "model_checks": 38,
             "module_calls": 29
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 447,
+            "lemma_tries": 3,
+            "model_checks": 38,
+            "module_calls": 8
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 174,
+            "lemma_tries": 0,
+            "model_checks": 38,
+            "module_calls": 5
           },
           "countermodel": null,
           "derivation": [],
@@ -18624,7 +21213,142 @@
           "used_representation": "",
           "validity": "VERIFIED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "REFORMULATE_FORMAL_STATEMENT_WITH_PRESERVATION_CHECK",
+          "cost": {
+            "expansions": 37,
+            "lemma_tries": 0,
+            "model_checks": 224,
+            "module_calls": 6
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              2,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              1,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              1,
+              0,
+              0
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "MATERIALLY_WEAKENED",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_BUT_INTENT_MISMATCH",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
+          "action": "REFORMULATE_FORMAL_STATEMENT_WITH_PRESERVATION_CHECK",
+          "cost": {
+            "expansions": 37,
+            "lemma_tries": 0,
+            "model_checks": 224,
+            "module_calls": 6
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              2,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              1,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              1,
+              0,
+              0
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "MATERIALLY_WEAKENED",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_BUT_INTENT_MISMATCH",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "REFORMULATE_FORMAL_STATEMENT_WITH_PRESERVATION_CHECK",
+          "cost": {
+            "expansions": 37,
+            "lemma_tries": 0,
+            "model_checks": 224,
+            "module_calls": 6
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              2,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              1,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              1,
+              0,
+              0
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "MATERIALLY_WEAKENED",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_BUT_INTENT_MISMATCH",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
           "action": "REFORMULATE_FORMAL_STATEMENT_WITH_PRESERVATION_CHECK",
           "cost": {
             "expansions": 37,
@@ -19400,7 +22124,94 @@
           "used_representation": "",
           "validity": "VERIFIED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 3,
+            "lemma_tries": 0,
+            "model_checks": 0,
+            "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              2,
+              2,
+              0,
+              0
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 3,
+            "lemma_tries": 0,
+            "model_checks": 0,
+            "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              2,
+              2,
+              0,
+              0
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 3,
+            "lemma_tries": 0,
+            "model_checks": 0,
+            "module_calls": 3
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              2,
+              2,
+              0,
+              0
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
           "action": "CONTINUE_DIRECT_PROOF_SEARCH",
           "cost": {
             "expansions": 3,
@@ -20020,6 +22831,23 @@
           "used_representation": "",
           "validity": "REFUTED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "REFORMULATE_FORMAL_STATEMENT_WITH_PRESERVATION_CHECK",
+          "cost": {
+            "expansions": 1800,
+            "lemma_tries": 8,
+            "model_checks": 445,
+            "module_calls": 17
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "ABSTRACTION_ELEVATION",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
           "action": "REFORMULATE_FORMAL_STATEMENT_WITH_PRESERVATION_CHECK",
           "cost": {
@@ -20027,6 +22855,80 @@
             "lemma_tries": 0,
             "model_checks": 890,
             "module_calls": 8
+          },
+          "countermodel": {
+            "model": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "size": 2
+          },
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "ABSTRACTION_ELEVATION",
+          "invented_lemma": null,
+          "terminal": "REFUTED_WITH_COUNTERMODEL",
+          "used_representation": "",
+          "validity": "REFUTED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "REFORMULATE_FORMAL_STATEMENT_WITH_PRESERVATION_CHECK",
+          "cost": {
+            "expansions": 168,
+            "lemma_tries": 0,
+            "model_checks": 890,
+            "module_calls": 7
+          },
+          "countermodel": {
+            "model": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "size": 2
+          },
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "ABSTRACTION_ELEVATION",
+          "invented_lemma": null,
+          "terminal": "REFUTED_WITH_COUNTERMODEL",
+          "used_representation": "",
+          "validity": "REFUTED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
+          "action": "REFORMULATE_FORMAL_STATEMENT_WITH_PRESERVATION_CHECK",
+          "cost": {
+            "expansions": 168,
+            "lemma_tries": 0,
+            "model_checks": 890,
+            "module_calls": 7
           },
           "countermodel": {
             "model": [
@@ -21308,6 +24210,85 @@
           "used_representation": "",
           "validity": "VERIFIED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "RETRIEVE_EXISTING_LEMMA",
+          "cost": {
+            "expansions": 256,
+            "lemma_tries": 1,
+            "model_checks": 0,
+            "module_calls": 4
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              1,
+              2
+            ],
+            [
+              1,
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              1,
+              2
+            ],
+            [
+              1,
+              0,
+              2,
+              1,
+              2
+            ],
+            [
+              1,
+              0,
+              2,
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              1,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              0,
+              1,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              1,
+              1,
+              2
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": [
+            [
+              1,
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
           "action": "RETRIEVE_EXISTING_LEMMA",
           "cost": {
@@ -21386,6 +24367,102 @@
           "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
           "used_representation": "",
           "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "RETRIEVE_EXISTING_LEMMA",
+          "cost": {
+            "expansions": 256,
+            "lemma_tries": 1,
+            "model_checks": 78,
+            "module_calls": 5
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              1,
+              2
+            ],
+            [
+              1,
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              1,
+              2
+            ],
+            [
+              1,
+              0,
+              2,
+              1,
+              2
+            ],
+            [
+              1,
+              0,
+              2,
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              1,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              0,
+              1,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              1,
+              1,
+              2
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": [
+            [
+              1,
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 341,
+            "lemma_tries": 0,
+            "model_checks": 78,
+            "module_calls": 5
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
         },
         "M_MINUS_LOWER_LEVEL_DISPOSITION": {
           "action": "RETRIEVE_EXISTING_LEMMA",
@@ -22188,6 +25265,23 @@
           "used_representation": "",
           "validity": "DEFERRED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 1800,
+            "lemma_tries": 8,
+            "model_checks": 0,
+            "module_calls": 14
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
           "action": "DEFER_CANNOT_IDENTIFY",
           "cost": {
@@ -22195,6 +25289,40 @@
             "lemma_tries": 8,
             "model_checks": 78,
             "module_calls": 15
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 1153,
+            "lemma_tries": 3,
+            "model_checks": 78,
+            "module_calls": 8
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 403,
+            "lemma_tries": 0,
+            "model_checks": 78,
+            "module_calls": 5
           },
           "countermodel": null,
           "derivation": [],
@@ -22572,6 +25700,23 @@
           "used_representation": "",
           "validity": "DEFERRED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 1800,
+            "lemma_tries": 10,
+            "model_checks": 0,
+            "module_calls": 15
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
           "action": "DEFER_CANNOT_IDENTIFY",
           "cost": {
@@ -22579,6 +25724,40 @@
             "lemma_tries": 10,
             "model_checks": 116,
             "module_calls": 16
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 1151,
+            "lemma_tries": 3,
+            "model_checks": 116,
+            "module_calls": 8
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 401,
+            "lemma_tries": 0,
+            "model_checks": 116,
+            "module_calls": 5
           },
           "countermodel": null,
           "derivation": [],
@@ -22956,6 +26135,23 @@
           "used_representation": "",
           "validity": "DEFERRED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 1800,
+            "lemma_tries": 10,
+            "model_checks": 0,
+            "module_calls": 15
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
           "action": "DEFER_CANNOT_IDENTIFY",
           "cost": {
@@ -22963,6 +26159,40 @@
             "lemma_tries": 10,
             "model_checks": 116,
             "module_calls": 16
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 1151,
+            "lemma_tries": 3,
+            "model_checks": 116,
+            "module_calls": 8
+          },
+          "countermodel": null,
+          "derivation": [],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "UNSOLVED_WITHIN_BUDGET",
+          "used_representation": "",
+          "validity": "DEFERRED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
+          "action": "DEFER_CANNOT_IDENTIFY",
+          "cost": {
+            "expansions": 401,
+            "lemma_tries": 0,
+            "model_checks": 116,
+            "module_calls": 5
           },
           "countermodel": null,
           "derivation": [],
@@ -23982,6 +27212,80 @@
           "used_representation": "",
           "validity": "VERIFIED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "INVENT_LOCAL_LEMMA",
+          "cost": {
+            "expansions": 1044,
+            "lemma_tries": 4,
+            "model_checks": 0,
+            "module_calls": 8
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              0,
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              2,
+              0,
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              2,
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              2,
+              1,
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              2
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": [
+            [
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
           "action": "INVENT_LOCAL_LEMMA",
           "cost": {
@@ -24052,6 +27356,164 @@
               0
             ]
           ],
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 1101,
+            "lemma_tries": 3,
+            "model_checks": 278,
+            "module_calls": 8
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              2
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 351,
+            "lemma_tries": 0,
+            "model_checks": 278,
+            "module_calls": 5
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              2
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
           "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
           "used_representation": "",
           "validity": "VERIFIED"
@@ -25529,6 +28991,80 @@
           "used_representation": "",
           "validity": "VERIFIED"
         },
+        "M_MINUS_COUNTEREXAMPLE_PROBE": {
+          "action": "INVENT_LOCAL_LEMMA",
+          "cost": {
+            "expansions": 225,
+            "lemma_tries": 0,
+            "model_checks": 0,
+            "module_calls": 4
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              0,
+              2
+            ],
+            [
+              1,
+              0,
+              0,
+              2
+            ],
+            [
+              1,
+              0,
+              0,
+              0,
+              2
+            ],
+            [
+              1,
+              0,
+              0,
+              0,
+              2,
+              1
+            ],
+            [
+              1,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              1
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": [
+            [
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
         "M_MINUS_FALSE_CHANGE_PENALTY": {
           "action": "INVENT_LOCAL_LEMMA",
           "cost": {
@@ -25599,6 +29135,204 @@
               0
             ]
           ],
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_INVENTION": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 1221,
+            "lemma_tries": 3,
+            "model_checks": 278,
+            "module_calls": 8
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              0,
+              2
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              2,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              1
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
+          "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+          "used_representation": "",
+          "validity": "VERIFIED"
+        },
+        "M_MINUS_LEMMA_LEVEL": {
+          "action": "CONTINUE_DIRECT_PROOF_SEARCH",
+          "cost": {
+            "expansions": 471,
+            "lemma_tries": 0,
+            "model_checks": 278,
+            "module_calls": 5
+          },
+          "countermodel": null,
+          "derivation": [
+            [
+              1,
+              0,
+              2
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              2,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              1
+            ]
+          ],
+          "derivation_pid": "P0",
+          "fidelity": "FAITHFUL",
+          "invented_lemma": null,
           "terminal": "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
           "used_representation": "",
           "validity": "VERIFIED"
