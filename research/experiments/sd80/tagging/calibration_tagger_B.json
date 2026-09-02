@@ -1,0 +1,166 @@
+{
+ "tagger": "TAGGER_B",
+ "rule_version": "V1",
+ "tags": [
+  {
+   "case_id": "RPP-106",
+   "tag": "EXTERNAL_VERIFIABLE",
+   "q1": "yes",
+   "q2": "yes",
+   "evidence_fields": ["osf_registrations_public_api", "osf_project_id", "Project URL", "Original Author's Assessment (decoded)"],
+   "rationale": "Two non-withdrawn OSF registrations (qf75b, 4kr6e; status OK, count 2) plus original-author ENDORSEMENT, all checkable via the OSF project id iajp5 / Project URL."
+  },
+  {
+   "case_id": "RPP-136",
+   "tag": "EXTERNAL_VERIFIABLE",
+   "q1": "yes",
+   "q2": "yes",
+   "evidence_fields": ["osf_registrations_public_api", "osf_project_id", "Project URL"],
+   "rationale": "OSF registry query is OK with count 3, of which two registrations (pppjg, bx64z) are not withdrawn and one (3f9kr) is withdrawn; a non-withdrawn external registration remains and is checkable via project id i29mh / Project URL."
+  },
+  {
+   "case_id": "RPP-26",
+   "tag": "EXTERNAL_VERIFIABLE",
+   "q1": "yes",
+   "q2": "yes",
+   "evidence_fields": ["osf_registrations_public_api", "osf_project_id", "Project URL", "Original Author's Assessment (decoded)"],
+   "rationale": "One non-withdrawn OSF registration (rc2kz; status OK, count 1) plus original-author ENDORSEMENT, checkable via OSF project id hasfu / Project URL."
+  },
+  {
+   "case_id": "RPP-44",
+   "tag": "EXTERNAL_VERIFIABLE",
+   "q1": "yes",
+   "q2": "yes",
+   "evidence_fields": ["osf_registrations_public_api", "osf_project_id", "Project URL"],
+   "rationale": "One non-withdrawn OSF registration (tys7b; status OK, count 1) deposited with an external registry and checkable via project id rc6mv / Project URL; author assessment is CONCERNS_INFORMED_JUDGMENT, but the registration alone satisfies Q1."
+  },
+  {
+   "case_id": "RPP-52",
+   "tag": "EXTERNAL_VERIFIABLE",
+   "q1": "yes",
+   "q2": "yes",
+   "evidence_fields": ["osf_registrations_public_api", "osf_project_id", "Project URL", "Original Author's Assessment (decoded)"],
+   "rationale": "One non-withdrawn OSF registration (ngxye; status OK, count 1) plus original-author ENDORSEMENT, checkable via project id l8srm / Project URL."
+  },
+  {
+   "case_id": "RPP-68",
+   "tag": "EXTERNAL_VERIFIABLE",
+   "q1": "yes",
+   "q2": "yes",
+   "evidence_fields": ["osf_registrations_public_api", "osf_project_id", "Project URL"],
+   "rationale": "Two non-withdrawn OSF registrations (bfzn9, 6vsc4; status OK, count 2) deposited with an external registry and checkable via project id sg3su / Project URL; author assessment is CONCERNS_INFORMED_JUDGMENT, but the registration alone satisfies Q1."
+  },
+  {
+   "case_id": "RPP-97",
+   "tag": "EXTERNAL_VERIFIABLE",
+   "q1": "yes",
+   "q2": "yes",
+   "evidence_fields": ["osf_registrations_public_api", "osf_project_id", "Project URL"],
+   "rationale": "Two non-withdrawn OSF registrations (8nqsh, 2r7nk; status OK, count 2) deposited with an external registry and checkable via project id etg7c / Project URL; original authors gave NO_RESPONSE, but the registration alone satisfies Q1."
+  },
+  {
+   "case_id": "RPCB-P15-E1",
+   "tag": "EXTERNAL_VERIFIABLE",
+   "q1": "yes",
+   "q2": "yes",
+   "evidence_fields": ["experiment.Did the experiment protocol get accepted and published in eLife", "paper.Link to Registered Report", "paper.Registered Report acceptance date", "paper.OSF project link"],
+   "rationale": "Experiment protocol accepted and published as an eLife Registered Report (accepted 4/29/2015) with a public article link (articles/06959) and OSF project link."
+  },
+  {
+   "case_id": "RPCB-P19-E1",
+   "tag": "EXTERNAL_VERIFIABLE",
+   "q1": "yes",
+   "q2": "yes",
+   "evidence_fields": ["experiment.Did the experiment protocol get accepted and published in eLife", "paper.Link to Registered Report", "paper.Registered Report acceptance date", "paper.OSF project link"],
+   "rationale": "Experiment protocol accepted and published as an eLife Registered Report (accepted 6/8/2015) with a public article link (articles/07072) and OSF project link."
+  },
+  {
+   "case_id": "RPCB-P24-E3",
+   "tag": "EXTERNAL_VERIFIABLE",
+   "q1": "yes",
+   "q2": "yes",
+   "evidence_fields": ["experiment.Did the experiment protocol get accepted and published in eLife", "paper.Link to Registered Report", "paper.Registered Report acceptance date", "paper.OSF project link"],
+   "rationale": "Experiment protocol accepted and published as an eLife Registered Report (accepted 2/4/2016) with a public article link (articles/12470) and OSF project link."
+  },
+  {
+   "case_id": "RPCB-P28-E3",
+   "tag": "EXTERNAL_VERIFIABLE",
+   "q1": "yes",
+   "q2": "yes",
+   "evidence_fields": ["experiment.Did the experiment protocol get accepted and published in eLife", "experiment.Did the experiment protocol get submitted to eLife", "experiment.Was experiment originally identified by RP:CB team", "paper.Link to Registered Report", "paper.OSF project link"],
+   "rationale": "The record states the protocol was accepted and published in eLife (Registered Report articles/06434, protocol 7) with an OSF link, which satisfies the rule's qualifying evidence even though the record also says 'submitted to eLife' = No and the experiment was not RP:CB-identified."
+  },
+  {
+   "case_id": "RPCB-P47-E1",
+   "tag": "EXTERNAL_VERIFIABLE",
+   "q1": "yes",
+   "q2": "yes",
+   "evidence_fields": ["experiment.Did the experiment protocol get accepted and published in eLife", "paper.Link to Registered Report", "paper.Registered Report acceptance date", "paper.OSF project link"],
+   "rationale": "Experiment protocol accepted and published as an eLife Registered Report (accepted 2/15/2016) with a public article link (articles/10860) and OSF project link; original authors did not respond, but editorial acceptance alone satisfies Q1."
+  },
+  {
+   "case_id": "RPCB-P7-E1",
+   "tag": "EXTERNAL_VERIFIABLE",
+   "q1": "yes",
+   "q2": "yes",
+   "evidence_fields": ["experiment.Did the experiment protocol get accepted and published in eLife", "paper.Link to Registered Report", "paper.Registered Report acceptance date", "paper.OSF project link"],
+   "rationale": "Experiment protocol accepted and published as an eLife Registered Report (accepted 1/25/2016) with a public article link (articles/11999) and OSF project link."
+  },
+  {
+   "case_id": "RPCB-P8-E1",
+   "tag": "EXTERNAL_VERIFIABLE",
+   "q1": "yes",
+   "q2": "yes",
+   "evidence_fields": ["experiment.Did the experiment protocol get accepted and published in eLife", "paper.Link to Registered Report", "paper.Registered Report acceptance date", "paper.OSF project link"],
+   "rationale": "Experiment protocol accepted and published as an eLife Registered Report (accepted 1/6/2016) with a public article link (articles/09976) and OSF project link."
+  },
+  {
+   "case_id": "FORMAL-Q1095330",
+   "tag": "EXTERNAL_VERIFIABLE",
+   "q1": "yes",
+   "q2": "yes",
+   "evidence_fields": ["wikidata.enwiki_title", "wikidata_qid", "wikidata.status"],
+   "rationale": "Externally authored encyclopedic entry present (enwiki_title 'Apéry's theorem', Wikidata Q1095330, status OK) that a third party can open to fix the theorem's hypotheses; the Wikidata description is only 'theorem' but the entry itself is named."
+  },
+  {
+   "case_id": "FORMAL-Q2226786",
+   "tag": "EXTERNAL_VERIFIABLE",
+   "q1": "yes",
+   "q2": "yes",
+   "evidence_fields": ["wikidata.enwiki_title", "wikidata_qid", "wikidata.status"],
+   "rationale": "Externally authored encyclopedic entry present (enwiki_title 'Sperner's theorem', Wikidata Q2226786, status OK) that a third party can open to compare the statement's hypotheses."
+  },
+  {
+   "case_id": "FORMAL-Q2471737",
+   "tag": "EXTERNAL_VERIFIABLE",
+   "q1": "yes",
+   "q2": "yes",
+   "evidence_fields": ["wikidata.enwiki_title", "wikidata_qid", "wikidata.status"],
+   "rationale": "Externally authored encyclopedic entry present (enwiki_title 'Carathéodory's theorem (convex hull)', Wikidata Q2471737, status OK) that a third party can open to compare the statement's hypotheses."
+  },
+  {
+   "case_id": "FORMAL-Q2525646",
+   "tag": "EXTERNAL_VERIFIABLE",
+   "q1": "yes",
+   "q2": "yes",
+   "evidence_fields": ["wikidata.enwiki_title", "wikidata_qid", "wikidata.status", "title_1000plus", "wikidata.label_en"],
+   "rationale": "An encyclopedic entry is present (enwiki_title 'Composition series', Wikidata Q2525646, status OK) and openable by a third party, satisfying the rule's literal formal-case criterion, although the entry is named for the structure rather than for the Jordan–Hölder theorem itself."
+  },
+  {
+   "case_id": "FORMAL-Q764287",
+   "tag": "EXTERNAL_VERIFIABLE",
+   "q1": "yes",
+   "q2": "yes",
+   "evidence_fields": ["wikidata.enwiki_title", "wikidata_qid", "wikidata.status"],
+   "rationale": "Externally authored encyclopedic entry present (enwiki_title 'Van der Waerden's theorem', Wikidata Q764287, status OK) that a third party can open to compare the statement's hypotheses."
+  },
+  {
+   "case_id": "FORMAL-Q842953",
+   "tag": "EXTERNAL_VERIFIABLE",
+   "q1": "yes",
+   "q2": "yes",
+   "evidence_fields": ["wikidata.enwiki_title", "wikidata_qid", "wikidata.status"],
+   "rationale": "Externally authored encyclopedic entry present (enwiki_title 'Lebesgue's density theorem', Wikidata Q842953, status OK) that a third party can open to compare the statement's hypotheses."
+  }
+ ]
+}
