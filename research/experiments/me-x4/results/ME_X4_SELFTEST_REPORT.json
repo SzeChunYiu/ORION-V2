@@ -1,0 +1,550 @@
+{
+  "known_answer": [
+    {
+      "expected": {
+        "preserved": [
+          "c0"
+        ],
+        "reopened": [
+          "c1",
+          "c2"
+        ],
+        "unresolved": []
+      },
+      "name": "KA-01-SOURCE_RETRACTED",
+      "oracle": {
+        "preserved": [
+          "c0"
+        ],
+        "reopened": [
+          "c1",
+          "c2"
+        ],
+        "unresolved": []
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "preserved": [
+          "c1"
+        ],
+        "reopened": [
+          "c0"
+        ],
+        "unresolved": []
+      },
+      "name": "KA-02-DEPENDENCE_DISCOVERED",
+      "oracle": {
+        "preserved": [
+          "c1"
+        ],
+        "reopened": [
+          "c0"
+        ],
+        "unresolved": []
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "preserved": [
+          "c1"
+        ],
+        "reopened": [
+          "c0"
+        ],
+        "unresolved": []
+      },
+      "name": "KA-03-CALIBRATION_INVALIDATED",
+      "oracle": {
+        "preserved": [
+          "c1"
+        ],
+        "reopened": [
+          "c0"
+        ],
+        "unresolved": []
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "preserved": [
+          "c1"
+        ],
+        "reopened": [
+          "c0"
+        ],
+        "unresolved": []
+      },
+      "name": "KA-04-TRANSPORT_RELATION_INVALIDATED",
+      "oracle": {
+        "preserved": [
+          "c1"
+        ],
+        "reopened": [
+          "c0"
+        ],
+        "unresolved": []
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "preserved": [
+          "c1"
+        ],
+        "reopened": [
+          "c0"
+        ],
+        "unresolved": []
+      },
+      "name": "KA-05-EVALUATOR_BLIND",
+      "oracle": {
+        "preserved": [
+          "c1"
+        ],
+        "reopened": [
+          "c0"
+        ],
+        "unresolved": []
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "preserved": [
+          "c0"
+        ],
+        "reopened": [
+          "c1"
+        ],
+        "unresolved": []
+      },
+      "name": "KA-06-PROBLEM_SCOPE_CHANGED",
+      "oracle": {
+        "preserved": [
+          "c0"
+        ],
+        "reopened": [
+          "c1"
+        ],
+        "unresolved": []
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "preserved": [
+          "c0",
+          "c1"
+        ],
+        "reopened": [],
+        "unresolved": []
+      },
+      "name": "KA-07-NEW_INDEPENDENT_SUPPORT",
+      "oracle": {
+        "preserved": [
+          "c0",
+          "c1"
+        ],
+        "reopened": [],
+        "unresolved": []
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "preserved": [
+          "c0",
+          "c1"
+        ],
+        "reopened": [],
+        "unresolved": []
+      },
+      "name": "KA-08-CORRECTION_RESTORES_SUPPORT",
+      "oracle": {
+        "preserved": [
+          "c0",
+          "c1"
+        ],
+        "reopened": [],
+        "unresolved": []
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "preserved": [
+          "c0",
+          "c1"
+        ],
+        "reopened": [],
+        "unresolved": []
+      },
+      "name": "KA-09-PARTIAL_SUPPORT_FAILURE",
+      "oracle": {
+        "preserved": [
+          "c0",
+          "c1"
+        ],
+        "reopened": [],
+        "unresolved": []
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "preserved": [
+          "c2"
+        ],
+        "reopened": [
+          "c0",
+          "c1"
+        ],
+        "unresolved": []
+      },
+      "name": "KA-10-ALL_SUFFICIENT_SUPPORT_FAILED",
+      "oracle": {
+        "preserved": [
+          "c2"
+        ],
+        "reopened": [
+          "c0",
+          "c1"
+        ],
+        "unresolved": []
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "preserved": [
+          "c1"
+        ],
+        "reopened": [],
+        "unresolved": [
+          "c0",
+          "c2"
+        ]
+      },
+      "name": "KA-11-CANNOT_CHECK_EDGE",
+      "oracle": {
+        "preserved": [
+          "c1"
+        ],
+        "reopened": [],
+        "unresolved": [
+          "c0",
+          "c2"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "preserved": [
+          "c0"
+        ],
+        "reopened": [],
+        "unresolved": []
+      },
+      "name": "KA-12-NO_REOPENING_NEEDED",
+      "oracle": {
+        "preserved": [
+          "c0"
+        ],
+        "reopened": [],
+        "unresolved": []
+      },
+      "passed": true
+    }
+  ],
+  "null_calibration": {
+    "assigned_label_shuffle_exact_rate_M": 0.0,
+    "global_reset_exact_where_oracle_mixed": 0,
+    "n_mixed": 8,
+    "n_requires_change": 8,
+    "never_reopen_exact_where_oracle_requires_change": 0,
+    "pass": true,
+    "random_exact_rate": 0.0,
+    "rule": "NEVER_REOPEN exact=0 on instances whose oracle reopens/censors something; GLOBAL_RESET exact=0 on instances whose oracle mixes preserved with reopened/unresolved; RANDOM exact <= 10%; M vs within-instance shuffled oracle labels exact <= 10%",
+    "shuffle_n": 6
+  },
+  "oracle_agreement": true,
+  "parent_fidelity": [
+    {
+      "detail": "z <- jz1(x, y; not )",
+      "parent": "JTMS",
+      "passed": true,
+      "test": "propagation_chain"
+    },
+    {
+      "detail": "['A', 'B']",
+      "parent": "JTMS",
+      "passed": true,
+      "test": "well_founded_assumptions_of"
+    },
+    {
+      "detail": "",
+      "parent": "JTMS",
+      "passed": true,
+      "test": "retraction_propagates_out"
+    },
+    {
+      "detail": "",
+      "parent": "JTMS",
+      "passed": true,
+      "test": "alternative_justification_restores"
+    },
+    {
+      "detail": "",
+      "parent": "JTMS",
+      "passed": true,
+      "test": "alternative_support_found_after_retraction"
+    },
+    {
+      "detail": "",
+      "parent": "JTMS",
+      "passed": true,
+      "test": "outlist_default_in_when_q_out"
+    },
+    {
+      "detail": "",
+      "parent": "JTMS",
+      "passed": true,
+      "test": "outlist_default_out_when_q_in"
+    },
+    {
+      "detail": "",
+      "parent": "JTMS",
+      "passed": true,
+      "test": "outlist_default_restored"
+    },
+    {
+      "detail": "",
+      "parent": "JTMS",
+      "passed": true,
+      "test": "circular_support_not_in"
+    },
+    {
+      "detail": "nogoods=[['A', 'B']]",
+      "parent": "JTMS",
+      "passed": true,
+      "test": "ddb_records_nogood_and_retracts_culprit"
+    },
+    {
+      "detail": "[['A', 'B']]",
+      "parent": "ATMS",
+      "passed": true,
+      "test": "label_conjunction"
+    },
+    {
+      "detail": "",
+      "parent": "ATMS",
+      "passed": true,
+      "test": "label_disjunction_two_environments"
+    },
+    {
+      "detail": "[['A', 'B'], ['A', 'C']]",
+      "parent": "ATMS",
+      "passed": true,
+      "test": "label_subsumption_minimal"
+    },
+    {
+      "detail": "",
+      "parent": "ATMS",
+      "passed": true,
+      "test": "nogood_removes_inconsistent_environments"
+    },
+    {
+      "detail": "",
+      "parent": "ATMS",
+      "passed": true,
+      "test": "holds_in_environment_lattice"
+    },
+    {
+      "detail": "",
+      "parent": "ATMS",
+      "passed": true,
+      "test": "premise_empty_environment"
+    },
+    {
+      "detail": "",
+      "parent": "AGM",
+      "passed": true,
+      "test": "closure_derives"
+    },
+    {
+      "detail": "[['e1', 'r1'], ['e2', 'r2']]",
+      "parent": "AGM",
+      "passed": true,
+      "test": "kernels_are_minimal_derivations"
+    },
+    {
+      "detail": "",
+      "parent": "AGM",
+      "passed": true,
+      "test": "success"
+    },
+    {
+      "detail": "",
+      "parent": "AGM",
+      "passed": true,
+      "test": "inclusion"
+    },
+    {
+      "detail": "['r1', 'r2']",
+      "parent": "AGM",
+      "passed": true,
+      "test": "core_retainment"
+    },
+    {
+      "detail": "",
+      "parent": "AGM",
+      "passed": true,
+      "test": "entrenchment_cuts_rules_not_evidence"
+    },
+    {
+      "detail": "",
+      "parent": "AGM",
+      "passed": true,
+      "test": "downstream_lost_with_contracted_support"
+    },
+    {
+      "detail": "",
+      "parent": "AGM",
+      "passed": true,
+      "test": "vacuity"
+    },
+    {
+      "detail": "",
+      "parent": "AGM",
+      "passed": true,
+      "test": "atom_contraction_removes_atom_only"
+    },
+    {
+      "detail": "",
+      "parent": "AGM",
+      "passed": true,
+      "test": "levi_revision"
+    },
+    {
+      "detail": "bel(c)=0.9810",
+      "parent": "NOISY_OR",
+      "passed": true,
+      "test": "noisy_or_arithmetic"
+    },
+    {
+      "detail": "",
+      "parent": "NOISY_OR",
+      "passed": true,
+      "test": "all_support_lost_below_threshold"
+    },
+    {
+      "detail": "",
+      "parent": "NOISY_OR",
+      "passed": true,
+      "test": "envelope_unresolved"
+    },
+    {
+      "detail": "7-item family at r=0.9 -> 0.4783 < 0.5 (generator caps families at <=4 items)",
+      "parent": "NOISY_OR",
+      "passed": true,
+      "test": "family_size_boundary_documented"
+    },
+    {
+      "detail": "['G1', 'S1']",
+      "parent": "ASSURANCE",
+      "passed": true,
+      "test": "solution_change_marks_own_argument_suspect"
+    },
+    {
+      "detail": "['G2', 'S2']",
+      "parent": "ASSURANCE",
+      "passed": true,
+      "test": "context_change_marks_contextualised_argument_suspect"
+    },
+    {
+      "detail": "",
+      "parent": "PROVENANCE_ONLY",
+      "passed": true,
+      "test": "revocation_descendants"
+    }
+  ],
+  "passed": true,
+  "schema_version": "orion.v2.me-x4.exact-study-analysis.v1.selftest",
+  "selftest_arm_exact": {
+    "A0_PROVENANCE_ONLY_INVALIDATION": 0.0,
+    "A1_JTMS_CLASSICAL": 0.6666666666666666,
+    "A2_ATMS_CLASSICAL": 0.6666666666666666,
+    "A3_AGM_KERNEL_CONTRACTION": 0.6666666666666666,
+    "A4_BAYES_NOISY_OR": 0.75,
+    "A5_ASSURANCE_CASE_UPDATE": 0.0,
+    "B5_R1_VERDICT_ONLY": 1.0,
+    "B5_R2_PROV": 1.0,
+    "B5_R3_PROV+DEP": 1.0,
+    "B5_R4_PROV+DEP+TRANS+EVAL": 1.0,
+    "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": 1.0,
+    "C_NEVER_REOPEN": 0.3333333333333333,
+    "C_RANDOM_DISPOSITION": 0.0,
+    "M_GLOBAL_RESET_CONTROL": 0.0,
+    "M_ME_SELECTIVE_REOPENING": 1.0,
+    "M_MINUS_DEPENDENCE_ANCESTRY": 0.9166666666666666,
+    "M_MINUS_EVALUATOR_CONTRACT": 0.75,
+    "M_MINUS_SUPPORT_FAMILIES": 0.16666666666666666,
+    "M_MINUS_TYPED_TRANSPORT": 1.0,
+    "M_PROVENANCE_ONLY_CONTROL": 0.0
+  },
+  "separation": {
+    "cases": {
+      "SEP-P": {
+        "arms": {
+          "B5_R1_VERDICT_ONLY": {
+            "c": "PRESERVED"
+          },
+          "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": {
+            "c": "REOPENED"
+          },
+          "M_ME_SELECTIVE_REOPENING": {
+            "c": "REOPENED"
+          }
+        },
+        "expected": {
+          "preserved": [],
+          "reopened": [
+            "c"
+          ],
+          "unresolved": []
+        },
+        "oracle_matches_hand_answer": true
+      },
+      "SEP-Q": {
+        "arms": {
+          "B5_R1_VERDICT_ONLY": {
+            "c": "PRESERVED"
+          },
+          "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": {
+            "c": "PRESERVED"
+          },
+          "M_ME_SELECTIVE_REOPENING": {
+            "c": "PRESERVED"
+          }
+        },
+        "expected": {
+          "preserved": [
+            "c"
+          ],
+          "reopened": [],
+          "unresolved": []
+        },
+        "oracle_matches_hand_answer": true
+      }
+    },
+    "passed": true,
+    "structure_exchange_exact_on_both": true,
+    "verdict_only_fails_at_least_one": true,
+    "verdict_only_outputs_identical_on_P_and_Q": true
+  }
+}
