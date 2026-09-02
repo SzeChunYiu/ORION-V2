@@ -1,0 +1,518 @@
+{
+  "cells": {
+    "e30r11": {
+      "anchors": {
+        "campaign_evaluation_records_cross_check": {
+          "bit_exact": true,
+          "expected": 480,
+          "matched": 480,
+          "mismatched": 0,
+          "missing": 0
+        },
+        "file_sha256": "791320f47d644f9e3381e97a108ee5677d0c91fcee44b84d61a3063cc97d5761",
+        "internal_freeze_sha256": "4663435c3036cc18d5b68ff1ebcbd7ed85f67fa19ded501b960f4decca3a3346",
+        "pass": true,
+        "per_arm_totals": {
+          "F0_PARENT_FEDERATION": 17,
+          "F2_ORION_METABOLIC_FULL": 19,
+          "SAME_MODEL_REFLECTION": 14,
+          "SIMPLE_DIRECT": 18
+        }
+      },
+      "comparison": {
+        "bit_exact": true,
+        "expected": 480,
+        "matched": 480,
+        "mismatch_list": [],
+        "mismatched": 0,
+        "missing": 0,
+        "missing_list": []
+      },
+      "pass": true,
+      "reproduction": "480/480",
+      "truth": "E30_R11_TERMINAL_RAW_ROLLUP.json paired_task_table (in-repo, freeze 4663435c...)"
+    },
+    "e60": {
+      "anchors": {
+        "checks": [
+          {
+            "check": "supersede_ledger_preserved_in_campaign_repair_dir",
+            "pass": true
+          },
+          {
+            "check": "supersede_sha256_superseded_record_preserved_and_live_differs",
+            "pass": true,
+            "path": "confirmatory-r3/evaluations/F2_MINUS_DECOMPOSITION/bugsinpy-scrapy-5.json",
+            "preserved_copy": "repair/superseded-r3-falsifier/evaluations/F2_MINUS_DECOMPOSITION/bugsinpy-scrapy-5.20260830T210446Z.json"
+          },
+          {
+            "arm": "F2_ORION_METABOLIC_FULL",
+            "check": "arm_summary_success_count",
+            "expected": 5,
+            "observed": 5,
+            "pass": true
+          },
+          {
+            "arm": "F2_ORION_METABOLIC_FULL",
+            "check": "arm_summary_project_success_count",
+            "expected": 1,
+            "observed": 1,
+            "pass": true,
+            "project": "ansible"
+          },
+          {
+            "arm": "F2_ORION_METABOLIC_FULL",
+            "check": "arm_summary_project_success_count",
+            "expected": 0,
+            "observed": 0,
+            "pass": true,
+            "project": "black"
+          },
+          {
+            "arm": "F2_ORION_METABOLIC_FULL",
+            "check": "arm_summary_project_success_count",
+            "expected": 1,
+            "observed": 1,
+            "pass": true,
+            "project": "cookiecutter"
+          },
+          {
+            "arm": "F2_ORION_METABOLIC_FULL",
+            "check": "arm_summary_project_success_count",
+            "expected": 0,
+            "observed": 0,
+            "pass": true,
+            "project": "fastapi"
+          },
+          {
+            "arm": "F2_ORION_METABOLIC_FULL",
+            "check": "arm_summary_project_success_count",
+            "expected": 0,
+            "observed": 0,
+            "pass": true,
+            "project": "pandas"
+          },
+          {
+            "arm": "F2_ORION_METABOLIC_FULL",
+            "check": "arm_summary_project_success_count",
+            "expected": 1,
+            "observed": 1,
+            "pass": true,
+            "project": "scrapy"
+          },
+          {
+            "arm": "F2_ORION_METABOLIC_FULL",
+            "check": "arm_summary_project_success_count",
+            "expected": 0,
+            "observed": 0,
+            "pass": true,
+            "project": "tornado"
+          },
+          {
+            "arm": "F2_ORION_METABOLIC_FULL",
+            "check": "arm_summary_project_success_count",
+            "expected": 2,
+            "observed": 2,
+            "pass": true,
+            "project": "tqdm"
+          },
+          {
+            "arm": "F2_MINUS_DECOMPOSITION",
+            "check": "arm_summary_success_count",
+            "expected": 7,
+            "observed": 7,
+            "pass": true
+          },
+          {
+            "arm": "F2_MINUS_DECOMPOSITION",
+            "check": "arm_summary_project_success_count",
+            "expected": 1,
+            "observed": 1,
+            "pass": true,
+            "project": "ansible"
+          },
+          {
+            "arm": "F2_MINUS_DECOMPOSITION",
+            "check": "arm_summary_project_success_count",
+            "expected": 1,
+            "observed": 1,
+            "pass": true,
+            "project": "black"
+          },
+          {
+            "arm": "F2_MINUS_DECOMPOSITION",
+            "check": "arm_summary_project_success_count",
+            "expected": 1,
+            "observed": 1,
+            "pass": true,
+            "project": "cookiecutter"
+          },
+          {
+            "arm": "F2_MINUS_DECOMPOSITION",
+            "check": "arm_summary_project_success_count",
+            "expected": 0,
+            "observed": 0,
+            "pass": true,
+            "project": "fastapi"
+          },
+          {
+            "arm": "F2_MINUS_DECOMPOSITION",
+            "check": "arm_summary_project_success_count",
+            "expected": 0,
+            "observed": 0,
+            "pass": true,
+            "project": "pandas"
+          },
+          {
+            "arm": "F2_MINUS_DECOMPOSITION",
+            "check": "arm_summary_project_success_count",
+            "expected": 2,
+            "observed": 2,
+            "pass": true,
+            "project": "scrapy"
+          },
+          {
+            "arm": "F2_MINUS_DECOMPOSITION",
+            "check": "arm_summary_project_success_count",
+            "expected": 0,
+            "observed": 0,
+            "pass": true,
+            "project": "tornado"
+          },
+          {
+            "arm": "F2_MINUS_DECOMPOSITION",
+            "check": "arm_summary_project_success_count",
+            "expected": 2,
+            "observed": 2,
+            "pass": true,
+            "project": "tqdm"
+          },
+          {
+            "arm": "F2_MINUS_NATIVE_RECOVERY",
+            "check": "arm_summary_success_count",
+            "expected": 5,
+            "observed": 5,
+            "pass": true
+          },
+          {
+            "arm": "F2_MINUS_NATIVE_RECOVERY",
+            "check": "arm_summary_project_success_count",
+            "expected": 1,
+            "observed": 1,
+            "pass": true,
+            "project": "ansible"
+          },
+          {
+            "arm": "F2_MINUS_NATIVE_RECOVERY",
+            "check": "arm_summary_project_success_count",
+            "expected": 0,
+            "observed": 0,
+            "pass": true,
+            "project": "black"
+          },
+          {
+            "arm": "F2_MINUS_NATIVE_RECOVERY",
+            "check": "arm_summary_project_success_count",
+            "expected": 1,
+            "observed": 1,
+            "pass": true,
+            "project": "cookiecutter"
+          },
+          {
+            "arm": "F2_MINUS_NATIVE_RECOVERY",
+            "check": "arm_summary_project_success_count",
+            "expected": 0,
+            "observed": 0,
+            "pass": true,
+            "project": "fastapi"
+          },
+          {
+            "arm": "F2_MINUS_NATIVE_RECOVERY",
+            "check": "arm_summary_project_success_count",
+            "expected": 0,
+            "observed": 0,
+            "pass": true,
+            "project": "pandas"
+          },
+          {
+            "arm": "F2_MINUS_NATIVE_RECOVERY",
+            "check": "arm_summary_project_success_count",
+            "expected": 1,
+            "observed": 1,
+            "pass": true,
+            "project": "scrapy"
+          },
+          {
+            "arm": "F2_MINUS_NATIVE_RECOVERY",
+            "check": "arm_summary_project_success_count",
+            "expected": 0,
+            "observed": 0,
+            "pass": true,
+            "project": "tornado"
+          },
+          {
+            "arm": "F2_MINUS_NATIVE_RECOVERY",
+            "check": "arm_summary_project_success_count",
+            "expected": 2,
+            "observed": 2,
+            "pass": true,
+            "project": "tqdm"
+          },
+          {
+            "arm": "F2_MINUS_COUNTERPROBE",
+            "check": "arm_summary_success_count",
+            "expected": 4,
+            "observed": 4,
+            "pass": true
+          },
+          {
+            "arm": "F2_MINUS_COUNTERPROBE",
+            "check": "arm_summary_project_success_count",
+            "expected": 1,
+            "observed": 1,
+            "pass": true,
+            "project": "ansible"
+          },
+          {
+            "arm": "F2_MINUS_COUNTERPROBE",
+            "check": "arm_summary_project_success_count",
+            "expected": 0,
+            "observed": 0,
+            "pass": true,
+            "project": "black"
+          },
+          {
+            "arm": "F2_MINUS_COUNTERPROBE",
+            "check": "arm_summary_project_success_count",
+            "expected": 0,
+            "observed": 0,
+            "pass": true,
+            "project": "cookiecutter"
+          },
+          {
+            "arm": "F2_MINUS_COUNTERPROBE",
+            "check": "arm_summary_project_success_count",
+            "expected": 0,
+            "observed": 0,
+            "pass": true,
+            "project": "fastapi"
+          },
+          {
+            "arm": "F2_MINUS_COUNTERPROBE",
+            "check": "arm_summary_project_success_count",
+            "expected": 0,
+            "observed": 0,
+            "pass": true,
+            "project": "pandas"
+          },
+          {
+            "arm": "F2_MINUS_COUNTERPROBE",
+            "check": "arm_summary_project_success_count",
+            "expected": 1,
+            "observed": 1,
+            "pass": true,
+            "project": "scrapy"
+          },
+          {
+            "arm": "F2_MINUS_COUNTERPROBE",
+            "check": "arm_summary_project_success_count",
+            "expected": 0,
+            "observed": 0,
+            "pass": true,
+            "project": "tornado"
+          },
+          {
+            "arm": "F2_MINUS_COUNTERPROBE",
+            "check": "arm_summary_project_success_count",
+            "expected": 2,
+            "observed": 2,
+            "pass": true,
+            "project": "tqdm"
+          },
+          {
+            "arm": "F2_MINUS_SELECTIVE_REOPEN",
+            "check": "arm_summary_success_count",
+            "expected": 5,
+            "observed": 5,
+            "pass": true
+          },
+          {
+            "arm": "F2_MINUS_SELECTIVE_REOPEN",
+            "check": "arm_summary_project_success_count",
+            "expected": 1,
+            "observed": 1,
+            "pass": true,
+            "project": "ansible"
+          },
+          {
+            "arm": "F2_MINUS_SELECTIVE_REOPEN",
+            "check": "arm_summary_project_success_count",
+            "expected": 0,
+            "observed": 0,
+            "pass": true,
+            "project": "black"
+          },
+          {
+            "arm": "F2_MINUS_SELECTIVE_REOPEN",
+            "check": "arm_summary_project_success_count",
+            "expected": 1,
+            "observed": 1,
+            "pass": true,
+            "project": "cookiecutter"
+          },
+          {
+            "arm": "F2_MINUS_SELECTIVE_REOPEN",
+            "check": "arm_summary_project_success_count",
+            "expected": 0,
+            "observed": 0,
+            "pass": true,
+            "project": "fastapi"
+          },
+          {
+            "arm": "F2_MINUS_SELECTIVE_REOPEN",
+            "check": "arm_summary_project_success_count",
+            "expected": 0,
+            "observed": 0,
+            "pass": true,
+            "project": "pandas"
+          },
+          {
+            "arm": "F2_MINUS_SELECTIVE_REOPEN",
+            "check": "arm_summary_project_success_count",
+            "expected": 1,
+            "observed": 1,
+            "pass": true,
+            "project": "scrapy"
+          },
+          {
+            "arm": "F2_MINUS_SELECTIVE_REOPEN",
+            "check": "arm_summary_project_success_count",
+            "expected": 0,
+            "observed": 0,
+            "pass": true,
+            "project": "tornado"
+          },
+          {
+            "arm": "F2_MINUS_SELECTIVE_REOPEN",
+            "check": "arm_summary_project_success_count",
+            "expected": 2,
+            "observed": 2,
+            "pass": true,
+            "project": "tqdm"
+          },
+          {
+            "check": "component_effects_success_paired_table",
+            "contrast": "F2_MINUS_COUNTERPROBE",
+            "expected": {
+              "both_false": 35,
+              "both_true": 4,
+              "left_only": 1,
+              "right_only": 0
+            },
+            "observed": {
+              "both_false": 35,
+              "both_true": 4,
+              "left_only": 1,
+              "right_only": 0
+            },
+            "pass": true
+          },
+          {
+            "check": "component_effects_success_paired_table",
+            "contrast": "F2_MINUS_DECOMPOSITION",
+            "expected": {
+              "both_false": 33,
+              "both_true": 5,
+              "left_only": 0,
+              "right_only": 2
+            },
+            "observed": {
+              "both_false": 33,
+              "both_true": 5,
+              "left_only": 0,
+              "right_only": 2
+            },
+            "pass": true
+          },
+          {
+            "check": "component_effects_success_paired_table",
+            "contrast": "F2_MINUS_NATIVE_RECOVERY",
+            "expected": {
+              "both_false": 35,
+              "both_true": 5,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "observed": {
+              "both_false": 35,
+              "both_true": 5,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "pass": true
+          },
+          {
+            "check": "component_effects_success_paired_table",
+            "contrast": "F2_MINUS_SELECTIVE_REOPEN",
+            "expected": {
+              "both_false": 35,
+              "both_true": 5,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "observed": {
+              "both_false": 35,
+              "both_true": 5,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "pass": true
+          }
+        ],
+        "pass": true
+      },
+      "comparison": {
+        "bit_exact": true,
+        "expected": 600,
+        "matched": 600,
+        "mismatch_list": [],
+        "mismatched": 0,
+        "missing": 0,
+        "missing_list": []
+      },
+      "pass": true,
+      "reproduction": "600/600",
+      "truth": "frozen campaign evaluation records (600) anchored to in-repo E60 arm_summaries / component_effects paired tables / supersede.sha256"
+    }
+  },
+  "checker_validation": {
+    "e30r11": {
+      "dropped_detected": 1,
+      "flipped_detected": 1,
+      "flipped_key": [
+        "1",
+        "F0_PARENT_FEDERATION",
+        "bugsinpy-ansible-1"
+      ],
+      "pass": true,
+      "self_compare_bit_exact": true
+    },
+    "e60": {
+      "dropped_detected": 1,
+      "flipped_detected": 1,
+      "flipped_key": [
+        "1",
+        "F2_MINUS_COUNTERPROBE",
+        "bugsinpy-ansible-1"
+      ],
+      "pass": true,
+      "self_compare_bit_exact": true
+    }
+  },
+  "design": "PC_R6_FULL_REGRESSION_EVALUATOR_LANE_DESIGN_V1",
+  "gate": "GR0(a) LANE_VALID: registered-failing-test vector bit-exact",
+  "generated_utc": "2026-09-02T09:15:48.553846+00:00",
+  "lane_version": "orion.v2.pc-r6-fullreg-evaluator-lane.v2",
+  "schema_version": "orion.v2.pc-r6-gr0a-receipt.v1",
+  "status": "PASS"
+}

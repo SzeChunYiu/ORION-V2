@@ -1,0 +1,46 @@
+{
+  "campaign_id": "campaign-pc-r6-fullreg-e30r11-e60-20260902-774903e1",
+  "cells": {
+    "e30r11": {
+      "arms": [
+        "F2_ORION_METABOLIC_FULL",
+        "F0_PARENT_FEDERATION",
+        "SAME_MODEL_REFLECTION",
+        "SIMPLE_DIRECT"
+      ],
+      "expected_evaluations": 480,
+      "reps": [
+        "1",
+        "2",
+        "3"
+      ],
+      "root": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e30-r11-disposition-offline-core4-rep3-deficit-topup-20260828-ffcc8ed6",
+      "tasks": 40
+    },
+    "e60": {
+      "arms": [
+        "F2_ORION_METABOLIC_FULL",
+        "F2_MINUS_DECOMPOSITION",
+        "F2_MINUS_NATIVE_RECOVERY",
+        "F2_MINUS_COUNTERPROBE",
+        "F2_MINUS_SELECTIVE_REOPEN"
+      ],
+      "expected_evaluations": 600,
+      "reps": [
+        "1",
+        "2",
+        "3"
+      ],
+      "root": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e60-r1-component-ablation-20260829-38aedc50",
+      "tasks": 40
+    }
+  },
+  "design": "PC_R6_FULL_REGRESSION_EVALUATOR_LANE_DESIGN_V1",
+  "entry_count": 2858,
+  "frozen_lane_adapter_sha256": "829abb411ccf0bd71182eea4c11d2e07fae60f3b743872f7b4fce0a8635aae93",
+  "generated_utc": "2026-09-02T04:17:07.177288+00:00",
+  "lane_version": "orion.v2.pc-r6-fullreg-evaluator-lane.v1",
+  "manifest8": "774903e1",
+  "manifest_sha256": "774903e14ff2bb2b0ac8a274fbb6b8a2ecead2a7545613199662f4dd44d445f9",
+  "schema_version": "orion.v2.pc-r6-input-manifest.v1"
+}
