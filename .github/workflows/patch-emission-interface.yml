@@ -1,0 +1,109 @@
+name: patch-emission-interface
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "src/orion_v2/patch_emission.py"
+      - "src/orion_v2/unified_diff_interface.py"
+      - "scripts/orion_claude_arms.py"
+      - "scripts/orion_codex_arms.py"
+      - "scripts/validate_orion_agent_responses.py"
+      - "scripts/audit_orion_diff_interface.py"
+      - "tests/unit/test_patch_emission_wave6.py"
+      - "tests/unit/test_orion_claude_arms_wave6.py"
+      - "tests/unit/test_orion_codex_arms_wave6.py"
+      - "tests/unit/test_unified_diff_interface_wave6.py"
+      - "research/evaluation/E80_ARM_SIDE_PATCH_EMISSION_V1.md"
+      - ".github/workflows/patch-emission-interface.yml"
+  pull_request:
+    paths:
+      - "src/orion_v2/patch_emission.py"
+      - "src/orion_v2/unified_diff_interface.py"
+      - "scripts/orion_claude_arms.py"
+      - "scripts/orion_codex_arms.py"
+      - "scripts/validate_orion_agent_responses.py"
+      - "scripts/audit_orion_diff_interface.py"
+      - "tests/unit/test_patch_emission_wave6.py"
+      - "tests/unit/test_orion_claude_arms_wave6.py"
+      - "tests/unit/test_orion_codex_arms_wave6.py"
+      - "tests/unit/test_unified_diff_interface_wave6.py"
+      - "research/evaluation/E80_ARM_SIDE_PATCH_EMISSION_V1.md"
+      - ".github/workflows/patch-emission-interface.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  emission-interface:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ORION and test tooling
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e . pytest
+
+      - name: Compile the emission interface and both arm executables
+        run: |
+          python -m py_compile src/orion_v2/patch_emission.py
+          python -m py_compile src/orion_v2/unified_diff_interface.py
+          python -m py_compile scripts/orion_claude_arms.py
+          python -m py_compile scripts/orion_codex_arms.py
+          python -m py_compile scripts/validate_orion_agent_responses.py
+
+      - name: Run emission, arm and frozen-canonicalizer tests
+        run: |
+          python -m pytest -q \
+            tests/unit/test_patch_emission_wave6.py \
+            tests/unit/test_orion_claude_arms_wave6.py \
+            tests/unit/test_orion_codex_arms_wave6.py \
+            tests/unit/test_unified_diff_interface_wave6.py
+
+      - name: Assert the E30 frozen control code is byte-unchanged
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+
+          freeze = json.loads(
+              Path("research/experiments/E30_SYNTAX_SENSITIVITY_CONTROL_FREEZE_V1.json").read_text()
+          )
+          pinned = freeze["pinned_control_code"]
+          checked = 0
+          for relative, expected in pinned.items():
+              if relative == "note" or relative == "hash_algorithm":
+                  continue
+              digest = hashlib.sha256(Path(relative).read_bytes()).hexdigest()
+              assert digest.startswith(expected), (
+                  f"{relative} broke the E30 freeze pin: {digest[:16]} != {expected}"
+              )
+              checked += 1
+          assert checked == 4, f"expected 4 pinned files, checked {checked}"
+          print(f"E30 freeze intact: {checked} pinned files byte-unchanged")
+          PY
+
+      - name: Assert emission carries no gold access and no rescoring authority
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          source = Path("src/orion_v2/patch_emission.py").read_text()
+          for forbidden in ("gold_patch", "fixed_version", "reference_solution", "expected_output"):
+              assert forbidden not in source, f"emission must stay gold-blind: {forbidden}"
+          # git is only ever invoked for a non-mutating check.
+          assert source.count('"git"') == 2  # shutil.which + the --check argv
+          assert '"--check"' in source
+          for mutating in ('"apply", "-"', "--index", "--3way", "--reject"):
+              assert mutating not in source, f"emission must not mutate a workspace: {mutating}"
+          print("emission layer is gold-blind and non-mutating")
+          PY

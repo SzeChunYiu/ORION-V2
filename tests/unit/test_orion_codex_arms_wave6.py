@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import pytest
+
 from scripts.orion_codex_arms import _arm_instructions, _normalize_patch, _schema
 
 
@@ -24,3 +26,15 @@ def test_patch_normalizer_accepts_bare_paths_and_multiple_files() -> None:
 def test_ablation_prompts_are_distinct() -> None:
     assert "Do not decompose" in _arm_instructions("F2_MINUS_DECOMPOSITION")
     assert "Do not perform challenge" in _arm_instructions("F2_MINUS_COUNTERPROBE")
+
+
+def test_codex_normalizer_extracts_a_fenced_diff() -> None:
+    fenced = "Proposed repair:\n```diff\n--- pkg/x.py\n+++ pkg/x.py\n@@ -1 +1 @@\n-x=1\n+x=2\n```\n"
+    normalized = _normalize_patch(fenced)
+    assert normalized.startswith("diff --git a/pkg/x.py b/pkg/x.py\n")
+    assert "Proposed repair" not in normalized
+
+
+def test_codex_normalizer_rejects_output_without_a_diff() -> None:
+    with pytest.raises(ValueError):
+        _normalize_patch("No repair could be justified from the visible workspace.")
