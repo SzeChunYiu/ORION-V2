@@ -27,6 +27,41 @@ export ORION_ARM_SERVED_MODEL="${E30R12_SERVED_MODEL:-glm-5.3}"
 export ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET=6000
 export ORION_ARM_HTTP_RETRIES=10
 
+# ---- coordinator authorization gate (design section 12) ----
+# Dispatch is refused unless a human-written authorization exists AND acknowledges the
+# exact design bytes: a design edited after authorization is a different study.
+AUTH="$R12/E30_R12_COORDINATOR_AUTHORIZATION.json"
+DESIGN_SHA=$(sha256sum "$DESIGN" | cut -c1-64)
+AUTH="$AUTH" DESIGN_SHA="$DESIGN_SHA" "$PY" - <<'AUTHZ'
+import json, os, sys
+from pathlib import Path
+path = Path(os.environ["AUTH"])
+if not path.is_file():
+    print(f"AUTHORIZATION_ABSENT: {path}"); sys.exit(4)
+auth = json.loads(path.read_text())
+expected = os.environ["DESIGN_SHA"]
+problems = []
+if auth.get("human_written") is not True:
+    problems.append("human_written is not true")
+if len(str(auth.get("human_written_token", ""))) < 16:
+    problems.append("human_written_token shorter than 16 characters")
+if auth.get("acknowledged_design_sha256") != expected:
+    problems.append(f"acknowledged_design_sha256 {auth.get('acknowledged_design_sha256')} != {expected}")
+if not str(auth.get("verbatim_operator_instruction", "")).strip():
+    problems.append("verbatim_operator_instruction is empty")
+if problems:
+    print("AUTHORIZATION_INVALID:", "; ".join(problems)); sys.exit(4)
+print("AUTHORIZATION_OK design_sha256", expected)
+AUTHZ
+
+# ---- the arms must import the post-#168 emission module from the R12 tree ----
+R12SRC="$R12SRC" "$PY" -c "
+import inspect, os, sys
+import orion_v2.patch_emission as m
+path = inspect.getfile(m)
+print('patch_emission ->', path)
+sys.exit(0 if path.startswith(os.environ['R12SRC']) else 3)"
+
 MAX_PASSES=${E30R12_MAX_PASSES:-12}
 for PASS in $(seq 1 "$MAX_PASSES"); do
   date -u +"PASS $PASS SCAN %Y-%m-%dT%H:%M:%SZ"
@@ -60,6 +95,7 @@ SCAN
 set -uo pipefail
 REP="\$1"; ARM="\$2"; TASK="\$3"
 RUN="$RUN"; PY="$PY"; SRC="$R12SRC"
+export PYTHONPATH="$R12SRC/src"
 RESP="\$RUN/confirmatory-r\$REP/responses/\$ARM/\$TASK.json"
 if [ -f "\$RESP" ]; then
   ST=\$("\$PY" -c "import json,sys;print(json.load(open(sys.argv[1])).get('status'))" "\$RESP" 2>/dev/null || echo BROKEN)

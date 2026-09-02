@@ -29,13 +29,19 @@ mkdir -p "$RUN"
 for REP in 1 2 3; do
   SRCREP="$R11/run/confirmatory-r$REP"; DSTREP="$RUN/confirmatory-r$REP"
   mkdir -p "$DSTREP/responses" "$DSTREP/evaluations" "$DSTREP/aggregate" "$DSTREP/logs"
-  cp -an "$SRCREP/requests" "$DSTREP/requests" 2>/dev/null || true
-  cp -n "$SRCREP/frozen_tasks.json" "$DSTREP/frozen_tasks.json"
+  # Idempotent and LOUD: a swallowed copy failure here would leave the dispatch with
+  # no requests, which the 480-request assertion below would then have to catch.
+  [ -d "$DSTREP/requests" ] || cp -a "$SRCREP/requests" "$DSTREP/requests"
+  [ -f "$DSTREP/frozen_tasks.json" ] || cp -a "$SRCREP/frozen_tasks.json" "$DSTREP/frozen_tasks.json"
 done
-cp -n "$R11/run/e30-taskmap-core480.json" "$RUN/e30-taskmap-core480.json"
-cp -n "$R11/run/e30_r11_arm_eval_frozen_lane.py" "$ADAPTER"
-cp -n "$R11/TASKMAP.json" "$R12/TASKMAP.json"
-cp -rn "$R11/prepared" "$R12/prepared" 2>/dev/null || true
+[ -f "$RUN/e30-taskmap-core480.json" ] || cp -a "$R11/run/e30-taskmap-core480.json" "$RUN/e30-taskmap-core480.json"
+[ -f "$ADAPTER" ] || cp -a "$R11/run/e30_r11_arm_eval_frozen_lane.py" "$ADAPTER"
+[ -f "$R12/TASKMAP.json" ] || cp -a "$R11/TASKMAP.json" "$R12/TASKMAP.json"
+[ -f "$R12/SETUP_RECEIPT.json" ] || cp -a "$R11/SETUP_RECEIPT.json" "$R12/SETUP_RECEIPT.json"
+# prepared/solver_public holds the gold-blind solver workspaces the reused requests name
+# by ABSOLUTE path; symlinked so the arms read the identical frozen trees rather than a
+# copy that could drift.  Read-only: emission's git apply --check never mutates them.
+[ -e "$R12/prepared" ] || ln -s "$R11/prepared" "$R12/prepared"
 [ -e "$R12/evaluator_private" ] || ln -s "$R11/evaluator_private" "$R12/evaluator_private"
 [ -e "$R12/inputs" ] || ln -s "$R11/inputs" "$R12/inputs"
 # GR0(b) reads gold patches from baseline_lanes/<task>/BugsInPy/.../bug_patch.txt.
@@ -49,17 +55,58 @@ GOT=$(sha256sum "$ADAPTER" | cut -c1-64)
 [ "$GOT" = "$EXPECT" ] || { echo "ADAPTER_SHA_MISMATCH $GOT != $EXPECT"; exit 3; }
 
 # ---- ORION-V2 source at the R12 anchor ----
+# NO FALLBACK.  A degraded source tree here would dispatch the pre-#168 arm code that
+# this whole study exists to replace, and every compile check would still pass, so a
+# failure to reach the anchor sha must abort setup rather than silently continue.
 : "${R12_SOURCE_SHA:?set R12_SOURCE_SHA to the merged PR sha}"
-if [ ! -d "$R12SRC/.git" ]; then
-  git clone --no-checkout https://github.com/SzeChunYiu/ORION-V2.git "$R12SRC" 2>/dev/null \
-    || cp -a "$R11/source" "$R12SRC"
-fi
-if [ -d "$R12SRC/.git" ]; then
-  git -C "$R12SRC" fetch --all --tags
-  git -C "$R12SRC" checkout --force "$R12_SOURCE_SHA"
-fi
-git -C "$R12SRC" rev-parse HEAD > "$R12/infra/source_head.txt" 2>/dev/null || true
+test -d "$R12SRC/.git" || { echo "R12SRC is not a git clone: $R12SRC"; exit 3; }
+git -C "$R12SRC" fetch --all --tags
+git -C "$R12SRC" checkout --force "$R12_SOURCE_SHA"
+HEAD_SHA=$(git -C "$R12SRC" rev-parse HEAD)
+[ "$HEAD_SHA" = "$R12_SOURCE_SHA" ] || { echo "SOURCE_SHA_MISMATCH $HEAD_SHA != $R12_SOURCE_SHA"; exit 3; }
+echo "$HEAD_SHA" > "$R12/infra/source_head.txt"
 "$PY" -m py_compile "$R12SRC/scripts/orion_claude_arms.py"
+
+# ---- the arms must import the POST-#168 emission module, from THIS tree ----
+grep -q "emit_apply_clean_patch" "$R12SRC/scripts/orion_claude_arms.py" \
+  || { echo "ARM_EXECUTABLE_PREDATES_PR168"; exit 3; }
+grep -q "ORION_ARM_SERVED_MODEL" "$R12SRC/scripts/orion_claude_arms.py" \
+  || { echo "ARM_EXECUTABLE_LACKS_SERVED_MODEL_PIN"; exit 3; }
+R12SRC="$R12SRC" "$PY" - <<'PROV'
+import inspect, os, sys
+import orion_v2.patch_emission as emission
+import orion_v2.unified_diff_interface as canon
+src = os.environ["R12SRC"]
+for module in (emission, canon):
+    path = inspect.getfile(module)
+    print(module.__name__, "->", path)
+    if not path.startswith(src):
+        print(f"IMPORT_PROVENANCE_FAIL: {module.__name__} resolves outside {src}")
+        sys.exit(3)
+assert hasattr(emission, "emit_apply_clean_patch")
+print("IMPORT_PROVENANCE_OK")
+PROV
+
+# ---- every reused request must name a solver workspace that exists and is readable ----
+# Without it emit_apply_clean_patch cannot run its git apply --check verification: the
+# patch would still be canonicalized, but blind, which quietly guts the study's premise
+# while the arm keeps writing COMPLETED_PROPOSAL_ONLY.
+R12="$R12" "$PY" - <<'WS'
+import json, os, sys
+from pathlib import Path
+run = Path(os.environ["R12"]) / "run"
+missing, checked = [], 0
+for rep in ("1", "2", "3"):
+    for request in sorted((run / f"confirmatory-r{rep}" / "requests").rglob("*.json")):
+        raw = str(json.loads(request.read_text()).get("task", {}).get("solver_workspace", "")).strip()
+        checked += 1
+        if not raw or not Path(raw).is_dir() or not os.access(raw, os.R_OK):
+            missing.append(f"{request.parent.name}/{request.stem}: {raw or '<empty>'}")
+print(f"requests checked={checked} unreadable_workspaces={len(missing)}")
+for item in missing[:10]:
+    print("  ", item)
+sys.exit(0 if checked == 480 and not missing else 3)
+WS
 
 # ---- served-model probe on the EXACT dispatch channel, fail closed ----
 export ANTHROPIC_MODEL="${E30R12_REQUESTED_MODEL:-glm-5.3}"

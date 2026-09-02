@@ -12,6 +12,15 @@ code computes both.  Forking the evaluator would silently break that.
 Two places in the PC-R6 runner are keyed to its own two cell names, and this wrapper
 adapts around them without editing the imported module:
 
+``manifest``
+    PC-R6's manifest stage is genuinely its own study's: it stamps a
+    ``campaign-pc-r6-fullreg-e30r11-e60-…`` id, records PC-R6's in-repo truth anchors as
+    inputs, and keys every ledger label to its cell names.  Reusing it under a name alias
+    would label R12's own ``run/`` tree as ``e30r11/…`` -- a provenance lie in the one
+    artifact whose job is provenance.  The wrapper therefore builds R12's input manifest
+    itself.  This stage performs no measurement: it only hashes inputs, so implementing it
+    here costs none of the evaluator-identity property that matters for D1.
+
 ``gr0a``
     PC-R6 read its truth vector from the in-repo E30-R11 rollup.  R12 has no prior
     vector, so its GR0a is *self-consistency*: the campaign's own frozen-lane
@@ -21,10 +30,16 @@ adapts around them without editing the imported module:
     ``e30r11``.  The E60-specific external anchor does not apply and is disabled.
 
 ``gr0b``
-    The gold known-answer control selects its cell by the literal name ``e30r11``.  The
-    stage body is otherwise cell-generic (its record paths are a hardcoded string, not
-    the cell name), so the wrapper passes a cell whose ``name`` attribute is aliased for
-    selection only.  The campaign root, tasks and gold patches are R12's throughout.
+    The gold known-answer control selects its cell by the literal name ``e30r11``.  Its
+    body is otherwise cell-generic -- its scratch record paths are a hardcoded string
+    rather than the cell name -- so the wrapper passes a cell whose ``name`` attribute is
+    aliased for selection only, and the measurement runs verbatim.  The campaign root,
+    tasks and gold patches are R12's throughout.  One consequence is cosmetic and
+    recorded here rather than papered over: the stage labels its evaluator_private reads
+    ``e30r11/evaluator_private/<task>``.  For R12 that label is accidentally accurate,
+    because ``$R12/evaluator_private`` is a symlink to R11's frozen oracle tree; it would
+    be a provenance defect if this wrapper were ever reused against a campaign with its
+    own private tree, and the alias must then be revisited.
 
 Stages, all delegated: ``manifest``, ``gr0a`` (``--execute`` per index, then collect),
 ``gr0b``, ``gr0`` (combine), ``suite`` (``--execute`` per index), ``rollup``,
@@ -34,6 +49,7 @@ from __future__ import annotations
 
 import argparse
 import importlib.util
+import json
 import shutil
 import sys
 from pathlib import Path
@@ -86,6 +102,63 @@ def build_parser(pc) -> argparse.ArgumentParser:
     return parser
 
 
+def stage_manifest(pc, args, cell) -> int:
+    """R12's own sha256 input ledger (see the module docstring for why not PC-R6's)."""
+    manifest = pc.Manifest()
+    for rep in cell.reps:
+        manifest.record(cell.run / f"confirmatory-r{rep}" / "frozen_tasks.json",
+                        f"{CELL_NAME}/run/confirmatory-r{rep}/frozen_tasks.json")
+        for arm in cell.arms:
+            for task_id in cell.task_ids:
+                manifest.record(cell.response_path(rep, arm, task_id),
+                                f"{CELL_NAME}/run/confirmatory-r{rep}/responses/{arm}/{task_id}.json")
+                evaluation = cell.evaluation_path(rep, arm, task_id)
+                if evaluation.is_file():
+                    manifest.record(evaluation,
+                                    f"{CELL_NAME}/run/confirmatory-r{rep}/evaluations/{arm}/{task_id}.json")
+                request = (cell.run / f"confirmatory-r{rep}" / "requests" / arm / f"{task_id}.json")
+                if request.is_file():
+                    manifest.record(request,
+                                    f"{CELL_NAME}/run/confirmatory-r{rep}/requests/{arm}/{task_id}.json")
+    for task_id in cell.task_ids:
+        workspace = cell.workspace(task_id)
+        for name in ("bugsinpy_run_test.sh", "bugsinpy_bug.info", "bugsinpy_requirements.txt"):
+            if (workspace / name).is_file():
+                manifest.record(workspace / name,
+                                f"{CELL_NAME}/evaluator_private/{task_id}/{name}")
+        identity = pc.workspace_identity(workspace)
+        manifest.entries[f"{CELL_NAME}/evaluator_private/{task_id}/@HEAD"] = identity["head"]
+        manifest.entries[f"{CELL_NAME}/evaluator_private/{task_id}/@STATUS"] = \
+            identity["status_sha256"]
+        for rel, digest in sorted(identity["deviating_files"].items()):
+            manifest.entries[f"{CELL_NAME}/evaluator_private/{task_id}/{rel}"] = digest
+    for path, label in (
+        (cell.root / "SETUP_RECEIPT.json", f"{CELL_NAME}/SETUP_RECEIPT.json"),
+        (cell.root / "RUN_IDENTITY.json", f"{CELL_NAME}/RUN_IDENTITY.json"),
+        (args.adapter, "frozen_lane_adapter"),
+    ):
+        if Path(path).is_file():
+            manifest.record(Path(path), label)
+    for task_id, gold in pc.select_gr0b_tasks(cell, args):
+        manifest.record(gold, f"gold/{task_id}/bug_patch.txt")
+    digest = manifest.write(args.out / "E30_R12_INPUT_MANIFEST.sha256")
+    campaign_id = f"campaign-e30-r12-fullreg-{args.date}-{digest[:8]}"
+    pc.write_json(args.out / "E30_R12_INPUT_MANIFEST.json", {
+        "schema_version": "orion.v2.e30-r12-input-manifest.v1",
+        "lane_version": pc.LANE_VERSION, "design": DESIGN_ID,
+        "generated_utc": pc.utc_now(), "entry_count": len(manifest.entries),
+        "manifest_sha256": digest, "manifest8": digest[:8], "campaign_id": campaign_id,
+        "cells": {CELL_NAME: {"root": str(cell.root), "arms": cell.arms, "reps": cell.reps,
+                              "tasks": len(cell.task_ids),
+                              "expected_evaluations": cell.expected_evaluations()}},
+        "frozen_lane_adapter_sha256": manifest.entries.get("frozen_lane_adapter"),
+        "imported_runner": str(args.pc_r6_runner),
+        "imported_runner_sha256": pc.sha256_file(Path(args.pc_r6_runner)),
+    })
+    print(json.dumps({"campaign_id": campaign_id, "entries": len(manifest.entries)}))
+    return 0
+
+
 def _receipt_alias(out: Path, source: str, target: str) -> None:
     src = out / source
     if src.is_file():
@@ -130,9 +203,7 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"{index}\t{cell_name}\t{task_id}")
             return 0
         if args.stage == "manifest":
-            rc = pc.stage_manifest(args, cells, manifest)
-            _receipt_alias(args.out, "PC_R6_INPUT_MANIFEST.json", "E30_R12_INPUT_MANIFEST.json")
-            return rc
+            return stage_manifest(pc, args, cell)
         if args.stage == "gr0a":
             if args.execute:
                 return pc.stage_execute(args, cells, manifest, kind="records_gr0a")

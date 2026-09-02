@@ -48,6 +48,11 @@ PC_R6_APPLY_FAIL_COMPARATOR = {        # design section 5, D1 historical compara
 # Design section 6.  Keyed to machine-detected baseline condition codes, never to names.
 E2_EXCLUDING_BASELINE_STATUSES = {"BASELINE_SUITE_NO_PASSING_TESTS"}
 E1_SENSITIVITY_CONDITION = "REGISTERED_TEST_UNFIXABLE_BY_SOURCE_ONLY_PATCH"
+# The GR0b gold control marks a task whose registered test no source-only patch can flip
+# (the fixed commit adds a fixture the frozen checkout never copies).  That is the
+# machine-detectable form of the third registered disposition: it is read from R12's own
+# GR0b receipt, never assumed from PC-R6's finding.
+GOLD_NOT_APPLICABLE_PREFIX = "GOLD_NOT_APPLICABLE_MISSING_FIXTURE"
 
 
 class AnalysisRefused(RuntimeError):
@@ -121,6 +126,18 @@ def served_model_homogeneity(campaign: Path, arms: list[str], reps: list[str],
 
 
 # ------------------------------------------------------------------------ endpoints
+def e1_sensitivity_exclusions(gr0b_path: Path | None) -> list[str]:
+    """Tasks the GR0b gold control proved unfixable by any source-only patch."""
+    if gr0b_path is None or not gr0b_path.is_file():
+        return []
+    receipt = json.loads(gr0b_path.read_text())
+    excluded = set()
+    for item in list(receipt.get("not_applicable", [])) + list(receipt.get("tasks", [])):
+        if str(item.get("gold_control_status", "")).startswith(GOLD_NOT_APPLICABLE_PREFIX):
+            excluded.add(str(item["task_id"]))
+    return sorted(excluded)
+
+
 def _majority(analyzer, values: list[bool | None]) -> bool | None:
     return analyzer.frozen_majority(values)
 
@@ -329,6 +346,10 @@ def render_markdown(result: dict[str, Any]) -> str:
             f"{_fmt(item.get('D1_patch_apply_failure_rate'), 4)} | "
             f"{_fmt(item.get('D1_pc_r6_comparator_failure_rate'), 4)} |")
     for label, key in (("E1 — registered failing test fixed (primary)", "E1_contrasts"),
+                       ("E1 — sensitivity denominator "
+                        f"({result['denominators']['E1_sensitivity']} tasks, "
+                        f"excluding {result['E1_sensitivity_excluded_task_ids'] or 'none'})",
+                        "E1_sensitivity_contrasts"),
                        ("E2 — any critical new failure (co-primary)", "E2_contrasts")):
         lines += ["", f"## {label}", "",
                   "| contrast | paired (bothF/bothT/L-only/R-only) | checkable | RD [CI95] | exact p | Holm p | reject |",
@@ -375,6 +396,9 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--rollup", type=Path, required=True)
     parser.add_argument("--gr0", type=Path, required=True)
+    parser.add_argument("--gr0b", type=Path,
+                        help="GR0b receipt; supplies the machine-detected E1 sensitivity "
+                             "exclusions (design section 6, third condition)")
     parser.add_argument("--campaign", type=Path, required=True)
     parser.add_argument("--analyzer", type=Path, required=True,
                         help="scripts/analyze_orion_real_problem_results.py")
@@ -402,6 +426,12 @@ def main(argv: list[str] | None = None) -> int:
                                     cell["task_ids"], args.served_model)
     tables = build_tables(cell, analyzer)
     e1 = family(analyzer, tables["E1"], analyzer.success, "E1 success")
+    excluded = e1_sensitivity_exclusions(args.gr0b)
+    e1_sensitivity_tables = {
+        arm: {task_id: item for task_id, item in table.items() if task_id not in excluded}
+        for arm, table in tables["E1"].items()}
+    e1_sensitivity = family(analyzer, e1_sensitivity_tables, analyzer.success,
+                            "E1 success, sensitivity denominator")
     e2 = family(analyzer, tables["E2"], analyzer.critical_failure, "E2 critical failure")
     gates = evaluate_gates(tables["per_arm"], e1, e2, gr0c)
     routing = route(gates, tables["per_arm"])
@@ -420,13 +450,15 @@ def main(argv: list[str] | None = None) -> int:
         },
         "per_arm": tables["per_arm"],
         "E1_contrasts": e1,
+        "E1_sensitivity_contrasts": e1_sensitivity,
+        "E1_sensitivity_excluded_task_ids": excluded,
         "E2_contrasts": e2,
         "E2_excluded_task_ids": tables["E2_excluded_task_ids"],
         "E2_exclusion_rule": tables["E2_exclusion_rule"],
         "E1_sensitivity_condition": E1_SENSITIVITY_CONDITION,
         "denominators": {
             "E1": len(cell["task_ids"]),
-            "E1_sensitivity": len(cell["task_ids"]) - 1,
+            "E1_sensitivity": len(cell["task_ids"]) - len(excluded),
             "E2": len(cell["task_ids"]) - len(tables["E2_excluded_task_ids"]),
         },
         "gates": gates,

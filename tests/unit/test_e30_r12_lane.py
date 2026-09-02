@@ -409,3 +409,172 @@ def test_wrapper_requires_the_campaign_argument(capsys):
     wrapper = _load("e30_r12_fullreg_eval", R12 / "e30_r12_fullreg_eval.py")
     assert wrapper.main(["--stage", "rollup", "--out", "/tmp/unused"]) == 2
     assert "--e30r12-campaign is required" in capsys.readouterr().err
+
+
+# ------------------------------------------------- evaluator wrapper, end to end
+# The m5p precedent (and PC-R6's own suite) is that a smoke test skipping main() misses
+# exactly the integration defects that cost a campaign.  This drives the wrapper through
+# every stage against the synthetic, genuinely executable campaign that
+# tests/unit/test_pc_r6_lane.py already knows how to build -- including the gr0b stage,
+# whose cell selection goes through the wrapper's name alias and would otherwise fail
+# with a bare StopIteration only after 480 model calls had been spent.
+pc_r6_test = _load("test_pc_r6_lane_for_r12", Path(__file__).with_name("test_pc_r6_lane.py"))
+
+
+@pytest.fixture(scope="module")
+def r12_campaign(tmp_path_factory):
+    base = tmp_path_factory.mktemp("e30_r12_lane")
+    campaign = base / "campaign-e30-r12-applyclean-core4-rep3-20260902-deadbeef"
+    pc_r6_test.build_campaign(campaign, "e30r12", pc_r6_test.E30_ARMS)
+    gold = (campaign / "baseline_lanes" / pc_r6_test.TASK / "BugsInPy" / "projects"
+            / pc_r6_test.PROJECT / "bugs" / "1" / "bug_patch.txt")
+    gold.parent.mkdir(parents=True)
+    gold.write_text(pc_r6_test.PATCHES["good"])
+    truth = base / "truth"
+    pc_r6_test.build_truth(truth, campaign)
+    out = base / "r12-out"
+    wrapper = _load("e30_r12_fullreg_eval_e2e", R12 / "e30_r12_fullreg_eval.py")
+    common = ["--e30r12-campaign", str(campaign), "--adapter", str(pc_r6_test.ADAPTER),
+              "--out", str(out), "--truth-dir", str(truth),
+              "--allow-partial-cells", "--date", "20260902"]
+    return {"campaign": campaign, "out": out, "common": common, "wrapper": wrapper}
+
+
+def test_wrapper_list_indices_and_manifest(r12_campaign, capsys):
+    wrapper, common, out = (r12_campaign["wrapper"], r12_campaign["common"], r12_campaign["out"])
+    assert wrapper.main(["--stage", "list-indices", *common]) == 0
+    rows = [line for line in capsys.readouterr().out.splitlines() if line.strip()]
+    assert rows and all(row.split("\t")[1] == "e30r12" for row in rows)
+    assert wrapper.main(["--stage", "manifest", *common]) == 0
+    # The wrapper aliases PC-R6's output names into R12's, so downstream stages and the
+    # receipt archive read as an R12 study rather than as a PC-R6 re-run.
+    assert (out / "E30_R12_INPUT_MANIFEST.json").is_file()
+    manifest = json.loads((out / "E30_R12_INPUT_MANIFEST.json").read_text())
+    assert "e30r12" in json.dumps(manifest)
+
+
+def test_wrapper_rejects_a_tampered_adapter(r12_campaign, tmp_path):
+    wrapper, common = r12_campaign["wrapper"], r12_campaign["common"]
+    tampered = tmp_path / "adapter.py"
+    tampered.write_text(pc_r6_test.ADAPTER.read_text() + "\n# tampered\n")
+    argv = [arg for arg in common]
+    argv[argv.index("--adapter") + 1] = str(tampered)
+    assert wrapper.main(["--stage", "list-indices", *argv]) == 2
+
+
+def test_wrapper_gr0a_gr0b_gr0_suite_rollup(r12_campaign):
+    wrapper, common, out = (r12_campaign["wrapper"], r12_campaign["common"], r12_campaign["out"])
+    assert wrapper.main(["--stage", "gr0a", "--execute", "--index", "0", *common]) == 0
+    assert wrapper.main(["--stage", "gr0a", *common]) == 0
+    gr0a = json.loads((out / "E30_R12_GR0A_RECEIPT.json").read_text())
+    # GR0a for R12 is self-consistency: the campaign's own frozen-lane records are truth.
+    assert gr0a["status"] == "PASS"
+    assert gr0a["cells"]["e30r12"]["comparison"]["bit_exact"] is True
+    assert gr0a["checker_validation"]["e30r12"]["pass"] is True
+
+    # gr0b goes through the wrapper's name alias; a StopIteration here would mean the
+    # alias silently stopped applying.
+    assert wrapper.main(["--stage", "gr0b", *common]) == 0
+    assert (out / "E30_R12_GR0B_RECEIPT.json").is_file()
+    assert wrapper.main(["--stage", "gr0", *common]) == 0
+    assert json.loads((out / "E30_R12_GR0_RECEIPT.json").read_text())["gr0_status"] == "PASS"
+
+    assert wrapper.main(["--stage", "suite", "--index", "0", *common]) == 0
+    assert wrapper.main(["--stage", "rollup", *common]) == 0
+    rollup = json.loads((out / "E30_R12_FULLREG_RAW_ROLLUP_V1.json").read_text())
+    assert "e30r12" in rollup["cells"]
+    cell = rollup["cells"]["e30r12"]
+    assert cell["arm_totals"], "the rollup must carry per-arm apply/compile totals for D1"
+    for totals in cell["arm_totals"].values():
+        assert "patch_apply_failure_rate" in totals and "patch_applied" in totals
+
+
+def test_wrapper_leaves_the_pc_r6_cell_specs_frozen(r12_campaign):
+    """A wrapper run must not mutate the archived cells PC-R6's own receipts rest on."""
+    wrapper = r12_campaign["wrapper"]
+    pc = wrapper.load_pc_r6(wrapper.DEFAULT_PC_R6_RUNNER)
+    assert pc.CELLS["e30r11"]["campaign"].startswith("campaign-e30-r11-")
+    assert pc.CELLS["e60"]["campaign"].startswith("campaign-e60-r1-")
+    assert pc.CELL_ORDER[:2] == ["e30r11", "e60"]
+
+
+# ------------------------------------------------------- E1 sensitivity denominator
+def test_e1_sensitivity_excludes_only_gold_not_applicable_tasks(tmp_path):
+    receipt = tmp_path / "gr0b.json"
+    receipt.write_text(json.dumps({"status": "PASS", "tasks": [
+        {"task_id": "bugsinpy-ansible-1", "gold_control_status": "APPLICABLE"}],
+        "not_applicable": [
+        {"task_id": "bugsinpy-cookiecutter-1",
+         "gold_control_status": "GOLD_NOT_APPLICABLE_MISSING_FIXTURE:tests/x.json"}]}))
+    assert analysis.e1_sensitivity_exclusions(receipt) == ["bugsinpy-cookiecutter-1"]
+    # No receipt, or a receipt with nothing not-applicable, excludes nothing.
+    assert analysis.e1_sensitivity_exclusions(tmp_path / "absent.json") == []
+    assert analysis.e1_sensitivity_exclusions(None) == []
+
+
+def test_e1_sensitivity_contrast_uses_the_reduced_denominator(tmp_path):
+    receipt = tmp_path / "gr0b.json"
+    receipt.write_text(json.dumps({"not_applicable": [
+        {"task_id": TASKS[0], "gold_control_status": "GOLD_NOT_APPLICABLE_MISSING_FIXTURE:x"}]}))
+    rollup_path = tmp_path / "rollup.json"
+    rollup_path.write_text(json.dumps(_rollup({}, {})))
+    out = tmp_path / "out"
+    assert analysis.main([
+        "--rollup", str(rollup_path), "--gr0", str(_gr0(tmp_path)),
+        "--gr0b", str(receipt), "--campaign", str(_campaign(tmp_path)),
+        "--analyzer", str(ANALYZER),
+        "--design", str(R12 / "E30_R12_APPLY_CLEAN_RERUN_DESIGN_V1.json"),
+        "--out", str(out)]) == 0
+    result = json.loads((out / "E30_R12_ROLLUP_V1.json").read_text())
+    assert result["E1_sensitivity_excluded_task_ids"] == [TASKS[0]]
+    assert result["denominators"]["E1"] == 40
+    assert result["denominators"]["E1_sensitivity"] == 39
+    for block in result["E1_contrasts"]:
+        assert block["checkable_task_count"] == 40
+    for block in result["E1_sensitivity_contrasts"]:
+        assert block["checkable_task_count"] == 39
+
+
+# --------------------------------------------------- dispatch-path guards (sbatch)
+SBATCH = R12 / "sbatch"
+
+
+def test_setup_has_no_silent_source_fallback():
+    """A degraded source tree would dispatch pre-#168 arm code while every check passed."""
+    text = (SBATCH / "e30_r12_setup.sbatch").read_text()
+    assert "cp -a \"$R11/source\"" not in text
+    # No swallowed failure anywhere in setup: every guard in this script exists because
+    # its failure mode is invisible downstream.
+    assert "2>/dev/null" not in text and "|| true" not in text
+    assert "SOURCE_SHA_MISMATCH" in text
+    for guard in ("IMPORT_PROVENANCE_FAIL", "ARM_EXECUTABLE_PREDATES_PR168",
+                  "ARM_EXECUTABLE_LACKS_SERVED_MODEL_PIN", "ADAPTER_SHA_MISMATCH"):
+        assert guard in text, guard
+
+
+def test_setup_asserts_every_reused_request_has_a_readable_workspace():
+    text = (SBATCH / "e30_r12_setup.sbatch").read_text()
+    assert "solver_workspace" in text and "unreadable_workspaces" in text
+    assert "checked == 480" in text
+
+
+def test_common_pins_pythonpath_to_the_r12_source():
+    text = (SBATCH / "e30_r12_common.sh").read_text()
+    assert 'export PYTHONPATH="$R12SRC/src' in text
+    assert "editable" in text.lower()
+
+
+def test_agents_gate_on_authorization_and_import_provenance():
+    text = (SBATCH / "e30_r12_agents.sbatch").read_text()
+    for guard in ("E30_R12_COORDINATOR_AUTHORIZATION.json", "AUTHORIZATION_ABSENT",
+                  "AUTHORIZATION_INVALID", "acknowledged_design_sha256",
+                  "human_written_token", "verbatim_operator_instruction",
+                  "patch_emission"):
+        assert guard in text, guard
+    # A completed response is never resampled (design section 11, no-rescue clause).
+    assert "COMPLETED_PROPOSAL_ONLY" in text and "SKIP" in text
+
+
+def test_suite_and_rollup_refuse_without_a_gr0_pass():
+    for name in ("e30_r12_fullreg_suite.sbatch", "e30_r12_fullreg_gr0_verify.sbatch"):
+        assert "gr0_status" in (SBATCH / name).read_text(), name
