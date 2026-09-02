@@ -1,0 +1,159 @@
+{
+  "schema_version": "orion.v2.h-ext1n-naturalistic-design.v1",
+  "hypothesis_id": "H-EXT-1N",
+  "parent": "H-EXT-1 (research/experiments/h-ext1/H_EXT1_OUTCOME_RECEIPT.md; named next design: naturalistic replication of the evidence-structure gate)",
+  "register": "research/field/MACHINE_EPISTEMICS_EXTENSION_HYPOTHESES_2026_09_02_V1.md §H-EXT-1",
+  "status": "FROZEN_PROSPECTIVE_DESIGN_NO_GATED_RESULTS",
+  "frozen_on": "2026-09-02",
+  "claim_under_test": "The H-EXT-1 result (an input-computable gate over evidence-structure witnesses recovers the dependence machinery's gain and removes its drag) transfers from planted dependence to NATURALISTIC records: evidence sets drawn from PubMed in which two records report the same registered trial (oracle = shared ClinicalTrials.gov accession, held out of every arm-visible field). Boundary named by H-EXT-1 honest-limit 3: the witnesses need not exist or separate anything in real corpora.",
+  "corpus": {
+    "primary_source": "PubMed E-utilities metadata (esearch.fcgi/efetch.fcgi db=pubmed, retmode=xml); public, documented, no key required; NLM terms permit programmatic metadata retrieval at <=3 requests/s without an API key",
+    "oracle_annotation": "DataBankList/DataBank[DataBankName='ClinicalTrials.gov']/AccessionNumber (NCT id) per record; records that share an NCT id report the same underlying randomized trial population and form ONE support family; distinct NCT ids are distinct families",
+    "feasibility_receipt": "H_EXT1N_FEASIBILITY_RECEIPT.md (three candidate corpora; PubMed-NCT chosen)",
+    "topics": [
+      "hypertension",
+      "diabetes mellitus, type 2",
+      "heart failure",
+      "depressive disorder",
+      "asthma",
+      "breast neoplasms",
+      "stroke",
+      "obesity",
+      "pulmonary disease, chronic obstructive",
+      "arthritis, rheumatoid"
+    ],
+    "query_template": "clinicaltrials.gov[si] AND {topic}[majr] AND randomized controlled trial[pt] AND 2016:2024[dp] AND hasabstract AND english[la]",
+    "esearch_retmax": 9998,
+    "efetch_page_size": 200,
+    "min_request_interval_seconds": 0.4,
+    "eligibility": "exactly one NCT accession; no other-registry accession; English; publication types exclude review/meta-analysis/editorial/letter/comment/erratum/retraction/case report/protocol; abstract (registration sections removed) >= min_abstract_chars; >=1 author and a title",
+    "min_abstract_chars": 500,
+    "near_duplicate_title_jaccard": 0.8,
+    "record_pool_rule": "every record in the corpus comes from an NCT with >=2 eligible non-near-duplicate publications in its topic (multi-publication pool); a set's independent records are single publications of distinct such NCTs, so record type is matched across dependent and independent sets and the only difference is co-membership",
+    "set_construction": "per topic, NCTs shuffled by seed and consumed once each; cycles of one set per stratum in order NS1A,NS1B,NS1C,NS1D; cycles per topic proportional to the topic's multi-publication NCT count (largest remainder), capped by supply; every NCT and every PMID used at most once in the corpus; record order within a set shuffled; neutral task ids n1-#### assigned by seeded shuffle (never encode stratum, topic or split)",
+    "strata_recorded_only_in_private_oracle": {
+      "NS1A": "3 records; 2 share an NCT + 1 other; families=2; truth INCONCLUSIVE_INSUFFICIENT_INDEPENDENT_SUPPORT (dependent)",
+      "NS1B": "3 records; 3 distinct NCTs; families=3; truth ACCEPT_H (independent)",
+      "NS1C": "4 records; 2 pairs each sharing an NCT; families=2; truth INCONCLUSIVE_INSUFFICIENT_INDEPENDENT_SUPPORT (dependent)",
+      "NS1D": "4 records; 4 distinct NCTs; families=4; truth ACCEPT_H (independent)"
+    },
+    "sets_per_stratum": 60,
+    "seed": 20260902,
+    "arm_visible_record_fields": ["record_id", "title", "abstract", "authors", "journal", "year", "publication_types", "grant_ids", "mesh_major"],
+    "held_out_of_arms": ["pmid", "doi", "NCT and every other registry accession", "affiliations", "abstract sections whose label names registration", "stratum", "split", "answer"],
+    "redaction": "every registry-id-shaped token (NCT, ISRCTN, EudraCT, ChiCTR, ACTRN, UMIN, DRKS, CTRI, NTR/NL, JPRN/jRCT, KCT, IRCT, PACTR, PROSPERO, TCTR, ReBEC, SLCTR, EUCTR), PMID and DOI strings in title/abstract are replaced by the single neutral marker [REGISTRY-ID]; registration-labelled abstract sections are dropped",
+    "canary": "for every task: no forbidden key at any nesting level; none of the set's NCT ids, PMIDs or DOIs occurs in the serialized task; no registry-shaped token survives redaction; H-EXT-1-style injected-oracle-key canary on every candidate gate (extract phase)",
+    "custody": "raw esearch/efetch pages cached with per-page sha256 (FETCH_MANIFEST.json); per-record sha256 of the arm-visible record and per-corpus sha256 of tasks and oracle in H_EXT1N_CORPUS_FREEZE.json (committed); full record texts stay on the build host (abstract copyright), PMIDs committed so every record is re-fetchable"
+  },
+  "corpus_adequacy": {
+    "min_sets": 150,
+    "min_per_stratum": 30,
+    "max_label_imbalance": 0.10,
+    "min_topics": 5,
+    "terminal_if_fail": "CORPUS_ANNOTATION_INSUFFICIENT (CANNOT_CHECK; nothing dispatched)"
+  },
+  "decision_rule": {
+    "accept_min_families": 3,
+    "text": "Registered decision rule: a support family is the set of records that report on the same underlying study population (the same randomized trial, cohort, dataset or registered study), whether as primary results, secondary or post-hoc analyses, sub-studies, extensions or follow-ups; records from different underlying studies are independent families. ACCEPT_H iff there are at least 3 independent support families and no surviving defeater (no defeater is registered for this task); REJECT_H iff a registered defeater survives; otherwise INCONCLUSIVE_INSUFFICIENT_INDEPENDENT_SUPPORT. Also return independent_support_family_count (the number of independent families).",
+    "task_text": "Decide under the registered rule from the record texts and metadata alone (no retrieval); return the decision and the count of independent support families."
+  },
+  "substrate": {
+    "arms_module": "scripts/orion_pd_arms.py (unchanged; same arm instructions as H-EXT-1)",
+    "harness": "scripts/run_formal_discovery_generated_suite.py dispatch()/evaluate() reused unchanged (oracle deleted for the whole child dispatch, hash-committed, restored and re-hashed; exact-match scoring on both answer keys)",
+    "arm_M_always_on": "P_D_FULL",
+    "arm_OFF_always_off": "P_D_MINUS_DEPENDENCE",
+    "arm_PARENT_reference": "STRONGEST_ASSURANCE_FEDERATION",
+    "model": "gpt-5.5 via codex exec --ephemeral (ORION_CODEX_BIN=/home/billy/.npm-global/bin/codex, codex-cli 0.129.0-alpha.15, ORION_CODEX_MODEL=gpt-5.5), read-only sandbox, no network; identical to the H-EXT-1 prospective cell",
+    "host": "billy-old (corpus fetch, corpus build, all model arms); LUNARC not used (unreachable at design time)",
+    "calls_per_instance": "exactly 1 per arm; resource parity; 240 sets x 3 arms = 720 calls",
+    "cost_unit_primary": "model_calls per instance",
+    "cost_unit_secondary": "wall_time_seconds of the routed arm"
+  },
+  "splits": {
+    "dev_fraction": 0.35,
+    "rule": "stratified by (topic, stratum), seeded (corpus seed + 1); membership frozen in H_EXT1N_CORPUS_FREEZE.json before any dispatch",
+    "N1-DEV": "gate selection ONLY; dispatched first; gate frozen (H_EXT1N_GATE_FREEZE.json, committed) before the EVAL split is dispatched",
+    "N1-EVAL": "binding evaluation; dispatched only after the gate freeze commit exists"
+  },
+  "input_visibility": {
+    "gate_input": "the public task object exactly as written to requests/<arm>/<task_id>.json['task'], deep-copied, with forbidden keys removed at every nesting level",
+    "forbidden_keys": ["strata", "stratum", "answers", "expected", "answer", "correct", "actual", "private_oracle", "oracle", "pmid", "doi", "nct", "ncts", "registry_ids", "split"],
+    "arm_outputs_never_visible_to_gate": true,
+    "topic_and_n_records_are_arm_visible_metadata": "excluded from the candidate family; used only to define the within-metadata null (G3S) and the G4 sign-consistency unit (size class)"
+  },
+  "witness_features_naturalistic": {
+    "w_dup_hash": "duplicate identifier: two records share a visible grant id (H-EXT-1: duplicate replay_hash)",
+    "w_shared_root": "shared lineage root: two records share the same last (senior) author string, normalized (H-EXT-1: shared lineage_root)",
+    "w_declared_overlap": "a record's title/abstract matches the frozen declared-relation regex (secondary|post hoc|pre-specified|exploratory|ancillary|extension|sub-study|follow-up|pooled|subgroup) + (analysis|study|report|results) (H-EXT-1: declared_overlap)",
+    "w_xref_root": "text cross-reference: an uppercase token [A-Z][A-Z0-9-]{3,} from one record's TITLE occurs in another record's title or abstract (H-EXT-1: method_text naming another record's lineage_root)",
+    "w_shared_token": "an uppercase token [A-Z][A-Z0-9-]{3,} occurs in >=2 records' title+abstract (identical regex to H-EXT-1)",
+    "n_records": "number of records in the set",
+    "n_roots": "number of connected components when records sharing >=1 normalized author are linked",
+    "root_ratio": "n_records / n_roots"
+  },
+  "candidate_gate_family": [
+    {"gate_id": "G_A_PROVENANCE_WITNESS", "activate_iff": "w_dup_hash or w_shared_root"},
+    {"gate_id": "G_B_PLUS_XREF", "activate_iff": "G_A or w_xref_root"},
+    {"gate_id": "G_C_PLUS_DECLARED", "activate_iff": "G_B or w_declared_overlap"},
+    {"gate_id": "G_D_PLUS_SHARED_TOKEN", "activate_iff": "G_C or w_shared_token"},
+    {"gate_id": "G_E_COUNT_GE4", "activate_iff": "n_records >= 4"},
+    {"gate_id": "G_F_ROOT_RATIO_GT1", "activate_iff": "root_ratio > 1.0"}
+  ],
+  "reference_gates_not_candidates": {
+    "ALWAYS_ON": "== arm M",
+    "ALWAYS_OFF": "== arm OFF",
+    "ORACLE_STRATUM": "activates on NS1A/NS1C from the private oracle; ceiling only, evaluation reporting"
+  },
+  "gated_arm_definition": "GATED_M(x) = M(x) if gate(x) else OFF(x); correctness and cost from the routed arm's archived row/response for the same task_id",
+  "primary_metric": "exact-decision accuracy on both answer keys (EVALUATION_ROWS.correct) paired per instance; pooled over the EVAL split",
+  "gate_selection_rule": {
+    "cell": "N1-DEV",
+    "statistic": "dev_advantage = acc(GATED_M) - max(acc(M), acc(OFF)) pooled over the DEV split",
+    "choose": "argmax over the family; ties -> lower activation rate -> family order",
+    "abort_if": "no candidate has dev_advantage > 0 -> terminal NO_CANDIDATE_GATE_ON_DEV; the EVAL split is NOT dispatched and not scored; the outcome receipt reports this as the naturalistic boundary at development level",
+    "freeze": "selected gate_id + feature spec + design sha256 + corpus freeze sha256 written to H_EXT1N_GATE_FREEZE.json and committed before the EVAL split is dispatched"
+  },
+  "null_draws": 2000,
+  "null_seed": 20260902,
+  "gates": {
+    "G0_VALIDITY": "DEV and EVAL task-id sets disjoint; EVAL study built from the frozen corpus (sha match) and the gate frozen on the same corpus; canary passes on every task; all three arms present on every EVAL task",
+    "G1_DOMINATES_ALWAYS_ON": "acc(GATED_M) >= acc(M) AND calls(GATED_M) <= calls(M) AND mean_wall(GATED_M) <= 1.05 * mean_wall(M)",
+    "G2_DOMINATES_ALWAYS_OFF_AND_PARENT": "acc(GATED_M) > acc(OFF) AND acc(GATED_M) >= acc(PARENT)",
+    "G3_BEATS_SHUFFLE_NULL": "advantage > q95 of NULL_POOLED (2000 random gates with the selected gate's activation count, seed 20260902)",
+    "G3S_BEATS_WITHIN_METADATA_NULL": "advantage > q95 of NULL_WITHIN (2000 random gates matching the selected gate's activation count inside each arm-visible topic x size-class cell, seed 20260903)",
+    "G4_SIGN_CONSISTENCY": "in each size class (n_records = 3 and 4): acc(GATED_M) >= max(acc(M), acc(OFF)) (ties allowed)"
+  },
+  "routing_precedence_top_down": [
+    {"condition": "corpus adequacy fails (min_sets/balance/per-stratum/topics) or canary fails at build", "terminal": "CORPUS_ANNOTATION_INSUFFICIENT"},
+    {"condition": "DEV or EVAL dispatch has missing/failed responses", "terminal": "CANNOT_CHECK_RUN_INVALID"},
+    {"condition": "no candidate gate with dev_advantage > 0", "terminal": "NO_CANDIDATE_GATE_ON_DEV"},
+    {"condition": "G0 fails", "terminal": "DESIGN_VIOLATION_RUN_VOID"},
+    {"condition": "G1 fails", "terminal": "GATING_DOES_NOT_DOMINATE_ALWAYS_ON"},
+    {"condition": "G2 fails vs OFF", "terminal": "GATING_DOES_NOT_DOMINATE_ALWAYS_OFF"},
+    {"condition": "G2 fails vs PARENT", "terminal": "STRONGEST_PARENT_SUFFICIENT_UNDER_GATING"},
+    {"condition": "G3 fails", "terminal": "ACTIVATION_POLICY_NOT_IDENTIFIABLE_IN_NATURALISTIC_RECORDS"},
+    {"condition": "G4 fails", "terminal": "ACTIVATION_ADVANTAGE_NOT_SIGN_CONSISTENT"},
+    {"condition": "G3 passes, G3S fails", "terminal": "ACTIVATION_POLICY_IDENTIFIABLE_ONLY_AT_METADATA_GRANULARITY"},
+    {"condition": "all pass", "terminal": "CONDITIONAL_ACTIVATION_IDENTIFIABLE_IN_NATURALISTIC_RECORDS"}
+  ],
+  "secondary_reporting_not_routing": [
+    "per oracle stratum: n, activations, M, OFF, PARENT, GATED",
+    "activation precision/recall against the oracle-active strata NS1A/NS1C",
+    "M vs OFF paired discordance with exact McNemar p (naturalistic replication of the P-D dependence contrast; reported, never a gate)",
+    "per-topic accuracies"
+  ],
+  "no_rescue": "after the gate freeze: no re-selection, threshold change, feature/regex edit, set or topic exclusion, null redefinition, corpus rebuild or arm substitution; a failed gate is recorded under its routed terminal; any repair is V2 with its own freeze",
+  "honest_limits_frozen_before_results": [
+    "oracle noise: two distinct NCT ids can still share a population (separately registered extensions); such sets are labelled independent, so M errors on NS1B/NS1D partly measure annotation noise, not only over-triggering",
+    "the multi-publication pool selects trials with >=2 RCT-tagged publications (larger, often named trials); the acronym witness is therefore easier here than in a random literature sample",
+    "one model family (gpt-5.5) as in the H-EXT-1 prospective cell; no model-family invariance",
+    "PubMed abstracts + metadata only (no full text); a witness that needs methods sections is out of scope",
+    "the six witnesses are the H-EXT-1 family re-instantiated, not the best naturalistic gate; a negative says these witnesses do not identify the regime in these records"
+  ],
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_field_status": false,
+    "grants_real_corpus_dependence_detection": false,
+    "grants_manuscript_change": false
+  }
+}
