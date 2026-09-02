@@ -1,0 +1,1739 @@
+{
+  "analyzer_sha256": "ef195f7b8d6edafb9b48f3873eeb3f4041fcce6d87aad288e7ede1865428e3f2",
+  "bootstrap_draws": 10000,
+  "campaign_id": "campaign-pc-r6-fullreg-e30r11-e60-20260902-774903e1",
+  "cells": {
+    "e30r11": {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_REPETITION_MAJORITY (frozen_majority; None stays in denominator)",
+      "baseline_status_counts": {
+        "BASELINE_OK": 38,
+        "BASELINE_SUITE_NO_PASSING_TESTS": 2
+      },
+      "campaign": "campaign-e30-r11-disposition-offline-core4-rep3-deficit-topup-20260828-ffcc8ed6",
+      "contrasts": [
+        {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 5,
+          "ci95_excludes_zero": false,
+          "discordant_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "holm_adjusted_p": null,
+          "holm_rank": null,
+          "holm_reject_at_alpha_0_05": false,
+          "left_arm": "F2_ORION_METABOLIC_FULL",
+          "mcnemar_asymptotic_p_supplementary": null,
+          "missing_task_ids": [
+            "bugsinpy-ansible-1",
+            "bugsinpy-ansible-3",
+            "bugsinpy-ansible-4",
+            "bugsinpy-ansible-5",
+            "bugsinpy-ansible-6",
+            "bugsinpy-black-1",
+            "bugsinpy-black-2",
+            "bugsinpy-black-3",
+            "bugsinpy-black-4",
+            "bugsinpy-cookiecutter-1",
+            "bugsinpy-cookiecutter-2",
+            "bugsinpy-cookiecutter-3",
+            "bugsinpy-cookiecutter-4",
+            "bugsinpy-fastapi-1",
+            "bugsinpy-fastapi-2",
+            "bugsinpy-fastapi-3",
+            "bugsinpy-fastapi-4",
+            "bugsinpy-fastapi-5",
+            "bugsinpy-pandas-1",
+            "bugsinpy-pandas-2",
+            "bugsinpy-pandas-3",
+            "bugsinpy-pandas-4",
+            "bugsinpy-pandas-5",
+            "bugsinpy-scrapy-1",
+            "bugsinpy-scrapy-2",
+            "bugsinpy-scrapy-3",
+            "bugsinpy-scrapy-5",
+            "bugsinpy-tornado-1",
+            "bugsinpy-tornado-2",
+            "bugsinpy-tornado-3",
+            "bugsinpy-tornado-4",
+            "bugsinpy-tornado-5",
+            "bugsinpy-tqdm-1",
+            "bugsinpy-tqdm-2",
+            "bugsinpy-tqdm-3"
+          ],
+          "multiplicity_status": "CANNOT_CHECK_NO_DISCORDANT_PAIRS",
+          "one_sided_97_5_lower_bound": 0.0,
+          "one_sided_97_5_upper_bound": 0.0,
+          "paired_table": {
+            "both_false": 5,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "registered_test": "EXACT_TWO_SIDED_DISCORDANT",
+          "right_arm": "F0_PARENT_FEDERATION",
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 5,
+            "seed": 20260902
+          },
+          "risk_difference_orientation": "F2_ORION_METABOLIC_FULL - F0_PARENT_FEDERATION",
+          "swapped_orientation": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "lower_bound": 0.0,
+            "negation_consistent": true,
+            "risk_difference_orientation": "F0_PARENT_FEDERATION - F2_ORION_METABOLIC_FULL"
+          }
+        },
+        {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 4,
+          "ci95_excludes_zero": false,
+          "discordant_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "holm_adjusted_p": null,
+          "holm_rank": null,
+          "holm_reject_at_alpha_0_05": false,
+          "left_arm": "F2_ORION_METABOLIC_FULL",
+          "mcnemar_asymptotic_p_supplementary": null,
+          "missing_task_ids": [
+            "bugsinpy-ansible-1",
+            "bugsinpy-ansible-3",
+            "bugsinpy-ansible-4",
+            "bugsinpy-ansible-5",
+            "bugsinpy-ansible-6",
+            "bugsinpy-black-1",
+            "bugsinpy-black-2",
+            "bugsinpy-black-3",
+            "bugsinpy-black-4",
+            "bugsinpy-cookiecutter-1",
+            "bugsinpy-cookiecutter-2",
+            "bugsinpy-cookiecutter-3",
+            "bugsinpy-cookiecutter-4",
+            "bugsinpy-fastapi-1",
+            "bugsinpy-fastapi-2",
+            "bugsinpy-fastapi-3",
+            "bugsinpy-fastapi-4",
+            "bugsinpy-fastapi-5",
+            "bugsinpy-pandas-1",
+            "bugsinpy-pandas-2",
+            "bugsinpy-pandas-3",
+            "bugsinpy-pandas-4",
+            "bugsinpy-pandas-5",
+            "bugsinpy-scrapy-1",
+            "bugsinpy-scrapy-2",
+            "bugsinpy-scrapy-3",
+            "bugsinpy-scrapy-4",
+            "bugsinpy-scrapy-5",
+            "bugsinpy-tornado-1",
+            "bugsinpy-tornado-2",
+            "bugsinpy-tornado-3",
+            "bugsinpy-tornado-4",
+            "bugsinpy-tornado-5",
+            "bugsinpy-tqdm-1",
+            "bugsinpy-tqdm-2",
+            "bugsinpy-tqdm-3"
+          ],
+          "multiplicity_status": "CANNOT_CHECK_NO_DISCORDANT_PAIRS",
+          "one_sided_97_5_lower_bound": 0.0,
+          "one_sided_97_5_upper_bound": 0.0,
+          "paired_table": {
+            "both_false": 4,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "registered_test": "EXACT_TWO_SIDED_DISCORDANT",
+          "right_arm": "SAME_MODEL_REFLECTION",
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 4,
+            "seed": 20260902
+          },
+          "risk_difference_orientation": "F2_ORION_METABOLIC_FULL - SAME_MODEL_REFLECTION",
+          "swapped_orientation": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "lower_bound": 0.0,
+            "negation_consistent": true,
+            "risk_difference_orientation": "SAME_MODEL_REFLECTION - F2_ORION_METABOLIC_FULL"
+          }
+        },
+        {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 4,
+          "ci95_excludes_zero": false,
+          "discordant_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "holm_adjusted_p": null,
+          "holm_rank": null,
+          "holm_reject_at_alpha_0_05": false,
+          "left_arm": "F2_ORION_METABOLIC_FULL",
+          "mcnemar_asymptotic_p_supplementary": null,
+          "missing_task_ids": [
+            "bugsinpy-ansible-1",
+            "bugsinpy-ansible-3",
+            "bugsinpy-ansible-4",
+            "bugsinpy-ansible-5",
+            "bugsinpy-ansible-6",
+            "bugsinpy-black-1",
+            "bugsinpy-black-2",
+            "bugsinpy-black-3",
+            "bugsinpy-black-4",
+            "bugsinpy-black-5",
+            "bugsinpy-cookiecutter-1",
+            "bugsinpy-cookiecutter-2",
+            "bugsinpy-cookiecutter-3",
+            "bugsinpy-cookiecutter-4",
+            "bugsinpy-fastapi-1",
+            "bugsinpy-fastapi-2",
+            "bugsinpy-fastapi-3",
+            "bugsinpy-fastapi-4",
+            "bugsinpy-fastapi-5",
+            "bugsinpy-pandas-1",
+            "bugsinpy-pandas-2",
+            "bugsinpy-pandas-3",
+            "bugsinpy-pandas-4",
+            "bugsinpy-pandas-5",
+            "bugsinpy-scrapy-1",
+            "bugsinpy-scrapy-2",
+            "bugsinpy-scrapy-3",
+            "bugsinpy-scrapy-4",
+            "bugsinpy-scrapy-5",
+            "bugsinpy-tornado-1",
+            "bugsinpy-tornado-2",
+            "bugsinpy-tornado-3",
+            "bugsinpy-tornado-4",
+            "bugsinpy-tornado-5",
+            "bugsinpy-tqdm-2",
+            "bugsinpy-tqdm-3"
+          ],
+          "multiplicity_status": "CANNOT_CHECK_NO_DISCORDANT_PAIRS",
+          "one_sided_97_5_lower_bound": 0.0,
+          "one_sided_97_5_upper_bound": 0.0,
+          "paired_table": {
+            "both_false": 4,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "registered_test": "EXACT_TWO_SIDED_DISCORDANT",
+          "right_arm": "SIMPLE_DIRECT",
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 4,
+            "seed": 20260902
+          },
+          "risk_difference_orientation": "F2_ORION_METABOLIC_FULL - SIMPLE_DIRECT",
+          "swapped_orientation": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "lower_bound": 0.0,
+            "negation_consistent": true,
+            "risk_difference_orientation": "SIMPLE_DIRECT - F2_ORION_METABOLIC_FULL"
+          }
+        }
+      ],
+      "endpoint": "any_critical_new_failure (critical_new_failure_count > 0) per evaluation -> majority over reps",
+      "label": "Cell 1 (E30-R11): F2 vs each other arm",
+      "left_arm": "F2_ORION_METABOLIC_FULL",
+      "multiplicity": {
+        "alpha": 0.05,
+        "endpoint": "TASK_LEVEL_MAJORITY_ANY_CRITICAL_NEW_FAILURE",
+        "method": "HOLM_STEP_DOWN",
+        "missing_tests_are_not_rejected": true,
+        "registered_family_size": 3,
+        "testable_comparison_count": 0,
+        "untestable_comparison_count": 3
+      },
+      "per_arm": {
+        "F0_PARENT_FEDERATION": {
+          "cannot_check_tasks_after_majority": 33,
+          "checkable_rate_per_evaluation": 0.2,
+          "checkable_tasks_after_majority": 7,
+          "compile_failure_rate": 0.0,
+          "counted_evaluations": 24,
+          "evaluations": 120,
+          "evaluations_with_any_critical_new_failure": 1,
+          "none_reasons_per_evaluation": {
+            "NONE_PATCH_NOT_APPLIED": 96
+          },
+          "patch_apply_failure_rate": 0.8,
+          "rep_instability_task_count": 0,
+          "task_rate_any_critical_new_failure_majority": 0.0,
+          "tasks_with_any_critical_new_failure_majority": 0
+        },
+        "F2_ORION_METABOLIC_FULL": {
+          "cannot_check_tasks_after_majority": 34,
+          "checkable_rate_per_evaluation": 0.18333333333333332,
+          "checkable_tasks_after_majority": 6,
+          "compile_failure_rate": 0.0,
+          "counted_evaluations": 22,
+          "evaluations": 120,
+          "evaluations_with_any_critical_new_failure": 0,
+          "none_reasons_per_evaluation": {
+            "NONE_PATCH_NOT_APPLIED": 98
+          },
+          "patch_apply_failure_rate": 0.8166666666666667,
+          "rep_instability_task_count": 0,
+          "task_rate_any_critical_new_failure_majority": 0.0,
+          "tasks_with_any_critical_new_failure_majority": 0
+        },
+        "SAME_MODEL_REFLECTION": {
+          "cannot_check_tasks_after_majority": 34,
+          "checkable_rate_per_evaluation": 0.18333333333333332,
+          "checkable_tasks_after_majority": 6,
+          "compile_failure_rate": 0.043478260869565216,
+          "counted_evaluations": 22,
+          "evaluations": 120,
+          "evaluations_with_any_critical_new_failure": 0,
+          "none_reasons_per_evaluation": {
+            "NONE_COMPILE_FAILED": 1,
+            "NONE_PATCH_NOT_APPLIED": 97
+          },
+          "patch_apply_failure_rate": 0.8083333333333333,
+          "rep_instability_task_count": 0,
+          "task_rate_any_critical_new_failure_majority": 0.0,
+          "tasks_with_any_critical_new_failure_majority": 0
+        },
+        "SIMPLE_DIRECT": {
+          "cannot_check_tasks_after_majority": 33,
+          "checkable_rate_per_evaluation": 0.20833333333333334,
+          "checkable_tasks_after_majority": 7,
+          "compile_failure_rate": 0.0,
+          "counted_evaluations": 25,
+          "evaluations": 120,
+          "evaluations_with_any_critical_new_failure": 0,
+          "none_reasons_per_evaluation": {
+            "NONE_BASELINE_UNAVAILABLE": 1,
+            "NONE_PATCH_NOT_APPLIED": 94
+          },
+          "patch_apply_failure_rate": 0.7833333333333333,
+          "rep_instability_task_count": 0,
+          "task_rate_any_critical_new_failure_majority": 0.0,
+          "tasks_with_any_critical_new_failure_majority": 0
+        }
+      },
+      "project_strata": {
+        "F0_PARENT_FEDERATION": {
+          "ansible": {
+            "checkable_task_count": 1,
+            "paired_table": {
+              "both_false": 1,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          },
+          "black": {
+            "checkable_task_count": 1,
+            "paired_table": {
+              "both_false": 1,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          },
+          "cookiecutter": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "fastapi": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "pandas": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "scrapy": {
+            "checkable_task_count": 1,
+            "paired_table": {
+              "both_false": 1,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          },
+          "tornado": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "tqdm": {
+            "checkable_task_count": 2,
+            "paired_table": {
+              "both_false": 2,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          }
+        },
+        "SAME_MODEL_REFLECTION": {
+          "ansible": {
+            "checkable_task_count": 1,
+            "paired_table": {
+              "both_false": 1,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          },
+          "black": {
+            "checkable_task_count": 1,
+            "paired_table": {
+              "both_false": 1,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          },
+          "cookiecutter": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "fastapi": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "pandas": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "scrapy": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "tornado": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "tqdm": {
+            "checkable_task_count": 2,
+            "paired_table": {
+              "both_false": 2,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          }
+        },
+        "SIMPLE_DIRECT": {
+          "ansible": {
+            "checkable_task_count": 1,
+            "paired_table": {
+              "both_false": 1,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          },
+          "black": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "cookiecutter": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "fastapi": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "pandas": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "scrapy": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "tornado": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "tqdm": {
+            "checkable_task_count": 3,
+            "paired_table": {
+              "both_false": 3,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          }
+        }
+      },
+      "sensitivity_any_true_aggregation_not_a_gate": {
+        "contrasts": [
+          {
+            "checkable_task_count": 2,
+            "exact_discordant_p": null,
+            "left_arm": "F2_ORION_METABOLIC_FULL",
+            "paired_table": {
+              "both_false": 2,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "right_arm": "F0_PARENT_FEDERATION",
+            "risk_difference": {
+              "bootstrap_repetitions": 10000,
+              "bootstrap_stratification": "PROJECT",
+              "bootstrap_unit": "TASK",
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "estimate": 0.0,
+              "pair_count": 2,
+              "seed": 20260902
+            }
+          },
+          {
+            "checkable_task_count": 3,
+            "exact_discordant_p": null,
+            "left_arm": "F2_ORION_METABOLIC_FULL",
+            "paired_table": {
+              "both_false": 3,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "right_arm": "SAME_MODEL_REFLECTION",
+            "risk_difference": {
+              "bootstrap_repetitions": 10000,
+              "bootstrap_stratification": "PROJECT",
+              "bootstrap_unit": "TASK",
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "estimate": 0.0,
+              "pair_count": 3,
+              "seed": 20260902
+            }
+          },
+          {
+            "checkable_task_count": 2,
+            "exact_discordant_p": null,
+            "left_arm": "F2_ORION_METABOLIC_FULL",
+            "paired_table": {
+              "both_false": 2,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "right_arm": "SIMPLE_DIRECT",
+            "risk_difference": {
+              "bootstrap_repetitions": 10000,
+              "bootstrap_stratification": "PROJECT",
+              "bootstrap_unit": "TASK",
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "estimate": 0.0,
+              "pair_count": 2,
+              "seed": 20260902
+            }
+          }
+        ],
+        "note": "descriptive annex only; the PC-R6 design fixes MAJORITY as the gate aggregation",
+        "rule": "E60 registered critical aggregation ANY_TRUE_ELSE_FALSE_ONLY_IF_ALL_EXPECTED_REPETITIONS_ARE_FALSE"
+      }
+    },
+    "e60": {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_REPETITION_MAJORITY (frozen_majority; None stays in denominator)",
+      "baseline_status_counts": {
+        "BASELINE_OK": 38,
+        "BASELINE_SUITE_NO_PASSING_TESTS": 2
+      },
+      "campaign": "campaign-e60-r1-component-ablation-20260829-38aedc50",
+      "contrasts": [
+        {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 7,
+          "ci95_excludes_zero": false,
+          "discordant_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "holm_adjusted_p": null,
+          "holm_rank": null,
+          "holm_reject_at_alpha_0_05": false,
+          "left_arm": "F2_ORION_METABOLIC_FULL",
+          "mcnemar_asymptotic_p_supplementary": null,
+          "missing_task_ids": [
+            "bugsinpy-ansible-1",
+            "bugsinpy-ansible-3",
+            "bugsinpy-ansible-4",
+            "bugsinpy-ansible-5",
+            "bugsinpy-ansible-6",
+            "bugsinpy-black-1",
+            "bugsinpy-black-3",
+            "bugsinpy-black-4",
+            "bugsinpy-cookiecutter-2",
+            "bugsinpy-cookiecutter-3",
+            "bugsinpy-cookiecutter-4",
+            "bugsinpy-fastapi-1",
+            "bugsinpy-fastapi-2",
+            "bugsinpy-fastapi-3",
+            "bugsinpy-fastapi-4",
+            "bugsinpy-fastapi-5",
+            "bugsinpy-pandas-1",
+            "bugsinpy-pandas-2",
+            "bugsinpy-pandas-3",
+            "bugsinpy-pandas-4",
+            "bugsinpy-pandas-5",
+            "bugsinpy-scrapy-1",
+            "bugsinpy-scrapy-2",
+            "bugsinpy-scrapy-3",
+            "bugsinpy-scrapy-5",
+            "bugsinpy-tornado-1",
+            "bugsinpy-tornado-2",
+            "bugsinpy-tornado-3",
+            "bugsinpy-tornado-4",
+            "bugsinpy-tornado-5",
+            "bugsinpy-tqdm-1",
+            "bugsinpy-tqdm-2",
+            "bugsinpy-tqdm-3"
+          ],
+          "multiplicity_status": "CANNOT_CHECK_NO_DISCORDANT_PAIRS",
+          "one_sided_97_5_lower_bound": 0.0,
+          "one_sided_97_5_upper_bound": 0.0,
+          "paired_table": {
+            "both_false": 7,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "registered_test": "EXACT_TWO_SIDED_DISCORDANT",
+          "right_arm": "F2_MINUS_DECOMPOSITION",
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 7,
+            "seed": 20260902
+          },
+          "risk_difference_orientation": "F2_ORION_METABOLIC_FULL - F2_MINUS_DECOMPOSITION",
+          "swapped_orientation": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "lower_bound": 0.0,
+            "negation_consistent": true,
+            "risk_difference_orientation": "F2_MINUS_DECOMPOSITION - F2_ORION_METABOLIC_FULL"
+          }
+        },
+        {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 7,
+          "ci95_excludes_zero": false,
+          "discordant_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "holm_adjusted_p": null,
+          "holm_rank": null,
+          "holm_reject_at_alpha_0_05": false,
+          "left_arm": "F2_ORION_METABOLIC_FULL",
+          "mcnemar_asymptotic_p_supplementary": null,
+          "missing_task_ids": [
+            "bugsinpy-ansible-1",
+            "bugsinpy-ansible-3",
+            "bugsinpy-ansible-4",
+            "bugsinpy-ansible-5",
+            "bugsinpy-ansible-6",
+            "bugsinpy-black-1",
+            "bugsinpy-black-3",
+            "bugsinpy-black-4",
+            "bugsinpy-cookiecutter-2",
+            "bugsinpy-cookiecutter-3",
+            "bugsinpy-cookiecutter-4",
+            "bugsinpy-fastapi-1",
+            "bugsinpy-fastapi-2",
+            "bugsinpy-fastapi-3",
+            "bugsinpy-fastapi-4",
+            "bugsinpy-fastapi-5",
+            "bugsinpy-pandas-1",
+            "bugsinpy-pandas-2",
+            "bugsinpy-pandas-3",
+            "bugsinpy-pandas-4",
+            "bugsinpy-pandas-5",
+            "bugsinpy-scrapy-1",
+            "bugsinpy-scrapy-2",
+            "bugsinpy-scrapy-3",
+            "bugsinpy-scrapy-5",
+            "bugsinpy-tornado-1",
+            "bugsinpy-tornado-2",
+            "bugsinpy-tornado-3",
+            "bugsinpy-tornado-4",
+            "bugsinpy-tornado-5",
+            "bugsinpy-tqdm-1",
+            "bugsinpy-tqdm-2",
+            "bugsinpy-tqdm-3"
+          ],
+          "multiplicity_status": "CANNOT_CHECK_NO_DISCORDANT_PAIRS",
+          "one_sided_97_5_lower_bound": 0.0,
+          "one_sided_97_5_upper_bound": 0.0,
+          "paired_table": {
+            "both_false": 7,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "registered_test": "EXACT_TWO_SIDED_DISCORDANT",
+          "right_arm": "F2_MINUS_NATIVE_RECOVERY",
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 7,
+            "seed": 20260902
+          },
+          "risk_difference_orientation": "F2_ORION_METABOLIC_FULL - F2_MINUS_NATIVE_RECOVERY",
+          "swapped_orientation": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "lower_bound": 0.0,
+            "negation_consistent": true,
+            "risk_difference_orientation": "F2_MINUS_NATIVE_RECOVERY - F2_ORION_METABOLIC_FULL"
+          }
+        },
+        {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 7,
+          "ci95_excludes_zero": false,
+          "discordant_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "holm_adjusted_p": null,
+          "holm_rank": null,
+          "holm_reject_at_alpha_0_05": false,
+          "left_arm": "F2_ORION_METABOLIC_FULL",
+          "mcnemar_asymptotic_p_supplementary": null,
+          "missing_task_ids": [
+            "bugsinpy-ansible-1",
+            "bugsinpy-ansible-3",
+            "bugsinpy-ansible-4",
+            "bugsinpy-ansible-5",
+            "bugsinpy-ansible-6",
+            "bugsinpy-black-1",
+            "bugsinpy-black-3",
+            "bugsinpy-black-4",
+            "bugsinpy-cookiecutter-2",
+            "bugsinpy-cookiecutter-3",
+            "bugsinpy-cookiecutter-4",
+            "bugsinpy-fastapi-1",
+            "bugsinpy-fastapi-2",
+            "bugsinpy-fastapi-3",
+            "bugsinpy-fastapi-4",
+            "bugsinpy-fastapi-5",
+            "bugsinpy-pandas-1",
+            "bugsinpy-pandas-2",
+            "bugsinpy-pandas-3",
+            "bugsinpy-pandas-4",
+            "bugsinpy-pandas-5",
+            "bugsinpy-scrapy-1",
+            "bugsinpy-scrapy-2",
+            "bugsinpy-scrapy-3",
+            "bugsinpy-scrapy-5",
+            "bugsinpy-tornado-1",
+            "bugsinpy-tornado-2",
+            "bugsinpy-tornado-3",
+            "bugsinpy-tornado-4",
+            "bugsinpy-tornado-5",
+            "bugsinpy-tqdm-1",
+            "bugsinpy-tqdm-2",
+            "bugsinpy-tqdm-3"
+          ],
+          "multiplicity_status": "CANNOT_CHECK_NO_DISCORDANT_PAIRS",
+          "one_sided_97_5_lower_bound": 0.0,
+          "one_sided_97_5_upper_bound": 0.0,
+          "paired_table": {
+            "both_false": 7,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "registered_test": "EXACT_TWO_SIDED_DISCORDANT",
+          "right_arm": "F2_MINUS_COUNTERPROBE",
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 7,
+            "seed": 20260902
+          },
+          "risk_difference_orientation": "F2_ORION_METABOLIC_FULL - F2_MINUS_COUNTERPROBE",
+          "swapped_orientation": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "lower_bound": 0.0,
+            "negation_consistent": true,
+            "risk_difference_orientation": "F2_MINUS_COUNTERPROBE - F2_ORION_METABOLIC_FULL"
+          }
+        },
+        {
+          "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+          "checkable_task_count": 7,
+          "ci95_excludes_zero": false,
+          "discordant_count": 0,
+          "discordant_left_win_probability": null,
+          "discordant_left_win_probability_exact_ci95": [
+            null,
+            null
+          ],
+          "exact_discordant_p": null,
+          "holm_adjusted_p": null,
+          "holm_rank": null,
+          "holm_reject_at_alpha_0_05": false,
+          "left_arm": "F2_ORION_METABOLIC_FULL",
+          "mcnemar_asymptotic_p_supplementary": null,
+          "missing_task_ids": [
+            "bugsinpy-ansible-1",
+            "bugsinpy-ansible-3",
+            "bugsinpy-ansible-4",
+            "bugsinpy-ansible-5",
+            "bugsinpy-ansible-6",
+            "bugsinpy-black-1",
+            "bugsinpy-black-3",
+            "bugsinpy-black-4",
+            "bugsinpy-cookiecutter-2",
+            "bugsinpy-cookiecutter-3",
+            "bugsinpy-cookiecutter-4",
+            "bugsinpy-fastapi-1",
+            "bugsinpy-fastapi-2",
+            "bugsinpy-fastapi-3",
+            "bugsinpy-fastapi-4",
+            "bugsinpy-fastapi-5",
+            "bugsinpy-pandas-1",
+            "bugsinpy-pandas-2",
+            "bugsinpy-pandas-3",
+            "bugsinpy-pandas-4",
+            "bugsinpy-pandas-5",
+            "bugsinpy-scrapy-1",
+            "bugsinpy-scrapy-2",
+            "bugsinpy-scrapy-3",
+            "bugsinpy-scrapy-5",
+            "bugsinpy-tornado-1",
+            "bugsinpy-tornado-2",
+            "bugsinpy-tornado-3",
+            "bugsinpy-tornado-4",
+            "bugsinpy-tornado-5",
+            "bugsinpy-tqdm-1",
+            "bugsinpy-tqdm-2",
+            "bugsinpy-tqdm-3"
+          ],
+          "multiplicity_status": "CANNOT_CHECK_NO_DISCORDANT_PAIRS",
+          "one_sided_97_5_lower_bound": 0.0,
+          "one_sided_97_5_upper_bound": 0.0,
+          "paired_table": {
+            "both_false": 7,
+            "both_true": 0,
+            "left_only": 0,
+            "right_only": 0
+          },
+          "registered_test": "EXACT_TWO_SIDED_DISCORDANT",
+          "right_arm": "F2_MINUS_SELECTIVE_REOPEN",
+          "risk_difference": {
+            "bootstrap_repetitions": 10000,
+            "bootstrap_stratification": "PROJECT",
+            "bootstrap_unit": "TASK",
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "pair_count": 7,
+            "seed": 20260902
+          },
+          "risk_difference_orientation": "F2_ORION_METABOLIC_FULL - F2_MINUS_SELECTIVE_REOPEN",
+          "swapped_orientation": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0,
+            "lower_bound": 0.0,
+            "negation_consistent": true,
+            "risk_difference_orientation": "F2_MINUS_SELECTIVE_REOPEN - F2_ORION_METABOLIC_FULL"
+          }
+        }
+      ],
+      "endpoint": "any_critical_new_failure (critical_new_failure_count > 0) per evaluation -> majority over reps",
+      "label": "Cell 2 (E60): FULL vs each MINUS_X (GR3 evaluates the MINUS_X - FULL orientation)",
+      "left_arm": "F2_ORION_METABOLIC_FULL",
+      "multiplicity": {
+        "alpha": 0.05,
+        "endpoint": "TASK_LEVEL_MAJORITY_ANY_CRITICAL_NEW_FAILURE",
+        "method": "HOLM_STEP_DOWN",
+        "missing_tests_are_not_rejected": true,
+        "registered_family_size": 4,
+        "testable_comparison_count": 0,
+        "untestable_comparison_count": 4
+      },
+      "per_arm": {
+        "F2_MINUS_COUNTERPROBE": {
+          "cannot_check_tasks_after_majority": 33,
+          "checkable_rate_per_evaluation": 0.175,
+          "checkable_tasks_after_majority": 7,
+          "compile_failure_rate": 0.0,
+          "counted_evaluations": 21,
+          "evaluations": 120,
+          "evaluations_with_any_critical_new_failure": 0,
+          "none_reasons_per_evaluation": {
+            "NONE_PATCH_NOT_APPLIED": 99
+          },
+          "patch_apply_failure_rate": 0.825,
+          "rep_instability_task_count": 0,
+          "task_rate_any_critical_new_failure_majority": 0.0,
+          "tasks_with_any_critical_new_failure_majority": 0
+        },
+        "F2_MINUS_DECOMPOSITION": {
+          "cannot_check_tasks_after_majority": 30,
+          "checkable_rate_per_evaluation": 0.24166666666666667,
+          "checkable_tasks_after_majority": 10,
+          "compile_failure_rate": 0.0,
+          "counted_evaluations": 29,
+          "evaluations": 120,
+          "evaluations_with_any_critical_new_failure": 3,
+          "none_reasons_per_evaluation": {
+            "NONE_BASELINE_UNAVAILABLE": 1,
+            "NONE_PATCH_NOT_APPLIED": 90
+          },
+          "patch_apply_failure_rate": 0.75,
+          "rep_instability_task_count": 1,
+          "task_rate_any_critical_new_failure_majority": 0.1,
+          "tasks_with_any_critical_new_failure_majority": 1
+        },
+        "F2_MINUS_NATIVE_RECOVERY": {
+          "cannot_check_tasks_after_majority": 33,
+          "checkable_rate_per_evaluation": 0.2,
+          "checkable_tasks_after_majority": 7,
+          "compile_failure_rate": 0.0,
+          "counted_evaluations": 24,
+          "evaluations": 120,
+          "evaluations_with_any_critical_new_failure": 0,
+          "none_reasons_per_evaluation": {
+            "NONE_PATCH_NOT_APPLIED": 96
+          },
+          "patch_apply_failure_rate": 0.8,
+          "rep_instability_task_count": 0,
+          "task_rate_any_critical_new_failure_majority": 0.0,
+          "tasks_with_any_critical_new_failure_majority": 0
+        },
+        "F2_MINUS_SELECTIVE_REOPEN": {
+          "cannot_check_tasks_after_majority": 31,
+          "checkable_rate_per_evaluation": 0.225,
+          "checkable_tasks_after_majority": 9,
+          "compile_failure_rate": 0.0,
+          "counted_evaluations": 27,
+          "evaluations": 120,
+          "evaluations_with_any_critical_new_failure": 1,
+          "none_reasons_per_evaluation": {
+            "NONE_PATCH_NOT_APPLIED": 93
+          },
+          "patch_apply_failure_rate": 0.775,
+          "rep_instability_task_count": 0,
+          "task_rate_any_critical_new_failure_majority": 0.0,
+          "tasks_with_any_critical_new_failure_majority": 0
+        },
+        "F2_ORION_METABOLIC_FULL": {
+          "cannot_check_tasks_after_majority": 33,
+          "checkable_rate_per_evaluation": 0.175,
+          "checkable_tasks_after_majority": 7,
+          "compile_failure_rate": 0.0,
+          "counted_evaluations": 21,
+          "evaluations": 120,
+          "evaluations_with_any_critical_new_failure": 1,
+          "none_reasons_per_evaluation": {
+            "NONE_BASELINE_UNAVAILABLE": 1,
+            "NONE_PATCH_NOT_APPLIED": 98
+          },
+          "patch_apply_failure_rate": 0.8166666666666667,
+          "rep_instability_task_count": 0,
+          "task_rate_any_critical_new_failure_majority": 0.0,
+          "tasks_with_any_critical_new_failure_majority": 0
+        }
+      },
+      "project_strata": {
+        "F2_MINUS_COUNTERPROBE": {
+          "ansible": {
+            "checkable_task_count": 1,
+            "paired_table": {
+              "both_false": 1,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          },
+          "black": {
+            "checkable_task_count": 2,
+            "paired_table": {
+              "both_false": 2,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          },
+          "cookiecutter": {
+            "checkable_task_count": 1,
+            "paired_table": {
+              "both_false": 1,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          },
+          "fastapi": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "pandas": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "scrapy": {
+            "checkable_task_count": 1,
+            "paired_table": {
+              "both_false": 1,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          },
+          "tornado": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "tqdm": {
+            "checkable_task_count": 2,
+            "paired_table": {
+              "both_false": 2,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          }
+        },
+        "F2_MINUS_DECOMPOSITION": {
+          "ansible": {
+            "checkable_task_count": 1,
+            "paired_table": {
+              "both_false": 1,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          },
+          "black": {
+            "checkable_task_count": 2,
+            "paired_table": {
+              "both_false": 2,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          },
+          "cookiecutter": {
+            "checkable_task_count": 1,
+            "paired_table": {
+              "both_false": 1,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          },
+          "fastapi": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "pandas": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "scrapy": {
+            "checkable_task_count": 1,
+            "paired_table": {
+              "both_false": 1,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          },
+          "tornado": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "tqdm": {
+            "checkable_task_count": 2,
+            "paired_table": {
+              "both_false": 2,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          }
+        },
+        "F2_MINUS_NATIVE_RECOVERY": {
+          "ansible": {
+            "checkable_task_count": 1,
+            "paired_table": {
+              "both_false": 1,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          },
+          "black": {
+            "checkable_task_count": 2,
+            "paired_table": {
+              "both_false": 2,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          },
+          "cookiecutter": {
+            "checkable_task_count": 1,
+            "paired_table": {
+              "both_false": 1,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          },
+          "fastapi": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "pandas": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "scrapy": {
+            "checkable_task_count": 1,
+            "paired_table": {
+              "both_false": 1,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          },
+          "tornado": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "tqdm": {
+            "checkable_task_count": 2,
+            "paired_table": {
+              "both_false": 2,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          }
+        },
+        "F2_MINUS_SELECTIVE_REOPEN": {
+          "ansible": {
+            "checkable_task_count": 1,
+            "paired_table": {
+              "both_false": 1,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          },
+          "black": {
+            "checkable_task_count": 2,
+            "paired_table": {
+              "both_false": 2,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          },
+          "cookiecutter": {
+            "checkable_task_count": 1,
+            "paired_table": {
+              "both_false": 1,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          },
+          "fastapi": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "pandas": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "scrapy": {
+            "checkable_task_count": 1,
+            "paired_table": {
+              "both_false": 1,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          },
+          "tornado": {
+            "checkable_task_count": 0,
+            "paired_table": {
+              "both_false": 0,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": null
+          },
+          "tqdm": {
+            "checkable_task_count": 2,
+            "paired_table": {
+              "both_false": 2,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "risk_difference_estimate": 0.0
+          }
+        }
+      },
+      "sensitivity_any_true_aggregation_not_a_gate": {
+        "contrasts": [
+          {
+            "checkable_task_count": 2,
+            "exact_discordant_p": null,
+            "left_arm": "F2_ORION_METABOLIC_FULL",
+            "paired_table": {
+              "both_false": 1,
+              "both_true": 1,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "right_arm": "F2_MINUS_DECOMPOSITION",
+            "risk_difference": {
+              "bootstrap_repetitions": 10000,
+              "bootstrap_stratification": "PROJECT",
+              "bootstrap_unit": "TASK",
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "estimate": 0.0,
+              "pair_count": 2,
+              "seed": 20260902
+            }
+          },
+          {
+            "checkable_task_count": 1,
+            "exact_discordant_p": null,
+            "left_arm": "F2_ORION_METABOLIC_FULL",
+            "paired_table": {
+              "both_false": 1,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "right_arm": "F2_MINUS_NATIVE_RECOVERY",
+            "risk_difference": {
+              "bootstrap_repetitions": 10000,
+              "bootstrap_stratification": "PROJECT",
+              "bootstrap_unit": "TASK",
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "estimate": 0.0,
+              "pair_count": 1,
+              "seed": 20260902
+            }
+          },
+          {
+            "checkable_task_count": 2,
+            "exact_discordant_p": null,
+            "left_arm": "F2_ORION_METABOLIC_FULL",
+            "paired_table": {
+              "both_false": 2,
+              "both_true": 0,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "right_arm": "F2_MINUS_COUNTERPROBE",
+            "risk_difference": {
+              "bootstrap_repetitions": 10000,
+              "bootstrap_stratification": "PROJECT",
+              "bootstrap_unit": "TASK",
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "estimate": 0.0,
+              "pair_count": 2,
+              "seed": 20260902
+            }
+          },
+          {
+            "checkable_task_count": 2,
+            "exact_discordant_p": null,
+            "left_arm": "F2_ORION_METABOLIC_FULL",
+            "paired_table": {
+              "both_false": 1,
+              "both_true": 1,
+              "left_only": 0,
+              "right_only": 0
+            },
+            "right_arm": "F2_MINUS_SELECTIVE_REOPEN",
+            "risk_difference": {
+              "bootstrap_repetitions": 10000,
+              "bootstrap_stratification": "PROJECT",
+              "bootstrap_unit": "TASK",
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "estimate": 0.0,
+              "pair_count": 2,
+              "seed": 20260902
+            }
+          }
+        ],
+        "note": "descriptive annex only; the PC-R6 design fixes MAJORITY as the gate aggregation",
+        "rule": "E60 registered critical aggregation ANY_TRUE_ELSE_FALSE_ONLY_IF_ALL_EXPECTED_REPETITIONS_ARE_FALSE"
+      }
+    }
+  },
+  "design": "PC_R6_FULL_REGRESSION_EVALUATOR_LANE_DESIGN_V1",
+  "design_sha256": "5cdbb89aa09c2da8c4722467c8083f0f84318476cb40299dc73a6e31c622d1d1",
+  "gates": {
+    "GR1": {
+      "checkable_task_count": 5,
+      "estimate": 0.0,
+      "gate": "GR1_CRITICAL_NON_INFERIORITY",
+      "margin": 0.02,
+      "one_sided_97_5_upper_bound": 0.0,
+      "rule": "Cell 1 F2 vs F0: one-sided 97.5% upper bound of RD(F2 - F0) <= 0.02",
+      "status": "PASS"
+    },
+    "GR2": {
+      "considered": [
+        {
+          "cell": "e30r11",
+          "checkable_task_count": 5,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "contrast": "F2_ORION_METABOLIC_FULL - F0_PARENT_FEDERATION",
+          "estimate": 0.0,
+          "fires": false,
+          "holm_adjusted_p": null
+        },
+        {
+          "cell": "e30r11",
+          "checkable_task_count": 4,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "contrast": "F2_ORION_METABOLIC_FULL - SAME_MODEL_REFLECTION",
+          "estimate": 0.0,
+          "fires": false,
+          "holm_adjusted_p": null
+        },
+        {
+          "cell": "e30r11",
+          "checkable_task_count": 4,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "contrast": "F2_ORION_METABOLIC_FULL - SIMPLE_DIRECT",
+          "estimate": 0.0,
+          "fires": false,
+          "holm_adjusted_p": null
+        },
+        {
+          "cell": "e60",
+          "checkable_task_count": 7,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "contrast": "F2_ORION_METABOLIC_FULL - F2_MINUS_DECOMPOSITION",
+          "estimate": 0.0,
+          "fires": false,
+          "holm_adjusted_p": null
+        },
+        {
+          "cell": "e60",
+          "checkable_task_count": 7,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "contrast": "F2_ORION_METABOLIC_FULL - F2_MINUS_NATIVE_RECOVERY",
+          "estimate": 0.0,
+          "fires": false,
+          "holm_adjusted_p": null
+        },
+        {
+          "cell": "e60",
+          "checkable_task_count": 7,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "contrast": "F2_ORION_METABOLIC_FULL - F2_MINUS_COUNTERPROBE",
+          "estimate": 0.0,
+          "fires": false,
+          "holm_adjusted_p": null
+        },
+        {
+          "cell": "e60",
+          "checkable_task_count": 7,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "contrast": "F2_ORION_METABOLIC_FULL - F2_MINUS_SELECTIVE_REOPEN",
+          "estimate": 0.0,
+          "fires": false,
+          "holm_adjusted_p": null
+        }
+      ],
+      "fired": [],
+      "gate": "GR2_TAIL_INSURANCE",
+      "rule": "any pre-registered contrast (F2/FULL on the left, amendment A5) with point RD < 0 and bootstrap 95% CI excluding 0",
+      "status": "NULL"
+    },
+    "GR3": {
+      "considered": [
+        {
+          "checkable_task_count": 7,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "component": "F2_MINUS_DECOMPOSITION",
+          "contrast": "F2_MINUS_DECOMPOSITION - F2_ORION_METABOLIC_FULL",
+          "estimate": 0.0,
+          "fires": false
+        },
+        {
+          "checkable_task_count": 7,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "component": "F2_MINUS_NATIVE_RECOVERY",
+          "contrast": "F2_MINUS_NATIVE_RECOVERY - F2_ORION_METABOLIC_FULL",
+          "estimate": 0.0,
+          "fires": false
+        },
+        {
+          "checkable_task_count": 7,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "component": "F2_MINUS_COUNTERPROBE",
+          "contrast": "F2_MINUS_COUNTERPROBE - F2_ORION_METABOLIC_FULL",
+          "estimate": 0.0,
+          "fires": false
+        },
+        {
+          "checkable_task_count": 7,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "component": "F2_MINUS_SELECTIVE_REOPEN",
+          "contrast": "F2_MINUS_SELECTIVE_REOPEN - F2_ORION_METABOLIC_FULL",
+          "estimate": 0.0,
+          "fires": false
+        }
+      ],
+      "fired": [],
+      "gate": "GR3_COMPONENT_NECESSITY_TAIL",
+      "margin": 0.02,
+      "rule": "Cell 2: some component with RD(MINUS_X - FULL) 95% lower bound >= +0.02",
+      "status": "NULL"
+    },
+    "routing": "GR1_pass_GR2_GR3_null: P-C closes as mean-null + tail-safe at the registered margin; theory revision B survives as a boundary claim; no component earns tail-necessity"
+  },
+  "generated_utc": "2026-09-02T14:13:47.886793+00:00",
+  "gr0_receipt_sha256": "0d74b701f9edfb653cc653c2423381cca7d5538db7b426669869b9c84163025e",
+  "gr0_status": "PASS",
+  "no_rescue_clause": "no mean-success claim; only re-evaluation of the exact frozen proposals",
+  "rollup_complete": true,
+  "rollup_sha256": "eb33a7be38fd3f568107d6c1c0872d27fb5850a5b849e78a0b4afc74a2969a97",
+  "schema_version": "orion.v2.pc-r6-fullreg-analysis.v1",
+  "seed": 20260902,
+  "stratification": "PROJECT"
+}

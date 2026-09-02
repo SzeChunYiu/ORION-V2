@@ -12,7 +12,7 @@
 |---|---|---|
 | runner (v2, re-frozen after GR0(b) defect, §7) | `research/experiments/pc-r6/pc_r6_fullreg_eval.py` | `4c62a32e0ea92752b8d94402b53a554caaae5ed9ad7e62320758945d857dba86` |
 | runner v1 (executed GR0(a) array 3563415; superseded) | same path at PR #141 merge `d1c7e92` | `284d04df88f42844f5711eb2674045700e79776a740363d84893f9c9b8e0c025` |
-| analysis | `research/experiments/pc-r6/pc_r6_fullreg_analysis.py` | `a7c689c013c2d511a9e471ca5ef7ba084ab1bec98134856b18cb1efd40da111b` |
+| analysis | `pc_r6_fullreg_analysis.py`, run deliberately after the rollup was verified complete (never chained; refuses without a GR0 PASS receipt) | done 2026-09-02 — **GR1 PASS, GR2 NULL, GR3 NULL**; terminal artifacts archived at `research/experiments/results/issue45/pc-r6/` (byte-identical to the campaign dir). Read the denominators in that receipt: GR1 rests on **5 paired tasks**, all concordant-negative |
 | frozen-lane adapter (imported verbatim, asserted at every run) | `research/experiments/results/issue45/e30-r11/drivers/e30_r11_arm_eval_frozen_lane.py` = LUNARC `R11/run/e30_r11_arm_eval_frozen_lane.py` | `829abb411ccf0bd71182eea4c11d2e07fae60f3b743872f7b4fce0a8635aae93` |
 | frozen analyzer (imported for §4 statistics) | `scripts/analyze_orion_real_problem_results.py` | `ef195f7b8d6edafb9b48f3873eeb3f4041fcce6d87aad288e7ede1865428e3f2` |
 | truth anchor, E30-R11 | `research/experiments/results/issue45/e30-r11/E30_R11_TERMINAL_RAW_ROLLUP.json` (internal freeze `4663435c…`) | `791320f47d644f9e3381e97a108ee5677d0c91fcee44b84d61a3063cc97d5761` |
@@ -82,9 +82,9 @@
 | GR0 verify, attempt 1 | `pc_r6_gr0_verify.sbatch` | 3563417 DependencyNeverSatisfied → cancelled together with 3563418 (suite) and 3563419 (rollup); no suite compute spent |
 | GR0(b) gold control, attempt 2 (runner v2) | `pc_r6_gr0b.sbatch` (2 CPU, 8 G, 4 h) | **3563624** (submitted from branch head `8f41aeb`; runner sha `4c62a32e…` verified on LUNARC) |
 | GR0 verify + combine, attempt 2 | `pc_r6_gr0_verify.sbatch` `--dependency=afterok:3563624` (re-collects the 3563415 GR0(a) records under runner v2) | **3563625**; login-node pre-check of the v2 collect: GR0(a) PASS 480/480 + 600/600, supersede anchor PASS |
-| suite | `pc_r6_suite_array.sbatch` (`--array=0-79%24`, 2 CPU, 8 G, 12 h) `--dependency=afterok:3563625` | **3563626** (starts only on GR0 PASS) |
-| rollup | `pc_r6_rollup.sbatch` `--dependency=afterany:3563626` | **3563627** |
-| analysis | `pc_r6_fullreg_analysis.py` — **not chained; not run at dispatch**; refuses without a GR0 PASS receipt | deliberate manual step after the rollup is verified complete |
+| suite | `pc_r6_suite_array.sbatch` (`--array=0-79%24`, 2 CPU, 8 G, 12 h) `--dependency=afterok:3563625` | **3563626** — 80/80 COMPLETED |
+| rollup | `pc_r6_rollup.sbatch` `--dependency=afterany:3563626` | **3563627** COMPLETED — `PC_R6_FULLREG_RAW_ROLLUP_V1.json` `"complete": true` |
+| analysis | `pc_r6_fullreg_analysis.py`, run deliberately after the rollup was verified complete (never chained; refuses without a GR0 PASS receipt) | done 2026-09-02 — **GR1 PASS, GR2 NULL, GR3 NULL**; terminal artifacts archived at `research/experiments/results/issue45/pc-r6/` (byte-identical to the campaign dir). Read the denominators in that receipt: GR1 rests on **5 paired tasks**, all concordant-negative |
 
 Compute expectation from the frozen records: 480 + 600 registered-test evaluations took 3.4 + 4.7 CPU-h in
 the frozen lane (median 3 s, max 530 s); only 95/480 and 124/600 proposals applied AND compiled, so
