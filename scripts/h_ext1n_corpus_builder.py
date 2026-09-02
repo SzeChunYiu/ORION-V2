@@ -30,7 +30,6 @@ import os
 import random
 import re
 import shutil
-import sys
 import time
 import urllib.parse
 import urllib.request
