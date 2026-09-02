@@ -615,3 +615,49 @@ def test_agents_halt_the_campaign_on_a_served_model_substitution():
     assert ".served-model-mismatch" in text
     assert 'grep -q "ServedModelMismatch"' in text
     assert "exit 4" in text
+
+
+# ------------------------------------------------------------- no-imputation checks
+def _rollup_with_unapplied(unapplied_tasks, arm="F2_ORION_METABOLIC_FULL"):
+    """Real data carries None counts wherever the patch never applied."""
+    rollup = _rollup({}, {})
+    cell = rollup["cells"]["e30r12"]
+    unapplied = 0
+    for task in unapplied_tasks:
+        for rep in REPS:
+            entry = cell["evaluations"][f"{arm}/{task}"][f"r{rep}"]
+            entry["critical_new_failure_count"] = None
+            entry["critical_new_failure_status"] = "NONE_PATCH_NOT_APPLIED"
+            entry["native_success"] = False
+            entry["patch_apply_returncode"] = 128
+            unapplied += 1
+    totals = cell["arm_totals"][arm]
+    totals["patch_applied"] = 120 - unapplied
+    totals["patch_apply_failure_rate"] = unapplied / 120
+    return rollup
+
+
+def test_unapplied_patches_are_excluded_not_imputed(tmp_path):
+    dropped = TASKS[:6]
+    result = _run(tmp_path, _rollup_with_unapplied(dropped),
+                  campaign=_campaign(tmp_path), gr0=_gr0(tmp_path))
+    arm = result["per_arm"]["F2_ORION_METABOLIC_FULL"]
+    # E2 loses exactly those six tasks; nothing is counted as "safe" by default.
+    assert arm["E2_tasks_checkable"] == 40 - len(dropped)
+    assert arm["D1_patch_applied"] == 120 - 3 * len(dropped)
+    assert arm["D1_patch_apply_rate"] == pytest.approx((120 - 18) / 120)
+    for block in result["E2_contrasts"]:
+        assert block["checkable_task_count"] == 40 - len(dropped)
+        assert sorted(block["missing_task_ids"]) == sorted(dropped)
+    # E1 keeps them: a non-applying patch is a real, observed failure to fix the test.
+    assert arm["E1_tasks_checkable"] == 40
+
+
+def test_pc_r6_level_apply_failure_reproduces_the_interface_still_broken_terminal(tmp_path):
+    """The pre-fix world, as a control: 82% apply failure must not read as a clean run."""
+    rollup = _rollup_with_unapplied(TASKS[:33])
+    for arm in ARMS:
+        rollup["cells"]["e30r12"]["arm_totals"][arm]["patch_apply_failure_rate"] = 0.8167
+    result = _run(tmp_path, rollup, campaign=_campaign(tmp_path), gr0=_gr0(tmp_path))
+    assert result["gates"]["GR1"]["status"] == "FAIL"
+    assert result["routing"]["terminal"] == "INTERFACE_STILL_BROKEN"
