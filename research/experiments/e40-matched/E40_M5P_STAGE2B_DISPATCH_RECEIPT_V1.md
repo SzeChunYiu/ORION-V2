@@ -128,7 +128,24 @@ follow-up PR after submission, since the PR carrying this receipt must merge bef
 
 ### 5.1 Amendment — submission record
 
-_pending: filled by the follow-up PR after `sbatch`._
+- Design/runner/analysis PR **#139** squash-merged as main `0cb33488f47ec12b7d4fb42813b044d141957456`
+  (6/6 check-runs `conclusion=success` before merge).
+- Deploy (2026-09-02 04:22 UTC): `orion-v2-wave6` clone at `0cb33488…`; copies in the campaign dir
+  sha256-verified against §1 — runner `8e5e9eb8…`, analysis `7b7664b5…`, chain sbatch `1b268844…`,
+  eval sbatch `b56c8e32…`; runner `selftest` 0 failures and analysis `selftest` (full battery: planted,
+  null, refusal, exclusion, leak, seed-drift, nullcal 400/400, gate-chain 400) 0 failures on the LUNARC
+  campaign venv (Python 3.11.5).
+- Endpoint probe at deploy (04:22:50 UTC): HTTP 429 `rate_limit_error` 1310, reset stated
+  `2026-09-05 10:04:26` (provider clock UTC+8) — unchanged from §4; `run/endpoint_probe.json`.
+- **Chain array SLURM job `3563453`** (`o2-e40m5p2b-chain`, `0-47%8`, lu48, 8 cpu / 64 G / 3 h per
+  task), submitted 2026-09-02 06:23:08 CEST with `EligibleTime=2026-09-05T04:45:00` CEST (40 min
+  after the provider reset). Pre-flight probe gate per task; expected wall once eligible ≈ 2 h
+  (48 chains × 12–24 min at 8 concurrent) ⇒ chains settled ≈ 2026-09-05 07:00 CEST if the gate opens.
+- Eval job not submitted (unblinding is an operator decision): after `status` reports `all_settled`,
+  `sbatch e40_m5p_stage2b_eval_r1.sbatch` from the campaign dir.
+- If the gate is still walled at 04:45 CEST, every task exits 75 within seconds (logs
+  `logs/e40m5p2b-probe-3563453_<task>.json`); resubmit the identical array once a manual
+  `probe-endpoint` returns `parsed_ok: true`.
 
 ## 6. Resolutions taken (conservative, all recorded)
 
