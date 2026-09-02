@@ -6,8 +6,10 @@ success — together with cheap detectors that would have caught each earlier.
 
 **Assessment date:** 2026-09-02.
 **Evidence head:** ORION-V2 `main` @ `a67bd852` (`origin/main` at fetch time).
-**Manuscript heads read:** ORION-paper `origin/main` @ `ba7a084`, and the in-flight PRA V16 branch
-`paper/pra-v16-priorwork-closure-20260902` @ `d32af0f` (PR #80, OPEN). V16 is **not** on `origin/main`.
+**Manuscript heads read:** ORION-paper `origin/main`, at `ba7a084` when the assessment opened and
+`3e2e22e` at close — PRA V16 (PR #80) and the workflow repair (PR #43) both merged mid-assessment,
+and §2 records the corrections that forced. All reads were from `origin/main` refs or a private
+worktree; no shared checkout was switched.
 **Gates applied:** `papers/PROGRAMME_LEDGER_V0.md` §"Programme-level selection rule";
 `papers/CLOSURE_PORTFOLIO_WAVE06_V0.md`;
 `papers/pipeline/SD_RECURSIVE_STANDALONE_ADMISSION_GATE_V2.md` §6;
@@ -24,10 +26,11 @@ DISPOSITION                  = MERGE_INTO_EXISTING_OWNERS + REGISTER_ONE_PROSPEC
 PROGRAMME_CRITERIA_MET       = 0 clean, 1 partial (recoverable), 6 FAIL
 BLOCKING_FAILURES            = no prospective discriminator; no strongest-parent baseline;
                                no evaluation outside the derivation domain; no independent authority
-STRONGEST_INSTANCE           = ALREADY_CLAIMED_BY_PRA (V16 Appendix B.8, in flight on PR #80)
+STRONGEST_INSTANCE           = ALREADY_PUBLISHED_BY_PRA (V16 Appendix B.8, merged 3e2e22e)
 PARENT_COMPOSITION           = DOMINATES — residual empty; the unifying framework (Kupferman 2006)
                                and the empirical census both predate the object
 REVIVAL                      = SFM-D1 planted-defect detector-efficacy study (§8), not yet executed
+LATER_INSTANCES              = 7 arrived during assessment; gate unmoved (§2.2-§2.4)
 COST_OF_NOT_OPENING          = ZERO (every finding retains its existing owner and receipt)
 ```
 
@@ -66,7 +69,7 @@ those live in a block its own receipt marks as not machine-generated. That fact 
 |---|---|---|---|
 | 1 | Control-induced exploration collapse (E40-m5' Stage-2d) | **VERIFIED** | Terminal quality 0.9877 (no mandate) / 0.9518 (regime anchor) / 0.0233 (exact-seed mandate); the unmandated arm samples five `frac` values and hits the planted optimum `partial@0.8` at cycle 8; the seed-mandated arm never leaves `frac 0.0`. All four controls PASS. `research/experiments/e40-matched/E40_M5P_STAGE2D_OUTCOME_RECEIPT.md`; design PR #169 `b42bf470`, outcome PR #170 `a67bd852`. |
 | 2A | Applicability guard excluded the family under test | **VERIFIED, two corrections** | The guard is `fano_applicable = is_terminal_model(m) and satisfies_pc(m)`; the violation counter was nested inside it. Ungated: **1,309 violations on 992 machines** — but that is the **seven-family aggregate**; the non-PC family alone carries **1,308 on 991**. "11 of 3,000" is *terminal-model* eligibility in family `random_general_n<=5`; the gated check there ran on **10 of 17,991** static-admissible partitions. `research/llm-machine-epistemics/h_ext4_premium_bounds.py:893-912`; `H_EXT4_RESULT_V1.json`. Fix merged to ORION-V2 main as **`c30f1827`** (PR #166). |
-| 2B | CI assertion matching text LaTeX never emits | **VERIFIED, not merged** | `grep -E 'Overfull \(hbox\|vbox\)'` in single quotes greps for the literals `Overfull (hbox` and `vbox)`; LaTeX emits neither. Reproduced empirically: 0 of 2 defect lines matched. Two distinct defects — v20/v21/v22 fully vacuous, v19/v112 vbox-blind. **The fix is branch-only: ORION-paper PR #43 is OPEN, `mergeCommit: null`,** and `main` still carries the defective line. |
+| 2B | CI assertion matching text LaTeX never emits | **VERIFIED; since merged** | `grep -E 'Overfull \(hbox\|vbox\)'` in single quotes greps for the literals `Overfull (hbox` and `vbox)`; LaTeX emits neither. Reproduced empirically: 0 of 2 defect lines matched. Two distinct defects — v20/v21/v22 fully vacuous, v19/v112 vbox-blind. The fix has since merged (ORION-paper `446f522`, PR #43); all six workflows on `origin/main` now carry `Overfull \\[hv]box`, verified by reading each file at that ref. |
 | 2C | Horizon check flat by construction | **VERIFIED; closed by claim withdrawal, not repair** | `C_k^* = C_dyn^*` for every `k>=1` is a theorem, so `PH2_FINITE_HORIZON_STABILIZATION` cannot fail on any machine. All 6 fixtures flat for k>=1. **The defect was closed by contracting the claim** (ORION-paper `4e951d75`, PR #68) — the check itself is unchanged and still cannot fail. |
 | 3 | Silent substrate substitution | **VERIFIED, one correction** | Four probes, HTTP 200 each, **three** substitutions (not two): `glm-5.2`→`glm-5.3`, `glm-5.1`→`glm-5.3`, `glm-4.6`→`glm-5.3-flash`; `glm-5.3`→`glm-5.3`. No field, header or status announces it. m2/m3 served id **unrecoverable — 0 hits across 1,810 artifact files**. Fail-closed guard `assert_served_model()` at `scripts/e40_matched_runner_m5p_stage2c.py:164-175`, with a self-test asserting it rejects four wrong ids. |
 | 4 | A null that measured serialization | **PARTLY VERIFIED; two briefed numbers fail** | E30-R11 verified: F2 5/40 = F0 5/40, SIMPLE 6/40, all Holm p = 1.0. E70-GC1 verified: `success_iff_header_unchanged = true` ×4. E70-GC2 verified: raw header-exact **0/16 at every rung** — but **single-arm (`SIMPLE_DIRECT` only)**, and the semantic ceiling is **46/46 applied cells**, not 48/48. **CORRECTED:** `NONE_PATCH_NOT_APPLIED` is **75.0%–82.5%**, not 78–83%. **UNCORROBORATED:** "311/480 patch-apply `rc=128`" has **no supporting artifact anywhere in the repo**. Fix PR #168 `8945cec` is merged but **changes future runs only**; nothing was re-scored. |
@@ -95,7 +98,97 @@ cite across the marker), not a manuscript.
 
 ---
 
-## 3. The reduction: the six bundles are not one object
+
+### 2.2 Instances that arrived after the assessment opened
+
+While this assessment was being written, seven further candidate modes were routed to it from five
+lanes. They are recorded because they change the assessment's facts and its revival design — and
+because what they do *not* change is the finding that matters most.
+
+| # | Mode | Source | Status |
+|---|---|---|---|
+| 7 | **Non-reproducible "frozen" artifact.** RNG draws ordered by iteration over an unordered `set`; per-process string-hash randomisation regenerates a *different* split from the *same* committed seed, while every seed record, sha256 and freeze receipt stays internally consistent and correct. | PR #181 (**open**) | **VERIFIED, one correction.** Three RNG-consuming set iterations, but all three are call sites in **one** function `_plant`, not "three planters"; the receipt's own wording is loose here. Mechanism confirmed by direct demonstration: the RNG sequence is unchanged, but hash order **binds those values to different keys**, after which the streams desynchronise. Custody mechanism is `load_authorized_seed()`, which binds the *seed string* and never the artifact generated from it — blind by construction. **Near-miss:** no protected artifact has ever existed on that branch. |
+| 8 | **Vacuous comparison.** Treatment arm and strongest-parent comparator dispatched to the same code, so a reported `1.000 vs 1.000` was `x == x`; said to vacate 8 of 11 gates. | PR #176 (**open**) | **LANE-REPORTED, not independently verified here.** Pre-freeze. |
+| 9 | **A defect that would have favoured the programme's own hypothesis** — a metadata error scoring as an advantage over the parents, routable to a spurious positive. | PR #176 (**open**) | **LANE-REPORTED.** Pre-freeze. Assessed in §7. |
+| 10 | **Calibrating on a proxy while the reported primary was saturated** — the difficulty ladder sat inside its registered window on a proxy measure while the endpoint actually reported was at 1.0. | ME-F1 (pre-freeze) | **LANE-REPORTED.** Same shape as bundle 4, caught before rather than after. |
+| 11 | **Dateless current-state fields leaking the future into a retrospective split** — `cited_by_count` truncated at fetch date; OpenAlex `is_retracted` a dateless boolean. | ME-X6/7 scoping | **LANE-REPORTED.** No build existed. |
+| 13 | **A rendered summary standing in for a fact.** `gh run list` rendered in-progress runs as `[time]` (elapsed time); read as "timed out", the repair would have been to weaken or split a test suite that was never failing. | ME-X6/7 | **LANE-REPORTED.** No artifact touched, no result affected — the cleanest near-miss on record. Caught by a standing rule against trusting filtered command output for anything driving a decision. |
+| 12 | **A sentence nobody had executed** — "results and custody files are byte-identical on re-run" had never been tested by re-running. On execution, results and custody *were* byte-identical; the analysis file was not, because it quotes per-arm `wall_ms`. | ME-X6/7 | **LANE-REPORTED.** The underlying artifact was substantively correct: the claim was wider than the check, not false. |
+
+**Every one of modes 7–13 is a near-miss.** None produced a contaminated result.
+That is the opposite of a strengthening: a corpus increasingly composed of failures caught before
+they did anything cannot support a prevalence claim, and a paper built on it would be reporting that
+a careful programme is careful.
+
+### 2.3 One instance found by this assessment's own verification
+
+The guard written against mode 7 is parametrized over `PYTHONHASHSEED` values `0`, `1` and `12345`,
+comparing each against a run at `0`. The `0` case therefore compares a process against **itself** and
+passes unconditionally, including on the unfixed code. Two of the three parametrizations are
+load-bearing; the third is vacuous. The guard against vacuity contains a vacuous parametrization —
+found not by review but by a verifier asked to check whether the test could fail.
+
+---
+
+### 2.4 The organizing principle, and why it does not open the paper
+
+One lane, having found the same fault three times in three disguises in its own work, produced the
+generalization the six original bundles lacked. In its words: the vacuous gates were *counters that
+never ran*; the comparator was *a contrast that could not exist*; the sentence was *a claim nobody
+had executed* — and all three read as strength in a receipt (`0 violations`, `1.000 vs 1.000`,
+"byte-identical on re-run"). Generalized: **the artifacts that certify correctness — gates,
+comparators, custody records and the prose describing them — are themselves unverified claims until
+something executes them, and each fails in the direction that looks like strength.** The framing is
+that lane's and must be credited to it wherever it is used.
+
+This is a genuine advance and it is a better object than a list of modes. It explains why review does
+not catch these (a reviewer checks whether a claim is *defensible*, not whether it was *executed*),
+it predicts where to look, and it yields a detector *family* rather than a list. It also corrects one
+of the original five detectors, and the correction is sharp: **asking for the denominator is
+structurally blind to the vacuous comparison.** A gate that never ran reports `0`, which becomes
+suspicious the moment you ask "out of how many?" A comparator with no contrast reports `1.000`, which
+reads as strength, and **there is no denominator to ask for**. The question that catches it is
+different in kind — *could these two arms ever have differed?* Anyone who takes "report the
+denominator" as the general lesson will still ship a study comparing a function to itself.
+
+**Mode 13 completes the principle in the other direction, and the completion matters.** The three
+surfaces above are certifying artifacts that read as *strength* and are therefore never examined.
+A rendered summary can equally read as *failure* and provoke a repair of something that was working.
+A programme that degrades its own instruments in response to display artifacts looks, in its
+receipts, exactly like a programme responding responsibly to problems. So the claim is bidirectional:
+*a rendered summary standing in for a fact nobody executed*, failing toward apparent strength when it
+is a claim and toward apparent failure when it is a display. The detector is symmetric — before
+acting on a summary, execute the thing it summarises; ask both what would have to run for this to be
+false **and** what would have to run for it to be true, the second being what stops you repairing a
+healthy artifact.
+
+Note what caught it, because it cuts against the paper rather than for it: a **pre-existing standing
+rule** in this programme's own operating instructions — never assert absence from absent printed
+output, and use the unfiltered binary for any command whose result drives a decision. The detector
+was not discovered here; it was already written down, and it generalized to a novel instance exactly
+as a good rule should. That is the best evidence in the whole corpus that these detectors work, and
+it is simultaneously evidence that they are already held.
+
+**And it moves not one blocking criterion.** §6 records that criteria 3, 4, 6 and 7 are not fixable
+by adding instances. They are equally unfixable by a better organizing principle. A sharper thesis
+raises what the paper would be worth *if the evidence existed*; it does not create evidence. There is
+still no prospective discriminator, still no false-alarm rate, still no evaluation outside ORION-V2,
+still no independent authority. Six further instances and a superior framing arrived, and the gate
+reads exactly as it did before — which is the strongest available evidence that the gate is measuring
+the right thing.
+
+The principle's proper use is therefore **§8**: it specifies the revival design far better than the
+original list did, by naming the surfaces a planted-defect study must cover.
+
+**This assessment is closed to further instances.** Seven arrived while it was being written and the
+gate did not move, because instances were never the binding constraint — criteria 3, 4, 6 and 7 are.
+Further modes should go to `FAILURE_LEDGER.md`, which is the programme's append-only register for
+exactly this and is bound to running code, and to the lane PRs that own them. A successor reopening
+this object needs the study in §8, not a fourteenth mode.
+
+---
+
+## 3. The reduction: the nominated bundles are not one object
 
 The proposed paper's appeal rests on the six bundles sharing a mechanic. They do not.
 
@@ -117,6 +210,17 @@ A paper built on the spine must drop its headline; a paper built around bundle 1
 paper with a different parent set, one instance, and no detector. The object as proposed is at least
 two things, and neither half survives §5–§6 on its own.
 
+**The later arrivals confirm this rather than repairing it.** Modes 7–13 add a custody mechanism that
+certifies honestly without delivering reproducibility, a comparison with no possible contrast, an
+operational multi-agent hazard, a proxy-versus-primary calibration error, a data-selection leak, and
+an unexecuted sentence. Counting the two original non-spine items, the nominated set now spans at
+least five distinct kinds of object. §2.4's principle is the one thing that genuinely unifies a
+subset of them — the check, the contrast and the claim — and it explicitly does **not** cover
+exploration collapse, the sampling confound or the process-kill hazard. Those three should not be
+carried by any successor: the process-kill item in particular is an operational hazard, not a silent
+verification failure, and including it would repeat the exact error this section identifies —
+bundling unlike things because each was surprising.
+
 ---
 
 ## 4. Ownership: overlap against the six existing manuscripts
@@ -126,7 +230,7 @@ identical data is not automatically a distinct paper."* Applied bundle by bundle
 
 | Bundle | Existing owner | Status |
 |---|---|---|
-| 2A — applicability guard excluded the family under test | **PRA / #51** | **CLAIMED IN MANUSCRIPT.** PRA V16 Appendix B.8 reports the sweep, both denominators, the failure counts and the correction verbatim. V16 sits on ORION-paper PR #80 (OPEN, `mergeCommit: null`), i.e. another lane is actively landing it — not yet on `origin/main`, and not therefore *published*, but unambiguously owned and in flight. Not available as a new result. |
+| 2A — applicability guard excluded the family under test | **PRA / #51** | **CLAIMED IN MANUSCRIPT.** PRA V16 Appendix B.8 reports the sweep, both denominators, the failure counts and the correction verbatim. V16 has since merged to ORION-paper `origin/main` as `3e2e22e` (PR #80). Owned, landed, and not available as a new result. |
 | 1 — control-induced exploration collapse (E40 Stage-2d) | **P-C** | E40 is P-C's evidence line; the seed-replica probe is one of P-C's three prospectively licensed follow-ups. Stage-2d is a diagnostic *within* that lineage. |
 | 4 — the null that measured serialization | **P-C** | P-C anticipated this at the E20 pilot and pre-specified the separation into E30; the E30-R11 terminal is imported into P-C V7. |
 | 5 — terminal emitted while its control failed (Stage-2c) | **P-C** | Same lineage as bundle 1; the Stage-2c disposition `CHECKER_INVALID__NO_VERDICT` is a P-C-line receipt. |
@@ -278,7 +382,7 @@ recommended and no target adapter was invoked.
 `PROGRAMME_LEDGER_V0.md`: *"A candidate survives only if it has:"*
 
 **(1) a distinct scientific object not already owned by V1.** **FAIL.** §4: five of seven items are
-owned by PRA or P-C, and the strongest is already written into a manuscript another lane is landing.
+owned by PRA or P-C, and the strongest has now merged into PRA's manuscript.
 
 **(2) faithful reconstruction of strongest parent fields.** **NOT DONE.** §5.1 reduces at field
 level and binds one parent; no field is *reconstructed*. This is the one criterion that is
@@ -332,6 +436,21 @@ Recorded here so that no successor re-derives them:
 - **Selection is uncontrolled.** The six bundles are the silent failures that were *eventually
   caught*. The population of interest is the ones that were not, and it is unobserved by
   construction. Nothing in the corpus bounds it.
+- **Collecting this corpus for a paper has contaminated the corpus.** Lanes are now finding,
+  disclosing and framing silent failures while knowing a paper is being assessed from them. That
+  changes what is looked for, what is reported and how it is worded — and it is unmeasurable from
+  inside. The programme has a manuscript about exactly this failure: P-D's C09 coordinate holds that
+  evaluation "can alter the systems, researchers, agents or data-generating processes being
+  evaluated" and that a measured relationship may not be treated as stable until that response is
+  modelled. No such model exists here, and the corpus was assembled precisely in the way P-D warns
+  against. This is the deepest reason the object cannot be its own evidence, and it is a P-D-owned
+  argument rather than a new one.
+- **The corpus is now dominated by near-misses.** Of the thirteen modes on record, seven were caught
+  before any protected artifact existed and produced no contaminated result. Prevalence cannot be
+  estimated from a sample selected on "was noticed, was survivable, and was volunteered", and the
+  volunteering is itself the point: several modes exist in the record only because a lane disclosed
+  a hazard that left no trace in its own artifacts. That is admirable practice and worthless as a
+  denominator.
 - **Bundle 1's headline runs against the external evidence.** The literature pass found **no
   peer-reviewed empirical support** for the proposition that a preregistration-style constraint
   reduces exploration, and one quantitative data point pointing the *other* way (more exploratory
@@ -353,8 +472,17 @@ is a study, not a manuscript.
 
 **SFM-D1 — planted-defect detector-efficacy study (not executed; not authorized here).**
 
-Freeze a defect taxonomy from the spine (guard-excluded family; never-matching assertion;
-constant-by-construction check; unconsumed control verdict). Plant a registered number of each into
+Freeze a defect taxonomy from the **three surfaces** §2.4 identifies, because a study that plants
+only the first will validate a detector that is blind to the second:
+
+1. *the check* — guard-excluded family; never-matching assertion; constant-by-construction check;
+   unconsumed control verdict. Detector: report instances-evaluated beside violations.
+2. *the contrast* — two arms sharing a code path, so the comparison is `x == x`. Detector: assert the
+   arms' code paths diverge, and report shared-implementation comparisons as shared rather than
+   counting them as independent evidence. **The denominator question does not catch this**, which is
+   why the study must plant both and measure them separately.
+3. *the claim* — a sentence in a receipt or design that nothing has ever executed. Detector: for each
+   certifying claim, name what would have to run for it to be false, and make that run. Plant a registered number of each into
 a pipeline whose true defect set is known by construction. Run the pipeline under two arms —
 detectors off, detectors on — and report detection rate, **false-alarm rate on a clean control**, and
 time-to-detection, against a strongest donor-composed arm (vacuity checking + mutation/known-answer
