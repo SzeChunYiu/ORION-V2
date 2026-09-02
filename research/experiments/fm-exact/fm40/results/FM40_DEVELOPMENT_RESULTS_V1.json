@@ -1,0 +1,2919 @@
+{
+  "_generator_rejections": {
+    "FULL_INVARIANCE|surface_encoding_is_not_a_re_description": 1,
+    "NON_INVARIANT|family_disposition_mismatch": 3,
+    "NON_INVARIANT|surface_encoding_invariant_would_collapse_the_family": 8,
+    "NON_INVARIANT|surface_encoding_is_not_a_re_description": 1,
+    "PARTIAL_REGIME_INVARIANCE|no_proper_rescuing_regime": 4,
+    "SURFACE_ONLY_SYMMETRY|family_disposition_mismatch": 1,
+    "UNSEEN_TRANSFORMATION_BREAK|surface_encoding_invariant_would_collapse_the_family": 1
+  },
+  "_oracle_agreement": {
+    "n_disagreements": 0,
+    "n_evaluated": 21
+  },
+  "arms": [
+    "P0_SURFACE_SYMMETRY_SCAN",
+    "P1_ORBIT_STABILISER",
+    "P2_EQUIVARIANCE_SOLVER",
+    "P3_AUGMENTATION_EMPIRICAL",
+    "P4_REGIME_RESTRICTION",
+    "P5_FIXED_LESSON_TABLE",
+    "F0_PARENT_FEDERATION",
+    "M_F2_INVARIANCE_DISCOVERY_FULL",
+    "M_MINUS_EQUIVARIANCE_TEST",
+    "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE",
+    "M_MINUS_REGIME_RESTRICTION",
+    "M_MINUS_SURFACE_AUDIT",
+    "C_ALWAYS_INVARIANT",
+    "C_ALWAYS_NON_INVARIANT",
+    "C_RANDOM_DISPOSITION"
+  ],
+  "instances": [
+    {
+      "arms": {
+        "C_ALWAYS_INVARIANT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_NON_INVARIANT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_REGIME_BOUNDED_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "TRANSFER_VALID",
+          "source": "P2",
+          "witness": [
+            [
+              "group_order",
+              "6"
+            ]
+          ]
+        },
+        "M_F2_INVARIANCE_DISCOVERY_FULL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "6"
+            ]
+          ]
+        },
+        "M_MINUS_EQUIVARIANCE_TEST": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "6"
+            ]
+          ]
+        },
+        "M_MINUS_REGIME_RESTRICTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "6"
+            ]
+          ]
+        },
+        "M_MINUS_SURFACE_AUDIT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "6"
+            ]
+          ]
+        },
+        "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "3"
+            ]
+          ]
+        },
+        "P0_SURFACE_SYMMETRY_SCAN": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "COUNT_OF_COLOR_1"
+            ]
+          ]
+        },
+        "P1_ORBIT_STABILISER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "n_orbits",
+              "10"
+            ]
+          ]
+        },
+        "P2_EQUIVARIANCE_SOLVER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "6"
+            ]
+          ]
+        },
+        "P3_AUGMENTATION_EMPIRICAL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "n_witnessed_generators",
+              "1"
+            ]
+          ]
+        },
+        "P4_REGIME_RESTRICTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_TABLE": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "lesson_key",
+              "COLOR_HISTOGRAM"
+            ]
+          ]
+        }
+      },
+      "family": "FULL_INVARIANCE",
+      "instance_id": "FULL_INVARIANCE-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_INVARIANT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_NON_INVARIANT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "TRANSFER_VALID",
+          "source": "P2",
+          "witness": [
+            [
+              "group_order",
+              "2"
+            ]
+          ]
+        },
+        "M_F2_INVARIANCE_DISCOVERY_FULL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_EQUIVARIANCE_TEST": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_REGIME_RESTRICTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_SURFACE_AUDIT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "2"
+            ]
+          ]
+        },
+        "P0_SURFACE_SYMMETRY_SCAN": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "SORTED_COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "P1_ORBIT_STABILISER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "n_orbits",
+              "6"
+            ]
+          ]
+        },
+        "P2_EQUIVARIANCE_SOLVER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "2"
+            ]
+          ]
+        },
+        "P3_AUGMENTATION_EMPIRICAL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "n_witnessed_generators",
+              "1"
+            ]
+          ]
+        },
+        "P4_REGIME_RESTRICTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_TABLE": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "lesson_key",
+              "MAJORITY_COLOR"
+            ]
+          ]
+        }
+      },
+      "family": "FULL_INVARIANCE",
+      "instance_id": "FULL_INVARIANCE-00003"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_INVARIANT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_NON_INVARIANT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "TRANSFER_VALID",
+          "source": "P2",
+          "witness": [
+            [
+              "group_order",
+              "4"
+            ]
+          ]
+        },
+        "M_F2_INVARIANCE_DISCOVERY_FULL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "4"
+            ]
+          ]
+        },
+        "M_MINUS_EQUIVARIANCE_TEST": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "4"
+            ]
+          ]
+        },
+        "M_MINUS_REGIME_RESTRICTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "4"
+            ]
+          ]
+        },
+        "M_MINUS_SURFACE_AUDIT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "4"
+            ]
+          ]
+        },
+        "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "2"
+            ]
+          ]
+        },
+        "P0_SURFACE_SYMMETRY_SCAN": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "P1_ORBIT_STABILISER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "n_orbits",
+              "3"
+            ]
+          ]
+        },
+        "P2_EQUIVARIANCE_SOLVER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "4"
+            ]
+          ]
+        },
+        "P3_AUGMENTATION_EMPIRICAL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "n_witnessed_generators",
+              "1"
+            ]
+          ]
+        },
+        "P4_REGIME_RESTRICTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_TABLE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "lesson_key",
+              "N_DISTINCT_COLORS"
+            ]
+          ]
+        }
+      },
+      "family": "FULL_INVARIANCE",
+      "instance_id": "FULL_INVARIANCE-00004"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_INVARIANT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_NON_INVARIANT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": "P2",
+          "witness": [
+            [
+              "group_order",
+              "3"
+            ]
+          ]
+        },
+        "M_F2_INVARIANCE_DISCOVERY_FULL": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "value_actions_discovered",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_EQUIVARIANCE_TEST": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "IS_CONSTANT"
+            ]
+          ]
+        },
+        "M_MINUS_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "value_actions_discovered",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_SURFACE_AUDIT": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "value_actions_discovered",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "value_actions_discovered",
+              "2"
+            ]
+          ]
+        },
+        "P0_SURFACE_SYMMETRY_SCAN": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "IS_CONSTANT"
+            ]
+          ]
+        },
+        "P1_ORBIT_STABILISER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_orbits",
+              "9"
+            ]
+          ]
+        },
+        "P2_EQUIVARIANCE_SOLVER": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "3"
+            ]
+          ]
+        },
+        "P3_AUGMENTATION_EMPIRICAL": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_witnessed_generators",
+              "1"
+            ]
+          ]
+        },
+        "P4_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_TABLE": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "lesson_key",
+              "COLOR_AT_SITE_0"
+            ]
+          ]
+        }
+      },
+      "family": "EQUIVARIANT_ACTION",
+      "instance_id": "EQUIVARIANT_ACTION-00001"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_INVARIANT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_NON_INVARIANT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": "P2",
+          "witness": [
+            [
+              "group_order",
+              "48"
+            ]
+          ]
+        },
+        "M_F2_INVARIANCE_DISCOVERY_FULL": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "value_actions_discovered",
+              "24"
+            ]
+          ]
+        },
+        "M_MINUS_EQUIVARIANCE_TEST": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "SORTED_COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "M_MINUS_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "value_actions_discovered",
+              "24"
+            ]
+          ]
+        },
+        "M_MINUS_SURFACE_AUDIT": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "value_actions_discovered",
+              "24"
+            ]
+          ]
+        },
+        "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "4"
+            ]
+          ]
+        },
+        "P0_SURFACE_SYMMETRY_SCAN": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "SORTED_COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "P1_ORBIT_STABILISER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_orbits",
+              "3"
+            ]
+          ]
+        },
+        "P2_EQUIVARIANCE_SOLVER": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "48"
+            ]
+          ]
+        },
+        "P3_AUGMENTATION_EMPIRICAL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "n_witnessed_generators",
+              "1"
+            ]
+          ]
+        },
+        "P4_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_TABLE": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "lesson_key",
+              "MAJORITY_COLOR"
+            ]
+          ]
+        }
+      },
+      "family": "EQUIVARIANT_ACTION",
+      "instance_id": "EQUIVARIANT_ACTION-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_INVARIANT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_NON_INVARIANT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": "P2",
+          "witness": [
+            [
+              "group_order",
+              "3"
+            ]
+          ]
+        },
+        "M_F2_INVARIANCE_DISCOVERY_FULL": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "value_actions_discovered",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_EQUIVARIANCE_TEST": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "ADJACENT_EQUAL_COUNT"
+            ]
+          ]
+        },
+        "M_MINUS_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "value_actions_discovered",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_SURFACE_AUDIT": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "value_actions_discovered",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "value_actions_discovered",
+              "2"
+            ]
+          ]
+        },
+        "P0_SURFACE_SYMMETRY_SCAN": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "ADJACENT_EQUAL_COUNT"
+            ]
+          ]
+        },
+        "P1_ORBIT_STABILISER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_orbits",
+              "9"
+            ]
+          ]
+        },
+        "P2_EQUIVARIANCE_SOLVER": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "3"
+            ]
+          ]
+        },
+        "P3_AUGMENTATION_EMPIRICAL": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_witnessed_generators",
+              "1"
+            ]
+          ]
+        },
+        "P4_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_TABLE": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "lesson_key",
+              "COLOR_AT_SITE_1"
+            ]
+          ]
+        }
+      },
+      "family": "EQUIVARIANT_ACTION",
+      "instance_id": "EQUIVARIANT_ACTION-00003"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_INVARIANT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_NON_INVARIANT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": "P2",
+          "witness": null
+        },
+        "M_F2_INVARIANCE_DISCOVERY_FULL": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_EQUIVARIANCE_TEST": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_SURFACE_AUDIT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "COLOR_AT_SITE_2"
+            ]
+          ]
+        },
+        "P0_SURFACE_SYMMETRY_SCAN": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "COLOR_AT_SITE_2"
+            ]
+          ]
+        },
+        "P1_ORBIT_STABILISER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_orbits",
+              "6"
+            ]
+          ]
+        },
+        "P2_EQUIVARIANCE_SOLVER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "4"
+            ]
+          ]
+        },
+        "P3_AUGMENTATION_EMPIRICAL": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_witnessed_generators",
+              "1"
+            ]
+          ]
+        },
+        "P4_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_TABLE": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "lesson_key",
+              "COLOR_AT_SITE_0"
+            ]
+          ]
+        }
+      },
+      "family": "NON_INVARIANT",
+      "instance_id": "NON_INVARIANT-00010"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_INVARIANT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_NON_INVARIANT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": "P2",
+          "witness": null
+        },
+        "M_F2_INVARIANCE_DISCOVERY_FULL": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_EQUIVARIANCE_TEST": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_SURFACE_AUDIT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "P0_SURFACE_SYMMETRY_SCAN": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "P1_ORBIT_STABILISER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_orbits",
+              "3"
+            ]
+          ]
+        },
+        "P2_EQUIVARIANCE_SOLVER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "4"
+            ]
+          ]
+        },
+        "P3_AUGMENTATION_EMPIRICAL": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_witnessed_generators",
+              "1"
+            ]
+          ]
+        },
+        "P4_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_TABLE": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "lesson_key",
+              "COLOR_AT_SITE_0"
+            ]
+          ]
+        }
+      },
+      "family": "NON_INVARIANT",
+      "instance_id": "NON_INVARIANT-00014"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_INVARIANT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_NON_INVARIANT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_REGIME_BOUNDED_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": "P2",
+          "witness": null
+        },
+        "M_F2_INVARIANCE_DISCOVERY_FULL": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_EQUIVARIANCE_TEST": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_SURFACE_AUDIT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "COLOR_AT_SITE_2"
+            ]
+          ]
+        },
+        "P0_SURFACE_SYMMETRY_SCAN": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "COLOR_AT_SITE_2"
+            ]
+          ]
+        },
+        "P1_ORBIT_STABILISER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_orbits",
+              "6"
+            ]
+          ]
+        },
+        "P2_EQUIVARIANCE_SOLVER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "4"
+            ]
+          ]
+        },
+        "P3_AUGMENTATION_EMPIRICAL": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_witnessed_generators",
+              "1"
+            ]
+          ]
+        },
+        "P4_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_TABLE": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "lesson_key",
+              "SITE_PAIR_EQUAL_1_3"
+            ]
+          ]
+        }
+      },
+      "family": "NON_INVARIANT",
+      "instance_id": "NON_INVARIANT-00015"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_INVARIANT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_NON_INVARIANT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_REGIME_BOUNDED_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": "P0",
+          "witness": [
+            [
+              "surface_encoding",
+              "N_DISTINCT_COLORS"
+            ]
+          ]
+        },
+        "M_F2_INVARIANCE_DISCOVERY_FULL": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "N_DISTINCT_COLORS"
+            ]
+          ]
+        },
+        "M_MINUS_EQUIVARIANCE_TEST": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "N_DISTINCT_COLORS"
+            ]
+          ]
+        },
+        "M_MINUS_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "N_DISTINCT_COLORS"
+            ]
+          ]
+        },
+        "M_MINUS_SURFACE_AUDIT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "N_DISTINCT_COLORS"
+            ]
+          ]
+        },
+        "P0_SURFACE_SYMMETRY_SCAN": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "N_DISTINCT_COLORS"
+            ]
+          ]
+        },
+        "P1_ORBIT_STABILISER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_orbits",
+              "4"
+            ]
+          ]
+        },
+        "P2_EQUIVARIANCE_SOLVER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "6"
+            ]
+          ]
+        },
+        "P3_AUGMENTATION_EMPIRICAL": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_witnessed_generators",
+              "1"
+            ]
+          ]
+        },
+        "P4_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_TABLE": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "lesson_key",
+              "SITE_PAIR_EQUAL_0_2"
+            ]
+          ]
+        }
+      },
+      "family": "SURFACE_ONLY_SYMMETRY",
+      "instance_id": "SURFACE_ONLY_SYMMETRY-00001"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_INVARIANT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_NON_INVARIANT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": "P0",
+          "witness": [
+            [
+              "surface_encoding",
+              "SORTED_COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "M_F2_INVARIANCE_DISCOVERY_FULL": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "SORTED_COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "M_MINUS_EQUIVARIANCE_TEST": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "SORTED_COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "M_MINUS_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "SORTED_COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "M_MINUS_SURFACE_AUDIT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "SORTED_COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "P0_SURFACE_SYMMETRY_SCAN": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "SORTED_COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "P1_ORBIT_STABILISER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_orbits",
+              "6"
+            ]
+          ]
+        },
+        "P2_EQUIVARIANCE_SOLVER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "6"
+            ]
+          ]
+        },
+        "P3_AUGMENTATION_EMPIRICAL": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_witnessed_generators",
+              "1"
+            ]
+          ]
+        },
+        "P4_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_TABLE": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "lesson_key",
+              "SITE_PAIR_EQUAL_0_2"
+            ]
+          ]
+        }
+      },
+      "family": "SURFACE_ONLY_SYMMETRY",
+      "instance_id": "SURFACE_ONLY_SYMMETRY-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_INVARIANT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_NON_INVARIANT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": "P0",
+          "witness": [
+            [
+              "surface_encoding",
+              "SORTED_COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "M_F2_INVARIANCE_DISCOVERY_FULL": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "SORTED_COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "M_MINUS_EQUIVARIANCE_TEST": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "SORTED_COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "M_MINUS_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "SORTED_COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "M_MINUS_SURFACE_AUDIT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "SORTED_COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "P0_SURFACE_SYMMETRY_SCAN": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "SORTED_COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "P1_ORBIT_STABILISER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_orbits",
+              "4"
+            ]
+          ]
+        },
+        "P2_EQUIVARIANCE_SOLVER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "3"
+            ]
+          ]
+        },
+        "P3_AUGMENTATION_EMPIRICAL": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_witnessed_generators",
+              "1"
+            ]
+          ]
+        },
+        "P4_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_TABLE": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "lesson_key",
+              "SITE_PAIR_EQUAL_0_1"
+            ]
+          ]
+        }
+      },
+      "family": "SURFACE_ONLY_SYMMETRY",
+      "instance_id": "SURFACE_ONLY_SYMMETRY-00004"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_INVARIANT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_NON_INVARIANT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_REGIME_BOUNDED_INVARIANT",
+          "source": "P4",
+          "witness": [
+            [
+              "regime_size",
+              "2"
+            ]
+          ]
+        },
+        "M_F2_INVARIANCE_DISCOVERY_FULL": {
+          "disposition": "BLOCK_REGIME_BOUNDED_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "recovered_regime_size",
+              "2"
+            ],
+            [
+              "declared_regime_size",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_EQUIVARIANCE_TEST": {
+          "disposition": "BLOCK_REGIME_BOUNDED_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "recovered_regime_size",
+              "2"
+            ],
+            [
+              "declared_regime_size",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "COUNT_OF_COLOR_0"
+            ]
+          ]
+        },
+        "M_MINUS_SURFACE_AUDIT": {
+          "disposition": "BLOCK_REGIME_BOUNDED_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "recovered_regime_size",
+              "2"
+            ],
+            [
+              "declared_regime_size",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
+          "disposition": "BLOCK_REGIME_BOUNDED_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "recovered_regime_size",
+              "2"
+            ],
+            [
+              "declared_regime_size",
+              "2"
+            ]
+          ]
+        },
+        "P0_SURFACE_SYMMETRY_SCAN": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "COUNT_OF_COLOR_0"
+            ]
+          ]
+        },
+        "P1_ORBIT_STABILISER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_orbits",
+              "4"
+            ]
+          ]
+        },
+        "P2_EQUIVARIANCE_SOLVER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "6"
+            ]
+          ]
+        },
+        "P3_AUGMENTATION_EMPIRICAL": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_witnessed_generators",
+              "1"
+            ]
+          ]
+        },
+        "P4_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_REGIME_BOUNDED_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "regime_size",
+              "2"
+            ]
+          ]
+        },
+        "P5_FIXED_LESSON_TABLE": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "lesson_key",
+              "COLOR_AT_SITE_1"
+            ]
+          ]
+        }
+      },
+      "family": "PARTIAL_REGIME_INVARIANCE",
+      "instance_id": "PARTIAL_REGIME_INVARIANCE-00005"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_INVARIANT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_NON_INVARIANT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_REGIME_BOUNDED_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_REGIME_BOUNDED_INVARIANT",
+          "source": "P4",
+          "witness": [
+            [
+              "regime_size",
+              "10"
+            ]
+          ]
+        },
+        "M_F2_INVARIANCE_DISCOVERY_FULL": {
+          "disposition": "BLOCK_REGIME_BOUNDED_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "recovered_regime_size",
+              "10"
+            ],
+            [
+              "declared_regime_size",
+              "10"
+            ]
+          ]
+        },
+        "M_MINUS_EQUIVARIANCE_TEST": {
+          "disposition": "BLOCK_REGIME_BOUNDED_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "recovered_regime_size",
+              "10"
+            ],
+            [
+              "declared_regime_size",
+              "10"
+            ]
+          ]
+        },
+        "M_MINUS_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "3"
+            ]
+          ]
+        },
+        "M_MINUS_SURFACE_AUDIT": {
+          "disposition": "BLOCK_REGIME_BOUNDED_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "recovered_regime_size",
+              "10"
+            ],
+            [
+              "declared_regime_size",
+              "10"
+            ]
+          ]
+        },
+        "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "4"
+            ]
+          ]
+        },
+        "P0_SURFACE_SYMMETRY_SCAN": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "P1_ORBIT_STABILISER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_orbits",
+              "3"
+            ]
+          ]
+        },
+        "P2_EQUIVARIANCE_SOLVER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "48"
+            ]
+          ]
+        },
+        "P3_AUGMENTATION_EMPIRICAL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "n_witnessed_generators",
+              "1"
+            ]
+          ]
+        },
+        "P4_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_REGIME_BOUNDED_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "regime_size",
+              "10"
+            ]
+          ]
+        },
+        "P5_FIXED_LESSON_TABLE": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "lesson_key",
+              "ADJACENT_EQUAL_COUNT"
+            ]
+          ]
+        }
+      },
+      "family": "PARTIAL_REGIME_INVARIANCE",
+      "instance_id": "PARTIAL_REGIME_INVARIANCE-00006"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_INVARIANT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_NON_INVARIANT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_REGIME_BOUNDED_INVARIANT",
+          "source": "P4",
+          "witness": [
+            [
+              "regime_size",
+              "10"
+            ]
+          ]
+        },
+        "M_F2_INVARIANCE_DISCOVERY_FULL": {
+          "disposition": "BLOCK_REGIME_BOUNDED_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "recovered_regime_size",
+              "10"
+            ],
+            [
+              "declared_regime_size",
+              "10"
+            ]
+          ]
+        },
+        "M_MINUS_EQUIVARIANCE_TEST": {
+          "disposition": "BLOCK_REGIME_BOUNDED_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "recovered_regime_size",
+              "10"
+            ],
+            [
+              "declared_regime_size",
+              "10"
+            ]
+          ]
+        },
+        "M_MINUS_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "M_MINUS_SURFACE_AUDIT": {
+          "disposition": "BLOCK_REGIME_BOUNDED_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "recovered_regime_size",
+              "10"
+            ],
+            [
+              "declared_regime_size",
+              "10"
+            ]
+          ]
+        },
+        "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "4"
+            ]
+          ]
+        },
+        "P0_SURFACE_SYMMETRY_SCAN": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "P1_ORBIT_STABILISER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_orbits",
+              "5"
+            ]
+          ]
+        },
+        "P2_EQUIVARIANCE_SOLVER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "24"
+            ]
+          ]
+        },
+        "P3_AUGMENTATION_EMPIRICAL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "n_witnessed_generators",
+              "1"
+            ]
+          ]
+        },
+        "P4_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_REGIME_BOUNDED_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "regime_size",
+              "10"
+            ]
+          ]
+        },
+        "P5_FIXED_LESSON_TABLE": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "lesson_key",
+              "ADJACENT_EQUAL_COUNT"
+            ]
+          ]
+        }
+      },
+      "family": "PARTIAL_REGIME_INVARIANCE",
+      "instance_id": "PARTIAL_REGIME_INVARIANCE-00007"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_INVARIANT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_NON_INVARIANT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": "P2",
+          "witness": null
+        },
+        "M_F2_INVARIANCE_DISCOVERY_FULL": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "3"
+            ]
+          ]
+        },
+        "M_MINUS_EQUIVARIANCE_TEST": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "3"
+            ]
+          ]
+        },
+        "M_MINUS_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "3"
+            ]
+          ]
+        },
+        "M_MINUS_SURFACE_AUDIT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "3"
+            ]
+          ]
+        },
+        "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "2"
+            ]
+          ]
+        },
+        "P0_SURFACE_SYMMETRY_SCAN": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "P1_ORBIT_STABILISER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_orbits",
+              "6"
+            ]
+          ]
+        },
+        "P2_EQUIVARIANCE_SOLVER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "4"
+            ]
+          ]
+        },
+        "P3_AUGMENTATION_EMPIRICAL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "n_witnessed_generators",
+              "1"
+            ]
+          ]
+        },
+        "P4_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_TABLE": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "lesson_key",
+              "ADJACENT_EQUAL_COUNT"
+            ]
+          ]
+        }
+      },
+      "family": "UNSEEN_TRANSFORMATION_BREAK",
+      "instance_id": "UNSEEN_TRANSFORMATION_BREAK-00001"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_INVARIANT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_NON_INVARIANT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": "P2",
+          "witness": null
+        },
+        "M_F2_INVARIANCE_DISCOVERY_FULL": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_EQUIVARIANCE_TEST": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_SURFACE_AUDIT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "2"
+            ]
+          ]
+        },
+        "P0_SURFACE_SYMMETRY_SCAN": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "P1_ORBIT_STABILISER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_orbits",
+              "6"
+            ]
+          ]
+        },
+        "P2_EQUIVARIANCE_SOLVER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "6"
+            ]
+          ]
+        },
+        "P3_AUGMENTATION_EMPIRICAL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "n_witnessed_generators",
+              "1"
+            ]
+          ]
+        },
+        "P4_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_TABLE": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "lesson_key",
+              "PARITY_OF_COLOR_1"
+            ]
+          ]
+        }
+      },
+      "family": "UNSEEN_TRANSFORMATION_BREAK",
+      "instance_id": "UNSEEN_TRANSFORMATION_BREAK-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_INVARIANT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_NON_INVARIANT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": "P2",
+          "witness": null
+        },
+        "M_F2_INVARIANCE_DISCOVERY_FULL": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_EQUIVARIANCE_TEST": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_SURFACE_AUDIT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_level_sets",
+              "2"
+            ]
+          ]
+        },
+        "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "3"
+            ]
+          ]
+        },
+        "P0_SURFACE_SYMMETRY_SCAN": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "P1_ORBIT_STABILISER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_orbits",
+              "5"
+            ]
+          ]
+        },
+        "P2_EQUIVARIANCE_SOLVER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "9"
+            ]
+          ]
+        },
+        "P3_AUGMENTATION_EMPIRICAL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "n_witnessed_generators",
+              "1"
+            ]
+          ]
+        },
+        "P4_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_TABLE": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "lesson_key",
+              "PARITY_OF_COLOR_2"
+            ]
+          ]
+        }
+      },
+      "family": "UNSEEN_TRANSFORMATION_BREAK",
+      "instance_id": "UNSEEN_TRANSFORMATION_BREAK-00004"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_INVARIANT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_NON_INVARIANT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": "P2",
+          "witness": [
+            [
+              "group_order",
+              "6"
+            ]
+          ]
+        },
+        "M_F2_INVARIANCE_DISCOVERY_FULL": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "value_actions_discovered",
+              "3"
+            ]
+          ]
+        },
+        "M_MINUS_EQUIVARIANCE_TEST": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "ADJACENT_EQUAL_COUNT"
+            ]
+          ]
+        },
+        "M_MINUS_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "value_actions_discovered",
+              "3"
+            ]
+          ]
+        },
+        "M_MINUS_SURFACE_AUDIT": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "value_actions_discovered",
+              "3"
+            ]
+          ]
+        },
+        "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "3"
+            ]
+          ]
+        },
+        "P0_SURFACE_SYMMETRY_SCAN": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "ADJACENT_EQUAL_COUNT"
+            ]
+          ]
+        },
+        "P1_ORBIT_STABILISER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_orbits",
+              "2"
+            ]
+          ]
+        },
+        "P2_EQUIVARIANCE_SOLVER": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "6"
+            ]
+          ]
+        },
+        "P3_AUGMENTATION_EMPIRICAL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "n_witnessed_generators",
+              "1"
+            ]
+          ]
+        },
+        "P4_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_TABLE": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "lesson_key",
+              "MAJORITY_COLOR"
+            ]
+          ]
+        }
+      },
+      "family": "UNSEEN_TRANSFORMATION_EQUIVARIANCE",
+      "instance_id": "UNSEEN_TRANSFORMATION_EQUIVARIANCE-00001"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_INVARIANT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_NON_INVARIANT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_REGIME_BOUNDED_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": "P2",
+          "witness": [
+            [
+              "group_order",
+              "9"
+            ]
+          ]
+        },
+        "M_F2_INVARIANCE_DISCOVERY_FULL": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "value_actions_discovered",
+              "6"
+            ]
+          ]
+        },
+        "M_MINUS_EQUIVARIANCE_TEST": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "IS_CONSTANT"
+            ]
+          ]
+        },
+        "M_MINUS_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "value_actions_discovered",
+              "6"
+            ]
+          ]
+        },
+        "M_MINUS_SURFACE_AUDIT": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "value_actions_discovered",
+              "6"
+            ]
+          ]
+        },
+        "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "3"
+            ]
+          ]
+        },
+        "P0_SURFACE_SYMMETRY_SCAN": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "IS_CONSTANT"
+            ]
+          ]
+        },
+        "P1_ORBIT_STABILISER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_orbits",
+              "5"
+            ]
+          ]
+        },
+        "P2_EQUIVARIANCE_SOLVER": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "9"
+            ]
+          ]
+        },
+        "P3_AUGMENTATION_EMPIRICAL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "n_witnessed_generators",
+              "1"
+            ]
+          ]
+        },
+        "P4_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_TABLE": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "lesson_key",
+              "MAJORITY_COLOR"
+            ]
+          ]
+        }
+      },
+      "family": "UNSEEN_TRANSFORMATION_EQUIVARIANCE",
+      "instance_id": "UNSEEN_TRANSFORMATION_EQUIVARIANCE-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_INVARIANT": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_NON_INVARIANT": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": "P2",
+          "witness": [
+            [
+              "group_order",
+              "48"
+            ]
+          ]
+        },
+        "M_F2_INVARIANCE_DISCOVERY_FULL": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "value_actions_discovered",
+              "24"
+            ]
+          ]
+        },
+        "M_MINUS_EQUIVARIANCE_TEST": {
+          "disposition": "BLOCK_SURFACE_SYMMETRY_ONLY",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "SORTED_COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "M_MINUS_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "value_actions_discovered",
+              "24"
+            ]
+          ]
+        },
+        "M_MINUS_SURFACE_AUDIT": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "value_actions_discovered",
+              "24"
+            ]
+          ]
+        },
+        "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "24"
+            ]
+          ]
+        },
+        "P0_SURFACE_SYMMETRY_SCAN": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "surface_encoding",
+              "SORTED_COLOR_HISTOGRAM"
+            ]
+          ]
+        },
+        "P1_ORBIT_STABILISER": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "n_orbits",
+              "3"
+            ]
+          ]
+        },
+        "P2_EQUIVARIANCE_SOLVER": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "group_order",
+              "48"
+            ]
+          ]
+        },
+        "P3_AUGMENTATION_EMPIRICAL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "n_witnessed_generators",
+              "2"
+            ]
+          ]
+        },
+        "P4_REGIME_RESTRICTION": {
+          "disposition": "BLOCK_NON_INVARIANT",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_TABLE": {
+          "disposition": "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+          "source": null,
+          "witness": [
+            [
+              "lesson_key",
+              "COLOR_HISTOGRAM"
+            ]
+          ]
+        }
+      },
+      "family": "UNSEEN_TRANSFORMATION_EQUIVARIANCE",
+      "instance_id": "UNSEEN_TRANSFORMATION_EQUIVARIANCE-00003"
+    }
+  ],
+  "label": "DEVELOPMENT",
+  "schema_version": "orion.v2.fm-exact.results.v1",
+  "split_seed": "FM40-DEV-20260902",
+  "suite": "FM40"
+}
