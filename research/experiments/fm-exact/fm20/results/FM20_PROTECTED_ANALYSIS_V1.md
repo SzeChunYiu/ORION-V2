@@ -1,0 +1,60 @@
+# FM20 analysis — PROTECTED
+
+Instances: 125; results sha256 `a756d1c7f94c31231675f6cdc4a0e056cf27030f2a0fee9939ff176a7fea6d49`.
+
+
+## Per-arm exactness
+
+| arm | exact | rate | over-accept | under-accept |
+|---|---|---|---|---|
+| P0_FIXED_LESSON_INJECTION | 100/125 | 0.800 | 25 | 0 |
+| P1_PLOTKIN_LGG | 75/125 | 0.600 | 50 | 0 |
+| P2_CANDIDATE_ELIMINATION | 100/125 | 0.800 | 4 | 0 |
+| P3_MDL_COMPRESSION | 94/125 | 0.752 | 24 | 2 |
+| F0_PARENT_FEDERATION | 125/125 | 1.000 | 0 | 0 |
+| M_F2_ABSTRACTION_INDUCTION_FULL | 125/125 | 1.000 | 0 | 0 |
+| M_MINUS_VARIABLE_IDENTITY | 104/125 | 0.832 | 0 | 21 |
+| M_MINUS_NEGATIVE_CHALLENGE | 100/125 | 0.800 | 25 | 0 |
+| M_MINUS_COMPRESSION_CRITERION | 100/125 | 0.800 | 4 | 0 |
+| M_MINUS_LEAST_GENERALITY | 46/125 | 0.368 | 50 | 0 |
+| C_ALWAYS_ACCEPT | 4/125 | 0.032 | 50 | 0 |
+| C_ALWAYS_REJECT | 0/125 | 0.000 | 0 | 75 |
+| C_RANDOM_DISPOSITION | 8/125 | 0.064 | 13 | 44 |
+
+## Per-family exact rate
+
+| arm | LEAST_GENERAL_PATTERN | DISTRACTOR_REGULARITY | OVER_GENERALIZATION | UNDER_GENERALIZATION | NO_VALID_COMMON_ABSTRACTION |
+|---|---|---|---|---|---|
+| P0_FIXED_LESSON_INJECTION | 1.00 | 1.00 | 0.00 | 1.00 | 1.00 |
+| P1_PLOTKIN_LGG | 1.00 | 1.00 | 0.00 | 1.00 | 0.00 |
+| P2_CANDIDATE_ELIMINATION | 1.00 | 1.00 | 1.00 | 1.00 | 0.00 |
+| P3_MDL_COMPRESSION | 0.96 | 0.84 | 0.00 | 0.96 | 1.00 |
+| F0_PARENT_FEDERATION | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 |
+| M_F2_ABSTRACTION_INDUCTION_FULL | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 |
+| M_MINUS_VARIABLE_IDENTITY | 1.00 | 0.16 | 1.00 | 1.00 | 1.00 |
+| M_MINUS_NEGATIVE_CHALLENGE | 1.00 | 1.00 | 0.00 | 1.00 | 1.00 |
+| M_MINUS_COMPRESSION_CRITERION | 1.00 | 1.00 | 1.00 | 1.00 | 0.00 |
+| M_MINUS_LEAST_GENERALITY | 0.00 | 0.84 | 0.00 | 1.00 | 0.00 |
+| C_ALWAYS_ACCEPT | 0.04 | 0.12 | 0.00 | 0.00 | 0.00 |
+| C_ALWAYS_REJECT | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| C_RANDOM_DISPOSITION | 0.08 | 0.08 | 0.08 | 0.00 | 0.08 |
+
+## Gates (verdict, violations / instances evaluated)
+
+| gate | verdict | violations | n evaluated | hard |
+|---|---|---|---|---|
+| G0a_KNOWN_ANSWER | **PASS** | 0 | 10 | True |
+| G0b_ORACLE_SELF_AGREEMENT | **PASS** | 0 | 125 | True |
+| G0c_NULL_CALIBRATION | **PASS** | 0 | 4 | True |
+| G0d_DECOY_COVERAGE | **PASS** | 0 | 4 | True |
+| G0e_PLANTED_POSITIVES | **PASS** | 0 | 6 | True |
+| G0f_FAMILY_DISCRIMINATION | **PASS** | 0 | 2 | True |
+| G1a_PARENT_REPRODUCES_M | **PASS** | 0 | 125 | True |
+| G1b_M_ADVANTAGE | **NOT_FIRED** | 1 | 125 | False |
+| G2_ANTI_PERMISSIVENESS | **PASS** | 0 | 50 | True |
+| G3_MECHANISM_BY_OMISSION | **NOT_APPLICABLE** | 0 | 0 | False |
+
+## Route
+
+`PARENT_SUFFICIENT` — F0_PARENT_FEDERATION reproduces M_F2_ABSTRACTION_INDUCTION_FULL's dispositions (identity 1.0000). Cost flag: `COST_PARITY_WITHIN_2X`.
+
