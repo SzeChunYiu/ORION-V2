@@ -59,7 +59,16 @@
       "action": "Generate >=96 finite-category tasks only where categorical semantics are valid; score identity/composition/diagram preservation and false equivalence.",
       "depends_on": [
         "FM00"
-      ]
+      ],
+      "status": "DESIGN_FROZEN_DEVELOPMENT_COMPLETE_PROTECTED_PENDING",
+      "exact_study": {
+        "design": "research/experiments/fm-exact/FM50_FUNCTORIALITY_COMMUTING_DIAGRAMS_EXACT_STUDY_DESIGN_V1.{md,json}",
+        "code": "research/experiments/fm-exact/{fm_core,fm_run,fm50_suite}.py",
+        "parent_fidelity": "research/experiments/fm-exact/FM_PARENT_FIDELITY_RECEIPT_FM50_V1.md",
+        "protected_tasks": 104,
+        "eligibility_gate": "G0g_ELIGIBILITY - only constructions that form a lawful finite category enter the split; INELIGIBLE is a published third outcome, counted per family in generator_rejections, and is never negative evidence",
+        "note": "supersedes nothing; the FM/FG R2 LLM-dispatch fm50 cell sat near ceiling (1.000/0.927/0.969/1.000/0.990) and could not discriminate, which is what G0f now gates"
+      }
     },
     {
       "id": "FM60",

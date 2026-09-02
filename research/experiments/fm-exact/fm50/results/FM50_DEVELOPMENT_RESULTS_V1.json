@@ -1,0 +1,2584 @@
+{
+  "_generator_rejections": {
+    "COMPOSITION_NOT_PRESERVED": 4,
+    "ELIGIBILITY_PROBE_MISSED:COMPOSITION_NOT_PRESERVED": 0,
+    "ELIGIBILITY_PROBE_MISSED:ENDPOINT_VIOLATION": 0,
+    "ELIGIBILITY_PROBE_MISSED:FALSE_EQUIVALENCE": 0,
+    "ELIGIBILITY_PROBE_MISSED:IDENTITY_NOT_PRESERVED": 0,
+    "ELIGIBILITY_PROBE_MISSED:LICENSED_COLLAPSE": 0,
+    "ELIGIBILITY_PROBE_MISSED:MIXED_LAW_OBSTRUCTION": 0,
+    "ELIGIBILITY_PROBE_MISSED:SURFACE_NAME_DECOY": 0,
+    "ELIGIBILITY_PROBE_MISSED:VALID_FUNCTOR": 0,
+    "ENDPOINT_VIOLATION": 0,
+    "FALSE_EQUIVALENCE": 5,
+    "IDENTITY_NOT_PRESERVED": 0,
+    "INELIGIBLE_NOT_A_CATEGORY:COMPOSITION_NOT_PRESERVED": 0,
+    "INELIGIBLE_NOT_A_CATEGORY:ENDPOINT_VIOLATION": 1,
+    "INELIGIBLE_NOT_A_CATEGORY:FALSE_EQUIVALENCE": 2,
+    "INELIGIBLE_NOT_A_CATEGORY:IDENTITY_NOT_PRESERVED": 2,
+    "INELIGIBLE_NOT_A_CATEGORY:LICENSED_COLLAPSE": 0,
+    "INELIGIBLE_NOT_A_CATEGORY:MIXED_LAW_OBSTRUCTION": 0,
+    "INELIGIBLE_NOT_A_CATEGORY:SURFACE_NAME_DECOY": 0,
+    "INELIGIBLE_NOT_A_CATEGORY:VALID_FUNCTOR": 0,
+    "LICENSED_COLLAPSE": 3,
+    "MIXED_LAW_OBSTRUCTION": 2,
+    "SURFACE_NAME_DECOY": 1,
+    "VALID_FUNCTOR": 0
+  },
+  "_oracle_agreement": {
+    "n_disagreements": 0,
+    "n_evaluated": 24
+  },
+  "arms": [
+    "P0_NAME_SIMILARITY",
+    "P1_GRAPH_HOMOMORPHISM",
+    "P2_CATEGORY_LAW_FUNCTOR",
+    "P3_DIAGRAM_CHASE",
+    "P4_FAITHFULNESS",
+    "P5_FIXED_LESSON_INJECTION",
+    "F0_PARENT_FEDERATION",
+    "M_F2_FUNCTORIAL_TRANSFER_FULL",
+    "M_MINUS_ENDPOINT_DISCIPLINE",
+    "M_MINUS_IDENTITY_CHECK",
+    "M_MINUS_COMPOSITION_CHECK",
+    "M_MINUS_FAITHFULNESS_RECOVERY",
+    "C_ALWAYS_TRANSFER",
+    "C_ALWAYS_BLOCK",
+    "C_RANDOM_DISPOSITION"
+  ],
+  "instances": [
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "TRANSFER_VALID",
+          "source": "P2+P4",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "VALID_FUNCTOR",
+      "instance_id": "VALID_FUNCTOR-00001"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_MIXED_LAW_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "TRANSFER_VALID",
+          "source": "P2+P4",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "VALID_FUNCTOR",
+      "instance_id": "VALID_FUNCTOR-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_MIXED_LAW_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "TRANSFER_VALID",
+          "source": "P2+P4",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "VALID_FUNCTOR",
+      "instance_id": "VALID_FUNCTOR-00003"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_MIXED_LAW_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "TRANSFER_VALID",
+          "source": "P2+P4",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "B_t"
+            ],
+            [
+              "B",
+              "I_t"
+            ],
+            [
+              "I",
+              "A_t"
+            ]
+          ]
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "SURFACE_NAME_DECOY",
+      "instance_id": "SURFACE_NAME_DECOY-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "TRANSFER_VALID",
+          "source": "P2+P4",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "B_t"
+            ],
+            [
+              "B",
+              "I_t"
+            ],
+            [
+              "I",
+              "A_t"
+            ]
+          ]
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "SURFACE_NAME_DECOY",
+      "instance_id": "SURFACE_NAME_DECOY-00003"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "TRANSFER_VALID",
+          "source": "P2+P4",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "B_t"
+            ],
+            [
+              "B",
+              "I_t"
+            ],
+            [
+              "I",
+              "A_t"
+            ]
+          ]
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "SURFACE_NAME_DECOY",
+      "instance_id": "SURFACE_NAME_DECOY-00004"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "TRANSFER_VALID",
+          "source": "P2+P4",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "A_t"
+            ],
+            [
+              "I",
+              "A_t"
+            ]
+          ]
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "LICENSED_COLLAPSE",
+      "instance_id": "LICENSED_COLLAPSE-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "TRANSFER_VALID",
+          "source": "P2+P4",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "A_t"
+            ],
+            [
+              "I",
+              "A_t"
+            ]
+          ]
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "LICENSED_COLLAPSE",
+      "instance_id": "LICENSED_COLLAPSE-00004"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "TRANSFER_VALID",
+          "source": "P2+P4",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "A_t"
+            ],
+            [
+              "I",
+              "A_t"
+            ]
+          ]
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "LICENSED_COLLAPSE",
+      "instance_id": "LICENSED_COLLAPSE-00006"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": "P2",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "ENDPOINT_VIOLATION",
+      "instance_id": "ENDPOINT_VIOLATION-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": "P2",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "ENDPOINT_VIOLATION",
+      "instance_id": "ENDPOINT_VIOLATION-00003"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": "P2",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "ENDPOINT_VIOLATION",
+      "instance_id": "ENDPOINT_VIOLATION-00004"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": "P2",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "IDENTITY_NOT_PRESERVED",
+      "instance_id": "IDENTITY_NOT_PRESERVED-00003"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": "P2",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "IDENTITY_NOT_PRESERVED",
+      "instance_id": "IDENTITY_NOT_PRESERVED-00004"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": "P2",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "IDENTITY_NOT_PRESERVED",
+      "instance_id": "IDENTITY_NOT_PRESERVED-00005"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": "P2",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "COMPOSITION_NOT_PRESERVED",
+      "instance_id": "COMPOSITION_NOT_PRESERVED-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_MIXED_LAW_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": "P2",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "COMPOSITION_NOT_PRESERVED",
+      "instance_id": "COMPOSITION_NOT_PRESERVED-00006"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_FALSE_EQUIVALENCE",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": "P2",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "COMPOSITION_NOT_PRESERVED",
+      "instance_id": "COMPOSITION_NOT_PRESERVED-00007"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_MIXED_LAW_OBSTRUCTION",
+          "source": "P2",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "BLOCK_MIXED_LAW_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "BLOCK_MIXED_LAW_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "BLOCK_MIXED_LAW_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "BLOCK_MIXED_LAW_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "MIXED_LAW_OBSTRUCTION",
+      "instance_id": "MIXED_LAW_OBSTRUCTION-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_MIXED_LAW_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_MIXED_LAW_OBSTRUCTION",
+          "source": "P2",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "BLOCK_MIXED_LAW_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "BLOCK_MIXED_LAW_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "BLOCK_MIXED_LAW_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "BLOCK_MIXED_LAW_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "MIXED_LAW_OBSTRUCTION",
+      "instance_id": "MIXED_LAW_OBSTRUCTION-00004"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_MIXED_LAW_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_MIXED_LAW_OBSTRUCTION",
+          "source": "P2",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "BLOCK_MIXED_LAW_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "BLOCK_MIXED_LAW_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "BLOCK_MIXED_LAW_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "BLOCK_MIXED_LAW_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "BLOCK_IDENTITY_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "MIXED_LAW_OBSTRUCTION",
+      "instance_id": "MIXED_LAW_OBSTRUCTION-00005"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_FALSE_EQUIVALENCE",
+          "source": "P4",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "BLOCK_FALSE_EQUIVALENCE",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "BLOCK_FALSE_EQUIVALENCE",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "BLOCK_FALSE_EQUIVALENCE",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "BLOCK_FALSE_EQUIVALENCE",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "A_t"
+            ]
+          ]
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "BLOCK_FALSE_EQUIVALENCE",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "FALSE_EQUIVALENCE",
+      "instance_id": "FALSE_EQUIVALENCE-00003"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "BLOCK_MIXED_LAW_OBSTRUCTION",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_FALSE_EQUIVALENCE",
+          "source": "P4",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "BLOCK_FALSE_EQUIVALENCE",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "BLOCK_FALSE_EQUIVALENCE",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "BLOCK_FALSE_EQUIVALENCE",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "BLOCK_FALSE_EQUIVALENCE",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "A_t"
+            ],
+            [
+              "I",
+              "A_t"
+            ]
+          ]
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "BLOCK_FALSE_EQUIVALENCE",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "FALSE_EQUIVALENCE",
+      "instance_id": "FALSE_EQUIVALENCE-00009"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_BLOCK": {
+          "disposition": "BLOCK_COMPOSITION_NOT_PRESERVED",
+          "source": null,
+          "witness": null
+        },
+        "C_ALWAYS_TRANSFER": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "disposition": "BLOCK_FALSE_EQUIVALENCE",
+          "source": "P4",
+          "witness": null
+        },
+        "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+          "disposition": "BLOCK_FALSE_EQUIVALENCE",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_COMPOSITION_CHECK": {
+          "disposition": "BLOCK_FALSE_EQUIVALENCE",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_ENDPOINT_DISCIPLINE": {
+          "disposition": "BLOCK_FALSE_EQUIVALENCE",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_FAITHFULNESS_RECOVERY": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "M_MINUS_IDENTITY_CHECK": {
+          "disposition": "BLOCK_FALSE_EQUIVALENCE",
+          "source": null,
+          "witness": null
+        },
+        "P0_NAME_SIMILARITY": {
+          "disposition": "BLOCK_ENDPOINT_VIOLATION",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "I_t"
+            ]
+          ]
+        },
+        "P1_GRAPH_HOMOMORPHISM": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": [
+            [
+              "A",
+              "A_t"
+            ],
+            [
+              "B",
+              "B_t"
+            ],
+            [
+              "I",
+              "A_t"
+            ]
+          ]
+        },
+        "P2_CATEGORY_LAW_FUNCTOR": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P3_DIAGRAM_CHASE": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        },
+        "P4_FAITHFULNESS": {
+          "disposition": "BLOCK_FALSE_EQUIVALENCE",
+          "source": null,
+          "witness": null
+        },
+        "P5_FIXED_LESSON_INJECTION": {
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null
+        }
+      },
+      "family": "FALSE_EQUIVALENCE",
+      "instance_id": "FALSE_EQUIVALENCE-00010"
+    }
+  ],
+  "label": "DEVELOPMENT",
+  "schema_version": "orion.v2.fm-exact.results.v1",
+  "split_seed": "FM50-DEV-20260902",
+  "suite": "FM50"
+}
