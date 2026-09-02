@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=o2-pra-llm-r1
 #SBATCH --account=lu2026-2-51
-#SBATCH --partition=gpua100
+#SBATCH --partition=gpua100i
 #SBATCH --gres=gpu:a100:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=96G
