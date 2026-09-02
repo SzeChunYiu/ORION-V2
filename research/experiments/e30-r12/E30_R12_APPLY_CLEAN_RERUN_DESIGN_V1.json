@@ -88,11 +88,32 @@
       "bugsinpy-tqdm-4",
       "bugsinpy-tqdm-5"
     ],
-    "task_identity_source": "E30-R11 prepared/frozen_tasks.json (same 40 ids, same selection policy, re-materialized under the same pinned commit and per-project runtimes)",
+    "task_identity_source": "E30-R11's frozen substrate, REUSED rather than regenerated: the same 40 task ids, the same gold-blind requests, the same prepared/solver_public workspaces, the same evaluator_private oracle tree and the same per-project runtimes. R12's campaign copies the requests and the frozen task table and symlinks the read-only trees; only responses and evaluations are new. Reuse rather than re-materialization is deliberate: it makes the arm code and the served-model pin the ONLY differences between R11's inputs and R12's, so a difference in outcome cannot be attributed to a re-built substrate.",
     "pinned_pool_for_scale_up": {
       "numeric_bug_ids_total_at_pinned_commit": 501,
       "numeric_bug_ids_within_the_8_registered_projects": 295,
       "counted_on": "inputs/BugsInPy-base/projects/*/bugs, numeric ids only, all carrying bug.info"
+    },
+    "reuse_custody": {
+      "copied_into_r12": [
+        "run/confirmatory-r{1,2,3}/requests",
+        "run/confirmatory-r{1,2,3}/frozen_tasks.json",
+        "TASKMAP.json",
+        "SETUP_RECEIPT.json",
+        "e30_r11_arm_eval_frozen_lane.py",
+        "run/e30-taskmap-core480.json"
+      ],
+      "symlinked_read_only": [
+        "prepared (gold-blind solver workspaces the requests name by absolute path)",
+        "evaluator_private (the oracle tree; the adapter only copytree()s out of it)",
+        "inputs (the pinned BugsInPy checkout and project mirrors)",
+        "baseline_lanes (gold patches, read only by GR0b)"
+      ],
+      "regenerated": [
+        "run/confirmatory-r{1,2,3}/responses",
+        "run/confirmatory-r{1,2,3}/evaluations"
+      ],
+      "r11_is_never_written": "every R12 write lands under the R12 campaign directory; the symlinked trees are read-only for this lane"
     }
   },
   "arms": [

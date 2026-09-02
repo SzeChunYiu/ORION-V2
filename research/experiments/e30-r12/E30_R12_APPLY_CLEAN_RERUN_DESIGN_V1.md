@@ -46,8 +46,19 @@ reinterpret them, and does not present itself as a correction of them.
 
 BugsInPy at `11c5f1eea954a42132cfd06bf257766a7963e0fd`; projects `ansible, black,
 cookiecutter, fastapi, pandas, scrapy, tornado, tqdm`; the 40 task ids listed verbatim in
-the design JSON, taken from E30-R11's `prepared/frozen_tasks.json` and re-materialized
-under the same pinned commit and per-project runtimes.
+the design JSON.
+
+The substrate is **reused, not regenerated**. R12's campaign copies E30-R11's gold-blind
+requests, frozen task table, taskmap and setup receipt, and symlinks its read-only trees:
+`prepared` (the solver workspaces the requests name by absolute path), `evaluator_private`
+(the oracle tree, which the adapter only ever `copytree()`s out of), `inputs` (the pinned
+BugsInPy checkout) and `baseline_lanes` (gold patches, read only by GR0b). Only
+`responses` and `evaluations` are new, and every R12 write lands under the R12 campaign
+directory.
+
+That is deliberate rather than merely cheap: it makes the arm code and the served-model
+pin the *only* differences between R11's inputs and R12's, so a difference in outcome
+cannot be attributed to a rebuilt substrate.
 
 For the scale-up discussion in §7: the pinned commit carries **501** numeric bug ids in
 total and **295** within the 8 registered projects.
