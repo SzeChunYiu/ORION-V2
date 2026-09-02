@@ -98,6 +98,7 @@ SCAN
   fi
   echo "PASS $PASS pending=$N budget=$ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET"
   [ "$N" -eq 0 ] && { echo "ALL_RESPONSES_REAL"; break; }
+  rm -f "$RUN/.served-model-mismatch"
   WORKER=$(mktemp /tmp/e30r12.XXXXXX.sh)
   cat > "$WORKER" <<W
 #!/usr/bin/env bash
@@ -112,13 +113,29 @@ if [ -f "\$RESP" ]; then
   [ "\$ST" = "COMPLETED_PROPOSAL_ONLY" ] && { echo "SKIP \$REP \$ARM \$TASK"; exit 0; }
 fi
 cd "\$SRC"
-"\$PY" scripts/orion_claude_arms.py --request "\$RUN/confirmatory-r\$REP/requests/\$ARM/\$TASK.json" --response "\$RESP"
-echo "DONE \$REP \$ARM \$TASK"
+ERR=\$(mktemp)
+if "\$PY" scripts/orion_claude_arms.py --request "\$RUN/confirmatory-r\$REP/requests/\$ARM/\$TASK.json" --response "\$RESP" 2>"\$ERR"; then
+  rm -f "\$ERR"; echo "DONE \$REP \$ARM \$TASK"; exit 0
+fi
+# A served-model substitution is fatal for the whole study, not for one cell: it would
+# split the campaign across two models and destroy every paired contrast.  Raise a
+# sentinel the pass loop aborts on instead of quietly retrying 11 more times.
+if grep -q "ServedModelMismatch" "\$ERR"; then
+  cp "\$ERR" "\$RUN/.served-model-mismatch"
+  echo "SERVED_MODEL_MISMATCH \$REP \$ARM \$TASK"; rm -f "\$ERR"; exit 9
+fi
+echo "ARM_EXIT_NONZERO \$REP \$ARM \$TASK"; sed -n "1,5p" "\$ERR"; rm -f "\$ERR"; exit 0
 W
   chmod +x "$WORKER"
   xargs -P "${E30R12_CONCURRENCY:-2}" -n 3 "$WORKER" < "$RUN/e30r12-pending.tsv" \
     || echo "PASS $PASS had nonzero worker exits (continuing)"
   rm -f "$WORKER"
+  if [ -f "$RUN/.served-model-mismatch" ]; then
+    echo "HALT_SERVED_MODEL_MISMATCH -- the provider substituted a model; the campaign"
+    echo "cannot mix served models across a paired contrast (design gate GR0c)."
+    cat "$RUN/.served-model-mismatch"
+    exit 4
+  fi
   sleep 120
 done
 

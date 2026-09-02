@@ -606,3 +606,12 @@ def test_design_registers_the_execution_lane_contract():
         "ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET"] == 36000
     assert "NOT resampling" in contract["signature_2_truncation_starved"]["class"]
     assert "strict=False" in contract["signature_1_strict_parse_reject"]["repair"]
+
+
+def test_agents_halt_the_campaign_on_a_served_model_substitution():
+    """One substituted cell must stop the run, not be retried into a mixed dataset."""
+    text = (SBATCH / "e30_r12_agents.sbatch").read_text()
+    assert "HALT_SERVED_MODEL_MISMATCH" in text
+    assert ".served-model-mismatch" in text
+    assert 'grep -q "ServedModelMismatch"' in text
+    assert "exit 4" in text
