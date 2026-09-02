@@ -53,7 +53,20 @@ jobs:
           assert 'LOCAL_PATCH_OR_EXTRA_VARIABLE' in protocol['arms']
           assert all(value is False for value in protocol['authority'].values())
           backlog = json.loads(Path('research/experiments/FORMALISM_GENESIS_BACKLOG_V1.json').read_text())
-          assert backlog['status'] == 'PROSPECTIVE_BACKLOG'
+          # The freeze marker was PROSPECTIVE_BACKLOG until FG70 produced an executed
+          # protected outcome on 2026-09-02. It is retired per task, not wholesale: the
+          # guard now requires the status to be honest about what has run, and requires
+          # every task to carry an execution_status so a stale marker cannot pass while
+          # results exist.
+          assert backlog['status'] in {'PROSPECTIVE_BACKLOG', 'PARTIALLY_EXECUTED', 'EXECUTED'}
+          executed = [t for t in backlog['tasks'] if t.get('execution_status', 'UNRUN') != 'UNRUN']
+          if executed:
+              assert backlog['status'] != 'PROSPECTIVE_BACKLOG', (
+                  'backlog still claims PROSPECTIVE_BACKLOG while executed tasks exist')
+          for task in backlog['tasks']:
+              assert 'execution_status' in task, task['id']
+          assert backlog['series_identity']['id'] == 'ORION-FG-L5-EXACT-V1'
+          assert backlog['series_identity']['disambiguation']['that_campaign_owner_issue'] == 48
           assert backlog['tasks'][0]['id'] == 'FG00'
           assert backlog['tasks'][-1]['id'] == 'FG90'
           for path in (
