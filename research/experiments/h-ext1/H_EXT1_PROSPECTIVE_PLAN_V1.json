@@ -1,0 +1,91 @@
+{
+  "arms": {
+    "model": [
+      "P_D_FULL",
+      "P_D_MINUS_DEPENDENCE",
+      "STRONGEST_ASSURANCE_FEDERATION"
+    ],
+    "offline_deterministic": []
+  },
+  "authority": {
+    "grants_R3": false,
+    "grants_R4": false,
+    "grants_dependence_detection_in_real_corpora": false,
+    "grants_scientific_truth": false
+  },
+  "design_doc": "research/experiments/h-ext1/H_EXT1_CONDITIONAL_ACTIVATION_DESIGN_V1.md",
+  "max_concurrency_default": 3,
+  "model": "gpt-5.5 (ORION_CODEX_MODEL) under codex 0.129.0-alpha.15; NOT the frozen run's gpt-5.6-terra",
+  "owner_hypothesis": "H-EXT-1",
+  "parent_plan": "research/experiments/DEPENDENCE_EVIDENCE_GENERATED_CAMPAIGN_PLAN_V1.json",
+  "rules": {
+    "exact_or_mechanical_primary_scoring": true,
+    "generated_results_alone_grant_real_world_evidence_claims": false,
+    "offline_parent_rates_are_constructed_calibration_ceilings": true,
+    "parent_sufficiency_is_valid_terminal": true,
+    "private_oracle_absent_during_model_calls": true,
+    "same_model_repetitions_are_independent_replication": false,
+    "strata_recorded_only_in_private_oracle": true
+  },
+  "schema_version": "orion.v2.dependence-evidence-generated-campaign-plan.v1",
+  "seed": 20260902,
+  "status": "H_EXT1_PROSPECTIVE_CELL_FRESH_SEED",
+  "studies": {
+    "PD-S1-DEPENDENT-CORROBORATION": {
+      "arms": [
+        "P_D_FULL",
+        "P_D_MINUS_DEPENDENCE",
+        "STRONGEST_ASSURANCE_FEDERATION"
+      ],
+      "strata": {
+        "PDS1A": 40,
+        "PDS1B": 40,
+        "PDS1C": 40,
+        "PDS1D": 40
+      },
+      "tasks": 160
+    },
+    "PD-S2-ARGUMENT-AND-ADEQUACY": {
+      "arms": [
+        "P_D_FULL",
+        "P_D_MINUS_DEPENDENCE",
+        "STRONGEST_ASSURANCE_FEDERATION"
+      ],
+      "strata": {
+        "PDS2A": 30,
+        "PDS2B": 30,
+        "PDS2C": 30,
+        "PDS2D": 30
+      },
+      "tasks": 120
+    },
+    "PD-S3-REVOCATION-AND-UPTAKE": {
+      "arms": [
+        "P_D_FULL",
+        "P_D_MINUS_DEPENDENCE",
+        "STRONGEST_ASSURANCE_FEDERATION"
+      ],
+      "strata": {
+        "PDS3A": 30,
+        "PDS3B": 30,
+        "PDS3C": 30,
+        "PDS3D": 30
+      },
+      "tasks": 120
+    },
+    "PD-S4-AUTHORITY-AND-RESPONSE": {
+      "arms": [
+        "P_D_FULL",
+        "P_D_MINUS_DEPENDENCE",
+        "STRONGEST_ASSURANCE_FEDERATION"
+      ],
+      "strata": {
+        "PDS4A": 30,
+        "PDS4B": 30,
+        "PDS4C": 30,
+        "PDS4D": 30
+      },
+      "tasks": 120
+    }
+  }
+}

@@ -1,0 +1,208 @@
+{
+  "activation_rate": 0.3269230769230769,
+  "activations": 170,
+  "cell": "PROSPECTIVE",
+  "gate_id": "G_B_PLUS_XREF",
+  "gate_sha256": "81ce16e2d327f630eb703d56845ad72d08112458bee84c7e2d8f8400938d862d",
+  "gates": {
+    "G0_VALIDITY": {
+      "pass": true,
+      "reasons": []
+    },
+    "G1_DOMINATES_ALWAYS_ON": {
+      "acc_GATED": 0.9769230769230769,
+      "acc_M": 0.8942307692307693,
+      "calls_GATED": 520,
+      "calls_M": 520,
+      "mean_wall_GATED": 9.569446603151468,
+      "mean_wall_M": 10.416055195606672,
+      "pass": true
+    },
+    "G2_DOMINATES_ALWAYS_OFF_AND_PARENT": {
+      "acc_OFF": 0.823076923076923,
+      "acc_PARENT": 0.9557692307692308,
+      "pass": true,
+      "pass_vs_OFF": true,
+      "pass_vs_PARENT": true
+    },
+    "G3S_BEATS_WITHIN_STUDY_NULL": {
+      "advantage": 0.08269230769230762,
+      "draws": 2000,
+      "null_exceedance_fraction": 0.0,
+      "null_max": 0.007692307692307665,
+      "null_mean": -0.028974038461538495,
+      "null_q95": -0.011538461538461608,
+      "pass": true
+    },
+    "G3_BEATS_SHUFFLE_NULL": {
+      "advantage": 0.08269230769230762,
+      "draws": 2000,
+      "null_exceedance_fraction": 0.0,
+      "null_max": -0.009615384615384692,
+      "null_mean": -0.0477413461538462,
+      "null_q95": -0.03076923076923077,
+      "pass": true
+    },
+    "G4_SIGN_CONSISTENCY": {
+      "pass": true,
+      "per_study": {
+        "PD-S1-DEPENDENT-CORROBORATION": {
+          "acc_GATED": 1.0,
+          "acc_M": 0.775,
+          "acc_OFF": 0.5,
+          "acc_PARENT": 0.99375,
+          "activations": 80,
+          "n": 160
+        },
+        "PD-S2-ARGUMENT-AND-ADEQUACY": {
+          "acc_GATED": 0.9,
+          "acc_M": 0.8416666666666667,
+          "acc_OFF": 0.9,
+          "acc_PARENT": 0.8166666666666667,
+          "activations": 0,
+          "n": 120
+        },
+        "PD-S3-REVOCATION-AND-UPTAKE": {
+          "acc_GATED": 1.0,
+          "acc_M": 1.0,
+          "acc_OFF": 1.0,
+          "acc_PARENT": 1.0,
+          "activations": 90,
+          "n": 120
+        },
+        "PD-S4-AUTHORITY-AND-RESPONSE": {
+          "acc_GATED": 1.0,
+          "acc_M": 1.0,
+          "acc_OFF": 1.0,
+          "acc_PARENT": 1.0,
+          "activations": 0,
+          "n": 120
+        }
+      }
+    }
+  },
+  "missing_task_ids": [],
+  "n_missing": 0,
+  "n_scored": 520,
+  "n_total": 520,
+  "references_reporting_only": {
+    "ORACLE_STRATUM_ceiling_acc": 0.9769230769230769,
+    "STUDY_ID_IS_PDS1_acc": 0.9076923076923077,
+    "per_oracle_stratum": {
+      "PDS1A": {
+        "GATED": 40,
+        "M": 40,
+        "OFF": 0,
+        "activations": 40,
+        "n": 40
+      },
+      "PDS1B": {
+        "GATED": 40,
+        "M": 39,
+        "OFF": 40,
+        "activations": 0,
+        "n": 40
+      },
+      "PDS1C": {
+        "GATED": 40,
+        "M": 40,
+        "OFF": 0,
+        "activations": 40,
+        "n": 40
+      },
+      "PDS1D": {
+        "GATED": 40,
+        "M": 5,
+        "OFF": 40,
+        "activations": 0,
+        "n": 40
+      },
+      "PDS2A": {
+        "GATED": 30,
+        "M": 30,
+        "OFF": 30,
+        "activations": 0,
+        "n": 30
+      },
+      "PDS2B": {
+        "GATED": 30,
+        "M": 30,
+        "OFF": 30,
+        "activations": 0,
+        "n": 30
+      },
+      "PDS2C": {
+        "GATED": 25,
+        "M": 24,
+        "OFF": 25,
+        "activations": 0,
+        "n": 30
+      },
+      "PDS2D": {
+        "GATED": 23,
+        "M": 17,
+        "OFF": 23,
+        "activations": 0,
+        "n": 30
+      },
+      "PDS3A": {
+        "GATED": 30,
+        "M": 30,
+        "OFF": 30,
+        "activations": 30,
+        "n": 30
+      },
+      "PDS3B": {
+        "GATED": 30,
+        "M": 30,
+        "OFF": 30,
+        "activations": 30,
+        "n": 30
+      },
+      "PDS3C": {
+        "GATED": 30,
+        "M": 30,
+        "OFF": 30,
+        "activations": 30,
+        "n": 30
+      },
+      "PDS3D": {
+        "GATED": 30,
+        "M": 30,
+        "OFF": 30,
+        "activations": 0,
+        "n": 30
+      },
+      "PDS4A": {
+        "GATED": 30,
+        "M": 30,
+        "OFF": 30,
+        "activations": 0,
+        "n": 30
+      },
+      "PDS4B": {
+        "GATED": 30,
+        "M": 30,
+        "OFF": 30,
+        "activations": 0,
+        "n": 30
+      },
+      "PDS4C": {
+        "GATED": 30,
+        "M": 30,
+        "OFF": 30,
+        "activations": 0,
+        "n": 30
+      },
+      "PDS4D": {
+        "GATED": 30,
+        "M": 30,
+        "OFF": 30,
+        "activations": 0,
+        "n": 30
+      }
+    }
+  },
+  "schema_version": "orion.v2.h-ext1-cell-result.v1",
+  "terminal": "CONDITIONAL_ACTIVATION_IDENTIFIABLE_FROM_EVIDENCE_STRUCTURE"
+}

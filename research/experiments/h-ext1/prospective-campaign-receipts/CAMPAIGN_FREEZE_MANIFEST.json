@@ -1,0 +1,95 @@
+{
+  "authority": {
+    "grants_dependence_detection_in_real_corpora": false,
+    "grants_scientific_truth": false
+  },
+  "fmfg_suite_harness_sha256": "8d9d0b5d1c7fa5a7026de52b2d2481abc0ed6317beb13aff2131e8d2386e108d",
+  "pd_arms_sha256": "a2d1e62e10990afd17f6b23084732d8d5e1bbe102aae2116fdd47e21d4bd4a98",
+  "plan_path": "/home/billy/H_EXT1_PROSPECTIVE_PLAN_V1.json",
+  "plan_sha256": "afabae4d3302b711a858402985afb2716d1e5b6cb3aad352bf5bcfdcc9b88134",
+  "private_oracle_visible_to_solver": false,
+  "schema_version": "orion.v2.dependence-evidence-campaign-freeze.v1",
+  "strata_recorded_only_in_private_oracle": true,
+  "studies": [
+    {
+      "arms": [
+        "P_D_FULL",
+        "P_D_MINUS_DEPENDENCE",
+        "STRONGEST_ASSURANCE_FEDERATION"
+      ],
+      "freeze_sha256": "44a388bc505e7f2ec7b235c51941dbf2b22914f409d577a1370877ca954706d5",
+      "private_oracle_sha256": "c0d10d0b75b509584cc722d9c0bc90995f8c738c3a3ece140569a043a32fd2ee",
+      "public_tasks_sha256": "7f41431af6451b6a4a4c8efbce19581f27cdf51b5f26a10eb854c4581413fd41",
+      "seed": 12928463447219115228,
+      "strata": {
+        "PDS1A": 40,
+        "PDS1B": 40,
+        "PDS1C": 40,
+        "PDS1D": 40
+      },
+      "study_id": "PD-S1-DEPENDENT-CORROBORATION",
+      "task_count": 160,
+      "workdir": "/home/billy/hext1-prospective/PD-S1-DEPENDENT-CORROBORATION"
+    },
+    {
+      "arms": [
+        "P_D_FULL",
+        "P_D_MINUS_DEPENDENCE",
+        "STRONGEST_ASSURANCE_FEDERATION"
+      ],
+      "freeze_sha256": "fb7ead858ead9130c5dde2f066e638fb8faf4b058da123b8f59a21cfdf50852f",
+      "private_oracle_sha256": "eaf0740a58aad8d55034cdc3e9865fbcc0d51bf64096d4142fcf3bd6f23403d7",
+      "public_tasks_sha256": "f21b5c77b2723535704e8321c1c1371b208507a39ae03e2f47695481cf2e4926",
+      "seed": 2244954762271717404,
+      "strata": {
+        "PDS2A": 30,
+        "PDS2B": 30,
+        "PDS2C": 30,
+        "PDS2D": 30
+      },
+      "study_id": "PD-S2-ARGUMENT-AND-ADEQUACY",
+      "task_count": 120,
+      "workdir": "/home/billy/hext1-prospective/PD-S2-ARGUMENT-AND-ADEQUACY"
+    },
+    {
+      "arms": [
+        "P_D_FULL",
+        "P_D_MINUS_DEPENDENCE",
+        "STRONGEST_ASSURANCE_FEDERATION"
+      ],
+      "freeze_sha256": "8d92e3965fc85a2a0366e2d36e062e157ee4135d532936e554d3b6cf76999203",
+      "private_oracle_sha256": "a686b0b219ad18bfd9564a74bd3d144c4c62ab16d077ad69db776b89ab041d82",
+      "public_tasks_sha256": "ae361830757aee7726e2bacf3f83d986cffea4201fb6e69e08acf6eb9ee15430",
+      "seed": 14352448936868787966,
+      "strata": {
+        "PDS3A": 30,
+        "PDS3B": 30,
+        "PDS3C": 30,
+        "PDS3D": 30
+      },
+      "study_id": "PD-S3-REVOCATION-AND-UPTAKE",
+      "task_count": 120,
+      "workdir": "/home/billy/hext1-prospective/PD-S3-REVOCATION-AND-UPTAKE"
+    },
+    {
+      "arms": [
+        "P_D_FULL",
+        "P_D_MINUS_DEPENDENCE",
+        "STRONGEST_ASSURANCE_FEDERATION"
+      ],
+      "freeze_sha256": "61e5aef6e8583dad67f9fa9460d678e0255061ded0b366ab6bddcea734007e69",
+      "private_oracle_sha256": "ab136217ab1038ab068b24d9ed70713c7f21f2b4080e802ef74babdc28ab8aa0",
+      "public_tasks_sha256": "d74dd4f814bf2028211c75bb58298992370c4b450c10c55e2ae4cefc7ce1a20a",
+      "seed": 2307927100832619942,
+      "strata": {
+        "PDS4A": 30,
+        "PDS4B": 30,
+        "PDS4C": 30,
+        "PDS4D": 30
+      },
+      "study_id": "PD-S4-AUTHORITY-AND-RESPONSE",
+      "task_count": 120,
+      "workdir": "/home/billy/hext1-prospective/PD-S4-AUTHORITY-AND-RESPONSE"
+    }
+  ]
+}
