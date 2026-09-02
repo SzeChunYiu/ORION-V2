@@ -50,7 +50,7 @@ from pathlib import Path
 from typing import Callable, Iterable, Sequence
 
 TOL = 1e-9
-SCHEMA = "orion-v2.h-ext4-premium-bounds.v1"
+SCHEMA = "orion-v2.h-ext4-premium-bounds.v2"
 
 # --------------------------------------------------------------- partitions
 
@@ -480,12 +480,28 @@ def upper_bound_delta(m: Machine, pr: dict) -> float:
 # ----------------------------------------------------- cardinality premium
 
 
-def blocks_per_fibre(pi: Sequence[int], m: Machine) -> int:
+def _blocks_by_fibre(pi: Sequence[int], m: Machine) -> dict:
     per: dict = {}
     for h in range(m.n):
         if m.probs[h] > 0:
             per.setdefault(m.P[h], set()).add(pi[h])
-    return max(len(v) for v in per.values())
+    return per
+
+
+def blocks_per_fibre(pi: Sequence[int], m: Machine) -> int:
+    """K(Pi): the LARGEST number of blocks Pi places inside one predictive class."""
+    return max(len(v) for v in _blocks_by_fibre(pi, m).values())
+
+
+def blocks_total_over_fibres(pi: Sequence[int], m: Machine) -> int:
+    """Alternative K: the TOTAL number of blocks containing current histories.
+
+    Equals ``blocks_per_fibre`` whenever the current histories occupy a single
+    predictive class.  Used to test whether the non-ordering of Omega_card and
+    Omega_dyn is an artifact of comparing a max over classes with the prior
+    average that the entropy cost takes.
+    """
+    return sum(len(v) for v in _blocks_by_fibre(pi, m).values())
 
 
 def cardinality_premium(m: Machine, pr: dict) -> dict:
@@ -855,6 +871,8 @@ def check_bounds(machines: Iterable[Machine], require_pc: bool, conj_examples: l
     lb_viol = fano_viol = lb_tight = fano_tight = both_tight = 0
     om_ub_delta_viol = om_fano_viol = label_eq_delta_viol = 0
     omega_pos = ub_delta_tight_pos = ub_fano_tight_pos = conj_viol = 0
+    mach_pc = mach_terminal = 0
+    fano_parts = fano_parts_ungated = fano_viol_ungated = mach_fano_viol_ungated = 0
     for m in machines:
         pr = premium(m)
         if not pr["feasible"]:
@@ -862,8 +880,18 @@ def check_bounds(machines: Iterable[Machine], require_pc: bool, conj_examples: l
         n += 1
         om = pr["omega"]
         dyn = admissible_partitions(m, dynamic_admissible)
-        terminal_pc = is_terminal_model(m) and (satisfies_pc(m) or not require_pc)
-        fano_applicable = is_terminal_model(m) and satisfies_pc(m)
+        pc_ok = satisfies_pc(m)
+        term_ok = is_terminal_model(m)
+        mach_pc += pc_ok
+        mach_terminal += term_ok
+        terminal_pc = term_ok and (pc_ok or not require_pc)
+        # (ii) is asserted only for terminal models satisfying PC; ``fano_applicable``
+        # is that hypothesis set.  The ungated counters drop PC (but not the terminal
+        # model, without which phi_{k_x} is not the right-hand side of (ii) at all) so
+        # that the PC-gated zero is reported against an honest denominator and the
+        # failure count without PC is recorded rather than skipped.
+        fano_applicable = term_ok and pc_ok
+        mviol_ungated = 0
         for pi, _c in pr["stat_rows"]:
             parts += 1
             d = delta_of(pi, m, dyn)
@@ -872,13 +900,21 @@ def check_bounds(machines: Iterable[Machine], require_pc: bool, conj_examples: l
                 lb_viol += 1
             if abs(lb - d) <= TOL and d > TOL:
                 lb_tight += 1
-            if fano_applicable:
+            if term_ok:
                 fu = fano_ub(pi, m)
+                fano_parts_ungated += 1
                 if d > fu + TOL:
-                    fano_viol += 1
-                if abs(fu - d) <= TOL and d > TOL:
-                    fano_tight += 1
-                    both_tight += abs(lb - d) <= TOL
+                    fano_viol_ungated += 1
+                    mviol_ungated += 1
+                if fano_applicable:
+                    fano_parts += 1
+                    if d > fu + TOL:
+                        fano_viol += 1
+                    if abs(fu - d) <= TOL and d > TOL:
+                        fano_tight += 1
+                        both_tight += abs(lb - d) <= TOL
+        if mviol_ungated:
+            mach_fano_viol_ungated += 1
         ubd = upper_bound_delta(m, pr)
         if om > ubd + TOL:
             om_ub_delta_viol += 1
@@ -903,6 +939,11 @@ def check_bounds(machines: Iterable[Machine], require_pc: bool, conj_examples: l
             if om > TOL and abs(ubf - om) <= TOL:
                 ub_fano_tight_pos += 1
     return {"family": tag, "machines": n, "static_partitions": parts, "omega_positive": omega_pos,
+            "machines_pc": mach_pc, "machines_terminal_model": mach_terminal,
+            "T1_fano_applicable_partitions": fano_parts,
+            "T1_fano_terminal_partitions_ungated_by_pc": fano_parts_ungated,
+            "T1_fano_ub_violations_ungated_by_pc": fano_viol_ungated,
+            "T1_machines_with_ungated_fano_ub_violation": mach_fano_viol_ungated,
             "T1_regret_lb_violations": lb_viol, "T1_fano_ub_violations": fano_viol,
             "T1_regret_lb_tight_delta_positive": lb_tight,
             "T1_fano_ub_tight_delta_positive": fano_tight,
@@ -946,6 +987,61 @@ def check_b(machines: Iterable[Machine]) -> dict:
             "omega_card_zero_but_omega_dyn_positive": card0_dyn_pos,
             "examples": ex,
             "verdict": "PASS" if viol == 0 else "FAIL_COUNTEREXAMPLE_FOUND"}
+
+
+def check_b_card_definition() -> dict:
+    """Is the Omega_card / Omega_dyn non-ordering a max-over-classes artifact?
+
+    Recomputes Omega_card on the instances behind Remark A.5(d) with K taken as
+    the total block count over predictive classes instead of the max, and reports
+    whether each ordering survives.  On instances whose current histories lie in a
+    single predictive class the two definitions coincide by construction, which is
+    itself the finding: the comparison is not max-versus-mean.
+    """
+    def prem(m, pr, f):
+        ks = min(f(pi, m) for pi, _ in pr["stat_rows"])
+        kd = min(f(pi, m) for pi in admissible_partitions(m, dynamic_admissible))
+        return ks, kd, math.log2(kd) - math.log2(ks)
+
+    def order(od, oc):
+        return "omega_dyn>omega_card" if od > oc + TOL else (
+            "omega_dyn<omega_card" if od < oc - TOL else "equal")
+
+    cases = [("witness_q=9/10", witness(Fraction(9, 10))),
+             ("witness_q=1/2", witness(Fraction(1, 2))),
+             ("omega_dyn_zero_card_positive", omega_dyn_zero_card_positive()),
+             ("loose_ub_label", loose_ub_label_example())]
+    # Remark A.5(d) second leg: uniform three-history instance, static optimum two
+    # blocks and dynamic optimum three, found by exhaustive enumeration.
+    for mm in terminal_family(3, 1, SETS_2, [uniform_prior(3)], None):
+        p = premium(mm)
+        if not p["feasible"]:
+            continue
+        if abs(p["omega"] - 2 / 3) < TOL and abs(prem(mm, p, blocks_per_fibre)[2] - math.log2(1.5)) < TOL:
+            cases.append(("uniform_three_history_2to3_blocks", mm))
+            break
+    rows = []
+    flips = single_class = 0
+    for name, m in cases:
+        pr = premium(m)
+        if not pr["feasible"]:
+            continue
+        mx = prem(m, pr, blocks_per_fibre)
+        tot = prem(m, pr, blocks_total_over_fibres)
+        ncls = len({m.P[h] for h in range(m.n) if m.probs[h] > 0})
+        single_class += ncls == 1
+        o_mx, o_tot = order(pr["omega"], mx[2]), order(pr["omega"], tot[2])
+        flips += o_mx != o_tot
+        rows.append({"instance": name, "predictive_classes_among_current_histories": ncls,
+                     "omega_dyn": pr["omega"],
+                     "k_stat_max": mx[0], "k_dyn_max": mx[1], "omega_card_max": mx[2],
+                     "k_stat_total": tot[0], "k_dyn_total": tot[1], "omega_card_total": tot[2],
+                     "ordering_max": o_mx, "ordering_total": o_tot,
+                     "definitions_agree": abs(mx[2] - tot[2]) <= TOL})
+    return {"instances": rows, "orderings_that_flip_under_total_count": flips,
+            "instances_with_one_predictive_class": single_class, "instances_checked": len(rows),
+            "verdict": ("NON_ORDERING_NOT_A_MAX_VS_MEAN_ARTIFACT" if flips == 0
+                        else "NON_ORDERING_SENSITIVE_TO_K_DEFINITION")}
 
 
 def witness_table() -> list:
@@ -1177,7 +1273,16 @@ def run(full: bool, seed: int = 20260902, cap: int | None = None) -> dict:
             "omega_gt_min_delta_violations": nonpc_row["T2_omega_gt_min_delta_violations"],
             "label_formula_ne_delta": nonpc_row["T2_label_formula_ne_delta"],
             "omega_gt_fano_violations": nonpc_row["T2_omega_gt_fano_violations"],
-            "machines": nonpc_row["machines"], "examples": nonpc_ex,
+            "machines": nonpc_row["machines"], "machines_pc": nonpc_row["machines_pc"],
+            "static_partitions": nonpc_row["static_partitions"],
+            "fano_applicable_partitions": nonpc_row["T1_fano_applicable_partitions"],
+            "fano_terminal_partitions_ungated_by_pc":
+                nonpc_row["T1_fano_terminal_partitions_ungated_by_pc"],
+            "delta_gt_fano_violations_ungated_by_pc":
+                nonpc_row["T1_fano_ub_violations_ungated_by_pc"],
+            "machines_with_ungated_delta_gt_fano":
+                nonpc_row["T1_machines_with_ungated_fano_ub_violation"],
+            "examples": nonpc_ex,
             "verdict": ("PC_LOAD_BEARING_FOR_FANO_FORM__LABEL_FORM_HOLDS"
                         if nonpc_row["T2_omega_gt_fano_violations"] > 0
                         and nonpc_row["T2_omega_gt_min_delta_violations"] == 0
@@ -1195,6 +1300,7 @@ def run(full: bool, seed: int = 20260902, cap: int | None = None) -> dict:
         "A_T3_named_examples": named,
         "A_T3_witness_table": witness_table(),
         "B_cardinality": b,
+        "B_cardinality_definition_sensitivity": check_b_card_definition(),
         "C_multistep": c,
         "C3_multistep_fano_ub_depth2": c3,
         "scientific_authority": False, "empirical_llm_result": False,
@@ -1218,6 +1324,7 @@ TERMINALS = {
         "tight_on": "two-history witness: both sides at uniform prior, Fano side at every prior; uniform cells with all-distinct required actions",
         "not_tight": "loose_ub_label: Delta=0.689, regret_lb=0.415, fano_ub=0.811",
         "assumption_load_bearing": "PC: phantom_premium has Omega=1 with zero regret (Fano form fails; label form holds)",
+        "fano_form_scope": "T1_fano_ub_violations counts only partitions of machines satisfying the (ii) hypotheses (terminal model AND PC); its zero is a pass on that hypothesis set, not on all partitions swept. T1_fano_ub_violations_ungated_by_pc drops PC (keeping the terminal model, without which phi_{k_x} is not the right-hand side of (ii)) and records how often Delta(Pi) > sum_x phi_{k_x}(R*_x(Pi)) actually fails; the denominators are T1_fano_applicable_partitions and T1_fano_terminal_partitions_ungated_by_pc.",
         "parents_conceded": "Fano 1961; H_inf <= H (min-entropy); Jensen; Li-Walsh-Littman a*-irrelevance; ISFSM/right-congruence refinement",
         "mechanized": "A_T1_T2_T3"},
     "A_lower_bound_on_premium_from_regret": {
@@ -1247,7 +1354,7 @@ def main() -> int:
                     help="max terminal machines per family (deterministic stride subsample)")
     args = ap.parse_args()
     receipt = run(args.full, args.seed, args.cap)
-    result = {"schema": "orion-v2.h-ext4-result.v1", "hypothesis": "H-EXT-4",
+    result = {"schema": "orion-v2.h-ext4-result.v2", "hypothesis": "H-EXT-4",
               "terminals": TERMINALS, "mechanized_receipt": receipt}
     text = json.dumps(result, indent=2, sort_keys=True, default=str) + "\n"
     if args.json_out:
