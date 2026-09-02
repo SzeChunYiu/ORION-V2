@@ -9,6 +9,10 @@
 **Review status:** outcome-blind packet. Reviewer questions D1–D12 are reproduced verbatim from V2 and remain frozen; questions D13–D18 are appended in this version and are frozen from this date. No question is reordered, weakened or removed.  
 **Purpose:** blinded-as-feasible external assessment of whether the proposed object, scientific residual, field boundary and working label are coherent, useful and nonredundant.
 
+> **POST-OUTCOME ADDENDUM, 2026-09-02 — read this packet with `FLAGSHIP_EXTERNAL_DEMARCATION_REVIEW_PACKET_V3_RESULT_ADDENDUM_ME_X_SERIES.md`.**
+> The three protected studies whose outcomes §10 withheld (ME-X4, ME-X1, ME-X2) have now run, and all three went against the proposal — one of them not as a tie but as a loss. Withholding them would now be the defect rather than the discipline, so they are supplied in that addendum in full terminal form, together with one added question, D19.
+> **Everything in this packet below this line is frozen and unrewritten:** questions D1–D18 are reproduced exactly as they were before any outcome existed, §10's withholding language is left standing as the record of what was withheld and when, and no section is reinterpreted or re-scored in the light of the outcomes. You may answer before reading the addendum, after, or both.
+
 This packet deliberately omits repository-development history, internal issue/PR chronology, simulated editor and reviewer outcomes, clean-room internal reads, every protected or development study outcome, and any preferred field terminal. It includes adverse/null evidence that was already bounded and disclosed in V2 and that materially bears on the proposed boundary.
 
 ---
