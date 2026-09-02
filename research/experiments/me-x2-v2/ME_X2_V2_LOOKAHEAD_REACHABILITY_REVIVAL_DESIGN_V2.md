@@ -225,7 +225,9 @@ recurrence, specification damage, false world-change / model / representation
 attribution, regret, total cost, wall-clock reported only), per arm, per stratum
 and per variant. V2 adds per-instance **lever receipts**: for each step, the
 chosen action's four diagnostic terms, whether the action was admissible only
-under L2, and whether L1 changed the choice V1's order would have made. G5(c)
+under L2, and whether L1's ranking changed which action was chosen — V1's
+cost-first order applied to the *same* admissible set, not to V1's own, which L2
+may have widened. G5(c)
 reads the mechanism from these receipts rather than inferring it from the
 trajectory. V1's inherited `act()` consults the discriminator ranking *before*
 its unique / common-fix branches, so a receipt can describe an action `M2` never

@@ -36,12 +36,19 @@ diagnostic adequacy, then by discrimination, then by V1's own tie-break.
 
 **L2 — best-live-hypothesis reachability.**  V1 admits a discriminating action
 only if *every* hypothesis establishable now stays establishable under every
-registered outcome.  L2 requires instead that *some* establishable hypothesis
-survives in every branch, and L1's ``best_foreclosed`` term prefers the action
-that preserves the **minimum-responsible** one (lowest minimal-fix level, then
-cost, then id) — the same minimum-escalation preference the arm already applies
-to interventions.  Where the budget forces foreclosing an alternative, M2
-chooses rather than abstains.
+registered outcome.  L2 requires instead that the **best** live hypothesis — the
+establishable account needing the least escalation, ordered by (minimal-fix
+level, minimal-fix cost, cause id) — stays establishable in the registered
+outcome branch that contains it.  A branch that *refutes* it is a defeat, not a
+resource foreclosure, and does not bar the action; a repair-as-test resolving it
+is its own fix and does not bar it either.  V1's fail-closed rule is thereby
+demoted from a prohibition to a preference: L1's ``best_foreclosed`` and
+``foreclosed`` terms still rank actions that foreclose nothing first.  Where the
+budget forces foreclosing an alternative, M2 chooses rather than abstains.
+
+Rendering "best" as the minimum-responsible hypothesis is anti-escalation by
+construction: M2 forfeits expensive high-level hypotheses before cheap ones.
+That bias is registered in design §2.2 and priced by gate G2.
 
 Both levers are mechanic changes registered before any protected outcome; no
 gate, threshold, generator rule or oracle rule differs from V1.
@@ -216,6 +223,7 @@ class M2LookaheadBestHypothesis(MLocusMinimumEscalation):
                 "expected_abstention": key[0], "best_foreclosed": key[1], "foreclosed": key[2], "ambiguity": key[3], "cost": cost,
                 "n_admissible": len(cands), "n_admissible_under_v1_rule": v1_admissible,
                 "l2_only_admissible": not MLocusMinimumEscalation._reserve_ok(self, view, live, cost, target, kind),
+                # V1's cost-first order applied to the SAME admissible set (not to V1's own set, which L2 may have widened)
                 "l1_changed_choice": [t[3] for t in sorted(cands, key=lambda t: (t[1], t[2], t[3]))][0] != target,
             })
         return [(c, k, t, kd) for _key, c, k, t, kd in cands]
