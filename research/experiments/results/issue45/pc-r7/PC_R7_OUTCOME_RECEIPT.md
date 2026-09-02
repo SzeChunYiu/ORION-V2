@@ -46,6 +46,18 @@ tested on registered-replication-verdict-class cases. Programme consequence
 per the pre-registered terminal map: **P-C closes on the generated + boundary
 contract**; PC-C4 receives no naturalistic evidence from this cell.
 
+## Revival pass (attributed before filing)
+
+Failure attributed to ONE stage: **case-source supply**, not tagging (A/B
+agreement 1.00 everywhere), not arm construction, not analysis. Favourable
+re-cuts checked and rejected: 100/100 RP:P cases carry a non-withdrawn OSF
+registration; 76/76 RP:CB experiment records carry an accepted, linked eLife
+Registered Report; expanding the formal sample from 60 to all 243 eligible
+entries could add `INTERNAL` cases there but cannot populate the two empirical
+domains, and PC-R7 §1 requires both tags ≥ 15 **per domain**; MLRC fails
+eligibility item (g) rather than the tag population. Detail in
+`research/experiments/sd80/SD80_CASE_MATRIX_INTAKE_V1.md` §6.
+
 ## No-rescue clause honoured
 
 - No generated-cell result re-read; no transfer claim; no endpoint, stratum

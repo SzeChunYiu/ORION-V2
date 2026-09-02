@@ -45,7 +45,29 @@ Cross-tagger disagreements in the full round: 0; untagged: 0. Formal domain tagg
 
 Under the frozen PC-R7 §1 semantics, every registered-replication-verdict-class case is, by construction of the witness sources, externally constrained: RP:P cases carry an OSF registration, RP:CB cases a peer-reviewed eLife Registered Report, and formal cases an externally authored theorem statement. The `INTERNAL` stratum is therefore empty (or a single unverifiable record) in every domain, and the PC-R7 pre-registered population condition (both tags ≥ 15 cases/domain) cannot be met from these sources. Per PC-R7 §6 this is the contraction terminal `INSUFFICIENT_ELIGIBLE_NATURALISTIC_CASES` — a registered result, not a defect: the naturalistic obligation cell cannot test theory A's internal-vs-external contrast because naturalistic witness sources with verifiable outcomes do not supply an internally-constrained stratum. No arm was run; no outcome was read by any tagger or arm.
 
-## 6. Custody
+## 6. Revival / sensitivity pass (does the terminal survive a favourable re-cut?)
+
+A contraction terminal is only honest if the failing stratum could not be
+populated by a better cut of the same sources. Checked before filing:
+
+| Route | Evidence | Can it populate `INTERNAL` ≥ 15 in that domain? |
+|---|---|---|
+| RP:P — cases lacking an external registration | 100/100 cases return `status=OK` with ≥ 1 non-withdrawn OSF registration (counts 1:53, 2:37, 3:9, 4:1); 69/100 additionally carry an original-author `ENDORSEMENT` | **No** — zero candidates exist |
+| RP:CB — experiments lacking an accepted protocol | 76/76 experiment records have `protocol accepted and published in eLife = Yes` **and** a `Link to Registered Report` | **No** — zero candidates exist |
+| Formal — expand tagging from the 60-case sample to all 243 eligible entries | the 183-entry reserve has no fetched encyclopedic anchor in-record, so an unknown number would tag `INTERNAL` (unverifiable-from-record) | **Possibly**, but irrelevant: PC-R7 §1 requires both tags ≥ 15 **per domain**, and the two empirical domains cannot be populated at all |
+| MLRC as a fourth domain | verdict is carried by the report prose itself; no outcome-free evidence layer, and the OpenReview API was challenge-gated on 2026-09-02 | **No** — fails eligibility item (g), not the tag population |
+
+The empty `INTERNAL` stratum is therefore **structural for this witness class**,
+not a sampling artifact: outcome-verifiability and constraint-externality are
+supplied by the same artifact (registration, Registered Report, encyclopedic
+theorem statement). Attribution: the failure is at the *case-source* stage, not
+at tagging, arm construction or analysis. The lever a future cell needs is a
+source with self-generated constraints **and** independently verifiable
+outcomes — unregistered replications later adjudicated, or internal lab
+protocols with published outcomes — none of which was available lawfully and
+publicly on 2026-09-02.
+
+## 7. Custody
 
 - Intake scripts: `scripts/sd80_case_matrix_intake.py`, `scripts/sd80_case_matrix_finalize.py`, `scripts/sd80_case_matrix_render_md.py`; custody tests `tests/unit/test_sd80_case_matrix_intake.py`.
 - Tagger outputs: `research/experiments/sd80/tagging/` (calibration + full round, both taggers, GN0 receipt, final merged tags).
