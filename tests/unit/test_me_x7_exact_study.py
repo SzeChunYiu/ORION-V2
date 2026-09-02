@@ -376,6 +376,35 @@ def test_protected_stage_refuses_without_authorization(tmp_path: Path, monkeypat
 
 # ---- design freeze -------------------------------------------------------------
 
+def test_reruns_are_byte_identical_apart_from_wall_clock(tmp_path: Path) -> None:
+    """The design claims determinism; this checks exactly what it claims.
+    Results and custody are byte-identical; the analysis is identical once the
+    wall-clock fields it quotes are stripped."""
+    import hashlib
+
+    a_dir, b_dir = tmp_path / "a", tmp_path / "b"
+    assert mex7_run.stage_dev(a_dir, mex7_run.DEV_PER_CELL) == 0
+    assert mex7_run.stage_dev(b_dir, mex7_run.DEV_PER_CELL) == 0
+    for name in ("RESULTS", "EXPECTED_CUSTODY"):
+        fn = f"ME_X7_DEVELOPMENT_{name}_V1.json"
+        assert (a_dir / fn).read_bytes() == (b_dir / fn).read_bytes(), name
+
+    drop = {"wall_ms", "M_wall_ms", "B5_wall_ms", "wall_ratio_b5_over_m"}
+
+    def strip(o):
+        if isinstance(o, dict):
+            return {k: strip(v) for k, v in o.items() if k not in drop}
+        if isinstance(o, list):
+            return [strip(v) for v in o]
+        return o
+
+    def digest(d: Path) -> str:
+        blob = json.loads((d / "ME_X7_DEVELOPMENT_ANALYSIS_V1.json").read_text())
+        return hashlib.sha256(json.dumps(strip(blob), sort_keys=True).encode()).hexdigest()
+
+    assert digest(a_dir) == digest(b_dir)
+
+
 def test_design_json_freezes_the_commitment_the_cells_and_the_arm_table() -> None:
     d = json.loads(DESIGN_JSON.read_text())
     assert d["schema_version"] == "orion.v2.me-x7.exact-study-design.v1"

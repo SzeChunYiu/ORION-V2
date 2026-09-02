@@ -426,9 +426,15 @@ state and no arm imports the oracle.
 
 - Code: `mex7_model.py`, `mex7_oracle.py`, `mex7_generator.py`,
   `mex7_parents.py`, `mex7_arms.py`, `mex7_run.py`; sha256 frozen in the
-  receipt. Determinism: results and custody files are byte-identical on re-run
-  (the only RNGs are instance seeds, the random-control seed and the shuffle
-  null's seed 20260902); wall-clock lives in a separate timing file.
+  receipt. Determinism, stated to exactly what was checked: the **results** and
+  **expected-custody** files are byte-identical on re-run (the only RNGs are
+  instance seeds, the random-control seed and the shuffle null's seed
+  20260902), and the raw wall-clock lives in a separate timing file. The
+  **analysis** file is byte-identical *apart from* the wall-clock fields it
+  quotes (`wall_ms` per arm and the `COST` block's `M_wall_ms`, `B5_wall_ms`,
+  `wall_ratio_b5_over_m`); with those stripped it hashes identically, and the
+  derived `COST` flag was stable across re-runs. Claiming the analysis is
+  byte-identical outright would have been a claim wider than the check.
 - Stages: `selftest`, `dev` (≤ 40 instances, label DEVELOPMENT, never
   protected), `protected`, `analyze`.
 - The `protected` stage **refuses** unless `PROTECTED_RUN_AUTHORIZATION.json`
