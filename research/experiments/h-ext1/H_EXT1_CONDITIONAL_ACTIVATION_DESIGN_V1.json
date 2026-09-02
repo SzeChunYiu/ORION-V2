@@ -1,0 +1,107 @@
+{
+  "schema_version": "orion.v2.h-ext1-conditional-activation-design.v1",
+  "hypothesis_id": "H-EXT-1",
+  "register": "research/field/MACHINE_EPISTEMICS_EXTENSION_HYPOTHESES_2026_09_02_V1.md",
+  "status": "FROZEN_PROSPECTIVE_DESIGN_NO_GATED_RESULTS",
+  "frozen_on": "2026-09-02",
+  "substrate": {
+    "suite": "scripts/run_dependence_evidence_generated_suite.py (PD-S1..PD-S4, 520 tasks, 16 strata x 30-40)",
+    "arms_module": "scripts/orion_pd_arms.py",
+    "harness": "scripts/run_formal_discovery_generated_suite.py (dispatch/evaluate reused unchanged)",
+    "arm_M_always_on": "P_D_FULL",
+    "arm_OFF_always_off": "P_D_MINUS_DEPENDENCE",
+    "arm_PARENT_reference": "STRONGEST_ASSURANCE_FEDERATION",
+    "arms_are_model_calls": true,
+    "cost_unit_primary": "model_calls per instance (every arm = 1 codex exec call)",
+    "cost_unit_secondary": "wall_time_seconds from the routed arm's resource_receipt"
+  },
+  "cells": {
+    "RETROSPECTIVE_DEV": {
+      "source": "frozen PD R1 campaign (seed 20260903, model gpt-5.6-terra, billy-old .orion-dependence-evidence-campaign)",
+      "membership": "task_id in frozen 520 with sha256(task_id) first byte even",
+      "role": "gate selection ONLY; never reported as evidence"
+    },
+    "RETROSPECTIVE_EVAL": {
+      "source": "same frozen campaign",
+      "membership": "task_id in frozen 520 with sha256(task_id) first byte odd",
+      "role": "secondary evaluation, labelled RETROSPECTIVE (same substrate as dev, disjoint instances)"
+    },
+    "PROSPECTIVE": {
+      "source": "fresh generator seed 20260902 via research/experiments/h-ext1/H_EXT1_PROSPECTIVE_PLAN_V1.json",
+      "model": "gpt-5.5 (the frozen run's gpt-5.6-terra is rejected by the backend under the pinned codex 0.129.0-alpha.15; probed 2026-09-02, HTTP 400)",
+      "arms": ["P_D_FULL", "P_D_MINUS_DEPENDENCE", "STRONGEST_ASSURANCE_FEDERATION"],
+      "role": "PRIMARY evaluation; new evaluation identity (different seed AND different model substrate from dev)"
+    }
+  },
+  "input_visibility": {
+    "gate_input": "the public task object exactly as written to requests/<arm>/<task_id>.json['task'], deep-copied, with FORBIDDEN_KEYS removed at every nesting level before feature extraction",
+    "forbidden_keys": ["strata", "stratum", "answers", "expected", "answer", "correct", "actual", "private_oracle", "oracle"],
+    "canary_assertion": "gate(task) == gate(task + injected forbidden keys) for every task; assertion failure aborts the run",
+    "arm_outputs_never_visible_to_gate": true,
+    "study_id_field_is_arm_visible_but_excluded_from_candidate_family": true
+  },
+  "evidence_record_extraction": "every dict anywhere in the task carrying both 'lineage_root' and 'replay_hash' (PD-S1 items, PD-S2 evidence, PD-S3 items, PD-S4 evidence_items); tasks with no records have all witnesses false",
+  "witness_features": {
+    "w_dup_hash": "two records share an identical replay_hash",
+    "w_shared_root": "two records share an identical lineage_root",
+    "w_declared_overlap": "any record has a non-empty declared_overlap",
+    "w_xref_root": "a record's method_text contains another record's lineage_root string",
+    "w_shared_token": "an uppercase token matching [A-Z][A-Z0-9-]{3,} occurs in the method_text of >=2 records",
+    "n_records": "number of evidence records",
+    "n_roots": "number of distinct lineage_root values",
+    "root_ratio": "n_records / max(n_roots,1)"
+  },
+  "candidate_gate_family": [
+    {"gate_id": "G_A_PROVENANCE_WITNESS", "activate_iff": "w_dup_hash or w_shared_root"},
+    {"gate_id": "G_B_PLUS_XREF", "activate_iff": "w_dup_hash or w_shared_root or w_xref_root"},
+    {"gate_id": "G_C_PLUS_DECLARED", "activate_iff": "w_dup_hash or w_shared_root or w_xref_root or w_declared_overlap"},
+    {"gate_id": "G_D_PLUS_SHARED_TOKEN", "activate_iff": "G_C or w_shared_token"},
+    {"gate_id": "G_E_COUNT_GE4", "activate_iff": "n_records >= 4"},
+    {"gate_id": "G_F_ROOT_RATIO_GT1", "activate_iff": "root_ratio > 1.0"}
+  ],
+  "reference_gates_not_candidates": {
+    "ALWAYS_ON": "== arm M",
+    "ALWAYS_OFF": "== arm OFF",
+    "STUDY_ID_IS_PDS1": "task metadata gate; diagnostic only (reported, never selectable)",
+    "ORACLE_STRATUM": "activates on PDS1A/PDS1C using the private oracle; ceiling only, computed in evaluation reporting, never selectable"
+  },
+  "gated_arm_definition": "GATED_M(x) = M(x) if gate(x) else OFF(x); correctness and cost taken from the routed arm's archived row/response for the same task_id",
+  "primary_metric": "exact-decision accuracy (EVALUATION_ROWS.correct) paired per instance; pooled over the cell",
+  "gate_selection_rule": {
+    "cell": "RETROSPECTIVE_DEV",
+    "statistic": "dev_advantage = acc(GATED_M) - max(acc(M), acc(OFF)) pooled over the dev cell",
+    "choose": "argmax dev_advantage over the candidate family; ties broken by lower activation rate, then by family order",
+    "abort_if": "no candidate has dev_advantage > 0 -> terminal NO_CANDIDATE_GATE_ON_DEV; no evaluation cell is scored",
+    "freeze": "selected gate_id + feature definitions + this file's sha256 recorded in H_EXT1_GATE_FREEZE.json before any evaluation cell is scored"
+  },
+  "gates": {
+    "G0_VALIDITY": "dev and eval task_id sets disjoint; prospective seed != 20260903; canary assertion passes on every task; all arms run_valid (no missing rows) in the scored cell",
+    "G1_DOMINATES_ALWAYS_ON": "acc(GATED_M) >= acc(M) AND model_calls(GATED_M) <= model_calls(M) AND mean_wall(GATED_M) <= 1.05 * mean_wall(M)",
+    "G2_DOMINATES_ALWAYS_OFF_AND_PARENT": "acc(GATED_M) > acc(OFF) AND acc(GATED_M) >= acc(PARENT)",
+    "G3_BEATS_SHUFFLE_NULL": "advantage = acc(GATED_M) - max(acc(M), acc(OFF)) exceeds the 95th percentile of NULL_POOLED (>=1000 random gates activating exactly the same number of instances drawn uniformly from the cell)",
+    "G3S_BEATS_WITHIN_STUDY_NULL": "advantage exceeds the 95th percentile of NULL_WITHIN_STUDY (>=1000 random gates matching the selected gate's activation count inside each study)",
+    "G4_SIGN_CONSISTENCY": "in every study (PD-S1..S4), acc_study(GATED_M) >= max(acc_study(M), acc_study(OFF)); ties allowed"
+  },
+  "null_draws": 2000,
+  "null_seed": 20260902,
+  "routing": {
+    "PROSPECTIVE_INVALID": "CANNOT_CHECK_PROSPECTIVE_RUN_INVALID (distinct from any negative; nothing inferred)",
+    "G0_fail": "DESIGN_VIOLATION_RUN_VOID",
+    "G1_fail": "GATING_DOES_NOT_DOMINATE_ALWAYS_ON",
+    "G2_fail_vs_OFF": "GATING_DOES_NOT_DOMINATE_ALWAYS_OFF",
+    "G2_fail_vs_PARENT": "STRONGEST_PARENT_SUFFICIENT_UNDER_GATING",
+    "G3_fail": "ACTIVATION_POLICY_NOT_IDENTIFIABLE_FROM_INPUTS",
+    "G3_pass_G3S_fail": "ACTIVATION_POLICY_IDENTIFIABLE_ONLY_AT_STUDY_GRANULARITY",
+    "G4_fail": "ACTIVATION_ADVANTAGE_NOT_SIGN_CONSISTENT",
+    "all_pass": "CONDITIONAL_ACTIVATION_IDENTIFIABLE_FROM_EVIDENCE_STRUCTURE",
+    "precedence": ["PROSPECTIVE_INVALID", "G0", "G1", "G2_vs_OFF", "G2_vs_PARENT", "G3", "G4", "G3S"]
+  },
+  "decision_cell": "PROSPECTIVE is binding; RETROSPECTIVE_EVAL is reported alongside and labelled; disagreement between the two is reported as such and does not rescue the prospective verdict",
+  "no_rescue_clause": "after the gate freeze no re-selection, threshold change, feature edit, instance exclusion, study exclusion, null redefinition or arm substitution is permitted; a failed gate is recorded as its routed terminal; any repair is a new identity (V2)",
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_field_status": false,
+    "grants_real_corpus_dependence_detection": false,
+    "grants_manuscript_change": false
+  }
+}
