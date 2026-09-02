@@ -4,7 +4,7 @@
 *silent* failure modes in an AI-mediated research pipeline — failures in which the pipeline reported
 success — together with cheap detectors that would have caught each earlier.
 
-**Assessment date:** 2026-09-02.
+**Assessment dates:** opened 2026-09-02, closed 2026-09-03.
 **Evidence head:** ORION-V2 `main` @ `a67bd852` (`origin/main` at fetch time).
 **Manuscript heads read:** ORION-paper `origin/main`, at `ba7a084` when the assessment opened and
 `3e2e22e` at close — PRA V16 (PR #80) and the workflow repair (PR #43) both merged mid-assessment,
