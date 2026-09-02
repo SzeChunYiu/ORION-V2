@@ -1,0 +1,59 @@
+{
+  "dropped_atom_kinds": [
+    "witness",
+    "piece",
+    "evc",
+    "tr",
+    "comparability",
+    "ident",
+    "checker",
+    "criterion",
+    "nocontra"
+  ],
+  "frozen_in_design_json": [
+    "witness",
+    "piece",
+    "evc",
+    "tr",
+    "comparability",
+    "ident",
+    "checker",
+    "criterion",
+    "nocontra"
+  ],
+  "kept_atom_kinds": [
+    "identity",
+    "spec",
+    "src",
+    "cal",
+    "support",
+    "ind",
+    "transport",
+    "evaluator",
+    "overlap",
+    "authority"
+  ],
+  "order": [
+    "authority",
+    "witness",
+    "overlap",
+    "piece",
+    "evaluator",
+    "evc",
+    "tr",
+    "transport",
+    "ind",
+    "support",
+    "comparability",
+    "cal",
+    "ident",
+    "src",
+    "checker",
+    "spec",
+    "criterion",
+    "identity",
+    "nocontra"
+  ],
+  "rule": "backward elimination over atom kinds in reverse precedence order; drop iff M stays exact on every development instance",
+  "schema_version": "orion.v2.me-x1.exact-study-analysis.v1.minimal-receipt"
+}
