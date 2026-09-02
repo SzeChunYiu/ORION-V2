@@ -1,0 +1,1905 @@
+{
+  "hypothesis": "H-EXT-4",
+  "mechanized_receipt": {
+    "A_C1_no_nontrivial_lower_bound_on_omega": {
+      "conjecture_violations": 248,
+      "examples": [
+        {
+          "conjectured_lb": 0.4150374992788438,
+          "machine": {
+            "P": [
+              0,
+              0,
+              0,
+              1,
+              1,
+              1
+            ],
+            "a_star": [
+              [
+                0
+              ],
+              [
+                1
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0
+              ],
+              [
+                1
+              ],
+              [
+                1
+              ]
+            ],
+            "delta": [
+              [
+                3
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ],
+              [
+                3
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ]
+            ],
+            "m": 1,
+            "n": 6,
+            "name": "",
+            "probs": [
+              "1/2",
+              "1/4",
+              "1/4",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "omega": 0.18872187554086717
+        },
+        {
+          "conjectured_lb": 0.4150374992788438,
+          "machine": {
+            "P": [
+              0,
+              0,
+              0,
+              1,
+              1,
+              1
+            ],
+            "a_star": [
+              [
+                0
+              ],
+              [
+                1
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1
+              ]
+            ],
+            "delta": [
+              [
+                3
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ],
+              [
+                3
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ]
+            ],
+            "m": 1,
+            "n": 6,
+            "name": "",
+            "probs": [
+              "1/2",
+              "1/4",
+              "1/4",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "omega": 0.18872187554086717
+        },
+        {
+          "conjectured_lb": 0.4150374992788438,
+          "machine": {
+            "P": [
+              0,
+              0,
+              0,
+              1,
+              1,
+              1
+            ],
+            "a_star": [
+              [
+                0
+              ],
+              [
+                1
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1
+              ],
+              [
+                0
+              ],
+              [
+                0
+              ]
+            ],
+            "delta": [
+              [
+                3
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ],
+              [
+                3
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ]
+            ],
+            "m": 1,
+            "n": 6,
+            "name": "",
+            "probs": [
+              "1/2",
+              "1/4",
+              "1/4",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "omega": 0.18872187554086717
+        }
+      ],
+      "named_counterexample": {
+        "c_dyn": 1.0,
+        "c_stat": 0.8112781244591328,
+        "conjecture_c1_value": 0.4150374992788438,
+        "dynamic_optima": [
+          [
+            0,
+            1,
+            1,
+            2,
+            3,
+            3
+          ]
+        ],
+        "k_dyn": 2,
+        "k_stat": 2,
+        "machine": {
+          "P": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1
+          ],
+          "a_star": [
+            [
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1
+            ],
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ],
+          "delta": [
+            [
+              3
+            ],
+            [
+              4
+            ],
+            [
+              5
+            ],
+            [
+              3
+            ],
+            [
+              4
+            ],
+            [
+              5
+            ]
+          ],
+          "m": 1,
+          "n": 6,
+          "name": "loose_ub_label",
+          "probs": [
+            "1/2",
+            "1/4",
+            "1/4",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "min_delta_static_opt": 0.6887218755408671,
+        "omega": 0.18872187554086717,
+        "omega_card": 0.0,
+        "pc": true,
+        "per_static_optimum": [
+          {
+            "delta": 0.6887218755408671,
+            "fano_ub": 0.8112781244591328,
+            "pi": [
+              0,
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "regret": 0.25,
+            "regret_lb": 0.4150374992788438
+          }
+        ],
+        "regret_static_opt": [
+          0.25
+        ],
+        "static_optima": [
+          [
+            0,
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        ],
+        "ub_fano": 0.8112781244591328,
+        "ub_label": 0.6887218755408671
+      },
+      "vanishing_premium_family": [
+        {
+          "min_regret_static_optima": 0.25,
+          "n_static_optima": 1,
+          "omega": 0.18872187554086717,
+          "u": "1/4"
+        },
+        {
+          "min_regret_static_optima": 0.3,
+          "n_static_optima": 1,
+          "omega": 0.0896596952239761,
+          "u": "3/10"
+        },
+        {
+          "min_regret_static_optima": 0.32,
+          "n_static_optima": 1,
+          "omega": 0.03830173153099825,
+          "u": "8/25"
+        },
+        {
+          "min_regret_static_optima": 0.33,
+          "n_static_optima": 1,
+          "omega": 0.009892332193302544,
+          "u": "33/100"
+        },
+        {
+          "min_regret_static_optima": 0.333,
+          "n_static_optima": 1,
+          "omega": 0.0009989185190545369,
+          "u": "333/1000"
+        }
+      ],
+      "verdict": "REFUTED"
+    },
+    "A_L1_one_step_reduction": {
+      "mismatches": 0,
+      "partitions_checked": 761547,
+      "verdict": "PASS"
+    },
+    "A_P1_P2_eps_criterion_and_bayes_regret": {
+      "eps_criterion_checks": 5967,
+      "eps_mismatches": 0,
+      "garbling_pairs": 2649,
+      "garbling_violations": 0,
+      "verdict": "PASS"
+    },
+    "A_T1_T2_bounds_by_family": [
+      {
+        "C1_conjecture_violations": 0,
+        "T1_both_tight_delta_positive": 222,
+        "T1_fano_ub_tight_delta_positive": 666,
+        "T1_fano_ub_violations": 0,
+        "T1_regret_lb_tight_delta_positive": 444,
+        "T1_regret_lb_violations": 0,
+        "T2_fano_tight_among_omega_positive": 666,
+        "T2_label_formula_ne_delta": 0,
+        "T2_min_delta_tight_among_omega_positive": 1332,
+        "T2_omega_gt_fano_violations": 0,
+        "T2_omega_gt_min_delta_violations": 0,
+        "cap": 60000,
+        "exhaustive": true,
+        "family": "terminal_n0=2_x=1_A<=3_uniform+skewed",
+        "family_size": 14406,
+        "machines": 14406,
+        "omega_positive": 1332,
+        "static_partitions": 19845,
+        "stride": 1
+      },
+      {
+        "C1_conjecture_violations": 0,
+        "T1_both_tight_delta_positive": 105,
+        "T1_fano_ub_tight_delta_positive": 715,
+        "T1_fano_ub_violations": 0,
+        "T1_regret_lb_tight_delta_positive": 105,
+        "T1_regret_lb_violations": 0,
+        "T2_fano_tight_among_omega_positive": 715,
+        "T2_label_formula_ne_delta": 0,
+        "T2_min_delta_tight_among_omega_positive": 10333,
+        "T2_omega_gt_fano_violations": 0,
+        "T2_omega_gt_min_delta_violations": 0,
+        "cap": 60000,
+        "exhaustive": false,
+        "family": "terminal_n0=3_x=1_A<=3_uniform",
+        "family_size": 588245,
+        "machines": 58825,
+        "omega_positive": 10333,
+        "static_partitions": 117920,
+        "stride": 10
+      },
+      {
+        "C1_conjecture_violations": 16,
+        "T1_both_tight_delta_positive": 30,
+        "T1_fano_ub_tight_delta_positive": 360,
+        "T1_fano_ub_violations": 0,
+        "T1_regret_lb_tight_delta_positive": 30,
+        "T1_regret_lb_violations": 0,
+        "T2_fano_tight_among_omega_positive": 360,
+        "T2_label_formula_ne_delta": 0,
+        "T2_min_delta_tight_among_omega_positive": 1212,
+        "T2_omega_gt_fano_violations": 0,
+        "T2_omega_gt_min_delta_violations": 0,
+        "cap": 60000,
+        "exhaustive": true,
+        "family": "terminal_n0=3_x=1_A<=2_skewed",
+        "family_size": 7290,
+        "machines": 7290,
+        "omega_positive": 1244,
+        "static_partitions": 14904,
+        "stride": 1
+      },
+      {
+        "C1_conjecture_violations": 216,
+        "T1_both_tight_delta_positive": 798,
+        "T1_fano_ub_tight_delta_positive": 1330,
+        "T1_fano_ub_violations": 0,
+        "T1_regret_lb_tight_delta_positive": 798,
+        "T1_regret_lb_violations": 0,
+        "T2_fano_tight_among_omega_positive": 1006,
+        "T2_label_formula_ne_delta": 0,
+        "T2_min_delta_tight_among_omega_positive": 11902,
+        "T2_omega_gt_fano_violations": 0,
+        "T2_omega_gt_min_delta_violations": 0,
+        "cap": 60000,
+        "exhaustive": false,
+        "family": "terminal_n0=4_x=1_A<=2_uniform",
+        "family_size": 98415,
+        "machines": 49208,
+        "omega_positive": 12118,
+        "static_partitions": 153531,
+        "stride": 2
+      },
+      {
+        "C1_conjecture_violations": 0,
+        "T1_both_tight_delta_positive": 0,
+        "T1_fano_ub_tight_delta_positive": 2406,
+        "T1_fano_ub_violations": 0,
+        "T1_regret_lb_tight_delta_positive": 0,
+        "T1_regret_lb_violations": 0,
+        "T2_fano_tight_among_omega_positive": 2406,
+        "T2_label_formula_ne_delta": 0,
+        "T2_min_delta_tight_among_omega_positive": 13944,
+        "T2_omega_gt_fano_violations": 0,
+        "T2_omega_gt_min_delta_violations": 0,
+        "cap": 60000,
+        "exhaustive": false,
+        "family": "terminal_n0=3_x=2_A<=2_uniform",
+        "family_size": 98415,
+        "machines": 49208,
+        "omega_positive": 13944,
+        "static_partitions": 100609,
+        "stride": 2
+      },
+      {
+        "C1_conjecture_violations": 9,
+        "T1_both_tight_delta_positive": 0,
+        "T1_fano_ub_tight_delta_positive": 0,
+        "T1_fano_ub_violations": 0,
+        "T1_regret_lb_tight_delta_positive": 10,
+        "T1_regret_lb_violations": 0,
+        "T2_fano_tight_among_omega_positive": 0,
+        "T2_label_formula_ne_delta": 0,
+        "T2_min_delta_tight_among_omega_positive": 1510,
+        "T2_omega_gt_fano_violations": 0,
+        "T2_omega_gt_min_delta_violations": 0,
+        "family": "random_general_n<=5",
+        "machines": 3000,
+        "omega_positive": 1541,
+        "static_partitions": 17991
+      },
+      {
+        "C1_conjecture_violations": 7,
+        "T1_both_tight_delta_positive": 7,
+        "T1_fano_ub_tight_delta_positive": 23,
+        "T1_fano_ub_violations": 0,
+        "T1_regret_lb_tight_delta_positive": 49,
+        "T1_regret_lb_violations": 0,
+        "T2_fano_tight_among_omega_positive": 79,
+        "T2_label_formula_ne_delta": 0,
+        "T2_min_delta_tight_among_omega_positive": 1353,
+        "T2_omega_gt_fano_violations": 934,
+        "T2_omega_gt_min_delta_violations": 0,
+        "family": "random_terminal_nonPC",
+        "machines": 3000,
+        "omega_positive": 1363,
+        "static_partitions": 5460
+      }
+    ],
+    "A_T1_sandwich_verdict": "PASS",
+    "A_T2_premium_bounds_pc_verdict": "PASS",
+    "A_T2_upper_bound_without_pc": {
+      "examples": [
+        {
+          "machine": {
+            "P": [
+              0,
+              1,
+              1,
+              2,
+              2,
+              3
+            ],
+            "a_star": [
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                1
+              ]
+            ],
+            "delta": [
+              [
+                3
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ],
+              [
+                3
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ]
+            ],
+            "m": 1,
+            "n": 6,
+            "name": "random_nonpc",
+            "probs": [
+              "2",
+              "2",
+              "2",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "omega": 0.6666666666666666,
+          "pc": false,
+          "ub_delta": 0.6666666666666666,
+          "ub_fano": 0.0
+        },
+        {
+          "machine": {
+            "P": [
+              0,
+              1,
+              0,
+              2,
+              3,
+              4
+            ],
+            "a_star": [
+              [
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                2
+              ],
+              [
+                0,
+                1,
+                2
+              ]
+            ],
+            "delta": [
+              [
+                3
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ],
+              [
+                3
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ]
+            ],
+            "m": 1,
+            "n": 6,
+            "name": "random_nonpc",
+            "probs": [
+              "2",
+              "2",
+              "3",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "omega": 0.6935361388961918,
+          "pc": false,
+          "ub_delta": 0.6935361388961918,
+          "ub_fano": 0.0
+        },
+        {
+          "machine": {
+            "P": [
+              0,
+              0,
+              1,
+              2,
+              3,
+              3
+            ],
+            "a_star": [
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                2
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                2
+              ]
+            ],
+            "delta": [
+              [
+                3
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ],
+              [
+                3
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ]
+            ],
+            "m": 1,
+            "n": 6,
+            "name": "random_nonpc",
+            "probs": [
+              "2",
+              "3",
+              "2",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "omega": 0.6935361388961918,
+          "pc": false,
+          "ub_delta": 0.6935361388961918,
+          "ub_fano": 0.0
+        }
+      ],
+      "label_formula_ne_delta": 0,
+      "machines": 3000,
+      "omega_gt_fano_violations": 934,
+      "omega_gt_min_delta_violations": 0,
+      "verdict": "PC_LOAD_BEARING_FOR_FANO_FORM__LABEL_FORM_HOLDS"
+    },
+    "A_T3_named_examples": {
+      "loose_ub": {
+        "c_dyn": 1.5,
+        "c_stat": 0.8112781244591328,
+        "conjecture_c1_value": 0.4150374992788438,
+        "dynamic_optima": [
+          [
+            0,
+            1,
+            2,
+            1,
+            3,
+            4,
+            5,
+            4
+          ]
+        ],
+        "k_dyn": 3,
+        "k_stat": 2,
+        "machine": {
+          "P": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          "a_star": [
+            [
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ]
+          ],
+          "delta": [
+            [
+              4
+            ],
+            [
+              5
+            ],
+            [
+              6
+            ],
+            [
+              7
+            ],
+            [
+              4
+            ],
+            [
+              5
+            ],
+            [
+              6
+            ],
+            [
+              7
+            ]
+          ],
+          "m": 1,
+          "n": 8,
+          "name": "loose_ub",
+          "probs": [
+            "1/4",
+            "1/4",
+            "1/4",
+            "1/4",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "min_delta_static_opt": 0.6887218755408671,
+        "omega": 0.6887218755408672,
+        "omega_card": 0.5849625007211561,
+        "pc": true,
+        "per_static_optimum": [
+          {
+            "delta": 0.6887218755408671,
+            "fano_ub": 0.8112781244591328,
+            "pi": [
+              0,
+              0,
+              1,
+              0,
+              2,
+              3,
+              4,
+              5
+            ],
+            "regret": 0.25,
+            "regret_lb": 0.4150374992788438
+          },
+          {
+            "delta": 0.6887218755408671,
+            "fano_ub": 0.8112781244591328,
+            "pi": [
+              0,
+              1,
+              1,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "regret": 0.25,
+            "regret_lb": 0.4150374992788438
+          }
+        ],
+        "regret_static_opt": [
+          0.25,
+          0.25
+        ],
+        "static_optima": [
+          [
+            0,
+            0,
+            1,
+            0,
+            2,
+            3,
+            4,
+            5
+          ],
+          [
+            0,
+            1,
+            1,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        ],
+        "ub_fano": 0.8112781244591328,
+        "ub_label": 0.6887218755408671
+      },
+      "loose_ub_label": {
+        "c_dyn": 1.0,
+        "c_stat": 0.8112781244591328,
+        "conjecture_c1_value": 0.4150374992788438,
+        "dynamic_optima": [
+          [
+            0,
+            1,
+            1,
+            2,
+            3,
+            3
+          ]
+        ],
+        "k_dyn": 2,
+        "k_stat": 2,
+        "machine": {
+          "P": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1
+          ],
+          "a_star": [
+            [
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1
+            ],
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ],
+          "delta": [
+            [
+              3
+            ],
+            [
+              4
+            ],
+            [
+              5
+            ],
+            [
+              3
+            ],
+            [
+              4
+            ],
+            [
+              5
+            ]
+          ],
+          "m": 1,
+          "n": 6,
+          "name": "loose_ub_label",
+          "probs": [
+            "1/2",
+            "1/4",
+            "1/4",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "min_delta_static_opt": 0.6887218755408671,
+        "omega": 0.18872187554086717,
+        "omega_card": 0.0,
+        "pc": true,
+        "per_static_optimum": [
+          {
+            "delta": 0.6887218755408671,
+            "fano_ub": 0.8112781244591328,
+            "pi": [
+              0,
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "regret": 0.25,
+            "regret_lb": 0.4150374992788438
+          }
+        ],
+        "regret_static_opt": [
+          0.25
+        ],
+        "static_optima": [
+          [
+            0,
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        ],
+        "ub_fano": 0.8112781244591328,
+        "ub_label": 0.6887218755408671
+      },
+      "omega_dyn_zero_card_positive": {
+        "c_dyn": 0.16144054254182066,
+        "c_stat": 0.16144054254182066,
+        "conjecture_c1_value": -0.0,
+        "dynamic_optima": [
+          [
+            0,
+            0,
+            1,
+            2,
+            3,
+            3,
+            4,
+            5
+          ]
+        ],
+        "k_dyn": 3,
+        "k_stat": 2,
+        "machine": {
+          "P": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          "a_star": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              0
+            ],
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ],
+          "delta": [
+            [
+              4
+            ],
+            [
+              5
+            ],
+            [
+              6
+            ],
+            [
+              7
+            ],
+            [
+              4
+            ],
+            [
+              5
+            ],
+            [
+              6
+            ],
+            [
+              7
+            ]
+          ],
+          "m": 1,
+          "n": 8,
+          "name": "omega_dyn_zero_card_positive",
+          "probs": [
+            "49/100",
+            "49/100",
+            "1/100",
+            "1/100",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "min_delta_static_opt": 0.0,
+        "omega": 0.0,
+        "omega_card": 0.5849625007211561,
+        "pc": true,
+        "per_static_optimum": [
+          {
+            "delta": 0.0,
+            "fano_ub": 0.0,
+            "pi": [
+              0,
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "regret": 0.0,
+            "regret_lb": -0.0
+          }
+        ],
+        "regret_static_opt": [
+          0.0
+        ],
+        "static_optima": [
+          [
+            0,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        ],
+        "ub_fano": 0.0,
+        "ub_label": 0.0
+      },
+      "phantom_premium": {
+        "c_dyn": 1.0,
+        "c_stat": 0.0,
+        "conjecture_c1_value": -0.0,
+        "dynamic_optima": [
+          [
+            0,
+            1,
+            2,
+            3
+          ]
+        ],
+        "k_dyn": 2,
+        "k_stat": 1,
+        "machine": {
+          "P": [
+            0,
+            0,
+            1,
+            2
+          ],
+          "a_star": [
+            [
+              0
+            ],
+            [
+              0
+            ],
+            [
+              0
+            ],
+            [
+              0
+            ]
+          ],
+          "delta": [
+            [
+              2
+            ],
+            [
+              3
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ]
+          ],
+          "m": 1,
+          "n": 4,
+          "name": "phantom_premium",
+          "probs": [
+            "1/2",
+            "1/2",
+            "0",
+            "0"
+          ]
+        },
+        "min_delta_static_opt": 1.0,
+        "omega": 1.0,
+        "omega_card": 1.0,
+        "pc": false,
+        "per_static_optimum": [
+          {
+            "delta": 1.0,
+            "fano_ub": 0.0,
+            "pi": [
+              0,
+              0,
+              1,
+              2
+            ],
+            "regret": 0.0,
+            "regret_lb": -0.0
+          }
+        ],
+        "regret_static_opt": [
+          0.0
+        ],
+        "static_optima": [
+          [
+            0,
+            0,
+            1,
+            2
+          ]
+        ],
+        "ub_fano": 0.0,
+        "ub_label": 1.0
+      },
+      "witness_q=1/2": {
+        "c_dyn": 1.0,
+        "c_stat": 0.0,
+        "conjecture_c1_value": 1.0,
+        "dynamic_optima": [
+          [
+            0,
+            1,
+            2,
+            3
+          ]
+        ],
+        "k_dyn": 2,
+        "k_stat": 1,
+        "machine": {
+          "P": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "a_star": [
+            [
+              0
+            ],
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              0
+            ]
+          ],
+          "delta": [
+            [
+              2
+            ],
+            [
+              3
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ]
+          ],
+          "m": 1,
+          "n": 4,
+          "name": "witness_q=1/2",
+          "probs": [
+            "1/2",
+            "1/2",
+            "0",
+            "0"
+          ]
+        },
+        "min_delta_static_opt": 1.0,
+        "omega": 1.0,
+        "omega_card": 1.0,
+        "pc": true,
+        "per_static_optimum": [
+          {
+            "delta": 1.0,
+            "fano_ub": 1.0,
+            "pi": [
+              0,
+              0,
+              1,
+              2
+            ],
+            "regret": 0.5,
+            "regret_lb": 1.0
+          }
+        ],
+        "regret_static_opt": [
+          0.5
+        ],
+        "static_optima": [
+          [
+            0,
+            0,
+            1,
+            2
+          ]
+        ],
+        "ub_fano": 1.0,
+        "ub_label": 1.0
+      }
+    },
+    "A_T3_witness_table": [
+      {
+        "c_dyn": 1.0,
+        "c_stat": 0.0,
+        "delta_of_merged": 1.0,
+        "fano_tight": true,
+        "fano_ub": 1.0,
+        "h_b(q)": 1.0,
+        "h_b(regret)": 1.0,
+        "omega_card": 1.0,
+        "omega_dyn": 1.0,
+        "omega_eq_hb_q": true,
+        "omega_eq_hb_regret": true,
+        "q": "1/2",
+        "regret_lb": 1.0,
+        "regret_lb_tight": true,
+        "regret_of_merged_state": 0.5,
+        "successors_same_fibre": false
+      },
+      {
+        "c_dyn": 1.0,
+        "c_stat": 0.0,
+        "delta_of_merged": 1.0,
+        "fano_tight": true,
+        "fano_ub": 1.0,
+        "h_b(q)": 1.0,
+        "h_b(regret)": 1.0,
+        "omega_card": 1.0,
+        "omega_dyn": 1.0,
+        "omega_eq_hb_q": true,
+        "omega_eq_hb_regret": true,
+        "q": "1/2",
+        "regret_lb": 1.0,
+        "regret_lb_tight": true,
+        "regret_of_merged_state": 0.5,
+        "successors_same_fibre": true
+      },
+      {
+        "c_dyn": 0.8112781244591328,
+        "c_stat": 0.0,
+        "delta_of_merged": 0.8112781244591328,
+        "fano_tight": true,
+        "fano_ub": 0.8112781244591328,
+        "h_b(q)": 0.8112781244591328,
+        "h_b(regret)": 0.8112781244591328,
+        "omega_card": 1.0,
+        "omega_dyn": 0.8112781244591328,
+        "omega_eq_hb_q": true,
+        "omega_eq_hb_regret": true,
+        "q": "3/4",
+        "regret_lb": 0.4150374992788438,
+        "regret_lb_tight": false,
+        "regret_of_merged_state": 0.25,
+        "successors_same_fibre": false
+      },
+      {
+        "c_dyn": 0.8112781244591328,
+        "c_stat": 0.0,
+        "delta_of_merged": 0.8112781244591328,
+        "fano_tight": true,
+        "fano_ub": 0.8112781244591328,
+        "h_b(q)": 0.8112781244591328,
+        "h_b(regret)": 0.8112781244591328,
+        "omega_card": 1.0,
+        "omega_dyn": 0.8112781244591328,
+        "omega_eq_hb_q": true,
+        "omega_eq_hb_regret": true,
+        "q": "3/4",
+        "regret_lb": 0.4150374992788438,
+        "regret_lb_tight": false,
+        "regret_of_merged_state": 0.25,
+        "successors_same_fibre": true
+      },
+      {
+        "c_dyn": 0.46899559358928133,
+        "c_stat": 0.0,
+        "delta_of_merged": 0.46899559358928133,
+        "fano_tight": true,
+        "fano_ub": 0.4689955935892812,
+        "h_b(q)": 0.4689955935892811,
+        "h_b(regret)": 0.4689955935892812,
+        "omega_card": 1.0,
+        "omega_dyn": 0.46899559358928133,
+        "omega_eq_hb_q": true,
+        "omega_eq_hb_regret": true,
+        "q": "9/10",
+        "regret_lb": 0.15200309344504995,
+        "regret_lb_tight": false,
+        "regret_of_merged_state": 0.1,
+        "successors_same_fibre": false
+      },
+      {
+        "c_dyn": 0.46899559358928133,
+        "c_stat": 0.0,
+        "delta_of_merged": 0.46899559358928133,
+        "fano_tight": true,
+        "fano_ub": 0.4689955935892812,
+        "h_b(q)": 0.4689955935892811,
+        "h_b(regret)": 0.4689955935892812,
+        "omega_card": 1.0,
+        "omega_dyn": 0.46899559358928133,
+        "omega_eq_hb_q": true,
+        "omega_eq_hb_regret": true,
+        "q": "9/10",
+        "regret_lb": 0.15200309344504995,
+        "regret_lb_tight": false,
+        "regret_of_merged_state": 0.1,
+        "successors_same_fibre": true
+      },
+      {
+        "c_dyn": 0.08079313589591126,
+        "c_stat": 0.0,
+        "delta_of_merged": 0.08079313589591126,
+        "fano_tight": true,
+        "fano_ub": 0.08079313589591118,
+        "h_b(q)": 0.08079313589591124,
+        "h_b(regret)": 0.08079313589591118,
+        "omega_card": 1.0,
+        "omega_dyn": 0.08079313589591126,
+        "omega_eq_hb_q": true,
+        "omega_eq_hb_regret": true,
+        "q": "99/100",
+        "regret_lb": 0.014499569695115089,
+        "regret_lb_tight": false,
+        "regret_of_merged_state": 0.01,
+        "successors_same_fibre": false
+      },
+      {
+        "c_dyn": 0.08079313589591126,
+        "c_stat": 0.0,
+        "delta_of_merged": 0.08079313589591126,
+        "fano_tight": true,
+        "fano_ub": 0.08079313589591118,
+        "h_b(q)": 0.08079313589591124,
+        "h_b(regret)": 0.08079313589591118,
+        "omega_card": 1.0,
+        "omega_dyn": 0.08079313589591126,
+        "omega_eq_hb_q": true,
+        "omega_eq_hb_regret": true,
+        "q": "99/100",
+        "regret_lb": 0.014499569695115089,
+        "regret_lb_tight": false,
+        "regret_of_merged_state": 0.01,
+        "successors_same_fibre": true
+      }
+    ],
+    "B_cardinality": {
+      "examples": {
+        "omega_card_zero_but_omega_dyn_positive": {
+          "k_dyn": 2,
+          "k_stat": 2,
+          "machine": {
+            "P": [
+              0,
+              0,
+              0,
+              1,
+              1,
+              1
+            ],
+            "a_star": [
+              [
+                0
+              ],
+              [
+                1
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0
+              ],
+              [
+                1
+              ],
+              [
+                1
+              ]
+            ],
+            "delta": [
+              [
+                3
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ],
+              [
+                3
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ]
+            ],
+            "m": 1,
+            "n": 6,
+            "name": "",
+            "probs": [
+              "1/2",
+              "1/4",
+              "1/4",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "omega_dyn": 0.18872187554086717
+        },
+        "omega_dyn_gt_omega_card": {
+          "machine": {
+            "P": [
+              0,
+              0,
+              0,
+              1,
+              1,
+              1
+            ],
+            "a_star": [
+              [
+                0
+              ],
+              [
+                0
+              ],
+              [
+                1
+              ],
+              [
+                0
+              ],
+              [
+                1
+              ],
+              [
+                0
+              ]
+            ],
+            "delta": [
+              [
+                3
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ],
+              [
+                3
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ]
+            ],
+            "m": 1,
+            "n": 6,
+            "name": "",
+            "probs": [
+              "1/3",
+              "1/3",
+              "1/3",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "omega_card": 0.5849625007211561,
+          "omega_dyn": 0.6666666666666665
+        },
+        "omega_dyn_lt_omega_card": {
+          "machine": {
+            "P": [
+              0,
+              0,
+              1,
+              1
+            ],
+            "a_star": [
+              [
+                0
+              ],
+              [
+                0
+              ],
+              [
+                0
+              ],
+              [
+                1
+              ]
+            ],
+            "delta": [
+              [
+                2
+              ],
+              [
+                3
+              ],
+              [
+                2
+              ],
+              [
+                3
+              ]
+            ],
+            "m": 1,
+            "n": 4,
+            "name": "",
+            "probs": [
+              "9/10",
+              "1/10",
+              "0",
+              "0"
+            ]
+          },
+          "omega_card": 1.0,
+          "omega_dyn": 0.46899559358928133
+        }
+      },
+      "log_cardinality_bound_violations": 0,
+      "machines": 223171,
+      "omega_card_zero_but_omega_dyn_positive": 4800,
+      "omega_dyn_gt_omega_card": 6646,
+      "omega_dyn_lt_omega_card": 45307,
+      "omega_dyn_zero_but_omega_card_positive": 0,
+      "verdict": "PASS"
+    },
+    "C3_multistep_fano_ub_depth2": {
+      "chains": 400,
+      "verdict": "PASS",
+      "violations": 0
+    },
+    "C_multistep": {
+      "chain_equivalence_checks": 1113,
+      "chain_equivalence_violations": 0,
+      "dormant_two_step": {
+        "N1": true,
+        "RC": false,
+        "W1": true,
+        "W2": false,
+        "c_W1": 0.0,
+        "c_W2": 1.0,
+        "c_dyn": 1.0,
+        "c_stat": 0.0,
+        "machine": {
+          "P": [
+            0,
+            0,
+            1,
+            1,
+            2,
+            2
+          ],
+          "a_star": [
+            [
+              0
+            ],
+            [
+              0
+            ],
+            [
+              0
+            ],
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ],
+          "delta": [
+            [
+              2
+            ],
+            [
+              3
+            ],
+            [
+              4
+            ],
+            [
+              5
+            ],
+            [
+              4
+            ],
+            [
+              5
+            ]
+          ],
+          "m": 1,
+          "n": 6,
+          "name": "dormant_two_step",
+          "probs": [
+            "1/2",
+            "1/2",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "pi": [
+          0,
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "rc_closure": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "static": true
+      },
+      "n1_but_not_w2_instances": 152,
+      "random_partition_checks": 2526,
+      "rc_and_n1_implies_wk_violations": 0,
+      "shared_successor": {
+        "initial_partition": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "machine": {
+          "P": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1
+          ],
+          "a_star": [
+            [
+              0
+            ],
+            [
+              0
+            ],
+            [
+              0
+            ],
+            [
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "delta": [
+            [
+              4
+            ],
+            [
+              5
+            ],
+            [
+              4
+            ],
+            [
+              6
+            ],
+            [
+              4
+            ],
+            [
+              5
+            ],
+            [
+              6
+            ]
+          ],
+          "m": 1,
+          "n": 7,
+          "name": "shared_successor",
+          "probs": [
+            "1/4",
+            "1/4",
+            "1/4",
+            "1/4",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "recursive_extension_exists": false,
+        "word_compatible_from_initial_blocks": true
+      },
+      "verdict": "PASS",
+      "wk_implies_n1_violations": 0
+    },
+    "cap_per_terminal_family": 60000,
+    "empirical_llm_result": false,
+    "full": true,
+    "schema": "orion-v2.h-ext4-premium-bounds.v1",
+    "scientific_authority": false,
+    "seed": 20260902
+  },
+  "schema": "orion-v2.h-ext4-result.v1",
+  "terminals": {
+    "A_eps_criterion": {
+      "mechanized": "A_P1_P2",
+      "parent": "Li-Walsh-Littman 2006 a*-irrelevance abstraction; Abel-Hershkowitz-Littman 2016 approximate abstraction; sublevel-set restatement of min_a max_h regret <= eps",
+      "proved": true,
+      "terminal": "PARENT_OWNED"
+    },
+    "A_expected_regret_identity": {
+      "mechanized": "A_P1_P2",
+      "parent": "Bayes risk of a garbled experiment; Blackwell 1953 garbling monotonicity; Le Cam deficiency as the loss-uniform version",
+      "proved": true,
+      "terminal": "PARENT_OWNED"
+    },
+    "A_lower_bound_on_premium_from_regret": {
+      "counterexample": "vanishing_premium family masses (1-2u,u,u): unique static optimum has regret u while Omega_dyn = h_b(2u)-h_b(u) -> 0 as u -> 1/3; loose_ub_label refutes Omega >= -log2(1-R*(static optimum)); the min-over-all-partitions bound is attained by the dynamic optimum itself (vacuous)",
+      "mechanized": "A_C1",
+      "terminal": "NO_NONTRIVIAL_BOUND"
+    },
+    "A_representation_sandwich": {
+      "assumption_load_bearing": "PC: phantom_premium has Omega=1 with zero regret (Fano form fails; label form holds)",
+      "mechanized": "A_T1_T2_T3",
+      "not_tight": "loose_ub_label: Delta=0.689, regret_lb=0.415, fano_ub=0.811",
+      "parents_conceded": "Fano 1961; H_inf <= H (min-entropy); Jensen; Li-Walsh-Littman a*-irrelevance; ISFSM/right-congruence refinement",
+      "premium_level": "Omega_dyn <= min_{static-optimal Pi_s} Delta(Pi_s) <= Fano form; hence every static optimum has regret >= phi^{-1}(Omega_dyn) under terminal+PC",
+      "statement": "for every static-admissible Pi: -log2(1-R*(Pi)) <= Delta(Pi) (every registered machine) and Delta(Pi) <= sum_x phi_{k_x}(R*_x(Pi)) (one-step terminal model + predictive congruence); Delta(Pi) = entropy a dynamic refinement must add",
+      "terminal": "PROVED_ELEMENTARY_COMPOSITION",
+      "tight_on": "two-history witness: both sides at uniform prior, Fano side at every prior; uniform cells with all-distinct required actions"
+    },
+    "B_cardinality_premium": {
+      "elementary_facts_proved": "C* <= log2 K* per class; witness Omega_card = 1 for every prior while Omega_dyn = h_b(q); no ordering between Omega_dyn and Omega_card; the two zero-premium conditions are inequivalent",
+      "mechanized": "B_cardinality",
+      "parent": "Paull-Unger 1959 minimal closed cover of an incompletely specified machine; Zhang et al. 2026 Cor. 3.12 (max_o |C_o| symbols)",
+      "terminal": "PARENT_OWNED"
+    },
+    "C_multistep_reduction": {
+      "counterexamples": "dormant_two_step (N1 holds, W_2 fails, k=2 needed); shared_successor (non-injective delta: word-compatible initial partition with no recursive extension)",
+      "mechanized": "C_multistep",
+      "parent": "right congruence / Nerode; Subramanian et al. 2022 P2a; Zhang et al. 2026 stable quotient; JOINT_DYNAMIC_STATE_OPTIMIZATION_V1 J3",
+      "proved": "Pi recursively compatible <=> Pi right-congruent and one-step compatible at every node; rc_closure preserves node compatibility; injective zero-mass chain: word compatibility <=> recursive extension",
+      "terminal": "PARENT_OWNED"
+    }
+  }
+}
