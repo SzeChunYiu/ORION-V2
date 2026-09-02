@@ -8,6 +8,7 @@ protected split, and the protected stage is asserted to refuse.
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -16,7 +17,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[2]
 FM = ROOT / "research/experiments/fm-exact"
-SUITES = ["FM10"]
+SUITES = ["FM10", "FM20"]
 
 
 @pytest.fixture(scope="module")
@@ -127,15 +128,14 @@ def test_every_planted_positive_fires(fm_path, suite):
 
 @pytest.mark.parametrize("suite", SUITES)
 def test_oracles_agree_on_a_generated_split(fm_path, suite):
-    from fm_run import load_suite
+    from fm_run import load_suite, oracle_disagrees
 
     spec = load_suite(suite)
     pairs, _ = spec.generate("unittest", f"{suite}-UNITTEST", {f: 2 for f in spec.families})
     assert len(pairs) == 2 * len(spec.families)
+    assert spec.oracle_agreement_fields, f"{suite} declares no oracle agreement fields"
     for inst, ans in pairs:
-        cross = spec.cross_check(inst)
-        assert cross.disposition == ans.disposition, inst.instance_id
-        assert cross.as_dict()["best_profile"] == ans.as_dict()["best_profile"]
+        assert not oracle_disagrees(spec, ans, spec.cross_check(inst)), inst.instance_id
 
 
 @pytest.mark.parametrize("suite", SUITES)
@@ -174,6 +174,67 @@ def test_mechanic_is_not_a_wrapper_of_its_own_comparator(fm_path, suite):
     assert any(v > 0 for v in discordance.values()), (
         f"{suite}: no ablation disagrees with {P}; the G1a counter is dead: {discordance}"
     )
+
+
+@pytest.mark.parametrize("suite", SUITES)
+def test_generator_is_independent_of_python_hash_seed(fm_path, suite):
+    """A committed seed must regenerate the same split in any process.
+
+    Python randomises string hashing per process, so a generator that draws
+    while iterating an unordered set produces a different split under a
+    different PYTHONHASHSEED - and a published seed commitment then fails to
+    reproduce.  Checked here rather than assumed.
+    """
+    script = (
+        "import sys, hashlib\n"
+        f"sys.path.insert(0, {str(FM)!r}); sys.path.insert(0, {str(ROOT / 'src')!r})\n"
+        "from fm_core import canonical_json\n"
+        "import fm_run as R\n"
+        f"spec = R.load_suite({suite!r})\n"
+        "pairs, rej = spec.generate('protected','HASHSEED-PROBE',{f:2 for f in spec.families})\n"
+        "res, cus = R.run_instances(spec, pairs, 'P', None); res.pop('_timing_wall_ns')\n"
+        "print(hashlib.sha256((canonical_json(res)+canonical_json(cus)"
+        "+canonical_json(rej)).encode()).hexdigest())\n"
+    )
+    digests = set()
+    for hashseed in ("0", "1", "12345"):
+        proc = subprocess.run(
+            [sys.executable, "-c", script],
+            capture_output=True,
+            text=True,
+            env={**os.environ, "PYTHONHASHSEED": hashseed},
+        )
+        assert proc.returncode == 0, proc.stderr
+        digests.add(proc.stdout.strip())
+    assert len(digests) == 1, (
+        f"{suite}: the generated split depends on PYTHONHASHSEED ({digests}); a "
+        "committed seed would not reproduce in another process"
+    )
+
+
+@pytest.mark.parametrize("suite", SUITES)
+def test_anti_permissiveness_counter_can_fire(fm_path, suite):
+    """An anti-conservatism gate that passes on 0 <= 0 must show it could fire.
+
+    On the instances the oracle rejects, at least one arm must register a
+    nonzero over-acceptance count, or the gate's zero is vacuous.
+    """
+    from fm_run import load_suite, run_instances, score
+
+    spec = load_suite(suite)
+    pairs, _ = spec.generate("unittest", f"{suite}-UNITTEST", {f: 3 for f in spec.families})
+    res, cus = run_instances(spec, pairs, "T", "seed")
+    sc = score(spec, res, cus)
+
+    def accepts(label: str) -> bool:
+        return not label.startswith("BLOCK") and not label.startswith("REJECT")
+
+    blocked = [i for i, lab in enumerate(sc["labels"]) if not accepts(lab)]
+    assert blocked, f"{suite}: no oracle-rejected instances to evaluate the gate on"
+    over = {
+        a: sum(1 for i in blocked if accepts(sc["_preds"][a][i])) for a in sc["per_arm"]
+    }
+    assert max(over.values()) > 0, f"{suite}: the over-acceptance counter is dead: {over}"
 
 
 @pytest.mark.parametrize("suite", SUITES)
