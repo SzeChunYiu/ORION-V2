@@ -6,7 +6,8 @@ success — together with cheap detectors that would have caught each earlier.
 
 **Assessment date:** 2026-09-02.
 **Evidence head:** ORION-V2 `main` @ `a67bd852` (`origin/main` at fetch time).
-**Manuscript head:** ORION-paper `main` @ `d32af0f` (PRA V16 repin).
+**Manuscript heads read:** ORION-paper `origin/main` @ `ba7a084`, and the in-flight PRA V16 branch
+`paper/pra-v16-priorwork-closure-20260902` @ `d32af0f` (PR #80, OPEN). V16 is **not** on `origin/main`.
 **Gates applied:** `papers/PROGRAMME_LEDGER_V0.md` §"Programme-level selection rule";
 `papers/CLOSURE_PORTFOLIO_WAVE06_V0.md`;
 `papers/pipeline/SD_RECURSIVE_STANDALONE_ADMISSION_GATE_V2.md` §6;
@@ -20,7 +21,7 @@ ORION-paper `v2-papers/_portfolio/contraction/PAPER_OVERLAP_AND_DISCLOSURE_MATRI
 OBJECT                       = SILENT_FAILURE_MODES_IN_AI_MEDIATED_RESEARCH_PIPELINES
 STANDALONE_PAPER             = DO_NOT_OPEN
 DISPOSITION                  = MERGE_INTO_EXISTING_OWNERS + REGISTER_ONE_PROSPECTIVE_REVIVAL
-PROGRAMME_CRITERIA_MET       = 1 of 7 (partial), 6 FAIL
+PROGRAMME_CRITERIA_MET       = 0 clean, 1 partial (recoverable), 6 FAIL
 BLOCKING_FAILURES            = no prospective discriminator; no strongest-parent baseline;
                                no evaluation outside the derivation domain; no independent authority
 STRONGEST_INSTANCE           = ALREADY_PUBLISHED_BY_PRA (V16 Appendix B.8)
@@ -163,12 +164,24 @@ that load-bearing assumptions can fail — that is the planted-positive detector
 reported. A paper claiming these detectors as its contribution would be reporting its own house
 style as a finding.
 
-**Outside the programme.** Detailed parent table at §5.1. In outline: vacuity detection in temporal
-model checking and coverage metrics for formal verification own the denominator detector; mutation
-testing, metamorphic testing and known-answer self-tests own the planted-positive detector;
-provenance and environment-capture practice owns the served-identifier detector; the preregistration
-critique owns the constraint-reduces-exploration result; fail-closed design in dependable systems
-owns the consume-your-controls detector.
+**Outside the programme.** Reduced at field level: vacuity detection in temporal model checking and
+coverage metrics for formal verification own the denominator detector; mutation testing, metamorphic
+testing and known-answer self-tests own the planted-positive detector; provenance and
+environment-capture practice owns the served-identifier detector; the preregistration critique owns
+the constraint-reduces-exploration result; fail-closed design in dependable systems owns the
+consume-your-controls detector; and benchmark construct-validity work owns the
+measured-the-wrong-thing null.
+
+### 5.1 Why no citation table is printed
+
+```text
+PARENT_CITATIONS = NOT_BOUND — field-level reduction only
+```
+
+Exact author/year/venue citations are deliberately **not** printed here. Field-level reduction is
+sufficient to settle admission, because every field named above predates and subsumes its detector,
+and a wrong citation in a strongest-parent section is worse than an absent one. Any successor that
+revives this object (§8) must bind them exactly before claiming a residual.
 
 The programme requires an *explicit strongest donor-composed baseline*. Constructed honestly, that
 baseline — vacuity checking plus mutation/known-answer testing plus run-environment capture plus
@@ -291,7 +304,10 @@ detectors off, detectors on — and report detection rate, **false-alarm rate on
 time-to-detection, against a strongest donor-composed arm (vacuity checking + mutation/known-answer
 testing + environment capture + fail-closed gating) rather than against no-detector alone. Register
 the discriminator before execution. Execute on at least one pipeline **outside ORION-V2**, since
-criterion 6 cannot be met inside it.
+criterion 6 cannot be met inside it — what would count is an external research or evaluation harness
+with public CI, a public defect history and an owner willing to have plants injected (an open-source
+agentic-benchmark harness, or a collaborator's pipeline under agreement). No such pipeline is
+identified yet, and identifying one is the design's first blocking step.
 
 Honest terminals to register with the design:
 
