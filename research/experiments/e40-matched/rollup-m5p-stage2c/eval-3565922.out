@@ -1,0 +1,500 @@
+{
+ "chains": {
+  "COMPLETE": 60,
+  "CANNOT_CHECK": 0,
+  "IN_PROGRESS": 0,
+  "MISSING": 0
+ },
+ "native_runs_done": 240,
+ "native_runs_expected": 240,
+ "all_settled": true
+}
+{"control": "planted_feedback_recovery", "target": {"training_regime": "partial_interventional", "fraction_partial_intervention": 0.8}, "replica_mandate": "f2r0", "chosen": [{"training_regime": "interventional", "fraction_partial_intervention": 0.5, "partial_intervention_seed": 13, "model_seed": 11, "omission_estimation_size": 1000}, {"training_regime": "interventional", "fraction_partial_intervention": 0.5, "partial_intervention_seed": 13, "model_seed": 11, "omission_estimation_size": 1000}, {"training_regime": "interventional", "fraction_partial_intervention": 0.5, "partial_intervention_seed": 13, "model_seed": 11, "omission_estimation_size": 1000}, {"training_regime": "interventional", "fraction_partial_intervention": 0.5, "partial_intervention_seed": 13, "model_seed": 11, "omission_estimation_size": 1000}, {"training_regime": "interventional", "fraction_partial_intervention": 0.5, "partial_intervention_seed": 13, "model_seed": 27, "omission_estimation_size": 1000}, {"training_regime": "interventional", "fraction_partial_intervention": 0.5, "partial_intervention_seed": 13, "model_seed": 11, "omission_estimation_size": 1000}, {"training_regime": "partial_interventional", "fraction_partial_intervention": 0.5, "partial_intervention_seed": 13, "model_seed": 11, "omission_estimation_size": 1000}, {"training_regime": "partial_interventional", "fraction_partial_intervention": 0.5, "partial_intervention_seed": 13, "model_seed": 11, "omission_estimation_size": 1000}, {"training_regime": "partial_interventional", "fraction_partial_intervention": 0.5, "partial_intervention_seed": 13, "model_seed": 11, "omission_estimation_size": 1000}], "qualities": [0.352649213636475, 0.352649213636475, 0.352649213636475, 0.352649213636475, 0.352649213636475, 0.352649213636475, 0.6411803884299545, 0.6411803884299545, 0.6411803884299545], "in_basin_0p8_count": 0, "of": 8, "terminal_quality": 0.6411803884299545, "verdict": "FAIL", "rule": "last 3 cycles at planted quality >= 0.9 AND no post-arrival dip below 0.8"}
+{"control": "permutation_null_calibration", "reps": 400, "n_pairs": 12, "alpha": 0.05, "rejection_rate": 0.055, "accept_band": [0.02, 0.09], "verdict": "PASS"}
+{
+ "audit": "leakage+pin+seed-mandate",
+ "artifacts_checked": 765,
+ "violations": []
+}
+{
+ "status": "OK",
+ "gates": {
+  "G0_DRAG_PRESENT_UNDER_TERMINAL": true,
+  "G1_CONSENSUS_RANKS_TRUTH": true,
+  "G2_CONSENSUS_SHIPPING_CLOSES_DRAG": true,
+  "G3_ANTI_CONTROL_DISTINGUISHES": true,
+  "G4_SPLIT_CONSISTENT": true,
+  "disposition": "M6_AUTHORIZED",
+  "preregistered_route": "authorize m6 prospective confirm campaign under its own freeze (no revival claim from Stage-2c alone)"
+ },
+ "contrasts": {
+  "TERMINAL": {
+   "n": 12,
+   "mean_d": -0.02349883058890609,
+   "perm_p": 1.0,
+   "f0_wins": 12
+  },
+  "CONSENSUS_ARGMAX": {
+   "n": 12,
+   "mean_d": 0.0005000000000000004,
+   "perm_p": 0.000244140625,
+   "f0_wins": 0
+  },
+  "PURITY_ARGMAX": {
+   "n": 12,
+   "mean_d": -0.02349883058890609,
+   "perm_p": 1.0,
+   "f0_wins": 12
+  },
+  "ORACLE_BEST": {
+   "n": 12,
+   "mean_d": 0.0005000000000000004,
+   "perm_p": 0.000244140625,
+   "f0_wins": 0
+  }
+ },
+ "rho": {
+  "raw_pooled_rho": -1.0,
+  "directed_pooled_rho": 1.0,
+  "perm_p_two_sided": 0.0,
+  "cells_used": 12
+ }
+}
+{
+ "status": "OK",
+ "gates": {
+  "G0_DRAG_PRESENT_UNDER_TERMINAL": true,
+  "G1_CONSENSUS_RANKS_TRUTH": false,
+  "G2_CONSENSUS_SHIPPING_CLOSES_DRAG": false,
+  "G3_ANTI_CONTROL_DISTINGUISHES": true,
+  "G4_SPLIT_CONSISTENT": false,
+  "disposition": "E40_TERMINAL",
+  "preregistered_route": "E40 line TERMINAL: deficit attributable to the information available to the loop by any channel tested; further revival needs a new mechanism class"
+ },
+ "contrasts": {
+  "TERMINAL": {
+   "n": 12,
+   "mean_d": -0.002951648899907617,
+   "perm_p": 1.0,
+   "f0_wins": 12
+  },
+  "CONSENSUS_ARGMAX": {
+   "n": 12,
+   "mean_d": -0.0029984253436636035,
+   "perm_p": 1.0,
+   "f0_wins": 12
+  },
+  "PURITY_ARGMAX": {
+   "n": 12,
+   "mean_d": -0.002951648899907617,
+   "perm_p": 1.0,
+   "f0_wins": 12
+  },
+  "ORACLE_BEST": {
+   "n": 12,
+   "mean_d": 0.00325064195466198,
+   "perm_p": 0.000244140625,
+   "f0_wins": 0
+  }
+ },
+ "rho": {
+  "raw_pooled_rho": -0.16666666666666666,
+  "directed_pooled_rho": 0.16666666666666666,
+  "perm_p_two_sided": 0.3433,
+  "cells_used": 12
+ }
+}
+{
+ "status": "REFUSED__CAMPAIGN_NOT_SETTLED",
+ "chains_by_status": {
+  "COMPLETE": 59,
+  "MISSING": 1
+ },
+ "unsettled_n": 1
+}
+{
+ "status": "REFUSED__CAMPAIGN_NOT_SETTLED",
+ "chains_by_status": {
+  "COMPLETE": 59,
+  "IN_PROGRESS": 1
+ },
+ "unsettled_n": 1
+}
+{
+ "status": "OK",
+ "gates": {
+  "G0_DRAG_PRESENT_UNDER_TERMINAL": true,
+  "G1_CONSENSUS_RANKS_TRUTH": true,
+  "G2_CONSENSUS_SHIPPING_CLOSES_DRAG": true,
+  "G3_ANTI_CONTROL_DISTINGUISHES": true,
+  "G4_SPLIT_CONSISTENT": true,
+  "disposition": "M6_AUTHORIZED",
+  "preregistered_route": "authorize m6 prospective confirm campaign under its own freeze (no revival claim from Stage-2c alone)"
+ },
+ "contrasts": {
+  "TERMINAL": {
+   "n": 11,
+   "mean_d": -0.02349285780888737,
+   "perm_p": 1.0,
+   "f0_wins": 11
+  },
+  "CONSENSUS_ARGMAX": {
+   "n": 11,
+   "mean_d": 0.0005008759128430906,
+   "perm_p": 0.00048828125,
+   "f0_wins": 0
+  },
+  "PURITY_ARGMAX": {
+   "n": 11,
+   "mean_d": -0.02349285780888737,
+   "perm_p": 1.0,
+   "f0_wins": 11
+  },
+  "ORACLE_BEST": {
+   "n": 11,
+   "mean_d": 0.0005008759128430906,
+   "perm_p": 0.00048828125,
+   "f0_wins": 0
+  }
+ },
+ "rho": {
+  "raw_pooled_rho": -1.0,
+  "directed_pooled_rho": 1.0,
+  "perm_p_two_sided": 0.0,
+  "cells_used": 11
+ }
+}
+{
+ "status": "OK",
+ "gates": {
+  "G0_DRAG_PRESENT_UNDER_TERMINAL": true,
+  "G1_CONSENSUS_RANKS_TRUTH": true,
+  "G2_CONSENSUS_SHIPPING_CLOSES_DRAG": true,
+  "G3_ANTI_CONTROL_DISTINGUISHES": true,
+  "G4_SPLIT_CONSISTENT": true,
+  "disposition": "M6_AUTHORIZED",
+  "preregistered_route": "authorize m6 prospective confirm campaign under its own freeze (no revival claim from Stage-2c alone)"
+ },
+ "contrasts": {
+  "TERMINAL": {
+   "n": 12,
+   "mean_d": -0.023501054292472717,
+   "perm_p": 1.0,
+   "f0_wins": 12
+  },
+  "CONSENSUS_ARGMAX": {
+   "n": 12,
+   "mean_d": 0.0004955997370019241,
+   "perm_p": 0.000244140625,
+   "f0_wins": 0
+  },
+  "PURITY_ARGMAX": {
+   "n": 12,
+   "mean_d": -0.023501054292472717,
+   "perm_p": 1.0,
+   "f0_wins": 12
+  },
+  "ORACLE_BEST": {
+   "n": 12,
+   "mean_d": 0.0004955997370019241,
+   "perm_p": 0.000244140625,
+   "f0_wins": 0
+  }
+ },
+ "rho": {
+  "raw_pooled_rho": -1.0,
+  "directed_pooled_rho": 1.0,
+  "perm_p_two_sided": 0.0,
+  "cells_used": 12
+ }
+}
+{
+ "status": "REFUSED__CAMPAIGN_NOT_SETTLED",
+ "chains_by_status": {
+  "COMPLETE": 59,
+  "MISSING": 1
+ },
+ "unsettled_n": 1
+}
+{
+ "status": "REFUSED__CAMPAIGN_NOT_SETTLED",
+ "chains_by_status": {
+  "COMPLETE": 59,
+  "IN_PROGRESS": 1
+ },
+ "unsettled_n": 1
+}
+{
+ "status": "OK",
+ "gates": {
+  "G0_DRAG_PRESENT_UNDER_TERMINAL": true,
+  "G1_CONSENSUS_RANKS_TRUTH": true,
+  "G2_CONSENSUS_SHIPPING_CLOSES_DRAG": true,
+  "G3_ANTI_CONTROL_DISTINGUISHES": true,
+  "G4_SPLIT_CONSISTENT": true,
+  "disposition": "M6_AUTHORIZED",
+  "preregistered_route": "authorize m6 prospective confirm campaign under its own freeze (no revival claim from Stage-2c alone)"
+ },
+ "contrasts": {
+  "TERMINAL": {
+   "n": 11,
+   "mean_d": -0.023503482258519847,
+   "perm_p": 1.0,
+   "f0_wins": 11
+  },
+  "CONSENSUS_ARGMAX": {
+   "n": 11,
+   "mean_d": 0.0005000000000000004,
+   "perm_p": 0.00048828125,
+   "f0_wins": 0
+  },
+  "PURITY_ARGMAX": {
+   "n": 11,
+   "mean_d": -0.023503482258519847,
+   "perm_p": 1.0,
+   "f0_wins": 11
+  },
+  "ORACLE_BEST": {
+   "n": 11,
+   "mean_d": 0.0005000000000000004,
+   "perm_p": 0.00048828125,
+   "f0_wins": 0
+  }
+ },
+ "rho": {
+  "raw_pooled_rho": -1.0,
+  "directed_pooled_rho": 1.0,
+  "perm_p_two_sided": 0.0,
+  "cells_used": 11
+ }
+}
+{
+ "status": "OK",
+ "gates": {
+  "G0_DRAG_PRESENT_UNDER_TERMINAL": false,
+  "G1_CONSENSUS_RANKS_TRUTH": false,
+  "G2_CONSENSUS_SHIPPING_CLOSES_DRAG": false,
+  "G3_ANTI_CONTROL_DISTINGUISHES": false,
+  "G4_SPLIT_CONSISTENT": false,
+  "disposition": "CANNOT_CHECK",
+  "preregistered_route": "G0 failed: CANNOT_CHECK disposition; diagnose campaign mechanics under a separate freeze"
+ },
+ "contrasts": {
+  "TERMINAL": {
+   "n": 0,
+   "mean_d": null,
+   "perm_p": null,
+   "f0_wins": 0
+  },
+  "CONSENSUS_ARGMAX": {
+   "n": 0,
+   "mean_d": null,
+   "perm_p": null,
+   "f0_wins": 0
+  },
+  "PURITY_ARGMAX": {
+   "n": 0,
+   "mean_d": null,
+   "perm_p": null,
+   "f0_wins": 0
+  },
+  "ORACLE_BEST": {
+   "n": 0,
+   "mean_d": null,
+   "perm_p": null,
+   "f0_wins": 0
+  }
+ },
+ "rho": {
+  "raw_pooled_rho": null,
+  "directed_pooled_rho": null,
+  "perm_p_two_sided": null,
+  "cells_used": 0
+ }
+}
+{
+ "status": "OK",
+ "gates": {
+  "G0_DRAG_PRESENT_UNDER_TERMINAL": true,
+  "G1_CONSENSUS_RANKS_TRUTH": true,
+  "G2_CONSENSUS_SHIPPING_CLOSES_DRAG": true,
+  "G3_ANTI_CONTROL_DISTINGUISHES": true,
+  "G4_SPLIT_CONSISTENT": true,
+  "disposition": "M6_AUTHORIZED",
+  "preregistered_route": "authorize m6 prospective confirm campaign under its own freeze (no revival claim from Stage-2c alone)"
+ },
+ "contrasts": {
+  "TERMINAL": {
+   "n": 12,
+   "mean_d": -0.02349637084370891,
+   "perm_p": 1.0,
+   "f0_wins": 12
+  },
+  "CONSENSUS_ARGMAX": {
+   "n": 12,
+   "mean_d": 0.000502546618330863,
+   "perm_p": 0.000244140625,
+   "f0_wins": 0
+  },
+  "PURITY_ARGMAX": {
+   "n": 12,
+   "mean_d": -0.02349637084370891,
+   "perm_p": 1.0,
+   "f0_wins": 12
+  },
+  "ORACLE_BEST": {
+   "n": 12,
+   "mean_d": 0.000502546618330863,
+   "perm_p": 0.000244140625,
+   "f0_wins": 0
+  }
+ },
+ "rho": {
+  "raw_pooled_rho": -1.0,
+  "directed_pooled_rho": 1.0,
+  "perm_p_two_sided": 0.0,
+  "cells_used": 12
+ }
+}
+{
+ "status": "OK",
+ "gates": {
+  "G0_DRAG_PRESENT_UNDER_TERMINAL": true,
+  "G1_CONSENSUS_RANKS_TRUTH": true,
+  "G2_CONSENSUS_SHIPPING_CLOSES_DRAG": true,
+  "G3_ANTI_CONTROL_DISTINGUISHES": true,
+  "G4_SPLIT_CONSISTENT": true,
+  "disposition": "M6_AUTHORIZED",
+  "preregistered_route": "authorize m6 prospective confirm campaign under its own freeze (no revival claim from Stage-2c alone)"
+ },
+ "contrasts": {
+  "TERMINAL": {
+   "n": 12,
+   "mean_d": -0.02349883058890609,
+   "perm_p": 1.0,
+   "f0_wins": 12
+  },
+  "CONSENSUS_ARGMAX": {
+   "n": 12,
+   "mean_d": 0.0005000000000000004,
+   "perm_p": 0.000244140625,
+   "f0_wins": 0
+  },
+  "PURITY_ARGMAX": {
+   "n": 12,
+   "mean_d": -0.02349883058890609,
+   "perm_p": 1.0,
+   "f0_wins": 12
+  },
+  "ORACLE_BEST": {
+   "n": 12,
+   "mean_d": 0.0005000000000000004,
+   "perm_p": 0.000244140625,
+   "f0_wins": 0
+  }
+ },
+ "rho": {
+  "raw_pooled_rho": -1.0,
+  "directed_pooled_rho": 1.0,
+  "perm_p_two_sided": 0.0,
+  "cells_used": 12
+ }
+}
+{
+ "selftest": "e40_m5p_stage2c_analysis",
+ "fast": false,
+ "controls": {
+  "jaccard": "PASS",
+  "edge_roundtrip": "PASS",
+  "nullcal_perm": "PASS",
+  "nullcal_gate_chain": "PASS"
+ },
+ "fixtures": {
+  "fixture_planted": {
+   "rc": 0,
+   "gates": {
+    "G0_DRAG_PRESENT_UNDER_TERMINAL": true,
+    "G1_CONSENSUS_RANKS_TRUTH": true,
+    "G2_CONSENSUS_SHIPPING_CLOSES_DRAG": true,
+    "G3_ANTI_CONTROL_DISTINGUISHES": true,
+    "G4_SPLIT_CONSISTENT": true,
+    "disposition": "M6_AUTHORIZED",
+    "preregistered_route": "authorize m6 prospective confirm campaign under its own freeze (no revival claim from Stage-2c alone)"
+   },
+   "rho": {
+    "directed_pooled_rho": 1.0,
+    "perm_p_two_sided": 0.0
+   }
+  },
+  "fixture_null": {
+   "rc": 0,
+   "gates": {
+    "G0_DRAG_PRESENT_UNDER_TERMINAL": true,
+    "G1_CONSENSUS_RANKS_TRUTH": false,
+    "G2_CONSENSUS_SHIPPING_CLOSES_DRAG": false,
+    "G3_ANTI_CONTROL_DISTINGUISHES": true,
+    "G4_SPLIT_CONSISTENT": false,
+    "disposition": "E40_TERMINAL",
+    "preregistered_route": "E40 line TERMINAL: deficit attributable to the information available to the loop by any channel tested; further revival needs a new mechanism class"
+   },
+   "rho": {
+    "directed_pooled_rho": 0.16666666666666666,
+    "perm_p_two_sided": 0.3433
+   }
+  },
+  "fixture_f0_cannot_check": {
+   "rc": 0,
+   "cells_complete": 11
+  },
+  "fixture_served_substitution": {
+   "rc": 0,
+   "cannot_check_chains": 60,
+   "disposition": "CANNOT_CHECK"
+  }
+ },
+ "failures": []
+}
+{
+ "status": "OK",
+ "gates": {
+  "G0_DRAG_PRESENT_UNDER_TERMINAL": true,
+  "G1_CONSENSUS_RANKS_TRUTH": false,
+  "G2_CONSENSUS_SHIPPING_CLOSES_DRAG": false,
+  "G3_ANTI_CONTROL_DISTINGUISHES": true,
+  "G4_SPLIT_CONSISTENT": false,
+  "disposition": "E40_TERMINAL",
+  "preregistered_route": "E40 line TERMINAL: deficit attributable to the information available to the loop by any channel tested; further revival needs a new mechanism class"
+ },
+ "contrasts": {
+  "TERMINAL": {
+   "n": 12,
+   "mean_d": -0.009777640405526554,
+   "perm_p": 0.999755859375,
+   "f0_wins": 11
+  },
+  "CONSENSUS_ARGMAX": {
+   "n": 12,
+   "mean_d": -0.009417012090970525,
+   "perm_p": 0.99951171875,
+   "f0_wins": 11
+  },
+  "PURITY_ARGMAX": {
+   "n": 12,
+   "mean_d": -0.011239469625171384,
+   "perm_p": 0.99951171875,
+   "f0_wins": 11
+  },
+  "ORACLE_BEST": {
+   "n": 12,
+   "mean_d": -0.002252807244374072,
+   "perm_p": 0.9111328125,
+   "f0_wins": 7
+  }
+ },
+ "rho": {
+  "raw_pooled_rho": 0.0018518518518518452,
+  "directed_pooled_rho": -0.0018518518518518452,
+  "perm_p_two_sided": 0.9893,
+  "cells_used": 12
+ }
+}
