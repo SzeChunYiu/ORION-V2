@@ -1,0 +1,210 @@
+{
+  "ablation_for_family": {
+    "F1_DIRECT_SEARCH": "M_ALWAYS_CHANGE_REPRESENTATION_WHEN_STUCK",
+    "F2_MISSING_LEMMA": "M_MINUS_LOWER_LEVEL_DISPOSITION",
+    "F3_REPRESENTATION_CHANGE": "M_NEVER_CHANGE_REPRESENTATION",
+    "F4_DECEPTIVE_CHANGE": "M_MINUS_FALSE_CHANGE_PENALTY",
+    "F5_PROBE_OR_COUNTEREXAMPLE_NEEDED": "M_MINUS_OBSTRUCTION_CLASS",
+    "F6_UNDERDETERMINED_OR_CANNOT_CHECK": "M_MINUS_UNRESOLVED_TERMINAL",
+    "F7_SPECIFICATION_MISMATCH": "M_MINUS_SPECIFICATION_PRESERVATION",
+    "F8_TRANSFER": "M_MINUS_TRANSFER_REUSE_TRACKING"
+  },
+  "arms": [
+    "A0_DIRECT",
+    "A1_RETRIEVAL",
+    "A2_SELF_REFLECT",
+    "A3_DISCOVER_AND_PROVE_PARENT",
+    "A4_LEMMA_ABSTRACTION_PARENT",
+    "B5_R1_VERDICT_ONLY",
+    "B5_R2_SATURATION",
+    "B5_R3_FRONTIER",
+    "B5_R4_SEMANTIC",
+    "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION",
+    "M_ME_OBSTRUCTION_MINIMUM_ESCALATION",
+    "M_MINUS_OBSTRUCTION_CLASS",
+    "M_MINUS_LOWER_LEVEL_DISPOSITION",
+    "M_MINUS_FALSE_CHANGE_PENALTY",
+    "M_MINUS_SPECIFICATION_PRESERVATION",
+    "M_MINUS_PRESERVATION_CONTRACT",
+    "M_MINUS_UNRESOLVED_TERMINAL",
+    "M_MINUS_TRANSFER_REUSE_TRACKING",
+    "M_LOCUS_LABELS_SHUFFLED",
+    "M_ALWAYS_CHANGE_REPRESENTATION_WHEN_STUCK",
+    "M_NEVER_CHANGE_REPRESENTATION",
+    "M_EQUAL_EXTRA_SEARCH_INSTEAD_OF_TRANSFORM"
+  ],
+  "budget": {
+    "max_expansions": 1800,
+    "max_lemma_candidates": 40,
+    "max_model_checks": 2000,
+    "max_model_size": 3,
+    "max_word_len": 6,
+    "note": "identical for every arm; max_expansions is the total account across all module calls, solve_expansions caps any single solving search and is the cap the oracle's level test uses. Both were fixed on the DEVELOPMENT split to avoid ceiling and floor effects, before any protected run.",
+    "solve_expansions": 250
+  },
+  "candidate": "M_ME_OBSTRUCTION_MINIMUM_ESCALATION",
+  "code_sha256": {
+    "mex3_arms.py": "7d94a4c5c96473f71f89d49332b2202e8fd7a1f535f6f0f373c491cb975f0089",
+    "mex3_generator.py": "0976ecc8b575d9f200b26e64a5a5684108619f6409daee000b13f70186b4e21a",
+    "mex3_lean.py": "5f6b41a30c26473bf36b8ee48d29ecb93525d76d6d8d725601ee5b7d5a2703da",
+    "mex3_model.py": "4ada65bbe31cb95ebc94fd48859473c54cdec63417f438569c4c8c53e0ec6ae0",
+    "mex3_oracle.py": "736003f17d2f2c44851b8b66ff56ff222384f599fb6a51bea1e369b04174129d",
+    "mex3_parents.py": "52dfbfe7bd9a4cfa802cc24dc1e7b86e4fb37fdacb281f52409f0f5ef9110fe2",
+    "mex3_run.py": "aad0fc2291a124d7682e06f4c9a2a1f4990847f8147326b03506f4e01c810402",
+    "mex3_verdict.py": "c8e4365fa44a1ceb7975463a0a868c7f78e072f1c9be2033641fbd035b7d8bf9"
+  },
+  "custody": {
+    "protected_seed_sha256": "cb799f89499cea4a088c6df071e9ce12bff2fceb02c4adc06ab7ce4eecdbb3f8",
+    "seed_file": "~/.orion-custody/me-x3/PROTECTED_SEED_V1.txt"
+  },
+  "delta_from_me_x1_family_8": "ME-X1 case family 8 ('formal proof / wrong specification') scored one transition-decision among ten families. ME-X3 makes specification fidelity a CO-PRIMARY endpoint over a dedicated stratum with registered drift subtypes (materially weakened / materially strengthened / notational collapse / abstraction elevation / degenerate trivialization / cannot-check), adjudicated by explicit interderivability or separating-model witnesses, and reports it separately from proof validity so that a pooled score cannot absorb it.",
+  "escalation_levels": [
+    "L0_REFUTE",
+    "L1_DIRECT",
+    "L2_RETRIEVE",
+    "L3_INVENT",
+    "L4_REPRESENTATION",
+    "L5_DEFER"
+  ],
+  "f7_mixture": {
+    "ABSTRACTION_ELEVATION": 0.1,
+    "CANNOT_CHECK_INTENT": 0.06,
+    "DEGENERATE_TRIVIALIZATION": 0.1,
+    "FAITHFUL": 0.34,
+    "MATERIALLY_STRENGTHENED": 0.12,
+    "MATERIALLY_WEAKENED": 0.16,
+    "NOTATIONAL_COLLAPSE": 0.12
+  },
+  "families": [
+    "F1_DIRECT_SEARCH",
+    "F2_MISSING_LEMMA",
+    "F3_REPRESENTATION_CHANGE",
+    "F4_DECEPTIVE_CHANGE",
+    "F5_PROBE_OR_COUNTEREXAMPLE_NEEDED",
+    "F6_UNDERDETERMINED_OR_CANNOT_CHECK",
+    "F7_SPECIFICATION_MISMATCH",
+    "F8_TRANSFER"
+  ],
+  "fidelity_verdicts": [
+    "FAITHFUL",
+    "MATERIALLY_WEAKENED",
+    "MATERIALLY_STRENGTHENED",
+    "NOTATIONAL_COLLAPSE",
+    "ABSTRACTION_ELEVATION",
+    "DEGENERATE_TRIVIALIZATION",
+    "OTHER_SEMANTIC_DRIFT",
+    "CANNOT_CHECK_INTENT"
+  ],
+  "gates": {
+    "G0": "oracle self-agreement (two independent searches; fast-path vs brute-force model enumeration), hand-authored known-answer fixtures, parent fidelity, null calibration on a trivial identity",
+    "G1": "M vs B5_STRONGEST_FAITHFUL_PARENT_FEDERATION on the joint endpoint (validity AND fidelity AND minimal action), paired exact binomial, alpha=0.05, reported per family and pooled",
+    "G2": "anti-conservatism: on ['F1_DIRECT_SEARCH', 'F4_DECEPTIVE_CHANGE'] M's false-change and false-defer rates, and pooled false-drift-alarm rate, may not exceed B5's by more than 0.05",
+    "G3": "mechanism by omission: the registered ablation must degrade the family it controls",
+    "G4": "H-EXT-3 ladder monotonicity and terminal"
+  },
+  "interface_ladder": {
+    "hypothesis": "H-EXT-3",
+    "parity_rule": "The ladder is a property of the FEDERATION'S INTERNAL CHANNEL ALPHABET, never of M's privilege. G1 compares M against the TOP RUNG, which receives exactly what M receives. The study is invalid if M is given any task information, module report, or oracle label that the top-rung federation is not given.",
+    "rungs": [
+      "B5_R1_VERDICT_ONLY",
+      "B5_R2_SATURATION",
+      "B5_R3_FRONTIER",
+      "B5_R4_SEMANTIC",
+      "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION"
+    ]
+  },
+  "no_rescue_clause": "No threshold, family, arm, budget, generator constant or gate may be changed after any protected outcome has been inspected. The protected stage runs exactly once and `analyze` runs exactly once on its output. A PARENT_SUFFICIENT or CANNOT_CHECK terminal is a successful scientific outcome and may not be repaired.",
+  "object_system": {
+    "alphabet": 3,
+    "alternative_presentation": "Tietze: add generator g := d, fold d into g",
+    "derivation": "two-sided factor rewriting (Birkhoff derivation for a unary signature)",
+    "models": "finite sets [0,n) with one function per symbol; a model falsifying a statement certifies non-derivability",
+    "statements": "schematic equations lhs =?= rhs, universally quantified in the schema variable",
+    "terms": "words over a finite alphabet of unary operator symbols"
+  },
+  "obstruction_hypotheses": [
+    "NO_ESCALATION_NEEDED",
+    "SPECIFICATION_MISMATCH",
+    "STATEMENT_FALSE",
+    "SEARCH_INSUFFICIENT",
+    "MISSING_LEMMA",
+    "REPRESENTATION_INSUFFICIENT",
+    "CANNOT_IDENTIFY"
+  ],
+  "oracle_caps": {
+    "expansions": 40000,
+    "lemma_pool_cap": 40,
+    "lemma_pool_max_word_len": 3,
+    "model_size": 3,
+    "word_len": 8
+  },
+  "pre_registered_expectation": {
+    "ladder_terminal": "RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL",
+    "reason": "the top-rung federation runs the same specification check and the same escalation modules; M's declared delta is control, and on an exhaustive finite oracle a well-ordered cascade with the same information is expected to reach the same decisions. The decisive content is (a) the proof-only parents' systematic fidelity blindness, (b) the ablations, (c) the ladder, (d) cost.",
+    "route": "PARENT_SUFFICIENT"
+  },
+  "primary_comparator": "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION",
+  "protocols_served": [
+    "research/experiments/ME_X3_FORMAL_MATHEMATICS_PROTOCOL_V1.md",
+    "research/experiments/MACHINE_EPISTEMICS_ME_X3_FORMAL_MATH_PROTOCOL_V1.md",
+    "research/experiments/MACHINE_EPISTEMICS_DECISIVE_STUDIES_PROTOCOL_V1.md (0-2, 5)",
+    "research/field/MACHINE_EPISTEMICS_EXTENSION_HYPOTHESES_2026_09_02_V1.md (H-EXT-3)"
+  ],
+  "registered_actions": [
+    "CONTINUE_DIRECT_PROOF_SEARCH",
+    "RETRIEVE_EXISTING_LEMMA",
+    "INVENT_LOCAL_LEMMA",
+    "GENERATE_COUNTEREXAMPLE_OR_SMALL_MODEL",
+    "CHANGE_REPRESENTATION",
+    "REFORMULATE_FORMAL_STATEMENT_WITH_PRESERVATION_CHECK",
+    "REQUEST_SPECIFICATION_CLARIFICATION",
+    "DEFER_CANNOT_IDENTIFY"
+  ],
+  "routes": [
+    "PARENT_SUFFICIENT",
+    "ME_RESIDUAL_SUPPORTED",
+    "SPECIFICATION_FIDELITY_RESIDUAL",
+    "MECHANISM_UNSUPPORTED",
+    "CANNOT_CHECK"
+  ],
+  "schema_version": "orion.v2.me-x3.exact-study-design.v1",
+  "splits": {
+    "development": {
+      "per_family": 3,
+      "public": true,
+      "seed": "ME-X3-DEV-20260902"
+    },
+    "protected": {
+      "per_family": 60,
+      "seed": "SEALED_IN_CUSTODY"
+    },
+    "rejection_sampling_max_attempts": 4000
+  },
+  "state_date": "2026-09-02",
+  "status": "FROZEN_DESIGN_NO_PROTECTED_OUTCOME_INSPECTED",
+  "study": "ME-X3",
+  "terminals": [
+    "FORMALLY_VERIFIED_AND_INTENT_ALIGNED",
+    "FORMALLY_VERIFIED_BUT_INTENT_MISMATCH",
+    "REFUTED_WITH_COUNTERMODEL",
+    "UNVERIFIED_CANDIDATE",
+    "CANNOT_CHECK_INTENT",
+    "UNSOLVED_WITHIN_BUDGET"
+  ],
+  "validity_verdicts": [
+    "VERIFIED",
+    "REFUTED",
+    "UNVERIFIED",
+    "DEFERRED"
+  ],
+  "verifier": {
+    "elan_version": "4.2.3",
+    "external_cross_check": "Lean 4 kernel, inductive Derives proof terms, no Mathlib",
+    "lean_commit": "819816b2e0a3bf405af45ae5c7af2491d8f5bee6",
+    "lean_version": "4.33.1",
+    "mathlib": null,
+    "mathlib_exclusion_reason": "an unbounded library destroys oracle exactness: the minimum-escalation oracle is defined by exhaustive search over a registered finite intervention space, and a Mathlib-scale library makes the retrieval level uncomputable rather than merely expensive. Mathlib contributes no lemmas about the generated, symbol-renamed presentations used here.",
+    "primary": "exhaustive rewrite search over a finite equational theory (mex3_oracle)",
+    "scope_limit": "this establishes the proof-validity / specification-fidelity separation on a finite system with an exhaustive oracle. It does NOT establish controller behaviour at Mathlib scale, where no such oracle exists."
+  }
+}
