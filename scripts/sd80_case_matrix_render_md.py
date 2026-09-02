@@ -7,6 +7,28 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "research/experiments/sd80"
+
+SENSITIVITY = """## 6. Revival / sensitivity pass (does the terminal survive a favourable re-cut?)
+
+A contraction terminal is only honest if the failing stratum could not be
+populated by a better cut of the same sources. Checked before filing:
+
+| Route | Evidence | Can it populate `INTERNAL` ≥ 15 in that domain? |
+|---|---|---|
+| RP:P — cases lacking an external registration | 100/100 cases return `status=OK` with ≥ 1 non-withdrawn OSF registration (counts 1:53, 2:37, 3:9, 4:1); 69/100 additionally carry an original-author `ENDORSEMENT` | **No** — zero candidates exist |
+| RP:CB — experiments lacking an accepted protocol | 76/76 experiment records have `protocol accepted and published in eLife = Yes` **and** a `Link to Registered Report` | **No** — zero candidates exist |
+| Formal — expand tagging from the 60-case sample to all 243 eligible entries | the 183-entry reserve has no fetched encyclopedic anchor in-record, so an unknown number would tag `INTERNAL` (unverifiable-from-record) | **Possibly**, but irrelevant: PC-R7 §1 requires both tags ≥ 15 **per domain**, and the two empirical domains cannot be populated at all |
+| MLRC as a fourth domain | verdict is carried by the report prose itself; no outcome-free evidence layer, and the OpenReview API was challenge-gated on 2026-09-02 | **No** — fails eligibility item (g), not the tag population |
+
+The empty `INTERNAL` stratum is therefore **structural for this witness class**,
+not a sampling artifact: outcome-verifiability and constraint-externality are
+supplied by the same artifact (registration, Registered Report, encyclopedic
+theorem statement). Attribution: the failure is at the *case-source* stage, not
+at tagging, arm construction or analysis. The lever a future cell needs is a
+source with self-generated constraints **and** independently verifiable
+outcomes — unregistered replications later adjudicated, or internal lab
+protocols with published outcomes — none of which was available lawfully and
+publicly on 2026-09-02."""
 r = json.loads((OUT / "SD80_CASE_MATRIX_INTAKE_V1.json").read_text())
 gn0 = r["gn0_calibration"]
 ft = r["full_tagging"]["per_domain"]
@@ -76,7 +98,10 @@ L("Under the frozen PC-R7 §1 semantics, every registered-replication-verdict-cl
   "witness sources with verifiable outcomes do not supply an internally-constrained stratum. No arm was run; no outcome was read by "
   "any tagger or arm.")
 L("")
-L("## 6. Custody")
+for line in SENSITIVITY.strip("\n").split("\n"):
+    L(line)
+L("")
+L("## 7. Custody")
 L("")
 L("- Intake scripts: `scripts/sd80_case_matrix_intake.py`, `scripts/sd80_case_matrix_finalize.py`, `scripts/sd80_case_matrix_render_md.py`; custody tests `tests/unit/test_sd80_case_matrix_intake.py`.")
 L("- Tagger outputs: `research/experiments/sd80/tagging/` (calibration + full round, both taggers, GN0 receipt, final merged tags).")
