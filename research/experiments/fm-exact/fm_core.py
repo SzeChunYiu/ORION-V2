@@ -355,6 +355,19 @@ class SuiteSpec:
     seed_commitment_key: str = "protected_seed_sha256"
 
     # callables supplied by the suite module
+    # Optional per-suite endpoint key.  Suites whose registered endpoint is
+    # richer than the disposition alone (e.g. FM20 scores the disposition
+    # together with the held-out coverage vector) supply both halves; the
+    # default scores the disposition, as FM10 does.
+    # Fields on the oracle answer that the two independent algorithms must agree
+    # on for G0b.  Declared per suite so the runner never hardcodes one suite's
+    # answer shape; the default is the disposition alone, and a suite that can
+    # compare more should say so.
+    oracle_agreement_fields: tuple[str, ...] = ("disposition",)
+
+    endpoint_key: Callable[[dict], str] | None = None
+    oracle_endpoint_key: Callable[[Any], str] | None = None
+
     generate: Callable[[str, str, dict[str, int]], list] = None  # type: ignore[assignment]
     oracle: Callable[[Any], Any] = None  # type: ignore[assignment]
     cross_check: Callable[[Any], Any] = None  # type: ignore[assignment]

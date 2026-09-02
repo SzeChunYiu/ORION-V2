@@ -1,0 +1,301 @@
+{
+  "generator_rejections": {
+    "DISTRACTOR_REGULARITY": 0,
+    "LEAST_GENERAL_PATTERN": 2,
+    "NO_VALID_COMMON_ABSTRACTION": 1,
+    "OVER_GENERALIZATION": 1,
+    "UNDER_GENERALIZATION": 0
+  },
+  "known_answer": [
+    {
+      "expected": "ACCEPT_LGG",
+      "name": "KA-01-SIMPLE_LGG",
+      "oracle": "ACCEPT_LGG",
+      "passed": true
+    },
+    {
+      "expected": "ACCEPT_LGG",
+      "name": "KA-02-SHARED_VARIABLE",
+      "oracle": "ACCEPT_LGG",
+      "passed": true
+    },
+    {
+      "expected": "REJECT_OVER_GENERAL",
+      "name": "KA-03-OVER_GENERAL",
+      "oracle": "REJECT_OVER_GENERAL",
+      "passed": true
+    },
+    {
+      "expected": "REJECT_NO_COMMON_STRUCTURE",
+      "name": "KA-04-VACUOUS",
+      "oracle": "REJECT_NO_COMMON_STRUCTURE",
+      "passed": true
+    },
+    {
+      "expected": "REJECT_NO_COMMON_STRUCTURE",
+      "name": "KA-05-VACUITY_DOMINATES_OVER_GENERALITY",
+      "oracle": "REJECT_NO_COMMON_STRUCTURE",
+      "passed": true
+    },
+    {
+      "expected": "ACCEPT_LGG",
+      "name": "KA-06-NESTED",
+      "oracle": "ACCEPT_LGG",
+      "passed": true
+    },
+    {
+      "expected": "ACCEPT_LGG",
+      "name": "KA-07-THREE_POSITIVES",
+      "oracle": "ACCEPT_LGG",
+      "passed": true
+    },
+    {
+      "expected": "ACCEPT_LGG",
+      "name": "KA-08-IDENTICAL_POSITIVES",
+      "oracle": "ACCEPT_LGG",
+      "passed": true
+    },
+    {
+      "expected": "ACCEPT_LGG",
+      "name": "KA-09-DEEP_SHARED_SKELETON",
+      "oracle": "ACCEPT_LGG",
+      "passed": true
+    },
+    {
+      "expected": "ACCEPT_LGG",
+      "name": "KA-10-NEGATIVE_OUTSIDE_PATTERN",
+      "oracle": "ACCEPT_LGG",
+      "passed": true
+    }
+  ],
+  "null_calibration": {
+    "applicable": true,
+    "detail": {
+      "constant_arm_rates": {
+        "C_ALWAYS_ACCEPT": 0.0,
+        "C_ALWAYS_REJECT": 0.1
+      },
+      "random_rate": 0.0,
+      "shuffled_label_null": {
+        "exact_against_shuffled": 2,
+        "n": 10,
+        "rate": 0.2,
+        "seed": 20260902
+      },
+      "violations": []
+    },
+    "gate": "G0c_NULL_CALIBRATION",
+    "hard": true,
+    "min_required_evaluated": 1,
+    "n_evaluated": 4,
+    "n_violations": 0,
+    "rule": "constant-response arms <= 0.4, random arm <= 0.4, M against within-split shuffled oracle labels <= 0.4",
+    "verdict": "PASS"
+  },
+  "oracle_agreement": {
+    "n_disagreements": 0,
+    "n_evaluated": 10
+  },
+  "parent_fidelity": [
+    {
+      "detail": "f(a,V0)",
+      "parent": "P1_PLOTKIN_LGG",
+      "passed": true,
+      "test": "textbook_lgg_of_two_terms"
+    },
+    {
+      "detail": "f(V0,V0)",
+      "parent": "P1_PLOTKIN_LGG",
+      "passed": true,
+      "test": "repeated_disagreement_shares_one_variable"
+    },
+    {
+      "detail": "f(V0,V1)",
+      "parent": "P1_PLOTKIN_LGG",
+      "passed": true,
+      "test": "distinct_disagreements_take_distinct_variables"
+    },
+    {
+      "detail": "",
+      "parent": "P1_PLOTKIN_LGG",
+      "passed": true,
+      "test": "different_top_symbols_give_a_bare_variable"
+    },
+    {
+      "detail": "",
+      "parent": "P1_PLOTKIN_LGG",
+      "passed": true,
+      "test": "identical_terms_generalize_to_themselves"
+    },
+    {
+      "detail": "f(g(V0),b)",
+      "parent": "P1_PLOTKIN_LGG",
+      "passed": true,
+      "test": "nested_structure_is_preserved"
+    },
+    {
+      "detail": "f(V0,V1)",
+      "parent": "P1_PLOTKIN_LGG",
+      "passed": true,
+      "test": "three_term_fold_is_the_common_generalization"
+    },
+    {
+      "detail": "scope note: anti-unification has no negative examples in its theory",
+      "parent": "P1_PLOTKIN_LGG",
+      "passed": true,
+      "test": "documented_boundary_always_accepts_no_negative_notion"
+    },
+    {
+      "detail": "f(a,V0) vs f(a,V0)",
+      "parent": "ORACLE_PAIR",
+      "passed": true,
+      "test": "exhaustive_equals_plotkin_on_f(a,b)_vs_f(a,c)"
+    },
+    {
+      "detail": "f(V0,V0) vs f(V0,V0)",
+      "parent": "ORACLE_PAIR",
+      "passed": true,
+      "test": "exhaustive_equals_plotkin_on_f(a,a)_vs_f(b,b)"
+    },
+    {
+      "detail": "g(f(V0,b)) vs g(f(V0,b))",
+      "parent": "ORACLE_PAIR",
+      "passed": true,
+      "test": "exhaustive_equals_plotkin_on_g(f(a,b))_vs_g(f(c,b))"
+    },
+    {
+      "detail": "f(g(V0),V0) vs f(g(V0),V0)",
+      "parent": "ORACLE_PAIR",
+      "passed": true,
+      "test": "exhaustive_equals_plotkin_on_f(g(a),a)_vs_f(g(b),b)"
+    },
+    {
+      "detail": "",
+      "parent": "P2_CANDIDATE_ELIMINATION",
+      "passed": true,
+      "test": "accepts_when_no_negative_is_covered"
+    },
+    {
+      "detail": "",
+      "parent": "P2_CANDIDATE_ELIMINATION",
+      "passed": true,
+      "test": "rejects_when_the_specific_boundary_covers_a_negative"
+    },
+    {
+      "detail": "scope note: version spaces have no compression criterion",
+      "parent": "P2_CANDIDATE_ELIMINATION",
+      "passed": true,
+      "test": "documented_boundary_accepts_a_vacuous_bare_variable"
+    },
+    {
+      "detail": "",
+      "parent": "P3_MDL_COMPRESSION",
+      "passed": true,
+      "test": "prefers_a_pattern_that_compresses_the_examples"
+    },
+    {
+      "detail": "",
+      "parent": "P3_MDL_COMPRESSION",
+      "passed": true,
+      "test": "reports_vacuity_when_nothing_is_shared"
+    },
+    {
+      "detail": "scope note: MDL selects by description length, not by consistency",
+      "parent": "P3_MDL_COMPRESSION",
+      "passed": true,
+      "test": "documented_boundary_has_no_negative_test"
+    },
+    {
+      "detail": "f(V0,V1)",
+      "parent": "P0_FIXED_LESSON_INJECTION",
+      "passed": true,
+      "test": "over_generalises_repeated_structure_with_fresh_variables"
+    },
+    {
+      "detail": "",
+      "parent": "P0_FIXED_LESSON_INJECTION",
+      "passed": true,
+      "test": "keeps_the_shared_skeleton"
+    },
+    {
+      "detail": "",
+      "parent": "MATCHER",
+      "passed": true,
+      "test": "variable_matches_any_ground_term"
+    },
+    {
+      "detail": "",
+      "parent": "MATCHER",
+      "passed": true,
+      "test": "repeated_variable_requires_equal_arguments"
+    },
+    {
+      "detail": "",
+      "parent": "MATCHER",
+      "passed": true,
+      "test": "repeated_variable_accepts_equal_arguments"
+    },
+    {
+      "detail": "",
+      "parent": "MATCHER",
+      "passed": true,
+      "test": "constants_must_match_exactly"
+    }
+  ],
+  "passed": true,
+  "planted_positives": [
+    {
+      "description": "the fixed-lesson generalizer (fresh variable per disagreement, no sharing) must disagree with the exhaustive lattice minimum on a term with repeated structure",
+      "fired": true,
+      "gate": "G0b_ORACLE_SELF_AGREEMENT",
+      "name": "position_wise_variablisation_pseudo_oracle_is_detected"
+    },
+    {
+      "description": "a deliberately wrong expected disposition must fail the comparison",
+      "fired": true,
+      "gate": "G0a_KNOWN_ANSWER",
+      "name": "wrong_expected_label_is_detected"
+    },
+    {
+      "description": "C_ALWAYS_ACCEPT must be counted as over-accepting on an instance the oracle rejects",
+      "fired": true,
+      "gate": "G2_ANTI_PERMISSIVENESS",
+      "name": "over_accepting_arm_is_detected"
+    },
+    {
+      "description": "a synthetic per-arm table where every arm scores 1.0 must FAIL the discrimination gate",
+      "fired": true,
+      "gate": "G0f_FAMILY_DISCRIMINATION",
+      "name": "degenerate_all_ceiling_split_is_detected"
+    },
+    {
+      "description": "M_MINUS_COMPRESSION_CRITERION must be wrong on a vacuous instance where M is right",
+      "fired": true,
+      "gate": "G3_MECHANISM_BY_OMISSION",
+      "name": "compression_ablation_loses_the_vacuity_family"
+    },
+    {
+      "description": "the exhaustive enumeration reports a unique minimum on a term where one exists, so the uniqueness field is computed rather than assumed",
+      "fired": true,
+      "gate": "G0b_ORACLE_SELF_AGREEMENT",
+      "name": "lattice_minimum_uniqueness_is_actually_verified"
+    }
+  ],
+  "schema_version": "orion.v2.fm-exact.analysis.v1.selftest",
+  "selftest_arm_exact": {
+    "C_ALWAYS_ACCEPT": 0.0,
+    "C_ALWAYS_REJECT": 0.1,
+    "C_RANDOM_DISPOSITION": 0.0,
+    "F0_PARENT_FEDERATION": 1.0,
+    "M_F2_ABSTRACTION_INDUCTION_FULL": 1.0,
+    "M_MINUS_COMPRESSION_CRITERION": 0.8,
+    "M_MINUS_LEAST_GENERALITY": 0.3,
+    "M_MINUS_NEGATIVE_CHALLENGE": 0.8,
+    "M_MINUS_VARIABLE_IDENTITY": 0.8,
+    "P0_FIXED_LESSON_INJECTION": 0.8,
+    "P1_PLOTKIN_LGG": 0.6,
+    "P2_CANDIDATE_ELIMINATION": 0.8,
+    "P3_MDL_COMPRESSION": 0.7
+  },
+  "suite": "FM20"
+}

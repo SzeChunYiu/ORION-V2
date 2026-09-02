@@ -1,0 +1,504 @@
+{
+  "instances": [
+    {
+      "expected": {
+        "coverage": [
+          true,
+          true,
+          false
+        ],
+        "disposition": "ACCEPT_LGG",
+        "lgg": "g(V0)",
+        "minimum_unique": true,
+        "n_covering_patterns": 2
+      },
+      "family": "LEAST_GENERAL_PATTERN",
+      "instance": {
+        "family": "LEAST_GENERAL_PATTERN",
+        "held_out": [
+          "g(h(b,a))",
+          "g(a)",
+          "f(h(a,a),f(c,b))"
+        ],
+        "instance_id": "LEAST_GENERAL_PATTERN-00002",
+        "negatives": [
+          "a",
+          "h(h(c,a),h(b,c))"
+        ],
+        "positives": [
+          "g(g(c))",
+          "g(h(a,c))",
+          "g(d)"
+        ],
+        "seed": 793797719261891776
+      },
+      "instance_id": "LEAST_GENERAL_PATTERN-00002"
+    },
+    {
+      "expected": {
+        "coverage": [
+          true,
+          true,
+          false
+        ],
+        "disposition": "ACCEPT_LGG",
+        "lgg": "h(h(c,V0),g(a))",
+        "minimum_unique": true,
+        "n_covering_patterns": 10
+      },
+      "family": "LEAST_GENERAL_PATTERN",
+      "instance": {
+        "family": "LEAST_GENERAL_PATTERN",
+        "held_out": [
+          "h(h(c,h(d,a)),g(a))",
+          "h(h(c,a),g(a))",
+          "f(h(b,a),f(d,c))"
+        ],
+        "instance_id": "LEAST_GENERAL_PATTERN-00003",
+        "negatives": [
+          "g(f(c,d))",
+          "a"
+        ],
+        "positives": [
+          "h(h(c,a),g(a))",
+          "h(h(c,d),g(a))",
+          "h(h(c,f(b,d)),g(a))"
+        ],
+        "seed": 18143799471809593119
+      },
+      "instance_id": "LEAST_GENERAL_PATTERN-00003"
+    },
+    {
+      "expected": {
+        "coverage": [
+          true,
+          true,
+          false
+        ],
+        "disposition": "ACCEPT_LGG",
+        "lgg": "h(g(V0),h(c,b))",
+        "minimum_unique": true,
+        "n_covering_patterns": 11
+      },
+      "family": "LEAST_GENERAL_PATTERN",
+      "instance": {
+        "family": "LEAST_GENERAL_PATTERN",
+        "held_out": [
+          "h(g(h(c,b)),h(c,b))",
+          "h(g(c),h(c,b))",
+          "c"
+        ],
+        "instance_id": "LEAST_GENERAL_PATTERN-00004",
+        "negatives": [
+          "h(f(a,d),b)",
+          "h(g(b),g(d))"
+        ],
+        "positives": [
+          "h(g(f(d,a)),h(c,b))",
+          "h(g(g(b)),h(c,b))",
+          "h(g(g(b)),h(c,b))"
+        ],
+        "seed": 11608976518281294889
+      },
+      "instance_id": "LEAST_GENERAL_PATTERN-00004"
+    },
+    {
+      "expected": {
+        "coverage": [
+          true,
+          true,
+          true
+        ],
+        "disposition": "ACCEPT_LGG",
+        "lgg": "f(V0,g(V0))",
+        "minimum_unique": true,
+        "n_covering_patterns": 4
+      },
+      "family": "DISTRACTOR_REGULARITY",
+      "instance": {
+        "family": "DISTRACTOR_REGULARITY",
+        "held_out": [
+          "f(c,g(c))",
+          "f(b,g(b))",
+          "f(h(a,a),g(h(a,a)))"
+        ],
+        "instance_id": "DISTRACTOR_REGULARITY-00001",
+        "negatives": [
+          "f(a,g(b))"
+        ],
+        "positives": [
+          "f(g(c),g(g(c)))",
+          "f(f(b,c),g(f(b,c)))",
+          "f(g(c),g(g(c)))"
+        ],
+        "seed": 3623895759980244192
+      },
+      "instance_id": "DISTRACTOR_REGULARITY-00001"
+    },
+    {
+      "expected": {
+        "coverage": [
+          true,
+          false,
+          false
+        ],
+        "disposition": "ACCEPT_LGG",
+        "lgg": "f(h(V0,V1),h(V0,V1))",
+        "minimum_unique": true,
+        "n_covering_patterns": 9
+      },
+      "family": "DISTRACTOR_REGULARITY",
+      "instance": {
+        "family": "DISTRACTOR_REGULARITY",
+        "held_out": [
+          "f(h(c,a),h(c,a))",
+          "f(g(c),g(c))",
+          "f(g(b),g(b))"
+        ],
+        "instance_id": "DISTRACTOR_REGULARITY-00002",
+        "negatives": [
+          "f(a,b)"
+        ],
+        "positives": [
+          "f(h(b,a),h(b,a))",
+          "f(h(a,b),h(a,b))"
+        ],
+        "seed": 9803788581264465814
+      },
+      "instance_id": "DISTRACTOR_REGULARITY-00002"
+    },
+    {
+      "expected": {
+        "coverage": [
+          true,
+          true,
+          true
+        ],
+        "disposition": "ACCEPT_LGG",
+        "lgg": "h(V0,g(V0))",
+        "minimum_unique": true,
+        "n_covering_patterns": 4
+      },
+      "family": "DISTRACTOR_REGULARITY",
+      "instance": {
+        "family": "DISTRACTOR_REGULARITY",
+        "held_out": [
+          "h(d,g(d))",
+          "h(h(b,d),g(h(b,d)))",
+          "h(b,g(b))"
+        ],
+        "instance_id": "DISTRACTOR_REGULARITY-00003",
+        "negatives": [
+          "h(a,g(b))"
+        ],
+        "positives": [
+          "h(h(a,b),g(h(a,b)))",
+          "h(g(c),g(g(c)))",
+          "h(g(a),g(g(a)))"
+        ],
+        "seed": 5066532957159371913
+      },
+      "instance_id": "DISTRACTOR_REGULARITY-00003"
+    },
+    {
+      "expected": {
+        "coverage": [
+          true,
+          true,
+          true
+        ],
+        "disposition": "REJECT_OVER_GENERAL",
+        "lgg": "f(d,h(b,V0))",
+        "minimum_unique": true,
+        "n_covering_patterns": 7
+      },
+      "family": "OVER_GENERALIZATION",
+      "instance": {
+        "family": "OVER_GENERALIZATION",
+        "held_out": [
+          "f(d,h(b,f(a,c)))",
+          "f(d,h(b,g(c)))",
+          "f(d,h(b,g(c)))"
+        ],
+        "instance_id": "OVER_GENERALIZATION-00001",
+        "negatives": [
+          "f(d,h(b,g(c)))"
+        ],
+        "positives": [
+          "f(d,h(b,g(d)))",
+          "f(d,h(b,d))",
+          "f(d,h(b,f(c,c)))"
+        ],
+        "seed": 15666184905727772306
+      },
+      "instance_id": "OVER_GENERALIZATION-00001"
+    },
+    {
+      "expected": {
+        "coverage": [
+          true,
+          true,
+          true
+        ],
+        "disposition": "REJECT_OVER_GENERAL",
+        "lgg": "f(V0,b)",
+        "minimum_unique": true,
+        "n_covering_patterns": 3
+      },
+      "family": "OVER_GENERALIZATION",
+      "instance": {
+        "family": "OVER_GENERALIZATION",
+        "held_out": [
+          "f(d,b)",
+          "f(h(b,a),b)",
+          "f(h(a,d),b)"
+        ],
+        "instance_id": "OVER_GENERALIZATION-00002",
+        "negatives": [
+          "f(d,b)"
+        ],
+        "positives": [
+          "f(g(b),b)",
+          "f(f(d,c),b)"
+        ],
+        "seed": 14687282473446105893
+      },
+      "instance_id": "OVER_GENERALIZATION-00002"
+    },
+    {
+      "expected": {
+        "coverage": [
+          true,
+          true,
+          true
+        ],
+        "disposition": "REJECT_OVER_GENERAL",
+        "lgg": "f(g(V0),V1)",
+        "minimum_unique": true,
+        "n_covering_patterns": 3
+      },
+      "family": "OVER_GENERALIZATION",
+      "instance": {
+        "family": "OVER_GENERALIZATION",
+        "held_out": [
+          "f(g(g(c)),h(c,a))",
+          "f(g(g(c)),a)",
+          "f(g(f(d,a)),d)"
+        ],
+        "instance_id": "OVER_GENERALIZATION-00004",
+        "negatives": [
+          "f(g(b),b)"
+        ],
+        "positives": [
+          "f(g(h(c,a)),a)",
+          "f(g(c),g(b))",
+          "f(g(g(c)),g(a))"
+        ],
+        "seed": 16316987652922905995
+      },
+      "instance_id": "OVER_GENERALIZATION-00004"
+    },
+    {
+      "expected": {
+        "coverage": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "disposition": "ACCEPT_LGG",
+        "lgg": "f(V0,V1)",
+        "minimum_unique": true,
+        "n_covering_patterns": 2
+      },
+      "family": "UNDER_GENERALIZATION",
+      "instance": {
+        "family": "UNDER_GENERALIZATION",
+        "held_out": [
+          "f(c,g(d))",
+          "f(d,h(a,c))",
+          "f(a,c)",
+          "f(g(a),a)"
+        ],
+        "instance_id": "UNDER_GENERALIZATION-00001",
+        "negatives": [
+          "c",
+          "h(h(a,c),d)"
+        ],
+        "positives": [
+          "f(c,f(b,b))",
+          "f(c,h(c,b))",
+          "f(f(c,b),g(c))"
+        ],
+        "seed": 17845218058836688244
+      },
+      "instance_id": "UNDER_GENERALIZATION-00001"
+    },
+    {
+      "expected": {
+        "coverage": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "disposition": "ACCEPT_LGG",
+        "lgg": "h(V0,h(b,V1))",
+        "minimum_unique": true,
+        "n_covering_patterns": 4
+      },
+      "family": "UNDER_GENERALIZATION",
+      "instance": {
+        "family": "UNDER_GENERALIZATION",
+        "held_out": [
+          "h(d,h(b,f(d,a)))",
+          "h(b,h(b,h(b,a)))",
+          "h(d,h(b,h(c,d)))",
+          "h(b,h(b,h(c,a)))"
+        ],
+        "instance_id": "UNDER_GENERALIZATION-00002",
+        "negatives": [
+          "h(c,f(d,d))",
+          "h(b,g(c))"
+        ],
+        "positives": [
+          "h(a,h(b,c))",
+          "h(g(a),h(b,h(a,b)))"
+        ],
+        "seed": 15661966609859289007
+      },
+      "instance_id": "UNDER_GENERALIZATION-00002"
+    },
+    {
+      "expected": {
+        "coverage": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "disposition": "ACCEPT_LGG",
+        "lgg": "h(h(d,d),f(V0,V1))",
+        "minimum_unique": true,
+        "n_covering_patterns": 13
+      },
+      "family": "UNDER_GENERALIZATION",
+      "instance": {
+        "family": "UNDER_GENERALIZATION",
+        "held_out": [
+          "h(h(d,d),f(h(b,c),c))",
+          "h(h(d,d),f(b,f(c,b)))",
+          "h(h(d,d),f(g(d),h(a,b)))",
+          "h(h(d,d),f(h(b,a),h(a,d)))"
+        ],
+        "instance_id": "UNDER_GENERALIZATION-00003",
+        "negatives": [
+          "f(g(c),b)",
+          "h(b,g(b))"
+        ],
+        "positives": [
+          "h(h(d,d),f(a,a))",
+          "h(h(d,d),f(d,g(a)))"
+        ],
+        "seed": 17081591078031102341
+      },
+      "instance_id": "UNDER_GENERALIZATION-00003"
+    },
+    {
+      "expected": {
+        "coverage": [
+          true,
+          true,
+          true
+        ],
+        "disposition": "REJECT_NO_COMMON_STRUCTURE",
+        "lgg": "V0",
+        "minimum_unique": true,
+        "n_covering_patterns": 1
+      },
+      "family": "NO_VALID_COMMON_ABSTRACTION",
+      "instance": {
+        "family": "NO_VALID_COMMON_ABSTRACTION",
+        "held_out": [
+          "a",
+          "g(f(d,c))",
+          "f(a,a)"
+        ],
+        "instance_id": "NO_VALID_COMMON_ABSTRACTION-00001",
+        "negatives": [],
+        "positives": [
+          "h(h(c,b),b)",
+          "f(b,d)"
+        ],
+        "seed": 7096703807192771847
+      },
+      "instance_id": "NO_VALID_COMMON_ABSTRACTION-00001"
+    },
+    {
+      "expected": {
+        "coverage": [
+          true,
+          true,
+          true
+        ],
+        "disposition": "REJECT_NO_COMMON_STRUCTURE",
+        "lgg": "V0",
+        "minimum_unique": true,
+        "n_covering_patterns": 1
+      },
+      "family": "NO_VALID_COMMON_ABSTRACTION",
+      "instance": {
+        "family": "NO_VALID_COMMON_ABSTRACTION",
+        "held_out": [
+          "a",
+          "f(h(b,b),c)",
+          "g(g(d))"
+        ],
+        "instance_id": "NO_VALID_COMMON_ABSTRACTION-00002",
+        "negatives": [
+          "f(b,f(c,c))",
+          "a"
+        ],
+        "positives": [
+          "h(b,g(c))",
+          "b"
+        ],
+        "seed": 16653893465374446207
+      },
+      "instance_id": "NO_VALID_COMMON_ABSTRACTION-00002"
+    },
+    {
+      "expected": {
+        "coverage": [
+          true,
+          true,
+          true
+        ],
+        "disposition": "REJECT_NO_COMMON_STRUCTURE",
+        "lgg": "V0",
+        "minimum_unique": true,
+        "n_covering_patterns": 1
+      },
+      "family": "NO_VALID_COMMON_ABSTRACTION",
+      "instance": {
+        "family": "NO_VALID_COMMON_ABSTRACTION",
+        "held_out": [
+          "h(h(b,c),h(a,a))",
+          "g(a)",
+          "h(a,g(c))"
+        ],
+        "instance_id": "NO_VALID_COMMON_ABSTRACTION-00003",
+        "negatives": [],
+        "positives": [
+          "b",
+          "f(c,c)"
+        ],
+        "seed": 65336994183075633
+      },
+      "instance_id": "NO_VALID_COMMON_ABSTRACTION-00003"
+    }
+  ],
+  "label": "DEVELOPMENT",
+  "schema_version": "orion.v2.fm-exact.results.v1.expected-custody",
+  "suite": "FM20"
+}
