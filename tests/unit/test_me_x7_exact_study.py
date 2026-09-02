@@ -131,18 +131,41 @@ def test_arms_never_import_the_oracle() -> None:
 
 # ---- arms: cross-implementation agreement, M and B5 exact --------------------
 
-def test_arm_modules_independently_reproduce_the_oracle_check_table() -> None:
+def test_both_arm_tables_independently_reproduce_the_oracle_check_table() -> None:
     n = 0
     for stratum, mode in mex7_model.CELLS:
         for i in range(2):
             inst = mex7_generator.generate_instance("t", "UNIT-SEED", stratum, mode, i)
             vis = mex7_arms.visible_nodes(inst.episode, full_registry=True)
             for check in mex7_model.CHECKS:
-                assert mex7_oracle.CHECK_FN[check](inst.episode, vis) == mex7_arms.MODULE_CHECK[check](
-                    inst.episode, vis
-                ), (check, stratum, mode, i)
+                want = mex7_oracle.CHECK_FN[check](inst.episode, vis)
+                assert want == mex7_arms.MODULE_CHECK_M[check](inst.episode, vis), (check, stratum, mode, i)
+                assert want == mex7_arms.MODULE_CHECK_B5[check](inst.episode, vis), (check, stratum, mode, i)
                 n += 1
     assert n == len(mex7_model.CELLS) * 2 * len(mex7_model.CHECKS)
+
+
+def test_m_and_b5_are_not_the_same_computation() -> None:
+    """The comparator must not be M under another name: four checks run
+    different code, and the arm specs must select different tables."""
+    specs = {s.name: s for s in mex7_arms.arm_specs()}
+    assert specs[mex7_arms.M_ARM].table == "M"
+    assert specs[mex7_arms.B5_ARM].table == "B5"
+    for check in mex7_arms.DISTINCT_IMPLEMENTATIONS:
+        assert mex7_arms.MODULE_CHECK_M[check] is not mex7_arms.MODULE_CHECK_B5[check], check
+    shared = set(mex7_model.CHECKS) - set(mex7_arms.DISTINCT_IMPLEMENTATIONS)
+    for check in shared:
+        assert mex7_arms.MODULE_CHECK_M[check] is mex7_arms.MODULE_CHECK_B5[check], check
+
+
+def test_the_two_implementations_disagree_when_one_is_broken() -> None:
+    """A planted positive for the cross-implementation assertion: if the two
+    sides could not disagree, their agreement would be meaningless."""
+    inst = mex7_generator.generate_instance("t", "UNIT-SEED", "STALE_OR_WRONG_SOURCE", "MODE_COMPUTATIONAL", 0)
+    vis = mex7_arms.visible_nodes(inst.episode, full_registry=True)
+    broken = frozenset()  # an empty visible set is a broken registry resolution
+    assert mex7_arms.MODULE_CHECK_M["C_SOURCE_STATUS"](inst.episode, vis) == mex7_model.INVALID
+    assert mex7_arms.MODULE_CHECK_B5["C_SOURCE_STATUS"](inst.episode, broken) != mex7_model.INVALID
 
 
 def _arm(name: str, episode):
@@ -255,9 +278,25 @@ def test_every_gate_reports_the_number_of_instances_it_evaluated(tmp_path: Path)
         assert isinstance(g["n_evaluated"], int), name
     for name, c in gates["G5_SUFFICIENCY"]["conjuncts"].items():
         assert isinstance(c["n_evaluated"], int), name
-    # the cross-cut whose locus may be absent from a small split must say so
-    cc = gates["WITNESS_SELF_CONTAINMENT_CROSSCUT"]
+    # the gate whose locus may be absent from a small split must say so
+    cc = gates["G7_WITNESS_SELF_CONTAINMENT"]
     assert cc["status"].startswith("CANNOT_CHECK") or cc["n_evaluated"] > 0
+    if cc["n_evaluated"] == 0:
+        assert cc["pass"] is False, "an unevaluated gate is CANNOT_CHECK, never a pass"
+        assert "SELF_CONTAINMENT_CANNOT_CHECK" in gates["ROUTE"]["witness_terminal"]
+
+
+def test_the_coverage_ledger_names_every_unexercised_mechanism(tmp_path: Path) -> None:
+    assert mex7_run.stage_dev(tmp_path, mex7_run.DEV_PER_CELL) == 0
+    cl = json.loads((tmp_path / "ME_X7_DEVELOPMENT_ANALYSIS_V1.json").read_text())["gates"][
+        "COVERAGE_LEDGER"
+    ]
+    # one instance per cell cannot exercise ten censoring variants or three loci
+    assert cl["all_registered_mechanisms_exercised"] is False
+    assert cl["never_exercised"]["censor_variants"], "undrawn variants must be named"
+    assert cl["never_exercised"]["cells"] == [], "every applicable cell is drawn once"
+    drawn = sum(cl["drawn"]["cell"].values())
+    assert drawn == len(mex7_model.CELLS)
 
 
 def test_analyze_fires_the_federation_ahead_gate_on_a_planted_m_degradation(tmp_path: Path) -> None:
@@ -336,6 +375,10 @@ def test_design_json_freezes_the_commitment_the_cells_and_the_arm_table() -> Non
     }
     assert d["field_for_class"] == mex7_model.FIELD_FOR_CLASS
     assert [a["name"] for a in d["arms"]] == [s.name for s in mex7_arms.arm_specs()]
+    tables = {a["name"]: a["check_table"] for a in d["arms"]}
+    assert tables[mex7_arms.M_ARM] == "M" and tables[mex7_arms.B5_ARM] == "B5"
+    assert d["check_tables"]["distinct_implementations"] == list(mex7_arms.DISTINCT_IMPLEMENTATIONS)
+    assert "G7_WITNESS_SELF_CONTAINMENT" in d["gates"]
     assert d["split_sizes"]["protected_total"] == 50 * len(mex7_model.CELLS)
     assert d["primary_comparator"] == mex7_arms.B5_ARM
     assert d["expected_route"] == "PARENT_SUFFICIENT"

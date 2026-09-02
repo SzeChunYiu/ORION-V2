@@ -147,25 +147,46 @@ falsifiable:** the evaluator-contract field is what converts a silent false
 acceptance into an honest abstention, and `M_MINUS_EVALUATOR_CONTRACT` is
 predicted to convert abstentions back into false acceptances.
 
-### 2.4 The exact oracle and its independent cross-checks
+### 2.4 The exact oracle, and how M and B5 are kept apart
 
 The oracle is the adjudication at full field visibility and full registry
-visibility. Three independent computations must agree on every instance (G0b):
+visibility. Three things must hold on every instance (G0b), and the design is
+explicit about which of them are independent *implementations* and which is a
+generator-validity check:
 
-1. the **direct rule** and an **exhaustive enumeration** over all `2^c`
-   resolutions of the censored checks (a verdict is definite only when every
-   resolution agrees) — the same three-valued discipline as ME-X4 §2.4;
-2. the **planter's declared defect** versus a full-structure recomputation:
-   exactly the planted class INVALID, nothing else INVALID, and no censoring —
-   so a planter that fails to plant, plants twice, or turns a decoy into a
-   defect cannot enter a split;
-3. the **arms' module implementation** versus the oracle's check table at full
-   visibility. The arms never import the oracle; six of the eleven checks run
-   through different engines on the arm side (`ReticulateProvenance`
-   descendants rather than an ancestor walk, `assess_evidence_dependence`
-   rather than union-find over ancestries, `ComparabilityCertificate` rather
-   than `assess_correspondence_chain`, and a re-run of the resolution checker
-   and the replay machine rather than the recorded flags).
+1. **Two implementations of the verdict rule.** The direct rule and an
+   **exhaustive enumeration** over all `2^c` resolutions of the censored checks
+   (a verdict is definite only when every resolution agrees) — the same
+   three-valued discipline as ME-X4 §2.4.
+2. **Generator validity, not a third implementation.** The planter's declared
+   defect is compared with a full-structure recomputation: exactly the planted
+   class INVALID, nothing else INVALID, no censoring. This runs through the
+   oracle's own code, so it validates the *generator*, not the semantics; a
+   planter that fails to plant, plants twice, or turns a decoy into a defect
+   cannot enter a split. Four planted positives in the selftest show it is
+   trippable.
+3. **Two implementations of the check table, one per side of the primary
+   comparison.** `M` and `B5` must not be the same computation under two names,
+   or G1, G2 and three of the five sufficiency conjuncts would be `x == x`.
+   They are therefore adjudicated through two separately written tables, both
+   arm-side and neither importing the oracle:
+
+   | check | `MODULE_CHECK_M` | `MODULE_CHECK_B5` |
+   |---|---|---|
+   | `C_SOURCE_STATUS` | ancestor walk up from the claim's supports | `ReticulateProvenance.affected_by_revocation` reachability down from flagged nodes |
+   | `C_DEPENDENCE` | overlap of ancestor sets, counted by `assess_evidence_dependence` | pairs from the descendant walk, same parent counter |
+   | `C_ENV_IDENTITY` | recorded assumption/version identities compared | the replay machine actually re-run under the recorded versus the actual environment |
+   | `C_PRESERVATION` | `orion_v2.correspondence.assess_correspondence_chain` | `orion_v2.comparability.ComparabilityCertificate` |
+   | the other seven | shared | shared |
+
+   **Four of eleven checks run different code; the other seven are arithmetic
+   thin enough that two implementations would be the same three lines, and are
+   reported as shared rather than counted as independent.** Both tables re-run
+   the resolution checker and the replay machine instead of trusting a recorded
+   flag. Per-check agreement between the two is reported in the analysis
+   (`IMPLEMENTATION_AGREEMENT`), so a divergence is a visible lane defect rather
+   than a silent one. Every arm except `B5` uses the M table, so the ladder and
+   the ablations vary information, not implementation.
 
 ### 2.5 Generator, decoys and the base episode
 
@@ -257,7 +278,7 @@ detectable, and G1c gives it its own positive test.
 | `S2_FULL_HUMAN_STYLE_TRACE` | `RESULT`, `ARTIFACT`, `ROUTE_LEDGER` (+ the step record in the export accounting) | a complete step-by-step record of what the machine executed and attempted — and *nothing about external registry state*, because registry facts are not machine steps (protocol §9) |
 | `S3_PROOF_OR_CERTIFICATE_PARENT` | `RESULT`, `ARTIFACT`, `ASSUMPTION_VERSION` | a domain-native proof or replay bundle: statement, derivation/program, pinned versions |
 | `M_CLAIM_SUFFICIENT_WITNESS` | all twelve, identity-exporting | the structured minimal witness, selected prospectively from registered ORION semantics |
-| `B5_STRONGEST_FAITHFUL_AUDIT_PARENT` | all twelve, full registry, native parent engines | **primary comparator** |
+| `B5_STRONGEST_FAITHFUL_AUDIT_PARENT` | all twelve, full registry, **adjudicated through the parents' own engines** (`MODULE_CHECK_B5`, §2.4) | **primary comparator** |
 
 The trace arm is the one place where the design takes a substantive modelling
 decision and states it: a narrative trace is a faithful record of the machine's
@@ -341,8 +362,12 @@ in full.
   test with its own `n_evaluated`**:
   - `S1_FAILURE_CLASS_PRESERVATION` — per class *and mode*, M's detection recall
     ≥ B5's − δ;
-  - `S2_REPLAY_SUPPORT` — on every replay-required episode the witness carries
-    both replay checks;
+  - `S2_REPLAY_SUPPORT` — on every replay-required episode the witness's own
+    artifact-identity and environment-identity checks **reproduce the
+    full-structure statuses**. This is deliberately instance-by-instance: a
+    conjunct that only restated the arm's field set would be constant across
+    the split and would report a non-zero `n_evaluated` for a quantity that
+    never varied;
   - `S3_SELECTIVE_REOPENING_WITHOUT_HIDDEN_HISTORY` — on support-defeat episodes
     the witness names the same defect class as the full-structure audit;
   - `S4_FALSE_ACCEPTANCE_NONINFERIORITY` — FA(M) − FA(B5) ≤ **δ = 0.01
@@ -350,12 +375,26 @@ in full.
     tail. This is a non-inferiority test with a prespecified margin, *not* a
     failure to reject;
   - `S5_PREFERABLE_TO_FULL_TRACE` — protocol §7(5) in its positive form: M is
-    **strictly more accurate** than the full-trace arm under a paired exact test
-    (decisive) **and** exports no more records (reported; export size depends on
-    the generator's trace-length range and is not decisive alone).
+    **strictly more accurate** than the full-trace arm under a paired exact
+    test. That is the whole pass condition. Exported record counts are printed
+    beside it and are **not** part of the test, because export size turns on the
+    generator's trace-length range and nothing else (§9(7)).
 - **G6 `CROSS_MODE_TRANSFER`:** the ladder is monotone and M is non-inferior to
   B5 **separately in each mode** (protocol §10 kills a result that fails to
   transfer to a second epistemic mode).
+- **G7 `WITNESS_SELF_CONTAINMENT`:** a positive test with its own denominator.
+  On `UNDECLARED_SHARED_UPSTREAM` episodes the identity-exporting witness must
+  be strictly more exact than the self-contained one
+  (`M_MINUS_REGISTRY_RESOLUTION`), **and** the two must be identical on every
+  other episode — so the separation is the mechanism (an arm is exact or wrong
+  on every such instance) and not a prevalence artifact. Zero such episodes
+  reports `CANNOT_CHECK`, never a pass, and qualifies the witness terminal
+  accordingly. With G1 expected to tie, this is where the study's separating
+  content lives.
+- **COVERAGE_LEDGER (reported, not a gate):** every registered mechanism —
+  each (stratum, mode) cell, each defect locus, each of the ten censoring
+  variants — with the number of instances that exercised it, and an explicit
+  list of those exercised zero times.
 - **COST:** wall-clock ratio with a 2× flag, plus exported records and checks
   run; reported, never a route by itself.
 
@@ -369,7 +408,9 @@ in full.
 | G1b ∧ G3 | `ME_X7_RESIDUAL_CANDIDATE` | `WITNESS_ABOVE_PARENT` |
 | G1b ∧ ¬G3 | `CANNOT_CHECK` | `NONE` |
 | ¬G6 | `PARENT_SUFFICIENT` | `NO_CROSS_MODE_TRANSFER` |
-| G5 all pass | `PARENT_SUFFICIENT` | `WITNESS_CLAIM_SUFFICIENT_AT_LOWER_EXPORT` |
+| G5 all pass ∧ G7 pass | `PARENT_SUFFICIENT` | `WITNESS_CLAIM_SUFFICIENT_AT_LOWER_EXPORT__REQUIRES_IDENTITY_EXPORT` |
+| G5 all pass ∧ G7 unevaluated | `PARENT_SUFFICIENT` | `…__SELF_CONTAINMENT_CANNOT_CHECK` |
+| G5 all pass ∧ G7 fails | `PARENT_SUFFICIENT` | `…__SELF_CONTAINMENT_NOT_SEPARATED` |
 | G5 partial | `PARENT_SUFFICIENT` | `WITNESS_NOT_CLAIM_SUFFICIENT:<failed conjuncts>` |
 
 Protocol §10's kill conditions map onto: `WITNESS_INSUFFICIENT_PARENT_AHEAD`
@@ -424,16 +465,30 @@ Ambiguities resolved at design time:
    what it omitted, so `C_ROUTE_COMPLETENESS` requires the route ledger *and*
    the artifact's execution counter. G3's prediction is adjusted accordingly:
    two ablations, not one, are predicted to blind that class.
-4. **B5 is exact by information-completeness on this generator.** The
+4. **B5 is expected to be exact, and the tie is therefore weak evidence.** The
    adjudication is exact given full fields and full registry, so a federation
-   with both should score 1.000 and G1a/G1b are not the decisive axis. This is
-   stated in advance, not discovered: the decisive axes are the ladder (G4), the
-   five sufficiency conjuncts (G5) and cross-mode transfer (G6). The honest
-   terminal of a tie is *"no witness residual is detectable against a federation
-   that already has everything"*, not *"witnesses add nothing"*.
+   with both should score 1.000, and M — which has the same fields and the same
+   visibility — should too. The M-vs-B5 comparison is a **cross-implementation**
+   test (§2.4), not an information test: it can detect a bug in either side's
+   four distinct checks, and it cannot detect a residual that does not exist.
+   Stated in advance, not discovered. The decisive axes are the ladder (G4), the
+   omission matrix (G3), the sufficiency conjuncts (G5), cross-mode transfer
+   (G6) and self-containment (G7). The honest terminal of a tie is *"no witness
+   residual is detectable against a federation that already has everything, and
+   the two implementations agree"*, not *"witnesses add nothing"* and certainly
+   not *"the witness beat the parents"*.
 5. **Independence requirement.** `k = 3` over three supports, so any single
    shared ancestor defeats independence and the check has a live `n_evaluated`
    on every instance.
+7. **Export size is a generator parameter, so it does not gate anything.** The
+   full-trace arm's record count is the number of steps the generator emits
+   (20–59). S5 therefore turns only on accuracy dominance, which is bounded by
+   what the trace *carries*; the record counts are printed for the reader.
+8. **A mechanism drawn zero times is named.** The coverage ledger lists every
+   registered mechanism with its instance count and every one at zero. On the
+   development split (one instance per cell) eight of the ten censoring variants
+   and three of the six locus combinations are drawn zero times, and the ledger
+   says so.
 6. **Locus prevalence is a generator parameter.** Where the undeclared-upstream
    locus separates arms, the finding is the *mechanism* (an arm is either exact
    or wrong on every such instance), not the rate; the cross-cut is reported

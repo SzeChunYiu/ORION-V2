@@ -2,13 +2,78 @@
   "custody_sha256": "abbcfc5a8db92bcdff6f2410db8b29fa7d36f2ac4a357f353d6dd154663142b4",
   "gates": {
     "COST": {
-      "B5_wall_ms": 3.168667,
+      "B5_wall_ms": 2.879957,
       "M_mean_export_units": 43.48,
-      "M_wall_ms": 2.844875,
-      "flag": "COST_COMPARABLE",
+      "M_wall_ms": 1.136749,
+      "flag": "COST_ADVANTAGE_M",
       "full_trace_mean_export_units": 48.0,
       "rule": "reported; never a route by itself",
-      "wall_ratio_b5_over_m": 1.1138158970077772
+      "wall_ratio_b5_over_m": 2.5335029984631614
+    },
+    "COVERAGE_LEDGER": {
+      "all_registered_mechanisms_exercised": false,
+      "drawn": {
+        "cell": {
+          "AUTHORITY_OVERREACH|MODE_COMPUTATIONAL": 1,
+          "AUTHORITY_OVERREACH|MODE_FORMAL": 1,
+          "CENSORED_UNDECIDABLE|MODE_COMPUTATIONAL": 1,
+          "CENSORED_UNDECIDABLE|MODE_FORMAL": 1,
+          "CODE_OR_PROOF_MISMATCH|MODE_COMPUTATIONAL": 1,
+          "CODE_OR_PROOF_MISMATCH|MODE_FORMAL": 1,
+          "EVALUATOR_BLIND_SPOT|MODE_COMPUTATIONAL": 1,
+          "EVALUATOR_BLIND_SPOT|MODE_FORMAL": 1,
+          "HIDDEN_DEPENDENCE|MODE_COMPUTATIONAL": 1,
+          "HIDDEN_DEPENDENCE|MODE_FORMAL": 1,
+          "INVALID_CALIBRATION|MODE_COMPUTATIONAL": 1,
+          "INVALID_TRANSPORT|MODE_COMPUTATIONAL": 1,
+          "INVALID_TRANSPORT|MODE_FORMAL": 1,
+          "NO_DEFECT_WARRANTED|MODE_COMPUTATIONAL": 1,
+          "NO_DEFECT_WARRANTED|MODE_FORMAL": 1,
+          "OMITTED_FAILED_ROUTE|MODE_COMPUTATIONAL": 1,
+          "OMITTED_FAILED_ROUTE|MODE_FORMAL": 1,
+          "REPRESENTATION_CHANGE_LOSES_INFORMATION|MODE_COMPUTATIONAL": 1,
+          "REPRESENTATION_CHANGE_LOSES_INFORMATION|MODE_FORMAL": 1,
+          "SEED_OR_VERSION_MISMATCH|MODE_COMPUTATIONAL": 1,
+          "SEED_OR_VERSION_MISMATCH|MODE_FORMAL": 1,
+          "STALE_OR_WRONG_SOURCE|MODE_COMPUTATIONAL": 1,
+          "STALE_OR_WRONG_SOURCE|MODE_FORMAL": 1,
+          "WRONG_PROBLEM_OR_SPECIFICATION|MODE_COMPUTATIONAL": 1,
+          "WRONG_PROBLEM_OR_SPECIFICATION|MODE_FORMAL": 1
+        },
+        "censor_variant": {
+          "CENSOR_SOURCE": 1,
+          "CENSOR_TRANSPORT": 1
+        },
+        "locus": {
+          "HIDDEN_DEPENDENCE|DIRECT": 2,
+          "STALE_OR_WRONG_SOURCE|DIRECT": 1,
+          "STALE_OR_WRONG_SOURCE|TRANSITIVE_ANCESTOR": 1
+        },
+        "mode": {
+          "MODE_COMPUTATIONAL": 13,
+          "MODE_FORMAL": 12
+        }
+      },
+      "n_evaluated": 25,
+      "never_exercised": {
+        "cells": [],
+        "censor_variants": [
+          "CENSOR_AUTHORITY",
+          "CENSOR_CALIBRATION",
+          "CENSOR_DEPENDENCE",
+          "CENSOR_ENV",
+          "CENSOR_EVALUATOR",
+          "CENSOR_PRESERVATION",
+          "CENSOR_ROUTE",
+          "CENSOR_SPEC"
+        ],
+        "loci": [
+          "HIDDEN_DEPENDENCE|TRANSITIVE_ANCESTOR",
+          "HIDDEN_DEPENDENCE|UNDECLARED_SHARED_UPSTREAM",
+          "STALE_OR_WRONG_SOURCE|UNDECLARED_SHARED_UPSTREAM"
+        ]
+      },
+      "rule": "reported, not a gate: any registered mechanism with zero instances is named here so no violation count computed over it can be read as 'checked and fine'"
     },
     "G0a_KNOWN_ANSWER": {
       "n_evaluated": 31,
@@ -574,7 +639,7 @@
         "S2_REPLAY_SUPPORT": {
           "n_evaluated": 25,
           "pass": true,
-          "rule": "on every replay-required episode the witness carries both replay checks (artifact identity and environment identity)",
+          "rule": "on every replay-required episode the witness's own artifact-identity and environment-identity checks reproduce the full-structure statuses \u2014 an instance-by-instance test, not a restatement of the arm's field set",
           "supported": 25
         },
         "S3_SELECTIVE_REOPENING_WITHOUT_HIDDEN_HISTORY": {
@@ -697,26 +762,85 @@
       },
       "rule": "the ladder is monotone and M is non-inferior to B5 separately in each epistemic mode (protocol \u00a710: results that fail to transfer across a second mode are killed)"
     },
+    "G7_WITNESS_SELF_CONTAINMENT": {
+      "M_exact_on_undeclared": null,
+      "identical_everywhere_else": true,
+      "n_evaluated": 0,
+      "n_evaluated_elsewhere": 25,
+      "pass": false,
+      "rule": "a positive test with its own denominator: on undeclared-upstream episodes the identity-exporting witness is strictly more exact than the self-contained one, and the two are identical on every other episode \u2014 so the separation is the mechanism, not a rate. Zero such episodes reports CANNOT_CHECK, never a pass.",
+      "self_contained_exact_on_undeclared": null,
+      "self_contained_exact_overall": 1.0,
+      "self_contained_false_acceptance_on_undeclared": 0,
+      "status": "CANNOT_CHECK_NO_UNDECLARED_INSTANCES"
+    },
+    "IMPLEMENTATION_AGREEMENT": {
+      "distinct_implementations": [
+        "C_SOURCE_STATUS",
+        "C_DEPENDENCE",
+        "C_ENV_IDENTITY",
+        "C_PRESERVATION"
+      ],
+      "n_evaluated": 25,
+      "per_check": {
+        "C_ARTIFACT_DIGEST": {
+          "agree": 25,
+          "n": 25
+        },
+        "C_AUTHORITY": {
+          "agree": 25,
+          "n": 25
+        },
+        "C_CALIBRATION": {
+          "agree": 25,
+          "n": 25
+        },
+        "C_DEPENDENCE": {
+          "agree": 25,
+          "n": 25
+        },
+        "C_ENV_IDENTITY": {
+          "agree": 25,
+          "n": 25
+        },
+        "C_EVALUATOR_COVERAGE": {
+          "agree": 25,
+          "n": 25
+        },
+        "C_PRESERVATION": {
+          "agree": 25,
+          "n": 25
+        },
+        "C_ROUTE_COMPLETENESS": {
+          "agree": 25,
+          "n": 25
+        },
+        "C_SOURCE_STATUS": {
+          "agree": 25,
+          "n": 25
+        },
+        "C_SPEC_BINDING": {
+          "agree": 25,
+          "n": 25
+        },
+        "C_TRANSPORT": {
+          "agree": 25,
+          "n": 25
+        }
+      },
+      "rule": "M and B5 run different code for source status, dependence, environment identity (computational mode) and preservation; the remaining seven checks are arithmetic thin enough that two implementations would coincide, and are reported as shared"
+    },
     "ROUTE": {
-      "cost_flag": "COST_COMPARABLE",
+      "cost_flag": "COST_ADVANTAGE_M",
       "note": "PARENT_SUFFICIENT is a successful terminal of this design; the witness terminal is a separate positive statement and neither is the negation of the other",
       "reason": "the federation is matched, and the compact witness meets every sufficiency conjunct",
       "route": "PARENT_SUFFICIENT",
-      "witness_terminal": "WITNESS_CLAIM_SUFFICIENT_AT_LOWER_EXPORT"
-    },
-    "WITNESS_SELF_CONTAINMENT_CROSSCUT": {
-      "M_exact_on_undeclared": null,
-      "n_evaluated": 0,
-      "rule": "registered cross-cut, not a gate: what an identity-exporting witness buys over a self-contained one, measured only on the undeclared-upstream locus",
-      "self_contained_exact_on_undeclared": null,
-      "self_contained_exact_overall": 1.0,
-      "self_contained_false_acceptance": 0,
-      "status": "CANNOT_CHECK_NO_UNDECLARED_INSTANCES"
+      "witness_terminal": "WITNESS_CLAIM_SUFFICIENT_AT_LOWER_EXPORT__SELF_CONTAINMENT_CANNOT_CHECK"
     }
   },
   "label": "DEVELOPMENT",
   "n_instances": 25,
-  "results_sha256": "fba9ddda78ca2e5b2f36dfecaf7d62daba3f82f5190f94acda8c8b789ef174aa",
+  "results_sha256": "67a42e5edb283717f8eb35bb283498d7309f41f47525f3cb3dfccc5d1a8b18bb",
   "schema_version": "orion.v2.me-x7.exact-study-analysis.v1",
   "score": {
     "per_arm": {
@@ -992,7 +1116,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 0,
-        "wall_ms": 0.185749
+        "wall_ms": 0.152914
       },
       "A1_PROVENANCE_ONLY": {
         "abstain_n_evaluated": 23,
@@ -1266,7 +1390,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 0,
-        "wall_ms": 0.913709
+        "wall_ms": 0.897084
       },
       "A2_REPLAY_ONLY": {
         "abstain_n_evaluated": 23,
@@ -1540,7 +1664,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 0,
-        "wall_ms": 0.171709
+        "wall_ms": 0.160294
       },
       "A3_ASSURANCE_CASE": {
         "abstain_n_evaluated": 23,
@@ -1814,7 +1938,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 0,
-        "wall_ms": 0.875002
+        "wall_ms": 0.765748
       },
       "A4_DEPENDENCE_AUDIT": {
         "abstain_n_evaluated": 23,
@@ -2088,7 +2212,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 0,
-        "wall_ms": 0.534
+        "wall_ms": 0.494501
       },
       "A5_CALIBRATED_ABSTENTION": {
         "abstain_n_evaluated": 23,
@@ -2362,7 +2486,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 0,
-        "wall_ms": 0.926959
+        "wall_ms": 0.783499
       },
       "B5_STRONGEST_FAITHFUL_AUDIT_PARENT": {
         "abstain_n_evaluated": 23,
@@ -2636,7 +2760,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 25,
-        "wall_ms": 3.168667
+        "wall_ms": 2.879957
       },
       "C_ALWAYS_ACCEPT": {
         "abstain_n_evaluated": 23,
@@ -2910,7 +3034,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 0,
-        "wall_ms": 0.04333
+        "wall_ms": 0.048666
       },
       "C_ALWAYS_CANNOT_CHECK": {
         "abstain_n_evaluated": 23,
@@ -3184,7 +3308,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 0,
-        "wall_ms": 0.032418
+        "wall_ms": 0.035833
       },
       "C_RANDOM_VERDICT": {
         "abstain_n_evaluated": 23,
@@ -3458,7 +3582,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 0,
-        "wall_ms": 0.083418
+        "wall_ms": 0.057543
       },
       "L1_OUTPUT_ONLY": {
         "abstain_n_evaluated": 23,
@@ -3732,7 +3856,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 0,
-        "wall_ms": 0.086001
+        "wall_ms": 0.116956
       },
       "L2_PLUS_PROVENANCE": {
         "abstain_n_evaluated": 23,
@@ -4006,7 +4130,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 0,
-        "wall_ms": 1.311963
+        "wall_ms": 0.219462
       },
       "L3_PLUS_PROBLEM_ARTIFACT": {
         "abstain_n_evaluated": 23,
@@ -4280,7 +4404,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 0,
-        "wall_ms": 1.898248
+        "wall_ms": 0.54979
       },
       "L4_PLUS_VERSION_CALIBRATION_TRANSPORT": {
         "abstain_n_evaluated": 23,
@@ -4554,7 +4678,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 25,
-        "wall_ms": 1.667916
+        "wall_ms": 0.445789
       },
       "L5_PLUS_DEPENDENCE_ROUTE_AUTHORITY_PRESERVATION": {
         "abstain_n_evaluated": 23,
@@ -4828,7 +4952,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 25,
-        "wall_ms": 2.809334
+        "wall_ms": 1.506873
       },
       "L6_FULL_WITNESS": {
         "abstain_n_evaluated": 23,
@@ -5102,7 +5226,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 25,
-        "wall_ms": 2.806123
+        "wall_ms": 1.238582
       },
       "M_CLAIM_SUFFICIENT_WITNESS": {
         "abstain_n_evaluated": 23,
@@ -5376,7 +5500,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 25,
-        "wall_ms": 2.844875
+        "wall_ms": 1.136749
       },
       "M_MINUS_ARTIFACT": {
         "abstain_n_evaluated": 23,
@@ -5650,7 +5774,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 0,
-        "wall_ms": 3.147621
+        "wall_ms": 1.21304
       },
       "M_MINUS_ASSUMPTION_VERSION": {
         "abstain_n_evaluated": 23,
@@ -5924,7 +6048,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 0,
-        "wall_ms": 2.818417
+        "wall_ms": 1.285456
       },
       "M_MINUS_AUTHORITY_CEILING": {
         "abstain_n_evaluated": 23,
@@ -6198,7 +6322,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 25,
-        "wall_ms": 3.203958
+        "wall_ms": 1.117707
       },
       "M_MINUS_CALIBRATION": {
         "abstain_n_evaluated": 23,
@@ -6472,7 +6596,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 25,
-        "wall_ms": 3.590085
+        "wall_ms": 1.312165
       },
       "M_MINUS_DEPENDENCE": {
         "abstain_n_evaluated": 23,
@@ -6746,7 +6870,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 25,
-        "wall_ms": 2.114416
+        "wall_ms": 0.622959
       },
       "M_MINUS_EVALUATOR_CONTRACT": {
         "abstain_n_evaluated": 23,
@@ -7020,7 +7144,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 25,
-        "wall_ms": 3.336414
+        "wall_ms": 1.090791
       },
       "M_MINUS_PRESERVATION": {
         "abstain_n_evaluated": 23,
@@ -7294,7 +7418,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 25,
-        "wall_ms": 3.128793
+        "wall_ms": 1.045582
       },
       "M_MINUS_PROBLEM_BINDING": {
         "abstain_n_evaluated": 23,
@@ -7568,7 +7692,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 25,
-        "wall_ms": 2.892163
+        "wall_ms": 1.056997
       },
       "M_MINUS_PROVENANCE": {
         "abstain_n_evaluated": 23,
@@ -7842,7 +7966,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 25,
-        "wall_ms": 1.659749
+        "wall_ms": 1.205
       },
       "M_MINUS_REGISTRY_RESOLUTION": {
         "abstain_n_evaluated": 23,
@@ -8116,7 +8240,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 25,
-        "wall_ms": 3.306289
+        "wall_ms": 1.548545
       },
       "M_MINUS_ROUTE_LEDGER": {
         "abstain_n_evaluated": 23,
@@ -8390,7 +8514,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 25,
-        "wall_ms": 2.951376
+        "wall_ms": 1.174792
       },
       "M_MINUS_TRANSPORT": {
         "abstain_n_evaluated": 23,
@@ -8664,7 +8788,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 25,
-        "wall_ms": 2.818291
+        "wall_ms": 1.244416
       },
       "S0_OPAQUE_OUTPUT_ONLY": {
         "abstain_n_evaluated": 23,
@@ -8938,7 +9062,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 0,
-        "wall_ms": 0.168626
+        "wall_ms": 0.145209
       },
       "S1_PROVENANCE_PLUS_OUTPUT": {
         "abstain_n_evaluated": 23,
@@ -9212,7 +9336,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 0,
-        "wall_ms": 1.511084
+        "wall_ms": 0.221459
       },
       "S2_FULL_HUMAN_STYLE_TRACE": {
         "abstain_n_evaluated": 23,
@@ -9486,7 +9610,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 0,
-        "wall_ms": 0.30258
+        "wall_ms": 0.268708
       },
       "S3_PROOF_OR_CERTIFICATE_PARENT": {
         "abstain_n_evaluated": 23,
@@ -9760,7 +9884,7 @@
         },
         "replay_n_evaluated": 25,
         "replay_supported": 25,
-        "wall_ms": 0.274458
+        "wall_ms": 0.199664
       }
     }
   }

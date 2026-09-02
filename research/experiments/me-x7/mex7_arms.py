@@ -1,19 +1,35 @@
 """ME-X7 — witness surfaces, the parent federation, M, the ablations and the
 controls.
 
-This module never imports `mex7_oracle`.  Its eleven module checks are a
-*second, independent implementation* of the frozen §2.3-style semantics: six of
-them run through the parent engines of `mex7_parents` and the parent-owned
-ORION modules (`orion_v2.provenance` descendants, `orion_v2.evidence`
-dependence assessment, `orion_v2.comparability` certificates, the resolution
-checker and the replay machine) rather than through the oracle's own ancestor
-walk and correspondence chain.  Agreement between the two is measured (G0b),
-not assumed.
+This module never imports the oracle.  It carries **two independently written
+implementations of the frozen §2.3 check table**, and the arms are split
+between them:
+
+* `MODULE_CHECK_M` — the ORION-registered semantics that the claim-sufficient
+  witness is a projection of: `ProblemContract` metadata for criterion binding,
+  an ancestor walk over the registered provenance graph,
+  `orion_v2.evidence.assess_evidence_dependence` over ancestor-set overlap,
+  `orion_v2.correspondence.assess_correspondence_chain` for preservation,
+  `RelationType` rank for transport, evaluator coverage, and the recorded
+  environment/seed identities.
+* `MODULE_CHECK_B5` — the faithful parent federation's own engines:
+  `ReticulateProvenance.affected_by_revocation` reachability (the opposite
+  traversal direction), dependence pairs from that same descendant walk,
+  `orion_v2.comparability.ComparabilityCertificate` for preservation, and an
+  actual re-execution of the replay machine under the recorded versus the
+  actual environment rather than a comparison of recorded identities.
+
+Four of the eleven checks therefore run different code on the two sides —
+source status, dependence, environment identity (computational mode) and
+preservation.  The remaining seven are arithmetic thin enough that two
+implementations would be the same three lines, and the receipt says so rather
+than claiming eleven.  Both tables re-run the resolution checker and the replay
+machine instead of trusting a recorded flag.
 
 An arm is a *witness surface* (a set of exported fields), a registry-visibility
-policy, and an adjudicator.  Surface arms and M share one frozen adjudication
-rule; the single-parent arms use their own native semantics and break where
-those semantics predict.
+policy, a check table, and an adjudicator.  Surface arms and M share one frozen
+adjudication rule; the single-parent arms use their own native semantics and
+break where those semantics predict.
 """
 from __future__ import annotations
 
@@ -22,6 +38,11 @@ from typing import Callable
 
 from orion_v2.comparability import Anchor, ComparabilityCertificate, ComparabilityStatus
 from orion_v2.contracts import ProblemContract
+from orion_v2.correspondence import (
+    CorrespondenceLink,
+    CorrespondenceStatus,
+    assess_correspondence_chain,
+)
 
 from mex7_model import (
     ACCEPT,
@@ -127,8 +148,48 @@ def m_spec_binding(ep: Episode, visible: frozenset[str]) -> str:
     return VALID if declared == ep.claim.formalization_digest else INVALID
 
 
+def _ancestors(ep: Episode, root: str, visible: frozenset[str], *, include_suspected: bool) -> set[str]:
+    seen: set[str] = set()
+    stack = [root]
+    while stack:
+        cur = stack.pop()
+        if cur in seen or cur not in visible:
+            continue
+        seen.add(cur)
+        node = ep.node(cur)
+        if node.suspected_parent and not include_suspected:
+            continue
+        stack.extend(node.parents)
+    return seen
+
+
+def _m_ancestries(ep: Episode, visible: frozenset[str], *, include_suspected: bool) -> dict[str, set[str]]:
+    out: dict[str, set[str]] = {}
+    for s in ep.supports:
+        acc: set[str] = set()
+        for root in s.root_node_ids:
+            acc |= _ancestors(ep, root, visible, include_suspected=include_suspected)
+        out[s.support_id] = acc
+    return out
+
+
 def m_source_status(ep: Episode, visible: frozenset[str]) -> str:
-    """Revocation reachability through `orion_v2.provenance` descendants."""
+    """M side: walk *up* from the claim's supports over the registered
+    provenance graph and read the statuses reached."""
+    anc = _m_ancestries(ep, visible, include_suspected=True)
+    reached = set().union(*anc.values()) if anc else set()
+    statuses = {ep.node(n).status for n in reached}
+    if statuses & {NODE_RETRACTED, NODE_SUPERSEDED}:
+        return INVALID
+    if NODE_DISPUTED in statuses:
+        return CENSORED
+    return VALID
+
+
+def b5_source_status(ep: Episode, visible: frozenset[str]) -> str:
+    """B5 side: revocation reachability through
+    `orion_v2.provenance.ReticulateProvenance` descendants — the opposite
+    traversal direction, using the parent's own engine."""
     roots = _support_roots(ep, visible)
     parents = _node_parents(ep, visible, include_suspected=True)
     revoked = {
@@ -169,22 +230,49 @@ def _shared_pairs(ep: Episode, visible: frozenset[str], *, include_suspected: bo
     return out
 
 
-def m_dependence(ep: Episode, visible: frozenset[str]) -> str:
+def _m_pairs(ep: Episode, visible: frozenset[str], *, include_suspected: bool) -> list[tuple[str, str, bool]]:
+    anc = _m_ancestries(ep, visible, include_suspected=include_suspected)
+    ids = sorted(anc)
+    out: list[tuple[str, str, bool]] = []
+    for i, a in enumerate(ids):
+        for b in ids[i + 1:]:
+            if anc[a] & anc[b]:
+                out.append((a, b, True))
+    return out
+
+
+def _components_from(pairs_fn, ep: Episode, visible: frozenset[str]) -> str:
     k = ep.independence_k
     ids = tuple(sorted(s.support_id for s in ep.supports))
     if k <= 1 or len(ids) < k:
         return NOT_APPLICABLE
     confirmed = DEPENDENCE.independent_components(
-        ids, _shared_pairs(ep, visible, include_suspected=False), include_suspected=False
+        ids, pairs_fn(ep, visible, include_suspected=False), include_suspected=False
     )
     if confirmed < k:
         return INVALID
     with_suspected = DEPENDENCE.independent_components(
-        ids, _shared_pairs(ep, visible, include_suspected=True), include_suspected=False
+        ids, pairs_fn(ep, visible, include_suspected=True), include_suspected=False
     )
     if with_suspected < k:
         return CENSORED
     return VALID
+
+
+def m_dependence(ep: Episode, visible: frozenset[str]) -> str:
+    """M side: independence over ancestor-set overlap, counted by
+    `orion_v2.evidence.assess_evidence_dependence`."""
+    return _components_from(_m_pairs, ep, visible)
+
+
+def b5_dependence(ep: Episode, visible: frozenset[str]) -> str:
+    """B5 side: the same parent counter over pairs found by walking *down*
+    from every registry node."""
+    return _components_from(_shared_pairs_kw, ep, visible)
+
+
+def _shared_pairs_kw(ep: Episode, visible: frozenset[str], *, include_suspected: bool):
+    return _shared_pairs(ep, visible, include_suspected=include_suspected)
 
 
 def m_artifact_digest(ep: Episode, visible: frozenset[str]) -> str:
@@ -203,6 +291,19 @@ def m_artifact_digest(ep: Episode, visible: frozenset[str]) -> str:
 
 
 def m_env_identity(ep: Episode, visible: frozenset[str]) -> str:
+    """M side: the recorded assumption/version identities must equal the ones
+    that actually ran."""
+    a = ep.artifact
+    if a is None or not ep.contract.replay_required:
+        return NOT_APPLICABLE
+    if not a.actual_env or not a.actual_seed:
+        return CENSORED
+    return VALID if (a.recorded_env, a.recorded_seed) == (a.actual_env, a.actual_seed) else INVALID
+
+
+def b5_env_identity(ep: Episode, visible: frozenset[str]) -> str:
+    """B5 side: actually replay under the recorded identities and compare the
+    output with the one the actual environment produced."""
     a = ep.artifact
     if a is None or not ep.contract.replay_required:
         return NOT_APPLICABLE
@@ -275,9 +376,47 @@ def m_authority(ep: Episode, visible: frozenset[str]) -> str:
 
 
 def m_preservation(ep: Episode, visible: frozenset[str]) -> str:
-    """Preservation after representation change through
+    """M side: preservation through
+    `orion_v2.correspondence.assess_correspondence_chain`."""
+    rep = ep.representation
+    if rep is None:
+        return NOT_APPLICABLE
+    links = tuple(
+        CorrespondenceLink(
+            link_id=lid,
+            source_epoch=rep.source_epoch if i == 0 else f"{rep.source_epoch}-{i}",
+            target_epoch=(
+                f"{rep.source_epoch}-{i + 1}" if i + 1 < len(rep.link_ids) else rep.target_epoch
+            ),
+            mapping_ids=rep.mapping_ids,
+            anchor_ids=rep.anchor_ids,
+            preserved_invariant_ids=rep.preserved_invariant_ids,
+            uncertainty_upper_bound=rep.uncertainty,
+            violated_invariant_ids=rep.violated_invariant_ids,
+            unresolved_invariant_ids=rep.unresolved_invariant_ids,
+            exact=rep.exact,
+        )
+        for i, lid in enumerate(rep.link_ids)
+    )
+    assessment = assess_correspondence_chain(
+        links,
+        context_id=ep.claim.context_id,
+        required_invariant_ids=rep.required_invariant_ids,
+        tolerance=rep.tolerance,
+    )
+    if assessment.status is CorrespondenceStatus.NONCOMPARABLE:
+        return INVALID
+    if assessment.status is CorrespondenceStatus.CANNOT_CHECK:
+        return CENSORED
+    if assessment.status is CorrespondenceStatus.PARTIALLY_COMPARABLE:
+        return INVALID
+    return VALID
+
+
+def b5_preservation(ep: Episode, visible: frozenset[str]) -> str:
+    """B5 side: the same question through
     `orion_v2.comparability.ComparabilityCertificate` — a different ORION
-    engine from the oracle's correspondence chain."""
+    engine with its own status lattice."""
     rep = ep.representation
     if rep is None:
         return NOT_APPLICABLE
@@ -310,7 +449,7 @@ def m_preservation(ep: Episode, visible: frozenset[str]) -> str:
     return VALID
 
 
-MODULE_CHECK = {
+MODULE_CHECK_M = {
     "C_SPEC_BINDING": m_spec_binding,
     "C_SOURCE_STATUS": m_source_status,
     "C_DEPENDENCE": m_dependence,
@@ -323,7 +462,22 @@ MODULE_CHECK = {
     "C_AUTHORITY": m_authority,
     "C_PRESERVATION": m_preservation,
 }
-assert set(MODULE_CHECK) == set(CHECKS)
+
+MODULE_CHECK_B5 = dict(
+    MODULE_CHECK_M,
+    C_SOURCE_STATUS=b5_source_status,
+    C_DEPENDENCE=b5_dependence,
+    C_ENV_IDENTITY=b5_env_identity,
+    C_PRESERVATION=b5_preservation,
+)
+
+# the four checks whose two sides are genuinely different code
+DISTINCT_IMPLEMENTATIONS = (
+    "C_SOURCE_STATUS", "C_DEPENDENCE", "C_ENV_IDENTITY", "C_PRESERVATION",
+)
+
+TABLES = {"M": MODULE_CHECK_M, "B5": MODULE_CHECK_B5}
+assert set(MODULE_CHECK_M) == set(MODULE_CHECK_B5) == set(CHECKS)
 
 
 # ---- export accounting (structural audit cost) --------------------------------
@@ -370,6 +524,7 @@ class ArmOutput:
     detected_class: str | None
     checks_run: int
     export_units: int
+    check_statuses: dict[str, str] | None = None
 
 
 @dataclass(frozen=True)
@@ -380,6 +535,7 @@ class ArmSpec:
     full_registry: bool = True
     with_trace: bool = False
     native: Callable[[Episode, frozenset[str]], ArmOutput] | None = None
+    table: str = "M"
     note: str = ""
 
 
@@ -390,12 +546,13 @@ def _runnable(fields: frozenset[str]) -> tuple[str, ...]:
 def frozen_rule(ep: Episode, spec: ArmSpec) -> ArmOutput:
     visible = visible_nodes(ep, full_registry=spec.full_registry)
     runnable = _runnable(spec.fields)
-    statuses = {c: MODULE_CHECK[c](ep, visible) for c in runnable}
+    table = TABLES[spec.table]
+    statuses = {c: table[c](ep, visible) for c in runnable}
     fired = [c for c in runnable if statuses[c] == INVALID]
     censored = [c for c in runnable if statuses[c] == CENSORED]
     units = export_units(ep, spec.fields, visible, with_trace=spec.with_trace)
     if fired:
-        return ArmOutput(REJECT, CLASS_FOR_CHECK[fired[0]], len(runnable), units)
+        return ArmOutput(REJECT, CLASS_FOR_CHECK[fired[0]], len(runnable), units, dict(statuses))
     if F_EVALUATOR_CONTRACT in spec.fields:
         unchecked = [
             cls
@@ -405,8 +562,8 @@ def frozen_rule(ep: Episode, spec: ArmSpec) -> ArmOutput:
     else:
         unchecked = []
     if censored or unchecked:
-        return ArmOutput(CANNOT_CHECK, None, len(runnable), units)
-    return ArmOutput(ACCEPT, None, len(runnable), units)
+        return ArmOutput(CANNOT_CHECK, None, len(runnable), units, dict(statuses))
+    return ArmOutput(ACCEPT, None, len(runnable), units, dict(statuses))
 
 
 # ---- native single-parent arms ------------------------------------------------
@@ -439,7 +596,7 @@ def native_provenance_only(ep: Episode, visible: frozenset[str]) -> ArmOutput:
 
 
 def native_replay(ep: Episode, visible: frozenset[str]) -> ArmOutput:
-    status = m_env_identity(ep, visible)
+    status = b5_env_identity(ep, visible)
     units = export_units(
         ep, frozenset({F_RESULT, F_ARTIFACT, F_ASSUMPTION_VERSION}), visible, with_trace=False
     )
@@ -615,7 +772,9 @@ def arm_specs() -> list[ArmSpec]:
             "SURFACE",
             ALL_FIELDS,
             full_registry=True,
-            note="strongest faithful audit parent federation at full registry information",
+            table="B5",
+            note="strongest faithful audit parent federation at full registry information, "
+                 "adjudicated through the parents' own engines (MODULE_CHECK_B5)",
         )
     )
     specs += [

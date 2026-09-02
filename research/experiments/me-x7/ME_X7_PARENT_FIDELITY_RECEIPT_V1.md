@@ -4,7 +4,7 @@
 development split. **No protected outcome exists or has been inspected.**
 Design: `ME_X7_EXTERNAL_WITNESS_SUFFICIENCY_EXACT_STUDY_DESIGN_V1.{md,json}`,
 design-JSON sha256
-`733b3d170df9d0a9896709a32381cc50446e3c5037d836b3bd7ea44c52b6500c`.
+`1895b4388f832b121695ba1d64c688b0a9df44264e4a3284f0d73e8684b54022`.
 
 ## 1. Code freeze (sha256)
 
@@ -14,8 +14,8 @@ design-JSON sha256
 | `mex7_oracle.py` | `21f26a44b5f137f3bf8a27a8e95746a8c210212204bcc72cd5b89b2209f2de0f` |
 | `mex7_generator.py` | `364cc5a6811053d6bcf840e982483679efee0d0774f1296c409200603c215d49` |
 | `mex7_parents.py` | `18bd7a0c5a774db5415ce33ede74eea6a856d740ece0184548121b45dd0e859e` |
-| `mex7_arms.py` | `83fb025b626f235a3ea63bbf2b9bb6f7a8b68f9e3c7ab883e582eb7ae8b6e396` |
-| `mex7_run.py` | `c8f909c87e313f83e36318aeced4bbf7f55094e2eee3cf2bd8e9eeb8f296cb3f` |
+| `mex7_arms.py` | `3afe7763cfc21dd9b9dde698ec8a457369a10610ad22160bc7d4afec560fa6aa` |
+| `mex7_run.py` | `ac1d61982ead0520b0b56c084bc8d4a3727eebef99d500eb11f75851c1c3f0f1` |
 
 Protected seed commitment
 `2c8a3d774cab1fcae49fae5876d9ed314ea771563fa31ff44784c3dd3e2cf4b2`
@@ -57,16 +57,41 @@ seed/version mismatch is an actual replay divergence.
   correctly planted episode is accepted. Without these, "G0b reported zero
   violations" would be unfalsifiable.
 
-## 4. G0b/G0c on the selftest split
+## 4. G0b/G0c — two implementations of the semantics, plus a generator check
 
-Three independent computations agree on every instance: the direct adjudication
-rule versus exhaustive enumeration over all resolutions of the censored checks;
-the planter's declared defect versus a full-structure recomputation (exactly the
-planted class INVALID, nothing else, no censoring); and the arms' module
-implementation versus the oracle's check table at full visibility, over
-`25 × 11 = 275` check evaluations in the unit tests and every instance of every
-split at run time. Null calibration passes: `C_ALWAYS_ACCEPT` scores 0 where the
-oracle rejects, `C_ALWAYS_CANNOT_CHECK` scores 0 where the episode is decidable,
+The receipt is deliberately precise about what is independent of what.
+
+**Two implementations of the verdict rule.** The direct adjudication rule and an
+exhaustive enumeration over every resolution of the censored checks agree on
+every instance of every split.
+
+**Two implementations of the check table, one per side of the primary
+comparison.** `M` and `B5` must not be the same computation under two names, or
+G1, G2 and three of the five sufficiency conjuncts would be `x == x`. They are
+adjudicated through separately written tables (design §2.4), both arm-side,
+neither importing the oracle. **Four of the eleven checks run different code** —
+`C_SOURCE_STATUS` (ancestor walk vs `affected_by_revocation` reachability),
+`C_DEPENDENCE` (ancestor-set overlap vs descendant-walk pairs),
+`C_ENV_IDENTITY` (recorded identities compared vs the replay machine actually
+re-run), `C_PRESERVATION` (`assess_correspondence_chain` vs
+`ComparabilityCertificate`). **The other seven are arithmetic thin enough that
+two implementations would be the same three lines, and are reported as shared
+rather than counted as independent.** Both tables re-run the resolution checker
+and the replay machine instead of trusting a recorded flag. Per-check agreement
+is printed in the analysis (`IMPLEMENTATION_AGREEMENT`); on the development
+split it is 25/25 on all eleven. A unit test asserts the two tables really are
+distinct where the design says they are, and a planted positive shows they can
+disagree when one side's registry resolution is broken.
+
+**A generator-validity check, not a third implementation.** `planter_agrees`
+compares the planter's declared defect with a full-structure recomputation that
+runs through the oracle's own code. It validates the *generator* — a planter
+that fails to plant, plants twice, or turns a decoy into a defect cannot enter a
+split — and the four planted positives show it is trippable. It is not evidence
+about the semantics, and the design and PR text say so.
+
+**Null calibration passes:** `C_ALWAYS_ACCEPT` scores 0 where the oracle
+rejects, `C_ALWAYS_CANNOT_CHECK` scores 0 where the episode is decidable,
 `C_RANDOM_VERDICT` and M-against-shuffled-labels both stay under 0.15.
 
 ## 5. Development split (25 instances, public seed `ME-X7-DEV-20260902`)
@@ -94,22 +119,40 @@ each omission ablation zeroes precisely the classes whose check needs the field
 it drops (G3 passes on the development split, including the two-field
 `C_ROUTE_COMPLETENESS` prediction).
 
-**One cross-cut is `CANNOT_CHECK` on the development split and is reported as
-such, not as a pass:** with one instance per cell the generator drew no
-`UNDECLARED_SHARED_UPSTREAM` instance, so
-`WITNESS_SELF_CONTAINMENT_CROSSCUT` reports
-`status = CANNOT_CHECK_NO_UNDECLARED_INSTANCES, n_evaluated = 0`. At 50 per cell
-the protected split is expected to draw about 25 of them. This is exactly the
-failure shape the design's `n_evaluated` rule exists to expose.
+**What the development split never exercised, named exhaustively.** The analysis
+carries a `COVERAGE_LEDGER` listing every registered mechanism with the number
+of instances that exercised it and every one at zero. At one instance per cell:
+all 25 applicable cells are drawn once, but **eight of the ten censoring
+variants** (`CENSOR_SPEC`, `CENSOR_DEPENDENCE`, `CENSOR_ENV`,
+`CENSOR_CALIBRATION`, `CENSOR_ROUTE`, `CENSOR_EVALUATOR`, `CENSOR_AUTHORITY`,
+`CENSOR_PRESERVATION`) and **three of the six locus combinations**
+(`HIDDEN_DEPENDENCE|TRANSITIVE_ANCESTOR`,
+`HIDDEN_DEPENDENCE|UNDECLARED_SHARED_UPSTREAM`,
+`STALE_OR_WRONG_SOURCE|UNDECLARED_SHARED_UPSTREAM`) are drawn zero times.
+
+Consequently **G7 `WITNESS_SELF_CONTAINMENT` reports
+`CANNOT_CHECK_NO_UNDECLARED_INSTANCES, n_evaluated = 0` and `pass = false`**,
+and the witness terminal is qualified
+`WITNESS_CLAIM_SUFFICIENT_AT_LOWER_EXPORT__SELF_CONTAINMENT_CANNOT_CHECK`
+rather than reading as a clean pass. At 50 per cell the protected split is
+expected to draw about 25 undeclared-upstream instances and roughly five of each
+censoring variant. This is exactly the failure shape the `n_evaluated` rule
+exists to expose, caught by the discipline rather than by luck.
 
 ## 6. What the development split does *not* license
 
 No confirmatory claim. The pre-registered expectation (design §1.2) is
 `PARENT_SUFFICIENT` with `WITNESS_CLAIM_SUFFICIENT_AT_LOWER_EXPORT`; the
-development split is consistent with it and is not evidence for it. Design §9(4)
-records in advance that B5 is exact by information-completeness on this
-generator, so G1a/G1b are not the decisive axis — the decisive axes are the
-ladder (G4), the five sufficiency conjuncts (G5) and cross-mode transfer (G6).
+development split is consistent with it and is not evidence for it.
+
+**`M exact 1.000, B5 exact 1.000` is not the headline and must not be quoted as
+one.** Design §9(4) records in advance that M and B5 hold the same fields and
+the same registry visibility, so the comparison is a *cross-implementation*
+test, not an information test: it can catch a bug in either side's four distinct
+checks and it cannot detect a residual that does not exist. The decisive axes
+are the omission matrix (G3), the ladder (G4), the sufficiency conjuncts (G5),
+cross-mode transfer (G6) and self-containment (G7) — and G7 is unevaluated on
+the development split.
 
 ## 7. Protected-run guard (asserted by the unit tests)
 

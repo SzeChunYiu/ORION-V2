@@ -45,13 +45,16 @@ from mex7_arms import (  # noqa: E402
     ABLATION_FOR_CLASS,
     B5_ARM,
     LADDER_RUNGS,
-    MODULE_CHECK,
+    DISTINCT_IMPLEMENTATIONS,
+    MODULE_CHECK_B5,
+    MODULE_CHECK_M,
     M_ARM,
     arm_specs,
     run_arm,
     visible_nodes,
 )
 from mex7_generator import (  # noqa: E402
+    CENSOR_VARIANTS_ALL,
     generate_split,
     known_answer_fixtures,
     planted_positives,
@@ -59,6 +62,7 @@ from mex7_generator import (  # noqa: E402
 )
 from mex7_model import (  # noqa: E402
     ACCEPT,
+    LOCI,
     CANNOT_CHECK,
     CELLS,
     CHECKS,
@@ -164,7 +168,9 @@ def run_instances(instances, label: str, split_seed_public: str | None) -> tuple
         planted_ok, planted_why = planter_agrees(ep, inst.stratum)
         vis_full = visible_nodes(ep, full_registry=True)
         cross_ok = all(
-            CHECK_FN[c](ep, vis_full) == MODULE_CHECK[c](ep, vis_full) for c in CHECKS
+            CHECK_FN[c](ep, vis_full) == MODULE_CHECK_M[c](ep, vis_full)
+            and CHECK_FN[c](ep, vis_full) == MODULE_CHECK_B5[c](ep, vis_full)
+            for c in CHECKS
         )
         rec = {
             "instance_id": inst.instance_id,
@@ -182,12 +188,15 @@ def run_instances(instances, label: str, split_seed_public: str | None) -> tuple
             t0 = time.perf_counter_ns()
             out = run_arm(spec, ep, rng)
             wall = time.perf_counter_ns() - t0
-            rec["arms"][spec.name] = {
+            entry = {
                 "verdict": out.verdict,
                 "detected_class": out.detected_class,
                 "checks_run": out.checks_run,
                 "export_units": out.export_units,
             }
+            if spec.name in (M_ARM, B5_ARM) and out.check_statuses is not None:
+                entry["check_statuses"] = out.check_statuses
+            rec["arms"][spec.name] = entry
             timing.setdefault(inst.instance_id, {})[spec.name] = wall
         results["instances"].append(rec)
         custody["instances"].append(
@@ -329,6 +338,45 @@ def score(results: dict, custody: dict, *, shuffle_seed: int = 20260902, timing:
             fake = {"verdict": oracle_verdicts[j], "defect_class": oracle_classes[j]}
             shuffled_exact_M.append(_exact(m_out[order[i]], fake))
 
+    # ---- registered-mechanism coverage ledger: every registered mechanism with
+    # the number of instances that actually exercised it, so an undrawn one is
+    # visible instead of silently contributing a clean zero.
+    coverage: dict[str, dict[str, int]] = {
+        "cell": defaultdict(int), "locus": defaultdict(int),
+        "censor_variant": defaultdict(int), "mode": defaultdict(int),
+    }
+    for rec, cus_rec in zip(results["instances"], (exp_by_id[r["instance_id"]] for r in results["instances"])):
+        coverage["cell"][f"{rec['stratum']}|{rec['mode']}"] += 1
+        coverage["mode"][rec["mode"]] += 1
+        if rec["stratum"] in ("STALE_OR_WRONG_SOURCE", "HIDDEN_DEPENDENCE"):
+            coverage["locus"][f"{rec['stratum']}|{rec['locus']}"] += 1
+        facts = dict(tuple(f) for f in cus_rec["instance"]["facts"])
+        if "censor_variant" in facts:
+            coverage["censor_variant"][facts["censor_variant"]] += 1
+
+    # ---- S2, instance-sensitive: on replay-required episodes M's two replay
+    # checks must reproduce the oracle's statuses, not merely be runnable.
+    s2 = {"n": 0, "hit": 0}
+    for rec in results["instances"]:
+        if not rec["replay_required"]:
+            continue
+        want = exp_by_id[rec["instance_id"]]["expected"]["statuses"]
+        got = rec["arms"].get(M_ARM, {}).get("check_statuses") or {}
+        s2["n"] += 1
+        s2["hit"] += int(
+            all(got.get(c) == want.get(c) for c in ("C_ARTIFACT_DIGEST", "C_ENV_IDENTITY"))
+        )
+
+    # ---- per-check agreement between the two independent implementations
+    impl_agreement: dict[str, dict[str, int]] = {c: {"n": 0, "agree": 0} for c in CHECKS}
+    for rec in results["instances"]:
+        a = rec["arms"].get(M_ARM, {}).get("check_statuses") or {}
+        b = rec["arms"].get(B5_ARM, {}).get("check_statuses") or {}
+        for c in CHECKS:
+            if c in a and c in b:
+                impl_agreement[c]["n"] += 1
+                impl_agreement[c]["agree"] += int(a[c] == b[c])
+
     n_total = len(order)
     summary: dict[str, dict] = {}
     for a, pa in per_arm.items():
@@ -359,6 +407,9 @@ def score(results: dict, custody: dict, *, shuffle_seed: int = 20260902, timing:
         }
     return {
         "per_arm": summary,
+        "coverage_ledger": {k: dict(v) for k, v in coverage.items()},
+        "s2_replay": s2,
+        "implementation_agreement": impl_agreement,
         "_raw": per_arm,
         "order": order,
         "cells": cells,
@@ -595,8 +646,8 @@ def gates(sc: dict, results: dict, selftest_ok: bool | None) -> dict:
             s1_rows.append(
                 {"class": cls, "mode": mode, "n_evaluated": len(idxs2), "M_recall": mr, "B5_recall": br, "pass": ok}
             )
-    s2_n = per[M_ARM]["replay_n_evaluated"]
-    s2_hit = per[M_ARM]["replay_supported"]
+    s2_n = sc["s2_replay"]["n"]
+    s2_hit = sc["s2_replay"]["hit"]
     s3_rows = []
     s3_ok = True
     for cls in S3_STRATA:
@@ -623,7 +674,7 @@ def gates(sc: dict, results: dict, selftest_ok: bool | None) -> dict:
     s5_paired = paired_summary(raw[M_ARM]["exact"], raw[TRACE_ARM]["exact"])
     s5_more_accurate = bool(s5_paired["diff_x_minus_y"] > 0 and s5_paired["exact_p_two_sided"] <= 0.05)
     s5_smaller = bool(trace_units and m_units and m_units <= trace_units)
-    s5_ok = bool(s5_more_accurate and s5_smaller)
+    s5_ok = bool(s5_more_accurate)  # export size is reported, never decisive (design §9(7))
     conjuncts = {
         "S1_FAILURE_CLASS_PRESERVATION": {
             "pass": bool(s1_ok),
@@ -635,8 +686,9 @@ def gates(sc: dict, results: dict, selftest_ok: bool | None) -> dict:
             "pass": bool(s2_n > 0 and s2_hit == s2_n),
             "n_evaluated": s2_n,
             "supported": s2_hit,
-            "rule": "on every replay-required episode the witness carries both replay checks "
-                    "(artifact identity and environment identity)",
+            "rule": "on every replay-required episode the witness's own artifact-identity and "
+                    "environment-identity checks reproduce the full-structure statuses — an "
+                    "instance-by-instance test, not a restatement of the arm's field set",
         },
         "S3_SELECTIVE_REOPENING_WITHOUT_HIDDEN_HISTORY": {
             "pass": bool(s3_ok),
@@ -732,28 +784,81 @@ def gates(sc: dict, results: dict, selftest_ok: bool | None) -> dict:
         "rule": "reported; never a route by itself",
     }
 
-    # ---- self-contained-witness cross-cut (registered, reported always)
+    # ---- G7: identity-exporting vs self-contained witness (a positive test,
+    # not a cross-cut, because with the M-vs-B5 gates expected to tie this is
+    # where the study's separating content lives).
     sc_arm = per[SELF_CONTAINED_ARM]
     undeclared_idx = [
         i for i, r in enumerate(results["instances"]) if r["locus"] == LOCUS_UNDECLARED
     ]
-    g["WITNESS_SELF_CONTAINMENT_CROSSCUT"] = {
+    other_idx = [i for i in range(n) if i not in set(undeclared_idx)]
+    m_on_und = (
+        sum(raw[M_ARM]["exact"][i] for i in undeclared_idx) / len(undeclared_idx)
+        if undeclared_idx else None
+    )
+    sc_on_und = (
+        sum(raw[SELF_CONTAINED_ARM]["exact"][i] for i in undeclared_idx) / len(undeclared_idx)
+        if undeclared_idx else None
+    )
+    agree_elsewhere = (
+        all(raw[M_ARM]["exact"][i] == raw[SELF_CONTAINED_ARM]["exact"][i] for i in other_idx)
+        if other_idx else None
+    )
+    sc_fa_und = sum(
+        1 for i in undeclared_idx
+        if ov[i] == REJECT and results["instances"][i]["arms"][SELF_CONTAINED_ARM]["verdict"] == ACCEPT
+    )
+    g["G7_WITNESS_SELF_CONTAINMENT"] = {
+        "pass": bool(
+            undeclared_idx
+            and m_on_und is not None
+            and sc_on_und is not None
+            and m_on_und > sc_on_und
+            and agree_elsewhere
+        ),
         "status": "EVALUATED" if undeclared_idx else "CANNOT_CHECK_NO_UNDECLARED_INSTANCES",
         "n_evaluated": len(undeclared_idx),
-        "self_contained_exact_on_undeclared": (
-            sum(raw[SELF_CONTAINED_ARM]["exact"][i] for i in undeclared_idx) / len(undeclared_idx)
-            if undeclared_idx
-            else None
-        ),
-        "M_exact_on_undeclared": (
-            sum(raw[M_ARM]["exact"][i] for i in undeclared_idx) / len(undeclared_idx)
-            if undeclared_idx
-            else None
-        ),
+        "n_evaluated_elsewhere": len(other_idx),
+        "M_exact_on_undeclared": m_on_und,
+        "self_contained_exact_on_undeclared": sc_on_und,
+        "self_contained_false_acceptance_on_undeclared": sc_fa_und,
+        "identical_everywhere_else": agree_elsewhere,
         "self_contained_exact_overall": sc_arm["exact_rate"],
-        "self_contained_false_acceptance": sc_arm["false_acceptance"],
-        "rule": "registered cross-cut, not a gate: what an identity-exporting witness buys over a "
-                "self-contained one, measured only on the undeclared-upstream locus",
+        "rule": "a positive test with its own denominator: on undeclared-upstream episodes the "
+                "identity-exporting witness is strictly more exact than the self-contained one, and "
+                "the two are identical on every other episode — so the separation is the mechanism, "
+                "not a rate. Zero such episodes reports CANNOT_CHECK, never a pass.",
+    }
+
+    # ---- registered-mechanism coverage ledger (design §3): every registered
+    # mechanism with the number of instances that exercised it.
+    ledger = sc["coverage_ledger"]
+    expected_variants = set(CENSOR_VARIANTS_ALL)
+    undrawn = {
+        "censor_variants": sorted(expected_variants - set(ledger["censor_variant"])),
+        "cells": sorted({f"{s2_}|{m2_}" for s2_, m2_ in CELLS} - set(ledger["cell"])),
+        "loci": sorted(
+            {f"{st}|{lo}" for st in ("STALE_OR_WRONG_SOURCE", "HIDDEN_DEPENDENCE") for lo in LOCI}
+            - set(ledger["locus"])
+        ),
+    }
+    g["COVERAGE_LEDGER"] = {
+        "n_evaluated": n,
+        "drawn": ledger,
+        "never_exercised": undrawn,
+        "all_registered_mechanisms_exercised": not any(undrawn.values()),
+        "rule": "reported, not a gate: any registered mechanism with zero instances is named here so "
+                "no violation count computed over it can be read as 'checked and fine'",
+    }
+
+    # ---- agreement between the two independent check implementations
+    g["IMPLEMENTATION_AGREEMENT"] = {
+        "n_evaluated": max((v["n"] for v in sc["implementation_agreement"].values()), default=0),
+        "per_check": sc["implementation_agreement"],
+        "distinct_implementations": list(DISTINCT_IMPLEMENTATIONS),
+        "rule": "M and B5 run different code for source status, dependence, environment identity "
+                "(computational mode) and preservation; the remaining seven checks are arithmetic "
+                "thin enough that two implementations would coincide, and are reported as shared",
     }
 
     # ---- route
@@ -783,6 +888,13 @@ def gates(sc: dict, results: dict, selftest_ok: bool | None) -> dict:
         route = "PARENT_SUFFICIENT"
         reason = "the federation is matched but a sufficiency conjunct fails"
         terminal = "WITNESS_NOT_CLAIM_SUFFICIENT:" + ",".join(g["G5_SUFFICIENCY"]["failed_conjuncts"])
+    if terminal == "WITNESS_CLAIM_SUFFICIENT_AT_LOWER_EXPORT" and not g["G7_WITNESS_SELF_CONTAINMENT"]["pass"]:
+        if g["G7_WITNESS_SELF_CONTAINMENT"]["status"].startswith("CANNOT_CHECK"):
+            terminal += "__SELF_CONTAINMENT_CANNOT_CHECK"
+        else:
+            terminal += "__SELF_CONTAINMENT_NOT_SEPARATED"
+    elif terminal == "WITNESS_CLAIM_SUFFICIENT_AT_LOWER_EXPORT":
+        terminal += "__REQUIRES_IDENTITY_EXPORT"
     g["ROUTE"] = {
         "route": route,
         "reason": reason,
@@ -828,11 +940,22 @@ def render_md(analysis: dict) -> str:
         L.append(f"| {cls} | " + " | ".join(row) + " |")
     L.append("\n## Gates\n")
     for k, v in analysis["gates"].items():
-        if k in ("ROUTE", "COST", "WITNESS_SELF_CONTAINMENT_CROSSCUT"):
+        if k in ("ROUTE", "COST", "COVERAGE_LEDGER", "IMPLEMENTATION_AGREEMENT"):
             continue
         L.append(f"- **{k}**: pass={v.get('pass')}, n_evaluated={v.get('n_evaluated')} — {v.get('rule', '')}")
     for k, v in analysis["gates"]["G5_SUFFICIENCY"]["conjuncts"].items():
         L.append(f"  - {k}: pass={v['pass']}, n_evaluated={v['n_evaluated']}")
+    cl = analysis["gates"]["COVERAGE_LEDGER"]
+    L.append("\n## Registered-mechanism coverage\n")
+    L.append(f"- all registered mechanisms exercised: **{cl['all_registered_mechanisms_exercised']}**")
+    for k, v in cl["never_exercised"].items():
+        L.append(f"- never exercised — {k}: {v if v else 'none'}")
+    ia = analysis["gates"]["IMPLEMENTATION_AGREEMENT"]
+    L.append(
+        f"\nM/B5 implementation agreement (distinct code on {', '.join(ia['distinct_implementations'])}): "
+        + ", ".join(f"{c} {v['agree']}/{v['n']}" for c, v in ia["per_check"].items() if v["n"])
+        + "\n"
+    )
     r = analysis["gates"]["ROUTE"]
     L.append(f"\n## Route\n\n`{r['route']}` — {r['reason']}. Witness terminal: `{r['witness_terminal']}`. Cost: `{r['cost_flag']}`.\n")
     return "\n".join(L)
