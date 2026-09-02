@@ -17,7 +17,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[2]
 FM = ROOT / "research/experiments/fm-exact"
-SUITES = ["FM10", "FM20"]
+SUITES = ["FM10", "FM20", "FM30"]
 
 
 @pytest.fixture(scope="module")
@@ -144,9 +144,11 @@ def test_generated_family_intent_is_verified_not_assumed(fm_path, suite):
 
     spec = load_suite(suite)
     mod = sys.modules[f"{suite.lower()}_suite"]
+    allowed = getattr(mod, "EXPECTED_DISPOSITION", None)
     pairs, _ = spec.generate("unittest", f"{suite}-UNITTEST", {f: 2 for f in spec.families})
     for inst, ans in pairs:
-        assert ans.disposition in mod.EXPECTED_DISPOSITION[inst.family], (
+        expected = allowed[inst.family] if allowed else {inst.family}
+        assert ans.disposition in expected, (
             f"{inst.instance_id}: family {inst.family} produced {ans.disposition}"
         )
 
@@ -226,15 +228,24 @@ def test_anti_permissiveness_counter_can_fire(fm_path, suite):
     res, cus = run_instances(spec, pairs, "T", "seed")
     sc = score(spec, res, cus)
 
-    def accepts(label: str) -> bool:
-        return not label.startswith("BLOCK") and not label.startswith("REJECT")
+    if spec.unsafe_scope is not None and spec.unsafe_claim is not None:
+        scope = [i for i, e in enumerate(sc["expected_full"]) if spec.unsafe_scope(e)]
 
-    blocked = [i for i, lab in enumerate(sc["labels"]) if not accepts(lab)]
-    assert blocked, f"{suite}: no oracle-rejected instances to evaluate the gate on"
-    over = {
-        a: sum(1 for i in blocked if accepts(sc["_preds"][a][i])) for a in sc["per_arm"]
-    }
-    assert max(over.values()) > 0, f"{suite}: the over-acceptance counter is dead: {over}"
+        def unsafe(a: str, i: int) -> bool:
+            return bool(spec.unsafe_claim(sc["_records"][i][a], sc["expected_full"][i]))
+    else:
+
+        def accepts(label: str) -> bool:
+            return not label.startswith("BLOCK") and not label.startswith("REJECT")
+
+        scope = [i for i, lab in enumerate(sc["labels"]) if not accepts(lab)]
+
+        def unsafe(a: str, i: int) -> bool:
+            return accepts(sc["_preds"][a][i])
+
+    assert scope, f"{suite}: no in-scope instances to evaluate the gate on"
+    over = {a: sum(1 for i in scope if unsafe(a, i)) for a in sc["per_arm"]}
+    assert max(over.values()) > 0, f"{suite}: the unsafe-claim counter is dead: {over}"
 
 
 @pytest.mark.parametrize("suite", SUITES)
