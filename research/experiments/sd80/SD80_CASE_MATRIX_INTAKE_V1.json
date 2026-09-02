@@ -1,0 +1,212 @@
+{
+ "schema_version": "orion.v2.sd80-case-matrix-intake.v1",
+ "title": "SD80 naturalistic case-matrix intake V1 + PC-R7 obligation-provenance tagging calibration",
+ "class": "CASE_MATRIX_INTAKE__NO_ARM_RUN__NO_OUTCOME_ACCESS_BY_TAGGERS_OR_ARMS",
+ "computed_utc": "2026-09-02T14:05:48Z",
+ "host": "Mac (intake, hashing, tagging orchestration); LUNARC unreachable during intake (expired 2FA socket); billy-old reserved for any arm compute",
+ "frozen_inputs": {
+  "pc_r7_design": "research/experiments/pc-r7/PC_R7_NATURALISTIC_OBLIGATION_CELL_DESIGN_V1.{md,json}",
+  "fm80_protocol": "research/experiments/FM80_NATURALISTIC_TRANSFER_DECISIVE_PROTOCOL_V1.{md,json}",
+  "tagging_rule_sha256": "e8f782a581e22cd7d8135c482da055343306b0516087434e036166a9015fc936",
+  "cases_file": "research/experiments/sd80/SD80_CASE_MATRIX_CASES_V1.json",
+  "cases_file_sha256": "0bd039d134b6f641fe267e69f5983e2533f66bd4e2bfaa02fb083b2fa6ed5d5f",
+  "hidden_keys_file_sha256": "91237f3e6db8cd61d4c66763b509aa5bf46291e9d3ecbab82798e254645ee665",
+  "source_manifest_sha256": {
+   "freek_100_theorems.html": {
+    "sha256": "dbea4a9f7744a1befdb9632b227ad5f17ff89b651f0cd1241be6b8508e15d220",
+    "bytes": 75867
+   },
+   "mathlib4_docs_100.yaml": {
+    "sha256": "2e94b6196e1f087f1c13efcb787162a134689e76488b6559a9f7b2e9d513d1d2",
+    "bytes": 14422
+   },
+   "mathlib4_docs_1000.yaml": {
+    "sha256": "e0863f0c9fc0812dd4c6252d772a88aac12a7cbb1d73d5f3298b79a4f95d6efa",
+    "bytes": 83340
+   },
+   "mathlib4_master_commit.json": {
+    "sha256": "eaaf0222ef4f6e1903f4e28f1e88224c3e2c54b1ca6759170ddcfad4d7f6bc76",
+    "bytes": 48038
+   },
+   "or_forum_probe.json": {
+    "sha256": "d8d9560424aacaab10ad15a3b681ad12ff894cd90aa0d7d5aeaae1424ef7b216",
+    "bytes": 303
+   },
+   "or_note_probe.json": {
+    "sha256": "b4e7ee117f3dba945e8d975827b80875847cf5b9b91e2b38aba2d779b15427b3",
+    "bytes": 271
+   },
+   "rpcb_effect_level.csv": {
+    "sha256": "111a99b2fa5834161f48fc3038b96545dcc75dbdb8e5bff1736bd26bc40c9465",
+    "bytes": 116726
+   },
+   "rpcb_effect_level_dict.csv": {
+    "sha256": "5c92bdba30780dbfb04e0f43f3c156664f879cab5b6620b75a3a9cd6713530f2",
+    "bytes": 19992
+   },
+   "rpcb_experiment_level.csv": {
+    "sha256": "278086ca2cf856062e996be66e939eff93c3cd9d7f946f983758e03433f173e9",
+    "bytes": 71213
+   },
+   "rpcb_experiment_level_dict.csv": {
+    "sha256": "7432b12b5fc65fa6b8583746da45da94c7bafbd744ebecd9ee5cfa3ebccb2cc7",
+    "bytes": 15065
+   },
+   "rpcb_paper_level.csv": {
+    "sha256": "0a7936525dabb0a4b39210fbd4c755be96c457fbf49d2c076c7fd754e9aa4b9b",
+    "bytes": 18652
+   },
+   "rpcb_paper_level_dict.csv": {
+    "sha256": "96017508043e3203904da3144bb99273a37d02710b3833dc22cee71dc8753613",
+    "bytes": 4465
+   },
+   "rpp_codebook.csv": {
+    "sha256": "0a7158b724917dc71441a3ca0477c109b90adc6684416bebd3b886bfb10b5f97",
+    "bytes": 22385
+   },
+   "rpp_data.csv": {
+    "sha256": "4d87a2636181d8e31230422854cf0fabeaecd2f1b47a59627482c05a2b56d54d",
+    "bytes": 259220
+   },
+   "rpp_osf_registrations.json": {
+    "sha256": "baa6c7f308ea14019921ab3182dc4d70212a7456f4ef93b9d3573871cd0111cc",
+    "bytes": 48510
+   },
+   "rpp_osf_registrations_fetch.txt": {
+    "sha256": "e5d7f51db63b7153d197695f411aff43ff3cdf698cadf47dba2b31f30d9c92b1",
+    "bytes": 17
+   }
+  }
+ },
+ "sources": {
+  "PSYCHOLOGY_RPP": {
+   "lawful_source": "OSF public API + published dataset (ezcuj/ytpuq rpp_data.csv; registrations via api.osf.io per project)",
+   "witness_class": "REGISTERED_REPLICATION_VERDICT"
+  },
+  "CANCER_BIOLOGY_RPCB": {
+   "lawful_source": "OSF public API + published final-analysis dataset (e5nvr); eLife Registered Reports",
+   "witness_class": "REGISTERED_REPORT_REPLICATION_OUTCOME"
+  },
+  "FORMAL_MATHEMATICS_1000PLUS": {
+   "lawful_source": "mathlib4 docs/1000.yaml at master commit 8571709fdb0fea8d447fb72b4516559122daf569 + Wikidata EntityData",
+   "witness_class": "MACHINE_CHECKED_FORMALIZATION_WITNESS"
+  },
+  "MACHINE_LEARNING_MLRC": {
+   "lawful_source": "SD30 MLRC journal-track inventory (OpenReview/TMLR)",
+   "witness_class": "INDEPENDENT_PROSE_REPRODUCTION_VERDICT",
+   "status": "RECORDED_NOT_COUNTED: no outcome-free evidence layer (report text carries the verdict; OpenReview API challenge-gated 2026-09-02)"
+  }
+ },
+ "domain_counts_raw": {
+  "PSYCHOLOGY_RPP": {
+   "records": 100,
+   "pc_r7_eligible": 100,
+   "tagging_pool": 100
+  },
+  "CANCER_BIOLOGY_RPCB": {
+   "records": 76,
+   "pc_r7_eligible": 50,
+   "tagging_pool": 50
+  },
+  "FORMAL_MATHEMATICS_1000PLUS": {
+   "records": 243,
+   "pc_r7_eligible": 243,
+   "tagging_pool": 60
+  },
+  "MACHINE_LEARNING_MLRC": {
+   "records": 36,
+   "pc_r7_eligible": 0,
+   "tagging_pool": 0
+  }
+ },
+ "fm80_eligibility_note": "FM80 s3 items c-e and s4 remoteness are donor-specific; recorded NOT_APPLICABLE for PC-R7 (no donor arm) and PENDING for FM80 (no donor key / K / corpus freeze exists yet). FM80 eligibility is therefore PENDING for every case; PC-R7 eligibility uses items a, b, f, g.",
+ "gn0_calibration": {
+  "n_cases": 20,
+  "n_agree": 20,
+  "agreement_rate": 1.0,
+  "gn0_threshold": 0.9,
+  "gn0_pass": true,
+  "tag_counts": {
+   "A": {
+    "EXTERNAL_VERIFIABLE": 20,
+    "INTERNAL": 0
+   },
+   "B": {
+    "EXTERNAL_VERIFIABLE": 20,
+    "INTERNAL": 0
+   }
+  },
+  "per_domain": {
+   "PSYCHOLOGY_RPP": {
+    "n": 7,
+    "agree": 7
+   },
+   "CANCER_BIOLOGY_RPCB": {
+    "n": 7,
+    "agree": 7
+   },
+   "FORMAL_MATHEMATICS_1000PLUS": {
+    "n": 6,
+    "agree": 6
+   }
+  },
+  "disagreements": []
+ },
+ "full_tagging": {
+  "per_domain": {
+   "PSYCHOLOGY_RPP": {
+    "pc_r7_eligible_cases": 100,
+    "tagging_pool": 100,
+    "tagged": 100,
+    "missing": [],
+    "full_round_agreement_rate": 1.0,
+    "tag_counts": {
+     "EXTERNAL_VERIFIABLE": 100,
+     "INTERNAL": 0
+    },
+    "both_tags_ge_15": false,
+    "eligible_ge_30": true
+   },
+   "CANCER_BIOLOGY_RPCB": {
+    "pc_r7_eligible_cases": 50,
+    "tagging_pool": 50,
+    "tagged": 50,
+    "missing": [],
+    "full_round_agreement_rate": 1.0,
+    "tag_counts": {
+     "EXTERNAL_VERIFIABLE": 50,
+     "INTERNAL": 0
+    },
+    "both_tags_ge_15": false,
+    "eligible_ge_30": true
+   },
+   "FORMAL_MATHEMATICS_1000PLUS": {
+    "pc_r7_eligible_cases": 243,
+    "tagging_pool": 60,
+    "tagged": 60,
+    "missing": [],
+    "full_round_agreement_rate": 1.0,
+    "tag_counts": {
+     "EXTERNAL_VERIFIABLE": 59,
+     "INTERNAL": 1
+    },
+    "both_tags_ge_15": false,
+    "eligible_ge_30": true
+   }
+  },
+  "disagreements": [],
+  "n_untagged": 0
+ },
+ "sufficiency": {
+  "verdict": "INSUFFICIENT_ELIGIBLE_NATURALISTIC_CASES",
+  "reasons": [
+   "TAG_POPULATION_BELOW_15_IN_SOME_DOMAIN: PSYCHOLOGY_RPP:{'EXTERNAL_VERIFIABLE': 100, 'INTERNAL': 0}, CANCER_BIOLOGY_RPCB:{'EXTERNAL_VERIFIABLE': 50, 'INTERNAL': 0}, FORMAL_MATHEMATICS_1000PLUS:{'EXTERNAL_VERIFIABLE': 59, 'INTERNAL': 1}"
+  ],
+  "rule": "PC-R7 s1: both tags >= 15 cases/domain in every domain, >= 30 eligible/domain, FM80 s2 structure, GN0 >= 0.90"
+ },
+ "authority": {
+  "grants_claim": false,
+  "arm_run_performed": false,
+  "scientific_truth_authorized": false
+ }
+}
