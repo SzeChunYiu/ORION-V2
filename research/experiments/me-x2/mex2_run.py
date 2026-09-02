@@ -229,7 +229,7 @@ def gates(sc: dict, results: dict, selftest_ok: bool | None, label: str) -> dict
     min_d = MIN_DECOYS.get(label, 1)
     decoy_ok = all(sc["decoy_counts"].get(c, 0) >= min_d for c in CLASSES if (TYPICAL_LEVEL[c] or 0) >= 1)
     inverse_ok = all(sc["inverse_decoy_counts"].get(c, 0) >= min_d for c in CLASSES if TYPICAL_LEVEL[c] == 0) and sc["ci_apparent_identifiable"] >= min_d
-    g["G0a_KNOWN_ANSWER"] = {"pass": selftest_ok, "rule": "16 hand-authored fixtures (oracle targets; M and B5 decision-correct) + separation pair reproduced in selftest"}
+    g["G0a_KNOWN_ANSWER"] = {"pass": selftest_ok, "rule": "14 hand-authored fixtures (oracle targets; M and B5 decision-correct) + separation pair reproduced in selftest"}
     g["G0b_ORACLE_SELF_AGREEMENT"] = {"pass": bool(sc["g0b_all_agree"] and sc["variant_invariants_hold"] and decoy_ok and inverse_ok), "exhaustive_agrees_all": sc["g0b_all_agree"], "variant_invariants_hold": sc["variant_invariants_hold"],
                                       "decoy_coverage_ok": decoy_ok, "inverse_decoy_coverage_ok": inverse_ok, "decoy_counts": sc["decoy_counts"], "inverse_decoy_counts": sc["inverse_decoy_counts"], "ci_apparent_identifiable": sc["ci_apparent_identifiable"], "min_per_class": min_d,
                                       "rule": "enumeration == branch-and-bound and a truth-agnostic decision-correct policy exists on every instance; variant invariants hold; >= min decoys per apparent class (typical level >= 1) and >= min inverse decoys per level-0 class and apparent-CANNOT_IDENTIFY"}

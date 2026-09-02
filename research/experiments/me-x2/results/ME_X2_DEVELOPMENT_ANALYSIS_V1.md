@@ -17,17 +17,17 @@ Results sha256 `fb6c55e058a857ad37f3972fb0cc2d0f34bf3d3cf45349f197f400aed281a520
 | B5_R1_VERDICT_ONLY | 0.688 | 0.688 | 0.688 | 0.708 | 5 | 8 | 0 | 0/7 | 6 | 0 | 2 | 2.244 | 9.833 | n/a | n/a | 1.0 |
 | B5_R2_PLUS_CANDIDATE_SET | 0.875 | 0.917 | 0.917 | 0.729 | 0 | 6 | 6 | 7/7 | 3 | 0 | 0 | 2.244 | 9.312 | 0.167 | 0.167 | 0.9 |
 | B5_R3_PLUS_DISCRIMINATOR_TABLES | 0.979 | 0.958 | 0.958 | 0.833 | 0 | 1 | 1 | 7/7 | 29 | 0 | 0 | 3.146 | 9.938 | 0.167 | 0.167 | 14.4 |
-| B5_R4_PLUS_DISPOSITION_RECORDS | 0.979 | 0.958 | 0.958 | 0.833 | 0 | 1 | 0 | 7/7 | 32 | 0 | 0 | 3.146 | 9.938 | 0.167 | 0.167 | 12.0 |
-| B5_STRONGEST_FAITHFUL_PARENT_FEDERATION | 1.000 | 0.979 | 0.979 | 0.854 | 0 | 0 | 0 | 7/7 | 31 | 0 | 0 | 3.098 | 9.896 | 0.146 | 0.146 | 11.4 |
-| B5_NO_ABSTENTION_GATE | 0.875 | 0.875 | 0.875 | 0.896 | 6 | 0 | 0 | 5/7 | 36 | 0 | 1 | 2.976 | 10.938 | 0.146 | 0.146 | 29.8 |
-| M_ME_LOCUS_PLUS_MINIMUM_ESCALATION | 1.000 | 0.938 | 0.938 | 0.854 | 0 | 0 | 0 | 7/7 | 16 | 0 | 0 | 3.488 | 10.417 | 0.146 | 0.146 | 34.6 |
+| B5_R4_PLUS_DISPOSITION_RECORDS | 0.979 | 0.958 | 0.958 | 0.833 | 0 | 1 | 0 | 7/7 | 32 | 0 | 0 | 3.146 | 9.938 | 0.167 | 0.167 | 11.9 |
+| B5_STRONGEST_FAITHFUL_PARENT_FEDERATION | 1.000 | 0.979 | 0.979 | 0.854 | 0 | 0 | 0 | 7/7 | 31 | 0 | 0 | 3.098 | 9.896 | 0.146 | 0.146 | 11.3 |
+| B5_NO_ABSTENTION_GATE | 0.875 | 0.875 | 0.875 | 0.896 | 6 | 0 | 0 | 5/7 | 36 | 0 | 1 | 2.976 | 10.938 | 0.146 | 0.146 | 29.9 |
+| M_ME_LOCUS_PLUS_MINIMUM_ESCALATION | 1.000 | 0.938 | 0.938 | 0.854 | 0 | 0 | 0 | 7/7 | 16 | 0 | 0 | 3.488 | 10.417 | 0.146 | 0.146 | 34.5 |
 | M_MINUS_LOCUS_DIAGNOSIS | 0.583 | 0.625 | 0.583 | 0.438 | 0 | 20 | 20 | 7/7 | 46 | 0 | 0 | -4.244 | 3.188 | 0.146 | 0.146 | 10.1 |
-| M_LOCUS_LABELS_SHUFFLED | 0.250 | 0.146 | 0.250 | 0.125 | 3 | 35 | 9 | 6/7 | 29 | 0 | 0 | -1.293 | 5.958 | 0.818 | 0.818 | 78.4 |
-| M_MINUS_DIAGNOSTIC_EVALUATOR_GATE | 0.917 | 0.854 | 0.854 | 0.896 | 4 | 0 | 0 | 5/7 | 19 | 0 | 1 | 3.488 | 11.292 | 0.146 | 0.146 | 35.9 |
+| M_LOCUS_LABELS_SHUFFLED | 0.250 | 0.146 | 0.250 | 0.125 | 3 | 35 | 9 | 6/7 | 29 | 0 | 0 | -1.293 | 5.958 | 0.818 | 0.818 | 78.2 |
+| M_MINUS_DIAGNOSTIC_EVALUATOR_GATE | 0.917 | 0.854 | 0.854 | 0.896 | 4 | 0 | 0 | 5/7 | 19 | 0 | 1 | 3.488 | 11.292 | 0.146 | 0.146 | 36.3 |
 | M_MINUS_LOWER_LEVEL_DISPOSITION | 0.917 | 0.854 | 0.854 | 0.896 | 4 | 0 | 0 | 5/7 | 7 | 0 | 1 | 4.171 | 11.854 | 0.146 | 0.146 | 26.0 |
-| M_MINUS_PROSPECTIVE_DISCRIMINATOR | 0.938 | 0.875 | 0.875 | 0.792 | 0 | 3 | 3 | 7/7 | 4 | 0 | 0 | 5.463 | 12.333 | 0.146 | 0.146 | 38.8 |
-| M_ALWAYS_ESCALATE_WHEN_STUCK | 0.271 | 0.604 | 0.625 | 0.625 | 34 | 16 | 16 | 2/7 | 46 | 5 | 0 | 7.024 | 15.417 | 0.146 | 0.146 | 27.0 |
-| M_NEVER_ESCALATE | 0.646 | 0.938 | 0.938 | 0.500 | 0 | 17 | 17 | 7/7 | 16 | 0 | 0 | -2.707 | 5.125 | 0.146 | 0.146 | 32.6 |
+| M_MINUS_PROSPECTIVE_DISCRIMINATOR | 0.938 | 0.875 | 0.875 | 0.792 | 0 | 3 | 3 | 7/7 | 4 | 0 | 0 | 5.463 | 12.333 | 0.146 | 0.146 | 39.0 |
+| M_ALWAYS_ESCALATE_WHEN_STUCK | 0.271 | 0.604 | 0.625 | 0.625 | 34 | 16 | 16 | 2/7 | 46 | 5 | 0 | 7.024 | 15.417 | 0.146 | 0.146 | 27.2 |
+| M_NEVER_ESCALATE | 0.646 | 0.938 | 0.938 | 0.500 | 0 | 17 | 17 | 7/7 | 16 | 0 | 0 | -2.707 | 5.125 | 0.146 | 0.146 | 32.9 |
 | C_RANDOM_POLICY | 0.208 | 0.104 | 0.104 | 0.333 | 17 | 27 | 13 | 4/7 | 29 | 3 | 3 | 1.268 | 9.417 | 0.378 | 0.470 | 1.9 |
 | C_NEVER_INTERVENE | 0.146 | 0.146 | 0.146 | 0.000 | 0 | 41 | 41 | 7/7 | 0 | 0 | 0 | -7.634 | 0.000 | 0.146 | 0.146 | 0.1 |
 
@@ -59,7 +59,7 @@ Results sha256 `fb6c55e058a857ad37f3972fb0cc2d0f34bf3d3cf45349f197f400aed281a520
 
 ## Gates
 
-- **G0a_KNOWN_ANSWER**: pass=True — 16 hand-authored fixtures (oracle targets; M and B5 decision-correct) + separation pair reproduced in selftest
+- **G0a_KNOWN_ANSWER**: pass=True — 14 hand-authored fixtures (oracle targets; M and B5 decision-correct) + separation pair reproduced in selftest
 - **G0b_ORACLE_SELF_AGREEMENT**: pass=True — enumeration == branch-and-bound and a truth-agnostic decision-correct policy exists on every instance; variant invariants hold; >= min decoys per apparent class (typical level >= 1) and >= min inverse decoys per level-0 class and apparent-CANNOT_IDENTIFY
 - **G0c_NULL_CALIBRATION**: pass=True — NEVER_INTERVENE decision-correct = 0 on identifiable instances; RANDOM <= 0.25; M scored against the partner's oracle <= M's true rate - 0.30
 - **G1a_B5_REPRODUCES_M**: pass=False — intervention/declaration sequences identical on >= 99.5% of instances and no stratum > 5% discordant

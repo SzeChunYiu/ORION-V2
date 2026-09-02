@@ -187,9 +187,13 @@ Development seed (public): `ME-X2-DEV-20260902`.
 **Power / MDE.** Primary statistic = paired per-instance decision-correct
 indicator, M vs B5, exact two-sided binomial (McNemar exact) on discordant
 pairs; estimand P(M) − P(B5) with a paired Wald interval. Pooled n = 1 200:
-6 one-directional discordants (0.5%) reach p = 0.031, 8 reach p = 0.008; per
-stratum n = 100, 6 discordants reach p = 0.031. Prior expectation is zero
-discordance; the test is two-sided, so a B5 advantage is equally detectable (G1c).
+6 one-directional discordants (0.5%) reach p = 0.031, 8 reach p = 0.008. **Per
+stratum n is not 100**: the stratum is the *oracle* class, assigned per instance,
+so a stratum receives its 50 anchored instances plus whatever partners
+re-stratify into it (observed range at scale 50–273). The pooled MDE is the
+registered one; per-stratum counts are reported as observed, and every stratum
+retains ≥ 50 instances, which is what G1a's 5%-per-stratum clause needs. The
+test is two-sided, so a B5 advantage is equally detectable (G1c).
 
 ## 4. Arms (protocol V2 §Baselines, §4.5)
 
@@ -234,6 +238,15 @@ among admissible proposals. One addition, registered here as part of M: a
 if, under every registered outcome, every hypothesis establishable now stays
 establishable. Spending the episode out of reach of a warranted minimal
 intervention is a resource leak, not a lower-level disposition.
+
+Two orderings the ORION reference semantics do **not** fix, and which this design
+registers as M's rendering rather than as discoveries: (i) among admissible
+discriminators M takes the **cheapest** — the semantics say which actions are
+admissible, never which to try first, so M has no lookahead; (ii) the
+reachability rule is **fail-closed over every live hypothesis**, so where the
+budget forces foreclosing one live hypothesis to establish another, M abstains
+instead of choosing. Both are conservative renderings, and both are expected to
+cost M decisions against a planner that optimises expected cost end to end.
 
 **Ablations / controls (protocol V2 §Required ablations):**
 `M_MINUS_LOCUS_DIAGNOSIS`, `M_LOCUS_LABELS_SHUFFLED`,
@@ -334,6 +347,17 @@ the design invariant that no arm imports the oracle.
   heavy job; never CI on the Mac mini.
 
 ## 9. Non-goals, no-rescue clause, registered limitations
+
+A protected-scale **dry run on a public throwaway seed**
+(`ME-X2-DRYRUN-20260902`, 1 200 instances) was executed before merge to exercise
+the G0 clauses at scale, because decoy coverage and the random-null margin had
+only ever been seen at n = 48. Its outputs are discarded and are not evidence.
+No constant, gate threshold, oracle rule, generator rule or arm policy was
+changed in response — only two factual defects in this frozen text (a fixture
+count and the per-stratum-n claim above), the registration of M's two orderings
+in §4.1, and this disclosure. What the dry run showed is reported in the
+parent-fidelity receipt, so that the protected outcome is not presented as a
+surprise.
 
 No stratum weight, oracle rule, arm, seed, gate or threshold changes after the
 protected results file exists. Development-only tuning surface: arm-glue bug

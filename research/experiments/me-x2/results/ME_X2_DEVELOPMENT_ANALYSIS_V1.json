@@ -4,10 +4,10 @@
     "COST": {
       "B5_mean_cost": 9.895833333333334,
       "B5_mean_regret": 3.097560975609756,
-      "B5_wall_ms": 11.425123,
+      "B5_wall_ms": 11.332381,
       "M_mean_cost": 10.416666666666666,
       "M_mean_regret": 3.4878048780487805,
-      "M_wall_ms": 34.58275,
+      "M_wall_ms": 34.495249,
       "flag": "COST_PARITY",
       "instances_B5_lower_regret": 11,
       "instances_M_lower_regret": 5,
@@ -16,7 +16,7 @@
     },
     "G0a_KNOWN_ANSWER": {
       "pass": true,
-      "rule": "16 hand-authored fixtures (oracle targets; M and B5 decision-correct) + separation pair reproduced in selftest"
+      "rule": "14 hand-authored fixtures (oracle targets; M and B5 decision-correct) + separation pair reproduced in selftest"
     },
     "G0b_ORACLE_SELF_AGREEMENT": {
       "ci_apparent_identifiable": 1,
@@ -416,7 +416,7 @@
         "recurrence": 117,
         "spec_damage": 0,
         "success_rate": 0.1875,
-        "wall_ms": 0.394662
+        "wall_ms": 0.391666
       },
       "B1_UNCERTAINTY_ABSTENTION": {
         "brier": 0.14583333333333334,
@@ -544,7 +544,7 @@
         "recurrence": 0,
         "spec_damage": 0,
         "success_rate": 0.5833333333333334,
-        "wall_ms": 1.530252
+        "wall_ms": 1.522751
       },
       "B2_FAILURE_TAXONOMY_DIAGNOSIS": {
         "brier": null,
@@ -672,7 +672,7 @@
         "recurrence": 80,
         "spec_damage": 1,
         "success_rate": 0.4791666666666667,
-        "wall_ms": 0.666581
+        "wall_ms": 0.659038
       },
       "B3_EQUAL_EXTRA_SEARCH_1_5X": {
         "brier": 0.10869565217391304,
@@ -800,7 +800,7 @@
         "recurrence": 5,
         "spec_damage": 0,
         "success_rate": 0.9375,
-        "wall_ms": 2.887253
+        "wall_ms": 2.865999
       },
       "B3_MODEL_BASED_DIAGNOSIS_VOI": {
         "brier": 0.15217391304347827,
@@ -928,7 +928,7 @@
         "recurrence": 8,
         "spec_damage": 0,
         "success_rate": 0.8541666666666666,
-        "wall_ms": 2.780665
+        "wall_ms": 2.754206
       },
       "B4_MDA_MODEL_EXPANSION": {
         "brier": 0.16847826086956522,
@@ -1056,7 +1056,7 @@
         "recurrence": 11,
         "spec_damage": 0,
         "success_rate": 0.8125,
-        "wall_ms": 2.385791
+        "wall_ms": 2.365916
       },
       "B5_NO_ABSTENTION_GATE": {
         "brier": 0.14583333333333334,
@@ -1184,7 +1184,7 @@
         "recurrence": 36,
         "spec_damage": 0,
         "success_rate": 0.8958333333333334,
-        "wall_ms": 29.831375
+        "wall_ms": 29.862083
       },
       "B5_R1_VERDICT_ONLY": {
         "brier": null,
@@ -1312,7 +1312,7 @@
         "recurrence": 6,
         "spec_damage": 0,
         "success_rate": 0.7083333333333334,
-        "wall_ms": 0.981585
+        "wall_ms": 0.966165
       },
       "B5_R2_PLUS_CANDIDATE_SET": {
         "brier": 0.16666666666666666,
@@ -1440,7 +1440,7 @@
         "recurrence": 3,
         "spec_damage": 0,
         "success_rate": 0.7291666666666666,
-        "wall_ms": 0.918333
+        "wall_ms": 0.915914
       },
       "B5_R3_PLUS_DISCRIMINATOR_TABLES": {
         "brier": 0.16666666666666666,
@@ -1568,7 +1568,7 @@
         "recurrence": 29,
         "spec_damage": 0,
         "success_rate": 0.8333333333333334,
-        "wall_ms": 14.425918
+        "wall_ms": 14.424708
       },
       "B5_R4_PLUS_DISPOSITION_RECORDS": {
         "brier": 0.16666666666666666,
@@ -1696,7 +1696,7 @@
         "recurrence": 32,
         "spec_damage": 0,
         "success_rate": 0.8333333333333334,
-        "wall_ms": 11.995962
+        "wall_ms": 11.947794
       },
       "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": {
         "brier": 0.14583333333333334,
@@ -1824,7 +1824,7 @@
         "recurrence": 31,
         "spec_damage": 0,
         "success_rate": 0.8541666666666666,
-        "wall_ms": 11.425123
+        "wall_ms": 11.332381
       },
       "C_NEVER_INTERVENE": {
         "brier": 0.14583333333333334,
@@ -1952,7 +1952,7 @@
         "recurrence": 0,
         "spec_damage": 0,
         "success_rate": 0.0,
-        "wall_ms": 0.125207
+        "wall_ms": 0.125669
       },
       "C_RANDOM_POLICY": {
         "brier": 0.3777268942331411,
@@ -2080,7 +2080,7 @@
         "recurrence": 29,
         "spec_damage": 3,
         "success_rate": 0.3333333333333333,
-        "wall_ms": 1.91146
+        "wall_ms": 1.948041
       },
       "M_ALWAYS_ESCALATE_WHEN_STUCK": {
         "brier": 0.14583333333333334,
@@ -2208,7 +2208,7 @@
         "recurrence": 46,
         "spec_damage": 5,
         "success_rate": 0.625,
-        "wall_ms": 26.998666
+        "wall_ms": 27.220623
       },
       "M_LOCUS_LABELS_SHUFFLED": {
         "brier": 0.8181818181818182,
@@ -2336,7 +2336,7 @@
         "recurrence": 29,
         "spec_damage": 0,
         "success_rate": 0.125,
-        "wall_ms": 78.360998
+        "wall_ms": 78.202961
       },
       "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": {
         "brier": 0.14583333333333334,
@@ -2464,7 +2464,7 @@
         "recurrence": 16,
         "spec_damage": 0,
         "success_rate": 0.8541666666666666,
-        "wall_ms": 34.58275
+        "wall_ms": 34.495249
       },
       "M_MINUS_DIAGNOSTIC_EVALUATOR_GATE": {
         "brier": 0.14583333333333334,
@@ -2592,7 +2592,7 @@
         "recurrence": 19,
         "spec_damage": 0,
         "success_rate": 0.8958333333333334,
-        "wall_ms": 35.890868
+        "wall_ms": 36.29192
       },
       "M_MINUS_LOCUS_DIAGNOSIS": {
         "brier": 0.14583333333333334,
@@ -2720,7 +2720,7 @@
         "recurrence": 46,
         "spec_damage": 0,
         "success_rate": 0.4375,
-        "wall_ms": 10.065418
+        "wall_ms": 10.08929
       },
       "M_MINUS_LOWER_LEVEL_DISPOSITION": {
         "brier": 0.14583333333333334,
@@ -2848,7 +2848,7 @@
         "recurrence": 7,
         "spec_damage": 0,
         "success_rate": 0.8958333333333334,
-        "wall_ms": 25.9645
+        "wall_ms": 26.041583
       },
       "M_MINUS_PROSPECTIVE_DISCRIMINATOR": {
         "brier": 0.14583333333333334,
@@ -2976,7 +2976,7 @@
         "recurrence": 4,
         "spec_damage": 0,
         "success_rate": 0.7916666666666666,
-        "wall_ms": 38.840835
+        "wall_ms": 38.965001
       },
       "M_NEVER_ESCALATE": {
         "brier": 0.14583333333333334,
@@ -3104,7 +3104,7 @@
         "recurrence": 16,
         "spec_damage": 0,
         "success_rate": 0.5,
-        "wall_ms": 32.578372
+        "wall_ms": 32.851411
       }
     }
   }

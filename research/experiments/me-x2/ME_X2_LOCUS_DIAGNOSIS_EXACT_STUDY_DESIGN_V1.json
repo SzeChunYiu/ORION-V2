@@ -92,7 +92,7 @@
   "B4_MDA_MODEL_EXPANSION": "model-discovery-agent style criticism -> model-family expansion (arXiv:2608.09696 style), otherwise B3",
   "B5_NO_ABSTENTION_GATE": "the federation without the abstention gate (federation variant, not an M ablation)",
   "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": "exact finite-horizon expected-cost planner over (candidate set, remaining budget) with the tau=0.9 abstention gate on level>=2 acts, over the typed diagnostic modules; Bayes-optimal test-and-repair sequencing under the uniform prior",
-  "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": "ORION reference semantics only: assess_discrepancy_locus (locus receipt, diagnostic-evaluator adequacy, CANNOT_IDENTIFY), route_frontier_action (witnessed obstruction, discriminator, lower-level disposition), JumpTrigger/JumpProposal/assess_jump/minimum_level (minimum-level policy), plus the fail-closed reachability rule (a discriminating action is admissible only if every establishable hypothesis stays establishable)"
+  "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": "ORION reference semantics only: assess_discrepancy_locus (locus receipt, diagnostic-evaluator adequacy, CANNOT_IDENTIFY), route_frontier_action (witnessed obstruction, discriminator, lower-level disposition), JumpTrigger/JumpProposal/assess_jump/minimum_level (minimum-level policy). Two orderings the ORION semantics do not fix and this study registers: (i) among admissible discriminators M takes the CHEAPEST (greedy, no lookahead) - the reference semantics specify which actions are admissible, never which to try first; (ii) a fail-closed reachability rule - a discriminating action is admissible only if, under every registered outcome, every hypothesis establishable now stays establishable, so M abstains rather than foreclose a live hypothesis it could still have warranted. Both are conservative renderings and both are expected to cost M decisions against an exact planner that optimises expected cost end to end."
  },
  "arms": {
   "B0_RETRY_SEARCH": {
@@ -260,7 +260,7 @@
   "the intervention lattice is the ORION Jump lattice, used as a comparator interface and not presumed correct (protocol V2 axis B)"
  ],
  "naturalistic_validation": "declared a separate later cell: independently authored or native-domain episodes with reviewer-defined loci and minimal interventions before arm outcomes. Nothing from this exact study transfers to it.",
- "no_rescue_clause": "No stratum weight, oracle rule, arm, seed, gate or threshold changes after the protected results file exists. Development-only tuning surface: arm-glue bug fixes validated by the G0a known-answer tests before the seed is revealed. A protected result is never re-run under a new seed; a lane defect found mid-run halts the lane, is receipted, and re-freezes as V2.",
+ "no_rescue_clause": "No stratum weight, oracle rule, arm, seed, gate or threshold changes after the protected results file exists. Development-only tuning surface: arm-glue bug fixes validated by the G0a known-answer tests before the seed is revealed. A protected result is never re-run under a new seed; a lane defect found mid-run halts the lane, is receipted, and re-freezes as V2. A protected-scale dry run on a PUBLIC throwaway seed (ME-X2-DRYRUN-20260902, 1200 instances) was executed before merge to exercise the G0 clauses at scale; its outputs are discarded and are not evidence. No constant, gate threshold, oracle rule, generator rule or arm policy was changed in response to it - only two factual defects in the frozen text (a fixture count and this per-stratum-n claim) and this disclosure. What it showed is reported in the parent-fidelity receipt so that the protected outcome is not presented as a surprise.",
  "oracle_semantics": {
   "cross_check": "bitmask enumeration over all 2^n test subsets and an independent branch-and-bound DFS must agree on every instance (G0b)",
   "identifiable": "some affordable test set separates the truth from every rival",
@@ -302,7 +302,7 @@
  },
  "power": {
   "expectation": "zero discordance; the test is two-sided so a B5 advantage is equally detectable (G1c)",
-  "mde": "6 one-directional discordants (0.5%) reach p = 0.031, 8 reach p = 0.008; per stratum n = 100, 6 discordants reach p = 0.031",
+  "mde": "6 one-directional discordants (0.5%) reach p = 0.031, 8 reach p = 0.008. Per-stratum n is NOT 100: the stratum is the oracle class, which is assigned per instance, so each stratum receives its 50 anchored instances plus however many partners re-stratify into it (observed range at scale: 50-273). The pooled MDE above is the registered one; per-stratum counts are reported as observed and every stratum retains >= 50 instances, which is what G1a's 5%-per-stratum clause needs.",
   "pooled_n": 1200,
   "primary_statistic": "paired per-instance decision-correct indicator, M vs B5; exact two-sided binomial (McNemar exact) on discordant pairs; estimand P(M correct) - P(B5 correct) with a paired Wald interval"
  },
