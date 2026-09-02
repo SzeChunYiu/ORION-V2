@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """E30-R12 evaluation lane: the PC-R6 full-regression evaluator, one new cell.
 
-Registered in ``E30_R12_APPLY_CLEAN_RERUN_DESIGN_V1`` section 8.  This module contains
+Registered in ``E30_R12_APPLY_CLEAN_RERUN_DESIGN_V1`` section 9.  This module contains
 **no evaluation logic of its own**.  It imports
 ``research/experiments/pc-r6/pc_r6_fullreg_eval.py`` (which in turn imports the frozen
 E30-R11 adapter verbatim), registers an ``e30r12`` cell on it, and delegates every stage.

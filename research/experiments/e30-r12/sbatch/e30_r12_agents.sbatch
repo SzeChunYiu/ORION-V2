@@ -13,7 +13,7 @@
 # response envelopes and invokes the arm ONLY where the response is absent or carries
 # EXECUTION_FAILED_MODEL_RESPONSE (an envelope failure holds no model output, so
 # re-dispatching it is execution repair, not resampling).  A COMPLETED_PROPOSAL_ONLY
-# response is never touched -- design section 11, no-rescue clause.
+# response is never touched -- design section 12, no-rescue clause.
 #
 # The served-model pin is fatal: scripts/orion_claude_arms.py raises ServedModelMismatch
 # out of run_arm, so a substituted model kills the worker instead of writing a mixed
@@ -33,7 +33,7 @@ ESCALATE_FROM_PASS=${E30R12_ESCALATE_FROM_PASS:-7}
 export ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET="$PRIMARY_BUDGET"
 export ORION_ARM_HTTP_RETRIES=10
 
-# ---- coordinator authorization gate (design section 12) ----
+# ---- coordinator authorization gate (design section 13) ----
 # Dispatch is refused unless a human-written authorization exists AND acknowledges the
 # exact design bytes: a design edited after authorization is a different study.
 AUTH="$R12/E30_R12_COORDINATOR_AUTHORIZATION.json"

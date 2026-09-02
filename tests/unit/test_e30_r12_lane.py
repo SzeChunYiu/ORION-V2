@@ -571,7 +571,7 @@ def test_agents_gate_on_authorization_and_import_provenance():
                   "human_written_token", "verbatim_operator_instruction",
                   "patch_emission"):
         assert guard in text, guard
-    # A completed response is never resampled (design section 11, no-rescue clause).
+    # A completed response is never resampled (design section 12, no-rescue clause).
     assert "COMPLETED_PROPOSAL_ONLY" in text and "SKIP" in text
 
 

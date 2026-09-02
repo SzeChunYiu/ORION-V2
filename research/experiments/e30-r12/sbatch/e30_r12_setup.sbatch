@@ -46,7 +46,7 @@ done
 [ -e "$R12/inputs" ] || ln -s "$R11/inputs" "$R12/inputs"
 # GR0(b) reads gold patches from baseline_lanes/<task>/BugsInPy/.../bug_patch.txt.
 # Symlinked read-only: it is the same frozen BugsInPy checkout, and the gold control
-# runs only after every arm response is written (design section 9, GR0b).
+# runs only after every arm response is written (design section 10, GR0b).
 [ -e "$R12/baseline_lanes" ] || ln -s "$R11/baseline_lanes" "$R12/baseline_lanes"
 
 # ---- adapter identity (the whole evaluation lane is pinned to this sha) ----

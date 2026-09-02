@@ -279,7 +279,7 @@ def evaluate_gates(per_arm: dict[str, Any], e1: list[dict[str, Any]],
 
 
 def route(gates: dict[str, Any], per_arm: dict[str, Any]) -> dict[str, str]:
-    """Design section 10, evaluated in the registered order."""
+    """Design section 11, evaluated in the registered order."""
     if gates["GR0c"]["status"] != "PASS":
         return {"terminal": "LANE_DEFECT",
                 "detail": "GR0c served-model homogeneity failed; no endpoint may be read"}
