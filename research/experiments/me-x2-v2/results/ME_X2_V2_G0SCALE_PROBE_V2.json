@@ -1,0 +1,63 @@
+{
+  "arms": [
+    "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION",
+    "C_RANDOM_POLICY",
+    "C_NEVER_INTERVENE"
+  ],
+  "g0b": {
+    "ci_apparent_identifiable": 18,
+    "decoy_counts": {
+      "FORMALISM_OR_OPERATOR_INSUFFICIENT": 20,
+      "MEASUREMENT_OR_EVALUATOR_BLIND": 105,
+      "MISSING_PREMISE_OR_DATA": 48,
+      "MODEL_FAMILY_INADEQUATE": 112,
+      "PROBLEM_OBJECTIVE_MISSPECIFIED": 82,
+      "REPRESENTATION_INSUFFICIENT": 32,
+      "TOOL_INSTRUMENT_INADEQUATE": 44,
+      "WORKFLOW_INADEQUATE": 39
+    },
+    "decoy_coverage_ok": true,
+    "exhaustive_agrees_all": true,
+    "inverse_decoy_counts": {
+      "FORMALISM_OR_OPERATOR_INSUFFICIENT": 2,
+      "MEASUREMENT_OR_EVALUATOR_BLIND": 5,
+      "MISSING_PREMISE_OR_DATA": 8,
+      "MODEL_FAMILY_INADEQUATE": 18,
+      "NO_ESCALATION_NEEDED": 49,
+      "PROBE_ACTION_INSUFFICIENT": 5,
+      "PROBLEM_OBJECTIVE_MISSPECIFIED": 4,
+      "REPRESENTATION_INSUFFICIENT": 5,
+      "SEARCH_INSUFFICIENT": 31,
+      "TOOL_INSTRUMENT_INADEQUATE": 1
+    },
+    "inverse_decoy_coverage_ok": true,
+    "variant_invariants_hold": true
+  },
+  "g0c_v1_arms_only": {
+    "M_V1_decision_rate": 0.9758333333333333,
+    "M_V1_within_pair_swap_rate": 0.2025,
+    "margin_ok": true,
+    "n_identifiable": 1047,
+    "never_intervene_correct_on_identifiable": 0,
+    "random_decision_rate": 0.17833333333333334
+  },
+  "n_instances": 1200,
+  "note": "coverage probe only; V2 arms excluded by construction; not evidence for any arm claim",
+  "passed": true,
+  "per_stratum_n": {
+    "CANNOT_IDENTIFY": 153,
+    "FORMALISM_OR_OPERATOR_INSUFFICIENT": 63,
+    "MEASUREMENT_OR_EVALUATOR_BLIND": 72,
+    "MISSING_PREMISE_OR_DATA": 85,
+    "MODEL_FAMILY_INADEQUATE": 101,
+    "NO_ESCALATION_NEEDED": 272,
+    "PROBE_ACTION_INSUFFICIENT": 68,
+    "PROBLEM_OBJECTIVE_MISSPECIFIED": 82,
+    "REPRESENTATION_INSUFFICIENT": 69,
+    "SEARCH_INSUFFICIENT": 122,
+    "TOOL_INSTRUMENT_INADEQUATE": 62,
+    "WORKFLOW_INADEQUATE": 51
+  },
+  "public_seed": "ME-X2-V2-G0SCALE-PUBLIC-20260902",
+  "schema_version": "orion.v2.me-x2-v2.revival-study-analysis.v2.g0scale"
+}
