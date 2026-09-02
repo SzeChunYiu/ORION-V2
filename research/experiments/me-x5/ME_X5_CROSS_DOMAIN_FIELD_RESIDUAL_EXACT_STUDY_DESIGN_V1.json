@@ -1,0 +1,594 @@
+{
+  "arms": {
+    "B0_DIRECT_NATIVE_PIPELINE": {
+      "channels": null,
+      "kind": "single_parent",
+      "note": "native pipeline, no explicit control layer",
+      "rung": 0
+    },
+    "B1_CALIBRATED_ABSTENTION": {
+      "channels": null,
+      "kind": "single_parent",
+      "note": "B0 plus selective prediction on any censored fact",
+      "rung": 0
+    },
+    "B2_PROVENANCE_VERIFIER_RUNTIME": {
+      "channels": null,
+      "kind": "single_parent",
+      "note": "provenance revocation plus apparatus validity",
+      "rung": 0
+    },
+    "B3_DIAGNOSIS_METAREASONING": {
+      "channels": null,
+      "kind": "single_parent",
+      "note": "model-based diagnosis over identity/apparatus/evaluator/scope",
+      "rung": 0
+    },
+    "B4_TMS_ASSURANCE_FEDERATION": {
+      "channels": null,
+      "kind": "single_parent",
+      "note": "TMS + dependence + assurance global witness, two-valued",
+      "rung": 0
+    },
+    "B5_R1_VERDICT_ONLY": {
+      "channels": null,
+      "kind": "federation",
+      "note": "H-EXT-3 interface rung 1",
+      "rung": 1
+    },
+    "B5_R2_PROVENANCE": {
+      "channels": null,
+      "kind": "federation",
+      "note": "H-EXT-3 interface rung 2",
+      "rung": 2
+    },
+    "B5_R3_PLUS_DEPENDENCE_ANCESTRY": {
+      "channels": null,
+      "kind": "federation",
+      "note": "H-EXT-3 interface rung 3",
+      "rung": 3
+    },
+    "B5_R4_PLUS_TYPED_TRANSPORT_AND_EVALUATOR": {
+      "channels": null,
+      "kind": "federation",
+      "note": "H-EXT-3 interface rung 4",
+      "rung": 4
+    },
+    "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": {
+      "channels": null,
+      "kind": "federation",
+      "note": "H-EXT-3 interface rung 5",
+      "rung": 5
+    },
+    "C_ALWAYS_COMMIT": {
+      "channels": null,
+      "kind": "control",
+      "note": "",
+      "rung": 0
+    },
+    "C_ALWAYS_UNRESOLVED": {
+      "channels": null,
+      "kind": "control",
+      "note": "",
+      "rung": 0
+    },
+    "C_NEVER_COMMIT": {
+      "channels": null,
+      "kind": "control",
+      "note": "",
+      "rung": 0
+    },
+    "C_RANDOM_DECISION": {
+      "channels": null,
+      "kind": "control",
+      "note": "",
+      "rung": 0
+    },
+    "M_ABSTAIN_WHENEVER_CENSORED": {
+      "channels": null,
+      "kind": "control",
+      "note": "anti-conservatism reference: abstain on any censored fact",
+      "rung": 0
+    },
+    "M_ME_CROSS_TRANSITION_CONTROL": {
+      "channels": [
+        "apparatus",
+        "authority",
+        "dependence",
+        "evaluator",
+        "families",
+        "global",
+        "identity",
+        "numeric",
+        "scope",
+        "transport",
+        "unresolved"
+      ],
+      "kind": "me",
+      "note": "ORION reference semantics over every registered interface",
+      "rung": 0
+    },
+    "M_MINUS_APPARATUS": {
+      "channels": [
+        "authority",
+        "dependence",
+        "evaluator",
+        "families",
+        "global",
+        "identity",
+        "numeric",
+        "scope",
+        "transport",
+        "unresolved"
+      ],
+      "kind": "me",
+      "note": "omission ablation: the apparatus channel is inactive",
+      "rung": 0
+    },
+    "M_MINUS_AUTHORITY": {
+      "channels": [
+        "apparatus",
+        "dependence",
+        "evaluator",
+        "families",
+        "global",
+        "identity",
+        "numeric",
+        "scope",
+        "transport",
+        "unresolved"
+      ],
+      "kind": "me",
+      "note": "omission ablation: the authority channel is inactive",
+      "rung": 0
+    },
+    "M_MINUS_DEPENDENCE": {
+      "channels": [
+        "apparatus",
+        "authority",
+        "evaluator",
+        "families",
+        "global",
+        "identity",
+        "numeric",
+        "scope",
+        "transport",
+        "unresolved"
+      ],
+      "kind": "me",
+      "note": "omission ablation: the dependence channel is inactive",
+      "rung": 0
+    },
+    "M_MINUS_EVALUATOR": {
+      "channels": [
+        "apparatus",
+        "authority",
+        "dependence",
+        "families",
+        "global",
+        "identity",
+        "numeric",
+        "scope",
+        "transport",
+        "unresolved"
+      ],
+      "kind": "me",
+      "note": "omission ablation: the evaluator channel is inactive",
+      "rung": 0
+    },
+    "M_MINUS_FAMILIES": {
+      "channels": [
+        "apparatus",
+        "authority",
+        "dependence",
+        "evaluator",
+        "global",
+        "identity",
+        "numeric",
+        "scope",
+        "transport",
+        "unresolved"
+      ],
+      "kind": "me",
+      "note": "omission ablation: the families channel is inactive",
+      "rung": 0
+    },
+    "M_MINUS_GLOBAL": {
+      "channels": [
+        "apparatus",
+        "authority",
+        "dependence",
+        "evaluator",
+        "families",
+        "identity",
+        "numeric",
+        "scope",
+        "transport",
+        "unresolved"
+      ],
+      "kind": "me",
+      "note": "omission ablation: the global channel is inactive",
+      "rung": 0
+    },
+    "M_MINUS_IDENTITY": {
+      "channels": [
+        "apparatus",
+        "authority",
+        "dependence",
+        "evaluator",
+        "families",
+        "global",
+        "numeric",
+        "scope",
+        "transport",
+        "unresolved"
+      ],
+      "kind": "me",
+      "note": "omission ablation: the identity channel is inactive",
+      "rung": 0
+    },
+    "M_MINUS_NUMERIC": {
+      "channels": [
+        "apparatus",
+        "authority",
+        "dependence",
+        "evaluator",
+        "families",
+        "global",
+        "identity",
+        "scope",
+        "transport",
+        "unresolved"
+      ],
+      "kind": "me",
+      "note": "omission ablation: the numeric channel is inactive",
+      "rung": 0
+    },
+    "M_MINUS_SCOPE": {
+      "channels": [
+        "apparatus",
+        "authority",
+        "dependence",
+        "evaluator",
+        "families",
+        "global",
+        "identity",
+        "numeric",
+        "transport",
+        "unresolved"
+      ],
+      "kind": "me",
+      "note": "omission ablation: the scope channel is inactive",
+      "rung": 0
+    },
+    "M_MINUS_TRANSPORT": {
+      "channels": [
+        "apparatus",
+        "authority",
+        "dependence",
+        "evaluator",
+        "families",
+        "global",
+        "identity",
+        "numeric",
+        "scope",
+        "unresolved"
+      ],
+      "kind": "me",
+      "note": "omission ablation: the transport channel is inactive",
+      "rung": 0
+    },
+    "M_MINUS_UNRESOLVED": {
+      "channels": [
+        "apparatus",
+        "authority",
+        "dependence",
+        "evaluator",
+        "families",
+        "global",
+        "identity",
+        "numeric",
+        "scope",
+        "transport"
+      ],
+      "kind": "me",
+      "note": "omission ablation: the unresolved channel is inactive",
+      "rung": 0
+    }
+  },
+  "authority": {
+    "grants_field_status": false,
+    "grants_novelty": false,
+    "grants_publication_authority": false
+  },
+  "channels": [
+    "identity",
+    "apparatus",
+    "evaluator",
+    "dependence",
+    "transport",
+    "scope",
+    "global",
+    "numeric",
+    "families",
+    "authority",
+    "unresolved"
+  ],
+  "counts": {
+    "dev_total": 36,
+    "per_mode_protected": 480,
+    "protected_total": 1440
+  },
+  "custody": {
+    "no_rescue_clause": "no stratum, weight, oracle rule, arm, seed, gate or margin changes after the protected results file exists",
+    "protected_stage_requires": [
+      "PROTECTED_RUN_AUTHORIZATION.json with human_written=true and a token >= 16 chars",
+      "acknowledged_design_sha256 equal to sha256 of this file",
+      "custody seed hashing to the frozen commitment"
+    ],
+    "single_run": true
+  },
+  "decision": {
+    "actions": [
+      "COMMIT",
+      "COMMIT_NARROWED",
+      "WITHHOLD",
+      "UNRESOLVED"
+    ],
+    "arms_decide_on": "the final registered version, with the full event history available",
+    "authorities": [
+      "BELIEF_ONLY",
+      "BELIEF_AND_ACTION"
+    ],
+    "authority_rule": "BELIEF_AND_ACTION only when ACTION is requested and the registered authority grant stands",
+    "loci": [
+      "NONE",
+      "TARGET_IDENTITY",
+      "APPARATUS_VALIDITY",
+      "EVALUATOR_COVERAGE",
+      "DEPENDENCE",
+      "TRANSPORT",
+      "SUPPORT_DEFEAT",
+      "SCOPE",
+      "GLOBAL_OBSTRUCTION"
+    ],
+    "locus_priority": [
+      "TARGET_IDENTITY",
+      "APPARATUS_VALIDITY",
+      "EVALUATOR_COVERAGE",
+      "DEPENDENCE",
+      "TRANSPORT",
+      "SUPPORT_DEFEAT",
+      "SCOPE",
+      "GLOBAL_OBSTRUCTION"
+    ],
+    "responsibility_rule": "among the families with the fewest failing loci take each family's highest-priority failing locus, then report the most downstream of those (the nearest repair); relabelling-invariant",
+    "unresolved_rule": "exhaustive enumeration over all 2^u readings of the censored facts; UNRESOLVED exactly when the readings disagree (a three-valued envelope is unsound because the numeric modes are not monotone in the censored facts)"
+  },
+  "field_support_ladder": {
+    "R0_NO_RESIDUAL": "assigned when the common object is not recoverable under changed vocabulary",
+    "R1_BENCHMARK_INTEGRATION_VALUE": "default under a parent-sufficient or mode-specific terminal with a recoverable object",
+    "R2_EMERGING_INTERDISCIPLINARY_RESIDUAL": "NOT GRANTABLE by this study: protocol \u00a711 requires independent adjudication, which is absent",
+    "R3_ESTABLISHED_FIELD": "NEVER grantable by any experiment"
+  },
+  "g2_strata": [
+    "FULLY_WARRANTED_CONTROL",
+    "AUTHORITY_MISMATCH",
+    "SINGLE_PARENT_SUFFICIENT"
+  ],
+  "gates": {
+    "COST": "wall-clock ratio, 2x flag, never a route by itself",
+    "G0a_NATIVE_KNOWN_ANSWER": "parents pass their own native tests; nine hand-authored fixtures reproduced; separation pair behaves as designed; three native-review records complete",
+    "G0b_ORACLE_VALIDITY": "valid at v0; stratum invariant; censored facts within cap; decision invariant under a full relabelling of every element identifier",
+    "G0c_NULL_CALIBRATION": "truth-agnostic controls <= 0.25; C_RANDOM_DECISION <= 0.05; M vs within-mode shuffled oracle decisions at least 0.50 below M's own rate in every mode",
+    "G1a_B5_REPRODUCES_M": "identical decisions on >= 99.5% of instances in every mode",
+    "G1b_M_ADVANTAGE_PER_MODE": "paired M-B5 > 0, exact two-sided p surviving Holm across modes",
+    "G1c_B5_ADVANTAGE_PER_MODE": "the symmetric test, Holm-corrected",
+    "G2_ANTI_CONSERVATISM": "on FULLY_WARRANTED_CONTROL, AUTHORITY_MISMATCH and SINGLE_PARENT_SUFFICIENT, M's manufactured doubt <= B5's in every mode",
+    "G3a_MECHANISM_ATTRIBUTION": "where an advantage is claimed, the matching omission ablation's exact rate <= B5's on that stratum",
+    "G3b_CROSS_MODE_MECHANISM_IDENTIFIABILITY": "protocol \u00a77(1): at least one mechanism Holm-significantly load-bearing in >= 2 modes; reported regardless of any residual",
+    "G4_INTERFACE_LADDER": "per mode, never pooled: monotonicity; significant steps and decisive rung reported per mode; positive interface-standard test = monotone AND rung1 significantly worse than rung5 AND M/B5 equivalence within the margin, in every mode",
+    "G5_CHANGED_VOCABULARY": "one mode-blind ORION-free rule set through per-mode adapters recovers the responsibility class >= 0.90 in every mode; shuffled-label null <= 0.35 where n >= 100 (else NOT_ESTIMABLE); 3x3 cross-adapter matrix reported"
+  },
+  "generator": {
+    "instance_seed": "sha256(split_seed|mode|stratum|index*MAX_TRIES+attempt)[:12]",
+    "max_censored_facts": 6,
+    "max_tries": 400,
+    "rejection_criteria": [
+      "valid at v0 (COMMIT/NONE)",
+      "stratum invariant reproduced",
+      "censored facts within the cap"
+    ]
+  },
+  "ladder": [
+    "B5_R1_VERDICT_ONLY",
+    "B5_R2_PROVENANCE",
+    "B5_R3_PLUS_DEPENDENCE_ANCESTRY",
+    "B5_R4_PLUS_TYPED_TRANSPORT_AND_EVALUATOR",
+    "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION"
+  ],
+  "ladder_composition_policy_rungs_1_to_4": "withhold when a witness-level module defeats every family, when any anonymous module reports DEFEATS_ALL, or when the number of anonymous defeating modules is at least the number of families the witness-level modules left standing; censoring via the optimistic/pessimistic bracket",
+  "limitations": [
+    "the common decision object is a design input, not a finding; the three modes share authorship",
+    "no independent adjudication: protocol \u00a711 R2 is not grantable by this study",
+    "an exact planner is optimal by construction in all three modes; the numeric modes remove Boolean-parent optimality only; the honest null terminal is 'no residual detectable in a registered decision problem the parents already solve exactly'",
+    "the oracle shell and the arms' compositions are two implementations of one decision format; agreement is necessary, not sufficient",
+    "balanced design: the twelve strata are planted identically in all three modes, so ladder differences can only arise where the native rules differ; not comparable to cross-study generator variation (ME-X1 R4->R5; ME-X4 R1->R2 and R3->R4)",
+    "synthetic ORION-authored episodes with registered outcome tables"
+  ],
+  "me_arm": "M_ME_CROSS_TRANSITION_CONTROL",
+  "mode_native_rule_differences": {
+    "dependence": {
+      "FORMAL": "any shared confirmed lemma or axiom merges two proofs (hard defeat)",
+      "MEASUREMENT": "shared systematic source or ancestor correlates channels; systematics add linearly within a source group and in quadrature across groups",
+      "SYNTHESIS": "overlapping cohorts are deduplicated to the largest report"
+    },
+    "identity": {
+      "FORMAL": "exact statement identity",
+      "MEASUREMENT": "fiducial restriction of the same observable is a narrowed commitment",
+      "SYNTHESIS": "identity over intervention/comparator/outcome only; population is a transport question"
+    },
+    "numeric_layer": {
+      "FORMAL": false,
+      "MEASUREMENT": true,
+      "SYNTHESIS": true
+    },
+    "scope": {
+      "FORMAL": "a single artefact must carry the registered scope",
+      "MEASUREMENT": "union of the channels' acceptance",
+      "SYNTHESIS": "union of the studies' population coverage"
+    },
+    "transport": {
+      "FORMAL": "a ported lemma requires ISOMORPHIC regardless of the family's declared minimum",
+      "MEASUREMENT": "declared regime relation rank",
+      "SYNTHESIS": "declared population relation rank"
+    }
+  },
+  "modes": [
+    "FORMAL",
+    "MEASUREMENT",
+    "SYNTHESIS"
+  ],
+  "outcomes": {
+    "pooling_rule": "every gate is evaluated per mode; a pooled average never routes anything on its own",
+    "primary": "decision-triple exact match (action, locus, authority), reported per mode",
+    "secondary": [
+      "false_transition",
+      "missed_warranted_transition",
+      "responsibility_error",
+      "invalid_transport_accepted",
+      "false_closure_over_unresolved",
+      "unnecessary_abstention",
+      "missed_necessary_abstention",
+      "narrowing_error",
+      "authority_violation",
+      "action_exact_rate",
+      "locus_exact_rate",
+      "authority_exact_rate",
+      "ops",
+      "wall_ms"
+    ]
+  },
+  "pre_freeze_inspection": {
+    "design_constants_changed_afterwards": false,
+    "public_dry_run_seed": "ME-X5-PUBLIC-DRYRUN-NOT-PROTECTED",
+    "purpose": "verify runtime and gate estimability at n=480 per mode"
+  },
+  "pre_registered_expectation": "PARENT_SUFFICIENT",
+  "primary_comparator": "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION",
+  "protocols_served": [
+    "research/experiments/ME_X5_CROSS_DOMAIN_FIELD_RESIDUAL_PROTOCOL_V1.md (\u00a71-\u00a712)",
+    "research/experiments/MACHINE_EPISTEMICS_DECISIVE_STUDIES_PROTOCOL_V1.md (\u00a70-\u00a72)",
+    "research/field/MACHINE_EPISTEMICS_EXTENSION_HYPOTHESES_2026_09_02_V1.md (H-EXT-3, per mode)"
+  ],
+  "relation_rank": {
+    "APPROXIMATELY_EQUIVALENT": 1,
+    "BEHAVIORALLY_EQUIVALENT": 4,
+    "CANNOT_CHECK": -1,
+    "DECISION_DOMINATES": 2,
+    "DISTINGUISHED_BY": 0,
+    "INCOMPARABLE": 0,
+    "ISOMORPHIC": 5,
+    "PREDICTIVELY_EQUIVALENT": 3
+  },
+  "routing": {
+    "G0_fail": "CANNOT_CHECK",
+    "advantage_in_2_or_more_modes_otherwise": "CANNOT_CHECK",
+    "advantage_in_2_or_more_modes_with_G2_G3a_G5": "ME_X5_FIELD_RESIDUAL_CANDIDATE",
+    "advantage_in_exactly_1_mode": "MODE_SPECIFIC_RESIDUAL",
+    "no_advantage_otherwise": "PARENT_SUFFICIENT",
+    "no_advantage_with_positive_interface_test_in_every_mode": "RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL"
+  },
+  "schema_version": "orion.v2.me-x5.cross-domain-study-design.v1",
+  "seed_commitment": {
+    "custody_path": "~/.orion-custody/me-x5/PROTECTED_SEED_V1.txt",
+    "dev_seed_public": "ME-X5-DEV-20260902",
+    "protected_seed_sha256": "132c47826e40f57dfd873848a82d160e2f0de114827b1155c015dce60b19467a",
+    "shuffle_null_seed": 20260902
+  },
+  "state_date": "2026-09-02",
+  "statistics": {
+    "equivalence_margin_per_mode": 0.02,
+    "equivalence_margin_pooled": 0.01,
+    "mde_per_mode": "7 one-directional discordants of 480 (1.5%) give p=0.0156, surviving Holm at alpha/3",
+    "multiplicity": "Holm across the three modes",
+    "test": "exact two-sided McNemar on discordant pairs"
+  },
+  "status": "FROZEN_PROSPECTIVE_NO_PROTECTED_OUTCOME",
+  "strata": {
+    "APPARATUS_INVALID": {
+      "declared_action": "WITHHOLD",
+      "declared_locus": "APPARATUS_VALIDITY",
+      "dev_n_per_mode": 1,
+      "protected_n_per_mode": 40
+    },
+    "AUTHORITY_MISMATCH": {
+      "declared_action": "COMMIT",
+      "declared_locus": "NONE",
+      "dev_n_per_mode": 1,
+      "protected_n_per_mode": 40
+    },
+    "BLIND_EVALUATOR": {
+      "declared_action": "WITHHOLD",
+      "declared_locus": "EVALUATOR_COVERAGE",
+      "dev_n_per_mode": 1,
+      "protected_n_per_mode": 40
+    },
+    "CENSORED_UNRESOLVED": {
+      "declared_action": "UNRESOLVED",
+      "declared_locus": null,
+      "dev_n_per_mode": 1,
+      "protected_n_per_mode": 40
+    },
+    "DEFEATED_SUPPORT": {
+      "declared_action": "WITHHOLD",
+      "declared_locus": "SUPPORT_DEFEAT",
+      "dev_n_per_mode": 1,
+      "protected_n_per_mode": 40
+    },
+    "FULLY_WARRANTED_CONTROL": {
+      "declared_action": "COMMIT",
+      "declared_locus": "NONE",
+      "dev_n_per_mode": 1,
+      "protected_n_per_mode": 40
+    },
+    "HIDDEN_DEPENDENCE": {
+      "declared_action": "WITHHOLD",
+      "declared_locus": "DEPENDENCE",
+      "dev_n_per_mode": 1,
+      "protected_n_per_mode": 40
+    },
+    "INVALID_TRANSPORT": {
+      "declared_action": "WITHHOLD",
+      "declared_locus": "TRANSPORT",
+      "dev_n_per_mode": 1,
+      "protected_n_per_mode": 40
+    },
+    "LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION": {
+      "declared_action": "WITHHOLD",
+      "declared_locus": "GLOBAL_OBSTRUCTION",
+      "dev_n_per_mode": 1,
+      "protected_n_per_mode": 40
+    },
+    "SCOPE_OVERREACH": {
+      "declared_action": null,
+      "declared_locus": "SCOPE",
+      "dev_n_per_mode": 1,
+      "protected_n_per_mode": 40
+    },
+    "SINGLE_PARENT_SUFFICIENT": {
+      "declared_action": "WITHHOLD",
+      "declared_locus": "SUPPORT_DEFEAT",
+      "dev_n_per_mode": 1,
+      "protected_n_per_mode": 40
+    },
+    "TARGET_IDENTITY_DRIFT": {
+      "declared_action": "WITHHOLD",
+      "declared_locus": "TARGET_IDENTITY",
+      "dev_n_per_mode": 1,
+      "protected_n_per_mode": 40
+    }
+  },
+  "study": "ME-X5",
+  "title": "Cross-Domain Field Residual: exact known-answer study across three native epistemic modes"
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": "orion.v2.formal-transfer-execution-backlog.v1",
-  "status": "PROSPECTIVE_BACKLOG_NO_PROTECTED_RESULTS",
+  "status": "PROTECTED_RESULTS_PRESENT_PER_TASK_STATUS",
   "owner_issue": 48,
   "protocols": [
     "research/experiments/CONCEPTUAL_TRANSFER_DISCOVERY_PROTOCOL_V2_ALL_SCIENCE_MATHEMATICS_FIRST.json",
@@ -20,14 +20,16 @@
       "depends_on": [
         "FM00"
       ],
-      "status": "DESIGN_FROZEN_DEVELOPMENT_COMPLETE_PROTECTED_PENDING",
+      "status": "EXECUTED_PROTECTED",
       "exact_study": {
         "design": "research/experiments/fm-exact/FM10_FINITE_RELATIONAL_MAPPING_EXACT_STUDY_DESIGN_V1.{md,json}",
         "code": "research/experiments/fm-exact/{fm_core,fm_run,fm10_suite}.py",
         "parent_fidelity": "research/experiments/fm-exact/FM_PARENT_FIDELITY_RECEIPT_V1.md",
         "protected_tasks": 126,
         "note": "supersedes nothing; the FM/FG R2 LLM-dispatch fm10 cell sat at ceiling (all five arms 1.000) and could not discriminate"
-      }
+      },
+      "terminal": "PARENT_SUFFICIENT",
+      "outcome_receipt": "research/experiments/fm-exact/FM10_OUTCOME_RECEIPT.md"
     },
     {
       "id": "FM20",
@@ -35,7 +37,16 @@
       "action": "Generate >=120 symbolic generalization tasks and compare fixed lessons, semantic retrieval, applicable anti-unification/LGG parent, strongest formal parent, F0/static F2/full transfer discovery.",
       "depends_on": [
         "FM00"
-      ]
+      ],
+      "status": "EXECUTED_PROTECTED",
+      "exact_study": {
+        "design": "research/experiments/fm-exact/FM20_ANTI_UNIFICATION_EXACT_STUDY_DESIGN_V1.{md,json}",
+        "code": "research/experiments/fm-exact/fm20_suite.py",
+        "parent_fidelity": "research/experiments/fm-exact/FM_PARENT_FIDELITY_RECEIPT_FM20_V1.md",
+        "protected_tasks": 125
+      },
+      "terminal": "PARENT_SUFFICIENT",
+      "outcome_receipt": "research/experiments/fm-exact/FM20_OUTCOME_RECEIPT.md"
     },
     {
       "id": "FM30",
@@ -43,7 +54,14 @@
       "action": "Generate >=96 formal contexts with exact Galois closures plus hidden revision/counterexample cases; test specialize/split/merge/bridge/no-change and old-case retention.",
       "depends_on": [
         "FM00"
-      ]
+      ],
+      "status": "DESIGN_FROZEN_DEVELOPMENT_COMPLETE_PROTECTED_PENDING",
+      "exact_study": {
+        "design": "research/experiments/fm-exact/FM30_FORMAL_CONCEPT_REVISION_EXACT_STUDY_DESIGN_V1.{md,json}",
+        "code": "research/experiments/fm-exact/fm30_suite.py",
+        "parent_fidelity": "research/experiments/fm-exact/FM_PARENT_FIDELITY_RECEIPT_FM30_V1.md",
+        "protected_tasks": 100
+      }
     },
     {
       "id": "FM40",

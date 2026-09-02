@@ -128,7 +128,20 @@ jobs:
           assert all(value is False for value in formal["authority"].values())
 
           backlog = json.loads(Path("research/experiments/CONCEPTUAL_TRANSFER_FORMAL_EXECUTION_BACKLOG_V1.json").read_text())
-          assert backlog["status"] == "PROSPECTIVE_BACKLOG_NO_PROTECTED_RESULTS"
+          # The backlog status must state the truth about protected evidence, and
+          # the two legal values must stay consistent with the task entries: it may
+          # only claim "no protected results" while no task is EXECUTED_PROTECTED.
+          executed = [t["id"] for t in backlog["tasks"] if t.get("status") == "EXECUTED_PROTECTED"]
+          if executed:
+              assert backlog["status"] == "PROTECTED_RESULTS_PRESENT_PER_TASK_STATUS", (
+                  f"tasks {executed} are EXECUTED_PROTECTED but status is {backlog['status']}"
+              )
+              for tid in executed:
+                  task = next(t for t in backlog["tasks"] if t["id"] == tid)
+                  assert task.get("terminal"), f"{tid} executed protected without a terminal"
+                  assert Path(task["outcome_receipt"]).exists(), f"{tid} outcome receipt missing"
+          else:
+              assert backlog["status"] == "PROSPECTIVE_BACKLOG_NO_PROTECTED_RESULTS"
           assert backlog["owner_issue"] == 48
           assert backlog["tasks"][0]["id"] == "FM00"
           assert backlog["tasks"][-1]["id"] == "FM90"

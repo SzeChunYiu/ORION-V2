@@ -1,0 +1,699 @@
+{
+ "arms": {
+  "A_NO_MANDATE": {
+   "arm": "A_NO_MANDATE",
+   "chosen": [
+    {
+     "fraction_partial_intervention": 0.5,
+     "model_seed": 0,
+     "omission_estimation_size": 1000,
+     "partial_intervention_seed": 0,
+     "training_regime": "interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.75,
+     "model_seed": 1,
+     "omission_estimation_size": 1000,
+     "partial_intervention_seed": 42,
+     "training_regime": "partial_interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.9,
+     "model_seed": 2,
+     "omission_estimation_size": 1000,
+     "partial_intervention_seed": 43,
+     "training_regime": "partial_interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.75,
+     "model_seed": 1,
+     "omission_estimation_size": 1000,
+     "partial_intervention_seed": 42,
+     "training_regime": "partial_interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.75,
+     "model_seed": 1,
+     "omission_estimation_size": 1000,
+     "partial_intervention_seed": 42,
+     "training_regime": "partial_interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.75,
+     "model_seed": 1,
+     "omission_estimation_size": 1000,
+     "partial_intervention_seed": 42,
+     "training_regime": "partial_interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.75,
+     "model_seed": 1,
+     "omission_estimation_size": 1000,
+     "partial_intervention_seed": 42,
+     "training_regime": "partial_interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.8,
+     "model_seed": 3,
+     "omission_estimation_size": 1000,
+     "partial_intervention_seed": 42,
+     "training_regime": "partial_interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.85,
+     "model_seed": 4,
+     "omission_estimation_size": 1000,
+     "partial_intervention_seed": 42,
+     "training_regime": "partial_interventional"
+    }
+   ],
+   "cycles_done": 9,
+   "distinct_configs": 5,
+   "distinct_fracs": [
+    0.5,
+    0.75,
+    0.8,
+    0.85,
+    0.9
+   ],
+   "distinct_regimes": [
+    "interventional",
+    "partial_interventional"
+   ],
+   "first_cycle_ge_0p9": 2,
+   "qualities": [
+    0.352649213636475,
+    0.9877302162356105,
+    0.9518167844230893,
+    0.9877302162356105,
+    0.9877302162356105,
+    0.9877302162356105,
+    0.9877302162356105,
+    1.0,
+    0.9877302162356105
+   ],
+   "status": "COMPLETE",
+   "terminal_quality": 0.9877302162356105,
+   "verdict": "PASS"
+  },
+  "B_REGIME_ANCHOR": {
+   "arm": "B_REGIME_ANCHOR",
+   "chosen": [
+    {
+     "fraction_partial_intervention": 0.0,
+     "model_seed": 0,
+     "omission_estimation_size": 10000,
+     "partial_intervention_seed": 0,
+     "training_regime": "interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.0,
+     "model_seed": 0,
+     "omission_estimation_size": 10000,
+     "partial_intervention_seed": 0,
+     "training_regime": "interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.0,
+     "model_seed": 1,
+     "omission_estimation_size": 10000,
+     "partial_intervention_seed": 0,
+     "training_regime": "interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.0,
+     "model_seed": 0,
+     "omission_estimation_size": 10000,
+     "partial_intervention_seed": 0,
+     "training_regime": "interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.5,
+     "model_seed": 0,
+     "omission_estimation_size": 10000,
+     "partial_intervention_seed": 0,
+     "training_regime": "partial_interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.75,
+     "model_seed": 0,
+     "omission_estimation_size": 10000,
+     "partial_intervention_seed": 0,
+     "training_regime": "partial_interventional"
+    },
+    {
+     "fraction_partial_intervention": 1.0,
+     "model_seed": 0,
+     "omission_estimation_size": 10000,
+     "partial_intervention_seed": 0,
+     "training_regime": "partial_interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.75,
+     "model_seed": 0,
+     "omission_estimation_size": 10000,
+     "partial_intervention_seed": 0,
+     "training_regime": "partial_interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.9,
+     "model_seed": 0,
+     "omission_estimation_size": 10000,
+     "partial_intervention_seed": 0,
+     "training_regime": "partial_interventional"
+    }
+   ],
+   "cycles_done": 9,
+   "distinct_configs": 6,
+   "distinct_fracs": [
+    0.0,
+    0.5,
+    0.75,
+    0.9,
+    1.0
+   ],
+   "distinct_regimes": [
+    "interventional",
+    "partial_interventional"
+   ],
+   "first_cycle_ge_0p9": 6,
+   "qualities": [
+    0.02332263739822093,
+    0.02332263739822093,
+    0.02332263739822093,
+    0.02332263739822093,
+    0.6411803884299545,
+    0.9877302162356105,
+    0.8207548082982681,
+    0.9877302162356105,
+    0.9518167844230893
+   ],
+   "status": "COMPLETE",
+   "terminal_quality": 0.9518167844230893,
+   "verdict": "FAIL"
+  },
+  "C_SEED_MANDATE": {
+   "arm": "C_SEED_MANDATE",
+   "chosen": [
+    {
+     "fraction_partial_intervention": 0.0,
+     "model_seed": 11,
+     "omission_estimation_size": 1000,
+     "partial_intervention_seed": 13,
+     "training_regime": "interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.0,
+     "model_seed": 11,
+     "omission_estimation_size": 1000,
+     "partial_intervention_seed": 13,
+     "training_regime": "interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.0,
+     "model_seed": 11,
+     "omission_estimation_size": 1000,
+     "partial_intervention_seed": 13,
+     "training_regime": "interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.0,
+     "model_seed": 11,
+     "omission_estimation_size": 1000,
+     "partial_intervention_seed": 13,
+     "training_regime": "interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.0,
+     "model_seed": 11,
+     "omission_estimation_size": 1000,
+     "partial_intervention_seed": 13,
+     "training_regime": "interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.0,
+     "model_seed": 11,
+     "omission_estimation_size": 1000,
+     "partial_intervention_seed": 13,
+     "training_regime": "interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.0,
+     "model_seed": 17,
+     "omission_estimation_size": 1000,
+     "partial_intervention_seed": 13,
+     "training_regime": "interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.0,
+     "model_seed": 11,
+     "omission_estimation_size": 1000,
+     "partial_intervention_seed": 13,
+     "training_regime": "interventional"
+    },
+    {
+     "fraction_partial_intervention": 0.0,
+     "model_seed": 11,
+     "omission_estimation_size": 1000,
+     "partial_intervention_seed": 13,
+     "training_regime": "interventional"
+    }
+   ],
+   "cycles_done": 9,
+   "distinct_configs": 2,
+   "distinct_fracs": [
+    0.0
+   ],
+   "distinct_regimes": [
+    "interventional"
+   ],
+   "first_cycle_ge_0p9": null,
+   "qualities": [
+    0.02332263739822093,
+    0.02332263739822093,
+    0.02332263739822093,
+    0.02332263739822093,
+    0.02332263739822093,
+    0.02332263739822093,
+    0.02332263739822093,
+    0.02332263739822093,
+    0.02332263739822093
+   ],
+   "status": "COMPLETE",
+   "terminal_quality": 0.02332263739822093,
+   "verdict": "FAIL"
+  }
+ },
+ "campaign_root": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d",
+ "controls": {
+  "LEAKAGE": {
+   "artifacts_checked": 54,
+   "control": "LEAKAGE",
+   "verdict": "PASS",
+   "violations": []
+  },
+  "PLANT_INTEGRITY": {
+   "control": "PLANT_INTEGRITY",
+   "max_abs_delta_vs_m3_recorded": 0.0,
+   "optimum_quality": 1.0,
+   "replayed_verdict": "PASS",
+   "verdict": "PASS"
+  },
+  "SERVED_MODEL_PIN": {
+   "control": "SERVED_MODEL_PIN",
+   "per_arm": {
+    "A_NO_MANDATE": {
+     "calls_logged": 9,
+     "ids": [
+      "glm-5.3"
+     ]
+    },
+    "B_REGIME_ANCHOR": {
+     "calls_logged": 9,
+     "ids": [
+      "glm-5.3"
+     ]
+    },
+    "C_SEED_MANDATE": {
+     "calls_logged": 9,
+     "ids": [
+      "glm-5.3"
+     ]
+    }
+   },
+   "pinned": "glm-5.3",
+   "verdict": "PASS",
+   "violations": []
+  },
+  "TRAJECTORY_REPLAY": {
+   "control": "TRAJECTORY_REPLAY",
+   "mismatched_arms": [],
+   "verdict": "PASS"
+  }
+ },
+ "design": "E40_M5P_STAGE2D_PLANT_DISCRIMINATION_DESIGN_V1",
+ "gates": {
+  "D0_ARMS_VALID": true,
+  "D1_MODEL_CHANNEL_CAUSE": false,
+  "D2_PROMPT_IMPLICATED": true,
+  "D3_STAGE2C_FAILURE_NOT_REPRODUCED": false,
+  "ambiguous": false,
+  "arm_verdicts": {
+   "A_NO_MANDATE": "PASS",
+   "B_REGIME_ANCHOR": "FAIL",
+   "C_SEED_MANDATE": "FAIL"
+  },
+  "disposition": "PROMPT_IMPLICATED",
+  "failed_controls": [],
+  "route": "the cycle-1 mandate text is implicated: the model channel alone does not explain the Stage-2c failure. A future freeze must revise the mandate form, not the plant."
+ },
+ "manifest": {
+  "files": [
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/arm.json",
+    "sha256": "a2cedcfea228c6a8666ae47e6e12011cd86f43c3768cc27079fbd4289570502c"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/arm.json",
+    "sha256": "9d6de7c8fdcd60b5aaaeb6e006358e4793bb0ee3b87b6e7b7ecd9343420bfd51"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/arm.json",
+    "sha256": "233d8463b2f4fbadf3c12111fc33e48e09a61d6b495dabbeb5ef60c521192ea3"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle1/decision.json",
+    "sha256": "03758685165d00325671640e75041b0abdd28ffb38636e5b0974e87cb65fc592"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle2/decision.json",
+    "sha256": "0cebb6b78ab2f6f119aad3fd47db92c8c4528fec70d143f223b64546c760c8b5"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle3/decision.json",
+    "sha256": "1bf85fdf5332a6ad7f730a900a7b86c0641a4b3bce67f12acc356d7f0ede96d1"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle4/decision.json",
+    "sha256": "3371de3ffac69375fc3c0b4746a90862a04e222bc66b97edf03ac783cf8b707e"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle5/decision.json",
+    "sha256": "06a2e47bae2f24868c6c83f2a7498e936ffc3846adbc7c296823f0a149b1422c"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle6/decision.json",
+    "sha256": "79896fcb4cb5d7d279f8e1c74daefabe6e2b06af70ee951aed62a5582b77c04b"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle7/decision.json",
+    "sha256": "7e53d969cd895779c92125f7313514d28876a8a9c07c6faef6719aa600f8aad3"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle8/decision.json",
+    "sha256": "ae7ab851c1d798f816f9b4fed3f9f031d4a3f8c715f6377c71f41f8f6fccf1c8"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle9/decision.json",
+    "sha256": "cad933d0ec5a03de3765e42604972d99375b947c6b82d56bd6fd94e020f13a76"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle1/decision.json",
+    "sha256": "25b5955cbe38b7b6edf4b597caff8393370f3c8d1887bef333ec134ca6511c98"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle2/decision.json",
+    "sha256": "5fe06868b6690c1e4ee4fd3a71d94cbff8911e07e0342737024becd693cb4e37"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle3/decision.json",
+    "sha256": "19c67dee719468cef2bb8626a494ca2ba8aaa139b405c221c8188b5b807e4e91"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle4/decision.json",
+    "sha256": "e71e0cebf44cff5d1057228e4f153d8334d68107f20d74fea16868a9f6e42acf"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle5/decision.json",
+    "sha256": "39cb437cd923eaae2f0287614f789062fe1d893b830ab93bcb01da9583296ffe"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle6/decision.json",
+    "sha256": "5e1dcd25b58768cd58b3df5e908eaf9d7b072d7ff61a45c68fd48910185af326"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle7/decision.json",
+    "sha256": "30b985bc12a38cdeff667504464fcdbbf25c8d37e4f15fb13320505832de26a2"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle8/decision.json",
+    "sha256": "37747910b5b5740a206b04ea7459282ced41fc8348daa63652f982e2bfd8f9e1"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle9/decision.json",
+    "sha256": "80ae217ec3aebb909a6bd38b81794d6196ec902ed8e284e137fde0afd3e8a2e5"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle1/decision.json",
+    "sha256": "b327a7598877b74d8020097d8ffc7dbcf1018cbd12de2745f2f309ef459ddaf4"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle2/decision.json",
+    "sha256": "508012448cbb754d96277fe422a57e9e7e54cf5a284af85161b812ac255bbcdc"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle3/decision.json",
+    "sha256": "71001d20d26ef05e1711481475c76a4b03122f7bd2baf33fa5d5c1345d66b075"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle4/decision.json",
+    "sha256": "976bdca79caf453e594ca785c5100413d58d02893fd4bcd4e00807bb12f65bb9"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle5/decision.json",
+    "sha256": "5907c99dfd5b38572de13eef92e920f5f3830c76851ccb5ee9d62223b16f5052"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle6/decision.json",
+    "sha256": "28031efe505f86cfebd05d52f78f04b240f989eeb78c3916226a7f3391aed8b0"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle7/decision.json",
+    "sha256": "3236e59602a45a0cea3165916649ce6be11b789745b659ad4dc8585c0f5c7a11"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle8/decision.json",
+    "sha256": "63edd30da49151b90ed4f2b8db0a600ef15cd5dc255196fdef5b9c53a8d9a476"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle9/decision.json",
+    "sha256": "6305ae497c9dde50601a0bbc42855373b8102d81d2fc75d6edf1133be6c60538"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle1/prompt.txt",
+    "sha256": "95db82fb0c059df8d6f54b4d6da9d36fe160ac502723dca852e5a2e3a1fde4e1"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle2/prompt.txt",
+    "sha256": "1df3bd1591011a1ff7b9c727eaebb69ccc8d15c7b219d0465ea5425260ebd7e1"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle3/prompt.txt",
+    "sha256": "771c028a325ad88a0a6e0129a3f6b6477b8348fabf4899446dbb4ce07b0e30f6"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle4/prompt.txt",
+    "sha256": "ff03e951847ab57832e465ebbbf5189b960b7977325abf47483e5597c1dcbf5c"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle5/prompt.txt",
+    "sha256": "224bbfe8979db6d2d84a63f29943b5bc04553e240ea7e223998c5badf0533767"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle6/prompt.txt",
+    "sha256": "cb4d0e9af1413be66f855004f467eb3ee6925dd93a8a4116355d2a1f8c67a8e3"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle7/prompt.txt",
+    "sha256": "f26d4d0129f7966aafb529d78389dc24312074eadb84fe542fdd8defcb31a7c5"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle8/prompt.txt",
+    "sha256": "2424c77492f2b9c1532e3eb3290416a7c1c0324aec46c391b0f08a374cb64ffb"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle9/prompt.txt",
+    "sha256": "6397dbbf9cb4184863020545008297fdccffccc6ab3db5b5481c3aeb6f02a261"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle1/feedback.json",
+    "sha256": "285e1b4eb97008e8ea874fe51e51d56f2470f86afcb99df68fb2e2b633108ada"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle2/feedback.json",
+    "sha256": "928e8b35573ffee83f71a699091eb27b97337326dbf1ee1a40698d634ea7142a"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle3/feedback.json",
+    "sha256": "28ab4721246d7ea3d391344a9c537b0d4c777ebff9ce0d214c6131d8e47f6716"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle4/feedback.json",
+    "sha256": "928e8b35573ffee83f71a699091eb27b97337326dbf1ee1a40698d634ea7142a"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle5/feedback.json",
+    "sha256": "928e8b35573ffee83f71a699091eb27b97337326dbf1ee1a40698d634ea7142a"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle6/feedback.json",
+    "sha256": "928e8b35573ffee83f71a699091eb27b97337326dbf1ee1a40698d634ea7142a"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle7/feedback.json",
+    "sha256": "928e8b35573ffee83f71a699091eb27b97337326dbf1ee1a40698d634ea7142a"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle8/feedback.json",
+    "sha256": "b0fee5c213544025d30e82f6e213a2016b217838caa7917f0dac9342b03687ca"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/A_NO_MANDATE/cycle9/feedback.json",
+    "sha256": "928e8b35573ffee83f71a699091eb27b97337326dbf1ee1a40698d634ea7142a"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle1/prompt.txt",
+    "sha256": "93d5f77ebcb9a55332780a8ffa27a3dc49f04ac101bcc304e725c874e3f42e3c"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle2/prompt.txt",
+    "sha256": "b86778c49f59d6127a413526f9bf1542e4d6870d3a0321df9ae5238f761ca2ae"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle3/prompt.txt",
+    "sha256": "edd1703aa02536c83fbb5e3b47d304d4e8a05489836d76fe192d47eda78616d4"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle4/prompt.txt",
+    "sha256": "b1945c9552a4db0ab695621e592bab8f0569c6f59762a711ddbe858500a86879"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle5/prompt.txt",
+    "sha256": "445f779e3e50dde65d794eb1109e73669d608286398c55c736a9d123bc3933df"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle6/prompt.txt",
+    "sha256": "1e38642890dcdf2d7d4320ed4b9c603c0e7ceec84f29bfbe6c9a92663008de98"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle7/prompt.txt",
+    "sha256": "43ec45a75deba38f892d9ab06e4aec58366e85b7af0c4b21424e3ff26b13a1f4"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle8/prompt.txt",
+    "sha256": "b6e2594ba8f22965a4a94378bbf6368543b8ddf61ecfcd15fc1c294a152b820b"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle9/prompt.txt",
+    "sha256": "c872cd76cb07bd830bbdea5518366a152ab764e4c30c74b533f23feb7607ea12"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle1/feedback.json",
+    "sha256": "55812fc8ae7b262096642934a794d921d307dfb6c9b14b7721459fc41cef5e33"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle2/feedback.json",
+    "sha256": "55812fc8ae7b262096642934a794d921d307dfb6c9b14b7721459fc41cef5e33"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle3/feedback.json",
+    "sha256": "55812fc8ae7b262096642934a794d921d307dfb6c9b14b7721459fc41cef5e33"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle4/feedback.json",
+    "sha256": "55812fc8ae7b262096642934a794d921d307dfb6c9b14b7721459fc41cef5e33"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle5/feedback.json",
+    "sha256": "a0770243b5919eacc5eb9740ac2258142c4e4be0ca173857902e1004c853b009"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle6/feedback.json",
+    "sha256": "928e8b35573ffee83f71a699091eb27b97337326dbf1ee1a40698d634ea7142a"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle7/feedback.json",
+    "sha256": "d9a9a2303aef6f80c0169238cbb70920d316838b8ad5cda0bf19c55c68bb1512"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle8/feedback.json",
+    "sha256": "928e8b35573ffee83f71a699091eb27b97337326dbf1ee1a40698d634ea7142a"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/B_REGIME_ANCHOR/cycle9/feedback.json",
+    "sha256": "28ab4721246d7ea3d391344a9c537b0d4c777ebff9ce0d214c6131d8e47f6716"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle1/prompt.txt",
+    "sha256": "1c84a54600290712ae880c66c7d16c7b85893aabf0e68d5bc222d71e4a7ae224"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle2/prompt.txt",
+    "sha256": "0a54164ab6157a6769040e89de86637c3bce25181131cf9a82c4e42817cb8dfd"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle3/prompt.txt",
+    "sha256": "7dbcf5a550b0003b70bc55376cdb9db303817273182d5c7ec5930d049a0ac407"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle4/prompt.txt",
+    "sha256": "302adabbd204a15f87947761abb43a8b253dd2772d1d41ed030812a7526423f3"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle5/prompt.txt",
+    "sha256": "8087ca00d7c64a5e2c14db5299d9852356eedf5dc54dd44073cef9e0b08f5527"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle6/prompt.txt",
+    "sha256": "03e1d033b6f1354a1e041516eb2c26a92c52ffa97ee253cf9181638c18be764e"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle7/prompt.txt",
+    "sha256": "d4f3c33c76f85cd56e57877c03474e7ea2687a06d5f8969908ab597335d3223b"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle8/prompt.txt",
+    "sha256": "a63e917c4a8297668ceb1e6dfa812192d95af8f202dcba1681236480ea5e41be"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle9/prompt.txt",
+    "sha256": "a3b8828f1d3511158f80f3a35285cafb92f767392cf0c2236fa62e474c76fc39"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle1/feedback.json",
+    "sha256": "55812fc8ae7b262096642934a794d921d307dfb6c9b14b7721459fc41cef5e33"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle2/feedback.json",
+    "sha256": "55812fc8ae7b262096642934a794d921d307dfb6c9b14b7721459fc41cef5e33"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle3/feedback.json",
+    "sha256": "55812fc8ae7b262096642934a794d921d307dfb6c9b14b7721459fc41cef5e33"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle4/feedback.json",
+    "sha256": "55812fc8ae7b262096642934a794d921d307dfb6c9b14b7721459fc41cef5e33"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle5/feedback.json",
+    "sha256": "55812fc8ae7b262096642934a794d921d307dfb6c9b14b7721459fc41cef5e33"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle6/feedback.json",
+    "sha256": "55812fc8ae7b262096642934a794d921d307dfb6c9b14b7721459fc41cef5e33"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle7/feedback.json",
+    "sha256": "55812fc8ae7b262096642934a794d921d307dfb6c9b14b7721459fc41cef5e33"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle8/feedback.json",
+    "sha256": "55812fc8ae7b262096642934a794d921d307dfb6c9b14b7721459fc41cef5e33"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2d/C_SEED_MANDATE/cycle9/feedback.json",
+    "sha256": "55812fc8ae7b262096642934a794d921d307dfb6c9b14b7721459fc41cef5e33"
+   }
+  ],
+  "n_files": 84
+ },
+ "schema_version": "orion.v2.e40-matched.m5p-stage2d-rollup.v1",
+ "served_model_pinned": "glm-5.3",
+ "stage2c_reference": {
+  "disposition": "CHECKER_INVALID__NO_VERDICT (unchanged by this run)",
+  "planted_terminal_quality": 0.6411803884299545,
+  "verdict": "FAIL"
+ },
+ "variant": "e40-m5p-stage2d-plant-cause-discrimination"
+}

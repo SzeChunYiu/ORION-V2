@@ -1,0 +1,185 @@
+{
+  "schema_version": "orion.v2.fg70.exact-study-design.v1",
+  "series_id": "ORION-FG-L5-EXACT-V1",
+  "study_id": "FG70",
+  "study_name": "FORMALISM_NEEDED_OR_NOT",
+  "owner_issue": 50,
+  "owner_issue_section": "L5",
+  "registered_protocol": "research/experiments/FORMALISM_GENESIS_PROTOCOL_V1.json",
+  "registered_backlog_task": "FG70",
+  "status": "FROZEN_DESIGN_NO_PROTECTED_OUTCOME",
+  "frozen_before_outcome_access": true,
+  "class": "exact-oracle known-answer study; zero model calls; fully deterministic",
+  "disambiguation": {
+    "this_series": {
+      "identity": "ORION-FG-L5-EXACT-V1",
+      "owner_issue": 50,
+      "object": "exact deterministic mechanism-vs-faithful-parent comparison over generated finite decision families with hidden known answers",
+      "arms": "deterministic algorithms only (no language model is called at any point)",
+      "primary_question": "is the active language too coarse, or is the problem merely unsolved"
+    },
+    "not_to_be_confused_with": {
+      "identity": "FM_FG_GENERATED_EXACT_CAMPAIGN (fmfg-r1, fmfg-r2)",
+      "owner_issue": 48,
+      "artifacts": [
+        "research/experiments/fmfg-r2/FMFG_R2_SUITE_TERMINAL_RESULTS_RECEIPT.md",
+        "research/experiments/fmfg-r2/FMFG_R2_REGISTERED_SCALE_DISPATCH_RECEIPT.md"
+      ],
+      "object": "language-model solver arms over generated formal-discovery tasks, 1712 tasks x 5 arms = 8560 dispatches",
+      "arms": [
+        "TARGET_ONLY_DIRECT",
+        "STRONGEST_DOMAIN_FORMAL_PARENT",
+        "F0_PARENT_FEDERATION",
+        "F2_STATIC_NO_FORMAL_DISCOVERY",
+        "F2_FORMAL_DISCOVERY_FULL"
+      ],
+      "terminal": "REGISTERED_SCALE_NULL",
+      "relation": "prior, not comparator. That campaign used the same study labels fg10..fg80 for a different object. This design does not replicate it, does not contradict it, and shares no generator, oracle, arm or task with it. Its fg70 stratum (arm spread 0.825-0.900) is used here only as the prior that FG70 is the most discriminative non-frontier study of the family.",
+      "do_not_edit": "the fmfg-r2 receipts are frozen and are not modified by this lane"
+    }
+  },
+  "question": "When a registered decision family collides under the active formalism F, is the correct repair an existing parent formalism, one missing variable/observation, a local patch/scope condition, a representation change, a candidate new primitive, or no change at all?",
+  "collision_diagnostic": "C_F = {(i,j) : q_F(x_i) = q_F(x_j) and J(x_i) != J(x_j)}; a non-empty C_F proves only that F is too coarse for that registered decision family",
+  "registered_search_order": [
+    "NO_CHANGE",
+    "PARENT_FORMALISM_SUFFICIENT",
+    "ADD_ONE_OBSERVATION",
+    "LOCAL_PATCH",
+    "REPRESENTATION_CHANGE",
+    "NEW_PRIMITIVE"
+  ],
+  "critical_metric": {
+    "name": "false_formalism_invention",
+    "definition": "an arm emits NEW_PRIMITIVE when the truth is any cheaper tier",
+    "status": "CO_PRIMARY_NON_COMPENSATORY",
+    "cannot_be_traded_against": "terminal accuracy",
+    "terminal_when_violated": "FALSE_INVENTION_HARM"
+  },
+  "counts": {
+    "protected_per_stratum": 28,
+    "protected_total": 168,
+    "registered_minimum": 160,
+    "development_per_stratum": 6,
+    "development_total": 36,
+    "strata": 6,
+    "balanced": true,
+    "false_invention_denominator": 140
+  },
+  "generator": {
+    "cases_per_instance": 12,
+    "observables_per_instance": 6,
+    "recorded_observables": 5,
+    "unobserved_observables": 1,
+    "active_signature_size": 2,
+    "patch_budget": 2,
+    "registered_parent_library_size": "2..4",
+    "derived_term_grammar": [
+      "EQ",
+      "SUM3",
+      "DIFF3"
+    ],
+    "relational_primitives": [
+      "COMP",
+      "REACH"
+    ],
+    "verification": "every planted instance is re-derived by exhaustive tier search (both oracle methods) before emission; a planted instance whose cheapest feasible tier is not the intended one is rejected and resampled",
+    "max_attempts": 4000
+  },
+  "decoys": {
+    "principle": "each stratum carries structure that would reward a more expensive answer",
+    "maximal_invention_temptation": "on every stratum whose truth is PARENT_FORMALISM_SUFFICIENT, ADD_ONE_OBSERVATION, LOCAL_PATCH or REPRESENTATION_CHANGE the instance registers a relation whose connected components coincide with the decision classes, so a new primitive is always available and always adequate; the suite therefore measures parsimony under maximal temptation, not the difficulty of finding a working primitive",
+    "near_miss_parent": "a registered parent leaving exactly one collision is included wherever one exists",
+    "near_miss_observation": "an observable resolving all but one collision is recorded and counted"
+  },
+  "arms": [
+    "P1_LGG_ANTIUNIFICATION",
+    "P2_FCA_GALOIS_CLOSURE",
+    "P3_MDL_ABSTRACTION_SEARCH",
+    "P4_MODEL_COUNTERMODEL_SEARCH",
+    "P5_CONSERVATIVE_EXTENSION_CHECK",
+    "P6_THEORY_REVISION_BASELINE",
+    "B_STRONGEST_FAITHFUL_PARENT_FEDERATION",
+    "M_FG_SEARCH_ORDER",
+    "M_MINUS_PARENT_SEARCH",
+    "M_MINUS_DATA_TIER",
+    "M_MINUS_PATCH_TIER",
+    "M_MINUS_REPRESENTATION_TIER",
+    "M_MINUS_INVENTION_TIER",
+    "M_MINUS_DEFICIT_CHECK",
+    "M_MINUS_ADMISSION_GATE",
+    "M_MINUS_COST_ORDER",
+    "M_MINUS_ORDER_AND_GATE",
+    "M_EAGER_INVENT",
+    "C_ALWAYS_INVENT",
+    "C_NEVER_INVENT",
+    "C_NEVER_CHANGE",
+    "C_RANDOM_TERMINAL"
+  ],
+  "primary_comparator": "B_STRONGEST_FAITHFUL_PARENT_FEDERATION",
+  "gates": {
+    "G0a_KNOWN_ANSWER": {
+      "kind": "hard",
+      "rule": "six hand-authored fixtures (one per terminal) reproduced by the oracle, by M and by the federation"
+    },
+    "G0b_ORACLE_SELF_AGREEMENT": {
+      "kind": "hard",
+      "rule": "method A (signature buckets + bitmask cover) equals method B (set-partition meet) on every instance"
+    },
+    "G0c_NULL_CALIBRATION": {
+      "kind": "hard",
+      "rule": "random control <= 0.25; M against within-split shuffled labels <= 0.30; planted positive C_ALWAYS_INVENT false-invention rate >= 0.50 (must trip G2M); planted positive M_MINUS_ORDER_AND_GATE false-invention rate > 0 (must trip G2M); planted positive C_NEVER_CHANGE missed-deficit rate >= 0.50 (must trip G2)"
+    },
+    "G1a_FEDERATION_REPRODUCES_M": {
+      "rule": "terminal identity >= 0.995 and no stratum discordance > 0.05"
+    },
+    "G1b_M_ADVANTAGE": {
+      "rule": "paired exact two-sided McNemar p <= 0.05 with M ahead; Holm across the FG10..FG70 family"
+    },
+    "G2_ANTI_CONSERVATISM": {
+      "rule": "M's missed-deficit count <= the federation's over instances whose truth is not NO_CHANGE; paired with the planted positive C_NEVER_CHANGE, because every arm's first move is the shared collision check and the counter is otherwise structurally unreachable"
+    },
+    "G2M_ANTI_INVENTION": {
+      "kind": "co_primary_non_compensatory",
+      "rule": "M's false-invention count <= the federation's AND rate <= 0.02; hard-fails if any non-NEW_PRIMITIVE stratum has an empty denominator"
+    },
+    "G3_MECHANISM_BY_OMISSION": {
+      "rule": "every stratum has an omission ablation that removes a mechanism the stratum needs and must degrade relative to M; plus the 2x2 factorial omission of the registered cost order and of the fail-closed admission gate, reported unconditionally",
+      "ablation_for_stratum": {
+        "NO_CHANGE": "M_MINUS_DEFICIT_CHECK",
+        "PARENT_FORMALISM_SUFFICIENT": "M_MINUS_PARENT_SEARCH",
+        "ADD_ONE_OBSERVATION": "M_MINUS_DATA_TIER",
+        "LOCAL_PATCH": "M_MINUS_PATCH_TIER",
+        "REPRESENTATION_CHANGE": "M_MINUS_REPRESENTATION_TIER",
+        "NEW_PRIMITIVE": "M_MINUS_INVENTION_TIER"
+      },
+      "admission_gate_note": "the fail-closed admission gate can only ever block, so removing it cannot degrade the stratum where invention is correct; NEW_PRIMITIVE is therefore attributed to omitting the escalation tier itself (M_MINUS_INVENTION_TIER, like-for-like with the other five), and the gate's own mechanism is measured on the anti-invention axis by the 2x2 factorial"
+    }
+  },
+  "gate_evaluation_discipline": "every gate reports the number of instances actually evaluated beside its violation count, and every no-alarm assertion is paired with a planted positive that must trip it: PLANTED_POSITIVE_ANTI_INVENTION_GATE_FIRES (G2M), PLANTED_POSITIVE_ANTI_CONSERVATISM_GATE_FIRES (G2), EVERY_STRATUM_HAS_A_DEGRADING_OMISSION_ABLATION (G3), and ANTI_INVENTION_DENOMINATOR_IS_NON_EMPTY_AND_TEMPTING (G2M denominator)",
+  "routing": {
+    "G0 hard failure": "CANNOT_CHECK",
+    "G2M failure": "FALSE_INVENTION_HARM",
+    "G2 failure": "M_OVER_CONSERVATIVE",
+    "G1a pass": "PARENT_SUFFICIENT",
+    "G1b pass and G3 pass": "FG70_RESIDUAL_CANDIDATE",
+    "G1b pass and G3 fail": "CANNOT_CHECK",
+    "otherwise": "PARENT_SUFFICIENT"
+  },
+  "no_rescue_clause": "no stratum weight, oracle rule, arm, seed, gate constant or count changes after the protected results file exists; a protected result is never re-run under a new seed; a lane defect found mid-run halts the lane, is receipted, and re-freezes as V2",
+  "custody": {
+    "protected_seed_file": "~/.orion-custody/fg/PROTECTED_SEED_V1.txt",
+    "protected_seed_sha256": "4b34cb8798a01c5a2223a50453b6491d3dcf10f12139c7a8a8144aa4f68355bb",
+    "development_seed": "FG70-DEV-20260902",
+    "authorization_file": "PROTECTED_RUN_AUTHORIZATION.json",
+    "authorization_absent_in_this_pr": true,
+    "shuffle_null_seed": 20260902,
+    "random_control_seed": 20260902
+  },
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_new_mathematical_theory": false,
+    "grants_field_status": false,
+    "grants_submission_readiness": false,
+    "grants_journal_acceptance": false
+  }
+}

@@ -13,7 +13,7 @@ earns tail-necessity. Read the denominators in `PC_R6_OUTCOME_RECEIPT.md` before
 
 | file | what it is |
 |---|---|
-| `PC_R6_OUTCOME_RECEIPT.md` | gate table + archive addendum (denominators, power, honest reading) — **start here** |
+| `PC_R6_OUTCOME_RECEIPT.md` | gate table (machine-generated, bytes 0–948) + archive addendum (hand-written: denominators, power, honest reading) — **start here** |
 | `PC_R6_FULLREG_ROLLUP_V1.md` | per-arm and per-contrast tables |
 | `PC_R6_FULLREG_ROLLUP_V1.json` | full analysis output (contrasts, project strata, Holm, sensitivity annex) |
 | `PC_R6_FULLREG_RAW_ROLLUP_V1.json` | per-evaluation raw rollup (1,080 evaluations + 80 baselines) |
@@ -27,3 +27,12 @@ Design: `research/experiments/pc-r6/PC_R6_FULL_REGRESSION_EVALUATOR_LANE_DESIGN_
 Runner/analysis + amendments: `research/experiments/pc-r6/PC_R6_DISPATCH_RECEIPT_V1.md`.
 Campaign on LUNARC: `/projects/hep/fs9/users/scyiu/orion-v2-pc-r6/campaign-pc-r6-fullreg-e30r11-e60-20260902-774903e1/`.
 All nine machine-generated files here are byte-identical to that campaign directory (verified by sha256).
+
+**Quoting figures from the receipt.** Only bytes 0–948 of `PC_R6_OUTCOME_RECEIPT.md` are analysis
+output; the addendum below the `ORION-RECEIPT-BOUNDARY-V1` marker is hand-written, and every figure
+in it names the artifact and field it came from. The boundary is enforced by
+`scripts/check_receipt_boundaries.py` (CI `receipt-boundary-guard`); the convention is
+`docs/00-programme/RECEIPT_BOUNDARY_CONVENTION.md`. Two addendum figures were corrected on
+2026-09-02 — `NONE_PATCH_NOT_APPLIED` is **75.0%–82.5%** (not "78–83%"), and the `311/480`
+`rc=128` count comes from this lane's own `PC_R6_FULLREG_RAW_ROLLUP_V1.json`, not from the frozen
+lane. Both had already reached a paper scoping brief.

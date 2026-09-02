@@ -1,0 +1,320 @@
+{
+  "arm_groups": {
+    "B0_RETRY_SEARCH": "baseline",
+    "B1_UNCERTAINTY_ABSTENTION": "baseline",
+    "B2_FAILURE_TAXONOMY_DIAGNOSIS": "baseline",
+    "B3_EQUAL_EXTRA_SEARCH_1_5X": "control",
+    "B3_MODEL_BASED_DIAGNOSIS_VOI": "baseline",
+    "B4_MDA_MODEL_EXPANSION": "baseline",
+    "B5_NO_ABSTENTION_GATE": "federation-variant",
+    "B5_R1_VERDICT_ONLY": "ladder",
+    "B5_R2_PLUS_CANDIDATE_SET": "ladder",
+    "B5_R3_PLUS_DISCRIMINATOR_TABLES": "ladder",
+    "B5_R4_PLUS_DISPOSITION_RECORDS": "ladder",
+    "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": "ladder",
+    "C_NEVER_INTERVENE": "control",
+    "C_RANDOM_POLICY": "control",
+    "M2_ALWAYS_ESCALATE_WHEN_STUCK": "ablation",
+    "M2_L1_LOOKAHEAD_ONLY": "lever",
+    "M2_L2_BEST_HYPOTHESIS_ONLY": "lever",
+    "M2_LOCUS_LABELS_SHUFFLED": "ablation",
+    "M2_LOOKAHEAD_PLUS_BEST_HYPOTHESIS": "M2",
+    "M2_MINUS_DIAGNOSTIC_EVALUATOR_GATE": "ablation",
+    "M2_MINUS_LOCUS_DIAGNOSIS": "ablation",
+    "M2_MINUS_LOWER_LEVEL_DISPOSITION": "ablation",
+    "M2_MINUS_PROSPECTIVE_DISCRIMINATOR": "ablation",
+    "M2_NEVER_ESCALATE": "ablation",
+    "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": "M"
+  },
+  "arm_under_test": "M2_LOOKAHEAD_PLUS_BEST_HYPOTHESIS",
+  "arms": [
+    "B0_RETRY_SEARCH",
+    "B1_UNCERTAINTY_ABSTENTION",
+    "B2_FAILURE_TAXONOMY_DIAGNOSIS",
+    "B3_EQUAL_EXTRA_SEARCH_1_5X",
+    "B3_MODEL_BASED_DIAGNOSIS_VOI",
+    "B4_MDA_MODEL_EXPANSION",
+    "B5_NO_ABSTENTION_GATE",
+    "B5_R1_VERDICT_ONLY",
+    "B5_R2_PLUS_CANDIDATE_SET",
+    "B5_R3_PLUS_DISCRIMINATOR_TABLES",
+    "B5_R4_PLUS_DISPOSITION_RECORDS",
+    "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION",
+    "C_NEVER_INTERVENE",
+    "C_RANDOM_POLICY",
+    "M2_ALWAYS_ESCALATE_WHEN_STUCK",
+    "M2_L1_LOOKAHEAD_ONLY",
+    "M2_L2_BEST_HYPOTHESIS_ONLY",
+    "M2_LOCUS_LABELS_SHUFFLED",
+    "M2_LOOKAHEAD_PLUS_BEST_HYPOTHESIS",
+    "M2_MINUS_DIAGNOSTIC_EVALUATOR_GATE",
+    "M2_MINUS_LOCUS_DIAGNOSIS",
+    "M2_MINUS_LOWER_LEVEL_DISPOSITION",
+    "M2_MINUS_PROSPECTIVE_DISCRIMINATOR",
+    "M2_NEVER_ESCALATE",
+    "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION"
+  ],
+  "authority": "None. Development numbers are development numbers; a protected outcome under this design decides only this study's registered question. No field status, novelty, architecture-adoption or publication authority is granted or implied. PARENT_SUFFICIENT is a successful scientific terminal, and so is LEVERS_NULL.",
+  "class": "EXACT_ORACLE_KNOWN_ANSWER__ZERO_MODEL_CALLS__DETERMINISTIC__NO_RESCUE",
+  "custody": {
+    "code": [
+      "mex2v2_levers.py",
+      "mex2v2_arms.py",
+      "mex2v2_provenance.py",
+      "mex2v2_run.py"
+    ],
+    "determinism": "results and custody files byte-identical on re-run; wall-clock kept in a separate timing file.",
+    "estimated_protected_cost": "1200 instances x 25 arms, single core: ~15-60 CPU-seconds (development: 48 instances x 25 arms in 0.65 s wall; the 1200-instance three-arm scale probe took 5.5 s). Budget 5 CPU-minutes. Mac local; never a heavy job; never CI on the Mac mini.",
+    "imported_frozen": [
+      "../me-x2/mex2_model.py",
+      "../me-x2/mex2_catalogue.py",
+      "../me-x2/mex2_oracle.py",
+      "../me-x2/mex2_generator.py",
+      "../me-x2/mex2_parents.py",
+      "../me-x2/mex2_arms.py",
+      "../me-x2/mex2_run.py"
+    ],
+    "protected_authorization": "PROTECTED_RUN_AUTHORIZATION.json next to the runner, with human_written=true, a human-written token of at least 16 characters and acknowledged_design_sha256 equal to the sha256 of this design JSON; the custody seed must hash to the commitment; G0d must hold. The file is absent in this PR and the unit tests assert its absence and every refusal path. No agent may author it.",
+    "stages": [
+      "selftest",
+      "dev (<= 48 instances, label DEVELOPMENT, never protected)",
+      "g0scale (public seed, V1-known arms only)",
+      "protected",
+      "analyze"
+    ]
+  },
+  "development_surfaces_disclosed": {
+    "lever_rendering_repair_before_freeze": "One repair was made on the development surfaces before this design was frozen: L2 was first rendered as 'some establishable hypothesis survives in every registered outcome branch', which is still fail-closed per branch and therefore not the registered lever. It was corrected to the registered rule (the BEST live hypothesis remains establishable in the branch containing it). Both renderings are stated above; the rejected one is registered as an untried alternative.",
+    "no_protected_scale_v2_dry_run": "Deliberate. V1's dry run exists and its discomfort is documented in the V1 receipt; the G0 clauses concern the generator, which G0d freezes byte-identical, and are re-checked at scale by the public probe with V1-known arms. Running the V2 arms at scale before the protected run would reveal the V2 comparison and is not done.",
+    "rule": "Everything below is public-seed development. No protected instance has been generated or inspected, and no gate, threshold, stratum weight, oracle rule, generator rule or arm policy was chosen by looking at a protected outcome.",
+    "surfaces": [
+      {
+        "n": 48,
+        "role": "development split, all arms, committed artifacts",
+        "seed": "ME-X2-V2-DEV-20260902"
+      },
+      {
+        "n": 48,
+        "role": "V1's development split, re-run with the V2 arms as a regression check",
+        "seed": "ME-X2-DEV-20260902"
+      },
+      {
+        "n": 144,
+        "role": "located the 6 episodes on which V1's M declares a false CANNOT_IDENTIFY; frozen verbatim as the lever known-answer fixtures; used for the V1-vs-M2 regression check (no parent comparison was run on this surface)",
+        "seed": "ME-X2-V2-FIXTURE-SEARCH-20260902"
+      },
+      {
+        "n": 1200,
+        "role": "G0 coverage probe at protected scale with V1-known arms only (M_V1 and both controls); the V2 arms are excluded by construction so it reveals nothing about the V2 comparison",
+        "seed": "ME-X2-V2-G0SCALE-PUBLIC-20260902"
+      }
+    ]
+  },
+  "gates": {
+    "COST": "paired sign test on per-instance regret in registered cost units, p <= 0.05. Wall-clock is reported only and routes nothing.",
+    "G0a_KNOWN_ANSWER": "hard. V1's 14 hand-authored fixtures and the H-EXT-3 separation pair (oracle targets reproduced; M2 and B5 decision-correct), plus the 6 V2 lever known-answer fixtures.",
+    "G0b_ORACLE_SELF_AGREEMENT": "hard. Enumeration == branch-and-bound on every instance; a truth-agnostic decision-correct policy exists on every instance; variant invariants hold; >= 5 decoys per apparent class (typical level >= 1), >= 5 inverse decoys per level-0 class, >= 5 apparent-CANNOT_IDENTIFY identifiable instances (coverage clauses enforced on the protected split, as in V1).",
+    "G0c_NULL_CALIBRATION": "hard. C_NEVER_INTERVENE decision-correct = 0 on identifiable instances; C_RANDOM_POLICY <= 0.25 (enforced on the protected split and the scale probe, reported below that split size \u2014 an n-sensitive frequency clause, treated exactly as V1 treats decoy coverage); M2 scored against the partner instance's oracle <= M2's true rate - 0.30.",
+    "G0d_V1_PROVENANCE": "hard, new in V2. Every frozen V1 file byte-identical to the hash published in the V1 parent-fidelity receipt: V2 changes the arm under test and nothing else, so a V2 result can never be a comparison against a silently different world.",
+    "G1a_B5_REPRODUCES_M2": "decision sequences identical on >= 99.5% of instances, no stratum > 5% discordant.",
+    "G1b_M2_ADVANTAGE": "paired decision-correct difference (M2 - B5) > 0, exact two-sided p <= 0.05, >= 1 stratum with >= 5 M2-only-correct instances.",
+    "G1c_B5_ADVANTAGE": "the symmetric test.",
+    "G2_ANTI_ESCALATION": "M2's false escalations <= B5's AND M2's specification damage <= B5's (V1's clause), AND both <= V1's M. A revival may not buy decisions with escalation harm.",
+    "G3_MEDIATION": "only if G1b. (a) M2's class correct on >= 80% of M2-only-correct instances; (b) on every advantaged stratum both M2 locus ablations <= B5; (c) B3 at 1.5x budget does not reach M2 (paired exact p <= 0.05).",
+    "G4_INTERFACE_LADDER": "monotonicity (no rung k+1 significantly worse than rung k) and the rung-5 gap. Terminals as V1.",
+    "G5_LEVER_ATTRIBUTION": "new in V2. (a) paired M2 - M_V1 decision-correct > 0 at exact two-sided p <= 0.05; (b) neither single-lever arm improves on M_V1 by more than the conjunction does; (c) >= 80% of M2-only-correct-vs-V1 instances are ones where V1 declared a false CANNOT_IDENTIFY AND M2's EXECUTED lever receipts show an L2-only-admissible action or an L1-changed choice \u2014 the mechanism read from the receipts of actions actually taken, not inferred from the trajectory and not counted from candidates that were only considered; (d) M2 loses fewer instances to V1 than it gains from it: the revival must not move the failure. Clauses (a), (c) and (d) each route the lever verdict below; (b) is a reported diagnostic. G5 does not route the primary comparison, which is B5-relative by design."
+  },
+  "h0": "Strongest-parent sufficiency. An exact expected-cost planner over the same typed modules makes the same intervention decisions at equal or lower cost, whichever way M's two unfixed orderings are rendered.",
+  "house_template": "research/experiments/me-x4",
+  "lane": "ME-X2 V2 \u2014 locus diagnosis / minimum escalation, revival of M's two registered orderings",
+  "lever_decomposition_arms": [
+    "M2_L1_LOOKAHEAD_ONLY",
+    "M2_L2_BEST_HYPOTHESIS_ONLY"
+  ],
+  "lever_receipts": "Per step M2 records the chosen candidate's four diagnostic terms, whether the action was admissible only under L2, and whether L1's ranking changed which action was chosen (V1's cost-first order applied to the SAME admissible set, not to V1's own, which L2 may have widened). V1's inherited act() consults the discriminator ranking before its unique / common-fix branches, so a receipt can describe an action M2 never took: attribution counts only receipts whose step matches the EXECUTED trajectory step. Measured on the public surfaces: 2 of 322 receipts on the 144-instance fixture search and 6 of 2486 at 1200-instance scale describe candidates that were only considered.",
+  "levers": {
+    "L1_ONE_STEP_LOOKAHEAD": {
+      "not_a_planner": "L1 has no cost model beyond the registered costs, no failure penalty, no free parameter and no recursion: it ranks admissible discriminators by prospective diagnostic adequacy, then discrimination, then V1's tie-break. It does not minimise expected total cost and is myopic by construction. A rendering that minimised expected total cost over the full horizon would be B5, not M.",
+      "registered_alternative_untried": "leading the key with expected_residual_ambiguity and demoting the foreclosure terms. Registered as untried so a V3 has somewhere to go; not evaluated in this lane.",
+      "replaces": "V1 \u00a74.1(i): among admissible discriminators M takes the cheapest; the semantics say which actions are admissible, never which to try first.",
+      "rule": "Order admissible discriminators lexicographically by (expected_abstention, best_foreclosed, foreclosed, expected_residual_ambiguity, cost, kind_rank, action_id), computed from the registered outcome tables one step ahead under the uniform prior over live causes that every arm shares.",
+      "terminal_branch_rule": "a repair-as-test branch in which the repair resolves the hypothesis ends the episode in SUCCESS and carries no residual diagnosis: weight counted, all four diagnostic terms zero.",
+      "terms": {
+        "best_foreclosed": "sum over branches of P(branch) x 1[the minimum-responsible establishable hypothesis of the branch is foreclosed]",
+        "expected_abstention": "sum over registered outcome branches of P(branch) x 1[no live hypothesis in the branch remains establishable] \u2014 M's own diagnostic-evaluator adequacy check applied prospectively to the successor state. Leads the key because abstention is the diagnosed failure; ambiguity is only a proxy for it.",
+        "expected_residual_ambiguity": "sum over branches of P(branch) x (|branch| - 1)",
+        "foreclosed": "sum over branches of P(branch) x (number of hypotheses establishable now and not after)",
+        "tail": "(cost, kind_rank, action_id) is V1's own total order, so M2 reduces to V1 whenever the diagnostic terms are indifferent"
+      }
+    },
+    "L2_BEST_LIVE_HYPOTHESIS_REACHABILITY": {
+      "effect": "V1's fail-closed rule is demoted from a prohibition to a preference: L2 sets admissibility on the minimum-responsible hypothesis, and L1's best_foreclosed / foreclosed terms still prefer actions that foreclose nothing.",
+      "registered_alternatives_untried": [
+        "preserve the most-escalating live hypothesis (worst-case preservation)",
+        "preserve the cheapest-to-complete hypothesis (planner-flavoured)",
+        "preserve one hypothesis per registered outcome branch (strictly more conservative than L2; rejected because it is not the registered lever and it does not release the abstentions L2 targets)"
+      ],
+      "registered_bias": "Rendering 'best' as the minimum-responsible hypothesis is anti-escalation by construction: it preferentially forfeits expensive high-level hypotheses. This is registered before outcomes, priced by G2 and by the missed-escalation and false-CANNOT_IDENTIFY outcomes, and predicted per stratum above.",
+      "replaces": "V1 \u00a74.1(ii): the reachability rule is fail-closed over every live hypothesis, so where the budget forces foreclosing one live hypothesis to establish another, M abstains instead of choosing.",
+      "rule": "A discriminating action is admissible if the BEST live hypothesis \u2014 the establishable account requiring the least escalation, ordered by (minimal-fix level, minimal-fix cost, cause id) \u2014 remains establishable in the registered outcome branch that contains it. A branch that refutes the best hypothesis is a defeat, not a resource foreclosure, and does not bar the action; a repair-as-test that resolves the best hypothesis is its own fix and does not bar it either. Where no live hypothesis is establishable at all the rule is vacuous, exactly as in V1."
+    }
+  },
+  "limitations_registered_before_outcomes": [
+    "Synthetic ORION-authored episodes; cannot alone support a field-level residual (decisive-studies \u00a711.6).",
+    "The registered outcome tables make diagnosis a finite decision problem; real episodes carry unregistered hypotheses.",
+    "ARFT is represented by an equivalent taxonomy rather than the licensed artifact (inherited from V1).",
+    "The uniform prior over live causes is a modelling choice shared by every arm, and L1's branch weights use it.",
+    "The Jump lattice is used as a comparator interface and is not presumed correct.",
+    "Both levers are myopic by construction; a residual gap to B5 that is horizon-shaped is not evidence against the levers and is not a defect this lane can repair without turning M into a planner.",
+    "The lever known-answer fixtures were located by scanning a public development seed for the diagnosed failure signature; they are frozen verbatim and hand-checkable, but they are not an independent sample of that failure mode."
+  ],
+  "no_rescue_clause": "No stratum weight, oracle rule, arm, lever, seed, gate or threshold changes after the protected results file exists. A protected result is never re-run under a new seed. A lane defect found mid-run halts the lane, is receipted, and re-freezes as V3. No third lever is added after this freeze: the registered alternatives above are V3 material and require their own design and their own committed seed. V1's result and artifacts are immutable and are not re-scored.",
+  "parent_lane": {
+    "design_sha256": "bb63685c02da55e7c7ebdf72541e862bcc92661b07a1074e33b8371a35e5d7c9",
+    "path": "research/experiments/me-x2",
+    "post_freeze_factual_amendment": "This lane was authored from a checkout predating V1's protected run and first described V1's route from the registered expectation and the discarded dry run. On rebasing onto main the protected outcome receipt was found and the parent-lane description above was corrected to cite it. NOTHING MECHANICAL CHANGED: no lever, gate, threshold, stratum weight, arm, seed or routing rule differs from the frozen version, the V2 protected seed is unrelated to V1's, and no V1 protected number informed any V2 design choice. V1's frozen code and design JSON are byte-identical on main to the hashes G0d checks, which is why the correction is a description change and not a re-freeze.",
+    "v1_failure_signature": "Uniform, and confirmed on the protected split: M takes the cheapest admissible discriminator with no lookahead, spends part of the budget on a weakly discriminating action, and its fail-closed reachability rule then correctly reports that no live hypothesis is establishable, so M declares CANNOT_IDENTIFY. EVERY instance M loses to B5 is a false CANNOT_IDENTIFY (43 of 43); M never over-escalates. V1's own receipt states the consequence plainly: M's conservatism is not a virtue accompanying the loss, it IS the loss, and G2 passes BECAUSE M abstains.",
+    "v1_frozen_files_sha256": {
+      "ME_X2_LOCUS_DIAGNOSIS_EXACT_STUDY_DESIGN_V1.json": "bb63685c02da55e7c7ebdf72541e862bcc92661b07a1074e33b8371a35e5d7c9",
+      "mex2_arms.py": "fb56bedc5a00c4cf7889b338b867fbcc7557f979d184233c2738174b738342db",
+      "mex2_catalogue.py": "f809870ae4a20c8df2a8a72db545684e99b64386e146b64997c7ba19c4b1f294",
+      "mex2_generator.py": "70eba6705b02a67f9dde08d162c492324c8cac8d7fe66d3f898c398be2e66ef8",
+      "mex2_model.py": "f43462b2d50dda48e9a731ae8f1136807651c18c78a58bdfc10c2040d432db86",
+      "mex2_oracle.py": "399a81568011ccfdf7ba69c5f70b69c697874a7d78971cf5c8f12ec390eba241",
+      "mex2_parents.py": "211da544f95ffffa7eb381e67ca607f7fc6e29c0a48857e865268357d562b923",
+      "mex2_run.py": "818b7f4d345673d2a238278aac689876d5410afdb9599d50cdff7312ce16e5cf"
+    },
+    "v1_g4_label_caveat": "V1's outcome receipt records that the G4 terminal RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL is computed as gap_null = not G1b, so it fires both when the arm ties B5 and when B5 strictly beats it, and must never be quoted alone. V2 inherits the same computation unchanged for comparability, so the same caveat applies to every V2 ladder terminal: read it beside the route and the lever verdict.",
+    "v1_result_is_immutable": true,
+    "v1_route_context": "V1's PROTECTED run is complete (PR #164, main 776d3a1, ME_X2_OUTCOME_RECEIPT.md): route PARENT_SUFFICIENT (B5_DOMINATES), M 0.963 vs B5 0.983 on the primary endpoint, paired diff -0.020, exact p = 0.0032, 95% CI [-0.033, -0.007]. Of the 62 discordant instances all 43 that B5 wins are M declaring CANNOT_IDENTIFY where the episode was decidable, and all 19 that M wins are B5 escalating above the oracle level; M carries 0 false escalations against B5's 21 and 140/140 correct CANNOT_IDENTIFY against B5's 135/140. V1's pre-merge dry run (public seed ME-X2-DRYRUN-20260902, artifacts discarded) had predicted the same shape and is not evidence. V1's protected artifacts are read by no V2 module and are not re-scored here."
+  },
+  "power": "Primary statistic = paired per-instance decision-correct indicator, M2 vs B5, exact two-sided binomial (McNemar exact) on discordant pairs; estimand P(M2) - P(B5) with a paired Wald interval. Pooled n = 1200: 6 one-directional discordants reach p = 0.031, 8 reach p = 0.008. The lever test (G5a) uses the same paired statistic on M2 vs V1's M.",
+  "pre_registered_expectation": {
+    "escalation_risk": "V1's M never over-escalated; every new failure mode M2 can have is escalation harm or a moved failure. G2 is therefore this lane's live gate, and it is evaluated against B5 AND against V1's M.",
+    "g1a_reading_registered_in_advance": "L1's ordering pushes M2's test choices toward B5's, so the decision-sequence identity rate may rise from V1's development value (0.646) to G1a-pass, short-circuiting the route to PARENT_SUFFICIENT before G1b is consulted. Registered now: under G1a-pass the finding is that the IMPROVED rendering of ORION's unfixed orderings is reproduced by an exact planner, which is a stronger parent-sufficiency result than V1's, not a weaker one.",
+    "lever_expectation": "The levers are expected to recover the foreclosure-induced abstentions (the class L2 addresses) and NOT the budget-horizon ones: an action can be individually harmless yet, two steps later, leave a warranted high-level fix unaffordable. No one-step rule can see that; only a finite-horizon planner can, and a rendering that could would be B5. If the residual gap to B5 is horizon-shaped, PARENT_SUFFICIENT is the honest terminal and the residual is interface-standard, not control.",
+    "predicted_shift": "Because 'best' is rendered as the minimum-responsible hypothesis, L2 forfeits expensive high-level hypotheses before cheap ones. M2's residual failures are therefore predicted to shift from uniform false CANNOT_IDENTIFY toward missed escalation concentrated on the high-level strata (MEASUREMENT_OR_EVALUATOR_BLIND, TOOL_INSTRUMENT_INADEQUATE, WORKFLOW_INADEQUATE). Reported per stratum; a falsifiable prediction, not a gate.",
+    "primary": "PARENT_SUFFICIENT remains the expected terminal. The registered outcome tables make diagnosis a finite decision problem for which an exact planner is optimal; a myopic rendering of minimum-escalation semantics cannot beat it. The decisive content of this lane is the LEVER VERDICT: whether the registered levers recover the decisions V1's rendering lost."
+  },
+  "primary_comparator": "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION (rung 5)",
+  "primary_endpoint": "Per instance, decision-correct exactly as V1 (ARFT addendum): oracle level L exists -> the episode ends in SUCCESS whose last intervention is the oracle minimal fix and no intervention above L was applied; oracle level null -> the episode ends in a CANNOT_IDENTIFY declaration with no level >= 2 intervention applied. Class and locus agreement are secondary and enter as the mediation variable of G3.",
+  "protocols_served": [
+    "research/experiments/ME_X2_LOCUS_DIAGNOSIS_PROTOCOL_V2.md",
+    "research/experiments/MACHINE_EPISTEMICS_ME_X2_ONTIC_EPISTEMIC_DIAGNOSTIC_ADDENDUM_V1.md",
+    "research/experiments/MACHINE_EPISTEMICS_DECISIVE_STUDIES_PROTOCOL_V1.md",
+    "research/experiments/MACHINE_EPISTEMICS_DECISIVE_STUDIES_PROTOCOL_V1_ADDENDUM_ARFT.md"
+  ],
+  "question": "Do the two revival levers \u2014 one-step lookahead on discriminator choice, and a reachability rule that preserves the best live hypothesis rather than every live hypothesis \u2014 recover M's decisions against the same strongest faithful parent federation (B5 rung 5) on the same registered information, without buying decisions with escalation harm?",
+  "reference_arm": "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION (V1's rendering, imported unchanged)",
+  "routing": {
+    "lever_verdict": [
+      {
+        "verdict": "LEVERS_HARM",
+        "when": "M2 significantly worse than V1's M"
+      },
+      {
+        "verdict": "LEVERS_NULL",
+        "when": "no significant M2 - M_V1 difference"
+      },
+      {
+        "verdict": "LEVERS_MOVE_THE_FAILURE",
+        "when": "M2 better than V1 but G2's vs-V1 clause fails, or V1-only-correct >= M2-only-correct (G5d)"
+      },
+      {
+        "verdict": "LEVERS_NOT_ATTRIBUTED",
+        "when": "M2 better than V1 but G5c fails: the executed lever receipts do not attribute the gain to either lever"
+      },
+      {
+        "verdict": "LEVERS_PARTIAL_RECOVERY",
+        "when": "M2 better than V1, attributed, and B5 still significantly ahead"
+      },
+      {
+        "verdict": "LEVERS_RECOVER_M",
+        "when": "M2 better than V1, attributed, no escalation regression, B5 not significantly ahead"
+      }
+    ],
+    "note": "PARENT_SUFFICIENT is a successful scientific terminal. The lever verdict is reported alongside every primary route and is the decisive content of a revival lane.",
+    "primary": [
+      {
+        "note": "lane defect; repair, re-freeze, no arm verdict",
+        "route": "CANNOT_CHECK",
+        "when": "G0 fail (a, b, c or d)"
+      },
+      {
+        "note": "B5 reproduces M2's decisions; ladder RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL",
+        "route": "PARENT_SUFFICIENT",
+        "when": "G1a pass"
+      },
+      {
+        "route": "M2_OVER_ESCALATES",
+        "when": "G1b and not G2"
+      },
+      {
+        "route": "CANNOT_CHECK",
+        "when": "G1b and G2 and not G3"
+      },
+      {
+        "route": "QUALITY_COST_TRADEOFF_NO_DOMINANCE",
+        "when": "G1b and G2 and G3 and cost COST_ADVANTAGE_B5"
+      },
+      {
+        "route": "ME_X2_RESIDUAL_CANDIDATE",
+        "when": "G1b and G2 and G3 otherwise"
+      },
+      {
+        "note": "B5_DOMINATES",
+        "route": "PARENT_SUFFICIENT",
+        "when": "G1c pass"
+      },
+      {
+        "route": "PARENT_SUFFICIENT",
+        "when": "neither"
+      }
+    ]
+  },
+  "schema_version": "orion.v2.me-x2-v2.revival-study-design.v2",
+  "seed_commitment": {
+    "custody_path": "~/.orion-custody/me-x2-v2/PROTECTED_SEED_V2.txt (mode 600, outside the repository)",
+    "env_override": "MEX2V2_PROTECTED_SEED_FILE (V2-specific: a V2 run can never consume V1's committed seed)",
+    "fresh": "a new seed, never used by V1, never used by the discarded V1 dry run",
+    "protected_seed_sha256": "f85372cf187678f7517dcf73d41d6595add7dfd4ed04b6c218e08bb1854646fe",
+    "rule": "the runner verifies this hash before any protected generation; the seed string is revealed in the outcome receipt so the split regenerates byte-for-byte"
+  },
+  "seeds": {
+    "development_public": "ME-X2-V2-DEV-20260902",
+    "g0_scale_probe_public": "ME-X2-V2-G0SCALE-PUBLIC-20260902",
+    "instance_seed_rule": "unchanged from V1: sha256(split_seed|stratum|index)[:12], deterministic rejection sampling",
+    "lever_fixture_search_public": "ME-X2-V2-FIXTURE-SEARCH-20260902",
+    "protected": "committed below; revealed only in the outcome receipt",
+    "selftest_public": "ME-X2-V2-SELFTEST"
+  },
+  "status": "frozen design + lever known-answer fixtures + development split. No protected outcome has been generated or inspected; the protected stage refuses without a human-written authorization file.",
+  "strata_and_counts": {
+    "development_instances": 48,
+    "development_pairs_per_stratum": 2,
+    "per_stratum_n_note": "the stratum is the ORACLE class, assigned per instance, so partners re-stratify; per-stratum counts are reported as observed (V1 observed 50-273 at scale).",
+    "protected_instances": 1200,
+    "protected_pairs_per_stratum": 50,
+    "stratum": "oracle class (12 registered obstruction families incl. NO_ESCALATION_NEEDED and CANNOT_IDENTIFY)"
+  },
+  "what_changes_from_v1": {
+    "changed": [
+      "the rendering of the two orderings design V1 \u00a74.1 registered as unfixed by the ORION reference semantics (arm under test only)"
+    ],
+    "no_orion_semantics_edited": "M2 subclasses V1's M and overrides exactly two methods (_reserve_ok, _discriminators). assess_discrepancy_locus, route_frontier_action, JumpTrigger/JumpProposal/assess_jump and minimum_level are called exactly as V1 calls them.",
+    "unchanged_and_hash_verified": [
+      "generator",
+      "exact oracle",
+      "template catalogue",
+      "parent implementations",
+      "B5 and the whole H-EXT-3 ladder",
+      "both controls",
+      "V1's rendering of M (carried as a registered arm)",
+      "primary endpoint",
+      "outcome vector",
+      "strata",
+      "counts",
+      "gate thresholds inherited from V1"
+    ]
+  }
+}

@@ -26,11 +26,48 @@ FULL_STAGES = (
 )
 
 
+class ServedModelMismatch(RuntimeError):
+    """The provider served a different model than the one this run is pinned to.
+
+    Anthropic-compatible gateways can silently substitute a model: the z.ai endpoint
+    answers a ``glm-5.2`` request with ``glm-5.3`` at HTTP 200 with no warning, so
+    pinning the *requested* id does not pin the model that produced the text. A run
+    that mixes served models cannot support a paired contrast, so this failure is
+    fatal by design: it is re-raised out of :func:`run_arm` instead of being folded
+    into an ``EXECUTION_FAILED_MODEL_RESPONSE`` envelope, and the arm exits non-zero.
+    """
+
+
+def assert_served_model(served: str) -> None:
+    """Fail closed unless the served model id matches the pinned one exactly.
+
+    A run is pinned by setting ``ORION_ARM_SERVED_MODEL``. When it is unset the
+    assertion is inactive (unpinned exploratory runs keep working), but a pinned run
+    rejects every substitution, including an empty id, a differently-cased id and a
+    neighbouring model in the same family.
+    """
+    expected = os.environ.get("ORION_ARM_SERVED_MODEL", "").strip()
+    if not expected:
+        return
+    if served != expected:
+        raise ServedModelMismatch(
+            f"served model {served!r} != pinned ORION_ARM_SERVED_MODEL {expected!r}"
+        )
+
+
 def _json_object(text: str) -> dict[str, Any]:
     start, end = text.find("{"), text.rfind("}")
     if start < 0 or end < start:
         raise ValueError("model did not return a JSON object")
-    value = json.loads(text[start : end + 1])
+    # strict=False: the model emits literal newlines inside JSON string values, which
+    # the default strict decoder rejects ("Invalid control character at line N") even
+    # though it decodes to the identical object.  E30-R11 diagnosed this as one of two
+    # execution-lane failure signatures and repaired it campaign-locally
+    # (E30_R11_EXECUTION_LANE_THINKING_BUDGET_JSON_STRICT_REPAIR, 4 of 13 stuck cells);
+    # the repair never reached main, so every later run inherits the defect.  It is a
+    # decoder tolerance only: same bytes, same Python object, and prompts, schema,
+    # model, temperature, arm structure and scoring are untouched.
+    value = json.loads(text[start : end + 1], strict=False)
     if not isinstance(value, dict):
         raise ValueError("model JSON result is not an object")
     return value
@@ -111,6 +148,7 @@ def run_arm(
     arm = str(request["arm_id"])
     workspace = _solver_workspace(request)
     calls: list[dict[str, int]] = []
+    served_models: set[str] = set()
 
     def ask(prompt: str) -> str:
         if calls:
@@ -119,6 +157,9 @@ def run_arm(
                 time.sleep(delay)
         text, usage = call(prompt)
         calls.append({"input_tokens": int(usage.get("input_tokens", 0)), "output_tokens": int(usage.get("output_tokens", 0))})
+        served = str(usage.get("_served_model", "")).strip()
+        if served:
+            served_models.add(served)
         return text
 
     stages: dict[str, str] | None = None
@@ -169,7 +210,7 @@ def run_arm(
             "uncertainty": uncertainty, "discriminator_or_tests": tests, "falsifier": falsifier,
             "requested_authority": "EXECUTION_TEST_ONLY", "scientific_truth_authorized": False,
             "field_status_authorized": False, "publication_readiness_authorized": False,
-            "resource_receipt": {"model_calls": len(calls), "input_tokens": sum(x["input_tokens"] for x in calls), "output_tokens": sum(x["output_tokens"] for x in calls)},
+            "resource_receipt": {"model_calls": len(calls), "input_tokens": sum(x["input_tokens"] for x in calls), "output_tokens": sum(x["output_tokens"] for x in calls), "served_model_ids": sorted(served_models)},
         }
         if stages is not None:
             response["metabolic_stages"] = stages
@@ -181,6 +222,11 @@ def run_arm(
                 "F2_MINUS_SELECTIVE_REOPEN": ["SELECTIVE_REOPEN"],
             }.get(arm, [])
         return response
+    except ServedModelMismatch:
+        # Fatal by design: a mixed-served-model campaign cannot support a paired
+        # contrast, so this propagates and the arm exits non-zero rather than
+        # writing an envelope that a later stage might treat as merely retryable.
+        raise
     except (ValueError, RuntimeError, urllib.error.URLError, json.JSONDecodeError) as exc:
         return {
             "schema_version": "orion.v2.agent-response.v1", "task_id": request["task_id"], "arm_id": arm,
@@ -188,7 +234,7 @@ def run_arm(
             "source_ids_used": [], "assumptions": [], "uncertainty": "UNRESOLVED", "discriminator_or_tests": [],
             "falsifier": "repair the bound provider response and rerun under a new identity", "requested_authority": "NONE",
             "scientific_truth_authorized": False, "field_status_authorized": False, "publication_readiness_authorized": False,
-            "resource_receipt": {"model_calls": len(calls), "input_tokens": sum(x["input_tokens"] for x in calls), "output_tokens": sum(x["output_tokens"] for x in calls)},
+            "resource_receipt": {"model_calls": len(calls), "input_tokens": sum(x["input_tokens"] for x in calls), "output_tokens": sum(x["output_tokens"] for x in calls), "served_model_ids": sorted(served_models)},
         }
 
 
@@ -213,7 +259,11 @@ def _anthropic_compatible_call(prompt: str) -> tuple[str, dict[str, int]]:
     with _urlopen_with_retry(req, timeout=int(os.environ.get("ORION_ARM_HTTP_TIMEOUT", "1800"))) as raw:
         data = json.load(raw)
     text = "".join(str(x.get("text", "")) for x in data.get("content", []) if isinstance(x, dict))
-    return text, dict(data.get("usage", {}))
+    served = str(data.get("model", ""))
+    assert_served_model(served)  # fail closed on silent model substitution
+    usage = dict(data.get("usage", {}))
+    usage["_served_model"] = served
+    return text, usage
 
 
 def _gemini_call(prompt: str) -> tuple[str, dict[str, int]]:

@@ -1,0 +1,3610 @@
+{
+  "custody_sha256": "cb7d75876ae4a5169ab301689e07db1a6bedace83d1e077a3fc1292c64b03131",
+  "gates": {
+    "COST": {
+      "B5_mean_cost": 9.958333333333334,
+      "B5_mean_regret": 2.875,
+      "B5_wall_ms": 33.347418,
+      "M2_mean_cost": 10.25,
+      "M2_mean_regret": 3.225,
+      "M2_wall_ms": 43.642376,
+      "M_V1_mean_regret": 3.25,
+      "flag": "COST_PARITY",
+      "instances_B5_lower_regret": 11,
+      "instances_M2_lower_regret": 6,
+      "rule": "paired sign test on per-instance regret (registered cost units) at p <= 0.05; wall-clock reported only",
+      "sign_test_p": 0.332305908203125
+    },
+    "G0a_KNOWN_ANSWER": {
+      "pass": true,
+      "rule": "V1's 14 hand-authored fixtures and separation pair (M2 and B5 decision-correct) plus the V2 lever known-answer fixtures, reproduced in selftest"
+    },
+    "G0b_ORACLE_SELF_AGREEMENT": {
+      "ci_apparent_identifiable": 1,
+      "decoy_counts": {
+        "FORMALISM_OR_OPERATOR_INSUFFICIENT": 1,
+        "MEASUREMENT_OR_EVALUATOR_BLIND": 2,
+        "MISSING_PREMISE_OR_DATA": 1,
+        "MODEL_FAMILY_INADEQUATE": 5,
+        "PROBLEM_OBJECTIVE_MISSPECIFIED": 2,
+        "TOOL_INSTRUMENT_INADEQUATE": 3,
+        "WORKFLOW_INADEQUATE": 4
+      },
+      "decoy_coverage_ok": true,
+      "exhaustive_agrees_all": true,
+      "inverse_decoy_counts": {
+        "MODEL_FAMILY_INADEQUATE": 1,
+        "NO_ESCALATION_NEEDED": 4,
+        "PROBE_ACTION_INSUFFICIENT": 1,
+        "SEARCH_INSUFFICIENT": 2
+      },
+      "inverse_decoy_coverage_ok": true,
+      "min_per_class": 0,
+      "pass": true,
+      "rule": "enumeration == branch-and-bound and a truth-agnostic decision-correct policy exists on every instance; variant invariants hold; >= min decoys per apparent class, inverse decoys per level-0 class and apparent-CANNOT_IDENTIFY identifiable instances",
+      "variant_invariants_hold": true
+    },
+    "G0c_NULL_CALIBRATION": {
+      "M2_decision_rate": 1.0,
+      "M2_within_pair_swap_rate": 0.125,
+      "n_identifiable": 40,
+      "never_intervene_correct_on_identifiable": 0,
+      "pass": true,
+      "random_clause_enforced": false,
+      "random_clause_met": false,
+      "random_decision_rate": 0.2708333333333333,
+      "rule": "NEVER_INTERVENE decision-correct = 0 on identifiable instances; RANDOM <= 0.25 (enforced on PROTECTED and G0SCALE, reported below that split size); M2 scored against the partner's oracle <= M2's true rate - 0.30",
+      "swap_n": 48
+    },
+    "G0d_V1_PROVENANCE": {
+      "files": {
+        "ME_X2_LOCUS_DIAGNOSIS_EXACT_STUDY_DESIGN_V1.json": {
+          "expected_sha256": "bb63685c02da55e7c7ebdf72541e862bcc92661b07a1074e33b8371a35e5d7c9",
+          "matches": true,
+          "sha256": "bb63685c02da55e7c7ebdf72541e862bcc92661b07a1074e33b8371a35e5d7c9"
+        },
+        "mex2_arms.py": {
+          "expected_sha256": "fb56bedc5a00c4cf7889b338b867fbcc7557f979d184233c2738174b738342db",
+          "matches": true,
+          "sha256": "fb56bedc5a00c4cf7889b338b867fbcc7557f979d184233c2738174b738342db"
+        },
+        "mex2_catalogue.py": {
+          "expected_sha256": "f809870ae4a20c8df2a8a72db545684e99b64386e146b64997c7ba19c4b1f294",
+          "matches": true,
+          "sha256": "f809870ae4a20c8df2a8a72db545684e99b64386e146b64997c7ba19c4b1f294"
+        },
+        "mex2_generator.py": {
+          "expected_sha256": "70eba6705b02a67f9dde08d162c492324c8cac8d7fe66d3f898c398be2e66ef8",
+          "matches": true,
+          "sha256": "70eba6705b02a67f9dde08d162c492324c8cac8d7fe66d3f898c398be2e66ef8"
+        },
+        "mex2_model.py": {
+          "expected_sha256": "f43462b2d50dda48e9a731ae8f1136807651c18c78a58bdfc10c2040d432db86",
+          "matches": true,
+          "sha256": "f43462b2d50dda48e9a731ae8f1136807651c18c78a58bdfc10c2040d432db86"
+        },
+        "mex2_oracle.py": {
+          "expected_sha256": "399a81568011ccfdf7ba69c5f70b69c697874a7d78971cf5c8f12ec390eba241",
+          "matches": true,
+          "sha256": "399a81568011ccfdf7ba69c5f70b69c697874a7d78971cf5c8f12ec390eba241"
+        },
+        "mex2_parents.py": {
+          "expected_sha256": "211da544f95ffffa7eb381e67ca607f7fc6e29c0a48857e865268357d562b923",
+          "matches": true,
+          "sha256": "211da544f95ffffa7eb381e67ca607f7fc6e29c0a48857e865268357d562b923"
+        },
+        "mex2_run.py": {
+          "expected_sha256": "818b7f4d345673d2a238278aac689876d5410afdb9599d50cdff7312ce16e5cf",
+          "matches": true,
+          "sha256": "818b7f4d345673d2a238278aac689876d5410afdb9599d50cdff7312ce16e5cf"
+        }
+      },
+      "pass": true,
+      "rule": "every frozen V1 file (generator, oracle, catalogue, parents, arms, runner, design JSON) byte-identical to the hash published in the V1 receipt: V2 changes the arm under test and nothing else"
+    },
+    "G1a_B5_REPRODUCES_M2": {
+      "decision_identity_rate": 0.6666666666666666,
+      "pass": false,
+      "per_stratum": {
+        "CANNOT_IDENTIFY": {
+          "B5_only_correct": 0,
+          "M2_only_correct": 0,
+          "decision_discordant": 3,
+          "n": 8
+        },
+        "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+          "B5_only_correct": 0,
+          "M2_only_correct": 0,
+          "decision_discordant": 1,
+          "n": 3
+        },
+        "MEASUREMENT_OR_EVALUATOR_BLIND": {
+          "B5_only_correct": 0,
+          "M2_only_correct": 0,
+          "decision_discordant": 1,
+          "n": 2
+        },
+        "MISSING_PREMISE_OR_DATA": {
+          "B5_only_correct": 0,
+          "M2_only_correct": 0,
+          "decision_discordant": 2,
+          "n": 3
+        },
+        "MODEL_FAMILY_INADEQUATE": {
+          "B5_only_correct": 0,
+          "M2_only_correct": 1,
+          "decision_discordant": 4,
+          "n": 4
+        },
+        "NO_ESCALATION_NEEDED": {
+          "B5_only_correct": 0,
+          "M2_only_correct": 0,
+          "decision_discordant": 2,
+          "n": 9
+        },
+        "PROBE_ACTION_INSUFFICIENT": {
+          "B5_only_correct": 0,
+          "M2_only_correct": 0,
+          "decision_discordant": 0,
+          "n": 5
+        },
+        "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+          "B5_only_correct": 0,
+          "M2_only_correct": 0,
+          "decision_discordant": 0,
+          "n": 3
+        },
+        "REPRESENTATION_INSUFFICIENT": {
+          "B5_only_correct": 0,
+          "M2_only_correct": 0,
+          "decision_discordant": 0,
+          "n": 2
+        },
+        "SEARCH_INSUFFICIENT": {
+          "B5_only_correct": 0,
+          "M2_only_correct": 0,
+          "decision_discordant": 1,
+          "n": 4
+        },
+        "TOOL_INSTRUMENT_INADEQUATE": {
+          "B5_only_correct": 0,
+          "M2_only_correct": 0,
+          "decision_discordant": 1,
+          "n": 3
+        },
+        "WORKFLOW_INADEQUATE": {
+          "B5_only_correct": 0,
+          "M2_only_correct": 0,
+          "decision_discordant": 1,
+          "n": 2
+        }
+      },
+      "rule": "intervention/declaration sequences identical on >= 99.5% of instances and no stratum > 5% discordant"
+    },
+    "G1b_M2_ADVANTAGE": {
+      "paired": {
+        "diff_x_minus_y": 0.020833333333333332,
+        "discordant": 1,
+        "exact_p_two_sided": 1.0,
+        "n": 48,
+        "wald_ci95": [
+          -0.019572414046170692,
+          0.06123908071283736
+        ],
+        "x_only": 1,
+        "y_only": 0
+      },
+      "pass": false,
+      "rule": "minimal-level decision-correct diff (M2 - B5) > 0, exact two-sided p <= 0.05, >= 1 stratum with >= 5 M2-only-correct"
+    },
+    "G1c_B5_ADVANTAGE": {
+      "pass": false,
+      "rule": "symmetric: diff < 0 with p <= 0.05 (B5 dominates)"
+    },
+    "G2_ANTI_ESCALATION": {
+      "B5_false_escalation": 1,
+      "B5_spec_damage": 0,
+      "M2_false_escalation": 0,
+      "M2_spec_damage": 0,
+      "M_V1_false_escalation": 0,
+      "M_V1_spec_damage": 0,
+      "pass": true,
+      "rule": "M2 false escalations and specification damage <= B5's (V1's clause) AND <= V1's M: a revival may not buy decisions with escalation harm",
+      "vs_B5_pass": true,
+      "vs_M_V1_pass": true
+    },
+    "G3_MEDIATION": {
+      "applicable": false,
+      "checks": {},
+      "pass": null,
+      "rule": "(a) M2's class correct on >= 80% of M2-only-correct instances; (b) on each advantaged stratum both locus ablations <= B5; (c) B3 with 1.5x budget does not reach M2 (paired p <= 0.05)"
+    },
+    "G4_INTERFACE_LADDER": {
+      "pass": true,
+      "rule": "no rung k+1 significantly worse than rung k (exact p <= 0.05); rung-5 gap = the G1 paired test",
+      "rung5_gap": {
+        "diff_x_minus_y": 0.020833333333333332,
+        "discordant": 1,
+        "exact_p_two_sided": 1.0,
+        "n": 48,
+        "wald_ci95": [
+          -0.019572414046170692,
+          0.06123908071283736
+        ],
+        "x_only": 1,
+        "y_only": 0
+      },
+      "rung5_gap_null": true,
+      "rung_decision_rates": {
+        "B5_R1_VERDICT_ONLY": 0.7291666666666666,
+        "B5_R2_PLUS_CANDIDATE_SET": 0.8958333333333334,
+        "B5_R3_PLUS_DISCRIMINATOR_TABLES": 0.9166666666666666,
+        "B5_R4_PLUS_DISPOSITION_RECORDS": 0.9791666666666666,
+        "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": 0.9791666666666666
+      },
+      "steps": [
+        {
+          "from": "B5_R1_VERDICT_ONLY",
+          "paired": {
+            "diff_x_minus_y": 0.16666666666666666,
+            "discordant": 8,
+            "exact_p_two_sided": 0.0078125,
+            "n": 48,
+            "wald_ci95": [
+              0.06123545335324254,
+              0.2720978799800908
+            ],
+            "x_only": 8,
+            "y_only": 0
+          },
+          "to": "B5_R2_PLUS_CANDIDATE_SET",
+          "violation": false
+        },
+        {
+          "from": "B5_R2_PLUS_CANDIDATE_SET",
+          "paired": {
+            "diff_x_minus_y": 0.020833333333333332,
+            "discordant": 7,
+            "exact_p_two_sided": 1.0,
+            "n": 48,
+            "wald_ci95": [
+              -0.08704062593378063,
+              0.1287072926004473
+            ],
+            "x_only": 4,
+            "y_only": 3
+          },
+          "to": "B5_R3_PLUS_DISCRIMINATOR_TABLES",
+          "violation": false
+        },
+        {
+          "from": "B5_R3_PLUS_DISCRIMINATOR_TABLES",
+          "paired": {
+            "diff_x_minus_y": 0.0625,
+            "discordant": 5,
+            "exact_p_two_sided": 0.375,
+            "n": 48,
+            "wald_ci95": [
+              -0.02707776145462791,
+              0.15207776145462792
+            ],
+            "x_only": 4,
+            "y_only": 1
+          },
+          "to": "B5_R4_PLUS_DISPOSITION_RECORDS",
+          "violation": false
+        },
+        {
+          "from": "B5_R4_PLUS_DISPOSITION_RECORDS",
+          "paired": {
+            "diff_x_minus_y": 0.0,
+            "discordant": 0,
+            "exact_p_two_sided": 1.0,
+            "n": 48,
+            "wald_ci95": [
+              0.0,
+              0.0
+            ],
+            "x_only": 0,
+            "y_only": 0
+          },
+          "to": "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION",
+          "violation": false
+        }
+      ],
+      "terminal": "RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL"
+    },
+    "G5_LEVER_ATTRIBUTION": {
+      "a_paired_M2_vs_M_V1": {
+        "diff_x_minus_y": 0.0,
+        "discordant": 0,
+        "exact_p_two_sided": 1.0,
+        "n": 48,
+        "wald_ci95": [
+          0.0,
+          0.0
+        ],
+        "x_only": 0,
+        "y_only": 0
+      },
+      "a_pass": false,
+      "applicable": true,
+      "b_pass": true,
+      "b_single_lever_vs_M_V1": {
+        "M2_L1_LOOKAHEAD_ONLY": {
+          "diff_x_minus_y": 0.0,
+          "discordant": 0,
+          "exact_p_two_sided": 1.0,
+          "n": 48,
+          "wald_ci95": [
+            0.0,
+            0.0
+          ],
+          "x_only": 0,
+          "y_only": 0
+        },
+        "M2_L2_BEST_HYPOTHESIS_ONLY": {
+          "diff_x_minus_y": -0.08333333333333333,
+          "discordant": 4,
+          "exact_p_two_sided": 0.125,
+          "n": 48,
+          "wald_ci95": [
+            -0.16152321380010093,
+            -0.005143452866565715
+          ],
+          "x_only": 0,
+          "y_only": 4
+        }
+      },
+      "c_mechanism_rate": 0.0,
+      "c_n_M2_only_correct": 0,
+      "c_pass": false,
+      "d_n_M_V1_only_correct": 0,
+      "d_pass": false,
+      "pass": false,
+      "rule": "(a) paired M2 - M_V1 > 0 at exact p <= 0.05 [routes the lever verdict]; (b) neither single-lever arm improves on M_V1 by more than the conjunction does [reported diagnostic]; (c) >= 80% of M2-only-correct instances are ones where V1 declared a false CANNOT_IDENTIFY AND M2's EXECUTED lever receipts show an L2-only-admissible action or an L1-changed choice [routes the lever verdict: failing it gives LEVERS_NOT_ATTRIBUTED]; (d) M2 loses fewer instances to V1 than it gains: the revival must not move the failure [routes the lever verdict: failing it gives LEVERS_MOVE_THE_FAILURE]"
+    },
+    "ROUTE": {
+      "B5_decision_rate": 0.9791666666666666,
+      "M2_decision_rate": 1.0,
+      "M_V1_decision_rate": 1.0,
+      "b5_dominates": false,
+      "cost_flag": "COST_PARITY",
+      "ladder_terminal": "RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL",
+      "lever_verdict": "LEVERS_NULL",
+      "reason": "no M2 advantage over B5 (discordance without significance)",
+      "route": "PARENT_SUFFICIENT"
+    }
+  },
+  "label": "DEVELOPMENT",
+  "n_instances": 48,
+  "results_sha256": "533b38af3f8965b3ae34f43f21a66bdfa5073b6502ed6465790fcd452f209485",
+  "schema_version": "orion.v2.me-x2-v2.revival-study-analysis.v2",
+  "score": {
+    "decoy_counts": {
+      "FORMALISM_OR_OPERATOR_INSUFFICIENT": 1,
+      "MEASUREMENT_OR_EVALUATOR_BLIND": 2,
+      "MISSING_PREMISE_OR_DATA": 1,
+      "MODEL_FAMILY_INADEQUATE": 5,
+      "PROBLEM_OBJECTIVE_MISSPECIFIED": 2,
+      "TOOL_INSTRUMENT_INADEQUATE": 3,
+      "WORKFLOW_INADEQUATE": 4
+    },
+    "inverse_decoy_counts": {
+      "MODEL_FAMILY_INADEQUATE": 1,
+      "NO_ESCALATION_NEEDED": 4,
+      "PROBE_ACTION_INSUFFICIENT": 1,
+      "SEARCH_INSUFFICIENT": 2
+    },
+    "lever_activity": {
+      "instances_with_l1_changed_choice": 15,
+      "instances_with_l2_only_admissible_action": 0,
+      "instances_with_permitted_foreclosure": 0,
+      "instances_with_positive_expected_abstention": 18,
+      "receipts_considered_not_executed": 0,
+      "receipts_executed": 100
+    },
+    "per_arm": {
+      "B0_RETRY_SEARCH": {
+        "brier": null,
+        "class_rate": 0.08333333333333333,
+        "correct_ci": 0,
+        "decision_rate": 0.20833333333333334,
+        "ece5": null,
+        "false_ci": 0,
+        "false_escalation": 1,
+        "false_model_attribution": 0,
+        "false_representation_attribution": 0,
+        "false_world_change": 0,
+        "locus_rate": 0.2708333333333333,
+        "mean_ci_cost": 6.0,
+        "mean_cost": 5.520833333333333,
+        "mean_regret": -2.65,
+        "missed_escalation": 30,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 0,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 1,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 4,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.0,
+            "decision_rate": 0.5555555555555556,
+            "false_escalation": 0,
+            "missed_escalation": 4,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.4,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.75,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.0,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.3181818181818182,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 0.13636363636363635,
+            "n": 22
+          }
+        },
+        "recurrence": 111,
+        "spec_damage": 0,
+        "success_rate": 0.20833333333333334,
+        "wall_ms": 5.026246
+      },
+      "B1_UNCERTAINTY_ABSTENTION": {
+        "brier": 0.16666666666666666,
+        "class_rate": 0.8541666666666666,
+        "correct_ci": 8,
+        "decision_rate": 0.7083333333333334,
+        "ece5": 0.16666666666666663,
+        "false_ci": 14,
+        "false_escalation": 0,
+        "false_model_attribution": 1,
+        "false_representation_attribution": 0,
+        "false_world_change": 0,
+        "locus_rate": 0.8541666666666666,
+        "mean_ci_cost": 8.75,
+        "mean_cost": 10.666666666666666,
+        "mean_regret": 2.975,
+        "missed_escalation": 14,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 48,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.5,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.6666666666666666,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 0.5,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 1.0,
+            "decision_rate": 0.7777777777777778,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 0.6,
+            "decision_rate": 0.6,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 0.75,
+            "decision_rate": 0.5,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.5,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.8181818181818182,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 0.5454545454545454,
+            "n": 22
+          }
+        },
+        "recurrence": 0,
+        "spec_damage": 0,
+        "success_rate": 0.5416666666666666,
+        "wall_ms": 2.917459
+      },
+      "B2_FAILURE_TAXONOMY_DIAGNOSIS": {
+        "brier": null,
+        "class_rate": 0.4583333333333333,
+        "correct_ci": 0,
+        "decision_rate": 0.2916666666666667,
+        "ece5": null,
+        "false_ci": 0,
+        "false_escalation": 24,
+        "false_model_attribution": 4,
+        "false_representation_attribution": 1,
+        "false_world_change": 2,
+        "locus_rate": 0.5208333333333334,
+        "mean_ci_cost": 10.75,
+        "mean_cost": 12.604166666666666,
+        "mean_regret": 4.9,
+        "missed_escalation": 12,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 0,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.125,
+            "decision_rate": 0.0,
+            "false_escalation": 6,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.3333333333333333,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.5,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 0.3333333333333333,
+            "decision_rate": 0.3333333333333333,
+            "false_escalation": 2,
+            "missed_escalation": 1,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.5,
+            "decision_rate": 0.75,
+            "false_escalation": 1,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.5555555555555556,
+            "decision_rate": 0.3333333333333333,
+            "false_escalation": 6,
+            "missed_escalation": 1,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.2,
+            "false_escalation": 4,
+            "missed_escalation": 0,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.3333333333333333,
+            "decision_rate": 0.3333333333333333,
+            "false_escalation": 1,
+            "missed_escalation": 2,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 0.75,
+            "decision_rate": 0.25,
+            "false_escalation": 3,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 1,
+            "missed_escalation": 3,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.0,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.22727272727272727,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 0.4090909090909091,
+            "n": 22
+          }
+        },
+        "recurrence": 64,
+        "spec_damage": 1,
+        "success_rate": 0.625,
+        "wall_ms": 1.231164
+      },
+      "B3_EQUAL_EXTRA_SEARCH_1_5X": {
+        "brier": 0.13043478260869565,
+        "class_rate": 0.7916666666666666,
+        "correct_ci": 0,
+        "decision_rate": 0.7916666666666666,
+        "ece5": 0.13043478260869568,
+        "false_ci": 0,
+        "false_escalation": 8,
+        "false_model_attribution": 2,
+        "false_representation_attribution": 2,
+        "false_world_change": 1,
+        "locus_rate": 0.8125,
+        "mean_ci_cost": 16.25,
+        "mean_cost": 13.375,
+        "mean_regret": 4.725,
+        "missed_escalation": 0,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 46,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 6,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.7777777777777778,
+            "decision_rate": 0.7777777777777778,
+            "false_escalation": 2,
+            "missed_escalation": 0,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.5,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.7727272727272727,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 0.9090909090909091,
+            "n": 22
+          }
+        },
+        "recurrence": 2,
+        "spec_damage": 0,
+        "success_rate": 0.9375,
+        "wall_ms": 8.657459
+      },
+      "B3_MODEL_BASED_DIAGNOSIS_VOI": {
+        "brier": 0.1569767441860465,
+        "class_rate": 0.75,
+        "correct_ci": 1,
+        "decision_rate": 0.7291666666666666,
+        "ece5": 0.1511627906976744,
+        "false_ci": 0,
+        "false_escalation": 4,
+        "false_model_attribution": 1,
+        "false_representation_attribution": 1,
+        "false_world_change": 0,
+        "locus_rate": 0.7708333333333334,
+        "mean_ci_cost": 8.5,
+        "mean_cost": 10.125,
+        "mean_regret": 2.375,
+        "missed_escalation": 4,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 43,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.125,
+            "decision_rate": 0.0,
+            "false_escalation": 3,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.8888888888888888,
+            "decision_rate": 0.8888888888888888,
+            "false_escalation": 1,
+            "missed_escalation": 0,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.6666666666666666,
+            "decision_rate": 0.6666666666666666,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.5,
+            "decision_rate": 0.5,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.5,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.7727272727272727,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 0.7727272727272727,
+            "n": 22
+          }
+        },
+        "recurrence": 5,
+        "spec_damage": 0,
+        "success_rate": 0.7916666666666666,
+        "wall_ms": 4.886376
+      },
+      "B4_MDA_MODEL_EXPANSION": {
+        "brier": 0.13125,
+        "class_rate": 0.7291666666666666,
+        "correct_ci": 1,
+        "decision_rate": 0.7083333333333334,
+        "ece5": 0.1375,
+        "false_ci": 0,
+        "false_escalation": 3,
+        "false_model_attribution": 0,
+        "false_representation_attribution": 1,
+        "false_world_change": 0,
+        "locus_rate": 0.7291666666666666,
+        "mean_ci_cost": 8.5,
+        "mean_cost": 10.020833333333334,
+        "mean_regret": 2.25,
+        "missed_escalation": 6,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 40,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.125,
+            "decision_rate": 0.0,
+            "false_escalation": 3,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.6666666666666666,
+            "decision_rate": 0.6666666666666666,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.6666666666666666,
+            "decision_rate": 0.6666666666666666,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 0.75,
+            "decision_rate": 0.75,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.5,
+            "decision_rate": 0.5,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.5,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.7727272727272727,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 0.7272727272727273,
+            "n": 22
+          }
+        },
+        "recurrence": 4,
+        "spec_damage": 0,
+        "success_rate": 0.75,
+        "wall_ms": 4.477416
+      },
+      "B5_NO_ABSTENTION_GATE": {
+        "brier": 0.17708333333333334,
+        "class_rate": 0.8333333333333334,
+        "correct_ci": 6,
+        "decision_rate": 0.8958333333333334,
+        "ece5": 0.16666666666666669,
+        "false_ci": 0,
+        "false_escalation": 5,
+        "false_model_attribution": 2,
+        "false_representation_attribution": 2,
+        "false_world_change": 0,
+        "locus_rate": 0.8333333333333334,
+        "mean_ci_cost": 9.25,
+        "mean_cost": 10.5625,
+        "mean_regret": 2.75,
+        "missed_escalation": 0,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 48,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.125,
+            "decision_rate": 0.5,
+            "false_escalation": 4,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.75,
+            "false_escalation": 1,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.5,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.5,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.9090909090909091,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 1.0,
+            "n": 22
+          }
+        },
+        "recurrence": 31,
+        "spec_damage": 0,
+        "success_rate": 0.875,
+        "wall_ms": 71.294752
+      },
+      "B5_R1_VERDICT_ONLY": {
+        "brier": null,
+        "class_rate": 0.7291666666666666,
+        "correct_ci": 0,
+        "decision_rate": 0.7291666666666666,
+        "ece5": null,
+        "false_ci": 0,
+        "false_escalation": 1,
+        "false_model_attribution": 0,
+        "false_representation_attribution": 1,
+        "false_world_change": 0,
+        "locus_rate": 0.7291666666666666,
+        "mean_ci_cost": 7.25,
+        "mean_cost": 9.8125,
+        "mean_regret": 2.25,
+        "missed_escalation": 5,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 0,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 1,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.6666666666666666,
+            "decision_rate": 0.6666666666666666,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.6666666666666666,
+            "decision_rate": 0.6666666666666666,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.5,
+            "decision_rate": 0.5,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.5,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.7727272727272727,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 0.7727272727272727,
+            "n": 22
+          }
+        },
+        "recurrence": 2,
+        "spec_damage": 0,
+        "success_rate": 0.75,
+        "wall_ms": 2.056753
+      },
+      "B5_R2_PLUS_CANDIDATE_SET": {
+        "brier": 0.16666666666666666,
+        "class_rate": 0.8958333333333334,
+        "correct_ci": 8,
+        "decision_rate": 0.8958333333333334,
+        "ece5": 0.1666666666666667,
+        "false_ci": 5,
+        "false_escalation": 0,
+        "false_model_attribution": 1,
+        "false_representation_attribution": 0,
+        "false_world_change": 0,
+        "locus_rate": 0.8958333333333334,
+        "mean_ci_cost": 5.875,
+        "mean_cost": 9.583333333333334,
+        "mean_regret": 2.25,
+        "missed_escalation": 5,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 48,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.375,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.6666666666666666,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 0.6666666666666666,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.5,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 1.0,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 0.7727272727272727,
+            "n": 22
+          }
+        },
+        "recurrence": 2,
+        "spec_damage": 0,
+        "success_rate": 0.7291666666666666,
+        "wall_ms": 1.460454
+      },
+      "B5_R3_PLUS_DISCRIMINATOR_TABLES": {
+        "brier": 0.171875,
+        "class_rate": 0.8958333333333334,
+        "correct_ci": 8,
+        "decision_rate": 0.9166666666666666,
+        "ece5": 0.17708333333333331,
+        "false_ci": 4,
+        "false_escalation": 0,
+        "false_model_attribution": 0,
+        "false_representation_attribution": 0,
+        "false_world_change": 0,
+        "locus_rate": 0.8958333333333334,
+        "mean_ci_cost": 5.125,
+        "mean_cost": 9.0625,
+        "mean_regret": 1.775,
+        "missed_escalation": 4,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 48,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.875,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.6666666666666666,
+            "decision_rate": 0.6666666666666666,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.5,
+            "decision_rate": 0.5,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.75,
+            "decision_rate": 0.75,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.6666666666666666,
+            "decision_rate": 0.6666666666666666,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 1.0,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 0.8181818181818182,
+            "n": 22
+          }
+        },
+        "recurrence": 28,
+        "spec_damage": 0,
+        "success_rate": 0.75,
+        "wall_ms": 35.404081
+      },
+      "B5_R4_PLUS_DISPOSITION_RECORDS": {
+        "brier": 0.17708333333333334,
+        "class_rate": 0.875,
+        "correct_ci": 8,
+        "decision_rate": 0.9791666666666666,
+        "ece5": 0.16666666666666666,
+        "false_ci": 0,
+        "false_escalation": 1,
+        "false_model_attribution": 2,
+        "false_representation_attribution": 0,
+        "false_world_change": 0,
+        "locus_rate": 0.875,
+        "mean_ci_cost": 5.0,
+        "mean_cost": 9.916666666666666,
+        "mean_regret": 2.825,
+        "missed_escalation": 0,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 48,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.375,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.75,
+            "false_escalation": 1,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.5,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.9545454545454546,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 1.0,
+            "n": 22
+          }
+        },
+        "recurrence": 29,
+        "spec_damage": 0,
+        "success_rate": 0.8333333333333334,
+        "wall_ms": 38.760585
+      },
+      "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": {
+        "brier": 0.17708333333333334,
+        "class_rate": 0.875,
+        "correct_ci": 8,
+        "decision_rate": 0.9791666666666666,
+        "ece5": 0.16666666666666666,
+        "false_ci": 0,
+        "false_escalation": 1,
+        "false_model_attribution": 2,
+        "false_representation_attribution": 0,
+        "false_world_change": 0,
+        "locus_rate": 0.875,
+        "mean_ci_cost": 5.0,
+        "mean_cost": 9.958333333333334,
+        "mean_regret": 2.875,
+        "missed_escalation": 0,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 48,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.375,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.75,
+            "false_escalation": 1,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.5,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.9545454545454546,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 1.0,
+            "n": 22
+          }
+        },
+        "recurrence": 29,
+        "spec_damage": 0,
+        "success_rate": 0.8333333333333334,
+        "wall_ms": 33.347418
+      },
+      "C_NEVER_INTERVENE": {
+        "brier": 0.16666666666666666,
+        "class_rate": 0.16666666666666666,
+        "correct_ci": 8,
+        "decision_rate": 0.16666666666666666,
+        "ece5": 0.16666666666666666,
+        "false_ci": 40,
+        "false_escalation": 0,
+        "false_model_attribution": 0,
+        "false_representation_attribution": 0,
+        "false_world_change": 0,
+        "locus_rate": 0.16666666666666666,
+        "mean_ci_cost": 0.0,
+        "mean_cost": 0.0,
+        "mean_regret": -8.075,
+        "missed_escalation": 40,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 48,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 4,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 9,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 5,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 4,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.5,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.22727272727272727,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 0.0,
+            "n": 22
+          }
+        },
+        "recurrence": 0,
+        "spec_damage": 0,
+        "success_rate": 0.0,
+        "wall_ms": 0.269122
+      },
+      "C_RANDOM_POLICY": {
+        "brier": 0.3088916393827243,
+        "class_rate": 0.020833333333333332,
+        "correct_ci": 7,
+        "decision_rate": 0.2708333333333333,
+        "ece5": 0.414128871011317,
+        "false_ci": 14,
+        "false_escalation": 8,
+        "false_model_attribution": 6,
+        "false_representation_attribution": 5,
+        "false_world_change": 5,
+        "locus_rate": 0.125,
+        "mean_ci_cost": 8.625,
+        "mean_cost": 7.208333333333333,
+        "mean_regret": -1.15,
+        "missed_escalation": 30,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 39,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.125,
+            "decision_rate": 0.625,
+            "false_escalation": 3,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 1,
+            "missed_escalation": 3,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.0,
+            "decision_rate": 0.25,
+            "false_escalation": 1,
+            "missed_escalation": 3,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.0,
+            "decision_rate": 0.2222222222222222,
+            "false_escalation": 1,
+            "missed_escalation": 6,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.4,
+            "false_escalation": 1,
+            "missed_escalation": 3,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.5,
+            "false_escalation": 1,
+            "missed_escalation": 1,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.0,
+            "decision_rate": 0.5,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.5,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.45454545454545453,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 0.09090909090909091,
+            "n": 22
+          }
+        },
+        "recurrence": 25,
+        "spec_damage": 2,
+        "success_rate": 0.22916666666666666,
+        "wall_ms": 3.410668
+      },
+      "M2_ALWAYS_ESCALATE_WHEN_STUCK": {
+        "brier": 0.17939814814814814,
+        "class_rate": 0.6458333333333334,
+        "correct_ci": 3,
+        "decision_rate": 0.20833333333333334,
+        "ece5": 0.15277777777777782,
+        "false_ci": 15,
+        "false_escalation": 37,
+        "false_model_attribution": 2,
+        "false_representation_attribution": 0,
+        "false_world_change": 1,
+        "locus_rate": 0.6041666666666666,
+        "mean_ci_cost": 15.125,
+        "mean_cost": 15.666666666666666,
+        "mean_regret": 7.7,
+        "missed_escalation": 15,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 48,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.375,
+            "decision_rate": 0.0,
+            "false_escalation": 8,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.6666666666666666,
+            "decision_rate": 0.3333333333333333,
+            "false_escalation": 1,
+            "missed_escalation": 2,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 0.6666666666666666,
+            "decision_rate": 0.3333333333333333,
+            "false_escalation": 2,
+            "missed_escalation": 1,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.25,
+            "false_escalation": 3,
+            "missed_escalation": 1,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.7777777777777778,
+            "decision_rate": 0.0,
+            "false_escalation": 9,
+            "missed_escalation": 3,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 0.8,
+            "decision_rate": 0.0,
+            "false_escalation": 5,
+            "missed_escalation": 2,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 3,
+            "missed_escalation": 3,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.5,
+            "false_escalation": 1,
+            "missed_escalation": 1,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 0.75,
+            "decision_rate": 0.0,
+            "false_escalation": 4,
+            "missed_escalation": 1,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.6666666666666666,
+            "decision_rate": 0.6666666666666666,
+            "false_escalation": 1,
+            "missed_escalation": 1,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.0,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.0,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 0.45454545454545453,
+            "n": 22
+          }
+        },
+        "recurrence": 40,
+        "spec_damage": 6,
+        "success_rate": 0.625,
+        "wall_ms": 35.540459
+      },
+      "M2_L1_LOOKAHEAD_ONLY": {
+        "brier": 0.16666666666666666,
+        "class_rate": 0.8958333333333334,
+        "correct_ci": 8,
+        "decision_rate": 1.0,
+        "ece5": 0.1666666666666667,
+        "false_ci": 0,
+        "false_escalation": 0,
+        "false_model_attribution": 1,
+        "false_representation_attribution": 0,
+        "false_world_change": 0,
+        "locus_rate": 0.8958333333333334,
+        "mean_ci_cost": 5.0,
+        "mean_cost": 10.25,
+        "mean_regret": 3.225,
+        "missed_escalation": 0,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 48,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.375,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 1.0,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 1.0,
+            "n": 22
+          }
+        },
+        "recurrence": 11,
+        "spec_damage": 0,
+        "success_rate": 0.8333333333333334,
+        "wall_ms": 43.445459
+      },
+      "M2_L2_BEST_HYPOTHESIS_ONLY": {
+        "brier": 0.16666666666666666,
+        "class_rate": 0.8958333333333334,
+        "correct_ci": 8,
+        "decision_rate": 0.9166666666666666,
+        "ece5": 0.1666666666666667,
+        "false_ci": 4,
+        "false_escalation": 0,
+        "false_model_attribution": 1,
+        "false_representation_attribution": 0,
+        "false_world_change": 0,
+        "locus_rate": 0.8958333333333334,
+        "mean_ci_cost": 4.875,
+        "mean_cost": 8.916666666666666,
+        "mean_regret": 1.65,
+        "missed_escalation": 4,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 48,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.375,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.6666666666666666,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 0.6666666666666666,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.5,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.5,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 1.0,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 0.8181818181818182,
+            "n": 22
+          }
+        },
+        "recurrence": 13,
+        "spec_damage": 0,
+        "success_rate": 0.75,
+        "wall_ms": 28.868083
+      },
+      "M2_LOCUS_LABELS_SHUFFLED": {
+        "brier": 0.9024390243902439,
+        "class_rate": 0.125,
+        "correct_ci": 3,
+        "decision_rate": 0.3541666666666667,
+        "ece5": 0.9024390243902438,
+        "false_ci": 4,
+        "false_escalation": 2,
+        "false_model_attribution": 5,
+        "false_representation_attribution": 4,
+        "false_world_change": 0,
+        "locus_rate": 0.1875,
+        "mean_ci_cost": 6.0,
+        "mean_cost": 7.6875,
+        "mean_regret": -0.05,
+        "missed_escalation": 26,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 41,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.375,
+            "decision_rate": 0.375,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.3333333333333333,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 0.0,
+            "decision_rate": 0.3333333333333333,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 4,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.3333333333333333,
+            "decision_rate": 0.2222222222222222,
+            "false_escalation": 1,
+            "missed_escalation": 7,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.6,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.0,
+            "decision_rate": 0.6666666666666666,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.5,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.25,
+            "false_escalation": 1,
+            "missed_escalation": 3,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.0,
+            "decision_rate": 0.6666666666666666,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.0,
+            "decision_rate": 0.5,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.2727272727272727,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 0.3181818181818182,
+            "n": 22
+          }
+        },
+        "recurrence": 29,
+        "spec_damage": 0,
+        "success_rate": 0.2916666666666667,
+        "wall_ms": 128.995041
+      },
+      "M2_LOOKAHEAD_PLUS_BEST_HYPOTHESIS": {
+        "brier": 0.16666666666666666,
+        "class_rate": 0.8958333333333334,
+        "correct_ci": 8,
+        "decision_rate": 1.0,
+        "ece5": 0.1666666666666667,
+        "false_ci": 0,
+        "false_escalation": 0,
+        "false_model_attribution": 1,
+        "false_representation_attribution": 0,
+        "false_world_change": 0,
+        "locus_rate": 0.8958333333333334,
+        "mean_ci_cost": 5.0,
+        "mean_cost": 10.25,
+        "mean_regret": 3.225,
+        "missed_escalation": 0,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 48,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.375,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 1.0,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 1.0,
+            "n": 22
+          }
+        },
+        "recurrence": 11,
+        "spec_damage": 0,
+        "success_rate": 0.8333333333333334,
+        "wall_ms": 43.642376
+      },
+      "M2_MINUS_DIAGNOSTIC_EVALUATOR_GATE": {
+        "brier": 0.16666666666666666,
+        "class_rate": 0.8333333333333334,
+        "correct_ci": 5,
+        "decision_rate": 0.9375,
+        "ece5": 0.16666666666666663,
+        "false_ci": 0,
+        "false_escalation": 3,
+        "false_model_attribution": 1,
+        "false_representation_attribution": 3,
+        "false_world_change": 0,
+        "locus_rate": 0.8333333333333334,
+        "mean_ci_cost": 8.875,
+        "mean_cost": 10.895833333333334,
+        "mean_regret": 3.225,
+        "missed_escalation": 0,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 48,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.0,
+            "decision_rate": 0.625,
+            "false_escalation": 3,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.5,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 1.0,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 1.0,
+            "n": 22
+          }
+        },
+        "recurrence": 12,
+        "spec_damage": 0,
+        "success_rate": 0.875,
+        "wall_ms": 41.406084
+      },
+      "M2_MINUS_LOCUS_DIAGNOSIS": {
+        "brier": 0.16666666666666666,
+        "class_rate": 0.6458333333333334,
+        "correct_ci": 8,
+        "decision_rate": 0.625,
+        "ece5": 0.16666666666666666,
+        "false_ci": 18,
+        "false_escalation": 0,
+        "false_model_attribution": 1,
+        "false_representation_attribution": 0,
+        "false_world_change": 0,
+        "locus_rate": 0.6666666666666666,
+        "mean_ci_cost": 4.875,
+        "mean_cost": 3.6458333333333335,
+        "mean_regret": -4.675,
+        "missed_escalation": 18,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 48,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.75,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.3333333333333333,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.5,
+            "decision_rate": 0.25,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.3333333333333333,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.5,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.8181818181818182,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 0.4090909090909091,
+            "n": 22
+          }
+        },
+        "recurrence": 58,
+        "spec_damage": 0,
+        "success_rate": 0.4583333333333333,
+        "wall_ms": 21.792372
+      },
+      "M2_MINUS_LOWER_LEVEL_DISPOSITION": {
+        "brier": 0.15104166666666666,
+        "class_rate": 0.8541666666666666,
+        "correct_ci": 6,
+        "decision_rate": 0.8958333333333334,
+        "ece5": 0.15625000000000003,
+        "false_ci": 2,
+        "false_escalation": 3,
+        "false_model_attribution": 1,
+        "false_representation_attribution": 1,
+        "false_world_change": 0,
+        "locus_rate": 0.8541666666666666,
+        "mean_ci_cost": 9.625,
+        "mean_cost": 11.1875,
+        "mean_regret": 3.425,
+        "missed_escalation": 2,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 48,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.125,
+            "decision_rate": 0.625,
+            "false_escalation": 3,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 0.6666666666666666,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.5,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.5,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 1.0,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 0.9090909090909091,
+            "n": 22
+          }
+        },
+        "recurrence": 1,
+        "spec_damage": 0,
+        "success_rate": 0.8333333333333334,
+        "wall_ms": 31.618877
+      },
+      "M2_MINUS_PROSPECTIVE_DISCRIMINATOR": {
+        "brier": 0.16666666666666666,
+        "class_rate": 0.9166666666666666,
+        "correct_ci": 8,
+        "decision_rate": 0.75,
+        "ece5": 0.16666666666666669,
+        "false_ci": 12,
+        "false_escalation": 0,
+        "false_model_attribution": 1,
+        "false_representation_attribution": 0,
+        "false_world_change": 0,
+        "locus_rate": 0.9166666666666666,
+        "mean_ci_cost": 8.0,
+        "mean_cost": 11.5,
+        "mean_regret": 4.125,
+        "missed_escalation": 12,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 48,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.5,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.3333333333333333,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 0.6666666666666666,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.5,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 1.0,
+            "decision_rate": 0.7777777777777778,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 0.3333333333333333,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.6666666666666666,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.9090909090909091,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 0.5454545454545454,
+            "n": 22
+          }
+        },
+        "recurrence": 8,
+        "spec_damage": 0,
+        "success_rate": 0.5833333333333334,
+        "wall_ms": 38.853418
+      },
+      "M2_NEVER_ESCALATE": {
+        "brier": 0.16666666666666666,
+        "class_rate": 0.8958333333333334,
+        "correct_ci": 8,
+        "decision_rate": 0.6041666666666666,
+        "ece5": 0.1666666666666667,
+        "false_ci": 19,
+        "false_escalation": 0,
+        "false_model_attribution": 1,
+        "false_representation_attribution": 0,
+        "false_world_change": 0,
+        "locus_rate": 0.8958333333333334,
+        "mean_ci_cost": 5.0,
+        "mean_cost": 4.5,
+        "mean_regret": -3.675,
+        "missed_escalation": 19,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 48,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.375,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 4,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.5,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.8181818181818182,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 0.36363636363636365,
+            "n": 22
+          }
+        },
+        "recurrence": 11,
+        "spec_damage": 0,
+        "success_rate": 0.4375,
+        "wall_ms": 53.69183
+      },
+      "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": {
+        "brier": 0.16666666666666666,
+        "class_rate": 0.8958333333333334,
+        "correct_ci": 8,
+        "decision_rate": 1.0,
+        "ece5": 0.1666666666666667,
+        "false_ci": 0,
+        "false_escalation": 0,
+        "false_model_attribution": 1,
+        "false_representation_attribution": 0,
+        "false_world_change": 0,
+        "locus_rate": 0.8958333333333334,
+        "mean_ci_cost": 4.875,
+        "mean_cost": 10.25,
+        "mean_regret": 3.25,
+        "missed_escalation": 0,
+        "n": 48,
+        "n_ci_instances": 8,
+        "n_confidence": 48,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.375,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 8
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 9
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 5
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 4
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 3
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 2
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 1.0,
+            "n": 2
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 1.0,
+            "n": 22
+          },
+          "PLAIN": {
+            "decision_rate": 1.0,
+            "n": 22
+          }
+        },
+        "recurrence": 12,
+        "spec_damage": 0,
+        "success_rate": 0.8333333333333334,
+        "wall_ms": 65.182671
+      }
+    }
+  }
+}
