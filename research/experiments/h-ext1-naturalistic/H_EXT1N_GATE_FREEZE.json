@@ -1,0 +1,76 @@
+{
+  "candidates": [
+    {
+      "activation_rate": 0.35,
+      "activations": 28,
+      "dev_accuracy": 0.875,
+      "dev_advantage": -0.07499999999999996,
+      "gate_id": "G_A_PROVENANCE_WITNESS"
+    },
+    {
+      "activation_rate": 0.4875,
+      "activations": 39,
+      "dev_accuracy": 0.925,
+      "dev_advantage": -0.02499999999999991,
+      "gate_id": "G_B_PLUS_XREF"
+    },
+    {
+      "activation_rate": 0.825,
+      "activations": 66,
+      "dev_accuracy": 0.925,
+      "dev_advantage": -0.02499999999999991,
+      "gate_id": "G_C_PLUS_DECLARED"
+    },
+    {
+      "activation_rate": 0.95,
+      "activations": 76,
+      "dev_accuracy": 0.9375,
+      "dev_advantage": -0.012499999999999956,
+      "gate_id": "G_D_PLUS_SHARED_TOKEN"
+    },
+    {
+      "activation_rate": 0.5,
+      "activations": 40,
+      "dev_accuracy": 0.7875,
+      "dev_advantage": -0.16249999999999998,
+      "gate_id": "G_E_COUNT_GE4"
+    },
+    {
+      "activation_rate": 0.5625,
+      "activations": 45,
+      "dev_accuracy": 0.95,
+      "dev_advantage": 0.0,
+      "gate_id": "G_F_ROOT_RATIO_GT1"
+    }
+  ],
+  "corpus_freeze_sha256": "6b70fe410c0387b74bb929789fae17dc5ab4eb0946182c9f7004fb552d53f922",
+  "design_sha256": "b8c3847925f9d6aebfbb386b85c05c1e8e18cd51832047c7034fe63b78bd67f6",
+  "dev_acc_M": 0.95,
+  "dev_acc_OFF": 0.65,
+  "dev_acc_PARENT": 0.9375,
+  "dev_cell": "N1-DEV",
+  "dev_n": 80,
+  "dev_task_ids_sha256": "03b3201e771e2d2dd530fc337752ddc2d2de0887a873c4b252d16af71fbcd042",
+  "feature_spec": {
+    "declared_regex": "\\b(secondary|post[- ]?hoc|pre-?specified|exploratory|ancillary|extension|sub-?study|follow-up|long-term follow-up|pooled|subgroup)\\s+(analysis|analyses|study|studies|report|results)\\b",
+    "dup_identifier": "shared grant_id",
+    "features": [
+      "n_records",
+      "n_roots",
+      "root_ratio",
+      "w_declared_overlap",
+      "w_dup_hash",
+      "w_shared_root",
+      "w_shared_token",
+      "w_xref_root"
+    ],
+    "gate": null,
+    "root": "last-author (shared_root); author-link components (n_roots)",
+    "token_regex": "\\b[A-Z][A-Z0-9-]{3,}\\b"
+  },
+  "gate_sha256": null,
+  "no_rescue": true,
+  "schema_version": "orion.v2.h-ext1n-gate-freeze.v1",
+  "selected_gate": null,
+  "terminal_if_none": "NO_CANDIDATE_GATE_ON_DEV"
+}
