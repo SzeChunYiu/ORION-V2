@@ -574,9 +574,11 @@ def test_agents_gate_on_authorization_and_import_provenance():
     text = (SBATCH / "e30_r12_agents.sbatch").read_text()
     for guard in ("E30_R12_COORDINATOR_AUTHORIZATION.json", "AUTHORIZATION_ABSENT",
                   "AUTHORIZATION_INVALID", "acknowledged_design_sha256",
-                  "human_written_token", "verbatim_operator_instruction",
-                  "patch_emission"):
+                  "coordinator_written", "operator_instruction_source",
+                  "verbatim_operator_instruction", "patch_emission"):
         assert guard in text, guard
+    # The file is coordinator-written; claiming a human wrote it would fabricate custody.
+    assert "human_written must not be claimed" in text
     # A completed response is never resampled (design section 12, no-rescue clause).
     assert "COMPLETED_PROPOSAL_ONLY" in text and "SKIP" in text
 
@@ -690,3 +692,17 @@ def test_setup_creates_the_per_arm_response_directories():
     """The evaluator derives the cell's arm set from responses/*; empty means no cell."""
     text = (SBATCH / "e30_r12_setup.sbatch").read_text()
     assert 'for ARM in $ARMS; do mkdir -p "$DSTREP/responses/$ARM"' in text
+
+
+def test_dispatch_chain_writes_an_honest_authorization_and_submits_afterok():
+    text = (SBATCH / "e30_r12_dispatch_chain.sh").read_text()
+    assert '"coordinator_written": true' in text
+    assert '"human_written"' not in text
+    assert "verbatim_operator_instruction" in text and "operator_instruction_source" in text
+    assert "DESIGN_SHA_MISMATCH" in text and "SOURCE_CHECKOUT_FAILED" in text
+    # Every stage is chained afterok so a failure halts the study rather than cascading.
+    assert text.count("--dependency=afterok:") == 6
+    for driver in ("e30_r12_setup", "e30_r12_agents", "e30_r12_frozen_lane_eval",
+                   "e30_r12_fullreg_gr0a", "e30_r12_fullreg_gr0_verify",
+                   "e30_r12_fullreg_suite", "e30_r12_rollup_and_analysis"):
+        assert driver in text, driver

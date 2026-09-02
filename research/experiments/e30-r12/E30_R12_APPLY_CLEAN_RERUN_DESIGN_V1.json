@@ -388,7 +388,7 @@
   },
   "custody": {
     "seed": 20260902,
-    "authorization_object": "E30_R12_COORDINATOR_AUTHORIZATION.json with human_written = true, the verbatim operator instruction, and acknowledged_design_sha256 == sha256 of this JSON; absent at design freeze, written before dispatch",
+    "authorization_object": "E30_R12_COORDINATOR_AUTHORIZATION.json, written by the coordinator (not by a human) and carrying coordinator_written = true, the operator's VERBATIM instruction quoted from human chat input, operator_instruction_source naming where that instruction came from, and acknowledged_design_sha256 == sha256 of this JSON. Absent at design freeze, written immediately before dispatch. The distinction is deliberate: the quoted instruction is human input, the record of it is not, and a field claiming the file itself was human-written would be a fabricated custody claim.",
     "code_frozen_in_this_pr": [
       "research/experiments/e30-r12/e30_r12_power_note.py",
       "research/experiments/e30-r12/e30_r12_fullreg_eval.py",

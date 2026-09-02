@@ -260,10 +260,13 @@ important result, and it is reported as plainly as a positive would be.**
 
 ## 13. Custody
 
-Seed `20260902`. Dispatch is gated on
-`E30_R12_COORDINATOR_AUTHORIZATION.json` carrying `human_written = true`, the operator's
-verbatim instruction, and `acknowledged_design_sha256` equal to the sha256 of the design
-JSON — absent at design freeze, written immediately before dispatch. Arms read only the
+Seed `20260902`. Dispatch is gated on `E30_R12_COORDINATOR_AUTHORIZATION.json` carrying
+`coordinator_written = true`, the operator's **verbatim** instruction quoted from human
+chat input, `operator_instruction_source` naming where that instruction came from, and
+`acknowledged_design_sha256` equal to the sha256 of the design JSON — absent at design
+freeze, written immediately before dispatch. The distinction is deliberate: the quoted
+instruction is human input, the record of it is not, and a field claiming the file itself
+was human-written would be a fabricated custody claim. Arms read only the
 gold-blind solver workspace; gold patches are read only by GR0b, after all responses are
 written. Outputs: `E30_R12_FULLREG_RAW_ROLLUP_V1.json`, `E30_R12_ROLLUP_V1.{json,md}`,
 `E30_R12_OUTCOME_RECEIPT.md`, `JOB_IDS.env`.

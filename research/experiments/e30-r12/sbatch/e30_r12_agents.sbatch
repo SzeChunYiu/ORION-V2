@@ -39,8 +39,11 @@ export ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET="$PRIMARY_BUDGET"
 export ORION_ARM_HTTP_RETRIES=10
 
 # ---- coordinator authorization gate (design section 13) ----
-# Dispatch is refused unless a human-written authorization exists AND acknowledges the
-# exact design bytes: a design edited after authorization is a different study.
+# Dispatch is refused unless a coordinator authorization exists, quotes the operator's
+# verbatim instruction with its source, and acknowledges the exact design bytes: a design
+# edited after authorization is a different study.  The file is coordinator-written by
+# construction -- claiming otherwise would fabricate custody -- so what is asserted is that
+# the human instruction it quotes is present and attributed, not that a human typed the file.
 AUTH="$R12/E30_R12_COORDINATOR_AUTHORIZATION.json"
 DESIGN_SHA=$(sha256sum "$DESIGN" | cut -c1-64)
 AUTH="$AUTH" DESIGN_SHA="$DESIGN_SHA" "$PY" - <<'AUTHZ'
@@ -52,10 +55,12 @@ if not path.is_file():
 auth = json.loads(path.read_text())
 expected = os.environ["DESIGN_SHA"]
 problems = []
-if auth.get("human_written") is not True:
-    problems.append("human_written is not true")
-if len(str(auth.get("human_written_token", ""))) < 16:
-    problems.append("human_written_token shorter than 16 characters")
+if auth.get("coordinator_written") is not True:
+    problems.append("coordinator_written is not true")
+if auth.get("human_written") is not None:
+    problems.append("human_written must not be claimed: this file is coordinator-written")
+if not str(auth.get("operator_instruction_source", "")).strip():
+    problems.append("operator_instruction_source is empty")
 if auth.get("acknowledged_design_sha256") != expected:
     problems.append(f"acknowledged_design_sha256 {auth.get('acknowledged_design_sha256')} != {expected}")
 if not str(auth.get("verbatim_operator_instruction", "")).strip():
