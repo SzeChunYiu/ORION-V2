@@ -1,0 +1,443 @@
+{
+  "schema_version": "orion.v2.audit.m-grounding-cross-study.v1",
+  "audit_id": "M_GROUNDING_CROSS_STUDY_AUDIT_V1",
+  "date_utc": "2026-09-03",
+  "audit_base_main_sha": "ae1a3f7",
+  "reverified_against_main_sha": "39276fa",
+  "drift_check": "git diff --name-only ae1a3f7 origin/main over me-x1/ me-x2/ me-x4/ me-x5/ tests/unit shows no change to any audited file",
+  "trigger": "ME-X5 self-disclosed defect, open PR #186",
+  "artifacts_changed": [],
+  "protected_studies_rerun": [],
+  "overall_finding": "HOLDS_AS_STATED",
+  "overall_finding_text": "The evidential basis of the flagship contraction holds as stated. ME-X1, ME-X2 and ME-X4 each run M through genuinely-executed ORION reference objects on the decision path. ME-X5 is the only defective study, and it is cited nowhere in V23 and consumed by no artifact outside me-x5/, so the defect does not reach the flagship. Three wording defects found: one FALSE (ME-X5 docstring line 18), two OVERSTATED (ME-X1 'to a Terminal', ME-X4 'no new M'). None disturbs a terminal or moves a number.",
+  "arms_file_sha256": {
+    "ME-X1": "cbe3d48e4feaab6b802af04306f1bb50f4820e2bdea231f3b1d3abab19680bf8",
+    "ME-X2": "fb56bedc5a00c4cf7889b338b867fbcc7557f979d184233c2738174b738342db",
+    "ME-X4": "967fc646ad61221b24038f89da39a8e2f21f45e7994df9d88c6c698c02da91a7",
+    "ME-X5": "d255edf95ac94ed1dcdf18e885e2e6569c32e73bc4079a3508889881bd84c4ba"
+  },
+  "studies": {
+    "ME-X1": {
+      "merged_pr": 161,
+      "merge_sha": "59b1f5b",
+      "n_protected": 1000,
+      "verdict": "GROUNDED",
+      "verdict_note": "one decorative import (Terminal)",
+      "reaches_flagship": true,
+      "objects": [
+        {
+          "name": "ProblemContract",
+          "category": "a",
+          "evidence": "mex1_arms.py:676 built with real scope; requires_authority() charged 677"
+        },
+        {
+          "name": "Obligation/ObligationStatus",
+          "category": "a",
+          "evidence": "mex1_arms.py:686-690 -> atoms -> precedence walk 691"
+        },
+        {
+          "name": "ReticulateProvenance",
+          "category": "a",
+          "evidence": "mex1_arms.py:150 -> prov_typed 153 -> M wiring 718"
+        },
+        {
+          "name": "selective_reopen",
+          "category": "a",
+          "evidence": "mex1_arms.py:450-451; receipt ids 456 are the disposition map returned to M at 678"
+        },
+        {
+          "name": "assess_evidence_dependence",
+          "category": "a_indirect",
+          "evidence": "mex1_arms.py:212 dep_typed -> IndependenceWitness.status -> mex1_parents.py:332-333"
+        },
+        {
+          "name": "RelationType",
+          "category": "a_indirect",
+          "evidence": "mex1_arms.py:231 trans_typed -> TransportLicense.license -> mex1_parents.py:349-352"
+        },
+        {
+          "name": "ComparabilityCertificate",
+          "category": "a_indirect",
+          "evidence": "mex1_parents.py:366-370"
+        },
+        {
+          "name": "assess_atlas_gluing",
+          "category": "a_indirect",
+          "evidence": "mex1_parents.py:409"
+        },
+        {
+          "name": "Terminal",
+          "category": "b",
+          "evidence": "mex1_arms.py:33 imported; sole use is dead assignment at 691"
+        }
+      ]
+    },
+    "ME-X2": {
+      "merged_pr": 164,
+      "merge_sha": "776d3a1",
+      "n_protected": 1200,
+      "verdict": "GROUNDED",
+      "verdict_note": "topic-appropriate reference set; assess_discrepancy_locus is checked-not-decisive",
+      "reaches_flagship": true,
+      "objects": [
+        {
+          "name": "route_frontier_action",
+          "category": "a",
+          "evidence": "mex2_arms.py:315; 316 aborts escalation on status"
+        },
+        {
+          "name": "minimum_level",
+          "category": "a",
+          "evidence": "mex2_arms.py:324; chosen.proposal_id selects the intervention at 331"
+        },
+        {
+          "name": "assess_jump",
+          "category": "a",
+          "evidence": "mex2_arms.py:325; 329 returns None unless CANDIDATE_FOR_PROTECTED_EVALUATION"
+        },
+        {
+          "name": "assess_discrepancy_locus",
+          "category": "b_prime",
+          "evidence": "mex2_arms.py:429 receipt; used only in falsifiable asserts 431 and 455"
+        }
+      ],
+      "frozen_bytes_fingerprint": {
+        "source": "ME_X2_PROTECTED_RESULTS_V1.json jump_receipts (written mex2_run.py:86)",
+        "total": 2057,
+        "JUMP_ASSESSMENT_REQUIRED+CANDIDATE_FOR_PROTECTED_EVALUATION": 2040,
+        "BLOCKED_LOWER_LEVEL_UNRESOLVED": 17,
+        "proves": "route_frontier_action and assess_jump executed in the protected run and blocked 17 escalations",
+        "does_not_prove": "that the two assert statements ran; a passing assertion leaves no trace"
+      }
+    },
+    "ME-X4": {
+      "merged_pr": 149,
+      "merge_sha": "4929a44",
+      "n_protected": 1200,
+      "verdict": "GROUNDED",
+      "reaches_flagship": true,
+      "objects": [
+        {
+          "name": "assess_evidence_dependence",
+          "category": "a",
+          "evidence": "mex4_arms.py:139-140 -> status atom 144"
+        },
+        {
+          "name": "RelationType",
+          "category": "a",
+          "evidence": "mex4_arms.py:163-166 -> transport atom 167"
+        },
+        {
+          "name": "ProblemContract",
+          "category": "a",
+          "evidence": "mex4_arms.py:232; contract.scope decides scope atom 235"
+        },
+        {
+          "name": "ReticulateProvenance",
+          "category": "a",
+          "evidence": "mex4_arms.py:89 -> prov_typed -> 607"
+        },
+        {
+          "name": "selective_reopen",
+          "category": "a",
+          "evidence": "mex4_arms.py:349-350; receipt ids 355 -> disposition map -> M engine 684"
+        }
+      ]
+    },
+    "ME-X5": {
+      "merged_pr": 183,
+      "merge_sha": "024d97f",
+      "n_protected": 1440,
+      "verdict": "NOT_GROUNDED",
+      "reaches_flagship": false,
+      "terminal_withdrawal_required": false,
+      "terminal_withdrawal_reason": "no leakage; headline M=B5=1.0 explained by rung-5 witness exchange (see ladder_evidence)",
+      "objects": [
+        {
+          "name": "ReticulateProvenance",
+          "category": "c",
+          "substitute": "provenance_invalid_units (mex5_arms.py:279,317)"
+        },
+        {
+          "name": "assess_evidence_dependence",
+          "category": "c",
+          "substitute": "R.independent_groups (mex5_arms.py:299)"
+        },
+        {
+          "name": "RelationType",
+          "category": "c",
+          "substitute": "local RELATION_RANK dict (mex5_arms.py:31)"
+        },
+        {
+          "name": "ProblemContract.scope",
+          "category": "c",
+          "substitute": "R.coverage_ok (mex5_arms.py:301,333)"
+        },
+        {
+          "name": "selective_reopen",
+          "category": "b",
+          "evidence": "local import 316; called 324; reduced to preserved 331; discarded 334 via 'or True'"
+        }
+      ]
+    }
+  },
+  "vacuous_assertions": [
+    {
+      "id": "V1",
+      "file": "research/experiments/me-x5/mex5_arms.py",
+      "line": 334,
+      "construct": "assert preserved == bool(live or narrow_ok) or True",
+      "severity": "SEVERE",
+      "effect": "unconditionally vacuous; discards the selective_reopen receipt, the object that would have decided family survival"
+    },
+    {
+      "id": "V2",
+      "file": "research/experiments/me-x2/mex2_arms.py",
+      "line": 455,
+      "construct": "assert receipt.status is CANNOT_IDENTIFY or not self.gate or receipt.status is MULTIPLE_LIVE_LOCUS_HYPOTHESES",
+      "severity": "MINOR",
+      "effect": "conditionally vacuous: short-circuits to true for the M_MINUS_DIAGNOSTIC_EVALUATOR_GATE ablation (gate=False); does full work for M itself"
+    }
+  ],
+  "discarded_results": [
+    {
+      "id": "D1",
+      "file": "research/experiments/me-x5/mex5_arms.py",
+      "line": 202,
+      "construct": "surviving = tms_surviving_families(...) at 194; _ = surviving at 202",
+      "severity": "MODERATE",
+      "effect": "B5 _federation_exact discards the TMS surviving-family set; the same call IS load-bearing in _b4_tms_assurance at 414-415, so this is a genuine dead path"
+    },
+    {
+      "id": "D2",
+      "file": "research/experiments/me-x1/mex1_arms.py",
+      "line": 691,
+      "construct": "_terminal = {...}.get(d.action, Terminal.JUSTIFIED_PARTIAL_RESULT); function returns d",
+      "severity": "LOW",
+      "effect": "Terminal never reaches a decision; it is a relabelling of an already-computed decision and no scored quantity depends on it"
+    }
+  ],
+  "cleared_benign": {
+    "ast_hits_total": 70,
+    "ast_hits_material": 2,
+    "benign_classes": [
+      "throwaway tuple unpacking and loop counters (_a,_p,_c,_k, for _ in range)",
+      "unused half of a pair whose other half carries the selftest assertion (mex4_parents.py:625, mex2_parents.py:254)",
+      "five 'except Exception as exc' sites are the protected-run authorization guard: bind, print REFUSED, return 3 (fail-closed)",
+      "mex5_vocab.py:225 documented scrambled-adapter null; rate reported in analysis",
+      "mex5_run.py:234,287,289 'or 1' divide-by-zero guards"
+    ],
+    "minor_queued": "mex1_generator.py:466-467 computes P and deps in plant_E and uses neither"
+  },
+  "claims_graded": {
+    "SUPPORTED": 9,
+    "OVERSTATED": 3,
+    "OVERSTATED_NOT_FALSE": 1,
+    "FALSE": 3,
+    "total": 19,
+    "false_items": [
+      {
+        "study": "ME-X5",
+        "source": "design line 256 / mex5_arms.py:11-14",
+        "claim": "M compiled to the ORION reference objects"
+      },
+      {
+        "study": "ME-X5",
+        "source": "mex5_arms.py:18",
+        "claim": "No arm imports the oracle module (asserted by a unit test)",
+        "new_not_in_pr186": true
+      },
+      {
+        "study": "ME-X5",
+        "source": "mex5_arms.py:311-313",
+        "claim": "Family survival is decided by the parent-owned selective_reopen"
+      }
+    ],
+    "overstated_items": [
+      {
+        "study": "ME-X1",
+        "source": "design md:205 / json:100",
+        "claim": "the registered precedence walk to a Terminal"
+      },
+      {
+        "study": "ME-X4",
+        "source": "design line 229",
+        "claim": "no new M (the 'existing reference semantics' half is SUPPORTED)"
+      },
+      {
+        "study": "ME-X2",
+        "source": "design 4.1",
+        "claim": "locus statuses described as what M reports",
+        "grade": "OVERSTATED_NOT_FALSE"
+      }
+    ]
+  },
+  "leakage_investigation": {
+    "suspect": "mex5_arms.py:56 from mex5_oracle import rules_for",
+    "what_it_returns": "one of three native mode MODULES via a 3-entry dispatch dict at mex5_oracle.py:42-47; no instance state, target, label or censored-fact resolution",
+    "symmetry": "mex5_parents.py:31 imports it too and calls it 11x, so B5 and every single parent read exactly what M reads",
+    "verdict": "NO_LEAKAGE",
+    "ladder_evidence": {
+      "method": "test a suspected shared channel against arms that share it but differ elsewhere",
+      "B0": [
+        0.25,
+        0.2188,
+        0.1979
+      ],
+      "B1": [
+        0.25,
+        0.2188,
+        0.1979
+      ],
+      "B2": [
+        0.3438,
+        0.3125,
+        0.2958
+      ],
+      "B3": [
+        0.3646,
+        0.35,
+        0.3688
+      ],
+      "B4": [
+        0.4167,
+        0.3854,
+        0.3646
+      ],
+      "B5_R1": [
+        0.8646,
+        0.85,
+        0.8688
+      ],
+      "B5_R2": [
+        0.875,
+        0.8604,
+        0.8833
+      ],
+      "B5_R3": [
+        0.8896,
+        0.8833,
+        0.8979
+      ],
+      "B5_R4": [
+        0.9479,
+        0.9333,
+        0.9521
+      ],
+      "B5_R5": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "M": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "M_ablations_range": [
+        0.7958,
+        1.0
+      ],
+      "controls_max": 0.1667,
+      "M_vs_shuffled": [
+        0.0813,
+        0.1125,
+        0.0917
+      ],
+      "conclusion": "if rules_for carried the answer every arm holding it would be at ceiling and ablations could not move; they are not and they do"
+    }
+  },
+  "test_scoping_hole": {
+    "file": "tests/unit/test_me_x5_cross_domain_study.py",
+    "lines": "141-144",
+    "shape": "source-string ban list of 3 of the oracle's 12 public names; never tests for 'mex5_oracle'",
+    "latent_hole": "family_failures (mex5_oracle.py:52), the oracle per-family verdict function, is absent from the ban list; nothing imports it today",
+    "status": "LATENT_NOT_EXPLOITED",
+    "better_sibling_pattern": "ME-X2 test_me_x2_exact_study.py:193 positively pins the one permitted import; ME-X1 test:155-158 bans the module name across three files",
+    "principle": "a ban list fails open on anything it forgot; an allow-list fails closed"
+  },
+  "assertion_enablement": {
+    "conclusion": "ENABLED",
+    "strength": "EVIDENCE_BASED_INFERENCE_NOT_PROOF",
+    "negative_evidence": [
+      "PYTHONOPTIMIZE: 0 hits repo-wide",
+      "python -O / -OO / sys.flags.optimize: 0 hits",
+      "no sbatch, shell wrapper or CI workflow invokes any mex*_run.py: 0 hits",
+      "authorization record fixes the invocation as the bare script 'mex2_run.py protected'; shebang #!/usr/bin/env python3, no flags"
+    ],
+    "residual": "if the operator shell had exported PYTHONOPTIMIZE the two ME-X2 assertions would have been stripped and assess_discrepancy_locus would degrade from b_prime to c; nothing in the repository records the environment",
+    "deliberately_not_closed_by_a_run": "an execution on laptop billy would show the assertion can fire, not that it did in the protected run, so it would not convert the inference into proof; and the standing rule forbids running CI or test suites on this host"
+  },
+  "flagship": {
+    "manuscript": "ORION-paper origin/main v2-papers/FLAGSHIP-machine-epistemics/manuscript/public/FLAGSHIP_MACHINE_EPISTEMICS_PERSPECTIVE_V23_CONTRACTED.md",
+    "merged_pr": 43,
+    "merge_sha": "446f5224",
+    "me_x5_references": 0,
+    "token_check": {
+      "ME-X5": 0,
+      "1,440": 0,
+      "four studies": 0,
+      "1,200 and on 1,000": 1,
+      "cross-domain": 1
+    },
+    "control_grep": {
+      "federation": 18
+    },
+    "studies_relied_on": [
+      "ME-X4 n=1200",
+      "ME-X1 n=1000",
+      "ME-X2 n=1200"
+    ],
+    "sentences_checked": [
+      6,
+      28,
+      112,
+      126,
+      186,
+      194
+    ],
+    "sentences_overstated": [],
+    "feared_weakening": "reproduces the decisions of a reimplementation of the controller",
+    "feared_weakening_applies": false,
+    "staleness_not_caused_by_defect": "V23 line 178 says four families unrun and line 130 says three of seven terminated; both counts move together now that ME-X5 has merged. Freshness for the flagship lane (open PR #171), not a defect in any V23 claim."
+  },
+  "external_consumers_of_me_x5_terminal": {
+    "files_outside_me_x5_mentioning_it": 41,
+    "consumers_of_the_result": 0,
+    "checked": [
+      "papers/pipeline/FLAGSHIP_EXTERNAL_DEMARCATION_REVIEW_PACKET_V3_V21.md:239 lists ME-X5 under 'protocols at synthesis level; no protected outcomes'",
+      "research/field/MACHINE_EPISTEMICS_FIELD_SYNTHESIS_V4.md:225 describes the design only"
+    ]
+  },
+  "errata_specified_not_written": [
+    {
+      "study": "ME-X5",
+      "action": "extend the open erratum in PR #186 with the false docstring at mex5_arms.py:18; do not open a second erratum"
+    },
+    {
+      "study": "ME-X1",
+      "action": "one-line erratum: design md:205 / json:100 'to a Terminal' is OVERSTATED"
+    },
+    {
+      "study": "ME-X4",
+      "action": "one-line erratum: design line 229 'no new M' is OVERSTATED; 'the existing reference semantics' stands"
+    },
+    {
+      "study": "ME-X2",
+      "action": "one-line erratum: design 4.1 locus-status sentence is OVERSTATED_NOT_FALSE; the gate is computed natively and continuously validated against the reference receipt"
+    }
+  ],
+  "queued_tasks": [
+    "rewrite ME-X5's oracle-boundary test as an allow-list: ban mex5_oracle by module name and every answer-bearing symbol (family_failures above all) and positively pin permitted imports",
+    "audit ME-X1 and ME-X2 suites for an equivalent forgotten symbol",
+    "ME-X5 V2 lane (already queued in PR #186): make M consume the four unused reference objects, remove both vacuous constructs, correct docstring and design 4",
+    "ME-X1 generator hygiene: mex1_generator.py:466-467 computes P and deps in plant_E and uses neither",
+    "add a repository-wide AST vacuity guard for assigned-never-read locals and constant-disjunct assertions; must catch named discards like _terminal",
+    "flagship lane: refresh V23 family counts once ME-X5 is reflected (not caused by this defect)"
+  ],
+  "method_notes": [
+    "The ladder is a proof, not an argument: to test a suspected shared channel, compare arms that share it but differ elsewhere.",
+    "Prove a property from what the run left behind: frozen-artifact fingerprints establish execution; but assertions leave no trace, so this method cannot speak to them.",
+    "Justify the scope of an absence claim: the initial '^\\s*_ = ' regex missed _terminal and would have produced a false 'exactly one file' claim; an AST pass over assigned-never-read locals found it."
+  ]
+}

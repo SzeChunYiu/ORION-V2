@@ -54,7 +54,14 @@
       "action": "Generate >=96 formal contexts with exact Galois closures plus hidden revision/counterexample cases; test specialize/split/merge/bridge/no-change and old-case retention.",
       "depends_on": [
         "FM00"
-      ]
+      ],
+      "status": "DESIGN_FROZEN_DEVELOPMENT_COMPLETE_PROTECTED_PENDING",
+      "exact_study": {
+        "design": "research/experiments/fm-exact/FM30_FORMAL_CONCEPT_REVISION_EXACT_STUDY_DESIGN_V1.{md,json}",
+        "code": "research/experiments/fm-exact/fm30_suite.py",
+        "parent_fidelity": "research/experiments/fm-exact/FM_PARENT_FIDELITY_RECEIPT_FM30_V1.md",
+        "protected_tasks": 100
+      }
     },
     {
       "id": "FM40",

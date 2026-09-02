@@ -133,6 +133,7 @@ def score(spec, results: dict, custody: dict) -> dict:
     arm_key = spec.endpoint_key or (lambda rec: rec["disposition"])
     exp_key = spec.oracle_endpoint_key or (lambda e: e["disposition"])
     exp = {c["instance_id"]: exp_key(c["expected"]) for c in custody["instances"]}
+    expected_full = {c["instance_id"]: c["expected"] for c in custody["instances"]}
     fam = {c["instance_id"]: c["family"] for c in custody["instances"]}
     order = [r["instance_id"] for r in results["instances"]]
     labels = [exp[i] for i in order]
@@ -152,18 +153,19 @@ def score(spec, results: dict, custody: dict) -> dict:
             pred.append(got)
             by_family[rec["family"]].append(ok)
             if not ok:
-                gd = rec["arms"][arm]["disposition"]
-                wd = next(
-                    c["expected"]["disposition"]
-                    for c in custody["instances"]
-                    if c["instance_id"] == rec["instance_id"]
-                )
-                g_accept = not gd.startswith("BLOCK") and not gd.startswith("REJECT")
-                w_accept = not wd.startswith("BLOCK") and not wd.startswith("REJECT")
-                if g_accept and not w_accept:
-                    over += 1  # accepted what the oracle rejects
-                elif w_accept and not g_accept:
-                    under += 1
+                e = expected_full[rec["instance_id"]]
+                if spec.unsafe_scope is not None and spec.unsafe_claim is not None:
+                    if spec.unsafe_scope(e) and spec.unsafe_claim(rec["arms"][arm], e):
+                        over += 1
+                else:
+                    gd = rec["arms"][arm]["disposition"]
+                    wd = e["disposition"]
+                    g_ok = not gd.startswith("BLOCK") and not gd.startswith("REJECT")
+                    w_ok = not wd.startswith("BLOCK") and not wd.startswith("REJECT")
+                    if g_ok and not w_ok:
+                        over += 1
+                    elif w_ok and not g_ok:
+                        under += 1
         raw[arm] = hits
         preds[arm] = pred
         per_arm[arm] = {
@@ -185,6 +187,8 @@ def score(spec, results: dict, custody: dict) -> dict:
     return {
         "order": order,
         "labels": labels,
+        "expected_full": [expected_full[i] for i in order],
+        "_records": [r["arms"] for r in results["instances"]],
         "families": [fam[i] for i in order],
         "per_arm": per_arm,
         "_raw": raw,
@@ -345,36 +349,45 @@ def gates(spec, sc: dict, selftest: dict | None, rejects: dict | None) -> dict:
     G.append(g1b)
 
     # ---- G2 anti-conservatism / anti-permissiveness ----------------------
-    def _accepts(label: str) -> bool:
-        return not label.startswith("BLOCK") and not label.startswith("REJECT")
+    if spec.unsafe_scope is not None and spec.unsafe_claim is not None:
+        scope = [i for i, e in enumerate(sc["expected_full"]) if spec.unsafe_scope(e)]
 
-    blocked_idx = [i for i, lab in enumerate(sc["labels"]) if not _accepts(lab)]
-    m_over = sum(1 for i in blocked_idx if _accepts(sc["_preds"][M][i]))
-    p_over = sum(1 for i in blocked_idx if _accepts(sc["_preds"][P][i]))
-    # Liveness control for the over-acceptance counter.  "0 <= 0 over a large
+        def _unsafe(arm: str, i: int) -> bool:
+            return bool(spec.unsafe_claim(sc["_records"][i][arm], sc["expected_full"][i]))
+    else:
+        def _accepts(label: str) -> bool:
+            return not label.startswith("BLOCK") and not label.startswith("REJECT")
+
+        scope = [i for i, lab in enumerate(sc["labels"]) if not _accepts(lab)]
+
+        def _unsafe(arm: str, i: int) -> bool:
+            return _accepts(sc["_preds"][arm][i])
+
+    m_over = sum(1 for i in scope if _unsafe(M, i))
+    p_over = sum(1 for i in scope if _unsafe(P, i))
+    # Liveness control for the unsafe-claim counter.  "0 <= 0 over a large
     # denominator" is not evidence unless the counter can register a nonzero on
-    # these very instances: an anti-conservatism gate that passes on 0 <= 0 with
-    # no demonstration that it could fire is a known defective shape.
-    over_by_arm = {
-        a: sum(1 for i in blocked_idx if _accepts(sc["_preds"][a][i])) for a in per_arm
-    }
+    # these very instances: a gate that passes on 0 <= 0 with no demonstration
+    # that it could fire is a known defective shape.
+    over_by_arm = {a: sum(1 for i in scope if _unsafe(a, i)) for a in per_arm}
     max_over = max(over_by_arm.values()) if over_by_arm else 0
     G.append(
         GateResult(
             "G2_ANTI_PERMISSIVENESS",
-            f"on instances the oracle blocks, {M} accepts no more transfers than {P}; "
-            "AND the over-acceptance counter is shown live on these same instances "
-            "by at least one arm registering a nonzero count",
-            n_evaluated=len(blocked_idx),
+            f"on the instances in scope, {M} makes no more unsafe claims "
+            f"({spec.unsafe_name}) than {P}; AND the counter is shown live on "
+            "those same instances by at least one arm registering a nonzero count",
+            n_evaluated=len(scope),
             n_violations=(0 if (m_over <= p_over and max_over > 0) else 1),
             requires_evaluated=10,
             detail={
-                "M_over_accept": m_over,
-                "P_over_accept": p_over,
-                "n_blocked": len(blocked_idx),
+                "unsafe_endpoint": spec.unsafe_name,
+                "M_unsafe_claims": m_over,
+                "P_unsafe_claims": p_over,
+                "n_in_scope": len(scope),
                 "counter_liveness_control": {
-                    "over_accept_by_arm": over_by_arm,
-                    "max_over_accept_any_arm": max_over,
+                    "unsafe_claims_by_arm": over_by_arm,
+                    "max_any_arm": max_over,
                     "counter_is_live": max_over > 0,
                 },
             },

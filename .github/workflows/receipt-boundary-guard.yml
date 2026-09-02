@@ -1,0 +1,49 @@
+name: receipt-boundary-guard
+
+# Receipts that append hand-written commentary to generated output must declare the
+# boundary machine-checkably (ORION-RECEIPT-BOUNDARY-V1) and flag the hand-written region
+# in rendered output. See scripts/check_receipt_boundaries.py and
+# docs/00-programme/RECEIPT_BOUNDARY_CONVENTION.md.
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "**/*.md"
+      - "scripts/check_receipt_boundaries.py"
+      - "tests/unit/test_receipt_boundaries.py"
+      - ".github/workflows/receipt-boundary-guard.yml"
+  pull_request:
+    paths:
+      - "**/*.md"
+      - "scripts/check_receipt_boundaries.py"
+      - "tests/unit/test_receipt_boundaries.py"
+      - ".github/workflows/receipt-boundary-guard.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  receipt-boundaries:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Checker controls (a guard that cannot fail is not a guard)
+        run: python scripts/check_receipt_boundaries.py --self-test
+
+      - name: Scan every Markdown file in the repository
+        run: python scripts/check_receipt_boundaries.py .
+
+      - name: Guard unit tests
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pytest
+          python -m pytest -q tests/unit/test_receipt_boundaries.py
