@@ -41,7 +41,6 @@ import random
 import re
 import sys
 import time
-from dataclasses import dataclass
 from itertools import combinations
 from pathlib import Path
 from typing import Any, Iterable
@@ -275,8 +274,15 @@ def build_instance(family: str, index: int, rng: random.Random, split: str) -> d
     claim = _claim(rng)
     sources = {"A": _nonce_source(rng), "B": _nonce_source(rng), "Z": _nonce_source(rng)}
     while len({sources[k]["name"] for k in sources}) < 3:
-        sources["Z"] = _nonce_source(rng)
-    A, B, Z = sources["A"], sources["B"], sources["Z"]
+        # Regenerate the colliding source. V1 regenerated Z unconditionally, which never terminates when
+        # A and B collide (P ~ 1/6400 per instance; latent in V1, never triggered by V1's frozen seeds:
+        # the V1 suites are pinned byte-identical in the unit tests). Seeds on which V1 terminated
+        # consume randomness identically here, because only the A==B branch is new.
+        if sources["B"]["name"] == sources["A"]["name"]:
+            sources["B"] = _nonce_source(rng)
+        else:
+            sources["Z"] = _nonce_source(rng)
+    A, Z = sources["A"], sources["Z"]
     cid = claim["claim_id"]
     retract_A = f"Retraction notice: {A['name']} [{A['id']}] has been retracted by its publisher; its findings are no longer valid support for any claim."
     retract_Z = f"Retraction notice: {Z['name']} [{Z['id']}] has been retracted by its publisher; its findings are no longer valid support for any claim."

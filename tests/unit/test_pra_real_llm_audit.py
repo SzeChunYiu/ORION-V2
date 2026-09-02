@@ -337,3 +337,16 @@ def test_v2_competence_gate_refuses_v1_design_and_protected_split(runner, tmp_pa
         runner.main(["--stage", "competence-gate", "--design", str(DESIGN)] + base)
     with pytest.raises(SystemExit):
         runner.main(["--stage", "competence-gate", "--split", "protected", "--design", str(DESIGN_V2), "--protected-authorization", "PROTECTED_RUN_AUTHORIZED_AFTER_DESIGN_REVIEW__ORION51_PRA_V2_R1"] + base)
+
+
+def test_generator_terminates_when_nonce_sources_collide(runner, monkeypatch):
+    # V1 regenerated Z unconditionally and spun forever once A and B shared a name; with a tiny name
+    # space every instance collides, so termination here proves the colliding source is regenerated.
+    import random
+
+    monkeypatch.setattr(runner, "_SYLLABLES_A", ["Var"])
+    monkeypatch.setattr(runner, "_SYLLABLES_B", ["len"])
+    rng = random.Random(7)
+    for i in range(50):
+        inst = runner.build_instance("F3_P2_CANON", i, rng, "dev")
+        assert len({s["name"] for s in inst["sources"].values()}) == 3

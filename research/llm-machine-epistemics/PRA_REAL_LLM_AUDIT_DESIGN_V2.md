@@ -187,6 +187,14 @@ whole of its role.
   a design lists without consuming randomness for the rest, so V1's suites are byte-identical
   (dev `98c8cbb5…`, protected `21b5b0f7…`, pinned in unit tests). The successor-target field is
   emitted only for the same-fibre family, so no V1 instance changes.
+- **Generator termination defect found while testing the sealed-seed path (fixed pre-freeze):** the V1
+  generator regenerated source Z whenever any two of the three nonce source names coincided, which
+  never terminates when A and B coincide (probability ≈ 1/6400 per instance, so roughly one seed in
+  ten for a 620-instance split). The V2 runner regenerates the colliding source instead. Seeds on
+  which V1 terminated consume randomness identically, so V1's frozen suites are unchanged (pinned
+  digests in the unit tests); V1's own frozen seeds did terminate (its protected suite was generated
+  and hashed), so V1 R1 is unaffected. Without this fix a sealed V2 seed could have hung the
+  protected job.
 - **Replacement record (GPC on dev):** _filled at freeze from the dev GPC check — see the env
   receipt §4; the list below is final._
   - `qwen2.5-32b-instruct`: GPC_PENDING
