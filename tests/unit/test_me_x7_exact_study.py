@@ -158,6 +158,21 @@ def test_m_and_b5_are_not_the_same_computation() -> None:
         assert mex7_arms.MODULE_CHECK_M[check] is mex7_arms.MODULE_CHECK_B5[check], check
 
 
+def test_a_planted_version_mismatch_always_diverges_on_replay() -> None:
+    """The two faithful operationalizations of C_ENV_IDENTITY — comparing the
+    recorded identities (M) and re-executing under them (B5) — must not be
+    split by a degenerate instance where following the record happens to
+    reproduce the output. The generator rejects such candidates."""
+    for i in range(60):
+        inst = mex7_generator.generate_instance(
+            "t", "UNIT-SEED", "SEED_OR_VERSION_MISMATCH", "MODE_COMPUTATIONAL", i
+        )
+        ep = inst.episode
+        vis = mex7_arms.visible_nodes(ep, full_registry=True)
+        assert mex7_arms.MODULE_CHECK_M["C_ENV_IDENTITY"](ep, vis) == mex7_model.INVALID, i
+        assert mex7_arms.MODULE_CHECK_B5["C_ENV_IDENTITY"](ep, vis) == mex7_model.INVALID, i
+
+
 def test_the_two_implementations_disagree_when_one_is_broken() -> None:
     """A planted positive for the cross-implementation assertion: if the two
     sides could not disagree, their agreement would be meaningless."""

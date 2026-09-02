@@ -344,11 +344,31 @@ def plant_code_or_proof_mismatch(ep: Episode, rng: random.Random, locus: str) ->
 
 
 def plant_seed_or_version(ep: Episode, rng: random.Random, locus: str) -> Episode:
+    """A recorded identity that does not describe the run.
+
+    In computational mode the mutation must also make the replay *diverge*: an
+    instance where following the record happens to reproduce the reported output
+    is a degenerate member of the class, and it would split the two faithful
+    operationalizations of this check (identity comparison on the M side,
+    re-execution on the B5 side) for a reason that is an artifact rather than a
+    finding.  Non-diverging candidates are rejected here so the split cannot
+    contain one; the guard is a design invariant, not an empirical observation.
+    """
     a = ep.artifact
     assert a is not None
-    if rng.random() < 0.5:
-        return replace(ep, artifact=replace(a, recorded_seed=f"seed-{rng.randrange(1000, 9999)}"))
-    return replace(ep, artifact=replace(a, recorded_env=f"env-{rng.randrange(10, 99)}"))
+    for _ in range(32):
+        if rng.random() < 0.5:
+            cand = replace(a, recorded_seed=f"seed-{rng.randrange(1000, 9999)}")
+        else:
+            cand = replace(a, recorded_env=f"env-{rng.randrange(10, 99)}")
+        if ep.mode == MODE_FORMAL:
+            return replace(ep, artifact=cand)
+        replayed = MACHINE.run(cand.payload, env_modulus(cand.recorded_env), cand.recorded_seed)
+        if replayed != cand.checker_target:
+            return replace(ep, artifact=cand)
+    # no diverging candidate found: return the base so the oracle rejects the
+    # sample and `generate_instance` re-draws.
+    return ep
 
 
 def plant_invalid_calibration(ep: Episode, rng: random.Random, locus: str) -> Episode:

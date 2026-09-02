@@ -12,7 +12,7 @@ design-JSON sha256
 |---|---|
 | `mex7_model.py` | `b45b0edad0591aa08a91b3248b6ff8bcce843dc664d1f07ebaea9535346d75c0` |
 | `mex7_oracle.py` | `21f26a44b5f137f3bf8a27a8e95746a8c210212204bcc72cd5b89b2209f2de0f` |
-| `mex7_generator.py` | `364cc5a6811053d6bcf840e982483679efee0d0774f1296c409200603c215d49` |
+| `mex7_generator.py` | `4a8e3e18c6c43464febed1e645772717e2bfdd713b97c0e2356063723e685ea7` |
 | `mex7_parents.py` | `18bd7a0c5a774db5415ce33ede74eea6a856d740ece0184548121b45dd0e859e` |
 | `mex7_arms.py` | `3afe7763cfc21dd9b9dde698ec8a457369a10610ad22160bc7d4afec560fa6aa` |
 | `mex7_run.py` | `ac1d61982ead0520b0b56c084bc8d4a3727eebef99d500eb11f75851c1c3f0f1` |
@@ -89,6 +89,16 @@ runs through the oracle's own code. It validates the *generator* — a planter
 that fails to plant, plants twice, or turns a decoy into a defect cannot enter a
 split — and the four planted positives show it is trippable. It is not evidence
 about the semantics, and the design and PR text say so.
+
+**One design invariant added by the same review.** `C_ENV_IDENTITY` has two
+faithful operationalizations — comparing the recorded assumption/version
+identities (M) and re-executing under them (B5). A planted mismatch where
+following the record happens to reproduce the reported output would split them
+for a reason that is an artifact, not a finding, and would show up as an M
+advantage over the federation. The generator now rejects such candidates
+outright, so the split cannot contain one; a unit test asserts both sides return
+INVALID on 60 generated instances. An empirical probe found zero such instances
+in 400 draws before the guard, but the guard is the control, not the probe.
 
 **Null calibration passes:** `C_ALWAYS_ACCEPT` scores 0 where the oracle
 rejects, `C_ALWAYS_CANNOT_CHECK` scores 0 where the episode is decidable,

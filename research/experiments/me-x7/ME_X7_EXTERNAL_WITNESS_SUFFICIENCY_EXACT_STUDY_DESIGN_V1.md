@@ -484,7 +484,14 @@ Ambiguities resolved at design time:
    full-trace arm's record count is the number of steps the generator emits
    (20–59). S5 therefore turns only on accuracy dominance, which is bounded by
    what the trace *carries*; the record counts are printed for the reader.
-8. **A mechanism drawn zero times is named.** The coverage ledger lists every
+8. **A planted version mismatch must actually diverge on replay.**
+   `C_ENV_IDENTITY` has two faithful operationalizations (identity comparison on
+   the M side, re-execution on the B5 side). An instance where following the
+   record happens to reproduce the output is a degenerate member of the class
+   and would split them for an artifactual reason — appearing as an M advantage
+   over the federation. The generator rejects such candidates, so the split
+   cannot contain one.
+9. **A mechanism drawn zero times is named.** The coverage ledger lists every
    registered mechanism with its instance count and every one at zero. On the
    development split (one instance per cell) eight of the ten censoring variants
    and three of the six locus combinations are drawn zero times, and the ledger
