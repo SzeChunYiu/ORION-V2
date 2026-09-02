@@ -1,0 +1,6989 @@
+{
+  "instances": [
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-FORMAL-TARGET_IDENTITY_DRIFT-0000",
+        "events": [
+          {
+            "note": "the formalised statement is corrected and no longer matches the registered theorem",
+            "op": "SET_UNIT_SIGNATURE",
+            "signature": [
+              "thm_main",
+              "u1",
+              "binder_a"
+            ],
+            "uid": "u0"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "SHARED_ARTEFACT_DRIFT"
+        },
+        "global_witness": true,
+        "mode": "FORMAL",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "a2c43cfa86ec",
+        "stratum": "TARGET_IDENTITY_DRIFT",
+        "target": {
+          "asserted_failure_class": "SORRY_IN_CLOSURE",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "thm_main",
+            "u0",
+            "binder_a"
+          ],
+          "threshold": 0.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.040704333820819,
+            "kind": "proof_term",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 1612
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0671432430345376,
+            "kind": "lemma",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 3994
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9852345578137955,
+            "kind": "lemma",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 2470
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "TARGET_IDENTITY"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-FORMAL-TARGET_IDENTITY_DRIFT-0000",
+      "mode": "FORMAL",
+      "stratum": "TARGET_IDENTITY_DRIFT"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-FORMAL-APPARATUS_INVALID-0000",
+        "events": [
+          {
+            "note": "the pinned kernel version is withdrawn",
+            "op": "SET_VALIDATOR_STATUS",
+            "status": "INVALID",
+            "vid": "v0"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "APPARATUS_WITHDRAWN"
+        },
+        "global_witness": true,
+        "mode": "FORMAL",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "1c7437ba82b0",
+        "stratum": "APPARATUS_INVALID",
+        "target": {
+          "asserted_failure_class": "SORRY_IN_CLOSURE",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "thm_main",
+            "u0",
+            "binder_a"
+          ],
+          "threshold": 0.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9080699117279014,
+            "kind": "proof_term",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 565
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.1447913619486902,
+            "kind": "lemma",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 910
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9092656343745071,
+            "kind": "lemma",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 3940
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "APPARATUS_VALIDITY"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-FORMAL-APPARATUS_INVALID-0000",
+      "mode": "FORMAL",
+      "stratum": "APPARATUS_INVALID"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-FORMAL-BLIND_EVALUATOR-0000",
+        "events": [
+          {
+            "covers": [
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "note": "a linter is found not to check the asserted defect class",
+            "op": "SET_VALIDATOR_COVERAGE",
+            "uncertain": [],
+            "vid": "v0"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "COVERAGE_NARROWED_BELOW_ASSERTED_CLASS"
+        },
+        "global_witness": true,
+        "mode": "FORMAL",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "52bd6d4c6802",
+        "stratum": "BLIND_EVALUATOR",
+        "target": {
+          "asserted_failure_class": "SORRY_IN_CLOSURE",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "thm_main",
+            "u0",
+            "binder_a"
+          ],
+          "threshold": 0.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9203980805925962,
+            "kind": "proof_term",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 3771
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.902799151292132,
+            "kind": "lemma",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 3565
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0762748586726594,
+            "kind": "lemma",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 1527
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "EVALUATOR_COVERAGE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-FORMAL-BLIND_EVALUATOR-0000",
+      "mode": "FORMAL",
+      "stratum": "BLIND_EVALUATOR"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-FORMAL-HIDDEN_DEPENDENCE-0000",
+        "events": [
+          {
+            "ancestor": "a_shared",
+            "kind": "CONFIRMED",
+            "note": "a shared lemma is discovered in both dependency closures",
+            "op": "ADD_ANCESTRY",
+            "uid": "u0"
+          },
+          {
+            "ancestor": "a_shared",
+            "kind": "CONFIRMED",
+            "note": "a shared lemma is discovered in both dependency closures",
+            "op": "ADD_ANCESTRY",
+            "uid": "u1"
+          },
+          {
+            "ancestor": "a_shared2",
+            "kind": "CONFIRMED",
+            "note": "a shared lemma is discovered in both dependency closures",
+            "op": "ADD_ANCESTRY",
+            "uid": "u2"
+          },
+          {
+            "ancestor": "a_shared2",
+            "kind": "CONFIRMED",
+            "note": "a shared lemma is discovered in both dependency closures",
+            "op": "ADD_ANCESTRY",
+            "uid": "u3"
+          },
+          {
+            "ancestor": "a_shared",
+            "kind": "CONFIRMED",
+            "note": "a shared lemma is discovered in both dependency closures",
+            "op": "ADD_ANCESTRY",
+            "uid": "u0"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 2,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 2,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2",
+              "u3"
+            ]
+          }
+        },
+        "features": {
+          "variant": "CONFIRMED_SHARED_ANCESTOR_IN_EVERY_REDUNDANT_FAMILY"
+        },
+        "global_witness": true,
+        "mode": "FORMAL",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "78052868e53b",
+        "stratum": "HIDDEN_DEPENDENCE",
+        "target": {
+          "asserted_failure_class": "SORRY_IN_CLOSURE",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "thm_main",
+            "u0",
+            "binder_a"
+          ],
+          "threshold": 0.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9415954122266907,
+            "kind": "proof_term",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": "s_a",
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 444
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9865811939467892,
+            "kind": "lemma",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": "s_b",
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 2824
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9795127761257651,
+            "kind": "lemma",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": "s_c",
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 400
+          },
+          "u3": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.008411283751803,
+            "kind": "lemma",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": "s_d",
+            "uid": "u3",
+            "validator": "v0",
+            "weight": 2479
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "DEPENDENCE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "DEPENDENCE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-FORMAL-HIDDEN_DEPENDENCE-0000",
+      "mode": "FORMAL",
+      "stratum": "HIDDEN_DEPENDENCE"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-FORMAL-INVALID_TRANSPORT-0000",
+        "events": [
+          {
+            "dst": "ctx0",
+            "note": "the structure morphism between the two settings is retyped",
+            "op": "SET_RELATION",
+            "relation": "BEHAVIORALLY_EQUIVALENT",
+            "src": "ctx1"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "REUSE_LICENCE_RETYPED_BELOW_REQUIREMENT"
+        },
+        "global_witness": true,
+        "mode": "FORMAL",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {
+          "ctx1>ctx0": "ISOMORPHIC"
+        },
+        "seed": "5e9f3031fd20",
+        "stratum": "INVALID_TRANSPORT",
+        "target": {
+          "asserted_failure_class": "SORRY_IN_CLOSURE",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "thm_main",
+            "u0",
+            "binder_a"
+          ],
+          "threshold": 0.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.138116775436947,
+            "kind": "proof_term",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 2130
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx1",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.1222314379210103,
+            "kind": "ported_lemma",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 711
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx1",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0902380364272704,
+            "kind": "ported_lemma",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 1208
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "TRANSPORT"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-FORMAL-INVALID_TRANSPORT-0000",
+      "mode": "FORMAL",
+      "stratum": "INVALID_TRANSPORT"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-FORMAL-DEFEATED_SUPPORT-0000",
+        "events": [
+          {
+            "note": "a lemma is admitted without proof or its axiom is retracted",
+            "op": "SET_UNIT_STATUS",
+            "status": "INVALID",
+            "uid": "u0"
+          },
+          {
+            "note": "a lemma is admitted without proof or its axiom is retracted",
+            "op": "SET_UNIT_STATUS",
+            "status": "INVALID",
+            "uid": "u2"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "EVERY_SUFFICIENT_SUPPORT_WITHDRAWN"
+        },
+        "global_witness": true,
+        "mode": "FORMAL",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "458606b80d29",
+        "stratum": "DEFEATED_SUPPORT",
+        "target": {
+          "asserted_failure_class": "SORRY_IN_CLOSURE",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "thm_main",
+            "u0",
+            "binder_a"
+          ],
+          "threshold": 0.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.854756284428843,
+            "kind": "proof_term",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 3886
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0989933310869513,
+            "kind": "lemma",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 531
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9489530078100967,
+            "kind": "lemma",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 1415
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "SUPPORT_DEFEAT"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-FORMAL-DEFEATED_SUPPORT-0000",
+      "mode": "FORMAL",
+      "stratum": "DEFEATED_SUPPORT"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-FORMAL-SCOPE_OVERREACH-0000",
+        "events": [
+          {
+            "coverage": [
+              "h1",
+              "h3"
+            ],
+            "note": "the registered hypothesis class is widened",
+            "op": "SET_TARGET_COVERAGE"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "narrowing_registered": false,
+          "variant": "REGISTERED_SCOPE_WIDENED_BEYOND_COVERAGE"
+        },
+        "global_witness": true,
+        "mode": "FORMAL",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "f3b2a8bb0465",
+        "stratum": "SCOPE_OVERREACH",
+        "target": {
+          "asserted_failure_class": "SORRY_IN_CLOSURE",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "thm_main",
+            "u0",
+            "binder_a"
+          ],
+          "threshold": 0.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.980745358460932,
+            "kind": "proof_term",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 2242
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0318213572525834,
+            "kind": "lemma",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 2657
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.023754894784447,
+            "kind": "lemma",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 2236
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "SCOPE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-FORMAL-SCOPE_OVERREACH-0000",
+      "mode": "FORMAL",
+      "stratum": "SCOPE_OVERREACH"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-FORMAL-LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION-0000",
+        "events": [
+          {
+            "note": "the case-analysis lemma is withdrawn",
+            "op": "SET_GLOBAL_WITNESS",
+            "value": false
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": true,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": true,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "PAIRWISE_COMPATIBLE_NO_GLOBAL_WITNESS"
+        },
+        "global_witness": true,
+        "mode": "FORMAL",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "dbfc8c8cb056",
+        "stratum": "LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION",
+        "target": {
+          "asserted_failure_class": "SORRY_IN_CLOSURE",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "thm_main",
+            "u0",
+            "binder_a"
+          ],
+          "threshold": 0.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.04785121713754,
+            "kind": "case_proof",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 1437
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.8826823009168212,
+            "kind": "case_proof",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 3036
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9995679055868925,
+            "kind": "case_proof",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 710
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "GLOBAL_OBSTRUCTION"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-FORMAL-LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION-0000",
+      "mode": "FORMAL",
+      "stratum": "LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-FORMAL-AUTHORITY_MISMATCH-0000",
+        "events": [
+          {
+            "note": "the deployment obligation is withdrawn",
+            "op": "SET_AUTHORITY_GRANT",
+            "value": false
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "OPERATIONAL_MANDATE_WITHDRAWN_BELIEF_INTACT"
+        },
+        "global_witness": true,
+        "mode": "FORMAL",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "452544da10f3",
+        "stratum": "AUTHORITY_MISMATCH",
+        "target": {
+          "asserted_failure_class": "SORRY_IN_CLOSURE",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "ACTION",
+          "signature": [
+            "thm_main",
+            "u0",
+            "binder_a"
+          ],
+          "threshold": 0.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0677840110252332,
+            "kind": "proof_term",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 2689
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.013381475743018,
+            "kind": "lemma",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 1249
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.084773668695652,
+            "kind": "lemma",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 3213
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_AND_ACTION",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-FORMAL-AUTHORITY_MISMATCH-0000",
+      "mode": "FORMAL",
+      "stratum": "AUTHORITY_MISMATCH"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-FORMAL-CENSORED_UNRESOLVED-0000",
+        "events": [
+          {
+            "dst": "ctx0",
+            "note": "the structure morphism between the two settings is retyped",
+            "op": "SET_RELATION",
+            "relation": "CANNOT_CHECK",
+            "src": "ctx1"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "CENSORED_RELATION"
+        },
+        "global_witness": true,
+        "mode": "FORMAL",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {
+          "ctx1>ctx0": "ISOMORPHIC"
+        },
+        "seed": "69793d1dc62d",
+        "stratum": "CENSORED_UNRESOLVED",
+        "target": {
+          "asserted_failure_class": "SORRY_IN_CLOSURE",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "thm_main",
+            "u0",
+            "binder_a"
+          ],
+          "threshold": 0.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx1",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.8760726698111596,
+            "kind": "ported_lemma",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 1095
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9224479780371644,
+            "kind": "lemma",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 3231
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx1",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9373859886725016,
+            "kind": "ported_lemma",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 3360
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "UNRESOLVED",
+            "authority": "BELIEF_ONLY",
+            "locus": "TRANSPORT"
+          },
+          "n_censored": 1,
+          "resolutions": 2
+        }
+      ],
+      "instance_id": "dev-FORMAL-CENSORED_UNRESOLVED-0000",
+      "mode": "FORMAL",
+      "stratum": "CENSORED_UNRESOLVED"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-FORMAL-FULLY_WARRANTED_CONTROL-0000",
+        "events": [
+          {
+            "note": "a registered change that touches nothing the theorem depends on",
+            "op": "REGISTERED_NO_OP"
+          },
+          {
+            "note": "a registered change that touches nothing the theorem depends on",
+            "op": "REGISTERED_NO_OP"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "NO_OP"
+        },
+        "global_witness": true,
+        "mode": "FORMAL",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "b4ff9aafc5de",
+        "stratum": "FULLY_WARRANTED_CONTROL",
+        "target": {
+          "asserted_failure_class": "SORRY_IN_CLOSURE",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "thm_main",
+            "u0",
+            "binder_a"
+          ],
+          "threshold": 0.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9521541696989466,
+            "kind": "proof_term",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 953
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.901486571564335,
+            "kind": "lemma",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 2633
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0125559948254312,
+            "kind": "lemma",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 3933
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-FORMAL-FULLY_WARRANTED_CONTROL-0000",
+      "mode": "FORMAL",
+      "stratum": "FULLY_WARRANTED_CONTROL"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-FORMAL-SINGLE_PARENT_SUFFICIENT-0000",
+        "events": [
+          {
+            "note": "a lemma is admitted without proof or its axiom is retracted",
+            "op": "SET_UNIT_STATUS",
+            "status": "INVALID",
+            "uid": "u0"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0"
+            ]
+          }
+        },
+        "features": {
+          "variant": "PROVENANCE_ALONE_DECIDES"
+        },
+        "global_witness": true,
+        "mode": "FORMAL",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "edc53b058b8b",
+        "stratum": "SINGLE_PARENT_SUFFICIENT",
+        "target": {
+          "asserted_failure_class": "SORRY_IN_CLOSURE",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "thm_main",
+            "u0",
+            "binder_a"
+          ],
+          "threshold": 0.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9238840525360703,
+            "kind": "proof_term",
+            "signature": [
+              "thm_main",
+              "u0",
+              "binder_a"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 1870
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SORRY_IN_CLOSURE",
+              "UNIVERSE_INCONSISTENCY",
+              "AXIOM_RETRACTED",
+              "SPEC_DRIFT"
+            ],
+            "kind": "kernel_and_linters",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "SUPPORT_DEFEAT"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-FORMAL-SINGLE_PARENT_SUFFICIENT-0000",
+      "mode": "FORMAL",
+      "stratum": "SINGLE_PARENT_SUFFICIENT"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-MEASUREMENT-TARGET_IDENTITY_DRIFT-0000",
+        "events": [
+          {
+            "note": "the channel is found to measure a different observable",
+            "op": "SET_UNIT_SIGNATURE",
+            "signature": [
+              "sigma_other",
+              "TOTAL"
+            ],
+            "uid": "u0"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "SHARED_ARTEFACT_DRIFT"
+        },
+        "global_witness": true,
+        "mode": "MEASUREMENT",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "1ac542dd70e0",
+        "stratum": "TARGET_IDENTITY_DRIFT",
+        "target": {
+          "asserted_failure_class": "DETECTOR_MISMODELLING",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "sigma_incl",
+            "TOTAL"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.092172192342056,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 3302
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.137968075583747,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 1223
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.932924654614244,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 1165
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "TARGET_IDENTITY"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-MEASUREMENT-TARGET_IDENTITY_DRIFT-0000",
+      "mode": "MEASUREMENT",
+      "stratum": "TARGET_IDENTITY_DRIFT"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-MEASUREMENT-APPARATUS_INVALID-0000",
+        "events": [
+          {
+            "note": "the operating point moves outside the calibrated range",
+            "op": "SET_OPERATING_POINT",
+            "value": 50.0
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "OPERATING_POINT_LEFT_CALIBRATED_RANGE"
+        },
+        "global_witness": true,
+        "mode": "MEASUREMENT",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "8d4ecf1f5c23",
+        "stratum": "APPARATUS_INVALID",
+        "target": {
+          "asserted_failure_class": "DETECTOR_MISMODELLING",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "sigma_incl",
+            "TOTAL"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.8963810540964285,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 2649
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.122381800657607,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 3449
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0986559132837748,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 953
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "APPARATUS_VALIDITY"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-MEASUREMENT-APPARATUS_INVALID-0000",
+      "mode": "MEASUREMENT",
+      "stratum": "APPARATUS_INVALID"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-MEASUREMENT-BLIND_EVALUATOR-0000",
+        "events": [
+          {
+            "covers": [
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "note": "the closure test is found blind to the asserted mis-modelling class",
+            "op": "SET_VALIDATOR_COVERAGE",
+            "uncertain": [],
+            "vid": "v0"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "COVERAGE_NARROWED_BELOW_ASSERTED_CLASS"
+        },
+        "global_witness": true,
+        "mode": "MEASUREMENT",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "77bfc83d9024",
+        "stratum": "BLIND_EVALUATOR",
+        "target": {
+          "asserted_failure_class": "DETECTOR_MISMODELLING",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "sigma_incl",
+            "TOTAL"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9903693966860727,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 2131
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0199862052138737,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 1573
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.049577016907687,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 1488
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "EVALUATOR_COVERAGE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-MEASUREMENT-BLIND_EVALUATOR-0000",
+      "mode": "MEASUREMENT",
+      "stratum": "BLIND_EVALUATOR"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-MEASUREMENT-HIDDEN_DEPENDENCE-0000",
+        "events": [
+          {
+            "ancestor": "a_shared",
+            "kind": "CONFIRMED",
+            "note": "a shared detector simulation is discovered behind two channels",
+            "op": "ADD_ANCESTRY",
+            "uid": "u0"
+          },
+          {
+            "ancestor": "a_shared",
+            "kind": "CONFIRMED",
+            "note": "a shared detector simulation is discovered behind two channels",
+            "op": "ADD_ANCESTRY",
+            "uid": "u1"
+          },
+          {
+            "ancestor": "a_shared2",
+            "kind": "CONFIRMED",
+            "note": "a shared detector simulation is discovered behind two channels",
+            "op": "ADD_ANCESTRY",
+            "uid": "u2"
+          },
+          {
+            "ancestor": "a_shared2",
+            "kind": "CONFIRMED",
+            "note": "a shared detector simulation is discovered behind two channels",
+            "op": "ADD_ANCESTRY",
+            "uid": "u3"
+          },
+          {
+            "ancestor": "a_shared",
+            "kind": "CONFIRMED",
+            "note": "a shared detector simulation is discovered behind two channels",
+            "op": "ADD_ANCESTRY",
+            "uid": "u0"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 2,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 2,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2",
+              "u3"
+            ]
+          }
+        },
+        "features": {
+          "variant": "CONFIRMED_SHARED_ANCESTOR_IN_EVERY_REDUNDANT_FAMILY"
+        },
+        "global_witness": true,
+        "mode": "MEASUREMENT",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "9770d1cb1eb5",
+        "stratum": "HIDDEN_DEPENDENCE",
+        "target": {
+          "asserted_failure_class": "DETECTOR_MISMODELLING",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "sigma_incl",
+            "TOTAL"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0736172538313,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": "s_a",
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 2996
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0527866173748492,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": "s_b",
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 1644
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.855082051876542,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": "s_c",
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 1653
+          },
+          "u3": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.878204349248848,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": "s_d",
+            "uid": "u3",
+            "validator": "v0",
+            "weight": 3789
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "DEPENDENCE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "DEPENDENCE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-MEASUREMENT-HIDDEN_DEPENDENCE-0000",
+      "mode": "MEASUREMENT",
+      "stratum": "HIDDEN_DEPENDENCE"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-MEASUREMENT-INVALID_TRANSPORT-0000",
+        "events": [
+          {
+            "dst": "ctx0",
+            "note": "the run-regime relation is retyped",
+            "op": "SET_RELATION",
+            "relation": "APPROXIMATELY_EQUIVALENT",
+            "src": "ctx1"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "REUSE_LICENCE_RETYPED_BELOW_REQUIREMENT"
+        },
+        "global_witness": true,
+        "mode": "MEASUREMENT",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {
+          "ctx1>ctx0": "ISOMORPHIC"
+        },
+        "seed": "5b79e3e0c4cb",
+        "stratum": "INVALID_TRANSPORT",
+        "target": {
+          "asserted_failure_class": "DETECTOR_MISMODELLING",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "sigma_incl",
+            "TOTAL"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9905007243047825,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 3435
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx1",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0491567340560595,
+            "kind": "transported_efficiency",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 834
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx1",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9969463244196217,
+            "kind": "transported_efficiency",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 2801
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "TRANSPORT"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-MEASUREMENT-INVALID_TRANSPORT-0000",
+      "mode": "MEASUREMENT",
+      "stratum": "INVALID_TRANSPORT"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-MEASUREMENT-DEFEATED_SUPPORT-0000",
+        "events": [
+          {
+            "note": "a channel is withdrawn after a reconstruction fault is found",
+            "op": "SET_UNIT_STATUS",
+            "status": "INVALID",
+            "uid": "u0"
+          },
+          {
+            "note": "a channel is withdrawn after a reconstruction fault is found",
+            "op": "SET_UNIT_STATUS",
+            "status": "INVALID",
+            "uid": "u2"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "EVERY_SUFFICIENT_SUPPORT_WITHDRAWN"
+        },
+        "global_witness": true,
+        "mode": "MEASUREMENT",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "7115caa82f2c",
+        "stratum": "DEFEATED_SUPPORT",
+        "target": {
+          "asserted_failure_class": "DETECTOR_MISMODELLING",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "sigma_incl",
+            "TOTAL"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.928735506130221,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 2179
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0023148754932514,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 3085
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.8713039469283905,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 682
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "SUPPORT_DEFEAT"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-MEASUREMENT-DEFEATED_SUPPORT-0000",
+      "mode": "MEASUREMENT",
+      "stratum": "DEFEATED_SUPPORT"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-MEASUREMENT-SCOPE_OVERREACH-0000",
+        "events": [
+          {
+            "note": "the channel is found to measure a different observable",
+            "op": "SET_UNIT_SIGNATURE",
+            "signature": [
+              "sigma_incl",
+              "FIDUCIAL"
+            ],
+            "uid": "u0"
+          },
+          {
+            "note": "the channel is found to measure a different observable",
+            "op": "SET_UNIT_SIGNATURE",
+            "signature": [
+              "sigma_incl",
+              "FIDUCIAL"
+            ],
+            "uid": "u1"
+          },
+          {
+            "note": "the channel is found to measure a different observable",
+            "op": "SET_UNIT_SIGNATURE",
+            "signature": [
+              "sigma_incl",
+              "FIDUCIAL"
+            ],
+            "uid": "u2"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "FIDUCIAL_RESTRICTION"
+        },
+        "global_witness": true,
+        "mode": "MEASUREMENT",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "7c05d7cad6f3",
+        "stratum": "SCOPE_OVERREACH",
+        "target": {
+          "asserted_failure_class": "DETECTOR_MISMODELLING",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "sigma_incl",
+            "TOTAL"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9525767395022895,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 1237
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9678966569537544,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 3936
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.912651057850001,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 1314
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT_NARROWED",
+            "authority": "BELIEF_ONLY",
+            "locus": "SCOPE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-MEASUREMENT-SCOPE_OVERREACH-0000",
+      "mode": "MEASUREMENT",
+      "stratum": "SCOPE_OVERREACH"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-MEASUREMENT-LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION-0000",
+        "events": [
+          {
+            "note": "the covariance-aware global consistency test is withdrawn",
+            "op": "SET_GLOBAL_WITNESS",
+            "value": false
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": true,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": true,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "PAIRWISE_COMPATIBLE_NO_GLOBAL_WITNESS"
+        },
+        "global_witness": true,
+        "mode": "MEASUREMENT",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "edfa0b912075",
+        "stratum": "LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION",
+        "target": {
+          "asserted_failure_class": "DETECTOR_MISMODELLING",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "sigma_incl",
+            "TOTAL"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9166023186503254,
+            "kind": "partial_acceptance_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 606
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9330006896355867,
+            "kind": "partial_acceptance_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 2364
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9851181521248162,
+            "kind": "partial_acceptance_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 3494
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "GLOBAL_OBSTRUCTION"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-MEASUREMENT-LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION-0000",
+      "mode": "MEASUREMENT",
+      "stratum": "LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-MEASUREMENT-AUTHORITY_MISMATCH-0000",
+        "events": [
+          {
+            "note": "the setpoint-change authorization is withdrawn",
+            "op": "SET_AUTHORITY_GRANT",
+            "value": false
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "OPERATIONAL_MANDATE_WITHDRAWN_BELIEF_INTACT"
+        },
+        "global_witness": true,
+        "mode": "MEASUREMENT",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "f13414a38bc4",
+        "stratum": "AUTHORITY_MISMATCH",
+        "target": {
+          "asserted_failure_class": "DETECTOR_MISMODELLING",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "ACTION",
+          "signature": [
+            "sigma_incl",
+            "TOTAL"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.122391566080989,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 2971
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9050730733879386,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 2355
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.8978311670143868,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 1716
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_AND_ACTION",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-MEASUREMENT-AUTHORITY_MISMATCH-0000",
+      "mode": "MEASUREMENT",
+      "stratum": "AUTHORITY_MISMATCH"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-MEASUREMENT-CENSORED_UNRESOLVED-0000",
+        "events": [
+          {
+            "dst": "ctx0",
+            "note": "the run-regime relation is retyped",
+            "op": "SET_RELATION",
+            "relation": "CANNOT_CHECK",
+            "src": "ctx1"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "CENSORED_RELATION"
+        },
+        "global_witness": true,
+        "mode": "MEASUREMENT",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {
+          "ctx1>ctx0": "ISOMORPHIC"
+        },
+        "seed": "91904a25821f",
+        "stratum": "CENSORED_UNRESOLVED",
+        "target": {
+          "asserted_failure_class": "DETECTOR_MISMODELLING",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "sigma_incl",
+            "TOTAL"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx1",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.092662263709907,
+            "kind": "transported_efficiency",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 3561
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.028753899898366,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 3151
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx1",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.1497384420959036,
+            "kind": "transported_efficiency",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 729
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "UNRESOLVED",
+            "authority": "BELIEF_ONLY",
+            "locus": "TRANSPORT"
+          },
+          "n_censored": 1,
+          "resolutions": 2
+        }
+      ],
+      "instance_id": "dev-MEASUREMENT-CENSORED_UNRESOLVED-0000",
+      "mode": "MEASUREMENT",
+      "stratum": "CENSORED_UNRESOLVED"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-MEASUREMENT-FULLY_WARRANTED_CONTROL-0000",
+        "events": [
+          {
+            "ancestor": "a_x",
+            "kind": "CONFIRMED",
+            "note": "a shared detector simulation is discovered behind two channels",
+            "op": "ADD_ANCESTRY",
+            "uid": "u0"
+          },
+          {
+            "ancestor": "a_x",
+            "kind": "CONFIRMED",
+            "note": "a shared detector simulation is discovered behind two channels",
+            "op": "ADD_ANCESTRY",
+            "uid": "u1"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "IRRELEVANT_ANCESTRY"
+        },
+        "global_witness": true,
+        "mode": "MEASUREMENT",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "50e0ac72af03",
+        "stratum": "FULLY_WARRANTED_CONTROL",
+        "target": {
+          "asserted_failure_class": "DETECTOR_MISMODELLING",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "sigma_incl",
+            "TOTAL"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0536961055801317,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 692
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.110599070320478,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 1498
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.964354074388567,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 3017
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-MEASUREMENT-FULLY_WARRANTED_CONTROL-0000",
+      "mode": "MEASUREMENT",
+      "stratum": "FULLY_WARRANTED_CONTROL"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-MEASUREMENT-SINGLE_PARENT_SUFFICIENT-0000",
+        "events": [
+          {
+            "note": "a channel is withdrawn after a reconstruction fault is found",
+            "op": "SET_UNIT_STATUS",
+            "status": "INVALID",
+            "uid": "u0"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0"
+            ]
+          }
+        },
+        "features": {
+          "variant": "PROVENANCE_ALONE_DECIDES"
+        },
+        "global_witness": true,
+        "mode": "MEASUREMENT",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "e75148625515",
+        "stratum": "SINGLE_PARENT_SUFFICIENT",
+        "target": {
+          "asserted_failure_class": "DETECTOR_MISMODELLING",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "sigma_incl",
+            "TOTAL"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.12273531177119,
+            "kind": "measurement_channel",
+            "signature": [
+              "sigma_incl",
+              "TOTAL"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 3090
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "DETECTOR_MISMODELLING",
+              "PILEUP_BIAS",
+              "CALIBRATION_DRIFT",
+              "UNBLINDING_BIAS"
+            ],
+            "kind": "calibration_and_closure_test",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "SUPPORT_DEFEAT"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-MEASUREMENT-SINGLE_PARENT_SUFFICIENT-0000",
+      "mode": "MEASUREMENT",
+      "stratum": "SINGLE_PARENT_SUFFICIENT"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-SYNTHESIS-TARGET_IDENTITY_DRIFT-0000",
+        "events": [
+          {
+            "note": "the study is found to report a different outcome",
+            "op": "SET_UNIT_SIGNATURE",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "biomarker"
+            ],
+            "uid": "u0"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "SHARED_ARTEFACT_DRIFT"
+        },
+        "global_witness": true,
+        "mode": "SYNTHESIS",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "69366f291f22",
+        "stratum": "TARGET_IDENTITY_DRIFT",
+        "target": {
+          "asserted_failure_class": "SERIOUS_HARM",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "pop_A",
+            "drugX",
+            "placebo",
+            "mortality"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0938869498627066,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 3547
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0113772911754566,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 700
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.8979449136178457,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 1000
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "TARGET_IDENTITY"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-SYNTHESIS-TARGET_IDENTITY_DRIFT-0000",
+      "mode": "SYNTHESIS",
+      "stratum": "TARGET_IDENTITY_DRIFT"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-SYNTHESIS-APPARATUS_INVALID-0000",
+        "events": [
+          {
+            "note": "the risk-of-bias appraisal is invalidated",
+            "op": "SET_VALIDATOR_STATUS",
+            "status": "INVALID",
+            "vid": "v0"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "APPARATUS_WITHDRAWN"
+        },
+        "global_witness": true,
+        "mode": "SYNTHESIS",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "b63f65a0945d",
+        "stratum": "APPARATUS_INVALID",
+        "target": {
+          "asserted_failure_class": "SERIOUS_HARM",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "pop_A",
+            "drugX",
+            "placebo",
+            "mortality"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.914992112375656,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 1468
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.8741093491271337,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 2103
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0327884620633374,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 943
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "APPARATUS_VALIDITY"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-SYNTHESIS-APPARATUS_INVALID-0000",
+      "mode": "SYNTHESIS",
+      "stratum": "APPARATUS_INVALID"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-SYNTHESIS-BLIND_EVALUATOR-0000",
+        "events": [
+          {
+            "covers": [
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "note": "the outcome ascertainment is found to capture only a surrogate",
+            "op": "SET_VALIDATOR_COVERAGE",
+            "uncertain": [],
+            "vid": "v0"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "COVERAGE_NARROWED_BELOW_ASSERTED_CLASS"
+        },
+        "global_witness": true,
+        "mode": "SYNTHESIS",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "4687c6041b75",
+        "stratum": "BLIND_EVALUATOR",
+        "target": {
+          "asserted_failure_class": "SERIOUS_HARM",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "pop_A",
+            "drugX",
+            "placebo",
+            "mortality"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.063154376613585,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 3349
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.1036985841422515,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 2309
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.113026869069193,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 3341
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "EVALUATOR_COVERAGE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-SYNTHESIS-BLIND_EVALUATOR-0000",
+      "mode": "SYNTHESIS",
+      "stratum": "BLIND_EVALUATOR"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-SYNTHESIS-HIDDEN_DEPENDENCE-0000",
+        "events": [
+          {
+            "ancestor": "a_shared",
+            "kind": "CONFIRMED",
+            "note": "two reports are found to draw on the same cohort",
+            "op": "ADD_ANCESTRY",
+            "uid": "u0"
+          },
+          {
+            "ancestor": "a_shared",
+            "kind": "CONFIRMED",
+            "note": "two reports are found to draw on the same cohort",
+            "op": "ADD_ANCESTRY",
+            "uid": "u1"
+          },
+          {
+            "ancestor": "a_shared2",
+            "kind": "CONFIRMED",
+            "note": "two reports are found to draw on the same cohort",
+            "op": "ADD_ANCESTRY",
+            "uid": "u2"
+          },
+          {
+            "ancestor": "a_shared2",
+            "kind": "CONFIRMED",
+            "note": "two reports are found to draw on the same cohort",
+            "op": "ADD_ANCESTRY",
+            "uid": "u3"
+          },
+          {
+            "ancestor": "a_shared",
+            "kind": "CONFIRMED",
+            "note": "two reports are found to draw on the same cohort",
+            "op": "ADD_ANCESTRY",
+            "uid": "u0"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 2,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 2,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2",
+              "u3"
+            ]
+          }
+        },
+        "features": {
+          "variant": "CONFIRMED_SHARED_ANCESTOR_IN_EVERY_REDUNDANT_FAMILY"
+        },
+        "global_witness": true,
+        "mode": "SYNTHESIS",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "db605b1e0ccb",
+        "stratum": "HIDDEN_DEPENDENCE",
+        "target": {
+          "asserted_failure_class": "SERIOUS_HARM",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "pop_A",
+            "drugX",
+            "placebo",
+            "mortality"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.131410543646179,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": "s_a",
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 524
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9424533417289735,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": "s_b",
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 1062
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0976392795583414,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": "s_c",
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 3509
+          },
+          "u3": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9791749899059976,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": "s_d",
+            "uid": "u3",
+            "validator": "v0",
+            "weight": 1390
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "DEPENDENCE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "DEPENDENCE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-SYNTHESIS-HIDDEN_DEPENDENCE-0000",
+      "mode": "SYNTHESIS",
+      "stratum": "HIDDEN_DEPENDENCE"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-SYNTHESIS-INVALID_TRANSPORT-0000",
+        "events": [
+          {
+            "dst": "ctx0",
+            "note": "the transportability judgement between populations is retyped",
+            "op": "SET_RELATION",
+            "relation": "APPROXIMATELY_EQUIVALENT",
+            "src": "ctx1"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "REUSE_LICENCE_RETYPED_BELOW_REQUIREMENT"
+        },
+        "global_witness": true,
+        "mode": "SYNTHESIS",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {
+          "ctx1>ctx0": "ISOMORPHIC"
+        },
+        "seed": "b5ab7883910d",
+        "stratum": "INVALID_TRANSPORT",
+        "target": {
+          "asserted_failure_class": "SERIOUS_HARM",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "pop_A",
+            "drugX",
+            "placebo",
+            "mortality"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0203078850327003,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 838
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx1",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.1045102039608317,
+            "kind": "transported_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 3965
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx1",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0291359954358064,
+            "kind": "transported_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 3570
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "TRANSPORT"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-SYNTHESIS-INVALID_TRANSPORT-0000",
+      "mode": "SYNTHESIS",
+      "stratum": "INVALID_TRANSPORT"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-SYNTHESIS-DEFEATED_SUPPORT-0000",
+        "events": [
+          {
+            "fid": "F1",
+            "note": "a further study is included",
+            "op": "ADD_UNIT",
+            "unit": {
+              "ancestry": [],
+              "context": "ctx0",
+              "coverage": [
+                "h1",
+                "h2"
+              ],
+              "estimate": 0.0,
+              "kind": "primary_study",
+              "signature": [
+                "pop_A",
+                "drugX",
+                "placebo",
+                "mortality"
+              ],
+              "stat_err": 0.05,
+              "status": "VALID",
+              "syst_err": 0.02,
+              "syst_source": "s_new",
+              "uid": "u9",
+              "validator": "v0",
+              "weight": 9000
+            }
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "NUMERIC_AGGREGATE_FALLS_BELOW_THRESHOLD"
+        },
+        "global_witness": true,
+        "mode": "SYNTHESIS",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "9b0d84b21a66",
+        "stratum": "DEFEATED_SUPPORT",
+        "target": {
+          "asserted_failure_class": "SERIOUS_HARM",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "pop_A",
+            "drugX",
+            "placebo",
+            "mortality"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.130572448787469,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 2190
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.081629801534562,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 2982
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.1464134014843106,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 1611
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "SUPPORT_DEFEAT"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-SYNTHESIS-DEFEATED_SUPPORT-0000",
+      "mode": "SYNTHESIS",
+      "stratum": "DEFEATED_SUPPORT"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-SYNTHESIS-SCOPE_OVERREACH-0000",
+        "events": [
+          {
+            "coverage": [
+              "h1",
+              "h3"
+            ],
+            "note": "the registered population is widened",
+            "op": "SET_TARGET_COVERAGE"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "narrowing_registered": true,
+          "variant": "REGISTERED_SCOPE_WIDENED_BEYOND_COVERAGE"
+        },
+        "global_witness": true,
+        "mode": "SYNTHESIS",
+        "narrowed_coverage": [
+          "h1"
+        ],
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "2d2143150e22",
+        "stratum": "SCOPE_OVERREACH",
+        "target": {
+          "asserted_failure_class": "SERIOUS_HARM",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "pop_A",
+            "drugX",
+            "placebo",
+            "mortality"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9289163144452988,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 2736
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0524532793452863,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 2925
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0075762171006604,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 893
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT_NARROWED",
+            "authority": "BELIEF_ONLY",
+            "locus": "SCOPE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-SYNTHESIS-SCOPE_OVERREACH-0000",
+      "mode": "SYNTHESIS",
+      "stratum": "SCOPE_OVERREACH"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-SYNTHESIS-LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION-0000",
+        "events": [
+          {
+            "note": "the network consistency (transitivity) check is withdrawn",
+            "op": "SET_GLOBAL_WITNESS",
+            "value": false
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": true,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": true,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "PAIRWISE_COMPATIBLE_NO_GLOBAL_WITNESS"
+        },
+        "global_witness": true,
+        "mode": "SYNTHESIS",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "03015f6b0131",
+        "stratum": "LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION",
+        "target": {
+          "asserted_failure_class": "SERIOUS_HARM",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "pop_A",
+            "drugX",
+            "placebo",
+            "mortality"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.850140155977281,
+            "kind": "subgroup_report",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 2728
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.8946707756209529,
+            "kind": "subgroup_report",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 3556
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9533275502139658,
+            "kind": "subgroup_report",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 2086
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "GLOBAL_OBSTRUCTION"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-SYNTHESIS-LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION-0000",
+      "mode": "SYNTHESIS",
+      "stratum": "LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-SYNTHESIS-AUTHORITY_MISMATCH-0000",
+        "events": [
+          {
+            "note": "the recommendation mandate is withdrawn",
+            "op": "SET_AUTHORITY_GRANT",
+            "value": false
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "OPERATIONAL_MANDATE_WITHDRAWN_BELIEF_INTACT"
+        },
+        "global_witness": true,
+        "mode": "SYNTHESIS",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "4818a50c868d",
+        "stratum": "AUTHORITY_MISMATCH",
+        "target": {
+          "asserted_failure_class": "SERIOUS_HARM",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "ACTION",
+          "signature": [
+            "pop_A",
+            "drugX",
+            "placebo",
+            "mortality"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.9739524020145316,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 1271
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0683464612182862,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 625
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.8587603096925502,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 784
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_AND_ACTION",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-SYNTHESIS-AUTHORITY_MISMATCH-0000",
+      "mode": "SYNTHESIS",
+      "stratum": "AUTHORITY_MISMATCH"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-SYNTHESIS-CENSORED_UNRESOLVED-0000",
+        "events": [
+          {
+            "note": "a study is retracted",
+            "op": "SET_UNIT_STATUS",
+            "status": "CENSORED",
+            "uid": "u0"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "CENSORED_UNIT"
+        },
+        "global_witness": true,
+        "mode": "SYNTHESIS",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "5e8c178d8b41",
+        "stratum": "CENSORED_UNRESOLVED",
+        "target": {
+          "asserted_failure_class": "SERIOUS_HARM",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "pop_A",
+            "drugX",
+            "placebo",
+            "mortality"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.0925578211832225,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 1852
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.1064323247510366,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 1455
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.117991352507497,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 3977
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "UNRESOLVED",
+            "authority": "BELIEF_ONLY",
+            "locus": "SUPPORT_DEFEAT"
+          },
+          "n_censored": 1,
+          "resolutions": 2
+        }
+      ],
+      "instance_id": "dev-SYNTHESIS-CENSORED_UNRESOLVED-0000",
+      "mode": "SYNTHESIS",
+      "stratum": "CENSORED_UNRESOLVED"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-SYNTHESIS-FULLY_WARRANTED_CONTROL-0000",
+        "events": [
+          {
+            "ancestor": "a_x",
+            "kind": "CONFIRMED",
+            "note": "two reports are found to draw on the same cohort",
+            "op": "ADD_ANCESTRY",
+            "uid": "u0"
+          },
+          {
+            "ancestor": "a_x",
+            "kind": "CONFIRMED",
+            "note": "two reports are found to draw on the same cohort",
+            "op": "ADD_ANCESTRY",
+            "uid": "u1"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0",
+              "u1"
+            ]
+          },
+          "F2": {
+            "fid": "F2",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u2"
+            ]
+          }
+        },
+        "features": {
+          "variant": "IRRELEVANT_ANCESTRY"
+        },
+        "global_witness": true,
+        "mode": "SYNTHESIS",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "bf69e77ecbc8",
+        "stratum": "FULLY_WARRANTED_CONTROL",
+        "target": {
+          "asserted_failure_class": "SERIOUS_HARM",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "pop_A",
+            "drugX",
+            "placebo",
+            "mortality"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.058590304828505,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 3210
+          },
+          "u1": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.076946202783747,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u1",
+            "validator": "v0",
+            "weight": 1813
+          },
+          "u2": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 1.8930307154234494,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u2",
+            "validator": "v0",
+            "weight": 1631
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-SYNTHESIS-FULLY_WARRANTED_CONTROL-0000",
+      "mode": "SYNTHESIS",
+      "stratum": "FULLY_WARRANTED_CONTROL"
+    },
+    {
+      "episode": {
+        "authority_granted": true,
+        "episode_id": "dev-SYNTHESIS-SINGLE_PARENT_SUFFICIENT-0000",
+        "events": [
+          {
+            "note": "a study is retracted",
+            "op": "SET_UNIT_STATUS",
+            "status": "INVALID",
+            "uid": "u0"
+          }
+        ],
+        "families": {
+          "F1": {
+            "fid": "F1",
+            "min_independent": 0,
+            "required_relation": "PREDICTIVELY_EQUIVALENT",
+            "requires_global_witness": false,
+            "unit_ids": [
+              "u0"
+            ]
+          }
+        },
+        "features": {
+          "variant": "PROVENANCE_ALONE_DECIDES"
+        },
+        "global_witness": true,
+        "mode": "SYNTHESIS",
+        "narrowed_coverage": null,
+        "operating_point": 0.0,
+        "relations": {},
+        "seed": "e5e2bab16756",
+        "stratum": "SINGLE_PARENT_SUFFICIENT",
+        "target": {
+          "asserted_failure_class": "SERIOUS_HARM",
+          "context": "ctx0",
+          "coverage": [
+            "h1"
+          ],
+          "requested_authority": "BELIEF",
+          "signature": [
+            "pop_A",
+            "drugX",
+            "placebo",
+            "mortality"
+          ],
+          "threshold": 1.0,
+          "tid": "t0"
+        },
+        "units": {
+          "u0": {
+            "ancestry": [],
+            "context": "ctx0",
+            "coverage": [
+              "h1",
+              "h2"
+            ],
+            "estimate": 2.1084941789635323,
+            "kind": "primary_study",
+            "signature": [
+              "pop_A",
+              "drugX",
+              "placebo",
+              "mortality"
+            ],
+            "stat_err": 0.2,
+            "status": "VALID",
+            "syst_err": 0.1,
+            "syst_source": null,
+            "uid": "u0",
+            "validator": "v0",
+            "weight": 3878
+          }
+        },
+        "validators": {
+          "v0": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v0"
+          },
+          "v1": {
+            "covers": [
+              "SERIOUS_HARM",
+              "SELECTION_BIAS",
+              "ATTRITION_BIAS",
+              "SURROGATE_ONLY"
+            ],
+            "kind": "rob_and_outcome_ascertainment",
+            "range_hi": 10.0,
+            "range_lo": -10.0,
+            "status": "VALID",
+            "uncertain": [],
+            "vid": "v1"
+          }
+        }
+      },
+      "expected": [
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        },
+        {
+          "bracket_agrees": true,
+          "bracket_conclusive": true,
+          "decision": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "SUPPORT_DEFEAT"
+          },
+          "n_censored": 0,
+          "resolutions": 1
+        }
+      ],
+      "instance_id": "dev-SYNTHESIS-SINGLE_PARENT_SUFFICIENT-0000",
+      "mode": "SYNTHESIS",
+      "stratum": "SINGLE_PARENT_SUFFICIENT"
+    }
+  ],
+  "label": "DEVELOPMENT",
+  "schema_version": "orion.v2.me-x5.cross-domain-study-results.v1.expected-custody"
+}
