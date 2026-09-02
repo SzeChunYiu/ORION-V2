@@ -147,6 +147,18 @@ follow-up PR after submission, since the PR carrying this receipt must merge bef
   `logs/e40m5p2b-probe-3563453_<task>.json`); resubmit the identical array once a manual
   `probe-endpoint` returns `parsed_ok: true`.
 
+## 5.2 SUPERSEDED before any run (2026-09-02)
+
+The chain array `3563453` was held (`scontrol hold`) and **never started**: 0 chains, 0 native runs,
+0 outcome data. The E60-lane endpoint returned to service but now **silently substitutes the model**
+(requesting the frozen `glm-5.2` is served `glm-5.3`), and the frozen m2 F0 chains this design reused
+read-only were produced under an earlier, unrecoverable served model — reusing them would have added
+an unregistered second delta to a single-delta probe. Stage-2b is therefore superseded by
+**`E40_M5P_STAGE2C_SEED_REPLICA_PROBE_DESIGN_V1`**, which re-runs BOTH arms under one pinned SERVED
+model and asserts that id on every call. Evidence, options and costs:
+`E40_M5P_STAGE2C_DISPATCH_RECEIPT_V1.md` §2–§3. The 503000 exp_id block is retired unused; this
+receipt stands as the record of the Stage-2b freeze and its dispatch attempt.
+
 ## 6. Resolutions taken (conservative, all recorded)
 
 1. **G2/G3 perm p.** The design's "perm p ≤ 0.10" is applied with the m-series convention it names
