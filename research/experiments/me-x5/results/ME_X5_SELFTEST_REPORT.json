@@ -1,0 +1,446 @@
+{
+  "known_answer": [
+    {
+      "expected": {
+        "action": "COMMIT",
+        "authority": "BELIEF_ONLY",
+        "locus": "NONE"
+      },
+      "name": "KA-a-FORMAL-PARTIAL_FAILURE_DOES_NOT_DEFEAT",
+      "oracle": {
+        "action": "COMMIT",
+        "authority": "BELIEF_ONLY",
+        "locus": "NONE"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "action": "COMMIT",
+        "authority": "BELIEF_ONLY",
+        "locus": "NONE"
+      },
+      "name": "KA-b-FORMAL-CENSORING_THAT_CANNOT_FLIP_THE_DECISION",
+      "oracle": {
+        "action": "COMMIT",
+        "authority": "BELIEF_ONLY",
+        "locus": "NONE"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "action": "COMMIT_NARROWED",
+        "authority": "BELIEF_ONLY",
+        "locus": "SCOPE"
+      },
+      "name": "KA-c-FORMAL-NARROWED_COMMITMENT",
+      "oracle": {
+        "action": "COMMIT_NARROWED",
+        "authority": "BELIEF_ONLY",
+        "locus": "SCOPE"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "action": "COMMIT",
+        "authority": "BELIEF_ONLY",
+        "locus": "NONE"
+      },
+      "name": "KA-a-MEASUREMENT-PARTIAL_FAILURE_DOES_NOT_DEFEAT",
+      "oracle": {
+        "action": "COMMIT",
+        "authority": "BELIEF_ONLY",
+        "locus": "NONE"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "action": "COMMIT",
+        "authority": "BELIEF_ONLY",
+        "locus": "NONE"
+      },
+      "name": "KA-b-MEASUREMENT-CENSORING_THAT_CANNOT_FLIP_THE_DECISION",
+      "oracle": {
+        "action": "COMMIT",
+        "authority": "BELIEF_ONLY",
+        "locus": "NONE"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "action": "COMMIT_NARROWED",
+        "authority": "BELIEF_ONLY",
+        "locus": "SCOPE"
+      },
+      "name": "KA-c-MEASUREMENT-NARROWED_COMMITMENT",
+      "oracle": {
+        "action": "COMMIT_NARROWED",
+        "authority": "BELIEF_ONLY",
+        "locus": "SCOPE"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "action": "COMMIT",
+        "authority": "BELIEF_ONLY",
+        "locus": "NONE"
+      },
+      "name": "KA-a-SYNTHESIS-PARTIAL_FAILURE_DOES_NOT_DEFEAT",
+      "oracle": {
+        "action": "COMMIT",
+        "authority": "BELIEF_ONLY",
+        "locus": "NONE"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "action": "COMMIT",
+        "authority": "BELIEF_ONLY",
+        "locus": "NONE"
+      },
+      "name": "KA-b-SYNTHESIS-CENSORING_THAT_CANNOT_FLIP_THE_DECISION",
+      "oracle": {
+        "action": "COMMIT",
+        "authority": "BELIEF_ONLY",
+        "locus": "NONE"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "action": "COMMIT_NARROWED",
+        "authority": "BELIEF_ONLY",
+        "locus": "SCOPE"
+      },
+      "name": "KA-c-SYNTHESIS-NARROWED_COMMITMENT",
+      "oracle": {
+        "action": "COMMIT_NARROWED",
+        "authority": "BELIEF_ONLY",
+        "locus": "SCOPE"
+      },
+      "passed": true
+    }
+  ],
+  "known_answer_passed": true,
+  "native_review": {
+    "independent_reviewer": false,
+    "modes": [
+      "FORMAL",
+      "MEASUREMENT",
+      "SYNTHESIS"
+    ],
+    "note": "protocol \u00a73 records are present for all three modes; the reviewer is the study author, which is registered as a limitation and is why \u00a711 R2 is not grantable here",
+    "per_mode": {
+      "FORMAL": {
+        "evaluator_assumptions": true,
+        "lossy_or_invalid_ME_abstractions": true,
+        "native_failure_classes": true,
+        "native_objects_and_vocabulary": true,
+        "strongest_native_methods": true,
+        "strongest_plausible_parent_composition": true,
+        "valid_and_invalid_transitions": true
+      },
+      "MEASUREMENT": {
+        "evaluator_assumptions": true,
+        "lossy_or_invalid_ME_abstractions": true,
+        "native_failure_classes": true,
+        "native_objects_and_vocabulary": true,
+        "strongest_native_methods": true,
+        "strongest_plausible_parent_composition": true,
+        "valid_and_invalid_transitions": true
+      },
+      "SYNTHESIS": {
+        "evaluator_assumptions": true,
+        "lossy_or_invalid_ME_abstractions": true,
+        "native_failure_classes": true,
+        "native_objects_and_vocabulary": true,
+        "strongest_native_methods": true,
+        "strongest_plausible_parent_composition": true,
+        "valid_and_invalid_transitions": true
+      }
+    }
+  },
+  "native_review_complete": true,
+  "null_calibration": {
+    "M_pooled": 1.0,
+    "controls": {
+      "C_ALWAYS_COMMIT": 0.16666666666666666,
+      "C_ALWAYS_UNRESOLVED": 0.0,
+      "C_NEVER_COMMIT": 0.16666666666666666,
+      "C_RANDOM_DECISION": 0.0
+    },
+    "pass": true,
+    "rule": "every truth-agnostic control <= 0.25 decision-exact; C_RANDOM_DECISION <= 0.05; M scored against within-mode shuffled oracle decisions is at least 0.50 below M's own rate in every mode",
+    "shuffled_label_rate_M": {
+      "FORMAL": 0.16666666666666666,
+      "MEASUREMENT": 0.0,
+      "SYNTHESIS": 0.08333333333333333
+    }
+  },
+  "oracle_validity": {
+    "invariant": 36,
+    "n": 36,
+    "pass": true,
+    "permutation_invariant": 36,
+    "valid_at_v0": 36,
+    "within_cap": 36
+  },
+  "parent_fidelity": [
+    {
+      "detail": "defeated=['F1']",
+      "parent": "PROVENANCE_REVOCATION",
+      "passed": true,
+      "test": "revocation descendants reach exactly the derived family"
+    },
+    {
+      "detail": "surviving=['F2']",
+      "parent": "TMS_SELECTIVE_REOPENING",
+      "passed": true,
+      "test": "an alternative support family preserves the commitment"
+    },
+    {
+      "detail": "",
+      "parent": "TMS_SELECTIVE_REOPENING",
+      "passed": true,
+      "test": "losing every family reopens the commitment"
+    },
+    {
+      "detail": "",
+      "parent": "DEPENDENCE_ASSESSMENT",
+      "passed": true,
+      "test": "shared confirmed ancestry defeats a k=2 family"
+    },
+    {
+      "detail": "",
+      "parent": "DEPENDENCE_ASSESSMENT",
+      "passed": true,
+      "test": "the same ancestry leaves a k=1 family standing"
+    },
+    {
+      "detail": "",
+      "parent": "DEPENDENCE_ASSESSMENT",
+      "passed": true,
+      "test": "suspected ancestry censors rather than defeats"
+    },
+    {
+      "detail": "",
+      "parent": "TYPED_TRANSPORT",
+      "passed": true,
+      "test": "a ported lemma needs an isomorphism, not a mere embedding"
+    },
+    {
+      "detail": "",
+      "parent": "TYPED_TRANSPORT",
+      "passed": true,
+      "test": "an isomorphism licenses the reuse"
+    },
+    {
+      "detail": "",
+      "parent": "TYPED_TRANSPORT",
+      "passed": true,
+      "test": "an unchecked morphism censors"
+    },
+    {
+      "detail": "",
+      "parent": "TYPED_TRANSPORT",
+      "passed": true,
+      "test": "ranks follow the parent-owned RelationType order"
+    },
+    {
+      "detail": "",
+      "parent": "EVALUATOR_COVERAGE_CONTRACT",
+      "passed": true,
+      "test": "a checker blind to the asserted class defeats every family that uses it"
+    },
+    {
+      "detail": "",
+      "parent": "EVALUATOR_COVERAGE_CONTRACT",
+      "passed": true,
+      "test": "uncertain coverage censors rather than defeats"
+    },
+    {
+      "detail": "",
+      "parent": "APPARATUS_VALIDITY",
+      "passed": true,
+      "test": "a calibration is valid inside its range"
+    },
+    {
+      "detail": "",
+      "parent": "APPARATUS_VALIDITY",
+      "passed": true,
+      "test": "and invalid outside it, with nothing else changed"
+    },
+    {
+      "detail": "sigma_correlated=1.0000",
+      "parent": "UNCERTAINTY_AGGREGATION",
+      "passed": true,
+      "test": "a fully correlated systematic does not shrink with more channels"
+    },
+    {
+      "detail": "sigma_uncorrelated=0.7071",
+      "parent": "UNCERTAINTY_AGGREGATION",
+      "passed": true,
+      "test": "independent systematics do shrink"
+    },
+    {
+      "detail": "sigma_dup=0.2000",
+      "parent": "EVIDENCE_SYNTHESIS_POOLING",
+      "passed": true,
+      "test": "two reports of one cohort give the precision of one study"
+    },
+    {
+      "detail": "sigma_ind=0.1414",
+      "parent": "EVIDENCE_SYNTHESIS_POOLING",
+      "passed": true,
+      "test": "two genuine cohorts give more precision"
+    },
+    {
+      "detail": "",
+      "parent": "SCOPE_BOOKKEEPING",
+      "passed": true,
+      "test": "a registered scope no artefact covers defeats every family"
+    },
+    {
+      "detail": "",
+      "parent": "ASSURANCE_GLOBAL_WITNESS",
+      "passed": true,
+      "test": "pairwise agreement without the gluing witness is an obstruction"
+    }
+  ],
+  "parent_fidelity_passed": true,
+  "passed": true,
+  "schema_version": "orion.v2.me-x5.cross-domain-study-analysis.v1.selftest",
+  "selftest_arm_exact_pooled": {
+    "B0_DIRECT_NATIVE_PIPELINE": 0.19444444444444445,
+    "B1_CALIBRATED_ABSTENTION": 0.19444444444444445,
+    "B2_PROVENANCE_VERIFIER_RUNTIME": 0.3333333333333333,
+    "B3_DIAGNOSIS_METAREASONING": 0.3333333333333333,
+    "B4_TMS_ASSURANCE_FEDERATION": 0.3611111111111111,
+    "B5_R1_VERDICT_ONLY": 0.8333333333333334,
+    "B5_R2_PROVENANCE": 0.8888888888888888,
+    "B5_R3_PLUS_DEPENDENCE_ANCESTRY": 0.8888888888888888,
+    "B5_R4_PLUS_TYPED_TRANSPORT_AND_EVALUATOR": 0.9166666666666666,
+    "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": 1.0,
+    "C_ALWAYS_COMMIT": 0.16666666666666666,
+    "C_ALWAYS_UNRESOLVED": 0.0,
+    "C_NEVER_COMMIT": 0.16666666666666666,
+    "C_RANDOM_DECISION": 0.0,
+    "M_ABSTAIN_WHENEVER_CENSORED": 0.9166666666666666,
+    "M_ME_CROSS_TRANSITION_CONTROL": 1.0,
+    "M_MINUS_APPARATUS": 0.9166666666666666,
+    "M_MINUS_AUTHORITY": 0.9166666666666666,
+    "M_MINUS_DEPENDENCE": 0.9166666666666666,
+    "M_MINUS_EVALUATOR": 0.9166666666666666,
+    "M_MINUS_FAMILIES": 0.7777777777777778,
+    "M_MINUS_GLOBAL": 0.9166666666666666,
+    "M_MINUS_IDENTITY": 0.9166666666666666,
+    "M_MINUS_NUMERIC": 0.9444444444444444,
+    "M_MINUS_SCOPE": 0.9166666666666666,
+    "M_MINUS_TRANSPORT": 0.8888888888888888,
+    "M_MINUS_UNRESOLVED": 0.9166666666666666
+  },
+  "selftest_changed_vocabulary": {
+    "FORMAL": {
+      "n": 11,
+      "recovered": 11,
+      "recovery_rate": 1.0,
+      "scrambled_adapter": 1,
+      "scrambled_adapter_rate": 0.09090909090909091,
+      "shuffled": 0.36363636363636365,
+      "shuffled_label_rate": 0.36363636363636365
+    },
+    "MEASUREMENT": {
+      "n": 11,
+      "recovered": 11,
+      "recovery_rate": 1.0,
+      "scrambled_adapter": 9,
+      "scrambled_adapter_rate": 0.8181818181818182,
+      "shuffled": 0.09090909090909091,
+      "shuffled_label_rate": 0.09090909090909091
+    },
+    "SYNTHESIS": {
+      "n": 11,
+      "recovered": 11,
+      "recovery_rate": 1.0,
+      "scrambled_adapter": 10,
+      "scrambled_adapter_rate": 0.9090909090909091,
+      "shuffled": 0.0,
+      "shuffled_label_rate": 0.0
+    }
+  },
+  "separation": {
+    "cases": {
+      "SEP-P": {
+        "arms": {
+          "B5_R1_VERDICT_ONLY": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "DEPENDENCE"
+          },
+          "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "TRANSPORT"
+          },
+          "M_ME_CROSS_TRANSITION_CONTROL": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "TRANSPORT"
+          }
+        },
+        "expected": {
+          "action": "WITHHOLD",
+          "authority": "BELIEF_ONLY",
+          "locus": "TRANSPORT"
+        },
+        "oracle": {
+          "action": "WITHHOLD",
+          "authority": "BELIEF_ONLY",
+          "locus": "TRANSPORT"
+        },
+        "oracle_matches": true
+      },
+      "SEP-Q": {
+        "arms": {
+          "B5_R1_VERDICT_ONLY": {
+            "action": "WITHHOLD",
+            "authority": "BELIEF_ONLY",
+            "locus": "DEPENDENCE"
+          },
+          "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          },
+          "M_ME_CROSS_TRANSITION_CONTROL": {
+            "action": "COMMIT",
+            "authority": "BELIEF_ONLY",
+            "locus": "NONE"
+          }
+        },
+        "expected": {
+          "action": "COMMIT",
+          "authority": "BELIEF_ONLY",
+          "locus": "NONE"
+        },
+        "oracle": {
+          "action": "COMMIT",
+          "authority": "BELIEF_ONLY",
+          "locus": "NONE"
+        },
+        "oracle_matches": true
+      }
+    },
+    "passed": true,
+    "verdict_only_errs_on_at_least_one": true,
+    "verdict_only_identical_on_P_and_Q": true,
+    "witness_level_exact_on_both": true
+  },
+  "separation_passed": true
+}
