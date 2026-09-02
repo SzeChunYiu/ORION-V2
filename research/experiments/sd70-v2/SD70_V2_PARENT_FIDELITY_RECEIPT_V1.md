@@ -15,7 +15,7 @@ outcome inspected.** The protected seed lives only in `~/.orion-custody/sd70-v2/
 | `sd70v2_generator.py` | `6163a3658349e416246a2331fe7a381f42104d132f32bbad168d5ad2fde1a56a` |
 | `sd70v2_parents.py` | `5883fae4c8fb5ddd13970037d76c67dc850c1ce97b332b8180ce969358365808` |
 | `sd70v2_stats.py` | `5c20d2a05868abc02c48c2b895f37bb38d37e897a2e3204eae45d167a239515c` |
-| `sd70v2_model_arm.py` | `17e9dd812f8ae2afd0e1bcc76fc3d0d639430e342e9a141a7ca9154eae954349` |
+| `sd70v2_model_arm.py` | `a35ef58cc243626a49cf1dc7cc8e8dcbbdbe7ed0739298cbc417010b95b80afb` |
 | `sd70v2_run.py` | `aa6faf35608b156b624f366dcc873a9e45a067adbdfbcecad1643da00328c1db` |
 | `SD70_V2_EXECUTION_DESIGN_V1.json` | `96d933e00cbc8d09222fd4e86e27d1fe8604164521aea1feedd483ddcbd28bf4` |
 | `results/SD70_V2_DEVELOPMENT_RESULTS_V1.json` | `fa98de121ac4423b033145d764fb460c66153eda419878f762d1f8add8467cc2` |
@@ -100,6 +100,14 @@ call to its 600 s timeout. Both subprocess launches now pass
 `stdin=subprocess.DEVNULL`. This is an execution-fidelity fix: no arm, surface,
 outcome, threshold, gate, terminal or task distribution changed. Hashes above are
 post-fix.
+
+The same probe established that this endpoint **refuses** an unavailable or
+incompatible model with HTTP 400 rather than silently substituting one (an old
+CLI asking for `gpt-5.6-terra` was refused outright). The Codex `--json` event
+stream exposes no served-model id, so no per-call served model can be attested;
+each response records the requested model and an explicit
+`served_model_observed: null` with its reason, and the campaign records a
+separate host attestation probe of the CLI's resolved model line.
 
 ## 6. Authority
 

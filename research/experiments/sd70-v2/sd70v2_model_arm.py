@@ -161,6 +161,14 @@ def execute(request: dict[str, Any]) -> dict[str, Any]:
     candidates = set(request["surface"]["candidate_actions"])
     wall = time.time() - start
     receipt = {"model_calls": 1, "wall_time_seconds": wall, "executor": "codex-cli", "model": model,
+               "requested_model": model,
+               # The Codex `--json` event stream exposes no served-model id, so a served
+               # model cannot be attested per call on this channel. What IS attested: an
+               # unavailable/incompatible model is refused with HTTP 400 by this endpoint
+               # rather than silently substituted (observed on 2026-09-02), and the
+               # campaign records a separate host attestation probe of the resolved model.
+               "served_model_observed": None,
+               "served_model_source": "NOT_EXPOSED_BY_CODEX_JSON_EVENT_STREAM",
                "reasoning_effort": effort, "timeout_seconds": timeout, **usage}
     if data["selected_action"] not in candidates:
         return _failed(request, "SELECTED_ACTION_OUTSIDE_CANDIDATES", receipt, raw=data)
