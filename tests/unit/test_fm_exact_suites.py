@@ -17,7 +17,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[2]
 FM = ROOT / "research/experiments/fm-exact"
-SUITES = ["FM10", "FM20", "FM30"]
+SUITES = ["FM10", "FM20", "FM30", "FM40"]
 
 
 @pytest.fixture(scope="module")
