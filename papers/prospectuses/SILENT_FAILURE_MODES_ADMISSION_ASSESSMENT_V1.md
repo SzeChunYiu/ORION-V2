@@ -24,7 +24,9 @@ DISPOSITION                  = MERGE_INTO_EXISTING_OWNERS + REGISTER_ONE_PROSPEC
 PROGRAMME_CRITERIA_MET       = 0 clean, 1 partial (recoverable), 6 FAIL
 BLOCKING_FAILURES            = no prospective discriminator; no strongest-parent baseline;
                                no evaluation outside the derivation domain; no independent authority
-STRONGEST_INSTANCE           = ALREADY_PUBLISHED_BY_PRA (V16 Appendix B.8)
+STRONGEST_INSTANCE           = ALREADY_CLAIMED_BY_PRA (V16 Appendix B.8, in flight on PR #80)
+PARENT_COMPOSITION           = DOMINATES — residual empty; the unifying framework (Kupferman 2006)
+                               and the empirical census both predate the object
 REVIVAL                      = SFM-D1 planted-defect detector-efficacy study (§8), not yet executed
 COST_OF_NOT_OPENING          = ZERO (every finding retains its existing owner and receipt)
 ```
@@ -172,22 +174,51 @@ the constraint-reduces-exploration result; fail-closed design in dependable syst
 consume-your-controls detector; and benchmark construct-validity work owns the
 measured-the-wrong-thing null.
 
-### 5.1 Why no citation table is printed
+### 5.1 Parent reduction, with verification status
+
+A literature pass was run against reproducibility, silent-error, benchmark-validity and
+evaluation-artefact work. Two findings are decisive and are recorded with their verification status,
+because a wrong citation in a strongest-parent section is worse than an absent one.
+
+**Verified independently (two sources).** Kupferman, *Sanity Checks in Formal Verification*, CONCUR
+2006, LNCS 4137:37–51 — already unifies vacuity and coverage as one mutation framework: mutations in
+the specification give vacuity, mutations in the system give coverage. **That is precisely the
+generalization the proposed paper would make**, published twenty years earlier, and it subsumes the
+denominator detector and the planted-positive detector under a single mechanism. This single
+citation closes the object's claim to a unifying contribution.
+
+**The empirical-census slot is already occupied.** Vacuity in temporal model checking has a
+practice literature reporting how often checks pass without checking: Beer, Ben-David, Eisner and
+Rodeh, *Efficient Detection of Vacuity in Temporal Model Checking*, Formal Methods in System Design
+18(2):141–163, 2001 (DOI 10.1023/A:1008779610539), and the later *Vacuity in practice: temporal
+antecedent failure*, FMSD 46(1), 2015 (DOI 10.1007/s10703-014-0221-0). The paper identities and
+their subject are confirmed; **the specific rate reported by Beer et al. (given as roughly 20% of
+formulas trivially valid on first runs, always indicating a real problem) is second-hand here and
+must be checked at source before any successor cites it.**
+
+**Field-level reduction, citations not bound.** Each remaining detector reduces to a mature field:
+checked-coverage and oracle-quality work for the denominator detector; mutation testing, metamorphic
+testing, target-decoy/known-answer self-tests and saliency sanity checks for the planted-positive
+detector; software attestation, reproducible builds and API-response provenance for the
+served-identifier detector — note that at least one major LLM provider already returns the resolved
+model snapshot in the response body, making that "detector" the reading of a documented field;
+runtime *enforcement* (as opposed to runtime *verification*) and clinical-laboratory run-rejection
+rules for the consume-your-controls detector; and agentic-benchmark construct validity for the
+measured-the-wrong-thing null.
 
 ```text
-PARENT_CITATIONS = NOT_BOUND — field-level reduction only
+PARENT_CITATIONS      = PARTIALLY_BOUND
+VERIFIED_INDEPENDENTLY = Kupferman 2006 (D1+D2 unification)
+IDENTITY_CONFIRMED     = Beer et al. 2001; Vacuity in practice 2015
+UNVERIFIED_AT_SOURCE   = the 20% vacuity rate; all agentic-benchmark census figures;
+                         the preregistration-and-exploration evidence of §7
+DO_NOT_BIND            = any citation above without checking it at source first
 ```
 
-Exact author/year/venue citations are deliberately **not** printed here. Field-level reduction is
-sufficient to settle admission, because every field named above predates and subsumes its detector,
-and a wrong citation in a strongest-parent section is worse than an absent one. Any successor that
-revives this object (§8) must bind them exactly before claiming a residual.
-
-The programme requires an *explicit strongest donor-composed baseline*. Constructed honestly, that
-baseline — vacuity checking plus mutation/known-answer testing plus run-environment capture plus
-fail-closed gating — catches every one of the spine instances. The paper's contribution would
-therefore have to be that these modes occur *despite* discipline, which is an observation about one
-programme, not a result about the methods.
+**Conclusion.** The strongest donor composition — vacuity/coverage checking, known-answer and
+mutation testing, attestation and environment capture, and enforcement-not-observation gating —
+catches every spine instance, and the census the paper would offer has already been reported in at
+least one field. The residual is empty.
 
 ### 5.2 "The detectors are already merged" — the strongest argument for the paper, audited
 
@@ -236,8 +267,9 @@ owned by PRA or P-C, and the strongest is already published.
 **(2) faithful reconstruction of strongest parent fields.** **NOT DONE.** No parent field has been
 reconstructed; §5 is a reduction sketch, not a reconstruction. Recoverable with work.
 
-**(3) an explicit strongest donor-composed baseline.** **FAIL.** §5: the honest composition appears
-to dominate. This is not a gap to be filled — filling it is what closes the candidate.
+**(3) an explicit strongest donor-composed baseline.** **FAIL.** §5.1: the composition dominates,
+and one prior framework already unifies two of the five detectors under a single mechanism. This is
+not a gap to be filled — filling it is what closed the candidate.
 
 **(4) a prospective quantitative/formal discriminator.** **FAIL.** All six bundles are retrospective
 discoveries. Stage-2d is the only prospectively registered member, and it was registered to
@@ -283,6 +315,13 @@ Recorded here so that no successor re-derives them:
 - **Selection is uncontrolled.** The six bundles are the silent failures that were *eventually
   caught*. The population of interest is the ones that were not, and it is unobserved by
   construction. Nothing in the corpus bounds it.
+- **Bundle 1's headline runs against the external evidence.** The literature pass found **no
+  peer-reviewed empirical support** for the proposition that a preregistration-style constraint
+  reduces exploration, and one quantitative data point pointing the *other* way (more exploratory
+  work under Registered Reports than in matched traditional articles). That source is thesis-level
+  and was not verified at source, so it settles nothing on its own — but a paper whose headline is
+  "a reproducibility control destroyed exploration" would meet a literature that currently leans
+  against it, on n=1 per arm. This must be reconciled before, not during, review.
 
 The last point is fatal on its own for any prevalence or efficacy claim, and it is not repaired by
 better writing.
