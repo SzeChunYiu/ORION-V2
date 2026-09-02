@@ -1,0 +1,254 @@
+{
+  "arms": {
+    "deterministic_controls": "every deterministic arm is also run on the full LP and QS control pools (suffixes __LP, __QS)",
+    "deterministic_full_task": [
+      "TARGET_ONLY_DETERMINISTIC",
+      "SIMPLE_FREQUENCY_PARENT",
+      "MATCHED_CASE_PARENT",
+      "NAIVE_BAYES_PARENT",
+      "DECISION_LIST_PARENT",
+      "PERCEPTRON_PARENT",
+      "MAXMARGIN_PARENT",
+      "PAIRWISE_LINEAR_PARENT",
+      "FIXED_META_LESSON",
+      "F0_PARENT_FEDERATION",
+      "STRONGEST_GENERATOR_FAITHFUL_PARENT"
+    ],
+    "protocol_mapping": {
+      "F0_PARENT_FEDERATION": "deterministic",
+      "F2_RECURSIVE_META_DISCOVERY_FULL": "model arm, common surface + parent advisory, full registered procedure",
+      "F2_STATIC_NO_RECURSION": "model arm, common surface + parent advisory, recursion disabled by procedure",
+      "FIXED_META_LESSON": "deterministic",
+      "MATCHED_CASE_PARENT": "deterministic",
+      "SIMPLE_FREQUENCY_PARENT": "deterministic",
+      "STRONGEST_GENERATOR_FAITHFUL_PARENT": "MAXMARGIN_PARENT",
+      "TARGET_ONLY_NEGATIVE_CONTROL": "model arm, physically sanitized surface (no training_episodes key), subset of 60 tasks; TARGET_ONLY_DETERMINISTIC covers all tasks"
+    }
+  },
+  "authority": {
+    "grants_causal_law": false,
+    "grants_field_status": false,
+    "grants_publication_readiness": false,
+    "grants_scientific_truth": false,
+    "grants_submission_readiness": false
+  },
+  "controls": {
+    "label_permutation": "uniform random bijection on the candidate actions applied to every training chosen_action (task suffix -LP); expected accuracy of every equivariant learner = chance exactly",
+    "model_control_subset_rule": "the 60 lexicographically first task ids of the relevant pool (frozen before generation)",
+    "model_control_subset_size": 60,
+    "no_failure_evidence": "F2_FULL_MINUS_FAILURE_EVIDENCE (FAILURE episodes physically removed; advisory recomputed on the success-only surface)",
+    "no_parent_federation": "F2_FULL_MINUS_PARENT_FEDERATION (no parent_advisory key)",
+    "no_recursion": "F2_STATIC_NO_RECURSION",
+    "physically_sanitized_target_only": "TARGET_ONLY_NEGATIVE_CONTROL (model) + TARGET_ONLY_DETERMINISTIC",
+    "query_to_task_shuffle": "held-out context replaced by another task's query bits mapped positionally; private answer = argmax of that other task's rule mapped positionally into this task's candidates (suffix -QS); answer independent of this task's training"
+  },
+  "custody": {
+    "code": [
+      "sd70v2_generator.py",
+      "sd70v2_parents.py",
+      "sd70v2_stats.py",
+      "sd70v2_model_arm.py",
+      "sd70v2_run.py"
+    ],
+    "code_sha256_frozen_in": "SD70_V2_PARENT_FIDELITY_RECEIPT_V1.md",
+    "design_hash_bound_into_frozen_suite": true,
+    "evaluator_logically_separate_from_contested_solver": true,
+    "no_threshold_or_baseline_change_after_oracle_access": true,
+    "oracle_absent_during_all_solver_calls": true,
+    "outputs": [
+      "<campaign>/SD70_V2_ROLLUP.{json,md}",
+      "<campaign>/SD70_V2_ARM_RECORDS.json",
+      "research/experiments/results/issue50/sd70-v2/SD70_V2_OUTCOME_RECEIPT.md"
+    ],
+    "raw_responses_frozen_before_oracle_restore": true,
+    "seed_commitment_before_generation": true
+  },
+  "decision_rules": {
+    "CANNOT_CHECK": "dispatch integrity failure, global model failure rate > 0.05, F2_FULL / F2_STATIC / TARGET_ONLY model arm failure rate > 0.10, public/private identity mismatch, design hash changed after freeze, or the parent's LP control not at chance",
+    "FIXED_META_LESSON_SUFFICIENT": "F2_FULL passes every gate above but FIXED_META_LESSON >= F2_FULL (point)",
+    "PARENT_SUFFICIENT": "SP ties or exceeds F2_FULL (point delta <= 0), or F2_FULL fails any of: effect_minimum, effect_significant_holm, non_regression, critical_false_direction, cost_within_budget, mechanism_recursion (F2_FULL - F2_STATIC >= 0.05 with mid-p < 0.05), no_ablation_beats_full, model_negative_controls_behave",
+    "PROSPECTIVE_META_POLICY_RESIDUAL": "F2_FULL passes every gate and exceeds FIXED_META_LESSON",
+    "order": [
+      "CANNOT_CHECK",
+      "PARENT_SUFFICIENT",
+      "FIXED_META_LESSON_SUFFICIENT",
+      "PROSPECTIVE_META_POLICY_RESIDUAL"
+    ]
+  },
+  "gates": {
+    "ablation_alpha": 0.05,
+    "ablation_minimum_effect": 0.05,
+    "ablation_noise_tolerance": 0.03,
+    "alpha_family": 0.05,
+    "cfd_margin": 0.05,
+    "control_rule": "behaves iff the Wilson 95% lower bound of the control accuracy <= chance + control_tolerance (not significantly above chance; the tolerance absorbs the generator's shared low-index tie-break bias, about +0.04 on the QS control in development)",
+    "control_tolerance": 0.05,
+    "minimum_effect": 0.1,
+    "multiplicity": "Holm over the two primary contrasts",
+    "non_inferiority_margin": 0.05
+  },
+  "generator": {
+    "code": "sd70v2_generator.build_suite (byte-identical task family to scripts/generate_scientific_development_meta_benchmark.py build_suite; asserted by unit test)",
+    "family": "V1-identical: f in [4,7] binary context features, a in [3,5] actions, integer weights in [-3,4] (rows made distinct), argmax with lowest-index tie break, 8 unseen-context pairs (SUCCESS with the best action; FAILURE with a uniformly random other action), one unseen held-out context; all tokens random codewords",
+    "private_surface": [
+      "seed",
+      "latent weights",
+      "query bits",
+      "correct action",
+      "worst actions",
+      "latent query scores"
+    ],
+    "train_episodes": 16
+  },
+  "information_contract": {
+    "enforcement": [
+      "one request file per arm-task under requests/<arm>/, containing only the arm's surface; REQUEST_SURFACE_MANIFEST.json hashes every request and every arm surface",
+      "prepare counts training-only tokens present in any TARGET_ONLY request (must be 0)",
+      "private_oracle.json is deleted before any child runs and restored hash-exactly after all children exit",
+      "public_tasks.json and requests/ are chmod 000 for the whole model dispatch; each model child runs in an empty temporary cwd with a private copy of its own request only",
+      "model children are instructed not to execute commands; command executions in the Codex event stream are counted as tool_calls"
+    ],
+    "surfaces": {
+      "COMMON": [
+        "training_episodes",
+        "query_context_features",
+        "candidate_actions",
+        "instruction"
+      ],
+      "COMMON_SUCCESS_ONLY": "COMMON with FAILURE episodes physically removed",
+      "COMMON_SUCCESS_ONLY_WITH_ADVISORY": "COMMON_SUCCESS_ONLY + parent_advisory computed from the success-only surface",
+      "COMMON_WITH_ADVISORY": "COMMON + parent_advisory (deterministic parents computed from the same surface)",
+      "TARGET_ONLY": [
+        "query_context_features",
+        "candidate_actions",
+        "instruction"
+      ]
+    }
+  },
+  "missingness": {
+    "arm_specific_rule": "ARM_FAILURE = failure (incorrect); at most one rerun per arm-task via --retry-failed (max 2 attempts); no silent replacement",
+    "categories": {
+      "ARM_FAILURE": "model failure, timeout, or out-of-candidate selection: scored INCORRECT and not CFD, counted as a failure",
+      "INTEGRITY_VIOLATION": "missing/unreadable response or task/arm identity mismatch: evaluation refuses (CANNOT_CHECK)",
+      "VALID": "COMPLETED_PROPOSAL_ONLY with an in-candidate selection"
+    },
+    "evaluator_validity_check": "STRONGEST_GENERATOR_FAITHFUL_PARENT__LP must behave as a chance control, else CANNOT_CHECK",
+    "global_failure_threshold": 0.05,
+    "per_arm_failure_threshold": 0.1
+  },
+  "model_arms": {
+    "executor": "sd70v2_model_arm.py via Codex CLI `exec --ephemeral --ignore-user-config --ignore-rules --skip-git-repo-check --sandbox read-only -C <empty tmp dir> --json --output-schema`",
+    "full_task_arms": [
+      "F2_STATIC_NO_RECURSION",
+      "F2_RECURSIVE_META_DISCOVERY_FULL",
+      "F2_FULL_MINUS_FAILURE_EVIDENCE",
+      "F2_FULL_MINUS_PARENT_FEDERATION"
+    ],
+    "model": "gpt-5.6-terra (probe replied OK on 2026-09-02; fallback recorded in the outcome receipt if refused)",
+    "prompt_construction": "built only from request.surface keys; procedure text per arm in sd70v2_model_arm.ARM_PROCEDURES",
+    "reasoning_effort": "medium",
+    "subset_arms": [
+      "TARGET_ONLY_NEGATIVE_CONTROL",
+      "F2_RECURSIVE_META_DISCOVERY_FULL__LP",
+      "F2_RECURSIVE_META_DISCOVERY_FULL__QS"
+    ]
+  },
+  "outcomes": {
+    "critical_false_direction": "selecting a candidate whose latent score is minimal for the held-out context (a worst action); identifiable from the private latent weights; rate per arm and paired difference vs SP",
+    "parent_non_regression": "lower 95% bootstrap bound of (F2_FULL - SP) > -0.05",
+    "protected_decision_quality": "exact-action correctness per task; Wilson 95% per arm; paired difference with 10000-draw percentile bootstrap (seed 20260902) and exact one-sided McNemar mid-p; Holm over the 2 primary contrasts {F2_FULL vs SP, F2_STATIC vs SP}",
+    "resource_cost": "per arm: model_calls, attempts, retries, input/output/total tokens (Codex --json events), tool_calls, wall time; aggregation = sum over arm-tasks including failed attempts, mean = sum / n"
+  },
+  "parents": {
+    "DECISION_LIST_PARENT": "Rivest decision list by sequential covering over conjunctions of <= 2 literals (feature present/absent); FAILURE episodes are negatives for their action; default = frequency parent",
+    "F0_PARENT_FEDERATION": "plurality vote over the seven parents' selections; ties -> the strongest parent's selection; no extra information",
+    "FIXED_META_LESSON": "fixed non-recursive heuristic: additive per-feature (success - failure)/support evidence for the held-out features; ties -> global frequency then candidate order; no tuning",
+    "MATCHED_CASE_PARENT": "kernel vote over training contexts, weight 1/(1 + Hamming distance to the held-out context), +w SUCCESS / -w FAILURE; ties -> candidate order",
+    "MAXMARGIN_PARENT": "Crammer-Singer multiclass hinge + L2 (lambda 0.01), full-batch subgradient descent step 0.1 x 200 iterations, bias feature; FAILURE episodes add a pairwise hinge against the paired SUCCESS action",
+    "NAIVE_BAYES_PARENT": "naive-Bayes log odds that the action is the validated-success rather than validated-failure action for the context; Laplace(1); ties -> candidate order",
+    "PAIRWISE_LINEAR_PARENT": "one averaged binary perceptron per candidate pair (50 epochs, margin 1), one vote per pair; ties -> candidate order (documented boundary: vote cycles)",
+    "PERCEPTRON_PARENT": "averaged multiclass (Kesler) perceptron, margin 1, 50 epochs, bias feature; FAILURE episodes push the paired SUCCESS action above the failed action",
+    "SIMPLE_FREQUENCY_PARENT": "global validated-success minus validated-failure count per action; ties -> candidate order",
+    "STRONGEST_GENERATOR_FAITHFUL_PARENT": "alias of MAXMARGIN_PARENT (frozen by the development rule above)",
+    "TARGET_ONLY_DETERMINISTIC": "first candidate (chance floor with the frozen tie break)",
+    "hyperparameters_frozen_in": "sd70v2_parents.py module constants; tuned on no task; validated only by native known-answer tests and the development split"
+  },
+  "power": {
+    "achieved_power_at_task_count": {
+      "discordance_0.25": 0.877,
+      "discordance_0.30": 0.811,
+      "discordance_0.35": 0.748
+    },
+    "alpha_one_sided_per_contrast_worst_case": 0.025,
+    "assumed_discordance": 0.3,
+    "development_discordance_strongest_vs_second": 0.1183,
+    "method": "Connor (1987) paired-binary normal approximation (sd70v2_stats.paired_sample_size)",
+    "minimum_effect": 0.1,
+    "model_calls_planned": 1140,
+    "primary_estimand": "paired difference in exact held-out accuracy, F2_RECURSIVE_META_DISCOVERY_FULL minus STRONGEST_GENERATOR_FAITHFUL_PARENT, over the same protected tasks",
+    "required_tasks": 234,
+    "target_power": 0.8,
+    "task_count": 240
+  },
+  "pre_registered_expectation": "PARENT_SUFFICIENT is the expected and successful terminal: the generator family is a linear multiclass argmax and the regularized max-margin parent lies in the generator's hypothesis class.",
+  "protected_outcomes_inspected_at_freeze": false,
+  "protocol_id": "ORION-SD70-SYNTHETIC-META-POLICY-V2",
+  "protocol_path": "research/experiments/SCIENTIFIC_DEVELOPMENT_SD70_PROSPECTIVE_PROTOCOL_V2.json",
+  "question": "On fresh synthetic hidden-policy episodes, does a recursive meta-discovery arm improve exact held-out action selection over the strongest faithful mature rule-induction parent under matched public information and prospectively fixed resource limits?",
+  "resource_budget": {
+    "calls_per_arm_task": 1,
+    "deterministic_cost": "CPU milliseconds per task; reported, never a gate",
+    "max_attempts_per_arm_task": 2,
+    "max_concurrency": 2,
+    "model_arm_parity": "identical model, reasoning effort, timeout, schema and attempt cap for every model arm",
+    "timeout_seconds_per_call": 600
+  },
+  "schema_version": "orion.v2.sd70-v2.execution-design.v1",
+  "scope": {
+    "does_not_support": [
+      "naturalistic scientific-development superiority",
+      "science-of-science superiority",
+      "general Machine Epistemics field residual",
+      "causal law",
+      "publication readiness"
+    ],
+    "supports_if_valid": "synthetic rule-induction mechanism evidence within the frozen generator family"
+  },
+  "seed_commitment": {
+    "committed_at": "2026-09-02T13:37:05.944550+00:00",
+    "custody_path": "~/.orion-custody/sd70-v2/SD70_V2_MASTER_SEED.txt (Mac; mode 600; not in the repository)",
+    "development_seeds": "int(sha256('SD70-V2-DEV|k')[:15], 16) for k = 0,1,2; disjoint from the protected seed by construction (the protected seed is a 63-bit secrets.randbits draw)",
+    "reveal_rule": "the seed is passed to `prepare` on the execution host; prepare refuses any seed whose sha256 differs from seed_sha256; public_tasks.json records the same commitment",
+    "seed_sha256": "4343cdae9fd451f5f4ca23e7a6bb33796deeb6e6d7f355e0a3a6e281bef3b51e"
+  },
+  "state_date": "2026-09-02",
+  "status": "FROZEN_PREOUTCOME_DESIGN_V1__EXECUTION_AUTHORIZED_ONLY_WITH_COMMITTED_SEED",
+  "strongest_generator_faithful_parent": "MAXMARGIN_PARENT",
+  "strongest_parent_selection": {
+    "candidates": [
+      "PERCEPTRON_PARENT",
+      "MAXMARGIN_PARENT",
+      "PAIRWISE_LINEAR_PARENT",
+      "DECISION_LIST_PARENT",
+      "NAIVE_BAYES_PARENT"
+    ],
+    "development_exact_accuracy": {
+      "DECISION_LIST_PARENT": 0.6533,
+      "MAXMARGIN_PARENT": 0.72,
+      "NAIVE_BAYES_PARENT": 0.645,
+      "PAIRWISE_LINEAR_PARENT": 0.6867,
+      "PERCEPTRON_PARENT": 0.6983
+    },
+    "development_ranking": [
+      "MAXMARGIN_PARENT",
+      "PERCEPTRON_PARENT",
+      "PAIRWISE_LINEAR_PARENT",
+      "DECISION_LIST_PARENT",
+      "NAIVE_BAYES_PARENT"
+    ],
+    "development_split": "3 seeds x 200 tasks = 600 development tasks (results/SD70_V2_DEVELOPMENT_RESULTS_V1.json)",
+    "frozen_before_protected_generation": true,
+    "rule": "highest mean development exact accuracy among GENERATOR_FAITHFUL_CANDIDATES; tie -> lower wall time"
+  },
+  "study_id": "SD70-V2"
+}

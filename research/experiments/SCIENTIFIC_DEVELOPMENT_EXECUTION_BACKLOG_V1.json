@@ -148,6 +148,28 @@
       "successor_protocol": "research/experiments/SCIENTIFIC_DEVELOPMENT_SD70_PROSPECTIVE_PROTOCOL_V2.json"
     },
     {
+      "id": "SD70-V2",
+      "label": "SYNTHETIC_RECURSIVE_META_POLICY_V2",
+      "requires": [
+        "SD70"
+      ],
+      "protocol": "research/experiments/SCIENTIFIC_DEVELOPMENT_SD70_PROSPECTIVE_PROTOCOL_V2.json",
+      "design": "research/experiments/sd70-v2/SD70_V2_EXECUTION_DESIGN_V1.json",
+      "fidelity_receipt": "research/experiments/sd70-v2/SD70_V2_PARENT_FIDELITY_RECEIPT_V1.md",
+      "selftest": "python research/experiments/sd70-v2/sd70v2_run.py selftest",
+      "prepare": "python research/experiments/sd70-v2/sd70v2_run.py prepare --workdir RUN --seed <committed seed>",
+      "dispatch": "python research/experiments/sd70-v2/sd70v2_run.py dispatch --workdir RUN --max-concurrency 2",
+      "evaluate": "python research/experiments/sd70-v2/sd70v2_run.py evaluate --workdir RUN",
+      "private_oracle_absent_during_model_calls": true,
+      "public_surfaces_locked_during_model_calls": true,
+      "status": "DESIGN_V1_FROZEN__EXECUTION_BLOCKERS_CLOSED__PROTECTED_RUN_PENDING",
+      "strongest_generator_faithful_parent": "MAXMARGIN_PARENT",
+      "task_count": 240,
+      "protected_suite_generated": false,
+      "protected_outcomes_inspected": false,
+      "expected_terminal": "PARENT_SUFFICIENT (successful terminal)"
+    },
+    {
       "id": "SD80",
       "label": "PROSPECTIVE_NATURALISTIC_META_POLICY",
       "requires": [

@@ -18,6 +18,8 @@ on:
       - "tests/unit/test_recursive_generalization_wave6.py"
       - "tests/unit/test_scientific_development_scripts_wave6.py"
       - "tests/unit/test_sd70_execution_integrity.py"
+      - "tests/unit/test_sd70_v2_execution.py"
+      - "research/experiments/sd70-v2/**"
       - "research/schemas/SCIENTIFIC_DEVELOPMENT_EPISODE_SCHEMA_V1.json"
       - "research/experiments/SCIENTIFIC_DEVELOPMENT_RECURSIVE_META_GENERALIZATION_PROTOCOL_V1.json"
       - "research/experiments/SCIENTIFIC_DEVELOPMENT_EXECUTION_BACKLOG_V1.json"
@@ -31,6 +33,8 @@ on:
       - "scripts/*scientific_development*"
       - "tests/unit/test_scientific_development*"
       - "tests/unit/test_sd70_execution_integrity.py"
+      - "tests/unit/test_sd70_v2_execution.py"
+      - "research/experiments/sd70-v2/**"
       - "tests/unit/test_recursive_generalization_wave6.py"
       - "research/schemas/SCIENTIFIC_DEVELOPMENT_EPISODE_SCHEMA_V1.json"
       - "research/experiments/SCIENTIFIC_DEVELOPMENT_RECURSIVE_META_GENERALIZATION_PROTOCOL_V1.json"
@@ -68,6 +72,7 @@ jobs:
           python -m py_compile scripts/orion_scientific_development_arms.py
           python -m py_compile scripts/run_scientific_development_meta_suite.py
           python -m py_compile scripts/build_scientific_development_corpus.py
+          python -m py_compile research/experiments/sd70-v2/sd70v2_generator.py research/experiments/sd70-v2/sd70v2_parents.py research/experiments/sd70-v2/sd70v2_stats.py research/experiments/sd70-v2/sd70v2_model_arm.py research/experiments/sd70-v2/sd70v2_run.py
 
       - name: Run focused scientific-development tests
         run: |
@@ -75,7 +80,8 @@ jobs:
             tests/unit/test_scientific_development_wave6.py \
             tests/unit/test_recursive_generalization_wave6.py \
             tests/unit/test_scientific_development_scripts_wave6.py \
-            tests/unit/test_sd70_execution_integrity.py
+            tests/unit/test_sd70_execution_integrity.py \
+            tests/unit/test_sd70_v2_execution.py
 
       - name: Run reference semantics calibration
         run: |
