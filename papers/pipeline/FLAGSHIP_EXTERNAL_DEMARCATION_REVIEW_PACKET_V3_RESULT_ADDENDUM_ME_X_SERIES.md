@@ -24,7 +24,9 @@ The primary comparator in all three is `B5`, the **strongest faithful parent fed
 |---|---|---|---|
 | **ME-X4** selective reopening under dynamic evidence, 1,200 instances, 12 strata | `ee32108` / `4929a44` | `PARENT_SUFFICIENT` | B5 reproduced the controller's reopened / preserved / unresolved decisions **1,200 / 1,200**, 0 discordant in every stratum. Ladder monotone, **rung-5 gap 0** |
 | **ME-X1** cross-transition coupling, 1,000 instances, 10 families | `0fde96f` / `59b1f5b` | `PARENT_SUFFICIENT` | B5 reproduced the controller's action **and** reopened set **1,000 / 1,000**, 0 discordant in every family. Exactly one significant ladder step, R4→R5, **+29 / −0, p = 3.7 × 10⁻⁹**. Protocol §10 requirement 2 (a systematic composition error by B5) **explicitly not satisfied** |
-| **ME-X2** obstruction locus and minimum escalation, 1,200 instances, 12 strata | `704d379` / `776d3a1` | **`PARENT_SUFFICIENT (B5_DOMINATES)`** | B5 **beat** the controller: **0.983 vs 0.963**, paired difference −0.020, exact **p = 0.0032**, 95% CI [−0.033, −0.007] |
+| **ME-X2** obstruction locus and minimum escalation, 1,200 instances, 12 obstruction classes of unequal n | `704d379` / `776d3a1` | **`PARENT_SUFFICIENT (B5_DOMINATES)`** | B5 **beat** the controller: **0.983 vs 0.963**, paired difference −0.020, exact **p = 0.0032**, 95% CI [−0.033, −0.007] |
+
+A precision point, since the three rows otherwise read as parallel: ME-X4's twelve strata carry 100 instances each and ME-X1's ten families carry 100 each, but ME-X2's twelve strata are **oracle classes with unequal n** (140, 55, 63, 91, 113, 277, 71, 80, 69, 123, 68, 50), as its receipt §4 states in its header and note. Its design text says "50 pairs per stratum"; the receipt records a pre-merge re-stratification the design text does not, and the receipt is the authority for what ran.
 
 Receipts, in `SzeChunYiu/ORION-V2`: `research/experiments/me-x4/ME_X4_OUTCOME_RECEIPT.md`, `research/experiments/me-x1/ME_X1_OUTCOME_RECEIPT.md`, `research/experiments/me-x2/ME_X2_OUTCOME_RECEIPT.md`.
 
