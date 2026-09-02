@@ -5,6 +5,33 @@
 pre-registered GPC competence check on the dev split. **No protected instance was generated, executed
 or inspected** (`campaign-pra-llm-v2/protected` does not exist). Nothing here is a scientific result.
 
+## 0. Registered pre-outcome expectations (recorded BEFORE the protected run)
+
+Written here **before any protected instance exists** so that neither can be claimed as insight
+afterwards. Both follow from the dev split (n = 8 smoke / 36 GPC instances); neither licenses any
+change to the frozen design, and neither is evidence.
+
+1. **`mistral-small-24b-instruct-2501` is expected to fail GP0 on the protected split and terminate at
+   `CURRENT_STATE_DEFICIT__NOT_PROSPECTIVE_EVIDENCE`.** On the smoke its GP0 per-unit pass fraction is
+   0.500, caused entirely by the *current* (pre-evidence) action under **R0 only**: it answers
+   ESCALATE on 4 of 8 canonical arms whose gold current action is RETAIN, while scoring 1.000 under
+   R2/R3/R4, with status-line equivalence intact (TOST mean Δ = 1e-4) and token budgets matched
+   exactly. If that terminal occurs it is the **predicted** outcome, a registered negative about the
+   surface and not about the theory, and it must not be reported as a discovery.
+2. **`qwen2.5-32b-instruct` is expected to pass GP0** (smoke per-unit 1.000, current accuracy 1.000 in
+   every condition).
+3. **GP2a is expected to be the fragile gate for both models.** At smoke scale the probe's
+   `R2_TRUE_REMOVAL` accuracy sat at 0.75, above the registered 0.65 chance bound, with n_test = 4;
+   GP2a would therefore have failed as `INTERVENTION_DID_NOT_REMOVE_DORMANT_INFORMATION`. The
+   protected split gives n_test = 48, which resolves this statistic far better, but the direction of
+   the smoke reading is recorded here rather than after the fact.
+4. **No prediction is registered for GP1 or GP3.** The smoke's contrast-B readings (Qwen 0.000 → 1.000,
+   Mistral 0.375 → 1.000) come from 8 instances with the two gated control families absent by
+   construction, and are too small to support an expectation.
+
+The mechanism behind expectation 1 — that GPC, as frozen, does not screen the competence GP0 needs —
+is documented in §4a and in design §9.
+
 ## 1. Environment
 
 | item | value |
@@ -43,11 +70,46 @@ needed** beyond the V1 venv, and its optional `SYSTEM_PROMPT.txt` is not used.
 | protected suite | **not generated**; sealed-seed commitment below |
 
 **Runner-sha reconciliation.** The dev jobs ran `e42c5adc`; the frozen file is `1986262…`. The two
-differ only by the nonce-collision generator fix and two ruff removals (an unused import and an unused
-local). The frozen runner regenerates the dev suite to the identical digest `a8c58107…`, which also
-*proves* no A==B nonce collision occurs on seed 20260912 — so the fix cannot have altered any dev
-result, and the dev numbers below are attributable to the frozen runner. The frozen runner is what is
-now deployed at `v2/pra_real_llm_audit.py`.
+differ only by the nonce-collision generator fix (§3a) and two ruff removals (an unused import and an
+unused local). The frozen runner regenerates the dev suite to the identical digest `a8c58107…`, so the
+dev numbers below are attributable to the frozen runner, which is what is now deployed at
+`v2/pra_real_llm_audit.py`.
+
+## 3a. Latent non-termination defect in the V1 suite generator — found, fixed, and V1 proven unaffected
+
+**The defect.** `build_instance` draws three episode-local nonce sources A, B, Z and then loops
+`while len({names}) < 3: sources["Z"] = _nonce_source(rng)`. It regenerates **Z** whichever pair
+collided, so when **A and B** collide the loop can never satisfy its own condition: it spins forever,
+consuming the RNG. The name space is 20 × 20 syllables × 16 years, so a single instance collides with
+probability ≈ 1/6400, and a 620-instance protected split therefore hangs with probability ≈ 9 % —
+roughly one seed in ten. It was found while testing the V2 sealed-seed path, when suite generation on
+a test seed never returned; `faulthandler` put the stack in `_nonce_source` inside that loop.
+
+**Why it mattered here.** V2 seals its protected seed, so the seed is unknown until the protected job
+runs. Had a colliding seed been sealed, `pra_llm_v2_r1.sbatch` would have hung inside `flock` at
+suite generation and burned its entire wall-clock allocation without producing a single record — and
+the no-rescue clause would have made the natural fix (regenerate the seed) look like tampering.
+
+**The fix.** Regenerate the source that actually collided:
+`if sources["B"]["name"] == sources["A"]["name"]: sources["B"] = …  else: sources["Z"] = …`.
+On every seed where the old code terminated, the A==B branch is never taken, so RNG consumption is
+byte-identical. A regression test (`test_generator_terminates_when_nonce_sources_collide`) shrinks the
+syllable tables to one entry each, forcing a collision on every instance, and asserts termination with
+three distinct names.
+
+**Proof that V1's frozen suites are unaffected**, checked two independent ways:
+
+| check | result |
+|---|---|
+| V1 dev suite regenerated with the fixed runner | `98c8cbb54e5560d954c0a7805ae2fca37aa2777751228baf4701d30c185bf2ba` — identical to the digest archived in V1's `SUITE_MANIFEST.json` |
+| V1 protected suite regenerated with the fixed runner | `21b5b0f7263a49732a9d7c6ba4c417b825e363d2ed06df66d1b3a6a26551b2ae` — identical to the archived digest |
+| V2 dev suite (seed 20260912) regenerated with the fixed runner | `a8c58107bd53f9f55d3e53df9edbc59d6879bc82cee1294eb38b106217383842` — identical to the digest produced by `e42c5adc` in both dev jobs |
+
+Byte-identity also *proves* that no A==B collision occurs on V1 seeds 20260902/20260903 or on V2 dev
+seed 20260912 — had one occurred, the old code would never have produced a suite at all. Both V1
+digests are pinned as constants in `tests/unit/test_pra_real_llm_audit.py`, so the shared runner
+cannot silently drift V1 in future. **V1 R1 is therefore unaffected in both directions:** its frozen
+suites are unchanged, and its own protected run cannot hit the defect on its frozen seed.
 
 ## 4. GPC dev check (pre-registered competence gate — the registered pre-run use of the dev split)
 
