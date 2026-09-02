@@ -1,0 +1,283 @@
+{
+  "receipt_id": "E70_GC1_R1_OUTCOME_RECEIPT",
+  "schema_version": "orion.v2.issue45.e70-gc1.outcome-receipt.v1",
+  "date_executed": "2026-09-02",
+  "run_id": "e70-gc1-r1",
+  "issue": 45,
+  "phase": "E70-GC1 generated-composition (anti-copy) pilot",
+  "campaign": "campaign-e70-gc1-r1",
+  "workdir": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e70-gc1-r1",
+  "protocol": {
+    "path": "research/experiments/ORION_GENERATED_COMPOSITION_COUNTERFACTUAL_SUITE_V1.json",
+    "suite_id": "E70-GC1",
+    "freeze_date": "2026-08-28",
+    "seed": 20260828,
+    "task_count": 24,
+    "protocol_sha256_frozen": "fc5e084c9fef6715891ed2fce3dcf50342192d2a19a972e6e5132fc6d010ad32",
+    "protocol_sha256_matches_origin_main": true
+  },
+  "supersedes": "RESULT.md dispatch-time stub (DISPATCH_QUEUED_DEFERRED_ACCOUNT_WALL, deferred job 3553088)",
+  "evidence_class": "SECONDARY_ANTI_COPY_COMPOSITION_EVIDENCE_ONLY",
+  "jobs": {
+    "terminal": 3563411,
+    "terminal_state": "COMPLETED",
+    "elapsed": "00:31:56",
+    "exit_code": "0:0",
+    "node": "cn133",
+    "partition": "lu48",
+    "submit_cluster_clock": "2026-09-02T05:49:19",
+    "start": "2026-09-02T05:49:20",
+    "end": "2026-09-02T06:21:16",
+    "cancelled_deferred": 3553088,
+    "sbatch_sha256": "f596371dfa84304414009e2a07c0ba62e62e1434018eddee91621ca1930c3d6f",
+    "sbatch_unchanged_resubmitted_begin_now": true,
+    "probe": "PROBE_OK attempt=1"
+  },
+  "bindings": {
+    "codex_cli": "0.150.1",
+    "model": "gpt-5.6-terra",
+    "arm_executable_sha256": "df38cafb63f4f15029305f1b65b8fc8825b1de65013016d4f1e7ffae2641343f",
+    "pilot_entrypoint_sha256": "4375472614ef4c966a40bcbfaa4a84e805e657f77796ed5108e6f9d7b8b7358d",
+    "max_concurrency": 2
+  },
+  "terminal_execution_state": {
+    "responses": "96/96",
+    "response_status": "COMPLETED_PROPOSAL_ONLY x96",
+    "dispatch_returncode_zero": 96,
+    "dispatch_response_exists": 96,
+    "authority_flags_false": 96,
+    "f2_stage_receipts_filled": "9/9 x24",
+    "pytest_preflight": "9/9",
+    "stderr_lines": 0
+  },
+  "custody": {
+    "commitment_private_files": 24,
+    "private_directory_removed_before_child_process": true,
+    "private_path_forwarded_to_model": false,
+    "restoration_files": 24,
+    "hashes_match_commitment": true,
+    "commitment_equals_restoration_map": true,
+    "private_rehashed_post_run_matches_commitment": "24/24",
+    "requests_with_private_markers": 0,
+    "source_ids_used_union": [
+      "gold-blind-solver-workspace"
+    ],
+    "private_gold_mounted_to_solver": false,
+    "manifest_non_response_files": 1518,
+    "manifest_response_files": 96,
+    "deviation": "probe files under <workdir>/infra removed by the pilot's generate --force; PROBE_OK preserved in slurm-3563411.out"
+  },
+  "endpoints": {
+    "primary_raw_hidden_oracle_success": {
+      "SIMPLE_DIRECT": "5/24",
+      "SAME_MODEL_REFLECTION": "5/24",
+      "F0_PARENT_FEDERATION": "8/24",
+      "F2_ORION_METABOLIC_FULL": "3/24"
+    },
+    "mean_raw_hidden_accuracy": {
+      "F0_PARENT_FEDERATION": 0.509,
+      "F2_ORION_METABOLIC_FULL": 0.309,
+      "SAME_MODEL_REFLECTION": 0.355,
+      "SIMPLE_DIRECT": 0.457
+    },
+    "raw_patch_apply_failures": {
+      "F0_PARENT_FEDERATION": 10,
+      "F2_ORION_METABOLIC_FULL": 14,
+      "SAME_MODEL_REFLECTION": 14,
+      "SIMPLE_DIRECT": 10
+    },
+    "syntax_normalized_hidden_oracle_success": {
+      "F0_PARENT_FEDERATION": "24/24",
+      "F2_ORION_METABOLIC_FULL": "24/24",
+      "SAME_MODEL_REFLECTION": "24/24",
+      "SIMPLE_DIRECT": "24/24"
+    },
+    "syntax_canonicalization_changed_count": {
+      "F0_PARENT_FEDERATION": 16,
+      "F2_ORION_METABOLIC_FULL": 21,
+      "SAME_MODEL_REFLECTION": 19,
+      "SIMPLE_DIRECT": 19
+    },
+    "model_tokens_total": {
+      "F0_PARENT_FEDERATION": 164594,
+      "F2_ORION_METABOLIC_FULL": 210163,
+      "SAME_MODEL_REFLECTION": 245654,
+      "SIMPLE_DIRECT": 242586
+    },
+    "tasks_no_arm_succeeds_raw": [
+      "gc1-004",
+      "gc1-005",
+      "gc1-006",
+      "gc1-009",
+      "gc1-013",
+      "gc1-015",
+      "gc1-016",
+      "gc1-019"
+    ]
+  },
+  "paired_tests_primary": {
+    "unit": "frozen task (24)",
+    "test": "exact two-sided discordant",
+    "holm_family_size": 3,
+    "contrasts": {
+      "F2_vs_F0_PARENT_FEDERATION": {
+        "discordants_F2_only_control_only": [
+          2,
+          7
+        ],
+        "risk_difference": -0.2083,
+        "pilot_bootstrap_ci95": [
+          -0.4583333333333333,
+          0.0
+        ],
+        "exact_p": 0.1797,
+        "holm_p": 0.5391,
+        "reject": false
+      },
+      "F2_vs_SIMPLE_DIRECT": {
+        "discordants_F2_only_control_only": [
+          2,
+          4
+        ],
+        "risk_difference": -0.0833,
+        "pilot_bootstrap_ci95": [
+          -0.2916666666666667,
+          0.125
+        ],
+        "exact_p": 0.6875,
+        "holm_p": 1.0,
+        "reject": false
+      },
+      "F2_vs_SAME_MODEL_REFLECTION": {
+        "discordants_F2_only_control_only": [
+          3,
+          5
+        ],
+        "risk_difference": -0.0833,
+        "pilot_bootstrap_ci95": [
+          -0.2916666666666667,
+          0.16666666666666666
+        ],
+        "exact_p": 0.7266,
+        "holm_p": 1.0,
+        "reject": false
+      }
+    },
+    "secondary_syntax_normalized": "0 discordants in every contrast; all arms 24/24 (ceiling)",
+    "power_note": {
+      "discordant_pairs_F2_vs_F0": 9,
+      "smallest_two_sided_p_attainable_with_9_discordants": 0.00390625,
+      "split_needed_to_reject_at_0_05_with_9_discordants": "1 vs 8 (p=0.039) or more extreme; the observed 2 vs 7 gives p=0.180",
+      "reading": "24 paired tasks can reject only near-total one-sided dominance; this pilot is not powered to detect moderate arm differences"
+    }
+  },
+  "per_family_breakdown": "FROZEN_TASKS.json carries no per-task family label; all 24 tasks are one registered four-fragment composition family; breakdown reduces to the failure-mode ledger",
+  "failure_ledger_primary": {
+    "SIMPLE_DIRECT": {
+      "HUNK_HEADER_OVERCOUNT_GIT_APPLY_CORRUPT_PATCH": 10,
+      "SUCCESS_EXACT_HUNK_HEADER": 5,
+      "HUNK_HEADER_UNDERCOUNT_SILENT_TRUNCATION_PARTIAL_ACCURACY": 7,
+      "HUNK_HEADER_UNDERCOUNT_SILENT_TRUNCATION_ZERO_ACCURACY": 2
+    },
+    "SAME_MODEL_REFLECTION": {
+      "HUNK_HEADER_OVERCOUNT_GIT_APPLY_CORRUPT_PATCH": 14,
+      "SUCCESS_EXACT_HUNK_HEADER": 5,
+      "HUNK_HEADER_UNDERCOUNT_SILENT_TRUNCATION_PARTIAL_ACCURACY": 4,
+      "HUNK_HEADER_UNDERCOUNT_SILENT_TRUNCATION_ZERO_ACCURACY": 1
+    },
+    "F0_PARENT_FEDERATION": {
+      "HUNK_HEADER_UNDERCOUNT_SILENT_TRUNCATION_PARTIAL_ACCURACY": 5,
+      "HUNK_HEADER_OVERCOUNT_GIT_APPLY_CORRUPT_PATCH": 10,
+      "HUNK_HEADER_UNDERCOUNT_SILENT_TRUNCATION_ZERO_ACCURACY": 1,
+      "SUCCESS_EXACT_HUNK_HEADER": 8
+    },
+    "F2_ORION_METABOLIC_FULL": {
+      "SUCCESS_EXACT_HUNK_HEADER": 3,
+      "HUNK_HEADER_OVERCOUNT_GIT_APPLY_CORRUPT_PATCH": 14,
+      "HUNK_HEADER_UNDERCOUNT_SILENT_TRUNCATION_ZERO_ACCURACY": 2,
+      "HUNK_HEADER_UNDERCOUNT_SILENT_TRUNCATION_PARTIAL_ACCURACY": 5
+    }
+  },
+  "success_iff_hunk_header_unchanged_all_arms": true,
+  "verdict_class": "EXECUTION_COMPLETE_96_OF_96__CUSTODY_CLEAN__PRIMARY_RAW_ENDPOINT_ADVERSE_FOR_F2_NOT_SIGNIFICANT__F0_NUMERICALLY_BEST__SYNTAX_NORMALIZED_ENDPOINT_AT_CEILING_ALL_ARMS__UNDERPOWERED_PILOT__DEFICIT_ATTRIBUTED_TO_PATCH_SERIALIZATION_INTERFACE",
+  "licenses": [
+    "anti-copy/composition evidence only: all four arms composed the four post-freeze fragments correctly on 24/24 tasks in the syntax-normalized lane"
+  ],
+  "does_not_license": [
+    "superiority claim in any direction",
+    "proof of training-data absence",
+    "replacement of E30/E40/E50",
+    "change to P-C scientific terminal",
+    "field status",
+    "publication readiness",
+    "active-solving proof"
+  ],
+  "not_established": [
+    "publication_readiness",
+    "field_status",
+    "active_solving_proof"
+  ],
+  "revival_attribution": {
+    "attributed_stage": "PROPOSAL_SERIALIZATION_UNIFIED_DIFF_HUNK_HEADER_LINE_COUNT",
+    "excluded_stages": [
+      "decomposition_drag",
+      "counterprobe_over_conservatism",
+      "reflection_dilution",
+      "native_recovery",
+      "selective_reopen"
+    ],
+    "exclusion_basis": "semantic proposals correct for every arm on 96/96 cells after syntax-only recount; raw success iff header exact in all arms; miscount rate not monotone in tokens",
+    "mechanisms_verified": {
+      "overcount": "git apply rejects: corrupt patch at line 27-34",
+      "undercount": "git apply silently truncates hunk; raw solver.py is a strict prefix of the normalized file (probed: SIMPLE_DIRECT/gc1-004, F2/gc1-006, F2/gc1-020)"
+    },
+    "f2_vs_f0_miscounted_headers": [
+      21,
+      16
+    ],
+    "lever": "artifact interface: count-robust contract (full-file artifact or git apply --recount = E20 syntax-only canonicalization) as primary raw lane; header-exact fidelity demoted to secondary interface-fidelity endpoint",
+    "lever_registered_in": "research/evaluation/E20_PATCH_SERIALIZATION_CONFOUND_AUDIT_V1.md",
+    "extension_register_match": "H-EXT-3",
+    "extension_register_terminal_resembled": "RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL",
+    "h_ext_1_not_matched_because": "deficit concentrates in no input-detectable family; semantic endpoint at ceiling for all arms, no regime for a gate",
+    "suite_limitation": "generated family semantically saturated for gpt-5.6-terra (96/96 after recount); zero discriminative power for composition ability",
+    "named_next_design": {
+      "id": "E70-GC2",
+      "status": "NAMED_DESIGN_NOT_SCHEDULED_NO_REVIVAL_CLAIM",
+      "elements": [
+        "raise semantic difficulty off ceiling on a development seed (distractor fragments, conflicting precedence, >=2 files, larger hidden edge families)",
+        "primary endpoint on count-robust artifact contract; header-exact raw apply secondary",
+        "task count by pre-registered power calculation, >=3 repetitions",
+        "minus-component arms only once off the ceiling"
+      ]
+    }
+  },
+  "downstream": {
+    "execution_backlog_e70_row": "unchanged: no status field exists on any backlog row; done_when met at pilot scope",
+    "orion_paper_p_c": "untouched: pilot changes no scientific terminal; registry-first rule needs merged evidence head; import note carried in receipt section 7",
+    "issue_45": "E70 pilot terminal; E70-GC2 named only"
+  },
+  "artifacts": [
+    "E70_GC1_R1_OUTCOME_RECEIPT.md",
+    "E70_GC1_R1_PAIRED_ANALYSIS.json",
+    "drivers/e70_gc1_r1_paired_analysis.py",
+    "E70_GC1_R1_EVALUATION_ROLLUP.json",
+    "aggregate/analysis.json",
+    "EXECUTION_SUMMARY.md",
+    "DISPATCH_RECEIPT.json",
+    "FROZEN_TASKS.json",
+    "PRIVATE_ORACLE_COMMITMENT.json",
+    "PRIVATE_ORACLE_RESTORATION.json",
+    "private_spec_features_no_cases.json",
+    "CUSTODY_MANIFEST_SHA256_NON_RESPONSES.json",
+    "CUSTODY_MANIFEST_SHA256_RESPONSES.json",
+    "slurm-3563411.out",
+    "slurm-3563411.err"
+  ],
+  "md_sha256": "8f5db39d69b46da6029cecb976e503810b7abc6465edbd6a9ff74539e0044b30",
+  "code_identity": {
+    "clone_commit_at_run": "1f49eda",
+    "clone_head_now": "0cb33488f47ec12b7d4fb42813b044d141957456",
+    "run_relevant_blobs_identical_to_origin_main": true
+  }
+}

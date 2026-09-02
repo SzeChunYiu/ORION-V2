@@ -1,21 +1,6 @@
-# E70-GC1 R1 result stub (dispatch-time state)
+# E70-GC1 R1 result (terminal pointer)
 
-- **Status: DISPATCH_QUEUED_DEFERRED_ACCOUNT_WALL** — no outcomes yet.
-- Deferred SLURM job **3553088** (`--begin=2026-09-04T08:00:00`), lu48, 2 cpus,
-  8G, 24h. The only available codex account is server-stated usage-walled until
-  Sep 3rd, 2026 6:26 PM; the job probes availability in-loop before dispatching.
-- **Per-arm results: CANNOT_CHECK** for all four arms (SIMPLE_DIRECT,
-  SAME_MODEL_REFLECTION, F0_PARENT_FEDERATION, F2_ORION_METABOLIC_FULL).
-  Reason: zero model responses exist at receipt time; evaluation is executed by
-  the same deferred job after generation completes. This is a checked-nothing-yet
-  state, not a negative or positive result.
-- Infra fixes applied this run: python 3.13.5 venv (3.12.3 bare-LD fix),
-  codex 0.150.1 provision (0.129.0-alpha.15 cannot decode the current models
-  registry), deferred dispatch + probe-retry guard. Full detail:
-  `INFRASTRUCTURE_RECEIPT.md`.
-- **Before the job fires**: re-sync `codex-home/auth.json` from the Mac
-  (see INFRASTRUCTURE_RECEIPT.md section 4). Without it the job exits 3 at probe
-  exhaustion and the pilot never runs.
-- When the job completes, outcomes land in the workdir
-  (`EXECUTION_SUMMARY.md`, per-arm metrics) and this file is superseded by the
-  terminal result receipt under a new run-identity entry.
+- **Status: EXECUTED — see `E70_GC1_R1_OUTCOME_RECEIPT.md` / `.json`** (SLURM job 3563411, COMPLETED 00:31:56, exit 0:0, 2026-09-02). This file previously held the dispatch-time stub (`DISPATCH_QUEUED_DEFERRED_ACCOUNT_WALL`, deferred job 3553088); that job was cancelled and the unchanged sbatch resubmitted with `--begin=now` after the codex login was refreshed.
+- **Raw hidden-oracle success (primary, 24 tasks):** SIMPLE_DIRECT 5/24, SAME_MODEL_REFLECTION 5/24, F0_PARENT_FEDERATION 8/24, F2_ORION_METABOLIC_FULL 3/24. No contrast in the Holm family F2 vs {F0, SIMPLE, REFLECTION} is significant (smallest Holm p = 0.539). Syntax-normalized success 24/24 for every arm (ceiling).
+- **Verdict class:** `EXECUTION_COMPLETE_96_OF_96__CUSTODY_CLEAN__PRIMARY_RAW_ENDPOINT_ADVERSE_FOR_F2_NOT_SIGNIFICANT__F0_NUMERICALLY_BEST__SYNTAX_NORMALIZED_ENDPOINT_AT_CEILING_ALL_ARMS__UNDERPOWERED_PILOT__DEFICIT_ATTRIBUTED_TO_PATCH_SERIALIZATION_INTERFACE`
+- Secondary anti-copy/composition evidence only; no superiority claim in any direction; does not replace E30/E40/E50; does not prove absence of training-data influence.

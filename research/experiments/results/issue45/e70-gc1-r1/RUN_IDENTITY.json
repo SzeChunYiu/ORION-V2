@@ -4,7 +4,12 @@
   "issue": 45,
   "phase": "E70-GC1 generated-composition pilot (gold-blind, hidden-oracle, arm-blinded dispatch)",
   "source_commit": "3b51a2eedb62d3eebef7d8399d128f47c5f33dc4",
-  "arms": ["SIMPLE_DIRECT", "SAME_MODEL_REFLECTION", "F0_PARENT_FEDERATION", "F2_ORION_METABOLIC_FULL"],
+  "arms": [
+    "SIMPLE_DIRECT",
+    "SAME_MODEL_REFLECTION",
+    "F0_PARENT_FEDERATION",
+    "F2_ORION_METABOLIC_FULL"
+  ],
   "task_count": 24,
   "seed": 20260828,
   "max_concurrency": 2,
@@ -13,10 +18,18 @@
   "executor": {
     "host": "LUNARC lu48 partition, SLURM",
     "account": "lu2026-2-51",
-    "job_id": 3553088,
-    "job_state_at_receipt": "PENDING, --begin=2026-09-04T08:00:00"
+    "job_id": 3563411,
+    "job_state_at_receipt": "COMPLETED 00:31:56 exit 0:0 (cn133, lu48); superseded deferred job 3553088 CANCELLED before start",
+    "cancelled_deferred_job_id": 3553088
   },
-  "status": "DISPATCH_QUEUED_DEFERRED_ACCOUNT_WALL",
-  "outcome_access": "NONE",
-  "status_detail": "Infrastructure fully provisioned and preflight green on 2026-08-29; the only available authenticated codex account is server-stated usage-walled until Sep 3rd, 2026 6:26 PM. Dispatch submitted as deferred SLURM job 3553088 with an in-job availability probe loop (20 attempts, 30 min apart). No model responses exist yet; no evaluation has run."
+  "status": "EXECUTED_TERMINAL_RECEIPT_WRITTEN",
+  "outcome_access": "FULL_POST_RUN_ANALYST_ACCESS",
+  "status_detail": "Executed 2026-09-02 after the codex login was refreshed (probe OK on attempt 1); unchanged sbatch f596371d resubmitted with --begin=now. 96/96 responses COMPLETED_PROPOSAL_ONLY; oracle commitment/restoration hashes match 24/24. Terminal receipt: E70_GC1_R1_OUTCOME_RECEIPT.md/.json.",
+  "terminal_receipt": "E70_GC1_R1_OUTCOME_RECEIPT.md",
+  "primary_endpoint_raw_hidden_oracle_success": {
+    "SIMPLE_DIRECT": "5/24",
+    "SAME_MODEL_REFLECTION": "5/24",
+    "F0_PARENT_FEDERATION": "8/24",
+    "F2_ORION_METABOLIC_FULL": "3/24"
+  }
 }

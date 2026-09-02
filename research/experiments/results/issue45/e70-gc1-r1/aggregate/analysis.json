@@ -1,0 +1,109 @@
+{
+  "arm_summaries": {
+    "F0_PARENT_FEDERATION": {
+      "mean_raw_hidden_accuracy": 0.5091145833333334,
+      "model_tokens_total": 164594,
+      "raw_patch_apply_failures": 10,
+      "raw_success_count": 8,
+      "raw_success_rate": 0.3333333333333333,
+      "syntax_canonicalization_changed_count": 16,
+      "syntax_normalized_success_count": 24,
+      "syntax_normalized_success_rate": 1.0,
+      "task_count": 24
+    },
+    "F2_ORION_METABOLIC_FULL": {
+      "mean_raw_hidden_accuracy": 0.30902777777777773,
+      "model_tokens_total": 210163,
+      "raw_patch_apply_failures": 14,
+      "raw_success_count": 3,
+      "raw_success_rate": 0.125,
+      "syntax_canonicalization_changed_count": 21,
+      "syntax_normalized_success_count": 24,
+      "syntax_normalized_success_rate": 1.0,
+      "task_count": 24
+    },
+    "SAME_MODEL_REFLECTION": {
+      "mean_raw_hidden_accuracy": 0.35546875,
+      "model_tokens_total": 245654,
+      "raw_patch_apply_failures": 14,
+      "raw_success_count": 5,
+      "raw_success_rate": 0.20833333333333334,
+      "syntax_canonicalization_changed_count": 19,
+      "syntax_normalized_success_count": 24,
+      "syntax_normalized_success_rate": 1.0,
+      "task_count": 24
+    },
+    "SIMPLE_DIRECT": {
+      "mean_raw_hidden_accuracy": 0.45746527777777773,
+      "model_tokens_total": 242586,
+      "raw_patch_apply_failures": 10,
+      "raw_success_count": 5,
+      "raw_success_rate": 0.20833333333333334,
+      "syntax_canonicalization_changed_count": 19,
+      "syntax_normalized_success_count": 24,
+      "syntax_normalized_success_rate": 1.0,
+      "task_count": 24
+    }
+  },
+  "authority": {
+    "grants_active_solving_proof": false,
+    "grants_field_status": false,
+    "grants_submission_readiness": false
+  },
+  "primary_comparisons": [
+    {
+      "exact_discordant_p": 0.1796875,
+      "left_arm": "F2_ORION_METABOLIC_FULL",
+      "left_only": 2,
+      "raw_success_risk_difference": {
+        "bootstrap_repetitions": 10000,
+        "ci95": [
+          -0.4583333333333333,
+          0.0
+        ],
+        "estimate": -0.20833333333333334,
+        "pair_count": 24,
+        "seed": 20260828
+      },
+      "right_arm": "F0_PARENT_FEDERATION",
+      "right_only": 7
+    },
+    {
+      "exact_discordant_p": 0.6875,
+      "left_arm": "F2_ORION_METABOLIC_FULL",
+      "left_only": 2,
+      "raw_success_risk_difference": {
+        "bootstrap_repetitions": 10000,
+        "ci95": [
+          -0.2916666666666667,
+          0.125
+        ],
+        "estimate": -0.08333333333333333,
+        "pair_count": 24,
+        "seed": 20260828
+      },
+      "right_arm": "SIMPLE_DIRECT",
+      "right_only": 4
+    },
+    {
+      "exact_discordant_p": 0.7265625,
+      "left_arm": "F2_ORION_METABOLIC_FULL",
+      "left_only": 3,
+      "raw_success_risk_difference": {
+        "bootstrap_repetitions": 10000,
+        "ci95": [
+          -0.2916666666666667,
+          0.16666666666666666
+        ],
+        "estimate": -0.08333333333333333,
+        "pair_count": 24,
+        "seed": 20260828
+      },
+      "right_arm": "SAME_MODEL_REFLECTION",
+      "right_only": 5
+    }
+  ],
+  "schema_version": "orion.v2.gc1-analysis.v1",
+  "status": "SECONDARY_ANTI_COPY_COMPOSITION_EVIDENCE_ONLY",
+  "suite_id": "E70-GC1"
+}

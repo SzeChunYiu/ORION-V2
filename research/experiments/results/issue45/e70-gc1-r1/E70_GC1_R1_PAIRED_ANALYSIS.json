@@ -1,0 +1,294 @@
+{
+ "schema_version": "orion.v2.issue45.e70-gc1.paired-analysis.v1",
+ "run_id": "e70-gc1-r1",
+ "analysis_unit": "frozen task (24)",
+ "test": "exact two-sided discordant (sign) test",
+ "correction": "Holm step-down, family size 3 (F2 vs each control) per endpoint",
+ "alpha": 0.05,
+ "endpoints": {
+  "raw_hidden_oracle_success": {
+   "description": "PRIMARY (registered): raw emitted diff applies and passes all 96 hidden cases",
+   "arm_counts_of_24": {
+    "SIMPLE_DIRECT": 5,
+    "SAME_MODEL_REFLECTION": 5,
+    "F0_PARENT_FEDERATION": 8,
+    "F2_ORION_METABOLIC_FULL": 3
+   },
+   "registered_family": [
+    {
+     "left_arm": "F2_ORION_METABOLIC_FULL",
+     "right_arm": "F0_PARENT_FEDERATION",
+     "both_true": 1,
+     "both_false": 14,
+     "left_only": 2,
+     "right_only": 7,
+     "risk_difference": -0.20833333333333334,
+     "exact_p": 0.1796875,
+     "holm_p": 0.5390625,
+     "reject_at_0_05": false
+    },
+    {
+     "left_arm": "F2_ORION_METABOLIC_FULL",
+     "right_arm": "SIMPLE_DIRECT",
+     "both_true": 1,
+     "both_false": 17,
+     "left_only": 2,
+     "right_only": 4,
+     "risk_difference": -0.08333333333333333,
+     "exact_p": 0.6875,
+     "holm_p": 1.0,
+     "reject_at_0_05": false
+    },
+    {
+     "left_arm": "F2_ORION_METABOLIC_FULL",
+     "right_arm": "SAME_MODEL_REFLECTION",
+     "both_true": 0,
+     "both_false": 16,
+     "left_only": 3,
+     "right_only": 5,
+     "risk_difference": -0.08333333333333333,
+     "exact_p": 0.7265625,
+     "holm_p": 1.0,
+     "reject_at_0_05": false
+    }
+   ],
+   "descriptive_outside_family": [
+    {
+     "left_arm": "F0_PARENT_FEDERATION",
+     "right_arm": "SIMPLE_DIRECT",
+     "left_only": 6,
+     "right_only": 3,
+     "exact_p_uncorrected_descriptive_only": 0.5078125
+    },
+    {
+     "left_arm": "F0_PARENT_FEDERATION",
+     "right_arm": "SAME_MODEL_REFLECTION",
+     "left_only": 6,
+     "right_only": 3,
+     "exact_p_uncorrected_descriptive_only": 0.5078125
+    }
+   ],
+   "tasks_by_number_of_arms_succeeding": {
+    "0": 8,
+    "1": 12,
+    "2": 3,
+    "3": 1
+   },
+   "tasks_no_arm_succeeds": [
+    "gc1-004",
+    "gc1-005",
+    "gc1-006",
+    "gc1-009",
+    "gc1-013",
+    "gc1-015",
+    "gc1-016",
+    "gc1-019"
+   ]
+  },
+  "raw_patch_apply_success": {
+   "description": "SECONDARY: raw emitted diff applies under git apply",
+   "arm_counts_of_24": {
+    "SIMPLE_DIRECT": 14,
+    "SAME_MODEL_REFLECTION": 10,
+    "F0_PARENT_FEDERATION": 14,
+    "F2_ORION_METABOLIC_FULL": 10
+   },
+   "registered_family": [
+    {
+     "left_arm": "F2_ORION_METABOLIC_FULL",
+     "right_arm": "F0_PARENT_FEDERATION",
+     "both_true": 8,
+     "both_false": 8,
+     "left_only": 2,
+     "right_only": 6,
+     "risk_difference": -0.16666666666666666,
+     "exact_p": 0.2890625,
+     "holm_p": 0.8671875,
+     "reject_at_0_05": false
+    },
+    {
+     "left_arm": "F2_ORION_METABOLIC_FULL",
+     "right_arm": "SIMPLE_DIRECT",
+     "both_true": 4,
+     "both_false": 4,
+     "left_only": 6,
+     "right_only": 10,
+     "risk_difference": -0.16666666666666666,
+     "exact_p": 0.454498291015625,
+     "holm_p": 0.90899658203125,
+     "reject_at_0_05": false
+    },
+    {
+     "left_arm": "F2_ORION_METABOLIC_FULL",
+     "right_arm": "SAME_MODEL_REFLECTION",
+     "both_true": 5,
+     "both_false": 9,
+     "left_only": 5,
+     "right_only": 5,
+     "risk_difference": 0.0,
+     "exact_p": 1.0,
+     "holm_p": 1.0,
+     "reject_at_0_05": false
+    }
+   ],
+   "descriptive_outside_family": [
+    {
+     "left_arm": "F0_PARENT_FEDERATION",
+     "right_arm": "SIMPLE_DIRECT",
+     "left_only": 5,
+     "right_only": 5,
+     "exact_p_uncorrected_descriptive_only": 1.0
+    },
+    {
+     "left_arm": "F0_PARENT_FEDERATION",
+     "right_arm": "SAME_MODEL_REFLECTION",
+     "left_only": 9,
+     "right_only": 5,
+     "exact_p_uncorrected_descriptive_only": 0.4239501953125
+    }
+   ],
+   "tasks_by_number_of_arms_succeeding": {
+    "0": 2,
+    "1": 4,
+    "2": 13,
+    "3": 2,
+    "4": 3
+   },
+   "tasks_no_arm_succeeds": [
+    "gc1-013",
+    "gc1-019"
+   ]
+  },
+  "syntax_normalized_hidden_oracle_success": {
+   "description": "SECONDARY: hidden-oracle success after syntax-only canonicalization (E20 protocol; semantic repair forbidden)",
+   "arm_counts_of_24": {
+    "SIMPLE_DIRECT": 24,
+    "SAME_MODEL_REFLECTION": 24,
+    "F0_PARENT_FEDERATION": 24,
+    "F2_ORION_METABOLIC_FULL": 24
+   },
+   "registered_family": [
+    {
+     "left_arm": "F2_ORION_METABOLIC_FULL",
+     "right_arm": "F0_PARENT_FEDERATION",
+     "both_true": 24,
+     "both_false": 0,
+     "left_only": 0,
+     "right_only": 0,
+     "risk_difference": 0.0,
+     "exact_p": null,
+     "holm_p": null,
+     "reject_at_0_05": false
+    },
+    {
+     "left_arm": "F2_ORION_METABOLIC_FULL",
+     "right_arm": "SIMPLE_DIRECT",
+     "both_true": 24,
+     "both_false": 0,
+     "left_only": 0,
+     "right_only": 0,
+     "risk_difference": 0.0,
+     "exact_p": null,
+     "holm_p": null,
+     "reject_at_0_05": false
+    },
+    {
+     "left_arm": "F2_ORION_METABOLIC_FULL",
+     "right_arm": "SAME_MODEL_REFLECTION",
+     "both_true": 24,
+     "both_false": 0,
+     "left_only": 0,
+     "right_only": 0,
+     "risk_difference": 0.0,
+     "exact_p": null,
+     "holm_p": null,
+     "reject_at_0_05": false
+    }
+   ],
+   "descriptive_outside_family": [
+    {
+     "left_arm": "F0_PARENT_FEDERATION",
+     "right_arm": "SIMPLE_DIRECT",
+     "left_only": 0,
+     "right_only": 0,
+     "exact_p_uncorrected_descriptive_only": null
+    },
+    {
+     "left_arm": "F0_PARENT_FEDERATION",
+     "right_arm": "SAME_MODEL_REFLECTION",
+     "left_only": 0,
+     "right_only": 0,
+     "exact_p_uncorrected_descriptive_only": null
+    }
+   ],
+   "tasks_by_number_of_arms_succeeding": {
+    "4": 24
+   },
+   "tasks_no_arm_succeeds": []
+  }
+ },
+ "primary_endpoint_failure_ledger": {
+  "SIMPLE_DIRECT": {
+   "ledger": {
+    "HUNK_HEADER_OVERCOUNT_GIT_APPLY_CORRUPT_PATCH": 10,
+    "SUCCESS_EXACT_HUNK_HEADER": 5,
+    "HUNK_HEADER_UNDERCOUNT_SILENT_TRUNCATION_PARTIAL_ACCURACY": 7,
+    "HUNK_HEADER_UNDERCOUNT_SILENT_TRUNCATION_ZERO_ACCURACY": 2
+   },
+   "syntax_canonicalization_changed": 19,
+   "success_iff_header_unchanged": true,
+   "model_tokens_total": 242586,
+   "model_tokens_median": 7587,
+   "model_wall_time_seconds_total": 835.6,
+   "patch_size_bytes_total": 17377
+  },
+  "SAME_MODEL_REFLECTION": {
+   "ledger": {
+    "HUNK_HEADER_OVERCOUNT_GIT_APPLY_CORRUPT_PATCH": 14,
+    "SUCCESS_EXACT_HUNK_HEADER": 5,
+    "HUNK_HEADER_UNDERCOUNT_SILENT_TRUNCATION_PARTIAL_ACCURACY": 4,
+    "HUNK_HEADER_UNDERCOUNT_SILENT_TRUNCATION_ZERO_ACCURACY": 1
+   },
+   "syntax_canonicalization_changed": 19,
+   "success_iff_header_unchanged": true,
+   "model_tokens_total": 245654,
+   "model_tokens_median": 8068,
+   "model_wall_time_seconds_total": 1031.6,
+   "patch_size_bytes_total": 18194
+  },
+  "F0_PARENT_FEDERATION": {
+   "ledger": {
+    "HUNK_HEADER_UNDERCOUNT_SILENT_TRUNCATION_PARTIAL_ACCURACY": 5,
+    "HUNK_HEADER_OVERCOUNT_GIT_APPLY_CORRUPT_PATCH": 10,
+    "HUNK_HEADER_UNDERCOUNT_SILENT_TRUNCATION_ZERO_ACCURACY": 1,
+    "SUCCESS_EXACT_HUNK_HEADER": 8
+   },
+   "syntax_canonicalization_changed": 16,
+   "success_iff_header_unchanged": true,
+   "model_tokens_total": 164594,
+   "model_tokens_median": 6946,
+   "model_wall_time_seconds_total": 888.8,
+   "patch_size_bytes_total": 17930
+  },
+  "F2_ORION_METABOLIC_FULL": {
+   "ledger": {
+    "SUCCESS_EXACT_HUNK_HEADER": 3,
+    "HUNK_HEADER_OVERCOUNT_GIT_APPLY_CORRUPT_PATCH": 14,
+    "HUNK_HEADER_UNDERCOUNT_SILENT_TRUNCATION_ZERO_ACCURACY": 2,
+    "HUNK_HEADER_UNDERCOUNT_SILENT_TRUNCATION_PARTIAL_ACCURACY": 5
+   },
+   "syntax_canonicalization_changed": 21,
+   "success_iff_header_unchanged": true,
+   "model_tokens_total": 210163,
+   "model_tokens_median": 7672,
+   "model_wall_time_seconds_total": 936.0,
+   "patch_size_bytes_total": 17361
+  }
+ },
+ "power_note": {
+  "discordant_pairs_F2_vs_F0": 9,
+  "smallest_two_sided_p_attainable_with_9_discordants": 0.00390625,
+  "split_needed_to_reject_at_0_05_with_9_discordants": "1 vs 8 (p=0.039) or more extreme; the observed 2 vs 7 gives p=0.180",
+  "reading": "24 paired tasks can reject only near-total one-sided dominance; this pilot is not powered to detect moderate arm differences"
+ }
+}

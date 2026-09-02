@@ -1,0 +1,22 @@
+PROBE_OK attempt=1 reply=OK
+.........                                                                [100%]
+# E70-GC1 Execution Summary
+
+Secondary generated counterfactual/source-composition evidence only.
+
+| Arm | Raw hidden success | Syntax-normalized sensitivity | Raw patch-apply failures |
+| --- | ---: | ---: | ---: |
+| SIMPLE_DIRECT | 5/24 | 24/24 | 10 |
+| SAME_MODEL_REFLECTION | 5/24 | 24/24 | 14 |
+| F0_PARENT_FEDERATION | 8/24 | 24/24 | 10 |
+| F2_ORION_METABOLIC_FULL | 3/24 | 24/24 | 14 |
+
+This suite cannot replace E30/E40/E50 and does not prove absence of training-data influence.
+
+E70-GC1 generated-composition pilot complete.
+Workdir: /projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e70-gc1-r1
+Arms: SIMPLE_DIRECT,SAME_MODEL_REFLECTION,F0_PARENT_FEDERATION,F2_ORION_METABOLIC_FULL
+Tasks: 24
+Seed: 20260828
+Private oracle absent from disk during model dispatch; commitment/restoration receipts written.
+This is secondary fresh anti-copy/composition evidence and cannot replace E30/E40/E50.
