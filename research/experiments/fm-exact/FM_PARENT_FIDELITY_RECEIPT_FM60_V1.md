@@ -91,9 +91,41 @@ applications; its obstruction stage explores the hypothesis region by **local
 repair** — breadth-first over single-cell edits that stay inside the region,
 seeded from the instance's evidence set plus bounded random probing — and is
 exhaustive only at domain sizes ≤ 2, where the space is small enough to certify
-minimality directly. Local repair is complete only on the components its seeds
-reach, so `M` can miss an obstruction the complete parent finds, and
-`test_mechanic_is_not_a_wrapper_of_its_own_comparator` passes for FM60.
+minimality directly.
+
+What `M` shares with the rest of the suite is the **per-model checking
+primitive**: like every arm, `M` asks whether a given structure satisfies a given
+formula, and that question is answered from the materialised truth table. What is
+`M`'s own is the **search** — which structures it ever asks about. This is the
+FM10 pattern (there, every arm shared `profile_map` and only the search
+differed), and it is why "oracle 2 never materialises the space" in §3 of the
+design is a statement about the *cross-check*, not about the arms.
+
+Two separate claims are made about `M`'s independence, and they were checked
+differently. Both are recorded here as checked:
+
+* **The G1a discordance counter is live.** Verified by the same split:
+  `test_mechanic_is_not_a_wrapper_of_its_own_comparator` passes for FM60, and
+  the counter registers 12 / 5 / 3 / 3 ablation-versus-parent disagreements
+  (below). This establishes that the counter can be nonzero — it does **not**
+  by itself establish anything about `M`'s own search.
+* **`M`'s own search is genuinely incomplete and budget-sensitive.** Verified
+  directly by a scratch probe that starves it (registered constants unchanged in
+  the frozen code; the probe monkey-patches them in a throwaway process):
+
+  | `M_SEED_TARGET` / `M_PROBE_BUDGET` | dev (15) | probe (125) |
+  |---|---|---|
+  | **8 / 6000 (registered)** | **1.000** | **1.000** |
+  | 1 / 400 | 1.000 | 1.000 |
+  | 1 / 40 | 1.000 | 1.000 |
+  | 1 / 4 | 1.000 | 0.992 |
+  | 1 / 1 | 0.933 | 0.968 |
+
+  `M`'s exact rate moves off 1.000 when its exploration budget is cut, so the
+  1.000 it reports at the registered budget is a rate the search was capable of
+  not reporting. At the registered budget no divergence from `F0` was observed on
+  either split; the incompleteness is structural *and* demonstrated, but it did
+  not bite at the registered budget on this space.
 
 `G1a`'s **liveness control** on the development split: the discordance counter
 registers 12 (`M_MINUS_OBSTRUCTION_SEARCH`), 5 (`M_MINUS_MINIMALITY_ESCALATION`),
@@ -105,13 +137,34 @@ capable of not reporting.
 `C_ALWAYS_ACCEPT`, which registers **12 over-acceptances** on the 12 blocked
 instances while `M` and `F0` register 0.
 
+### 3b. What `P0` actually claimed, before witness validation
+
+`run_arm` records every arm's `claimed_disposition` alongside the validated one,
+so the decoy family's *measured* content is visible rather than merged into a
+0.00. On the development split `P0_INDUCTIVE_CONFIRMATION` claimed:
+
+| family | claimed | after validation | reading |
+|---|---|---|---|
+| `no_obstruction` | `TRANSFER_VALID` ×3 | `CLAIM_WITHOUT_VALID_WITNESS` ×3 | witness failure: induction is not a proof |
+| `misleading_surface_support` | `TRANSFER_VALID` ×3 | `CLAIM_WITHOUT_VALID_WITNESS` ×3 | **fooled on 3/3**: it saw no countermodel in the presented evidence — *and* had no witness |
+| `single_hidden_obstruction` | `REJECT_WITH_COUNTEREXAMPLE` ×3 | unchanged ×3 | correct, with a valid witness |
+| `multiple_obstruction` | `REJECT_WITH_COUNTEREXAMPLE` ×3 | unchanged ×3 | **measured failure**: valid witness, but it never sees the second obstruction |
+| `minimal_counterexample` | `REJECT_WITH_COUNTEREXAMPLE` ×3 | unchanged ×3 | **measured failure**: valid witness, but not a minimality claim |
+
+So `P0`'s 0.00 is not one phenomenon. On `multiple_obstruction` and
+`minimal_counterexample` it is a *measured* limitation of a confirmation baseline
+that survives witness validation and still gets the disposition wrong; only on
+`no_obstruction` and `misleading_surface_support` does the witness gate do the
+work, and on the latter the arm was independently fooled on 3/3 instances, which
+is the decoy family's measured content.
+
 Four results in the tables below are **definitional and labelled as such**:
 `P2` is exact on every reject family and 0.00 on `no_obstruction` by
 construction; `P3` is its exact mirror; `F0` is therefore exact by construction
 and its content is the attribution of which parent owns which half of the
 endpoint; and `misleading_surface_support` instances are rejected unless every
-presented model confirms the conclusion, so `P0` scoring 0.00 there is
-definitional too.
+presented model confirms the conclusion, so the fact that `P0` finds no
+countermodel there is definitional (§3b separates that from what it measured).
 
 ## 4. Planted positives (G0e): 7/7 fire
 
@@ -218,7 +271,9 @@ proof and the protocol's hard gate refuses a formal claim without a witness. The
 derivation searcher accepts exactly and cannot reject, because a prover produces
 no countermodels. The small-scope check is exhaustive inside its scope and blind
 above it. The inductive baseline is defeated by the decoy family by
-construction, and the frozen lesson table is defeated everywhere. Their
+construction and, where it does survive witness validation, still cannot tell a
+single obstruction from two or a shallow countermodel from a minimal one (§3b);
+the frozen lesson table is defeated everywhere. Their
 pre-registered federation is exact, and the ORION mechanic is decision-identical
 to it.
 
