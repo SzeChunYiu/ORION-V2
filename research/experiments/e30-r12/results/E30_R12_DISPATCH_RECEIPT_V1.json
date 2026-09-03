@@ -1,0 +1,67 @@
+{
+  "schema_version": "orion.v2.e30-r12-dispatch-receipt.v1",
+  "study_id": "E30-R12",
+  "status": "DISPATCHED_AWAITING_OUTCOME",
+  "dispatched_utc": "2026-09-02T23:45:03Z",
+  "design_pr": 178,
+  "design_pr_merge_commit": "8196c36a8e48361d7121af46fd328f412047415f",
+  "design_sha256": "b5aa3a6ff1f875858df3a84409f99a2b544dbebcaf035f6f2afa88ee253a595e",
+  "design_bytes_identical_at_merge_commit_and_main": true,
+  "campaign_dir": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e30-r12-applyclean-core4-rep3-20260902-8940881d",
+  "campaign_source_checked_out_at": "8196c36a8e48361d7121af46fd328f412047415f",
+  "cluster": "LUNARC cosmos, account lu2026-2-51, partition lu48",
+  "slurm_chain_afterok": [
+    {
+      "step": 1,
+      "job": 3566403,
+      "name": "o2-e30r12-setup"
+    },
+    {
+      "step": 2,
+      "job": 3566404,
+      "name": "o2-e30r12-agents"
+    },
+    {
+      "step": 3,
+      "job": 3566405,
+      "name": "o2-e30r12-frozenlane"
+    },
+    {
+      "step": 4,
+      "job": 3566406,
+      "name": "o2-e30r12-gr0a",
+      "array": "0-39"
+    },
+    {
+      "step": 5,
+      "job": 3566407,
+      "name": "o2-e30r12-gr0verify"
+    },
+    {
+      "step": 6,
+      "job": 3566408,
+      "name": "o2-e30r12-suite",
+      "array": "0-39"
+    },
+    {
+      "step": 7,
+      "job": 3566409,
+      "name": "o2-e30r12-rollup"
+    }
+  ],
+  "execution_parameters_left_at_registered_defaults": {
+    "E30R12_CONCURRENCY": 2,
+    "E30R12_MAX_PASSES": 12,
+    "primary_output_token_budget": 6000,
+    "escalated_output_token_budget": 36000,
+    "escalate_from_pass": 3,
+    "requested_model": "glm-5.3",
+    "pinned_served_model": "glm-5.3"
+  },
+  "pre_dispatch_gates_observed": [
+    "AUTHORIZATION_WRITTEN with acknowledged_design_sha256 = b5aa3a6f...",
+    "setup job 3566403 COMPLETED",
+    "agents job 3566404 printed 'PASS 1 pending=480 budget=6000'"
+  ],
+  "no_design_or_gate_change_after_dispatch": true
+}

@@ -1,0 +1,81 @@
+{
+  "envelopes_written": 119,
+  "expected": 480,
+  "statuses": {
+    "EXECUTION_FAILED_MODEL_RESPONSE": 116,
+    "COMPLETED_PROPOSAL_ONLY": 3
+  },
+  "per_arm_envelopes": {
+    "SIMPLE_DIRECT": 40,
+    "SAME_MODEL_REFLECTION": 40,
+    "F0_PARENT_FEDERATION": 39
+  },
+  "served_model_ids": {
+    "glm-5.3": 119
+  },
+  "output_tokens_at_or_above_primary_cap_6000": 116,
+  "completed_cells": [
+    {
+      "cell": "responses/SIMPLE_DIRECT/bugsinpy-scrapy-1.json",
+      "resource_receipt": {
+        "input_tokens": 38035,
+        "model_calls": 1,
+        "output_tokens": 5815,
+        "served_model_ids": [
+          "glm-5.3"
+        ],
+        "wall_time_seconds": 75.34398078918457
+      }
+    },
+    {
+      "cell": "responses/SIMPLE_DIRECT/bugsinpy-scrapy-4.json",
+      "resource_receipt": {
+        "input_tokens": 35993,
+        "model_calls": 1,
+        "output_tokens": 5910,
+        "served_model_ids": [
+          "glm-5.3"
+        ],
+        "wall_time_seconds": 77.27600407600403
+      }
+    },
+    {
+      "cell": "responses/SIMPLE_DIRECT/bugsinpy-tqdm-1.json",
+      "resource_receipt": {
+        "input_tokens": 37027,
+        "model_calls": 1,
+        "output_tokens": 5137,
+        "served_model_ids": [
+          "glm-5.3"
+        ],
+        "wall_time_seconds": 56.00970482826233
+      }
+    }
+  ],
+  "paired_same_task_same_arm_same_prompt": {
+    "task": "bugsinpy-ansible-1",
+    "arm": "SIMPLE_DIRECT",
+    "e30_r11": {
+      "status": "COMPLETED_PROPOSAL_ONLY",
+      "resource_receipt": {
+        "input_tokens": 61557,
+        "model_calls": 1,
+        "output_tokens": 763,
+        "wall_time_seconds": 12.519870519638062
+      }
+    },
+    "e30_r12": {
+      "status": "EXECUTION_FAILED_MODEL_RESPONSE",
+      "diagnosis": "model did not return a JSON object",
+      "resource_receipt": {
+        "input_tokens": 61557,
+        "model_calls": 1,
+        "output_tokens": 6000,
+        "served_model_ids": [
+          "glm-5.3"
+        ],
+        "wall_time_seconds": 71.00170421600342
+      }
+    }
+  }
+}

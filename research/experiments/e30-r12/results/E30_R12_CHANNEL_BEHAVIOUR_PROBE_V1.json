@@ -1,0 +1,48 @@
+{
+  "schema_version": "orion.v2.e30-r12-channel-behaviour-probe.v1",
+  "recorded_utc": "2026-09-03T01:04:58Z",
+  "host": "cosmos2.int.lunarc",
+  "base_url": "https://api.z.ai/api/anthropic",
+  "prompt": "the frozen E30-R12 SIMPLE_DIRECT final prompt for bugsinpy-ansible-1, built by scripts/orion_claude_arms.py _final_prompt(_context(request)) from the campaign request envelope",
+  "prompt_chars": 247781,
+  "probes": [
+    {
+      "request_body_extra": {},
+      "max_tokens": 6000,
+      "stop_reason": "max_tokens",
+      "output_tokens": 6000,
+      "input_tokens": 53,
+      "served_model": "glm-5.3",
+      "content_blocks": [
+        {
+          "type": "thinking",
+          "chars": 27624
+        }
+      ],
+      "text_chars": 0
+    },
+    {
+      "request_body_extra": {
+        "thinking": {
+          "type": "disabled"
+        }
+      },
+      "max_tokens": 6000,
+      "stop_reason": "end_turn",
+      "output_tokens": 775,
+      "input_tokens": 53,
+      "served_model": "glm-5.3",
+      "content_blocks": [
+        {
+          "type": "thinking",
+          "chars": 745
+        },
+        {
+          "type": "text",
+          "chars": 2903
+        }
+      ],
+      "text_chars": 2903
+    }
+  ]
+}

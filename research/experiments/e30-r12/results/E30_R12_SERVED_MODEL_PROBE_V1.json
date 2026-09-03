@@ -1,0 +1,23 @@
+{
+  "schema_version": "orion.v2.e30-r12-served-model-probe.v1",
+  "recorded_utc": "2026-09-02T23:46:31Z",
+  "host": "cosmos2.int.lunarc",
+  "base_url": "https://api.z.ai/api/anthropic",
+  "purpose": "re-verify, before dispatch, the substitution mechanism registered in the E30-R12 design model_binding.substrate_alert",
+  "probes": [
+    {
+      "requested_model": "glm-5.3",
+      "http_status": 200,
+      "served_model": "glm-5.3",
+      "response_type": "message",
+      "any_warning_key_in_body": []
+    },
+    {
+      "requested_model": "glm-5.2",
+      "http_status": 200,
+      "served_model": "glm-5.3",
+      "response_type": "message",
+      "any_warning_key_in_body": []
+    }
+  ]
+}
