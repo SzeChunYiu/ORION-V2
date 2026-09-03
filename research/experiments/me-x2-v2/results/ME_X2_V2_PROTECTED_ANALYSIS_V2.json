@@ -1,0 +1,4024 @@
+{
+  "custody_sha256": "f71aba5dac2427754852a91a4b8d38e1bfdc59e32bb867fa90f98fe527425daf",
+  "gates": {
+    "COST": {
+      "B5_mean_cost": 10.531666666666666,
+      "B5_mean_regret": 3.428979980934223,
+      "B5_wall_ms": 692.374092,
+      "M2_mean_cost": 10.5675,
+      "M2_mean_regret": 3.448045757864633,
+      "M2_wall_ms": 807.779742,
+      "M_V1_mean_regret": 2.998093422306959,
+      "flag": "COST_ADVANTAGE_B5",
+      "instances_B5_lower_regret": 247,
+      "instances_M2_lower_regret": 172,
+      "rule": "paired sign test on per-instance regret (registered cost units) at p <= 0.05; wall-clock reported only",
+      "sign_test_p": 0.0002901789705610647
+    },
+    "G0a_KNOWN_ANSWER": {
+      "pass": true,
+      "rule": "V1's 14 hand-authored fixtures and separation pair (M2 and B5 decision-correct) plus the V2 lever known-answer fixtures, reproduced in selftest"
+    },
+    "G0b_ORACLE_SELF_AGREEMENT": {
+      "ci_apparent_identifiable": 18,
+      "decoy_counts": {
+        "FORMALISM_OR_OPERATOR_INSUFFICIENT": 20,
+        "MEASUREMENT_OR_EVALUATOR_BLIND": 93,
+        "MISSING_PREMISE_OR_DATA": 41,
+        "MODEL_FAMILY_INADEQUATE": 95,
+        "PROBLEM_OBJECTIVE_MISSPECIFIED": 63,
+        "REPRESENTATION_INSUFFICIENT": 36,
+        "TOOL_INSTRUMENT_INADEQUATE": 39,
+        "WORKFLOW_INADEQUATE": 49
+      },
+      "decoy_coverage_ok": true,
+      "exhaustive_agrees_all": true,
+      "inverse_decoy_counts": {
+        "FORMALISM_OR_OPERATOR_INSUFFICIENT": 1,
+        "MEASUREMENT_OR_EVALUATOR_BLIND": 3,
+        "MISSING_PREMISE_OR_DATA": 8,
+        "MODEL_FAMILY_INADEQUATE": 9,
+        "NO_ESCALATION_NEEDED": 71,
+        "PROBE_ACTION_INSUFFICIENT": 14,
+        "PROBLEM_OBJECTIVE_MISSPECIFIED": 10,
+        "REPRESENTATION_INSUFFICIENT": 3,
+        "SEARCH_INSUFFICIENT": 26,
+        "TOOL_INSTRUMENT_INADEQUATE": 2
+      },
+      "inverse_decoy_coverage_ok": true,
+      "min_per_class": 5,
+      "pass": true,
+      "rule": "enumeration == branch-and-bound and a truth-agnostic decision-correct policy exists on every instance; variant invariants hold; >= min decoys per apparent class, inverse decoys per level-0 class and apparent-CANNOT_IDENTIFY identifiable instances",
+      "variant_invariants_hold": true
+    },
+    "G0c_NULL_CALIBRATION": {
+      "M2_decision_rate": 0.985,
+      "M2_within_pair_swap_rate": 0.20833333333333334,
+      "n_identifiable": 1049,
+      "never_intervene_correct_on_identifiable": 0,
+      "pass": true,
+      "random_clause_enforced": true,
+      "random_clause_met": true,
+      "random_decision_rate": 0.185,
+      "rule": "NEVER_INTERVENE decision-correct = 0 on identifiable instances; RANDOM <= 0.25 (enforced on PROTECTED and G0SCALE, reported below that split size); M2 scored against the partner's oracle <= M2's true rate - 0.30",
+      "swap_n": 1200
+    },
+    "G0d_V1_PROVENANCE": {
+      "files": {
+        "ME_X2_LOCUS_DIAGNOSIS_EXACT_STUDY_DESIGN_V1.json": {
+          "expected_sha256": "bb63685c02da55e7c7ebdf72541e862bcc92661b07a1074e33b8371a35e5d7c9",
+          "matches": true,
+          "sha256": "bb63685c02da55e7c7ebdf72541e862bcc92661b07a1074e33b8371a35e5d7c9"
+        },
+        "mex2_arms.py": {
+          "expected_sha256": "fb56bedc5a00c4cf7889b338b867fbcc7557f979d184233c2738174b738342db",
+          "matches": true,
+          "sha256": "fb56bedc5a00c4cf7889b338b867fbcc7557f979d184233c2738174b738342db"
+        },
+        "mex2_catalogue.py": {
+          "expected_sha256": "f809870ae4a20c8df2a8a72db545684e99b64386e146b64997c7ba19c4b1f294",
+          "matches": true,
+          "sha256": "f809870ae4a20c8df2a8a72db545684e99b64386e146b64997c7ba19c4b1f294"
+        },
+        "mex2_generator.py": {
+          "expected_sha256": "70eba6705b02a67f9dde08d162c492324c8cac8d7fe66d3f898c398be2e66ef8",
+          "matches": true,
+          "sha256": "70eba6705b02a67f9dde08d162c492324c8cac8d7fe66d3f898c398be2e66ef8"
+        },
+        "mex2_model.py": {
+          "expected_sha256": "f43462b2d50dda48e9a731ae8f1136807651c18c78a58bdfc10c2040d432db86",
+          "matches": true,
+          "sha256": "f43462b2d50dda48e9a731ae8f1136807651c18c78a58bdfc10c2040d432db86"
+        },
+        "mex2_oracle.py": {
+          "expected_sha256": "399a81568011ccfdf7ba69c5f70b69c697874a7d78971cf5c8f12ec390eba241",
+          "matches": true,
+          "sha256": "399a81568011ccfdf7ba69c5f70b69c697874a7d78971cf5c8f12ec390eba241"
+        },
+        "mex2_parents.py": {
+          "expected_sha256": "211da544f95ffffa7eb381e67ca607f7fc6e29c0a48857e865268357d562b923",
+          "matches": true,
+          "sha256": "211da544f95ffffa7eb381e67ca607f7fc6e29c0a48857e865268357d562b923"
+        },
+        "mex2_run.py": {
+          "expected_sha256": "818b7f4d345673d2a238278aac689876d5410afdb9599d50cdff7312ce16e5cf",
+          "matches": true,
+          "sha256": "818b7f4d345673d2a238278aac689876d5410afdb9599d50cdff7312ce16e5cf"
+        }
+      },
+      "pass": true,
+      "rule": "every frozen V1 file (generator, oracle, catalogue, parents, arms, runner, design JSON) byte-identical to the hash published in the V1 receipt: V2 changes the arm under test and nothing else"
+    },
+    "G1a_B5_REPRODUCES_M2": {
+      "decision_identity_rate": 0.6608333333333334,
+      "pass": false,
+      "per_stratum": {
+        "CANNOT_IDENTIFY": {
+          "B5_only_correct": 0,
+          "M2_only_correct": 2,
+          "decision_discordant": 68,
+          "n": 151
+        },
+        "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+          "B5_only_correct": 0,
+          "M2_only_correct": 0,
+          "decision_discordant": 22,
+          "n": 63
+        },
+        "MEASUREMENT_OR_EVALUATOR_BLIND": {
+          "B5_only_correct": 3,
+          "M2_only_correct": 0,
+          "decision_discordant": 26,
+          "n": 68
+        },
+        "MISSING_PREMISE_OR_DATA": {
+          "B5_only_correct": 0,
+          "M2_only_correct": 0,
+          "decision_discordant": 25,
+          "n": 79
+        },
+        "MODEL_FAMILY_INADEQUATE": {
+          "B5_only_correct": 1,
+          "M2_only_correct": 4,
+          "decision_discordant": 44,
+          "n": 93
+        },
+        "NO_ESCALATION_NEEDED": {
+          "B5_only_correct": 3,
+          "M2_only_correct": 4,
+          "decision_discordant": 93,
+          "n": 277
+        },
+        "PROBE_ACTION_INSUFFICIENT": {
+          "B5_only_correct": 0,
+          "M2_only_correct": 0,
+          "decision_discordant": 18,
+          "n": 70
+        },
+        "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+          "B5_only_correct": 9,
+          "M2_only_correct": 0,
+          "decision_discordant": 36,
+          "n": 86
+        },
+        "REPRESENTATION_INSUFFICIENT": {
+          "B5_only_correct": 1,
+          "M2_only_correct": 0,
+          "decision_discordant": 30,
+          "n": 64
+        },
+        "SEARCH_INSUFFICIENT": {
+          "B5_only_correct": 0,
+          "M2_only_correct": 1,
+          "decision_discordant": 17,
+          "n": 133
+        },
+        "TOOL_INSTRUMENT_INADEQUATE": {
+          "B5_only_correct": 1,
+          "M2_only_correct": 0,
+          "decision_discordant": 11,
+          "n": 65
+        },
+        "WORKFLOW_INADEQUATE": {
+          "B5_only_correct": 0,
+          "M2_only_correct": 0,
+          "decision_discordant": 17,
+          "n": 51
+        }
+      },
+      "rule": "intervention/declaration sequences identical on >= 99.5% of instances and no stratum > 5% discordant"
+    },
+    "G1b_M2_ADVANTAGE": {
+      "paired": {
+        "diff_x_minus_y": -0.005833333333333334,
+        "discordant": 29,
+        "exact_p_two_sided": 0.26493089646101,
+        "n": 1200,
+        "wald_ci95": [
+          -0.014622907913271564,
+          0.0029562412466048954
+        ],
+        "x_only": 11,
+        "y_only": 18
+      },
+      "pass": false,
+      "rule": "minimal-level decision-correct diff (M2 - B5) > 0, exact two-sided p <= 0.05, >= 1 stratum with >= 5 M2-only-correct"
+    },
+    "G1c_B5_ADVANTAGE": {
+      "pass": false,
+      "rule": "symmetric: diff < 0 with p <= 0.05 (B5 dominates)"
+    },
+    "G2_ANTI_ESCALATION": {
+      "B5_false_escalation": 11,
+      "B5_spec_damage": 0,
+      "M2_false_escalation": 0,
+      "M2_spec_damage": 0,
+      "M_V1_false_escalation": 0,
+      "M_V1_spec_damage": 0,
+      "pass": true,
+      "rule": "M2 false escalations and specification damage <= B5's (V1's clause) AND <= V1's M: a revival may not buy decisions with escalation harm",
+      "vs_B5_pass": true,
+      "vs_M_V1_pass": true
+    },
+    "G3_MEDIATION": {
+      "applicable": false,
+      "checks": {},
+      "pass": null,
+      "rule": "(a) M2's class correct on >= 80% of M2-only-correct instances; (b) on each advantaged stratum both locus ablations <= B5; (c) B3 with 1.5x budget does not reach M2 (paired p <= 0.05)"
+    },
+    "G4_INTERFACE_LADDER": {
+      "pass": true,
+      "rule": "no rung k+1 significantly worse than rung k (exact p <= 0.05); rung-5 gap = the G1 paired test",
+      "rung5_gap": {
+        "diff_x_minus_y": -0.005833333333333334,
+        "discordant": 29,
+        "exact_p_two_sided": 0.26493089646101,
+        "n": 1200,
+        "wald_ci95": [
+          -0.014622907913271564,
+          0.0029562412466048954
+        ],
+        "x_only": 11,
+        "y_only": 18
+      },
+      "rung5_gap_null": true,
+      "rung_decision_rates": {
+        "B5_R1_VERDICT_ONLY": 0.6841666666666667,
+        "B5_R2_PLUS_CANDIDATE_SET": 0.8158333333333333,
+        "B5_R3_PLUS_DISCRIMINATOR_TABLES": 0.8666666666666667,
+        "B5_R4_PLUS_DISPOSITION_RECORDS": 0.9491666666666667,
+        "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": 0.9908333333333333
+      },
+      "steps": [
+        {
+          "from": "B5_R1_VERDICT_ONLY",
+          "paired": {
+            "diff_x_minus_y": 0.13166666666666665,
+            "discordant": 244,
+            "exact_p_two_sided": 1.317526222849008e-25,
+            "n": 1200,
+            "wald_ci95": [
+              0.10726504566708125,
+              0.15606828766625205
+            ],
+            "x_only": 201,
+            "y_only": 43
+          },
+          "to": "B5_R2_PLUS_CANDIDATE_SET",
+          "violation": false
+        },
+        {
+          "from": "B5_R2_PLUS_CANDIDATE_SET",
+          "paired": {
+            "diff_x_minus_y": 0.050833333333333335,
+            "discordant": 121,
+            "exact_p_two_sided": 2.495730943402904e-08,
+            "n": 1200,
+            "wald_ci95": [
+              0.033098374160787945,
+              0.06856829250587873
+            ],
+            "x_only": 91,
+            "y_only": 30
+          },
+          "to": "B5_R3_PLUS_DISCRIMINATOR_TABLES",
+          "violation": false
+        },
+        {
+          "from": "B5_R3_PLUS_DISCRIMINATOR_TABLES",
+          "paired": {
+            "diff_x_minus_y": 0.0825,
+            "discordant": 117,
+            "exact_p_two_sided": 1.0825801034098937e-22,
+            "n": 1200,
+            "wald_ci95": [
+              0.06546060667159773,
+              0.09953939332840228
+            ],
+            "x_only": 108,
+            "y_only": 9
+          },
+          "to": "B5_R4_PLUS_DISPOSITION_RECORDS",
+          "violation": false
+        },
+        {
+          "from": "B5_R4_PLUS_DISPOSITION_RECORDS",
+          "paired": {
+            "diff_x_minus_y": 0.041666666666666664,
+            "discordant": 52,
+            "exact_p_two_sided": 2.353672812205332e-14,
+            "n": 1200,
+            "wald_ci95": [
+              0.030126884429809937,
+              0.05320644890352339
+            ],
+            "x_only": 51,
+            "y_only": 1
+          },
+          "to": "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION",
+          "violation": false
+        }
+      ],
+      "terminal": "RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL"
+    },
+    "G5_LEVER_ATTRIBUTION": {
+      "a_paired_M2_vs_M_V1": {
+        "diff_x_minus_y": 0.019166666666666665,
+        "discordant": 29,
+        "exact_p_two_sided": 1.5236437320709229e-05,
+        "n": 1200,
+        "wald_ci95": [
+          0.010438006392306964,
+          0.027895326941026366
+        ],
+        "x_only": 26,
+        "y_only": 3
+      },
+      "a_pass": true,
+      "applicable": true,
+      "b_pass": true,
+      "b_single_lever_vs_M_V1": {
+        "M2_L1_LOOKAHEAD_ONLY": {
+          "diff_x_minus_y": 0.005,
+          "discordant": 8,
+          "exact_p_two_sided": 0.0703125,
+          "n": 1200,
+          "wald_ci95": [
+            0.0003889058902589197,
+            0.009611094109741081
+          ],
+          "x_only": 7,
+          "y_only": 1
+        },
+        "M2_L2_BEST_HYPOTHESIS_ONLY": {
+          "diff_x_minus_y": -0.051666666666666666,
+          "discordant": 104,
+          "exact_p_two_sided": 6.676043770502301e-10,
+          "n": 1200,
+          "wald_ci95": [
+            -0.06806493204466953,
+            -0.035268401288663806
+          ],
+          "x_only": 21,
+          "y_only": 83
+        }
+      },
+      "c_mechanism_rate": 1.0,
+      "c_n_M2_only_correct": 26,
+      "c_pass": true,
+      "d_n_M_V1_only_correct": 3,
+      "d_pass": true,
+      "pass": true,
+      "rule": "(a) paired M2 - M_V1 > 0 at exact p <= 0.05 [routes the lever verdict]; (b) neither single-lever arm improves on M_V1 by more than the conjunction does [reported diagnostic]; (c) >= 80% of M2-only-correct instances are ones where V1 declared a false CANNOT_IDENTIFY AND M2's EXECUTED lever receipts show an L2-only-admissible action or an L1-changed choice [routes the lever verdict: failing it gives LEVERS_NOT_ATTRIBUTED]; (d) M2 loses fewer instances to V1 than it gains: the revival must not move the failure [routes the lever verdict: failing it gives LEVERS_MOVE_THE_FAILURE]"
+    },
+    "ROUTE": {
+      "B5_decision_rate": 0.9908333333333333,
+      "M2_decision_rate": 0.985,
+      "M_V1_decision_rate": 0.9658333333333333,
+      "b5_dominates": false,
+      "cost_flag": "COST_ADVANTAGE_B5",
+      "ladder_terminal": "RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL",
+      "lever_verdict": "LEVERS_RECOVER_M",
+      "reason": "no M2 advantage over B5 (discordance without significance)",
+      "route": "PARENT_SUFFICIENT"
+    }
+  },
+  "label": "PROTECTED",
+  "n_instances": 1200,
+  "results_sha256": "3503863a7292f77978026b230604f43a16c652324293bc75cf35c722ea1781bb",
+  "schema_version": "orion.v2.me-x2-v2.revival-study-analysis.v2",
+  "score": {
+    "decoy_counts": {
+      "FORMALISM_OR_OPERATOR_INSUFFICIENT": 20,
+      "MEASUREMENT_OR_EVALUATOR_BLIND": 93,
+      "MISSING_PREMISE_OR_DATA": 41,
+      "MODEL_FAMILY_INADEQUATE": 95,
+      "PROBLEM_OBJECTIVE_MISSPECIFIED": 63,
+      "REPRESENTATION_INSUFFICIENT": 36,
+      "TOOL_INSTRUMENT_INADEQUATE": 39,
+      "WORKFLOW_INADEQUATE": 49
+    },
+    "inverse_decoy_counts": {
+      "FORMALISM_OR_OPERATOR_INSUFFICIENT": 1,
+      "MEASUREMENT_OR_EVALUATOR_BLIND": 3,
+      "MISSING_PREMISE_OR_DATA": 8,
+      "MODEL_FAMILY_INADEQUATE": 9,
+      "NO_ESCALATION_NEEDED": 71,
+      "PROBE_ACTION_INSUFFICIENT": 14,
+      "PROBLEM_OBJECTIVE_MISSPECIFIED": 10,
+      "REPRESENTATION_INSUFFICIENT": 3,
+      "SEARCH_INSUFFICIENT": 26,
+      "TOOL_INSTRUMENT_INADEQUATE": 2
+    },
+    "lever_activity": {
+      "instances_with_l1_changed_choice": 347,
+      "instances_with_l2_only_admissible_action": 44,
+      "instances_with_permitted_foreclosure": 44,
+      "instances_with_positive_expected_abstention": 336,
+      "receipts_considered_not_executed": 5,
+      "receipts_executed": 2459
+    },
+    "per_arm": {
+      "B0_RETRY_SEARCH": {
+        "brier": null,
+        "class_rate": 0.11083333333333334,
+        "correct_ci": 0,
+        "decision_rate": 0.2175,
+        "ece5": null,
+        "false_ci": 0,
+        "false_escalation": 14,
+        "false_model_attribution": 0,
+        "false_representation_attribution": 0,
+        "false_world_change": 0,
+        "locus_rate": 0.32416666666666666,
+        "mean_ci_cost": 6.231788079470198,
+        "mean_cost": 4.595,
+        "mean_regret": -3.6024785510009534,
+        "missed_escalation": 788,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 0,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 14,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 63,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 68,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 0.0,
+            "decision_rate": 0.46835443037974683,
+            "false_escalation": 0,
+            "missed_escalation": 42,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.0,
+            "decision_rate": 0.043010752688172046,
+            "false_escalation": 0,
+            "missed_escalation": 89,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.0,
+            "decision_rate": 0.3249097472924188,
+            "false_escalation": 0,
+            "missed_escalation": 187,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.32857142857142857,
+            "false_escalation": 0,
+            "missed_escalation": 47,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 86,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.015625,
+            "false_escalation": 0,
+            "missed_escalation": 63,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.7969924812030075,
+            "false_escalation": 0,
+            "missed_escalation": 27,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 65,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 51,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.0,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 0.11666666666666667,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.22,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.4083333333333333,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.2679425837320574,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 0.4166666666666667,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.1674641148325359,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 0.0,
+            "n": 12
+          }
+        },
+        "recurrence": 2776,
+        "spec_damage": 0,
+        "success_rate": 0.2175,
+        "wall_ms": 12.737668
+      },
+      "B1_UNCERTAINTY_ABSTENTION": {
+        "brier": 0.12583333333333332,
+        "class_rate": 0.7691666666666667,
+        "correct_ci": 151,
+        "decision_rate": 0.6241666666666666,
+        "ece5": 0.12583333333333335,
+        "false_ci": 451,
+        "false_escalation": 0,
+        "false_model_attribution": 18,
+        "false_representation_attribution": 6,
+        "false_world_change": 10,
+        "locus_rate": 0.8058333333333333,
+        "mean_ci_cost": 9.28476821192053,
+        "mean_cost": 10.099166666666667,
+        "mean_regret": 2.2545281220209725,
+        "missed_escalation": 451,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 1200,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.5761589403973509,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.8095238095238095,
+            "decision_rate": 0.49206349206349204,
+            "false_escalation": 0,
+            "missed_escalation": 32,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.8088235294117647,
+            "decision_rate": 0.29411764705882354,
+            "false_escalation": 0,
+            "missed_escalation": 48,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 0.8481012658227848,
+            "decision_rate": 0.810126582278481,
+            "false_escalation": 0,
+            "missed_escalation": 15,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.7526881720430108,
+            "decision_rate": 0.6344086021505376,
+            "false_escalation": 0,
+            "missed_escalation": 34,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.8158844765342961,
+            "decision_rate": 0.6570397111913358,
+            "false_escalation": 0,
+            "missed_escalation": 95,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 0.7142857142857143,
+            "decision_rate": 0.6571428571428571,
+            "false_escalation": 0,
+            "missed_escalation": 24,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.8488372093023255,
+            "decision_rate": 0.27906976744186046,
+            "false_escalation": 0,
+            "missed_escalation": 62,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.8125,
+            "decision_rate": 0.40625,
+            "false_escalation": 0,
+            "missed_escalation": 38,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 0.7518796992481203,
+            "decision_rate": 0.7142857142857143,
+            "false_escalation": 0,
+            "missed_escalation": 38,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.8153846153846154,
+            "decision_rate": 0.5230769230769231,
+            "false_escalation": 0,
+            "missed_escalation": 31,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.7647058823529411,
+            "decision_rate": 0.3333333333333333,
+            "false_escalation": 0,
+            "missed_escalation": 34,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 0.0,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.74,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.475,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.8373205741626795,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 0.3333333333333333,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.5885167464114832,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 0.4166666666666667,
+            "n": 12
+          }
+        },
+        "recurrence": 0,
+        "spec_damage": 0,
+        "success_rate": 0.49833333333333335,
+        "wall_ms": 50.829365
+      },
+      "B2_FAILURE_TAXONOMY_DIAGNOSIS": {
+        "brier": null,
+        "class_rate": 0.47583333333333333,
+        "correct_ci": 0,
+        "decision_rate": 0.37416666666666665,
+        "ece5": null,
+        "false_ci": 0,
+        "false_escalation": 500,
+        "false_model_attribution": 106,
+        "false_representation_attribution": 47,
+        "false_world_change": 60,
+        "locus_rate": 0.48,
+        "mean_ci_cost": 13.609271523178808,
+        "mean_cost": 12.044166666666667,
+        "mean_regret": 3.8570066730219255,
+        "missed_escalation": 381,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 0,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.11258278145695365,
+            "decision_rate": 0.0,
+            "false_escalation": 143,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.2857142857142857,
+            "decision_rate": 0.1746031746031746,
+            "false_escalation": 0,
+            "missed_escalation": 52,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.29411764705882354,
+            "decision_rate": 0.0,
+            "false_escalation": 12,
+            "missed_escalation": 68,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 0.6708860759493671,
+            "decision_rate": 0.45569620253164556,
+            "false_escalation": 40,
+            "missed_escalation": 10,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.5483870967741935,
+            "decision_rate": 0.6989247311827957,
+            "false_escalation": 25,
+            "missed_escalation": 15,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.6678700361010831,
+            "decision_rate": 0.37906137184115524,
+            "false_escalation": 154,
+            "missed_escalation": 66,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 0.7428571428571429,
+            "decision_rate": 0.42857142857142855,
+            "false_escalation": 40,
+            "missed_escalation": 18,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.22093023255813954,
+            "decision_rate": 0.12790697674418605,
+            "false_escalation": 9,
+            "missed_escalation": 75,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.4375,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 0.6090225563909775,
+            "decision_rate": 0.5639097744360902,
+            "false_escalation": 58,
+            "missed_escalation": 13,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.15384615384615385,
+            "decision_rate": 0.015384615384615385,
+            "false_escalation": 19,
+            "missed_escalation": 64,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.7254901960784313,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.0,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 0.5666666666666667,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.1,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.425,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.29904306220095694,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 0.25,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.44258373205741625,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 1.0,
+            "n": 12
+          }
+        },
+        "recurrence": 1680,
+        "spec_damage": 26,
+        "success_rate": 0.6016666666666667,
+        "wall_ms": 22.130231
+      },
+      "B3_EQUAL_EXTRA_SEARCH_1_5X": {
+        "brier": 0.12207295456665733,
+        "class_rate": 0.85,
+        "correct_ci": 2,
+        "decision_rate": 0.8458333333333333,
+        "ece5": 0.11446963336132102,
+        "false_ci": 0,
+        "false_escalation": 173,
+        "false_model_attribution": 47,
+        "false_representation_attribution": 14,
+        "false_world_change": 33,
+        "locus_rate": 0.845,
+        "mean_ci_cost": 18.980132450331126,
+        "mean_cost": 13.310833333333333,
+        "mean_regret": 4.532888465204957,
+        "missed_escalation": 0,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 1191,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.013245033112582781,
+            "decision_rate": 0.0,
+            "false_escalation": 139,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9493670886075949,
+            "false_escalation": 4,
+            "missed_escalation": 0,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.967741935483871,
+            "decision_rate": 0.967741935483871,
+            "false_escalation": 3,
+            "missed_escalation": 0,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.9422382671480144,
+            "decision_rate": 0.927797833935018,
+            "false_escalation": 20,
+            "missed_escalation": 0,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.859375,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9473684210526315,
+            "false_escalation": 7,
+            "missed_escalation": 0,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.9846153846153847,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.9607843137254902,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.0,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 1.0,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.52,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.9083333333333333,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.7990430622009569,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 0.6666666666666666,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.9712918660287081,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 1.0,
+            "n": 12
+          }
+        },
+        "recurrence": 195,
+        "spec_damage": 7,
+        "success_rate": 0.97,
+        "wall_ms": 92.844021
+      },
+      "B3_MODEL_BASED_DIAGNOSIS_VOI": {
+        "brier": 0.13348484848484848,
+        "class_rate": 0.7875,
+        "correct_ci": 23,
+        "decision_rate": 0.7875,
+        "ece5": 0.12636363636363637,
+        "false_ci": 3,
+        "false_escalation": 90,
+        "false_model_attribution": 46,
+        "false_representation_attribution": 10,
+        "false_world_change": 29,
+        "locus_rate": 0.7941666666666667,
+        "mean_ci_cost": 9.649006622516556,
+        "mean_cost": 10.6825,
+        "mean_regret": 2.869399428026692,
+        "missed_escalation": 97,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 1100,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.11920529801324503,
+            "decision_rate": 0.10596026490066225,
+            "false_escalation": 66,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.9365079365079365,
+            "decision_rate": 0.9365079365079365,
+            "false_escalation": 0,
+            "missed_escalation": 4,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.7647058823529411,
+            "decision_rate": 0.7647058823529411,
+            "false_escalation": 0,
+            "missed_escalation": 16,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 0.9746835443037974,
+            "decision_rate": 0.9620253164556962,
+            "false_escalation": 1,
+            "missed_escalation": 2,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.9139784946236559,
+            "decision_rate": 0.9247311827956989,
+            "false_escalation": 2,
+            "missed_escalation": 5,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.9025270758122743,
+            "decision_rate": 0.8916967509025271,
+            "false_escalation": 15,
+            "missed_escalation": 16,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 0.9857142857142858,
+            "decision_rate": 0.9857142857142858,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.7674418604651163,
+            "decision_rate": 0.7674418604651163,
+            "false_escalation": 0,
+            "missed_escalation": 20,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.765625,
+            "decision_rate": 0.890625,
+            "false_escalation": 0,
+            "missed_escalation": 7,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 0.9924812030075187,
+            "decision_rate": 0.9473684210526315,
+            "false_escalation": 6,
+            "missed_escalation": 1,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.8153846153846154,
+            "decision_rate": 0.8307692307692308,
+            "false_escalation": 0,
+            "missed_escalation": 11,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.6862745098039216,
+            "decision_rate": 0.7254901960784313,
+            "false_escalation": 0,
+            "missed_escalation": 14,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.16,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 0.9333333333333333,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.6,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.8666666666666667,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.7583732057416268,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 0.6666666666666666,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.84688995215311,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 1.0,
+            "n": 12
+          }
+        },
+        "recurrence": 252,
+        "spec_damage": 7,
+        "success_rate": 0.8216666666666667,
+        "wall_ms": 83.465728
+      },
+      "B4_MDA_MODEL_EXPANSION": {
+        "brier": 0.1267537122375832,
+        "class_rate": 0.7866666666666666,
+        "correct_ci": 24,
+        "decision_rate": 0.7741666666666667,
+        "ece5": 0.11167434715821818,
+        "false_ci": 4,
+        "false_escalation": 102,
+        "false_model_attribution": 45,
+        "false_representation_attribution": 10,
+        "false_world_change": 17,
+        "locus_rate": 0.785,
+        "mean_ci_cost": 9.602649006622517,
+        "mean_cost": 10.643333333333333,
+        "mean_regret": 2.831267874165872,
+        "missed_escalation": 110,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 1085,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.13245033112582782,
+            "decision_rate": 0.11258278145695365,
+            "false_escalation": 68,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.9047619047619048,
+            "decision_rate": 0.9047619047619048,
+            "false_escalation": 0,
+            "missed_escalation": 6,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.7352941176470589,
+            "decision_rate": 0.7352941176470589,
+            "false_escalation": 0,
+            "missed_escalation": 18,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 0.9620253164556962,
+            "decision_rate": 0.9113924050632911,
+            "false_escalation": 5,
+            "missed_escalation": 3,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.946236559139785,
+            "decision_rate": 0.956989247311828,
+            "false_escalation": 1,
+            "missed_escalation": 3,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.9061371841155235,
+            "decision_rate": 0.8664259927797834,
+            "false_escalation": 22,
+            "missed_escalation": 21,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 0.9857142857142858,
+            "decision_rate": 0.9857142857142858,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.7558139534883721,
+            "decision_rate": 0.7558139534883721,
+            "false_escalation": 0,
+            "missed_escalation": 21,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.796875,
+            "decision_rate": 0.875,
+            "false_escalation": 0,
+            "missed_escalation": 8,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 0.9849624060150376,
+            "decision_rate": 0.9398496240601504,
+            "false_escalation": 6,
+            "missed_escalation": 2,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.7846153846153846,
+            "decision_rate": 0.8,
+            "false_escalation": 0,
+            "missed_escalation": 13,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.6862745098039216,
+            "decision_rate": 0.7254901960784313,
+            "false_escalation": 0,
+            "missed_escalation": 14,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.18,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 0.9416666666666667,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.62,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.8583333333333333,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.7392344497607656,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 0.6666666666666666,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.8229665071770335,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 1.0,
+            "n": 12
+          }
+        },
+        "recurrence": 251,
+        "spec_damage": 7,
+        "success_rate": 0.8133333333333334,
+        "wall_ms": 74.090052
+      },
+      "B5_NO_ABSTENTION_GATE": {
+        "brier": 0.126875,
+        "class_rate": 0.8841666666666667,
+        "correct_ci": 110,
+        "decision_rate": 0.9108333333333334,
+        "ece5": 0.12458333333333332,
+        "false_ci": 6,
+        "false_escalation": 105,
+        "false_model_attribution": 42,
+        "false_representation_attribution": 14,
+        "false_world_change": 30,
+        "locus_rate": 0.8675,
+        "mean_ci_cost": 10.443708609271523,
+        "mean_cost": 11.170833333333333,
+        "mean_regret": 3.313632030505243,
+        "missed_escalation": 6,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 1200,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.1456953642384106,
+            "decision_rate": 0.4304635761589404,
+            "false_escalation": 86,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9852941176470589,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9746835443037974,
+            "false_escalation": 2,
+            "missed_escalation": 0,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.956989247311828,
+            "false_escalation": 4,
+            "missed_escalation": 0,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.9819494584837545,
+            "decision_rate": 0.9566787003610109,
+            "false_escalation": 12,
+            "missed_escalation": 4,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9883720930232558,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.921875,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9924812030075187,
+            "false_escalation": 1,
+            "missed_escalation": 0,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.14,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 0.9833333333333333,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.66,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.975,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.9330143540669856,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 0.75,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.9736842105263158,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 1.0,
+            "n": 12
+          }
+        },
+        "recurrence": 888,
+        "spec_damage": 9,
+        "success_rate": 0.9033333333333333,
+        "wall_ms": 2094.421301
+      },
+      "B5_R1_VERDICT_ONLY": {
+        "brier": null,
+        "class_rate": 0.6858333333333333,
+        "correct_ci": 0,
+        "decision_rate": 0.6841666666666667,
+        "ece5": null,
+        "false_ci": 0,
+        "false_escalation": 93,
+        "false_model_attribution": 41,
+        "false_representation_attribution": 16,
+        "false_world_change": 28,
+        "locus_rate": 0.695,
+        "mean_ci_cost": 9.291390728476822,
+        "mean_cost": 9.929166666666667,
+        "mean_regret": 2.059103908484271,
+        "missed_escalation": 224,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 0,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 63,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.7619047619047619,
+            "decision_rate": 0.7619047619047619,
+            "false_escalation": 0,
+            "missed_escalation": 15,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.2647058823529412,
+            "decision_rate": 0.25,
+            "false_escalation": 1,
+            "missed_escalation": 51,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 0.9367088607594937,
+            "decision_rate": 0.9367088607594937,
+            "false_escalation": 2,
+            "missed_escalation": 5,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.9032258064516129,
+            "decision_rate": 0.9032258064516129,
+            "false_escalation": 0,
+            "missed_escalation": 9,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.8122743682310469,
+            "decision_rate": 0.8086642599277978,
+            "false_escalation": 25,
+            "missed_escalation": 49,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 0.8428571428571429,
+            "decision_rate": 0.8428571428571429,
+            "false_escalation": 2,
+            "missed_escalation": 11,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.5930232558139535,
+            "decision_rate": 0.5930232558139535,
+            "false_escalation": 0,
+            "missed_escalation": 35,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.78125,
+            "decision_rate": 0.78125,
+            "false_escalation": 0,
+            "missed_escalation": 14,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 0.9774436090225563,
+            "decision_rate": 0.9774436090225563,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.7538461538461538,
+            "decision_rate": 0.7538461538461538,
+            "false_escalation": 0,
+            "missed_escalation": 16,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.6862745098039216,
+            "decision_rate": 0.6862745098039216,
+            "false_escalation": 0,
+            "missed_escalation": 16,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.0,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 0.48333333333333334,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.46,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.7,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.7177033492822966,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 0.8333333333333334,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.8014354066985646,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 0.9166666666666666,
+            "n": 12
+          }
+        },
+        "recurrence": 201,
+        "spec_damage": 15,
+        "success_rate": 0.7075,
+        "wall_ms": 31.174547
+      },
+      "B5_R2_PLUS_CANDIDATE_SET": {
+        "brier": 0.15378556204244279,
+        "class_rate": 0.83,
+        "correct_ci": 148,
+        "decision_rate": 0.8158333333333333,
+        "ece5": 0.15123714206283015,
+        "false_ci": 205,
+        "false_escalation": 16,
+        "false_model_attribution": 18,
+        "false_representation_attribution": 12,
+        "false_world_change": 12,
+        "locus_rate": 0.8441666666666666,
+        "mean_ci_cost": 5.860927152317881,
+        "mean_cost": 9.154166666666667,
+        "mean_regret": 1.6663489037178265,
+        "missed_escalation": 206,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 1199,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.4900662251655629,
+            "decision_rate": 0.9470198675496688,
+            "false_escalation": 8,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.8095238095238095,
+            "decision_rate": 0.7142857142857143,
+            "false_escalation": 0,
+            "missed_escalation": 18,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.3382352941176471,
+            "decision_rate": 0.20588235294117646,
+            "false_escalation": 1,
+            "missed_escalation": 54,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 0.9873417721518988,
+            "decision_rate": 0.9746835443037974,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.7741935483870968,
+            "decision_rate": 0.7419354838709677,
+            "false_escalation": 0,
+            "missed_escalation": 24,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.9819494584837545,
+            "decision_rate": 0.9350180505415162,
+            "false_escalation": 3,
+            "missed_escalation": 15,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9857142857142858,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.8488372093023255,
+            "decision_rate": 0.5348837209302325,
+            "false_escalation": 0,
+            "missed_escalation": 40,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.8125,
+            "decision_rate": 0.75,
+            "false_escalation": 0,
+            "missed_escalation": 16,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9548872180451128,
+            "false_escalation": 4,
+            "missed_escalation": 2,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.8307692307692308,
+            "decision_rate": 0.7384615384615385,
+            "false_escalation": 0,
+            "missed_escalation": 17,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.8627450980392157,
+            "decision_rate": 0.6666666666666666,
+            "false_escalation": 0,
+            "missed_escalation": 17,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.94,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 0.39166666666666666,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.96,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.875,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.9114832535885168,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 0.8333333333333334,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.8014354066985646,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 0.5,
+            "n": 12
+          }
+        },
+        "recurrence": 221,
+        "spec_damage": 5,
+        "success_rate": 0.705,
+        "wall_ms": 30.466803
+      },
+      "B5_R3_PLUS_DISCRIMINATOR_TABLES": {
+        "brier": 0.15122685185185186,
+        "class_rate": 0.8408333333333333,
+        "correct_ci": 146,
+        "decision_rate": 0.8666666666666667,
+        "ece5": 0.14402777777777775,
+        "false_ci": 146,
+        "false_escalation": 15,
+        "false_model_attribution": 8,
+        "false_representation_attribution": 4,
+        "false_world_change": 12,
+        "locus_rate": 0.8625,
+        "mean_ci_cost": 5.377483443708609,
+        "mean_cost": 9.001666666666667,
+        "mean_regret": 1.561487130600572,
+        "missed_escalation": 146,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 1200,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.8013245033112583,
+            "decision_rate": 0.9337748344370861,
+            "false_escalation": 10,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.7936507936507936,
+            "decision_rate": 0.7777777777777778,
+            "false_escalation": 0,
+            "missed_escalation": 14,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.35294117647058826,
+            "decision_rate": 0.3235294117647059,
+            "false_escalation": 1,
+            "missed_escalation": 46,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.6774193548387096,
+            "decision_rate": 0.6989247311827957,
+            "false_escalation": 1,
+            "missed_escalation": 27,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.9891696750902527,
+            "decision_rate": 0.9891696750902527,
+            "false_escalation": 3,
+            "missed_escalation": 0,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.7325581395348837,
+            "decision_rate": 0.7209302325581395,
+            "false_escalation": 0,
+            "missed_escalation": 24,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.640625,
+            "decision_rate": 0.8125,
+            "false_escalation": 0,
+            "missed_escalation": 12,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.8153846153846154,
+            "decision_rate": 0.8307692307692308,
+            "false_escalation": 0,
+            "missed_escalation": 11,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.7450980392156863,
+            "decision_rate": 0.7647058823529411,
+            "false_escalation": 0,
+            "missed_escalation": 12,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.92,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 0.4166666666666667,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.96,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.95,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.9545454545454546,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 0.6666666666666666,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.8827751196172249,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 0.5,
+            "n": 12
+          }
+        },
+        "recurrence": 825,
+        "spec_damage": 5,
+        "success_rate": 0.7566666666666667,
+        "wall_ms": 877.671789
+      },
+      "B5_R4_PLUS_DISPOSITION_RECORDS": {
+        "brier": 0.15192129629629628,
+        "class_rate": 0.8991666666666667,
+        "correct_ci": 134,
+        "decision_rate": 0.9491666666666667,
+        "ece5": 0.15069444444444446,
+        "false_ci": 4,
+        "false_escalation": 27,
+        "false_model_attribution": 27,
+        "false_representation_attribution": 11,
+        "false_world_change": 24,
+        "locus_rate": 0.8841666666666667,
+        "mean_ci_cost": 5.953642384105961,
+        "mean_cost": 10.32,
+        "mean_regret": 2.986653956148713,
+        "missed_escalation": 36,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 1200,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.4768211920529801,
+            "decision_rate": 0.8874172185430463,
+            "false_escalation": 17,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.5,
+            "decision_rate": 0.4852941176470588,
+            "false_escalation": 2,
+            "missed_escalation": 35,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.989247311827957,
+            "decision_rate": 0.956989247311828,
+            "false_escalation": 3,
+            "missed_escalation": 1,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.9855595667870036,
+            "decision_rate": 0.9855595667870036,
+            "false_escalation": 4,
+            "missed_escalation": 0,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.953125,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9924812030075187,
+            "false_escalation": 1,
+            "missed_escalation": 0,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.9,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 0.9583333333333334,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.98,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.9416666666666667,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.9617224880382775,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 0.9166666666666666,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.937799043062201,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 1.0,
+            "n": 12
+          }
+        },
+        "recurrence": 875,
+        "spec_damage": 22,
+        "success_rate": 0.8508333333333333,
+        "wall_ms": 791.556821
+      },
+      "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": {
+        "brier": 0.1275462962962963,
+        "class_rate": 0.94,
+        "correct_ci": 149,
+        "decision_rate": 0.9908333333333333,
+        "ece5": 0.12527777777777774,
+        "false_ci": 0,
+        "false_escalation": 11,
+        "false_model_attribution": 27,
+        "false_representation_attribution": 5,
+        "false_world_change": 24,
+        "locus_rate": 0.9258333333333333,
+        "mean_ci_cost": 4.562913907284768,
+        "mean_cost": 10.531666666666666,
+        "mean_regret": 3.428979980934223,
+        "missed_escalation": 0,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 1200,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.5695364238410596,
+            "decision_rate": 0.9867549668874173,
+            "false_escalation": 2,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.956989247311828,
+            "false_escalation": 4,
+            "missed_escalation": 0,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.9855595667870036,
+            "decision_rate": 0.9855595667870036,
+            "false_escalation": 4,
+            "missed_escalation": 0,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.953125,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9924812030075187,
+            "false_escalation": 1,
+            "missed_escalation": 0,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 0.9833333333333333,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 1.0,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.9916666666666667,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.992822966507177,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 0.9166666666666666,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.9904306220095693,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 1.0,
+            "n": 12
+          }
+        },
+        "recurrence": 824,
+        "spec_damage": 0,
+        "success_rate": 0.8758333333333334,
+        "wall_ms": 692.374092
+      },
+      "C_NEVER_INTERVENE": {
+        "brier": 0.12583333333333332,
+        "class_rate": 0.12583333333333332,
+        "correct_ci": 151,
+        "decision_rate": 0.12583333333333332,
+        "ece5": 0.12583333333333332,
+        "false_ci": 1049,
+        "false_escalation": 0,
+        "false_model_attribution": 0,
+        "false_representation_attribution": 0,
+        "false_world_change": 0,
+        "locus_rate": 0.1375,
+        "mean_ci_cost": 0.0,
+        "mean_cost": 0.0,
+        "mean_regret": -7.96186844613918,
+        "missed_escalation": 1049,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 1200,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 63,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 68,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 79,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 93,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 277,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 70,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 86,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 64,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 133,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 65,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 51,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 0.0,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.38,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.025,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.18899521531100477,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 0.0,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.0,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 0.0,
+            "n": 12
+          }
+        },
+        "recurrence": 0,
+        "spec_damage": 0,
+        "success_rate": 0.0,
+        "wall_ms": 3.932598
+      },
+      "C_RANDOM_POLICY": {
+        "brier": 0.3360412209470956,
+        "class_rate": 0.06166666666666667,
+        "correct_ci": 58,
+        "decision_rate": 0.185,
+        "ece5": 0.4317163355603084,
+        "false_ci": 420,
+        "false_escalation": 296,
+        "false_model_attribution": 81,
+        "false_representation_attribution": 153,
+        "false_world_change": 105,
+        "locus_rate": 0.08916666666666667,
+        "mean_ci_cost": 8.960264900662251,
+        "mean_cost": 8.986666666666666,
+        "mean_regret": 1.028598665395615,
+        "missed_escalation": 825,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 992,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.0728476821192053,
+            "decision_rate": 0.25165562913907286,
+            "false_escalation": 66,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.015873015873015872,
+            "decision_rate": 0.12698412698412698,
+            "false_escalation": 10,
+            "missed_escalation": 55,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.07352941176470588,
+            "decision_rate": 0.14705882352941177,
+            "false_escalation": 4,
+            "missed_escalation": 58,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 0.02531645569620253,
+            "decision_rate": 0.16455696202531644,
+            "false_escalation": 29,
+            "missed_escalation": 60,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.053763440860215055,
+            "decision_rate": 0.21505376344086022,
+            "false_escalation": 23,
+            "missed_escalation": 69,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.07220216606498195,
+            "decision_rate": 0.19133574007220217,
+            "false_escalation": 71,
+            "missed_escalation": 209,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 0.04285714285714286,
+            "decision_rate": 0.17142857142857143,
+            "false_escalation": 21,
+            "missed_escalation": 56,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.09302325581395349,
+            "decision_rate": 0.22093023255813954,
+            "false_escalation": 18,
+            "missed_escalation": 67,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.03125,
+            "decision_rate": 0.109375,
+            "false_escalation": 15,
+            "missed_escalation": 57,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 0.06766917293233082,
+            "decision_rate": 0.18796992481203006,
+            "false_escalation": 36,
+            "missed_escalation": 95,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.06153846153846154,
+            "decision_rate": 0.13846153846153847,
+            "false_escalation": 3,
+            "missed_escalation": 56,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.0784313725490196,
+            "decision_rate": 0.1568627450980392,
+            "false_escalation": 0,
+            "missed_escalation": 43,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.18,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 0.20833333333333334,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.16,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.14166666666666666,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.19138755980861244,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 0.3333333333333333,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.17703349282296652,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 0.4166666666666667,
+            "n": 12
+          }
+        },
+        "recurrence": 808,
+        "spec_damage": 75,
+        "success_rate": 0.19916666666666666,
+        "wall_ms": 64.922004
+      },
+      "M2_ALWAYS_ESCALATE_WHEN_STUCK": {
+        "brier": 0.14038194444444446,
+        "class_rate": 0.6133333333333333,
+        "correct_ci": 53,
+        "decision_rate": 0.2708333333333333,
+        "ece5": 0.12291666666666667,
+        "false_ci": 427,
+        "false_escalation": 847,
+        "false_model_attribution": 39,
+        "false_representation_attribution": 7,
+        "false_world_change": 36,
+        "locus_rate": 0.6366666666666667,
+        "mean_ci_cost": 17.39072847682119,
+        "mean_cost": 15.173333333333334,
+        "mean_regret": 6.892278360343184,
+        "missed_escalation": 427,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 1200,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.2781456953642384,
+            "decision_rate": 0.0,
+            "false_escalation": 151,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.5238095238095238,
+            "decision_rate": 0.2857142857142857,
+            "false_escalation": 38,
+            "missed_escalation": 45,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.7352941176470589,
+            "decision_rate": 0.6617647058823529,
+            "false_escalation": 18,
+            "missed_escalation": 23,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 0.7215189873417721,
+            "decision_rate": 0.08860759493670886,
+            "false_escalation": 72,
+            "missed_escalation": 25,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.6881720430107527,
+            "decision_rate": 0.5591397849462365,
+            "false_escalation": 41,
+            "missed_escalation": 22,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.7581227436823105,
+            "decision_rate": 0.24187725631768953,
+            "false_escalation": 206,
+            "missed_escalation": 84,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 0.6714285714285714,
+            "decision_rate": 0.0,
+            "false_escalation": 70,
+            "missed_escalation": 41,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.3372093023255814,
+            "decision_rate": 0.22093023255813954,
+            "false_escalation": 67,
+            "missed_escalation": 66,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.359375,
+            "decision_rate": 0.25,
+            "false_escalation": 46,
+            "missed_escalation": 48,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 0.7593984962406015,
+            "decision_rate": 0.13533834586466165,
+            "false_escalation": 115,
+            "missed_escalation": 40,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.6,
+            "decision_rate": 0.49230769230769234,
+            "false_escalation": 23,
+            "missed_escalation": 33,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.803921568627451,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.0,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 0.5083333333333333,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.0,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.19166666666666668,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.1507177033492823,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 0.25,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.38995215311004783,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 1.0,
+            "n": 12
+          }
+        },
+        "recurrence": 1207,
+        "spec_damage": 101,
+        "success_rate": 0.6,
+        "wall_ms": 626.824652
+      },
+      "M2_L1_LOOKAHEAD_ONLY": {
+        "brier": 0.12583333333333332,
+        "class_rate": 0.9133333333333333,
+        "correct_ci": 151,
+        "decision_rate": 0.9708333333333333,
+        "ece5": 0.12583333333333338,
+        "false_ci": 35,
+        "false_escalation": 0,
+        "false_model_attribution": 22,
+        "false_representation_attribution": 7,
+        "false_world_change": 20,
+        "locus_rate": 0.8975,
+        "mean_ci_cost": 4.47682119205298,
+        "mean_cost": 10.264166666666666,
+        "mean_regret": 3.1353670162059104,
+        "missed_escalation": 35,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 1200,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.5165562913907285,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.9841269841269841,
+            "decision_rate": 0.9841269841269841,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.9264705882352942,
+            "decision_rate": 0.9264705882352942,
+            "false_escalation": 0,
+            "missed_escalation": 5,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 0.9746835443037974,
+            "decision_rate": 0.9746835443037974,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.967741935483871,
+            "decision_rate": 0.956989247311828,
+            "false_escalation": 0,
+            "missed_escalation": 4,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.9819494584837545,
+            "decision_rate": 0.9711191335740073,
+            "false_escalation": 0,
+            "missed_escalation": 8,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 0.9857142857142858,
+            "decision_rate": 0.9857142857142858,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.8837209302325582,
+            "decision_rate": 0.8837209302325582,
+            "false_escalation": 0,
+            "missed_escalation": 10,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.96875,
+            "decision_rate": 0.96875,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 0.9924812030075187,
+            "decision_rate": 0.9924812030075187,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.9846153846153847,
+            "decision_rate": 0.9846153846153847,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 0.9833333333333333,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.98,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.9833333333333333,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.9641148325358851,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 1.0,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.9665071770334929,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 0.9166666666666666,
+            "n": 12
+          }
+        },
+        "recurrence": 408,
+        "spec_damage": 0,
+        "success_rate": 0.845,
+        "wall_ms": 706.708641
+      },
+      "M2_L2_BEST_HYPOTHESIS_ONLY": {
+        "brier": 0.12583333333333332,
+        "class_rate": 0.9375,
+        "correct_ci": 151,
+        "decision_rate": 0.9141666666666667,
+        "ece5": 0.12583333333333332,
+        "false_ci": 103,
+        "false_escalation": 0,
+        "false_model_attribution": 22,
+        "false_representation_attribution": 7,
+        "false_world_change": 20,
+        "locus_rate": 0.9241666666666667,
+        "mean_ci_cost": 4.7218543046357615,
+        "mean_cost": 9.3525,
+        "mean_regret": 2.05719733079123,
+        "missed_escalation": 103,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 1200,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.5033112582781457,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9047619047619048,
+            "false_escalation": 0,
+            "missed_escalation": 6,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 0.6323529411764706,
+            "false_escalation": 0,
+            "missed_escalation": 25,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.967741935483871,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9783393501805054,
+            "false_escalation": 0,
+            "missed_escalation": 6,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 0.6744186046511628,
+            "false_escalation": 0,
+            "missed_escalation": 28,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.875,
+            "false_escalation": 0,
+            "missed_escalation": 8,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.7538461538461538,
+            "false_escalation": 0,
+            "missed_escalation": 16,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.7843137254901961,
+            "false_escalation": 0,
+            "missed_escalation": 11,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 0.9666666666666667,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.98,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.95,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.9593301435406698,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 1.0,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.8229665071770335,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 0.9166666666666666,
+            "n": 12
+          }
+        },
+        "recurrence": 489,
+        "spec_damage": 0,
+        "success_rate": 0.7883333333333333,
+        "wall_ms": 592.907877
+      },
+      "M2_LOCUS_LABELS_SHUFFLED": {
+        "brier": 0.8838060384263495,
+        "class_rate": 0.1325,
+        "correct_ci": 83,
+        "decision_rate": 0.3416666666666667,
+        "ece5": 0.8838060384263495,
+        "false_ci": 154,
+        "false_escalation": 77,
+        "false_model_attribution": 84,
+        "false_representation_attribution": 53,
+        "false_world_change": 32,
+        "locus_rate": 0.22583333333333333,
+        "mean_ci_cost": 5.264900662251655,
+        "mean_cost": 7.289166666666667,
+        "mean_regret": -0.3813155386081983,
+        "missed_escalation": 717,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 1093,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.5033112582781457,
+            "decision_rate": 0.5496688741721855,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.015873015873015872,
+            "decision_rate": 0.25396825396825395,
+            "false_escalation": 0,
+            "missed_escalation": 47,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.029411764705882353,
+            "decision_rate": 0.2647058823529412,
+            "false_escalation": 0,
+            "missed_escalation": 50,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 0.012658227848101266,
+            "decision_rate": 0.31645569620253167,
+            "false_escalation": 24,
+            "missed_escalation": 53,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.03225806451612903,
+            "decision_rate": 0.24731182795698925,
+            "false_escalation": 0,
+            "missed_escalation": 70,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.27075812274368233,
+            "decision_rate": 0.2996389891696751,
+            "false_escalation": 17,
+            "missed_escalation": 193,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.32857142857142857,
+            "false_escalation": 16,
+            "missed_escalation": 47,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.0,
+            "decision_rate": 0.27906976744186046,
+            "false_escalation": 0,
+            "missed_escalation": 62,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.015625,
+            "decision_rate": 0.25,
+            "false_escalation": 0,
+            "missed_escalation": 48,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 0.0,
+            "decision_rate": 0.3082706766917293,
+            "false_escalation": 20,
+            "missed_escalation": 89,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.0,
+            "decision_rate": 0.4461538461538462,
+            "false_escalation": 0,
+            "missed_escalation": 36,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.0,
+            "decision_rate": 0.5686274509803921,
+            "false_escalation": 0,
+            "missed_escalation": 22,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 0.2833333333333333,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.68,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.39166666666666666,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.27751196172248804,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 0.4166666666666667,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.2966507177033493,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 0.0,
+            "n": 12
+          }
+        },
+        "recurrence": 792,
+        "spec_damage": 0,
+        "success_rate": 0.27666666666666667,
+        "wall_ms": 2384.036955
+      },
+      "M2_LOOKAHEAD_PLUS_BEST_HYPOTHESIS": {
+        "brier": 0.12583333333333332,
+        "class_rate": 0.9375,
+        "correct_ci": 151,
+        "decision_rate": 0.985,
+        "ece5": 0.12583333333333332,
+        "false_ci": 18,
+        "false_escalation": 0,
+        "false_model_attribution": 22,
+        "false_representation_attribution": 7,
+        "false_world_change": 20,
+        "locus_rate": 0.9233333333333333,
+        "mean_ci_cost": 4.71523178807947,
+        "mean_cost": 10.5675,
+        "mean_regret": 3.448045757864633,
+        "missed_escalation": 18,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 1200,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.5033112582781457,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9558823529411765,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.989247311827957,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9891696750902527,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 0.8953488372093024,
+            "false_escalation": 0,
+            "missed_escalation": 9,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.984375,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9846153846153847,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 1.0,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.98,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.9916666666666667,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.9880382775119617,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 1.0,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.9760765550239234,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 0.9166666666666666,
+            "n": 12
+          }
+        },
+        "recurrence": 413,
+        "spec_damage": 0,
+        "success_rate": 0.8591666666666666,
+        "wall_ms": 807.779742
+      },
+      "M2_MINUS_DIAGNOSTIC_EVALUATOR_GATE": {
+        "brier": 0.12144053601340034,
+        "class_rate": 0.8741666666666666,
+        "correct_ci": 100,
+        "decision_rate": 0.9216666666666666,
+        "ece5": 0.12144053601340032,
+        "false_ci": 18,
+        "false_escalation": 65,
+        "false_model_attribution": 35,
+        "false_representation_attribution": 18,
+        "false_world_change": 22,
+        "locus_rate": 0.8625,
+        "mean_ci_cost": 9.947019867549669,
+        "mean_cost": 11.225833333333334,
+        "mean_regret": 3.448045757864633,
+        "missed_escalation": 18,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 1194,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.0,
+            "decision_rate": 0.4966887417218543,
+            "false_escalation": 65,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9558823529411765,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.989247311827957,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9891696750902527,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 0.8953488372093024,
+            "false_escalation": 0,
+            "missed_escalation": 9,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.984375,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9846153846153847,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.0,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 1.0,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.6,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.9916666666666667,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.9712918660287081,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 1.0,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.9760765550239234,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 0.9166666666666666,
+            "n": 12
+          }
+        },
+        "recurrence": 450,
+        "spec_damage": 6,
+        "success_rate": 0.885,
+        "wall_ms": 891.135195
+      },
+      "M2_MINUS_LOCUS_DIAGNOSIS": {
+        "brier": 0.12583333333333332,
+        "class_rate": 0.6458333333333334,
+        "correct_ci": 151,
+        "decision_rate": 0.615,
+        "ece5": 0.1258333333333333,
+        "false_ci": 460,
+        "false_escalation": 2,
+        "false_model_attribution": 20,
+        "false_representation_attribution": 0,
+        "false_world_change": 13,
+        "locus_rate": 0.6591666666666667,
+        "mean_ci_cost": 3.2781456953642385,
+        "mean_cost": 3.9658333333333333,
+        "mean_regret": -3.8970448045757866,
+        "missed_escalation": 460,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 1200,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.847682119205298,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.2222222222222222,
+            "decision_rate": 0.1111111111111111,
+            "false_escalation": 0,
+            "missed_escalation": 56,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.08823529411764706,
+            "decision_rate": 0.04411764705882353,
+            "false_escalation": 0,
+            "missed_escalation": 65,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9620253164556962,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.5913978494623656,
+            "decision_rate": 0.3763440860215054,
+            "false_escalation": 0,
+            "missed_escalation": 58,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.9711191335740073,
+            "decision_rate": 0.8916967509025271,
+            "false_escalation": 1,
+            "missed_escalation": 29,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.05813953488372093,
+            "decision_rate": 0.05813953488372093,
+            "false_escalation": 0,
+            "missed_escalation": 81,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.140625,
+            "decision_rate": 0.125,
+            "false_escalation": 0,
+            "missed_escalation": 56,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9849624060150376,
+            "false_escalation": 1,
+            "missed_escalation": 1,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.06153846153846154,
+            "decision_rate": 0.06153846153846154,
+            "false_escalation": 0,
+            "missed_escalation": 61,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.058823529411764705,
+            "decision_rate": 0.0196078431372549,
+            "false_escalation": 0,
+            "missed_escalation": 50,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 0.4083333333333333,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.86,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.7583333333333333,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.715311004784689,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 0.8333333333333334,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.4569377990430622,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 0.4166666666666667,
+            "n": 12
+          }
+        },
+        "recurrence": 1472,
+        "spec_damage": 0,
+        "success_rate": 0.49083333333333334,
+        "wall_ms": 452.55333
+      },
+      "M2_MINUS_LOWER_LEVEL_DISPOSITION": {
+        "brier": 0.13057870370370372,
+        "class_rate": 0.8783333333333333,
+        "correct_ci": 119,
+        "decision_rate": 0.9058333333333334,
+        "ece5": 0.1259722222222222,
+        "false_ci": 37,
+        "false_escalation": 76,
+        "false_model_attribution": 35,
+        "false_representation_attribution": 15,
+        "false_world_change": 22,
+        "locus_rate": 0.8716666666666667,
+        "mean_ci_cost": 10.0,
+        "mean_cost": 11.6725,
+        "mean_regret": 3.9513822688274547,
+        "missed_escalation": 37,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 1200,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.11920529801324503,
+            "decision_rate": 0.5761589403973509,
+            "false_escalation": 64,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9558823529411765,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9746835443037974,
+            "false_escalation": 1,
+            "missed_escalation": 1,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.978494623655914,
+            "decision_rate": 0.967741935483871,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.9819494584837545,
+            "decision_rate": 0.9458483754512635,
+            "false_escalation": 6,
+            "missed_escalation": 9,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 0.813953488372093,
+            "false_escalation": 0,
+            "missed_escalation": 16,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.953125,
+            "decision_rate": 0.96875,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9548872180451128,
+            "false_escalation": 5,
+            "missed_escalation": 1,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.9846153846153847,
+            "decision_rate": 0.9692307692307692,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 0.9607843137254902,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 0.16,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 0.95,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.6,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.925,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.9593301435406698,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 0.8333333333333334,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.9617224880382775,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 0.9166666666666666,
+            "n": 12
+          }
+        },
+        "recurrence": 199,
+        "spec_damage": 7,
+        "success_rate": 0.87,
+        "wall_ms": 629.427186
+      },
+      "M2_MINUS_PROSPECTIVE_DISCRIMINATOR": {
+        "brier": 0.12583333333333332,
+        "class_rate": 0.9041666666666667,
+        "correct_ci": 151,
+        "decision_rate": 0.6691666666666667,
+        "ece5": 0.1258333333333333,
+        "false_ci": 392,
+        "false_escalation": 5,
+        "false_model_attribution": 15,
+        "false_representation_attribution": 5,
+        "false_world_change": 8,
+        "locus_rate": 0.9008333333333334,
+        "mean_ci_cost": 8.860927152317881,
+        "mean_cost": 11.146666666666667,
+        "mean_regret": 3.5138226882745474,
+        "missed_escalation": 392,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 1200,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.5629139072847682,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.7142857142857143,
+            "false_escalation": 0,
+            "missed_escalation": 18,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 0.2647058823529412,
+            "false_escalation": 0,
+            "missed_escalation": 50,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 0.9620253164556962,
+            "decision_rate": 0.7721518987341772,
+            "false_escalation": 1,
+            "missed_escalation": 17,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.9032258064516129,
+            "decision_rate": 0.40860215053763443,
+            "false_escalation": 0,
+            "missed_escalation": 55,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.9169675090252708,
+            "decision_rate": 0.7653429602888087,
+            "false_escalation": 3,
+            "missed_escalation": 62,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 0.9428571428571428,
+            "decision_rate": 0.8285714285714286,
+            "false_escalation": 1,
+            "missed_escalation": 11,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 0.5116279069767442,
+            "false_escalation": 0,
+            "missed_escalation": 42,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.984375,
+            "decision_rate": 0.53125,
+            "false_escalation": 0,
+            "missed_escalation": 30,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 0.9323308270676691,
+            "decision_rate": 0.7969924812030075,
+            "false_escalation": 0,
+            "missed_escalation": 27,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.3230769230769231,
+            "false_escalation": 0,
+            "missed_escalation": 44,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.29411764705882354,
+            "false_escalation": 0,
+            "missed_escalation": 36,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 0.25833333333333336,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.98,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.8333333333333334,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.7966507177033493,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 0.75,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.5478468899521531,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 0.16666666666666666,
+            "n": 12
+          }
+        },
+        "recurrence": 278,
+        "spec_damage": 0,
+        "success_rate": 0.5475,
+        "wall_ms": 641.828618
+      },
+      "M2_NEVER_ESCALATE": {
+        "brier": 0.12583333333333332,
+        "class_rate": 0.9375,
+        "correct_ci": 151,
+        "decision_rate": 0.5891666666666666,
+        "ece5": 0.12583333333333332,
+        "false_ci": 493,
+        "false_escalation": 0,
+        "false_model_attribution": 22,
+        "false_representation_attribution": 7,
+        "false_world_change": 3,
+        "locus_rate": 0.9333333333333333,
+        "mean_ci_cost": 4.71523178807947,
+        "mean_cost": 4.809166666666667,
+        "mean_regret": -3.1391801715919923,
+        "missed_escalation": 493,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 1200,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.5033112582781457,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 63,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 1.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 68,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 93,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 1.0,
+            "decision_rate": 0.9891696750902527,
+            "false_escalation": 0,
+            "missed_escalation": 3,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 1.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 86,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 64,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 65,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 0.0,
+            "false_escalation": 0,
+            "missed_escalation": 51,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 0.3,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.86,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.8083333333333333,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.7368421052631579,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 0.75,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.3923444976076555,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 0.0,
+            "n": 12
+          }
+        },
+        "recurrence": 413,
+        "spec_damage": 0,
+        "success_rate": 0.4633333333333333,
+        "wall_ms": 797.568311
+      },
+      "M_ME_LOCUS_PLUS_MINIMUM_ESCALATION": {
+        "brier": 0.12583333333333332,
+        "class_rate": 0.9116666666666666,
+        "correct_ci": 151,
+        "decision_rate": 0.9658333333333333,
+        "ece5": 0.12583333333333338,
+        "false_ci": 41,
+        "false_escalation": 0,
+        "false_model_attribution": 22,
+        "false_representation_attribution": 7,
+        "false_world_change": 20,
+        "locus_rate": 0.8933333333333333,
+        "mean_ci_cost": 4.4635761589403975,
+        "mean_cost": 10.1425,
+        "mean_regret": 2.998093422306959,
+        "missed_escalation": 41,
+        "n": 1200,
+        "n_ci_instances": 151,
+        "n_confidence": 1200,
+        "per_stratum": {
+          "CANNOT_IDENTIFY": {
+            "class_rate": 0.5165562913907285,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 151
+          },
+          "FORMALISM_OR_OPERATOR_INSUFFICIENT": {
+            "class_rate": 0.9841269841269841,
+            "decision_rate": 0.9841269841269841,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 63
+          },
+          "MEASUREMENT_OR_EVALUATOR_BLIND": {
+            "class_rate": 0.9264705882352942,
+            "decision_rate": 0.9264705882352942,
+            "false_escalation": 0,
+            "missed_escalation": 5,
+            "n": 68
+          },
+          "MISSING_PREMISE_OR_DATA": {
+            "class_rate": 0.9746835443037974,
+            "decision_rate": 0.9746835443037974,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 79
+          },
+          "MODEL_FAMILY_INADEQUATE": {
+            "class_rate": 0.967741935483871,
+            "decision_rate": 0.956989247311828,
+            "false_escalation": 0,
+            "missed_escalation": 4,
+            "n": 93
+          },
+          "NO_ESCALATION_NEEDED": {
+            "class_rate": 0.9819494584837545,
+            "decision_rate": 0.9566787003610109,
+            "false_escalation": 0,
+            "missed_escalation": 12,
+            "n": 277
+          },
+          "PROBE_ACTION_INSUFFICIENT": {
+            "class_rate": 0.9857142857142858,
+            "decision_rate": 0.9857142857142858,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 70
+          },
+          "PROBLEM_OBJECTIVE_MISSPECIFIED": {
+            "class_rate": 0.872093023255814,
+            "decision_rate": 0.872093023255814,
+            "false_escalation": 0,
+            "missed_escalation": 11,
+            "n": 86
+          },
+          "REPRESENTATION_INSUFFICIENT": {
+            "class_rate": 0.96875,
+            "decision_rate": 0.96875,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 64
+          },
+          "SEARCH_INSUFFICIENT": {
+            "class_rate": 0.9924812030075187,
+            "decision_rate": 0.9924812030075187,
+            "false_escalation": 0,
+            "missed_escalation": 1,
+            "n": 133
+          },
+          "TOOL_INSTRUMENT_INADEQUATE": {
+            "class_rate": 0.9692307692307692,
+            "decision_rate": 0.9692307692307692,
+            "false_escalation": 0,
+            "missed_escalation": 2,
+            "n": 65
+          },
+          "WORKFLOW_INADEQUATE": {
+            "class_rate": 1.0,
+            "decision_rate": 1.0,
+            "false_escalation": 0,
+            "missed_escalation": 0,
+            "n": 51
+          }
+        },
+        "per_variant": {
+          "CI": {
+            "decision_rate": 1.0,
+            "n": 50
+          },
+          "PARTIAL": {
+            "decision_rate": 0.9833333333333333,
+            "n": 120
+          },
+          "PARTNER_OF_CI": {
+            "decision_rate": 0.98,
+            "n": 50
+          },
+          "PARTNER_OF_PARTIAL": {
+            "decision_rate": 0.9833333333333333,
+            "n": 120
+          },
+          "PARTNER_OF_PLAIN": {
+            "decision_rate": 0.9569377990430622,
+            "n": 418
+          },
+          "PARTNER_OF_SAME_FIX": {
+            "decision_rate": 1.0,
+            "n": 12
+          },
+          "PLAIN": {
+            "decision_rate": 0.9593301435406698,
+            "n": 418
+          },
+          "SAME_FIX": {
+            "decision_rate": 0.9166666666666666,
+            "n": 12
+          }
+        },
+        "recurrence": 441,
+        "spec_damage": 0,
+        "success_rate": 0.84,
+        "wall_ms": 1275.296748
+      }
+    }
+  }
+}
