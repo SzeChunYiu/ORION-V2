@@ -1,0 +1,352 @@
+{
+  "generator_rejections": {
+    "COMPOSITION_NOT_PRESERVED": 0,
+    "ELIGIBILITY_PROBE_MISSED:COMPOSITION_NOT_PRESERVED": 0,
+    "ELIGIBILITY_PROBE_MISSED:ENDPOINT_VIOLATION": 0,
+    "ELIGIBILITY_PROBE_MISSED:FALSE_EQUIVALENCE": 0,
+    "ELIGIBILITY_PROBE_MISSED:IDENTITY_NOT_PRESERVED": 0,
+    "ELIGIBILITY_PROBE_MISSED:LICENSED_COLLAPSE": 0,
+    "ELIGIBILITY_PROBE_MISSED:MIXED_LAW_OBSTRUCTION": 0,
+    "ELIGIBILITY_PROBE_MISSED:SURFACE_NAME_DECOY": 0,
+    "ELIGIBILITY_PROBE_MISSED:VALID_FUNCTOR": 0,
+    "ENDPOINT_VIOLATION": 0,
+    "FALSE_EQUIVALENCE": 1,
+    "IDENTITY_NOT_PRESERVED": 0,
+    "INELIGIBLE_NOT_A_CATEGORY:COMPOSITION_NOT_PRESERVED": 1,
+    "INELIGIBLE_NOT_A_CATEGORY:ENDPOINT_VIOLATION": 0,
+    "INELIGIBLE_NOT_A_CATEGORY:FALSE_EQUIVALENCE": 0,
+    "INELIGIBLE_NOT_A_CATEGORY:IDENTITY_NOT_PRESERVED": 1,
+    "INELIGIBLE_NOT_A_CATEGORY:LICENSED_COLLAPSE": 2,
+    "INELIGIBLE_NOT_A_CATEGORY:MIXED_LAW_OBSTRUCTION": 1,
+    "INELIGIBLE_NOT_A_CATEGORY:SURFACE_NAME_DECOY": 0,
+    "INELIGIBLE_NOT_A_CATEGORY:VALID_FUNCTOR": 0,
+    "LICENSED_COLLAPSE": 3,
+    "MIXED_LAW_OBSTRUCTION": 1,
+    "SURFACE_NAME_DECOY": 0,
+    "VALID_FUNCTOR": 0
+  },
+  "known_answer": [
+    {
+      "expected": "TRANSFER_VALID",
+      "name": "KA-01-IDENTITY-FUNCTOR",
+      "oracle": "TRANSFER_VALID",
+      "passed": true
+    },
+    {
+      "expected": "TRANSFER_VALID",
+      "name": "KA-02-EMBEDDING-IN-LARGER-TARGET",
+      "oracle": "TRANSFER_VALID",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_ENDPOINT_VIOLATION",
+      "name": "KA-03-ENDPOINT-VIOLATION",
+      "oracle": "BLOCK_ENDPOINT_VIOLATION",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_IDENTITY_NOT_PRESERVED",
+      "name": "KA-04-IDENTITY-NOT-PRESERVED",
+      "oracle": "BLOCK_IDENTITY_NOT_PRESERVED",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_COMPOSITION_NOT_PRESERVED",
+      "name": "KA-05-COMPOSITION-NOT-PRESERVED",
+      "oracle": "BLOCK_COMPOSITION_NOT_PRESERVED",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_MIXED_LAW_OBSTRUCTION",
+      "name": "KA-06-MIXED-LAW-OBSTRUCTION",
+      "oracle": "BLOCK_MIXED_LAW_OBSTRUCTION",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_FALSE_EQUIVALENCE",
+      "name": "KA-07-FALSE-EQUIVALENCE-CONSTANT-FUNCTOR",
+      "oracle": "BLOCK_FALSE_EQUIVALENCE",
+      "passed": true
+    },
+    {
+      "expected": "TRANSFER_VALID",
+      "name": "KA-08-LICENSED-COLLAPSE",
+      "oracle": "TRANSFER_VALID",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_ENDPOINT_VIOLATION",
+      "name": "KA-09-ENDPOINT-DOMINATES-COLLAPSE",
+      "oracle": "BLOCK_ENDPOINT_VIOLATION",
+      "passed": true
+    },
+    {
+      "expected": "BLOCK_COMPOSITION_NOT_PRESERVED",
+      "name": "KA-10-COMPOSITION-DOMINATES-COLLAPSE",
+      "oracle": "BLOCK_COMPOSITION_NOT_PRESERVED",
+      "passed": true
+    },
+    {
+      "expected": "TRANSFER_VALID",
+      "name": "KA-11-SURFACE-NAME-DECOY",
+      "oracle": "TRANSFER_VALID",
+      "passed": true
+    }
+  ],
+  "null_calibration": {
+    "applicable": true,
+    "detail": {
+      "constant_arm_rates": {
+        "C_ALWAYS_BLOCK": 0.125,
+        "C_ALWAYS_TRANSFER": 0.375
+      },
+      "random_rate": 0.1875,
+      "shuffled_label_null": {
+        "exact_against_shuffled": 3,
+        "n": 16,
+        "rate": 0.1875,
+        "seed": 20260902
+      },
+      "violations": []
+    },
+    "gate": "G0c_NULL_CALIBRATION",
+    "hard": true,
+    "min_required_evaluated": 1,
+    "n_evaluated": 4,
+    "n_violations": 0,
+    "rule": "constant-response arms <= 0.4, random arm <= 0.4, M against within-split shuffled oracle labels <= 0.4",
+    "verdict": "PASS"
+  },
+  "oracle_agreement": {
+    "n_disagreements": 0,
+    "n_evaluated": 16
+  },
+  "parent_fidelity": [
+    {
+      "detail": "",
+      "parent": "P2_CATEGORY_LAW_FUNCTOR",
+      "passed": true,
+      "test": "identity_functor_is_valid"
+    },
+    {
+      "detail": "",
+      "parent": "P2_CATEGORY_LAW_FUNCTOR",
+      "passed": true,
+      "test": "endpoint_violation_is_reported_as_such"
+    },
+    {
+      "detail": "the classic non-functor: objects and endpoints preserved, composition not",
+      "parent": "P2_CATEGORY_LAW_FUNCTOR",
+      "passed": true,
+      "test": "object_preserving_non_functor_that_breaks_composition_is_caught"
+    },
+    {
+      "detail": "",
+      "parent": "P2_CATEGORY_LAW_FUNCTOR",
+      "passed": true,
+      "test": "unit_law_violation_is_caught"
+    },
+    {
+      "detail": "",
+      "parent": "P2_CATEGORY_LAW_FUNCTOR",
+      "passed": true,
+      "test": "mixed_unit_and_composition_failure_is_reported_as_mixed"
+    },
+    {
+      "detail": "scope note: the constant functor satisfies every functor law, so a law parent cannot see a collapsed distinction",
+      "parent": "P2_CATEGORY_LAW_FUNCTOR",
+      "passed": true,
+      "test": "documented_boundary_blind_to_false_equivalence"
+    },
+    {
+      "detail": "",
+      "parent": "P3_DIAGRAM_CHASE",
+      "passed": true,
+      "test": "commuting_diagram_whose_image_commutes_is_accepted"
+    },
+    {
+      "detail": "",
+      "parent": "P3_DIAGRAM_CHASE",
+      "passed": true,
+      "test": "registered_diagram_that_fails_to_commute_is_caught"
+    },
+    {
+      "detail": "scope note: diagram chasing checks the diagrams the claim writes down; unit preservation is not one of them",
+      "parent": "P3_DIAGRAM_CHASE",
+      "passed": true,
+      "test": "documented_boundary_unit_laws_are_outside_the_registered_diagrams"
+    },
+    {
+      "detail": "",
+      "parent": "P4_FAITHFULNESS",
+      "passed": true,
+      "test": "collapsed_registered_distinction_is_blocked"
+    },
+    {
+      "detail": "",
+      "parent": "P4_FAITHFULNESS",
+      "passed": true,
+      "test": "separated_distinctions_license_the_collapse_elsewhere"
+    },
+    {
+      "detail": "scope note: P4 performs no law checking",
+      "parent": "P4_FAITHFULNESS",
+      "passed": true,
+      "test": "documented_boundary_blind_to_every_functor_law"
+    },
+    {
+      "detail": "",
+      "parent": "P1_GRAPH_HOMOMORPHISM",
+      "passed": true,
+      "test": "accepts_a_morphism_of_the_underlying_graphs"
+    },
+    {
+      "detail": "",
+      "parent": "P1_GRAPH_HOMOMORPHISM",
+      "passed": true,
+      "test": "rejects_an_image_with_the_wrong_endpoints"
+    },
+    {
+      "detail": "scope note: this is exactly the gap between graph theory and category theory",
+      "parent": "P1_GRAPH_HOMOMORPHISM",
+      "passed": true,
+      "test": "documented_boundary_composition_is_invisible_to_a_graph_map"
+    },
+    {
+      "detail": "the behaviour surface decoys exist to expose",
+      "parent": "P0_NAME_SIMILARITY",
+      "passed": true,
+      "test": "prefers_the_name_similar_object_and_so_fails_the_decoy"
+    },
+    {
+      "detail": "",
+      "parent": "P0_NAME_SIMILARITY",
+      "passed": true,
+      "test": "accepts_when_the_names_line_up_with_the_registered_candidate"
+    },
+    {
+      "detail": "",
+      "parent": "P5_FIXED_LESSON_INJECTION",
+      "passed": true,
+      "test": "blocks_when_the_one_frozen_lesson_is_violated"
+    },
+    {
+      "detail": "scope note: one lesson, applied without search",
+      "parent": "P5_FIXED_LESSON_INJECTION",
+      "passed": true,
+      "test": "transfers_whenever_the_frozen_lesson_is_satisfied"
+    },
+    {
+      "detail": "FunctorAssessment(endpoint_violations=0, identity_violations=1, composition_violations=6) vs {'ENDPOINT': 0, 'IDENTITY': 1, 'COMPOSITION': 6, 'COLLAPSE': 0, 'TOTAL': 7}",
+      "parent": "REFERENCE_MODULE",
+      "passed": true,
+      "test": "assess_functor_agrees_with_this_modules_own_law_loop"
+    },
+    {
+      "detail": "None",
+      "parent": "REFERENCE_MODULE",
+      "passed": true,
+      "test": "finite_category_admits_a_closed_concrete_construction"
+    },
+    {
+      "detail": "associativity law failed",
+      "parent": "REFERENCE_MODULE",
+      "passed": true,
+      "test": "finite_category_rejects_a_non_associative_composition_table"
+    },
+    {
+      "detail": "9/9",
+      "parent": "ELIGIBILITY_GATE",
+      "passed": true,
+      "test": "lawful_constructions_are_admitted"
+    },
+    {
+      "detail": "16/16",
+      "parent": "ELIGIBILITY_GATE",
+      "passed": true,
+      "test": "law_breaking_constructions_are_caught"
+    },
+    {
+      "detail": "associativity law failed",
+      "parent": "ELIGIBILITY_GATE",
+      "passed": true,
+      "test": "non_associative_table_is_caught_by_the_associativity_law"
+    },
+    {
+      "detail": "composition table must bind exactly the composable morphism pairs",
+      "parent": "ELIGIBILITY_GATE",
+      "passed": true,
+      "test": "deleted_composite_is_caught_by_the_completeness_law"
+    },
+    {
+      "detail": "identity morphism has incorrect endpoints",
+      "parent": "ELIGIBILITY_GATE",
+      "passed": true,
+      "test": "rebound_identity_is_caught_by_the_identity_laws"
+    },
+    {
+      "detail": "empty=CANNOT_CHECK live=PASS n=25",
+      "parent": "ELIGIBILITY_GATE",
+      "passed": true,
+      "test": "an_unevaluated_eligibility_gate_reports_CANNOT_CHECK_not_PASS"
+    }
+  ],
+  "passed": true,
+  "planted_positives": [
+    {
+      "description": "an oracle that searches only the first object map must disagree with exhaustive enumeration on the valid-functor count of a hand-built instance",
+      "fired": true,
+      "gate": "G0b_ORACLE_SELF_AGREEMENT",
+      "name": "single_object_map_pseudo_oracle_is_detected"
+    },
+    {
+      "description": "the known-answer comparison must reject a deliberately wrong expected disposition",
+      "fired": true,
+      "gate": "G0a_KNOWN_ANSWER",
+      "name": "wrong_expected_label_is_detected"
+    },
+    {
+      "description": "the over-transfer counter must count C_ALWAYS_TRANSFER on an oracle-blocked instance",
+      "fired": true,
+      "gate": "G2_ANTI_PERMISSIVENESS",
+      "name": "over_transferring_arm_is_detected"
+    },
+    {
+      "description": "a synthetic per-arm table where every arm scores 1.0 must FAIL the discrimination gate (the FM/FG R2 ceiling defect that made the LLM-dispatch fm50 cell uninformative)",
+      "fired": true,
+      "gate": "G0f_FAMILY_DISCRIMINATION",
+      "name": "degenerate_all_ceiling_split_is_detected"
+    },
+    {
+      "description": "M_MINUS_FAITHFULNESS_RECOVERY must be wrong on a hand-built false equivalence on which M is right",
+      "fired": true,
+      "gate": "G3_MECHANISM_BY_OMISSION",
+      "name": "faithfulness_ablation_loses_the_false_equivalence_family"
+    },
+    {
+      "description": "a deliberately non-associative composition table must be caught by the eligibility checker and reported INELIGIBLE, never scored as a negative result about any arm",
+      "fired": true,
+      "gate": "G0g_ELIGIBILITY",
+      "name": "non_associative_construction_is_caught_not_counted_as_a_negative"
+    }
+  ],
+  "schema_version": "orion.v2.fm-exact.analysis.v1.selftest",
+  "selftest_arm_exact": {
+    "C_ALWAYS_BLOCK": 0.125,
+    "C_ALWAYS_TRANSFER": 0.375,
+    "C_RANDOM_DISPOSITION": 0.1875,
+    "F0_PARENT_FEDERATION": 1.0,
+    "M_F2_FUNCTORIAL_TRANSFER_FULL": 1.0,
+    "M_MINUS_COMPOSITION_CHECK": 0.75,
+    "M_MINUS_ENDPOINT_DISCIPLINE": 0.875,
+    "M_MINUS_FAITHFULNESS_RECOVERY": 0.875,
+    "M_MINUS_IDENTITY_CHECK": 0.75,
+    "P0_NAME_SIMILARITY": 0.125,
+    "P1_GRAPH_HOMOMORPHISM": 0.5,
+    "P2_CATEGORY_LAW_FUNCTOR": 0.875,
+    "P3_DIAGRAM_CHASE": 0.5625,
+    "P4_FAITHFULNESS": 0.5,
+    "P5_FIXED_LESSON_INJECTION": 0.5
+  },
+  "suite": "FM50"
+}
