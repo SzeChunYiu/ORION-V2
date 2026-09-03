@@ -1,9 +1,9 @@
 {
   "cost": {
-    "M_wall_ms": 10.168587,
-    "P_wall_ms": 0.768623,
+    "M_wall_ms": 16.445852,
+    "P_wall_ms": 1.281583,
     "flag": "COST_ADVANTAGE_PARENT",
-    "ratio_P_over_M": 0.07558798483997825,
+    "ratio_P_over_M": 0.07792743118447132,
     "rule": "wall-clock flag at 2x; reported only, routes nothing"
   },
   "custody_sha256": "b0003c9669914511757e0335a0ae818a22eafbcc5e0eb9e73fd7393a51590bb6",
@@ -313,7 +313,17 @@
             "discordant": 0,
             "n": 3
           }
-        }
+        },
+        "per_family_effective_allowance": {
+          "EQUIVARIANT_ACTION": 0,
+          "FULL_INVARIANCE": 0,
+          "NON_INVARIANT": 0,
+          "PARTIAL_REGIME_INVARIANCE": 0,
+          "SURFACE_ONLY_SYMMETRY": 0,
+          "UNSEEN_TRANSFORMATION_BREAK": 0,
+          "UNSEEN_TRANSFORMATION_EQUIVARIANCE": 0
+        },
+        "per_family_threshold_note": "the 5% per-family rule is reported with the integer number of discordant instances it actually permits at this family size; where that is 0 the rule is exactly 'no discordance in this family', which is what it is enforcing"
       },
       "gate": "G1a_PARENT_REPRODUCES_M",
       "hard": true,
@@ -395,16 +405,38 @@
     {
       "applicable": true,
       "detail": {
-        "M_over_accept": 0,
-        "P_over_accept": 0,
-        "n_blocked": 18
+        "M_unsafe_claims": 0,
+        "P_unsafe_claims": 0,
+        "counter_liveness_control": {
+          "counter_is_live": true,
+          "max_any_arm": 18,
+          "unsafe_claims_by_arm": {
+            "C_ALWAYS_INVARIANT": 18,
+            "C_ALWAYS_NON_INVARIANT": 0,
+            "C_RANDOM_DISPOSITION": 1,
+            "F0_PARENT_FEDERATION": 0,
+            "M_F2_INVARIANCE_DISCOVERY_FULL": 0,
+            "M_MINUS_EQUIVARIANCE_TEST": 0,
+            "M_MINUS_REGIME_RESTRICTION": 0,
+            "M_MINUS_SURFACE_AUDIT": 0,
+            "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": 9,
+            "P0_SURFACE_SYMMETRY_SCAN": 11,
+            "P1_ORBIT_STABILISER": 0,
+            "P2_EQUIVARIANCE_SOLVER": 0,
+            "P3_AUGMENTATION_EMPIRICAL": 9,
+            "P4_REGIME_RESTRICTION": 0,
+            "P5_FIXED_LESSON_TABLE": 0
+          }
+        },
+        "n_in_scope": 18,
+        "unsafe_endpoint": "over-acceptance"
       },
       "gate": "G2_ANTI_PERMISSIVENESS",
       "hard": true,
       "min_required_evaluated": 10,
       "n_evaluated": 18,
       "n_violations": 0,
-      "rule": "on instances the oracle blocks, M_F2_INVARIANCE_DISCOVERY_FULL accepts no more transfers than F0_PARENT_FEDERATION",
+      "rule": "on the instances in scope, M_F2_INVARIANCE_DISCOVERY_FULL makes no more unsafe claims (over-acceptance) than F0_PARENT_FEDERATION; AND the counter is shown live on those same instances by at least one arm registering a nonzero count",
       "verdict": "PASS"
     },
     {
@@ -529,7 +561,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.01654
+        "wall_ms": 0.022692
       },
       "C_ALWAYS_NON_INVARIANT": {
         "exact": 6,
@@ -574,7 +606,7 @@
           }
         },
         "under_accept": 3,
-        "wall_ms": 0.008337
+        "wall_ms": 0.011621
       },
       "C_RANDOM_DISPOSITION": {
         "exact": 4,
@@ -619,7 +651,7 @@
           }
         },
         "under_accept": 1,
-        "wall_ms": 0.171876
+        "wall_ms": 0.168887
       },
       "F0_PARENT_FEDERATION": {
         "exact": 21,
@@ -664,7 +696,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.768623
+        "wall_ms": 1.281583
       },
       "M_F2_INVARIANCE_DISCOVERY_FULL": {
         "exact": 21,
@@ -709,7 +741,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 10.168587
+        "wall_ms": 16.445852
       },
       "M_MINUS_EQUIVARIANCE_TEST": {
         "exact": 15,
@@ -754,7 +786,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 8.719294
+        "wall_ms": 13.974588
       },
       "M_MINUS_REGIME_RESTRICTION": {
         "exact": 18,
@@ -799,7 +831,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 10.04175
+        "wall_ms": 15.102561
       },
       "M_MINUS_SURFACE_AUDIT": {
         "exact": 18,
@@ -844,7 +876,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 11.199209
+        "wall_ms": 13.472664
       },
       "M_MINUS_UNSEEN_TRANSFORMATION_CLOSURE": {
         "exact": 9,
@@ -889,7 +921,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 1.288667
+        "wall_ms": 2.382716
       },
       "P0_SURFACE_SYMMETRY_SCAN": {
         "exact": 8,
@@ -934,7 +966,7 @@
           }
         },
         "under_accept": 1,
-        "wall_ms": 0.077292
+        "wall_ms": 0.123772
       },
       "P1_ORBIT_STABILISER": {
         "exact": 9,
@@ -979,7 +1011,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.260037
+        "wall_ms": 0.381233
       },
       "P2_EQUIVARIANCE_SOLVER": {
         "exact": 15,
@@ -1024,7 +1056,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.779874
+        "wall_ms": 1.255918
       },
       "P3_AUGMENTATION_EMPIRICAL": {
         "exact": 6,
@@ -1069,7 +1101,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.055502
+        "wall_ms": 0.160326
       },
       "P4_REGIME_RESTRICTION": {
         "exact": 12,
@@ -1114,7 +1146,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.085041
+        "wall_ms": 0.15273
       },
       "P5_FIXED_LESSON_TABLE": {
         "exact": 11,
@@ -1159,9 +1191,10 @@
           }
         },
         "under_accept": 2,
-        "wall_ms": 0.036915
+        "wall_ms": 0.065049
       }
     }
   },
-  "suite": "FM40"
+  "suite": "FM40",
+  "unchecked_hard_gates": []
 }
