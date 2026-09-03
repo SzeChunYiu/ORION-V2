@@ -1,9 +1,9 @@
 {
   "cost": {
-    "M_wall_ms": 0.279915,
-    "P_wall_ms": 0.994627,
+    "M_wall_ms": 0.333295,
+    "P_wall_ms": 1.096499,
     "flag": "COST_ADVANTAGE_M",
-    "ratio_P_over_M": 3.5533179715270706,
+    "ratio_P_over_M": 3.289875335663601,
     "rule": "wall-clock flag at 2x; reported only, routes nothing"
   },
   "custody_sha256": "8cd3f791851e09baa4113969cb0b5baddd366ef5dcd27ca7e6322bc06595e4f5",
@@ -319,7 +319,18 @@
             "discordant": 0,
             "n": 3
           }
-        }
+        },
+        "per_family_effective_allowance": {
+          "COMPOSITION_NOT_PRESERVED": 0,
+          "ENDPOINT_VIOLATION": 0,
+          "FALSE_EQUIVALENCE": 0,
+          "IDENTITY_NOT_PRESERVED": 0,
+          "LICENSED_COLLAPSE": 0,
+          "MIXED_LAW_OBSTRUCTION": 0,
+          "SURFACE_NAME_DECOY": 0,
+          "VALID_FUNCTOR": 0
+        },
+        "per_family_threshold_note": "the 5% per-family rule is reported with the integer number of discordant instances it actually permits at this family size; where that is 0 the rule is exactly 'no discordance in this family', which is what it is enforcing"
       },
       "gate": "G1a_PARENT_REPRODUCES_M",
       "hard": true,
@@ -407,16 +418,38 @@
     {
       "applicable": true,
       "detail": {
-        "M_over_accept": 0,
-        "P_over_accept": 0,
-        "n_blocked": 15
+        "M_unsafe_claims": 0,
+        "P_unsafe_claims": 0,
+        "counter_liveness_control": {
+          "counter_is_live": true,
+          "max_any_arm": 15,
+          "unsafe_claims_by_arm": {
+            "C_ALWAYS_BLOCK": 0,
+            "C_ALWAYS_TRANSFER": 15,
+            "C_RANDOM_DISPOSITION": 3,
+            "F0_PARENT_FEDERATION": 0,
+            "M_F2_FUNCTORIAL_TRANSFER_FULL": 0,
+            "M_MINUS_COMPOSITION_CHECK": 3,
+            "M_MINUS_ENDPOINT_DISCIPLINE": 0,
+            "M_MINUS_FAITHFULNESS_RECOVERY": 3,
+            "M_MINUS_IDENTITY_CHECK": 3,
+            "P0_NAME_SIMILARITY": 12,
+            "P1_GRAPH_HOMOMORPHISM": 12,
+            "P2_CATEGORY_LAW_FUNCTOR": 3,
+            "P3_DIAGRAM_CHASE": 12,
+            "P4_FAITHFULNESS": 12,
+            "P5_FIXED_LESSON_INJECTION": 9
+          }
+        },
+        "n_in_scope": 15,
+        "unsafe_endpoint": "over-acceptance"
       },
       "gate": "G2_ANTI_PERMISSIVENESS",
       "hard": true,
       "min_required_evaluated": 10,
       "n_evaluated": 15,
       "n_violations": 0,
-      "rule": "on instances the oracle blocks, M_F2_FUNCTORIAL_TRANSFER_FULL accepts no more transfers than F0_PARENT_FEDERATION",
+      "rule": "on the instances in scope, M_F2_FUNCTORIAL_TRANSFER_FULL makes no more unsafe claims (over-acceptance) than F0_PARENT_FEDERATION; AND the counter is shown live on those same instances by at least one arm registering a nonzero count",
       "verdict": "PASS"
     },
     {
@@ -569,7 +602,7 @@
           }
         },
         "under_accept": 9,
-        "wall_ms": 0.007921
+        "wall_ms": 0.009646
       },
       "C_ALWAYS_TRANSFER": {
         "exact": 9,
@@ -619,7 +652,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.008919
+        "wall_ms": 0.012256
       },
       "C_RANDOM_DISPOSITION": {
         "exact": 4,
@@ -669,7 +702,7 @@
           }
         },
         "under_accept": 8,
-        "wall_ms": 0.190293
+        "wall_ms": 0.167391
       },
       "F0_PARENT_FEDERATION": {
         "exact": 24,
@@ -719,7 +752,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.994627
+        "wall_ms": 1.096499
       },
       "M_F2_FUNCTORIAL_TRANSFER_FULL": {
         "exact": 24,
@@ -769,7 +802,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.279915
+        "wall_ms": 0.333295
       },
       "M_MINUS_COMPOSITION_CHECK": {
         "exact": 18,
@@ -819,7 +852,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.165292
+        "wall_ms": 0.204932
       },
       "M_MINUS_ENDPOINT_DISCIPLINE": {
         "exact": 21,
@@ -869,7 +902,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.230707
+        "wall_ms": 0.248616
       },
       "M_MINUS_FAITHFULNESS_RECOVERY": {
         "exact": 21,
@@ -919,7 +952,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.188
+        "wall_ms": 0.24088
       },
       "M_MINUS_IDENTITY_CHECK": {
         "exact": 18,
@@ -969,7 +1002,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.215042
+        "wall_ms": 0.245562
       },
       "P0_NAME_SIMILARITY": {
         "exact": 3,
@@ -1019,7 +1052,7 @@
           }
         },
         "under_accept": 6,
-        "wall_ms": 0.117668
+        "wall_ms": 0.194571
       },
       "P1_GRAPH_HOMOMORPHISM": {
         "exact": 12,
@@ -1069,7 +1102,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.094416
+        "wall_ms": 0.132556
       },
       "P2_CATEGORY_LAW_FUNCTOR": {
         "exact": 21,
@@ -1119,7 +1152,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 1.023963
+        "wall_ms": 1.144979
       },
       "P3_DIAGRAM_CHASE": {
         "exact": 11,
@@ -1169,7 +1202,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.131291
+        "wall_ms": 0.17204
       },
       "P4_FAITHFULNESS": {
         "exact": 12,
@@ -1219,7 +1252,7 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.024415
+        "wall_ms": 0.035236
       },
       "P5_FIXED_LESSON_INJECTION": {
         "exact": 12,
@@ -1269,9 +1302,10 @@
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.039835
+        "wall_ms": 0.046209
       }
     }
   },
-  "suite": "FM50"
+  "suite": "FM50",
+  "unchecked_hard_gates": []
 }
