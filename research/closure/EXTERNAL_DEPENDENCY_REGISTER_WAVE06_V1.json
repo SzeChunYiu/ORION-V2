@@ -36,9 +36,19 @@
     {
       "id": "X05_FIELD_DEMARCATION",
       "owner_issues": [38, 46],
-      "required_roles": ["formal/computational epistemology or philosophy-of-science reviewer", "AI-for-Science/autonomous-science reviewer", "systems/control/formal-methods/assurance reviewer"],
-      "unlocks": ["field-vs-integration disposition", "name/boundary confidence", "flagship R4 field-level language"],
-      "state": "OPEN"
+      "required_roles": ["standards/provenance/assurance/IV&V/formal-methods reviewer (primary lens)", "AI-for-Science/agentic-science reviewer", "formal/computational epistemology or philosophy-of-science reviewer (supporting lens)", "benchmark-validity/empirical-evaluation-methodology reviewer (new; required)"],
+      "unlocks": ["interface-standard-vs-integration-engineering disposition", "whether the reported parent-sufficiency negative is earned", "title/deliverable naming confidence"],
+      "state": "OPEN",
+      "rescoped_2026_09_03": {
+        "reason": "the flagship withdrew its field claim in the V23 contraction; this gate's registered question, frozen reviewer questions and reviewer shortlist were built against a claim the manuscript no longer makes",
+        "packet": "papers/pipeline/FLAGSHIP_EXTERNAL_DEMARCATION_REVIEW_PACKET_V4_V23.md",
+        "record": "papers/pipeline/FLAGSHIP_DEMARCATION_GATE_RESCOPING_RECORD_V1.md",
+        "selection": "papers/pipeline/FLAGSHIP_DEMARCATION_REVIEWER_SELECTION_V2.md",
+        "superseded_unlocks": ["field-vs-integration disposition", "name/boundary confidence", "flagship R4 field-level language"],
+        "reviewer_answers_on_file": 0,
+        "missing_lens_terminal": "CANNOT_CHECK__LENS_MISSING",
+        "gate_passed": false
+      }
     },
     {
       "id": "X06_HOSTILE_EDITORIAL_REVIEW",
