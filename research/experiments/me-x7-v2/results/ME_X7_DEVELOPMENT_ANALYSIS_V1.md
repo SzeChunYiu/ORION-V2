@@ -1,0 +1,93 @@
+# ME-X7 analysis — DEVELOPMENT
+
+**DEVELOPMENT split: not protected evidence. Numbers below cannot support any confirmatory claim.**
+
+Results sha256 `7d6ed657c1eded13a855b7784b2d5c7554bcd0606eefb2bc1ce6308d4fceaffd`; custody sha256 `b96964cafb5894535f00147acf231ceb617ac19b08a30b09e633df2d80928f33`; instances 25.
+
+## Per-arm outcomes (§6)
+
+| arm | exact | false accept (n) | false reject (n) | misclassified | abstain on decidable (n) | missed censoring (n) | mean export | mean checks | wall ms |
+|---|---|---|---|---|---|---|---|---|---|
+| S0_OPAQUE_OUTPUT_ONLY | 0.080 | 21 (21) | 0 (2) | 0 | 0 (23) | 2 (2) | 1.0 | 0.0 | 0.1 |
+| S1_PROVENANCE_PLUS_OUTPUT | 0.200 | 19 (21) | 0 (2) | 0 | 0 (23) | 1 (2) | 9.0 | 1.0 | 0.2 |
+| S2_FULL_HUMAN_STYLE_TRACE | 0.240 | 17 (21) | 0 (2) | 0 | 0 (23) | 2 (2) | 48.0 | 2.0 | 0.2 |
+| S3_PROOF_OR_CERTIFICATE_PARENT | 0.240 | 17 (21) | 0 (2) | 0 | 0 (23) | 2 (2) | 5.0 | 2.0 | 0.2 |
+| L1_OUTPUT_ONLY | 0.080 | 21 (21) | 0 (2) | 0 | 0 (23) | 2 (2) | 1.0 | 0.0 | 0.1 |
+| L2_PLUS_PROVENANCE | 0.200 | 19 (21) | 0 (2) | 0 | 0 (23) | 1 (2) | 9.0 | 1.0 | 0.2 |
+| L3_PLUS_PROBLEM_ARTIFACT | 0.360 | 15 (21) | 0 (2) | 0 | 0 (23) | 1 (2) | 14.0 | 3.0 | 0.4 |
+| L4_PLUS_VERSION_CALIBRATION_TRANSPORT | 0.600 | 10 (21) | 0 (2) | 0 | 0 (23) | 0 (2) | 18.1 | 6.0 | 0.4 |
+| L5_PLUS_DEPENDENCE_ROUTE_AUTHORITY_PRESERVATION | 0.920 | 2 (21) | 0 (2) | 0 | 0 (23) | 0 (2) | 30.5 | 10.0 | 1.1 |
+| L6_FULL_WITNESS | 1.000 | 0 (21) | 0 (2) | 0 | 0 (23) | 0 (2) | 43.5 | 11.0 | 1.1 |
+| M_CLAIM_SUFFICIENT_WITNESS | 1.000 | 0 (21) | 0 (2) | 0 | 0 (23) | 0 (2) | 43.5 | 11.0 | 1.0 |
+| M_MINUS_REGISTRY_RESOLUTION | 1.000 | 0 (21) | 0 (2) | 0 | 0 (23) | 0 (2) | 41.2 | 11.0 | 1.1 |
+| M_MINUS_PROVENANCE | 0.840 | 0 (21) | 0 (2) | 0 | 4 (23) | 0 (2) | 35.5 | 10.0 | 0.9 |
+| M_MINUS_PROBLEM_BINDING | 0.840 | 0 (21) | 0 (2) | 0 | 4 (23) | 0 (2) | 40.5 | 10.0 | 0.9 |
+| M_MINUS_DEPENDENCE | 0.840 | 0 (21) | 0 (2) | 0 | 4 (23) | 0 (2) | 37.5 | 10.0 | 0.5 |
+| M_MINUS_ARTIFACT | 0.760 | 0 (21) | 0 (2) | 0 | 6 (23) | 0 (2) | 41.5 | 9.0 | 0.9 |
+| M_MINUS_ASSUMPTION_VERSION | 0.840 | 0 (21) | 0 (2) | 0 | 4 (23) | 0 (2) | 41.5 | 10.0 | 1.0 |
+| M_MINUS_CALIBRATION | 0.880 | 0 (21) | 0 (2) | 0 | 3 (23) | 0 (2) | 43.0 | 10.0 | 1.0 |
+| M_MINUS_TRANSPORT | 0.840 | 0 (21) | 0 (2) | 0 | 4 (23) | 0 (2) | 41.9 | 10.0 | 1.0 |
+| M_MINUS_ROUTE_LEDGER | 0.840 | 0 (21) | 0 (2) | 0 | 4 (23) | 0 (2) | 40.6 | 10.0 | 1.0 |
+| M_MINUS_EVALUATOR_CONTRACT | 0.920 | 2 (21) | 0 (2) | 0 | 0 (23) | 0 (2) | 30.5 | 10.0 | 1.0 |
+| M_MINUS_AUTHORITY_CEILING | 0.840 | 0 (21) | 0 (2) | 0 | 4 (23) | 0 (2) | 41.5 | 10.0 | 1.0 |
+| M_MINUS_PRESERVATION | 0.840 | 0 (21) | 0 (2) | 0 | 4 (23) | 0 (2) | 41.9 | 10.0 | 0.9 |
+| B5_STRONGEST_FAITHFUL_AUDIT_PARENT | 1.000 | 0 (21) | 0 (2) | 0 | 0 (23) | 0 (2) | 43.5 | 11.0 | 2.4 |
+| A0_PROOF_CERTIFICATE_ONLY | 0.160 | 19 (21) | 0 (2) | 0 | 0 (23) | 2 (2) | 3.0 | 1.0 | 0.1 |
+| A1_PROVENANCE_ONLY | 0.160 | 19 (21) | 0 (2) | 0 | 0 (23) | 2 (2) | 9.0 | 1.0 | 0.7 |
+| A2_REPLAY_ONLY | 0.160 | 19 (21) | 0 (2) | 0 | 0 (23) | 2 (2) | 5.0 | 1.0 | 0.1 |
+| A3_ASSURANCE_CASE | 0.160 | 18 (21) | 0 (2) | 1 | 0 (23) | 2 (2) | 9.5 | 2.0 | 0.7 |
+| A4_DEPENDENCE_AUDIT | 0.160 | 19 (21) | 0 (2) | 0 | 0 (23) | 2 (2) | 7.0 | 1.0 | 0.4 |
+| A5_CALIBRATED_ABSTENTION | 0.120 | 19 (21) | 0 (2) | 0 | 2 (23) | 1 (2) | 9.0 | 1.0 | 0.7 |
+| C_ALWAYS_ACCEPT | 0.080 | 21 (21) | 0 (2) | 0 | 0 (23) | 2 (2) | 1.0 | 0.0 | 0.0 |
+| C_ALWAYS_CANNOT_CHECK | 0.080 | 0 (21) | 0 (2) | 0 | 23 (23) | 0 (2) | 1.0 | 0.0 | 0.0 |
+| C_RANDOM_VERDICT | 0.120 | 13 (21) | 0 (2) | 4 | 5 (23) | 0 (2) | 1.0 | 0.0 | 0.0 |
+
+## Detection recall by failure class (n evaluated in brackets)
+
+| class | S0_OPAQUE_OUTPUT_ONLY | S1_PROVENANCE_PLUS_OUTPUT | S2_FULL_HUMAN_STYLE_TRACE | S3_PROOF_OR_CERTIFICATE_PARENT | L6_FULL_WITNESS | M_CLAIM_SUFFICIENT_WITNESS | M_MINUS_REGISTRY_RESOLUTION | M_MINUS_PROVENANCE | M_MINUS_PROBLEM_BINDING | M_MINUS_DEPENDENCE | M_MINUS_ARTIFACT | M_MINUS_ASSUMPTION_VERSION | M_MINUS_CALIBRATION | M_MINUS_TRANSPORT | M_MINUS_ROUTE_LEDGER | M_MINUS_EVALUATOR_CONTRACT | M_MINUS_AUTHORITY_CEILING | M_MINUS_PRESERVATION | B5_STRONGEST_FAITHFUL_AUDIT_PARENT | A0_PROOF_CERTIFICATE_ONLY | A1_PROVENANCE_ONLY | A2_REPLAY_ONLY | A3_ASSURANCE_CASE | A4_DEPENDENCE_AUDIT | A5_CALIBRATED_ABSTENTION | C_ALWAYS_ACCEPT | C_ALWAYS_CANNOT_CHECK | C_RANDOM_VERDICT |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| WRONG_PROBLEM_OR_SPECIFICATION | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 0.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) |
+| STALE_OR_WRONG_SOURCE | 0.00 (2) | 1.00 (2) | 0.00 (2) | 0.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 0.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 0.00 (2) | 1.00 (2) | 0.00 (2) | 1.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) |
+| HIDDEN_DEPENDENCE | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 0.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 1.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) |
+| CODE_OR_PROOF_MISMATCH | 0.00 (2) | 0.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 0.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) |
+| SEED_OR_VERSION_MISMATCH | 0.00 (2) | 0.00 (2) | 0.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 0.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 0.00 (2) | 0.00 (2) | 1.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) |
+| INVALID_CALIBRATION | 0.00 (1) | 0.00 (1) | 0.00 (1) | 0.00 (1) | 1.00 (1) | 1.00 (1) | 1.00 (1) | 1.00 (1) | 1.00 (1) | 1.00 (1) | 1.00 (1) | 1.00 (1) | 0.00 (1) | 1.00 (1) | 1.00 (1) | 1.00 (1) | 1.00 (1) | 1.00 (1) | 1.00 (1) | 0.00 (1) | 0.00 (1) | 0.00 (1) | 0.00 (1) | 0.00 (1) | 0.00 (1) | 0.00 (1) | 0.00 (1) | 0.00 (1) |
+| INVALID_TRANSPORT | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 0.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) |
+| OMITTED_FAILED_ROUTE | 0.00 (2) | 0.00 (2) | 1.00 (2) | 0.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 0.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 0.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) |
+| EVALUATOR_BLIND_SPOT | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 0.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) |
+| AUTHORITY_OVERREACH | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 0.00 (2) | 1.00 (2) | 1.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) |
+| REPRESENTATION_CHANGE_LOSES_INFORMATION | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 1.00 (2) | 0.00 (2) | 1.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) | 0.00 (2) |
+
+## Gates
+
+- **G0a_KNOWN_ANSWER**: pass=True, n_evaluated=31 — hand-authored fixture per applicable (stratum, mode) cell, the P/Q separation pair and the planted positives are reproduced in the selftest report
+- **G0b_ORACLE_SELF_AGREEMENT**: pass=True, n_evaluated=25 — direct rule == exhaustive enumeration; the planter's declared defect == the full-structure recomputation (exactly one INVALID check, no censoring); the arms' independent module implementation == the oracle's check table at full visibility
+- **G0c_NULL_CALIBRATION**: pass=True, n_evaluated=21 — the degenerate always-accept and always-abstain controls score 0 where their answer is wrong; random and shuffled-label nulls stay under the ceiling
+- **G1a_B5_REPRODUCES_M**: pass=True, n_evaluated=25 — identical exact-match indicator on >= 99.5% of instances and no cell above 5% discordant
+- **G1b_M_ADVANTAGE**: pass=False, n_evaluated=25 — paired exact-match difference M - B5 > 0, exact two-sided p <= 0.05, and at least one cell with >= 5 M-only-exact instances
+- **G1c_B5_AHEAD**: pass=False, n_evaluated=25 — its own positive test, not the negation of G1b: paired difference M - B5 < 0 with exact two-sided p <= 0.05
+- **G2_ANTI_CONSERVATISM**: pass=True, n_evaluated=2 — on fully warranted episodes M must not refuse or abstain more often than B5
+- **G3_MECHANISM_BY_OMISSION**: pass=True, n_evaluated=21 — for every injection class, the set of field omissions that lower its detection recall equals exactly the set of fields its check requires (FIELD_FOR_CLASS is the designated member); no other omission blinds it
+- **G4_INTERFACE_LADDER**: pass=True, n_evaluated=25 — no rung k+1 significantly worse than rung k (rung k+1's fields contain rung k's, so a reversal is a lane defect of the surface definitions, not a finding)
+- **G5_SUFFICIENCY**: pass=True, n_evaluated=5 — 
+- **G6_CROSS_MODE_TRANSFER**: pass=True, n_evaluated=25 — the ladder is monotone and M is non-inferior to B5 separately in each epistemic mode (protocol §10: results that fail to transfer across a second mode are killed)
+- **G7_WITNESS_SELF_CONTAINMENT**: pass=False, n_evaluated=0 — a positive test with its own denominator: on undeclared-upstream episodes the identity-exporting witness is strictly more exact than the self-contained one, and the two are identical on every other episode — so the separation is the mechanism, not a rate. Zero such episodes reports CANNOT_CHECK, never a pass.
+  - S1_FAILURE_CLASS_PRESERVATION: pass=True, n_evaluated=21
+  - S2_REPLAY_SUPPORT: pass=True, n_evaluated=25
+  - S3_SELECTIVE_REOPENING_WITHOUT_HIDDEN_HISTORY: pass=True, n_evaluated=5
+  - S4_FALSE_ACCEPTANCE_NONINFERIORITY: pass=True, n_evaluated=21
+  - S5_PREFERABLE_TO_FULL_TRACE: pass=True, n_evaluated=25
+
+## Registered-mechanism coverage
+
+- all registered mechanisms exercised: **False**
+- never exercised — censor_variants: ['CENSOR_AUTHORITY', 'CENSOR_CALIBRATION', 'CENSOR_DEPENDENCE', 'CENSOR_ENV', 'CENSOR_EVALUATOR', 'CENSOR_PRESERVATION', 'CENSOR_ROUTE', 'CENSOR_SPEC']
+- never exercised — cells: none
+- never exercised — loci: ['HIDDEN_DEPENDENCE|TRANSITIVE_ANCESTOR', 'HIDDEN_DEPENDENCE|UNDECLARED_SHARED_UPSTREAM', 'STALE_OR_WRONG_SOURCE|UNDECLARED_SHARED_UPSTREAM']
+
+M-vs-B5 arm agreement, not a comparison against the oracle (distinct code on C_SOURCE_STATUS, C_DEPENDENCE, C_ENV_IDENTITY, C_PRESERVATION): C_SPEC_BINDING 25/25, C_SOURCE_STATUS 25/25, C_DEPENDENCE 25/25, C_ARTIFACT_DIGEST 25/25, C_ENV_IDENTITY 25/25, C_CALIBRATION 25/25, C_TRANSPORT 25/25, C_ROUTE_COMPLETENESS 25/25, C_EVALUATOR_COVERAGE 25/25, C_AUTHORITY 25/25, C_PRESERVATION 25/25
+
+
+## Route
+
+`PARENT_SUFFICIENT` — the federation is matched, and the compact witness meets every sufficiency conjunct. Witness terminal: `WITNESS_CLAIM_SUFFICIENT_AT_LOWER_EXPORT__SELF_CONTAINMENT_CANNOT_CHECK`. Cost: `COST_ADVANTAGE_M`.
