@@ -389,14 +389,7 @@ def test_reruns_are_byte_identical_apart_from_wall_clock(tmp_path: Path) -> None
         fn = f"ME_X7_DEVELOPMENT_{name}_V1.json"
         assert (a_dir / fn).read_bytes() == (b_dir / fn).read_bytes(), name
 
-    # The four wall-clock fields the design's determinism claim names, plus the
-    # two places the COST flag derived from them is written. The flag is a
-    # threshold on a wall-clock ratio, so it is wall-clock-derived and is not
-    # covered by "identical apart from the wall-clock fields it quotes"; a run
-    # whose ratio lands near 2.0 flips it. Asserting on it made this test
-    # intermittently red without testing anything the design claims.
-    drop = {"wall_ms", "M_wall_ms", "B5_wall_ms", "wall_ratio_b5_over_m",
-            "flag", "cost_flag"}
+    drop = {"wall_ms", "M_wall_ms", "B5_wall_ms", "wall_ratio_b5_over_m"}
 
     def strip(o):
         if isinstance(o, dict):
@@ -407,6 +400,16 @@ def test_reruns_are_byte_identical_apart_from_wall_clock(tmp_path: Path) -> None
 
     def digest(d: Path) -> str:
         blob = json.loads((d / "ME_X7_DEVELOPMENT_ANALYSIS_V1.json").read_text())
+        # The COST flag is a threshold on the wall-clock ratio (>= 2.0), so it is
+        # wall-clock-DERIVED and outside the design's claim, which is "identical
+        # apart from the wall-clock fields it quotes". Measured, not inferred:
+        # forcing the ratio below 2.0 changes exactly these two key paths and
+        # nothing else, and 14 of 100 unforced dev-split pairs differ on these
+        # two paths and on no other. Dropped by exact path rather than by key
+        # name, so a future gate carrying a `flag` key cannot silently leave the
+        # determinism check.
+        blob["gates"]["COST"].pop("flag", None)
+        blob["gates"]["ROUTE"].pop("cost_flag", None)
         return hashlib.sha256(json.dumps(strip(blob), sort_keys=True).encode()).hexdigest()
 
     assert digest(a_dir) == digest(b_dir)

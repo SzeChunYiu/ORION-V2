@@ -268,16 +268,31 @@ artifact.** The `COST` flag is a threshold on the wall-clock ratio
 (`>= 2.0 → COST_ADVANTAGE_M`), so it is wall-clock-**derived** and is written in
 two places, `gates.COST.flag` and `gates.ROUTE.cost_flag`. The design's §8 claim
 is "identical *apart from the wall-clock fields it quotes*", which does not
-cover a threshold on them; the unit test's strip set nevertheless asserted over
-it, so a replicate whose ratio landed near 2.0 could fail a test the design
-never claimed. This was **observed once** during this run's verification, on the
-inherited V1 test, with results and expected-custody byte-identical and only the
-analysis digest differing. Corrected in both the V1 and V2 test files by adding
-the two derived keys to the strip set, with the reason in a comment; the study
-code is untouched, and rightly so — it is frozen and the protected results file
-exists. **Reported, not asserted:** the flag was `COST_ADVANTAGE_M` on both the
-canonical run and the replicate, at ratios 2.277 and 2.281, and it is a
-reported quantity that never routes anything by itself.
+cover a threshold on them; the inherited unit test's strip set nevertheless
+asserted over it, so a replicate whose ratio landed near 2.0 could fail a test
+the design never made. It was observed once during this run's verification, on
+the V1 test, with results and expected-custody byte-identical and only the
+analysis digest differing.
+
+**The attribution is measured, not inferred** — a mechanism that merely stops a
+counter complaining is the failure mode this programme's own ledger names:
+
+| check | result |
+|---|---|
+| positive control: force the ratio below 2.0 (B5 wall set equal to M's, ratio 1.0) and re-analyze | the flag flips `COST_ADVANTAGE_M` → `COST_COMPARABLE`, the four-field-stripped digest changes, and **the differing key paths are exactly `gates.COST.flag` and `gates.ROUTE.cost_flag`** — no other path |
+| 100 unforced development-split pairs, compared under the original four-field strip set | **14 / 100 differed**; the differing paths were those same two on every one of the 14, and **no other path appeared in any pair** |
+| the same 100 pairs with those two paths also excluded | equal |
+
+So the flake rate was ≈14 % per pair, its cause is the derived flag alone, and
+nothing else in the analysis is nondeterministic. Corrected in both the V1 and
+V2 test files by excluding the two keys **by exact path rather than by key
+name**, so a future gate carrying a `flag` key cannot silently leave the
+determinism check. The study code is untouched, and rightly so — it is frozen
+and the protected results file exists.
+
+**Reported, not asserted:** the flag was `COST_ADVANTAGE_M` on both the
+canonical protected run and its replicate, at ratios 2.277 and 2.281, and it is
+a reported quantity that never routes anything by itself.
 
 ## 8. Authorization and custody discipline
 
