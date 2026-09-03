@@ -13,6 +13,7 @@
       "4": "a channel gate FAILED",
       "5": "a channel gate COULD NOT BE CHECKED"
     },
+    "halt_is_literal": "HALT_NO_GATE_EVALUATION is implemented as a halt, not as a routing decision taken afterwards: GR0c, GR0d and GR0e are evaluated BEFORE any endpoint table is built, and a non-PASS on any of them writes a refusal artifact carrying the gates and the terminal and nothing else. A halted run that still emitted contrast estimates would leave numbers the design forbids in the rollup for a later reader to quote as results.",
     "runner": "e30_r13_analysis.py"
   },
   "anchor_commit": "8945cec775a5a26302e2a29f4c776f63f9f11162",

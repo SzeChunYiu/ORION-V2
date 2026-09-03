@@ -33,6 +33,11 @@ import json,sys
 r=json.load(open('$R13/fullreg/PC_R6_FULLREG_RAW_ROLLUP_V1.json'))
 print('rollup complete:', r.get('complete'))
 sys.exit(0 if r.get('complete') else 6)"
+# Exit 4 (a hard gate FAILED) and exit 5 (a hard gate COULD NOT BE CHECKED) are
+# REGISTERED TERMINALS, not crashes.  Under `set -e` a bare invocation would abort the
+# script on them and skip the authorization archive below, leaving a spent authorization
+# live for a later resubmit to dispatch on.  Capture the code, archive, then exit with it.
+ANALYSIS_RC=0
 "$PY" "$ANALYSIS" \
   --rollup "$R13/fullreg/E30_R13_FULLREG_RAW_ROLLUP_V1.json" \
   --gr0 "$R13/fullreg/PC_R6_GR0_RECEIPT.json" \
@@ -43,9 +48,9 @@ sys.exit(0 if r.get('complete') else 6)"
   --r12-analysis-sha256 "$(sha256sum "$R12ANALYSIS" | cut -c1-64)" \
   --channel-contract "$CHANNEL_CONTRACT" \
   --channel-contract-sha256 "$CONTRACT_SHA" \
-  --out "$R13/fullreg"
-# Exit code 5 is CANNOT-CHECK on a channel gate and 4 is a gate FAIL; neither is a
-# null, and neither may be reported as one.  They are distinct on purpose.
+  --out "$R13/fullreg" || ANALYSIS_RC=$?
+echo "ANALYSIS_EXIT=$ANALYSIS_RC (0 complete, 3 precondition refused, 4 gate FAIL, 5 gate CANNOT-CHECK)"
+# 4 and 5 are distinct on purpose: neither is a null, and neither may be reported as one.
 # Archive the authorization so the dispatch guard re-arms: a spent authorization left in
 # place would let a later resubmission run without a fresh one.
 AUTH="$R13/PROTECTED_RUN_AUTHORIZATION.json"
@@ -53,4 +58,5 @@ if [ -f "$AUTH" ]; then
   mv "$AUTH" "$R13/PROTECTED_RUN_AUTHORIZATION_ARCHIVED.json"
   echo "AUTHORIZATION_ARCHIVED $R13/PROTECTED_RUN_AUTHORIZATION_ARCHIVED.json"
 fi
-echo "ROLLUP_AND_ANALYSIS_COMPLETE $(date -u +%FT%TZ)"
+echo "ROLLUP_AND_ANALYSIS_COMPLETE $(date -u +%FT%TZ) analysis_exit=$ANALYSIS_RC"
+exit "$ANALYSIS_RC"

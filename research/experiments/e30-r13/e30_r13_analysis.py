@@ -216,6 +216,30 @@ def channel_behaviour_conformance(campaign: Path, arms: list[str], reps: list[st
     }
 
 
+def hard_gate_terminal(gates: dict[str, Any]) -> dict[str, str]:
+    """The terminal for a run that fails a hard gate, in the registered precedence order.
+
+    Separated from the endpoint routing because it must be reachable WITHOUT any endpoint
+    table having been built: the design's failure action is HALT_NO_GATE_EVALUATION, and a
+    halted run that still emitted contrast estimates would leave numbers the design forbids
+    lying in the rollup for a later reader to quote.
+    """
+    for gate_id, terminal in (("GR0d", "CHANNEL_CONTRACT_VIOLATION"),
+                              ("GR0e", "CHANNEL_BEHAVIOUR_VIOLATION"),
+                              ("GR0c", "LANE_DEFECT")):
+        gate = gates.get(gate_id)
+        if gate is None or gate["status"] == "PASS":
+            continue
+        if gate["status"] == "COULD_NOT_CHECK":
+            return {"terminal": "EXECUTION_NOT_COMPLETED__NO_ENDPOINT_READ",
+                    "detail": f"{gate_id} could not be evaluated; this is not a null and not a "
+                              "gate pass, and no endpoint is read"}
+        return {"terminal": terminal,
+                "detail": f"{gate_id} {gate['name']} failed with {gate['offender_count']} "
+                          f"offenders; no endpoint may be read"}
+    raise AssertionError("hard_gate_terminal called with every hard gate passing")
+
+
 def route_with_channel_gates(r12, gates: dict[str, Any], per_arm: dict[str, Any]) -> dict[str, str]:
     """The registered routing, with the two channel gates ahead of everything else."""
     for gate_id, terminal in (("GR0d", "CHANNEL_CONTRACT_VIOLATION"),
@@ -232,6 +256,36 @@ def route_with_channel_gates(r12, gates: dict[str, Any], per_arm: dict[str, Any]
                               f"{gates[gate_id]['envelopes_with_a_channel_receipt']} envelopes "
                               "carrying a channel receipt; no endpoint may be read"}
     return r12.route(gates, per_arm)
+
+
+# ------------------------------------------------------------------------- refusal
+def render_refusal_markdown(result: dict[str, Any]) -> str:
+    """The artifact a halted run produces. It contains no endpoint number, by construction."""
+    gates = result["gates"]
+    lines = [
+        "# E30-R13 — halted before any endpoint was read",
+        "",
+        f"**Terminal: `{result['routing']['terminal']}`.** {result['routing']['detail']}",
+        "",
+        "No endpoint was read, no contrast was computed and no table appears below, because "
+        "the registered routing halts here. This is **not** a null on E1, **not** a null on "
+        "E2, **not** `NO_ARM_SEPARATION`, **not** `PARENT_SUFFICIENT`, and **not** evidence "
+        "of equivalence between any two arms.",
+        "",
+        "| gate | status | denominators | offenders |",
+        "|---|---|---|---|",
+    ]
+    for gate_id in ("GR0c", "GR0d", "GR0e"):
+        gate = gates.get(gate_id)
+        if not gate:
+            continue
+        denominators = (
+            f"{gate.get('envelopes_with_a_channel_receipt', gate.get('envelopes_read'))}"
+            f"/{gate.get('envelopes_expected', '—')} envelopes")
+        lines.append(f"| {gate_id} {gate['name']} | **{gate['status']}** | {denominators} | "
+                     f"{gate.get('offender_count')} |")
+    lines += ["", "## Endpoints", "", "None read.", ""]
+    return "\n".join(lines)
 
 
 # --------------------------------------------------------------------------- render
@@ -382,6 +436,46 @@ def main(argv: list[str] | None = None) -> int:
                                         args.channel_contract_sha256)
     gr0e = channel_behaviour_conformance(args.campaign, cell["arms"], cell["reps"],
                                          cell["task_ids"])
+
+    # HALT_NO_GATE_EVALUATION, taken literally.  Computing the endpoint tables and then
+    # routing away from them would still write contrast estimates into the rollup that a
+    # later reader could quote as results -- exactly the kind of number the design forbids
+    # a halted run to produce.  So the hard channel gates and the served-model gate are
+    # evaluated FIRST, and if any of them is not PASS the run writes a refusal artifact
+    # carrying the gates and the terminal and NOTHING ELSE.
+    hard_gates = {"GR0c": gr0c, "GR0d": gr0d, "GR0e": gr0e}
+    if any(gate["status"] != "PASS" for gate in hard_gates.values()):
+        routing = hard_gate_terminal(hard_gates)
+        refusal = {
+            "schema_version": SCHEMA, "design": DESIGN_ID, "seed": SEED,
+            "generated_utc": datetime.now(timezone.utc).isoformat(),
+            "status": "HALTED_BEFORE_ENDPOINT_READ",
+            "inputs": {
+                "rollup_sha256": sha256_file(args.rollup),
+                "gr0_sha256": sha256_file(args.gr0),
+                "design_sha256": sha256_file(args.design),
+                "e30_r12_analysis_sha256": r12_sha,
+                "campaign": str(args.campaign),
+            },
+            "gates": hard_gates,
+            "routing": routing,
+            "endpoints_read": [],
+            "endpoint_tables_computed": False,
+            "status_is_not": ["a null on E1", "a null on E2", "a NO_ARM_SEPARATION terminal",
+                              "a PARENT_SUFFICIENT terminal",
+                              "evidence of equivalence between any two arms"],
+            "authority": {"grants_scientific_truth": False, "grants_field_status": False,
+                          "grants_publication_readiness": False},
+        }
+        args.out.mkdir(parents=True, exist_ok=True)
+        (args.out / "E30_R13_ROLLUP_V1.json").write_text(
+            json.dumps(refusal, indent=2, sort_keys=True) + "\n")
+        (args.out / "E30_R13_ROLLUP_V1.md").write_text(render_refusal_markdown(refusal) + "\n")
+        print(json.dumps({"routing": routing["terminal"],
+                          "gates": {k: v["status"] for k, v in hard_gates.items()}}))
+        if "COULD_NOT_CHECK" in (gr0d["status"], gr0e["status"]):
+            return EXIT_GATE_COULD_NOT_CHECK
+        return EXIT_GATE_FAIL
 
     tables = r12.build_tables(cell, analyzer)
     e1 = r12.family(analyzer, tables["E1"], analyzer.success, "E1 success")

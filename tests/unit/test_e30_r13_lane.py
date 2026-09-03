@@ -258,6 +258,57 @@ def test_channel_gate_failures_route_to_their_own_terminals():
         == "DELEGATED_TO_R12"
 
 
+def test_a_halted_run_routes_without_any_endpoint_table_existing():
+    """HALT_NO_GATE_EVALUATION, taken literally: the terminal must be reachable with none."""
+    fail = {"status": "FAIL", "name": "n", "offender_count": 3}
+    ok = {"status": "PASS", "name": "n", "offender_count": 0}
+    cannot = {"status": "COULD_NOT_CHECK", "name": "n", "offender_count": 0}
+    assert analysis.hard_gate_terminal({"GR0c": ok, "GR0d": fail, "GR0e": ok})["terminal"] \
+        == "CHANNEL_CONTRACT_VIOLATION"
+    assert analysis.hard_gate_terminal({"GR0c": ok, "GR0d": ok, "GR0e": fail})["terminal"] \
+        == "CHANNEL_BEHAVIOUR_VIOLATION"
+    assert analysis.hard_gate_terminal({"GR0c": fail, "GR0d": ok, "GR0e": ok})["terminal"] \
+        == "LANE_DEFECT"
+    assert analysis.hard_gate_terminal({"GR0c": ok, "GR0d": cannot, "GR0e": ok})["terminal"] \
+        == "EXECUTION_NOT_COMPLETED__NO_ENDPOINT_READ"
+    # The channel gates precede the served-model gate, as the registered precedence says.
+    assert analysis.hard_gate_terminal({"GR0c": fail, "GR0d": fail, "GR0e": ok})["terminal"] \
+        == "CHANNEL_CONTRACT_VIOLATION"
+    with pytest.raises(AssertionError):
+        analysis.hard_gate_terminal({"GR0c": ok, "GR0d": ok, "GR0e": ok})
+
+
+def test_the_refusal_artifact_carries_no_endpoint_number():
+    """A halted run must not leave contrast estimates a later reader could quote."""
+    refusal = {
+        "routing": {"terminal": "CHANNEL_CONTRACT_VIOLATION", "detail": "d"},
+        "gates": {
+            "GR0c": {"name": "SERVED_MODEL_HOMOGENEITY", "status": "PASS",
+                     "envelopes_read": 480, "offender_count": 0},
+            "GR0d": {"name": "CHANNEL_CONTRACT_HOMOGENEITY", "status": "FAIL",
+                     "envelopes_with_a_channel_receipt": 480, "envelopes_expected": 480,
+                     "offender_count": 7},
+            "GR0e": {"name": "CHANNEL_BEHAVIOUR_CONFORMANCE", "status": "PASS",
+                     "envelopes_with_a_channel_receipt": 480, "envelopes_expected": 480,
+                     "offender_count": 0},
+        },
+    }
+    rendered = analysis.render_refusal_markdown(refusal)
+    assert "None read." in rendered
+    assert "evidence of equivalence" in rendered
+    for forbidden in ("risk difference", "Holm", "exact p", "E1 rate", "apply rate"):
+        assert forbidden not in rendered, forbidden
+
+
+def test_the_rollup_driver_archives_the_authorization_even_on_a_gate_terminal():
+    """Exits 4 and 5 are registered terminals; set -e must not skip the archive on them."""
+    rollup = _sbatch("e30_r13_rollup_and_analysis.sbatch")
+    assert "ANALYSIS_RC=0" in rollup
+    assert "|| ANALYSIS_RC=$?" in rollup
+    assert rollup.index("|| ANALYSIS_RC=$?") < rollup.index("PROTECTED_RUN_AUTHORIZATION_ARCHIVED.json")
+    assert rollup.rstrip().endswith('exit "$ANALYSIS_RC"')
+
+
 def test_could_not_check_and_fail_do_not_share_an_exit_code():
     codes = {analysis.EXIT_OK, analysis.EXIT_PRECONDITION_REFUSED,
              analysis.EXIT_GATE_FAIL, analysis.EXIT_GATE_COULD_NOT_CHECK}

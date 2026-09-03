@@ -321,6 +321,13 @@ design = {
                        "3": "a precondition refused; no endpoint read",
                        "4": "a channel gate FAILED",
                        "5": "a channel gate COULD NOT BE CHECKED"},
+        "halt_is_literal": "HALT_NO_GATE_EVALUATION is implemented as a halt, not as a "
+                           "routing decision taken afterwards: GR0c, GR0d and GR0e are "
+                           "evaluated BEFORE any endpoint table is built, and a non-PASS on "
+                           "any of them writes a refusal artifact carrying the gates and the "
+                           "terminal and nothing else. A halted run that still emitted "
+                           "contrast estimates would leave numbers the design forbids in the "
+                           "rollup for a later reader to quote as results.",
         "could_not_check_is_not_a_pass": "GR0d and GR0e return COULD_NOT_CHECK, distinct from "
                                          "PASS and from FAIL, with a distinct process exit code; "
                                          "it routes to EXECUTION_NOT_COMPLETED__NO_ENDPOINT_READ",

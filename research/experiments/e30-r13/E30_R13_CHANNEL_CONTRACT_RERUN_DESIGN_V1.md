@@ -145,7 +145,12 @@ Compared by digest, not by label.
 model call emitted zero text characters. This is the behavioural half of the same lesson:
 E30-R12's 116 failures were exactly truncation-with-no-text at a correct served model id.
 
-Both are hard gates evaluated before any endpoint is read, and both publish their
+Both are hard gates, and `HALT_NO_GATE_EVALUATION` is implemented as a halt rather than
+as a routing decision taken afterwards: GR0c, GR0d and GR0e are evaluated **before any
+endpoint table is built**, and a non-PASS on any of them writes a refusal artifact
+carrying the gates and the terminal and nothing else. A halted run that still emitted
+contrast estimates would leave numbers the design forbids sitting in the rollup for a
+later reader to quote as results. Both publish their
 denominators: `envelopes_expected`, `envelopes_with_a_channel_receipt` and the model-call
 counts are printed, so `0 offenders` can never be read out of `0 envelopes examined`.
 Both return **`COULD_NOT_CHECK`** as a status distinct from `PASS` and from `FAIL`, with
