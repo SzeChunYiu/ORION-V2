@@ -141,13 +141,28 @@ def test_the_registered_prediction_support_is_where_the_parent_actually_fails() 
     assert failing == set(mex6_run.DECOUPLED_STRATA)
 
 
-def test_an_untyped_reading_cannot_separate_the_decoupled_strata() -> None:
-    """The mechanism claim: one global sign per channel is not enough."""
+def test_an_equal_weight_untyped_reading_cannot_separate_the_decoupled_strata() -> None:
+    """The EQUAL-WEIGHT untyped arm (B4X_INFORMATION_MATCHED_UNTYPED) fails here.
+
+    Named for the class it actually tests.  This is not a claim about untyped
+    readings in general: see
+    test_M_is_itself_an_untyped_weighted_aggregate_of_the_same_channels below,
+    where an untyped arm carrying M's weights is exact.  The comparator G1 tests
+    against is the FITTED arm, which this test does not touch.
+    """
+    checked = 0
+    covered = set()
     for inst in DEV:
         if inst.stratum not in mex6_run.DECOUPLED_STRATA:
             continue
+        checked += 1
+        covered.add(inst.stratum)
         untyped = mex6_arms._cap_untyped(inst.window, _arm(mex6_arms.B4X_ARM), random.Random(0))
         assert untyped != mex6_oracle.oracle(inst.window).capability
+    # publish the denominator: a loop that never ran must not read as a pass
+    assert covered == set(mex6_run.DECOUPLED_STRATA), f"covered {sorted(covered)}"
+    assert checked == len(mex6_run.DECOUPLED_STRATA) * len(mex6_model.SCALES), \
+        f"checked {checked} instances"
 
 
 # ---- stages and custody --------------------------------------------------------
@@ -488,6 +503,13 @@ def test_the_comparator_fails_because_it_cannot_zero_a_channel() -> None:
     weights at zero -- while KEEPING the comparator's own weaker validation
     weights -- recovers every failing stratum.  So the -2 on retractions is not
     what separates the arms; the inability to ignore a channel is.
+
+    HAND-SET, NOT LEARNED.  Every vector here is written down by this test.  None
+    is fitted from data and none is a comparator.  This shows that a weight class
+    containing zero SUFFICES; it says nothing about whether any FITTING PROCEDURE
+    would discover such a vector from the development split.  That question is
+    ME-X6 V2 and is deliberately unanswered -- do not read these rows as evidence
+    that a capacity-matched parent would tie M.
     """
     frozen = dict(mex6_run.frozen_signs()[mex6_arms.B4X_FITTED_ARM])
     m_weights = {c: mex6_arms.TYPED_SIGNS.get(c, 0) for c in mex6_model.CHANNELS}
