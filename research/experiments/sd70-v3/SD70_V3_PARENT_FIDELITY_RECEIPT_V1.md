@@ -6,7 +6,7 @@ Frozen before any protected task was generated and before any protected outcome 
 
 | artifact | sha256 |
 |---|---|
-| `SD70_V3_EXECUTION_DESIGN_V1.json` | `7c62d291ddd5cbc18e3fb9f368290050b2aee27379b4c535724ca3d7f87d32ee` |
+| `SD70_V3_EXECUTION_DESIGN_V1.json` | `662837355020658ab77fc6067060df1b105e54ad757caf0378925178a7723138` |
 | `SD70_V3_EXECUTION_DESIGN_V1.md` | `54de620a022056353d063b5cdd5e28700858c581c9d593c357e9f2421426639a` |
 
 Protected seed sha256 (seed itself never in the repository, never on the dispatch host): `d032efa9a570c5baa8fb7b5d86d3d879f3fd087adfb3088459fc68aee6d150cc`  
@@ -19,10 +19,10 @@ Committed at 2026-09-03T05:46:41.374388+00:00; custody `~/.orion-custody/sd70-v3
 | `sd70v3_generator.py` | `4cbc36d1cafbf7605655590c9c703d461b7a185d22dff08b7a8531d94f8a5f0c` | 321 |
 | `sd70v3_parents.py` | `e7cc1efe384245579be5cb31c2a67d379fbbfdd789df43e8d3fedcfdd4774309` | 565 |
 | `sd70v3_stats.py` | `d3b7777f166760f7a99e7598c3727dca72898a853b36018ecd123f31a0ed9f79` | 118 |
-| `sd70v3_model_arm.py` | `312f9ea19ca161f41ffd8f8c9c6cf1103bbcf99d540b96d2e8b5a0066d976ae8` | 282 |
-| `sd70v3_channel.py` | `8980eceeb0f6462f8bed9b83e4a60e9a55b3f54b17eb30829abe6996b0f28ae0` | 225 |
-| `sd70v3_run.py` | `b217ce6ab181d928d74d4ad784b1236fdbf5900efe9533d905f103e3881fc7f9` | 930 |
-| `sd70v3_remote_dispatch.py` | `a1409610fdea8dfcfde4a4e3774d9194b28558b46d356f2b9f7c98ec32b23c58` | 153 |
+| `sd70v3_model_arm.py` | `30ad26a58e02827de97dc29943cfbc994448ef363b52510ae7afa6dd5d1a1a6d` | 299 |
+| `sd70v3_channel.py` | `5e9e1b3be9c4f44cf9d0de6f6218e7d9d0bc2546dcf3d50763a57918da4181fa` | 228 |
+| `sd70v3_run.py` | `53194be9202404fcefb3d906c0327c7044eeb1a47aebd58fa893cf1552b02269` | 958 |
+| `sd70v3_remote_dispatch.py` | `6ef8a8c3465e00c5717fbe262b2293e7aa3bafc78cbfaf954cd021d62253dc71` | 161 |
 
 Interpreter pinned for generation, deterministic arms and evaluation: **CPython 3.13.12** (`/Users/billy/miniforge3/bin/python3`).
 
@@ -99,8 +99,8 @@ ends up crying wolf on its first protected run.
 | no-cry-wolf assertion | the full calibrated jitter (input 13,593 → 14,875; output 31 → 49; reasoning 0 → 16) is asserted to stay `CHANNEL_CONTRACT_OK` | — |
 | envelope homogeneity | `CHANNEL_CONTRACT_OK` over 56 real envelopes: usage observed 56/56, residual within tolerance 56/56, reasoning-cap exceedances 0/56, comp_hash mismatches 0 of 56 observable | the first drafted band would have failed 56/56 and was replaced before freezing |
 
-Unit tests: `tests/unit/test_sd70_v3_channel_gates.py`, 17 tests, all passing under the pinned
-interpreter, alongside the untouched V2 suites (33 tests total, 0 failures).
+Unit tests: `tests/unit/test_sd70_v3_channel_gates.py`, 26 tests, all passing under the pinned
+interpreter, alongside the untouched V2 suites (**42 tests total, 0 failures**).
 
 ## Relationship to SD70-V2
 
@@ -116,3 +116,39 @@ does not depend on V2's files and cannot perturb them.
 
 This receipt grants nothing: no scientific truth, no causal law, no field status, no submission or
 publication readiness.
+
+## Pre-run amendment (before any protected task existed)
+
+Applied after an independent review of the freeze and **before** `prepare` was ever run against the
+committed seed, so no protected task and no protected outcome existed at the time. Recorded rather
+than silently folded in.
+
+1. **Per-envelope model attestation is now gated.** `served_model_observed` is `None` on this
+   channel by design, so `requested_model` is the only per-envelope model evidence — and it was
+   ungated. The dispatch driver now binds `ORION_CODEX_MODEL` from its `--model` argument (previously
+   the canaries used `--model` while envelopes fell back to the executable's default, so a mismatched
+   invocation could have returned `CHANNEL_CONTRACT_OK` while attesting a model the envelopes never
+   used), and `requested_model == gpt-5.5` is gated at fraction 1.0 over all completed envelopes.
+2. **`comp_hash` partial silence is now caught.** The check previously required only
+   `mismatches == 0`, which passes on a single observable envelope out of 1,140 — a counter that
+   partially stopped running. The observable *fraction* is now gated at 0.98.
+3. **A failed envelope now carries its model attestation.** Without it a legitimate `ARM_FAILURE` —
+   which the missingness rule explicitly permits — would have tripped the new 1.0 model gate instead.
+4. **The homogeneity denominator is completed envelopes only.** Missingness permits 5 % failures
+   while homogeneity tolerates 2 % missing usage; sharing a denominator would have made the
+   missingness allowance dead letter by routing an acceptable failure rate to `CANNOT_CHECK` through
+   the wrong gate. Excluded failures are reported as `failed_envelopes_excluded`.
+5. **The served slug list is reported but does not gate** (decided pre-run, not revisited). A
+   cosmetic catalogue addition during the campaign window is not a change to this experiment's
+   channel condition. `comp_hash_matches_frozen` and `target_model_still_advertised` remain gating.
+
+**Failure path rehearsed.** It had never executed (0/56 failures in the clean rehearsal), so it was
+driven with a failing `codex` stub on 8 development envelopes: category `ARM_FAILURE` 8/8, the
+attempt counter incremented 1 → 2 and stopped at the registered cap, and `evaluate` routed
+`CANNOT_CHECK` citing the global rate (0.143 > 0.05) and the per-arm rate (1.000 > 0.10) — the
+missingness gate, correctly, rather than the homogeneity gate.
+
+**Both new gates validated in both directions** on real rehearsal data: clean 56/56 (`value 1.0`,
+`observable_fraction 1.0`); one envelope's `requested_model` changed to `gpt-5.4` →
+`CHANNEL_DRIFT_DETECTED` at 0.982; the `comp_hash` scrape silenced on 2 envelopes →
+`CHANNEL_DRIFT_DETECTED` at `observable_fraction` 0.964.

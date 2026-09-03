@@ -249,6 +249,23 @@ def execute(request: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _base_receipt() -> dict[str, Any]:
+    """Minimum receipt for a FAILED envelope.
+
+    A failure still has to carry its model attestation: requested_model is the
+    only per-envelope model evidence on this channel, and the design gates it at
+    1.0 over ALL model envelopes. Omitting it here would make a legitimate
+    ARM_FAILURE -- which the missingness rule explicitly permits -- trip the
+    model-attestation gate instead, i.e. a checker crying wolf at the wrong thing.
+    """
+    return {"model_calls": 1, "executor": "codex-cli",
+            "model": os.environ.get("ORION_CODEX_MODEL", "gpt-5.5"),
+            "requested_model": os.environ.get("ORION_CODEX_MODEL", "gpt-5.5"),
+            "reasoning_effort": os.environ.get("ORION_SD70_REASONING_EFFORT", "medium"),
+            "served_model_observed": None,
+            "served_model_source": "NOT_EXPOSED_BY_CODEX_JSON_EVENT_STREAM"}
+
+
 def _failed(request: dict[str, Any], reason: str, receipt: dict[str, Any] | None = None, raw: Any = None) -> dict[str, Any]:
     return {
         "schema_version": RESPONSE_SCHEMA,
@@ -256,7 +273,7 @@ def _failed(request: dict[str, Any], reason: str, receipt: dict[str, Any] | None
         "status": "EXECUTION_FAILED_MODEL_RESPONSE", "failure_reason": reason, "selected_action": None,
         "principle_summary": "", "preconditions": [], "contraindications": [], "failure_modes": [],
         "uncertainty": "UNRESOLVED", "falsifier": "", "raw_model_output": raw,
-        "resource_receipt": receipt or {"model_calls": 1, "executor": "codex-cli"},
+        "resource_receipt": receipt or _base_receipt(),
         "scientific_truth_authorized": False, "causal_law_authorized": False, "field_status_authorized": False,
     }
 

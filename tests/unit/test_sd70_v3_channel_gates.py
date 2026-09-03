@@ -66,9 +66,13 @@ def test_comp_hash_change_is_drift_not_ok():
     assert "comp_hash_matches_frozen" in v["failed_checks"]
 
 
-def test_served_slug_list_change_is_drift():
+def test_served_slug_list_shrinking_past_the_target_model_is_drift():
+    """A slug-list change alone is reported, not gating (see the pre-run
+    decision below); but losing the TARGET model from the catalogue does gate."""
     v = CH.verdict(_measurement(), _measurement(slugs=["gpt-5.5"]), CONTRACT)
-    assert v["verdict"] == CH.CONTRACT_DRIFT
+    assert v["verdict"] == CH.CONTRACT_OK, "the target model is still advertised"
+    v2 = CH.verdict(_measurement(), _measurement(slugs=["gpt-5.4"]), CONTRACT)
+    assert v2["verdict"] == CH.CONTRACT_DRIFT
 
 
 def test_unobservable_manifest_is_not_reported_as_ok():
@@ -184,3 +188,70 @@ def test_reasoning_is_declared_enabled_not_disabled():
     rb = DESIGN["channel_contract"]["request_body"]
     assert rb["reasoning_enabled"] is True
     assert rb["reasoning_summaries_emitted"] is False
+
+
+# --------------------------------------------------------------------------
+# pre-run amendment: model attestation, partial scrape silence, slug policy
+# --------------------------------------------------------------------------
+
+def test_requested_model_is_gated_at_one_because_served_model_is_not_observable():
+    g = DESIGN["envelope_homogeneity"]["gates"]
+    assert g["requested_model_match_fraction"] == 1.0
+    assert "requested_model" in DESIGN["envelope_homogeneity"]["recorded_per_envelope"]
+
+
+def test_a_failed_envelope_still_carries_its_model_attestation():
+    """Otherwise a legitimate ARM_FAILURE -- which missingness permits -- would
+    trip the model-attestation gate instead of the missingness gate."""
+    r = MA._failed({"task_id": "t", "arm_id": "a"}, "TIMEOUT:600")
+    assert r["resource_receipt"]["requested_model"] == "gpt-5.5"
+    assert r["resource_receipt"]["served_model_observed"] is None
+
+
+def test_comp_hash_gate_rejects_partial_silence_not_only_mismatch():
+    g = DESIGN["envelope_homogeneity"]["gates"]
+    assert g["comp_hash_observable_fraction"] == 0.98, (
+        "gating only mismatches==0 would pass on a single observable envelope out of 1140"
+    )
+
+
+def test_homogeneity_denominator_excludes_failed_envelopes():
+    """Missingness permits 5% failures; homogeneity tolerates 2% missing usage.
+    Sharing a denominator would make the missingness allowance dead letter."""
+    rule = DESIGN["envelope_homogeneity"]["denominator_rule"]
+    assert "missingness gate's business" in rule
+    assert "dead letter" in rule
+    assert DESIGN["missingness"]["global_failure_threshold"] == 0.05
+
+
+def test_slug_list_is_reported_but_not_gating_and_the_decision_is_recorded():
+    cc = DESIGN["channel_contract"]
+    assert "served_slug_prefix_matches_frozen" in cc["reported_not_gating_checks"]
+    assert "served_slug_prefix_matches_frozen" not in cc["gating_checks"]
+    assert "comp_hash_matches_frozen" in cc["gating_checks"]
+    assert "target_model_still_advertised" in cc["gating_checks"]
+    assert "DECIDED PRE-RUN" in cc["slug_list_decision"]
+
+
+def test_a_slug_addition_alone_does_not_fail_the_contract():
+    extended = CONTRACT["expected_served_slugs_prefix"] + ["gpt-5.7-new"]
+    v = CH.verdict(_measurement(), _measurement(slugs=extended), CONTRACT)
+    assert v["verdict"] == CH.CONTRACT_OK
+    assert "served_slug_prefix_matches_frozen" in v["reported_not_gating_failures"]
+
+
+def test_a_comp_hash_change_still_fails_even_though_slugs_are_ungated():
+    v = CH.verdict(_measurement(), _measurement(comp="9999"), CONTRACT)
+    assert v["verdict"] == CH.CONTRACT_DRIFT
+
+
+def test_target_model_disappearing_from_the_catalogue_still_fails():
+    v = CH.verdict(_measurement(), _measurement(slugs=["gpt-5.4", "gpt-5.4-mini"]), CONTRACT)
+    assert v["verdict"] == CH.CONTRACT_DRIFT
+    assert "target_model_still_advertised" in v["failed_checks"]
+
+
+def test_interpreter_determinism_boundary_is_declared_not_assumed():
+    r = DESIGN["reproducibility"]
+    assert "3.13.12" in r["pinned_interpreter"]
+    assert "NOT byte-identical" in r["determinism_boundary_measured_not_asserted"]

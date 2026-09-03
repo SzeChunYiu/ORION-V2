@@ -214,7 +214,9 @@ def verdict(start: dict[str, Any], end: dict[str, Any], contract: dict[str, Any]
         ans_rows.append({"canary": name, "start_tokens": st, "end_tokens": et, "same": st == et})
     add("canary_answer_tokens_unchanged", all(r["same"] for r in ans_rows), len(ans_rows), {"rows": ans_rows})
 
-    failed_checks = [c["check"] for c in checks if not c["passed"]]
+    gating = set(contract.get("gating_checks") or [c["check"] for c in checks])
+    reported_only = [c["check"] for c in checks if not c["passed"] and c["check"] not in gating]
+    failed_checks = [c["check"] for c in checks if not c["passed"] and c["check"] in gating]
     if unobservable and not [c for c in failed_checks if c != "served_manifest_observable"]:
         v = CONTRACT_UNOBSERVABLE
     elif failed_checks:
@@ -222,4 +224,5 @@ def verdict(start: dict[str, Any], end: dict[str, Any], contract: dict[str, Any]
     else:
         v = CONTRACT_OK
     return {"schema_version": SCHEMA, "verdict": v, "checks": checks,
-            "failed_checks": failed_checks, "unobservable": unobservable}
+            "failed_checks": failed_checks, "reported_not_gating_failures": reported_only,
+            "unobservable": unobservable}

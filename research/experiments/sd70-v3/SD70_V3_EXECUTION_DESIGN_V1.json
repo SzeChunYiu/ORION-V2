@@ -90,12 +90,24 @@
       "codex-auto-review"
     ],
     "gate": "any verdict other than CHANNEL_CONTRACT_OK routes the campaign to CANNOT_CHECK",
+    "gating_checks": [
+      "canary_dispatch_succeeded",
+      "canary_prompts_byte_identical_to_frozen",
+      "served_manifest_observable",
+      "comp_hash_matches_frozen",
+      "target_model_still_advertised",
+      "canary_token_behaviour_stable",
+      "canary_answer_tokens_unchanged"
+    ],
     "manifest_observability_caveat": "The served-model manifest is visible only as a SIDE EFFECT of this CLI failing to decode it (unknown reasoning variant `max`), which makes it log the raw body to stderr. If the server response ever becomes decodable the scrape goes silent. A silent scrape must never read as 'contract verified' - that is exactly a counter that never ran.",
     "measured_at": [
       "CAMPAIGN_START (before any protected model envelope)",
       "CAMPAIGN_END (after the last protected model envelope)"
     ],
     "model": "gpt-5.5",
+    "reported_not_gating_checks": [
+      "served_slug_prefix_matches_frozen"
+    ],
     "request_body": {
       "attempt_cap": 2,
       "cwd": "empty temporary directory",
@@ -110,6 +122,7 @@
       "sandbox": "read-only",
       "timeout_seconds": 600
     },
+    "slug_list_decision": "DECIDED PRE-RUN, not revisited after any outcome. The served slug list is REPORTED but does NOT gate. A cosmetic catalogue addition during the campaign window is not a change to this experiment's channel condition, and letting it cost the whole campaign a CANNOT_CHECK after the fact would be a gate that punishes the wrong event. What does gate is the model's own compute hash (comp_hash_matches_frozen) and its continued availability (target_model_still_advertised) -- the two properties that actually bear on whether the envelopes were produced under the registered condition.",
     "verdicts": {
       "CHANNEL_CANARY_DISPATCH_FAILED": "a canary did not complete -> CANNOT_CHECK",
       "CHANNEL_CONTRACT_OK": "every check passed with a non-zero denominator",
@@ -178,11 +191,13 @@
   },
   "envelope_homogeneity": {
     "calibration": "The input-token model and the reasoning cap were fitted on a 56-envelope DEVELOPMENT rehearsal (8 development tasks x 7 model arms, development seed 123456789, no protected task and no protected outcome involved). Fit: input_tokens = 13473.2 + 0.49026 * prompt_bytes, residual sd 597.0, |residual| max 849.1 over n=56. The frozen tolerance +/-3600 is 4.2x the largest observed residual, chosen so the gate does not cry wolf on its first protected run; a checker that raises a false alarm on first contact gets switched off. Observed reasoning_output_tokens over the same 56 envelopes: min 31, mean 301, p95 516, max 967; the frozen cap of 3000 sits 3.1x above the observed maximum and 2x below the 6000-token cap that broke E30-R12.",
-    "denominator_rule": "every count above is reported with the denominator it was computed over; a zero without a denominator is not a result",
+    "denominator_rule": "Every count is reported with the denominator it was computed over; a zero without a denominator is not a result. The denominator is the set of COMPLETED model envelopes: homogeneity asks whether the envelopes that ran did so under one channel condition. Failed envelopes are excluded and reported separately as failed_envelopes_excluded, because they are the missingness gate's business -- that gate permits up to 5% globally, and counting failures here as well would make the allowance dead letter by routing an acceptable failure rate to CANNOT_CHECK through the wrong gate.",
     "first_attempt_band_was_wrong": "The first drafted gate used a raw input_tokens/prompt_bytes ratio band of [0.10, 1.20]. The development rehearsal showed the real ratio is 2.30-13.34, because input_tokens is dominated by a roughly 13.5k-token fixed harness overhead while prompt_bytes varies 1038-7163. That band would have failed 100% of envelopes on first contact. It was replaced BEFORE freezing and before any protected task existed. Recorded here because a gate calibrated only against intuition is exactly the checker-cries-wolf failure this programme has been bitten by.",
     "gates": {
       "comp_hash_consistency": true,
       "comp_hash_consistency_note": "every envelope whose channel_observation is observable must report the frozen comp_hash",
+      "comp_hash_observable_fraction": 0.98,
+      "comp_hash_observable_note": "Partial silence is not clean. Gating only 'mismatches == 0' would pass on a single observable envelope out of 1140 -- a counter that partially stopped running. The observable FRACTION is gated too, so a mid-campaign server-side fix that silences the scrape is caught.",
       "input_tokens_linear_model": {
         "base": 13473.2,
         "form": "input_tokens ~= base + slope * prompt_bytes",
@@ -192,6 +207,8 @@
       },
       "reasoning_cap_max_exceed_fraction": 0.02,
       "reasoning_output_tokens_cap": 3000,
+      "requested_model_match_fraction": 1.0,
+      "requested_model_match_note": "served_model_observed is None on this channel by design (the Codex --json event stream exposes no served model id), so requested_model is the ONLY per-envelope model attestation. It is gated at 1.0 over all model envelopes. The dispatch driver binds ORION_CODEX_MODEL from its --model argument so the canaries and the envelopes cannot diverge.",
       "usage_observed_fraction": 0.98,
       "usage_observed_fraction_note": "fraction of model envelopes whose usage came from turn.completed.usage directly; below this the channel is CHANNEL_CONTRACT_UNOBSERVABLE, never OK"
     },
@@ -204,7 +221,8 @@
       "usage_source",
       "prompt_sha256",
       "prompt_bytes",
-      "channel_observation"
+      "channel_observation",
+      "requested_model"
     ],
     "why": "Catch a mid-campaign channel shift that the start/end canaries straddle but do not localise."
   },

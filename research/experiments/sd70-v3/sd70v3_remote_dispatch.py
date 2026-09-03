@@ -119,6 +119,14 @@ def main() -> int:
     ap.add_argument("--stage", choices=["all", "channel-start", "dispatch", "channel-end"], default="all")
     args = ap.parse_args()
 
+    # Bind the envelope model/effort to the SAME values the canaries measure.
+    # Without this, MA.execute() would fall back to its own default and the
+    # channel contract could return OK while attesting a model the envelopes
+    # never used -- a contract that fails toward apparent strength.
+    import os
+    os.environ["ORION_CODEX_MODEL"] = args.model
+    os.environ["ORION_SD70_REASONING_EFFORT"] = args.effort
+
     manifest = json.loads((args.payload / "REQUEST_SURFACE_MANIFEST.json").read_text(encoding="utf-8"))
     arms = [a.strip() for a in args.model_arms.split(",") if a.strip()]
 

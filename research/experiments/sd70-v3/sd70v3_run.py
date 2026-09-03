@@ -646,14 +646,28 @@ def check_envelope_homogeneity(workdir: Path, design: dict[str, Any], model_arms
     lm = g["input_tokens_linear_model"]
     cap = g["reasoning_output_tokens_cap"]
     expected_comp = design["channel_contract"]["expected_comp_hash"]
+    expected_model = design["model_arms"]["model"]
     n = usage_ok = ratio_ok = reasoning_over = comp_observable = comp_mismatch = 0
+    model_ok = 0
     ratios: list[float] = []
+    failed_envelopes = 0
     for arm in model_arms:
         for rp in sorted((workdir / "responses" / arm).glob("*.json")):
-            r = _read(rp).get("resource_receipt", {})
+            resp = _read(rp)
+            r = resp.get("resource_receipt", {})
+            # Homogeneity asks whether the COMPLETED envelopes were produced under
+            # one channel condition. Envelopes that failed are the missingness
+            # gate's business (which permits up to 5% globally); counting them here
+            # too would make that allowance dead letter and route an acceptable
+            # failure rate to CANNOT_CHECK through the wrong gate.
+            if resp.get("status") != "COMPLETED_PROPOSAL_ONLY":
+                failed_envelopes += 1
+                continue
             n += 1
             if r.get("usage_source") == "TURN_COMPLETED_USAGE":
                 usage_ok += 1
+            if r.get("requested_model") == expected_model:
+                model_ok += 1
             it, pb = r.get("input_tokens"), r.get("prompt_bytes")
             if isinstance(it, int) and isinstance(pb, int) and pb > 0:
                 resid = it - (lm["base"] + lm["slope"] * pb)
@@ -670,6 +684,7 @@ def check_envelope_homogeneity(workdir: Path, design: dict[str, Any], model_arms
                     comp_mismatch += 1
     if n == 0:
         return {"schema_version": "orion.v2.sd70-v3.envelope-homogeneity.v1", "denominator": 0,
+                "failed_envelopes_excluded": failed_envelopes,
                 "verdict": CH.CONTRACT_UNOBSERVABLE, "passed": False,
                 "reason": "no model envelopes to check"}
     checks = {
@@ -684,14 +699,27 @@ def check_envelope_homogeneity(workdir: Path, design: dict[str, Any], model_arms
         "reasoning_cap_exceed_fraction": {"value": reasoning_over / n, "denominator": n, "cap": cap,
                                           "threshold": g["reasoning_cap_max_exceed_fraction"],
                                           "passed": reasoning_over / n <= g["reasoning_cap_max_exceed_fraction"]},
+        "requested_model_matches_design": {
+            "value": model_ok / n, "denominator": n, "expected": expected_model,
+            "threshold": g["requested_model_match_fraction"],
+            "passed": model_ok / n >= g["requested_model_match_fraction"],
+            "note": "served_model_observed is None on this channel by design, so requested_model is "
+                    "the only per-envelope model attestation and it is gated at 1.0"},
         "comp_hash_consistency": {"observable_envelopes": comp_observable, "denominator": n,
+                                  "observable_fraction": comp_observable / n,
+                                  "observable_threshold": g["comp_hash_observable_fraction"],
                                   "mismatches": comp_mismatch, "expected": expected_comp,
-                                  "passed": comp_mismatch == 0},
+                                  "passed": (comp_mismatch == 0
+                                             and comp_observable / n >= g["comp_hash_observable_fraction"]),
+                                  "note": "partial silence is not clean: the observable FRACTION is gated, "
+                                          "not merely the mismatch count"},
     }
     unobservable = comp_observable == 0 or usage_ok == 0
     passed = all(c["passed"] for c in checks.values()) and not unobservable
     verdict = CH.CONTRACT_OK if passed else (CH.CONTRACT_UNOBSERVABLE if unobservable else CH.CONTRACT_DRIFT)
     return {"schema_version": "orion.v2.sd70-v3.envelope-homogeneity.v1", "denominator": n,
+            "denominator_rule": "completed model envelopes only; failed envelopes are the missingness gate's business",
+            "failed_envelopes_excluded": failed_envelopes,
             "checks": checks, "verdict": verdict, "passed": passed,
             "unobservable_note": ("comp_hash never observable on any envelope" if comp_observable == 0 else None)}
 
