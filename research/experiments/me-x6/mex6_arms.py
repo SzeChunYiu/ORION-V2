@@ -107,10 +107,28 @@ ABLATION_GROUPS: dict[str, tuple[str, ...]] = {
     "M_MINUS_COST": ("solution_cost",),
 }
 
-# ---- the strongest faithful untyped parent ------------------------------------
-# An equal-weight aggregate is a strawman: a real science-of-science modeller
-# given the validation channels would FIT the combination rather than sum it.
-# B4X_FITTED is that parent.  Its per-channel signs are learned on the public
+# ---- the strongest untyped parent IN THE UNIT-SIGN CLASS -----------------------
+# This header used to call B4X_FITTED the strongest FAITHFUL untyped parent.
+# Neither word survives the comparator-provenance receipt.
+#
+# There is nothing for it to be faithful TO.  The generator emits per-period
+# integer channel counts and no bibliographic objects, so no published
+# science-of-science estimator is natively computable here, and no
+# parent-fidelity receipt of the ME-X1 kind is possible.  B4X_FITTED is
+# CONSTRUCTED FOR THIS STUDY, not a published-method parent.
+#
+# And it is strongest only within its own class: one weight per channel in
+# {-1, 0, +1}, learned by univariate marginal screening.  fit_signs below scores
+# each channel INDEPENDENTLY and then sums with UNIT weights -- it never fits a
+# combination.  M's own rule is an untyped weighted aggregate of these same
+# channels with weights in {-2, -1, 0, +1}, so M lies OUTSIDE this class, and
+# what the study shows is that this comparator DOES NOT RECOVER the conjunction
+# -- not that no untyped aggregate CAN represent it.  See
+# ME_X6_COMPARATOR_PROVENANCE_AND_NON_FIDELITY_RECEIPT_V1.md sections 2-5.
+#
+# An equal-weight aggregate is weaker still, so fitting the signs genuinely
+# strengthens the comparator, and is why B4X_FITTED rather than the equal-weight
+# B4X is what G1 tests against.  Its per-channel signs are learned on the public
 # DEVELOPMENT split and then FROZEN into the design JSON before the protected
 # run, so it is information-matched with M, is allowed to discover the same sign
 # structure M declares a priori, and cannot be tuned after any protected outcome.

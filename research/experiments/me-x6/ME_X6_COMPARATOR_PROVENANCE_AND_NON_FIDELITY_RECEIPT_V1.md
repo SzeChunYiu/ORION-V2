@@ -22,9 +22,8 @@ the comparator; it changes nothing that was shown.
 
 ## 1. What ME-X6's comparator actually is
 
-`B4X_FITTED_UNTYPED` (`mex6_arms.py` sha256
-`39311407daec527ff30d51b65a84f2d143ba9514abb39c4b5a4048471febbca0`,
-unchanged) is:
+`B4X_FITTED_UNTYPED` (`mex6_arms.py` sha256 `a72d7de2…`; **comment-only change
+since V1's `39311407…`, AST-identical, behaviour unchanged — §10**) is:
 
 - a **linear functional of the fit-window channel half-difference** — `_dir_of`
   computes `sign(Σ_k w_k · (Σ_{late half} c_k − Σ_{early half} c_k))`;
@@ -260,9 +259,11 @@ Checks run with `/opt/homebrew/bin/python3.12` (the vendored dataclass `slots=`
 requires ≥ 3.10; `/usr/bin/python3` is 3.9 and cannot import `mex6_model`).
 Every count above is published with its denominator. Absence claims were made
 only after a control pattern that **had** to match did match; the `rtk` grep
-proxy was caught under-reporting on this very file set (it returned no match for
-`"strongest faithful"` in `mex6_arms.py`, which is present at the section header
-above `B4X_FITTED`), so every absence was re-checked by reading bytes in Python.
+proxy was caught under-reporting on this very file set (when this audit ran, it returned no match for the
+retired `"strongest faithful"` superlative in `mex6_arms.py`, which was then
+present at the section header above `B4X_FITTED`; §10 has since retired that
+label, so the phrase is genuinely absent now and the anecdote is preserved here
+rather than re-runnable), so every absence was re-checked by reading bytes in Python.
 
 **The two checks above are committed as executable assertions**, not prose:
 `tests/unit/test_me_x6_exact_study.py::test_M_is_itself_an_untyped_weighted_aggregate_of_the_same_channels`
@@ -283,7 +284,8 @@ all-+1 control (14/28 at n = 28), which does fail as required.
 
 | pinned file | sha256 |
 |---|---|
-| `mex6_arms.py` | `39311407daec527ff30d51b65a84f2d143ba9514abb39c4b5a4048471febbca0` |
+| `mex6_arms.py` (at V1) | `39311407daec527ff30d51b65a84f2d143ba9514abb39c4b5a4048471febbca0` |
+| `mex6_arms.py` (now, comment-only, AST-identical — §10) | `a72d7de2557495262a2f9999f3372078310c8da8ee792a16ed2fea7f5254ea04` |
 | `mex6_model.py` | `c0a7298265eaf34bd496a32c74ed29fc3d60c415b295ec5cda669eda09d07d9b` |
 | `mex6_generator.py` | `9f510b54fe23c0e7c4413859fd981ca8486d16cf615a1273cc73ac38c80eb718` |
 | `mex6_oracle.py` | `1d539ed60ff578606b02a0def5b90b4b0896d4e15e40c5b714ae6ff7087f26d7` |
@@ -309,7 +311,63 @@ public development split by design).
 | 3 — the failure is the inability to zero a channel, not the magnitudes (§4) | no | no | no |
 | 4 — "strongest faithful untyped parent" is unearned as a superlative (§5.2) | no | no | no |
 | 5 — "the only study in the programme without one" is false as stated (§6) | no | no | no |
+| 6 — two labels narrowed and one vacuous-loop guard added (§10) | no | no | no |
 
 `ME_X6_STATUS = PROTECTED_RUN_COMPLETE`, `ROUTE = MECHANISM_ESTABLISHED_NOT_A_RESIDUAL`,
 `ME_X6_RESIDUAL_CLAIMED = FALSE`, `FLAGSHIP_GATE = FALSE`,
 `FIELD_STATUS_AUTHORITY = NONE` — unchanged.
+
+## 10. Follow-up landed: the same overreach, in the labels
+
+Two labels in the study generalised past the class they covered — the same
+defect as the terminal string, smaller. Both are now narrowed. **Prose and
+identifiers only: no gate, no datum, no weight, no verdict, no terminal.**
+
+1. **`mex6_arms.py`'s section header.** It called `B4X_FITTED_UNTYPED` "the
+   strongest *faithful* untyped parent". Both words are unsupported: §2
+   establishes there is nothing here for a parent to be faithful *to*, and §5.2
+   that "strongest" holds only inside the unit-sign class. The header now names
+   that class and points here. **The edit is comment-only and the module's AST is
+   byte-identical to V1's** (`ast.dump` equality against the `origin/main` blob,
+   executed); the file's sha256 moves and is re-pinned above with both values.
+
+2. **`test_an_untyped_reading_cannot_separate_the_decoupled_strata`.** Its body
+   asserts on `B4X_INFORMATION_MATCHED_UNTYPED`, the **equal-weight** arm — not
+   the fitted comparator `G1` tests against — while its name claimed the general
+   case, and it sat directly above the test that exhibits an untyped arm which
+   *is* exact. Renamed to
+   `test_an_equal_weight_untyped_reading_cannot_separate_the_decoupled_strata`,
+   docstring corrected, **assertion untouched**.
+
+3. **A third instance, found while renaming: that test could pass vacuously.**
+   Its loop `continue`s past every non-decoupled stratum, so a filter matching
+   nothing would have skipped every assertion and still reported a pass — a
+   counter that never ran. **Verified, not assumed:** the pre-guard version was
+   run with the filter mutated to match nothing and it **passed** (exit 0). A
+   denominator guard now asserts the covered stratum set equals
+   `DECOUPLED_STRATA` and that `checked == 7 × 2 scales = 14` of the 28
+   development instances; the same mutant now **fails** (exit 1). This adds a
+   guard; it does not change what the test asserts.
+
+4. **The hand-set/learned distinction is now stated in the code**, not only here.
+   `test_the_comparator_fails_because_it_cannot_zero_a_channel`'s docstring says
+   in full that every vector in it is written down by the test, that none is
+   fitted and none is a comparator, and that the rows must **not** be read as
+   evidence that a capacity-matched parent would tie M. §7 remains the only place
+   that question is scoped, and it remains unstarted.
+
+§5's defence of the study stands unchanged: read "typing" as the a-priori
+assignment of signed roles *including the zeros*, and design §1.2's "the only
+difference between them is typing" is exactly true.
+
+`tests/unit/test_me_x6_exact_study.py`: **41 passed, exit status 0**, read
+directly from `$?`, no pipe. `ruff check` is clean on
+`tests/unit/test_me_x6_exact_study.py`.
+
+**One pre-existing lint finding is left untouched and is recorded rather than
+silently carried:** `ruff` reports `F401 mex6_model.VALIDATION_CHANNELS imported
+but unused` in `mex6_arms.py`. It is **not** introduced here — the same finding
+reproduces on the `origin/main` blob this branch was cut from — and it is not
+fixed here because removing an import changes the module's AST, which the
+comment-only guarantee above forbids for frozen study code. No `ruff` step runs
+in CI on this path.
