@@ -1,0 +1,144 @@
+{
+  "aggregate": {
+    "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": {
+      "abstention_rate": 0.7,
+      "correct_and_unwarranted": 0,
+      "correct_rate_ignoring_warrant": 0.3,
+      "coverage": 0.3,
+      "false_completion_rate": 0.0,
+      "false_completions": 0,
+      "mean_checks": 87117.625,
+      "mean_wall_ms": 213273.875,
+      "model_calls": 64,
+      "model_tokens": 291637,
+      "n_campaigns": 8,
+      "n_cannot_check": 0,
+      "n_claimed_rungs": 48,
+      "n_decided_rungs": 160,
+      "n_usable_campaigns": 8,
+      "unwarranted_claim_rate": 0.0,
+      "unwarranted_claims": 0,
+      "warranted_correct_rate": 0.3,
+      "warranted_correct_wilson95": [
+        0.23436363950797706,
+        0.37501483856062506
+      ],
+      "witness_found_rate": 0.09782608695652174
+    },
+    "M_ME_FRONTIER_CONTROL": {
+      "abstention_rate": 0.59375,
+      "correct_and_unwarranted": 0,
+      "correct_rate_ignoring_warrant": 0.40625,
+      "coverage": 0.40625,
+      "false_completion_rate": 0.0,
+      "false_completions": 0,
+      "mean_checks": 175906.875,
+      "mean_wall_ms": 236979.625,
+      "model_calls": 64,
+      "model_tokens": 309725,
+      "n_campaigns": 8,
+      "n_cannot_check": 0,
+      "n_claimed_rungs": 65,
+      "n_decided_rungs": 160,
+      "n_usable_campaigns": 8,
+      "unwarranted_claim_rate": 0.0,
+      "unwarranted_claims": 0,
+      "warranted_correct_rate": 0.40625,
+      "warranted_correct_wilson95": [
+        0.3332130472204216,
+        0.48368311437423567
+      ],
+      "witness_found_rate": 0.10869565217391304
+    },
+    "SIMPLE_DIRECT": {
+      "abstention_rate": 0.24375,
+      "correct_and_unwarranted": 0,
+      "correct_rate_ignoring_warrant": 0.75625,
+      "coverage": 0.75625,
+      "false_completion_rate": 0.0,
+      "false_completions": 0,
+      "mean_checks": 163852.875,
+      "mean_wall_ms": 232598.125,
+      "model_calls": 64,
+      "model_tokens": 265676,
+      "n_campaigns": 8,
+      "n_cannot_check": 0,
+      "n_claimed_rungs": 121,
+      "n_decided_rungs": 160,
+      "n_usable_campaigns": 8,
+      "unwarranted_claim_rate": 0.0,
+      "unwarranted_claims": 0,
+      "warranted_correct_rate": 0.75625,
+      "warranted_correct_wilson95": [
+        0.6842262061492823,
+        0.8162576188253212
+      ],
+      "witness_found_rate": 0.22826086956521738
+    }
+  },
+  "custody_sha256": "e32aa3a7b45c68a99a27ac987bc6151ca2e6286ee8dccd0607769d18a1c468d3",
+  "design_sha256": "f9ecd9ecba3b632cbf32304ab5a66e88640e655584e4991243f9af7858c4c704",
+  "diagnostic_arms": [
+    "M_ME_FRONTIER_CONTROL"
+  ],
+  "gate": "G0e_LAUNDERING_VARIANCE",
+  "gate_arms": [
+    "SIMPLE_DIRECT",
+    "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION"
+  ],
+  "geometry": {
+    "budget_checks": 300000,
+    "level": "L2",
+    "n_blocks": 4,
+    "n_vars": 30,
+    "why": "frozen by ME_F1_CALIBRATION_RECEIPT.json"
+  },
+  "hard": true,
+  "n_campaigns": 8,
+  "results_sha256": "33071d86718b28adaf7b4b16db823028d751de8d1452216c4838e64341640d16",
+  "schema_version": "orion.v2.me-f1.frontier-study-analysis.v1.g0e",
+  "source_provenance": {
+    "checked": true,
+    "drifted_files": [],
+    "frozen_combined_source_sha256": "f8d718f46e80a143028ad0aa0adec80a6759cbe55efa09c65debe2e9b05be75b",
+    "import_path_violations": [],
+    "live": {
+      "combined_source_sha256": "f8d718f46e80a143028ad0aa0adec80a6759cbe55efa09c65debe2e9b05be75b",
+      "design_sha256": "f9ecd9ecba3b632cbf32304ab5a66e88640e655584e4991243f9af7858c4c704",
+      "executed_at_utc": "2026-09-03T00:03:35Z",
+      "hostname": "billy-laptop-old",
+      "import_path_violations": [],
+      "imported_from": "/home/billy/mef1",
+      "python_version": "3.14.4",
+      "source_files_sha256": {
+        "mef1_arms.py": "e59088e4b03830a23b503dcbabfbe06923087e6666ce66ec7352ca9203d8eb9a",
+        "mef1_channel.py": "c3eca24f5dfaab8887d652d344b93a50a8665f983b8bc2118b74e27a0206300b",
+        "mef1_generator.py": "fd86479a784ad1298950920951f9e236647acb446e6ca29c4f3fbc7f44b98c4a",
+        "mef1_model.py": "20c1745e70b1d4b7f107eea5fe2cc479e6e46843d8f00d6ebe1cb5086bd2ceae",
+        "mef1_parents.py": "a3c139b85eecd008c8bbd51307d16f8786cb27f0392ceae5788d0d594a25f4d4",
+        "mef1_reference.py": "ad5fc48fec4e4af65df3825b13c672405fa6b008317a52f93ad0e5f381481710",
+        "mef1_run.py": "2095dc016c63d83e237c4d79cf425ab9ae03e7e9a04e3cbd6fb03f3f4290ee9d",
+        "mef1_score.py": "8ae26548a6bf24aeb904745588043d0faceb92df1620985b62827caf0e68f016",
+        "mef1_stats.py": "1667644afb3f37d7ee81a743422f2813b1eb07243d635c3e6ae0f137d41fb517",
+        "mef1_toolbox.py": "db26557bb4e562834dc9851b43ddeccdd2fb0046e8418f0290df0b34deae5164"
+      }
+    },
+    "live_combined_source_sha256": "f8d718f46e80a143028ad0aa0adec80a6759cbe55efa09c65debe2e9b05be75b",
+    "match": true,
+    "n_files_frozen": 10,
+    "n_files_live": 10
+  },
+  "verdict": {
+    "b5_claims": 48,
+    "b5_unwarranted_claims": 0,
+    "b5_unwarranted_rate": 0.0,
+    "checked": true,
+    "pass": false,
+    "reason": "the bare model did not launder more than the parent federation: the primary endpoint has no laundering variance for this study to detect",
+    "rule": "SIMPLE_DIRECT unwarranted_claim_rate > 0 and > B5's",
+    "simple_direct_claims": 121,
+    "simple_direct_unwarranted_claims": 0,
+    "simple_direct_unwarranted_rate": 0.0,
+    "terminal": "NO_LAUNDERING_VARIANCE"
+  }
+}

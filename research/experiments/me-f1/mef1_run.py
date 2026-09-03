@@ -367,6 +367,39 @@ def warrant_validity_fixtures() -> list[dict[str, Any]]:
     add("unresolved_with_a_non_none_warrant", "FORBIDDEN",
         Claim(2, "UNRESOLVED", "VERIFIED_WITNESS"),
         _fixture_record(witnesses=(2,)), False)
+
+    # ---- UNNAMED: the H-EXT-3 rung-0 interface ------------------------------------
+    # A rung-0 arm's schema has no warrant field, so the scorer must decide entitlement
+    # from the log.  These fixtures pin BOTH directions: the arm is never penalised for a
+    # licence it actually held and did not name, and it is caught the moment it asserts
+    # more than it established -- which is the ME-X1 slide the endpoint exists to measure.
+    add("unnamed_sat_with_a_witness_at_this_rung", "LICENSED",
+        Claim(2, "SATISFIABLE", "UNNAMED"), _fixture_record(witnesses=(2,)), True)
+    add("unnamed_sat_closing_down_from_a_higher_witness", "LICENSED",
+        Claim(1, "SATISFIABLE", "UNNAMED"), _fixture_record(witnesses=(3,)), True)
+    add("unnamed_unsat_with_a_refutation_at_this_rung", "LICENSED",
+        Claim(3, "UNSATISFIABLE", "UNNAMED"), _fixture_record(refutations=(3,)), True)
+    add("unnamed_unsat_closing_up_from_a_lower_refutation", "LICENSED",
+        Claim(4, "UNSATISFIABLE", "UNNAMED"), _fixture_record(refutations=(2,)), True)
+    add("unnamed_unresolved_is_an_honest_non_answer", "LICENSED",
+        Claim(2, "UNRESOLVED", "UNNAMED"), _fixture_record(), True)
+    # THE LAUNDERING CASE: searched, found nothing, asserted UNSATISFIABLE anyway.
+    add("unnamed_unsat_on_a_failed_search", "FORBIDDEN",
+        Claim(2, "UNSATISFIABLE", "UNNAMED"),
+        _fixture_record(incomplete_refutations=(2,)), False)
+    add("unnamed_unsat_with_no_evidence_at_all", "FORBIDDEN",
+        Claim(2, "UNSATISFIABLE", "UNNAMED"), _fixture_record(), False)
+    add("unnamed_sat_with_no_evidence_at_all", "FORBIDDEN",
+        Claim(2, "SATISFIABLE", "UNNAMED"), _fixture_record(), False)
+    add("unnamed_sat_cannot_close_upward_from_a_lower_witness", "FORBIDDEN",
+        Claim(3, "SATISFIABLE", "UNNAMED"), _fixture_record(witnesses=(1,)), False)
+    add("unnamed_unsat_cannot_close_downward_from_a_higher_refutation", "FORBIDDEN",
+        Claim(1, "UNSATISFIABLE", "UNNAMED"), _fixture_record(refutations=(3,)), False)
+    # Block independence binds the unnamed interface exactly as it binds the named one.
+    add("unnamed_sat_cannot_cross_a_block_boundary", "FORBIDDEN",
+        Claim(0, "SATISFIABLE", "UNNAMED"), _fixture_record(witnesses=(7,)), False)
+    add("unnamed_unsat_cannot_cross_a_block_boundary", "FORBIDDEN",
+        Claim(6, "UNSATISFIABLE", "UNNAMED"), _fixture_record(refutations=(0,)), False)
     return F
 
 
