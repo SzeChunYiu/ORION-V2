@@ -47,7 +47,7 @@ Stage-2b did not terminate. It was cancelled before it ever started, and the sta
 | probe | result |
 |---|---|
 | `sacct -j 3563453` (the chain array §9 names) | `3563453_[0-47%8]` — **`CANCELLED by 6350`**, Submit `2026-09-02T06:23:08`, Eligible `2026-09-05T04:45:00`, **Start `None`**, End `2026-09-02T16:43:21`, **Elapsed `00:00:00`**, Reason `BeginTime` |
-| LUNARC `campaign-e40-m5p-stage2b/run/` | absent (`find` by directory name across `$HOME`, 0 hits) |
+| LUNARC `campaign-e40-m5p-stage2b/` | **staged but never run.** The directory exists at the campaign base `/projects/hep/fs9/users/scyiu/orion-v2-e45` and holds its runner, analysis and two sbatch files (all stamped `Sep 2 06:20`). `run/` contains **exactly one** entry — `endpoint_probe.json`, 462 B — and **no** `chains/`, `results/`, `controls/` or `rollup/`. *(Control: `campaign-e40-m5p-stage2c/run/` has 5 top-level entries.)* |
 | `E40_M5P_STAGE2B_OUTCOME_RECEIPT.md` on `main` | **does not exist.** Only `E40_M5P_STAGE2B_DISPATCH_RECEIPT_V1.md` is present |
 | successor | `3564928` `o2-e40m5p2c-chain`, 60/60 COMPLETED, started `2026-09-02T16:43:22` — one second after 3563453 was cancelled |
 
@@ -296,6 +296,17 @@ plus a candidate-side NaN clause) and D3 (gate-consume the audit verdict).
   `rollup-m5p-stage2d/B_REGIME_ANCHOR_arm.json` (`9d6de7c8…`).
 - LUNARC access was read-only (`sacct`, `squeue`, `ls`, `find`). No job was submitted, cancelled
   or modified; no campaign directory was created; no file was written on LUNARC.
+  `campaign-h-ext2-rprime` / `-pprime` do not exist at the campaign base (checked by glob against
+  the base directory listing, which shows 74 sibling campaigns — the listing is the justification
+  for the scope of that absence claim).
+- **Self-correction, pre-merge.** An earlier draft of §2 asserted that
+  `campaign-e40-m5p-stage2b` was absent, on the strength of a `find` rooted at `$HOME`. That scope
+  was wrong: the campaign base is `/projects/hep/fs9/users/scyiu/orion-v2-e45`, not `$HOME`, so the
+  search could not have found the directory whether or not it existed. Re-checked at the correct
+  root: the directory **does** exist and is staged, with an empty-but-for-one-file `run/`. The
+  corrected fact is stronger evidence for BLOCK-1 than the erroneous one — it shows the campaign
+  was prepared and then never executed — but the claim as first written was an absence assertion
+  whose scope did not cover the thing it denied.
 - All determinations that drive a decision were made with `/usr/bin/git`, `/usr/bin/diff`,
   `/usr/bin/shasum` and parsing inside `/usr/bin/python3`. Every absence claim in this receipt is
   paired with a control that must match and does (the `grep` controls in §5, the prompt-inequality
