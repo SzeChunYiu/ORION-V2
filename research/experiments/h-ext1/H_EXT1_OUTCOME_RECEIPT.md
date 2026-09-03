@@ -53,23 +53,56 @@ gates pass; same terminal.
 
 ## Honest reading
 
+> **Claim-integrity correction, 2026-09-03.** Item 1 previously read "beating the
+> strongest parent by +2.1 pp pooled and the always-on arm by +8.3 pp", coordinating a
+> null-tested margin and a threshold-only margin in one clause. Items 1-3 below restate
+> the same frozen numbers with each margin attached to the contrast that actually
+> supports it. **No gate value, null, terminal or datum changed**; nothing was
+> recomputed and no new test was run. The design registered G2 as a threshold, so this
+> is a correction to this receipt's prose, not a registered clause that went unexecuted.
+
 1. **Positive, and it transferred across substrates.** The gate was selected on
    gpt-5.6-terra outcomes and evaluated prospectively on gpt-5.5, where always-on `M` is
    much weaker (PDS1D 5/40, PDS2D 17/30) and the drag is therefore larger. Routing by
    evidence structure alone recovered the full A/C gain and removed the whole B/D/S2/S4
-   drag, beating the strongest parent by +2.1 pp pooled and the always-on arm by +8.3 pp.
-2. **Imprecision that costs nothing here but is real.** 90 of the 170 prospective
+   drag: GATED 508/520 against always-on `M` 465/520 (**+8.3 pp**) and against the
+   strongest parent 497/520 (**+2.1 pp**). The two margins do not carry the same
+   evidential weight — item 2.
+
+2. **What the registered nulls tested, and what they did not.** G3 and G3S test exactly
+   one quantity: `advantage = acc(GATED_M) − max(acc(M), acc(OFF))` = **+0.0827**, i.e.
+   the gated-versus-always-on-`M` contrast (`max` is `M` here), against 2000 equal-n draws
+   in each null, exceedance 0/2000 in both. The parent comparison is **G2, registered as a
+   threshold** — `acc(GATED_M) ≥ acc(PARENT)` (design §6) — and the frozen G2 record
+   carries `pass_vs_PARENT` and the two accuracies and nothing else: no null, no p-value,
+   no interval, because none was registered. The **+2.1 pp** margin over
+   `STRONGEST_ASSURANCE_FEDERATION` is therefore a registered threshold comparison decided
+   by 11 tasks (508 vs 497) and carries no significance claim; the design's own wording is
+   that `GATED_M` "matches the strongest parent" (§1). A reader must not borrow G3's
+   authority for it. Attaching uncertainty to the parent margin would require a new
+   registered study, not a post-hoc null on this frozen outcome (no-rescue clause, §8).
+   Such a study is named here and **not started**: `H-EXT-1P`, a fresh-seed prospective
+   cell pre-registering a paired null on `acc(GATED_M) − acc(PARENT)` with its own
+   freeze, gates and routed terminals.
+
+3. **Always-on `M` does not beat the parent in the binding cell.** In PROSPECTIVE,
+   `P_D_FULL` 0.8942 (465/520) is **below** `STRONGEST_ASSURANCE_FEDERATION` 0.9558
+   (497/520) — −6.2 pp, 32 tasks. What clears the parent here is the conditional-activation
+   gate over `M`, not `M` itself. (In the secondary RETROSPECTIVE_EVAL cell the sign
+   reverses — `M` 0.9836 vs PARENT 0.9754, 2 tasks — but PROSPECTIVE is the binding cell.)
+
+4. **Imprecision that costs nothing here but is real.** 90 of the 170 prospective
    activations are PD-S3 revocation tasks (their planted Family-B shares a `lineage_root`);
    all three arms are at ceiling there, so the activations are harmless in this suite. A
    suite where the machinery had a cost on such tasks would expose this. Precision of
    activation against the oracle-active strata is 80/170.
-3. **Suite-internal identifiability only.** Dependence is planted; the witnesses that
+5. **Suite-internal identifiability only.** Dependence is planted; the witnesses that
    separate these strata (duplicate hashes, shared roots, a method text naming another
    record's root) need not exist or separate anything in real corpora. This grants no
    real-corpus dependence-detection claim.
-4. **PD-S2 is not rescued by gating** (0.900 = OFF): the gate correctly stays off, but the
+6. **PD-S2 is not rescued by gating** (0.900 = OFF): the gate correctly stays off, but the
    residual error there belongs to both arms on this substrate, not to activation policy.
-5. The PDS1 `study_id` metadata gate would have scored only 0.9077 prospectively (it
+7. The PDS1 `study_id` metadata gate would have scored only 0.9077 prospectively (it
    activates on B/D where `M` is weak on gpt-5.5); the evidence-structure gate is strictly
    finer than task metadata, which is what H-EXT-1 asked.
 
