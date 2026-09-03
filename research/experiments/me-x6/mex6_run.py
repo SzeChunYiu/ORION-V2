@@ -260,19 +260,30 @@ def _cc(n: int) -> str:
     return "CANNOT_CHECK_NO_INSTANCES" if n == 0 else "EVALUATED"
 
 
-def gates(sc: dict, res: dict, cus: dict, selftest_ok: bool | None) -> dict:
+def gates(sc: dict, res: dict, cus: dict, selftest_ok: bool | None,
+          selftest_meta: dict | None = None) -> dict:
     g: dict[str, dict] = {}
     vec, strata, scales = sc["vec"], sc["strata"], sc["scales"]
     n = len(strata)
     pa = sc["per_arm"]
 
-    # G0a -- reproduced known answers (from the selftest report)
+    # G0a -- reproduced known answers (from the selftest report).
+    # The denominator is READ from the report, never recomputed as arithmetic: a
+    # hardcoded `len(CELLS) + 4` silently stopped matching the moment the
+    # selftest gained a fifth planted positive, and a denominator that does not
+    # count what was actually checked is the defect this study exists to catch.
+    meta = selftest_meta or {}
+    n_ka = int(meta.get("n_cells_checked", 0))
+    n_pos = int(meta.get("n_positives", 0))
     g["G0a_KNOWN_ANSWER"] = {
         "n_cells": len(sc["cells"]),
-        "pass": selftest_ok, "n_evaluated": (len(CELLS) + 4) if selftest_ok is not None else 0,
+        "pass": selftest_ok,
+        "n_evaluated": (n_ka + n_pos) if selftest_ok is not None else 0,
+        "n_cells_checked": n_ka, "n_planted_positives": n_pos,
         "status": "EVALUATED" if selftest_ok is not None else "CANNOT_CHECK_NO_SELFTEST_REPORT",
         "rule": "one hand-authored fixture per (stratum, scale) cell plus the planted "
-                "positives are reproduced in the selftest report"}
+                "positives are reproduced in the selftest report; the denominator is read "
+                "from that report, not recomputed"}
 
     # G0b -- oracle self-agreement and generator validity
     pl = sum(1 for c in cus["instances"] if c["planter_agrees"])
@@ -795,9 +806,14 @@ def stage_analyze(rp: Path, cp: Path, out_dir: Path, label: str | None = None,
     tp = rp.with_name(rp.name.replace("_RESULTS_", "_TIMING_"))
     timing = json.loads(tp.read_text()).get("wall_ns", {}) if tp.exists() else {}
     sp = selftest_report or (out_dir / "ME_X6_SELFTEST_REPORT.json")
-    selftest_ok = bool(json.loads(sp.read_text()).get("passed")) if sp.exists() else None
+    selftest_ok, selftest_meta = None, None
+    if sp.exists():
+        rep = json.loads(sp.read_text())
+        selftest_ok = bool(rep.get("passed"))
+        selftest_meta = {"n_cells_checked": rep.get("known_answer", {}).get("n", 0),
+                         "n_positives": len(rep.get("planted_positives", {}))}
     sc = score(res, cus, timing)
-    gt = gates(sc, res, cus, selftest_ok)
+    gt = gates(sc, res, cus, selftest_ok, selftest_meta)
     analysis = {"schema_version": SCHEMA_ANALYSIS, "label": label,
                 "results_sha256": sha256_file(rp), "custody_sha256": sha256_file(cp),
                 "n_instances": len(res["instances"]),

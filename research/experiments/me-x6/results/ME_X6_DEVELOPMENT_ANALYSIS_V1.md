@@ -10,7 +10,7 @@ Both denominators are shown. Instances are structural replicates of a cell, not 
 
 | gate | pass | instances | cells |
 |---|---|---|---|
-| `G0a_KNOWN_ANSWER` | True | 32 | 28 |
+| `G0a_KNOWN_ANSWER` | True | 33 | 28 |
 | `G0b_ORACLE_SELF_AGREEMENT` | True | 28 | 28 |
 | `G0c_NULL_CALIBRATION` | True | 28 | 28 |
 | `G1a_M_AHEAD_OF_MATCHED_PARENT` | True | 28 | 28 |

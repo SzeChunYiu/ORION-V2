@@ -411,3 +411,17 @@ def test_the_all_pass_route_reads_every_gate_its_terminal_claims() -> None:
                  "G5_HOSTILE_INVARIANCE_SUITE", "G7_REGISTERED_PREDICTION",
                  "G8_VERDICT_CONSTANCY_WITHIN_CELL"):
         assert gate in src, f"route() never reads {gate}"
+
+
+def test_G0a_denominator_counts_what_was_actually_checked(tmp_path: Path) -> None:
+    """A hardcoded denominator stops matching the moment a positive is added."""
+    mex6_run.stage_selftest(tmp_path)
+    mex6_run.stage_dev(tmp_path, 1)
+    rep = json.loads((tmp_path / "ME_X6_SELFTEST_REPORT.json").read_text())
+    g = json.loads((tmp_path / "ME_X6_DEVELOPMENT_ANALYSIS_V1.json").read_text()) \
+        ["gates"]["G0a_KNOWN_ANSWER"]
+    assert g["n_cells_checked"] == rep["known_answer"]["n"]
+    assert g["n_planted_positives"] == len(rep["planted_positives"])
+    assert g["n_evaluated"] == g["n_cells_checked"] + g["n_planted_positives"]
+    src = (HERE / "mex6_run.py").read_text()
+    assert "len(CELLS) + 4" not in src, "the denominator must not be recomputed as arithmetic"

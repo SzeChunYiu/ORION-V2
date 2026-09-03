@@ -40,9 +40,11 @@
     },
     "G0a_KNOWN_ANSWER": {
       "n_cells": 28,
-      "n_evaluated": 32,
+      "n_cells_checked": 28,
+      "n_evaluated": 33,
+      "n_planted_positives": 5,
       "pass": true,
-      "rule": "one hand-authored fixture per (stratum, scale) cell plus the planted positives are reproduced in the selftest report",
+      "rule": "one hand-authored fixture per (stratum, scale) cell plus the planted positives are reproduced in the selftest report; the denominator is read from that report, not recomputed",
       "status": "EVALUATED"
     },
     "G0b_ORACLE_SELF_AGREEMENT": {
@@ -687,7 +689,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.147919
+        "wall_ms": 0.190293
       },
       "B1_CITATION_IMPACT": {
         "activity_rate": 0.5714285714285714,
@@ -762,7 +764,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.089502
+        "wall_ms": 0.101752
       },
       "B2_SEMANTIC_NOVELTY": {
         "activity_rate": 0.5714285714285714,
@@ -837,7 +839,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.174377
+        "wall_ms": 0.180706
       },
       "B3_DISRUPTION_TURNOVER": {
         "activity_rate": 0.2857142857142857,
@@ -912,7 +914,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.108292
+        "wall_ms": 0.12229
       },
       "B4X_FITTED_UNTYPED": {
         "activity_rate": 1.0,
@@ -987,7 +989,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.315662
+        "wall_ms": 0.356418
       },
       "B4X_INFORMATION_MATCHED_UNTYPED": {
         "activity_rate": 1.0,
@@ -1062,7 +1064,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.266169
+        "wall_ms": 0.28575
       },
       "B4_SCIENCE_OF_SCIENCE_LITERAL": {
         "activity_rate": 1.0,
@@ -1137,7 +1139,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.178625
+        "wall_ms": 0.246082
       },
       "C_ALWAYS_FLAT": {
         "activity_rate": 1.0,
@@ -1212,7 +1214,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.08796
+        "wall_ms": 0.075915
       },
       "C_ALWAYS_RISE": {
         "activity_rate": 1.0,
@@ -1287,7 +1289,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.077958
+        "wall_ms": 0.086165
       },
       "C_RANDOM": {
         "activity_rate": 1.0,
@@ -1362,7 +1364,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.109124
+        "wall_ms": 0.144082
       },
       "L1_ACTIVITY_ONLY": {
         "activity_rate": 1.0,
@@ -1437,7 +1439,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.191123
+        "wall_ms": 0.196165
       },
       "L2_PLUS_ATTENTION": {
         "activity_rate": 1.0,
@@ -1512,7 +1514,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.188918
+        "wall_ms": 0.182126
       },
       "L3_PLUS_SEMANTIC": {
         "activity_rate": 1.0,
@@ -1587,7 +1589,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.191205
+        "wall_ms": 0.201374
       },
       "L4_PLUS_NETWORK": {
         "activity_rate": 1.0,
@@ -1662,7 +1664,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.207125
+        "wall_ms": 0.213957
       },
       "L5_PLUS_VALIDATION": {
         "activity_rate": 1.0,
@@ -1737,7 +1739,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.323418
+        "wall_ms": 0.328581
       },
       "M_MINUS_CORRECTION_RETRACTION": {
         "activity_rate": 1.0,
@@ -1812,7 +1814,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.200294
+        "wall_ms": 0.190623
       },
       "M_MINUS_COST": {
         "activity_rate": 1.0,
@@ -1887,7 +1889,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.208665
+        "wall_ms": 0.190335
       },
       "M_MINUS_FORMAL": {
         "activity_rate": 1.0,
@@ -1962,7 +1964,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.244958
+        "wall_ms": 0.259038
       },
       "M_MINUS_REDERIVATION": {
         "activity_rate": 1.0,
@@ -2037,7 +2039,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.209498
+        "wall_ms": 0.213542
       },
       "M_MINUS_REPLICATION": {
         "activity_rate": 1.0,
@@ -2112,7 +2114,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.205457
+        "wall_ms": 0.220665
       },
       "M_MINUS_REUSE": {
         "activity_rate": 1.0,
@@ -2187,7 +2189,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.213335
+        "wall_ms": 0.218662
       },
       "M_TYPED_COLLECTIVE_STATE": {
         "activity_rate": 1.0,
@@ -2262,7 +2264,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.243417
+        "wall_ms": 0.252336
       }
     }
   }
