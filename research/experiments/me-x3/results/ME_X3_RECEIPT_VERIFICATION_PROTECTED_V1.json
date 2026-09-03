@@ -1,0 +1,69 @@
+{
+  "checks": [
+    {
+      "check": "frozen_bytes_bind_to_the_run",
+      "control": "a one-byte edit to any hashed file flips this to FAIL",
+      "detail": "8 code files + design + authorization",
+      "state": "PASS"
+    },
+    {
+      "check": "seed_reveal_matches_commitment",
+      "control": "a perturbed seed does not match the commitment",
+      "detail": "sha256(seed file bytes) == frozen commitment",
+      "state": "PASS"
+    },
+    {
+      "check": "split_regenerates_from_revealed_seed",
+      "control": "perturbed seed yields a different split (['F1-0004-1ee8c0', 'F1-0005-dd518f'])",
+      "detail": "540 tasks, order-sensitive, 14 custody-retained fields, 0 mismatches",
+      "state": "PASS"
+    },
+    {
+      "check": "selftest_reproduces",
+      "control": "the report carries per-test verdicts; a regressed oracle flips one to failed",
+      "detail": "16/16 tests, byte-equal to the committed report",
+      "state": "PASS"
+    },
+    {
+      "check": "G1_headline_recomputed_from_raw",
+      "control": "M and B5 emit differing (validity,fidelity,action) on 6 rows, so a discordant pair was reachable",
+      "detail": "M 510/540, B5 510/540, discordant 0",
+      "state": "PASS"
+    },
+    {
+      "check": "tie_is_positive_not_a_negated_gap",
+      "control": "if the two arms were identical by construction, differ would be 0 and this check FAILs",
+      "detail": "0 discordant of 540; the arms are not the same arm (6 rows differ)",
+      "state": "PASS"
+    },
+    {
+      "check": "drift_counters_are_not_vacuous",
+      "control": "A0_DIRECT (proof-only parent) scores drift_missed_rate=1.000 on the same denominator",
+      "detail": "drift_n=38, faithful_n=502; M drift_missed_rate=0.000",
+      "state": "PASS"
+    },
+    {
+      "check": "G3_scope_is_declared",
+      "control": "each not-gated family carries an explicit reason; no ablation is scored where none exists",
+      "detail": "6 families gated and all degrade; 2 NOT gated (F1_DIRECT_SEARCH, F8_TRANSFER)",
+      "state": "PASS"
+    },
+    {
+      "check": "lean_crosscheck_on_protected_corpus",
+      "control": "20 corrupted derivations were rejected for the registered Derives mismatch, so the checker is not accept-everything",
+      "detail": "40 files, 20 kernel-accepted, 20 negative controls rejected, 0 CANNOT_CHECK, 0 disagreements; 20 task_ids all in PROTECTED, 0 in DEVELOPMENT",
+      "state": "PASS"
+    },
+    {
+      "check": "registered_default_lean_path_is_not_stale",
+      "control": "creating that file would flip this check to FAIL",
+      "detail": "lean/LEAN_RECEIPT.json absent; the protected receipt is results/ME_X3_LEAN_RECEIPT_PROTECTED_V1.json; lean/ holds a DEVELOPMENT build and is untracked",
+      "state": "PASS"
+    }
+  ],
+  "label": "PROTECTED",
+  "n_could_not_check": 0,
+  "n_fail": 0,
+  "n_pass": 10,
+  "schema_version": "orion.v2.me-x3.receipt-verification.v1"
+}
