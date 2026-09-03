@@ -364,6 +364,59 @@ def test_feasibility_arithmetic_is_over_calls_not_envelopes():
     assert slow["fits_in_one_slurm_allocation"] is False
 
 
+# ----------------------------------------------------------------- execution tally
+tally = _load("e30_r13_execution_tally", R13 / "e30_r13_execution_tally.py")
+
+
+def _tally_campaign(tmp_path: Path, receipt_for, status="COMPLETED_PROPOSAL_ONLY") -> Path:
+    campaign = tmp_path / "campaign"
+    (campaign / "run" / "confirmatory-r1").mkdir(parents=True)
+    (campaign / "run" / "confirmatory-r1" / "frozen_tasks.json").write_text(
+        json.dumps({"tasks": [{"task_id": t} for t in TASKS]}))
+    for rep in tally.REPS:
+        for arm in tally.ARMS:
+            directory = campaign / "run" / f"confirmatory-r{rep}" / "responses" / arm
+            directory.mkdir(parents=True, exist_ok=True)
+            for task in TASKS:
+                envelope = {"task_id": task, "arm_id": arm, "status": status,
+                            "resource_receipt": {"output_tokens": 900, "wall_time_seconds": 20.0,
+                                                 "served_model_ids": ["glm-5.3"]}}
+                receipt = receipt_for(rep, arm, task)
+                if receipt is not None:
+                    envelope["channel_receipt"] = receipt
+                (directory / f"{task}.json").write_text(json.dumps(envelope))
+    return campaign
+
+
+def test_the_tally_publishes_denominators_for_every_count(tmp_path):
+    campaign = _tally_campaign(tmp_path, lambda r, a, t: _clean())
+    out = tmp_path / "tally.json"
+    assert tally.main(["--campaign", str(campaign), "--out", str(out)]) == 0
+    payload = json.loads(out.read_text())
+    expected = len(tally.REPS) * len(tally.ARMS) * len(TASKS)
+    assert payload["envelopes_expected"] == payload["envelopes_written"] == expected
+    channel = payload["channel_receipts"]
+    assert channel["envelopes_with_a_channel_receipt"] == channel["envelopes_expected"] == expected
+    assert channel["model_calls_reporting_a_contract"] == channel["model_calls_seen"] == expected
+    assert payload["non_completed_envelope_count"] == 0
+    assert payload["computes_no_endpoint_no_contrast_no_gate"] is True
+
+
+def test_the_tally_never_hides_a_missing_or_receiptless_envelope(tmp_path):
+    campaign = _tally_campaign(tmp_path, lambda r, a, t: None if a == "SIMPLE_DIRECT" else _clean(),
+                               status="EXECUTION_FAILED_MODEL_RESPONSE")
+    (campaign / "run" / "confirmatory-r2" / "responses" / "SIMPLE_DIRECT" / f"{TASKS[0]}.json").unlink()
+    out = tmp_path / "tally.json"
+    assert tally.main(["--campaign", str(campaign), "--out", str(out)]) == 0
+    payload = json.loads(out.read_text())
+    expected = len(tally.REPS) * len(tally.ARMS) * len(TASKS)
+    assert payload["statuses"]["MISSING"] == 1
+    assert payload["envelopes_written"] == expected - 1
+    # SIMPLE_DIRECT carries no channel receipt: the shortfall must be visible, not absorbed.
+    assert payload["channel_receipts"]["envelopes_with_a_channel_receipt"] < expected - 1
+    assert payload["non_completed_envelope_count"] == expected - 1
+
+
 # --------------------------------------------------------------------- design freeze
 DESIGN_PATH = R13 / "E30_R13_CHANNEL_CONTRACT_RERUN_DESIGN_V1.json"
 
