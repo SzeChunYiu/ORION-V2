@@ -1,0 +1,568 @@
+{
+  "G0_PARENT_FIDELITY": {
+    "failures": [],
+    "hard": true,
+    "pass": true,
+    "passed": 19,
+    "total": 19
+  },
+  "G0a_WARRANT_VALIDITY_FIXTURES": {
+    "hard": true,
+    "n": 25,
+    "n_pass": 25,
+    "pass": true,
+    "rows": [
+      {
+        "expected_valid": true,
+        "kind": "LICENSED",
+        "name": "sat_by_verified_witness_at_this_rung",
+        "observed_valid": true,
+        "pass": true,
+        "reason": ""
+      },
+      {
+        "expected_valid": true,
+        "kind": "LICENSED",
+        "name": "sat_by_closure_from_named_higher_witness",
+        "observed_valid": true,
+        "pass": true,
+        "reason": ""
+      },
+      {
+        "expected_valid": true,
+        "kind": "LICENSED",
+        "name": "sat_by_closure_from_unnamed_higher_witness",
+        "observed_valid": true,
+        "pass": true,
+        "reason": ""
+      },
+      {
+        "expected_valid": true,
+        "kind": "LICENSED",
+        "name": "sat_by_closure_source_equals_claimed_rung",
+        "observed_valid": true,
+        "pass": true,
+        "reason": ""
+      },
+      {
+        "expected_valid": true,
+        "kind": "LICENSED",
+        "name": "unsat_by_completed_refutation_at_this_rung",
+        "observed_valid": true,
+        "pass": true,
+        "reason": ""
+      },
+      {
+        "expected_valid": true,
+        "kind": "LICENSED",
+        "name": "unsat_by_closure_from_named_lower_refutation",
+        "observed_valid": true,
+        "pass": true,
+        "reason": ""
+      },
+      {
+        "expected_valid": true,
+        "kind": "LICENSED",
+        "name": "unsat_by_closure_from_unnamed_lower_refutation",
+        "observed_valid": true,
+        "pass": true,
+        "reason": ""
+      },
+      {
+        "expected_valid": true,
+        "kind": "LICENSED",
+        "name": "closure_inside_the_second_block",
+        "observed_valid": true,
+        "pass": true,
+        "reason": ""
+      },
+      {
+        "expected_valid": true,
+        "kind": "LICENSED",
+        "name": "unresolved_carries_warrant_none",
+        "observed_valid": true,
+        "pass": true,
+        "reason": "UNRESOLVED must carry warrant NONE"
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "failure_to_find_is_not_a_refutation",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "no completed refutation at this rung"
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "failure_to_find_asserted_without_warrant",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "verdict asserted with no warrant"
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "satisfiable_asserted_without_warrant",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "verdict asserted with no warrant"
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "witness_generalised_upward_named",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "source rung 1 is not a verified witness at or above 3"
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "witness_generalised_upward_unnamed",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "no witness at or above this rung to close downward from"
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "refutation_generalised_downward_named",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "source rung 3 is not a completed refutation at or below 1"
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "refutation_generalised_downward_unnamed",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "no refutation at or below this rung to close upward from"
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "verified_witness_cannot_license_unsatisfiable",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "VERIFIED_WITNESS cannot license UNSATISFIABLE"
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "completed_refutation_cannot_license_satisfiable",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "COMPLETED_REFUTATION cannot license SATISFIABLE"
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "verified_witness_without_any_witness",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "no verified witness at this rung"
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "refutation_that_did_not_exhaust_the_space",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "no completed refutation at this rung"
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "closure_across_blocks_satisfiable_named",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "source rung 7 is not a verified witness at or above 0"
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "closure_across_blocks_satisfiable_unnamed",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "no witness at or above this rung to close downward from"
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "closure_across_blocks_unsatisfiable_named",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "source rung 0 is not a completed refutation at or below 6"
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "closure_across_blocks_unsatisfiable_unnamed",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "no refutation at or below this rung to close upward from"
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "unresolved_with_a_non_none_warrant",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "UNRESOLVED must carry warrant NONE"
+      }
+    ]
+  },
+  "G0b_TOOLBOX_SOUNDNESS": {
+    "campaigns": [
+      {
+        "campaign_id": "F_CRITICAL-0000",
+        "completed_refutations": 24,
+        "family": "F_CRITICAL",
+        "ground_truth_monotone_within_blocks": true,
+        "monotonicity_reason": "",
+        "n_blocks": 4,
+        "n_rungs": 20,
+        "n_vars": 24,
+        "pass": true,
+        "preprocess_disagreements": [],
+        "preprocess_power": {
+          "subsumption": {
+            "clauses_removed": 11,
+            "rungs_changed": 11,
+            "witnesses_on_changed_rungs": 8
+          },
+          "symmetry": {
+            "clauses_removed": 0,
+            "rungs_changed": 20,
+            "witnesses_on_changed_rungs": 22
+          },
+          "unit_pure": {
+            "clauses_removed": 12,
+            "rungs_changed": 1,
+            "witnesses_on_changed_rungs": 2
+          }
+        },
+        "statuses": [
+          "SAT",
+          "SAT",
+          "UNSAT",
+          "UNSAT",
+          "UNSAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "UNSAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "UNSAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "UNSAT"
+        ],
+        "unsettled": 0,
+        "witnesses_failing_verification": 0,
+        "witnesses_verified": 90
+      },
+      {
+        "campaign_id": "F_CRITICAL-0001",
+        "completed_refutations": 40,
+        "family": "F_CRITICAL",
+        "ground_truth_monotone_within_blocks": true,
+        "monotonicity_reason": "",
+        "n_blocks": 4,
+        "n_rungs": 20,
+        "n_vars": 24,
+        "pass": true,
+        "preprocess_disagreements": [],
+        "preprocess_power": {
+          "subsumption": {
+            "clauses_removed": 12,
+            "rungs_changed": 10,
+            "witnesses_on_changed_rungs": 9
+          },
+          "symmetry": {
+            "clauses_removed": 0,
+            "rungs_changed": 20,
+            "witnesses_on_changed_rungs": 16
+          },
+          "unit_pure": {
+            "clauses_removed": 0,
+            "rungs_changed": 0,
+            "witnesses_on_changed_rungs": 0
+          }
+        },
+        "statuses": [
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "UNSAT",
+          "SAT",
+          "UNSAT",
+          "UNSAT",
+          "UNSAT",
+          "UNSAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "UNSAT",
+          "SAT",
+          "UNSAT",
+          "UNSAT",
+          "UNSAT",
+          "UNSAT"
+        ],
+        "unsettled": 0,
+        "witnesses_failing_verification": 0,
+        "witnesses_verified": 62
+      },
+      {
+        "campaign_id": "F_CRITICAL-0002",
+        "completed_refutations": 36,
+        "family": "F_CRITICAL",
+        "ground_truth_monotone_within_blocks": true,
+        "monotonicity_reason": "",
+        "n_blocks": 4,
+        "n_rungs": 20,
+        "n_vars": 24,
+        "pass": true,
+        "preprocess_disagreements": [],
+        "preprocess_power": {
+          "subsumption": {
+            "clauses_removed": 0,
+            "rungs_changed": 0,
+            "witnesses_on_changed_rungs": 0
+          },
+          "symmetry": {
+            "clauses_removed": 0,
+            "rungs_changed": 20,
+            "witnesses_on_changed_rungs": 21
+          },
+          "unit_pure": {
+            "clauses_removed": 11,
+            "rungs_changed": 1,
+            "witnesses_on_changed_rungs": 2
+          }
+        },
+        "statuses": [
+          "SAT",
+          "SAT",
+          "SAT",
+          "UNSAT",
+          "UNSAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "UNSAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "UNSAT",
+          "UNSAT",
+          "SAT",
+          "UNSAT",
+          "UNSAT",
+          "UNSAT",
+          "UNSAT"
+        ],
+        "unsettled": 0,
+        "witnesses_failing_verification": 0,
+        "witnesses_verified": 81
+      },
+      {
+        "campaign_id": "F_PLANTED-0003",
+        "completed_refutations": 0,
+        "family": "F_PLANTED",
+        "ground_truth_monotone_within_blocks": true,
+        "monotonicity_reason": "",
+        "n_blocks": 4,
+        "n_rungs": 20,
+        "n_vars": 24,
+        "pass": true,
+        "preprocess_disagreements": [],
+        "preprocess_power": {
+          "subsumption": {
+            "clauses_removed": 5,
+            "rungs_changed": 5,
+            "witnesses_on_changed_rungs": 9
+          },
+          "symmetry": {
+            "clauses_removed": 0,
+            "rungs_changed": 20,
+            "witnesses_on_changed_rungs": 37
+          },
+          "unit_pure": {
+            "clauses_removed": 30,
+            "rungs_changed": 6,
+            "witnesses_on_changed_rungs": 12
+          }
+        },
+        "statuses": [
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT"
+        ],
+        "unsettled": 0,
+        "witnesses_failing_verification": 0,
+        "witnesses_verified": 142
+      },
+      {
+        "campaign_id": "F_CRITICAL-0000",
+        "completed_refutations": 24,
+        "family": "F_CRITICAL",
+        "ground_truth_monotone_within_blocks": true,
+        "monotonicity_reason": "",
+        "n_blocks": 2,
+        "n_rungs": 10,
+        "n_vars": 12,
+        "pass": true,
+        "preprocess_disagreements": [],
+        "preprocess_power": {
+          "subsumption": {
+            "clauses_removed": 11,
+            "rungs_changed": 10,
+            "witnesses_on_changed_rungs": 8
+          },
+          "symmetry": {
+            "clauses_removed": 0,
+            "rungs_changed": 10,
+            "witnesses_on_changed_rungs": 8
+          },
+          "unit_pure": {
+            "clauses_removed": 0,
+            "rungs_changed": 0,
+            "witnesses_on_changed_rungs": 0
+          }
+        },
+        "sensitivity_campaign": true,
+        "statuses": [
+          "UNSAT",
+          "UNSAT",
+          "UNSAT",
+          "UNSAT",
+          "UNSAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "UNSAT"
+        ],
+        "unsettled": 0,
+        "witnesses_failing_verification": 0,
+        "witnesses_verified": 32
+      },
+      {
+        "campaign_id": "F_PLANTED-0001",
+        "completed_refutations": 0,
+        "family": "F_PLANTED",
+        "ground_truth_monotone_within_blocks": true,
+        "monotonicity_reason": "",
+        "n_blocks": 2,
+        "n_rungs": 10,
+        "n_vars": 12,
+        "pass": true,
+        "preprocess_disagreements": [],
+        "preprocess_power": {
+          "subsumption": {
+            "clauses_removed": 11,
+            "rungs_changed": 10,
+            "witnesses_on_changed_rungs": 20
+          },
+          "symmetry": {
+            "clauses_removed": 0,
+            "rungs_changed": 10,
+            "witnesses_on_changed_rungs": 20
+          },
+          "unit_pure": {
+            "clauses_removed": 0,
+            "rungs_changed": 0,
+            "witnesses_on_changed_rungs": 0
+          }
+        },
+        "sensitivity_campaign": true,
+        "statuses": [
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT",
+          "SAT"
+        ],
+        "unsettled": 0,
+        "witnesses_failing_verification": 0,
+        "witnesses_verified": 80
+      }
+    ],
+    "coverage": {
+      "subsumption": {
+        "clauses_removed": 50,
+        "rungs_changed": 46,
+        "witnesses_on_changed_rungs": 54
+      },
+      "symmetry": {
+        "clauses_removed": 0,
+        "rungs_changed": 100,
+        "witnesses_on_changed_rungs": 124
+      },
+      "unit_pure": {
+        "clauses_removed": 53,
+        "rungs_changed": 8,
+        "witnesses_on_changed_rungs": 16
+      }
+    },
+    "coverage_pass": true,
+    "coverage_rule": "for every preprocess mode, at least one WITNESS_FOUND must have been observed on a rung that mode actually changed; otherwise the soundness check is vacuous for that mode and is not a pass",
+    "hard": true,
+    "n_campaigns": 6,
+    "pass": true,
+    "rule": "WITNESS_FOUND is emitted only with an assignment verified clause-by-clause against the UNPREPROCESSED rung; REFUTED with refutation_complete only when the space was exhausted within the node limit; every preprocess mode is satisfiability-preserving on every development campaign; ground truth is monotone within every block"
+  },
+  "G0d_GENERATOR_VALIDITY": {
+    "critical_campaigns": 3,
+    "every_critical_campaign_has_sat_and_unsat": true,
+    "every_planted_rung_is_ground_truth_sat": true,
+    "hard": true,
+    "pass": true,
+    "planted_campaigns": 1,
+    "rule": "every rung of every F_PLANTED campaign is ground-truth SAT (the planted assignment satisfies it), and F_CRITICAL campaigns contain both SAT and UNSAT rungs"
+  },
+  "design_sha256": "f9ecd9ecba3b632cbf32304ab5a66e88640e655584e4991243f9af7858c4c704",
+  "geometry": {
+    "budget_checks": 240000,
+    "dev_seed": "ME-F1-DEV-20260902",
+    "n_blocks": 4,
+    "n_vars": 24
+  },
+  "passed": true,
+  "schema_version": "orion.v2.me-f1.frontier-study-analysis.v1.selftest"
+}
