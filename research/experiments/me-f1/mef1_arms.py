@@ -134,6 +134,11 @@ You are running four established techniques together. Use all of them.
  1. ALGORITHM SELECTION (Rice 1976; SATzilla, Xu et al. 2008). Pick the solver per rung
     from the feature table: ratio <= 4.12 -> local_search; ratio >= 4.42 -> exact_solve;
     in between, try local_search first. The recommended schedule is given below.
+    A portfolio does not stop at its first pick. When a probe returns INCONCLUSIVE it has
+    established nothing, so run the OTHER tool on that same rung before you move on
+    (local_search -> exact_solve; exact_solve -> local_search). If both come back
+    INCONCLUSIVE, that block's bracket cannot be advanced from here: leave it and spend
+    the remaining budget on another block.
  2. BINARY SEARCH within each block. That block's satisfiable rungs form a prefix, so
     its boundary can be localised in about log2(rungs per block) probes instead of one
     probe per rung. Probe the midpoint of each block's still-open interval, given below.

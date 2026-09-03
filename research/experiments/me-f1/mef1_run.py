@@ -60,6 +60,8 @@ HERE = Path(__file__).resolve().parent
 if str(HERE) not in sys.path:
     sys.path.insert(0, str(HERE))
 
+from mef1_parity import (check_control_text_parity,  # noqa: E402
+                         fallback_ablation)
 from mef1_arms import (ALL_ARMS, DETERMINISTIC_ARMS, MODEL_ARMS,  # noqa: E402
                        run_deterministic_arm, run_model_arm)
 from mef1_channel import call_control, probe_channel  # noqa: E402
@@ -1208,6 +1210,8 @@ G0E_DIAGNOSTIC_ARMS = (M_ARM,)
 
 EXIT_G0E_FAILED = 7        # checked, and the endpoint has no laundering variance
 EXIT_G0E_UNCHECKABLE = 8   # the arms did not produce a scorable claim: nothing measured
+EXIT_PARITY_GAP = 9        # checked, and an arm's control text hides its own code's capability
+EXIT_PARITY_UNCHECKABLE = 10  # the parity question could not be put; NOT a pass
 
 
 def g0e_report_path(out_dir: Path) -> Path:
@@ -1467,11 +1471,57 @@ def _default_seed_file() -> Path:
                                str(Path.home() / ".orion-custody/frontier/PROTECTED_SEED_V1.txt")))
 
 
+def stage_parity(out_dir: Path, n_campaigns: int) -> int:
+    """Arm-glue parity: every arm's control text must expose what its own code can do.
+
+    Receipt S5.1 recorded an arm-glue fidelity gap it did not repair -- B5's deterministic
+    twin falls back to the other tool on INCONCLUSIVE, and B5's control text did not say
+    so.  This stage keeps that repaired: it fails if the sentence is removed again, and it
+    measures what the fallback is worth with no model calls.
+
+    Exit 0 parity holds; 9 a gap is present; 10 the question could not be put.
+    """
+    prov = announce_provenance("parity")
+    parity = check_control_text_parity()
+    ablation = fallback_ablation(n_campaigns=n_campaigns)
+    report = {
+        "schema_version": SCHEMA_ANALYSIS + ".parity",
+        "check": "ARM_GLUE_CONTROL_TEXT_PARITY", "hard": True,
+        "source_provenance": prov,
+        "design_sha256": design_sha256(),
+        "control_text_parity": parity,
+        "fallback_ablation": ablation,
+    }
+    _write_json(out_dir / "ME_F1_ARM_PARITY_V1.json", report)
+
+    for arm, v in parity["arms"].items():
+        print(f"  {arm}: {v.get('status')} "
+              f"(tool-switch forms {v.get('n_forms_matched')}/{v.get('n_forms_probed')})")
+    if ablation.get("verdict") == "MEASURED":
+        for label, v in ablation["variants"].items():
+            print(f"  ablation {label}: INCONCLUSIVE {v['n_inconclusive']}/{v['n_actions']}"
+                  f" = {v['inconclusive_rate']}  coverage {v['coverage']}"
+                  f"  (over {v['n_decided_rungs']} decided rungs)")
+    else:
+        print(f"  ablation: {ablation.get('verdict')} -- {ablation.get('reason')}")
+
+    if parity["verdict"] == "PARITY" and ablation.get("verdict") == "MEASURED":
+        print(f"parity PARITY: {parity['n_arms_checked']}/{parity['n_arms_required']} "
+              f"arms expose their code's capability")
+        return 0
+    if parity["verdict"] == "GAP":
+        print(f"parity GAP: {parity['gap_arms']}")
+        return EXIT_PARITY_GAP
+    print(f"parity NOT_CHECKED: {parity.get('reason') or ablation.get('reason')}")
+    return EXIT_PARITY_UNCHECKABLE
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("stage", choices=("selftest", "calibrate", "dev", "protected",
-                                      "analyze", "g0e", "freeze", "verify-source"))
+                                      "analyze", "g0e", "parity", "freeze",
+                                      "verify-source"))
     ap.add_argument("--out", type=Path, default=HERE / "results")
     ap.add_argument("--campaigns", type=int, default=None)
     ap.add_argument("--results", type=Path, default=None)
@@ -1510,6 +1560,8 @@ def main(argv: list[str] | None = None) -> int:
         return code
     if a.stage == "g0e":
         return stage_g0e(a.out, a.campaigns or DEV_CAP, a.max_concurrency)
+    if a.stage == "parity":
+        return stage_parity(a.out, a.campaigns or DEV_CAP)
     if a.stage == "selftest":
         return stage_selftest(a.out)
     if a.stage == "calibrate":
