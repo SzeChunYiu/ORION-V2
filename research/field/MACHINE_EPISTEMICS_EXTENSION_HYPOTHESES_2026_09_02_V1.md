@@ -52,7 +52,7 @@ Reading: the programme's residual, if it exists, is not "more control" but **reg
 ## Custody
 
 - H-EXT-1: re-analysis + fresh-seed prospective cell on the P-D generated suite (design freeze first).
-- H-EXT-2: design freeze only until Stage-2b terminates; dispatch under its own identity.
+- H-EXT-2: **`EXECUTION_BLOCKED_PRE_DISPATCH`** (2026-09-03) — design frozen, never dispatched; 0 native runs, 0 decision calls, fallback ladder unconsumed. `H-EXT-2-BLOCK-1`: the §9 licence is unsatisfiable — Stage-2b (SLURM 3563453) was `CANCELLED`, elapsed `00:00:00`, never started, has no outcome receipt, and was superseded by Stage-2c, whose disposition `CHECKER_INVALID__NO_VERDICT` resolves neither of §9's two registered branches. `H-EXT-2-BLOCK-2` (independent): the P′ cohort's registered G0 planted control is already measured FAIL on the current served channel — its prompts are byte-identical (sha256-verified) to Stage-2d arm `B_REGIME_ANCHOR`, and G1 is a conjunction requiring P′. Receipt: `research/experiments/h-ext2/H_EXT2_EXECUTION_BLOCKED_RECEIPT_V1.md`. The m5′ observation remains **unreplicated and unrefuted**; this is not the `SALIENCE_ANTI_RANKING_NOT_REPLICATED` terminal.
 - H-EXT-3: added as a pre-registered secondary axis to the ME-X4 exact study design; formal separation example as a separate note.
 - H-EXT-4: proof attempt with mechanized finite checks; result filed under `research/llm-machine-epistemics/`.
 

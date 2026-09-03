@@ -1,0 +1,155 @@
+{
+ "schema_version": "orion.v2.h-ext2.execution-blocked-checkpoint.v1",
+ "study": "H-EXT-2 INTERNAL_SALIENCE_GOODHART_REPLICATION",
+ "register_row": "research/field/MACHINE_EPISTEMICS_EXTENSION_HYPOTHESES_2026_09_02_V1.md#H-EXT-2",
+ "checkpoint_date": "2026-09-03",
+ "main_sha": "e79482a219cb21d4fcb9d81fa3f4722b07ed89ae",
+ "authoritative_document": "research/experiments/h-ext2/H_EXT2_EXECUTION_BLOCKED_RECEIPT_V1.md",
+
+ "status": {
+  "H_EXT2_STATUS": "EXECUTION_BLOCKED_PRE_DISPATCH",
+  "H_EXT2_NATIVE_RUNS_EXECUTED": 0,
+  "H_EXT2_DECISION_CALLS_EXECUTED": 0,
+  "H_EXT2_RUNTIME_PROBE_EXECUTED": 0,
+  "H_EXT2_PROTECTED_RUN_AUTHORIZATION": "NEVER_REQUESTED__NEVER_ARMED",
+  "H_EXT2_SEED_COMMITMENT_PUBLISHED": false,
+  "H_EXT2_TERMINAL": "NONE__STUDY_REMAINS_PROSPECTIVE",
+  "H_EXT2_LADDER_STATE": "UNCONSUMED",
+  "M5P_OBSERVATION_STATUS": "UNREPLICATED__UNREFUTED",
+  "not_a_routing_terminal": "EXECUTION_BLOCKED_PRE_DISPATCH is not in the design's routing table and is not the screen's CANNOT_CHECK__CAMPAIGN_INVALID (an evaluation-time verdict reached after dispatch, screen exit 2). This is reached before dispatch on no campaign evidence."
+ },
+
+ "frozen_artifacts_verified_unchanged": {
+  "design_md": {"path": "research/experiments/h-ext2/H_EXT2_SALIENCE_GOODHART_REPLICATION_DESIGN_V1.md", "sha256": "d13c8718997d9671f7fabcba2113a6403e89530c29a2eee97d2cb255de556365"},
+  "design_json": {"path": "research/experiments/h-ext2/H_EXT2_SALIENCE_GOODHART_REPLICATION_DESIGN_V1.json", "sha256": "f1f28bcd000c118c055660e531eb74eddb8a0140ba220508c900d6168fc69718"},
+  "runner": {"path": "scripts/h_ext2_salience_runner.py", "sha256": "a96c3a471a55f9b238bbfa799a8f13676ce50f9083f304a9aedc09cf7be9ba4e", "matches_design_section_10_declaration": true},
+  "screen": {"path": "research/experiments/h-ext2/h_ext2_salience_screen.py", "sha256": "984e352d6ccf0ce8d8ac09c4662642f709081fe9d75a28a4813d594f19a149ce", "matches_design_section_10_declaration": true}
+ },
+
+ "blockers": {
+  "H-EXT-2-BLOCK-1": {
+   "title": "the design's own dispatch licence (section 9) is unsatisfiable",
+   "attribution_stage": "registered dependency: E40-m5' Stage-2b termination",
+   "class": "DOCUMENTARY",
+   "evidence": {
+    "sacct_3563453": {"job": "3563453_[0-47%8]", "name": "o2-e40m5p2b-chain", "state": "CANCELLED by 6350", "submit": "2026-09-02T06:23:08", "eligible": "2026-09-05T04:45:00", "start": "None", "end": "2026-09-02T16:43:21", "elapsed": "00:00:00", "reason": "BeginTime", "interpretation": "never started"},
+    "lunarc_campaign_dir": "campaign-e40-m5p-stage2b absent (find by directory name across $HOME, 0 hits)",
+    "outcome_receipt_on_main": "E40_M5P_STAGE2B_OUTCOME_RECEIPT.md DOES NOT EXIST; only E40_M5P_STAGE2B_DISPATCH_RECEIPT_V1.md is present",
+    "successor": "SLURM 3564928 o2-e40m5p2c-chain, 60/60 COMPLETED, started 2026-09-02T16:43:22 (one second after the cancellation)",
+    "register_custody_row": "unchanged on main: 'H-EXT-2: design freeze only until Stage-2b terminates; dispatch under its own identity' -- no lane has re-pointed the dependency"
+   },
+   "why_stage2c_cannot_substitute": "Design section 9 registers TWO branches for reading G2, both keyed to an ADMISSIBLE parent G1 verdict. Stage-2c's authoritative disposition is CHECKER_INVALID__NO_VERDICT (planted control FAIL, terminal quality 0.6412; see rollup-m5p-stage2c/DISPOSITION_SUPERSEDED.md), so its numeric G1 FAIL is inadmissible. Neither branch resolves; G2's registered reading is undetermined."
+  },
+  "H-EXT-2-BLOCK-2": {
+   "title": "the P' cohort's registered G0 planted control is already measured FAIL on the current served channel",
+   "attribution_stage": "the cycle-1 mandate carried by the P' prompt policy, interacting with the served model glm-5.3",
+   "class": "EMPIRICAL__BYTE_VERIFIED",
+   "independent_of_block_1": true,
+   "single_blocking_artifact": "research/experiments/e40-matched/rollup-m5p-stage2d/B_REGIME_ANCHOR_arm.json (sha256 9d6de7c8fdcd60b5aaaeb6e006358e4793bb0ee3b87b6e7b7ecd9343420bfd51)",
+   "why_the_learner_is_irrelevant": "control_planted() performs ZERO native runs -- it loops ask_config_f2 over 9 cycles against synth_feedback(). E40M_MODEL, the study's single registered delta, cannot influence it. The control is determined by (prompt policy, served model, plant v4, PASS rule) alone.",
+   "prompt_identity_verified": {
+    "method": "rendered from both frozen sources in /usr/bin/python3, compared by sha256 and /usr/bin/diff (exit 0)",
+    "P_prime_vs_stage2d_B": {
+     "cycle_1": {"sha256": "93d5f77ebcb9a55332780a8ffa27a3dc49f04ac101bcc304e725c874e3f42e3c", "bytes": 2113, "identical": true},
+     "cycles_2_3_4_5_9": {"sha256_prefixes": ["737bec1e", "f9930ea3", "a7fe09d5", "4692a21b", "5bf1cd37"], "bytes": 2438, "identical": true}
+    },
+    "R_prime_vs_stage2d_A": {"cycle_1": {"sha256": "95db82fb0c059df8d6f54b4d6da9d36fe160ac502723dca852e5a2e3a1fde4e1", "bytes": 1811, "identical": true}},
+    "controls_on_the_comparison": {
+     "R_prime_differs_from_P_prime": true,
+     "CYCLE-1 RULE present in P_prime": true,
+     "CYCLE-1 RULE present in R_prime": false,
+     "deliberately_mismatched_pair_compares_unequal": true,
+     "note": "the identity is a finding, not an artefact of a comparison that could only return True"
+    }
+   },
+   "measured_control_outcomes": {
+    "A_NO_MANDATE": {"maps_to_cohort": "R_prime", "verdict": "PASS", "terminal_quality": 0.9877302162356105, "artifact_sha256": "a2cedcfea228c6a8666ae47e6e12011cd86f43c3768cc27079fbd4289570502c"},
+    "B_REGIME_ANCHOR": {"maps_to_cohort": "P_prime", "verdict": "FAIL", "terminal_quality": 0.9518167844230893, "cycles_1_to_4_qualities": [0.02332263739822093, 0.02332263739822093, 0.02332263739822093, 0.02332263739822093], "artifact_sha256": "9d6de7c8fdcd60b5aaaeb6e006358e4793bb0ee3b87b6e7b7ecd9343420bfd51"}
+   },
+   "plant_identity_confirmed_by_independent_arithmetic": {"0.02332": "0.55*exp(-((0-0.8)/0.45)^2) = interventional@0.0", "0.95182": "partial@0.9", "0.82075": "partial@1.0", "0.98773": "partial@0.85"},
+   "why_this_blocks": "G0 is registered per cohort and G0 fail routes to CANNOT_CHECK__CAMPAIGN_INVALID with no claim. G1 is a conjunction requiring P' (frozen screen: g1 = g1_r and g1_sign). With P''s G0 already measured failing, the design's 144 native runs and 96 decision calls would purchase a verdict knowable now, for free, and equal to CANNOT_CHECK.",
+   "not_resolvable_by_this_lane": "Stage-2d section 3: arm B PASSED under the m3-era served model (0.9877) and FAILS on glm-5.3. The cause is a mandate-by-model interaction and the m2/m3-era served model is unrecoverable. There is no code fix.",
+   "explicitly_not_done": [
+    "the design was NOT amended to drop P' or to re-point G1 to R' alone -- dropping a registered cohort because it has been measured to fail is outcome-directed amendment, and design section 11 forbids cohort re-assignment"
+   ]
+  }
+ },
+
+ "prediction_not_used_to_support_the_disposition": {
+  "claim": "P''s LIVE arm would likely also fail G0's non-degeneracy clause",
+  "basis": "Stage-2d arm B sat frozen at interventional@frac 0.0 (quality 0.02332) for cycles 1-4, escaping only at cycles 5-6. H-EXT-2 chains are K=4 cycles, shorter than the measured mandate-escape time on this channel, so sig_purity would plausibly be constant across a chain's entire horizon (G0 requires >=8/12 chains with >=3 distinct sig_purity values).",
+  "status": "PREDICTION -- extrapolates from a synthetic-feedback control to a live arm; BLOCK-2 rests on the measured control alone"
+ },
+
+ "pre_run_design_findings_recorded_not_applied": {
+  "policy": "the freeze stands; the study is blocked, so there is no run to protect. These are corrections the successor freeze must carry.",
+  "D1_G2_absence_test_has_no_power_floor": {
+   "severity": "HIGH",
+   "class": "ROUTING_PATH_AWARDS_A_RESIDUAL_ON_A_GAP_THE_DESIGN_DISCLAIMS",
+   "finding": "specificity() sets usable = (chains_used>=8 and nonconst>=8) where nonconst counts chains with >=2 DISTINCT values, then verdict = PASS if not anti. usable discriminates constant from non-constant, NOT uninformative from informative. A pure-noise external anchor jitters (so it is usable), yields rho~0 (so anti is False), and therefore scores G2 = PASS -- which routes to the study's strongest terminal SALIENCE_ANTI_RANKING_REPLICATED_CROSS_LEARNER. The specificity gate is purchasable by instrument death.",
+   "not_hypothetical_on_this_substrate": "Stage-2c section 4 MEASURED replica_J on the parent cell: range 0.0093-0.0520, mean 0.0282 (seed-replicas agree on ~3% of edges), pooled rho +0.00185 at p 0.9893.",
+   "demonstration": {
+    "setup": "12 synthetic chains, sig_purity strongly anti-ranking truth, external anchor drawn uniformly from Stage-2c's measured replica_J range",
+    "noise_anchor": {"chains_nonconstant": 12, "usable": true, "raw_rho": 0.2, "perm_p": 0.242, "G2": "PASS", "route": "SALIENCE_ANTI_RANKING_REPLICATED_CROSS_LEARNER"},
+    "exactly_constant_anchor": {"chains_nonconstant": 0, "usable": false, "raw_rho": 0.0, "perm_p": 1.0, "G2": "CANNOT_CHECK", "route": "G2_CANNOT_CHECK"},
+    "conclusion": "only the exactly-constant case is caught"
+   },
+   "related": "the section 3 outcome-blind probe reads only primary finiteness and wall time; it does NOT check replica overlap, despite Stage-2c's explicit warning that any replica-consistency truth-anchor must first establish sufficient overlap. The precondition the design most depends on is the one its mandatory probe does not test.",
+   "successor_fix": "G2 needs a positive control -- the external anchor must be shown capable of ranking something (a registered informativeness floor on replica overlap, or a known-answer recovery) before its silence is read as mechanism specificity."
+  },
+  "D2_g0_non_degeneracy_counter_passes_vacuously": {
+   "severity": "MEDIUM",
+   "class": "A_COUNTER_THAT_NEVER_RAN_REPORTING_ZERO_VIOLATIONS",
+   "finding": "in g0_validity, ge3 filters non-finite values but distinct3 -- one line below -- does not: distinct3 = sum(1 for ch in chains if len(set(round(v,12) for v in ch['scores'][PRIMARY])) >= 3). Distinct NaN objects do not collapse in a set.",
+   "verified": {"[nan,nan,nan,nan]": {"distinct": 4, "passes_ge3": true}, "[nan,nan,nan,0.5]": {"distinct": 4, "passes_ge3": true}, "control_[0.3,0.3,0.3,0.3]": {"distinct": 1, "passes_ge3": false}},
+   "consequence": "a chain whose primary is entirely NaN scores MAXIMUM non-degeneracy. The gate registered to prevent a degenerate primary cannot see the degenerate case. The neighbouring MAX_NAN_CYCLE_FRACTION clause does not cover it either -- that is computed over truth (wasserstein), not over sig_purity.",
+   "successor_fix": "filter with math.isfinite in distinct3, and add a NaN-primary fraction clause on the candidate as well as on truth"
+  },
+  "D3_registered_clause_executed_but_not_gate_consumed": {
+   "severity": "LOW",
+   "class": "REGISTERED_GATE_CLAUSE_SILENTLY_NARROWED",
+   "finding": "G0 registers FORBIDDEN_SUBSTRINGS asserts on feedback write, feedback read AND every prompt. Feedback write is asserted in the runner's redact_feedback(); feedback read is asserted in the screen's build_cohort() (hard assert, gate-blocking); prompts are asserted only in the runner's `audit` subcommand -- and controls_from_runner() reads exactly two keys, 'planted' and 'nullcal_signflip', so the audit verdict is never consumed by g0_validity.",
+   "consequence": "prompt-side leakage is checked but NOT gate-blocking, while feedback-side leakage is. Same shape as the PRA GP2a narrowing: a clause registered under two conditions, evaluated under one.",
+   "note": "a narrowing, not a hole -- the assert does run",
+   "successor_fix": "have controls_from_runner read the audit verdict and add it to the d['pass'] conjunction"
+  }
+ },
+
+ "no_alarm_set_checked_and_fine": {
+  "note": "published with denominators so the findings above are not mistaken for the whole audit; 'checked and fine' is a state distinct from 'could not check'",
+  "screen_nullcal_at_registered_protected_scale": {"reps": 400, "draws": 1000, "seed": 20260904, "rejection_rate": 0.055, "accept_band": [0.02, 0.09], "verdict": "PASS", "wall_seconds": 28.7, "crashed": false, "clears_class": "ME-X6 hard-gate-raises-at-protected-size"},
+  "edge_parse_jaccard_selftest": {"checks_true": 6, "checks_total": 6, "verdict": "PASS"},
+  "unit_suite": {"command": "python3 -m pytest tests/unit/test_h_ext2_salience_runner.py tests/unit/test_h_ext2_salience_screen.py -q", "piped": false, "passed": 11, "total": 11, "exit_code": 0},
+  "could_the_arms_ever_have_differed": {"answer": "YES", "evidence": "CYCLE1_ANCHOR gates the cycle-1 rule text in the prompt builder AND the mandate re-ask in the accept branch; R'/P' cycle-1 prompts are 1811 B vs 2113 B with distinct sha256; 'CYCLE-1 RULE' appears in exactly one", "clears_class": "a contrast that could not exist (x == x)"},
+  "does_the_replica_seed_do_anything": {"answer": "YES", "evidence": "rep_cfg = dict(cfg, model_seed=(int(cfg['model_seed']) + 7919) % 2147483648) is passed into native_run; the replica is not a pure function of (dataset, rep, cycle)", "clears_class": "ME-X6 seed-never-reaches-the-window", "residual_unverified_assumption": "whether model_seed perturbs DCDFG-LIN's fit is a design assumption the unrun section 3 probe would have tested"},
+  "exp_id_layout_collision": {"result": "CLEAN", "detail": "R' 505000-505047, replicas 505100-505147, P' 505200-505247, probe 505900-505904; no overlap with m2 500000s, m3 501000s, Stage-2b 503000s"},
+  "parent_learner_guard": {"result": "PRESENT", "detail": "MODEL == PARENT_MODEL ('gies') forces a fresh_learner FAIL into screen_controls; the runner selftest independently fails if PINNED['model_name'] == 'gies'"},
+  "absent_control_handling": {"result": "SAFE", "detail": "a missing control file yields 'ABSENT', which fails the == 'PASS' conjunction rather than passing silently"},
+  "replica_pin_audit": {"result": "PRESENT", "detail": "replica arguments.json checked for model_name AND agreement with its original on training_regime, fraction_partial_intervention, partial_intervention_seed"},
+  "freeze_integrity": {"result": "INTACT", "detail": "runner and screen sha256 are byte-identical to the design's own section 10 declarations"},
+  "exit_code_discipline": {"result": "PRESENT", "detail": "the screen returns 0 on G0 pass and 2 on G0 fail, so 'could not check' is already distinct from 'checked and fine'"},
+  "register_dependency_repointing": {"result": "NONE", "detail": "custody row on main unchanged; no lane has re-pointed the dependency to Stage-2c/2d"}
+ },
+
+ "deliberately_not_done": [
+  "the section 3 runtime probe (5 native runs, exp 505900-505904) was NOT run: section 9's licence precedes it in the design's own ordering, and the probe is the act that CONSUMES the registered fallback ladder ('no re-pick after unblinding'). The ladder is left UNCONSUMED. DCDFG-LIN wall time and seed-sensitivity therefore remain unverified, as the design admits.",
+  "no PROTECTED_RUN_AUTHORIZATION.json was requested; no seed commitment was published; no guard was disarmed",
+  "no design constant, gate, threshold, seed, direction, cohort, statistic or routing row was changed",
+  "no LUNARC job was submitted, cancelled or modified; no campaign directory was created; no file was written on LUNARC (access was read-only: sacct, squeue, ls, find)"
+ ],
+
+ "revival_path_successor_freeze_new_identity": {
+  "attribution": "single-stage -- the P' cohort's cycle-1 mandate on the current served channel",
+  "lever": "Stage-2d arm A establishes that the MANDATE-FREE policy has a PASSING planted control on glm-5.3 (0.9877, five distinct frac values sampled, plant optimum found at cycle 8). R' is viable on the current channel; only P' is not.",
+  "trap_to_avoid": "making BOTH cohorts mandate-free would turn P' into a second sample of R''s policy, silently degrading G1's same-sign clause from 'replicates across prompt policies' to 'replicates across a re-run' -- a weaker claim wearing the same gate's name",
+  "recommended_replacement": "keep ONE mandate-free cohort and carry the same-sign clause on the weissmann_k562 / weissmann_rpe1 split (6 + 6 chains). Design section 7 already states the P' clause 'is a sign check by design', so 6 per side is adequate for exactly the function P' served, and the clause then tests sign stability across substrate cells rather than prompt policies -- closer to the register row's own wording ('stable across native learners and substrates').",
+  "must_also_carry": ["D1", "D2", "D3"]
+ },
+
+ "method_discipline": {
+  "decision_driving_tools": ["/usr/bin/git", "/usr/bin/diff", "/usr/bin/shasum", "parsing inside /usr/bin/python3"],
+  "pytest_piped_to_tail": false,
+  "absence_claims_paired_with_a_must_match_control": true,
+  "controls_used": ["grep control returning 3 inside research/experiments/h-ext2/", "prompt-inequality control (R' vs P', and rpe1 vs k562)", "[0.3,0.3,0.3,0.3] -> distinct 1 in D2", "exactly-constant anchor row in D1"]
+ }
+}
