@@ -619,11 +619,12 @@ def stage_selftest(out_dir: Path) -> int:
     level = d["calibration"]["ladder"][d["calibration"]["ladder_order"][0]]
     n_vars, budget = int(level["n_vars"]), int(level["budget_checks"])
 
-    announce_provenance("selftest")
+    prov = announce_provenance("selftest")
     passed, total, failures = fidelity_selftests()
     report: dict[str, Any] = {
         "schema_version": SCHEMA_ANALYSIS + ".selftest",
         "design_sha256": design_sha256(),
+        "source_provenance": prov,
         "geometry": {"n_vars": n_vars, "budget_checks": budget, "n_blocks": N_BLOCKS,
                      "dev_seed": dev_seed},
         "G0_PARENT_FIDELITY": {"pass": passed == total, "passed": passed, "total": total,
@@ -698,6 +699,7 @@ def stage_selftest(out_dir: Path) -> int:
 
 
 def stage_calibrate(out_dir: Path) -> int:
+    prov = announce_provenance("calibrate")
     d = design()
     cal = d["calibration"]
     lo, hi = float(cal["window"][0]), float(cal["window"][1])
@@ -766,6 +768,9 @@ def stage_calibrate(out_dir: Path) -> int:
     receipt = {
         "schema_version": SCHEMA_ANALYSIS + ".calibration-receipt",
         "design_sha256": design_sha256(),
+        # This receipt FREEZES the protected difficulty rung (``_selected_geometry``
+        # reads it), so it is a frozen input and must carry the tree that produced it.
+        "source_provenance": prov,
         "arm": cal["arm"], "endpoint": cal["endpoint"], "window": [lo, hi],
         "dev_seed": dev_seed, "dev_campaigns_per_level": per_level, "n_blocks": N_BLOCKS,
         "rows": rows, "decision": decision, "selected_level": selected_level,
@@ -790,8 +795,12 @@ def _selected_geometry(out_dir: Path) -> tuple[str, int, int, str]:
         if got.get("decision") == "WINDOW_HIT" and got.get("selected_level"):
             level = got["selected_level"]
             cfg = cal["ladder"][level]
+            src = (((got.get("source_provenance") or {}).get("live") or {})
+                   .get("combined_source_sha256"))
             return (level, int(cfg["n_vars"]), int(cfg["budget_checks"]),
-                    "frozen by ME_F1_CALIBRATION_RECEIPT.json")
+                    "frozen by ME_F1_CALIBRATION_RECEIPT.json measured by tree "
+                    + (f"{src[:16]}…" if src else "UNATTESTED (receipt predates "
+                                                  "source attestation)"))
     level = cal["ladder_order"][0]
     cfg = cal["ladder"][level]
     return (level, int(cfg["n_vars"]), int(cfg["budget_checks"]),
@@ -1386,10 +1395,28 @@ def stage_protected(out_dir: Path, seed_file: Path, arms: list[str],
         print(f"REFUSED: no G0e report at {gp.name}; the laundering-variance gate has not "
               "been evaluated and CANNOT be assumed to pass", file=sys.stderr)
         return EXIT_G0E_UNCHECKABLE
-    g0e = json.loads(gp.read_text()).get("verdict") or {}
+    g0e_doc = json.loads(gp.read_text())
+    g0e = g0e_doc.get("verdict") or {}
     if not g0e.get("pass"):
         print(f"REFUSED: G0e {g0e.get('terminal')} — {g0e.get('reason')}", file=sys.stderr)
         return EXIT_G0E_FAILED if g0e.get("checked") else EXIT_G0E_UNCHECKABLE
+    # A verdict is only about the tree that produced it.  Verifying this tree and then
+    # gating on a gate measured by a DIFFERENT one is the stale-code-decides-a-dispatch
+    # pattern the source manifest exists to prevent, reintroduced one level up; so the
+    # report's own attestation is compared, and a report that carries none cannot be
+    # assumed to have come from here.
+    g0e_src = (((g0e_doc.get("source_provenance") or {}).get("live") or {})
+               .get("combined_source_sha256"))
+    live_src = src_rep["live"]["combined_source_sha256"]
+    if g0e_src is None:
+        print(f"REFUSED: {gp.name} carries no source attestation, so the tree that "
+              "measured G0e cannot be established", file=sys.stderr)
+        return EXIT_G0E_UNCHECKABLE
+    if g0e_src != live_src:
+        print(f"REFUSED: G0e was measured by a different tree ({g0e_src[:16]}…) than the "
+              f"one about to run ({live_src[:16]}…); re-measure the gate on this code",
+              file=sys.stderr)
+        return EXIT_G0E_FAILED
 
     # ---- the calibrated rung must exist: this is a usage error, not a refusal --------
     level, n_vars, budget, why = _selected_geometry(out_dir)
