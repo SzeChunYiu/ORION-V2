@@ -5,6 +5,7 @@ A **new prospective study**, not a re-analysis: E30-R11's endpoints stay frozen 
 
 | file | what it is |
 |---|---|
+| `E30_R12_OUTCOME_RECEIPT.md` | **outcome: `EXECUTION_NOT_COMPLETED__NO_ENDPOINT_READ`** — read this before anything else |
 | `E30_R12_APPLY_CLEAN_RERUN_DESIGN_V1.json` | canonical registered design (governs) |
 | `E30_R12_APPLY_CLEAN_RERUN_DESIGN_V1.md` | the same design in prose |
 | `e30_r12_power_note.py` | exact MDE / power arithmetic; no outcome input |
@@ -27,3 +28,10 @@ equivalence. See design §7.
 comparator = PC-R6's per-arm rates measured by the same code).
 
 **Legitimate terminals include `PARENT_SUFFICIENT` and `NO_ARM_SEPARATION`.**
+
+**Outcome, 2026-09-03.** The registered chain was dispatched (`8196c36a`, design sha256
+`b5aa3a6f…`) and halted during model dispatch: 119 of 480 responses written, 116 of them
+envelope failures whose output tokens hit the registered cap, **0 evaluations, 0 gates, no
+endpoint read**. The bound z.ai channel now spends the whole registered output budget on a
+thinking block before emitting any text, at an unchanged served model id. No design, gate or
+budget was changed. See `E30_R12_OUTCOME_RECEIPT.md`.

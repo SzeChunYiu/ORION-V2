@@ -1,0 +1,67 @@
+{
+  "schema_version": "orion.v2.e30-r12-execution-terminal.v1",
+  "study_id": "E30-R12",
+  "status": "EXECUTION_NOT_COMPLETED__NO_ENDPOINT_READ",
+  "status_is_not": [
+    "a null on E1",
+    "a null on E2",
+    "a NO_ARM_SEPARATION terminal",
+    "a PARENT_SUFFICIENT terminal",
+    "a LANE_DEFECT terminal",
+    "evidence of equivalence between any two arms"
+  ],
+  "registered_terminal_reached": null,
+  "why_no_registered_terminal": "the registered routing evaluates gates GR0a/GR0b/GR0c/GR1/GR2/GR3 over 480 evaluations. Zero evaluations were produced, so no gate was computed and no endpoint was read. 'Could not check' is reported here as its own status, distinct from any registered outcome.",
+  "dispatched_utc": "2026-09-02T23:45:03Z",
+  "halted_utc": "2026-09-03T01:05Z",
+  "design_sha256": "b5aa3a6ff1f875858df3a84409f99a2b544dbebcaf035f6f2afa88ee253a595e",
+  "source_sha": "8196c36a8e48361d7121af46fd328f412047415f",
+  "chain_outcome": {
+    "3566403_setup": "COMPLETED",
+    "3566404_agents": "CANCELLED by coordinator after diagnosis",
+    "3566405_frozen_lane": "CANCELLED (afterok dependency)",
+    "3566406_gr0a": "CANCELLED (afterok dependency)",
+    "3566407_gr0_verify": "CANCELLED (afterok dependency)",
+    "3566408_fullreg_suite": "CANCELLED (afterok dependency)",
+    "3566409_rollup_analysis": "CANCELLED (afterok dependency)"
+  },
+  "responses": {
+    "expected": 480,
+    "written": 119,
+    "EXECUTION_FAILED_MODEL_RESPONSE": 116,
+    "COMPLETED_PROPOSAL_ONLY": 3,
+    "failures_whose_output_tokens_hit_the_primary_cap_6000": 116
+  },
+  "evaluations": {
+    "expected": 480,
+    "produced": 0
+  },
+  "gates_evaluated": [],
+  "endpoints_read": [],
+  "root_cause": {
+    "class": "bound-provider behaviour drift; not a defect in the R12 lane code, the substrate, or the cluster",
+    "mechanism": "the z.ai Anthropic-compatible channel returns an extended-thinking content block that is counted inside max_tokens. On the frozen E30-R12 prompts the thinking block consumes the entire registered per-call output budget before any text block is emitted, so the arm receives zero visible text and records EXECUTION_FAILED_MODEL_RESPONSE (an envelope carrying no model output).",
+    "registered_in_advance_as": "execution_lane_contract.signature_2_truncation_starved",
+    "what_is_new": "the design registers this signature as affecting 'the largest tasks' and registers a budget escalation to 36000 from pass 3 as the remedy, citing a pre-dispatch smoke in which the identical request at 36000 used 3669 output tokens. In execution it affected 116 of 116 failures across three arms, and a diagnostic re-run of one cell at the escalated 36000 budget exhausted all 36000 output tokens with zero text characters. The registered remedy is empirically insufficient against the channel as it behaves on 2026-09-03.",
+    "not_a_served_model_substitution": "all 119 envelopes record exactly one served model id, glm-5.3, equal to the frozen value. GR0c's condition was met by every envelope written. The drift is in channel behaviour at a fixed served id, which no registered gate observes."
+  },
+  "no_in_flight_repair_applied": {
+    "candidate_found": "adding {'thinking': {'type': 'disabled'}} to the request body restores a text block within the registered 6000 budget on the identical frozen prompt (775 output tokens, stop_reason end_turn, 2903 text characters)",
+    "why_it_was_not_applied": "the design's model_binding registers channel, base_url, requested_model, frozen_served_model, the served-model assertion and the per-envelope record; it registers no request-body contract. Pinning a thinking parameter after seeing the registered configuration fail is an unregistered instrument choice made post-dispatch, and 3 responses had already completed under the provider-default configuration and may not be re-rolled under the no-rescue clause. Applying it here would have produced a campaign split across two channel configurations and called the result the registered study."
+  },
+  "artifacts_untouched": {
+    "e30_r11_endpoints": "FROZEN_TERMINAL, not read, not revised, not reinterpreted",
+    "e60_and_pc_r6_archives": "untouched",
+    "design_json": "unmodified; still PROSPECTIVE_REGISTERED_DESIGN_NO_RESULTS",
+    "gates_budgets_margins_dispositions": "unmodified"
+  },
+  "queued_next_step": {
+    "shape": "registered amendment, merged before dispatch, run under a NEW campaign identity",
+    "must_register": [
+      "the channel request-body contract, including the thinking parameter, explicitly rather than by provider default",
+      "output-token budgets re-derived under that contract rather than inherited from E30-R11's",
+      "a per-envelope record of the channel request configuration, and a homogeneity gate over it, since GR0c over the served model id alone did not detect this drift"
+    ],
+    "must_not": "reuse this campaign directory, whose 3 completed cells were produced under the provider-default configuration"
+  }
+}
