@@ -241,9 +241,50 @@ _ARM_INTERFACE: dict[str, tuple[str, ...]] = {
 }
 
 
+#: H-EXT-3 interface ladder, rung 0: arms whose claim schema carries NO warrant field.
+#:
+#: The earlier schema required a ``warrant`` from a closed enum on every claim for every
+#: arm, on the stated assumption that "arms that are not told to use them simply do not".
+#: The G0e development measurement falsified that assumption directly: SIMPLE_DIRECT was
+#: never told to use warrants and named a correct licence on 121 of 121 claims, and no arm
+#: ever paired a definite verdict with NONE in 480 claims.  Requiring the field handed
+#: every arm organ (1) of M -- the warrant gate -- so laundering demanded typing a licence
+#: the model did not hold, rather than the silent slide ME-X1 measured.  Rung 0 is now
+#: given a rung-0 interface, and the scorer determines warrant from the arm's own
+#: execution log instead of from a self-report.
+#:
+#: This changes nothing about the M-versus-B5 primary contrast: neither arm is in this set.
+UNNAMED_WARRANT_ARMS: frozenset[str] = frozenset({"SIMPLE_DIRECT", "SAME_MODEL_REFLECTION"})
+
+
+def _claim_item(arm: str) -> dict[str, Any]:
+    """One claim's schema.  Rung-0 arms report a verdict; every other arm names a licence."""
+    verdict = {"type": "string", "enum": ["SATISFIABLE", "UNSATISFIABLE", "UNRESOLVED"]}
+    if arm in UNNAMED_WARRANT_ARMS:
+        return {"type": "object", "additionalProperties": False,
+                "required": ["rung", "verdict"],
+                "properties": {"rung": {"type": "integer"}, "verdict": verdict}}
+    return {
+        "type": "object", "additionalProperties": False,
+        "required": ["rung", "verdict", "warrant", "source_rung"],
+        "properties": {
+            "rung": {"type": "integer"},
+            "verdict": verdict,
+            "warrant": {"type": "string",
+                        "enum": ["VERIFIED_WITNESS", "MONOTONE_CLOSURE",
+                                 "COMPLETED_REFUTATION", "NONE"]},
+            "source_rung": {"type": ["integer", "null"]},
+        },
+    }
+
+
 def response_schema(arm: str) -> dict[str, Any]:
-    """Strict output schema.  Warrant and diagnosis fields exist for every arm so the
-    schema itself never advantages one; arms that are not told to use them simply do not."""
+    """Strict output schema.
+
+    Every arm gets the same world description, tools, budget and call count.  What differs
+    at rung 0 of the H-EXT-3 ladder is the *output* interface: those arms report a verdict
+    and are not asked to name its licence.  The diagnosis field is still present for every
+    arm so the schema does not advantage one on that axis."""
     # The endpoint enforces strict structured output: every declared property must appear
     # in "required".  Optionality is therefore expressed as a nullable type, never by
     # omission from "required".
@@ -266,22 +307,7 @@ def response_schema(arm: str) -> dict[str, Any]:
             },
             "rationale": {"type": "string"},
             "escalation_level": {"type": ["integer", "null"]},
-            "claims": {
-                "type": "array",
-                "items": {
-                    "type": "object", "additionalProperties": False,
-                    "required": ["rung", "verdict", "warrant", "source_rung"],
-                    "properties": {
-                        "rung": {"type": "integer"},
-                        "verdict": {"type": "string",
-                                    "enum": ["SATISFIABLE", "UNSATISFIABLE", "UNRESOLVED"]},
-                        "warrant": {"type": "string",
-                                    "enum": ["VERIFIED_WITNESS", "MONOTONE_CLOSURE",
-                                             "COMPLETED_REFUTATION", "NONE"]},
-                        "source_rung": {"type": ["integer", "null"]},
-                    },
-                },
-            },
+            "claims": {"type": "array", "items": _claim_item(arm)},
             "diagnoses": {
                 "type": "array",
                 "items": {
@@ -383,13 +409,37 @@ class _State:
         return "\n\n".join(parts)
 
 
+def _ingest_claim(arm: str, item: dict[str, Any]) -> Claim:
+    """Build a Claim from the model's own JSON.  Nothing is filtered or repaired here.
+
+    A rung-0 arm's schema has no warrant field, so its claims carry ``UNNAMED``: the
+    scorer decides from the execution log whether the assertion was entitled, rather than
+    the arm being asked to declare it.
+    """
+    rung, verdict = int(item["rung"]), str(item["verdict"])
+    if arm in UNNAMED_WARRANT_ARMS:
+        return Claim(rung, verdict, "UNNAMED", None)
+    return Claim(rung, verdict, str(item["warrant"]),
+                 int(item["source_rung"]) if item.get("source_rung") is not None else None)
+
+
 def _claims_text(claims: dict[int, Claim]) -> str:
+    """Render the running claim sheet back to the arm.
+
+    A rung-0 arm never sees a warrant column -- echoing one would re-teach through the
+    context the discipline its schema deliberately withholds.
+    """
     if not claims:
         return "  (none yet)"
-    return "\n".join(
-        f"  rung {r}: {c.verdict} (warrant {c.warrant}"
-        + (f", source rung {c.source_rung}" if c.source_rung is not None else "") + ")"
-        for r, c in sorted(claims.items()))
+    out = []
+    for r, c in sorted(claims.items()):
+        if c.warrant == "UNNAMED":
+            out.append(f"  rung {r}: {c.verdict}")
+        else:
+            out.append(f"  rung {r}: {c.verdict} (warrant {c.warrant}"
+                       + (f", source rung {c.source_rung}" if c.source_rung is not None
+                          else "") + ")")
+    return "\n".join(out)
 
 
 # ---- model-arm driver --------------------------------------------------------------------
@@ -442,8 +492,7 @@ def run_model_arm(campaign: Campaign, arm: str, *, call_fn: Callable[..., Any] |
         body = receipt.body
         for item in body.get("claims", []) or []:
             try:
-                cl = Claim(int(item["rung"]), str(item["verdict"]), str(item["warrant"]),
-                           int(item["source_rung"]) if item.get("source_rung") is not None else None)
+                cl = _ingest_claim(arm, item)
             except (KeyError, ValueError, TypeError):
                 continue
             if 0 <= cl.rung < campaign.n_rungs:
@@ -482,9 +531,7 @@ def run_model_arm(campaign: Campaign, arm: str, *, call_fn: Callable[..., Any] |
             if fr.ok and fr.body:
                 for item in fr.body.get("claims", []) or []:
                     try:
-                        cl = Claim(int(item["rung"]), str(item["verdict"]), str(item["warrant"]),
-                                   int(item["source_rung"])
-                                   if item.get("source_rung") is not None else None)
+                        cl = _ingest_claim(arm, item)
                     except (KeyError, ValueError, TypeError):
                         continue
                     if 0 <= cl.rung < campaign.n_rungs:

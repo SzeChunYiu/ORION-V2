@@ -8,8 +8,8 @@
   },
   "G0a_WARRANT_VALIDITY_FIXTURES": {
     "hard": true,
-    "n": 25,
-    "n_pass": 25,
+    "n": 37,
+    "n_pass": 37,
     "pass": true,
     "rows": [
       {
@@ -82,7 +82,7 @@
         "name": "unresolved_carries_warrant_none",
         "observed_valid": true,
         "pass": true,
-        "reason": "UNRESOLVED must carry warrant NONE"
+        "reason": ""
       },
       {
         "expected_valid": false,
@@ -211,6 +211,102 @@
         "observed_valid": false,
         "pass": true,
         "reason": "UNRESOLVED must carry warrant NONE"
+      },
+      {
+        "expected_valid": true,
+        "kind": "LICENSED",
+        "name": "unnamed_sat_with_a_witness_at_this_rung",
+        "observed_valid": true,
+        "pass": true,
+        "reason": ""
+      },
+      {
+        "expected_valid": true,
+        "kind": "LICENSED",
+        "name": "unnamed_sat_closing_down_from_a_higher_witness",
+        "observed_valid": true,
+        "pass": true,
+        "reason": ""
+      },
+      {
+        "expected_valid": true,
+        "kind": "LICENSED",
+        "name": "unnamed_unsat_with_a_refutation_at_this_rung",
+        "observed_valid": true,
+        "pass": true,
+        "reason": ""
+      },
+      {
+        "expected_valid": true,
+        "kind": "LICENSED",
+        "name": "unnamed_unsat_closing_up_from_a_lower_refutation",
+        "observed_valid": true,
+        "pass": true,
+        "reason": ""
+      },
+      {
+        "expected_valid": true,
+        "kind": "LICENSED",
+        "name": "unnamed_unresolved_is_an_honest_non_answer",
+        "observed_valid": true,
+        "pass": true,
+        "reason": ""
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "unnamed_unsat_on_a_failed_search",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "nothing in this block's log entitles UNSATISFIABLE at this rung"
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "unnamed_unsat_with_no_evidence_at_all",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "nothing in this block's log entitles UNSATISFIABLE at this rung"
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "unnamed_sat_with_no_evidence_at_all",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "nothing in this block's log entitles SATISFIABLE at this rung"
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "unnamed_sat_cannot_close_upward_from_a_lower_witness",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "nothing in this block's log entitles SATISFIABLE at this rung"
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "unnamed_unsat_cannot_close_downward_from_a_higher_refutation",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "nothing in this block's log entitles UNSATISFIABLE at this rung"
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "unnamed_sat_cannot_cross_a_block_boundary",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "nothing in this block's log entitles SATISFIABLE at this rung"
+      },
+      {
+        "expected_valid": false,
+        "kind": "FORBIDDEN",
+        "name": "unnamed_unsat_cannot_cross_a_block_boundary",
+        "observed_valid": false,
+        "pass": true,
+        "reason": "nothing in this block's log entitles UNSATISFIABLE at this rung"
       }
     ]
   },

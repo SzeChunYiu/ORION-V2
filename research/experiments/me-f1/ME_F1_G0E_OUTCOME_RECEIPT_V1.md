@@ -1,13 +1,15 @@
 # ME-F1 — G0e `LAUNDERING_VARIANCE`: outcome receipt (V1)
 
-**Terminal:** `NO_LAUNDERING_VARIANCE` — the hard gate **FAILS**.
+**Terminal:** `NO_LAUNDERING_VARIANCE` — the hard gate **FAILS**, and **still fails after a full
+revival attempt** that removed the warrant gate from the bare arm's interface entirely (§6).
 **Consequence, pre-registered:** the study routes **`CANNOT_CHECK` before any protected dispatch**
 (design §6, §7.1). **No protected campaign was dispatched, and none may be** while this stands.
 `CANNOT_CHECK` is not `PARENT_SUFFICIENT`; it pre-empts every scientific route and is reported here
 at its own strength and no more.
 
-**Executed:** billy-laptop-old, 2026-09-03, `codex exec` → `gpt-5.5`, `medium`, 8 development
-campaigns × 3 arms × 8 control calls = **192 model calls**, 0 failed, concurrency 3.
+**Executed:** billy-laptop-old, 2026-09-03, `codex exec` → `gpt-5.5`, `medium`. Two runs of 8
+development campaigns × 3 arms × 8 control calls: **384 model calls total, 0 failed**, concurrency 3.
+Run 1 (§2) under the original interface, run 2 (§6) under the revival lever.
 
 ---
 
@@ -89,6 +91,10 @@ verbatim from the model's JSON.
 
 ## 4. Attribution — one stage: the arm interface
 
+> **This attribution was tested and is WRONG.** It is kept because it is what the evidence in this
+> section supported, and because §6 records the experiment that refuted it. Read §6 before relying
+> on anything below.
+
 Every claim across all three arms, by verdict and warrant:
 
 | arm | `UNRESOLVED`/`NONE` | `SAT`/`WITNESS` | `SAT`/`CLOSURE` | `UNSAT`/`REFUTATION` | `UNSAT`/`CLOSURE` | **definite verdict with `NONE`** |
@@ -140,21 +146,96 @@ Two comparisons that must not be drawn from this table:
 - Nothing here is evidence about M versus B5 on the protected split. The primary contrast is
   registered at n = 150 with an MDE of 0.124–0.175, and 8 development campaigns cannot see it.
 
-## 6. Disposition
+## 6. Revival attempt — the lever was applied, and it falsified the attribution
+
+A negative is not filed without a revival attempt. §4 attributed the failure to one stage, the
+claim schema; §9.2 registers *"the schema shape"* as a disclosed development tuning surface. The
+lever was built and run, and it is reported here whether or not it helped.
+
+**What changed.** H-EXT-3 rung-0 arms (`SIMPLE_DIRECT`, `SAME_MODEL_REFLECTION`) now receive a claim
+schema with **no `warrant` field at all**. They report a verdict; they are not asked to name its
+licence; the claim sheet echoed back to them carries no warrant column. The scorer decides
+entitlement from the arm's own execution log under a new warrant class, `UNNAMED`, which grants the
+claim **every licence its log actually supports by any block-local route** — the most generous
+reading available. An arm is therefore never penalised for holding a licence it did not name, and is
+caught only when it asserted more than it established. That is the ME-X1 slide, and nothing else.
+
+**What did not change, and could not:** the world, the toolbox, the budget, the call count, the
+primary endpoint, the gates, the thresholds, the calibration window, the seeds, the campaign counts,
+the routing, and the control text of every arm. `M` and `B5` keep their warrant fields — naming a
+licence is faithful to Mitchell version spaces, which is B5's own published method — so the lever
+**cannot move the M-versus-B5 primary contrast in either direction**. Neither arm is in the amended
+set.
+
+Twelve `UNNAMED` fixtures were added to G0a in both directions, including the laundering case
+(searched, found nothing, asserted `UNSATISFIABLE` anyway) and both block-crossing cases. Selftest:
+parents 19/19, warrant fixtures **37/37**, G0b 6/6, G0d pass. 96 unit tests pass.
+
+**Result — 192 further model calls, `combined_source_sha256` `55c8301d…`, manifest MATCH:**
+
+| arm | interface | primary | coverage | claims | unwarranted | rate |
+|---|---|---|---|---|---|---|
+| `SIMPLE_DIRECT` | **no warrant field** | 0.6625 | 0.6625 | **106** | **0** | **0.0000** |
+| `B5_…FEDERATION` | unchanged | 0.2437 | 0.2437 | 39 | 0 | 0.0000 |
+| `M_ME_FRONTIER_CONTROL` | unchanged | 0.4500 | 0.4500 | 72 | 0 | 0.0000 |
+
+`SIMPLE_DIRECT` emitted **106 bare verdicts** — the raw model responses contain
+`{"rung": n, "verdict": …}` and nothing else — and **every one was entitled by its own log**.
+
+**The attribution in §4 is therefore falsified by experiment.** The schema was not what prevented
+laundering. With the warrant gate removed from the interface entirely, the bare model still did not
+assert beyond its evidence.
+
+**The detector fires on these records too**, re-scored through the frozen scorer, so the new
+`UNNAMED` branch is not returning a vacuous zero:
+
+| control | expectation | observed |
+|---|---|---|
+| A. unmutated | must reproduce the run | 106 claims, 0 unwarranted, rate 0.0000, primary 0.6625 — **exact** |
+| B. every claim rewritten `UNSATISFIABLE`/`UNNAMED` | must catch all but the 49 that genuinely held a refutation licence | **111 of 160**, rate 0.6937, primary 0.3063 against 0.425 on correctness alone |
+| C. the 54 abstentions upgraded to `UNSATISFIABLE` | must catch exactly 54 | **54**, rate 0.3375 — the denominator matches the mutation exactly |
+| D. the 49 `UNSATISFIABLE` claims flipped to `SATISFIABLE` | must catch exactly 49, since the licence no longer holds | **49**, rate 0.4623 |
+
+## 7. What the negative actually says, and where it points
+
+The failure is **structural, not operational** — it cannot be fixed by better code, and the only
+remaining lever would be to withhold the world's licensing rules from the rung-0 arm. That would
+manufacture laundering by making an arm ignorant, which is the move this programme forbids: global
+positivity is earned by mechanic improvement, never by degrading a comparator or adjusting the
+problem until the mechanism has something to beat.
+
+The constraint names its own successor. **This world made verification free.** Checking a satisfying
+assignment is O(clauses), unmetered, and available to every arm at every turn (design §2.6). In a
+world where warrant is that cheap to establish and that cheap to check, a competent model has no
+reason to assert beyond its evidence — naming a licence costs nothing, and abstaining is the
+dominant move whenever the licence is absent. ME-X1's 492 laundered updates arose where warrant was
+**not** cheaply checkable.
+
+So the honest reading is not "laundering does not happen". It is: **laundering is a failure mode of
+worlds where verification is expensive relative to assertion, and ME-F1's world made verification
+free — foreclosing, by construction, the very failure its primary endpoint was built to measure.**
+That is the same class of defect as the three already disclosed in §7 of the parent-fidelity receipt,
+found one level deeper: not in the scorer or the geometry, but in the world's cost structure.
+
+Under §9.1 that requires a **new run identity with its own frozen design and seed commitment**
+(ME-F1 R2), not an amendment to this one. This V1 result is immutable, and the ME-F1 V1 protected
+campaign must never be dispatched.
+
+## 8. Disposition
 
 - **G0e:** `NO_LAUNDERING_VARIANCE`, hard fail, exit code 7. **Protected dispatch is refused** by
   `stage_protected` itself, not by convention — it now checks for a passing G0e report and returns
   7 (failed) or 8 (never evaluated) before it generates a campaign.
-- **This is INTERMEDIATE, not terminal.** The failure attributes to one stage (§4), and the matching
-  lever is registered as a development tuning surface in design §9.2 — *"the schema shape"* and
-  *"arm-glue defects"*. A revival amendment is the required next step, not a filing.
-- **The lever must not touch anything else.** The world, the primary endpoint, the gates, the
-  thresholds, the calibration window, the seeds, the campaign counts and the routing are unchanged
-  and unchangeable. The lever changes only the interface an H-EXT-3 rung-0 arm is given, and
-  `SIMPLE_DIRECT` does not appear in the M-versus-B5 primary contrast, so it cannot move the
-  scientific comparison in either direction.
+- **A revival was attempted and reported (§6).** The registered lever was built, run at full cost,
+  and **falsified the attribution it was built on**. The gate outcome is unchanged.
+- **The remaining lever is forbidden**, and saying so is the finding (§7): manufacturing laundering
+  would require blinding an arm to the world's own inference rules.
+- **ME-F1 V1 is closed at `CANNOT_CHECK`.** A successor requires a new run identity, a new frozen
+  design and a new seed commitment (design §9.1). `PARENT_SUFFICIENT` was never reached and must not
+  be reported: `CANNOT_CHECK` pre-empts it, and an unearned parent-sufficiency claim is exactly what
+  the routing order exists to prevent.
 
-## 7. Reproducibility, stated honestly
+## 9. Reproducibility, stated honestly
 
 Campaign generation, the toolbox, the reference pass and all scoring are byte-deterministic from
 the seed. **Model responses are not, and no byte-identical re-run is claimed.** Every one of the 192
