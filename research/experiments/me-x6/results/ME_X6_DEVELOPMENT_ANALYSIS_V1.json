@@ -1,0 +1,2269 @@
+{
+  "custody_sha256": "cae056a96f6c513446ddc3cb603f5f9ea6b7dfd990b48c1e7907cf1973e9dcc5",
+  "gates": {
+    "COVERAGE_LEDGER": {
+      "all_registered_mechanisms_exercised": true,
+      "drawn": {
+        "GENUINE_CAPABILITY_GAIN|SCALE_PROBLEM_FAMILY": 1,
+        "GENUINE_CAPABILITY_GAIN|SCALE_SUBFIELD": 1,
+        "GENUINE_CAPABILITY_LOSS|SCALE_PROBLEM_FAMILY": 1,
+        "GENUINE_CAPABILITY_LOSS|SCALE_SUBFIELD": 1,
+        "I10_INDEPENDENT_REDISCOVERY|SCALE_PROBLEM_FAMILY": 1,
+        "I10_INDEPENDENT_REDISCOVERY|SCALE_SUBFIELD": 1,
+        "I1_DUPLICATES|SCALE_PROBLEM_FAMILY": 1,
+        "I1_DUPLICATES|SCALE_SUBFIELD": 1,
+        "I2_PARAPHRASE|SCALE_PROBLEM_FAMILY": 1,
+        "I2_PARAPHRASE|SCALE_SUBFIELD": 1,
+        "I3_MASS_LOW_INFORMATION|SCALE_PROBLEM_FAMILY": 1,
+        "I3_MASS_LOW_INFORMATION|SCALE_SUBFIELD": 1,
+        "I4_RETRACTED_WORK|SCALE_PROBLEM_FAMILY": 1,
+        "I4_RETRACTED_WORK|SCALE_SUBFIELD": 1,
+        "I5_CITATION_RING|SCALE_PROBLEM_FAMILY": 1,
+        "I5_CITATION_RING|SCALE_SUBFIELD": 1,
+        "I6_VENUE_MIGRATION|SCALE_PROBLEM_FAMILY": 1,
+        "I6_VENUE_MIGRATION|SCALE_SUBFIELD": 1,
+        "I7_FIELD_SIZE_SCALING|SCALE_PROBLEM_FAMILY": 1,
+        "I7_FIELD_SIZE_SCALING|SCALE_SUBFIELD": 1,
+        "I8_FASHION_CONCENTRATION|SCALE_PROBLEM_FAMILY": 1,
+        "I8_FASHION_CONCENTRATION|SCALE_SUBFIELD": 1,
+        "I9_DELAYED_VALIDATION|SCALE_PROBLEM_FAMILY": 1,
+        "I9_DELAYED_VALIDATION|SCALE_SUBFIELD": 1,
+        "NO_CHANGE|SCALE_PROBLEM_FAMILY": 1,
+        "NO_CHANGE|SCALE_SUBFIELD": 1,
+        "X6I7_ONE_BREAKTHROUGH|SCALE_PROBLEM_FAMILY": 1,
+        "X6I7_ONE_BREAKTHROUGH|SCALE_SUBFIELD": 1
+      },
+      "n_cells": 28,
+      "n_evaluated": 28,
+      "never_exercised": [],
+      "rule": "reported, not a gate: any registered cell with zero instances is named here so no rate computed over it can be read as 'checked and fine'"
+    },
+    "G0a_KNOWN_ANSWER": {
+      "n_cells": 28,
+      "n_evaluated": 32,
+      "pass": true,
+      "rule": "one hand-authored fixture per (stratum, scale) cell plus the planted positives are reproduced in the selftest report",
+      "status": "EVALUATED"
+    },
+    "G0b_ORACLE_SELF_AGREEMENT": {
+      "decidable_from_fit_window": {
+        "n": 28,
+        "ok": 28
+      },
+      "n_cells": 28,
+      "n_evaluated": 28,
+      "pass": true,
+      "planter_agree": {
+        "n": 28,
+        "ok": 28
+      },
+      "rule": "the planter's declared (capability, activity) effect equals the full-structure recomputation on every instance, and every instance's holdout direction is already carried by its fit window"
+    },
+    "G0c_NULL_CALIBRATION": {
+      "M_vs_shuffled_labels_exact_rate": 0.10714285714285714,
+      "always_flat_exact_rate": 0.5714285714285714,
+      "always_flat_exact_where_capability_moves": {
+        "hit": 0,
+        "n_evaluated": 12
+      },
+      "always_rise_exact_where_capability_not_rise": {
+        "hit": 0,
+        "n_evaluated": 20
+      },
+      "majority_class_capability_rate": 0.5714285714285714,
+      "n_cells": 28,
+      "n_evaluated": 28,
+      "pass": true,
+      "random_capability_hits": 11,
+      "random_vs_one_third_upper_tail_p": 0.3141096370500447,
+      "rule": "the degenerate controls score zero where their answer is wrong; the random control is not significantly above its derived 1/3 expectation and the shuffled-label null is not significantly above the majority-class rate. No threshold constant: both reference values are computed from the split. `always_flat_exact_rate` is reported beside the majority-class rate so a degenerate control's score cannot be read as skill.",
+      "shuffled_vs_majority_class_upper_tail_p": 0.9999999646725568
+    },
+    "G1a_M_AHEAD_OF_MATCHED_PARENT": {
+      "cells": {
+        "n_cells": 28,
+        "x_ahead": true,
+        "x_exact_cells": 28,
+        "x_only_cells": [
+          "I1_DUPLICATES|SCALE_PROBLEM_FAMILY",
+          "I1_DUPLICATES|SCALE_SUBFIELD",
+          "I2_PARAPHRASE|SCALE_PROBLEM_FAMILY",
+          "I2_PARAPHRASE|SCALE_SUBFIELD",
+          "I3_MASS_LOW_INFORMATION|SCALE_PROBLEM_FAMILY",
+          "I3_MASS_LOW_INFORMATION|SCALE_SUBFIELD",
+          "I4_RETRACTED_WORK|SCALE_PROBLEM_FAMILY",
+          "I4_RETRACTED_WORK|SCALE_SUBFIELD",
+          "I5_CITATION_RING|SCALE_PROBLEM_FAMILY",
+          "I5_CITATION_RING|SCALE_SUBFIELD",
+          "I7_FIELD_SIZE_SCALING|SCALE_PROBLEM_FAMILY",
+          "I7_FIELD_SIZE_SCALING|SCALE_SUBFIELD",
+          "I8_FASHION_CONCENTRATION|SCALE_PROBLEM_FAMILY",
+          "I8_FASHION_CONCENTRATION|SCALE_SUBFIELD"
+        ],
+        "y_exact_cells": 14,
+        "y_only_cells": []
+      },
+      "n_cells": 28,
+      "n_evaluated": 28,
+      "pass": true,
+      "rule": "M is exact on strictly more CELLS than the information-matched fitted parent, and on none fewer. No significance test: the arms' verdicts are constant within a cell (G8), so a paired exact p-value over instance counts would be an inflated denominator, not evidence."
+    },
+    "G1b_MATCHED_PARENT_AHEAD": {
+      "cells": {
+        "n_cells": 28,
+        "x_ahead": false,
+        "x_exact_cells": 14,
+        "x_only_cells": [],
+        "y_exact_cells": 28,
+        "y_only_cells": [
+          "I1_DUPLICATES|SCALE_PROBLEM_FAMILY",
+          "I1_DUPLICATES|SCALE_SUBFIELD",
+          "I2_PARAPHRASE|SCALE_PROBLEM_FAMILY",
+          "I2_PARAPHRASE|SCALE_SUBFIELD",
+          "I3_MASS_LOW_INFORMATION|SCALE_PROBLEM_FAMILY",
+          "I3_MASS_LOW_INFORMATION|SCALE_SUBFIELD",
+          "I4_RETRACTED_WORK|SCALE_PROBLEM_FAMILY",
+          "I4_RETRACTED_WORK|SCALE_SUBFIELD",
+          "I5_CITATION_RING|SCALE_PROBLEM_FAMILY",
+          "I5_CITATION_RING|SCALE_SUBFIELD",
+          "I7_FIELD_SIZE_SCALING|SCALE_PROBLEM_FAMILY",
+          "I7_FIELD_SIZE_SCALING|SCALE_SUBFIELD",
+          "I8_FASHION_CONCENTRATION|SCALE_PROBLEM_FAMILY",
+          "I8_FASHION_CONCENTRATION|SCALE_SUBFIELD"
+        ]
+      },
+      "n_cells": 28,
+      "n_evaluated": 28,
+      "pass": false,
+      "rule": "its own positive test, not the negation of G1a"
+    },
+    "G2_ANTI_CONSERVATISM": {
+      "M_exact": 4,
+      "n_cells": 28,
+      "n_evaluated": 4,
+      "parent_exact": 4,
+      "pass": true,
+      "rule": "on the genuine capability-change strata M is at least as exact as the matched parent -- invariance must not be bought with abstention",
+      "status": "EVALUATED"
+    },
+    "G3_MECHANISM_BY_OMISSION": {
+      "n_cells": 28,
+      "n_evaluated": 28,
+      "pass": true,
+      "per_ablation": {
+        "M_MINUS_CORRECTION_RETRACTION": {
+          "n_evaluated": 28,
+          "pass": true,
+          "predicted": [
+            "I4_RETRACTED_WORK"
+          ],
+          "strata_degraded": [
+            "I4_RETRACTED_WORK"
+          ]
+        },
+        "M_MINUS_COST": {
+          "n_evaluated": 28,
+          "pass": true,
+          "predicted": [],
+          "strata_degraded": []
+        },
+        "M_MINUS_FORMAL": {
+          "n_evaluated": 28,
+          "pass": true,
+          "predicted": [
+            "X6I7_ONE_BREAKTHROUGH"
+          ],
+          "strata_degraded": [
+            "X6I7_ONE_BREAKTHROUGH"
+          ]
+        },
+        "M_MINUS_REDERIVATION": {
+          "n_evaluated": 28,
+          "pass": true,
+          "predicted": [
+            "I10_INDEPENDENT_REDISCOVERY"
+          ],
+          "strata_degraded": [
+            "I10_INDEPENDENT_REDISCOVERY"
+          ]
+        },
+        "M_MINUS_REPLICATION": {
+          "n_evaluated": 28,
+          "pass": true,
+          "predicted": [
+            "I9_DELAYED_VALIDATION"
+          ],
+          "strata_degraded": [
+            "I9_DELAYED_VALIDATION"
+          ]
+        },
+        "M_MINUS_REUSE": {
+          "n_evaluated": 28,
+          "pass": true,
+          "predicted": [],
+          "strata_degraded": []
+        }
+      },
+      "rule": "each typed-channel ablation degrades exactly the strata declared to depend on it, and no others"
+    },
+    "G4_INFORMATION_LADDER": {
+      "n_cells": 28,
+      "n_evaluated": 28,
+      "pass": true,
+      "per_scale": {
+        "SCALE_PROBLEM_FAMILY": {
+          "n_cells": 14,
+          "n_evaluated": 14,
+          "pass": true,
+          "regressions": [
+            "L1_ACTIVITY_ONLY -> L2_PLUS_ATTENTION"
+          ],
+          "rung": {
+            "L1_ACTIVITY_ONLY": {
+              "exact_cells": 6,
+              "exact_rate": 0.42857142857142855
+            },
+            "L2_PLUS_ATTENTION": {
+              "exact_cells": 5,
+              "exact_rate": 0.35714285714285715
+            },
+            "L3_PLUS_SEMANTIC": {
+              "exact_cells": 5,
+              "exact_rate": 0.35714285714285715
+            },
+            "L4_PLUS_NETWORK": {
+              "exact_cells": 6,
+              "exact_rate": 0.42857142857142855
+            },
+            "L5_PLUS_VALIDATION": {
+              "exact_cells": 7,
+              "exact_rate": 0.5
+            }
+          },
+          "status": "EVALUATED",
+          "steps": [
+            {
+              "cells": {
+                "n_cells": 14,
+                "x_ahead": false,
+                "x_exact_cells": 5,
+                "x_only_cells": [],
+                "y_exact_cells": 6,
+                "y_only_cells": [
+                  "I5_CITATION_RING|SCALE_PROBLEM_FAMILY"
+                ]
+              },
+              "from": "L1_ACTIVITY_ONLY",
+              "regression": true,
+              "to": "L2_PLUS_ATTENTION"
+            },
+            {
+              "cells": {
+                "n_cells": 14,
+                "x_ahead": false,
+                "x_exact_cells": 5,
+                "x_only_cells": [],
+                "y_exact_cells": 5,
+                "y_only_cells": []
+              },
+              "from": "L2_PLUS_ATTENTION",
+              "regression": false,
+              "to": "L3_PLUS_SEMANTIC"
+            },
+            {
+              "cells": {
+                "n_cells": 14,
+                "x_ahead": true,
+                "x_exact_cells": 6,
+                "x_only_cells": [
+                  "X6I7_ONE_BREAKTHROUGH|SCALE_PROBLEM_FAMILY"
+                ],
+                "y_exact_cells": 5,
+                "y_only_cells": []
+              },
+              "from": "L3_PLUS_SEMANTIC",
+              "regression": false,
+              "to": "L4_PLUS_NETWORK"
+            },
+            {
+              "cells": {
+                "n_cells": 14,
+                "x_ahead": true,
+                "x_exact_cells": 7,
+                "x_only_cells": [
+                  "I9_DELAYED_VALIDATION|SCALE_PROBLEM_FAMILY"
+                ],
+                "y_exact_cells": 6,
+                "y_only_cells": []
+              },
+              "from": "L4_PLUS_NETWORK",
+              "regression": false,
+              "to": "L5_PLUS_VALIDATION"
+            }
+          ],
+          "top_vs_bottom": {
+            "n_cells": 14,
+            "x_ahead": false,
+            "x_exact_cells": 7,
+            "x_only_cells": [
+              "I9_DELAYED_VALIDATION|SCALE_PROBLEM_FAMILY",
+              "X6I7_ONE_BREAKTHROUGH|SCALE_PROBLEM_FAMILY"
+            ],
+            "y_exact_cells": 6,
+            "y_only_cells": [
+              "I5_CITATION_RING|SCALE_PROBLEM_FAMILY"
+            ]
+          }
+        },
+        "SCALE_SUBFIELD": {
+          "n_cells": 14,
+          "n_evaluated": 14,
+          "pass": true,
+          "regressions": [
+            "L1_ACTIVITY_ONLY -> L2_PLUS_ATTENTION"
+          ],
+          "rung": {
+            "L1_ACTIVITY_ONLY": {
+              "exact_cells": 6,
+              "exact_rate": 0.42857142857142855
+            },
+            "L2_PLUS_ATTENTION": {
+              "exact_cells": 5,
+              "exact_rate": 0.35714285714285715
+            },
+            "L3_PLUS_SEMANTIC": {
+              "exact_cells": 5,
+              "exact_rate": 0.35714285714285715
+            },
+            "L4_PLUS_NETWORK": {
+              "exact_cells": 6,
+              "exact_rate": 0.42857142857142855
+            },
+            "L5_PLUS_VALIDATION": {
+              "exact_cells": 7,
+              "exact_rate": 0.5
+            }
+          },
+          "status": "EVALUATED",
+          "steps": [
+            {
+              "cells": {
+                "n_cells": 14,
+                "x_ahead": false,
+                "x_exact_cells": 5,
+                "x_only_cells": [],
+                "y_exact_cells": 6,
+                "y_only_cells": [
+                  "I5_CITATION_RING|SCALE_SUBFIELD"
+                ]
+              },
+              "from": "L1_ACTIVITY_ONLY",
+              "regression": true,
+              "to": "L2_PLUS_ATTENTION"
+            },
+            {
+              "cells": {
+                "n_cells": 14,
+                "x_ahead": false,
+                "x_exact_cells": 5,
+                "x_only_cells": [],
+                "y_exact_cells": 5,
+                "y_only_cells": []
+              },
+              "from": "L2_PLUS_ATTENTION",
+              "regression": false,
+              "to": "L3_PLUS_SEMANTIC"
+            },
+            {
+              "cells": {
+                "n_cells": 14,
+                "x_ahead": true,
+                "x_exact_cells": 6,
+                "x_only_cells": [
+                  "X6I7_ONE_BREAKTHROUGH|SCALE_SUBFIELD"
+                ],
+                "y_exact_cells": 5,
+                "y_only_cells": []
+              },
+              "from": "L3_PLUS_SEMANTIC",
+              "regression": false,
+              "to": "L4_PLUS_NETWORK"
+            },
+            {
+              "cells": {
+                "n_cells": 14,
+                "x_ahead": true,
+                "x_exact_cells": 7,
+                "x_only_cells": [
+                  "I9_DELAYED_VALIDATION|SCALE_SUBFIELD"
+                ],
+                "y_exact_cells": 6,
+                "y_only_cells": []
+              },
+              "from": "L4_PLUS_NETWORK",
+              "regression": false,
+              "to": "L5_PLUS_VALIDATION"
+            }
+          ],
+          "top_vs_bottom": {
+            "n_cells": 14,
+            "x_ahead": false,
+            "x_exact_cells": 7,
+            "x_only_cells": [
+              "I9_DELAYED_VALIDATION|SCALE_SUBFIELD",
+              "X6I7_ONE_BREAKTHROUGH|SCALE_SUBFIELD"
+            ],
+            "y_exact_cells": 6,
+            "y_only_cells": [
+              "I5_CITATION_RING|SCALE_SUBFIELD"
+            ]
+          }
+        }
+      },
+      "rule": "positive test, per scale and never pooled: L5_PLUS_VALIDATION is exact on strictly more cells than L1_ACTIVITY_ONLY (a count, not dominance -- the top rung is expected to lose I5_CITATION_RING to L1_ACTIVITY_ONLY, which is P-MEX6-2). Intermediate reversals are REPORTED, not failed: every rung is fitted on its own channel set, so a reversal is a property of untyped aggregation (P-MEX6-2), not a lane defect."
+    },
+    "G5_HOSTILE_INVARIANCE_SUITE": {
+      "n_cells": 28,
+      "n_evaluated": 28,
+      "pass": true,
+      "per_invariance": {
+        "I10_INDEPENDENT_REDISCOVERY": {
+          "M_exact_rate": 1.0,
+          "matched_parent_exact_rate": 1.0,
+          "n_evaluated": 2,
+          "pass": true,
+          "status": "EVALUATED"
+        },
+        "I1_DUPLICATES": {
+          "M_exact_rate": 1.0,
+          "matched_parent_exact_rate": 0.0,
+          "n_evaluated": 2,
+          "pass": true,
+          "status": "EVALUATED"
+        },
+        "I2_PARAPHRASE": {
+          "M_exact_rate": 1.0,
+          "matched_parent_exact_rate": 0.0,
+          "n_evaluated": 2,
+          "pass": true,
+          "status": "EVALUATED"
+        },
+        "I3_MASS_LOW_INFORMATION": {
+          "M_exact_rate": 1.0,
+          "matched_parent_exact_rate": 0.0,
+          "n_evaluated": 2,
+          "pass": true,
+          "status": "EVALUATED"
+        },
+        "I4_RETRACTED_WORK": {
+          "M_exact_rate": 1.0,
+          "matched_parent_exact_rate": 0.0,
+          "n_evaluated": 2,
+          "pass": true,
+          "status": "EVALUATED"
+        },
+        "I5_CITATION_RING": {
+          "M_exact_rate": 1.0,
+          "matched_parent_exact_rate": 0.0,
+          "n_evaluated": 2,
+          "pass": true,
+          "status": "EVALUATED"
+        },
+        "I6_VENUE_MIGRATION": {
+          "M_exact_rate": 1.0,
+          "matched_parent_exact_rate": 1.0,
+          "n_evaluated": 2,
+          "pass": true,
+          "status": "EVALUATED"
+        },
+        "I7_FIELD_SIZE_SCALING": {
+          "M_exact_rate": 1.0,
+          "matched_parent_exact_rate": 0.0,
+          "n_evaluated": 2,
+          "pass": true,
+          "status": "EVALUATED"
+        },
+        "I8_FASHION_CONCENTRATION": {
+          "M_exact_rate": 1.0,
+          "matched_parent_exact_rate": 0.0,
+          "n_evaluated": 2,
+          "pass": true,
+          "status": "EVALUATED"
+        },
+        "I9_DELAYED_VALIDATION": {
+          "M_exact_rate": 1.0,
+          "matched_parent_exact_rate": 1.0,
+          "n_evaluated": 2,
+          "pass": true,
+          "status": "EVALUATED"
+        },
+        "X6I7_ONE_BREAKTHROUGH": {
+          "M_exact_rate": 1.0,
+          "matched_parent_exact_rate": 1.0,
+          "n_evaluated": 2,
+          "pass": true,
+          "status": "EVALUATED"
+        }
+      },
+      "rule": "protocol section 7 I1-I10 and the short protocol's X6-I7, each its own positive test with its own denominator; a stratum with no instances reports CANNOT_CHECK and never a pass"
+    },
+    "G6_CROSS_SCALE_TRANSFER": {
+      "n_cells": 28,
+      "n_evaluated": 28,
+      "pass": true,
+      "per_scale": {
+        "SCALE_PROBLEM_FAMILY": {
+          "M_exact_rate": 1.0,
+          "cells": {
+            "n_cells": 14,
+            "x_ahead": true,
+            "x_exact_cells": 14,
+            "x_only_cells": [
+              "I1_DUPLICATES|SCALE_PROBLEM_FAMILY",
+              "I2_PARAPHRASE|SCALE_PROBLEM_FAMILY",
+              "I3_MASS_LOW_INFORMATION|SCALE_PROBLEM_FAMILY",
+              "I4_RETRACTED_WORK|SCALE_PROBLEM_FAMILY",
+              "I5_CITATION_RING|SCALE_PROBLEM_FAMILY",
+              "I7_FIELD_SIZE_SCALING|SCALE_PROBLEM_FAMILY",
+              "I8_FASHION_CONCENTRATION|SCALE_PROBLEM_FAMILY"
+            ],
+            "y_exact_cells": 7,
+            "y_only_cells": []
+          },
+          "n_cells": 14,
+          "n_evaluated": 14,
+          "pass": true,
+          "status": "EVALUATED"
+        },
+        "SCALE_SUBFIELD": {
+          "M_exact_rate": 1.0,
+          "cells": {
+            "n_cells": 14,
+            "x_ahead": true,
+            "x_exact_cells": 14,
+            "x_only_cells": [
+              "I1_DUPLICATES|SCALE_SUBFIELD",
+              "I2_PARAPHRASE|SCALE_SUBFIELD",
+              "I3_MASS_LOW_INFORMATION|SCALE_SUBFIELD",
+              "I4_RETRACTED_WORK|SCALE_SUBFIELD",
+              "I5_CITATION_RING|SCALE_SUBFIELD",
+              "I7_FIELD_SIZE_SCALING|SCALE_SUBFIELD",
+              "I8_FASHION_CONCENTRATION|SCALE_SUBFIELD"
+            ],
+            "y_exact_cells": 7,
+            "y_only_cells": []
+          },
+          "n_cells": 14,
+          "n_evaluated": 14,
+          "pass": true,
+          "status": "EVALUATED"
+        }
+      },
+      "rule": "the result must hold separately at each unit of analysis (protocol section 3): in each scale the matched parent is exact on no cell M misses. A result that does not transfer to the second scale is killed."
+    },
+    "G7_REGISTERED_PREDICTION": {
+      "P_MEX6_2_observed_ladder_regressions": [
+        "L1_ACTIVITY_ONLY -> L2_PLUS_ATTENTION"
+      ],
+      "P_MEX6_2_pass": true,
+      "P_MEX6_2_predicted_ladder_regressions": [
+        "L1_ACTIVITY_ONLY -> L2_PLUS_ATTENTION"
+      ],
+      "n_cells": 28,
+      "n_evaluated": 28,
+      "observed_failures_inside_support": [
+        "I1_DUPLICATES",
+        "I2_PARAPHRASE",
+        "I3_MASS_LOW_INFORMATION",
+        "I4_RETRACTED_WORK",
+        "I5_CITATION_RING",
+        "I7_FIELD_SIZE_SCALING",
+        "I8_FASHION_CONCENTRATION"
+      ],
+      "observed_failures_outside_support": [],
+      "pass": true,
+      "predicted_but_not_observed": [],
+      "predicted_failure_support": [
+        "I1_DUPLICATES",
+        "I2_PARAPHRASE",
+        "I3_MASS_LOW_INFORMATION",
+        "I4_RETRACTED_WORK",
+        "I5_CITATION_RING",
+        "I7_FIELD_SIZE_SCALING",
+        "I8_FASHION_CONCENTRATION"
+      ],
+      "rule": "two predictions registered before the run. P-MEX6-1: the information-matched untyped parent fails exactly on the strata where the true capability direction contradicts a channel it must give one global sign to, and nowhere else. P-MEX6-2: the fitted untyped ladder is NOT monotone -- adding the attention channel strictly reduces exactness, because one global sign cannot ignore a channel that moves without capability. Both must hold."
+    },
+    "G8_VERDICT_CONSTANCY_WITHIN_CELL": {
+      "instances_per_cell": 1,
+      "n_cells": 28,
+      "n_evaluated": 28,
+      "pass": true,
+      "rule": "every arm's verdict is constant across the instances of a cell, so the study is a CONSTRUCTIVE separation over cells and not a sampling study. C_RANDOM is excluded by construction: it draws per instance and is expected to vary. Instances per cell buy structural coverage -- a cell's verdict is shown invariant under varying baselines, step sizes and step onsets -- and buy no statistical power, which is why no gate but G0c reports a p-value.",
+      "varying_arm_cells": []
+    },
+    "ROUTE": {
+      "reason": "the mechanism map matches its declared prediction, every registered hostile invariance holds, and the result holds separately at both scales. M's exactness is by construction (design 1.3) and is NOT evidence; no ME-X6 residual is claimed",
+      "route": "MECHANISM_ESTABLISHED_NOT_A_RESIDUAL",
+      "terminal": "UNTYPED_AGGREGATE_CANNOT_REPRESENT_THE_CONJUNCTION_AT_MATCHED_INFORMATION"
+    }
+  },
+  "label": "DEVELOPMENT",
+  "n_instances": 28,
+  "results_sha256": "cfffe70e89a7fe198a18ddc9c46c56889dc00b0cba08088cbcea22ca49b8e0f7",
+  "schema_version": "orion.v2.me-x6.exact-study-analysis.v1",
+  "score": {
+    "per_arm": {
+      "B0_PUBLICATION_VOLUME": {
+        "activity_rate": 1.0,
+        "capability_rate": 0.42857142857142855,
+        "exact_rate": 0.42857142857142855,
+        "n_evaluated": 28,
+        "per_scale": {
+          "SCALE_PROBLEM_FAMILY": {
+            "exact_rate": 0.42857142857142855,
+            "n_evaluated": 14
+          },
+          "SCALE_SUBFIELD": {
+            "exact_rate": 0.42857142857142855,
+            "n_evaluated": 14
+          }
+        },
+        "per_stratum": {
+          "GENUINE_CAPABILITY_GAIN": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "GENUINE_CAPABILITY_LOSS": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I10_INDEPENDENT_REDISCOVERY": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I1_DUPLICATES": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I2_PARAPHRASE": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I3_MASS_LOW_INFORMATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I4_RETRACTED_WORK": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I5_CITATION_RING": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I6_VENUE_MIGRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I7_FIELD_SIZE_SCALING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I8_FASHION_CONCENTRATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I9_DELAYED_VALIDATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "NO_CHANGE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "X6I7_ONE_BREAKTHROUGH": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          }
+        },
+        "wall_ms": 0.145539
+      },
+      "B1_CITATION_IMPACT": {
+        "activity_rate": 0.5714285714285714,
+        "capability_rate": 0.2857142857142857,
+        "exact_rate": 0.14285714285714285,
+        "n_evaluated": 28,
+        "per_scale": {
+          "SCALE_PROBLEM_FAMILY": {
+            "exact_rate": 0.14285714285714285,
+            "n_evaluated": 14
+          },
+          "SCALE_SUBFIELD": {
+            "exact_rate": 0.14285714285714285,
+            "n_evaluated": 14
+          }
+        },
+        "per_stratum": {
+          "GENUINE_CAPABILITY_GAIN": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "GENUINE_CAPABILITY_LOSS": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I10_INDEPENDENT_REDISCOVERY": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I1_DUPLICATES": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I2_PARAPHRASE": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I3_MASS_LOW_INFORMATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I4_RETRACTED_WORK": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I5_CITATION_RING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I6_VENUE_MIGRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I7_FIELD_SIZE_SCALING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I8_FASHION_CONCENTRATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I9_DELAYED_VALIDATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "NO_CHANGE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "X6I7_ONE_BREAKTHROUGH": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          }
+        },
+        "wall_ms": 0.093959
+      },
+      "B2_SEMANTIC_NOVELTY": {
+        "activity_rate": 0.5714285714285714,
+        "capability_rate": 0.35714285714285715,
+        "exact_rate": 0.21428571428571427,
+        "n_evaluated": 28,
+        "per_scale": {
+          "SCALE_PROBLEM_FAMILY": {
+            "exact_rate": 0.21428571428571427,
+            "n_evaluated": 14
+          },
+          "SCALE_SUBFIELD": {
+            "exact_rate": 0.21428571428571427,
+            "n_evaluated": 14
+          }
+        },
+        "per_stratum": {
+          "GENUINE_CAPABILITY_GAIN": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "GENUINE_CAPABILITY_LOSS": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I10_INDEPENDENT_REDISCOVERY": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I1_DUPLICATES": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I2_PARAPHRASE": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I3_MASS_LOW_INFORMATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I4_RETRACTED_WORK": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I5_CITATION_RING": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I6_VENUE_MIGRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I7_FIELD_SIZE_SCALING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I8_FASHION_CONCENTRATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I9_DELAYED_VALIDATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "NO_CHANGE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "X6I7_ONE_BREAKTHROUGH": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          }
+        },
+        "wall_ms": 0.169583
+      },
+      "B3_DISRUPTION_TURNOVER": {
+        "activity_rate": 0.2857142857142857,
+        "capability_rate": 0.5,
+        "exact_rate": 0.14285714285714285,
+        "n_evaluated": 28,
+        "per_scale": {
+          "SCALE_PROBLEM_FAMILY": {
+            "exact_rate": 0.14285714285714285,
+            "n_evaluated": 14
+          },
+          "SCALE_SUBFIELD": {
+            "exact_rate": 0.14285714285714285,
+            "n_evaluated": 14
+          }
+        },
+        "per_stratum": {
+          "GENUINE_CAPABILITY_GAIN": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "GENUINE_CAPABILITY_LOSS": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I10_INDEPENDENT_REDISCOVERY": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I1_DUPLICATES": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I2_PARAPHRASE": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I3_MASS_LOW_INFORMATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I4_RETRACTED_WORK": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I5_CITATION_RING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I6_VENUE_MIGRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I7_FIELD_SIZE_SCALING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I8_FASHION_CONCENTRATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I9_DELAYED_VALIDATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "NO_CHANGE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "X6I7_ONE_BREAKTHROUGH": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          }
+        },
+        "wall_ms": 0.110291
+      },
+      "B4X_FITTED_UNTYPED": {
+        "activity_rate": 1.0,
+        "capability_rate": 0.5,
+        "exact_rate": 0.5,
+        "n_evaluated": 28,
+        "per_scale": {
+          "SCALE_PROBLEM_FAMILY": {
+            "exact_rate": 0.5,
+            "n_evaluated": 14
+          },
+          "SCALE_SUBFIELD": {
+            "exact_rate": 0.5,
+            "n_evaluated": 14
+          }
+        },
+        "per_stratum": {
+          "GENUINE_CAPABILITY_GAIN": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "GENUINE_CAPABILITY_LOSS": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I10_INDEPENDENT_REDISCOVERY": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I1_DUPLICATES": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I2_PARAPHRASE": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I3_MASS_LOW_INFORMATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I4_RETRACTED_WORK": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I5_CITATION_RING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I6_VENUE_MIGRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I7_FIELD_SIZE_SCALING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I8_FASHION_CONCENTRATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I9_DELAYED_VALIDATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "NO_CHANGE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "X6I7_ONE_BREAKTHROUGH": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          }
+        },
+        "wall_ms": 0.326706
+      },
+      "B4X_INFORMATION_MATCHED_UNTYPED": {
+        "activity_rate": 1.0,
+        "capability_rate": 0.5,
+        "exact_rate": 0.5,
+        "n_evaluated": 28,
+        "per_scale": {
+          "SCALE_PROBLEM_FAMILY": {
+            "exact_rate": 0.5,
+            "n_evaluated": 14
+          },
+          "SCALE_SUBFIELD": {
+            "exact_rate": 0.5,
+            "n_evaluated": 14
+          }
+        },
+        "per_stratum": {
+          "GENUINE_CAPABILITY_GAIN": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "GENUINE_CAPABILITY_LOSS": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I10_INDEPENDENT_REDISCOVERY": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I1_DUPLICATES": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I2_PARAPHRASE": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I3_MASS_LOW_INFORMATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I4_RETRACTED_WORK": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I5_CITATION_RING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I6_VENUE_MIGRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I7_FIELD_SIZE_SCALING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I8_FASHION_CONCENTRATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I9_DELAYED_VALIDATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "NO_CHANGE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "X6I7_ONE_BREAKTHROUGH": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          }
+        },
+        "wall_ms": 0.269085
+      },
+      "B4_SCIENCE_OF_SCIENCE_LITERAL": {
+        "activity_rate": 1.0,
+        "capability_rate": 0.42857142857142855,
+        "exact_rate": 0.42857142857142855,
+        "n_evaluated": 28,
+        "per_scale": {
+          "SCALE_PROBLEM_FAMILY": {
+            "exact_rate": 0.42857142857142855,
+            "n_evaluated": 14
+          },
+          "SCALE_SUBFIELD": {
+            "exact_rate": 0.42857142857142855,
+            "n_evaluated": 14
+          }
+        },
+        "per_stratum": {
+          "GENUINE_CAPABILITY_GAIN": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "GENUINE_CAPABILITY_LOSS": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I10_INDEPENDENT_REDISCOVERY": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I1_DUPLICATES": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I2_PARAPHRASE": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I3_MASS_LOW_INFORMATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I4_RETRACTED_WORK": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I5_CITATION_RING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I6_VENUE_MIGRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I7_FIELD_SIZE_SCALING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I8_FASHION_CONCENTRATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I9_DELAYED_VALIDATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "NO_CHANGE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "X6I7_ONE_BREAKTHROUGH": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          }
+        },
+        "wall_ms": 0.181125
+      },
+      "C_ALWAYS_FLAT": {
+        "activity_rate": 1.0,
+        "capability_rate": 0.5714285714285714,
+        "exact_rate": 0.5714285714285714,
+        "n_evaluated": 28,
+        "per_scale": {
+          "SCALE_PROBLEM_FAMILY": {
+            "exact_rate": 0.5714285714285714,
+            "n_evaluated": 14
+          },
+          "SCALE_SUBFIELD": {
+            "exact_rate": 0.5714285714285714,
+            "n_evaluated": 14
+          }
+        },
+        "per_stratum": {
+          "GENUINE_CAPABILITY_GAIN": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "GENUINE_CAPABILITY_LOSS": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I10_INDEPENDENT_REDISCOVERY": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I1_DUPLICATES": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I2_PARAPHRASE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I3_MASS_LOW_INFORMATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I4_RETRACTED_WORK": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I5_CITATION_RING": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I6_VENUE_MIGRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I7_FIELD_SIZE_SCALING": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I8_FASHION_CONCENTRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I9_DELAYED_VALIDATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "NO_CHANGE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "X6I7_ONE_BREAKTHROUGH": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          }
+        },
+        "wall_ms": 0.072916
+      },
+      "C_ALWAYS_RISE": {
+        "activity_rate": 1.0,
+        "capability_rate": 0.2857142857142857,
+        "exact_rate": 0.2857142857142857,
+        "n_evaluated": 28,
+        "per_scale": {
+          "SCALE_PROBLEM_FAMILY": {
+            "exact_rate": 0.2857142857142857,
+            "n_evaluated": 14
+          },
+          "SCALE_SUBFIELD": {
+            "exact_rate": 0.2857142857142857,
+            "n_evaluated": 14
+          }
+        },
+        "per_stratum": {
+          "GENUINE_CAPABILITY_GAIN": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "GENUINE_CAPABILITY_LOSS": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I10_INDEPENDENT_REDISCOVERY": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I1_DUPLICATES": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I2_PARAPHRASE": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I3_MASS_LOW_INFORMATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I4_RETRACTED_WORK": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I5_CITATION_RING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I6_VENUE_MIGRATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I7_FIELD_SIZE_SCALING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I8_FASHION_CONCENTRATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I9_DELAYED_VALIDATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "NO_CHANGE": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "X6I7_ONE_BREAKTHROUGH": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          }
+        },
+        "wall_ms": 0.072959
+      },
+      "C_RANDOM": {
+        "activity_rate": 1.0,
+        "capability_rate": 0.39285714285714285,
+        "exact_rate": 0.39285714285714285,
+        "n_evaluated": 28,
+        "per_scale": {
+          "SCALE_PROBLEM_FAMILY": {
+            "exact_rate": 0.5714285714285714,
+            "n_evaluated": 14
+          },
+          "SCALE_SUBFIELD": {
+            "exact_rate": 0.21428571428571427,
+            "n_evaluated": 14
+          }
+        },
+        "per_stratum": {
+          "GENUINE_CAPABILITY_GAIN": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "GENUINE_CAPABILITY_LOSS": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I10_INDEPENDENT_REDISCOVERY": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I1_DUPLICATES": {
+            "exact_rate": 0.5,
+            "n_evaluated": 2
+          },
+          "I2_PARAPHRASE": {
+            "exact_rate": 0.5,
+            "n_evaluated": 2
+          },
+          "I3_MASS_LOW_INFORMATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I4_RETRACTED_WORK": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I5_CITATION_RING": {
+            "exact_rate": 0.5,
+            "n_evaluated": 2
+          },
+          "I6_VENUE_MIGRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I7_FIELD_SIZE_SCALING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I8_FASHION_CONCENTRATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I9_DELAYED_VALIDATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "NO_CHANGE": {
+            "exact_rate": 0.5,
+            "n_evaluated": 2
+          },
+          "X6I7_ONE_BREAKTHROUGH": {
+            "exact_rate": 0.5,
+            "n_evaluated": 2
+          }
+        },
+        "wall_ms": 0.098
+      },
+      "L1_ACTIVITY_ONLY": {
+        "activity_rate": 1.0,
+        "capability_rate": 0.42857142857142855,
+        "exact_rate": 0.42857142857142855,
+        "n_evaluated": 28,
+        "per_scale": {
+          "SCALE_PROBLEM_FAMILY": {
+            "exact_rate": 0.42857142857142855,
+            "n_evaluated": 14
+          },
+          "SCALE_SUBFIELD": {
+            "exact_rate": 0.42857142857142855,
+            "n_evaluated": 14
+          }
+        },
+        "per_stratum": {
+          "GENUINE_CAPABILITY_GAIN": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "GENUINE_CAPABILITY_LOSS": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I10_INDEPENDENT_REDISCOVERY": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I1_DUPLICATES": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I2_PARAPHRASE": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I3_MASS_LOW_INFORMATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I4_RETRACTED_WORK": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I5_CITATION_RING": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I6_VENUE_MIGRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I7_FIELD_SIZE_SCALING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I8_FASHION_CONCENTRATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I9_DELAYED_VALIDATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "NO_CHANGE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "X6I7_ONE_BREAKTHROUGH": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          }
+        },
+        "wall_ms": 0.156955
+      },
+      "L2_PLUS_ATTENTION": {
+        "activity_rate": 1.0,
+        "capability_rate": 0.35714285714285715,
+        "exact_rate": 0.35714285714285715,
+        "n_evaluated": 28,
+        "per_scale": {
+          "SCALE_PROBLEM_FAMILY": {
+            "exact_rate": 0.35714285714285715,
+            "n_evaluated": 14
+          },
+          "SCALE_SUBFIELD": {
+            "exact_rate": 0.35714285714285715,
+            "n_evaluated": 14
+          }
+        },
+        "per_stratum": {
+          "GENUINE_CAPABILITY_GAIN": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "GENUINE_CAPABILITY_LOSS": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I10_INDEPENDENT_REDISCOVERY": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I1_DUPLICATES": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I2_PARAPHRASE": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I3_MASS_LOW_INFORMATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I4_RETRACTED_WORK": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I5_CITATION_RING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I6_VENUE_MIGRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I7_FIELD_SIZE_SCALING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I8_FASHION_CONCENTRATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I9_DELAYED_VALIDATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "NO_CHANGE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "X6I7_ONE_BREAKTHROUGH": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          }
+        },
+        "wall_ms": 0.211205
+      },
+      "L3_PLUS_SEMANTIC": {
+        "activity_rate": 1.0,
+        "capability_rate": 0.35714285714285715,
+        "exact_rate": 0.35714285714285715,
+        "n_evaluated": 28,
+        "per_scale": {
+          "SCALE_PROBLEM_FAMILY": {
+            "exact_rate": 0.35714285714285715,
+            "n_evaluated": 14
+          },
+          "SCALE_SUBFIELD": {
+            "exact_rate": 0.35714285714285715,
+            "n_evaluated": 14
+          }
+        },
+        "per_stratum": {
+          "GENUINE_CAPABILITY_GAIN": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "GENUINE_CAPABILITY_LOSS": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I10_INDEPENDENT_REDISCOVERY": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I1_DUPLICATES": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I2_PARAPHRASE": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I3_MASS_LOW_INFORMATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I4_RETRACTED_WORK": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I5_CITATION_RING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I6_VENUE_MIGRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I7_FIELD_SIZE_SCALING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I8_FASHION_CONCENTRATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I9_DELAYED_VALIDATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "NO_CHANGE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "X6I7_ONE_BREAKTHROUGH": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          }
+        },
+        "wall_ms": 0.207124
+      },
+      "L4_PLUS_NETWORK": {
+        "activity_rate": 1.0,
+        "capability_rate": 0.42857142857142855,
+        "exact_rate": 0.42857142857142855,
+        "n_evaluated": 28,
+        "per_scale": {
+          "SCALE_PROBLEM_FAMILY": {
+            "exact_rate": 0.42857142857142855,
+            "n_evaluated": 14
+          },
+          "SCALE_SUBFIELD": {
+            "exact_rate": 0.42857142857142855,
+            "n_evaluated": 14
+          }
+        },
+        "per_stratum": {
+          "GENUINE_CAPABILITY_GAIN": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "GENUINE_CAPABILITY_LOSS": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I10_INDEPENDENT_REDISCOVERY": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I1_DUPLICATES": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I2_PARAPHRASE": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I3_MASS_LOW_INFORMATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I4_RETRACTED_WORK": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I5_CITATION_RING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I6_VENUE_MIGRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I7_FIELD_SIZE_SCALING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I8_FASHION_CONCENTRATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I9_DELAYED_VALIDATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "NO_CHANGE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "X6I7_ONE_BREAKTHROUGH": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          }
+        },
+        "wall_ms": 0.194667
+      },
+      "L5_PLUS_VALIDATION": {
+        "activity_rate": 1.0,
+        "capability_rate": 0.5,
+        "exact_rate": 0.5,
+        "n_evaluated": 28,
+        "per_scale": {
+          "SCALE_PROBLEM_FAMILY": {
+            "exact_rate": 0.5,
+            "n_evaluated": 14
+          },
+          "SCALE_SUBFIELD": {
+            "exact_rate": 0.5,
+            "n_evaluated": 14
+          }
+        },
+        "per_stratum": {
+          "GENUINE_CAPABILITY_GAIN": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "GENUINE_CAPABILITY_LOSS": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I10_INDEPENDENT_REDISCOVERY": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I1_DUPLICATES": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I2_PARAPHRASE": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I3_MASS_LOW_INFORMATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I4_RETRACTED_WORK": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I5_CITATION_RING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I6_VENUE_MIGRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I7_FIELD_SIZE_SCALING": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I8_FASHION_CONCENTRATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I9_DELAYED_VALIDATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "NO_CHANGE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "X6I7_ONE_BREAKTHROUGH": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          }
+        },
+        "wall_ms": 0.295456
+      },
+      "M_MINUS_CORRECTION_RETRACTION": {
+        "activity_rate": 1.0,
+        "capability_rate": 0.9285714285714286,
+        "exact_rate": 0.9285714285714286,
+        "n_evaluated": 28,
+        "per_scale": {
+          "SCALE_PROBLEM_FAMILY": {
+            "exact_rate": 0.9285714285714286,
+            "n_evaluated": 14
+          },
+          "SCALE_SUBFIELD": {
+            "exact_rate": 0.9285714285714286,
+            "n_evaluated": 14
+          }
+        },
+        "per_stratum": {
+          "GENUINE_CAPABILITY_GAIN": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "GENUINE_CAPABILITY_LOSS": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I10_INDEPENDENT_REDISCOVERY": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I1_DUPLICATES": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I2_PARAPHRASE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I3_MASS_LOW_INFORMATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I4_RETRACTED_WORK": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I5_CITATION_RING": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I6_VENUE_MIGRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I7_FIELD_SIZE_SCALING": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I8_FASHION_CONCENTRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I9_DELAYED_VALIDATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "NO_CHANGE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "X6I7_ONE_BREAKTHROUGH": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          }
+        },
+        "wall_ms": 0.180875
+      },
+      "M_MINUS_COST": {
+        "activity_rate": 1.0,
+        "capability_rate": 1.0,
+        "exact_rate": 1.0,
+        "n_evaluated": 28,
+        "per_scale": {
+          "SCALE_PROBLEM_FAMILY": {
+            "exact_rate": 1.0,
+            "n_evaluated": 14
+          },
+          "SCALE_SUBFIELD": {
+            "exact_rate": 1.0,
+            "n_evaluated": 14
+          }
+        },
+        "per_stratum": {
+          "GENUINE_CAPABILITY_GAIN": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "GENUINE_CAPABILITY_LOSS": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I10_INDEPENDENT_REDISCOVERY": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I1_DUPLICATES": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I2_PARAPHRASE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I3_MASS_LOW_INFORMATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I4_RETRACTED_WORK": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I5_CITATION_RING": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I6_VENUE_MIGRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I7_FIELD_SIZE_SCALING": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I8_FASHION_CONCENTRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I9_DELAYED_VALIDATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "NO_CHANGE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "X6I7_ONE_BREAKTHROUGH": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          }
+        },
+        "wall_ms": 0.190416
+      },
+      "M_MINUS_FORMAL": {
+        "activity_rate": 1.0,
+        "capability_rate": 0.9285714285714286,
+        "exact_rate": 0.9285714285714286,
+        "n_evaluated": 28,
+        "per_scale": {
+          "SCALE_PROBLEM_FAMILY": {
+            "exact_rate": 0.9285714285714286,
+            "n_evaluated": 14
+          },
+          "SCALE_SUBFIELD": {
+            "exact_rate": 0.9285714285714286,
+            "n_evaluated": 14
+          }
+        },
+        "per_stratum": {
+          "GENUINE_CAPABILITY_GAIN": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "GENUINE_CAPABILITY_LOSS": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I10_INDEPENDENT_REDISCOVERY": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I1_DUPLICATES": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I2_PARAPHRASE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I3_MASS_LOW_INFORMATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I4_RETRACTED_WORK": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I5_CITATION_RING": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I6_VENUE_MIGRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I7_FIELD_SIZE_SCALING": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I8_FASHION_CONCENTRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I9_DELAYED_VALIDATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "NO_CHANGE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "X6I7_ONE_BREAKTHROUGH": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          }
+        },
+        "wall_ms": 0.200208
+      },
+      "M_MINUS_REDERIVATION": {
+        "activity_rate": 1.0,
+        "capability_rate": 0.9285714285714286,
+        "exact_rate": 0.9285714285714286,
+        "n_evaluated": 28,
+        "per_scale": {
+          "SCALE_PROBLEM_FAMILY": {
+            "exact_rate": 0.9285714285714286,
+            "n_evaluated": 14
+          },
+          "SCALE_SUBFIELD": {
+            "exact_rate": 0.9285714285714286,
+            "n_evaluated": 14
+          }
+        },
+        "per_stratum": {
+          "GENUINE_CAPABILITY_GAIN": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "GENUINE_CAPABILITY_LOSS": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I10_INDEPENDENT_REDISCOVERY": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "I1_DUPLICATES": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I2_PARAPHRASE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I3_MASS_LOW_INFORMATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I4_RETRACTED_WORK": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I5_CITATION_RING": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I6_VENUE_MIGRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I7_FIELD_SIZE_SCALING": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I8_FASHION_CONCENTRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I9_DELAYED_VALIDATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "NO_CHANGE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "X6I7_ONE_BREAKTHROUGH": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          }
+        },
+        "wall_ms": 0.193664
+      },
+      "M_MINUS_REPLICATION": {
+        "activity_rate": 1.0,
+        "capability_rate": 0.9285714285714286,
+        "exact_rate": 0.9285714285714286,
+        "n_evaluated": 28,
+        "per_scale": {
+          "SCALE_PROBLEM_FAMILY": {
+            "exact_rate": 0.9285714285714286,
+            "n_evaluated": 14
+          },
+          "SCALE_SUBFIELD": {
+            "exact_rate": 0.9285714285714286,
+            "n_evaluated": 14
+          }
+        },
+        "per_stratum": {
+          "GENUINE_CAPABILITY_GAIN": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "GENUINE_CAPABILITY_LOSS": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I10_INDEPENDENT_REDISCOVERY": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I1_DUPLICATES": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I2_PARAPHRASE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I3_MASS_LOW_INFORMATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I4_RETRACTED_WORK": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I5_CITATION_RING": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I6_VENUE_MIGRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I7_FIELD_SIZE_SCALING": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I8_FASHION_CONCENTRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I9_DELAYED_VALIDATION": {
+            "exact_rate": 0.0,
+            "n_evaluated": 2
+          },
+          "NO_CHANGE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "X6I7_ONE_BREAKTHROUGH": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          }
+        },
+        "wall_ms": 0.181419
+      },
+      "M_MINUS_REUSE": {
+        "activity_rate": 1.0,
+        "capability_rate": 1.0,
+        "exact_rate": 1.0,
+        "n_evaluated": 28,
+        "per_scale": {
+          "SCALE_PROBLEM_FAMILY": {
+            "exact_rate": 1.0,
+            "n_evaluated": 14
+          },
+          "SCALE_SUBFIELD": {
+            "exact_rate": 1.0,
+            "n_evaluated": 14
+          }
+        },
+        "per_stratum": {
+          "GENUINE_CAPABILITY_GAIN": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "GENUINE_CAPABILITY_LOSS": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I10_INDEPENDENT_REDISCOVERY": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I1_DUPLICATES": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I2_PARAPHRASE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I3_MASS_LOW_INFORMATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I4_RETRACTED_WORK": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I5_CITATION_RING": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I6_VENUE_MIGRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I7_FIELD_SIZE_SCALING": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I8_FASHION_CONCENTRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I9_DELAYED_VALIDATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "NO_CHANGE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "X6I7_ONE_BREAKTHROUGH": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          }
+        },
+        "wall_ms": 0.195082
+      },
+      "M_TYPED_COLLECTIVE_STATE": {
+        "activity_rate": 1.0,
+        "capability_rate": 1.0,
+        "exact_rate": 1.0,
+        "n_evaluated": 28,
+        "per_scale": {
+          "SCALE_PROBLEM_FAMILY": {
+            "exact_rate": 1.0,
+            "n_evaluated": 14
+          },
+          "SCALE_SUBFIELD": {
+            "exact_rate": 1.0,
+            "n_evaluated": 14
+          }
+        },
+        "per_stratum": {
+          "GENUINE_CAPABILITY_GAIN": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "GENUINE_CAPABILITY_LOSS": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I10_INDEPENDENT_REDISCOVERY": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I1_DUPLICATES": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I2_PARAPHRASE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I3_MASS_LOW_INFORMATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I4_RETRACTED_WORK": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I5_CITATION_RING": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I6_VENUE_MIGRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I7_FIELD_SIZE_SCALING": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I8_FASHION_CONCENTRATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "I9_DELAYED_VALIDATION": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "NO_CHANGE": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          },
+          "X6I7_ONE_BREAKTHROUGH": {
+            "exact_rate": 1.0,
+            "n_evaluated": 2
+          }
+        },
+        "wall_ms": 0.224498
+      }
+    }
+  }
+}
