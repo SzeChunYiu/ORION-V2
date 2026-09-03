@@ -115,6 +115,12 @@
         "FM40",
         "FM50",
         "FM60"
+      ],
+      "status": "TERMINAL",
+      "terminal": "INSUFFICIENT_ROUTING_SIGNAL_ON_DEVELOPMENT_FOLD + NO_ROUTING_HEADROOM_PARENT_FEDERATION_ALREADY_OPTIMAL",
+      "receipts": [
+        "research/experiments/fm70/FM70_GATE0_TERMINAL_RECEIPT.md",
+        "research/experiments/fm-exact/FM70_EXTENSION_ROUTING_HEADROOM_RECEIPT.md"
       ]
     },
     {
@@ -128,7 +134,17 @@
         "FM40",
         "FM50",
         "FM60"
-      ]
+      ],
+      "status": "BLOCKED_WITH_REASON",
+      "terminal": "BLOCKED_ELIGIBILITY_PRECONDITIONS_UNSATISFIED",
+      "blocked_on": [
+        "FM80 protocol S3 items (c)-(e): no donor key, no frozen retrieval baseline, transfer consequence untestable",
+        "S4: K, corpus snapshot and retrieval model/version not frozen",
+        "S7: two independent qualified adjudicators per domain unavailable",
+        "S8: zero FM80-eligible cases, not merely fewer than 90"
+      ],
+      "not_inherited_from": "SD80 terminated INSUFFICIENT_ELIGIBLE_NATURALISTIC_CASES on PC-R7's internal-vs-external population condition, which is a different requirement; SD80 records FM80 eligibility as PENDING for every case",
+      "receipt": "research/experiments/fm-exact/FM80_BLOCKED_WITH_REASON_RECEIPT.md"
     },
     {
       "id": "FM90",
