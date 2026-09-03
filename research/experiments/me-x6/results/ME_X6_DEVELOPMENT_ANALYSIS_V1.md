@@ -6,19 +6,22 @@
 
 ## Gates
 
-| gate | pass | n_evaluated |
-|---|---|---|
-| `G0a_KNOWN_ANSWER` | True | 32 |
-| `G0b_ORACLE_SELF_AGREEMENT` | True | 28 |
-| `G0c_NULL_CALIBRATION` | True | 28 |
-| `G1a_M_AHEAD_OF_MATCHED_PARENT` | True | 28 |
-| `G1b_MATCHED_PARENT_AHEAD` | False | 28 |
-| `G2_ANTI_CONSERVATISM` | True | 4 |
-| `G3_MECHANISM_BY_OMISSION` | True | 28 |
-| `G4_INFORMATION_LADDER` | True | 28 |
-| `G5_HOSTILE_INVARIANCE_SUITE` | True | 28 |
-| `G6_CROSS_SCALE_TRANSFER` | True | 28 |
-| `G7_REGISTERED_PREDICTION` | True | 28 |
+Both denominators are shown. Instances are structural replicates of a cell, not independent observations: only G0c reports an inferential statistic.
+
+| gate | pass | instances | cells |
+|---|---|---|---|
+| `G0a_KNOWN_ANSWER` | True | 33 | 28 |
+| `G0b_ORACLE_SELF_AGREEMENT` | True | 28 | 28 |
+| `G0c_NULL_CALIBRATION` | True | 28 | 28 |
+| `G1a_M_AHEAD_OF_MATCHED_PARENT` | True | 28 | 28 |
+| `G1b_MATCHED_PARENT_AHEAD` | False | 28 | 28 |
+| `G2_ANTI_CONSERVATISM` | True | 4 | 28 |
+| `G3_MECHANISM_BY_OMISSION` | True | 28 | 28 |
+| `G4_INFORMATION_LADDER` | True | 28 | 28 |
+| `G5_HOSTILE_INVARIANCE_SUITE` | True | 28 | 28 |
+| `G6_CROSS_SCALE_TRANSFER` | True | 28 | 28 |
+| `G7_REGISTERED_PREDICTION` | True | 28 | 28 |
+| `G8_VERDICT_CONSTANCY_WITHIN_CELL` | True | 28 | 28 |
 
 ## Arms
 

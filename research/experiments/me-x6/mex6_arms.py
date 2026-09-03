@@ -66,25 +66,27 @@ TYPED_SIGNS: dict[str, int] = {
 class ArmSpec:
     name: str
     channels: tuple[str, ...]
-    capability: Callable[[FieldWindow, tuple[str, ...], random.Random], str]
+    capability: Callable[[FieldWindow, "ArmSpec", random.Random], str]
 
 
-def _cap_untyped(w: FieldWindow, chans: tuple[str, ...], rng: random.Random) -> str:
-    """The science-of-science combination: one aggregate, read for its trend."""
-    return _dir_of(w, chans)
+def _cap_untyped(w: FieldWindow, spec: "ArmSpec", rng: random.Random) -> str:
+    """The science-of-science combination: one equal-weight aggregate, read for
+    its trend.  Kept as B4X_INFORMATION_MATCHED_UNTYPED so the fitted parent has
+    an unfitted sibling to be compared against, and as the literal B4."""
+    return _dir_of(w, spec.channels)
 
 
-def _cap_typed(w: FieldWindow, chans: tuple[str, ...], rng: random.Random) -> str:
+def _cap_typed(w: FieldWindow, spec: "ArmSpec", rng: random.Random) -> str:
     """M: the same channels, read as a typed state with signed roles."""
-    keys = tuple(k for k in chans if k in TYPED_SIGNS)
+    keys = tuple(k for k in spec.channels if k in TYPED_SIGNS)
     if not keys:
         return FLAT
     return _dir_of(w, keys, TYPED_SIGNS)
 
 
-def _cap_always_rise(w, chans, rng): return RISE
-def _cap_always_flat(w, chans, rng): return FLAT
-def _cap_random(w, chans, rng): return rng.choice((RISE, FLAT, FALL))
+def _cap_always_rise(w, spec, rng): return RISE
+def _cap_always_flat(w, spec, rng): return FLAT
+def _cap_random(w, spec, rng): return rng.choice((RISE, FLAT, FALL))
 
 
 LADDER = (
@@ -115,28 +117,36 @@ ABLATION_GROUPS: dict[str, tuple[str, ...]] = {
 # If it ties M, the registered terminal is PARENT_SUFFICIENT and X6 contracts to
 # an interpretive framework -- the protocol's own contraction rule, and a
 # legitimate publishable result, not a failure.
-FITTED_SIGNS: dict[str, int] = {}
+# arm name -> {channel: sign}.  Every fitted arm carries its own vector, so a
+# ladder rung is the best untyped model available AT ITS OWN information level
+# rather than an equal-weight sum.  That matters: with equal weights, adding a
+# channel can make a rung strictly worse than the one below it -- L2's attention
+# channel destroys I5_CITATION_RING, which L1 gets right -- and the ladder would
+# then be measuring the arbitrariness of the weighting rather than the value of
+# the information.  Fitting each rung removes that artefact and makes G4 a
+# meaningful monotonicity test again.  L5 fitted is exactly the comparator.
+FITTED_SIGNS: dict[str, dict[str, int]] = {}
 
 
-def load_fitted_signs(signs: dict[str, int]) -> None:
+def load_fitted_signs(signs: dict[str, dict[str, int]]) -> None:
     FITTED_SIGNS.clear()
-    FITTED_SIGNS.update(signs)
+    FITTED_SIGNS.update({k: dict(v) for k, v in signs.items()})
 
 
-def fit_signs(instances) -> dict[str, int]:
+def fit_signs(instances, channels: tuple[str, ...] = CHANNELS) -> dict[str, int]:
     """Learn one sign per channel by agreement with the oracle capability
     direction on the split it is given.  Deterministic, no randomness, no
     hyperparameter: a channel scores +1 if its own fit-window direction matches
     the true capability direction more often than it opposes it."""
     from mex6_oracle import oracle
 
-    score = {c: 0 for c in CHANNELS}
+    score = {c: 0 for c in channels}
     for inst in instances:
         w = inst.window
         truth = oracle(w).capability
         if truth == FLAT:
             continue
-        for c in CHANNELS:
+        for c in channels:
             d = _dir_of(w, (c,))
             if d == FLAT:
                 continue
@@ -144,13 +154,23 @@ def fit_signs(instances) -> dict[str, int]:
     return {c: (1 if v > 0 else (-1 if v < 0 else 0)) for c, v in score.items()}
 
 
-def _cap_fitted(w: FieldWindow, chans: tuple[str, ...], rng: random.Random) -> str:
-    if not FITTED_SIGNS:
-        raise RuntimeError("B4X_FITTED used before its frozen signs were loaded")
-    keys = tuple(c for c in chans if FITTED_SIGNS.get(c, 0) != 0)
+def _cap_fitted(w: FieldWindow, spec: "ArmSpec", rng: random.Random) -> str:
+    signs = FITTED_SIGNS.get(spec.name)
+    if signs is None:
+        raise RuntimeError(f"{spec.name} used before its frozen signs were loaded")
+    keys = tuple(c for c in spec.channels if signs.get(c, 0) != 0)
     if not keys:
         return FLAT
-    return _dir_of(w, keys, FITTED_SIGNS)
+    return _dir_of(w, keys, signs)
+
+
+def fit_all(instances) -> dict[str, dict[str, int]]:
+    """Fit every fitted arm on the split it is given.  Called once on the public
+    development split; the result is frozen into the design JSON."""
+    out = {B4X_FITTED_ARM: fit_signs(instances, CHANNELS)}
+    for name, chans in LADDER:
+        out[name] = fit_signs(instances, chans)
+    return out
 
 
 M_ARM = "M_TYPED_COLLECTIVE_STATE"
@@ -170,7 +190,7 @@ def arm_specs() -> tuple[ArmSpec, ...]:
         ArmSpec(B4X_FITTED_ARM, CHANNELS, _cap_fitted),
         ArmSpec(M_ARM, CHANNELS, _cap_typed),
     ]
-    specs += [ArmSpec(n, c, _cap_untyped) for n, c in LADDER]
+    specs += [ArmSpec(n, c, _cap_fitted) for n, c in LADDER]
     for name, drop in ABLATION_GROUPS.items():
         specs.append(ArmSpec(name, tuple(c for c in CHANNELS if c not in drop), _cap_typed))
     specs += [
@@ -187,4 +207,4 @@ def run_arm(spec: ArmSpec, w: FieldWindow, rng: random.Random) -> Verdict:
     plainly has the information for.  The contest is capability."""
     act_keys = tuple(k for k in ACTIVITY_CHANNELS if k in spec.channels)
     activity = _dir_of(w, act_keys) if act_keys else _dir_of(w, spec.channels)
-    return Verdict(capability=spec.capability(w, spec.channels, rng), activity=activity)
+    return Verdict(capability=spec.capability(w, spec, rng), activity=activity)

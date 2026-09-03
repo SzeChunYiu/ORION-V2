@@ -34,7 +34,7 @@ DEV = mex6_generator.generate_split("dev", mex6_run.DEV_SEED, 1)
 
 @pytest.fixture(scope="module", autouse=True)
 def _frozen_signs():
-    mex6_arms.load_fitted_signs(mex6_arms.fit_signs(DEV))
+    mex6_arms.load_fitted_signs(mex6_run.frozen_signs())
 
 
 def _arm(name):
@@ -146,7 +146,7 @@ def test_an_untyped_reading_cannot_separate_the_decoupled_strata() -> None:
     for inst in DEV:
         if inst.stratum not in mex6_run.DECOUPLED_STRATA:
             continue
-        untyped = mex6_arms._cap_untyped(inst.window, mex6_model.CHANNELS, random.Random(0))
+        untyped = mex6_arms._cap_untyped(inst.window, _arm(mex6_arms.B4X_ARM), random.Random(0))
         assert untyped != mex6_oracle.oracle(inst.window).capability
 
 
@@ -232,7 +232,7 @@ def test_protected_stage_refuses_on_a_bad_seed_with_a_distinct_exit_code(
 def test_the_frozen_design_json_matches_the_code_it_describes() -> None:
     d = json.loads(mex6_run.DESIGN_JSON.read_text())
     assert d["strata"].keys() == mex6_generator.STRATA.keys()
-    assert d["comparator"]["frozen_fitted_signs"] == mex6_arms.fit_signs(DEV)
+    assert d["comparator"]["frozen_fitted_signs"] == mex6_arms.fit_all(DEV)
     assert d["registered_predictions"]["P-MEX6-1"]["support"] == list(mex6_run.DECOUPLED_STRATA)
     assert d["split_sizes"]["protected_total"] == 50 * len(mex6_generator.CELLS)
 
@@ -315,3 +315,124 @@ def test_structural_variation_never_moves_a_direction() -> None:
         ok, why = mex6_oracle.planter_agrees(inst.window, inst.stratum)
         assert ok, why
         assert mex6_oracle.decidable_from_fit_window(inst.window)
+
+
+# ---- the constructive framing ---------------------------------------------------
+
+def test_the_frozen_signs_are_read_from_the_design_not_refit() -> None:
+    """A "frozen" sign that is recomputed every run was never frozen."""
+    src = (HERE / "mex6_run.py").read_text()
+    assert "frozen_fitted_signs" in src, "the runner must read the committed signs"
+    ok, committed, refit = mex6_run.assert_frozen_signs_still_reproduce()
+    assert ok, f"committed signs no longer reproduce: {committed} vs {refit}"
+
+
+def test_a_drifted_frozen_sign_halts_the_run(tmp_path: Path, monkeypatch) -> None:
+    """Drift must be caught, not absorbed -- with its own exit code."""
+    monkeypatch.setattr(mex6_run, "frozen_signs",
+                        lambda: {mex6_arms.B4X_FITTED_ARM: {"citations": 1}})
+    assert mex6_run.stage_dev(tmp_path, 1) == 5
+
+
+def test_the_binomial_tail_survives_the_protected_size() -> None:
+    """The float form raises OverflowError at n=1400; an overflowed tail compared
+    against a threshold would make G0c incapable of failing."""
+    assert mex6_run.binom_upper_tail(0, 1400, 1 / 3) == 1.0
+    assert mex6_run.binom_upper_tail(1400, 1400, 1 / 3) == pytest.approx(0.0, abs=1e-12)
+    mid = mex6_run.binom_upper_tail(467, 1400, 1 / 3)
+    assert 0.0 < mid < 1.0
+
+
+def test_no_gate_but_G0c_reports_an_inferential_statistic(tmp_path: Path) -> None:
+    mex6_run.stage_selftest(tmp_path)
+    mex6_run.stage_dev(tmp_path, 1)
+    g = json.loads((tmp_path / "ME_X6_DEVELOPMENT_ANALYSIS_V1.json").read_text())["gates"]
+    for name, gate in g.items():
+        if name in ("G0c_NULL_CALIBRATION", "ROUTE"):
+            continue
+        assert "exact_p_two_sided" not in json.dumps(gate),             f"{name} reports a p-value over structural replicates"
+
+
+def test_every_gate_reports_both_denominators(tmp_path: Path) -> None:
+    mex6_run.stage_dev(tmp_path, 1)
+    g = json.loads((tmp_path / "ME_X6_DEVELOPMENT_ANALYSIS_V1.json").read_text())["gates"]
+    for name, gate in g.items():
+        if name == "ROUTE":
+            continue
+        assert "n_evaluated" in gate and "n_cells" in gate, f"{name} lacks a denominator"
+
+
+def test_verdict_is_constant_within_a_cell_at_scale() -> None:
+    """G8's premise, measured rather than assumed."""
+    insts = mex6_generator.generate_split("probe", "ME-X6-CONSTANCY-PROBE", 5)
+    specs = {s.name: s for s in mex6_arms.arm_specs()}
+    by_cell: dict[tuple, list] = {}
+    for i in insts:
+        by_cell.setdefault((i.stratum, i.scale), []).append(i)
+    for name, spec in specs.items():
+        if name == "C_RANDOM":
+            continue
+        for cell, group in by_cell.items():
+            verdicts = {mex6_arms.run_arm(spec, i.window, random.Random(0)).as_tuple()
+                        for i in group}
+            assert len(verdicts) == 1, f"{name} varies within {cell}: {verdicts}"
+
+
+def test_the_constancy_check_can_actually_fire() -> None:
+    """Paired positive: a hand-built per-channel-step window flips I4's typed
+    capability, so a cell holding it would not be constant."""
+    i4 = [i.window for i in DEV if i.stratum == "I4_RETRACTED_WORK"]
+    assert i4
+    flipped = 0
+    for w in i4:
+        skew = mex6_run._skew_i4(w)
+        if mex6_run.mex6_typed_capability(skew) != mex6_run.mex6_typed_capability(w):
+            flipped += 1
+    assert flipped == len(i4), "the constancy gate has never been shown to fire"
+
+
+def test_the_ladder_gate_is_not_a_monotonicity_gate() -> None:
+    """P-MEX6-2: the reversal is real after fitting, and must be reported not failed."""
+    assert mex6_run.PREDICTED_LADDER_REGRESSIONS == ("L1_ACTIVITY_ONLY -> L2_PLUS_ATTENTION",)
+    specs = {s.name: s for s in mex6_arms.arm_specs()}
+    i5 = [i for i in DEV if i.stratum == "I5_CITATION_RING"]
+    l1 = sum(1 for i in i5 if mex6_arms.run_arm(specs["L1_ACTIVITY_ONLY"], i.window,
+                                                random.Random(0)).as_dict()
+             == mex6_oracle.oracle(i.window).as_dict())
+    l2 = sum(1 for i in i5 if mex6_arms.run_arm(specs["L2_PLUS_ATTENTION"], i.window,
+                                                random.Random(0)).as_dict()
+             == mex6_oracle.oracle(i.window).as_dict())
+    assert l1 == len(i5) and l2 == 0, "the registered reversal is not present"
+
+
+def test_the_all_pass_route_reads_every_gate_its_terminal_claims() -> None:
+    src = (HERE / "mex6_run.py").read_text().split("def route(")[1]
+    for gate in ("G3_MECHANISM_BY_OMISSION", "G4_INFORMATION_LADDER",
+                 "G5_HOSTILE_INVARIANCE_SUITE", "G7_REGISTERED_PREDICTION",
+                 "G8_VERDICT_CONSTANCY_WITHIN_CELL"):
+        assert gate in src, f"route() never reads {gate}"
+
+
+def test_G0a_denominator_counts_what_was_actually_checked(tmp_path: Path) -> None:
+    """A hardcoded denominator stops matching the moment a positive is added."""
+    mex6_run.stage_selftest(tmp_path)
+    mex6_run.stage_dev(tmp_path, 1)
+    rep = json.loads((tmp_path / "ME_X6_SELFTEST_REPORT.json").read_text())
+    g = json.loads((tmp_path / "ME_X6_DEVELOPMENT_ANALYSIS_V1.json").read_text()) \
+        ["gates"]["G0a_KNOWN_ANSWER"]
+    assert g["n_cells_checked"] == rep["known_answer"]["n"]
+    assert g["n_planted_positives"] == len(rep["planted_positives"])
+    assert g["n_evaluated"] == g["n_cells_checked"] + g["n_planted_positives"]
+    # A behavioural positive, not a source-text grep: perturb the report's
+    # positive count and the gate's denominator must move with it.  A hardcoded
+    # denominator passes every assertion above and fails only this one.
+    rep["planted_positives"]["a_synthetic_extra_positive"] = {"tripped": 1, "n": 1}
+    (tmp_path / "ME_X6_SELFTEST_REPORT.json").write_text(json.dumps(rep))
+    mex6_run.stage_analyze(tmp_path / "ME_X6_DEVELOPMENT_RESULTS_V1.json",
+                           tmp_path / "ME_X6_DEVELOPMENT_EXPECTED_CUSTODY_V1.json",
+                           tmp_path, "DEVELOPMENT")
+    g2 = json.loads((tmp_path / "ME_X6_DEVELOPMENT_ANALYSIS_V1.json").read_text()) \
+        ["gates"]["G0a_KNOWN_ANSWER"]
+    assert g2["n_planted_positives"] == g["n_planted_positives"] + 1
+    assert g2["n_evaluated"] == g["n_evaluated"] + 1, \
+        "the denominator does not track what the report says was checked"
