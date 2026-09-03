@@ -1,0 +1,3998 @@
+{
+  "_generator_rejections": {
+    "minimal_counterexample": 11,
+    "misleading_surface_support": 377,
+    "multiple_obstruction": 8,
+    "no_obstruction": 1,
+    "single_hidden_obstruction": 27
+  },
+  "_oracle_agreement": {
+    "n_disagreements": 0,
+    "n_evaluated": 15
+  },
+  "arms": [
+    "P0_INDUCTIVE_CONFIRMATION",
+    "P1_FIXED_LESSON_TABLE",
+    "P2_EXHAUSTIVE_MODEL_SEARCH",
+    "P3_DERIVATION_PROOF_SEARCH",
+    "P4_SMALL_SCOPE_BOUNDED_CHECK",
+    "F0_PARENT_FEDERATION",
+    "M_F2_OBSTRUCTION_DISCOVERY_FULL",
+    "M_MINUS_OBSTRUCTION_SEARCH",
+    "M_MINUS_PROOF_WITNESS",
+    "M_MINUS_MINIMALITY_ESCALATION",
+    "M_MINUS_MULTIPLICITY_CHECK",
+    "C_ALWAYS_ACCEPT",
+    "C_ALWAYS_BLOCK",
+    "C_RANDOM_DISPOSITION"
+  ],
+  "instances": [
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_ALWAYS_BLOCK": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": "P3",
+          "witness": {
+            "kind": "DERIVATION",
+            "steps": [
+              [
+                2,
+                "ASYMMETRIC"
+              ]
+            ]
+          },
+          "witness_check": "derivation_checked",
+          "witness_valid": true
+        },
+        "M_F2_OBSTRUCTION_DISCOVERY_FULL": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": "proof",
+          "witness": {
+            "kind": "DERIVATION",
+            "steps": [
+              [
+                2,
+                "ASYMMETRIC"
+              ]
+            ]
+          },
+          "witness_check": "derivation_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MINIMALITY_ESCALATION": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": "proof",
+          "witness": {
+            "kind": "DERIVATION",
+            "steps": [
+              [
+                2,
+                "ASYMMETRIC"
+              ]
+            ]
+          },
+          "witness_check": "derivation_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MULTIPLICITY_CHECK": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": "proof",
+          "witness": {
+            "kind": "DERIVATION",
+            "steps": [
+              [
+                2,
+                "ASYMMETRIC"
+              ]
+            ]
+          },
+          "witness_check": "derivation_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": "proof",
+          "witness": {
+            "kind": "DERIVATION",
+            "steps": [
+              [
+                2,
+                "ASYMMETRIC"
+              ]
+            ]
+          },
+          "witness_check": "derivation_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_PROOF_WITNESS": {
+          "claimed_disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "source": "exhausted",
+          "witness": null,
+          "witness_check": "abstention_must_carry_no_witness",
+          "witness_valid": true
+        },
+        "P0_INDUCTIVE_CONFIRMATION": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "P1_FIXED_LESSON_TABLE": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "P2_EXHAUSTIVE_MODEL_SEARCH": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "P3_DERIVATION_PROOF_SEARCH": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": {
+            "kind": "DERIVATION",
+            "steps": [
+              [
+                2,
+                "ASYMMETRIC"
+              ]
+            ]
+          },
+          "witness_check": "derivation_checked",
+          "witness_valid": true
+        },
+        "P4_SMALL_SCOPE_BOUNDED_CHECK": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        }
+      },
+      "family": "no_obstruction",
+      "instance_id": "no_obstruction-00001"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_ALWAYS_BLOCK": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": "P3",
+          "witness": {
+            "kind": "DERIVATION",
+            "steps": [
+              [
+                0,
+                "IRREFLEXIVE"
+              ],
+              [
+                1,
+                "ANTISYMMETRIC"
+              ]
+            ]
+          },
+          "witness_check": "derivation_checked",
+          "witness_valid": true
+        },
+        "M_F2_OBSTRUCTION_DISCOVERY_FULL": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": "proof",
+          "witness": {
+            "kind": "DERIVATION",
+            "steps": [
+              [
+                0,
+                "IRREFLEXIVE"
+              ],
+              [
+                1,
+                "ANTISYMMETRIC"
+              ]
+            ]
+          },
+          "witness_check": "derivation_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MINIMALITY_ESCALATION": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": "proof",
+          "witness": {
+            "kind": "DERIVATION",
+            "steps": [
+              [
+                0,
+                "IRREFLEXIVE"
+              ],
+              [
+                1,
+                "ANTISYMMETRIC"
+              ]
+            ]
+          },
+          "witness_check": "derivation_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MULTIPLICITY_CHECK": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": "proof",
+          "witness": {
+            "kind": "DERIVATION",
+            "steps": [
+              [
+                0,
+                "IRREFLEXIVE"
+              ],
+              [
+                1,
+                "ANTISYMMETRIC"
+              ]
+            ]
+          },
+          "witness_check": "derivation_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": "proof",
+          "witness": {
+            "kind": "DERIVATION",
+            "steps": [
+              [
+                0,
+                "IRREFLEXIVE"
+              ],
+              [
+                1,
+                "ANTISYMMETRIC"
+              ]
+            ]
+          },
+          "witness_check": "derivation_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_PROOF_WITNESS": {
+          "claimed_disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "source": "exhausted",
+          "witness": null,
+          "witness_check": "abstention_must_carry_no_witness",
+          "witness_valid": true
+        },
+        "P0_INDUCTIVE_CONFIRMATION": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "P1_FIXED_LESSON_TABLE": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "P2_EXHAUSTIVE_MODEL_SEARCH": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "P3_DERIVATION_PROOF_SEARCH": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": {
+            "kind": "DERIVATION",
+            "steps": [
+              [
+                0,
+                "IRREFLEXIVE"
+              ],
+              [
+                1,
+                "ANTISYMMETRIC"
+              ]
+            ]
+          },
+          "witness_check": "derivation_checked",
+          "witness_valid": true
+        },
+        "P4_SMALL_SCOPE_BOUNDED_CHECK": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        }
+      },
+      "family": "no_obstruction",
+      "instance_id": "no_obstruction-00003"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_ALWAYS_BLOCK": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": "P3",
+          "witness": {
+            "kind": "DERIVATION",
+            "steps": [
+              [
+                5,
+                "IRREFLEXIVE"
+              ],
+              [
+                6,
+                "SYMMETRIC"
+              ],
+              [
+                7,
+                "TRANSITIVE"
+              ],
+              [
+                8,
+                "ANTISYMMETRIC"
+              ],
+              [
+                9,
+                "FUNCTIONAL"
+              ],
+              [
+                10,
+                "INJECTIVE_R"
+              ],
+              [
+                11,
+                "EUCLIDEAN"
+              ],
+              [
+                12,
+                "DENSE"
+              ],
+              [
+                13,
+                "HAS_R_SOURCE"
+              ],
+              [
+                15,
+                "P_FORWARD_CLOSED"
+              ],
+              [
+                17,
+                "R_INTO_P"
+              ],
+              [
+                18,
+                "P_ISOLATED"
+              ],
+              [
+                2,
+                "ASYMMETRIC"
+              ]
+            ]
+          },
+          "witness_check": "derivation_checked",
+          "witness_valid": true
+        },
+        "M_F2_OBSTRUCTION_DISCOVERY_FULL": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": "proof",
+          "witness": {
+            "kind": "DERIVATION",
+            "steps": [
+              [
+                5,
+                "IRREFLEXIVE"
+              ],
+              [
+                6,
+                "SYMMETRIC"
+              ],
+              [
+                7,
+                "TRANSITIVE"
+              ],
+              [
+                8,
+                "ANTISYMMETRIC"
+              ],
+              [
+                9,
+                "FUNCTIONAL"
+              ],
+              [
+                10,
+                "INJECTIVE_R"
+              ],
+              [
+                11,
+                "EUCLIDEAN"
+              ],
+              [
+                12,
+                "DENSE"
+              ],
+              [
+                13,
+                "HAS_R_SOURCE"
+              ],
+              [
+                15,
+                "P_FORWARD_CLOSED"
+              ],
+              [
+                17,
+                "R_INTO_P"
+              ],
+              [
+                18,
+                "P_ISOLATED"
+              ]
+            ]
+          },
+          "witness_check": "derivation_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MINIMALITY_ESCALATION": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": "proof",
+          "witness": {
+            "kind": "DERIVATION",
+            "steps": [
+              [
+                5,
+                "IRREFLEXIVE"
+              ],
+              [
+                6,
+                "SYMMETRIC"
+              ],
+              [
+                7,
+                "TRANSITIVE"
+              ],
+              [
+                8,
+                "ANTISYMMETRIC"
+              ],
+              [
+                9,
+                "FUNCTIONAL"
+              ],
+              [
+                10,
+                "INJECTIVE_R"
+              ],
+              [
+                11,
+                "EUCLIDEAN"
+              ],
+              [
+                12,
+                "DENSE"
+              ],
+              [
+                13,
+                "HAS_R_SOURCE"
+              ],
+              [
+                15,
+                "P_FORWARD_CLOSED"
+              ],
+              [
+                17,
+                "R_INTO_P"
+              ],
+              [
+                18,
+                "P_ISOLATED"
+              ]
+            ]
+          },
+          "witness_check": "derivation_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MULTIPLICITY_CHECK": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": "proof",
+          "witness": {
+            "kind": "DERIVATION",
+            "steps": [
+              [
+                5,
+                "IRREFLEXIVE"
+              ],
+              [
+                6,
+                "SYMMETRIC"
+              ],
+              [
+                7,
+                "TRANSITIVE"
+              ],
+              [
+                8,
+                "ANTISYMMETRIC"
+              ],
+              [
+                9,
+                "FUNCTIONAL"
+              ],
+              [
+                10,
+                "INJECTIVE_R"
+              ],
+              [
+                11,
+                "EUCLIDEAN"
+              ],
+              [
+                12,
+                "DENSE"
+              ],
+              [
+                13,
+                "HAS_R_SOURCE"
+              ],
+              [
+                15,
+                "P_FORWARD_CLOSED"
+              ],
+              [
+                17,
+                "R_INTO_P"
+              ],
+              [
+                18,
+                "P_ISOLATED"
+              ]
+            ]
+          },
+          "witness_check": "derivation_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": "proof",
+          "witness": {
+            "kind": "DERIVATION",
+            "steps": [
+              [
+                5,
+                "IRREFLEXIVE"
+              ],
+              [
+                6,
+                "SYMMETRIC"
+              ],
+              [
+                7,
+                "TRANSITIVE"
+              ],
+              [
+                8,
+                "ANTISYMMETRIC"
+              ],
+              [
+                9,
+                "FUNCTIONAL"
+              ],
+              [
+                10,
+                "INJECTIVE_R"
+              ],
+              [
+                11,
+                "EUCLIDEAN"
+              ],
+              [
+                12,
+                "DENSE"
+              ],
+              [
+                13,
+                "HAS_R_SOURCE"
+              ],
+              [
+                15,
+                "P_FORWARD_CLOSED"
+              ],
+              [
+                17,
+                "R_INTO_P"
+              ],
+              [
+                18,
+                "P_ISOLATED"
+              ]
+            ]
+          },
+          "witness_check": "derivation_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_PROOF_WITNESS": {
+          "claimed_disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "source": "exhausted",
+          "witness": null,
+          "witness_check": "abstention_must_carry_no_witness",
+          "witness_valid": true
+        },
+        "P0_INDUCTIVE_CONFIRMATION": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "P1_FIXED_LESSON_TABLE": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "P2_EXHAUSTIVE_MODEL_SEARCH": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "P3_DERIVATION_PROOF_SEARCH": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": {
+            "kind": "DERIVATION",
+            "steps": [
+              [
+                5,
+                "IRREFLEXIVE"
+              ],
+              [
+                6,
+                "SYMMETRIC"
+              ],
+              [
+                7,
+                "TRANSITIVE"
+              ],
+              [
+                8,
+                "ANTISYMMETRIC"
+              ],
+              [
+                9,
+                "FUNCTIONAL"
+              ],
+              [
+                10,
+                "INJECTIVE_R"
+              ],
+              [
+                11,
+                "EUCLIDEAN"
+              ],
+              [
+                12,
+                "DENSE"
+              ],
+              [
+                13,
+                "HAS_R_SOURCE"
+              ],
+              [
+                15,
+                "P_FORWARD_CLOSED"
+              ],
+              [
+                17,
+                "R_INTO_P"
+              ],
+              [
+                18,
+                "P_ISOLATED"
+              ],
+              [
+                2,
+                "ASYMMETRIC"
+              ]
+            ]
+          },
+          "witness_check": "derivation_checked",
+          "witness_valid": true
+        },
+        "P4_SMALL_SCOPE_BOUNDED_CHECK": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        }
+      },
+      "family": "no_obstruction",
+      "instance_id": "no_obstruction-00004"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_ALWAYS_BLOCK": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "P2",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ]
+              ],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_F2_OBSTRUCTION_DISCOVERY_FULL": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ]
+              ],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MINIMALITY_ESCALATION": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ]
+              ],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MULTIPLICITY_CHECK": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ]
+              ],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": "no_search",
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "M_MINUS_PROOF_WITNESS": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ]
+              ],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P0_INDUCTIVE_CONFIRMATION": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ]
+              ],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P1_FIXED_LESSON_TABLE": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "P2_EXHAUSTIVE_MODEL_SEARCH": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ]
+              ],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P3_DERIVATION_PROOF_SEARCH": {
+          "claimed_disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "source": null,
+          "witness": null,
+          "witness_check": "abstention_must_carry_no_witness",
+          "witness_valid": true
+        },
+        "P4_SMALL_SCOPE_BOUNDED_CHECK": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ]
+              ],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        }
+      },
+      "family": "single_hidden_obstruction",
+      "instance_id": "single_hidden_obstruction-00020"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_ALWAYS_BLOCK": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "claimed_disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "P2",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_F2_OBSTRUCTION_DISCOVERY_FULL": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MINIMALITY_ESCALATION": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MULTIPLICITY_CHECK": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": "no_search",
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "M_MINUS_PROOF_WITNESS": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P0_INDUCTIVE_CONFIRMATION": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P1_FIXED_LESSON_TABLE": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [
+                [
+                  0,
+                  1
+                ]
+              ],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "witness_does_not_satisfy_hypotheses",
+          "witness_valid": false
+        },
+        "P2_EXHAUSTIVE_MODEL_SEARCH": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P3_DERIVATION_PROOF_SEARCH": {
+          "claimed_disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "source": null,
+          "witness": null,
+          "witness_check": "abstention_must_carry_no_witness",
+          "witness_valid": true
+        },
+        "P4_SMALL_SCOPE_BOUNDED_CHECK": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        }
+      },
+      "family": "single_hidden_obstruction",
+      "instance_id": "single_hidden_obstruction-00027"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_ALWAYS_BLOCK": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "P2",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_F2_OBSTRUCTION_DISCOVERY_FULL": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MINIMALITY_ESCALATION": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MULTIPLICITY_CHECK": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": "no_search",
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "M_MINUS_PROOF_WITNESS": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P0_INDUCTIVE_CONFIRMATION": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0,
+                1
+              ],
+              "R": [],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P1_FIXED_LESSON_TABLE": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [
+                [
+                  0,
+                  1
+                ]
+              ],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P2_EXHAUSTIVE_MODEL_SEARCH": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P3_DERIVATION_PROOF_SEARCH": {
+          "claimed_disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "source": null,
+          "witness": null,
+          "witness_check": "abstention_must_carry_no_witness",
+          "witness_valid": true
+        },
+        "P4_SMALL_SCOPE_BOUNDED_CHECK": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        }
+      },
+      "family": "single_hidden_obstruction",
+      "instance_id": "single_hidden_obstruction-00030"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_ALWAYS_BLOCK": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": "P2",
+          "witness": {
+            "kind": "OBSTRUCTION_SET",
+            "models": [
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "domain_size": 2
+              },
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "domain_size": 1
+              },
+              {
+                "P": [],
+                "R": [],
+                "domain_size": 1
+              }
+            ]
+          },
+          "witness_check": "obstruction_set_checked",
+          "witness_valid": true
+        },
+        "M_F2_OBSTRUCTION_DISCOVERY_FULL": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": "search",
+          "witness": {
+            "kind": "OBSTRUCTION_SET",
+            "models": [
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "domain_size": 2
+              },
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "domain_size": 1
+              },
+              {
+                "P": [],
+                "R": [],
+                "domain_size": 1
+              }
+            ]
+          },
+          "witness_check": "obstruction_set_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MINIMALITY_ESCALATION": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": "search",
+          "witness": {
+            "kind": "OBSTRUCTION_SET",
+            "models": [
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "domain_size": 2
+              },
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "domain_size": 1
+              },
+              {
+                "P": [],
+                "R": [],
+                "domain_size": 1
+              }
+            ]
+          },
+          "witness_check": "obstruction_set_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MULTIPLICITY_CHECK": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": "no_search",
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "M_MINUS_PROOF_WITNESS": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": "search",
+          "witness": {
+            "kind": "OBSTRUCTION_SET",
+            "models": [
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "domain_size": 2
+              },
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "domain_size": 1
+              },
+              {
+                "P": [],
+                "R": [],
+                "domain_size": 1
+              }
+            ]
+          },
+          "witness_check": "obstruction_set_checked",
+          "witness_valid": true
+        },
+        "P0_INDUCTIVE_CONFIRMATION": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                1
+              ],
+              "R": [],
+              "domain_size": 3
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P1_FIXED_LESSON_TABLE": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P2_EXHAUSTIVE_MODEL_SEARCH": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": {
+            "kind": "OBSTRUCTION_SET",
+            "models": [
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "domain_size": 2
+              },
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "domain_size": 1
+              },
+              {
+                "P": [],
+                "R": [],
+                "domain_size": 1
+              }
+            ]
+          },
+          "witness_check": "obstruction_set_checked",
+          "witness_valid": true
+        },
+        "P3_DERIVATION_PROOF_SEARCH": {
+          "claimed_disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "source": null,
+          "witness": null,
+          "witness_check": "abstention_must_carry_no_witness",
+          "witness_valid": true
+        },
+        "P4_SMALL_SCOPE_BOUNDED_CHECK": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": {
+            "kind": "OBSTRUCTION_SET",
+            "models": [
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "domain_size": 2
+              },
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "domain_size": 1
+              },
+              {
+                "P": [],
+                "R": [],
+                "domain_size": 1
+              }
+            ]
+          },
+          "witness_check": "obstruction_set_checked",
+          "witness_valid": true
+        }
+      },
+      "family": "multiple_obstruction",
+      "instance_id": "multiple_obstruction-00004"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_ALWAYS_BLOCK": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": "P2",
+          "witness": {
+            "kind": "OBSTRUCTION_SET",
+            "models": [
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "domain_size": 1
+              },
+              {
+                "P": [],
+                "R": [],
+                "domain_size": 1
+              }
+            ]
+          },
+          "witness_check": "obstruction_set_checked",
+          "witness_valid": true
+        },
+        "M_F2_OBSTRUCTION_DISCOVERY_FULL": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": "search",
+          "witness": {
+            "kind": "OBSTRUCTION_SET",
+            "models": [
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "domain_size": 1
+              },
+              {
+                "P": [],
+                "R": [],
+                "domain_size": 1
+              }
+            ]
+          },
+          "witness_check": "obstruction_set_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MINIMALITY_ESCALATION": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": "search",
+          "witness": {
+            "kind": "OBSTRUCTION_SET",
+            "models": [
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "domain_size": 1
+              },
+              {
+                "P": [],
+                "R": [],
+                "domain_size": 1
+              }
+            ]
+          },
+          "witness_check": "obstruction_set_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MULTIPLICITY_CHECK": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": "no_search",
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "M_MINUS_PROOF_WITNESS": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": "search",
+          "witness": {
+            "kind": "OBSTRUCTION_SET",
+            "models": [
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "domain_size": 1
+              },
+              {
+                "P": [],
+                "R": [],
+                "domain_size": 1
+              }
+            ]
+          },
+          "witness_check": "obstruction_set_checked",
+          "witness_valid": true
+        },
+        "P0_INDUCTIVE_CONFIRMATION": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P1_FIXED_LESSON_TABLE": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": {
+            "kind": "OBSTRUCTION_SET",
+            "models": [
+              {
+                "P": [],
+                "R": [],
+                "domain_size": 1
+              },
+              {
+                "P": [
+                  2
+                ],
+                "R": [
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    1,
+                    2
+                  ]
+                ],
+                "domain_size": 3
+              }
+            ]
+          },
+          "witness_check": "witness_does_not_satisfy_hypotheses",
+          "witness_valid": false
+        },
+        "P2_EXHAUSTIVE_MODEL_SEARCH": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": {
+            "kind": "OBSTRUCTION_SET",
+            "models": [
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "domain_size": 1
+              },
+              {
+                "P": [],
+                "R": [],
+                "domain_size": 1
+              }
+            ]
+          },
+          "witness_check": "obstruction_set_checked",
+          "witness_valid": true
+        },
+        "P3_DERIVATION_PROOF_SEARCH": {
+          "claimed_disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "source": null,
+          "witness": null,
+          "witness_check": "abstention_must_carry_no_witness",
+          "witness_valid": true
+        },
+        "P4_SMALL_SCOPE_BOUNDED_CHECK": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": {
+            "kind": "OBSTRUCTION_SET",
+            "models": [
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "domain_size": 1
+              },
+              {
+                "P": [],
+                "R": [],
+                "domain_size": 1
+              }
+            ]
+          },
+          "witness_check": "obstruction_set_checked",
+          "witness_valid": true
+        }
+      },
+      "family": "multiple_obstruction",
+      "instance_id": "multiple_obstruction-00010"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_ALWAYS_BLOCK": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "claimed_disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": "P2",
+          "witness": {
+            "kind": "OBSTRUCTION_SET",
+            "models": [
+              {
+                "P": [],
+                "R": [],
+                "domain_size": 1
+              },
+              {
+                "P": [
+                  0
+                ],
+                "R": [],
+                "domain_size": 1
+              },
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "domain_size": 1
+              }
+            ]
+          },
+          "witness_check": "obstruction_set_checked",
+          "witness_valid": true
+        },
+        "M_F2_OBSTRUCTION_DISCOVERY_FULL": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": "search",
+          "witness": {
+            "kind": "OBSTRUCTION_SET",
+            "models": [
+              {
+                "P": [],
+                "R": [],
+                "domain_size": 1
+              },
+              {
+                "P": [
+                  0
+                ],
+                "R": [],
+                "domain_size": 1
+              },
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "domain_size": 1
+              }
+            ]
+          },
+          "witness_check": "obstruction_set_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MINIMALITY_ESCALATION": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": "search",
+          "witness": {
+            "kind": "OBSTRUCTION_SET",
+            "models": [
+              {
+                "P": [],
+                "R": [],
+                "domain_size": 1
+              },
+              {
+                "P": [
+                  0
+                ],
+                "R": [],
+                "domain_size": 1
+              },
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "domain_size": 1
+              }
+            ]
+          },
+          "witness_check": "obstruction_set_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MULTIPLICITY_CHECK": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": "no_search",
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "M_MINUS_PROOF_WITNESS": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": "search",
+          "witness": {
+            "kind": "OBSTRUCTION_SET",
+            "models": [
+              {
+                "P": [],
+                "R": [],
+                "domain_size": 1
+              },
+              {
+                "P": [
+                  0
+                ],
+                "R": [],
+                "domain_size": 1
+              },
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "domain_size": 1
+              }
+            ]
+          },
+          "witness_check": "obstruction_set_checked",
+          "witness_valid": true
+        },
+        "P0_INDUCTIVE_CONFIRMATION": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0,
+                1
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ]
+              ],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P1_FIXED_LESSON_TABLE": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": {
+            "kind": "OBSTRUCTION_SET",
+            "models": [
+              {
+                "P": [],
+                "R": [],
+                "domain_size": 1
+              },
+              {
+                "P": [
+                  0
+                ],
+                "R": [
+                  [
+                    0,
+                    1
+                  ]
+                ],
+                "domain_size": 2
+              }
+            ]
+          },
+          "witness_check": "witness_does_not_satisfy_hypotheses",
+          "witness_valid": false
+        },
+        "P2_EXHAUSTIVE_MODEL_SEARCH": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": {
+            "kind": "OBSTRUCTION_SET",
+            "models": [
+              {
+                "P": [],
+                "R": [],
+                "domain_size": 1
+              },
+              {
+                "P": [
+                  0
+                ],
+                "R": [],
+                "domain_size": 1
+              },
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "domain_size": 1
+              }
+            ]
+          },
+          "witness_check": "obstruction_set_checked",
+          "witness_valid": true
+        },
+        "P3_DERIVATION_PROOF_SEARCH": {
+          "claimed_disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "source": null,
+          "witness": null,
+          "witness_check": "abstention_must_carry_no_witness",
+          "witness_valid": true
+        },
+        "P4_SMALL_SCOPE_BOUNDED_CHECK": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": {
+            "kind": "OBSTRUCTION_SET",
+            "models": [
+              {
+                "P": [],
+                "R": [],
+                "domain_size": 1
+              },
+              {
+                "P": [
+                  0
+                ],
+                "R": [],
+                "domain_size": 1
+              },
+              {
+                "P": [],
+                "R": [
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "domain_size": 1
+              }
+            ]
+          },
+          "witness_check": "obstruction_set_checked",
+          "witness_valid": true
+        }
+      },
+      "family": "multiple_obstruction",
+      "instance_id": "multiple_obstruction-00011"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_ALWAYS_BLOCK": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": "P2",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ]
+              ],
+              "domain_size": 3
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_F2_OBSTRUCTION_DISCOVERY_FULL": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ]
+              ],
+              "domain_size": 3
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MINIMALITY_ESCALATION": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ]
+              ],
+              "domain_size": 3
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MULTIPLICITY_CHECK": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ]
+              ],
+              "domain_size": 3
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": "no_search",
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "M_MINUS_PROOF_WITNESS": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ]
+              ],
+              "domain_size": 3
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P0_INDUCTIVE_CONFIRMATION": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                1
+              ],
+              "R": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ]
+              ],
+              "domain_size": 3
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P1_FIXED_LESSON_TABLE": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "P2_EXHAUSTIVE_MODEL_SEARCH": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ]
+              ],
+              "domain_size": 3
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P3_DERIVATION_PROOF_SEARCH": {
+          "claimed_disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "source": null,
+          "witness": null,
+          "witness_check": "abstention_must_carry_no_witness",
+          "witness_valid": true
+        },
+        "P4_SMALL_SCOPE_BOUNDED_CHECK": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        }
+      },
+      "family": "minimal_counterexample",
+      "instance_id": "minimal_counterexample-00002"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_ALWAYS_BLOCK": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": "P2",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0,
+                1
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_F2_OBSTRUCTION_DISCOVERY_FULL": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0,
+                1
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MINIMALITY_ESCALATION": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0,
+                1
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MULTIPLICITY_CHECK": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0,
+                1
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": "no_search",
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "M_MINUS_PROOF_WITNESS": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0,
+                1
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P0_INDUCTIVE_CONFIRMATION": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0,
+                1
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P1_FIXED_LESSON_TABLE": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": {
+            "kind": "OBSTRUCTION_SET",
+            "models": [
+              {
+                "P": [
+                  0
+                ],
+                "R": [
+                  [
+                    0,
+                    1
+                  ]
+                ],
+                "domain_size": 2
+              },
+              {
+                "P": [],
+                "R": [],
+                "domain_size": 1
+              }
+            ]
+          },
+          "witness_check": "witness_does_not_satisfy_hypotheses",
+          "witness_valid": false
+        },
+        "P2_EXHAUSTIVE_MODEL_SEARCH": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0,
+                1
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P3_DERIVATION_PROOF_SEARCH": {
+          "claimed_disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "source": null,
+          "witness": null,
+          "witness_check": "abstention_must_carry_no_witness",
+          "witness_valid": true
+        },
+        "P4_SMALL_SCOPE_BOUNDED_CHECK": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0,
+                1
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        }
+      },
+      "family": "minimal_counterexample",
+      "instance_id": "minimal_counterexample-00007"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_ALWAYS_BLOCK": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "claimed_disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": "P2",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0,
+                1
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_F2_OBSTRUCTION_DISCOVERY_FULL": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0,
+                1
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MINIMALITY_ESCALATION": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0,
+                1
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MULTIPLICITY_CHECK": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0,
+                1
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": "no_search",
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "M_MINUS_PROOF_WITNESS": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0,
+                1
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P0_INDUCTIVE_CONFIRMATION": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0,
+                1,
+                2
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "domain_size": 3
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P1_FIXED_LESSON_TABLE": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [
+                [
+                  0,
+                  1
+                ]
+              ],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "witness_does_not_satisfy_hypotheses",
+          "witness_valid": false
+        },
+        "P2_EXHAUSTIVE_MODEL_SEARCH": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0,
+                1
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P3_DERIVATION_PROOF_SEARCH": {
+          "claimed_disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "source": null,
+          "witness": null,
+          "witness_check": "abstention_must_carry_no_witness",
+          "witness_valid": true
+        },
+        "P4_SMALL_SCOPE_BOUNDED_CHECK": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0,
+                1
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "domain_size": 2
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        }
+      },
+      "family": "minimal_counterexample",
+      "instance_id": "minimal_counterexample-00014"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_ALWAYS_BLOCK": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "claimed_disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "P2",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ]
+              ],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_F2_OBSTRUCTION_DISCOVERY_FULL": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ]
+              ],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MINIMALITY_ESCALATION": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ]
+              ],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MULTIPLICITY_CHECK": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ]
+              ],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": "no_search",
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "M_MINUS_PROOF_WITNESS": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ]
+              ],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P0_INDUCTIVE_CONFIRMATION": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "P1_FIXED_LESSON_TABLE": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "witness_does_not_satisfy_hypotheses",
+          "witness_valid": false
+        },
+        "P2_EXHAUSTIVE_MODEL_SEARCH": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ]
+              ],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P3_DERIVATION_PROOF_SEARCH": {
+          "claimed_disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "source": null,
+          "witness": null,
+          "witness_check": "abstention_must_carry_no_witness",
+          "witness_valid": true
+        },
+        "P4_SMALL_SCOPE_BOUNDED_CHECK": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [
+                0
+              ],
+              "R": [
+                [
+                  0,
+                  0
+                ]
+              ],
+              "domain_size": 1
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        }
+      },
+      "family": "misleading_surface_support",
+      "instance_id": "misleading_surface_support-00253"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_ALWAYS_BLOCK": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "claimed_disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": "P2",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "domain_size": 3
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_F2_OBSTRUCTION_DISCOVERY_FULL": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "domain_size": 3
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MINIMALITY_ESCALATION": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "domain_size": 3
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MULTIPLICITY_CHECK": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "domain_size": 3
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": "no_search",
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "M_MINUS_PROOF_WITNESS": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "domain_size": 3
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P0_INDUCTIVE_CONFIRMATION": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "P1_FIXED_LESSON_TABLE": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "P2_EXHAUSTIVE_MODEL_SEARCH": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "domain_size": 3
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P3_DERIVATION_PROOF_SEARCH": {
+          "claimed_disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "source": null,
+          "witness": null,
+          "witness_check": "abstention_must_carry_no_witness",
+          "witness_valid": true
+        },
+        "P4_SMALL_SCOPE_BOUNDED_CHECK": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        }
+      },
+      "family": "misleading_surface_support",
+      "instance_id": "misleading_surface_support-00260"
+    },
+    {
+      "arms": {
+        "C_ALWAYS_ACCEPT": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "TRANSFER_VALID",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_ALWAYS_BLOCK": {
+          "claimed_disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "disposition": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "C_RANDOM_DISPOSITION": {
+          "claimed_disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "registered_control_exempt_from_witness_validation",
+          "witness_valid": null
+        },
+        "F0_PARENT_FEDERATION": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": "P2",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "domain_size": 3
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_F2_OBSTRUCTION_DISCOVERY_FULL": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "domain_size": 3
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MINIMALITY_ESCALATION": {
+          "claimed_disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "disposition": "REJECT_WITH_COUNTEREXAMPLE",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "domain_size": 3
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_MULTIPLICITY_CHECK": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "domain_size": 3
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "M_MINUS_OBSTRUCTION_SEARCH": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": "no_search",
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "M_MINUS_PROOF_WITNESS": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": "search",
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "domain_size": 3
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P0_INDUCTIVE_CONFIRMATION": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "P1_FIXED_LESSON_TABLE": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        },
+        "P2_EXHAUSTIVE_MODEL_SEARCH": {
+          "claimed_disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "disposition": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+          "source": null,
+          "witness": {
+            "kind": "COUNTERMODEL",
+            "model": {
+              "P": [],
+              "R": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "domain_size": 3
+            }
+          },
+          "witness_check": "countermodel_checked",
+          "witness_valid": true
+        },
+        "P3_DERIVATION_PROOF_SEARCH": {
+          "claimed_disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "disposition": "UNDECIDED_BUDGET_EXHAUSTED",
+          "source": null,
+          "witness": null,
+          "witness_check": "abstention_must_carry_no_witness",
+          "witness_valid": true
+        },
+        "P4_SMALL_SCOPE_BOUNDED_CHECK": {
+          "claimed_disposition": "TRANSFER_VALID",
+          "disposition": "CLAIM_WITHOUT_VALID_WITNESS",
+          "source": null,
+          "witness": null,
+          "witness_check": "missing_or_wrong_witness_kind:expected_DERIVATION",
+          "witness_valid": false
+        }
+      },
+      "family": "misleading_surface_support",
+      "instance_id": "misleading_surface_support-00380"
+    }
+  ],
+  "label": "DEVELOPMENT",
+  "schema_version": "orion.v2.fm-exact.results.v1",
+  "split_seed": "FM60-DEV-20260902",
+  "suite": "FM60"
+}

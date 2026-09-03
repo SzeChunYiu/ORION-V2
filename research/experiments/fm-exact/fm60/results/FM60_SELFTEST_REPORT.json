@@ -1,0 +1,368 @@
+{
+  "generator_rejections": {
+    "minimal_counterexample": 31,
+    "misleading_surface_support": 117,
+    "multiple_obstruction": 10,
+    "no_obstruction": 9,
+    "single_hidden_obstruction": 7
+  },
+  "known_answer": [
+    {
+      "expected": "TRANSFER_VALID",
+      "name": "KA-01-ASYMMETRIC-ENTAILS-IRREFLEXIVE",
+      "oracle": "TRANSFER_VALID",
+      "passed": true
+    },
+    {
+      "expected": "TRANSFER_VALID",
+      "name": "KA-02-STRICT-ORDER-IS-ANTISYMMETRIC",
+      "oracle": "TRANSFER_VALID",
+      "passed": true
+    },
+    {
+      "expected": "REJECT_WITH_COUNTEREXAMPLE",
+      "name": "KA-03-EQUIVALENCE-WITHOUT-REFLEXIVITY",
+      "oracle": "REJECT_WITH_COUNTEREXAMPLE",
+      "passed": true
+    },
+    {
+      "expected": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+      "name": "KA-04-TRANSITIVITY-FAILS-FIRST-AT-SIZE-THREE",
+      "oracle": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+      "passed": true
+    },
+    {
+      "expected": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+      "name": "KA-05-TWO-INDEPENDENT-OBSTRUCTIONS",
+      "oracle": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+      "passed": true
+    },
+    {
+      "expected": "TRANSFER_VALID",
+      "name": "KA-06-CONNEX-ENTAILS-REFLEXIVE",
+      "oracle": "TRANSFER_VALID",
+      "passed": true
+    },
+    {
+      "expected": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+      "name": "KA-07-SERIALITY-IS-NOT-REFLEXIVITY",
+      "oracle": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+      "passed": true
+    },
+    {
+      "expected": "TRANSFER_VALID",
+      "name": "KA-08-EMPTY-RELATION-ENTAILS-BOTH",
+      "oracle": "TRANSFER_VALID",
+      "passed": true
+    },
+    {
+      "expected": "REJECT_WITH_COUNTEREXAMPLE",
+      "name": "KA-09-INHABITED-IS-NOT-UNIVERSAL",
+      "oracle": "REJECT_WITH_COUNTEREXAMPLE",
+      "passed": true
+    },
+    {
+      "expected": "TRANSFER_VALID",
+      "name": "KA-10-SINGLETON-DOMAIN-ENTAILS-BOTH",
+      "oracle": "TRANSFER_VALID",
+      "passed": true
+    },
+    {
+      "expected": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+      "name": "KA-11-MULTIPLICITY-DOMINATES-MINIMALITY",
+      "oracle": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+      "passed": true
+    },
+    {
+      "expected": "TRANSFER_VALID",
+      "name": "KA-12-EUCLIDEAN-REFLEXIVE-ENTAILS-SYMMETRY",
+      "oracle": "TRANSFER_VALID",
+      "passed": true
+    }
+  ],
+  "null_calibration": {
+    "applicable": true,
+    "detail": {
+      "constant_arm_rates": {
+        "C_ALWAYS_ACCEPT": 0.2,
+        "C_ALWAYS_BLOCK": 0.2
+      },
+      "random_rate": 0.0,
+      "shuffled_label_null": {
+        "exact_against_shuffled": 3,
+        "n": 10,
+        "rate": 0.3,
+        "seed": 20260902
+      },
+      "violations": []
+    },
+    "gate": "G0c_NULL_CALIBRATION",
+    "hard": true,
+    "min_required_evaluated": 1,
+    "n_evaluated": 4,
+    "n_violations": 0,
+    "rule": "constant-response arms <= 0.4, random arm <= 0.4, M against within-split shuffled oracle labels <= 0.4",
+    "verdict": "PASS"
+  },
+  "oracle_agreement": {
+    "n_disagreements": 0,
+    "n_evaluated": 10
+  },
+  "parent_fidelity": [
+    {
+      "detail": "4164 models",
+      "parent": "MODEL_SPACE",
+      "passed": true,
+      "test": "index_round_trip_over_the_whole_bounded_space"
+    },
+    {
+      "detail": "108264 model-formula pairs, 0 mismatches",
+      "parent": "MODEL_SPACE",
+      "passed": true,
+      "test": "vectorised_truth_column_agrees_with_scalar_evaluation_everywhere"
+    },
+    {
+      "detail": "",
+      "parent": "MODEL_SPACE",
+      "passed": true,
+      "test": "size_strata_partition_the_space"
+    },
+    {
+      "detail": "",
+      "parent": "MODEL_SPACE",
+      "passed": true,
+      "test": "singleton_and_at_least_two_are_complementary"
+    },
+    {
+      "detail": "50 rules, 0 invalid",
+      "parent": "P3_DERIVATION_PROOF_SEARCH",
+      "passed": true,
+      "test": "every_registered_rule_is_valid_over_the_bounded_space"
+    },
+    {
+      "detail": "TRANSFER_VALID",
+      "parent": "P3_DERIVATION_PROOF_SEARCH",
+      "passed": true,
+      "test": "derives_asymmetry_entails_irreflexivity"
+    },
+    {
+      "detail": "",
+      "parent": "P3_DERIVATION_PROOF_SEARCH",
+      "passed": true,
+      "test": "its_derivation_passes_the_independent_validator"
+    },
+    {
+      "detail": "",
+      "parent": "P3_DERIVATION_PROOF_SEARCH",
+      "passed": true,
+      "test": "chains_two_premise_rules_to_a_new_conclusion"
+    },
+    {
+      "detail": "scope note: a prover produces no countermodels",
+      "parent": "P3_DERIVATION_PROOF_SEARCH",
+      "passed": true,
+      "test": "documented_boundary_abstains_instead_of_refuting"
+    },
+    {
+      "detail": "REJECT_WITH_COUNTEREXAMPLE",
+      "parent": "P2_EXHAUSTIVE_MODEL_SEARCH",
+      "passed": true,
+      "test": "finds_a_countermodel_for_a_known_non_theorem"
+    },
+    {
+      "detail": "",
+      "parent": "P2_EXHAUSTIVE_MODEL_SEARCH",
+      "passed": true,
+      "test": "its_countermodel_passes_the_independent_validator"
+    },
+    {
+      "detail": "{'kind': 'COUNTERMODEL', 'model': {'domain_size': 3, 'R': [[0, 2], [1, 0]], 'P': []}}",
+      "parent": "P2_EXHAUSTIVE_MODEL_SEARCH",
+      "passed": true,
+      "test": "returns_the_minimum_size_countermodel_not_merely_a_countermodel"
+    },
+    {
+      "detail": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+      "parent": "P2_EXHAUSTIVE_MODEL_SEARCH",
+      "passed": true,
+      "test": "counts_two_independent_obstructions"
+    },
+    {
+      "detail": "scope note: exhausting the space yields no derivation",
+      "parent": "P2_EXHAUSTIVE_MODEL_SEARCH",
+      "passed": true,
+      "test": "documented_boundary_accepts_without_a_proof_witness"
+    },
+    {
+      "detail": "",
+      "parent": "P4_SMALL_SCOPE_BOUNDED_CHECK",
+      "passed": true,
+      "test": "finds_the_in_scope_countermodel"
+    },
+    {
+      "detail": "",
+      "parent": "P4_SMALL_SCOPE_BOUNDED_CHECK",
+      "passed": true,
+      "test": "its_in_scope_countermodel_passes_the_validator"
+    },
+    {
+      "detail": "scope note: the small-scope hypothesis is exactly this bet",
+      "parent": "P4_SMALL_SCOPE_BOUNDED_CHECK",
+      "passed": true,
+      "test": "documented_boundary_blind_to_an_obstruction_above_its_scope"
+    },
+    {
+      "detail": "",
+      "parent": "P0_INDUCTIVE_CONFIRMATION",
+      "passed": true,
+      "test": "refutes_when_the_presented_evidence_contains_a_countermodel"
+    },
+    {
+      "detail": "",
+      "parent": "P0_INDUCTIVE_CONFIRMATION",
+      "passed": true,
+      "test": "generalises_from_confirming_evidence_alone"
+    },
+    {
+      "detail": "scope note: induction from instances is not a proof",
+      "parent": "P0_INDUCTIVE_CONFIRMATION",
+      "passed": true,
+      "test": "documented_boundary_its_acceptance_carries_no_witness"
+    },
+    {
+      "detail": "scope note: a frozen lesson table is not context sensitive",
+      "parent": "P1_FIXED_LESSON_TABLE",
+      "passed": true,
+      "test": "verdict_ignores_the_hypotheses_entirely"
+    },
+    {
+      "detail": "",
+      "parent": "P1_FIXED_LESSON_TABLE",
+      "passed": true,
+      "test": "reports_multiplicity_when_two_conclusions_are_refuted_by_the_corpus"
+    },
+    {
+      "detail": "scope note: a canned countermodel need not satisfy this instance's hypotheses",
+      "parent": "P1_FIXED_LESSON_TABLE",
+      "passed": true,
+      "test": "documented_boundary_its_canned_witness_can_fail_validation"
+    },
+    {
+      "detail": "",
+      "parent": "F0_PARENT_FEDERATION",
+      "passed": true,
+      "test": "takes_the_derivation_parent_on_a_bounded_theorem"
+    },
+    {
+      "detail": "",
+      "parent": "F0_PARENT_FEDERATION",
+      "passed": true,
+      "test": "takes_the_model_parent_on_a_non_theorem"
+    },
+    {
+      "detail": "REJECT_WITH_COUNTEREXAMPLE",
+      "parent": "F0_PARENT_FEDERATION",
+      "passed": true,
+      "test": "abstains_when_neither_parent_can_discharge_the_claim"
+    },
+    {
+      "detail": "",
+      "parent": "WITNESS_VALIDATOR",
+      "passed": true,
+      "test": "rejects_a_countermodel_that_does_not_satisfy_the_hypotheses"
+    },
+    {
+      "detail": "",
+      "parent": "WITNESS_VALIDATOR",
+      "passed": true,
+      "test": "accepts_a_genuine_countermodel"
+    },
+    {
+      "detail": "",
+      "parent": "WITNESS_VALIDATOR",
+      "passed": true,
+      "test": "rejects_a_non_minimal_model_for_a_minimality_claim"
+    },
+    {
+      "detail": "",
+      "parent": "WITNESS_VALIDATOR",
+      "passed": true,
+      "test": "rejects_a_derivation_citing_an_unregistered_rule"
+    },
+    {
+      "detail": "",
+      "parent": "WITNESS_VALIDATOR",
+      "passed": true,
+      "test": "rejects_a_derivation_whose_premises_are_not_yet_available"
+    },
+    {
+      "detail": "[]",
+      "parent": "ORACLE_PAIR",
+      "passed": true,
+      "test": "both_algorithms_agree_on_every_hand_authored_fixture"
+    }
+  ],
+  "passed": true,
+  "planted_positives": [
+    {
+      "description": "a deliberately incomplete oracle that searches only to the small scope must disagree with exhaustive enumeration on an instance whose obstruction first appears one size above that scope",
+      "fired": true,
+      "gate": "G0b_ORACLE_SELF_AGREEMENT",
+      "name": "small_scope_pseudo_oracle_is_detected"
+    },
+    {
+      "description": "the known-answer comparison must reject a deliberately wrong expected disposition",
+      "fired": true,
+      "gate": "G0a_KNOWN_ANSWER",
+      "name": "wrong_expected_label_is_detected"
+    },
+    {
+      "description": "the over-acceptance counter must count C_ALWAYS_ACCEPT on an instance the oracle blocks",
+      "fired": true,
+      "gate": "G2_ANTI_PERMISSIVENESS",
+      "name": "over_accepting_arm_is_detected"
+    },
+    {
+      "description": "a synthetic per-arm table in which every arm scores 1.000 must FAIL the discrimination gate (the FM/FG R2 ceiling defect)",
+      "fired": true,
+      "gate": "G0f_FAMILY_DISCRIMINATION",
+      "name": "degenerate_all_ceiling_split_is_detected"
+    },
+    {
+      "description": "a synthetic per-arm table in which every arm scores 0.267 — the literal FM/FG R2 fm60 row, all five arms at 32/120 — must FAIL the discrimination gate on its solvable half",
+      "fired": true,
+      "gate": "G0f_FAMILY_DISCRIMINATION",
+      "name": "degenerate_all_floor_split_is_detected"
+    },
+    {
+      "description": "an arm that returns the oracle's own disposition but supplies an invalid witness must be rewritten to CLAIM_WITHOUT_VALID_WITNESS by the same dispatcher that produces the study's numbers",
+      "fired": true,
+      "gate": "HARD_GATE_FORMAL_CLAIM_WITHOUT_WITNESS",
+      "name": "right_label_with_a_forged_witness_is_caught"
+    },
+    {
+      "description": "M_MINUS_MINIMALITY_ESCALATION must be wrong on a hand-built minimal-counterexample instance on which M is right",
+      "fired": true,
+      "gate": "G3_MECHANISM_BY_OMISSION",
+      "name": "minimality_ablation_loses_the_deep_counterexample"
+    }
+  ],
+  "schema_version": "orion.v2.fm-exact.analysis.v1.selftest",
+  "selftest_arm_exact": {
+    "C_ALWAYS_ACCEPT": 0.2,
+    "C_ALWAYS_BLOCK": 0.2,
+    "C_RANDOM_DISPOSITION": 0.0,
+    "F0_PARENT_FEDERATION": 1.0,
+    "M_F2_OBSTRUCTION_DISCOVERY_FULL": 1.0,
+    "M_MINUS_MINIMALITY_ESCALATION": 0.8,
+    "M_MINUS_MULTIPLICITY_CHECK": 0.8,
+    "M_MINUS_OBSTRUCTION_SEARCH": 0.2,
+    "M_MINUS_PROOF_WITNESS": 0.8,
+    "P0_INDUCTIVE_CONFIRMATION": 0.2,
+    "P1_FIXED_LESSON_TABLE": 0.3,
+    "P2_EXHAUSTIVE_MODEL_SEARCH": 0.8,
+    "P3_DERIVATION_PROOF_SEARCH": 0.2,
+    "P4_SMALL_SCOPE_BOUNDED_CHECK": 0.6
+  },
+  "suite": "FM60"
+}

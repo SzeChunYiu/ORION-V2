@@ -1,0 +1,954 @@
+{
+  "cost": {
+    "M_wall_ms": 5.61679,
+    "P_wall_ms": 0.966294,
+    "flag": "COST_ADVANTAGE_PARENT",
+    "ratio_P_over_M": 0.1720366971170366,
+    "rule": "wall-clock flag at 2x; reported only, routes nothing"
+  },
+  "custody_sha256": "2d4603df3cce807499a5290599db6e37825a9c8f5de4535a31f9cf9705f60324",
+  "gates": [
+    {
+      "applicable": true,
+      "detail": {
+        "fixtures": [
+          {
+            "expected": "TRANSFER_VALID",
+            "name": "KA-01-ASYMMETRIC-ENTAILS-IRREFLEXIVE",
+            "oracle": "TRANSFER_VALID",
+            "passed": true
+          },
+          {
+            "expected": "TRANSFER_VALID",
+            "name": "KA-02-STRICT-ORDER-IS-ANTISYMMETRIC",
+            "oracle": "TRANSFER_VALID",
+            "passed": true
+          },
+          {
+            "expected": "REJECT_WITH_COUNTEREXAMPLE",
+            "name": "KA-03-EQUIVALENCE-WITHOUT-REFLEXIVITY",
+            "oracle": "REJECT_WITH_COUNTEREXAMPLE",
+            "passed": true
+          },
+          {
+            "expected": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+            "name": "KA-04-TRANSITIVITY-FAILS-FIRST-AT-SIZE-THREE",
+            "oracle": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+            "passed": true
+          },
+          {
+            "expected": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+            "name": "KA-05-TWO-INDEPENDENT-OBSTRUCTIONS",
+            "oracle": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+            "passed": true
+          },
+          {
+            "expected": "TRANSFER_VALID",
+            "name": "KA-06-CONNEX-ENTAILS-REFLEXIVE",
+            "oracle": "TRANSFER_VALID",
+            "passed": true
+          },
+          {
+            "expected": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+            "name": "KA-07-SERIALITY-IS-NOT-REFLEXIVITY",
+            "oracle": "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+            "passed": true
+          },
+          {
+            "expected": "TRANSFER_VALID",
+            "name": "KA-08-EMPTY-RELATION-ENTAILS-BOTH",
+            "oracle": "TRANSFER_VALID",
+            "passed": true
+          },
+          {
+            "expected": "REJECT_WITH_COUNTEREXAMPLE",
+            "name": "KA-09-INHABITED-IS-NOT-UNIVERSAL",
+            "oracle": "REJECT_WITH_COUNTEREXAMPLE",
+            "passed": true
+          },
+          {
+            "expected": "TRANSFER_VALID",
+            "name": "KA-10-SINGLETON-DOMAIN-ENTAILS-BOTH",
+            "oracle": "TRANSFER_VALID",
+            "passed": true
+          },
+          {
+            "expected": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+            "name": "KA-11-MULTIPLICITY-DOMINATES-MINIMALITY",
+            "oracle": "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+            "passed": true
+          },
+          {
+            "expected": "TRANSFER_VALID",
+            "name": "KA-12-EUCLIDEAN-REFLEXIVE-ENTAILS-SYMMETRY",
+            "oracle": "TRANSFER_VALID",
+            "passed": true
+          }
+        ]
+      },
+      "gate": "G0a_KNOWN_ANSWER",
+      "hard": true,
+      "min_required_evaluated": 8,
+      "n_evaluated": 12,
+      "n_violations": 0,
+      "rule": "every hand-authored fixture's disposition is reproduced by the exhaustive oracle",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "n_disagreements": 0,
+        "n_evaluated": 15
+      },
+      "gate": "G0b_ORACLE_SELF_AGREEMENT",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 15,
+      "n_violations": 0,
+      "rule": "exhaustive enumeration and the independent branch-and-bound search agree on disposition, min_missing, optimal profile and optimal-map count for every instance of the split",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "constant_arm_rates": {
+          "C_ALWAYS_ACCEPT": 0.2,
+          "C_ALWAYS_BLOCK": 0.2
+        },
+        "random_rate": 0.0,
+        "shuffled_label_null": {
+          "exact_against_shuffled": 4,
+          "n": 15,
+          "rate": 0.26666666666666666,
+          "seed": 20260902
+        },
+        "violations": []
+      },
+      "gate": "G0c_NULL_CALIBRATION",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 4,
+      "n_violations": 0,
+      "rule": "constant-response arms <= 0.4, random arm <= 0.4, M against within-split shuffled oracle labels <= 0.4",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "below_minimum": {},
+        "counts": {
+          "minimal_counterexample": 3,
+          "misleading_surface_support": 3,
+          "multiple_obstruction": 3
+        },
+        "minimum": 3
+      },
+      "gate": "G0d_DECOY_COVERAGE",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 3,
+      "n_violations": 0,
+      "rule": "every registered decoy family carries >= 3 instances in the split",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "planted": [
+          {
+            "description": "a deliberately incomplete oracle that searches only to the small scope must disagree with exhaustive enumeration on an instance whose obstruction first appears one size above that scope",
+            "fired": true,
+            "gate": "G0b_ORACLE_SELF_AGREEMENT",
+            "name": "small_scope_pseudo_oracle_is_detected"
+          },
+          {
+            "description": "the known-answer comparison must reject a deliberately wrong expected disposition",
+            "fired": true,
+            "gate": "G0a_KNOWN_ANSWER",
+            "name": "wrong_expected_label_is_detected"
+          },
+          {
+            "description": "the over-acceptance counter must count C_ALWAYS_ACCEPT on an instance the oracle blocks",
+            "fired": true,
+            "gate": "G2_ANTI_PERMISSIVENESS",
+            "name": "over_accepting_arm_is_detected"
+          },
+          {
+            "description": "a synthetic per-arm table in which every arm scores 1.000 must FAIL the discrimination gate (the FM/FG R2 ceiling defect)",
+            "fired": true,
+            "gate": "G0f_FAMILY_DISCRIMINATION",
+            "name": "degenerate_all_ceiling_split_is_detected"
+          },
+          {
+            "description": "a synthetic per-arm table in which every arm scores 0.267 — the literal FM/FG R2 fm60 row, all five arms at 32/120 — must FAIL the discrimination gate on its solvable half",
+            "fired": true,
+            "gate": "G0f_FAMILY_DISCRIMINATION",
+            "name": "degenerate_all_floor_split_is_detected"
+          },
+          {
+            "description": "an arm that returns the oracle's own disposition but supplies an invalid witness must be rewritten to CLAIM_WITHOUT_VALID_WITNESS by the same dispatcher that produces the study's numbers",
+            "fired": true,
+            "gate": "HARD_GATE_FORMAL_CLAIM_WITHOUT_WITNESS",
+            "name": "right_label_with_a_forged_witness_is_caught"
+          },
+          {
+            "description": "M_MINUS_MINIMALITY_ESCALATION must be wrong on a hand-built minimal-counterexample instance on which M is right",
+            "fired": true,
+            "gate": "G3_MECHANISM_BY_OMISSION",
+            "name": "minimality_ablation_loses_the_deep_counterexample"
+          }
+        ]
+      },
+      "gate": "G0e_PLANTED_POSITIVES",
+      "hard": true,
+      "min_required_evaluated": 3,
+      "n_evaluated": 7,
+      "n_violations": 0,
+      "rule": "every registered planted positive trips its own gate predicate",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "halves": {
+          "separating": {
+            "n_evaluated": 4,
+            "threshold": 0.85,
+            "violation": false,
+            "weak_arms_at_or_below_threshold": {
+              "M_MINUS_OBSTRUCTION_SEARCH": 0.2,
+              "P0_INDUCTIVE_CONFIRMATION": 0.2,
+              "P1_FIXED_LESSON_TABLE": 0.06666666666666667,
+              "P4_SMALL_SCOPE_BOUNDED_CHECK": 0.6
+            }
+          },
+          "solvable": {
+            "best_arm": "F0_PARENT_FEDERATION",
+            "best_rate": 1.0,
+            "n_evaluated": 11,
+            "threshold": 0.95,
+            "violation": false
+          }
+        },
+        "per_arm_exact": {
+          "C_ALWAYS_ACCEPT": 0.2,
+          "C_ALWAYS_BLOCK": 0.2,
+          "C_RANDOM_DISPOSITION": 0.0,
+          "F0_PARENT_FEDERATION": 1.0,
+          "M_F2_OBSTRUCTION_DISCOVERY_FULL": 1.0,
+          "M_MINUS_MINIMALITY_ESCALATION": 0.6666666666666666,
+          "M_MINUS_MULTIPLICITY_CHECK": 0.8,
+          "M_MINUS_OBSTRUCTION_SEARCH": 0.2,
+          "M_MINUS_PROOF_WITNESS": 0.8,
+          "P0_INDUCTIVE_CONFIRMATION": 0.2,
+          "P1_FIXED_LESSON_TABLE": 0.06666666666666667,
+          "P2_EXHAUSTIVE_MODEL_SEARCH": 0.8,
+          "P3_DERIVATION_PROOF_SEARCH": 0.2,
+          "P4_SMALL_SCOPE_BOUNDED_CHECK": 0.6
+        }
+      },
+      "gate": "G0f_FAMILY_DISCRIMINATION",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 2,
+      "n_violations": 0,
+      "rule": "non-degenerate split, two independent halves: some arm >= 0.95 (not at floor) AND some registered weak arm <= 0.85 (not at ceiling); guards against the families that made FM/FG R2 uninformative",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "counter_liveness_control": {
+          "ablation_vs_parent_discordance": {
+            "M_MINUS_MINIMALITY_ESCALATION": 5,
+            "M_MINUS_MULTIPLICITY_CHECK": 3,
+            "M_MINUS_OBSTRUCTION_SEARCH": 12,
+            "M_MINUS_PROOF_WITNESS": 3
+          },
+          "counter_is_live": true
+        },
+        "decision_identity_rate": 1.0,
+        "paired": {
+          "diff_x_minus_y": 0.0,
+          "discordant": 0,
+          "exact_p_two_sided": 1.0,
+          "n": 15,
+          "wald_ci95": [
+            0.0,
+            0.0
+          ],
+          "x_only": 0,
+          "y_only": 0
+        },
+        "per_family": {
+          "minimal_counterexample": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "misleading_surface_support": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "multiple_obstruction": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "no_obstruction": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "single_hidden_obstruction": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          }
+        }
+      },
+      "gate": "G1a_PARENT_REPRODUCES_M",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 15,
+      "n_violations": 0,
+      "rule": "F0_PARENT_FEDERATION reproduces M_F2_OBSTRUCTION_DISCOVERY_FULL's disposition on >= 99.5% of instances and no family exceeds 5% discordance; AND the discordance counter is shown live on this split by at least one ablation arm disagreeing with the parent",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "discordant_pairs": 0,
+        "paired": {
+          "diff_x_minus_y": 0.0,
+          "discordant": 0,
+          "exact_p_two_sided": 1.0,
+          "n": 15,
+          "wald_ci95": [
+            0.0,
+            0.0
+          ],
+          "x_only": 0,
+          "y_only": 0
+        },
+        "per_family": {
+          "minimal_counterexample": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "misleading_surface_support": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "multiple_obstruction": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "no_obstruction": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          },
+          "single_hidden_obstruction": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 3
+          }
+        }
+      },
+      "gate": "G1b_M_ADVANTAGE",
+      "hard": false,
+      "min_required_evaluated": 1,
+      "n_evaluated": 15,
+      "n_violations": 1,
+      "rule": "paired instance-exact difference (M_F2_OBSTRUCTION_DISCOVERY_FULL - F0_PARENT_FEDERATION) > 0, exact two-sided p <= 0.05, and >= 1 family with >= 5 M-only-exact instances",
+      "verdict": "NOT_FIRED"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "M_over_accept": 0,
+        "P_over_accept": 0,
+        "n_blocked": 12
+      },
+      "gate": "G2_ANTI_PERMISSIVENESS",
+      "hard": true,
+      "min_required_evaluated": 10,
+      "n_evaluated": 12,
+      "n_violations": 0,
+      "rule": "on instances the oracle blocks, M_F2_OBSTRUCTION_DISCOVERY_FULL accepts no more transfers than F0_PARENT_FEDERATION",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": false,
+      "detail": {
+        "checks": {},
+        "claimed_families": []
+      },
+      "gate": "G3_MECHANISM_BY_OMISSION",
+      "hard": false,
+      "min_required_evaluated": 1,
+      "n_evaluated": 0,
+      "n_violations": 0,
+      "rule": "for every family with a claimed M advantage, the matching omission ablation's exact rate is <= the parent's on that family",
+      "verdict": "NOT_APPLICABLE"
+    }
+  ],
+  "generator_rejections": {
+    "minimal_counterexample": 11,
+    "misleading_surface_support": 377,
+    "multiple_obstruction": 8,
+    "no_obstruction": 1,
+    "single_hidden_obstruction": 27
+  },
+  "holm_across_families": {
+    "minimal_counterexample": {
+      "holm_p": 1.0,
+      "m": 5,
+      "rank": 4,
+      "raw_p": 1.0
+    },
+    "misleading_surface_support": {
+      "holm_p": 1.0,
+      "m": 5,
+      "rank": 5,
+      "raw_p": 1.0
+    },
+    "multiple_obstruction": {
+      "holm_p": 1.0,
+      "m": 5,
+      "rank": 3,
+      "raw_p": 1.0
+    },
+    "no_obstruction": {
+      "holm_p": 1.0,
+      "m": 5,
+      "rank": 1,
+      "raw_p": 1.0
+    },
+    "single_hidden_obstruction": {
+      "holm_p": 1.0,
+      "m": 5,
+      "rank": 2,
+      "raw_p": 1.0
+    }
+  },
+  "label": "DEVELOPMENT",
+  "n_instances": 15,
+  "results_sha256": "a97a9bd211a246866cf55633c5e8fce64514ad207a7e4eba20d10f367228dc46",
+  "route": {
+    "cost_flag": "COST_ADVANTAGE_PARENT",
+    "reason": "F0_PARENT_FEDERATION reproduces M_F2_OBSTRUCTION_DISCOVERY_FULL's dispositions (identity 1.0000)",
+    "route": "PARENT_SUFFICIENT"
+  },
+  "schema_version": "orion.v2.fm-exact.analysis.v1",
+  "score": {
+    "per_arm": {
+      "C_ALWAYS_ACCEPT": {
+        "exact": 3,
+        "exact_rate": 0.2,
+        "n": 15,
+        "over_accept": 12,
+        "per_family": {
+          "minimal_counterexample": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "misleading_surface_support": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "multiple_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "no_obstruction": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "single_hidden_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.017958
+      },
+      "C_ALWAYS_BLOCK": {
+        "exact": 3,
+        "exact_rate": 0.2,
+        "n": 15,
+        "over_accept": 0,
+        "per_family": {
+          "minimal_counterexample": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "misleading_surface_support": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "multiple_obstruction": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "no_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "single_hidden_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          }
+        },
+        "under_accept": 3,
+        "wall_ms": 0.011333
+      },
+      "C_RANDOM_DISPOSITION": {
+        "exact": 0,
+        "exact_rate": 0.0,
+        "n": 15,
+        "over_accept": 1,
+        "per_family": {
+          "minimal_counterexample": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "misleading_surface_support": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "multiple_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "no_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "single_hidden_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          }
+        },
+        "under_accept": 3,
+        "wall_ms": 0.185707
+      },
+      "F0_PARENT_FEDERATION": {
+        "exact": 15,
+        "exact_rate": 1.0,
+        "n": 15,
+        "over_accept": 0,
+        "per_family": {
+          "minimal_counterexample": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "misleading_surface_support": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "multiple_obstruction": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "no_obstruction": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "single_hidden_obstruction": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.966294
+      },
+      "M_F2_OBSTRUCTION_DISCOVERY_FULL": {
+        "exact": 15,
+        "exact_rate": 1.0,
+        "n": 15,
+        "over_accept": 0,
+        "per_family": {
+          "minimal_counterexample": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "misleading_surface_support": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "multiple_obstruction": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "no_obstruction": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "single_hidden_obstruction": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 5.61679
+      },
+      "M_MINUS_MINIMALITY_ESCALATION": {
+        "exact": 10,
+        "exact_rate": 0.6666666666666666,
+        "n": 15,
+        "over_accept": 0,
+        "per_family": {
+          "minimal_counterexample": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "misleading_surface_support": {
+            "exact": 1,
+            "exact_rate": 0.3333333333333333,
+            "n": 3
+          },
+          "multiple_obstruction": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "no_obstruction": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "single_hidden_obstruction": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 7.175667
+      },
+      "M_MINUS_MULTIPLICITY_CHECK": {
+        "exact": 12,
+        "exact_rate": 0.8,
+        "n": 15,
+        "over_accept": 0,
+        "per_family": {
+          "minimal_counterexample": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "misleading_surface_support": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "multiple_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "no_obstruction": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "single_hidden_obstruction": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 2.445999
+      },
+      "M_MINUS_OBSTRUCTION_SEARCH": {
+        "exact": 3,
+        "exact_rate": 0.2,
+        "n": 15,
+        "over_accept": 0,
+        "per_family": {
+          "minimal_counterexample": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "misleading_surface_support": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "multiple_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "no_obstruction": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "single_hidden_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.319748
+      },
+      "M_MINUS_PROOF_WITNESS": {
+        "exact": 12,
+        "exact_rate": 0.8,
+        "n": 15,
+        "over_accept": 0,
+        "per_family": {
+          "minimal_counterexample": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "misleading_surface_support": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "multiple_obstruction": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "no_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "single_hidden_obstruction": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 3,
+        "wall_ms": 10.363376
+      },
+      "P0_INDUCTIVE_CONFIRMATION": {
+        "exact": 3,
+        "exact_rate": 0.2,
+        "n": 15,
+        "over_accept": 0,
+        "per_family": {
+          "minimal_counterexample": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "misleading_surface_support": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "multiple_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "no_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "single_hidden_obstruction": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 3,
+        "wall_ms": 0.377917
+      },
+      "P1_FIXED_LESSON_TABLE": {
+        "exact": 1,
+        "exact_rate": 0.06666666666666667,
+        "n": 15,
+        "over_accept": 0,
+        "per_family": {
+          "minimal_counterexample": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "misleading_surface_support": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "multiple_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "no_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "single_hidden_obstruction": {
+            "exact": 1,
+            "exact_rate": 0.3333333333333333,
+            "n": 3
+          }
+        },
+        "under_accept": 3,
+        "wall_ms": 0.378541
+      },
+      "P2_EXHAUSTIVE_MODEL_SEARCH": {
+        "exact": 12,
+        "exact_rate": 0.8,
+        "n": 15,
+        "over_accept": 0,
+        "per_family": {
+          "minimal_counterexample": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "misleading_surface_support": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "multiple_obstruction": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "no_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "single_hidden_obstruction": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 3,
+        "wall_ms": 0.434041
+      },
+      "P3_DERIVATION_PROOF_SEARCH": {
+        "exact": 3,
+        "exact_rate": 0.2,
+        "n": 15,
+        "over_accept": 0,
+        "per_family": {
+          "minimal_counterexample": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "misleading_surface_support": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "multiple_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "no_obstruction": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "single_hidden_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.425459
+      },
+      "P4_SMALL_SCOPE_BOUNDED_CHECK": {
+        "exact": 9,
+        "exact_rate": 0.6,
+        "n": 15,
+        "over_accept": 0,
+        "per_family": {
+          "minimal_counterexample": {
+            "exact": 2,
+            "exact_rate": 0.6666666666666666,
+            "n": 3
+          },
+          "misleading_surface_support": {
+            "exact": 1,
+            "exact_rate": 0.3333333333333333,
+            "n": 3
+          },
+          "multiple_obstruction": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          },
+          "no_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 3
+          },
+          "single_hidden_obstruction": {
+            "exact": 3,
+            "exact_rate": 1.0,
+            "n": 3
+          }
+        },
+        "under_accept": 3,
+        "wall_ms": 0.304915
+      }
+    }
+  },
+  "suite": "FM60"
+}

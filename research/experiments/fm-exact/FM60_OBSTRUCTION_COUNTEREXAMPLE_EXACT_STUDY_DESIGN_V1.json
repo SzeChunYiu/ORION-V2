@@ -1,0 +1,193 @@
+{
+  "schema_version": "orion.v2.fm-exact.study-design.v1",
+  "study_id": "FM60",
+  "title": "Obstruction and counterexample discovery with exact witness validation",
+  "owner_issues": [
+    48,
+    50
+  ],
+  "protocols": [
+    "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_MECHANICS_PROTOCOL_V1.json",
+    "research/experiments/CONCEPTUAL_TRANSFER_DISCOVERY_PROTOCOL_V2_ALL_SCIENCE_MATHEMATICS_FIRST.json",
+    "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_EXECUTION_BACKLOG_V1.json"
+  ],
+  "status": "FROZEN_PROSPECTIVE_DESIGN_NO_PROTECTED_OUTCOME_ACCESS",
+  "frozen_before_protected_outcome_access": true,
+  "task": {
+    "signature": "one binary relation R, one unary predicate P, no constants, no function symbols",
+    "model_space": "every structure with domain size 1, 2 or 3; 4164 structures in total",
+    "domain_bound": 3,
+    "instance": "a bounded conjecture: a hypothesis set H (2-3 registered formulas) and a conclusion C = c_1 AND ... AND c_k (1-3 registered formulas, disjoint from H)",
+    "registered_vocabulary_size": 26,
+    "evidence_set": "each instance carries an evidence set of up to 12 models of H, drawn deterministically from the instance seed; for the misleading_surface_support family it is drawn from the CONFIRMING models only, which is what makes that family a decoy"
+  },
+  "endpoint": {
+    "primary": "per-instance exact disposition, where the disposition is only awarded if the arm's witness passes the registered validator",
+    "dispositions": [
+      "TRANSFER_VALID",
+      "REJECT_WITH_COUNTEREXAMPLE",
+      "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED",
+      "MULTIPLE_INDEPENDENT_OBSTRUCTIONS",
+      "UNDECIDED_BUDGET_EXHAUSTED",
+      "CLAIM_WITHOUT_VALID_WITNESS"
+    ],
+    "disposition_gloss": {
+      "TRANSFER_VALID": "ACCEPT_WITH_PROOF_WITNESS: no countermodel exists in the bounded space AND the arm supplied a derivation of every conjunct from H in the registered rule base",
+      "REJECT_WITH_COUNTEREXAMPLE": "exactly one conjunct fails and its countermodel is no deeper than the shallowest model of H; the arm must exhibit a countermodel",
+      "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED": "exactly one conjunct fails and every countermodel is strictly deeper than the shallowest model of H; the arm must exhibit one of minimum size",
+      "MULTIPLE_INDEPENDENT_OBSTRUCTIONS": "two or more conjuncts fail and no failing conjunct's countermodel set contains another's; the arm must exhibit countermodels covering at least two of them",
+      "UNDECIDED_BUDGET_EXHAUSTED": "honest abstention; never an oracle label and never an acceptance",
+      "CLAIM_WITHOUT_VALID_WITNESS": "the arm's witness failed validation; never an oracle label"
+    },
+    "why_the_accept_label_is_spelled_TRANSFER_VALID": "The shared runner's over-acceptance and under-acceptance counters and the G2_ANTI_PERMISSIVENESS gate key on that literal string. Spelling FM60's acceptance anything else would have left G2 printing a full denominator over a predicate that could never fire - the exact defect fm_core exists to prevent, in mirror form. The human-readable name of the disposition is ACCEPT_WITH_PROOF_WITNESS.",
+    "secondary": [
+      "over_accept",
+      "under_accept",
+      "per_family_exact_rate",
+      "witness_validity_rate",
+      "wall_clock_cost"
+    ],
+    "note": "Deciding whether a countermodel exists is exactly decidable by exhaustive enumeration, so it is deliberately NOT the endpoint on its own: a study built on it would report parent sufficiency by construction. The endpoint adds (a) minimality, (b) the number of independent obstructions, and (c) a WITNESS requirement that an enumerating search cannot discharge on the acceptance side."
+  },
+  "hard_gate_enforcement": {
+    "protocol_gate": "formal_claim_without_witness_allowed: false",
+    "mechanism": "run_arm validates every non-control arm's witness with the registered validator and rewrites a failing claim to CLAIM_WITHOUT_VALID_WITNESS, which is never an oracle label and is therefore always scored wrong",
+    "control_exemption": "the three C_* control arms are registered exempt, because a control exists to exercise a counter: if every bare claim were rewritten before it was counted, G2's over-acceptance predicate could never fire and the gate would be vacuous",
+    "witness_kinds": {
+      "TRANSFER_VALID": "DERIVATION: an ordered list of [registered_rule_index, conclusion] steps whose premises are available when applied and which derives every conjunct",
+      "REJECT_WITH_COUNTEREXAMPLE": "COUNTERMODEL: a structure in the bounded space that satisfies H and falsifies some conjunct",
+      "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED": "COUNTERMODEL, additionally verified to have no strictly smaller countermodel in the bounded space",
+      "MULTIPLE_INDEPENDENT_OBSTRUCTIONS": "OBSTRUCTION_SET: two or more models of H whose falsified conjuncts cover at least two distinct indices",
+      "UNDECIDED_BUDGET_EXHAUSTED": "none; an abstention that carries a witness is invalid"
+    }
+  },
+  "families": [
+    "no_obstruction",
+    "single_hidden_obstruction",
+    "multiple_obstruction",
+    "minimal_counterexample",
+    "misleading_surface_support"
+  ],
+  "decoy_families": [
+    "multiple_obstruction",
+    "minimal_counterexample",
+    "misleading_surface_support"
+  ],
+  "family_acceptance_predicates": {
+    "no_obstruction": "no conjunct fails anywhere in the bounded space AND a derivation exists in the registered rule base (the conclusion is drawn from the forward-chaining closure of H, so solvability is guaranteed by construction and verified by the oracle)",
+    "single_hidden_obstruction": "exactly one conjunct fails, its minimum countermodel size equals the shallowest hypothesis model size, and the confirming ratio is below 0.88 (so it is not a decoy)",
+    "multiple_obstruction": "at least two conjuncts fail AND no failing conjunct's countermodel set is contained in another's",
+    "minimal_counterexample": "exactly one conjunct fails and its minimum countermodel size is strictly greater than the shallowest hypothesis model size",
+    "misleading_surface_support": "exactly one conjunct fails, the confirming ratio is at least 0.88, there are at most 6 countermodels in the whole space, and every model in the presented evidence set confirms the conclusion"
+  },
+  "generator_constraints": {
+    "hypothesis_models_min": 4,
+    "hypothesis_models_max": 400,
+    "evidence_set_size": 12,
+    "misleading_min_confirming_ratio": 0.88,
+    "misleading_max_countermodels": 6,
+    "independence_note": "the pairwise non-containment condition for multiple_obstruction is a GENERATOR acceptance predicate, not an oracle agreement field: it needs the full countermodel sets, which the stratified search never materialises, so claiming both algorithms agree on it would be a check that cannot be run"
+  },
+  "sizes": {
+    "minimum_tasks_required_by_issue_50_C1": 120,
+    "protected_per_family": 25,
+    "protected_total": 125,
+    "development_per_family": 3,
+    "development_total": 15,
+    "selftest_per_family": 2
+  },
+  "oracle": {
+    "primary": "oracle_exhaustive: materialise the whole bounded model space once, compute each registered formula's truth column as a bitset, and decide dispositions by set algebra over those columns",
+    "independent_cross_check": "oracle_stratified_dpll: never materialises the space; a size-ascending depth-first search over the cells of a partial model, pruned by three-valued (Kleene) evaluation of the hypotheses after every cell assignment, which yields the minimal countermodel by construction",
+    "shared_primitive": "only the grounded-circuit representation of a formula, exactly as FM10's two oracle algorithms shared only the per-fact status primitive",
+    "agreement_fields": [
+      "disposition",
+      "failing_conjuncts",
+      "minimal_size",
+      "min_hypothesis_model_size"
+    ],
+    "classification_order": "multiplicity dominates minimality: two or more failing conjuncts is MULTIPLE_INDEPENDENT_OBSTRUCTIONS even when one of them first fails above the shallowest hypothesis model size. Fixture KA-11 pins this."
+  },
+  "rule_base": {
+    "size": 50,
+    "validity": "every registered implication rule is checked exhaustively against the whole bounded model space before any rule is used; a rule with a countermodel is a defect, reported by parent_fidelity",
+    "role": "the derivation vocabulary. A proof witness is a derivation in this base, so an acceptance is only awarded to an arm that can produce one - which is why an exhaustive model searcher alone cannot own the endpoint."
+  },
+  "arms": {
+    "P0_INDUCTIVE_CONFIRMATION": "inductive confirmation from the presented evidence set; no search, no proof procedure",
+    "P1_FIXED_LESSON_TABLE": "the protocol's frozen-lesson baseline: a verdict and a canned countermodel per conclusion formula, learned once from a frozen three-structure reference corpus, hypotheses never consulted",
+    "P2_EXHAUSTIVE_MODEL_SEARCH": "exhaustive finite-model search to the registered bound (Mace4-style)",
+    "P3_DERIVATION_PROOF_SEARCH": "saturating derivation search over the registered rule base (Prover9-style forward chaining)",
+    "P4_SMALL_SCOPE_BOUNDED_CHECK": "bounded small-scope check, exhaustive to size 2 only (Alloy-style small-scope hypothesis)",
+    "F0_PARENT_FEDERATION": "strongest faithful parent federation: P3 is asked first because only a derivation discharges the witness requirement; only if P3 fails to derive is P2 consulted and its verdict and witness taken as they stand; if neither discharges, the federation abstains",
+    "M_F2_OBSTRUCTION_DISCOVERY_FULL": "ORION L2 obstruction and counterexample discovery: bounded proof attempt, then anytime obstruction search by local repair, then minimality escalation and multiplicity check",
+    "M_MINUS_OBSTRUCTION_SEARCH": "ablation: claim before looking for a counterexample",
+    "M_MINUS_PROOF_WITNESS": "ablation: obstruction search only, so acceptance is bare",
+    "M_MINUS_MINIMALITY_ESCALATION": "ablation: any single obstruction reported flat",
+    "M_MINUS_MULTIPLICITY_CHECK": "ablation: stop at the first obstruction found",
+    "C_ALWAYS_ACCEPT": "constant control (witness-exempt by registration)",
+    "C_ALWAYS_BLOCK": "constant control (witness-exempt by registration)",
+    "C_RANDOM_DISPOSITION": "random control (witness-exempt by registration)"
+  },
+  "primary_comparator": "F0_PARENT_FEDERATION",
+  "comparator_justification": "No single parent family owns the endpoint. An exhaustive finite-model search decides the countermodel side exactly but produces no derivation, so its acceptance is a claim without a proof witness and the protocol's hard gate rejects it. A saturating prover owns the acceptance side but produces no countermodels and can only abstain on the reject side. A small-scope check is exhaustive inside its scope and structurally blind one size above it. The strongest faithful comparator is therefore the P3/P2 federation under a pre-registered, outcome-blind combination rule, exactly as ME-X4's B5 and FM10's F0 were.",
+  "gates": {
+    "G0a_KNOWN_ANSWER": "every hand-authored fixture's disposition is reproduced by the exhaustive oracle (>= 8 fixtures required; 12 registered)",
+    "G0b_ORACLE_SELF_AGREEMENT": "the two independent oracle algorithms agree on disposition, failing conjuncts, minimal countermodel size and shallowest hypothesis model size for every instance of the split",
+    "G0c_NULL_CALIBRATION": "constant-response arms <= 0.40, random arm <= 0.40, M against within-split shuffled oracle labels <= 0.40",
+    "G0d_DECOY_COVERAGE": "each registered decoy family carries >= 3 instances",
+    "G0e_PLANTED_POSITIVES": "every registered planted positive trips its own gate predicate (>= 3 required; 7 registered)",
+    "G0f_FAMILY_DISCRIMINATION": "two independent halves, each with its own denominator: SOLVABLE (some non-control arm >= 0.95, not at floor) AND SEPARATING (some registered weak arm <= 0.85, not at ceiling)",
+    "G1a_PARENT_REPRODUCES_M": "F0 reproduces M's disposition on >= 99.5% of instances and no family exceeds 5% discordance; AND the discordance counter is shown live on the same split by at least one ablation arm disagreeing with the parent",
+    "G1b_M_ADVANTAGE": "detector: paired instance-exact difference (M - F0) > 0, exact two-sided p <= 0.05, and >= 1 family with >= 5 M-only-exact instances",
+    "G2_ANTI_PERMISSIVENESS": "on instances the oracle blocks, M accepts no more conjectures than F0 (>= 10 blocked instances required)",
+    "G3_MECHANISM_BY_OMISSION": "applicable only if G1b fires: for every family with a claimed M advantage, the matching omission ablation's exact rate is <= the parent's on that family",
+    "multiplicity": "Holm across the five per-family paired tests, reported for every run"
+  },
+  "gate_reporting_rule": "Every gate reports the number of instances its rule was actually evaluated on alongside the violation count. A gate whose denominator is below its registered minimum returns CANNOT_CHECK and never PASS: 'could not check' is never 'checked and fine'. A zero produced by a counter that could not have been nonzero on this split is not evidence, so G1a carries a liveness control and G2's over-acceptance predicate is shown live by a registered planted positive.",
+  "planted_positives": [
+    "G0b: a deliberately incomplete small-scope-only pseudo-oracle must disagree with exhaustive enumeration on an instance whose obstruction first appears one size above that scope",
+    "G0a: a deliberately wrong expected disposition must be rejected",
+    "G2: the over-acceptance counter must count C_ALWAYS_ACCEPT on an oracle-blocked instance",
+    "G0f ceiling: a synthetic per-arm table in which every arm scores 1.000 must FAIL the gate",
+    "G0f floor: a synthetic per-arm table in which every arm scores 0.267 - the literal FM/FG R2 fm60 row, all five arms at 32/120 - must FAIL the gate on its solvable half",
+    "HARD_GATE_FORMAL_CLAIM_WITHOUT_WITNESS: an arm returning the oracle's own disposition with an invalid witness must be rewritten to CLAIM_WITHOUT_VALID_WITNESS by the same dispatcher that produces the study's numbers",
+    "G3: M_MINUS_MINIMALITY_ESCALATION must be wrong on a hand-built minimal-counterexample instance on which M is right"
+  ],
+  "routes": [
+    "PARENT_SUFFICIENT",
+    "FM_RESIDUAL_CANDIDATE",
+    "M_OVER_ACCEPTS",
+    "CANNOT_CHECK"
+  ],
+  "pre_registered_expectation": "PARENT_SUFFICIENT. Three sibling exact studies (ME-X1, ME-X2, ME-X4) and FM10's development split already found the strongest faithful parent sufficient; a residual here would require correspondingly hard scrutiny.",
+  "seed_commitment": {
+    "protected_seed_sha256": "54a74a5960b88ed7973b690890a3fcb21bf80580d2a459075aae799aacbe02f2",
+    "custody_path": "~/.orion-custody/fm/FM60_PROTECTED_SEED_V1.txt",
+    "development_seed_public": "FM60-DEV-20260902",
+    "selftest_seed_public": "FM60-SELFTEST"
+  },
+  "execution_rule": {
+    "protected_runs_allowed": 1,
+    "authorization_file": "PROTECTED_RUN_AUTHORIZATION.json (human-written token, names this suite, acknowledges this file's sha256)",
+    "analysis_runs_on_protected": 1,
+    "post_outcome_change_allowed": false
+  },
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_F2_superiority": false,
+    "grants_field_status": false,
+    "grants_submission_readiness": false
+  },
+  "mechanic_independence": {
+    "statement": "M does NOT call either parent's procedure. Its proof stage is a bounded forward chaining with its own rule ordering and a budget of 12 rule applications; its obstruction stage explores the hypothesis region by LOCAL REPAIR - breadth-first over single-cell edits that stay inside the region, seeded from the instance's evidence set plus bounded random probing - and is exhaustive only at domain sizes at or below 2, where the space is small enough to certify minimality.",
+    "why": "An M that issued the same calls as F0 would have made G1a's decision identity an algebraic identity rather than a measurement: discordance could not have been nonzero. Local repair is complete only on the components its seeds reach, so M can miss an obstruction the complete parent finds, and 'the federation reproduces M' is measured rather than guaranteed.",
+    "acknowledged_overlap": "P2_EXHAUSTIVE_MODEL_SEARCH decides the countermodel question by the same set algebra the exhaustive oracle uses, minus the disposition bookkeeping. This is defensible - an exhaustive finite-model search genuinely is the mature parent for that question - but P2's row is therefore not independent parent evidence and is reported as such."
+  },
+  "known_definitional_results": [
+    "P2_EXHAUSTIVE_MODEL_SEARCH is exact on every reject family by construction (it is a complete search over the bounded space) and 0.00 on no_obstruction by construction (it has no derivation to offer). Its informative content is that neither property alone reaches the endpoint.",
+    "P3_DERIVATION_PROOF_SEARCH is the mirror: exact on no_obstruction because the generator draws that family's conclusions from the forward-chaining closure of H, and 0.00 elsewhere because a prover produces no countermodels.",
+    "F0_PARENT_FEDERATION is therefore expected to be exact by construction; its content is the attribution of which parent owns which half of the endpoint, not a measured score.",
+    "misleading_surface_support instances are rejected and resampled unless every model of the presented evidence set confirms the conclusion, so P0_INDUCTIVE_CONFIRMATION scoring 0.00 on that family is definitional, not measured. Rejection counts are published per family."
+  ]
+}

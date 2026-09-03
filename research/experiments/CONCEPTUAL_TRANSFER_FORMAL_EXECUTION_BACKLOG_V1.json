@@ -102,7 +102,15 @@
       "action": "Generate >=120 conjecture/transfer tasks with zero, one or multiple hidden obstructions; exact finite-model or proof witness must be found before claim acceptance.",
       "depends_on": [
         "FM00"
-      ]
+      ],
+      "status": "DESIGN_FROZEN_DEVELOPMENT_COMPLETE_PROTECTED_PENDING",
+      "exact_study": {
+        "design": "research/experiments/fm-exact/FM60_OBSTRUCTION_COUNTEREXAMPLE_EXACT_STUDY_DESIGN_V1.{md,json}",
+        "code": "research/experiments/fm-exact/{fm_core,fm_run,fm60_suite}.py",
+        "parent_fidelity": "research/experiments/fm-exact/FM_PARENT_FIDELITY_RECEIPT_FM60_V1.md",
+        "protected_tasks": 125,
+        "note": "the FM/FG R2 LLM-dispatch fm60 cell was the campaign's floor study (all five arms identical at 32/120, 0.267) and could not discriminate; the exact study registers G0f's solvable half as a hard gate and plants a synthetic 0.267 floor table that must fail it"
+      }
     },
     {
       "id": "FM70",
