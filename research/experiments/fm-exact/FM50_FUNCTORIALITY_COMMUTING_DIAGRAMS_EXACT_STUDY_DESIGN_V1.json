@@ -1,0 +1,172 @@
+{
+  "schema_version": "orion.v2.fm-exact.study-design.v1",
+  "study_id": "FM50",
+  "title": "Functoriality and commuting diagrams with exact obstruction classification",
+  "owner_issues": [
+    48,
+    50
+  ],
+  "protocols": [
+    "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_MECHANICS_PROTOCOL_V1.json",
+    "research/experiments/CONCEPTUAL_TRANSFER_DISCOVERY_PROTOCOL_V2_ALL_SCIENCE_MATHEMATICS_FIRST.json",
+    "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_EXECUTION_BACKLOG_V1.json"
+  ],
+  "status": "FROZEN_PROSPECTIVE_DESIGN_NO_PROTECTED_OUTCOME_ACCESS",
+  "frozen_before_protected_outcome_access": true,
+  "endpoint": {
+    "primary": "per-instance exact disposition of a registered categorical transfer claim, including the exact obstruction class",
+    "dispositions": [
+      "TRANSFER_VALID",
+      "BLOCK_ENDPOINT_VIOLATION",
+      "BLOCK_IDENTITY_NOT_PRESERVED",
+      "BLOCK_COMPOSITION_NOT_PRESERVED",
+      "BLOCK_MIXED_LAW_OBSTRUCTION",
+      "BLOCK_FALSE_EQUIVALENCE"
+    ],
+    "secondary": [
+      "over_accept",
+      "under_accept",
+      "per_family_exact_rate",
+      "n_valid_functors",
+      "wall_clock_cost"
+    ],
+    "precedence": "endpoint > (identity, composition) > registered distinction. The mixed class exists so that the order is visible and pinnable by a fixture rather than hidden inside a tie-break.",
+    "valid_token_note": "The valid disposition is spelled TRANSFER_VALID, not FUNCTOR_VALID, and FUNCTOR_VALID is kept only as a readable module alias. The shared runner defines over-acceptance as prediction == 'TRANSFER_VALID' and defines the G2 denominator as the instances whose label is not 'TRANSFER_VALID'. Under a renamed token every instance would count as blocked, both over-acceptance counters would be structurally pinned to zero, and G2_ANTI_PERMISSIVENESS would print a full denominator while being incapable of firing - the exact defect class this programme exists to catch."
+  },
+  "eligibility": {
+    "protocol_clause": "only cases whose native construction forms the required finite categorical structure",
+    "decision": "FiniteCategory.__post_init__ in orion_v2.transfer_formal_mechanics, which validates uniqueness, endpoint binding, identity binding and endpoints, composition-table completeness over exactly the composable pairs, the left and right unit laws, and associativity, and raises when any of them fails",
+    "outcome_is_a_third_class": "A proposed construction that fails is INELIGIBLE. It is never negative evidence about any arm and is never silently dropped: it is counted per family and published in `generator_rejections` of every results and analysis file, alongside the per-family eligible counts in the per-arm tables.",
+    "natural_ineligible_stream": "One proposal in four is emitted as a native morphism vocabulary that has not been closed under composition. Such a vocabulary does not form the required categorical structure; the composition table is then incomplete and the construction is rejected by the completeness law.",
+    "guard_liveness": "Every accepted instance additionally has two law-breaking perturbations of its own donor category (a deleted composite and a rebound identity) pushed through the same checker in the same execution; a probe that is admitted is counted as ELIGIBILITY_PROBE_MISSED. The eligibility guard can therefore never become a checker nested inside an applicability condition that excludes the family under test.",
+    "gate": "G0g_ELIGIBILITY"
+  },
+  "families": [
+    "VALID_FUNCTOR",
+    "SURFACE_NAME_DECOY",
+    "LICENSED_COLLAPSE",
+    "ENDPOINT_VIOLATION",
+    "IDENTITY_NOT_PRESERVED",
+    "COMPOSITION_NOT_PRESERVED",
+    "MIXED_LAW_OBSTRUCTION",
+    "FALSE_EQUIVALENCE"
+  ],
+  "decoy_families": [
+    "SURFACE_NAME_DECOY",
+    "LICENSED_COLLAPSE",
+    "IDENTITY_NOT_PRESERVED",
+    "FALSE_EQUIVALENCE"
+  ],
+  "sizes": {
+    "minimum_tasks_required_by_issue_50_C1": 96,
+    "protected_per_family": 13,
+    "protected_total": 104,
+    "development_per_family": 3,
+    "development_total": 24,
+    "selftest_per_family": 2,
+    "note": "protected_total counts ELIGIBLE instances only; ineligible constructions are counted separately and are not part of the split"
+  },
+  "construction": {
+    "categories": "concrete subcategories of FinSet: objects carry finite carriers, morphisms are functions between them, composition is function composition. Associativity is therefore free and eligibility turns entirely on whether the proposed vocabulary contains the identities and is closed under composition - which is what makes eligibility a property of the proposal rather than of the checker.",
+    "donor": "objects A (carrier 2), B (carrier 2) and an isolated object I (carrier 2); generators are non-identity endomorphisms of A and arrows A -> B, closed under composition",
+    "target": "the renamed donor closure plus noise endomorphisms, a non-identity idempotent at I, a singleton object Z, the unique arrow A -> Z and an arrow Z -> B, closed under composition",
+    "isolated_object_rationale": "I carries no composite beyond (id_I, id_I), so breaking its identity cannot induce a composition violation. That is what makes a pure IDENTITY_NOT_PRESERVED class constructible rather than always collapsing into the mixed class."
+  },
+  "oracle": {
+    "primary": "oracle_exhaustive: the claim's violation profile from this module's own law-by-law loop, and n_valid_functors by enumerating every object map and, for each, the complete endpoint-respecting morphism-map product (identity morphisms pinned by the identity law, which is definitional and not a heuristic)",
+    "independent_cross_check": "oracle_constraint_search: the claim's violation profile from the reference module's assess_functor plus this module's distinction check, and n_valid_functors by a forward-checking backtracking search that charges each law the moment its members are assigned and never materialises the map space",
+    "agreement_fields": [
+      "disposition",
+      "total_violations",
+      "best_profile",
+      "n_valid_functors"
+    ],
+    "profile_fields": [
+      "ENDPOINT",
+      "IDENTITY",
+      "COMPOSITION",
+      "COLLAPSE",
+      "TOTAL",
+      "N_VALID_FUNCTORS"
+    ],
+    "enumeration_cap": 24000,
+    "why_the_disposition_is_a_property_of_the_candidate": "The constant functor X |-> o, f |-> id_o is a valid functor from any small category into any non-empty one, so 'does a valid functor exist' is trivially yes and the minimum-violation profile over the whole functor space is unstable across the identity, composition and distinction classes. The disposition is therefore the exact status of the registered candidate, and the exhaustively determined n_valid_functors is carried as a cross-checked agreement field that no arm ever sees."
+  },
+  "registered_claim": {
+    "distinguished_pairs": "pairs of distinct parallel donor morphisms whose distinction the transfer claim depends on; collapsing one is a false equivalence, collapsing an unregistered pair is licensed",
+    "registered_diagrams": "a subset of the donor's non-trivial composition entries, written down as the diagrams the claim depends on; this is what the diagram-chasing parent checks",
+    "surface_pairs": "the name-similarity pairing a reader would guess, which the SURFACE_NAME_DECOY family deliberately deranges"
+  },
+  "arms": {
+    "P0_NAME_SIMILARITY": "identifier/label correspondence: accepts exactly when its own name-similarity guess reproduces the registered object map",
+    "P1_GRAPH_HOMOMORPHISM": "underlying-graph homomorphism: endpoints only, blind to unit and composition laws",
+    "P2_CATEGORY_LAW_FUNCTOR": "the category-law parent, orion_v2.transfer_formal_mechanics.assess_functor: endpoint, identity and composition preservation decided exactly, blind to false equivalence",
+    "P3_DIAGRAM_CHASE": "diagram chasing over the registered commuting diagrams; blind to the unit laws and to unregistered composites",
+    "P4_FAITHFULNESS": "faithfulness on the registered distinctions; owns the false-equivalence stratum and performs no law checking",
+    "P5_FIXED_LESSON_INJECTION": "frozen one-lesson table: a categorical transfer is valid when identities go to identities",
+    "F0_PARENT_FEDERATION": "P2 decides the functor-law question; if and only if P2 finds every law satisfied, P4 is consulted and may veto the claim as a false equivalence",
+    "M_F2_FUNCTORIAL_TRANSFER_FULL": "ORION L2 functorial transfer discovery: structural description rebuilt from the raw tables, discovered commuting triangles, projection through the target's composition index, native recovery on the registered distinctions, own precedence resolution",
+    "M_MINUS_ENDPOINT_DISCIPLINE": "ablation: no underlying-graph stage",
+    "M_MINUS_IDENTITY_CHECK": "ablation: no unit stage",
+    "M_MINUS_COMPOSITION_CHECK": "ablation: no discovered-triangle stage",
+    "M_MINUS_FAITHFULNESS_RECOVERY": "ablation: no native recovery on the registered distinctions",
+    "C_ALWAYS_TRANSFER": "constant control",
+    "C_ALWAYS_BLOCK": "constant control (BLOCK_COMPOSITION_NOT_PRESERVED)",
+    "C_RANDOM_DISPOSITION": "random control"
+  },
+  "primary_comparator": "F0_PARENT_FEDERATION",
+  "comparator_justification": "No single parent family owns the endpoint. The category-law parent decides every functor law exactly and is structurally blind to false equivalence, because collapsing two distinct morphisms violates no functor law. The faithfulness parent owns exactly that stratum and is blind to every law. The strongest faithful comparator is therefore their federation under a combination rule fixed before any outcome and blind to it, exactly as ME-X4's B5 and FM10's F0 were. P3 is deliberately not a member: every registered diagram is a composable pair of the donor's composition table and P2 checks every such pair, so diagram chasing is subsumed by the law parent - recording that is a finding about the parent landscape, not an omission.",
+  "gates": {
+    "G0a_KNOWN_ANSWER": "every hand-authored fixture's disposition is reproduced by the exhaustive oracle and by the independent cross-check (>= 8 fixtures required; 11 registered)",
+    "G0b_ORACLE_SELF_AGREEMENT": "the two independent oracle algorithms agree on disposition, total violations, the full profile and the exhaustively determined valid-functor count for every instance of the split",
+    "G0c_NULL_CALIBRATION": "constant-response arms <= 0.40, random arm <= 0.40, M against within-split shuffled oracle labels <= 0.40",
+    "G0d_DECOY_COVERAGE": "each registered decoy family carries >= 3 instances",
+    "G0e_PLANTED_POSITIVES": "every registered planted positive trips its own gate predicate (>= 3 required; 6 registered, including the eligibility trip-wire and the all-ceiling trip-wire)",
+    "G0f_FAMILY_DISCRIMINATION": "two independent halves, each with its own denominator: SOLVABLE (some non-control arm >= 0.95, not at floor) AND SEPARATING (some registered weak arm <= 0.85, not at ceiling)",
+    "G0g_ELIGIBILITY": "every proposed native construction is ruled on: lawful constructions admitted, law-breaking ones (deleted composite, rebound identity, unclosed proposal, non-associative table) caught and counted INELIGIBLE. The gate carries both halves with their own denominators - asserting only the alarm half would leave a checker that cries wolf undetected and asserting only the no-alarm half would leave a checker that never runs undetected. Reported in the selftest report and, per family, in `generator_rejections` of every split.",
+    "G1a_PARENT_REPRODUCES_M": "F0 reproduces M's disposition on >= 99.5% of instances and no family exceeds 5% discordance; AND the discordance counter is shown live on the same split by at least one ablation arm disagreeing with the parent",
+    "G1b_M_ADVANTAGE": "detector: paired instance-exact difference (M - F0) > 0, exact two-sided p <= 0.05, and >= 1 family with >= 5 M-only-exact instances",
+    "G2_ANTI_PERMISSIVENESS": "on instances the oracle blocks, M accepts no more transfers than F0 (>= 10 blocked instances required)",
+    "G3_MECHANISM_BY_OMISSION": "applicable only if G1b fires: for every family with a claimed M advantage, the matching omission ablation's exact rate is <= the parent's on that family",
+    "multiplicity": "Holm across the eight per-family paired tests, reported for every run"
+  },
+  "gate_reporting_rule": "Every gate reports the number of instances its rule was actually evaluated on alongside the violation count. A gate whose denominator is below its registered minimum returns CANNOT_CHECK and never PASS: 'could not check' is never 'checked and fine'. A zero produced by a counter that could not have been nonzero on this split is not evidence of agreement, so G1a additionally carries a liveness control and every no-alarm assertion is paired with a planted positive that must fire in the same execution.",
+  "routes": [
+    "PARENT_SUFFICIENT",
+    "FM_RESIDUAL_CANDIDATE",
+    "M_OVER_ACCEPTS",
+    "CANNOT_CHECK"
+  ],
+  "pre_registered_expectation": "PARENT_SUFFICIENT, and on this endpoint more strongly than for FM10: see `mechanic_independence` below. Three sibling exact studies (ME-X1, ME-X2, ME-X4) and FM10's development split already found the strongest faithful parent sufficient; a residual here would require correspondingly hard scrutiny.",
+  "seed_commitment": {
+    "protected_seed_sha256": "b45a1644e3219ce0cca4e3307dacc7c4c20e50833095fc4d1ed579fa3948fe46",
+    "custody_path": "~/.orion-custody/fm/FM50_PROTECTED_SEED_V1.txt",
+    "hash_convention": "sha256 of the file's bytes with surrounding whitespace stripped, which is what fm_run.stage_protected hashes; `sha256sum` on the file includes the trailing newline and will not match",
+    "development_seed_public": "FM50-DEV-20260902",
+    "selftest_seed_public": "FM50-SELFTEST"
+  },
+  "execution_rule": {
+    "protected_runs_allowed": 1,
+    "authorization_file": "PROTECTED_RUN_AUTHORIZATION.json (human-written token, names this suite, acknowledges this file's sha256)",
+    "analysis_runs_on_protected": 1,
+    "post_outcome_change_allowed": false
+  },
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_F2_superiority": false,
+    "grants_field_status": false,
+    "grants_submission_readiness": false
+  },
+  "mechanic_independence": {
+    "statement": "M does NOT call assess_functor (the parent's call) and does NOT call the study's own claim_profile (the oracle's). It rebuilds the donor's structural description from source_target and composition, discovers the donor's commuting triangles for itself instead of trusting the registered diagram list, projects the claim through the target's composition index, runs native recovery on the registered distinctions and resolves the obstruction precedence itself.",
+    "honest_limit": "This is an independent implementation, but it is not an independent result. Unlike FM10, where M's anytime local search could genuinely fail to reach the optimum the complete parent found, FM50's law fragment is a total function of the registered candidate: any correct implementation of the functor laws must agree with any other. M and P2 are therefore expected to be decision-identical by mathematics rather than by shared code, and G1a's zero is reported as such rather than as a measurement of an alignment that could have diverged. The channels along which M could still diverge are its own precedence resolution (the mixed class is a design choice, not a forced one) and its discovered rather than registered diagram set.",
+    "what_carries_G1a": "the liveness control. All four ablations are known-different mechanics and each disagrees with F0 on the development split (M_MINUS_COMPOSITION_CHECK 6, M_MINUS_IDENTITY_CHECK 6, M_MINUS_ENDPOINT_DISCIPLINE 3, M_MINUS_FAITHFULNESS_RECOVERY 3 of 24), so the counter that reports zero for M is a counter that was capable of reporting nonzero on this very split.",
+    "acknowledged_overlap": "P2_CATEGORY_LAW_FUNCTOR is the reference module's law checker and is also used by the cross-check oracle to compute the candidate's law counts. P2's row is therefore not independent parent evidence on the law strata and is reported as such; the primary oracle computes the same counts through this module's own loop, so the two are cross-validated against each other."
+  },
+  "known_definitional_results": [
+    "P2_CATEGORY_LAW_FUNCTOR is exact on every law family by construction (it is a complete decision procedure for the functor laws) and 0.00 on FALSE_EQUIVALENCE by construction (a collapsing functor violates no law). Its informative content is that neither property alone reaches the endpoint.",
+    "P4_FAITHFULNESS is exact on FALSE_EQUIVALENCE and LICENSED_COLLAPSE by construction and 0.00 on every law family by construction, for the same reason in mirror image.",
+    "C_ALWAYS_TRANSFER's rate is pinned at 3/8 = 0.375 on any balanced split because three of the eight families are registered TRANSFER_VALID; this is arithmetic, not a measurement, and it is what the 0.40 null-calibration ceiling was checked against before the generator was written.",
+    "SURFACE_NAME_DECOY instances derange the target's display names while leaving the registered candidate correct, so P0_NAME_SIMILARITY scoring 0.00 on that family is definitional, not measured."
+  ]
+}
