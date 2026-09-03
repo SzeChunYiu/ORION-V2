@@ -30,7 +30,7 @@ HEAD_SHA=$(git -C "$R13/source" rev-parse HEAD)
 GOT=$(sha256sum "$R13/source/research/experiments/e30-r13/E30_R13_CHANNEL_CONTRACT_RERUN_DESIGN_V1.json" | cut -c1-64)
 [ "$GOT" = "$DESIGN_SHA" ] || { echo "DESIGN_SHA_MISMATCH got=$GOT want=$DESIGN_SHA"; exit 2; }
 
-cat > "$R13/E30_R13_COORDINATOR_AUTHORIZATION.json" <<AUTH
+cat > "$R13/PROTECTED_RUN_AUTHORIZATION.json" <<AUTH
 {
   "schema_version": "orion.v2.e30-r13-coordinator-authorization.v1",
   "study_id": "E30-R13",

@@ -233,15 +233,35 @@ and is reported as plainly as a positive would be.
 
 ## 10. Custody
 
-Seed 20260903. The design and every gate are frozen before dispatch; no design, gate,
-endpoint, margin, family, disposition rule or budget may change after dispatch, for any
-reason. The dispatch gate refuses to run without
-`E30_R13_COORDINATOR_AUTHORIZATION.json`, which is coordinator-written and says so,
-quotes the operator's verbatim instruction with its source, and acknowledges the exact
-design bytes — so a design edited after authorization halts the study rather than
-silently running a different one. The authorization is archived after use to re-arm the
-guard. Arms read only the gold-blind solver workspace; gold patches are read only by
-GR0b, after every response is written.
+The design and every gate are frozen before dispatch; no design, gate, endpoint, margin,
+family, disposition rule or budget may change after dispatch, for any reason. Setup
+asserts three things against the frozen design before a campaign call is made: that the
+dispatched contract's sha256 is the registered one, that the dispatched per-call cap is
+the registered **14 000** — GR0e catches truncation, but only this catches a cap that is
+simply the wrong number — and, on the first setup only, that `responses/` and
+`evaluations/` are empty. The emptiness assertion is gated on a sentinel rather than
+applied unconditionally, because the registered execution lane is resumable and setup
+re-runs on a chain resubmit; an unconditional assertion would block a legitimate resume
+and force a post-dispatch design change to unblock it.
+
+The dispatch gate refuses to run without `PROTECTED_RUN_AUTHORIZATION.json`, which is
+coordinator-written and says so, quotes the operator's verbatim instruction with its
+source, and acknowledges the exact design bytes — so a design edited after authorization
+halts the study rather than silently running a different one. It does **not** claim human
+authorship, because it is not human-written; what is asserted is that the human
+instruction it quotes is present and attributed. The rollup step renames it to
+`PROTECTED_RUN_AUTHORIZATION_ARCHIVED.json`, so the guard re-arms and a later
+resubmission cannot run on a spent authorization.
+
+The seed is **20260903**, published here in the clear before dispatch and also as its
+sha256. A hash-commit-then-reveal protocol would be weaker here rather than stronger: the
+seed is a bootstrap resampling seed compiled into `e30_r13_analysis.py`, which this same
+pull request freezes and hashes, so it is already publicly checkable and cannot be
+re-chosen after an outcome. Claiming a commit-and-reveal that was not run would be a
+rendered status standing in for the thing itself.
+
+Arms read only the gold-blind solver workspace; gold patches are read only by GR0b, after
+every response is written.
 
 ## 11. Authority
 

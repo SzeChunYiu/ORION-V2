@@ -54,7 +54,7 @@ echo "CHANNEL_CONTRACT=$ORION_ARM_CHANNEL_CONTRACT PER_CALL_MAX_TOKENS=$ORION_AR
 # edited after authorization is a different study.  The file is coordinator-written by
 # construction -- claiming otherwise would fabricate custody -- so what is asserted is that
 # the human instruction it quotes is present and attributed, not that a human typed the file.
-AUTH="$R13/E30_R13_COORDINATOR_AUTHORIZATION.json"
+AUTH="$R13/PROTECTED_RUN_AUTHORIZATION.json"
 DESIGN_SHA=$(sha256sum "$DESIGN" | cut -c1-64)
 AUTH="$AUTH" DESIGN_SHA="$DESIGN_SHA" "$PY" - <<'AUTHZ'
 import json, os, sys

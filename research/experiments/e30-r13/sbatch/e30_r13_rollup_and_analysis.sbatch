@@ -46,4 +46,11 @@ sys.exit(0 if r.get('complete') else 6)"
   --out "$R13/fullreg"
 # Exit code 5 is CANNOT-CHECK on a channel gate and 4 is a gate FAIL; neither is a
 # null, and neither may be reported as one.  They are distinct on purpose.
+# Archive the authorization so the dispatch guard re-arms: a spent authorization left in
+# place would let a later resubmission run without a fresh one.
+AUTH="$R13/PROTECTED_RUN_AUTHORIZATION.json"
+if [ -f "$AUTH" ]; then
+  mv "$AUTH" "$R13/PROTECTED_RUN_AUTHORIZATION_ARCHIVED.json"
+  echo "AUTHORIZATION_ARCHIVED $R13/PROTECTED_RUN_AUTHORIZATION_ARCHIVED.json"
+fi
 echo "ROLLUP_AND_ANALYSIS_COMPLETE $(date -u +%FT%TZ)"

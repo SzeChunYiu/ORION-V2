@@ -43,6 +43,7 @@
     "parent_sufficiency_is_valid_terminal": true
   },
   "channel_condition_contrast_measured_pre_freeze": {
+    "aggregated_by": "research/experiments/e30-r13/e30_r13_build_design.py, re-derived from the archived calibration files by tests/unit/test_e30_r13_lane.py",
     "archived_in": [
       "results/E30_R13_CALIBRATION_A_SMALL.json",
       "results/E30_R13_CALIBRATION_B_LARGE.json",
@@ -97,13 +98,15 @@
   },
   "class": "new prospective confirmatory study under a NEW campaign identity; not a re-analysis and not a repair of E30-R12's campaign",
   "custody": {
-    "authorization_object": "E30_R13_COORDINATOR_AUTHORIZATION.json, written by the coordinator (not by a human) and carrying coordinator_written: true, the verbatim operator instruction with its source, and the exact design sha256; the dispatch gate refuses to run without it, and it is archived after use to re-arm the guard",
+    "authorization_archived_after_use": "the rollup step renames it to PROTECTED_RUN_AUTHORIZATION_ARCHIVED.json, so the dispatch guard re-arms and a later resubmission cannot run on a spent authorization",
+    "authorization_object": "PROTECTED_RUN_AUTHORIZATION.json, written into the campaign directory by the coordinator (not by a human) and carrying coordinator_written: true, the verbatim operator instruction with its source, and the exact design sha256. It does NOT claim human authorship, because it is not human-written; what is asserted is that the human instruction it quotes is present and attributed. The dispatch gate refuses to run without it.",
     "calibration_custody": "the channel calibration ran on frozen prompts OUTSIDE any campaign run tree, recorded token accounting, stop reasons, content-block shapes and a JSON-parseability boolean only, retained no response text, evaluated no patch, read no gold tree and read no endpoint. Its outputs are archived under results/ and are not pooled into the campaign.",
     "code_frozen_in_this_pr": [
       "research/experiments/e30-r13/e30_r13_analysis.py",
       "research/experiments/e30-r13/e30_r13_fullreg_eval.py",
       "research/experiments/e30-r13/e30_r13_budget_note.py",
       "research/experiments/e30-r13/e30_r13_channel_calibration.py",
+      "research/experiments/e30-r13/e30_r13_build_design.py",
       "research/experiments/e30-r13/sbatch/*",
       "scripts/orion_claude_arms.py",
       "tests/unit/test_e30_r13_lane.py"
@@ -117,7 +120,8 @@
       "JOB_IDS.env"
     ],
     "seed": 20260903,
-    "seed_sha256_published_pre_run": true
+    "seed_disclosure": "The seed is published in the clear here, before dispatch, AND as its sha256. A hash-commit-then-reveal protocol would be weaker in this study, not stronger: the seed is a bootstrap resampling seed compiled into e30_r13_analysis.py, which is frozen and hashed by the same pull request as this design, so it is already publicly checkable and cannot be re-chosen after an outcome. Claiming a commit-and-reveal that was not run would be a rendered status standing in for the thing itself.",
+    "seed_sha256": "9c9d46b02fb99ebf1106a97d8b6f5ec1275453304b461dbbb0695d7e5229f380"
   },
   "endpoints": {
     "D1_REGISTERED_DIAGNOSTIC": {

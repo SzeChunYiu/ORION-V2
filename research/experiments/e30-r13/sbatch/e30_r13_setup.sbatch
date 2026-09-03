@@ -105,7 +105,8 @@ PROV
 # Compared by sha256 over the contract bytes, computed by the arms executable itself.
 # A label comparison would pass while the body behind the label changed -- which is the
 # class of drift that ended E30-R12, one level up.
-R13SRC="$R13SRC" DESIGN="$DESIGN" CONTRACT="$CHANNEL_CONTRACT" "$PY" - <<'CONTRACT'
+R13SRC="$R13SRC" DESIGN="$DESIGN" CONTRACT="$CHANNEL_CONTRACT" \
+CAP="${E30R13_PER_CALL_MAX_TOKENS:?set E30R13_PER_CALL_MAX_TOKENS}" "$PY" - <<'CONTRACT'
 import importlib.util, json, os, sys
 from pathlib import Path
 spec = importlib.util.spec_from_file_location(
@@ -124,16 +125,33 @@ if got != registered["contract_sha256"]:
     problems.append(f"contract sha256 {got} != registered {registered['contract_sha256']}")
 if arms.ARM_SYSTEM_PROMPT != registered["system"]:
     problems.append("system prompt differs from the registered contract")
+# The dispatched cap must BE the registered cap.  GR0e only catches truncation, so a cap
+# of 9000 or 40000 would run to completion, pass every gate, and be reported as the
+# registered condition -- the same registered-value-versus-dispatched-value gap this
+# study exists to close, one level down.
+cap = int(os.environ["CAP"])
+registered_cap = design["execution_lane_contract"]["per_call_output_token_cap"]
+if cap != registered_cap:
+    problems.append(f"per-call cap {cap} != registered {registered_cap}")
 if problems:
     print("CHANNEL_CONTRACT_MISMATCH:", "; ".join(problems)); sys.exit(3)
-print("CHANNEL_CONTRACT_OK", name, got)
+print("CHANNEL_CONTRACT_OK", name, got, "per_call_max_tokens", cap)
 CONTRACT
 
-# ---- responses/ and evaluations/ must start EMPTY ----
+# ---- responses/ and evaluations/ must start EMPTY, on the FIRST setup only ----
 # A new campaign identity means a clean run.  E30-R12 left 3 envelopes completed under
 # the provider default; pooling them into a differently-configured campaign would mix
 # two channel conditions inside one paired contrast while every gate still passed.
-R13="$R13" "$PY" - <<'EMPTY'
+#
+# Gated on a sentinel rather than applied unconditionally: the registered execution lane
+# is resumable by pass rescan, and setup re-runs whenever the chain is resubmitted, so an
+# unconditional assertion would block a legitimate resume and force a post-dispatch design
+# change to unblock it.  The sentinel is written only after the first setup succeeds.
+FIRST_SETUP="$R13/infra/first_setup_completed"
+if [ -f "$FIRST_SETUP" ]; then
+  echo "RESUMED_SETUP: emptiness assertion skipped (first setup completed $(cat "$FIRST_SETUP"))"
+else
+  R13="$R13" "$PY" - <<'EMPTY'
 import json, os, sys
 from pathlib import Path
 run = Path(os.environ["R13"]) / "run"
@@ -144,6 +162,7 @@ for path in (responses + evaluations)[:10]:
     print("  ", path)
 sys.exit(0 if not responses and not evaluations else 3)
 EMPTY
+fi
 
 # ---- every reused request must name a solver workspace that exists and is readable ----
 # Without it emit_apply_clean_patch cannot run its git apply --check verification: the
@@ -263,4 +282,5 @@ design = src / "research/experiments/e30-r13/E30_R13_CHANNEL_CONTRACT_RERUN_DESI
     "outcome_access": "NONE_UNTIL_RESPONSES_COMPLETE",
 }, indent=2, sort_keys=True) + "\n")
 ID
+date -u +%FT%TZ > "$FIRST_SETUP"
 echo "SETUP_OK $(date -u +%FT%TZ)"

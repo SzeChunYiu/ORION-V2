@@ -4,7 +4,10 @@ on:
   push:
     branches:
       - main
-    paths: &r13paths
+    # Duplicated rather than aliased: the GitHub Actions workflow parser does not
+    # support YAML anchors, and a local yaml.safe_load cannot see that because it
+    # resolves them.  e30-r12-lane.yml duplicates the same way.
+    paths:
       - "research/experiments/e30-r13/**"
       - "tests/unit/test_e30_r13_lane.py"
       - "scripts/orion_claude_arms.py"
@@ -14,7 +17,15 @@ on:
       - "scripts/analyze_orion_real_problem_results.py"
       - ".github/workflows/e30-r13-lane.yml"
   pull_request:
-    paths: *r13paths
+    paths:
+      - "research/experiments/e30-r13/**"
+      - "tests/unit/test_e30_r13_lane.py"
+      - "scripts/orion_claude_arms.py"
+      - "research/experiments/e30-r12/e30_r12_analysis.py"
+      - "research/experiments/pc-r6/pc_r6_fullreg_eval.py"
+      - "research/experiments/results/issue45/e30-r11/drivers/e30_r11_arm_eval_frozen_lane.py"
+      - "scripts/analyze_orion_real_problem_results.py"
+      - ".github/workflows/e30-r13-lane.yml"
   workflow_dispatch:
 
 permissions:
@@ -42,6 +53,7 @@ jobs:
           python -m py_compile research/experiments/e30-r13/e30_r13_fullreg_eval.py
           python -m py_compile research/experiments/e30-r13/e30_r13_budget_note.py
           python -m py_compile research/experiments/e30-r13/e30_r13_channel_calibration.py
+          python -m py_compile research/experiments/e30-r13/e30_r13_build_design.py
           python -m py_compile research/experiments/e30-r12/e30_r12_analysis.py
           python -m py_compile research/experiments/pc-r6/pc_r6_fullreg_eval.py
           python -m py_compile scripts/analyze_orion_real_problem_results.py

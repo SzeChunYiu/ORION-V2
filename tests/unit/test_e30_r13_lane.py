@@ -353,6 +353,101 @@ def test_design_carries_the_three_way_channel_contrast_it_claims_to_have_measure
 
 
 @pytest.mark.skipif(not DESIGN_PATH.is_file(), reason="design not yet written")
+def test_the_contrast_block_is_re_derivable_from_the_archived_calibration_files():
+    """A derived number nobody can re-derive is a claim, not a measurement.
+
+    The block is produced by e30_r13_build_design.py. This test recomputes it from the
+    archived files independently, so a builder bug or a hand-edit of the design fails
+    here rather than being registered.
+    """
+    design = json.loads(DESIGN_PATH.read_text())
+    block = design["channel_condition_contrast_measured_pre_freeze"]
+    files = sorted(f for f in (R13 / "results").glob("E30_R13_CALIBRATION_*.json")
+                   if f.name != "E30_R13_CALIBRATION_PROVENANCE_V1.json")
+    assert [f"results/{f.name}" for f in files] == block["archived_in"]
+
+    expected: dict[str, dict] = {}
+    for path in files:
+        for name, summary in json.loads(path.read_text())["summary"].items():
+            row = expected.setdefault(name, {
+                "calls": 0, "stop_reasons": {}, "calls_with_zero_text": 0,
+                "max_output_tokens": 0, "min_output_tokens": None,
+                "parsed": [0, 0], "contract_sha256": summary["contract_sha256"]})
+            row["calls"] += summary["calls"]
+            for reason, count in summary["stop_reasons"].items():
+                row["stop_reasons"][reason] = row["stop_reasons"].get(reason, 0) + count
+            row["calls_with_zero_text"] += summary["text_chars_zero_calls"]
+            row["max_output_tokens"] = max(row["max_output_tokens"], summary["output_tokens"]["max"])
+            low = summary["output_tokens"]["min"]
+            row["min_output_tokens"] = low if row["min_output_tokens"] is None else min(row["min_output_tokens"], low)
+            ok, total = summary["json_parseable_final_calls"].split("/")
+            row["parsed"][0] += int(ok)
+            row["parsed"][1] += int(total)
+    for name, row in expected.items():
+        ok, total = row.pop("parsed")
+        row["json_parseable_final_calls"] = f"{ok}/{total}"
+    assert block["by_contract"] == expected
+
+
+@pytest.mark.skipif(not DESIGN_PATH.is_file(), reason="design not yet written")
+def test_the_seed_is_published_plainly_and_its_digest_is_the_digest_of_that_seed():
+    """No claim of a commit-and-reveal protocol that was not run."""
+    design = json.loads(DESIGN_PATH.read_text())
+    custody = design["custody"]
+    assert "seed_sha256_published_pre_run" not in custody
+    assert custody["seed_sha256"] == hashlib.sha256(str(custody["seed"]).encode()).hexdigest()
+    assert custody["seed"] == analysis.SEED
+    assert "PROTECTED_RUN_AUTHORIZATION.json" in custody["authorization_object"]
+    assert "PROTECTED_RUN_AUTHORIZATION_ARCHIVED.json" in custody["authorization_archived_after_use"]
+
+
+SBATCH = R13 / "sbatch"
+
+
+def _sbatch(name: str) -> str:
+    return (SBATCH / name).read_text()
+
+
+def test_setup_asserts_the_dispatched_cap_equals_the_registered_cap():
+    """GR0e catches truncation; only this catches a cap that is simply the wrong number."""
+    setup = _sbatch("e30_r13_setup.sbatch")
+    assert "E30R13_PER_CALL_MAX_TOKENS" in setup
+    assert 'per_call_output_token_cap' in setup
+    assert "per-call cap {cap} != registered {registered_cap}" in setup
+
+
+def test_the_emptiness_assertion_is_gated_so_a_resume_is_not_blocked_by_it():
+    setup = _sbatch("e30_r13_setup.sbatch")
+    assert "first_setup_completed" in setup
+    assert setup.index('if [ -f "$FIRST_SETUP" ]') < setup.index("<<'EMPTY'")
+
+
+def test_the_agents_lane_sets_a_per_call_cap_and_no_total_budget():
+    agents = _sbatch("e30_r13_agents.sbatch")
+    assert "export ORION_ARM_MAX_TOKENS=" in agents
+    assert "unset ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET" in agents
+    # No escalation ladder: raising a budget after seeing failures is an unregistered
+    # instrument change made post-dispatch.
+    assert "ESCALATED_BUDGET" not in agents
+    assert "ESCALATE_FROM_PASS" not in agents
+    assert "PROTECTED_RUN_AUTHORIZATION.json" in agents
+
+
+def test_the_rollup_lane_archives_the_authorization_so_the_guard_re_arms():
+    rollup = _sbatch("e30_r13_rollup_and_analysis.sbatch")
+    assert "PROTECTED_RUN_AUTHORIZATION_ARCHIVED.json" in rollup
+    assert "--channel-contract" in rollup and "--channel-contract-sha256" in rollup
+    assert "--r12-analysis-sha256" in rollup
+
+
+def test_the_workflow_uses_no_yaml_anchor():
+    """GitHub Actions does not resolve anchors, and yaml.safe_load hides that."""
+    workflow = (ROOT / ".github" / "workflows" / "e30-r13-lane.yml").read_text()
+    assert "&r13paths" not in workflow and "*r13paths" not in workflow
+    assert workflow.count('- "research/experiments/e30-r13/**"') == 2
+
+
+@pytest.mark.skipif(not DESIGN_PATH.is_file(), reason="design not yet written")
 def test_design_registers_the_contract_by_bytes_and_matches_the_executable():
     design = json.loads(DESIGN_PATH.read_text())
     binding = design["model_binding"]["request_body_contract"]
