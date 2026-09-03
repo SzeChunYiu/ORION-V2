@@ -1,0 +1,1148 @@
+{
+ "M_arm": "M_CLAIM_SUFFICIENT_WITNESS",
+ "ablation_for_class": {
+  "AUTHORITY_OVERREACH": "M_MINUS_AUTHORITY_CEILING",
+  "CODE_OR_PROOF_MISMATCH": "M_MINUS_ARTIFACT",
+  "EVALUATOR_BLIND_SPOT": "M_MINUS_EVALUATOR_CONTRACT",
+  "HIDDEN_DEPENDENCE": "M_MINUS_DEPENDENCE",
+  "INVALID_CALIBRATION": "M_MINUS_CALIBRATION",
+  "INVALID_TRANSPORT": "M_MINUS_TRANSPORT",
+  "OMITTED_FAILED_ROUTE": "M_MINUS_ROUTE_LEDGER",
+  "REPRESENTATION_CHANGE_LOSES_INFORMATION": "M_MINUS_PRESERVATION",
+  "SEED_OR_VERSION_MISMATCH": "M_MINUS_ASSUMPTION_VERSION",
+  "STALE_OR_WRONG_SOURCE": "M_MINUS_PROVENANCE",
+  "WRONG_PROBLEM_OR_SPECIFICATION": "M_MINUS_PROBLEM_BINDING"
+ },
+ "arms": [
+  {
+   "check_table": "M",
+   "fields": [
+    "RESULT"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "S0_OPAQUE_OUTPUT_ONLY",
+   "note": "protocol \u00a73 opaque output only",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [
+    "PROVENANCE",
+    "RESULT"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "S1_PROVENANCE_PLUS_OUTPUT",
+   "note": "protocol \u00a73 provenance + output",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [
+    "ARTIFACT",
+    "RESULT",
+    "ROUTE_LEDGER"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "S2_FULL_HUMAN_STYLE_TRACE",
+   "note": "the machine's own step record: what it executed and what it attempted, and nothing about external registry state",
+   "with_trace": true
+  },
+  {
+   "check_table": "M",
+   "fields": [
+    "ARTIFACT",
+    "ASSUMPTION_VERSION",
+    "RESULT"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "S3_PROOF_OR_CERTIFICATE_PARENT",
+   "note": "domain-native proof/replay bundle: statement, derivation, pinned versions",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [
+    "RESULT"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "L1_OUTPUT_ONLY",
+   "note": "H-EXT-3 nested ladder rung",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [
+    "PROVENANCE",
+    "RESULT"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "L2_PLUS_PROVENANCE",
+   "note": "H-EXT-3 nested ladder rung",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [
+    "ARTIFACT",
+    "PROBLEM_BINDING",
+    "PROVENANCE",
+    "RESULT"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "L3_PLUS_PROBLEM_ARTIFACT",
+   "note": "H-EXT-3 nested ladder rung",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [
+    "ARTIFACT",
+    "ASSUMPTION_VERSION",
+    "MEASUREMENT_CALIBRATION",
+    "PROBLEM_BINDING",
+    "PROVENANCE",
+    "RESULT",
+    "TRANSPORT_RELATION"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "L4_PLUS_VERSION_CALIBRATION_TRANSPORT",
+   "note": "H-EXT-3 nested ladder rung",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [
+    "ARTIFACT",
+    "ASSUMPTION_VERSION",
+    "AUTHORITY_CEILING",
+    "DEPENDENCE",
+    "MEASUREMENT_CALIBRATION",
+    "PRESERVATION",
+    "PROBLEM_BINDING",
+    "PROVENANCE",
+    "RESULT",
+    "ROUTE_LEDGER",
+    "TRANSPORT_RELATION"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "L5_PLUS_DEPENDENCE_ROUTE_AUTHORITY_PRESERVATION",
+   "note": "H-EXT-3 nested ladder rung",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [
+    "ARTIFACT",
+    "ASSUMPTION_VERSION",
+    "AUTHORITY_CEILING",
+    "DEPENDENCE",
+    "EVALUATOR_CONTRACT",
+    "MEASUREMENT_CALIBRATION",
+    "PRESERVATION",
+    "PROBLEM_BINDING",
+    "PROVENANCE",
+    "RESULT",
+    "ROUTE_LEDGER",
+    "TRANSPORT_RELATION"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "L6_FULL_WITNESS",
+   "note": "H-EXT-3 nested ladder rung",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [
+    "ARTIFACT",
+    "ASSUMPTION_VERSION",
+    "AUTHORITY_CEILING",
+    "DEPENDENCE",
+    "EVALUATOR_CONTRACT",
+    "MEASUREMENT_CALIBRATION",
+    "PRESERVATION",
+    "PROBLEM_BINDING",
+    "PROVENANCE",
+    "RESULT",
+    "ROUTE_LEDGER",
+    "TRANSPORT_RELATION"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "M_CLAIM_SUFFICIENT_WITNESS",
+   "note": "claim-sufficient structured witness, identity-exporting (protocol \u00a72)",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [
+    "ARTIFACT",
+    "ASSUMPTION_VERSION",
+    "AUTHORITY_CEILING",
+    "DEPENDENCE",
+    "EVALUATOR_CONTRACT",
+    "MEASUREMENT_CALIBRATION",
+    "PRESERVATION",
+    "PROBLEM_BINDING",
+    "PROVENANCE",
+    "RESULT",
+    "ROUTE_LEDGER",
+    "TRANSPORT_RELATION"
+   ],
+   "full_registry": false,
+   "kind": "SURFACE",
+   "name": "M_MINUS_REGISTRY_RESOLUTION",
+   "note": "the same witness fields carried as self-contained values",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [
+    "ARTIFACT",
+    "ASSUMPTION_VERSION",
+    "AUTHORITY_CEILING",
+    "DEPENDENCE",
+    "EVALUATOR_CONTRACT",
+    "MEASUREMENT_CALIBRATION",
+    "PRESERVATION",
+    "PROBLEM_BINDING",
+    "RESULT",
+    "ROUTE_LEDGER",
+    "TRANSPORT_RELATION"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "M_MINUS_PROVENANCE",
+   "note": "omission of PROVENANCE",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [
+    "ARTIFACT",
+    "ASSUMPTION_VERSION",
+    "AUTHORITY_CEILING",
+    "DEPENDENCE",
+    "EVALUATOR_CONTRACT",
+    "MEASUREMENT_CALIBRATION",
+    "PRESERVATION",
+    "PROVENANCE",
+    "RESULT",
+    "ROUTE_LEDGER",
+    "TRANSPORT_RELATION"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "M_MINUS_PROBLEM_BINDING",
+   "note": "omission of PROBLEM_BINDING",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [
+    "ARTIFACT",
+    "ASSUMPTION_VERSION",
+    "AUTHORITY_CEILING",
+    "EVALUATOR_CONTRACT",
+    "MEASUREMENT_CALIBRATION",
+    "PRESERVATION",
+    "PROBLEM_BINDING",
+    "PROVENANCE",
+    "RESULT",
+    "ROUTE_LEDGER",
+    "TRANSPORT_RELATION"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "M_MINUS_DEPENDENCE",
+   "note": "omission of DEPENDENCE",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [
+    "ASSUMPTION_VERSION",
+    "AUTHORITY_CEILING",
+    "DEPENDENCE",
+    "EVALUATOR_CONTRACT",
+    "MEASUREMENT_CALIBRATION",
+    "PRESERVATION",
+    "PROBLEM_BINDING",
+    "PROVENANCE",
+    "RESULT",
+    "ROUTE_LEDGER",
+    "TRANSPORT_RELATION"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "M_MINUS_ARTIFACT",
+   "note": "omission of ARTIFACT",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [
+    "ARTIFACT",
+    "AUTHORITY_CEILING",
+    "DEPENDENCE",
+    "EVALUATOR_CONTRACT",
+    "MEASUREMENT_CALIBRATION",
+    "PRESERVATION",
+    "PROBLEM_BINDING",
+    "PROVENANCE",
+    "RESULT",
+    "ROUTE_LEDGER",
+    "TRANSPORT_RELATION"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "M_MINUS_ASSUMPTION_VERSION",
+   "note": "omission of ASSUMPTION_VERSION",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [
+    "ARTIFACT",
+    "ASSUMPTION_VERSION",
+    "AUTHORITY_CEILING",
+    "DEPENDENCE",
+    "EVALUATOR_CONTRACT",
+    "PRESERVATION",
+    "PROBLEM_BINDING",
+    "PROVENANCE",
+    "RESULT",
+    "ROUTE_LEDGER",
+    "TRANSPORT_RELATION"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "M_MINUS_CALIBRATION",
+   "note": "omission of MEASUREMENT_CALIBRATION",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [
+    "ARTIFACT",
+    "ASSUMPTION_VERSION",
+    "AUTHORITY_CEILING",
+    "DEPENDENCE",
+    "EVALUATOR_CONTRACT",
+    "MEASUREMENT_CALIBRATION",
+    "PRESERVATION",
+    "PROBLEM_BINDING",
+    "PROVENANCE",
+    "RESULT",
+    "ROUTE_LEDGER"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "M_MINUS_TRANSPORT",
+   "note": "omission of TRANSPORT_RELATION",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [
+    "ARTIFACT",
+    "ASSUMPTION_VERSION",
+    "AUTHORITY_CEILING",
+    "DEPENDENCE",
+    "EVALUATOR_CONTRACT",
+    "MEASUREMENT_CALIBRATION",
+    "PRESERVATION",
+    "PROBLEM_BINDING",
+    "PROVENANCE",
+    "RESULT",
+    "TRANSPORT_RELATION"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "M_MINUS_ROUTE_LEDGER",
+   "note": "omission of ROUTE_LEDGER",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [
+    "ARTIFACT",
+    "ASSUMPTION_VERSION",
+    "AUTHORITY_CEILING",
+    "DEPENDENCE",
+    "MEASUREMENT_CALIBRATION",
+    "PRESERVATION",
+    "PROBLEM_BINDING",
+    "PROVENANCE",
+    "RESULT",
+    "ROUTE_LEDGER",
+    "TRANSPORT_RELATION"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "M_MINUS_EVALUATOR_CONTRACT",
+   "note": "omission of EVALUATOR_CONTRACT",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [
+    "ARTIFACT",
+    "ASSUMPTION_VERSION",
+    "DEPENDENCE",
+    "EVALUATOR_CONTRACT",
+    "MEASUREMENT_CALIBRATION",
+    "PRESERVATION",
+    "PROBLEM_BINDING",
+    "PROVENANCE",
+    "RESULT",
+    "ROUTE_LEDGER",
+    "TRANSPORT_RELATION"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "M_MINUS_AUTHORITY_CEILING",
+   "note": "omission of AUTHORITY_CEILING",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [
+    "ARTIFACT",
+    "ASSUMPTION_VERSION",
+    "AUTHORITY_CEILING",
+    "DEPENDENCE",
+    "EVALUATOR_CONTRACT",
+    "MEASUREMENT_CALIBRATION",
+    "PROBLEM_BINDING",
+    "PROVENANCE",
+    "RESULT",
+    "ROUTE_LEDGER",
+    "TRANSPORT_RELATION"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "M_MINUS_PRESERVATION",
+   "note": "omission of PRESERVATION",
+   "with_trace": false
+  },
+  {
+   "check_table": "B5",
+   "fields": [
+    "ARTIFACT",
+    "ASSUMPTION_VERSION",
+    "AUTHORITY_CEILING",
+    "DEPENDENCE",
+    "EVALUATOR_CONTRACT",
+    "MEASUREMENT_CALIBRATION",
+    "PRESERVATION",
+    "PROBLEM_BINDING",
+    "PROVENANCE",
+    "RESULT",
+    "ROUTE_LEDGER",
+    "TRANSPORT_RELATION"
+   ],
+   "full_registry": true,
+   "kind": "SURFACE",
+   "name": "B5_STRONGEST_FAITHFUL_AUDIT_PARENT",
+   "note": "strongest faithful audit parent federation at full registry information, adjudicated through the parents' own engines (MODULE_CHECK_B5)",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [],
+   "full_registry": true,
+   "kind": "PARENT",
+   "name": "A0_PROOF_CERTIFICATE_ONLY",
+   "note": "a proof/certificate checker alone; abstains (CANNOT_CHECK) where the artifact cannot be re-run because the environment is not recoverable \u2014 declared consequence of V2 correction 1",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [],
+   "full_registry": true,
+   "kind": "PARENT",
+   "name": "A1_PROVENANCE_ONLY",
+   "note": "",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [],
+   "full_registry": true,
+   "kind": "PARENT",
+   "name": "A2_REPLAY_ONLY",
+   "note": "",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [],
+   "full_registry": true,
+   "kind": "PARENT",
+   "name": "A3_ASSURANCE_CASE",
+   "note": "",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [],
+   "full_registry": true,
+   "kind": "PARENT",
+   "name": "A4_DEPENDENCE_AUDIT",
+   "note": "",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [],
+   "full_registry": true,
+   "kind": "PARENT",
+   "name": "A5_CALIBRATED_ABSTENTION",
+   "note": "",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [],
+   "full_registry": true,
+   "kind": "CONTROL",
+   "name": "C_ALWAYS_ACCEPT",
+   "note": "",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [],
+   "full_registry": true,
+   "kind": "CONTROL",
+   "name": "C_ALWAYS_CANNOT_CHECK",
+   "note": "",
+   "with_trace": false
+  },
+  {
+   "check_table": "M",
+   "fields": [],
+   "full_registry": true,
+   "kind": "CONTROL",
+   "name": "C_RANDOM_VERDICT",
+   "note": "",
+   "with_trace": false
+  }
+ ],
+ "authority": {
+  "field_status": "NONE",
+  "parent_sufficiency": "VALID_SUCCESSFUL_TERMINAL",
+  "publication_authority": "NONE"
+ },
+ "cells": [
+  [
+   "WRONG_PROBLEM_OR_SPECIFICATION",
+   "MODE_FORMAL"
+  ],
+  [
+   "WRONG_PROBLEM_OR_SPECIFICATION",
+   "MODE_COMPUTATIONAL"
+  ],
+  [
+   "STALE_OR_WRONG_SOURCE",
+   "MODE_FORMAL"
+  ],
+  [
+   "STALE_OR_WRONG_SOURCE",
+   "MODE_COMPUTATIONAL"
+  ],
+  [
+   "HIDDEN_DEPENDENCE",
+   "MODE_FORMAL"
+  ],
+  [
+   "HIDDEN_DEPENDENCE",
+   "MODE_COMPUTATIONAL"
+  ],
+  [
+   "CODE_OR_PROOF_MISMATCH",
+   "MODE_FORMAL"
+  ],
+  [
+   "CODE_OR_PROOF_MISMATCH",
+   "MODE_COMPUTATIONAL"
+  ],
+  [
+   "SEED_OR_VERSION_MISMATCH",
+   "MODE_FORMAL"
+  ],
+  [
+   "SEED_OR_VERSION_MISMATCH",
+   "MODE_COMPUTATIONAL"
+  ],
+  [
+   "INVALID_CALIBRATION",
+   "MODE_COMPUTATIONAL"
+  ],
+  [
+   "INVALID_TRANSPORT",
+   "MODE_FORMAL"
+  ],
+  [
+   "INVALID_TRANSPORT",
+   "MODE_COMPUTATIONAL"
+  ],
+  [
+   "OMITTED_FAILED_ROUTE",
+   "MODE_FORMAL"
+  ],
+  [
+   "OMITTED_FAILED_ROUTE",
+   "MODE_COMPUTATIONAL"
+  ],
+  [
+   "EVALUATOR_BLIND_SPOT",
+   "MODE_FORMAL"
+  ],
+  [
+   "EVALUATOR_BLIND_SPOT",
+   "MODE_COMPUTATIONAL"
+  ],
+  [
+   "AUTHORITY_OVERREACH",
+   "MODE_FORMAL"
+  ],
+  [
+   "AUTHORITY_OVERREACH",
+   "MODE_COMPUTATIONAL"
+  ],
+  [
+   "REPRESENTATION_CHANGE_LOSES_INFORMATION",
+   "MODE_FORMAL"
+  ],
+  [
+   "REPRESENTATION_CHANGE_LOSES_INFORMATION",
+   "MODE_COMPUTATIONAL"
+  ],
+  [
+   "NO_DEFECT_WARRANTED",
+   "MODE_FORMAL"
+  ],
+  [
+   "NO_DEFECT_WARRANTED",
+   "MODE_COMPUTATIONAL"
+  ],
+  [
+   "CENSORED_UNDECIDABLE",
+   "MODE_FORMAL"
+  ],
+  [
+   "CENSORED_UNDECIDABLE",
+   "MODE_COMPUTATIONAL"
+  ]
+ ],
+ "censor_variants": [
+  "CENSOR_SPEC",
+  "CENSOR_SOURCE",
+  "CENSOR_DEPENDENCE",
+  "CENSOR_ENV",
+  "CENSOR_CALIBRATION",
+  "CENSOR_TRANSPORT",
+  "CENSOR_ROUTE",
+  "CENSOR_EVALUATOR",
+  "CENSOR_AUTHORITY",
+  "CENSOR_PRESERVATION"
+ ],
+ "check_table_censored_conditions": {
+  "C_ARTIFACT_DIGEST": "MODE_COMPUTATIONAL and the environment is not recoverable (V2 correction 1); no censored condition in MODE_FORMAL",
+  "C_AUTHORITY": "ceiling not recorded",
+  "C_CALIBRATION": "a used calibration is UNDER_REVIEW",
+  "C_DEPENDENCE": "only suspected edges bring the component count below k",
+  "C_ENV_IDENTITY": "the environment is not recoverable",
+  "C_EVALUATOR_COVERAGE": "the asserted class is in the evaluator's uncertain set",
+  "C_PRESERVATION": "a required invariant is unresolved",
+  "C_ROUTE_COMPLETENESS": "the execution log was not retained",
+  "C_SOURCE_STATUS": "a reachable ancestor is DISPUTED",
+  "C_SPEC_BINDING": "intended question not recorded",
+  "C_TRANSPORT": "relation typed CANNOT_CHECK"
+ },
+ "check_tables": {
+  "B5": "faithful parent engines (ReticulateProvenance.affected_by_revocation, dependence pairs from the descendant walk, ComparabilityCertificate, live replay under recorded vs actual environment)",
+  "M": "ORION-registered semantics (ancestor walk, assess_evidence_dependence over ancestor-set overlap, assess_correspondence_chain, recorded version identities)",
+  "distinct_implementations": [
+   "C_SOURCE_STATUS",
+   "C_DEPENDENCE",
+   "C_ENV_IDENTITY",
+   "C_PRESERVATION"
+  ],
+  "note": "M and B5 must not be the same computation under two names; four of the eleven checks run different code, the other seven are arithmetic thin enough that two implementations would coincide and are reported as shared.",
+  "shared_implementations": [
+   "C_ARTIFACT_DIGEST",
+   "C_AUTHORITY",
+   "C_CALIBRATION",
+   "C_EVALUATOR_COVERAGE",
+   "C_ROUTE_COMPLETENESS",
+   "C_SPEC_BINDING",
+   "C_TRANSPORT"
+  ]
+ },
+ "checks": [
+  "C_SPEC_BINDING",
+  "C_SOURCE_STATUS",
+  "C_DEPENDENCE",
+  "C_ARTIFACT_DIGEST",
+  "C_ENV_IDENTITY",
+  "C_CALIBRATION",
+  "C_TRANSPORT",
+  "C_ROUTE_COMPLETENESS",
+  "C_EVALUATOR_COVERAGE",
+  "C_AUTHORITY",
+  "C_PRESERVATION"
+ ],
+ "class": "exact-oracle known-answer study; zero model calls; deterministic; CPU-seconds",
+ "class_for_check": {
+  "C_ARTIFACT_DIGEST": "CODE_OR_PROOF_MISMATCH",
+  "C_AUTHORITY": "AUTHORITY_OVERREACH",
+  "C_CALIBRATION": "INVALID_CALIBRATION",
+  "C_DEPENDENCE": "HIDDEN_DEPENDENCE",
+  "C_ENV_IDENTITY": "SEED_OR_VERSION_MISMATCH",
+  "C_EVALUATOR_COVERAGE": "EVALUATOR_BLIND_SPOT",
+  "C_PRESERVATION": "REPRESENTATION_CHANGE_LOSES_INFORMATION",
+  "C_ROUTE_COMPLETENESS": "OMITTED_FAILED_ROUTE",
+  "C_SOURCE_STATUS": "STALE_OR_WRONG_SOURCE",
+  "C_SPEC_BINDING": "WRONG_PROBLEM_OR_SPECIFICATION",
+  "C_TRANSPORT": "INVALID_TRANSPORT"
+ },
+ "comparator_independence_note": "G1/G2/S1/S3/S4 are cross-implementation tests, not information tests: M and B5 hold the same fields and the same registry visibility by design (\u00a71.1), so a tie is expected and is weak evidence. The decisive axes are G3, G4, G5, G6 and G7.",
+ "control_strata": [
+  "NO_DEFECT_WARRANTED",
+  "CENSORED_UNDECIDABLE"
+ ],
+ "custody": {
+  "authorization_file": "PROTECTED_RUN_AUTHORIZATION.json",
+  "outputs": [
+   "results/ME_X7_<LABEL>_RESULTS_V1.json",
+   "results/ME_X7_<LABEL>_EXPECTED_CUSTODY_V1.json",
+   "results/ME_X7_<LABEL>_TIMING_V1.json",
+   "results/ME_X7_<LABEL>_ANALYSIS_V1.{json,md}",
+   "results/ME_X7_SELFTEST_REPORT.json"
+  ],
+  "requires": [
+   "human_written=true",
+   "human_written_token >= 16 chars",
+   "acknowledged_design_sha256 == sha256(this file)"
+  ],
+  "single_run": "protected + analyze exactly once; the authorization file is archived under a new name afterwards so the guard is re-armed"
+ },
+ "expected_censored_checks": {
+  "rule": "the censored set each censoring variant is declared to produce, per mode; asserted by set equality in planter_agrees (correction 2)",
+  "table": {
+   "CENSOR_AUTHORITY|MODE_COMPUTATIONAL": [
+    "C_AUTHORITY"
+   ],
+   "CENSOR_AUTHORITY|MODE_FORMAL": [
+    "C_AUTHORITY"
+   ],
+   "CENSOR_CALIBRATION|MODE_COMPUTATIONAL": [
+    "C_CALIBRATION"
+   ],
+   "CENSOR_DEPENDENCE|MODE_COMPUTATIONAL": [
+    "C_DEPENDENCE"
+   ],
+   "CENSOR_DEPENDENCE|MODE_FORMAL": [
+    "C_DEPENDENCE"
+   ],
+   "CENSOR_ENV|MODE_COMPUTATIONAL": [
+    "C_ARTIFACT_DIGEST",
+    "C_ENV_IDENTITY"
+   ],
+   "CENSOR_ENV|MODE_FORMAL": [
+    "C_ENV_IDENTITY"
+   ],
+   "CENSOR_EVALUATOR|MODE_COMPUTATIONAL": [
+    "C_EVALUATOR_COVERAGE"
+   ],
+   "CENSOR_EVALUATOR|MODE_FORMAL": [
+    "C_EVALUATOR_COVERAGE"
+   ],
+   "CENSOR_PRESERVATION|MODE_COMPUTATIONAL": [
+    "C_PRESERVATION"
+   ],
+   "CENSOR_PRESERVATION|MODE_FORMAL": [
+    "C_PRESERVATION"
+   ],
+   "CENSOR_ROUTE|MODE_COMPUTATIONAL": [
+    "C_ROUTE_COMPLETENESS"
+   ],
+   "CENSOR_ROUTE|MODE_FORMAL": [
+    "C_ROUTE_COMPLETENESS"
+   ],
+   "CENSOR_SOURCE|MODE_COMPUTATIONAL": [
+    "C_SOURCE_STATUS"
+   ],
+   "CENSOR_SOURCE|MODE_FORMAL": [
+    "C_SOURCE_STATUS"
+   ],
+   "CENSOR_SPEC|MODE_COMPUTATIONAL": [
+    "C_SPEC_BINDING"
+   ],
+   "CENSOR_SPEC|MODE_FORMAL": [
+    "C_SPEC_BINDING"
+   ],
+   "CENSOR_TRANSPORT|MODE_COMPUTATIONAL": [
+    "C_TRANSPORT"
+   ],
+   "CENSOR_TRANSPORT|MODE_FORMAL": [
+    "C_TRANSPORT"
+   ]
+  }
+ },
+ "expected_route": "PARENT_SUFFICIENT",
+ "expected_witness_terminal": "WITNESS_CLAIM_SUFFICIENT_AT_LOWER_EXPORT",
+ "field_for_class": {
+  "AUTHORITY_OVERREACH": "AUTHORITY_CEILING",
+  "CODE_OR_PROOF_MISMATCH": "ARTIFACT",
+  "EVALUATOR_BLIND_SPOT": "EVALUATOR_CONTRACT",
+  "HIDDEN_DEPENDENCE": "DEPENDENCE",
+  "INVALID_CALIBRATION": "MEASUREMENT_CALIBRATION",
+  "INVALID_TRANSPORT": "TRANSPORT_RELATION",
+  "OMITTED_FAILED_ROUTE": "ROUTE_LEDGER",
+  "REPRESENTATION_CHANGE_LOSES_INFORMATION": "PRESERVATION",
+  "SEED_OR_VERSION_MISMATCH": "ASSUMPTION_VERSION",
+  "STALE_OR_WRONG_SOURCE": "PROVENANCE",
+  "WRONG_PROBLEM_OR_SPECIFICATION": "PROBLEM_BINDING"
+ },
+ "gates": [
+  "G0a_KNOWN_ANSWER",
+  "G0b_ORACLE_SELF_AGREEMENT",
+  "G0c_NULL_CALIBRATION",
+  "G1a_B5_REPRODUCES_M",
+  "G1b_M_ADVANTAGE",
+  "G1c_B5_AHEAD",
+  "G2_ANTI_CONSERVATISM",
+  "G3_MECHANISM_BY_OMISSION",
+  "G4_INTERFACE_LADDER",
+  "G5_SUFFICIENCY",
+  "G6_CROSS_MODE_TRANSFER",
+  "G7_WITNESS_SELF_CONTAINMENT"
+ ],
+ "generator": {
+  "failure_classes": [
+   "FC_MEASUREMENT",
+   "FC_SPECIFICATION",
+   "FC_NUMERICAL"
+  ],
+  "independence_k": 3,
+  "instance_seed": "sha256(split_seed|stratum|mode|index)[:12]",
+  "max_attempts": 400,
+  "representation_change_probability": 0.5,
+  "required_relation": "PREDICTIVELY_EQUIVALENT",
+  "standing_decoys": 9,
+  "supports_per_episode": 3,
+  "trace_steps_range": [
+   20,
+   59
+  ],
+  "transported_support_probability": 0.6
+ },
+ "injection_classes": [
+  "WRONG_PROBLEM_OR_SPECIFICATION",
+  "STALE_OR_WRONG_SOURCE",
+  "HIDDEN_DEPENDENCE",
+  "CODE_OR_PROOF_MISMATCH",
+  "SEED_OR_VERSION_MISMATCH",
+  "INVALID_CALIBRATION",
+  "INVALID_TRANSPORT",
+  "OMITTED_FAILED_ROUTE",
+  "EVALUATOR_BLIND_SPOT",
+  "AUTHORITY_OVERREACH",
+  "REPRESENTATION_CHANGE_LOSES_INFORMATION"
+ ],
+ "ladder_rungs": [
+  [
+   "L1_OUTPUT_ONLY",
+   [
+    "RESULT"
+   ]
+  ],
+  [
+   "L2_PLUS_PROVENANCE",
+   [
+    "PROVENANCE",
+    "RESULT"
+   ]
+  ],
+  [
+   "L3_PLUS_PROBLEM_ARTIFACT",
+   [
+    "ARTIFACT",
+    "PROBLEM_BINDING",
+    "PROVENANCE",
+    "RESULT"
+   ]
+  ],
+  [
+   "L4_PLUS_VERSION_CALIBRATION_TRANSPORT",
+   [
+    "ARTIFACT",
+    "ASSUMPTION_VERSION",
+    "MEASUREMENT_CALIBRATION",
+    "PROBLEM_BINDING",
+    "PROVENANCE",
+    "RESULT",
+    "TRANSPORT_RELATION"
+   ]
+  ],
+  [
+   "L5_PLUS_DEPENDENCE_ROUTE_AUTHORITY_PRESERVATION",
+   [
+    "ARTIFACT",
+    "ASSUMPTION_VERSION",
+    "AUTHORITY_CEILING",
+    "DEPENDENCE",
+    "MEASUREMENT_CALIBRATION",
+    "PRESERVATION",
+    "PROBLEM_BINDING",
+    "PROVENANCE",
+    "RESULT",
+    "ROUTE_LEDGER",
+    "TRANSPORT_RELATION"
+   ]
+  ],
+  [
+   "L6_FULL_WITNESS",
+   [
+    "ARTIFACT",
+    "ASSUMPTION_VERSION",
+    "AUTHORITY_CEILING",
+    "DEPENDENCE",
+    "EVALUATOR_CONTRACT",
+    "MEASUREMENT_CALIBRATION",
+    "PRESERVATION",
+    "PROBLEM_BINDING",
+    "PROVENANCE",
+    "RESULT",
+    "ROUTE_LEDGER",
+    "TRANSPORT_RELATION"
+   ]
+  ]
+ ],
+ "loci": [
+  "DIRECT",
+  "TRANSITIVE_ANCESTOR",
+  "UNDECLARED_SHARED_UPSTREAM"
+ ],
+ "locus_strata": [
+  "STALE_OR_WRONG_SOURCE",
+  "HIDDEN_DEPENDENCE"
+ ],
+ "locus_weights": {
+  "DIRECT": 0.5,
+  "TRANSITIVE_ANCESTOR": 0.25,
+  "UNDECLARED_SHARED_UPSTREAM": 0.25
+ },
+ "modes": [
+  "MODE_FORMAL",
+  "MODE_COMPUTATIONAL"
+ ],
+ "n_evaluated_rule": "every violation count in the analysis is reported beside the number of instances actually evaluated for it; a gate whose n_evaluated is zero reports CANNOT_CHECK, never a pass. Each no-alarm assertion is paired with a planted positive in the selftest that must trip it.",
+ "no_rescue_clause": "no stratum weight, oracle rule, arm, surface definition, seed or gate changes after the protected results file exists; a protected result is never re-run under a new seed; a lane defect found mid-run halts the lane, is receipted, and re-freezes as V2. V2 differs from V1 by exactly the three registered corrections above (two semantic, one label-only) and a new protected seed commitment; no gate, stratum weight, arm, surface definition or threshold changes, and the development seed is deliberately unchanged.",
+ "not_applicable_cells": [
+  [
+   "INVALID_CALIBRATION",
+   "MODE_FORMAL"
+  ]
+ ],
+ "parent_design": {
+  "re_freeze_authority": "V1 design \u00a79: a lane defect found mid-run halts the lane, is receipted, and re-freezes as V2",
+  "v1_design_json": "research/experiments/me-x7/ME_X7_EXTERNAL_WITNESS_SUFFICIENCY_EXACT_STUDY_DESIGN_V1.json",
+  "v1_design_sha256": "1895b4388f832b121695ba1d64c688b0a9df44264e4a3284f0d73e8684b54022",
+  "v1_outcome_receipt": "research/experiments/me-x7/ME_X7_OUTCOME_RECEIPT.md",
+  "v1_reason": "hard gate G0b ORACLE_SELF_AGREEMENT failed, cross_implementation_agree 1244/1250; G5/S2_REPLAY_SUPPORT failed on the same six instances",
+  "v1_route": "CANNOT_CHECK",
+  "v1_witness_terminal": "NONE"
+ },
+ "primary_comparator": "B5_STRONGEST_FAITHFUL_AUDIT_PARENT",
+ "protocols_served": {
+  "extension": "research/field/MACHINE_EPISTEMICS_EXTENSION_HYPOTHESES_2026_09_02_V1.md (H-EXT-3 interface-information ladder)",
+  "master": "research/experiments/MACHINE_EPISTEMICS_DECISIVE_STUDIES_PROTOCOL_V1.md (\u00a70-\u00a72, \u00a79, \u00a711)",
+  "study": "research/experiments/ME_X7_EXTERNAL_WITNESS_SUFFICIENCY_PROTOCOL_V1.md (\u00a72-\u00a710)"
+ },
+ "registered_corrections": [
+  {
+   "applied_in": [
+    "mex7_oracle.check_artifact_digest",
+    "mex7_arms.m_artifact_digest (shared by MODULE_CHECK_M and MODULE_CHECK_B5)"
+   ],
+   "declared_consequence": "mex7_arms.native_proof_certificate (A0_PROOF_CERTIFICATE_ONLY) consumes m_artifact_digest and mapped {INVALID -> REJECT, otherwise ACCEPT}. A CENSORED value is now reachable, and 'otherwise ACCEPT' would make that parent accept an artifact it could not re-run. It returns CANNOT_CHECK instead, exactly as native_replay already does on the same condition. This is a consequence of correction 1, declared here, not an independent arm change.",
+   "id": "V2_CORRECTION_1_ARTIFACT_DIGEST_CENSORED_STATE",
+   "kind": "check table \u2014 incompleteness A of the V1 receipt \u00a77",
+   "mode_gate": "MODE_FORMAL is untouched \u2014 that branch runs the resolution checker over the payload and never consults the environment or the seed, so C_ARTIFACT_DIGEST stays decidable there.",
+   "ordering": "the declared-vs-actual digest comparison needs no environment and decides first, so an unrecoverable environment never suppresses a real mismatch: unrecoverable environment with mismatched digests is still INVALID; unrecoverable environment with matching digests is CENSORED.",
+   "statement": "C_ARTIFACT_DIGEST gains a censored state: in MODE_COMPUTATIONAL, when the environment is not recoverable (actual_env or actual_seed erased), the check is CENSORED.",
+   "why_not_alone": "extending the table without correction 2 leaves planter_agrees's count invariant in force, so every computational CENSOR_ENV episode is re-drawn and the six instances that exposed the defect leave the split \u2014 a gate going green because the hard cases are gone."
+  },
+  {
+   "applied_in": [
+    "mex7_oracle.planter_agrees",
+    "mex7_oracle.EXPECTED_CENSORED_CHECKS",
+    "mex7_generator.generate_instance (passes the drawn variant)",
+    "mex7_run.run_instances (passes the drawn variant)"
+   ],
+   "behavioural_scope": "identical to the V1 count invariant on every (variant, mode) pair except (CENSOR_ENV, MODE_COMPUTATIONAL), the one pair whose declared set has two members.",
+   "id": "V2_CORRECTION_2_DECLARED_EXPECTED_CENSORED_SET",
+   "kind": "generator-validity invariant \u2014 incompleteness B of the V1 receipt \u00a77",
+   "statement": "planter_agrees's 'exactly one censored check' count invariant for the CENSORED_UNDECIDABLE stratum is replaced by a declared per-variant, per-mode expected-censored set (mex7_oracle.EXPECTED_CENSORED_CHECKS), asserted by set equality.",
+   "totality": "the table is total over the drawable (variant, mode) pairs \u2014 MODE_FORMAL cannot draw CENSOR_CALIBRATION \u2014 and an unregistered pair raises rather than falling back to a permissive default. mex7_generator asserts the two registries agree at import time.",
+   "why_not_alone": "accepting a two-check censored set without correction 1 is not reachable: it is correction 1 that makes the second check censored. Deciding C_ARTIFACT_DIGEST from the recorded checker_accepts flag instead would teach the auditor to report VALID on the strength of a claim it could not check."
+  },
+  {
+   "id": "V2_CORRECTION_3_ARM_VS_ARM_DIAGNOSTIC_LABEL",
+   "kind": "label only \u2014 no numeric changes; carried from V1 receipt \u00a72.6",
+   "numeric_effect": "none \u2014 the same counts under a different key.",
+   "statement": "the reported (never gated) diagnostic IMPLEMENTATION_AGREEMENT is renamed ARM_VS_ARM_IMPLEMENTATION_AGREEMENT and its rule string states that it compares M's check table with B5's, never either against the oracle, and is therefore structurally incapable of seeing a defect in one of the seven shared implementations. G0b is the three-way comparison that can."
+  }
+ ],
+ "relation_rank": {
+  "APPROXIMATELY_EQUIVALENT": 1,
+  "BEHAVIORALLY_EQUIVALENT": 4,
+  "DECISION_DOMINATES": 2,
+  "DISTINGUISHED_BY": 0,
+  "INCOMPARABLE": 0,
+  "ISOMORPHIC": 5,
+  "PREDICTIVELY_EQUIVALENT": 3
+ },
+ "reported_not_gated": [
+  "COVERAGE_LEDGER",
+  "ARM_VS_ARM_IMPLEMENTATION_AGREEMENT",
+  "COST"
+ ],
+ "required_fields_per_check": {
+  "C_ARTIFACT_DIGEST": [
+   "ARTIFACT"
+  ],
+  "C_AUTHORITY": [
+   "AUTHORITY_CEILING"
+  ],
+  "C_CALIBRATION": [
+   "MEASUREMENT_CALIBRATION"
+  ],
+  "C_DEPENDENCE": [
+   "DEPENDENCE"
+  ],
+  "C_ENV_IDENTITY": [
+   "ASSUMPTION_VERSION"
+  ],
+  "C_EVALUATOR_COVERAGE": [
+   "EVALUATOR_CONTRACT"
+  ],
+  "C_PRESERVATION": [
+   "PRESERVATION"
+  ],
+  "C_ROUTE_COMPLETENESS": [
+   "ROUTE_LEDGER",
+   "ARTIFACT"
+  ],
+  "C_SOURCE_STATUS": [
+   "PROVENANCE"
+  ],
+  "C_SPEC_BINDING": [
+   "PROBLEM_BINDING"
+  ],
+  "C_TRANSPORT": [
+   "TRANSPORT_RELATION"
+  ]
+ },
+ "routing": {
+  "G0_fail": "CANNOT_CHECK (lane defect)",
+  "G1b_pass_and_G2_fail": "M_OVER_ABSTAINS",
+  "G1b_pass_and_G3_fail": "CANNOT_CHECK",
+  "G1b_pass_and_G3_pass": "ME_X7_RESIDUAL_CANDIDATE + WITNESS_ABOVE_PARENT",
+  "G1c_pass": "PARENT_SUFFICIENT + WITNESS_INSUFFICIENT_PARENT_AHEAD",
+  "G5_all_pass": "PARENT_SUFFICIENT + WITNESS_CLAIM_SUFFICIENT_AT_LOWER_EXPORT",
+  "G5_all_pass_and_G7_fail": "PARENT_SUFFICIENT + ...__SELF_CONTAINMENT_NOT_SEPARATED",
+  "G5_all_pass_and_G7_pass": "PARENT_SUFFICIENT + WITNESS_CLAIM_SUFFICIENT_AT_LOWER_EXPORT__REQUIRES_IDENTITY_EXPORT",
+  "G5_all_pass_and_G7_unevaluated": "PARENT_SUFFICIENT + ...__SELF_CONTAINMENT_CANNOT_CHECK",
+  "G5_partial": "PARENT_SUFFICIENT + WITNESS_NOT_CLAIM_SUFFICIENT:<failed conjuncts>",
+  "G6_fail": "PARENT_SUFFICIENT + NO_CROSS_MODE_TRANSFER"
+ },
+ "schema_version": "orion.v2.me-x7-v2.exact-study-design.v2",
+ "seed_commitment": {
+  "custody_path": "~/.orion-custody/me-x7-v2/PROTECTED_SEED_V1.txt",
+  "development_seed_note": "deliberately identical to V1's, so any difference in the development split is attributable to the two registered corrections and to nothing else",
+  "development_seed_public": "ME-X7-DEV-20260902",
+  "development_seed_unchanged_from_v1": true,
+  "known_answer_seed_public": "ME-X7-KNOWN-ANSWER",
+  "mode": "0600",
+  "protected_seed_sha256": "08631e5fa419e350a2c4d71bcee487fdebb166875ed8647a79f76f2519f02cfd",
+  "selftest_seed_public": "ME-X7-SELFTEST",
+  "shuffle_null_seed": 20260902,
+  "v1_seed_burned": "ME-X7-PROTECTED-b35d0617f13ec73ed96368bfb7019f603e5818bfa69d6de1",
+  "v1_seed_status": "revealed in ME_X7_OUTCOME_RECEIPT.md \u00a71 and therefore never usable as a protected seed again; used in the V2 unit tests as a public validation seed only, and only for G0-relevant quantities"
+ },
+ "split_sizes": {
+  "development_cap": 40,
+  "development_per_cell": 1,
+  "development_total": 25,
+  "protected_per_cell": 50,
+  "protected_total": 1250
+ },
+ "state_date": "2026-09-03",
+ "statistics": {
+  "noninferiority_margin_absolute": 0.01,
+  "null_ceiling": 0.15,
+  "power_note": "pooled n = 1250: 6 one-directional discordants (0.48%) reach p = 0.031, 8 reach p = 0.008; per cell n = 50: 6 discordants reach p = 0.031",
+  "primary": "paired instance-level exact audit-verdict match (verdict, and defect class when REJECT), M vs B5",
+  "test": "McNemar exact two-sided on discordant pairs"
+ },
+ "status": "FROZEN_DESIGN_V2_NO_PROTECTED_OUTCOME_INSPECTED",
+ "strata": [
+  "WRONG_PROBLEM_OR_SPECIFICATION",
+  "STALE_OR_WRONG_SOURCE",
+  "HIDDEN_DEPENDENCE",
+  "CODE_OR_PROOF_MISMATCH",
+  "SEED_OR_VERSION_MISMATCH",
+  "INVALID_CALIBRATION",
+  "INVALID_TRANSPORT",
+  "OMITTED_FAILED_ROUTE",
+  "EVALUATOR_BLIND_SPOT",
+  "AUTHORITY_OVERREACH",
+  "REPRESENTATION_CHANGE_LOSES_INFORMATION",
+  "NO_DEFECT_WARRANTED",
+  "CENSORED_UNDECIDABLE"
+ ],
+ "study": "ME-X7-V2",
+ "sufficiency_conjuncts": [
+  "S1_FAILURE_CLASS_PRESERVATION",
+  "S2_REPLAY_SUPPORT",
+  "S3_SELECTIVE_REOPENING_WITHOUT_HIDDEN_HISTORY",
+  "S4_FALSE_ACCEPTANCE_NONINFERIORITY",
+  "S5_PREFERABLE_TO_FULL_TRACE"
+ ],
+ "terminal_independence_note": "WITNESS_CLAIM_SUFFICIENT_AT_LOWER_EXPORT is its own positive conjunction of five tests; it is never computed as the negation of the M-advantage gate, and WITNESS_INSUFFICIENT_PARENT_AHEAD has its own positive test (G1c). ME-X2's G4 label fired on a tie and on a federation win alike; that is not repeated here.",
+ "title": "Claim-sufficient external witnesses: exact known-answer study (V2 re-freeze)",
+ "verdicts": [
+  "ACCEPT",
+  "REJECT",
+  "CANNOT_CHECK"
+ ],
+ "witness_fields": [
+  "RESULT",
+  "PROVENANCE",
+  "PROBLEM_BINDING",
+  "ARTIFACT",
+  "ASSUMPTION_VERSION",
+  "MEASUREMENT_CALIBRATION",
+  "TRANSPORT_RELATION",
+  "DEPENDENCE",
+  "EVALUATOR_CONTRACT",
+  "PRESERVATION",
+  "ROUTE_LEDGER",
+  "AUTHORITY_CEILING"
+ ]
+}
