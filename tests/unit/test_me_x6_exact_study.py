@@ -423,5 +423,16 @@ def test_G0a_denominator_counts_what_was_actually_checked(tmp_path: Path) -> Non
     assert g["n_cells_checked"] == rep["known_answer"]["n"]
     assert g["n_planted_positives"] == len(rep["planted_positives"])
     assert g["n_evaluated"] == g["n_cells_checked"] + g["n_planted_positives"]
-    src = (HERE / "mex6_run.py").read_text()
-    assert "len(CELLS) + 4" not in src, "the denominator must not be recomputed as arithmetic"
+    # A behavioural positive, not a source-text grep: perturb the report's
+    # positive count and the gate's denominator must move with it.  A hardcoded
+    # denominator passes every assertion above and fails only this one.
+    rep["planted_positives"]["a_synthetic_extra_positive"] = {"tripped": 1, "n": 1}
+    (tmp_path / "ME_X6_SELFTEST_REPORT.json").write_text(json.dumps(rep))
+    mex6_run.stage_analyze(tmp_path / "ME_X6_DEVELOPMENT_RESULTS_V1.json",
+                           tmp_path / "ME_X6_DEVELOPMENT_EXPECTED_CUSTODY_V1.json",
+                           tmp_path, "DEVELOPMENT")
+    g2 = json.loads((tmp_path / "ME_X6_DEVELOPMENT_ANALYSIS_V1.json").read_text()) \
+        ["gates"]["G0a_KNOWN_ANSWER"]
+    assert g2["n_planted_positives"] == g["n_planted_positives"] + 1
+    assert g2["n_evaluated"] == g["n_evaluated"] + 1, \
+        "the denominator does not track what the report says was checked"
