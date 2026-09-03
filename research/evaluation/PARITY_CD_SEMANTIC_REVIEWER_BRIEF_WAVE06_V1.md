@@ -1,6 +1,14 @@
 # PARITY-C / PARITY-D Independent Semantic Reviewer Brief — Wave 06 V1
 
-**Status:** pre-outcome reviewer brief. Reviewer identities are not yet bound. This document does not authorize a parity run or confer scientific authority.
+**Status: NOT_OBTAINED__DISCLOSED_LIMITATION.** No reviewer identity was ever bound to any slot in this brief, and none will be: no evaluator source outside this programme is available to it. The requirement is not retired — it remains registered as required in the frozen case registry — but its obtainment has been dispositioned, and the parity programme now proceeds carrying the gap as a stated limitation rather than as an indefinite block.
+
+Read the disposition before using this brief: `research/evaluation/V1_PARITY_SEMANTIC_EVALUATOR_CUSTODY_DISPOSITION_WAVE06_V1.json`.
+
+What that means concretely: the four cases below are unresolved, 8 of the 59 frozen capability cells are `CANNOT_CHECK` for want of semantic custody, and 51 remain scorable by the bound deterministic scorer. `CANNOT_CHECK` here is not a label any reviewer emitted after reading a packet — it records that no reviewer ever read one.
+
+This brief remains the rubric of record. If a genuinely independent evaluator source ever becomes available, binding it against this unchanged rubric is what would lift the limitation; nothing generated inside this programme can.
+
+This document does not authorize a parity run or confer scientific authority.
 
 ## Purpose
 

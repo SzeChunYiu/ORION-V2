@@ -10,7 +10,7 @@
   "gates": [
     {
       "gate": "G1_V1_PARITY",
-      "status": "CASES_SCORING_BUDGETS_BOUND_BLOCKED_SEMANTIC_EVALUATOR_CUSTODY",
+      "status": "CASES_SCORING_BUDGETS_BOUND_SEMANTIC_EVALUATOR_CUSTODY_NOT_OBTAINED_DISCLOSED",
       "protocol": "research/evaluation/V1_PARITY_CAMPAIGN_PROTOCOL_WAVE06_V1.json",
       "subject_binding": "research/evaluation/V1_PARITY_SUBJECT_BINDING_WAVE06_V1.json",
       "case_source_audit": "research/evaluation/V1_PARITY_CASE_SOURCE_AUDIT_WAVE06_V1.json",
@@ -26,26 +26,57 @@
       "baseline_registry": "research/evaluation/V1_PARITY_BASELINE_REGISTRY_WAVE06_V1.json",
       "execution_gate": "src/orion_v2/parity_execution_gate.py",
       "subject_commit": "f33d2f45554583f9e612f7a186b7d92e6bc8d01a",
-      "current_preflight_terminal": "BLOCKED_EVALUATOR_CUSTODY",
+      "current_preflight_terminal": "BLOCKED_PARENT_BASELINE_BINDING",
       "case_selection_bound_before_paired_outcomes": true,
       "deterministic_scoring_bound_before_paired_outcomes": true,
       "matched_case_budgets_bound_before_paired_outcomes": true,
-      "semantic_source_gaps": ["PARITY-C", "PARITY-D"],
+      "semantic_source_gaps": [
+        "PARITY-C",
+        "PARITY-D"
+      ],
       "remaining_in_order": [
-        "bind independent blinded semantic reviewer identities for PARITY-C and PARITY-D under the frozen scoring rubric",
         "bind strongest parent-composed comparator configurations/adapters after parent-only fit checks",
-        "execute per-cell non-compensatory V1/V2 parity and simple-control non-regression under frozen budgets/custody"
+        "execute per-cell non-compensatory V1/V2 parity and simple-control non-regression under frozen budgets and the disclosed custody limitation, reporting the 51/59 denominator and naming the 8 unresolved cells"
       ],
       "last_fully_green_governance_ci_head": "31ccec1700bb5407161484132fef48620428d7d4",
-      "verified_workflow_runs": [33099472756, 33099472738, 33099472735, 33099472730]
+      "verified_workflow_runs": [
+        33099472756,
+        33099472738,
+        33099472735,
+        33099472730
+      ],
+      "semantic_evaluator_custody_disposition": "NOT_OBTAINED__DISCLOSED_LIMITATION",
+      "semantic_evaluator_custody_disposition_artifact": "research/evaluation/V1_PARITY_SEMANTIC_EVALUATOR_CUSTODY_DISPOSITION_WAVE06_V1.json",
+      "semantic_evaluator_custody_obtained": false,
+      "semantic_evaluator_custody_still_required": true,
+      "disclosed_scope": {
+        "frozen_capability_cell_total": 59,
+        "cells_scorable_by_bound_deterministic_scorer": 51,
+        "cells_cannot_check_for_want_of_semantic_custody": 8,
+        "reachable_terminal_ceiling": "PARTIAL_SURFACE_TERMINAL_OVER_51_OF_59_CELLS_WITH_8_CELLS_DISCLOSED_CANNOT_CHECK"
+      },
+      "retired_from_remaining_in_order": [
+        {
+          "item": "bind independent blinded semantic reviewer identities for PARITY-C and PARITY-D under the frozen scoring rubric",
+          "reason": "no evaluator source outside this programme is available; demoted from a blocking precondition to a disclosed limitation, not satisfied",
+          "disposition": "NOT_OBTAINED__DISCLOSED_LIMITATION"
+        }
+      ]
     },
     {
       "gate": "G2_PAPER_CONTRACTION",
       "status": "PORTFOLIO_CONTRACTION_FROZEN_DRAFTS_AND_VENUE_LADDER_BOUND_PUBLICATION_OPEN",
       "artifact": "papers/PAPER_CONTRACTION_LEDGER_WAVE06_V1.json",
       "publication_strategy": "papers/PUBLICATION_TARGETS_AND_FALLBACKS_V1.md",
-      "core": ["P-A", "P-B", "P-C", "P-D"],
-      "contingent": ["P-E"],
+      "core": [
+        "P-A",
+        "P-B",
+        "P-C",
+        "P-D"
+      ],
+      "contingent": [
+        "P-E"
+      ],
       "programme_blocker_closed": true,
       "publication_authority_closed": false,
       "drafts": [
@@ -101,8 +132,13 @@
       "reopen_issue": 40,
       "reopen_research": "research/human-cognition-lived-knowledge/HUMAN_THINKING_AND_LIVED_KNOWLEDGE_REOPEN_V1.md",
       "ml_implications": "research/human-cognition-lived-knowledge/MACHINE_LEARNING_IMPLICATIONS_V1.md",
-      "material_new_axes": ["SourceMode", "KnowledgeForm", "AcquisitionMode", "ObserverReflexivity"],
-      "expanded_coverage_tensor": "Discipline × SourceMode × KnowledgeForm × AcquisitionMode × Context × HistoricalEpoch",
+      "material_new_axes": [
+        "SourceMode",
+        "KnowledgeForm",
+        "AcquisitionMode",
+        "ObserverReflexivity"
+      ],
+      "expanded_coverage_tensor": "Discipline \u00d7 SourceMode \u00d7 KnowledgeForm \u00d7 AcquisitionMode \u00d7 Context \u00d7 HistoricalEpoch",
       "required_new_no_material_change_passes": 2,
       "completed_new_no_material_change_passes": 0,
       "grants_global_human_knowledge_completeness": false,
@@ -136,10 +172,9 @@
   },
   "all_frontiers_closeout_matrix": "research/closure/ALL_FRONTIERS_CLOSEOUT_MATRIX_V1.md",
   "current_first_machine_blocker": "BLOCKED_V1_PARITY",
-  "current_parity_subblocker": "BLOCKED_EVALUATOR_CUSTODY",
+  "current_parity_subblocker": "STRONGEST_PARENT_BASELINE_CONFIGURATION_AND_FIT_BINDING",
   "additional_material_closeout_blocker": "G6_REOPENED_HUMAN_THINKING_AND_LIVED_KNOWLEDGE",
   "current_parity_subblockers_in_order": [
-    "INDEPENDENT_SEMANTIC_EVALUATOR_CUSTODY_FOR_PARITY_C_AND_D",
     "STRONGEST_PARENT_BASELINE_CONFIGURATION_AND_FIT_BINDING",
     "OUTCOME_EXECUTION"
   ],
@@ -147,5 +182,13 @@
   "grants_scientific_truth": false,
   "grants_novelty": false,
   "grants_publication_authority": false,
-  "grants_new_field_authority": false
+  "grants_new_field_authority": false,
+  "disclosed_limitations": [
+    {
+      "id": "SEMANTIC_EVALUATOR_CUSTODY_PARITY_C_AND_D",
+      "token": "NOT_OBTAINED__DISCLOSED_LIMITATION",
+      "artifact": "research/evaluation/V1_PARITY_SEMANTIC_EVALUATOR_CUSTODY_DISPOSITION_WAVE06_V1.json",
+      "effect": "8 of 59 frozen capability cells are CANNOT_CHECK; no full-surface parity terminal is reachable"
+    }
+  ]
 }

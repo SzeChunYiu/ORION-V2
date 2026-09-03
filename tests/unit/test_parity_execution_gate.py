@@ -28,12 +28,86 @@ def _artifacts() -> dict[str, dict]:
     }
 
 
-def test_current_preflight_stops_at_evaluator_custody() -> None:
+def test_current_preflight_stops_at_parent_baseline_binding_and_carries_the_custody_disclosure() -> None:
+    """Semantic evaluator custody is dispositioned, so the next blocker is a real one.
+
+    This is the contrast that proves the disclosed limitation did not open the gate:
+    the run is still unauthorized, and it is unauthorized for the parent-baseline
+    reason, which is genuinely unbound.
+    """
+
     result = assess_parity_execution_readiness(**_artifacts())
-    assert result.status is ParityExecutionStatus.BLOCKED_EVALUATOR_CUSTODY
+    assert result.status is ParityExecutionStatus.BLOCKED_PARENT_BASELINE_BINDING
     assert result.run_authorized is False
     assert result.grants_v1_parity is False
     assert result.grants_v2_closeout is False
+    assert result.disclosed_limitations
+    assert "NOT_OBTAINED__DISCLOSED_LIMITATION" in result.disclosed_limitations[0]
+    assert result.terminal_ceiling is not None
+    assert "51_OF_59" in result.terminal_ceiling
+
+
+def test_removing_the_disposition_fails_closed_at_evaluator_custody() -> None:
+    artifacts = _artifacts()
+    custody = copy.deepcopy(artifacts["custody_protocol"])
+    custody["evaluator_registry"].pop("independence_disposition")
+    artifacts["custody_protocol"] = custody
+    result = assess_parity_execution_readiness(**artifacts)
+    assert result.status is ParityExecutionStatus.BLOCKED_EVALUATOR_CUSTODY
+    assert result.disclosed_limitations == ()
+
+
+def test_a_disposition_claiming_custody_was_obtained_is_rejected() -> None:
+    """The token may only be used to say the requirement was *not* met."""
+
+    artifacts = _artifacts()
+    custody = copy.deepcopy(artifacts["custody_protocol"])
+    custody["evaluator_registry"]["disclosed_limitation"][
+        "protected_independent_evaluator_obtained"
+    ] = True
+    artifacts["custody_protocol"] = custody
+    result = assess_parity_execution_readiness(**artifacts)
+    assert result.status is ParityExecutionStatus.BLOCKED_EVALUATOR_CUSTODY
+
+
+def test_a_disposition_that_understates_its_own_scope_is_rejected() -> None:
+    artifacts = _artifacts()
+    custody = copy.deepcopy(artifacts["custody_protocol"])
+    custody["evaluator_registry"]["disclosed_limitation"]["unresolved_case_ids"] = [
+        "C2_SAME_WORDS_DIFFERENT_NATIVE_STRUCTURE"
+    ]
+    artifacts["custody_protocol"] = custody
+    result = assess_parity_execution_readiness(**artifacts)
+    assert result.status is ParityExecutionStatus.BLOCKED_EVALUATOR_CUSTODY
+
+
+def test_a_disposition_with_an_inconsistent_denominator_is_rejected() -> None:
+    artifacts = _artifacts()
+    custody = copy.deepcopy(artifacts["custody_protocol"])
+    custody["evaluator_registry"]["disclosed_limitation"][
+        "scorable_capability_cell_count"
+    ] = 59
+    artifacts["custody_protocol"] = custody
+    result = assess_parity_execution_readiness(**artifacts)
+    assert result.status is ParityExecutionStatus.BLOCKED_EVALUATOR_CUSTODY
+
+
+def test_disclosed_custody_never_reaches_the_unqualified_ready_terminal() -> None:
+    artifacts = _artifacts()
+    baselines = copy.deepcopy(artifacts["baseline_registry"])
+    baselines["implementation_bindings"]["bound"] = True
+    artifacts["baseline_registry"] = baselines
+    result = assess_parity_execution_readiness(**artifacts)
+    assert (
+        result.status
+        is ParityExecutionStatus.READY_WITH_DISCLOSED_EVALUATOR_CUSTODY_LIMITATION
+    )
+    assert result.status is not ParityExecutionStatus.READY_FOR_PROTECTED_PARITY_RUN
+    assert result.run_authorized is True
+    assert result.grants_v1_parity is False
+    assert result.grants_scientific_truth is False
+    assert result.disclosed_limitations
+    assert result.terminal_ceiling is not None
 
 
 def test_removing_case_binding_regresses_to_protected_case_selection() -> None:
