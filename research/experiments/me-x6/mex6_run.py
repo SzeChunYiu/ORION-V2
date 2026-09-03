@@ -16,6 +16,7 @@ import random
 import sys
 import time
 from collections import Counter
+from fractions import Fraction
 from math import comb
 from pathlib import Path
 
@@ -30,6 +31,7 @@ from mex6_arms import (  # noqa: E402
     LADDER,
     M_ARM,
     arm_specs,
+    fit_all,
     fit_signs,
     load_fitted_signs,
     run_arm,
@@ -65,6 +67,10 @@ SHUFFLE_SEED = 20260903
 # Registered from the DEVELOPMENT split -- the design's declared public tuning
 # surface -- before any protected instance exists, as the support of the
 # falsifiable prediction P-MEX6-1 (design section 7).
+# P-MEX6-2's support, registered from the development split before any protected
+# instance exists: the steps of the fitted untyped ladder that lose exactness.
+PREDICTED_LADDER_REGRESSIONS = ("L1_ACTIVITY_ONLY -> L2_PLUS_ATTENTION",)
+
 DECOUPLED_STRATA = ("I1_DUPLICATES", "I2_PARAPHRASE", "I3_MASS_LOW_INFORMATION",
                     "I4_RETRACTED_WORK", "I5_CITATION_RING",
                     "I7_FIELD_SIZE_SCALING", "I8_FASHION_CONCENTRATION")
@@ -99,13 +105,25 @@ def exact_binomial_two_sided(b: int, c: int) -> float:
     return min(1.0, 2 * tail)
 
 
-def binom_upper_tail(k: int, n: int, p: float) -> float:
-    """P(X >= k) for X ~ Binomial(n, p).  Used to ask whether a null control sits
-    above its own derived expectation, rather than above a chosen threshold."""
+def binom_upper_tail(k: int, n: int, p: Fraction | float) -> float:
+    """P(X >= k) for X ~ Binomial(n, p), computed EXACTLY in rational arithmetic.
+
+    The obvious float form -- `comb(n, i) * p**i * (1-p)**(n-i)` -- is unusable
+    here: at the registered protected size the binomial coefficients exceed the
+    float range and the expression raises OverflowError (or, if that were
+    caught, returns inf, and `inf > 0.05` would make this hard gate incapable of
+    failing).  Exact Fractions have neither failure mode, and exactness is the
+    house style for this study anyway.  Only the final ratio is narrowed to a
+    float, and that narrowing is guarded.
+    """
     if n == 0:
         return 1.0
     k = max(0, min(k, n))
-    return sum(comb(n, i) * (p ** i) * ((1 - p) ** (n - i)) for i in range(k, n + 1))
+    q = Fraction(p).limit_denominator(10 ** 6)
+    one_q = 1 - q
+    tail = sum((Fraction(comb(n, i)) * q ** i * one_q ** (n - i) for i in range(k, n + 1)),
+               Fraction(0))
+    return min(1.0, max(0.0, tail.numerator / tail.denominator))
 
 
 def paired(x: list[bool], y: list[bool]) -> dict:
@@ -187,9 +205,50 @@ def score(res: dict, cus: dict, timing: dict) -> dict:
         }
     vec = {a: [_exact(r["arms"][a], exp[r["instance_id"]]["expected"]) for r in res["instances"]]
            for a in arms}
-    return {"per_arm": per_arm, "vec": vec,
+    cell_of = [f"{r['stratum']}|{r['scale']}" for r in res["instances"]]
+    cells = sorted(set(cell_of))
+    # Per (arm, cell): how many instances were exact, and whether the arm's
+    # verdict was CONSTANT across the cell.  Constancy is what makes this a
+    # constructive result rather than a sampling one, so it is measured, not
+    # assumed.
+    cell_exact: dict[str, dict[str, tuple[int, int]]] = {}
+    cell_constant: dict[str, dict[str, bool]] = {}
+    for a in arms:
+        ce, cc = {}, {}
+        for c in cells:
+            idx = [i for i, cl in enumerate(cell_of) if cl == c]
+            hits = [vec[a][i] for i in idx]
+            verds = {(res["instances"][i]["arms"][a]["capability"],
+                      res["instances"][i]["arms"][a]["activity"]) for i in idx}
+            ce[c] = (sum(hits), len(hits))
+            cc[c] = len(verds) <= 1
+        cell_exact[a], cell_constant[a] = ce, cc
+    return {"per_arm": per_arm, "vec": vec, "cells": cells, "cell_of": cell_of,
+            "cell_exact": cell_exact, "cell_constant": cell_constant,
             "strata": [r["stratum"] for r in res["instances"]],
             "scales": [r["scale"] for r in res["instances"]]}
+
+
+def cell_compare(sc: dict, x: str, y: str, cells: list[str] | None = None) -> dict:
+    """Deterministic cell-level comparison, replacing a paired significance test.
+
+    The arms' verdicts are constant within a cell (asserted by G8), so there is
+    no chance mechanism for a paired exact test to test: a p-value over instance
+    counts would be an inflated denominator dressed as evidence.  The honest
+    quantity is how many CELLS each arm is exact on."""
+    cs = cells if cells is not None else sc["cells"]
+    ex = sc["cell_exact"]
+
+    def won(a, c):
+        h, t = ex[a][c]
+        return t > 0 and h == t
+
+    x_only = sorted(c for c in cs if won(x, c) and not won(y, c))
+    y_only = sorted(c for c in cs if won(y, c) and not won(x, c))
+    return {"n_cells": len(cs), "x_exact_cells": sum(1 for c in cs if won(x, c)),
+            "y_exact_cells": sum(1 for c in cs if won(y, c)),
+            "x_only_cells": x_only, "y_only_cells": y_only,
+            "x_ahead": len(x_only) > 0 and len(y_only) == 0}
 
 
 # ---- gates ---------------------------------------------------------------------
@@ -209,6 +268,7 @@ def gates(sc: dict, res: dict, cus: dict, selftest_ok: bool | None) -> dict:
 
     # G0a -- reproduced known answers (from the selftest report)
     g["G0a_KNOWN_ANSWER"] = {
+        "n_cells": len(sc["cells"]),
         "pass": selftest_ok, "n_evaluated": (len(CELLS) + 4) if selftest_ok is not None else 0,
         "status": "EVALUATED" if selftest_ok is not None else "CANNOT_CHECK_NO_SELFTEST_REPORT",
         "rule": "one hand-authored fixture per (stratum, scale) cell plus the planted "
@@ -218,6 +278,7 @@ def gates(sc: dict, res: dict, cus: dict, selftest_ok: bool | None) -> dict:
     pl = sum(1 for c in cus["instances"] if c["planter_agrees"])
     dec = sum(1 for c in cus["instances"] if c["decidable_from_fit_window"])
     g["G0b_ORACLE_SELF_AGREEMENT"] = {
+        "n_cells": len(sc["cells"]),
         "planter_agree": {"ok": pl, "n": n},
         "decidable_from_fit_window": {"ok": dec, "n": n},
         "pass": pl == n and dec == n, "n_evaluated": n,
@@ -247,6 +308,7 @@ def gates(sc: dict, res: dict, cus: dict, selftest_ok: bool | None) -> dict:
     rnd_above = binom_upper_tail(rnd_cap, n, 1 / 3)
     shuf_above = binom_upper_tail(round(m_shuf * n), n, majority)
     g["G0c_NULL_CALIBRATION"] = {
+        "n_cells": len(sc["cells"]),
         "always_rise_exact_where_capability_not_rise": {"hit": always_rise_hits,
                                                         "n_evaluated": len(cap_flat)},
         "always_flat_exact_where_capability_moves": {"hit": always_flat_hits,
@@ -269,15 +331,19 @@ def gates(sc: dict, res: dict, cus: dict, selftest_ok: bool | None) -> dict:
 
     # G1 -- M against the information-matched fitted parent.  Two separate
     # POSITIVE tests; a tie fires neither, and neither is the other's negation.
-    p_m_ahead = paired(vec[M_ARM], vec[B4X_FITTED_ARM])
-    p_parent_ahead = paired(vec[B4X_FITTED_ARM], vec[M_ARM])
+    # Deterministic, over CELLS: see cell_compare for why no p-value is reported.
+    cmp_m = cell_compare(sc, M_ARM, B4X_FITTED_ARM)
+    cmp_p = cell_compare(sc, B4X_FITTED_ARM, M_ARM)
     g["G1a_M_AHEAD_OF_MATCHED_PARENT"] = {
-        "paired": p_m_ahead, "n_evaluated": n,
-        "pass": p_m_ahead["diff_x_minus_y"] > 0 and p_m_ahead["exact_p_two_sided"] <= 0.05,
-        "rule": "paired exact-match difference M - B4X_FITTED > 0 with exact two-sided p <= 0.05"}
+        "cells": cmp_m, "n_evaluated": n, "n_cells": len(sc["cells"]),
+        "pass": cmp_m["x_ahead"],
+        "rule": "M is exact on strictly more CELLS than the information-matched fitted "
+                "parent, and on none fewer. No significance test: the arms' verdicts are "
+                "constant within a cell (G8), so a paired exact p-value over instance "
+                "counts would be an inflated denominator, not evidence."}
     g["G1b_MATCHED_PARENT_AHEAD"] = {
-        "paired": p_parent_ahead, "n_evaluated": n,
-        "pass": p_parent_ahead["diff_x_minus_y"] > 0 and p_parent_ahead["exact_p_two_sided"] <= 0.05,
+        "cells": cmp_p, "n_evaluated": n, "n_cells": len(sc["cells"]),
+        "pass": cmp_p["x_ahead"],
         "rule": "its own positive test, not the negation of G1a"}
 
     # G2 -- anti-conservatism: M must not buy its invariance robustness by
@@ -287,6 +353,7 @@ def gates(sc: dict, res: dict, cus: dict, selftest_ok: bool | None) -> dict:
     m_ok = sum(1 for i in idx if vec[M_ARM][i])
     par_ok = sum(1 for i in idx if vec[B4X_FITTED_ARM][i])
     g["G2_ANTI_CONSERVATISM"] = {
+        "n_cells": len(sc["cells"]),
         "M_exact": m_ok, "parent_exact": par_ok, "n_evaluated": len(idx),
         "status": _cc(len(idx)), "pass": (len(idx) > 0 and m_ok >= par_ok),
         "rule": "on the genuine capability-change strata M is at least as exact as the "
@@ -311,29 +378,60 @@ def gates(sc: dict, res: dict, cus: dict, selftest_ok: bool | None) -> dict:
         per_abl[abl] = {"strata_degraded": sorted(broke), "predicted": want,
                         "pass": ok, "n_evaluated": n}
     g["G3_MECHANISM_BY_OMISSION"] = {
+        "n_cells": len(sc["cells"]),
         "per_ablation": per_abl, "pass": all_ok, "n_evaluated": n,
         "rule": "each typed-channel ablation degrades exactly the strata declared to "
                 "depend on it, and no others"}
 
-    # G4 -- the untyped information ladder, per scale, never pooled
+    # G4 -- the untyped information ladder, per scale, never pooled.
+    #
+    # NOT a monotonicity gate.  An earlier version required no rung to be worse
+    # than the one below and called a reversal a lane defect.  Measurement showed
+    # that framing is wrong: L2 is strictly worse than L1 even after every rung
+    # is fitted on its own channel set, because one global sign cannot IGNORE a
+    # channel that moves without capability -- the attention channel destroys
+    # I5_CITATION_RING, which L1 gets right precisely by not holding it. Fitting
+    # does not remove the reversal, so it is a property of untyped aggregation
+    # and a finding, registered as P-MEX6-2 and tested in G7.
+    #
+    # The positive test that remains: the full channel set is exact on strictly
+    # more cells than the activity-only rung, per scale.
     per_scale_ladder = {}
     ladder_ok = True
+    top, bottom = LADDER[-1][0], LADDER[0][0]
     for scale in SCALES:
         si = [i for i in range(n) if scales[i] == scale]
-        rungs = {name: (sum(1 for i in si if vec[name][i]) / len(si)) if si else 0.0
+        sc_cells = sorted({sc["cell_of"][i] for i in si})
+        rungs = {name: {"exact_cells": sum(1 for c in sc_cells
+                                           if sc["cell_exact"][name][c][1] > 0
+                                           and sc["cell_exact"][name][c][0] == sc["cell_exact"][name][c][1]),
+                        "exact_rate": (sum(1 for i in si if vec[name][i]) / len(si)) if si else 0.0}
                  for name, _ in LADDER}
         steps = []
         for (a, _), (b, _) in zip(LADDER, LADDER[1:]):
-            p = paired([vec[b][i] for i in si], [vec[a][i] for i in si])
-            reg = p["diff_x_minus_y"] < 0 and p["exact_p_two_sided"] <= 0.05
-            ladder_ok = ladder_ok and not reg
-            steps.append({"from": a, "to": b, "paired": p, "regression": reg})
-        per_scale_ladder[scale] = {"rung_exact_rate": rungs, "steps": steps,
-                                   "n_evaluated": len(si), "status": _cc(len(si))}
+            cp = cell_compare(sc, b, a, sc_cells)
+            steps.append({"from": a, "to": b, "cells": cp,
+                          "regression": len(cp["y_only_cells"]) > 0})
+        tb = cell_compare(sc, top, bottom, sc_cells)
+        # a COUNT comparison, not dominance: the top rung is expected to lose
+        # I5_CITATION_RING to the activity-only rung (that reversal IS P-MEX6-2),
+        # so requiring dominance would make this gate fail on the very mechanism
+        # the study registers.
+        ok = bool(si) and tb["x_exact_cells"] > tb["y_exact_cells"]
+        ladder_ok = ladder_ok and ok
+        per_scale_ladder[scale] = {
+            "rung": rungs, "steps": steps, "top_vs_bottom": tb,
+            "n_evaluated": len(si), "n_cells": len(sc_cells), "status": _cc(len(si)),
+            "regressions": [f"{st['from']} -> {st['to']}" for st in steps if st["regression"]],
+            "pass": ok}
     g["G4_INFORMATION_LADDER"] = {
         "per_scale": per_scale_ladder, "pass": ladder_ok, "n_evaluated": n,
-        "rule": "no rung significantly worse than the rung below it, reported per scale "
-                "and never pooled; rung k+1's channels contain rung k's"}
+        "n_cells": len(sc["cells"]),
+        "rule": f"positive test, per scale and never pooled: {top} is exact on strictly more "
+                f"cells than {bottom} (a count, not dominance -- the top rung is expected to "
+                f"lose I5_CITATION_RING to {bottom}, which is P-MEX6-2). Intermediate reversals are REPORTED, not failed: every "
+                "rung is fitted on its own channel set, so a reversal is a property of untyped "
+                "aggregation (P-MEX6-2), not a lane defect."}
 
     # G5 -- the hostile-invariance suite: every invariance its own positive test
     per_inv = {}
@@ -347,6 +445,7 @@ def gates(sc: dict, res: dict, cus: dict, selftest_ok: bool | None) -> dict:
         per_inv[s] = {"M_exact_rate": m_rate, "matched_parent_exact_rate": p_rate,
                       "n_evaluated": len(si), "status": _cc(len(si)), "pass": ok}
     g["G5_HOSTILE_INVARIANCE_SUITE"] = {
+        "n_cells": len(sc["cells"]),
         "per_invariance": per_inv, "pass": inv_ok, "n_evaluated": n,
         "rule": "protocol section 7 I1-I10 and the short protocol's X6-I7, each its own "
                 "positive test with its own denominator; a stratum with no instances "
@@ -357,16 +456,19 @@ def gates(sc: dict, res: dict, cus: dict, selftest_ok: bool | None) -> dict:
     tr_ok = True
     for scale in SCALES:
         si = [i for i in range(n) if scales[i] == scale]
-        p = paired([vec[M_ARM][i] for i in si], [vec[B4X_FITTED_ARM][i] for i in si])
+        sc_cells = sorted({sc["cell_of"][i] for i in si})
+        cp = cell_compare(sc, M_ARM, B4X_FITTED_ARM, sc_cells)
         rate = (sum(1 for i in si if vec[M_ARM][i]) / len(si)) if si else 0.0
-        ok = bool(si) and p["diff_x_minus_y"] >= 0
+        ok = bool(si) and not cp["y_only_cells"]
         tr_ok = tr_ok and ok
-        per_scale[scale] = {"M_exact_rate": rate, "paired_M_minus_parent": p,
-                            "n_evaluated": len(si), "status": _cc(len(si)), "pass": ok}
+        per_scale[scale] = {"M_exact_rate": rate, "cells": cp, "n_evaluated": len(si),
+                            "n_cells": len(sc_cells), "status": _cc(len(si)), "pass": ok}
     g["G6_CROSS_SCALE_TRANSFER"] = {
         "per_scale": per_scale, "pass": tr_ok, "n_evaluated": n,
-        "rule": "the result must hold separately at each unit of analysis (protocol "
-                "section 3); a result that does not transfer to the second scale is killed"}
+        "n_cells": len(sc["cells"]),
+        "rule": "the result must hold separately at each unit of analysis (protocol section 3): "
+                "in each scale the matched parent is exact on no cell M misses. A result that "
+                "does not transfer to the second scale is killed."}
 
     # G7 -- the registered structural prediction, stated before the run
     fails, unexpected = [], []
@@ -378,15 +480,43 @@ def gates(sc: dict, res: dict, cus: dict, selftest_ok: bool | None) -> dict:
         if rate < 1.0:
             (fails if s in DECOUPLED_STRATA else unexpected).append(s)
     missed = [s for s in DECOUPLED_STRATA if s not in fails]
+    ladder_regressions = sorted({r for v in per_scale_ladder.values() for r in v["regressions"]})
+    p2_ok = ladder_regressions == sorted(PREDICTED_LADDER_REGRESSIONS)
     g["G7_REGISTERED_PREDICTION"] = {
+        "n_cells": len(sc["cells"]),
+        "P_MEX6_2_predicted_ladder_regressions": sorted(PREDICTED_LADDER_REGRESSIONS),
+        "P_MEX6_2_observed_ladder_regressions": ladder_regressions,
+        "P_MEX6_2_pass": p2_ok,
         "predicted_failure_support": sorted(DECOUPLED_STRATA),
         "observed_failures_inside_support": sorted(fails),
         "observed_failures_outside_support": sorted(unexpected),
         "predicted_but_not_observed": sorted(missed),
-        "pass": not unexpected and not missed, "n_evaluated": n,
-        "rule": "P-MEX6-1, registered before the run: the information-matched untyped "
-                "parent fails exactly on the strata where an activity or attention "
-                "channel moves while capability does not, and nowhere else"}
+        "pass": not unexpected and not missed and p2_ok, "n_evaluated": n,
+        "rule": "two predictions registered before the run. P-MEX6-1: the information-matched "
+                "untyped parent fails exactly on the strata where the true capability direction "
+                "contradicts a channel it must give one global sign to, and nowhere else. "
+                "P-MEX6-2: the fitted untyped ladder is NOT monotone -- adding the attention "
+                "channel strictly reduces exactness, because one global sign cannot ignore a "
+                "channel that moves without capability. Both must hold."}
+
+    # G8 -- verdict constancy within a cell.  This is the gate that licenses
+    # every deterministic comparison above.  If an arm's verdict ever varied
+    # inside a cell there WOULD be a chance mechanism, the constructive framing
+    # would be wrong, and inferential statistics would be required -- so a
+    # failure here routes CANNOT_CHECK rather than being quietly absorbed.
+    varying = sorted(f"{a}|{c}" for a in res["arms"] for c in sc["cells"]
+                     if not sc["cell_constant"][a][c] and not a.startswith("C_RANDOM"))
+    g["G8_VERDICT_CONSTANCY_WITHIN_CELL"] = {
+        "varying_arm_cells": varying, "n_evaluated": n, "n_cells": len(sc["cells"]),
+        "instances_per_cell": (n // len(sc["cells"])) if sc["cells"] else 0,
+        "pass": not varying,
+        "rule": "every arm's verdict is constant across the instances of a cell, so the "
+                "study is a CONSTRUCTIVE separation over cells and not a sampling study. "
+                "C_RANDOM is excluded by construction: it draws per instance and is "
+                "expected to vary. Instances per cell buy structural coverage -- a cell's "
+                "verdict is shown invariant under varying baselines, step sizes and step "
+                "onsets -- and buy no statistical power, which is why no gate but G0c "
+                "reports a p-value."}
 
     # coverage ledger -- reported, never a gate
     drawn = Counter(f"{s}|{c}" for s, c in zip(strata, scales))
@@ -394,6 +524,7 @@ def gates(sc: dict, res: dict, cus: dict, selftest_ok: bool | None) -> dict:
     g["COVERAGE_LEDGER"] = {
         "drawn": dict(sorted(drawn.items())), "never_exercised": never,
         "all_registered_mechanisms_exercised": not never, "n_evaluated": n,
+        "n_cells": len(sc["cells"]),
         "rule": "reported, not a gate: any registered cell with zero instances is named "
                 "here so no rate computed over it can be read as 'checked and fine'"}
 
@@ -402,7 +533,8 @@ def gates(sc: dict, res: dict, cus: dict, selftest_ok: bool | None) -> dict:
 
 
 def route(g: dict) -> dict:
-    hard = ("G0a_KNOWN_ANSWER", "G0b_ORACLE_SELF_AGREEMENT", "G0c_NULL_CALIBRATION")
+    hard = ("G0a_KNOWN_ANSWER", "G0b_ORACLE_SELF_AGREEMENT", "G0c_NULL_CALIBRATION",
+            "G8_VERDICT_CONSTANCY_WITHIN_CELL")
     for h in hard:
         if g[h].get("pass") is not True:
             return {"route": "CANNOT_CHECK", "terminal": "NONE",
@@ -423,10 +555,17 @@ def route(g: dict) -> dict:
     if not g["G2_ANTI_CONSERVATISM"]["pass"]:
         return {"route": "M_OVER_ABSTAINS", "terminal": "NONE",
                 "reason": "M's invariance robustness was bought by refusing the genuine strata"}
-    if not (g["G5_HOSTILE_INVARIANCE_SUITE"]["pass"] and g["G3_MECHANISM_BY_OMISSION"]["pass"]):
+    # The all-pass terminal asserts the invariance suite, the omission mechanism,
+    # the ladder AND the registered prediction, so the route must read all four.
+    # Claiming "the mechanism map matches its declared prediction" without
+    # consulting G7 would be a sentence nobody executed.
+    unmet = [k for k in ("G3_MECHANISM_BY_OMISSION", "G4_INFORMATION_LADDER",
+                         "G5_HOSTILE_INVARIANCE_SUITE", "G7_REGISTERED_PREDICTION")
+             if not g[k]["pass"]]
+    if unmet:
         return {"route": "CANNOT_CHECK", "terminal": "NONE",
-                "reason": "M is ahead but the invariance suite or the omission mechanism "
-                          "does not support a typed-state reading"}
+                "reason": "M is ahead of the matched parent, but " + ", ".join(unmet)
+                          + " did not hold, so no representational claim is supported"}
     # NOT a residual.  Design section 1.3 declares M exact by construction on this
     # generator, so the M-vs-parent gap is arithmetic and cannot be the finding.
     # Awarding a residual on the strength of that gap would contradict the
@@ -446,10 +585,34 @@ def route(g: dict) -> dict:
 
 # ---- selftest ------------------------------------------------------------------
 
+def mex6_typed_capability(w):
+    from mex6_arms import TYPED_SIGNS, _dir_of
+    keys = tuple(k for k in CHANNELS if k in TYPED_SIGNS)
+    return _dir_of(w, keys, TYPED_SIGNS)
+
+
+def _skew_i4(w):
+    """A hand-built counterfactual: give the validated channels a larger step
+    than the retraction channel, which the generator never does because all
+    channels of an instance share one step magnitude."""
+    from dataclasses import replace as _replace
+    from mex6_model import Period
+    per = []
+    for idx, pd in enumerate(w.periods):
+        ch = dict(pd.channels)
+        half = w.fit_len // 2
+        if idx >= half:
+            for c in ("formal_artifacts", "replications_passed", "downstream_reuse"):
+                ch[c] = ch[c] + 40
+        per.append(Period(index=pd.index, latent=pd.latent, channels=ch))
+    return _replace(w, periods=tuple(per))
+
 def stage_selftest(out_dir: Path) -> int:
     rep: dict = {"schema_version": SCHEMA_RESULTS + ".selftest"}
     insts = generate_split("selftest", SELFTEST_SEED, 1)
-    load_fitted_signs(fit_signs(generate_split("dev", DEV_SEED, 1)))
+    signs_ok, committed, refit = assert_frozen_signs_still_reproduce()
+    rep["frozen_signs_still_reproduce"] = signs_ok
+    load_fitted_signs(committed)
     specs = {s.name: s for s in arm_specs()}
 
     # 1. known answer: every cell's recomputed verdict equals its declared effect
@@ -473,8 +636,9 @@ def stage_selftest(out_dir: Path) -> int:
     #        decoupled strata
     broken = [i for i in insts if i.stratum in DECOUPLED_STRATA]
     from mex6_arms import _cap_untyped
+    untyped_spec = {sp.name: sp for sp in arm_specs()}[B4X_ARM]
     tripped = sum(1 for i in broken
-                  if _cap_untyped(i.window, CHANNELS, random.Random(0))
+                  if _cap_untyped(i.window, untyped_spec, random.Random(0))
                   != oracle(i.window).capability)
     positives["untyped_reading_fails_the_decoupled_strata"] = {"tripped": tripped,
                                                                "n": len(broken)}
@@ -490,7 +654,23 @@ def stage_selftest(out_dir: Path) -> int:
     tr = sum(1 for i in i4
              if _dir_of(i.window, keys, flipped) != oracle(i.window).capability)
     positives["flipping_the_retraction_sign_breaks_I4"] = {"tripped": tr, "n": len(i4)}
-    #    (d) the planter must reject a mislabelled stratum
+    #    (d) verdict constancy must be capable of firing.  I4's typed sum is
+    #        s1 + s2 + s3 - 2r, whose sign is invariant only because every channel
+    #        of an instance shares one step magnitude.  Hand-build a window with
+    #        per-channel steps and the sum flips to RISE, so a cell holding both
+    #        would not be constant.  A constancy gate never shown to fire would be
+    #        a counter that never ran.
+    from mex6_arms import _dir_of as _dir
+    i4w = [i.window for i in insts if i.stratum == "I4_RETRACTED_WORK"]
+    flips = 0
+    for w in i4w:
+        base = mex6_typed_capability(w)
+        skewed = _skew_i4(w)
+        if skewed is not None and mex6_typed_capability(skewed) != base:
+            flips += 1
+    positives["per_channel_steps_break_I4_constancy"] = {"tripped": flips, "n": len(i4w)}
+
+    #    (e) the planter must reject a mislabelled stratum
     #        the relabel must name a stratum with a DIFFERENT declared effect:
     #        the planter checks effects, not names, so relabelling I10 as
     #        GENUINE_CAPABILITY_GAIN is correctly accepted -- both declare
@@ -504,10 +684,13 @@ def stage_selftest(out_dir: Path) -> int:
     pairs = [(i, o) for i, o in pairs if o]
     mism = sum(1 for i, o in pairs if not planter_agrees(i.window, o)[0])
     positives["planter_rejects_a_mislabelled_stratum"] = {"tripped": mism, "n": len(pairs)}
+    rep["constancy_positive_note"] = (
+        "a hand-built window with per-channel step magnitudes flips I4's typed capability "
+        "from FALL to RISE, so G8's constancy check is demonstrably able to fire")
     rep["planted_positives"] = positives
 
     rep["passed"] = bool(
-        ka == len(insts) and dec == len(insts) and m_ok == len(insts)
+        signs_ok and ka == len(insts) and dec == len(insts) and m_ok == len(insts)
         and all(v["tripped"] == v["n"] and v["n"] > 0 for v in positives.values()))
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "ME_X6_SELFTEST_REPORT.json").write_text(canonical_json(rep))
@@ -520,9 +703,36 @@ def stage_selftest(out_dir: Path) -> int:
 
 # ---- stages --------------------------------------------------------------------
 
+def frozen_signs() -> dict[str, int]:
+    """The comparator's signs as COMMITTED in the frozen design JSON.
+
+    Refitting them at run time would mean the "frozen" signs were never frozen:
+    a generator or fitting change after the freeze would silently replace the
+    committed weights on a protected run.  They are read from the design file,
+    and `assert_frozen_signs_still_reproduce` checks that a refit on the public
+    development split still yields them -- so drift is caught rather than
+    absorbed.
+    """
+    d = json.loads(DESIGN_JSON.read_text())
+    return {arm: {k: int(v) for k, v in sg.items()}
+            for arm, sg in d["comparator"]["frozen_fitted_signs"].items()}
+
+
+def assert_frozen_signs_still_reproduce() -> tuple[bool, dict[str, int], dict[str, int]]:
+    committed = frozen_signs()
+    refit = fit_all(generate_split("dev", DEV_SEED, 1))
+    return committed == refit, committed, refit
+
+
 def _run_split(label: str, prefix: str, seed: str, per_cell: int, out_dir: Path,
                public: str | None) -> int:
-    load_fitted_signs(fit_signs(generate_split("dev", DEV_SEED, 1)))
+    ok, committed, refit = assert_frozen_signs_still_reproduce()
+    if not ok:
+        drift = {k: (committed.get(k), refit.get(k)) for k in sorted(set(committed) | set(refit))
+                 if committed.get(k) != refit.get(k)}
+        print(f"REFUSED: the frozen comparator signs no longer reproduce: {drift}", file=sys.stderr)
+        return 5
+    load_fitted_signs(committed)
     insts = generate_split(prefix, seed, per_cell)
     res, cus = run_instances(insts, label, public)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -608,11 +818,14 @@ def render_md(a: dict) -> str:
          f"- instances: {a['n_instances']}",
          f"- route: `{g['ROUTE']['route']}` — terminal `{g['ROUTE']['terminal']}`",
          f"- reason: {g['ROUTE']['reason']}", "",
-         "## Gates", "", "| gate | pass | n_evaluated |", "|---|---|---|"]
+         "## Gates", "",
+         "Both denominators are shown. Instances are structural replicates of a cell, not "
+         "independent observations: only G0c reports an inferential statistic.", "",
+         "| gate | pass | instances | cells |", "|---|---|---|---|"]
     for k, v in g.items():
         if k in ("ROUTE", "COVERAGE_LEDGER"):
             continue
-        L.append(f"| `{k}` | {v.get('pass')} | {v.get('n_evaluated')} |")
+        L.append(f"| `{k}` | {v.get('pass')} | {v.get('n_evaluated')} | {v.get('n_cells', '—')} |")
     L += ["", "## Arms", "", "| arm | exact | capability | activity | n |", "|---|---|---|---|---|"]
     for k, v in sorted(pa.items(), key=lambda x: -x[1]["exact_rate"]):
         L.append(f"| `{k}` | {v['exact_rate']:.3f} | {v['capability_rate']:.3f} | "

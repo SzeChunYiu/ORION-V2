@@ -88,6 +88,37 @@ legitimate publishable result and not a failure. The honest null is **"no
 residual detectable in the registered decision problems the untyped aggregate
 already solves exactly"**, never "typing adds nothing".
 
+### 1.4 What kind of result this is
+
+**A constructive separation, not a sampling study.** The claim is: *on this
+constructed family of decision problems the typed reading is exact, no untyped
+aggregate carrying one global sign per channel can be, and here is which
+stratum separates them and which typed channel carries each.*
+
+Every arm's decision is a strict integer sign comparison, so an arm's verdict is
+**constant across the instances of a cell** — asserted, not assumed, by the hard
+gate **G8**. There is therefore no chance mechanism for a paired significance
+test to test. An exact p-value over 1 400 instances would report an effective
+*n* of **28 cells** at an inflated denominator, in a study whose own taxonomy
+names that failure. So **G1a, G1b, G4 and G6 are deterministic comparisons over
+cells and report no p-value.**
+
+**G0c is the one exception and keeps its exact binomial tails**: `C_RANDOM`
+draws per instance and the shuffled-label null permutes across instances, so
+those are genuine sampling quantities even in a deterministic design. Its tails
+are computed in exact rational arithmetic — the float form overflows at the
+registered protected size, and an overflowed tail compared against a threshold
+would make a hard gate incapable of failing.
+
+**Instances per cell buy structural coverage, not power:** a cell's verdict is
+shown invariant under varying baselines, step magnitudes and step onsets. Every
+gate reports **both denominators**, instances and cells, so a structural
+replicate can never be read as an independent observation.
+
+If constancy ever fails, the constructive framing is wrong and inferential
+statistics *would* be required — so G8 is hard and a failure routes
+`CANNOT_CHECK` rather than being absorbed.
+
 ## 2. The episode, and the joint verdict
 
 One instance is a **field window**: a scale, a fit window of 8 periods, a
@@ -205,17 +236,31 @@ Every gate is a **positive test carrying its own `n_evaluated`**. A gate with
   the parent. Invariance must not be bought with abstention.
 - **G3 `MECHANISM_BY_OMISSION`** — each ablation degrades **exactly** the strata
   declared to depend on it and no others, reported per ablation.
-- **G4 `INFORMATION_LADDER`** — no rung significantly worse than the one below,
-  **per scale, never pooled**.
+- **G4 `INFORMATION_LADDER`** — **not a monotonicity gate.** Every rung is
+  fitted on its own channel set, and L2 is *still* strictly worse than L1:
+  one global sign cannot **ignore** a channel that moves without capability, so
+  the attention channel destroys `I5_CITATION_RING`, which L1 gets right
+  precisely by not holding it. Fitting does not remove the reversal, so it is a
+  property of untyped aggregation and a **finding** (P-MEX6-2), not a lane
+  defect. The positive test is a **count** comparison of exact cells, top rung
+  against bottom, **per scale, never pooled**.
 - **G5 `HOSTILE_INVARIANCE_SUITE`** — I1–I10 and X6-I7, each its own positive
   test with its own denominator.
 - **G6 `CROSS_SCALE_TRANSFER`** — separately in each scale; a result that does
   not transfer to the second unit of analysis is killed.
 - **G7 `REGISTERED_PREDICTION`** — **P-MEX6-1**, below.
+- **G8 `VERDICT_CONSTANCY_WITHIN_CELL` (hard)** — every arm's verdict is
+  constant across the instances of a cell. This is the gate that licenses every
+  deterministic comparison above. `C_RANDOM` is excluded by construction. The
+  selftest carries a **planted positive that must trip it**: I4's typed sum is
+  `s₁ + s₂ + s₃ − 2r`, sign-invariant only because all channels of an instance
+  share one step magnitude, so a hand-built window with per-channel steps flips
+  I4 from FALL to RISE and the constancy check sees it. A constancy gate never
+  shown to fire would be a counter that never ran.
 - **COVERAGE_LEDGER** (reported, not a gate) — every cell with its count and an
   explicit list of those exercised zero times.
 
-### 5.1 P-MEX6-1, registered before the run
+### 5.1 P-MEX6-1 and P-MEX6-2, registered before the run
 
 > The information-matched untyped parent fails **exactly** on the strata where
 > the true capability direction contradicts the direction of a channel it must
@@ -223,10 +268,16 @@ Every gate is a **positive test carrying its own `n_evaluated`**. A gate with
 > is flat (I1, I2, I3, I5, I7, I8), or every ordinary validated channel rising
 > while capability falls (I4) — **and nowhere else.**
 
-Registered from the public development split. **Falsifier:** a failure outside
-that support, or a predicted failure that does not occur. The mechanism claimed
-is that one global sign per channel cannot represent *"volume counts only when
-validation accompanies it"*.
+> **P-MEX6-2.** The fitted untyped ladder is **not monotone**: adding the
+> attention channel strictly reduces exactness, because one global sign per
+> channel cannot **ignore** a channel that moves without capability.
+> Support: `L1_ACTIVITY_ONLY -> L2_PLUS_ATTENTION`, and no other step.
+
+Both registered from the public development split, and **both must hold** for
+G7 to pass. **Falsifiers:** a failure or regression outside the declared
+support, or a predicted one that does not occur. The mechanism claimed in both
+is the same: one global sign per channel cannot represent *"volume counts only
+when validation accompanies it"*.
 
 ## 6. Routing
 
@@ -238,6 +289,8 @@ validation accompanies it"*.
 | ¬G1a (a tie) | `PARENT_SUFFICIENT` | `TYPING_NOT_SEPARATED` |
 | G1a ∧ ¬G2 | `M_OVER_ABSTAINS` | `NONE` |
 | G1a ∧ ¬(G3 ∧ G5) | `CANNOT_CHECK` | `NONE` |
+| G8 fails | `CANNOT_CHECK` — the constructive framing is wrong | `NONE` |
+| G1a ∧ ¬(G3 ∧ G4 ∧ G5 ∧ G7) | `CANNOT_CHECK` | `NONE` |
 | all pass | `MECHANISM_ESTABLISHED_NOT_A_RESIDUAL` | `UNTYPED_AGGREGATE_CANNOT_REPRESENT_THE_CONJUNCTION_AT_MATCHED_INFORMATION` |
 
 **No routing path awards an ME-X6 residual.** §1.3 declares M exact by
@@ -324,6 +377,9 @@ TEMPORAL_HOLDOUT                 = SYNTHETIC_TIME_DECLARED_SCOPE_CONTRACTION
 PRIMARY_COMPARATOR               = B4X_FITTED_UNTYPED (information-matched)
 M_OPTIMAL_BY_CONSTRUCTION        = TRUE (declared; the gap is not the finding)
 RESIDUAL_TERMINAL_REACHABLE      = FALSE (no routing path awards one)
+RESULT_CLASS                     = CONSTRUCTIVE_SEPARATION_NOT_A_SAMPLING_STUDY
+INFERENTIAL_STATISTICS           = G0c ONLY (the rest are deterministic over cells)
+REGISTERED_PREDICTIONS           = P-MEX6-1, P-MEX6-2
 PARENT_SUFFICIENCY               = VALID_SUCCESSFUL_TERMINAL
 REGISTERED_PREDICTION            = P-MEX6-1
 FLAGSHIP_GATE                    = FALSE

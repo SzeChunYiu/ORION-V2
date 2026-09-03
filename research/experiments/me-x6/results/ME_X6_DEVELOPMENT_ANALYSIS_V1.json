@@ -33,11 +33,13 @@
         "X6I7_ONE_BREAKTHROUGH|SCALE_PROBLEM_FAMILY": 1,
         "X6I7_ONE_BREAKTHROUGH|SCALE_SUBFIELD": 1
       },
+      "n_cells": 28,
       "n_evaluated": 28,
       "never_exercised": [],
       "rule": "reported, not a gate: any registered cell with zero instances is named here so no rate computed over it can be read as 'checked and fine'"
     },
     "G0a_KNOWN_ANSWER": {
+      "n_cells": 28,
       "n_evaluated": 32,
       "pass": true,
       "rule": "one hand-authored fixture per (stratum, scale) cell plus the planted positives are reproduced in the selftest report",
@@ -48,6 +50,7 @@
         "n": 28,
         "ok": 28
       },
+      "n_cells": 28,
       "n_evaluated": 28,
       "pass": true,
       "planter_agree": {
@@ -68,41 +71,75 @@
         "n_evaluated": 20
       },
       "majority_class_capability_rate": 0.5714285714285714,
+      "n_cells": 28,
       "n_evaluated": 28,
       "pass": true,
       "random_capability_hits": 11,
-      "random_vs_one_third_upper_tail_p": 0.314109637050045,
+      "random_vs_one_third_upper_tail_p": 0.3141096370500447,
       "rule": "the degenerate controls score zero where their answer is wrong; the random control is not significantly above its derived 1/3 expectation and the shuffled-label null is not significantly above the majority-class rate. No threshold constant: both reference values are computed from the split. `always_flat_exact_rate` is reported beside the majority-class rate so a degenerate control's score cannot be read as skill.",
       "shuffled_vs_majority_class_upper_tail_p": 0.9999999646725568
     },
     "G1a_M_AHEAD_OF_MATCHED_PARENT": {
-      "n_evaluated": 28,
-      "paired": {
-        "diff_x_minus_y": 0.5,
-        "discordant": 14,
-        "exact_p_two_sided": 0.0001220703125,
-        "n": 28,
-        "x_only": 14,
-        "y_only": 0
+      "cells": {
+        "n_cells": 28,
+        "x_ahead": true,
+        "x_exact_cells": 28,
+        "x_only_cells": [
+          "I1_DUPLICATES|SCALE_PROBLEM_FAMILY",
+          "I1_DUPLICATES|SCALE_SUBFIELD",
+          "I2_PARAPHRASE|SCALE_PROBLEM_FAMILY",
+          "I2_PARAPHRASE|SCALE_SUBFIELD",
+          "I3_MASS_LOW_INFORMATION|SCALE_PROBLEM_FAMILY",
+          "I3_MASS_LOW_INFORMATION|SCALE_SUBFIELD",
+          "I4_RETRACTED_WORK|SCALE_PROBLEM_FAMILY",
+          "I4_RETRACTED_WORK|SCALE_SUBFIELD",
+          "I5_CITATION_RING|SCALE_PROBLEM_FAMILY",
+          "I5_CITATION_RING|SCALE_SUBFIELD",
+          "I7_FIELD_SIZE_SCALING|SCALE_PROBLEM_FAMILY",
+          "I7_FIELD_SIZE_SCALING|SCALE_SUBFIELD",
+          "I8_FASHION_CONCENTRATION|SCALE_PROBLEM_FAMILY",
+          "I8_FASHION_CONCENTRATION|SCALE_SUBFIELD"
+        ],
+        "y_exact_cells": 14,
+        "y_only_cells": []
       },
+      "n_cells": 28,
+      "n_evaluated": 28,
       "pass": true,
-      "rule": "paired exact-match difference M - B4X_FITTED > 0 with exact two-sided p <= 0.05"
+      "rule": "M is exact on strictly more CELLS than the information-matched fitted parent, and on none fewer. No significance test: the arms' verdicts are constant within a cell (G8), so a paired exact p-value over instance counts would be an inflated denominator, not evidence."
     },
     "G1b_MATCHED_PARENT_AHEAD": {
-      "n_evaluated": 28,
-      "paired": {
-        "diff_x_minus_y": -0.5,
-        "discordant": 14,
-        "exact_p_two_sided": 0.0001220703125,
-        "n": 28,
-        "x_only": 0,
-        "y_only": 14
+      "cells": {
+        "n_cells": 28,
+        "x_ahead": false,
+        "x_exact_cells": 14,
+        "x_only_cells": [],
+        "y_exact_cells": 28,
+        "y_only_cells": [
+          "I1_DUPLICATES|SCALE_PROBLEM_FAMILY",
+          "I1_DUPLICATES|SCALE_SUBFIELD",
+          "I2_PARAPHRASE|SCALE_PROBLEM_FAMILY",
+          "I2_PARAPHRASE|SCALE_SUBFIELD",
+          "I3_MASS_LOW_INFORMATION|SCALE_PROBLEM_FAMILY",
+          "I3_MASS_LOW_INFORMATION|SCALE_SUBFIELD",
+          "I4_RETRACTED_WORK|SCALE_PROBLEM_FAMILY",
+          "I4_RETRACTED_WORK|SCALE_SUBFIELD",
+          "I5_CITATION_RING|SCALE_PROBLEM_FAMILY",
+          "I5_CITATION_RING|SCALE_SUBFIELD",
+          "I7_FIELD_SIZE_SCALING|SCALE_PROBLEM_FAMILY",
+          "I7_FIELD_SIZE_SCALING|SCALE_SUBFIELD",
+          "I8_FASHION_CONCENTRATION|SCALE_PROBLEM_FAMILY",
+          "I8_FASHION_CONCENTRATION|SCALE_SUBFIELD"
+        ]
       },
+      "n_cells": 28,
+      "n_evaluated": 28,
       "pass": false,
       "rule": "its own positive test, not the negation of G1a"
     },
     "G2_ANTI_CONSERVATISM": {
       "M_exact": 4,
+      "n_cells": 28,
       "n_evaluated": 4,
       "parent_exact": 4,
       "pass": true,
@@ -110,6 +147,7 @@
       "status": "EVALUATED"
     },
     "G3_MECHANISM_BY_OMISSION": {
+      "n_cells": 28,
       "n_evaluated": 28,
       "pass": true,
       "per_ablation": {
@@ -169,143 +207,223 @@
       "rule": "each typed-channel ablation degrades exactly the strata declared to depend on it, and no others"
     },
     "G4_INFORMATION_LADDER": {
+      "n_cells": 28,
       "n_evaluated": 28,
       "pass": true,
       "per_scale": {
         "SCALE_PROBLEM_FAMILY": {
+          "n_cells": 14,
           "n_evaluated": 14,
-          "rung_exact_rate": {
-            "L1_ACTIVITY_ONLY": 0.42857142857142855,
-            "L2_PLUS_ATTENTION": 0.35714285714285715,
-            "L3_PLUS_SEMANTIC": 0.35714285714285715,
-            "L4_PLUS_NETWORK": 0.42857142857142855,
-            "L5_PLUS_VALIDATION": 0.5
+          "pass": true,
+          "regressions": [
+            "L1_ACTIVITY_ONLY -> L2_PLUS_ATTENTION"
+          ],
+          "rung": {
+            "L1_ACTIVITY_ONLY": {
+              "exact_cells": 6,
+              "exact_rate": 0.42857142857142855
+            },
+            "L2_PLUS_ATTENTION": {
+              "exact_cells": 5,
+              "exact_rate": 0.35714285714285715
+            },
+            "L3_PLUS_SEMANTIC": {
+              "exact_cells": 5,
+              "exact_rate": 0.35714285714285715
+            },
+            "L4_PLUS_NETWORK": {
+              "exact_cells": 6,
+              "exact_rate": 0.42857142857142855
+            },
+            "L5_PLUS_VALIDATION": {
+              "exact_cells": 7,
+              "exact_rate": 0.5
+            }
           },
           "status": "EVALUATED",
           "steps": [
             {
-              "from": "L1_ACTIVITY_ONLY",
-              "paired": {
-                "diff_x_minus_y": -0.07142857142857142,
-                "discordant": 1,
-                "exact_p_two_sided": 1.0,
-                "n": 14,
-                "x_only": 0,
-                "y_only": 1
+              "cells": {
+                "n_cells": 14,
+                "x_ahead": false,
+                "x_exact_cells": 5,
+                "x_only_cells": [],
+                "y_exact_cells": 6,
+                "y_only_cells": [
+                  "I5_CITATION_RING|SCALE_PROBLEM_FAMILY"
+                ]
               },
-              "regression": false,
+              "from": "L1_ACTIVITY_ONLY",
+              "regression": true,
               "to": "L2_PLUS_ATTENTION"
             },
             {
-              "from": "L2_PLUS_ATTENTION",
-              "paired": {
-                "diff_x_minus_y": 0.0,
-                "discordant": 0,
-                "exact_p_two_sided": 1.0,
-                "n": 14,
-                "x_only": 0,
-                "y_only": 0
+              "cells": {
+                "n_cells": 14,
+                "x_ahead": false,
+                "x_exact_cells": 5,
+                "x_only_cells": [],
+                "y_exact_cells": 5,
+                "y_only_cells": []
               },
+              "from": "L2_PLUS_ATTENTION",
               "regression": false,
               "to": "L3_PLUS_SEMANTIC"
             },
             {
-              "from": "L3_PLUS_SEMANTIC",
-              "paired": {
-                "diff_x_minus_y": 0.07142857142857142,
-                "discordant": 1,
-                "exact_p_two_sided": 1.0,
-                "n": 14,
-                "x_only": 1,
-                "y_only": 0
+              "cells": {
+                "n_cells": 14,
+                "x_ahead": true,
+                "x_exact_cells": 6,
+                "x_only_cells": [
+                  "X6I7_ONE_BREAKTHROUGH|SCALE_PROBLEM_FAMILY"
+                ],
+                "y_exact_cells": 5,
+                "y_only_cells": []
               },
+              "from": "L3_PLUS_SEMANTIC",
               "regression": false,
               "to": "L4_PLUS_NETWORK"
             },
             {
-              "from": "L4_PLUS_NETWORK",
-              "paired": {
-                "diff_x_minus_y": 0.07142857142857142,
-                "discordant": 1,
-                "exact_p_two_sided": 1.0,
-                "n": 14,
-                "x_only": 1,
-                "y_only": 0
+              "cells": {
+                "n_cells": 14,
+                "x_ahead": true,
+                "x_exact_cells": 7,
+                "x_only_cells": [
+                  "I9_DELAYED_VALIDATION|SCALE_PROBLEM_FAMILY"
+                ],
+                "y_exact_cells": 6,
+                "y_only_cells": []
               },
+              "from": "L4_PLUS_NETWORK",
               "regression": false,
               "to": "L5_PLUS_VALIDATION"
             }
-          ]
+          ],
+          "top_vs_bottom": {
+            "n_cells": 14,
+            "x_ahead": false,
+            "x_exact_cells": 7,
+            "x_only_cells": [
+              "I9_DELAYED_VALIDATION|SCALE_PROBLEM_FAMILY",
+              "X6I7_ONE_BREAKTHROUGH|SCALE_PROBLEM_FAMILY"
+            ],
+            "y_exact_cells": 6,
+            "y_only_cells": [
+              "I5_CITATION_RING|SCALE_PROBLEM_FAMILY"
+            ]
+          }
         },
         "SCALE_SUBFIELD": {
+          "n_cells": 14,
           "n_evaluated": 14,
-          "rung_exact_rate": {
-            "L1_ACTIVITY_ONLY": 0.42857142857142855,
-            "L2_PLUS_ATTENTION": 0.35714285714285715,
-            "L3_PLUS_SEMANTIC": 0.35714285714285715,
-            "L4_PLUS_NETWORK": 0.42857142857142855,
-            "L5_PLUS_VALIDATION": 0.5
+          "pass": true,
+          "regressions": [
+            "L1_ACTIVITY_ONLY -> L2_PLUS_ATTENTION"
+          ],
+          "rung": {
+            "L1_ACTIVITY_ONLY": {
+              "exact_cells": 6,
+              "exact_rate": 0.42857142857142855
+            },
+            "L2_PLUS_ATTENTION": {
+              "exact_cells": 5,
+              "exact_rate": 0.35714285714285715
+            },
+            "L3_PLUS_SEMANTIC": {
+              "exact_cells": 5,
+              "exact_rate": 0.35714285714285715
+            },
+            "L4_PLUS_NETWORK": {
+              "exact_cells": 6,
+              "exact_rate": 0.42857142857142855
+            },
+            "L5_PLUS_VALIDATION": {
+              "exact_cells": 7,
+              "exact_rate": 0.5
+            }
           },
           "status": "EVALUATED",
           "steps": [
             {
-              "from": "L1_ACTIVITY_ONLY",
-              "paired": {
-                "diff_x_minus_y": -0.07142857142857142,
-                "discordant": 1,
-                "exact_p_two_sided": 1.0,
-                "n": 14,
-                "x_only": 0,
-                "y_only": 1
+              "cells": {
+                "n_cells": 14,
+                "x_ahead": false,
+                "x_exact_cells": 5,
+                "x_only_cells": [],
+                "y_exact_cells": 6,
+                "y_only_cells": [
+                  "I5_CITATION_RING|SCALE_SUBFIELD"
+                ]
               },
-              "regression": false,
+              "from": "L1_ACTIVITY_ONLY",
+              "regression": true,
               "to": "L2_PLUS_ATTENTION"
             },
             {
-              "from": "L2_PLUS_ATTENTION",
-              "paired": {
-                "diff_x_minus_y": 0.0,
-                "discordant": 0,
-                "exact_p_two_sided": 1.0,
-                "n": 14,
-                "x_only": 0,
-                "y_only": 0
+              "cells": {
+                "n_cells": 14,
+                "x_ahead": false,
+                "x_exact_cells": 5,
+                "x_only_cells": [],
+                "y_exact_cells": 5,
+                "y_only_cells": []
               },
+              "from": "L2_PLUS_ATTENTION",
               "regression": false,
               "to": "L3_PLUS_SEMANTIC"
             },
             {
-              "from": "L3_PLUS_SEMANTIC",
-              "paired": {
-                "diff_x_minus_y": 0.07142857142857142,
-                "discordant": 1,
-                "exact_p_two_sided": 1.0,
-                "n": 14,
-                "x_only": 1,
-                "y_only": 0
+              "cells": {
+                "n_cells": 14,
+                "x_ahead": true,
+                "x_exact_cells": 6,
+                "x_only_cells": [
+                  "X6I7_ONE_BREAKTHROUGH|SCALE_SUBFIELD"
+                ],
+                "y_exact_cells": 5,
+                "y_only_cells": []
               },
+              "from": "L3_PLUS_SEMANTIC",
               "regression": false,
               "to": "L4_PLUS_NETWORK"
             },
             {
-              "from": "L4_PLUS_NETWORK",
-              "paired": {
-                "diff_x_minus_y": 0.07142857142857142,
-                "discordant": 1,
-                "exact_p_two_sided": 1.0,
-                "n": 14,
-                "x_only": 1,
-                "y_only": 0
+              "cells": {
+                "n_cells": 14,
+                "x_ahead": true,
+                "x_exact_cells": 7,
+                "x_only_cells": [
+                  "I9_DELAYED_VALIDATION|SCALE_SUBFIELD"
+                ],
+                "y_exact_cells": 6,
+                "y_only_cells": []
               },
+              "from": "L4_PLUS_NETWORK",
               "regression": false,
               "to": "L5_PLUS_VALIDATION"
             }
-          ]
+          ],
+          "top_vs_bottom": {
+            "n_cells": 14,
+            "x_ahead": false,
+            "x_exact_cells": 7,
+            "x_only_cells": [
+              "I9_DELAYED_VALIDATION|SCALE_SUBFIELD",
+              "X6I7_ONE_BREAKTHROUGH|SCALE_SUBFIELD"
+            ],
+            "y_exact_cells": 6,
+            "y_only_cells": [
+              "I5_CITATION_RING|SCALE_SUBFIELD"
+            ]
+          }
         }
       },
-      "rule": "no rung significantly worse than the rung below it, reported per scale and never pooled; rung k+1's channels contain rung k's"
+      "rule": "positive test, per scale and never pooled: L5_PLUS_VALIDATION is exact on strictly more cells than L1_ACTIVITY_ONLY (a count, not dominance -- the top rung is expected to lose I5_CITATION_RING to L1_ACTIVITY_ONLY, which is P-MEX6-2). Intermediate reversals are REPORTED, not failed: every rung is fitted on its own channel set, so a reversal is a property of untyped aggregation (P-MEX6-2), not a lane defect."
     },
     "G5_HOSTILE_INVARIANCE_SUITE": {
+      "n_cells": 28,
       "n_evaluated": 28,
       "pass": true,
       "per_invariance": {
@@ -390,41 +508,68 @@
       "rule": "protocol section 7 I1-I10 and the short protocol's X6-I7, each its own positive test with its own denominator; a stratum with no instances reports CANNOT_CHECK and never a pass"
     },
     "G6_CROSS_SCALE_TRANSFER": {
+      "n_cells": 28,
       "n_evaluated": 28,
       "pass": true,
       "per_scale": {
         "SCALE_PROBLEM_FAMILY": {
           "M_exact_rate": 1.0,
-          "n_evaluated": 14,
-          "paired_M_minus_parent": {
-            "diff_x_minus_y": 0.5,
-            "discordant": 7,
-            "exact_p_two_sided": 0.015625,
-            "n": 14,
-            "x_only": 7,
-            "y_only": 0
+          "cells": {
+            "n_cells": 14,
+            "x_ahead": true,
+            "x_exact_cells": 14,
+            "x_only_cells": [
+              "I1_DUPLICATES|SCALE_PROBLEM_FAMILY",
+              "I2_PARAPHRASE|SCALE_PROBLEM_FAMILY",
+              "I3_MASS_LOW_INFORMATION|SCALE_PROBLEM_FAMILY",
+              "I4_RETRACTED_WORK|SCALE_PROBLEM_FAMILY",
+              "I5_CITATION_RING|SCALE_PROBLEM_FAMILY",
+              "I7_FIELD_SIZE_SCALING|SCALE_PROBLEM_FAMILY",
+              "I8_FASHION_CONCENTRATION|SCALE_PROBLEM_FAMILY"
+            ],
+            "y_exact_cells": 7,
+            "y_only_cells": []
           },
+          "n_cells": 14,
+          "n_evaluated": 14,
           "pass": true,
           "status": "EVALUATED"
         },
         "SCALE_SUBFIELD": {
           "M_exact_rate": 1.0,
-          "n_evaluated": 14,
-          "paired_M_minus_parent": {
-            "diff_x_minus_y": 0.5,
-            "discordant": 7,
-            "exact_p_two_sided": 0.015625,
-            "n": 14,
-            "x_only": 7,
-            "y_only": 0
+          "cells": {
+            "n_cells": 14,
+            "x_ahead": true,
+            "x_exact_cells": 14,
+            "x_only_cells": [
+              "I1_DUPLICATES|SCALE_SUBFIELD",
+              "I2_PARAPHRASE|SCALE_SUBFIELD",
+              "I3_MASS_LOW_INFORMATION|SCALE_SUBFIELD",
+              "I4_RETRACTED_WORK|SCALE_SUBFIELD",
+              "I5_CITATION_RING|SCALE_SUBFIELD",
+              "I7_FIELD_SIZE_SCALING|SCALE_SUBFIELD",
+              "I8_FASHION_CONCENTRATION|SCALE_SUBFIELD"
+            ],
+            "y_exact_cells": 7,
+            "y_only_cells": []
           },
+          "n_cells": 14,
+          "n_evaluated": 14,
           "pass": true,
           "status": "EVALUATED"
         }
       },
-      "rule": "the result must hold separately at each unit of analysis (protocol section 3); a result that does not transfer to the second scale is killed"
+      "rule": "the result must hold separately at each unit of analysis (protocol section 3): in each scale the matched parent is exact on no cell M misses. A result that does not transfer to the second scale is killed."
     },
     "G7_REGISTERED_PREDICTION": {
+      "P_MEX6_2_observed_ladder_regressions": [
+        "L1_ACTIVITY_ONLY -> L2_PLUS_ATTENTION"
+      ],
+      "P_MEX6_2_pass": true,
+      "P_MEX6_2_predicted_ladder_regressions": [
+        "L1_ACTIVITY_ONLY -> L2_PLUS_ATTENTION"
+      ],
+      "n_cells": 28,
       "n_evaluated": 28,
       "observed_failures_inside_support": [
         "I1_DUPLICATES",
@@ -447,7 +592,15 @@
         "I7_FIELD_SIZE_SCALING",
         "I8_FASHION_CONCENTRATION"
       ],
-      "rule": "P-MEX6-1, registered before the run: the information-matched untyped parent fails exactly on the strata where an activity or attention channel moves while capability does not, and nowhere else"
+      "rule": "two predictions registered before the run. P-MEX6-1: the information-matched untyped parent fails exactly on the strata where the true capability direction contradicts a channel it must give one global sign to, and nowhere else. P-MEX6-2: the fitted untyped ladder is NOT monotone -- adding the attention channel strictly reduces exactness, because one global sign cannot ignore a channel that moves without capability. Both must hold."
+    },
+    "G8_VERDICT_CONSTANCY_WITHIN_CELL": {
+      "instances_per_cell": 1,
+      "n_cells": 28,
+      "n_evaluated": 28,
+      "pass": true,
+      "rule": "every arm's verdict is constant across the instances of a cell, so the study is a CONSTRUCTIVE separation over cells and not a sampling study. C_RANDOM is excluded by construction: it draws per instance and is expected to vary. Instances per cell buy structural coverage -- a cell's verdict is shown invariant under varying baselines, step sizes and step onsets -- and buy no statistical power, which is why no gate but G0c reports a p-value.",
+      "varying_arm_cells": []
     },
     "ROUTE": {
       "reason": "the mechanism map matches its declared prediction, every registered hostile invariance holds, and the result holds separately at both scales. M's exactness is by construction (design 1.3) and is NOT evidence; no ME-X6 residual is claimed",
@@ -457,7 +610,7 @@
   },
   "label": "DEVELOPMENT",
   "n_instances": 28,
-  "results_sha256": "906d8d72fc5ad8bd725d72670d8e33a2516ad3ad975ad23d6f6387e641bdb56e",
+  "results_sha256": "cfffe70e89a7fe198a18ddc9c46c56889dc00b0cba08088cbcea22ca49b8e0f7",
   "schema_version": "orion.v2.me-x6.exact-study-analysis.v1",
   "score": {
     "per_arm": {
@@ -534,7 +687,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.127456
+        "wall_ms": 0.147919
       },
       "B1_CITATION_IMPACT": {
         "activity_rate": 0.5714285714285714,
@@ -609,7 +762,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.081752
+        "wall_ms": 0.089502
       },
       "B2_SEMANTIC_NOVELTY": {
         "activity_rate": 0.5714285714285714,
@@ -684,7 +837,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.100833
+        "wall_ms": 0.174377
       },
       "B3_DISRUPTION_TURNOVER": {
         "activity_rate": 0.2857142857142857,
@@ -759,7 +912,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.101211
+        "wall_ms": 0.108292
       },
       "B4X_FITTED_UNTYPED": {
         "activity_rate": 1.0,
@@ -834,7 +987,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.261375
+        "wall_ms": 0.315662
       },
       "B4X_INFORMATION_MATCHED_UNTYPED": {
         "activity_rate": 1.0,
@@ -909,7 +1062,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.239497
+        "wall_ms": 0.266169
       },
       "B4_SCIENCE_OF_SCIENCE_LITERAL": {
         "activity_rate": 1.0,
@@ -984,7 +1137,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.165663
+        "wall_ms": 0.178625
       },
       "C_ALWAYS_FLAT": {
         "activity_rate": 1.0,
@@ -1059,7 +1212,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.070877
+        "wall_ms": 0.08796
       },
       "C_ALWAYS_RISE": {
         "activity_rate": 1.0,
@@ -1134,7 +1287,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.070876
+        "wall_ms": 0.077958
       },
       "C_RANDOM": {
         "activity_rate": 1.0,
@@ -1209,7 +1362,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.084123
+        "wall_ms": 0.109124
       },
       "L1_ACTIVITY_ONLY": {
         "activity_rate": 1.0,
@@ -1284,7 +1437,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.118751
+        "wall_ms": 0.191123
       },
       "L2_PLUS_ATTENTION": {
         "activity_rate": 1.0,
@@ -1359,7 +1512,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.128998
+        "wall_ms": 0.188918
       },
       "L3_PLUS_SEMANTIC": {
         "activity_rate": 1.0,
@@ -1434,7 +1587,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.148124
+        "wall_ms": 0.191205
       },
       "L4_PLUS_NETWORK": {
         "activity_rate": 1.0,
@@ -1509,7 +1662,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.168918
+        "wall_ms": 0.207125
       },
       "L5_PLUS_VALIDATION": {
         "activity_rate": 1.0,
@@ -1584,7 +1737,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.240334
+        "wall_ms": 0.323418
       },
       "M_MINUS_CORRECTION_RETRACTION": {
         "activity_rate": 1.0,
@@ -1659,7 +1812,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.172206
+        "wall_ms": 0.200294
       },
       "M_MINUS_COST": {
         "activity_rate": 1.0,
@@ -1734,7 +1887,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.211375
+        "wall_ms": 0.208665
       },
       "M_MINUS_FORMAL": {
         "activity_rate": 1.0,
@@ -1809,7 +1962,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.186748
+        "wall_ms": 0.244958
       },
       "M_MINUS_REDERIVATION": {
         "activity_rate": 1.0,
@@ -1884,7 +2037,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.186711
+        "wall_ms": 0.209498
       },
       "M_MINUS_REPLICATION": {
         "activity_rate": 1.0,
@@ -1959,7 +2112,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.173668
+        "wall_ms": 0.205457
       },
       "M_MINUS_REUSE": {
         "activity_rate": 1.0,
@@ -2034,7 +2187,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.190705
+        "wall_ms": 0.213335
       },
       "M_TYPED_COLLECTIVE_STATE": {
         "activity_rate": 1.0,
@@ -2109,7 +2262,7 @@
             "n_evaluated": 2
           }
         },
-        "wall_ms": 0.204539
+        "wall_ms": 0.243417
       }
     }
   }
