@@ -53,11 +53,17 @@
       "control": "20 corrupted derivations were rejected for the registered Derives mismatch, so the checker is not accept-everything",
       "detail": "40 files, 20 kernel-accepted, 20 negative controls rejected, 0 CANNOT_CHECK, 0 disagreements; 20 task_ids all in PROTECTED, 0 in DEVELOPMENT",
       "state": "PASS"
+    },
+    {
+      "check": "registered_default_lean_path_is_not_stale",
+      "control": "creating that file would flip this check to FAIL",
+      "detail": "lean/LEAN_RECEIPT.json absent; the protected receipt is results/ME_X3_LEAN_RECEIPT_PROTECTED_V1.json; lean/ holds a DEVELOPMENT build and is untracked",
+      "state": "PASS"
     }
   ],
   "label": "PROTECTED",
   "n_could_not_check": 0,
   "n_fail": 0,
-  "n_pass": 9,
+  "n_pass": 10,
   "schema_version": "orion.v2.me-x3.receipt-verification.v1"
 }

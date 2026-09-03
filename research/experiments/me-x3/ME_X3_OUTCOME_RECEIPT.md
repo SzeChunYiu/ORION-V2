@@ -11,7 +11,7 @@ and its held-out reuse rate is scored over the 60 pairs, not over 120)
 **Custody sha256:** `27574873f463a05274405801d4378e27f94fc2dffe44f0bd9a5095c1759492bf`
 **Analysis sha256:** `bd2c9a620db3b7b5827bb27f874ff0256ff078794b12d44e2b056ae1f71ad0a6`
 **Selftest sha256:** `23e22773a606f630e03bfcacc0ee0f441a043f1b2698acf2a944c44f5fb15ce6`
-**Verification sha256:** `57ac2066668167fa67f4c6e242c1b0a655f5d88bde6fc2d3e70154589b98f52f`
+**Verification sha256:** `0a61e7b594398a6fca1f3cb44fa527e0f8d9b381ddc0130295339a857d4c68d4`
 
 **Seed reveal.** The commitment `cb799f89499cea4a088c6df071e9ce12bff2fceb02c4adc06ab7ce4eecdbb3f8` was published in
 the frozen design before the split existed. The seed is now revealed:
@@ -195,6 +195,14 @@ an argmax over a handful, which is why the step is quoted at all; no claim is
 made about the ordering of `R1`, `R2` and `R3`, which are indistinguishable in
 every family.
 
+`F8_TRANSFER` is flat at 0.808 for a different reason than `F1`, `F3`, `F4` and
+`F6` are flat at 1.000: nothing in the ladder touches transfer, so no rung can move
+it. Combined with its lack of a bindable ablation under G3, `F8_TRANSFER` contributes
+120 rows to the pooled denominator while contributing **no discriminating signal to
+either G3 or G4**. That is a real limitation of this study and is stated rather than
+left to be inferred; it is also why the per-family tables above are the primary
+report.
+
 The top rung and M coincide in **every family**, not merely on average. That is
 the content of `RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL`: once the
 federation's internal channel carries semantic content, the federation already
@@ -237,6 +245,14 @@ counterfactual is printed so the reading is visible rather than inferred.
 Lean 4.33.1 (commit `819816b2e0a3bf405af45ae5c7af2491d8f5bee6`) re-checked 40 files emitted from the **protected** corpus (`PROTECTED`; every task_id in the protected split and none in development): **20** accepted as proof terms with `#print axioms` certifying axiom-freedom, **20** corrupted files rejected with the registered `Derives` type mismatch, **0** `CANNOT_CHECK`, and **0** disagreements with the exhaustive oracle.
 
 Both arms of the control are non-empty: 20 accepts and 20 rejections. A checker that accepted everything would show 0 rejections, and one that rejected everything would show 0 accepts; neither is what happened, so the `0 disagreements` figure is a measurement and not an unrun counter.
+
+**Path note.** The frozen `mex3_lean.py` defaults to `--dir lean/` and writes
+`lean/LEAN_RECEIPT.json`. That directory holds the **development** build and is
+untracked, so re-running the frozen defaults would produce a development receipt at
+the registered default path. The protected receipt therefore lives at
+`results/ME_X3_LEAN_RECEIPT_PROTECTED_V1.json`, and
+`verify_receipt_claims.py` asserts the default path stays empty so the two can never
+be confused.
 
 The encoding is an inductive `Derives` proposition with an explicit proof term per
 derivation, not a Boolean function proved `true` by `rfl`; a corrupted derivation
@@ -291,8 +307,9 @@ reported `COULD_NOT_CHECK`, never `PASS`.
 | `drift_counters_are_not_vacuous` | PASS | drift_n=38, faithful_n=502; M drift_missed_rate=0.000 | A0_DIRECT (proof-only parent) scores drift_missed_rate=1.000 on the same denominator |
 | `G3_scope_is_declared` | PASS | 6 families gated and all degrade; 2 NOT gated (F1_DIRECT_SEARCH, F8_TRANSFER) | each not-gated family carries an explicit reason; no ablation is scored where none exists |
 | `lean_crosscheck_on_protected_corpus` | PASS | 40 files, 20 kernel-accepted, 20 negative controls rejected, 0 CANNOT_CHECK, 0 disagreements; 20 task_ids all in PROTECTED, 0 in DEVELOPMENT | 20 corrupted derivations were rejected for the registered Derives mismatch, so the checker is not accept-everything |
+| `registered_default_lean_path_is_not_stale` | PASS | lean/LEAN_RECEIPT.json absent; the protected receipt is results/ME_X3_LEAN_RECEIPT_PROTECTED_V1.json; lean/ holds a DEVELOPMENT build and is untracked | creating that file would flip this check to FAIL |
 
-Totals: **9 PASS, 0 FAIL, 0 COULD_NOT_CHECK.**
+Totals: **10 PASS, 0 FAIL, 0 COULD_NOT_CHECK.**
 
 The four silent-failure modes this is written against, and where each is refuted:
 
@@ -327,7 +344,7 @@ G2 = PASS
 G3 = PASS_ON_6_OF_8_FAMILIES   (2 families carry no registered ablation and are NOT gated)
 G4 = PASS
 LEAN_CROSSCHECK = PROTECTED_CORPUS 20_ACCEPTED 20_CONTROLS_REJECTED 0_DISAGREEMENTS
-RECEIPT_SELF_VERIFICATION = 9_PASS 0_FAIL 0_COULD_NOT_CHECK
+RECEIPT_SELF_VERIFICATION = 10_PASS 0_FAIL 0_COULD_NOT_CHECK
 NULL_READING = no residual detectable in registered decision problems the parents
                already solve exactly; NOT "no residual exists"
 MATHLIB_SCALE_GENERALITY = OUT_OF_SCOPE

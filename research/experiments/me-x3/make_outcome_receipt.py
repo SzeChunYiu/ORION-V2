@@ -251,6 +251,14 @@ an argmax over a handful, which is why the step is quoted at all; no claim is
 made about the ordering of `R1`, `R2` and `R3`, which are indistinguishable in
 every family.
 
+`F8_TRANSFER` is flat at 0.808 for a different reason than `F1`, `F3`, `F4` and
+`F6` are flat at 1.000: nothing in the ladder touches transfer, so no rung can move
+it. Combined with its lack of a bindable ablation under G3, `F8_TRANSFER` contributes
+120 rows to the pooled denominator while contributing **no discriminating signal to
+either G3 or G4**. That is a real limitation of this study and is stated rather than
+left to be inferred; it is also why the per-family tables above are the primary
+report.
+
 The top rung and M coincide in **every family**, not merely on average. That is
 the content of `RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL`: once the
 federation's internal channel carries semantic content, the federation already
@@ -278,6 +286,14 @@ counterfactual is printed so the reading is visible rather than inferred.
 ## 8. External proof-checker cross-check
 
 {leanpara}
+
+**Path note.** The frozen `mex3_lean.py` defaults to `--dir lean/` and writes
+`lean/LEAN_RECEIPT.json`. That directory holds the **development** build and is
+untracked, so re-running the frozen defaults would produce a development receipt at
+the registered default path. The protected receipt therefore lives at
+`results/ME_X3_LEAN_RECEIPT_PROTECTED_V1.json`, and
+`verify_receipt_claims.py` asserts the default path stays empty so the two can never
+be confused.
 
 The encoding is an inductive `Derives` proposition with an explicit proof term per
 derivation, not a Boolean function proved `true` by `rfl`; a corrupted derivation

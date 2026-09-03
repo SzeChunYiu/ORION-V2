@@ -191,6 +191,23 @@ else:
         f"{neg} corrupted derivations were rejected for the registered Derives mismatch, so the checker is not accept-everything"
         if neg else "CONTROL DID NOT FIRE: no negative control rejected")
 
+# --- 9. the registered default Lean path holds no stale receipt ---
+# `mex3_lean.py` is frozen: `--dir` defaults to `lean/` and `--report` to
+# `<dir>/LEAN_RECEIPT.json`. That directory holds a DEVELOPMENT build. If a receipt
+# were left there, a future reader re-running the frozen defaults -- or reverting the
+# receipt generator's path -- would silently read development numbers as the protected
+# cross-check. The protected receipt deliberately lives elsewhere, and this check keeps
+# the stale slot empty.
+stale = HERE / "lean" / "LEAN_RECEIPT.json"
+devdir = HERE / "lean"
+rec("registered_default_lean_path_is_not_stale",
+    "FAIL" if stale.exists() else "PASS",
+    f"{stale.relative_to(HERE)} absent; the protected receipt is "
+    f"results/ME_X3_LEAN_RECEIPT_PROTECTED_V1.json"
+    + (f"; {devdir.name}/ holds a DEVELOPMENT build and is untracked" if devdir.exists()
+       else f"; {devdir.name}/ does not exist"),
+    "creating that file would flip this check to FAIL")
+
 out = {"schema_version": "orion.v2.me-x3.receipt-verification.v1",
        "label": "PROTECTED",
        "checks": rows,
