@@ -54,6 +54,74 @@ Nothing registered is decidable from the deterministic arms alone.
 reinstalling `@openai/codex@0.129.0-alpha.15`. This agent is not permitted to authenticate on the
 operator's behalf, and this session is non-interactive.
 
+## 2a. Amendment, 2026-09-03 — `SD70-V2-BLOCK-1` cleared; `SD70-V2-BLOCK-2` opened
+
+The credential was restored by the coordinator (pinned CLI reinstalled, `~/.codex/auth.json`
+recovered from billy-old, account `232c8b04…`). I re-ran the exact probe rather than trusting the
+report, and **the study is still blocked — by a different cause.** BLOCK-1 as originally written
+(no credential) is **CLEARED**. What follows replaces it.
+
+### What the probe actually returned
+
+| host | pinned CLI executes? | authenticates? | `gpt-5.6-terra` | control `gpt-5.5` |
+|---|---|---|---|---|
+| Mac mini | **no** | n/a | n/a | n/a |
+| billy-old | yes (`0.129.0-alpha.15`) | **yes** | **HTTP 400** | **`turn.completed`, replied `OK`** |
+
+**Mac mini — the pinned binary cannot execute at all.** `codex --version` returns SIGKILL in 0.01 s
+with empty output (that is also why `codex login status` printed nothing for the coordinator: the
+process never ran). This is not a hang and not a credential fault. `spctl -a -t execute` reports
+`CSSMERR_TP_CERT_REVOKED`, and the kernel log gives the mechanism directly:
+
+```text
+amfid: …/codex not valid: AppleMobileFileIntegrityError Code=-420
+kernel: AMFI: code signature validation failed.
+kernel: mac_vnode_check_signature: … code signature validation failed fatally
+kernel: proc N: load code signature error 4 for file "codex"
+kernel: AMFI: hook..execve() killing <parent> (pid N)
+kernel: (AppleSystemPolicy) ASP: Security policy would not allow process
+```
+
+Apple has revoked the signing certificate for this build, so macOS kills it on `execve`. Note
+`codesign --verify --strict` passes ("valid on disk") — the signature is internally intact; it is
+the *certificate* that is revoked, which only `spctl` and AMFI surface. *Control:* `spctl` on
+homebrew `node` returns the weaker `rejected`, and `node` runs fine, so `spctl` is not blanket
+failing and `REVOKED` is a genuinely distinct verdict. This build is unrunnable on this Mac
+regardless of any credential, so the version pin is already unenforceable here.
+
+**billy-old — the credential is live and the channel works, but the frozen model is refused.** The
+`gpt-5.6-terra` probe returns HTTP **400**, not 401:
+
+> `The 'gpt-5.6-terra' model requires a newer version of Codex. Please upgrade to the latest app or CLI and try again.`
+
+A 400 means authentication *succeeded*; the server rejected the request on model/version grounds.
+The `gpt-5.5` control on the same host, same flags, completed: exit 0, `turn.completed`, agent
+message `OK`, 13 520 input / 5 output tokens. **So the credential is live and end-to-end dispatch
+works — the block is isolated to exactly one thing: CLI version versus the frozen model.**
+
+### `SD70-V2-BLOCK-2` — two standing commitments are jointly unsatisfiable
+
+One-stage attribution: **CLI version vs frozen model constant**.
+
+1. Design §5 pins `gpt-5.6-terra`. It is a frozen constant; changing it requires a V3 design with a
+   new freeze and a new seed commitment.
+2. The standing operator pin is codex `0.129.0-alpha.15`, on every machine, forever.
+3. The server says `gpt-5.6-terra` requires a newer CLI than `0.129.0-alpha.15`.
+
+No two of these can hold at once. This is an operator decision, not mine, and I have made no change
+in either direction. For the record, the pin's stated rationale is that 0.131+ breaks `/goal`, which
+governs the `csup`/`tn` factory fleets; SD70-V2 uses one-shot `codex exec --json` and never `/goal`.
+`0.147.0` was observed executing on this Mac earlier the same session, and the design's own §5 records
+a `gpt-5.6-terra` probe replying `OK` on 2026-09-02 — so a CLI new enough for the frozen model
+demonstrably runs here. Whether the pin admits a dispatch-scoped exception is the operator's call.
+
+### Still unspent
+
+Nothing was generated to establish any of the above. Protected tasks generated: **0**. Protected
+outcomes inspected: **0**. `PROTECTED_RUN_AUTHORIZATION*.json` for this study: **0** — the
+single-run guard remains armed. `ORION_CODEX_MODEL` was not repointed and no frozen constant,
+gate or threshold was touched.
+
 ## 3. What was rejected, and why
 
 - **Dispatch anyway and let the model arms 401.** Refused. `prepare` would generate the protected
