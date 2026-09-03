@@ -422,7 +422,48 @@ def pooled_rho(cells: list[dict], *, seed: int = RHO_SEED, draws: int = RHO_DRAW
             "per_cell_rho": {c["key"]: c["rho_J_T"] for c in usable}}
 
 
-def evaluate_gates(ct: dict, rho: dict, strata: dict) -> dict:
+# --------------------------------------------------- control gating (REPAIR R1)
+# Stage-2c defect (disclosed in E40_M5P_STAGE2C_OUTCOME_RECEIPT.md §5): evaluate_gates()
+# did not consume the runner's control verdicts, so it emitted a routing terminal while the
+# registered planted positive control was FAILing. The m2/m3 runner gated on exactly this
+# (`e40_matched_runner_m3.py rollup()`: controls_ok = planted PASS and nullcal PASS).
+# Repaired here per the receipt's registered follow-up ("the fix belongs to the next freeze").
+# "could not check" is a DISTINCT status from "checked and fine" and from "checked and failed".
+REGISTERED_CONTROLS = ("planted", "nullcal")
+SYNTHETIC_CONTROLS_OK = {"__synthetic__": True}   # explicit, named bypass for null calibration
+
+
+def controls_gate(controls: dict | None) -> dict:
+    """Three-way verdict over the registered controls. Never conflates absence with pass."""
+    if controls is SYNTHETIC_CONTROLS_OK or (isinstance(controls, dict)
+                                             and controls.get("__synthetic__") is True):
+        return {"status": "SYNTHETIC_BYPASS", "per_control": {},
+                "note": "null-calibration harness: no real campaign controls exist by construction"}
+    if controls is None:
+        return {"status": "CONTROLS_UNAVAILABLE", "per_control": {},
+                "note": "no control verdicts supplied to the checker"}
+    per: dict[str, str] = {}
+    missing, failed = [], []
+    for name in REGISTERED_CONTROLS:
+        rec = controls.get(name)
+        if not isinstance(rec, dict) or "verdict" not in rec:
+            per[name] = "ABSENT"
+            missing.append(name)
+            continue
+        v = str(rec["verdict"])
+        per[name] = v
+        if v != "PASS":
+            failed.append(name)
+    if missing:
+        return {"status": "CONTROLS_UNAVAILABLE", "per_control": per, "missing": missing,
+                "note": "a registered control produced no verdict: could-not-check, NOT a pass"}
+    if failed:
+        return {"status": "CONTROL_FAILED", "per_control": per, "failed": failed,
+                "note": "a registered control FAILED: no science verdict is admissible"}
+    return {"status": "VALID", "per_control": per}
+
+
+def evaluate_gates(ct: dict, rho: dict, strata: dict, controls: dict | None) -> dict:
     g0 = bool(ct["TERMINAL"]["n"] and ct["TERMINAL"]["mean_d"] < 0
               and ct["TERMINAL"]["f0_wins"] >= G0_MIN_F0_WINS)
     g1 = bool(rho.get("status") == "OK" and rho["directed_pooled_rho"] > 0
@@ -445,9 +486,20 @@ def evaluate_gates(ct: dict, rho: dict, strata: dict) -> dict:
         route = ("E40 line TERMINAL: deficit attributable to the information available to the loop "
                  "by any channel tested; further revival needs a new mechanism class")
         disposition = "E40_TERMINAL"
+    cg = controls_gate(controls)
+    admissible = cg["status"] in ("VALID", "SYNTHETIC_BYPASS")
+    if not admissible:
+        # Design §7 (m2/m3 semantics): a failed or unobtainable registered control voids the
+        # verdict entirely. The G-values are still REPORTED, but they carry no routing force.
+        disposition = ("CHECKER_INVALID__NO_VERDICT" if cg["status"] == "CONTROL_FAILED"
+                       else "CONTROLS_UNAVAILABLE__NO_VERDICT")
+        route = ("registered control verdict blocks routing (" + cg["status"] + "): no E40 "
+                 "termination, no m6 authorization, no claim about the probe hypothesis")
     return {"G0_DRAG_PRESENT_UNDER_TERMINAL": g0, "G1_CONSENSUS_RANKS_TRUTH": g1,
             "G2_CONSENSUS_SHIPPING_CLOSES_DRAG": g2, "G3_ANTI_CONTROL_DISTINGUISHES": g3,
-            "G4_SPLIT_CONSISTENT": g4, "disposition": disposition, "preregistered_route": route}
+            "G4_SPLIT_CONSISTENT": g4, "gates_admissible": admissible,
+            "controls_gate": cg,
+            "disposition": disposition, "preregistered_route": route}
 
 
 def historical_panel(cells: list[dict], f0_hist: dict[str, dict]) -> dict:
@@ -471,7 +523,7 @@ def historical_panel(cells: list[dict], f0_hist: dict[str, dict]) -> dict:
             "cells_absent": [k for k, v in f0_hist.items() if v.get("best") is None]}
 
 
-def analyse(cells: list[dict], f0: dict[str, dict]) -> dict:
+def analyse(cells: list[dict], f0: dict[str, dict], controls: dict | None) -> dict:
     stats = [cell_statistics(c, f0[c["key"]]["best"]) for c in cells]
     complete = [s for s in stats if s["status"] == "COMPLETE"]
     ct = {rule: contrast([s["d"][rule] for s in complete]) for rule in RULES}
@@ -488,7 +540,7 @@ def analyse(cells: list[dict], f0: dict[str, dict]) -> dict:
         for rule in RULES:
             strata[ds][f"{rule}_mean_d"] = mean([s["d"][rule] for s in sub]) if sub else None
     rho = pooled_rho(stats)
-    gates = evaluate_gates(ct, rho, strata)
+    gates = evaluate_gates(ct, rho, strata, controls)
     census = {rule: {str(c): sum(1 for s in complete for x in s["ship_cycle"][rule] if x == c)
                      for c in CYCLES} for rule in RULES}
     return {"cells": [{k: v for k, v in s.items()} for s in stats],
@@ -543,7 +595,7 @@ def control_nullcal_gate_chain(*, reps: int = NULLCAL_REPS, seed: int = NULLCAL_
         strata = {ds: {f"{rule}_mean_d": mean([s["d"][rule] for s in stats if s["dataset"] == ds])
                        for rule in RULES} for ds in DATASETS}
         rho = pooled_rho(stats, seed=rng.randrange(2 ** 31), draws=draws)
-        g = evaluate_gates(ct, rho, strata)
+        g = evaluate_gates(ct, rho, strata, SYNTHETIC_CONTROLS_OK)
         if g["G1_CONSENSUS_RANKS_TRUTH"] and g["G2_CONSENSUS_SHIPPING_CLOSES_DRAG"] \
                 and g["G3_ANTI_CONTROL_DISTINGUISHES"] and g["G4_SPLIT_CONSISTENT"]:
             passes += 1
@@ -610,16 +662,33 @@ def control_edge_roundtrip(tmp: Path, *, seed: int = 20260902) -> dict:
 
 # ------------------------------------------------------------------ fixtures
 def write_fixture(m2_root: Path, s2c_root: Path, *, mode: str, seed: int = 7,
-                  drop: dict[str, str] | None = None, served: str | None = None) -> None:
+                  drop: dict[str, str] | None = None, served: str | None = None,
+                  controls: str = "PASS") -> None:
     """Synthetic campaign tree: historical m2 F0 layout (12_f0..23_f0, run0-3) + the
     Stage-2c layout (48 replica chains x 4 cycles + 12 in-campaign F0 chains x 4 runs,
     exp_ids 504000+, results with arguments/metrics/output_network, decision logs
     carrying the served-model id).
     mode 'planted': consensus tracks truth, consensus shipping beats F0 slightly, terminal
     and purity anti-select. mode 'null': truth independent of consensus, F0 = cell oracle.
-    drop: {chain_key: 'CANNOT_CHECK'|'MISSING'|'IN_PROGRESS'} to exercise exclusion paths."""
+    drop: {chain_key: 'CANNOT_CHECK'|'MISSING'|'IN_PROGRESS'} to exercise exclusion paths.
+    controls: 'PASS' (both registered controls PASS), 'FAIL_PLANTED' (planted FAILs, as it
+    actually did in the real Stage-2c campaign), or 'ABSENT' (no control files written at
+    all -- the could-not-check case, which must NOT be reported as clean)."""
     rng = random.Random(seed)
     drop = drop or {}
+    if controls != "ABSENT":
+        planted_ok = controls == "PASS"
+        cdir = s2c_root / "run/controls/planted"
+        cdir.mkdir(parents=True, exist_ok=True)
+        (cdir / "planted.json").write_text(json.dumps(
+            {"control": "planted_feedback_recovery",
+             "terminal_quality": 0.9877 if planted_ok else 0.6412,
+             "in_basin_0p8_count": 8 if planted_ok else 0, "of": 8,
+             "verdict": "PASS" if planted_ok else "FAIL"}, sort_keys=True))
+        (s2c_root / "run/controls").mkdir(parents=True, exist_ok=True)
+        (s2c_root / "run/controls/nullcal.json").write_text(json.dumps(
+            {"control": "permutation_null_calibration", "rejection_rate": 0.055,
+             "accept_band": [0.02, 0.09], "verdict": "PASS"}, sort_keys=True))
     genes = [f"ENSG{i:011d}" for i in range(500)]
 
     def metrics(w: float, tp: int = 150) -> dict:
@@ -765,7 +834,8 @@ def run(*, write: bool = True) -> tuple[int, dict]:
         print(json.dumps({"status": doc["status"], "chains_by_status": st["chains_by_status"],
                           "unsettled_n": len(st["unsettled"])}, indent=1))
         return 3, doc
-    an = analyse(cells, f0_primary)
+    controls_runner = controls_from_runner()
+    an = analyse(cells, f0_primary, controls_runner)
     f0_hist = load_f0_bests(M2_ROOT, required=False, check_served=False)
     hist = historical_panel(cells, f0_hist)
     for c in an["cells"]:  # edge sets are not serializable / not needed in the rollup
@@ -785,7 +855,7 @@ def run(*, write: bool = True) -> tuple[int, dict]:
                                 "within-cell cycle shuffle two-sided, 10000 draws, seed 20260902",
               "analysis": an,
               "historical_m2_f0_panel_nongating": hist,
-              "controls_runner": controls_from_runner(),
+              "controls_runner": controls_runner,
               "manifest": {"n_files": len(_MANIFEST), "files": _MANIFEST}}
     if write:
         OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -818,7 +888,9 @@ def run(*, write: bool = True) -> tuple[int, dict]:
                                     for k, v in an["contrasts_primary_12cell"].items()},
                       "rho": {k: an["rho"].get(k) for k in ("raw_pooled_rho", "directed_pooled_rho",
                                                             "perm_p_two_sided", "cells_used")}}, indent=1))
-    return 0, rollup
+    # Distinct exit codes: 0 admissible verdict, 4 control FAILED, 5 control could-not-check.
+    rc_map = {"CHECKER_INVALID__NO_VERDICT": 4, "CONTROLS_UNAVAILABLE__NO_VERDICT": 5}
+    return rc_map.get(an["gates"]["disposition"], 0), rollup
 
 
 def _with_roots(m2: Path, s2c: Path, out: Path):
@@ -941,6 +1013,80 @@ def selftest(*, fast: bool = False) -> int:
         if rc != 0 or len(doc["campaign"]["cannot_check"]) != 1 \
                 or "mandated 71/79" not in doc["campaign"]["cannot_check"][0]["error"]:
             failures.append(f"seed-mandate drift must surface as CANNOT_CHECK: {doc.get('campaign')}")
+        # ---- REPAIR R1: control-gating. Three distinct outcomes, none conflated. ----
+        # (a) failed planted control -> CHECKER_INVALID__NO_VERDICT, rc=4, no routing terminal,
+        #     even though the underlying G-pattern would otherwise route to E40_TERMINAL.
+        root = tmp / "ctrl_fail"
+        write_fixture(root / "m2", root / "s2c", mode="null", controls="FAIL_PLANTED")
+        saved = _with_roots(root / "m2", root / "s2c", root / "out")
+        try:
+            rc, doc = run(write=False)
+        finally:
+            _restore_roots(saved)
+        g = doc.get("analysis", {}).get("gates", {})
+        records["ctrl_fail"] = {"rc": rc, "disposition": g.get("disposition"),
+                                "admissible": g.get("gates_admissible")}
+        if rc != 4 or g.get("disposition") != "CHECKER_INVALID__NO_VERDICT" \
+                or g.get("gates_admissible") is not False:
+            failures.append(f"failed planted control must void the verdict (rc=4): rc={rc} gates={g}")
+        if g.get("G0_DRAG_PRESENT_UNDER_TERMINAL") is not True:
+            failures.append("voided verdict must still REPORT the computed G-values")
+        # (b) absent control files -> CONTROLS_UNAVAILABLE__NO_VERDICT, rc=5 (could-not-check
+        #     gets its own exit code; it is never reported as 'checked and fine')
+        root = tmp / "ctrl_absent"
+        write_fixture(root / "m2", root / "s2c", mode="planted", controls="ABSENT")
+        saved = _with_roots(root / "m2", root / "s2c", root / "out")
+        try:
+            rc, doc = run(write=False)
+        finally:
+            _restore_roots(saved)
+        g = doc.get("analysis", {}).get("gates", {})
+        records["ctrl_absent"] = {"rc": rc, "disposition": g.get("disposition")}
+        if rc != 5 or g.get("disposition") != "CONTROLS_UNAVAILABLE__NO_VERDICT":
+            failures.append(f"absent controls must be could-not-check (rc=5): rc={rc} gates={g}")
+        # (c) NO-ALARM case: passing controls must not block a legitimate routing terminal.
+        #     A checker that cries wolf on the clean case is as broken as one that never fires.
+        root = tmp / "ctrl_pass"
+        write_fixture(root / "m2", root / "s2c", mode="null", controls="PASS")
+        saved = _with_roots(root / "m2", root / "s2c", root / "out")
+        try:
+            rc, doc = run(write=False)
+        finally:
+            _restore_roots(saved)
+        g = doc.get("analysis", {}).get("gates", {})
+        records["ctrl_pass"] = {"rc": rc, "disposition": g.get("disposition")}
+        if rc != 0 or g.get("disposition") != "E40_TERMINAL" or g.get("gates_admissible") is not True:
+            failures.append(f"passing controls must leave routing intact: rc={rc} gates={g}")
+        # (d) real-data replay: the ARCHIVED Stage-2c control verdicts and gate inputs, fed
+        #     through the repaired checker, must void the verdict the frozen script emitted.
+        arch = Path(__file__).resolve().parent / "rollup-m5p-stage2c"
+        if (arch / "E40_M5P_STAGE2C_ROLLUP_V1.json").exists() and (arch / "planted.json").exists():
+            real = json.loads((arch / "E40_M5P_STAGE2C_ROLLUP_V1.json").read_text())
+            real_ct = real["analysis"]["contrasts_primary_12cell"]
+            real_rho = real["analysis"]["rho"]
+            real_strata = real["analysis"]["strata"]
+            real_controls = {"planted": json.loads((arch / "planted.json").read_text()),
+                             "nullcal": json.loads((arch / "nullcal.json").read_text())}
+            repaired = evaluate_gates(real_ct, real_rho, real_strata, real_controls)
+            records["real_stage2c_replay"] = {
+                "frozen_disposition": real["analysis"]["gates"]["disposition"],
+                "repaired_disposition": repaired["disposition"],
+                "planted_verdict": real_controls["planted"]["verdict"]}
+            if repaired["disposition"] != "CHECKER_INVALID__NO_VERDICT":
+                failures.append(f"repaired checker must void the real Stage-2c run: {repaired}")
+            for k in ("G0_DRAG_PRESENT_UNDER_TERMINAL", "G1_CONSENSUS_RANKS_TRUTH",
+                      "G2_CONSENSUS_SHIPPING_CLOSES_DRAG", "G3_ANTI_CONTROL_DISTINGUISHES",
+                      "G4_SPLIT_CONSISTENT"):
+                if repaired[k] != real["analysis"]["gates"][k]:
+                    failures.append(f"repaired checker changed a computed gate value ({k}) -- it must not")
+            # no-alarm twin on the same real numbers: with a PASSing planted the terminal returns
+            twin = evaluate_gates(real_ct, real_rho, real_strata,
+                                  {"planted": {"verdict": "PASS"}, "nullcal": {"verdict": "PASS"}})
+            records["real_stage2c_replay"]["with_passing_planted"] = twin["disposition"]
+            if twin["disposition"] != "E40_TERMINAL":
+                failures.append(f"real-data no-alarm twin must route E40_TERMINAL: {twin}")
+        else:
+            failures.append("archived Stage-2c artifacts absent: real-data replay COULD NOT RUN")
         # Stage-2c: an unsettled IN-CAMPAIGN F0 chain also refuses (rc=3)
         for kind in ("MISSING", "IN_PROGRESS"):
             root = tmp / f"refuse_f0_{kind}"

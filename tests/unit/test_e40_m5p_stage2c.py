@@ -163,3 +163,86 @@ def test_analysis_refuses_on_empty_campaign() -> None:
         status = json.loads((root / "out/E40_M5P_STAGE2C_STATUS.json").read_text())
         assert status["status"] == "REFUSED__CAMPAIGN_NOT_SETTLED"
         assert status["campaign"]["chains_by_status"] == {"MISSING": 60}
+
+
+# --------------------------------------------------------------------------
+# REPAIR R1 (E40 closure lane): the Stage-2c checker must CONSUME its registered
+# control verdicts. The frozen script reported them and routed anyway, emitting
+# E40_TERMINAL while the planted positive control was FAILing
+# (E40_M5P_STAGE2C_OUTCOME_RECEIPT.md §5). These tests pin the repair against the
+# REAL archived campaign artifacts, and assert the no-alarm case too: a checker
+# that fires on a clean run is as broken as one that never fires.
+# --------------------------------------------------------------------------
+ARCHIVE = REPO / "research/experiments/e40-matched/rollup-m5p-stage2c"
+
+
+def _real_inputs():
+    rollup = json.loads((ARCHIVE / "E40_M5P_STAGE2C_ROLLUP_V1.json").read_text())
+    return (rollup,
+            rollup["analysis"]["contrasts_primary_12cell"],
+            rollup["analysis"]["rho"],
+            rollup["analysis"]["strata"],
+            json.loads((ARCHIVE / "planted.json").read_text()),
+            json.loads((ARCHIVE / "nullcal.json").read_text()))
+
+
+def test_archived_stage2c_artifacts_are_present_and_planted_really_failed():
+    """Guards the tests below from becoming vacuous if the archive moves."""
+    assert (ARCHIVE / "E40_M5P_STAGE2C_ROLLUP_V1.json").exists()
+    _, _, _, _, planted, nullcal = _real_inputs()
+    assert planted["verdict"] == "FAIL"
+    assert nullcal["verdict"] == "PASS"
+
+
+def test_failed_planted_control_voids_the_real_stage2c_verdict():
+    rollup, ct, rho, strata, planted, nullcal = _real_inputs()
+    assert rollup["analysis"]["gates"]["disposition"] == "E40_TERMINAL"  # the frozen defect
+    g = an.evaluate_gates(ct, rho, strata, {"planted": planted, "nullcal": nullcal})
+    assert g["disposition"] == "CHECKER_INVALID__NO_VERDICT"
+    assert g["gates_admissible"] is False
+    assert g["controls_gate"]["status"] == "CONTROL_FAILED"
+
+
+def test_repair_does_not_alter_any_computed_gate_value():
+    rollup, ct, rho, strata, planted, nullcal = _real_inputs()
+    g = an.evaluate_gates(ct, rho, strata, {"planted": planted, "nullcal": nullcal})
+    for k in ("G0_DRAG_PRESENT_UNDER_TERMINAL", "G1_CONSENSUS_RANKS_TRUTH",
+              "G2_CONSENSUS_SHIPPING_CLOSES_DRAG", "G3_ANTI_CONTROL_DISTINGUISHES",
+              "G4_SPLIT_CONSISTENT"):
+        assert g[k] == rollup["analysis"]["gates"][k]
+
+
+def test_no_alarm_passing_controls_leave_the_registered_routing_intact():
+    _, ct, rho, strata, planted, nullcal = _real_inputs()
+    g = an.evaluate_gates(ct, rho, strata,
+                          {"planted": {**planted, "verdict": "PASS"}, "nullcal": nullcal})
+    assert g["disposition"] == "E40_TERMINAL"
+    assert g["gates_admissible"] is True
+
+
+def test_absent_control_is_could_not_check_and_never_reads_as_clean():
+    _, ct, rho, strata, _, nullcal = _real_inputs()
+    for controls in ({"planted": None, "nullcal": nullcal}, {"nullcal": nullcal}, None):
+        g = an.evaluate_gates(ct, rho, strata, controls)
+        assert g["disposition"] == "CONTROLS_UNAVAILABLE__NO_VERDICT"
+        assert g["gates_admissible"] is False
+        assert g["controls_gate"]["status"] == "CONTROLS_UNAVAILABLE"
+
+
+def test_either_registered_control_failing_voids_the_verdict():
+    _, ct, rho, strata, planted, nullcal = _real_inputs()
+    ok = {"planted": {**planted, "verdict": "PASS"}, "nullcal": nullcal}
+    for name in an.REGISTERED_CONTROLS:
+        broken = {**ok, name: {**ok[name], "verdict": "FAIL"}}
+        assert an.evaluate_gates(ct, rho, strata, broken)["disposition"] \
+            == "CHECKER_INVALID__NO_VERDICT"
+
+
+def test_synthetic_bypass_is_named_not_silent():
+    """The null-calibration harness has no real controls by construction; its bypass
+    must be an explicit named sentinel, never `None` falling through as a pass."""
+    _, ct, rho, strata, _, _ = _real_inputs()
+    g = an.evaluate_gates(ct, rho, strata, an.SYNTHETIC_CONTROLS_OK)
+    assert g["controls_gate"]["status"] == "SYNTHETIC_BYPASS"
+    assert g["gates_admissible"] is True
+    assert an.evaluate_gates(ct, rho, strata, None)["gates_admissible"] is False
