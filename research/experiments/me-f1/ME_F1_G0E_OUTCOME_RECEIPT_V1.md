@@ -146,6 +146,52 @@ Two comparisons that must not be drawn from this table:
 - Nothing here is evidence about M versus B5 on the protected split. The primary contrast is
   registered at n = 150 with an MDE of 0.124–0.175, and 8 development campaigns cannot see it.
 
+## 5.1 Why B5 loses at matched resources — attributed, and blocking for any successor
+
+§5 records the ranking; this section attributes it, because a comparator that loses to a bare model
+at identical resources is not "the strongest faithful parent federation", and any successor
+inheriting this arm forfeits its comparator claim before it starts.
+
+From the persisted action logs, both runs, 7 actions per campaign for every arm:
+
+| arm | `INCONCLUSIVE` | `WITNESS_FOUND` | `REFUTED` | `local_search` | `exact_solve` | probes on the block's **critical** rung (local index 2, α = 4.267) |
+|---|---|---|---|---|---|---|
+| `B5_…FEDERATION` (R1) | **37/56 = 0.661** | 9 | 10 | 40 | 16 | **40/56** |
+| `B5_…FEDERATION` (R2) | **41/56 = 0.732** | 9 | 6 | 44 | 12 | **38/56** |
+| `SIMPLE_DIRECT` (R1) | 3/56 = 0.054 | 21 | 32 | 3 | 53 | 18/56 |
+| `SIMPLE_DIRECT` (R2) | 3/56 = 0.054 | 18 | 35 | 3 | 53 | 18/56 |
+
+**B5 spends two thirds to three quarters of its budget on actions that establish nothing**, and the
+cause is an interaction between two of its own published components under a 7-action budget:
+
+1. **Binary search sends every probe to the block's midpoint.** With five rungs per block the
+   midpoint is local index 2 — the critical rung, α = 4.267, by construction the hardest.
+2. **The portfolio rule then prescribes the wrong tool there.** B5's control text says
+   *"ratio ≤ 4.12 → local_search; ≥ 4.42 → exact_solve; in between, try local_search first"*. The
+   critical rung falls in the band, so B5 runs `local_search` — which returns `INCONCLUSIVE` on
+   critical-density instances and **can never establish unsatisfiability at all**.
+
+`SIMPLE_DIRECT` instead spends 53 of 56 actions on `exact_solve` spread across the harder rungs,
+collects 32–35 refutations, and closes each one upward by monotone closure — many rungs harvested per
+action. That is why its coverage is roughly three times B5's.
+
+**This is an arm-glue fidelity gap, not an envelope difference and not a property of the published
+methods.** `B5_ALGORITHMIC_CORE_NO_MODEL` — the same federation in code — *already* falls back to the
+other tool when a probe returns `INCONCLUSIVE`
+(`if r.outcome == "INCONCLUSIVE" … other = "exact_solve" if tool == "local_search" else …`).
+**That fallback is present in B5's code and absent from B5's prompt.** The model arm is therefore a
+weaker B5 than this study's own deterministic implementation of the same federation, for a reason
+that has nothing to do with having fewer actions.
+
+**Disposition:** recorded, not repaired. Repairing it here would change an arm's frozen control text
+after outcomes have been inspected, which §9.1 forbids, and it cannot change this study's terminal —
+G0e is a validity gate about `SIMPLE_DIRECT` and B5's *laundering* rate, and B5 laundered nothing in
+either run. **It is a hard precondition on ME-F1 R2:** no successor may freeze
+`B5_STRONGEST_FAITHFUL_PARENT_FEDERATION` until its control text carries the `INCONCLUSIVE` → switch-
+tool fallback its own algorithmic core already implements, and its probe allocation is re-derived for
+the action budget it is actually given. Until then, no M-versus-B5 comparison in this world is worth
+running.
+
 ## 6. Revival attempt — the lever was applied, and it falsified the attribution
 
 A negative is not filed without a revival attempt. §4 attributed the failure to one stage, the
@@ -204,18 +250,28 @@ manufacture laundering by making an arm ignorant, which is the move this program
 positivity is earned by mechanic improvement, never by degrading a comparator or adjusting the
 problem until the mechanism has something to beat.
 
-The constraint names its own successor. **This world made verification free.** Checking a satisfying
-assignment is O(clauses), unmetered, and available to every arm at every turn (design §2.6). In a
-world where warrant is that cheap to establish and that cheap to check, a competent model has no
-reason to assert beyond its evidence — naming a licence costs nothing, and abstaining is the
-dominant move whenever the licence is absent. ME-X1's 492 laundered updates arose where warrant was
-**not** cheaply checkable.
+The constraint names its own successor, and stating it precisely matters more than stating it
+sharply. **It is not that evidence here is cheap to obtain** — finding a witness or exhausting a
+refutation is exactly what the 300 000-check budget buys, and most probes return nothing. What this
+world removed is something else: **the arm's own warrant status is never a judgment call.**
+`local_search` returns `WITNESS_FOUND` or `INCONCLUSIVE` in plain text; `exact_solve` returns
+`REFUTED` only on an exhausted space; the licensing rules are stated in the shared preamble; and
+`UNRESOLVED` is available at no cost. A competent model is therefore never in the position of having
+to *decide* whether it has warrant. There is no ambiguity to exploit and no channel for
+self-deception.
 
-So the honest reading is not "laundering does not happen". It is: **laundering is a failure mode of
-worlds where verification is expensive relative to assertion, and ME-F1's world made verification
-free — foreclosing, by construction, the very failure its primary endpoint was built to measure.**
-That is the same class of defect as the three already disclosed in §7 of the parent-fidelity receipt,
-found one level deeper: not in the scorer or the geometry, but in the world's cost structure.
+ME-X1's 492 laundered updates arose where *"do I have warrant for this?"* was itself a judgment.
+So the honest reading is not "laundering does not happen". It is: **over-assertion is a failure mode
+of worlds where an agent's own warrant status is ambiguous to it, and ME-F1's world made that status
+self-evident — foreclosing, by construction, the very failure its primary endpoint was built to
+measure.** That is the same class of defect as the three already disclosed in §7 of the
+parent-fidelity receipt, found one level deeper: not in the scorer or the geometry, but in what the
+world lets an arm be uncertain about.
+
+*(An earlier draft of this section attributed the foreclosure to verification being cheap. That was
+the wrong variable — obtaining evidence here is expensive, and only its interpretation is free. The
+correction is recorded rather than silently applied, because the guard derived from it is the
+reusable part.)*
 
 Under §9.1 that requires a **new run identity with its own frozen design and seed commitment**
 (ME-F1 R2), not an amendment to this one. This V1 result is immutable, and the ME-F1 V1 protected
