@@ -38,7 +38,7 @@ The Codex CLI is logged out on every host this lane can reach.
 | Mac mini | `~/.codex/auth.json` | absent; `~/.codex` recreated (directory and every entry stamped 2026-09-03 01:41) in the 0.147 sqlite layout, no `config.toml`, no `auth.json` |
 | Mac mini | `npm ls -g` | `@openai/codex@0.147.0` — the programme pin is `0.129.0-alpha.15` |
 | LUNARC `cosmos2` | `which codex` / `node` / `npm` | none present |
-| LUNARC `cosmos2` | `find /home/scyiu -maxdepth 6 -name auth.json`; `find /projects/hep -maxdepth 6 -name auth.json` | 0 hits each; the `orion-v2-e45/codex-home` path from earlier session notes does not exist on `/home/scyiu` or on any of `/projects/hep/fs7…fs12` |
+| LUNARC `cosmos2` | `find /home/scyiu -maxdepth 6 -name auth.json`; `find /projects/hep -maxdepth 6 -name auth.json` | 0 hits each. Searched for the `orion-v2-e45/codex-home` path from earlier session notes with `find /home/scyiu -maxdepth 4 -name orion-v2-e45` and `ls -d /projects/hep/fs{7..12}/*orion* /projects/hep/fs{7..12}/scyiu/*orion*` — no match at that depth. The absence of `node` and `npm` is the load-bearing observation regardless: nothing there could run the CLI even if a stored credential were found deeper. |
 
 The version drift and the vanished credential are one event: the CLI was moved off the pinned
 `0.129.0-alpha.15` to `0.147.0`, which uses a different state layout. Reinstalling the pin would

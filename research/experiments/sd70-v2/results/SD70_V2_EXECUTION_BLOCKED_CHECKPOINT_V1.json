@@ -18,7 +18,8 @@
         "observed": "find /home/scyiu -maxdepth 6 -name codex -o -name auth.json -> 0 hits; find /projects/hep -maxdepth 6 -name auth.json -> 0 hits"
       },
       {
-        "observed": "the orion-v2-e45/codex-home path recorded in earlier session notes does not exist on any of /projects/hep/fs7..fs12 or /home/scyiu"
+        "observed": "the orion-v2-e45/codex-home path recorded in earlier session notes was not found by `find /home/scyiu -maxdepth 4 -name orion-v2-e45` nor by `ls -d /projects/hep/fs{7..12}/*orion* /projects/hep/fs{7..12}/scyiu/*orion*`",
+        "search_scope_caveat": "these searches are depth-limited, so they establish 'not found at that depth', not 'nowhere on the filesystem'. The conclusion does not rest on them: node and npm are absent on the login node, so the Codex CLI could not run there even if a stored credential existed deeper in the tree."
       }
     ],
     "reproduction_mac": [
