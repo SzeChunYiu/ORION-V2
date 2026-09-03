@@ -1,0 +1,31 @@
+{
+  "schema_version": "orion.v2.e30-r12-escalated-budget-probe.v1",
+  "recorded_utc": "2026-09-03T01:19:25Z",
+  "host": "cosmos2.int.lunarc",
+  "base_url": "https://api.z.ai/api/anthropic",
+  "max_tokens": 36000,
+  "note": "the registered escalated budget (36000) applied to the identical frozen SIMPLE_DIRECT/bugsinpy-ansible-1 final prompt, outside the campaign tree",
+  "stop_reason": "end_turn",
+  "usage": {
+    "input_tokens": 53,
+    "output_tokens": 35937,
+    "cache_read_input_tokens": 61504,
+    "server_tool_use": {
+      "web_search_requests": 0
+    },
+    "service_tier": "standard"
+  },
+  "served_model": "glm-5.3",
+  "content_blocks": [
+    {
+      "type": "thinking",
+      "chars": 161644
+    },
+    {
+      "type": "text",
+      "chars": 5895
+    }
+  ],
+  "text_chars": 5895,
+  "wall_time_seconds": 785.810107
+}

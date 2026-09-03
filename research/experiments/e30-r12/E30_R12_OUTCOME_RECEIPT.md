@@ -71,15 +71,25 @@ records an envelope failure that contains no model output.
 Identical input token count, so the request is the same; the difference is entirely in what the
 provider does with it.
 
-**The registered remedy is empirically insufficient.** The design registers this exact failure
-mode as `execution_lane_contract.signature_2_truncation_starved`, describes it as affecting *the
-largest tasks*, and registers a budget escalation to 36 000 from pass 3, citing a pre-dispatch
-smoke in which the identical request at 36 000 used 3669 output tokens. In execution it affected
-**116 of 116 failures across three arms**, and a diagnostic re-run of one cell at the escalated
-36 000 budget, outside the campaign tree, **exhausted all 36 000 output tokens with zero text
-characters** in 510 s (`results/E30_R12_ESCALATED_BUDGET_DIAGNOSTIC_ENVELOPE_V1.json`). Reading
-the thinking block captured at the 6000-token cap, its tail is still non-convergent recall about
-the task ("this is getting nowhere with pure recall"), not a JSON answer under construction.
+**The registered remedy is marginal for the single-call arm and structurally insufficient for
+the multi-call arms.** The design registers this exact failure mode as
+`execution_lane_contract.signature_2_truncation_starved`, describes it as affecting *the largest
+tasks*, and registers a budget escalation to 36 000 from pass 3, citing a pre-dispatch smoke in
+which the identical request at 36 000 used 3669 output tokens. In execution the mode affected
+**116 of 116 failures across three arms**. Two diagnostic runs of the same cell at the escalated
+budget, outside the campaign tree, measured:
+
+| run | stop reason | output tokens | thinking chars | text chars | wall |
+|---|---|---|---|---|---|
+| through the arm — `results/E30_R12_ESCALATED_BUDGET_DIAGNOSTIC_ENVELOPE_V1.json` | budget exhausted | 36 000 | not recorded | no parseable JSON object | 510 s |
+| direct, capturing blocks — `results/E30_R12_ESCALATED_BUDGET_BLOCK_PROBE_V1.json` | `end_turn` | 35 937 | 161 644 | 5 895 | 786 s |
+
+The escalated budget is consumed almost entirely by thinking and clears the cap only marginally,
+at roughly 13 minutes per call — and `ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET` is divided by the arm's
+call count, so `F0_PARENT_FEDERATION` and `F2_ORION_METABOLIC_FULL` receive **12 000 per call**,
+a third of what one call needed to close here. Reading the thinking block captured at the
+6000-token cap, its tail is still non-convergent recall about the task ("this is getting nowhere
+with pure recall"), not a JSON answer under construction.
 
 **This is not a served-model substitution.** All 119 envelopes record exactly one served model
 id, `glm-5.3`, equal to the frozen value; GR0c's condition was met by every envelope written.
@@ -145,6 +155,7 @@ registered question E30-R12 exists to ask has **not** been answered.
 | `results/E30_R12_EXECUTION_LANE_TALLY_V1.json` | envelope tally, served-id tally, the 3 completed cells, the paired R11/R12 cell |
 | `results/E30_R12_CHANNEL_BEHAVIOUR_PROBE_V1.json` | content-block behaviour of the bound channel on the frozen prompt |
 | `results/E30_R12_ESCALATED_BUDGET_DIAGNOSTIC_ENVELOPE_V1.json` | one cell re-run at the registered escalated budget, outside the campaign tree |
+| `results/E30_R12_ESCALATED_BUDGET_BLOCK_PROBE_V1.json` | the same cell at the escalated budget with the per-block breakdown measured |
 | `results/E30_R12_SERVED_MODEL_PROBE_V1.json` | live re-verification of the glm-5.2 → glm-5.3 substitution |
 | `results/E30_R12_POWER_NOTE_OUTPUT_V1.json` | transcribed output of the registered power-note generator |
 | `results/E30_R12_DISPATCH_RECEIPT_V1.json` | the dispatched chain and its registered execution parameters |
