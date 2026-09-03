@@ -131,6 +131,22 @@ edited and the rollup is not recomputed; the divergence is recorded and carried 
 **The terminal is unaffected.** `model_terminal` evaluates GP3 before GP2, so
 `CONTROL_FAILURE__SUITE_NOT_INTERPRETABLE` stands on GP3 regardless of how GP2a resolves.
 
+**This divergence will recur in V2, and is deliberately not patched.** The V2 runner
+(`origin/main` blob `19862623…`, byte-identical to the LUNARC `v2/` runner) carries the same
+R0-only implementation, while the V2 design's GP2 rule text still reads "under R0 **and R3**":
+
+```
+pos_ok = r0_acc is not None and r0_acc >= g["GP2"]["probe_positive_control_min_acc"]
+```
+
+Both the V1 and V2 designs are frozen and the V2 protected seed is already sealed, so the
+runner is **not** edited. V2's design registers the correct handling directly: *"A defect
+discovered after unblinding is reported as CANNOT_CHECK for the affected component and fixed
+only under a new design version with a fresh protected seed."* Accordingly, GP2a's R3 half is
+expected to report `CANNOT_CHECK` in V2 as well, and repairing it requires a **V3 design with a
+fresh sealed seed** — not a patch to the current campaign. Logged here so the V2 rollup is read
+with this known limitation rather than as a clean pass.
+
 **Open anomaly, reported not explained.** R3 *explicitly contains* the recorded support, yet the
 probe reads `support_source` at 1.000 / 0.917 from R0 and only 0.542 / 0.594 from R3. A probe
 that decodes the variable from the full history but not from the state that names it is more
