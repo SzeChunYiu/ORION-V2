@@ -1,0 +1,17 @@
+{
+  "schema_version": "orion.v2.me-x6.protected-run-authorization.v1",
+  "study": "ME-X6",
+  "design": "ME_X6_COLLECTIVE_EPISTEMICS_EXACT_STUDY_DESIGN_V1.json",
+  "acknowledged_design_sha256": "c8feaaafb244d4f80f0640631830d8a2b3b8c914362e9ebc10d25273820931fa",
+  "human_written": true,
+  "human_written_token": "run all the computation tasks.. finish all the researxh asap",
+  "token_provenance": "verbatim standing operator authorization for the ORION-V2 machine-epistemics programme, quoted exactly as given; not composed by the lane",
+  "authorized_on": "2026-09-03",
+  "authorizes": "one PROTECTED run of mex6_run.py at the frozen 50-per-cell design (1400 instances) under the custody seed committed as sha256 c0889a1c6919294d74e35534aaee4cc609af349ef973862cc069c12b8292584a",
+  "conditions": [
+    "the frozen design JSON is the one merged to main in PR #227 as corrected pre-run by PR #232, and is not modified",
+    "no --per-cell override; the run uses the registered protected_per_cell = 50",
+    "a lane defect found mid-run halts the lane, is receipted, and re-freezes as V2 (design section 9)",
+    "this file is archived after use so the guard re-arms"
+  ]
+}
