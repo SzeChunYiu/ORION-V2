@@ -1,0 +1,1238 @@
+{
+  "calls": [
+    {
+      "arm_call_count": 1,
+      "arm_id": "SIMPLE_DIRECT",
+      "blocks": [
+        {
+          "chars": 8177,
+          "type": "thinking"
+        },
+        {
+          "chars": 3623,
+          "type": "text"
+        }
+      ],
+      "call_index": 0,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 44874,
+      "json_object_parseable": true,
+      "max_tokens_requested": 16000,
+      "output_tokens": 2620,
+      "parsed_top_level_keys": [
+        "assumptions",
+        "diagnosis",
+        "discriminator_or_tests",
+        "falsifier",
+        "patch",
+        "uncertainty"
+      ],
+      "prompt_chars": 174122,
+      "replicate": 1,
+      "served_model": "glm-5.3",
+      "stage_id": "final",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-fastapi-1",
+      "text_chars": 3623,
+      "wall_seconds": 46.94
+    },
+    {
+      "arm_call_count": 1,
+      "arm_id": "SIMPLE_DIRECT",
+      "blocks": [
+        {
+          "chars": 2610,
+          "type": "thinking"
+        },
+        {
+          "chars": 3335,
+          "type": "text"
+        }
+      ],
+      "call_index": 0,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 10,
+      "json_object_parseable": true,
+      "max_tokens_requested": 16000,
+      "output_tokens": 1302,
+      "parsed_top_level_keys": [
+        "assumptions",
+        "diagnosis",
+        "discriminator_or_tests",
+        "falsifier",
+        "patch",
+        "uncertainty"
+      ],
+      "prompt_chars": 174122,
+      "replicate": 2,
+      "served_model": "glm-5.3",
+      "stage_id": "final",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-fastapi-1",
+      "text_chars": 3335,
+      "wall_seconds": 21.11
+    },
+    {
+      "arm_call_count": 2,
+      "arm_id": "SAME_MODEL_REFLECTION",
+      "blocks": [
+        {
+          "chars": 2502,
+          "type": "text"
+        }
+      ],
+      "call_index": 0,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 44825,
+      "json_object_parseable": false,
+      "max_tokens_requested": 16000,
+      "output_tokens": 567,
+      "parsed_top_level_keys": [],
+      "prompt_chars": 173854,
+      "replicate": 1,
+      "served_model": "glm-5.3",
+      "stage_id": "draft",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-fastapi-1",
+      "text_chars": 2502,
+      "wall_seconds": 12.97
+    },
+    {
+      "arm_call_count": 2,
+      "arm_id": "SAME_MODEL_REFLECTION",
+      "blocks": [
+        {
+          "chars": 4298,
+          "type": "thinking"
+        },
+        {
+          "chars": 3863,
+          "type": "text"
+        }
+      ],
+      "call_index": 1,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 46482,
+      "json_object_parseable": true,
+      "max_tokens_requested": 16000,
+      "output_tokens": 1808,
+      "parsed_top_level_keys": [
+        "assumptions",
+        "diagnosis",
+        "discriminator_or_tests",
+        "falsifier",
+        "patch",
+        "uncertainty"
+      ],
+      "prompt_chars": 180544,
+      "replicate": 1,
+      "served_model": "glm-5.3",
+      "stage_id": "final",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-fastapi-1",
+      "text_chars": 3863,
+      "wall_seconds": 30.34
+    },
+    {
+      "arm_call_count": 2,
+      "arm_id": "SAME_MODEL_REFLECTION",
+      "blocks": [
+        {
+          "chars": 168,
+          "type": "thinking"
+        },
+        {
+          "chars": 1934,
+          "type": "text"
+        }
+      ],
+      "call_index": 0,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 25,
+      "json_object_parseable": false,
+      "max_tokens_requested": 16000,
+      "output_tokens": 474,
+      "parsed_top_level_keys": [],
+      "prompt_chars": 173854,
+      "replicate": 2,
+      "served_model": "glm-5.3",
+      "stage_id": "draft",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-fastapi-1",
+      "text_chars": 1934,
+      "wall_seconds": 10.73
+    },
+    {
+      "arm_call_count": 2,
+      "arm_id": "SAME_MODEL_REFLECTION",
+      "blocks": [
+        {
+          "chars": 3465,
+          "type": "thinking"
+        },
+        {
+          "chars": 3801,
+          "type": "text"
+        }
+      ],
+      "call_index": 1,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 18,
+      "json_object_parseable": true,
+      "max_tokens_requested": 16000,
+      "output_tokens": 1586,
+      "parsed_top_level_keys": [
+        "assumptions",
+        "diagnosis",
+        "discriminator_or_tests",
+        "falsifier",
+        "patch",
+        "uncertainty"
+      ],
+      "prompt_chars": 180544,
+      "replicate": 2,
+      "served_model": "glm-5.3",
+      "stage_id": "final",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-fastapi-1",
+      "text_chars": 3801,
+      "wall_seconds": 35.0
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F0_PARENT_FEDERATION",
+      "blocks": [
+        {
+          "chars": 2440,
+          "type": "text"
+        }
+      ],
+      "call_index": 0,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 44825,
+      "json_object_parseable": false,
+      "max_tokens_requested": 16000,
+      "output_tokens": 553,
+      "parsed_top_level_keys": [],
+      "prompt_chars": 173853,
+      "replicate": 1,
+      "served_model": "glm-5.3",
+      "stage_id": "parent_a",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-fastapi-1",
+      "text_chars": 2440,
+      "wall_seconds": 12.17
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F0_PARENT_FEDERATION",
+      "blocks": [
+        {
+          "chars": 1873,
+          "type": "text"
+        }
+      ],
+      "call_index": 1,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 44825,
+      "json_object_parseable": false,
+      "max_tokens_requested": 16000,
+      "output_tokens": 428,
+      "parsed_top_level_keys": [],
+      "prompt_chars": 173853,
+      "replicate": 1,
+      "served_model": "glm-5.3",
+      "stage_id": "parent_b",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-fastapi-1",
+      "text_chars": 1873,
+      "wall_seconds": 9.32
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F0_PARENT_FEDERATION",
+      "blocks": [
+        {
+          "chars": 986,
+          "type": "thinking"
+        },
+        {
+          "chars": 3591,
+          "type": "text"
+        }
+      ],
+      "call_index": 2,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 48083,
+      "json_object_parseable": true,
+      "max_tokens_requested": 16000,
+      "output_tokens": 954,
+      "parsed_top_level_keys": [
+        "assumptions",
+        "diagnosis",
+        "discriminator_or_tests",
+        "falsifier",
+        "patch",
+        "uncertainty"
+      ],
+      "prompt_chars": 186946,
+      "replicate": 1,
+      "served_model": "glm-5.3",
+      "stage_id": "final",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-fastapi-1",
+      "text_chars": 3591,
+      "wall_seconds": 19.95
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F0_PARENT_FEDERATION",
+      "blocks": [
+        {
+          "chars": 67,
+          "type": "thinking"
+        },
+        {
+          "chars": 2049,
+          "type": "text"
+        }
+      ],
+      "call_index": 0,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 25,
+      "json_object_parseable": false,
+      "max_tokens_requested": 16000,
+      "output_tokens": 486,
+      "parsed_top_level_keys": [],
+      "prompt_chars": 173853,
+      "replicate": 2,
+      "served_model": "glm-5.3",
+      "stage_id": "parent_a",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-fastapi-1",
+      "text_chars": 2049,
+      "wall_seconds": 10.09
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F0_PARENT_FEDERATION",
+      "blocks": [
+        {
+          "chars": 126,
+          "type": "thinking"
+        },
+        {
+          "chars": 1685,
+          "type": "text"
+        }
+      ],
+      "call_index": 1,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 25,
+      "json_object_parseable": false,
+      "max_tokens_requested": 16000,
+      "output_tokens": 401,
+      "parsed_top_level_keys": [],
+      "prompt_chars": 173853,
+      "replicate": 2,
+      "served_model": "glm-5.3",
+      "stage_id": "parent_b",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-fastapi-1",
+      "text_chars": 1685,
+      "wall_seconds": 19.79
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F0_PARENT_FEDERATION",
+      "blocks": [
+        {
+          "chars": 4824,
+          "type": "thinking"
+        },
+        {
+          "chars": 3961,
+          "type": "text"
+        }
+      ],
+      "call_index": 2,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 19,
+      "json_object_parseable": true,
+      "max_tokens_requested": 16000,
+      "output_tokens": 1899,
+      "parsed_top_level_keys": [
+        "assumptions",
+        "diagnosis",
+        "discriminator_or_tests",
+        "falsifier",
+        "patch",
+        "uncertainty"
+      ],
+      "prompt_chars": 186946,
+      "replicate": 2,
+      "served_model": "glm-5.3",
+      "stage_id": "final",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-fastapi-1",
+      "text_chars": 3961,
+      "wall_seconds": 31.92
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F2_ORION_METABOLIC_FULL",
+      "blocks": [
+        {
+          "chars": 131,
+          "type": "thinking"
+        },
+        {
+          "chars": 2755,
+          "type": "text"
+        }
+      ],
+      "call_index": 0,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 44829,
+      "json_object_parseable": true,
+      "max_tokens_requested": 16000,
+      "output_tokens": 663,
+      "parsed_top_level_keys": [
+        "foo"
+      ],
+      "prompt_chars": 173849,
+      "replicate": 1,
+      "served_model": "glm-5.3",
+      "stage_id": "ingest",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-fastapi-1",
+      "text_chars": 2755,
+      "wall_seconds": 15.52
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F2_ORION_METABOLIC_FULL",
+      "blocks": [
+        {
+          "chars": 325,
+          "type": "thinking"
+        },
+        {
+          "chars": 2663,
+          "type": "text"
+        }
+      ],
+      "call_index": 1,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 46439,
+      "json_object_parseable": false,
+      "max_tokens_requested": 16000,
+      "output_tokens": 632,
+      "parsed_top_level_keys": [],
+      "prompt_chars": 180270,
+      "replicate": 1,
+      "served_model": "glm-5.3",
+      "stage_id": "reconstruct",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-fastapi-1",
+      "text_chars": 2663,
+      "wall_seconds": 14.55
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F2_ORION_METABOLIC_FULL",
+      "blocks": [
+        {
+          "chars": 1259,
+          "type": "thinking"
+        },
+        {
+          "chars": 3488,
+          "type": "text"
+        }
+      ],
+      "call_index": 2,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 19,
+      "json_object_parseable": true,
+      "max_tokens_requested": 16000,
+      "output_tokens": 1035,
+      "parsed_top_level_keys": [
+        "assumptions",
+        "diagnosis",
+        "discriminator_or_tests",
+        "falsifier",
+        "patch",
+        "uncertainty"
+      ],
+      "prompt_chars": 186946,
+      "replicate": 1,
+      "served_model": "glm-5.3",
+      "stage_id": "challenge",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-fastapi-1",
+      "text_chars": 3488,
+      "wall_seconds": 18.93
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F2_ORION_METABOLIC_FULL",
+      "blocks": [
+        {
+          "chars": 2615,
+          "type": "text"
+        }
+      ],
+      "call_index": 0,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 29,
+      "json_object_parseable": false,
+      "max_tokens_requested": 16000,
+      "output_tokens": 635,
+      "parsed_top_level_keys": [],
+      "prompt_chars": 173849,
+      "replicate": 2,
+      "served_model": "glm-5.3",
+      "stage_id": "ingest",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-fastapi-1",
+      "text_chars": 2615,
+      "wall_seconds": 14.55
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F2_ORION_METABOLIC_FULL",
+      "blocks": [
+        {
+          "chars": 177,
+          "type": "thinking"
+        },
+        {
+          "chars": 3098,
+          "type": "text"
+        }
+      ],
+      "call_index": 1,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 39,
+      "json_object_parseable": false,
+      "max_tokens_requested": 16000,
+      "output_tokens": 751,
+      "parsed_top_level_keys": [],
+      "prompt_chars": 180270,
+      "replicate": 2,
+      "served_model": "glm-5.3",
+      "stage_id": "reconstruct",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-fastapi-1",
+      "text_chars": 3098,
+      "wall_seconds": 15.74
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F2_ORION_METABOLIC_FULL",
+      "blocks": [
+        {
+          "chars": 1011,
+          "type": "thinking"
+        },
+        {
+          "chars": 5295,
+          "type": "text"
+        }
+      ],
+      "call_index": 2,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 19,
+      "json_object_parseable": true,
+      "max_tokens_requested": 16000,
+      "output_tokens": 1281,
+      "parsed_top_level_keys": [
+        "assumptions",
+        "diagnosis",
+        "discriminator_or_tests",
+        "falsifier",
+        "patch",
+        "uncertainty"
+      ],
+      "prompt_chars": 186946,
+      "replicate": 2,
+      "served_model": "glm-5.3",
+      "stage_id": "challenge",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-fastapi-1",
+      "text_chars": 5295,
+      "wall_seconds": 22.65
+    },
+    {
+      "arm_call_count": 1,
+      "arm_id": "SIMPLE_DIRECT",
+      "blocks": [
+        {
+          "chars": 1904,
+          "type": "text"
+        }
+      ],
+      "call_index": 0,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 54707,
+      "json_object_parseable": true,
+      "max_tokens_requested": 16000,
+      "output_tokens": 433,
+      "parsed_top_level_keys": [
+        "assumptions",
+        "diagnosis",
+        "discriminator_or_tests",
+        "falsifier",
+        "patch",
+        "uncertainty"
+      ],
+      "prompt_chars": 197805,
+      "replicate": 1,
+      "served_model": "glm-5.3",
+      "stage_id": "final",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-pandas-3",
+      "text_chars": 1904,
+      "wall_seconds": 13.75
+    },
+    {
+      "arm_call_count": 1,
+      "arm_id": "SIMPLE_DIRECT",
+      "blocks": [
+        {
+          "chars": 125,
+          "type": "thinking"
+        },
+        {
+          "chars": 2350,
+          "type": "text"
+        }
+      ],
+      "call_index": 0,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 51,
+      "json_object_parseable": true,
+      "max_tokens_requested": 16000,
+      "output_tokens": 559,
+      "parsed_top_level_keys": [
+        "assumptions",
+        "diagnosis",
+        "discriminator_or_tests",
+        "falsifier",
+        "patch",
+        "uncertainty"
+      ],
+      "prompt_chars": 197805,
+      "replicate": 2,
+      "served_model": "glm-5.3",
+      "stage_id": "final",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-pandas-3",
+      "text_chars": 2350,
+      "wall_seconds": 11.42
+    },
+    {
+      "arm_call_count": 2,
+      "arm_id": "SAME_MODEL_REFLECTION",
+      "blocks": [
+        {
+          "chars": 178,
+          "type": "thinking"
+        },
+        {
+          "chars": 2829,
+          "type": "text"
+        }
+      ],
+      "call_index": 0,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 54658,
+      "json_object_parseable": false,
+      "max_tokens_requested": 16000,
+      "output_tokens": 663,
+      "parsed_top_level_keys": [],
+      "prompt_chars": 197537,
+      "replicate": 1,
+      "served_model": "glm-5.3",
+      "stage_id": "draft",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-pandas-3",
+      "text_chars": 2829,
+      "wall_seconds": 12.28
+    },
+    {
+      "arm_call_count": 2,
+      "arm_id": "SAME_MODEL_REFLECTION",
+      "blocks": [
+        {
+          "chars": 152,
+          "type": "thinking"
+        },
+        {
+          "chars": 2013,
+          "type": "text"
+        }
+      ],
+      "call_index": 1,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 56315,
+      "json_object_parseable": true,
+      "max_tokens_requested": 16000,
+      "output_tokens": 486,
+      "parsed_top_level_keys": [
+        "assumptions",
+        "diagnosis",
+        "discriminator_or_tests",
+        "falsifier",
+        "patch",
+        "uncertainty"
+      ],
+      "prompt_chars": 204227,
+      "replicate": 1,
+      "served_model": "glm-5.3",
+      "stage_id": "final",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-pandas-3",
+      "text_chars": 2013,
+      "wall_seconds": 11.96
+    },
+    {
+      "arm_call_count": 2,
+      "arm_id": "SAME_MODEL_REFLECTION",
+      "blocks": [
+        {
+          "chars": 211,
+          "type": "thinking"
+        },
+        {
+          "chars": 2210,
+          "type": "text"
+        }
+      ],
+      "call_index": 0,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 2,
+      "json_object_parseable": false,
+      "max_tokens_requested": 16000,
+      "output_tokens": 555,
+      "parsed_top_level_keys": [],
+      "prompt_chars": 197537,
+      "replicate": 2,
+      "served_model": "glm-5.3",
+      "stage_id": "draft",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-pandas-3",
+      "text_chars": 2210,
+      "wall_seconds": 11.31
+    },
+    {
+      "arm_call_count": 2,
+      "arm_id": "SAME_MODEL_REFLECTION",
+      "blocks": [
+        {
+          "chars": 166,
+          "type": "thinking"
+        },
+        {
+          "chars": 2359,
+          "type": "text"
+        }
+      ],
+      "call_index": 1,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 59,
+      "json_object_parseable": true,
+      "max_tokens_requested": 16000,
+      "output_tokens": 577,
+      "parsed_top_level_keys": [
+        "assumptions",
+        "diagnosis",
+        "discriminator_or_tests",
+        "falsifier",
+        "patch",
+        "uncertainty"
+      ],
+      "prompt_chars": 204227,
+      "replicate": 2,
+      "served_model": "glm-5.3",
+      "stage_id": "final",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-pandas-3",
+      "text_chars": 2359,
+      "wall_seconds": 11.94
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F0_PARENT_FEDERATION",
+      "blocks": [
+        {
+          "chars": 326,
+          "type": "thinking"
+        },
+        {
+          "chars": 2584,
+          "type": "text"
+        }
+      ],
+      "call_index": 0,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 54658,
+      "json_object_parseable": false,
+      "max_tokens_requested": 16000,
+      "output_tokens": 667,
+      "parsed_top_level_keys": [],
+      "prompt_chars": 197536,
+      "replicate": 1,
+      "served_model": "glm-5.3",
+      "stage_id": "parent_a",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-pandas-3",
+      "text_chars": 2584,
+      "wall_seconds": 22.13
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F0_PARENT_FEDERATION",
+      "blocks": [
+        {
+          "chars": 236,
+          "type": "thinking"
+        },
+        {
+          "chars": 1928,
+          "type": "text"
+        }
+      ],
+      "call_index": 1,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 54658,
+      "json_object_parseable": false,
+      "max_tokens_requested": 16000,
+      "output_tokens": 479,
+      "parsed_top_level_keys": [],
+      "prompt_chars": 197536,
+      "replicate": 1,
+      "served_model": "glm-5.3",
+      "stage_id": "parent_b",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-pandas-3",
+      "text_chars": 1928,
+      "wall_seconds": 16.45
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F0_PARENT_FEDERATION",
+      "blocks": [
+        {
+          "chars": 98,
+          "type": "thinking"
+        },
+        {
+          "chars": 2289,
+          "type": "text"
+        }
+      ],
+      "call_index": 2,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 57916,
+      "json_object_parseable": true,
+      "max_tokens_requested": 16000,
+      "output_tokens": 547,
+      "parsed_top_level_keys": [
+        "assumptions",
+        "diagnosis",
+        "discriminator_or_tests",
+        "falsifier",
+        "patch",
+        "uncertainty"
+      ],
+      "prompt_chars": 210629,
+      "replicate": 1,
+      "served_model": "glm-5.3",
+      "stage_id": "final",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-pandas-3",
+      "text_chars": 2289,
+      "wall_seconds": 11.23
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F0_PARENT_FEDERATION",
+      "blocks": [
+        {
+          "chars": 181,
+          "type": "thinking"
+        },
+        {
+          "chars": 2536,
+          "type": "text"
+        }
+      ],
+      "call_index": 0,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 2,
+      "json_object_parseable": false,
+      "max_tokens_requested": 16000,
+      "output_tokens": 627,
+      "parsed_top_level_keys": [],
+      "prompt_chars": 197536,
+      "replicate": 2,
+      "served_model": "glm-5.3",
+      "stage_id": "parent_a",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-pandas-3",
+      "text_chars": 2536,
+      "wall_seconds": 20.56
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F0_PARENT_FEDERATION",
+      "blocks": [
+        {
+          "chars": 285,
+          "type": "thinking"
+        },
+        {
+          "chars": 2312,
+          "type": "text"
+        }
+      ],
+      "call_index": 1,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 2,
+      "json_object_parseable": false,
+      "max_tokens_requested": 16000,
+      "output_tokens": 583,
+      "parsed_top_level_keys": [],
+      "prompt_chars": 197536,
+      "replicate": 2,
+      "served_model": "glm-5.3",
+      "stage_id": "parent_b",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-pandas-3",
+      "text_chars": 2312,
+      "wall_seconds": 29.19
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F0_PARENT_FEDERATION",
+      "blocks": [
+        {
+          "chars": 238,
+          "type": "thinking"
+        },
+        {
+          "chars": 2144,
+          "type": "text"
+        }
+      ],
+      "call_index": 2,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 60,
+      "json_object_parseable": true,
+      "max_tokens_requested": 16000,
+      "output_tokens": 530,
+      "parsed_top_level_keys": [
+        "assumptions",
+        "diagnosis",
+        "discriminator_or_tests",
+        "falsifier",
+        "patch",
+        "uncertainty"
+      ],
+      "prompt_chars": 210629,
+      "replicate": 2,
+      "served_model": "glm-5.3",
+      "stage_id": "final",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-pandas-3",
+      "text_chars": 2144,
+      "wall_seconds": 9.45
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F2_ORION_METABOLIC_FULL",
+      "blocks": [
+        {
+          "chars": 2656,
+          "type": "text"
+        }
+      ],
+      "call_index": 0,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 54662,
+      "json_object_parseable": false,
+      "max_tokens_requested": 16000,
+      "output_tokens": 596,
+      "parsed_top_level_keys": [],
+      "prompt_chars": 197532,
+      "replicate": 1,
+      "served_model": "glm-5.3",
+      "stage_id": "ingest",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-pandas-3",
+      "text_chars": 2656,
+      "wall_seconds": 10.69
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F2_ORION_METABOLIC_FULL",
+      "blocks": [
+        {
+          "chars": 156,
+          "type": "thinking"
+        },
+        {
+          "chars": 3206,
+          "type": "text"
+        }
+      ],
+      "call_index": 1,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 56272,
+      "json_object_parseable": false,
+      "max_tokens_requested": 16000,
+      "output_tokens": 777,
+      "parsed_top_level_keys": [],
+      "prompt_chars": 203953,
+      "replicate": 1,
+      "served_model": "glm-5.3",
+      "stage_id": "reconstruct",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-pandas-3",
+      "text_chars": 3206,
+      "wall_seconds": 14.57
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F2_ORION_METABOLIC_FULL",
+      "blocks": [
+        {
+          "chars": 670,
+          "type": "thinking"
+        },
+        {
+          "chars": 2423,
+          "type": "text"
+        }
+      ],
+      "call_index": 2,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 60,
+      "json_object_parseable": true,
+      "max_tokens_requested": 16000,
+      "output_tokens": 692,
+      "parsed_top_level_keys": [
+        "assumptions",
+        "diagnosis",
+        "discriminator_or_tests",
+        "falsifier",
+        "patch",
+        "uncertainty"
+      ],
+      "prompt_chars": 210629,
+      "replicate": 1,
+      "served_model": "glm-5.3",
+      "stage_id": "challenge",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-pandas-3",
+      "text_chars": 2423,
+      "wall_seconds": 11.71
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F2_ORION_METABOLIC_FULL",
+      "blocks": [
+        {
+          "chars": 196,
+          "type": "thinking"
+        },
+        {
+          "chars": 1959,
+          "type": "text"
+        }
+      ],
+      "call_index": 0,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 6,
+      "json_object_parseable": false,
+      "max_tokens_requested": 16000,
+      "output_tokens": 515,
+      "parsed_top_level_keys": [],
+      "prompt_chars": 197532,
+      "replicate": 2,
+      "served_model": "glm-5.3",
+      "stage_id": "ingest",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-pandas-3",
+      "text_chars": 1959,
+      "wall_seconds": 22.76
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F2_ORION_METABOLIC_FULL",
+      "blocks": [
+        {
+          "chars": 2124,
+          "type": "text"
+        }
+      ],
+      "call_index": 1,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 16,
+      "json_object_parseable": false,
+      "max_tokens_requested": 16000,
+      "output_tokens": 512,
+      "parsed_top_level_keys": [],
+      "prompt_chars": 203953,
+      "replicate": 2,
+      "served_model": "glm-5.3",
+      "stage_id": "reconstruct",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-pandas-3",
+      "text_chars": 2124,
+      "wall_seconds": 13.63
+    },
+    {
+      "arm_call_count": 3,
+      "arm_id": "F2_ORION_METABOLIC_FULL",
+      "blocks": [
+        {
+          "chars": 124,
+          "type": "thinking"
+        },
+        {
+          "chars": 2027,
+          "type": "text"
+        }
+      ],
+      "call_index": 2,
+      "contract_id": "thinking_disabled",
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "input_tokens": 60,
+      "json_object_parseable": true,
+      "max_tokens_requested": 16000,
+      "output_tokens": 481,
+      "parsed_top_level_keys": [
+        "assumptions",
+        "diagnosis",
+        "discriminator_or_tests",
+        "falsifier",
+        "patch",
+        "uncertainty"
+      ],
+      "prompt_chars": 210629,
+      "replicate": 2,
+      "served_model": "glm-5.3",
+      "stage_id": "challenge",
+      "stop_reason": "end_turn",
+      "task_id": "bugsinpy-pandas-3",
+      "text_chars": 2027,
+      "wall_seconds": 12.86
+    }
+  ],
+  "contract_definitions": {
+    "thinking_disabled": {
+      "extra_body": {
+        "thinking": {
+          "type": "disabled"
+        }
+      },
+      "sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab"
+    }
+  },
+  "is_an_endpoint_read": false,
+  "parameters": {
+    "arms": [
+      "SIMPLE_DIRECT",
+      "SAME_MODEL_REFLECTION",
+      "F0_PARENT_FEDERATION",
+      "F2_ORION_METABOLIC_FULL"
+    ],
+    "contracts": [
+      "thinking_disabled"
+    ],
+    "max_tokens_headroom": 16000,
+    "replicates": 2,
+    "requested_model": "glm-5.3",
+    "requests_root": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e30-r12-applyclean-core4-rep3-20260902-8940881d/run/confirmatory-r1/requests",
+    "source": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e30-r12-applyclean-core4-rep3-20260902-8940881d/source",
+    "tasks": [
+      "bugsinpy-fastapi-1",
+      "bugsinpy-pandas-3"
+    ]
+  },
+  "purpose": "derive the E30-R13 request-body contract and output-token budgets from measurement",
+  "recorded_utc": "2026-09-03T06:34:16Z",
+  "response_text_retained": false,
+  "schema_version": "orion.v2.e30-r13-channel-calibration.v1",
+  "summary": {
+    "thinking_disabled": {
+      "calls": 36,
+      "contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "json_parseable_final_calls": "16/16",
+      "output_tokens": {
+        "max": 2620,
+        "mean": 787.6,
+        "median": 589.5,
+        "min": 401
+      },
+      "per_arm_max_output_tokens": {
+        "F0_PARENT_FEDERATION": 1899,
+        "F2_ORION_METABOLIC_FULL": 1281,
+        "SAME_MODEL_REFLECTION": 1808,
+        "SIMPLE_DIRECT": 2620
+      },
+      "served_model_ids": [
+        "glm-5.3"
+      ],
+      "stop_reasons": {
+        "end_turn": 36
+      },
+      "text_chars_zero_calls": 0,
+      "transport_errors": 0,
+      "wall_seconds": {
+        "max": 46.94,
+        "median": 14.55,
+        "min": 9.32
+      }
+    }
+  },
+  "wrote_into_a_campaign_run_tree": false
+}

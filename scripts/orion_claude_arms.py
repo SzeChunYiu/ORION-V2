@@ -8,6 +8,7 @@ this process.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -24,6 +25,66 @@ FULL_STAGES = (
     "INGEST", "DECOMPOSE", "SORT", "NATIVE_RECONSTRUCT", "REDUCE", "ABSORB",
     "RECOMBINE", "CHALLENGE", "ASSIMILATE_OR_RECYCLE",
 )
+
+
+#: Registered Anthropic-compatible request-body contracts, by id.
+#:
+#: A served model id does NOT pin an experimental condition. E30-R12 measured the
+#: bound z.ai channel answering a byte-identical frozen prompt two ways five days
+#: apart at an unchanged served id ``glm-5.3``: once in 763 output tokens with text,
+#: and once by spending the entire 6000-token budget on a thinking block and emitting
+#: **zero** text characters, which the arm can only record as an envelope failure.
+#: Inheriting the provider default therefore leaves the condition unregistered and
+#: free to move under the study's feet.
+#:
+#: Each entry is the request body MINUS ``model``, ``max_tokens`` and ``messages``
+#: -- the part a study freezes. ``provider_default`` is the historical behaviour and
+#: stays the default so no existing lane changes; a study that wants a pinned channel
+#: sets ``ORION_ARM_CHANNEL_CONTRACT``.
+CHANNEL_CONTRACTS: dict[str, dict[str, Any]] = {
+    "provider_default": {},
+    "thinking_disabled": {"thinking": {"type": "disabled"}},
+    "thinking_enabled_2048": {"thinking": {"type": "enabled", "budget_tokens": 2048}},
+}
+
+ARM_SYSTEM_PROMPT = "You are a bounded experimental software-debugging arm."
+
+
+class ChannelContractUnknown(RuntimeError):
+    """``ORION_ARM_CHANNEL_CONTRACT`` names a contract this executable does not define.
+
+    Fail closed rather than falling back to the provider default: a silent fallback
+    would run the study under the very unregistered condition the contract exists to
+    exclude, and every downstream receipt would still say the contract was applied.
+    """
+
+
+def channel_contract_id() -> str:
+    name = os.environ.get("ORION_ARM_CHANNEL_CONTRACT", "provider_default").strip()
+    name = name or "provider_default"
+    if name not in CHANNEL_CONTRACTS:
+        raise ChannelContractUnknown(
+            f"unknown ORION_ARM_CHANNEL_CONTRACT {name!r}; "
+            f"defined: {sorted(CHANNEL_CONTRACTS)}"
+        )
+    return name
+
+
+def channel_contract_sha256(name: str) -> str:
+    """sha256 over the canonical contract object -- the bytes, not a label for them.
+
+    A gate that compared contract *ids* would pass while the bytes behind an id
+    changed, so the fingerprint covers the system prompt and temperature too.
+    """
+    payload = {
+        "contract_id": name,
+        "system": ARM_SYSTEM_PROMPT,
+        "temperature": 0,
+        "extra_body": CHANNEL_CONTRACTS[name],
+    }
+    return hashlib.sha256(
+        json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
 
 
 class ServedModelMismatch(RuntimeError):
@@ -149,6 +210,7 @@ def run_arm(
     workspace = _solver_workspace(request)
     calls: list[dict[str, int]] = []
     served_models: set[str] = set()
+    channel_calls: list[dict[str, Any]] = []
 
     def ask(prompt: str) -> str:
         if calls:
@@ -160,7 +222,35 @@ def run_arm(
         served = str(usage.get("_served_model", "")).strip()
         if served:
             served_models.add(served)
+        # Providers that do not report a contract (the Gemini channel, an injected
+        # test double) contribute no entry; ``_channel_receipt`` then publishes
+        # ``calls_reporting_a_contract = 0`` rather than an empty pass.
+        if usage.get("_channel_contract_id"):
+            channel_calls.append({
+                "contract_id": str(usage["_channel_contract_id"]),
+                "contract_sha256": str(usage.get("_channel_contract_sha256", "")),
+                "stop_reason": str(usage.get("_stop_reason", "")),
+                "output_tokens": int(usage.get("output_tokens", 0)),
+                "text_chars": int(usage.get("_text_chars", 0)),
+            })
         return text
+
+    def channel_receipt() -> dict[str, Any]:
+        """The per-envelope channel record the homogeneity gate reads.
+
+        Denominators are published, not implied: an envelope whose calls reported no
+        contract shows ``model_calls`` against ``calls_reporting_a_contract = 0``, so
+        a gate cannot read "no violations" out of "nothing was checked".
+        """
+        return {
+            "model_calls": len(calls),
+            "calls_reporting_a_contract": len(channel_calls),
+            "contract_ids": sorted({c["contract_id"] for c in channel_calls}),
+            "contract_sha256s": sorted({c["contract_sha256"] for c in channel_calls}),
+            "stop_reasons": sorted({c["stop_reason"] for c in channel_calls}),
+            "calls_with_zero_text_chars": sum(1 for c in channel_calls if c["text_chars"] == 0),
+            "max_output_tokens_observed": max((c["output_tokens"] for c in channel_calls), default=0),
+        }
 
     stages: dict[str, str] | None = None
     try:
@@ -211,6 +301,7 @@ def run_arm(
             "requested_authority": "EXECUTION_TEST_ONLY", "scientific_truth_authorized": False,
             "field_status_authorized": False, "publication_readiness_authorized": False,
             "resource_receipt": {"model_calls": len(calls), "input_tokens": sum(x["input_tokens"] for x in calls), "output_tokens": sum(x["output_tokens"] for x in calls), "served_model_ids": sorted(served_models)},
+            "channel_receipt": channel_receipt(),
         }
         if stages is not None:
             response["metabolic_stages"] = stages
@@ -235,6 +326,7 @@ def run_arm(
             "falsifier": "repair the bound provider response and rerun under a new identity", "requested_authority": "NONE",
             "scientific_truth_authorized": False, "field_status_authorized": False, "publication_readiness_authorized": False,
             "resource_receipt": {"model_calls": len(calls), "input_tokens": sum(x["input_tokens"] for x in calls), "output_tokens": sum(x["output_tokens"] for x in calls), "served_model_ids": sorted(served_models)},
+            "channel_receipt": channel_receipt(),
         }
 
 
@@ -252,9 +344,18 @@ def _urlopen_with_retry(req: urllib.request.Request, *, timeout: int) -> Any:
 
 
 def _anthropic_compatible_call(prompt: str) -> tuple[str, dict[str, int]]:
+    contract = channel_contract_id()
     base = os.environ["ANTHROPIC_BASE_URL"].rstrip("/")
     url = base + ("/messages" if base.endswith("/v1") else "/v1/messages")
-    body = json.dumps({"model": os.environ["ANTHROPIC_MODEL"], "max_tokens": int(os.environ.get("ORION_ARM_MAX_TOKENS", "6000")), "temperature": 0, "system": "You are a bounded experimental software-debugging arm.", "messages": [{"role": "user", "content": prompt}]}).encode()
+    payload: dict[str, Any] = {
+        "model": os.environ["ANTHROPIC_MODEL"],
+        "max_tokens": int(os.environ.get("ORION_ARM_MAX_TOKENS", "6000")),
+        "temperature": 0,
+        "system": ARM_SYSTEM_PROMPT,
+        "messages": [{"role": "user", "content": prompt}],
+    }
+    payload.update(CHANNEL_CONTRACTS[contract])
+    body = json.dumps(payload).encode()
     req = urllib.request.Request(url, data=body, headers={"x-api-key": os.environ["ANTHROPIC_AUTH_TOKEN"], "anthropic-version": "2023-06-01", "content-type": "application/json"})
     with _urlopen_with_retry(req, timeout=int(os.environ.get("ORION_ARM_HTTP_TIMEOUT", "1800"))) as raw:
         data = json.load(raw)
@@ -263,6 +364,13 @@ def _anthropic_compatible_call(prompt: str) -> tuple[str, dict[str, int]]:
     assert_served_model(served)  # fail closed on silent model substitution
     usage = dict(data.get("usage", {}))
     usage["_served_model"] = served
+    # The channel receipt. ``stop_reason`` and the emitted text length are what
+    # separate "the model answered" from "the model spent the budget thinking and
+    # emitted nothing"; both look identical in an output-token count alone.
+    usage["_channel_contract_id"] = contract
+    usage["_channel_contract_sha256"] = channel_contract_sha256(contract)
+    usage["_stop_reason"] = str(data.get("stop_reason", ""))
+    usage["_text_chars"] = len(text)
     return text, usage
 
 
