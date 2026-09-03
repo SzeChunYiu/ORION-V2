@@ -1,5 +1,22 @@
 # ME-X6 — Collective Epistemics: Protected-Run Outcome Receipt
 
+> **QUALIFICATION — read `ME_X6_COMPARATOR_PROVENANCE_AND_NON_FIDELITY_RECEIPT_V1.md`
+> before quoting this receipt or its terminal.** **No number, denominator, gate
+> verdict or route changes**; nothing was re-run and no comparator was re-fitted.
+> Two things are narrowed. (1) The terminal string
+> `UNTYPED_AGGREGATE_CANNOT_REPRESENT_THE_CONJUNCTION_AT_MATCHED_INFORMATION` is a
+> *representation* claim that reaches past what was shown: `M`'s own rule is
+> itself an untyped per-channel weighted aggregate of the same channels, so an
+> untyped aggregate at matched information that recovers the conjunction exactly
+> **exists** (exhibited, 56/56 capability-half on the public development split,
+> control 28/56). What was shown is that the *registered* comparator does not
+> recover it: read the terminal as
+> `FITTED_UNIT_SIGN_UNTYPED_AGGREGATE_DOES_NOT_RECOVER_THE_CONJUNCTION_AT_MATCHED_INFORMATION`.
+> (2) `B4X_FITTED_UNTYPED` is **constructed for this study, not a published-method
+> parent**, and no parent-fidelity receipt of the ME-X1 kind is possible for it —
+> stated there as a design fact, with the reason. The comparator's failure is
+> attributed to a single cause: it cannot set a channel weight to zero.
+
 **Run date:** 2026-09-03
 **Design:** `ME_X6_COLLECTIVE_EPISTEMICS_EXACT_STUDY_DESIGN_V1.json`,
 sha256 `c8feaaafb244d4f80f0640631830d8a2b3b8c914362e9ebc10d25273820931fa`,

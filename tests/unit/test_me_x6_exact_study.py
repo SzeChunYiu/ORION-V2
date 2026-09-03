@@ -436,3 +436,71 @@ def test_G0a_denominator_counts_what_was_actually_checked(tmp_path: Path) -> Non
     assert g2["n_planted_positives"] == g["n_planted_positives"] + 1
     assert g2["n_evaluated"] == g["n_evaluated"] + 1, \
         "the denominator does not track what the report says was checked"
+
+
+# ---- comparator capacity (see ME_X6_COMPARATOR_PROVENANCE_AND_NON_FIDELITY_RECEIPT_V1.md) ----
+
+def _run_with_weights(name: str, weights: dict) -> list:
+    """Run the UNTYPED arm's own code path under a hand-set weight vector.
+
+    Diagnostic only: nothing here is a comparator, nothing is fitted, and the
+    protected split is never touched.
+    """
+    saved = dict(mex6_arms.FITTED_SIGNS)
+    try:
+        mex6_arms.load_fitted_signs({**saved, name: weights})
+        spec = mex6_arms.ArmSpec(name, mex6_model.CHANNELS, mex6_arms._cap_fitted)
+        return [mex6_arms.run_arm(spec, i.window, random.Random(0)) for i in DEV]
+    finally:
+        mex6_arms.load_fitted_signs(saved)
+
+
+def test_M_is_itself_an_untyped_weighted_aggregate_of_the_same_channels() -> None:
+    """The terminal says an untyped aggregate CANNOT represent the conjunction.
+
+    It can: M's own rule is one.  `_cap_typed` and `_cap_fitted` are the same
+    functional form over the same channels and differ only in the weight dict, so
+    loading M's weights into the untyped path reproduces M exactly.  Only the
+    CAPABILITY half is evidence -- both arms hold ACTIVITY_CHANNELS and `run_arm`
+    computes the activity half identically for them, so that half could not have
+    differed.  The all-+1 control proves the capability comparison can fail.
+    """
+    m = _arm(mex6_arms.M_ARM)
+    m_out = [mex6_arms.run_arm(m, i.window, random.Random(0)) for i in DEV]
+    m_weights = {c: mex6_arms.TYPED_SIGNS.get(c, 0) for c in mex6_model.CHANNELS}
+
+    same = _run_with_weights("M_WEIGHTS_AS_UNTYPED", m_weights)
+    agree = sum(a.capability == b.capability for a, b in zip(m_out, same))
+    assert agree == len(DEV), f"capability half: {agree}/{len(DEV)}"
+    exact = sum(b.as_tuple() == mex6_oracle.oracle(i.window).as_tuple()
+                for i, b in zip(DEV, same))
+    assert exact == len(DEV), f"untyped arm with M's weights exact {exact}/{len(DEV)}"
+
+    control = _run_with_weights("ALL_PLUS_ONE", {c: 1 for c in mex6_model.CHANNELS})
+    ctl = sum(a.capability == b.capability for a, b in zip(m_out, control))
+    assert ctl < len(DEV), "the capability comparison must be able to fail"
+
+
+def test_the_comparator_fails_because_it_cannot_zero_a_channel() -> None:
+    """Single-stage attribution, on the public development split.
+
+    Restoring M's magnitudes alone recovers only I4.  Zeroing the six channels M
+    weights at zero -- while KEEPING the comparator's own weaker validation
+    weights -- recovers every failing stratum.  So the -2 on retractions is not
+    what separates the arms; the inability to ignore a channel is.
+    """
+    frozen = dict(mex6_run.frozen_signs()[mex6_arms.B4X_FITTED_ARM])
+    m_weights = {c: mex6_arms.TYPED_SIGNS.get(c, 0) for c in mex6_model.CHANNELS}
+    zeroed = [c for c in mex6_model.CHANNELS if m_weights[c] == 0 and frozen[c] != 0]
+    assert len(zeroed) == 6, zeroed
+
+    def _fails(weights):
+        out = _run_with_weights("ATTRIBUTION_PROBE", weights)
+        return {i.stratum for i, o in zip(DEV, out)
+                if o.as_tuple() != mex6_oracle.oracle(i.window).as_tuple()}
+
+    assert _fails(frozen) == set(mex6_run.DECOUPLED_STRATA)
+    mag_only = {**frozen, "retractions": -2, "replications_failed": -1}
+    assert _fails(mag_only) == set(mex6_run.DECOUPLED_STRATA) - {"I4_RETRACTED_WORK"}
+    zero_only = {c: (0 if c in zeroed else frozen[c]) for c in mex6_model.CHANNELS}
+    assert _fails(zero_only) == set()
