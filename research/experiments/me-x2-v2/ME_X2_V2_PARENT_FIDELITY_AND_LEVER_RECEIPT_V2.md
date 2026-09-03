@@ -1,5 +1,18 @@
 # ME-X2 V2 — Provenance, Parent Fidelity, Lever Known-Answer and Development Receipt (V2)
 
+> **SUPERSEDED IN PART, 2026-09-03.** The status lines below were true when this
+> receipt was written and are no longer true. ME-X2-V2's protected run has since
+> been executed under `PROTECTED_RUN_AUTHORIZATION_ARCHIVED_V2.json`, recorded as
+> a coordinator authorization under the operator's standing instruction (the
+> class is stated verbatim in that file). The terminal now stands on
+> `ME_X2_V2_OUTCOME_RECEIPT.md`: 1200 protected instances, route
+> `PARENT_SUFFICIENT` (M2 0.9850 vs B5 0.9908, exact p = 0.265), and lever verdict
+> **`LEVERS_RECOVER_M`** — not the `LEVERS_NULL` this receipt reports. §5's own
+> reading was correct: the development split could not discriminate the levers.
+> **Everything below this line describes the development split only and must not
+> be read as this study's terminal.** The provenance, parent-fidelity and
+> lever-known-answer content remains valid.
+
 **Design:** `ME_X2_V2_LOOKAHEAD_REACHABILITY_REVIVAL_DESIGN_V2.{md,json}` (this PR).
 **Status:** frozen design + lever known-answer fixtures + development split.
 **No protected outcome has been generated or inspected.**

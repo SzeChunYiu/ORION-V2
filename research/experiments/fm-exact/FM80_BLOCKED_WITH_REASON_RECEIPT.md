@@ -115,4 +115,97 @@ not weakened, and not filed as a null.
 Authority: grants nothing; no scientific truth, no F2 superiority, no field
 status, no submission readiness.
 
+## 6. Independent verification of this receipt, 2026-09-03, with two corrections
+
+The claims above were re-checked clause by clause against the frozen protocol,
+after this receipt was written and by a reader who did not write it. **The
+disposition stands and the citation set is the right one.** Two reporting
+imprecisions were found and are corrected here rather than left standing, and one
+inherited caveat is raised.
+
+### Verified against the protocol text
+
+- **§3 items (c)-(e)** exist as described (the protocol's bullets are unlettered;
+  the a-g lettering is the repo convention SD80's schema also uses), and the
+  INELIGIBLE rule is verbatim: *"Cases failing any item are `INELIGIBLE`, not
+  negative evidence."*
+- **§4** requires the freeze verbatim: *"K, corpus snapshot and retrieval
+  model/version must be frozen in the machine-readable companion before
+  dispatch."*
+- **§7** requires *"at least two qualified adjudicators who did not build the
+  evaluated arm"*, blinded to arm identity, disagreements recorded before any
+  consensus meeting, and a third adjudicator for pre-declared terminal
+  disagreements.
+- **§8** requires *"Minimum target: 90 eligible cases, at least 30 per domain"*
+  and permits a scoped pilot that *"cannot grant the standalone top-tier terminal"*.
+- **§2** says verbatim: *"Reusing a generated FM/FG study as one of the three
+  domains is not sufficient."*
+- **No machine-readable companion exists.** Searched by basename with `find` and
+  by content, with a control pattern that must match to prove the search works:
+  the only FM80 artifacts in the repository are the protocol `.md`, the protocol
+  `.json` and this receipt. The protocol JSON is arguably itself the companion,
+  but it **binds none of the three required values**: its remoteness clause names
+  no K, `pre_dispatch_freeze` lists `corpus_snapshot_ids` as an obligation with no
+  value, and no retrieval model or version appears anywhere in it.
+
+### Correction 1 — a section pointer, not a requirement
+
+§3's heading above reads "§8 sample — 90 eligible cases, >= 30 per domain" and its
+body folds in "three materially distinct domains, at least one formal and two
+empirical". **That domain-structure requirement is §2, not §8.** §8 states only
+the 90-case minimum, the 30-per-domain floor and the pilot clause. The substance
+of the claim is correct; the citation was imprecise and is corrected here.
+
+### Correction 2 — "the INTERNAL stratum came back empty"
+
+§1 above says SD80's `INTERNAL` stratum "came back empty". SD80's own sufficiency
+record shows `PSYCHOLOGY_RPP: INTERNAL 0`, `CANCER_BIOLOGY_RPCB: INTERNAL 0`,
+`FORMAL_MATHEMATICS_1000PLUS: INTERNAL 1`. **One case, not zero.** SD80's terminal
+is unaffected — PC-R7 §1 requires >= 15 per domain and 1 is as short as 0 — but
+"empty" is wrong for the formal domain and is corrected here.
+
+### Caveat — an inherited quotation that SD80's own data does not fully support
+
+This receipt quotes SD80 faithfully: *"FM80 eligibility is therefore PENDING for
+every case."* SD80's per-case file does not bear that out. Of its 455 records,
+**393 carry `fm80_eligible = PENDING_DONOR_KEY_AND_REMOTENESS_FREEZE` and 62 carry
+`INELIGIBLE`** (36 failing item (a), 26 failing item (f)). "PENDING for every case"
+holds for the PC-R7-eligible pool, not for every record. The discrepancy is
+**SD80's, inherited here by accurate quotation, and is raised to SD80's lane
+rather than edited from this one.** It does not change FM80's disposition: 393
+PENDING and 62 INELIGIBLE both give zero FM80-*eligible* cases.
+
+## 7. The single blocking artifact, named precisely
+
+The brief asks for one blocking artifact rather than a list. It is **§7's
+independent adjudicators**, and it is strictly harder than the other three
+preconditions:
+
+- **§3(c) has a computable escape hatch.** The protocol permits *"a prospective
+  discovery criterion"* instead of a private adjudication key. A criterion can be
+  written and registered with no human panel.
+- **§4's K, corpus snapshot and retrieval model/version are engineering acts.**
+  Pinning a snapshot id, fixing K and versioning a retriever are things a session
+  can do.
+- **§7 has no hatch.** *"at least two qualified adjudicators who did not build the
+  evaluated arm"* is a property of persons. Independence-from-construction cannot
+  be manufactured by computation.
+
+Decisively, **§7 is upstream of §4 and freezing §4's artifacts does not unblock
+it.** §4's fourth remoteness condition reads: *"an independent adjudicator accepts
+that the donor is scientifically relevant to the registered target decision."* So
+even a fully frozen corpus, K and retrieval baseline still cannot establish a
+donor as `REMOTE` without a qualified human. At three domains x two adjudicators,
+plus a third for pre-declared terminal disagreements, the lane needs **six to nine
+qualified, conflict-declared people independent of arm construction.**
+
+The protocol anticipates exactly this and gives it a name: §10 lists
+`CANNOT_CHECK_INDEPENDENT_ADJUDICATION` as a valid recordable terminal in its own
+right.
+
+**No protected run of FM80 is possible, and this is structural rather than a
+matter of compute.** The disposition is unchanged:
+`BLOCKED_ELIGIBILITY_PRECONDITIONS_UNSATISFIED`, blocked on a human-resource
+precondition that no amount of computation substitutes for.
+
 skills-applied: none (lane disposition receipt, no manuscript content)
