@@ -68,11 +68,11 @@ Primary sources:
 - Paul Beame and Vincent Liew, *New Limits for Knowledge Compilation and Applications to Exact Model Counting*, arXiv:1506.02639.
 - Antoine Amarilli, Mikaël Monet, and Pierre Senellart, *Connecting Width and Structure in Knowledge Compilation*, LIPIcs ICDT 2018, DOI 10.4230/LIPIcs.ICDT.2018.6.
 - Randal E. Bryant, Yong Kiam Tan, and Marijn J. H. Heule, *Certifying Projected Knowledge Compilation*, LIPIcs SAT 2025, DOI 10.4230/LIPIcs.SAT.2025.8.
-- Jean-Marie Lagniez and Emmanuel Lonca, *decnnf_rs: A Framework for Querying d-DNNF, LIPIcs SAT 2026, DOI 10.4230/LIPICs.SAT.2026.38.
+- Jean-Marie Lagniez and Emmanuel Lonca, *decdnnf_rs: A Framework for Querying d-DNNF*, LIPIcs SAT 2026, DOI 10.4230/LIPIcs.SAT.2026.38.
 
 ## 4. Revised residual
 
-The residual is no longer “store all warrants” or “repair from a known rule delta.” It is **prospective, jointly learned, independently certifiable revision completence**:
+The residual is no longer “store all warrants” or “repair from a known rule delta.” It is **prospective, jointly learned, independently certifiable revision competence**:
 
 > Before future evidence/checker/rule/scope/authority interventions are known, learn reusable operator semantics and a warrant representation from independently checked experience. After an admitted intervention is revealed, decide exact retention, exact retraction, or explicit abstention while charging offline acquisition, compiled-state size, future proof/data queries, repair work, state recourse, collateral skill loss, false authority, and verifier/prover cost.
 
@@ -80,3 +80,51 @@ The strongest parent comparator now receives:
 
 1. computational traces and the same proof-query interface;
 2. an exact monotone-DNF/hidden-hypergraph learner;
+3. complete-reason / prime-implicant computation;
+4. knowledge compilation with the same offline time and storage budget;
+5. provenance-guided rule-delta repair and versioned concept memory;
+6. exact/ticketed/system-aware unlearning;
+7. TMS/ATMS/self-adjusting computation;
+8. proof-carrying execution and certifying compilation;
+9. authority-path and source-to-forget-set resolvers;
+10. a recurrent/looped Transformer implementation with identical access.
+
+## 5. New theorem candidate: dual-certificate barrier
+
+The next theorem is not a new architecture. It is a conditional complexity barrier for proof-carrying learning:
+
+- safe retention has an existential surviving-warrant certificate;
+- safe retraction asserts that no valid warrant survives;
+- for a general NP-complete warrant-existence relation, polynomial-size polynomial-time checkable noninteractive certificates for exact safe retraction on every instance would put the complementary coNP-complete language in NP and hence imply `NP = coNP`;
+- tractable compiled representations can avoid repeated hard online search, but may require exponential offline size on unrestricted classes.
+
+This is proved in `05_DUAL_CERTIFICATE_BARRIER_V1.md`. The complexity implication is standard; possible novelty lies only in a stronger joint learning/compilation/revision theorem and its exact ORION consequence.
+
+## 6. Revised breakthrough target: RCL-C
+
+A publishable residual must establish more than the conditional barrier.
+
+`RCL-C — Prospectively Learned Dual-Certificate Revision Frontier`
+
+For a natural family of compositional operators and warrant relations:
+
+1. prove a constructive learner jointly identifies operator semantics and a tractable revocation representation from checked traces without receiving future interventions;
+2. prove held-out/reminted composition and useful retention after intervention;
+3. provide positive retention certificates and independently checkable retraction/extinction certificates, or a principled abstention route;
+4. characterize offline acquisition/compilation, stored bits, online proof/data queries, update time, recourse, collateral loss, false authority, and abstention;
+5. prove a lower bound or impossibility for the strongest parent product at the same information and resources;
+6. identify tractable structural regimes, such as bounded width, and hard regimes where compiled state or online proof must blow up;
+7. contract architecture language if a recurrent Transformer realizes the same frontier.
+
+## 7. Current terminal
+
+```text
+STATIC_CWC = PARENT_SUFFICIENT_COMPLETE_REASON
+KNOWN_RULE_DELTA_PROVENANCE_REPAIR = PARENT_OWNED / STRONG_NEAR_PARENT
+OFFLINE_COMPLETE_WARRANT_COMPILATION = KNOWLEDGE_COMPILATION_PARENT
+RCL_0_THROUGH_RCL_6 = CORRECT_CALIBRATION_CANDIDATES_NOT_NOVELTY
+RCL_DUAL_CERTIFICATE_BARRIER = HAND_PROVED_CONDITIONAL_THEOREM
+RCL_C_JOINT_FRONTIER = OPEN
+EXTERNAL_NOVELTY = NOT_ESTABLISHED
+ARCHITECTURE_SEPARATION = NOT_SUPPORTED
+```
