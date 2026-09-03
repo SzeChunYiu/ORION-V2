@@ -1,0 +1,452 @@
+{
+  "arm_divergence_assertion": {
+    "assertions": [
+      "for every pair, the per-task request sha256 differs on EVERY shared task id (not merely on one)",
+      "for every pair, the built prompt bytes differ on every shared task id",
+      "F2_FULL_MINUS_PARENT_FEDERATION requests contain no parent_advisory key on any task",
+      "F2_FULL_MINUS_FAILURE_EVIDENCE requests contain no FAILURE episode on any task"
+    ],
+    "gate": "any assertion failing routes the campaign to CANNOT_CHECK",
+    "pairs": [
+      [
+        "F2_RECURSIVE_META_DISCOVERY_FULL",
+        "F2_STATIC_NO_RECURSION"
+      ],
+      [
+        "F2_RECURSIVE_META_DISCOVERY_FULL",
+        "F2_FULL_MINUS_FAILURE_EVIDENCE"
+      ],
+      [
+        "F2_RECURSIVE_META_DISCOVERY_FULL",
+        "F2_FULL_MINUS_PARENT_FEDERATION"
+      ]
+    ],
+    "why": "Taxonomy item 2: a contrast that could not exist reports 1.000 vs 1.000. Assert the code paths actually diverge."
+  },
+  "arms": {
+    "deterministic_controls": "every deterministic arm is also run on the full LP and QS control pools (suffixes __LP, __QS)",
+    "deterministic_full_task": [
+      "TARGET_ONLY_DETERMINISTIC",
+      "SIMPLE_FREQUENCY_PARENT",
+      "MATCHED_CASE_PARENT",
+      "NAIVE_BAYES_PARENT",
+      "DECISION_LIST_PARENT",
+      "PERCEPTRON_PARENT",
+      "MAXMARGIN_PARENT",
+      "PAIRWISE_LINEAR_PARENT",
+      "FIXED_META_LESSON",
+      "F0_PARENT_FEDERATION",
+      "STRONGEST_GENERATOR_FAITHFUL_PARENT"
+    ],
+    "protocol_mapping": {
+      "F0_PARENT_FEDERATION": "deterministic",
+      "F2_RECURSIVE_META_DISCOVERY_FULL": "model arm, common surface + parent advisory, full registered procedure",
+      "F2_STATIC_NO_RECURSION": "model arm, common surface + parent advisory, recursion disabled by procedure",
+      "FIXED_META_LESSON": "deterministic",
+      "MATCHED_CASE_PARENT": "deterministic",
+      "SIMPLE_FREQUENCY_PARENT": "deterministic",
+      "STRONGEST_GENERATOR_FAITHFUL_PARENT": "MAXMARGIN_PARENT",
+      "TARGET_ONLY_NEGATIVE_CONTROL": "model arm, physically sanitized surface (no training_episodes key), subset of 60 tasks; TARGET_ONLY_DETERMINISTIC covers all tasks"
+    }
+  },
+  "authority": {
+    "grants_causal_law": false,
+    "grants_field_status": false,
+    "grants_publication_readiness": false,
+    "grants_scientific_truth": false,
+    "grants_submission_readiness": false
+  },
+  "channel_contract": {
+    "canary_band_calibration": "Bands were calibrated by dispatching every canary 6 times pre-freeze (3 measurements x 2 repeats, provenance/calibration/calib_{1,2,3}.json). The canaries carry no task surface and no oracle content, so dispatching them touches nothing protected; this calibration is PART of the frozen design and is not a post-outcome change. Rule: tolerance on |mean_end - mean_start| (3 repeats a side) = max(8, observed full range, 4*sd/sqrt(3)), then floored at 1300 for input_tokens and 20 for output and reasoning tokens. The input floor exists because one calibration draw came in at 14875 against a 13593-13625 baseline; applying the tight 8-token band that the other two canaries would support would guarantee a false positive the first time that outlier lands elsewhere.",
+    "canary_bands": {
+      "CANARY_DELIBERATIVE": {
+        "input_tokens_abs_tolerance": 1300.0,
+        "output_tokens_abs_tolerance": 20.0,
+        "reasoning_output_tokens_abs_tolerance": 20.0
+      },
+      "CANARY_MINIMAL": {
+        "input_tokens_abs_tolerance": 1300.0,
+        "output_tokens_abs_tolerance": 20.0,
+        "reasoning_output_tokens_abs_tolerance": 20.0
+      },
+      "CANARY_STRUCTURED": {
+        "input_tokens_abs_tolerance": 1300.0,
+        "output_tokens_abs_tolerance": 20.0,
+        "reasoning_output_tokens_abs_tolerance": 20.0
+      }
+    },
+    "canary_prompt_sha256": {
+      "CANARY_DELIBERATIVE": "560b1d0b8e2522a106cbc9651965db14f3d446ef2bfcb0f062417b10b58271d0",
+      "CANARY_MINIMAL": "ba16e72cd9a28c756af0a111008bb72b693b68ec1e09c375b4d6cf0b02d8585e",
+      "CANARY_STRUCTURED": "350d56a17157a0f7a1a5c4679fcf06e6b740fc5bdb675067ffbc9a535eb569a1"
+    },
+    "detection_floor": "The gate detects canary-mean shifts larger than 1300 input tokens or 20 output / 20 reasoning tokens. The E30-R12 drift was +5237 output tokens, roughly 260x this floor. Shifts smaller than the floor are NOT detected and the design does not claim they are.",
+    "expected_comp_hash": "2911",
+    "expected_served_slugs_prefix": [
+      "gpt-5.5",
+      "gpt-5.4",
+      "gpt-5.4-mini",
+      "gpt-5.3-codex-spark",
+      "codex-auto-review"
+    ],
+    "gate": "any verdict other than CHANNEL_CONTRACT_OK routes the campaign to CANNOT_CHECK",
+    "manifest_observability_caveat": "The served-model manifest is visible only as a SIDE EFFECT of this CLI failing to decode it (unknown reasoning variant `max`), which makes it log the raw body to stderr. If the server response ever becomes decodable the scrape goes silent. A silent scrape must never read as 'contract verified' - that is exactly a counter that never ran.",
+    "measured_at": [
+      "CAMPAIGN_START (before any protected model envelope)",
+      "CAMPAIGN_END (after the last protected model envelope)"
+    ],
+    "model": "gpt-5.5",
+    "request_body": {
+      "attempt_cap": 2,
+      "cwd": "empty temporary directory",
+      "max_concurrency": 2,
+      "model_requested": "gpt-5.5",
+      "output_schema": "sd70v3_model_arm.output_schema() (7 required fields, additionalProperties false)",
+      "parity": "identical model, effort, timeout, schema and attempt cap for every model arm",
+      "reasoning_effort": "medium",
+      "reasoning_enabled": true,
+      "reasoning_note": "The served manifest reports default_reasoning_summary 'none'. That means reasoning SUMMARIES are not emitted; reasoning itself IS running (the deliberative canary spends 26-31 reasoning_output_tokens). reasoning_output_tokens is recorded per envelope.",
+      "reasoning_summaries_emitted": false,
+      "sandbox": "read-only",
+      "timeout_seconds": 600
+    },
+    "verdicts": {
+      "CHANNEL_CANARY_DISPATCH_FAILED": "a canary did not complete -> CANNOT_CHECK",
+      "CHANNEL_CONTRACT_OK": "every check passed with a non-zero denominator",
+      "CHANNEL_CONTRACT_UNOBSERVABLE": "a check could not run (manifest not scrapeable, or usage absent) -> CANNOT_CHECK, DISTINCT from OK",
+      "CHANNEL_DRIFT_DETECTED": "a check ran and failed -> CANNOT_CHECK"
+    },
+    "why": "Pinning a served model id does NOT pin an experimental condition. In E30-R12 every one of 119 envelopes recorded the correct served model id and the campaign still failed: provider-side channel behaviour drifted between runs and an identical frozen prompt that had completed in 763 output tokens five days earlier hit a 6000-token cap on re-run, the budget consumed by a reasoning block the arm never reads. A contract measured ONCE at freeze cannot catch that."
+  },
+  "comparator": {
+    "development_exact_accuracy": {
+      "F0_PARENT_FEDERATION": 0.6633,
+      "STRONGEST_GENERATOR_FAITHFUL_PARENT (MAXMARGIN_PARENT)": 0.6783
+    },
+    "f0_still_reported": "F0_PARENT_FEDERATION runs on every protected task and is reported as a required arm and as a secondary contrast",
+    "rule": "max(STRONGEST_GENERATOR_FAITHFUL_PARENT, F0_PARENT_FEDERATION) by mean exact accuracy on the V3 development split, frozen BEFORE protected generation",
+    "selected": "STRONGEST_GENERATOR_FAITHFUL_PARENT (MAXMARGIN_PARENT)",
+    "selected_because": "0.6783 > 0.6633 on the V3 development split",
+    "why": "The programme invariant names the strongest faithful parent federation, information-matched and never artificially isolated. Comparing against the weaker of the two would be baseline-weakening."
+  },
+  "controls": {
+    "label_permutation": "uniform random bijection on the candidate actions applied to every training chosen_action (task suffix -LP); expected accuracy of every equivariant learner = chance exactly",
+    "model_control_subset_rule": "the 60 lexicographically first task ids of the relevant pool (frozen before generation)",
+    "model_control_subset_size": 60,
+    "no_failure_evidence": "F2_FULL_MINUS_FAILURE_EVIDENCE (FAILURE episodes physically removed; advisory recomputed on the success-only surface)",
+    "no_parent_federation": "F2_FULL_MINUS_PARENT_FEDERATION (no parent_advisory key)",
+    "no_recursion": "F2_STATIC_NO_RECURSION",
+    "physically_sanitized_target_only": "TARGET_ONLY_NEGATIVE_CONTROL (model) + TARGET_ONLY_DETERMINISTIC",
+    "query_to_task_shuffle": "held-out context replaced by another task's query bits mapped positionally; private answer = argmax of that other task's rule mapped positionally into this task's candidates (suffix -QS); answer independent of this task's training"
+  },
+  "custody": {
+    "code": [
+      "sd70v3_generator.py",
+      "sd70v3_parents.py",
+      "sd70v3_stats.py",
+      "sd70v3_model_arm.py",
+      "sd70v3_channel.py",
+      "sd70v3_run.py",
+      "sd70v3_remote_dispatch.py"
+    ],
+    "code_sha256_frozen_in": "SD70_V3_PARENT_FIDELITY_RECEIPT_V1.md",
+    "design_hash_bound_into_frozen_suite": true,
+    "evaluator_logically_separate_from_contested_solver": true,
+    "no_threshold_or_baseline_change_after_oracle_access": true,
+    "oracle_absent_during_all_solver_calls": true,
+    "oracle_never_present_on_the_dispatch_host": true,
+    "outputs": [
+      "<campaign>/SD70_V3_ROLLUP.{json,md}",
+      "<campaign>/SD70_V3_ARM_RECORDS.json",
+      "research/experiments/results/issue50/sd70-v3/SD70_V3_OUTCOME_RECEIPT.md"
+    ],
+    "raw_responses_frozen_before_oracle_restore": true,
+    "seed_commitment_before_generation": true,
+    "seed_never_leaves_the_mac": true
+  },
+  "decision_rules": {
+    "CANNOT_CHECK": "dispatch integrity failure, global model failure rate > 0.05, F2_FULL / F2_STATIC / TARGET_ONLY model arm failure rate > 0.10, public/private identity mismatch, design hash changed after freeze, the parent's LP control not at chance, a channel-contract verdict other than CHANNEL_CONTRACT_OK (drift, unobservable or canary dispatch failure), an envelope-homogeneity gate failure, or an arm-divergence assertion failure",
+    "FIXED_META_LESSON_SUFFICIENT": "F2_FULL passes every gate above but FIXED_META_LESSON >= F2_FULL (point)",
+    "PARENT_SUFFICIENT": "SP ties or exceeds F2_FULL (point delta <= 0), or F2_FULL fails any of: effect_minimum, effect_significant_holm, non_regression, critical_false_direction, cost_within_budget, mechanism_recursion (F2_FULL - F2_STATIC >= 0.05 with mid-p < 0.05), no_ablation_beats_full, model_negative_controls_behave",
+    "PROSPECTIVE_META_POLICY_RESIDUAL": "F2_FULL passes every gate and exceeds FIXED_META_LESSON",
+    "order": [
+      "CANNOT_CHECK",
+      "PARENT_SUFFICIENT",
+      "FIXED_META_LESSON_SUFFICIENT",
+      "PROSPECTIVE_META_POLICY_RESIDUAL"
+    ]
+  },
+  "envelope_homogeneity": {
+    "calibration": "The input-token model and the reasoning cap were fitted on a 56-envelope DEVELOPMENT rehearsal (8 development tasks x 7 model arms, development seed 123456789, no protected task and no protected outcome involved). Fit: input_tokens = 13473.2 + 0.49026 * prompt_bytes, residual sd 597.0, |residual| max 849.1 over n=56. The frozen tolerance +/-3600 is 4.2x the largest observed residual, chosen so the gate does not cry wolf on its first protected run; a checker that raises a false alarm on first contact gets switched off. Observed reasoning_output_tokens over the same 56 envelopes: min 31, mean 301, p95 516, max 967; the frozen cap of 3000 sits 3.1x above the observed maximum and 2x below the 6000-token cap that broke E30-R12.",
+    "denominator_rule": "every count above is reported with the denominator it was computed over; a zero without a denominator is not a result",
+    "first_attempt_band_was_wrong": "The first drafted gate used a raw input_tokens/prompt_bytes ratio band of [0.10, 1.20]. The development rehearsal showed the real ratio is 2.30-13.34, because input_tokens is dominated by a roughly 13.5k-token fixed harness overhead while prompt_bytes varies 1038-7163. That band would have failed 100% of envelopes on first contact. It was replaced BEFORE freezing and before any protected task existed. Recorded here because a gate calibrated only against intuition is exactly the checker-cries-wolf failure this programme has been bitten by.",
+    "gates": {
+      "comp_hash_consistency": true,
+      "comp_hash_consistency_note": "every envelope whose channel_observation is observable must report the frozen comp_hash",
+      "input_tokens_linear_model": {
+        "base": 13473.2,
+        "form": "input_tokens ~= base + slope * prompt_bytes",
+        "min_fraction_within": 0.98,
+        "residual_abs_tolerance": 3600.0,
+        "slope": 0.49026
+      },
+      "reasoning_cap_max_exceed_fraction": 0.02,
+      "reasoning_output_tokens_cap": 3000,
+      "usage_observed_fraction": 0.98,
+      "usage_observed_fraction_note": "fraction of model envelopes whose usage came from turn.completed.usage directly; below this the channel is CHANNEL_CONTRACT_UNOBSERVABLE, never OK"
+    },
+    "recorded_per_envelope": [
+      "input_tokens",
+      "cached_input_tokens",
+      "output_tokens",
+      "reasoning_output_tokens",
+      "total_tokens",
+      "usage_source",
+      "prompt_sha256",
+      "prompt_bytes",
+      "channel_observation"
+    ],
+    "why": "Catch a mid-campaign channel shift that the start/end canaries straddle but do not localise."
+  },
+  "gates": {
+    "ablation_alpha": 0.05,
+    "ablation_minimum_effect": 0.05,
+    "ablation_noise_tolerance": 0.03,
+    "alpha_family": 0.05,
+    "cfd_margin": 0.05,
+    "control_rule": "behaves iff the Wilson 95% lower bound of the control accuracy <= chance + control_tolerance (not significantly above chance; the tolerance absorbs the generator's shared low-index tie-break bias, about +0.04 on the QS control in development)",
+    "control_tolerance": 0.05,
+    "minimum_effect": 0.1,
+    "multiplicity": "Holm over the two primary contrasts",
+    "non_inferiority_margin": 0.05
+  },
+  "generator": {
+    "code": "sd70v2_generator.build_suite (byte-identical task family to scripts/generate_scientific_development_meta_benchmark.py build_suite; asserted by unit test)",
+    "family": "V1-identical: f in [4,7] binary context features, a in [3,5] actions, integer weights in [-3,4] (rows made distinct), argmax with lowest-index tie break, 8 unseen-context pairs (SUCCESS with the best action; FAILURE with a uniformly random other action), one unseen held-out context; all tokens random codewords",
+    "private_surface": [
+      "seed",
+      "latent weights",
+      "query bits",
+      "correct action",
+      "worst actions",
+      "latent query scores"
+    ],
+    "train_episodes": 16
+  },
+  "information_contract": {
+    "enforcement": [
+      "GENERATION runs on the Mac. The protected seed and private_oracle.json exist only there.",
+      "one request file per arm-task under requests/<arm>/, containing only the arm's surface; REQUEST_SURFACE_MANIFEST.json hashes every request and every arm surface and counts training-only tokens in every TARGET_ONLY request (must be 0)",
+      "ONLY the requests/ tree and the two standalone executables (sd70v3_model_arm.py, sd70v3_channel.py) are copied to billy-old. public_tasks.json, private_oracle.json and the seed are never copied. Gold-blindness on the dispatch host is therefore PHYSICAL, not permissional: the oracle is not on that machine at all, which is strictly stronger than V2's same-host chmod-000 lock.",
+      "the shipped payload is verified against REQUEST_SURFACE_MANIFEST.json on arrival: every request sha256 must match and no other file may be present",
+      "each model child runs in an empty temporary cwd with a private copy of its own request only",
+      "responses are copied back to the Mac and frozen before EVALUATION, which runs on the Mac where the oracle lives",
+      "the Mac-side dispatch stage still deletes private_oracle.json around dispatch and restores it hash-exactly, so the V2 same-host guarantee is retained for the deterministic arms",
+      "model children are instructed not to execute commands; command executions in the Codex event stream are counted as tool_calls"
+    ],
+    "surfaces": {
+      "COMMON": [
+        "training_episodes",
+        "query_context_features",
+        "candidate_actions",
+        "instruction"
+      ],
+      "COMMON_SUCCESS_ONLY": "COMMON with FAILURE episodes physically removed",
+      "COMMON_SUCCESS_ONLY_WITH_ADVISORY": "COMMON_SUCCESS_ONLY + parent_advisory computed from the success-only surface",
+      "COMMON_WITH_ADVISORY": "COMMON + parent_advisory (deterministic parents computed from the same surface)",
+      "TARGET_ONLY": [
+        "query_context_features",
+        "candidate_actions",
+        "instruction"
+      ]
+    }
+  },
+  "missingness": {
+    "arm_specific_rule": "ARM_FAILURE = failure (incorrect); at most one rerun per arm-task via --retry-failed (max 2 attempts); no silent replacement",
+    "categories": {
+      "ARM_FAILURE": "model failure, timeout, or out-of-candidate selection: scored INCORRECT and not CFD, counted as a failure",
+      "INTEGRITY_VIOLATION": "missing/unreadable response or task/arm identity mismatch: evaluation refuses (CANNOT_CHECK)",
+      "VALID": "COMPLETED_PROPOSAL_ONLY with an in-candidate selection"
+    },
+    "evaluator_validity_check": "STRONGEST_GENERATOR_FAITHFUL_PARENT__LP must behave as a chance control, else CANNOT_CHECK",
+    "global_failure_threshold": 0.05,
+    "per_arm_failure_threshold": 0.1
+  },
+  "model_arms": {
+    "dispatch_host": "billy-old (billy-laptop-old); the Mac cannot execute the pinned CLI",
+    "executor": "sd70v3_model_arm.py via Codex CLI `exec --ephemeral --ignore-user-config --ignore-rules --skip-git-repo-check --sandbox read-only -C <empty tmp dir> --json --output-schema`, run on billy-old",
+    "full_task_arms": [
+      "F2_STATIC_NO_RECURSION",
+      "F2_RECURSIVE_META_DISCOVERY_FULL",
+      "F2_FULL_MINUS_FAILURE_EVIDENCE",
+      "F2_FULL_MINUS_PARENT_FEDERATION"
+    ],
+    "model": "gpt-5.5",
+    "model_justification": "The binding constraint is that the pinned CLI must be able to REACH the model, proven by an actually completed turn rather than by documentation. gpt-5.5 completed a turn under codex-cli 0.129.0-alpha.15 on billy-old on 2026-09-03 with exit 0, turn.completed, the --output-schema honored, and usage {input 13581, cached_input 2432, output 61, reasoning_output 24}.",
+    "prompt_construction": "built only from request.surface keys; procedure text per arm in sd70v3_model_arm.ARM_PROCEDURES",
+    "reasoning_effort": "medium",
+    "subset_arms": [
+      "TARGET_ONLY_NEGATIVE_CONTROL",
+      "F2_RECURSIVE_META_DISCOVERY_FULL__LP",
+      "F2_RECURSIVE_META_DISCOVERY_FULL__QS"
+    ]
+  },
+  "outcomes": {
+    "critical_false_direction": "selecting a candidate whose latent score is minimal for the held-out context (a worst action); identifiable from the private latent weights; rate per arm and paired difference vs SP",
+    "parent_non_regression": "lower 95% bootstrap bound of (F2_FULL - SP) > -0.05",
+    "protected_decision_quality": "exact-action correctness per task; Wilson 95% per arm; paired difference with 10000-draw percentile bootstrap (seed 20260902) and exact one-sided McNemar mid-p; Holm over the 2 primary contrasts {F2_FULL vs SP, F2_STATIC vs SP}",
+    "resource_cost": "per arm: model_calls, attempts, retries, input/output/total tokens (Codex --json events), tool_calls, wall time; aggregation = sum over arm-tasks including failed attempts, mean = sum / n"
+  },
+  "parents": {
+    "DECISION_LIST_PARENT": "Rivest decision list by sequential covering over conjunctions of <= 2 literals (feature present/absent); FAILURE episodes are negatives for their action; default = frequency parent",
+    "F0_PARENT_FEDERATION": "plurality vote over the seven parents' selections; ties -> the strongest parent's selection; no extra information",
+    "FIXED_META_LESSON": "fixed non-recursive heuristic: additive per-feature (success - failure)/support evidence for the held-out features; ties -> global frequency then candidate order; no tuning",
+    "MATCHED_CASE_PARENT": "kernel vote over training contexts, weight 1/(1 + Hamming distance to the held-out context), +w SUCCESS / -w FAILURE; ties -> candidate order",
+    "MAXMARGIN_PARENT": "Crammer-Singer multiclass hinge + L2 (lambda 0.01), full-batch subgradient descent step 0.1 x 200 iterations, bias feature; FAILURE episodes add a pairwise hinge against the paired SUCCESS action",
+    "NAIVE_BAYES_PARENT": "naive-Bayes log odds that the action is the validated-success rather than validated-failure action for the context; Laplace(1); ties -> candidate order",
+    "PAIRWISE_LINEAR_PARENT": "one averaged binary perceptron per candidate pair (50 epochs, margin 1), one vote per pair; ties -> candidate order (documented boundary: vote cycles)",
+    "PERCEPTRON_PARENT": "averaged multiclass (Kesler) perceptron, margin 1, 50 epochs, bias feature; FAILURE episodes push the paired SUCCESS action above the failed action",
+    "SIMPLE_FREQUENCY_PARENT": "global validated-success minus validated-failure count per action; ties -> candidate order",
+    "STRONGEST_GENERATOR_FAITHFUL_PARENT": "alias of MAXMARGIN_PARENT (frozen by the V3 development rule above)",
+    "TARGET_ONLY_DETERMINISTIC": "first candidate (chance floor with the frozen tie break)",
+    "hyperparameters_frozen_in": "sd70v3_parents.py module constants; tuned on no task; validated only by native known-answer tests and the V3 development split"
+  },
+  "power": {
+    "achieved_power_at_task_count": {
+      "discordance_0.25": 0.877,
+      "discordance_0.30": 0.811,
+      "discordance_0.35": 0.748
+    },
+    "alpha_one_sided_per_contrast_worst_case": 0.025,
+    "assumed_discordance": 0.3,
+    "carried_over_from_v2": "The generator family is byte-identical to V2's on the public side, so V2's power calculation applies unchanged. It was re-verified against V3's own development split: observed strongest-vs-second discordance is 0.1483, well inside the deliberately conservative 0.30 the N was sized at (achieved power 0.811 at 0.30, 0.877 at 0.25). N = 240 is retained.",
+    "development_discordance_strongest_vs_second": 0.1483,
+    "method": "Connor (1987) paired-binary normal approximation (sd70v3_stats.paired_sample_size)",
+    "minimum_effect": 0.1,
+    "model_calls_planned": 1140,
+    "primary_estimand": "paired difference in exact held-out accuracy, F2_RECURSIVE_META_DISCOVERY_FULL minus the frozen comparator (STRONGEST_GENERATOR_FAITHFUL_PARENT), over the same protected tasks",
+    "required_tasks": 234,
+    "target_power": 0.8,
+    "task_count": 240
+  },
+  "pre_registered_expectation": "PARENT_SUFFICIENT is the expected and successful terminal: the generator family is a linear multiclass argmax and the regularized max-margin parent lies in the generator's hypothesis class. A null here means 'no residual detectable in the registered decision problems the parents already solve exactly', never 'no residual exists'. MAXMARGIN_PARENT is optimal by construction on this family up to its regularization and optimizer budget; that is declared, not discovered.",
+  "protected_outcomes_inspected_at_freeze": false,
+  "protocol_id": "ORION-SD70-SYNTHETIC-META-POLICY-V2",
+  "protocol_path": "research/experiments/SCIENTIFIC_DEVELOPMENT_SD70_PROSPECTIVE_PROTOCOL_V2.json",
+  "provenance": {
+    "block_evidence": {
+      "artifacts": {
+        "provenance/CHANNEL_PROBE_OBSERVATION_V1.json": null,
+        "provenance/CHANNEL_PROBE_gpt-5.5_events.jsonl": "30b1fba9c12cc3a4fc83f0281aba81124924e24eca2adb92312ead7cdd32b72f",
+        "provenance/CHANNEL_PROBE_gpt-5.5_stderr.txt.gz": "c62b5f7c24d0556ee8e4772c98c4d8ab7d97655d74accfe41a144e51fcd383da",
+        "provenance/CHANNEL_PROBE_gpt-5.6-terra_events.jsonl": "3fc13670e756f9928edf15c9de7987e8eef41839e1d902f23d1ef75880db0184",
+        "provenance/CHANNEL_PROBE_gpt-5.6-terra_stderr.txt.gz": "67ae2e4b4fda84defc0f26152742dc4735d9c34f9880d8b20adf01d26c4e459a"
+      },
+      "codex_cli_version": "codex-cli 0.129.0-alpha.15",
+      "gpt_5_5": {
+        "exit_code": 0,
+        "structured_output_honored": true,
+        "turn_completed": true,
+        "usage": {
+          "cached_input_tokens": 2432,
+          "input_tokens": 13581,
+          "output_tokens": 61,
+          "reasoning_output_tokens": 24
+        }
+      },
+      "gpt_5_6_terra": {
+        "absent_from_served_manifest": true,
+        "auth_succeeded": "thread.started and turn.started were emitted before the 400, so the credential is live and dispatch works end to end; the refusal is model-availability, not authentication",
+        "error_message": "The 'gpt-5.6-terra' model requires a newer version of Codex. Please upgrade to the latest app or CLI and try again.",
+        "error_type": "invalid_request_error",
+        "exit_code": 1,
+        "http_status": 400
+      },
+      "host": "billy-old (billy-laptop-old)",
+      "observed_utc": "2026-09-03T05:36Z",
+      "raw_stderr_sha256_before_compression": {
+        "CHANNEL_PROBE_gpt-5.5_stderr.txt": "40f53951d03011907adc6ac36b57a22eb19acc4fe3948ab527969031897d59c9",
+        "CHANNEL_PROBE_gpt-5.6-terra_stderr.txt": "b9205b2e307272dc41e82f70298d6aa298185146e1e7c8d0bb4ed4f23d4df746"
+      }
+    },
+    "mac_cannot_run_the_pinned_cli": "Apple revoked the signing certificate of the pinned build, so AMFI SIGKILLs it on execve on the Mac (spctl reports CSSMERR_TP_CERT_REVOKED while codesign --verify --strict still passes: the signature is intact, the certificate is revoked). All model dispatch therefore runs on billy-old, which runs the pinned CLI normally.",
+    "reason_for_new_version": "SD70-V2 is BLOCKED, not refuted. Its design section 5 pins the model gpt-5.6-terra; the standing operator pin fixes the Codex CLI at 0.129.0-alpha.15 on every machine; and the server refuses that model on that CLI with HTTP 400 invalid_request_error, 'The gpt-5.6-terra model requires a newer version of Codex.' The three commitments cannot all hold. V3 is a new design on a model the pinned CLI can actually reach.",
+    "sd70_v2_state_is_untouched": "SD70-V2 keeps its frozen artifacts, its sealed seed, its single-run authorization and its EXECUTION_BLOCKED_PRE_DISPATCH state. V2 remains prospective with zero protected observations and its PARENT_SUFFICIENT expectation remains UNOBSERVED. V3 spends none of V2's authorization and retro-fits nothing in V2."
+  },
+  "question": "On fresh synthetic hidden-policy episodes, does a recursive meta-discovery arm improve exact held-out action selection over the strongest faithful mature rule-induction parent under matched public information and prospectively fixed resource limits?",
+  "relationship_to_sd70_v2": {
+    "is_an_edit_of_v2": false,
+    "new_design_freeze": true,
+    "new_run_authorization": true,
+    "new_seed_commitment": true,
+    "shared_with_v2": "the generator family, the parent implementations and the statistical machinery are copied (not imported) so that V3's freeze is independent of V2's files",
+    "v2_authorization_spent": false,
+    "v2_expectation_status": "UNOBSERVED"
+  },
+  "reproducibility": {
+    "determinism_boundary_measured_not_asserted": "The V3 development split was run under three CPython versions (3.9.6, 3.12.13, 3.13.12) and the outputs are NOT byte-identical. Measured, not assumed: between 3.9.6 and 3.12.13 one LP-control task in 600 flipped for MAXMARGIN_PARENT (control_LP_accuracy 0.26667 vs 0.26833); between 3.12.13 and 3.13.12 one task in 600 flipped for FIXED_META_LESSON (0.61167 vs 0.61333). Cause: the parents accumulate float scores and a near-tie is resolved differently by summation order. INVARIANT across all three interpreters: every generator-faithful candidate's exact_accuracy, the full ranking, the selected strongest parent, the comparator choice, and the strongest-vs-second discordance (0.1483). The observed sensitivity is about 0.17% of tasks, two orders of magnitude below the 0.10 minimum effect, and cannot flip a registered gate. It does mean that 'byte-identical on re-run' is claimable ONLY under the pinned interpreter, and this design does not claim it otherwise.",
+    "dispatch_host_interpreter": "CPython 3.14.4 on billy-old; it only marshals requests into the Codex CLI and never computes a parent decision, so parent numerics do not depend on it",
+    "pinned_interpreter": "CPython 3.13.12 (/Users/billy/miniforge3/bin/python3) on the Mac for generation, deterministic arms and evaluation",
+    "why_this_is_recorded": "'Byte-identical on re-run' is a sentence that is routinely written and not executed. It was executed here, and it turned out to be false across interpreters. Recording the measured boundary is the honest form of the claim."
+  },
+  "resource_budget": {
+    "calls_per_arm_task": 1,
+    "deterministic_cost": "CPU milliseconds per task; reported, never a gate",
+    "max_attempts_per_arm_task": 2,
+    "max_concurrency": 2,
+    "model_arm_parity": "identical model, reasoning effort, timeout, schema and attempt cap for every model arm",
+    "projected_wall_time": "The development rehearsal completed 56 model envelopes in 894.6 s at concurrency 2 with 0 failures (15.98 s per envelope). The protected campaign's 1140 envelopes therefore project to roughly 18,200 s (about 5.1 hours) plus two channel measurements. Concurrency stays at the registered 2: the rehearsal validated exactly that setting at a 0/56 failure rate, and an untested higher concurrency risks rate-limit failures that would trip the missingness gate.",
+    "timeout_seconds_per_call": 600
+  },
+  "schema_version": "orion.v2.sd70-v3.execution-design.v1",
+  "scope": {
+    "does_not_support": [
+      "naturalistic scientific-development superiority",
+      "science-of-science superiority",
+      "general Machine Epistemics field residual",
+      "causal law",
+      "publication readiness"
+    ],
+    "supports_if_valid": "synthetic rule-induction mechanism evidence within the frozen generator family"
+  },
+  "seed_commitment": {
+    "committed_at": "2026-09-03T05:46:41.374388+00:00",
+    "custody_path": "~/.orion-custody/sd70-v3/SD70_V3_MASTER_SEED.txt (Mac only; mode 600; never in the repository; never copied to the dispatch host)",
+    "development_seeds": "int(sha256('SD70-V3-DEV|k')[:15], 16) for k = 0,1,2; disjoint from the protected seed by construction (the protected seed is a 63-bit secrets.randbits draw)",
+    "distinct_from_sd70_v2_seed": true,
+    "reveal_rule": "the seed is passed to `prepare` on the Mac; prepare refuses any seed whose sha256 differs from seed_sha256; public_tasks.json records the same commitment",
+    "sd70_v2_seed_sha256_not_reused": "4343cdae9fd451f5f4ca23e7a6bb33796deeb6e6d7f355e0a3a6e281bef3b51e",
+    "seed_sha256": "d032efa9a570c5baa8fb7b5d86d3d879f3fd087adfb3088459fc68aee6d150cc"
+  },
+  "state_date": "2026-09-03",
+  "status": "FROZEN_PREOUTCOME_DESIGN_V1__EXECUTION_AUTHORIZED_ONLY_WITH_COMMITTED_SEED",
+  "strongest_generator_faithful_parent": "MAXMARGIN_PARENT",
+  "strongest_parent_selection": {
+    "candidates": [
+      "PERCEPTRON_PARENT",
+      "MAXMARGIN_PARENT",
+      "PAIRWISE_LINEAR_PARENT",
+      "DECISION_LIST_PARENT",
+      "NAIVE_BAYES_PARENT"
+    ],
+    "development_exact_accuracy": {
+      "DECISION_LIST_PARENT": 0.6283,
+      "MAXMARGIN_PARENT": 0.6783,
+      "NAIVE_BAYES_PARENT": 0.6183,
+      "PAIRWISE_LINEAR_PARENT": 0.6567,
+      "PERCEPTRON_PARENT": 0.6567
+    },
+    "development_ranking": [
+      "MAXMARGIN_PARENT",
+      "PAIRWISE_LINEAR_PARENT",
+      "PERCEPTRON_PARENT",
+      "DECISION_LIST_PARENT",
+      "NAIVE_BAYES_PARENT"
+    ],
+    "development_split": "3 seeds x 200 tasks = 600 development tasks, seeds sha256('SD70-V3-DEV|k') (results/SD70_V3_DEVELOPMENT_RESULTS_V1.json)",
+    "frozen_before_protected_generation": true,
+    "re_run_for_v3": "the selection was re-run on V3's own development seeds, not inherited from V2",
+    "rule": "highest mean development exact accuracy among GENERATOR_FAITHFUL_CANDIDATES; tie -> lower wall time"
+  },
+  "study_id": "SD70-V3"
+}

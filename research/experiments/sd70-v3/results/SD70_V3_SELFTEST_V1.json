@@ -1,0 +1,181 @@
+{
+  "failed": 0,
+  "passed": 29,
+  "results": [
+    {
+      "detail": "",
+      "parent": "SIMPLE_FREQUENCY_PARENT",
+      "passed": true,
+      "test": "planted majority act-y"
+    },
+    {
+      "detail": "",
+      "parent": "SIMPLE_FREQUENCY_PARENT",
+      "passed": true,
+      "test": "empty evidence -> first candidate"
+    },
+    {
+      "detail": "",
+      "parent": "MATCHED_CASE_PARENT",
+      "passed": true,
+      "test": "identical context wins over global frequency"
+    },
+    {
+      "detail": "",
+      "parent": "SIMPLE_FREQUENCY_PARENT",
+      "passed": true,
+      "test": "same fixture: frequency picks act-x (separation)"
+    },
+    {
+      "detail": "",
+      "parent": "NAIVE_BAYES_PARENT",
+      "passed": true,
+      "test": "planted indicator feature -> act-a"
+    },
+    {
+      "detail": "",
+      "parent": "NAIVE_BAYES_PARENT",
+      "passed": true,
+      "test": "planted indicator feature -> act-b"
+    },
+    {
+      "detail": "",
+      "parent": "DECISION_LIST_PARENT",
+      "passed": true,
+      "test": "recovers planted 3-rule decision list on every context"
+    },
+    {
+      "detail": "[((('ctx-0', True),), 0), ((('ctx-1', True),), 1)]",
+      "parent": "DECISION_LIST_PARENT",
+      "passed": true,
+      "test": "first induced rule is a single literal on ctx-0 -> act-a"
+    },
+    {
+      "detail": "155/155",
+      "parent": "PERCEPTRON_PARENT",
+      "passed": true,
+      "test": "reproduces planted linear argmax rule when all contexts are observed (training consistency)"
+    },
+    {
+      "detail": "155/155",
+      "parent": "MAXMARGIN_PARENT",
+      "passed": true,
+      "test": "reproduces planted linear argmax rule when all contexts are observed (training consistency)"
+    },
+    {
+      "detail": "154/155",
+      "parent": "PAIRWISE_LINEAR_PARENT",
+      "passed": true,
+      "test": "reproduces planted linear argmax rule on >= 97% of observed contexts (pairwise-vote cycle boundary)"
+    },
+    {
+      "detail": "rate=0.183 chance=0.251",
+      "parent": "SIMPLE_FREQUENCY_PARENT",
+      "passed": true,
+      "test": "label-permuted (candidate bijection) planted data stays within +0.12 of chance"
+    },
+    {
+      "detail": "rate=0.250 chance=0.259",
+      "parent": "MATCHED_CASE_PARENT",
+      "passed": true,
+      "test": "label-permuted (candidate bijection) planted data stays within +0.12 of chance"
+    },
+    {
+      "detail": "rate=0.283 chance=0.258",
+      "parent": "NAIVE_BAYES_PARENT",
+      "passed": true,
+      "test": "label-permuted (candidate bijection) planted data stays within +0.12 of chance"
+    },
+    {
+      "detail": "rate=0.283 chance=0.270",
+      "parent": "DECISION_LIST_PARENT",
+      "passed": true,
+      "test": "label-permuted (candidate bijection) planted data stays within +0.12 of chance"
+    },
+    {
+      "detail": "rate=0.250 chance=0.265",
+      "parent": "PERCEPTRON_PARENT",
+      "passed": true,
+      "test": "label-permuted (candidate bijection) planted data stays within +0.12 of chance"
+    },
+    {
+      "detail": "rate=0.183 chance=0.258",
+      "parent": "MAXMARGIN_PARENT",
+      "passed": true,
+      "test": "label-permuted (candidate bijection) planted data stays within +0.12 of chance"
+    },
+    {
+      "detail": "rate=0.233 chance=0.270",
+      "parent": "PAIRWISE_LINEAR_PARENT",
+      "passed": true,
+      "test": "label-permuted (candidate bijection) planted data stays within +0.12 of chance"
+    },
+    {
+      "detail": "rate=0.183 chance=0.244",
+      "parent": "FIXED_META_LESSON",
+      "passed": true,
+      "test": "label-permuted (candidate bijection) planted data stays within +0.12 of chance"
+    },
+    {
+      "detail": "",
+      "parent": "SIMPLE_FREQUENCY_PARENT",
+      "passed": true,
+      "test": "no evidence -> first candidate (frozen tie break)"
+    },
+    {
+      "detail": "",
+      "parent": "MATCHED_CASE_PARENT",
+      "passed": true,
+      "test": "no evidence -> first candidate (frozen tie break)"
+    },
+    {
+      "detail": "",
+      "parent": "NAIVE_BAYES_PARENT",
+      "passed": true,
+      "test": "no evidence -> first candidate (frozen tie break)"
+    },
+    {
+      "detail": "",
+      "parent": "DECISION_LIST_PARENT",
+      "passed": true,
+      "test": "no evidence -> first candidate (frozen tie break)"
+    },
+    {
+      "detail": "",
+      "parent": "PERCEPTRON_PARENT",
+      "passed": true,
+      "test": "no evidence -> first candidate (frozen tie break)"
+    },
+    {
+      "detail": "",
+      "parent": "MAXMARGIN_PARENT",
+      "passed": true,
+      "test": "no evidence -> first candidate (frozen tie break)"
+    },
+    {
+      "detail": "",
+      "parent": "PAIRWISE_LINEAR_PARENT",
+      "passed": true,
+      "test": "no evidence -> first candidate (frozen tie break)"
+    },
+    {
+      "detail": "",
+      "parent": "FIXED_META_LESSON",
+      "passed": true,
+      "test": "no evidence -> first candidate (frozen tie break)"
+    },
+    {
+      "detail": "",
+      "parent": "TARGET_ONLY_DETERMINISTIC",
+      "passed": true,
+      "test": "no evidence -> first candidate (frozen tie break)"
+    },
+    {
+      "detail": "",
+      "parent": "F0_PARENT_FEDERATION",
+      "passed": true,
+      "test": "returns a candidate and records every member pick"
+    }
+  ],
+  "schema_version": "orion.v2.sd70-v3.selftest.v1"
+}
