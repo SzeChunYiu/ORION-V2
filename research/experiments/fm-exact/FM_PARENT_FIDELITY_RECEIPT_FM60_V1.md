@@ -133,9 +133,31 @@ registers 12 (`M_MINUS_OBSTRUCTION_SEARCH`), 5 (`M_MINUS_MINIMALITY_ESCALATION`)
 with the parent, so the zero it reports for `M` is a zero the counter was
 capable of not reporting.
 
-`G2`'s over-acceptance counter is shown live on the same split by
-`C_ALWAYS_ACCEPT`, which registers **12 over-acceptances** on the 12 blocked
+`G2`'s over-acceptance counter was recorded live on the same split by
+`C_ALWAYS_ACCEPT`, registering **12 over-acceptances** on the 12 blocked
 instances while `M` and `F0` register 0.
+
+> **Re-derivation note (2026-09-03).** The figures in the paragraph above, and
+> the `G2` rows in §4 and §5.2 below, come from the pre-hardening analyzer.
+> Re-run under main's current `fm_run.py`, `G2`'s in-scope set on this split is
+> **9**, not 12, and the gate is **`CANNOT_CHECK`** — 9 is below its
+> `requires_evaluated=10` floor — so it is listed in `unchecked_hard_gates` and
+> is not reported as passing. The route is unchanged (`PARENT_SUFFICIENT`), and
+> RESULTS, EXPECTED_CUSTODY and SELFTEST_REPORT all regenerate byte-identical,
+> so the underlying evidence is untouched.
+>
+> The cause is that the analyzer's generic in-scope test counts a disposition as
+> an acceptance unless it starts with `BLOCK` or `REJECT`, and FM60 uses
+> non-accepting dispositions that start with neither:
+> `MULTIPLE_INDEPENDENT_OBSTRUCTIONS` (3 of the 15 development instances),
+> `CLAIM_WITHOUT_VALID_WITNESS` and `UNDECIDED_BUDGET_EXHAUSTED`. The same
+> misreading makes the liveness demonstration unsound here rather than merely
+> narrower: under the current analyzer the counter's nonzero is contributed by
+> `C_ALWAYS_BLOCK`, which emits `MULTIPLE_INDEPENDENT_OBSTRUCTIONS` on all 15
+> instances and never accepts anything. FM60 does not declare the
+> `unsafe_scope` / `unsafe_claim` hooks that exist for exactly this case
+> (`fm30_suite.py:1086-1088`); declaring them changes what the gate evaluates
+> and is tracked separately, not applied here.
 
 ### 3b. What `P0` actually claimed, before witness validation
 
@@ -220,7 +242,7 @@ summary and the JSON is authoritative.
 | `G0f_FAMILY_DISCRIMINATION` | PASS | 2 halves (11 arms solvable, 4 weak arms separating) |
 | `G1a_PARENT_REPRODUCES_M` | PASS | 15 instances (identity 1.000) |
 | `G1b_M_ADVANTAGE` | NOT_FIRED | 15 instances, 0 discordant pairs |
-| `G2_ANTI_PERMISSIVENESS` | PASS | 12 oracle-blocked instances |
+| `G2_ANTI_PERMISSIVENESS` | CANNOT_CHECK | 9 in-scope instances under the current analyzer; recorded PASS on 12 by the pre-hardening analyzer — see the re-derivation note in §3 |
 | `G3_MECHANISM_BY_OMISSION` | NOT_APPLICABLE | no claimed advantage |
 
 `G0c` detail: constant arms 0.200 / 0.200, random 0.000, and `M` against
@@ -240,7 +262,14 @@ Holm across the five per-family paired tests: every raw and adjusted p is 1.000
 Not protected evidence: this is `fm_run.py FM60 dev --per-family 25`, the public
 development seed at protected size, run to size the protected job and to check
 that nothing degenerates at scale. Every gate PASS, route `PARENT_SUFFICIENT`,
-`G2` evaluated on 100 oracle-blocked instances.
+`G2` evaluated on 100 oracle-blocked instances. Re-run under the current
+analyzer this same probe puts 75 instances in scope and `G2` is **PASS** with
+the route unchanged, so the development-split `CANNOT_CHECK` above is a
+small-*n* consequence of the narrowed scope and does not recur at protected
+size. The per-arm over-accept column below is on the pre-hardening accounting;
+under the current analyzer the arms emitting `MULTIPLE_INDEPENDENT_OBSTRUCTIONS`,
+`CLAIM_WITHOUT_VALID_WITNESS` or `UNDECIDED_BUDGET_EXHAUSTED` are scored as
+over-accepting, which is the defect the re-derivation note in §3 describes.
 
 | arm | rate | over-accept | arm | rate | over-accept |
 |---|---|---|---|---|---|
