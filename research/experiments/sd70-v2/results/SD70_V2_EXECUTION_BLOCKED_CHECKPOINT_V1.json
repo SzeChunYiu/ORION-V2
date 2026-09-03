@@ -1,4 +1,59 @@
 {
+  "amendment_2026_09_03": {
+    "SD70-V2-BLOCK-1": {
+      "cleared_by": "coordinator restored ~/.codex/auth.json (account 232c8b04, auth_mode chatgpt, 3984 bytes, mode 600) and reinstalled the pinned @openai/codex@0.129.0-alpha.15",
+      "status": "CLEARED",
+      "verified_by_this_lane": "re-ran the exact probe rather than trusting the report; on billy-old the probe now returns HTTP 400, not HTTP 401, and a gpt-5.5 control on the same host completed a turn -- authentication demonstrably succeeds"
+    },
+    "SD70-V2-BLOCK-2": {
+      "billy_old": {
+        "codex_version": "codex-cli 0.129.0-alpha.15 (the pin), executes normally",
+        "gpt_5_5_control": "same host, same flags, exit 0, turn.completed, agent message 'OK', usage 13520 input / 5 output tokens -- proves the credential is live and end-to-end dispatch works",
+        "gpt_5_6_terra_probe": "HTTP 400 invalid_request_error: \"The 'gpt-5.6-terra' model requires a newer version of Codex. Please upgrade to the latest app or CLI and try again.\" -- a 400 means authentication succeeded and the request was rejected on model/version grounds",
+        "isolation": "the control makes the attribution exact: the only thing standing between this design and a dispatch is the CLI version relative to the frozen model",
+        "login_status": "Logged in using ChatGPT, rc 0"
+      },
+      "explicitly_not_done": [
+        "ORION_CODEX_MODEL was not repointed -- the model is a frozen constant",
+        "no protected suite was generated and the single-run authorization was not armed or spent",
+        "no global CLI version change was made on any host",
+        "the deterministic arms were not published as a standalone result"
+      ],
+      "mac_mini": {
+        "binary_integrity_note": "the vendored binary is present at 191925840 bytes and is a valid arm64 Mach-O; the coordinator's earlier ENOENT repair did not leave a truncated file",
+        "codesign": "codesign --verify --strict --verbose=2 -> exit 0, 'valid on disk', 'satisfies its Designated Requirement' -- the signature is internally intact; it is the certificate that is revoked, which only spctl and AMFI surface",
+        "consequence": "the pinned build is unrunnable on this Mac regardless of any credential, so the version pin is already unenforceable on this host",
+        "control_that_validates_the_spctl_verdict": "spctl on homebrew /opt/homebrew/bin/node returns the weaker 'rejected' (exit 3) and node runs fine, so spctl is not blanket-failing and CSSMERR_TP_CERT_REVOKED is a genuinely distinct, stronger verdict",
+        "kernel_log": [
+          "amfid: .../codex not valid: AppleMobileFileIntegrityError Code=-420",
+          "kernel: AMFI: code signature validation failed.",
+          "kernel: mac_vnode_check_signature: ... code signature validation failed fatally",
+          "kernel: proc N: load code signature error 4 for file 'codex'",
+          "kernel: AMFI: hook..execve() killing <parent> (pid N)",
+          "kernel: (AppleSystemPolicy) ASP: Security policy would not allow process"
+        ],
+        "observed": "codex --version is SIGKILLed in 0.01s with empty stdout and stderr (returncode -9 via subprocess, so not a shell artifact); this is also why `codex login status` printed nothing for the coordinator -- the process never ran",
+        "spctl": "spctl -a -vv -t execute -> CSSMERR_TP_CERT_REVOKED"
+      },
+      "one_stage_attribution": "CLI_VERSION_VS_FROZEN_MODEL_CONSTANT",
+      "resolution_requires": "an operator decision. This lane changed nothing in either direction. Context offered without a recommendation being acted on: the pin's stated rationale is that 0.131+ breaks /goal, which governs the csup/tn factory fleets; SD70-V2 uses one-shot `codex exec --json` and never /goal. 0.147.0 was observed executing on this Mac earlier in the same session, and design section 5 records a gpt-5.6-terra probe replying OK on 2026-09-02, so a CLI new enough for the frozen model demonstrably runs on this host.",
+      "status": "OPEN",
+      "summary": "The frozen model gpt-5.6-terra requires a newer Codex CLI than the pinned 0.129.0-alpha.15, and on the Mac the pinned build cannot execute at all because its signing certificate is revoked.",
+      "the_unsatisfiable_triple": [
+        "SD70_V2_EXECUTION_DESIGN_V1 section 5 pins gpt-5.6-terra; it is frozen and changing it requires a V3 design with a new freeze and a new seed commitment",
+        "the standing operator pin is codex 0.129.0-alpha.15 on every machine, forever",
+        "the server states that gpt-5.6-terra requires a newer CLI than 0.129.0-alpha.15"
+      ]
+    },
+    "checkpoint_utc": "2026-09-03T00:41:00Z",
+    "custody_state_unchanged": {
+      "guard_state": "UNSPENT -- still armed",
+      "protected_outcomes_inspected": 0,
+      "protected_run_authorization_files_for_this_study": 0,
+      "protected_tasks_generated": 0
+    },
+    "supersedes": "the `blocker` field above, which described SD70-V2-BLOCK-1 (no Codex credential on any reachable host)"
+  },
   "authoritative_refs": {
     "design_freeze_commit": "7e3ad77",
     "design_freeze_pr": 152,
@@ -179,6 +234,7 @@
   "repository": "SzeChunYiu/ORION-V2",
   "schema_version": "orion.v2.sd70-v2.execution-blocked-checkpoint.v1",
   "status": "EXECUTION_BLOCKED_PRE_DISPATCH",
+  "status_note_2026_09_03": "EXECUTION_BLOCKED_PRE_DISPATCH still holds. BLOCK-1 (credential) is cleared; BLOCK-2 (CLI version vs frozen model constant) is open in its place. See amendment_2026_09_03.",
   "status_semantics": {
     "distinct_from": "`CANNOT_CHECK` in SD70_V2_EXECUTION_DESIGN_V1 s10.1 is an evaluation-time verdict reached after dispatch. This checkpoint is reached before dispatch and therefore reports no accuracy, no delta and no gate.",
     "is_a_scientific_terminal": false,
