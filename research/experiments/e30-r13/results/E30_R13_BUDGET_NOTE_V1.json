@@ -1,0 +1,226 @@
+{
+  "campaign_arithmetic": {
+    "arms": 4,
+    "calls_per_task_repetition_by_arm": {
+      "F0_PARENT_FEDERATION": 3,
+      "F2_ORION_METABOLIC_FULL": 3,
+      "SAME_MODEL_REFLECTION": 2,
+      "SIMPLE_DIRECT": 1
+    },
+    "model_calls_per_task_repetition": 9,
+    "note": "the campaign issues 1080 model calls, not 480; a per-envelope count understates the dispatch by a factor of 2.25",
+    "repetitions": 3,
+    "response_envelopes": 480,
+    "tasks": 40,
+    "total_model_calls": 1080
+  },
+  "provider_default_counterfactual": {
+    "escalated_36000": {
+      "concurrency_2": {
+        "concurrency": 2,
+        "fits_in_one_slurm_allocation": false,
+        "seconds_per_call": 785.81,
+        "serial_hours": 235.7,
+        "slurm_time_limit_hours": 24,
+        "total_model_calls": 1080,
+        "wall_hours_at_concurrency": 117.9
+      },
+      "concurrency_4": {
+        "concurrency": 4,
+        "fits_in_one_slurm_allocation": false,
+        "seconds_per_call": 785.81,
+        "serial_hours": 235.7,
+        "slurm_time_limit_hours": 24,
+        "total_model_calls": 1080,
+        "wall_hours_at_concurrency": 58.9
+      },
+      "concurrency_6": {
+        "concurrency": 6,
+        "fits_in_one_slurm_allocation": false,
+        "seconds_per_call": 785.81,
+        "serial_hours": 235.7,
+        "slurm_time_limit_hours": 24,
+        "total_model_calls": 1080,
+        "wall_hours_at_concurrency": 39.3
+      },
+      "max_tokens": 36000,
+      "output_tokens": 35937,
+      "source": "research/experiments/e30-r12/results/E30_R12_ESCALATED_BUDGET_BLOCK_PROBE_V1.json",
+      "text_chars": 5895,
+      "thinking_chars": 161644,
+      "wall_seconds": 785.810107
+    },
+    "primary_6000": {
+      "concurrency_2": {
+        "concurrency": 2,
+        "fits_in_one_slurm_allocation": true,
+        "seconds_per_call": 71.0,
+        "serial_hours": 21.3,
+        "slurm_time_limit_hours": 24,
+        "total_model_calls": 1080,
+        "wall_hours_at_concurrency": 10.7
+      },
+      "concurrency_4": {
+        "concurrency": 4,
+        "fits_in_one_slurm_allocation": true,
+        "seconds_per_call": 71.0,
+        "serial_hours": 21.3,
+        "slurm_time_limit_hours": 24,
+        "total_model_calls": 1080,
+        "wall_hours_at_concurrency": 5.3
+      },
+      "concurrency_6": {
+        "concurrency": 6,
+        "fits_in_one_slurm_allocation": true,
+        "seconds_per_call": 71.0,
+        "serial_hours": 21.3,
+        "slurm_time_limit_hours": 24,
+        "total_model_calls": 1080,
+        "wall_hours_at_concurrency": 3.6
+      },
+      "max_tokens": 6000,
+      "note": "this path completes in ~71 s per call but emits zero text characters, so it is a guaranteed-failure path rather than a cheap one",
+      "output_tokens": 6000,
+      "source": "research/experiments/e30-r12/results/E30_R12_CHANNEL_BEHAVIOUR_PROBE_V1.json",
+      "stop_reason": "max_tokens",
+      "text_chars": 0,
+      "wall_seconds": 71.00170421600342
+    },
+    "why": "E30-R12's registered escalated budget under the provider default, costed against the same 1080-call campaign"
+  },
+  "purpose": "derive the registered per-call output-token cap and the campaign's wall-time feasibility",
+  "reads_no_endpoint": true,
+  "registered_contract": {
+    "contract_id": "thinking_disabled",
+    "derivation": {
+      "arms_measured": [
+        "F0_PARENT_FEDERATION",
+        "F2_ORION_METABOLIC_FULL",
+        "SAME_MODEL_REFLECTION",
+        "SIMPLE_DIRECT"
+      ],
+      "calls_measured": 108,
+      "calls_with_zero_text_chars": 0,
+      "cap_is_intended_to_be_non_binding": true,
+      "derivation_rule": "per_call_cap = 1000 * ceil(4 * calibration_max / 1000)",
+      "json_object_parseable_on_final_calls": "47/48",
+      "output_tokens": {
+        "max": 3292,
+        "median": 734.0,
+        "min": 271,
+        "p90": 1719
+      },
+      "output_tokens_by_arm": {
+        "F0_PARENT_FEDERATION": {
+          "calls": 36,
+          "max": 3292,
+          "median": 644.5
+        },
+        "F2_ORION_METABOLIC_FULL": {
+          "calls": 36,
+          "max": 2337,
+          "median": 734.0
+        },
+        "SAME_MODEL_REFLECTION": {
+          "calls": 24,
+          "max": 2055,
+          "median": 787.0
+        },
+        "SIMPLE_DIRECT": {
+          "calls": 12,
+          "max": 2620,
+          "median": 934.0
+        }
+      },
+      "output_tokens_by_stage": {
+        "challenge": {
+          "calls": 12,
+          "max": 2337,
+          "median": 1158.0
+        },
+        "draft": {
+          "calls": 12,
+          "max": 1597,
+          "median": 615.0
+        },
+        "final": {
+          "calls": 36,
+          "max": 3292,
+          "median": 1035.0
+        },
+        "ingest": {
+          "calls": 12,
+          "max": 1325,
+          "median": 649.0
+        },
+        "parent_a": {
+          "calls": 12,
+          "max": 1399,
+          "median": 629.0
+        },
+        "parent_b": {
+          "calls": 12,
+          "max": 1249,
+          "median": 594.0
+        },
+        "reconstruct": {
+          "calls": 12,
+          "max": 1972,
+          "median": 800.5
+        }
+      },
+      "registered_per_call_max_tokens": 14000,
+      "replicates": [
+        1,
+        2
+      ],
+      "status": "DERIVED",
+      "stop_reasons": {
+        "end_turn": 108
+      },
+      "tasks_measured": [
+        "bugsinpy-ansible-1",
+        "bugsinpy-ansible-6",
+        "bugsinpy-fastapi-1",
+        "bugsinpy-pandas-3",
+        "bugsinpy-scrapy-2",
+        "bugsinpy-tqdm-2"
+      ],
+      "wall_seconds": {
+        "max": 76.76,
+        "median": 20.33,
+        "min": 5.31
+      }
+    }
+  },
+  "registered_contract_feasibility": {
+    "concurrency_2": {
+      "concurrency": 2,
+      "fits_in_one_slurm_allocation": true,
+      "seconds_per_call": 20.33,
+      "serial_hours": 6.1,
+      "slurm_time_limit_hours": 24,
+      "total_model_calls": 1080,
+      "wall_hours_at_concurrency": 3.0
+    },
+    "concurrency_4": {
+      "concurrency": 4,
+      "fits_in_one_slurm_allocation": true,
+      "seconds_per_call": 20.33,
+      "serial_hours": 6.1,
+      "slurm_time_limit_hours": 24,
+      "total_model_calls": 1080,
+      "wall_hours_at_concurrency": 1.5
+    },
+    "concurrency_6": {
+      "concurrency": 6,
+      "fits_in_one_slurm_allocation": true,
+      "seconds_per_call": 20.33,
+      "serial_hours": 6.1,
+      "slurm_time_limit_hours": 24,
+      "total_model_calls": 1080,
+      "wall_hours_at_concurrency": 1.0
+    }
+  },
+  "schema_version": "orion.v2.e30-r13-budget-note.v1"
+}

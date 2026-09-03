@@ -1,0 +1,104 @@
+{
+  "driver": "research/experiments/e30-r13/e30_r13_channel_calibration.py",
+  "files": {
+    "E30_R13_CALIBRATION_A_SMALL.json": {
+      "arms": [
+        "SIMPLE_DIRECT",
+        "SAME_MODEL_REFLECTION",
+        "F0_PARENT_FEDERATION",
+        "F2_ORION_METABOLIC_FULL"
+      ],
+      "calls": 36,
+      "contracts": [
+        "thinking_disabled"
+      ],
+      "replicates": 2,
+      "sha256": "33c991af6de741df27d70e0dfd33a39d98991c826b9224a21cdb97737aa48973",
+      "tasks": [
+        "bugsinpy-tqdm-2",
+        "bugsinpy-scrapy-2"
+      ]
+    },
+    "E30_R13_CALIBRATION_B_LARGE.json": {
+      "arms": [
+        "SIMPLE_DIRECT",
+        "SAME_MODEL_REFLECTION",
+        "F0_PARENT_FEDERATION",
+        "F2_ORION_METABOLIC_FULL"
+      ],
+      "calls": 36,
+      "contracts": [
+        "thinking_disabled"
+      ],
+      "replicates": 2,
+      "sha256": "4c23d3bff888c1803fc0fff1d828f648d53dfb570343fb48e0f5bf53954b9cf1",
+      "tasks": [
+        "bugsinpy-ansible-1",
+        "bugsinpy-ansible-6"
+      ]
+    },
+    "E30_R13_CALIBRATION_C_MID.json": {
+      "arms": [
+        "SIMPLE_DIRECT",
+        "SAME_MODEL_REFLECTION",
+        "F0_PARENT_FEDERATION",
+        "F2_ORION_METABOLIC_FULL"
+      ],
+      "calls": 36,
+      "contracts": [
+        "thinking_disabled"
+      ],
+      "replicates": 2,
+      "sha256": "4d4de5313e3df5d3a35c348f6d21230f4e1f071252018e11f719c5dbdcfbf533",
+      "tasks": [
+        "bugsinpy-fastapi-1",
+        "bugsinpy-pandas-3"
+      ]
+    },
+    "E30_R13_CALIBRATION_D_CONTRAST.json": {
+      "arms": [
+        "SIMPLE_DIRECT"
+      ],
+      "calls": 8,
+      "contracts": [
+        "provider_default",
+        "thinking_enabled_2048"
+      ],
+      "replicates": 1,
+      "sha256": "7041f87e8ffdb4b8eef1f69333692da451adaea6cb4f99eb5dc3ebe27d35cb75",
+      "tasks": [
+        "bugsinpy-tqdm-2",
+        "bugsinpy-scrapy-2",
+        "bugsinpy-ansible-1",
+        "bugsinpy-ansible-6"
+      ]
+    }
+  },
+  "host": "LUNARC cosmos, account lu2026-2-51, partition lu48",
+  "purpose": "custody for the pre-freeze channel calibration: where it ran, what it measured, and what it deliberately did not do",
+  "requests_read_from": "campaign-e30-r12-.../run/confirmatory-r1/requests (read-only)",
+  "schema_version": "orion.v2.e30-r13-calibration-provenance.v1",
+  "slurm_jobs": {
+    "A_SMALL": 3569196,
+    "B_LARGE": 3569197,
+    "C_MID": 3569198,
+    "D_CONTRAST": 3569199
+  },
+  "source_tree_the_prompts_were_built_from": "campaign-e30-r12-.../source at 8196c36a8e48361d7121af46fd328f412047415f (the E30-R12 registered anchor); _context and the prompt builders are unchanged by E30-R13's arms edit, so the frozen prompts are byte-identical to the ones the campaign will send",
+  "superseded_partial_runs": {
+    "disposition": "superseded and not archived; every call reported in the archived files comes from jobs 3569196-3569199",
+    "jobs": [
+      3569193,
+      3569194,
+      3569195
+    ],
+    "why": "the first submission passed the task and arm lists through 'sbatch --export=ALL,VAR=a,b', and SLURM splits --export on commas, so each job received only the first element of each list. Those jobs produced 1-2 calls each and were re-submitted with --export=ALL and the variables set in the submitting environment."
+  },
+  "task_selection": "six tasks spanning the frozen set's prompt-size range, chosen before any call was made: the smallest (bugsinpy-tqdm-2, 132571 prompt characters), the median (bugsinpy-scrapy-2, 143561), two mid-range (bugsinpy-fastapi-1, 174122; bugsinpy-pandas-3, 197805), the E30-R11/R12 paired cell (bugsinpy-ansible-1, 247781) and the largest (bugsinpy-ansible-6, 633957)",
+  "what_it_did_not_do": [
+    "it wrote nothing into any campaign run tree",
+    "it evaluated no patch and read no gold tree",
+    "it read no endpoint and computed no gate",
+    "it retained no response text; only token accounting, stop reasons, content-block types and character counts, and a JSON-parseability boolean"
+  ]
+}
