@@ -1,0 +1,381 @@
+{
+  "schema_version": "orion.v2.me-f1.frontier-study-design.v1",
+  "title": "ME-F1 - Machine-epistemics control under open discovery at a matched resource budget",
+  "state_date": "2026-09-02",
+  "status": "FROZEN_DESIGN__DEVELOPMENT_CALIBRATION_ONLY__NO_PROTECTED_RUN",
+  "class": "OPEN_DISCOVERY__POST_HOC_REFERENCE_GROUND_TRUTH__MODEL_ARMS__MATCHED_BUDGET__NO_RESCUE",
+  "parent_protocols": [
+    "MACHINE_EPISTEMICS_DECISIVE_STUDIES_PROTOCOL_V1.md (S4.2 obstruction classes, S4.3 loci, escalation levels)",
+    "H-EXT-3 interface ladder (secondary axis)"
+  ],
+  "question": {
+    "primary": "In a world where no arm can compute the answer at the registered budget, does the ORION machine-epistemics control layer produce a residual in justified outcomes beyond an information- and resource-matched federation of the strongest published parent methods?",
+    "why_this_study_exists": "ME-X1, ME-X2 and ME-X4 all terminated PARENT_SUFFICIENT, and ME-X2 stated the decisive limitation of all three: its worlds have uniform decidability and strictly increasing cost bands, which make an exact planner optimal BY CONSTRUCTION. Its honest terminal was 'no residual is detectable in a registered decision problem the parents already solve exactly', not 'no residual exists'. Every negative so far comes from a world where a strongest-parent federation can simply compute the right answer. This study changes exactly that one variable: discovery is open at the budget, the oracle does not exist in advance, and no arm - parent or M - can compute the answer within the resources it is given.",
+    "what_a_negative_would_mean_here": "A negative in THIS world is a much stronger statement than the three that preceded it, because the parents no longer have a computability advantage handed to them by construction. It is still a successful terminal.",
+    "boundary_with_sibling_lanes": {
+      "FG80": "FG80 (lane-fg, formalism genesis L5) generates synthetic mini-frontier episodes with an EXACT known-answer oracle and ZERO model calls, and asks whether the mechanism can discover that a new intermediate representation is needed. ME-F1 has NO oracle at the arm budget and real model arms, and asks whether the whole system holds up under resource pressure against a real federation. FG80 asks 'can the mechanism do it at all in a knowable world'; ME-F1 asks 'does the system do it under pressure where nothing can compute the answer'. A deterministic zero-model-call generated search family was considered for ME-F1 and rejected - see feasibility table row F1b - partly because it would have collapsed this distinction.",
+      "lane-e30r12": "The naturalistic arm of the same question (BugsInPy defect repair under the fixed patch emission). Not duplicated here; ME-F1 is the controlled-openness arm.",
+      "lane-mex3_FG90": "EXPLORATORY_ONLY on genuine open problems, not a study; no contention."
+    }
+  },
+  "pre_registered_expectation": {
+    "statement": "We do not predict M wins. The parents in this world already implement a CORRECT warranted-claim discipline (Mitchell version spaces plus calibrated abstention), which is precisely the organ ORION contributes; on the development split the deterministic parent federation made zero unwarranted claims. The honest prior is therefore that B5 is strong on the endpoint that matters most, and that any M residual, if it exists, will be in resource allocation and stopping rather than in warrant.",
+    "registered_possibility_that_would_end_the_study_honestly": "If SIMPLE_DIRECT also launders at a rate indistinguishable from zero, the primary endpoint has no variance to detect and the study routes CANNOT_CHECK. This is checked on the development split BEFORE the protected run, for about 80 model calls, precisely so it is not discovered after 8000.",
+    "parent_sufficiency_is_a_successful_terminal": true
+  },
+  "world": {
+    "campaign": "A discovery campaign is k INDEPENDENT sub-ladders ('blocks') sharing ONE frozen budget. Each block is a monotone chain of random 3-SAT constraint systems over its own variable set; rung j of a block uses the first round(n_vars * alpha_j) clauses of that block's pool, so each sub-ladder is monotone BY CONSTRUCTION (a prefix-subset relation, not a checked property).",
+    "why_blocks": "With a single ladder, two verified events that bracket the boundary entail EVERY rung by monotone closure, so the primary endpoint saturates regardless of how hard individual rungs are made. This was measured on the development split: at n_vars=40 the deterministic arms scored 12/12. Independent blocks make an arm buy a bracket in each block separately, which restores a primary endpoint that is continuous in the budget and sensitive to how well the controller allocates it. Development measurement after the change: C_UNIFORM_ALLOCATION 0.575, B5_ALGORITHMIC_CORE_NO_MODEL 0.912 - a wide, control-sensitive band.",
+    "alphas": [
+      3.2,
+      4.0,
+      4.267,
+      4.7,
+      5.6
+    ],
+    "alpha_rationale": "Five rungs per block straddling the random-3-SAT satisfiability threshold (alpha ~ 4.267): two comfortably satisfiable, one critical, two comfortably unsatisfiable.",
+    "monotone_closure_licences": {
+      "downward": "a verified witness at a rung licenses SATISFIABLE at every LOWER rung OF THE SAME BLOCK",
+      "upward": "a completed refutation at a rung licenses UNSATISFIABLE at every HIGHER rung OF THE SAME BLOCK",
+      "forbidden": "failing to find a witness licenses nothing; a witness licenses nothing upward; a refutation licenses nothing downward; nothing crosses a block boundary"
+    },
+    "verification_is_mechanical_discovery_is_open": "Verifying a proposed witness is O(clauses) and free. Finding one, or exhausting the space to refute, is what the budget buys and what no arm can complete for every rung.",
+    "openness_is_bounded_resource_openness": "This is openness AT THE REGISTERED BUDGET, not undecidability. The reference solver settles these rungs at K x the arm budget. The claim is that no arm can compute the answer with the resources it is given - which is exactly what ME-X2's worlds did not have - and NOT that the problems are absolutely intractable. Registered as a limitation, not glossed."
+  },
+  "protocol_coverage": {
+    "escalation_levels_realised": {
+      "0": "ACTION_PARAMETER",
+      "1": "LOCAL_REPAIR_COMPOSITION",
+      "2": "MODEL_HYPOTHESIS_EXPANSION",
+      "3": "REPRESENTATION_REGIME_TRANSITION",
+      "4": "PROBLEM_OBJECTIVE_REFORMULATION"
+    },
+    "levels_not_realised": "Protocol levels 5 (METHOD_TOOL_INSTRUMENT_INVENTION) and 6 (WORKFLOW_META_SKILL_REVISION) have NO faithful realisation in a fixed-toolbox world and are out of scope BY REGISTRATION, not by oversight. This study tests levels 0-4 only and no claim about 5-6 may be read from it.",
+    "obstruction_classes": [
+      "SEARCH_INSUFFICIENT",
+      "REPRESENTATION_INSUFFICIENT",
+      "MODEL_FAMILY_INADEQUATE",
+      "PROBE_ACTION_INSUFFICIENT",
+      "NO_OBSTRUCTION",
+      "CANNOT_IDENTIFY"
+    ]
+  },
+  "identical_toolbox_constraint": {
+    "rule": "Every arm - SIMPLE_DIRECT, every B5 rung, M and every ablation - calls exactly the same primitives through exactly the same meter with exactly the same budget and the same model-call cap. No arm has a primitive another lacks.",
+    "why": "It forecloses the strongest objection available against any residual: that the openness of the search was an artefact of denying some arm a solver.",
+    "tools": {
+      "local_search": "WalkSAT. Returns a VERIFIED witness or INCONCLUSIVE. Can never establish unsatisfiability.",
+      "exact_solve": "DPLL with unit propagation. Returns WITNESS_FOUND, REFUTED (only when the space was exhausted within the node limit), or INCONCLUSIVE (node limit hit; nothing established).",
+      "preprocess": "none | unit_pure | subsumption | symmetry. Satisfiability-preserving by construction; asserted by G0b.",
+      "verify": "free, unmetered, available to every arm - the definition of truth in this world"
+    }
+  },
+  "budget": {
+    "unit": "constraint check: one evaluation of one clause against one assignment",
+    "why_this_unit": "It is the only primitive shared by stochastic local search and backtracking search, it is hardware- and language-independent, and it is exactly countable. Wall-clock cannot be matched exactly across arms with different overheads and is therefore a reported secondary, never a matched budget.",
+    "checks_per_campaign": 300000,
+    "max_control_calls_per_campaign": 8,
+    "control_call_structure": "7 action decisions plus 1 CLOSING call. The closing call executes no action and exists so the arm can claim the evidence its last action produced; without it the last action's result is unclaimable by construction. An arm that stops early keeps its unspent calls but still receives its closing call, on the same terms as every other arm.",
+    "failed_model_call_accounting": "A failed call is booked as model_calls = 1. A failure consumes channel capacity and must appear in the matched budget; booking it as zero would let a flaky arm buy extra attempts for free."
+  },
+  "model_channel": {
+    "executor": "codex-cli, `codex exec` with --output-schema strict structured output",
+    "requested_model": "gpt-5.5",
+    "reasoning_effort": "medium",
+    "timeout_seconds": 600,
+    "identical_for_every_model_arm": true,
+    "why_not_zai": "The z.ai Anthropic-compatible endpoint substitutes silently: on 2026-09-02 a request for glm-5.2 was served glm-5.3 with HTTP 200 and no warning (issue #45). A study whose budget is matched in model calls cannot tolerate a silent mid-campaign model swap. The z.ai channel is also left clear for lane-e30r12.",
+    "served_model_attestation": {
+      "requested_model": "recorded per call",
+      "served_model_observed": null,
+      "served_model_source": "NOT_EXPOSED_BY_CODEX_CLI__HEADER_IS_REQUEST_ECHO",
+      "honest_statement": "The CLI's `model:` header is an ECHO of the requested id, not a served-model attestation - a probe requesting a bogus id printed that bogus id back verbatim. With --json no model id appears at all. This design therefore does NOT fake an attestation.",
+      "fail_closed_guarantee": "The guarantee is REFUSAL-NOT-SUBSTITUTION, established by probe ON THE EXECUTION HOST (billy-old, 2026-09-02): `--model definitely-not-a-real-model-xyz` returned rc=1 with a 'not found' error and wrote NO output file, rather than substituting a model. Because the channel refuses rather than substitutes, a call returning rc=0 with a schema-valid body was served by a model the endpoint accepted for the frozen id. Any non-zero exit, missing output, timeout or schema violation is a hard arm failure: recorded, counted, never retried into silence and never scored as an answer."
+    },
+    "execution_host": "billy-old (billy-laptop-old), codex-cli 0.129.0-alpha.15 (the programme-pinned version), 12 cores",
+    "host_and_model_selection": "The Mac's codex 0.147.0 serves gpt-5.6-sol, but the protected run does not execute on the Mac (operator standing rule: heavy runs belong off the Mac mini; the coordinator allocated billy-old or LUNARC). LUNARC's login node has no codex on PATH. billy-old carries the pinned codex 0.129.0-alpha.15, on which gpt-5.6-sol FAILS (rc=1, models-cache 'unknown variant `max`') and gpt-5.5 succeeds with schema-valid output. The frozen model is therefore gpt-5.5 at medium reasoning effort on billy-old, chosen because it is what the execution host can actually serve, and fixed before any protected campaign exists."
+  },
+  "ground_truth": {
+    "method": "The SAME sound primitives run at K times the arm budget, entirely outside the experiment, never visible to any arm.",
+    "K": 40,
+    "reference_node_limit": 800000,
+    "monotone_repair": "Ground truth is closed under each block's own monotonicity. This is a sound inference from the prefix construction, can only convert UNSETTLED into a known status, and is applied to ground truth ONLY - arms get no such help beyond what they establish themselves.",
+    "arm_independence": "The reference pass depends only on the campaign and K, never on any arm, so it may be computed before or after the arms run without affecting anything.",
+    "no_tuning_surface": "No arm was tuned on ground truth; ground truth is not a field of the campaign object the arms receive."
+  },
+  "splits": {
+    "development": {
+      "seed": "ME-F1-DEV-20260902",
+      "purpose": "calibration, arm-glue validation, laundering-variance probe",
+      "protected": false
+    },
+    "protected": {
+      "seed": "committed, see seed_commitment",
+      "n_critical_campaigns": 150,
+      "n_planted_campaigns": 12,
+      "label": "PROTECTED"
+    },
+    "planted_excluded_from_primary": "F_PLANTED campaigns plant a satisfying assignment in every rung, which makes them easier than critical density. They are used ONLY for G0 generator validity and for clean false-completion measurement, and are excluded from the primary endpoint BY REGISTRATION, not by a post-hoc decision."
+  },
+  "calibration": {
+    "purpose": "choose the difficulty rung whose C_UNIFORM_ALLOCATION score on the PRIMARY endpoint lies in the window, on the development split, before any protected campaign exists",
+    "arm": "C_UNIFORM_ALLOCATION",
+    "endpoint": "warranted_correct_rate - THE PRIMARY ENDPOINT ITSELF, not a proxy",
+    "endpoint_note": "An earlier version of this design calibrated on a proxy (fraction of rungs settled directly by a tool) and selected a rung on which the primary endpoint was in fact saturated at 1.0. Calibrating on the primary endpoint is the correction.",
+    "window": [
+      0.3,
+      0.7
+    ],
+    "window_rule": "point estimate inclusive; the sd across campaigns is reported and is not used for the decision",
+    "dev_seed": "ME-F1-DEV-20260902",
+    "dev_campaigns_per_level": 16,
+    "ladder_order": [
+      "L1",
+      "L2",
+      "L3",
+      "L4"
+    ],
+    "ladder": {
+      "L1": {
+        "n_vars": 24,
+        "budget_checks": 240000
+      },
+      "L2": {
+        "n_vars": 30,
+        "budget_checks": 300000
+      },
+      "L3": {
+        "n_vars": 36,
+        "budget_checks": 360000
+      },
+      "L4": {
+        "n_vars": 42,
+        "budget_checks": 420000
+      }
+    },
+    "procedure": "ascend L1->L2->L3->L4 sequentially; stop at the first rung inside the window (WINDOW_HIT, rung frozen as protected.selected_level); exhausting all rungs above the window -> SUITE_STILL_SATURATED (stop, no protected generation); a rung below the window after a rung above it -> LADDER_OVERSHOT_NO_WINDOW_HIT (stop, no protected generation, the ladder is NOT re-tuned post hoc); below the window at L1 -> SUITE_AT_FLOOR_AT_FIRST_RUNG (stop); any rung with inconsistent ground truth -> CALIBRATION_INVALID_INCONSISTENT_GROUND_TRUTH (stop). Every terminal is tested explicitly; none is a fall-through.",
+    "if_no_window_hit": "That is a terminal, not a reason to adjust the ladder, the budget, the block count or the alphas.",
+    "dev_split_never_reused": "development campaigns use the dev seed; the protected split uses the committed protected seed; no development campaign appears in the protected split"
+  },
+  "arms": {
+    "SIMPLE_DIRECT": "Model control with no warrant discipline: settle what you can, then report a verdict wherever you have an opinion, UNRESOLVED only where you truly have no view.",
+    "SAME_MODEL_REFLECTION": "SIMPLE_DIRECT plus a registered self-review pass: re-read your own log and reconsider each verdict once before finalising.",
+    "B5_R1_VERDICT_ONLY": "H-EXT-3 rung 1. Portfolio solver selection by clause/variable ratio; verdict-only interface.",
+    "B5_R2_PLUS_CANDIDATE_SET": "H-EXT-3 rung 2. Adds the per-block version space (surviving boundary positions) and the rule to assert only what every surviving position entails.",
+    "B5_R3_PLUS_FEATURE_TABLES": "H-EXT-3 rung 3. Adds the per-rung feature table and the portfolio's recommended schedule.",
+    "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": "H-EXT-3 rung 4 and the PRIMARY COMPARATOR. Algorithm selection (Rice 1976; SATzilla, Xu et al. 2008) + per-block binary search over the monotone ladder + Luby et al. (1993) / Gomes et al. (1998) restart policy + Mitchell (1982) version spaces + calibrated abstention. Information- and resource-matched to M, ordinary glue allowed, deliberately not isolated.",
+    "M_ME_FRONTIER_CONTROL": "ORION control: (1) warrant gate - every asserted verdict must name a licence (VERIFIED_WITNESS / MONOTONE_CLOSURE with source rung / COMPLETED_REFUTATION), and failing to find licenses nothing; (2) locus diagnosis of what obstructs each unsettled rung; (3) minimum escalation over levels 0-4, cheapest action addressing the diagnosis first.",
+    "M_MINUS_WARRANT_GATE": "M with organ (1) removed.",
+    "M_MINUS_LOCUS_DIAGNOSIS": "M with organ (2) removed.",
+    "M_MINUS_MINIMUM_ESCALATION": "M with organ (3) removed.",
+    "M_LOCUS_LABELS_SHUFFLED": "M with the obstruction vocabulary permuted, so the labels are present but wrong. Separates 'the labels are used' from 'the labels are correct'.",
+    "B5_ALGORITHMIC_CORE_NO_MODEL": "The parent federation in pure code, zero model calls. Bounds the model arms from ABOVE. If it beats every model arm, the honest reading is that model control adds nothing in this world, and this design says so before the run.",
+    "C_UNIFORM_ALLOCATION": "The calibration arm and difficulty yardstick: split the budget evenly across rungs, claim exactly what the version space entails and nothing else.",
+    "C_RANDOM_ALLOCATION": "Random tool and rung selection; claims only what is entailed.",
+    "C_NEVER_CLAIM": "UNRESOLVED everywhere. Floor for the primary endpoint, which must be exactly 0."
+  },
+  "arm_allocation": {
+    "full_n_arms": [
+      "SIMPLE_DIRECT",
+      "SAME_MODEL_REFLECTION",
+      "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION",
+      "M_ME_FRONTIER_CONTROL"
+    ],
+    "subset_n_arms": [
+      "B5_R1_VERDICT_ONLY",
+      "B5_R2_PLUS_CANDIDATE_SET",
+      "B5_R3_PLUS_FEATURE_TABLES",
+      "M_MINUS_WARRANT_GATE",
+      "M_MINUS_LOCUS_DIAGNOSIS",
+      "M_MINUS_MINIMUM_ESCALATION",
+      "M_LOCUS_LABELS_SHUFFLED"
+    ],
+    "subset_n": 36,
+    "deterministic_arms_run_on_every_campaign": true,
+    "rationale": "The primary contrast is funded at full n because it carries the routing; the ladder and ablation axes are secondary and are funded at the n their gates need."
+  },
+  "b5_information_matching": {
+    "rule": "B5 and M receive the SAME campaign view, the SAME toolbox, the SAME budget, the SAME model, the SAME reasoning effort and the SAME number of control calls. They differ only in the frozen control text, which is published verbatim in the design.",
+    "checkable": "The arm-facing campaign view is a single function (Campaign.arm_view) that excludes ground truth, the reference budget, the seed and every per-rung difficulty annotation, so information matching is a property of the code, not an assertion.",
+    "risk_registered": "Because both arms are the same model under different instructions, a difference between them is a difference between two frozen prompts. The ablations and the deterministic B5 core are what separate 'ORION's organs carry the effect' from 'this prompt happens to be better written'. A residual that the ablations cannot attribute routes CANNOT_CHECK, not FRONTIER_RESIDUAL_CANDIDATE."
+  },
+  "outcomes": {
+    "primary": {
+      "name": "warranted_correct_rate",
+      "definition": "over ground-truth-decided rungs of F_CRITICAL campaigns, the fraction whose claimed verdict is BOTH correct against ground truth AND structurally warranted by the arm's own execution log",
+      "two_axes_kept_separate": "Correctness is scored against ground truth no arm ever saw. Warrant is computed from the arm's own log and never reads ground truth. An arm can be correct-and-unwarranted - the laundering failure ME-X1 measured, where the direct arm made 492 unwarranted updates - or warranted-and-correct.",
+      "abstention_scores_zero": "UNRESOLVED contributes 0. No arm can win this endpoint by refusing to answer. This is the structural repair of the exact failure ME-X2 found, where M's CANNOT_IDENTIFY on decidable episodes was simultaneously its G2 pass and its loss.",
+      "estimand": "paired difference, M minus B5, over the campaigns both completed",
+      "test": "campaign-level paired exact sign test (two-sided, alpha 0.05); rung-level rate difference reported with a campaign-cluster bootstrap 95% interval, because rungs inside a campaign share a budget and a trajectory and are not independent"
+    },
+    "secondary": [
+      "coverage: fraction of decided rungs given a non-UNRESOLVED verdict",
+      "witness_found_rate: fraction of ground-truth-SAT rungs for which the arm produced a verified witness",
+      "false_completion_rate: claims contradicted by ground truth / claims made",
+      "unwarranted_claim_rate: structurally unwarranted claims / claims made - the ME-X1 laundering analogue",
+      "correct_and_unwarranted: the count that a correctness-only endpoint would silently reward",
+      "abstention_rate and correct abstention",
+      "resource_to_solution curve: mean rungs ESTABLISHED (verified witness or completed refutation) at 10/25/50/75/100 percent of the budget actually spent",
+      "cost: constraint checks, model calls, tokens; wall-clock reported, never a route"
+    ],
+    "resource_curve_fractions": [
+      0.1,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ]
+  },
+  "power": {
+    "method": "Connor (1987) paired-binary normal approximation (mef1_stats.paired_sample_size / paired_power / mde_at_n); reproduces the SD70-V2 reference value paired_sample_size(0.1, 0.3) = 234",
+    "primary_estimand": "campaign-level paired difference in warranted_correct_rate, M minus B5",
+    "minimum_effect": 0.15,
+    "minimum_effect_rationale": "Set from what this design can actually see at the affordable n, not from what would be desirable. At n=150 the MDE is 0.124 / 0.152 / 0.175 for discordance 0.30 / 0.45 / 0.60.",
+    "alpha_two_sided": 0.05,
+    "target_power": 0.8,
+    "n_campaigns": 150,
+    "mde_sensitivity_band": {
+      "discordance_0.30": 0.124,
+      "discordance_0.45": 0.152,
+      "discordance_0.60": 0.175
+    },
+    "clustering_note": "The rung-level endpoint carries more information than the campaign-level test (20 rungs per campaign), but rungs within a campaign are correlated; the campaign-level sign test is the registered confirmatory test precisely because it does not depend on an assumed intra-cluster correlation.",
+    "underpowered_null_rule": "REGISTERED AND BINDING: if the observed discordance implies an MDE above minimum_effect, a null routes CANNOT_CHECK, NOT PARENT_SUFFICIENT. An underpowered null must never be reported as a third parent-sufficiency result it has not earned.",
+    "model_calls_planned": 7200,
+    "model_calls_authorized": 8000,
+    "power_matched_to_hypothesis": "The registered minimum effect of 0.15 is deliberately MATCHED TO THE CLAIM, not a budget accident. The frontier hypothesis is that epistemic control earns its keep precisely where no planner can compute the answer at budget. If that is true at all, the effect should be LARGE. An effect small enough to require ~29k calls to detect would not support 'the framework solves frontier problems' even if it were real. A design powered for 0.15 is therefore well matched to the hypothesis under test, and a null at that MDE is interpretable rather than merely quiet.",
+    "me_x2_scale_caveat": "ME-X2's decisive difference was 0.020, which this design could not detect. That number is a useful SCALE REFERENCE and NOT a like-for-like target: it came from an exact deterministic study with zero model calls and therefore no model variance, whereas this design has model calls in the loop. Comparing the two MDEs directly would be comparing a noiseless estimator with a noisy one."
+  },
+  "gates": {
+    "G0a_KNOWN_ANSWER": {
+      "hard": true,
+      "rule": "hand-authored fixtures for warrant validity (every licensed and every forbidden inference, including the block-crossing case) and for each parent component reproduce their computed answers; mef1_parents.fidelity_selftests passes N/N"
+    },
+    "G0b_TOOLBOX_SOUNDNESS": {
+      "hard": true,
+      "rule": "WITNESS_FOUND is emitted only with an assignment verified clause-by-clause against the UNPREPROCESSED rung; REFUTED with refutation_complete only when the space was exhausted within the node limit; every preprocess mode is satisfiability-preserving on every development campaign; ground truth is monotone within every block"
+    },
+    "G0c_NULL_CALIBRATION": {
+      "hard": true,
+      "rule": "C_NEVER_CLAIM primary rate exactly 0; C_RANDOM_ALLOCATION primary rate <= random_max_rate",
+      "random_max_rate": 0.75,
+      "random_max_rate_note": "the random arm still claims only what is entailed, so it is a floor on ALLOCATION quality, not on warrant discipline; its bound is loose by design"
+    },
+    "G0d_GENERATOR_VALIDITY": {
+      "hard": true,
+      "rule": "every rung of every F_PLANTED campaign is ground-truth SAT (the planted assignment satisfies it), and F_CRITICAL campaigns contain both SAT and UNSAT rungs"
+    },
+    "G0e_LAUNDERING_VARIANCE": {
+      "hard": true,
+      "rule": "on the development split, SIMPLE_DIRECT's unwarranted_claim_rate must be strictly greater than zero AND greater than B5's, otherwise the primary endpoint has no variance to detect and the study routes CANNOT_CHECK before any protected dispatch"
+    },
+    "G1_M_ADVANTAGE": {
+      "rule": "paired rung-level difference M minus B5 > 0 and campaign-level sign test p <= alpha",
+      "alpha_two_sided": 0.05
+    },
+    "G1c_B5_ADVANTAGE": {
+      "rule": "the symmetric test: difference < 0 and p <= alpha"
+    },
+    "G2_ANTI_CONSERVATISM": {
+      "rule": "M's coverage must be at least B5's coverage minus max_coverage_shortfall",
+      "max_coverage_shortfall": 0.05,
+      "which_defence_binds": "TWO defences guard the same failure and the design states which is primary. The PRIMARY defence is structural: abstention scores zero in the primary endpoint, so an abstaining arm cannot win it at all. G2 is the SECONDARY defence and exists to catch the residual case where M wins the primary while still answering materially less often. A G2 pass is therefore informative about coverage parity, not about whether abstention was rewarded - that question is already settled by the endpoint's construction."
+    },
+    "G3_MECHANISM": {
+      "rule": "applicable only if G1 fires: every M ablation must score strictly below M on the primary, so the advantage is attributable to a registered component by omission"
+    },
+    "G4_INTERFACE_LADDER": {
+      "rule": "H-EXT-3: the ladder must be monotone in what crosses the module boundary, holding model, budget and toolbox fixed",
+      "order": [
+        "B5_R1_VERDICT_ONLY",
+        "B5_R2_PLUS_CANDIDATE_SET",
+        "B5_R3_PLUS_FEATURE_TABLES",
+        "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION"
+      ],
+      "tolerance": 0.02,
+      "terminals": {
+        "monotone_and_gap_null": "RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL",
+        "monotone_and_gap_persists": "CONTROL_RESIDUAL_CANDIDATE_AT_FULL_STRUCTURE",
+        "non_monotone": "LADDER_NON_MONOTONE (H-EXT-3 falsifier fires)"
+      },
+      "reading_caveat": "As ME-X2's receipt records, the gap-null terminal fires both when M ties B5 and when B5 strictly beats it, so it must never be quoted alone."
+    },
+    "COST": {
+      "rule": "constraint checks, model calls and tokens reported; wall-clock ratio flagged at 2x; reported, never a route by itself"
+    }
+  },
+  "integrity": {
+    "global_unsettled_threshold": 0.05,
+    "global_arm_failure_threshold": 0.05,
+    "per_arm_failure_threshold": 0.1,
+    "rule": "CANNOT_CHECK if: the fraction of rungs the reference cannot settle exceeds global_unsettled_threshold; OR the pooled model-arm failure rate exceeds global_arm_failure_threshold; OR any of SIMPLE_DIRECT / B5_STRONGEST_FAITHFUL_PARENT_FEDERATION / M_ME_FRONTIER_CONTROL exceeds per_arm_failure_threshold; OR the design sha256 changed after freeze; OR ground truth is non-monotone within any block; OR a served-model or channel-identity violation is recorded.",
+    "per_instance_vs_global": "PER-INSTANCE: a rung the reference cannot settle has no ground truth and is excluded from the primary, with the exclusion rate reported; a campaign whose model call failed is marked cannot_check and excluded, and counted. GLOBAL: the thresholds above route the WHOLE study to CANNOT_CHECK rather than reporting a primary on the residue.",
+    "comparisons_are_strict": "exactly at a threshold passes"
+  },
+  "routing_preregistered": {
+    "order": [
+      "CANNOT_CHECK",
+      "FRONTIER_RESIDUAL_CANDIDATE",
+      "RESOURCE_EFFICIENCY_RESIDUAL_ONLY",
+      "PARENT_SUFFICIENT"
+    ],
+    "order_note": "CANNOT_CHECK is evaluated FIRST and pre-empts every scientific route.",
+    "CANNOT_CHECK": "integrity gate fails, G0 fails, an M advantage is not attributable by omission (G3), or a null at an inadequate MDE",
+    "FRONTIER_RESIDUAL_CANDIDATE": "G1 fires, G2 passes and G3 passes: M exceeds the strongest faithful parent federation on the primary under matched resources, with the advantage attributable by omission",
+    "RESOURCE_EFFICIENCY_RESIDUAL_ONLY": "G1 fires but G2 fails: M leads the primary while answering materially less often, so the advantage is not distinguishable from answering less",
+    "PARENT_SUFFICIENT": "G1c fires (B5 strictly exceeds M), or a null at an adequate MDE"
+  },
+  "no_rescue_clause": "After any protected outcome is inspected: no change to the generator, block geometry, alphas, budget, K, calibration ladder or window, arm control text, toolbox, warrant rules, gates, thresholds, seeds, campaign counts, aggregation or routing. No post-hoc rung change. A protected result is never re-run under a new seed. A defect found after outcome access requires a new run identity (ME-F1 R2) with its own frozen design and its own seed commitment; this V1 result is immutable.",
+  "seed_commitment": {
+    "protected_seed_sha256": "aea3cbd51d582077bc55ae17adc051aed360d3791de527ee0109b59e85a36ced",
+    "custody": "operator custody outside the repository: ~/.orion-custody/frontier/PROTECTED_SEED_V1.txt (mode 600); the runner verifies sha256(seed) == this commitment before any protected generation",
+    "reveal": "the seed string is appended to the outcome receipt after the protected run"
+  },
+  "custody": {
+    "code": [
+      "mef1_model.py",
+      "mef1_generator.py",
+      "mef1_toolbox.py",
+      "mef1_reference.py",
+      "mef1_parents.py",
+      "mef1_channel.py",
+      "mef1_arms.py",
+      "mef1_score.py",
+      "mef1_stats.py",
+      "mef1_run.py"
+    ],
+    "code_sha256_frozen_in": "ME_F1_PARENT_FIDELITY_RECEIPT_V1.md",
+    "protected_authorization": "me-f1/PROTECTED_RUN_AUTHORIZATION.json, gitignored, absent at freeze; the protected stage refuses without it (exit 3) and without a matching custody seed (exit 4); archived to results/PROTECTED_RUN_AUTHORIZATION_ARCHIVED.json immediately after the single run so the guard re-arms",
+    "determinism": "Campaign generation, the toolbox, the reference pass and all scoring are byte-deterministic from the seed. MODEL RESPONSES ARE NOT: this study has model arms and cannot claim byte-identical re-runs. Every call is logged with its prompt sha256, response body, requested model, served-model triad, token count and wall time, so the ANALYSIS is exactly reproducible from the frozen call log even though a re-dispatch would differ. This is stated rather than papered over.",
+    "per_campaign_audit_requirement": "The outcome receipt must present, per campaign, the arm's claim, what it actually verified, and the oracle verdict SIDE BY SIDE, so a reader can audit an individual laundering call rather than trust an aggregate."
+  },
+  "authority": {
+    "grants_field_status": false,
+    "grants_novelty": false,
+    "grants_publication": false,
+    "parent_sufficiency_is_valid_terminal": true
+  },
+  "protected_geometry": {
+    "selected_level": "L2",
+    "selected_by": "calibration procedure, development split, WINDOW_HIT at the second rung",
+    "n_vars": 30,
+    "budget_checks": 300000,
+    "n_blocks": 4,
+    "rungs_per_block": 5,
+    "n_rungs_per_campaign": 20,
+    "calibration_receipt": "results/ME_F1_CALIBRATION_RECEIPT.json",
+    "calibration_measured": {
+      "L1": {
+        "n_vars": 24,
+        "rate": 0.9656,
+        "in_window": false
+      },
+      "L2": {
+        "n_vars": 30,
+        "rate": 0.6844,
+        "in_window": true
+      }
+    },
+    "note": "The rule takes the FIRST rung inside the window. L2's 0.6844 sits in the upper part of [0.30, 0.70]; the ladder is not re-tuned to seek a more comfortable position, because that would be selecting difficulty on a number rather than on the registered rule."
+  }
+}
