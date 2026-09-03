@@ -1,0 +1,41 @@
+{
+  "arm": "C_UNIFORM_ALLOCATION",
+  "decision": "WINDOW_HIT",
+  "design_sha256": "f9ecd9ecba3b632cbf32304ab5a66e88640e655584e4991243f9af7858c4c704",
+  "dev_campaigns_per_level": 16,
+  "dev_seed": "ME-F1-DEV-20260902",
+  "endpoint": "warranted_correct_rate - THE PRIMARY ENDPOINT ITSELF, not a proxy",
+  "if_no_window_hit": "That is a terminal, not a reason to adjust the ladder, the budget, the block count or the alphas.",
+  "n_blocks": 4,
+  "reason": "L2 scores 0.684 on the primary endpoint, inside the registered window [0.3, 0.7]",
+  "rows": [
+    {
+      "budget": 240000,
+      "campaigns": 16,
+      "in_window": false,
+      "inconsistent": [],
+      "level": "L1",
+      "n_vars": 24,
+      "rate": 0.965625,
+      "sd": 0.12479149276559948,
+      "unsettled_gt": 0
+    },
+    {
+      "budget": 300000,
+      "campaigns": 16,
+      "in_window": true,
+      "inconsistent": [],
+      "level": "L2",
+      "n_vars": 30,
+      "rate": 0.684375,
+      "sd": 0.13870682511445978,
+      "unsettled_gt": 0
+    }
+  ],
+  "schema_version": "orion.v2.me-f1.frontier-study-analysis.v1.calibration-receipt",
+  "selected_level": "L2",
+  "window": [
+    0.3,
+    0.7
+  ]
+}

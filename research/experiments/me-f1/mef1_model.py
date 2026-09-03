@@ -57,6 +57,8 @@ WARRANTS: tuple[str, ...] = (
     "MONOTONE_CLOSURE",      # inherited from a verified witness below / refutation above
     "COMPLETED_REFUTATION",  # this rung: an exhaustive search that closed the space
     "NONE",                  # asserted without a licence
+    "UNNAMED",               # the arm's schema has no warrant field (H-EXT-3 rung 0):
+                             # entitlement is decided from the execution log, not declared
 )
 
 #: Tools.  Identical for every arm (design S4.1: the identical-toolbox constraint).
@@ -306,10 +308,22 @@ def warrant_is_valid(claim: Claim, record: CampaignRecord,
     """
     if claim.verdict == "UNRESOLVED":
         # An honest non-answer needs no licence, and must never be counted as one.
-        return (claim.warrant == "NONE", "UNRESOLVED must carry warrant NONE")
+        # ``UNNAMED`` is admitted here only because an arm whose schema has no warrant
+        # field cannot write "NONE"; it is the same honest non-answer.
+        ok = claim.warrant in ("NONE", "UNNAMED")
+        return (ok, "" if ok else "UNRESOLVED must carry warrant NONE")
 
     if claim.warrant == "NONE":
         return (False, "verdict asserted with no warrant")
+
+    # ``UNNAMED`` is what an H-EXT-3 rung-0 arm produces: its claim schema carries no
+    # warrant field, so it asserts verdicts without being asked to name a licence.  Such a
+    # claim is scored on whether the arm's own log entitled it -- by ANY block-local route,
+    # which is the most generous reading available.  An arm is never penalised for
+    # declining to name a licence it actually held; it is caught only when it asserted
+    # more than it established, which is exactly the ME-X1 slide this endpoint measures.
+    # Note this is strictly more permissive than the named cases below, so it cannot
+    # manufacture a violation that the evidence does not already contain.
 
     witnesses = record.verified_witness_rungs()
     refutations = record.completed_refutation_rungs()
@@ -318,6 +332,15 @@ def warrant_is_valid(claim: Claim, record: CampaignRecord,
         blk = block_of.get(claim.rung)
         witnesses = {w for w in witnesses if block_of.get(w) == blk}
         refutations = {r for r in refutations if block_of.get(r) == blk}
+
+    if claim.warrant == "UNNAMED":
+        if claim.verdict == "SATISFIABLE":
+            ok = claim.rung in witnesses or any(w >= claim.rung for w in witnesses)
+            return (ok, "" if ok else
+                    "nothing in this block's log entitles SATISFIABLE at this rung")
+        ok = claim.rung in refutations or any(r <= claim.rung for r in refutations)
+        return (ok, "" if ok else
+                "nothing in this block's log entitles UNSATISFIABLE at this rung")
 
     if claim.verdict == "SATISFIABLE":
         if claim.warrant == "VERIFIED_WITNESS":
