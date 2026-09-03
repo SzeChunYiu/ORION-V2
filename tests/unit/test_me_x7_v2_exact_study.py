@@ -534,7 +534,14 @@ def test_reruns_are_byte_identical_apart_from_wall_clock(tmp_path: Path) -> None
         fn = f"ME_X7_DEVELOPMENT_{name}_V1.json"
         assert (a_dir / fn).read_bytes() == (b_dir / fn).read_bytes(), name
 
-    drop = {"wall_ms", "M_wall_ms", "B5_wall_ms", "wall_ratio_b5_over_m"}
+    # The four wall-clock fields the design's determinism claim names, plus the
+    # two places the COST flag derived from them is written. The flag is a
+    # threshold on a wall-clock ratio, so it is wall-clock-derived and is not
+    # covered by "identical apart from the wall-clock fields it quotes"; a run
+    # whose ratio lands near 2.0 flips it. Asserting on it made this test
+    # intermittently red without testing anything the design claims.
+    drop = {"wall_ms", "M_wall_ms", "B5_wall_ms", "wall_ratio_b5_over_m",
+            "flag", "cost_flag"}
 
     def strip(o):
         if isinstance(o, dict):

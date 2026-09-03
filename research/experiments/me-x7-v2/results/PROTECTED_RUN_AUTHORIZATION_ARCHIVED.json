@@ -1,0 +1,18 @@
+{
+  "schema_version": "orion.v2.me-x7-v2.protected-run-authorization.v1",
+  "study": "ME-X7-V2",
+  "design": "ME_X7_V2_EXTERNAL_WITNESS_SUFFICIENCY_EXACT_STUDY_DESIGN_V2.json",
+  "acknowledged_design_sha256": "799db760e87ae7ddc28ad2d12ad1a41622502314c7bfb2c42a0984d44e00dbf2",
+  "human_written": true,
+  "human_written_token": "OUTCOME PR: authorize, run protected once, archive the authorization to results/, verify the guard re-arms, write ME_X7_V2_OUTCOME_RECEIPT.md",
+  "token_provenance": "verbatim operator instruction for the ME-X7 V2 re-freeze, quoted exactly as given; not composed by the lane. The standing programme authorization it stands under is quoted in research/experiments/me-x7/results/PROTECTED_RUN_AUTHORIZATION_ARCHIVED.json",
+  "authorized_on": "2026-09-03",
+  "authorizes": "one PROTECTED run of mex7_run.py at the frozen 50-per-cell design (1250 instances) under the custody seed committed as sha256 08631e5fa419e350a2c4d71bcee487fdebb166875ed8647a79f76f2519f02cfd",
+  "conditions": [
+    "the frozen design JSON is the one merged to main in PR #239 and is not modified; the acknowledged sha256 was taken from the origin/main blob and verified equal to the worktree file",
+    "no --per-cell override; the run uses the registered protected_per_cell = 50",
+    "a determinism replicate into a separate output directory is part of the same authorization and is not a second protected result",
+    "a lane defect found mid-run halts the lane, is receipted, and re-freezes as V3 (design section 9)",
+    "this file is archived after use so the guard re-arms"
+  ]
+}
