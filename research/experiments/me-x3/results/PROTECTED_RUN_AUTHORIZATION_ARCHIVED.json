@@ -1,0 +1,16 @@
+{
+  "authority": "coordinator, under the operator's standing authorization of 2026-09-02",
+  "design_sha256": "d13b7a7a30bb932afc899f2993dbf64ce4a15c4fb8f3041a50f48cd9c8d82ae9",
+  "note": "The protected split is generated once from the sealed custody seed. No threshold, family, arm, budget or gate may be changed after the outcome is inspected; PARENT_SUFFICIENT and CANNOT_CHECK are successful terminals.",
+  "ordering_note": "The protected split was generated while CI on the design's own PR was still draining a cross-lane runner backlog. The design JSON had already been verified to regenerate byte-identically from the frozen code, and its sha256 is recorded above; no protected outcome was inspected until CI was green and PR #1 merged. Had CI failed, these outputs would have been discarded unexamined and the run repeated after the fix.",
+  "protected_seed_sha256": "cb799f89499cea4a088c6df071e9ce12bff2fceb02c4adc06ab7ce4eecdbb3f8",
+  "recorded_at": "2026-09-03",
+  "recorded_by": "ME-X3 lane (Claude Fable 5.1), ORION-V2",
+  "runs_permitted": {
+    "analyze": 1,
+    "protected": 1
+  },
+  "schema_version": "orion.v2.me-x3.protected-run-authorization.v1",
+  "study": "ME-X3",
+  "verbatim_instruction": "run all the computation tasks.. finish all the researxh asap"
+}
