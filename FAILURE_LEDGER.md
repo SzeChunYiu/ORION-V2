@@ -146,6 +146,58 @@ report rather than a methodologically specified census. Records, evidence grades
   failing. The programme's standing rule against asserting absence from absent printed output is
   what caught the third, which is evidence the detector was already held rather than discovered.
 
+- `REPAIR_DOCUMENTED_NOT_LANDED` — a repair is analysed, decided and written into a record, and the
+  record reads as though it shipped, while the artifact it names is unchanged. The check ran, the
+  analysis is correct and the decision is sound; the gap is between the **record and the tree**.
+  Distinct from `TERMINAL_OVERSTATES_ITS_PROCEDURE`, its closest neighbour: there the gap is
+  *inferential* — the prose outruns what the analysis licenses, and is settled by re-reading the
+  procedure — whereas here the prose is exactly warranted by the analysis and the question is a
+  `git` one, whether a commit landing the change is an ancestor of `main`. It is not a check that
+  never ran, not a contrast that could not exist, and not a rendered status trusted in place of the
+  thing. Guard: a record asserting a repair must name **the artifact changed and the commit that
+  changed it**, and that commit must be an ancestor of `main` (`git merge-base --is-ancestor <sha>
+  origin/main`, run with a control that must fail); where a repair is deliberately deferred the
+  record must say **documented, not applied**, state the reason, and place a pointer where whoever
+  executes the artifact will meet it — *a correction nobody reads is a sentence nobody executes*.
+  Deferring a fix with the reason stated is good practice; describing a deferred fix as *corrected*
+  is the failure. First observed 2026-09-04 (OCM P0, PR #254:
+  `research/orion-machine/receipts/OCM_WLL_P0_THEOREM_BUNDLE_RECEIPT_V1.json`, added `4bed0ce`
+  2026-09-03 10:14 +0200, records under the field name `discovered_and_repaired_checker_defects`
+  the entry *"correct endpoint-only guaranteed coordinates from one to zero and abstentions from
+  five to six"* with `theorem_statement_changed: false` — while the module still pinned
+  `I0_ENDPOINT_ONLY: (False, 1, 5)`. At branch head `17eb66b` five of six check runs failed —
+  `native-recovery`, `foundation-reference`, `stochastic-reference`, `unified-reference`,
+  `reference-tests` — each on the identical five tests of
+  `tests/unit/test_ocm_wll_interface_hierarchy_exact.py`, with the pinned `(False, 1, 5)` exhibited
+  in all five job logs, and stayed red for ~22 hours until `4cb6dca` landed exactly what the
+  receipt already described. The field name is the tell: it asserts the defect was *repaired*.)
+  Second instance the same day in an unrelated lane, and the sharper one because a lane caught it
+  in its own work (ORION-paper PR #111, registry follow-up): `v2-papers/PAPER_REGISTRY.json`
+  classes P-A and P-B as `…PRE_OUTCOME_SAMPLE_EFFECT_DEFECT_FOUND_AND_CORRECTED_2026_09_04` while
+  the protocol it names was never amended — at ORION-V2 `main` `b2f7962`,
+  `research/experiments/FM80_NATURALISTIC_TRANSFER_DECISIVE_PROTOCOL_V1.md` §8 still reads "at
+  least 30 per domain" and §9.1 still reads "at least **10 percentage points**", the file carrying
+  the single commit `baa9356` (its 2026-08-30 freeze) and the `.json` twin no correction key. What
+  shipped was a sibling document,
+  `research/experiments/fm80-audit/FM80_PRE_OUTCOME_DESIGN_CORRECTION_V1.md`. **Not amending was
+  the correct call on authority grounds** — selecting a repair branch is a design act belonging to
+  the lane that will execute the study, and choosing the cheapest branch after seeing the analysis
+  is precisely what that protocol's §12 forbids — so the defect is **not** the deferred repair, it
+  is the record claiming the repair landed. The status proposed in its place is
+  `DEFECT_FOUND_AND_DOCUMENTED__REPAIR_BRANCH_UNSELECTED__PROTOCOL_TEXT_UNAMENDED_WITH_BINDING_PRE_EXECUTION_POINTER_ADDED`,
+  with `protocol_text_amended: false` and `repair_branch: UNSELECTED__BELONGS_TO_THE_EXECUTING_LANE`.
+  The mitigation that instance names is the guard worth keeping: a binding, explicitly
+  **non-amending** pre-execution pointer placed **inside the defective artifact itself**, at §8 and
+  §9, so whoever opens the protocol to run it meets the warning rather than the unmarked defective
+  floor. **Near miss recorded on the mitigation layer, not a realised defect:** as of ORION-V2
+  `main` `b2f7962` and ORION-paper `main` `9c4a631` neither half of that mitigation has landed —
+  the pointer exists only in ORION-V2 PR #264 (open, unmerged) and the registry re-statement only
+  in ORION-paper PR #111 (open, `CONFLICTING`), where the `_CORRECTED` string is still live — and
+  the registry's `binding_pre_execution_pointer_added_to_protocol: true` asserts the state of a
+  file in a **different repository**, with nothing binding the two. It is recorded because it is
+  this class's own tell reappearing at the mitigation layer, in exactly the form the guard above
+  exists to catch.
+
 ### Corrections to entries above, recorded rather than applied
 
 This ledger is append-only, so two earlier entries are corrected here rather than edited in place.
@@ -218,3 +270,19 @@ to the clauses above because each produces a *passing* artifact:
 
 A verdict resting on any of these is withdrawn to `CANNOT_CHECK`; it is not converted into a
 repaired defect, and a later green result does not erase how the earlier one was obtained.
+
+It reopens on a fourth condition, appended 2026-09-04 for `REPAIR_DOCUMENTED_NOT_LANDED`. The three
+conditions above were written to fire on a *passing* artifact; this one is invisible to all of them
+because it is not a property of any artifact's verdict at all — of its two founding instances the
+artifact was **failing** in one and had **never been run** in the other, and the record read
+repaired in both:
+
+- a record asserting a repair cannot name the commit that landed it, or names one that is not an
+  ancestor of `main` (`git merge-base --is-ancestor <sha> origin/main`, run with a control that must
+  fail — the same test this ledger already requires for a PR reading `MERGED` whose work is absent
+  from `main`), or describes a deliberately deferred repair as *corrected* rather than *documented,
+  not applied*.
+
+Here the correction is to the **record**, which is amended to say what the tree holds; the
+underlying analysis and the decision to defer are not thereby withdrawn, and a later commit landing
+the repair does not erase the interval in which the record overstated it.
