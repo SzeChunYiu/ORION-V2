@@ -801,3 +801,239 @@ M6_FRONTIER_MATH = NOT_RUN
 ## 23. Binding direction
 
 The next work is **M1**, not another disconnected conceptual lane: instantiate this exact contract on one existing oracle domain, populate atoms/hyperedges from that domain, and require the M0 invariants to survive unchanged. Only after M1 exists should M2 test the full `atomize → navigate → fire → extract → compose → check` loop.
+
+---
+
+# Part II — freeze addendum (M0-F): the clauses #284 §2–§4, #194 and #197 require, each bound to a checker on the machine
+
+Status of Part II: every clause below is `DEFINED → THEOREM → PROOF → CHECKER` with the checker in
+`../reference/kso_m0_freeze_checks_v1.py` (finite, exact, planted failure / must-differ control /
+no-alarm / distinct `CANNOT_CHECK` exit) and, where marked **[M1]**, re-run on real ME-X1 worlds by
+`../reference/kso_m1_mex1_population_v1.py` (receipt `../results/KSO_M1_POPULATION_RECEIPT_V1.json`).
+Part I is unchanged; `kso_math_v1.py` and its pinned results are byte-identical to PR #290.
+**NO NOVELTY OR BREAKTHROUGH CLAIM.** Most rows are parent-owned and say so.
+
+## 24. Edge vocabulary is the atlas vocabulary (A2)
+
+`τ_H` ranges over the registered set
+
+\[
+\mathcal T_H=\underbrace{\{\mathrm{RESTRICTION},\mathrm{EMBEDDING},\mathrm{SCALE\_CHANGE},\mathrm{BOUNDARY\_CHANGE},\mathrm{REPRESENTATION\_TRANSPORT},\mathrm{DECISION\_TRANSPORT}\}}_{\texttt{epistemic\_atlas.ContextMapKind}}
+\cup\{\mathrm{DEPENDENCE},\mathrm{SUPPORT},\mathrm{COMPOSITION},\mathrm{CONSTRAINT}\}.
+\]
+
+The first six are read from `src/orion_v2/epistemic_atlas.py` at check time and must match the
+literal list above (drift is a failure, unimportability is `CANNOT_CHECK`); the last four are the
+relation kinds #194 names (dependence, support/transport, composition, constraint). A hyperedge
+whose type is outside `𝒯_H` is the typed rejection `UNREGISTERED_RELATION_TYPE`, at construction
+and at acquisition. Dependency types for the impact cone (§13) are the last four.
+Checker F1. Parent: the atlas itself (V2 `epistemic_atlas.py`); nothing new.
+
+## 25. The restart seed is warrant-gated, not renormalised (B2, B4)
+
+Part I gates edges and atoms; the seed must be gated the same way or a dead atom keeps the restart
+mass `α s_Q(v)`. Define
+
+\[
+s_{Q,R}=g_R\odot s_Q\qquad\text{(entry-wise; NOT renormalised).}
+\]
+
+**Theorem KS-T04b (exact-share retraction propagates to activation).** Let `D_R` be the set of
+atoms non-live under `R`, and `Reach(D_R)` their ungated forward closure. For the fixed point
+`a^*_R` of `F_{Q,R}(a)=α s_{Q,R}+(1-α)P_{Q,R}^{\mathsf T}a`:
+(i) `a^*_R(v)=0` for every `v∈D_R`; (ii) `a^*_R(u)=a^*_∅(u)` for every `u∉Reach(D_R)`;
+(iii) `a^*_R(u)≤a^*_∅(u)` for every `u`; (iv) `a^*_{∅}` is restored exactly when `R` is lifted.
+
+*Proof.* (i) row and column `v` of `P_{Q,R}` and the entry `s_{Q,R}(v)` are zero, so the Neumann
+series (KS-T05) contributes nothing to `v`. (ii) every walk from the seed support to `u` avoids
+`D_R` (else `u∈Reach(D_R)`), and on such walks every factor of `P_{Q,R}` equals the corresponding
+factor of `P_{Q,∅}` because denominators are frozen (KS-T04); the series for `u` is term-wise
+identical. (iii) `P_{Q,R}≤P_{Q,∅}` entry-wise and `s_{Q,R}≤s_Q`, and the series has nonnegative
+terms. (iv) the map `R↦(P_{Q,R},s_{Q,R})` is a function of `R` alone. ∎
+Under the renormalising parent (ii) fails: a survivor of a revoked sibling gains mass. Checker F2
+(mutation asserted applied; unapplied planted retraction is `CANNOT_CHECK`); **[M1]** P3 on 400
+planted revocations over 50 worlds, 400/400, parent differed on 16 worlds; registered events
+replayed as the real revocation 50/50 with 0 disagreements against the oracle at v1.
+Parent: none owns the conjunction (§32); the pieces are JTMS/ATMS gating and PPR.
+
+## 26. Two-direction hub theorem (A9)
+
+Let `π=a^*_{\rm uniform}` be the background and `ρ_Q(v)=a^*_Q(v)[\log(a^*_Q(v)/π(v))]_+` (§6).
+
+**Theorem KS-T06b.** On the witness (hub `H` linked both ways to `x_1..x_4`; `sp` fed by `x_1`
+only): (i) for the question seeded at `x_1` (touching both `H` and `sp`), `a^*(H)>a^*(sp)` and
+`ρ(sp)>ρ(H)` — the popularity ranking and the surprise ranking differ, and the specific atom wins
+the second; (ii) for the question seeded at `x_2` (touching only `H`), `H` wins both rankings;
+(iii) `ρ≡0` for the background question.
+
+*Proof.* (iii) is KS-T06. (i)–(ii) are finite exact computations over ℚ (activations) followed by
+the monotonicity of `t↦t\log(t/c)` on `t>c`; the checker performs them.
+Checker F3 (popularity ranker = planted control that must differ). **[M1]** P4: background 0
+everywhere and hub-seeded question makes the hub positive and top, 50/50; for an evidence-seeded
+question the hub wins by surprise on 2/50 worlds only (reported, not asserted: on these graphs the
+degree hub is usually the target claim itself). Parent: IDF / degree normalisation; nothing new.
+
+## 27. Acquisition is a typed transaction with a certificate kind (B8, C4)
+
+Channels are certificate kinds `𝒞={INSTRUCTION, DEMONSTRATION, INTERACTION, EXPERIMENTATION,
+FEEDBACK, EXACT\_CHECKER}`. `admit(𝒦, v, H_v, c)` succeeds iff: `v` is fresh; `H_v≠∅` or `v` is
+quarantined (else `ISOLATED_ATOM_REJECTED`); every edge is incident to `v` and typed in `𝒯_H`;
+`v` lies in the ungated closure of the existing atoms and, if warranted, receives positive
+activation from a uniform seed on them (else `UNREACHABLE_BY_NAVIGATION`); and the label is set by
+the certificate: `c=FEEDBACK ⇒ Λ_v=\mathbf 0`; `c∈𝒞∖\{FEEDBACK\}` requires `Λ_v≠\mathbf 0`
+(else `WARRANTING_CHANNEL_WITHOUT_WARRANT`).
+
+**Theorem KS-T18 (feedback cannot warrant, carried in from stage 1).** A feedback-admitted atom
+is never live and never enables a firing: `ℓ_R(\mathbf 0)=0` for all `R`, so by KS-T02 every
+hyperedge with it in the tail is disabled. An `EXACT_CHECKER` atom (a proof assistant's verdict)
+enters with `Λ_v≠\mathbf 0` and enables. *Proof.* immediate from §3 and §4. ∎
+Checker F4 (8 cases). **[M1]** every populated atom carries a certificate (base atoms and
+evidence `EXPERIMENTATION`, families/claims `INSTRUCTION`, formal results `EXACT_CHECKER`) and S1
+holds on 100 populated spaces. Parent: PCC (admission), #197 stem-cell row 2.
+
+## 28. Atomisation (B1)
+
+`η(x)` maps a question given as parts `(text, type, refs)` to exactly `k=|parts|` query seeds and
+a seed distribution `s_Q` over the referenced atoms (uniform within a part, parts equally
+weighted). Rejections: `EMPTY_QUESTION`, `NON_ATOMIC_INPUT` (a part without a type), `UNBOUND_SEED`
+(no or unknown refs). `s_Q` is a function of the parts (deterministic, the committed seed).
+Checker F5. Parent: question decomposition / Zettelkasten atoms; nothing new.
+
+## 29. Navigation outcome and the obstruction witness (B7) — a definition, not prose
+
+`navigate(𝒦, s_Q, t, B)` with budget `B=(steps, restarts, depth)` (`B` must be positive, else
+`CANNOT_CHECK`) returns one of
+
+\[
+\mathrm{FOUND}\;|\;\mathrm{GAP\_NOT\_FOUND}\;|\;\mathrm{OBSTRUCTION\_WITNESSED}\;|\;\mathrm{CANNOT\_CHECK}.
+\]
+
+Let `a_k` be the bounded gated walk (`k≤steps`), `C^\circ` the **ceiling walker** = ungated,
+unbounded closure of the seed support over every registered relation, and `C^R` the gated closure.
+
+- `FOUND` iff `∃k≤steps: a_k(t)≥θ`.
+- `GAP_NOT_FOUND` iff not found and (`t∉V` — reason `TARGET_ABSENT`, hook = acquisition channels;
+  or `t∈C^\circ∖C^R` — reason `WARRANT_GATED`, hook = acquire warrant; or `t∈C^R` — reason
+  `BUDGET_EXHAUSTED`, hook = more budget). **Timeout alone is a gap.**
+- `OBSTRUCTION_WITNESSED` iff `t∈V` and `t∉C^\circ` (the ceiling walker fails too), with witness
+  `Ω=(M, 𝒪, W_{\rm fail}=C^\circ, D_{<j}, R_{\rm bound})`, `D_{<j}` naming why budget, warrant and
+  restart are not repairs; **or** (identification asked) `t` is found but a same-type atom has
+  exactly the same activation under the committed seed — witness kind
+  `STRUCTURAL_NONIDENTIFIABILITY`, the ME-X2 `CANNOT_IDENTIFY` case; re-atomisation is a J3
+  proposal, not a lower-level repair.
+
+**Escalation rule (H-EXT-1R, finite form).** Escalate to the Jump ladder iff the gated walker fails
+**and** the ceiling walker is witnessed off ceiling (`t∉C^\circ`). `Ω` maps onto
+`orion_v2.jump.JumpTrigger(kind=GLOBAL\_OBSTRUCTION | STRUCTURAL\_NONIDENTIFIABILITY,
+incumbent\_level=J1, witness\_ids=W_{\rm fail}, lower\_level\_dispositions=D_{<j})` and must be
+`is_admissible`. **Theorem KS-T19.** The four outcomes are exhaustive and pairwise exclusive on
+every finite `𝒦`. *Proof.* case split on `t∈V`, `t∈C^\circ`, `t∈C^R`, `a_k(t)≥θ`. ∎
+Checker F6 (three outcomes exhibited on one space, timeout-is-gap, zero budget is
+`CANNOT_CHECK`, witness admissible) and G2-nonidentifiability. Parents: V2 `jump.py`; ME-X2.
+
+## 30. Compose (B6) and extract (B5)
+
+`compose(𝒦, (x_1..x_n), y, P_b)` adds `y` with `Λ_y=P_b⊗\bigotimes_iΛ(x_i)` and one COMPOSITION
+hyperedge `(x_1..x_n)→y`. **KS-T20.** `y` is non-live whenever any component is; the *merge*
+`⊕_iΛ(x_i)` is not a composition (it outlives a revoked component) and is caught by S2.
+Checker G2-compose. **[M1]** S2 holds on every populated space (evidence, family and result
+atoms are compositions); planted merged family label caught 50/50.
+
+**KS-T11a (the reacting subgraph is well-defined and unique).** `G_Q=(V_Q,H_Q)` with
+`V_Q=\{v∈C^R_{\rm seed}: ρ_Q(v)>0\}∪\mathrm{supp}(s_Q)` and `H_Q` the live hyperedges inside `V_Q`
+is a function of `(𝒦,R,s_Q,α)` because `a^*` is (KS-T05). The prize-collecting optimiser of §7 is
+a different object and may have several optima (planted tie: prize = cost); M2 must report ties.
+Checker G2-extract. Parent: PCST; nothing new.
+
+## 31. Translator invariance, the provable half (A13)
+
+**KS-T10a.** `Solve_𝒦` is a function of `(𝒦, s_Q)`: two codecs `c_1,c_2` with
+`η_{c_1}(u)=η_{c_2}(u)` yield identical `G_Q` (by KS-T11a). The open half, KS-T10, is whether two
+independent codecs agree on `s_Q` — measurable at M5 with the same checker. Checker
+G2-translator (equal seeds ⇒ identical extraction; unequal seeds differ = must-differ).
+
+## 32. The genome: S1–S7 on the knowledge space, and the stem-cell invariant (A4, A16, C6)
+
+A **governed space** is `𝒢=(𝒦, cert:V→𝒞, |E|, meter, R)`. The seven predicates:
+
+| | statement on `𝒢` | planted violation caught |
+|---|---|---|
+| **KS-S1** | `Λ_v≠\mathbf 0 ⇒ cert(v)∈𝒞∖\{FEEDBACK\}` | feedback carrying warrant |
+| **KS-S2** | every COMPOSITION head has `Λ=P_h⊗\bigotimes_{t∈T_h}Λ_t` | merged (⊕) label |
+| **KS-S3** | for every `R`, an atom with a nonzero row or column of `P_{Q,R}` is live under `R` | (exhaustive at M0; sampled at M1: `R_0`, singletons, `R_0∪` singleton) |
+| **KS-S4** | a coarsening of `E` answers every `R∈Γ` exactly iff each `R` is a block union (Theorem S4) | merging `{0,1}` while `Γ∋\{0\}` |
+| **KS-S5** | re-certifying admitted atoms under another warranting policy leaves every liveness signature unchanged | re-admission through feedback |
+| **KS-S6** | labels are canonical antichains; signature ↦ label is injective (`n=3` exhaustive) | dropping one coordinate collides |
+| **KS-S7** | every transaction increments its meter coordinate; no store change without a counter change | unmetered admission |
+
+The **genome digest** is the SHA-256 of the seven predicates' source. **Theorem KS-T17 (stem-cell
+invariant, #197).** For the growth loop `acquire → compose → self-revise → registered revocation →
+reinstate`, iterated from a governed space on which KS-S1..S7 hold: every iterate satisfies
+KS-S1..S7, the composite of a revoked component is non-live at the revocation step (authority
+preserved), the genome digest is unchanged, and the loop reaches a fixed point when nothing new can
+be acquired. *Proof.* each operator is admitted through §27/§30 which enforce KS-S1/S2, meters
+(KS-S7), and leaves labels of existing atoms untouched (KS-S5); KS-S3 is KS-T02/T04; the digest is
+of code the operators never touch. ∎ The three **cancers** — feedback retained as warrant, a
+composite outliving a revoked component, growth that edits a predicate — are each caught.
+Checker G1 (7/7 planted violations) and G3 (3 growth steps, fixed point, 3/3 cancers). **[M1]** P5:
+KS-S1, S2, S3 (sampled), S4, S5, S6 (canonical form), S7 hold on 100 populated spaces (v0 and v1 of
+50 worlds); the digest is unchanged by population. Parents: #203 S1–S7 (PCC, ATMS, Doyle,
+Blackwell, TMS in-lists, RCL-0, #194 §4 honesty rule) — restated, not new.
+
+## 33. Gates carried in from other lanes (A14, A15, C3)
+
+- **Budget clause (FM60 / ME-F1).** `NavigationBudget` is stated per arm; a comparison whose arms'
+  budgets differ is `CANNOT_CHECK` (`UNMATCHED_NAVIGATION_BUDGET`). Checker F8.
+- **Typing is a coverage prior over edges, not a capability (ME-X6 V3, n = 1800).** With full
+  role coverage the typed and untyped walkers tie on the navigation outcome (3/3 targets on the
+  witness); a typed advantage is admissible only on a relation type the comparator never exercised,
+  which the checker exhibits by name; no typed advantage is claimed. Checker F9.
+- **Closed under what was shown (E30-R14; ledger class 17).** The codec renders a whole subgraph
+  with an elision receipt; atom references are located by content hash exactly once; an unshown or
+  ambiguous reference voids the proposal whole (`ASKED_FOR_WHAT_WAS_NOT_SHOWN`,
+  `AMBIGUOUS_REFERENCE`); the codec never writes a label or a graph coordinate. Checker F10.
+
+## 34. Executable parent subtraction (D)
+
+Eight parents were *run* on the retraction witness of §25 (checker F7; rows with sources in
+`KSO_PARENT_SUBTRACTION_V1.md` §"Executable rows"): spreading activation, Quillian marker passing,
+ACT-R activation, Hopfield recall, CBR retrieval, KG retrieval / RWR-with-deletion, JTMS, ATMS.
+Finding, shown not assumed: each owns activation *or* retraction; **no single parent owns
+label-gated activation with exact-share retraction** (0/8); and the honest converse — the KSO law
+equals `(JTMS/ATMS gate) ∘ (spreading activation with pre-revocation denominators)` entry-wise on
+the witness. The coupling is a product of two parents; it is a design choice, not a residual.
+
+## 35. Ledger additions
+
+| ID | obligation | disposition |
+|---|---|---|
+| `KS-S1…S7` | the genome on the knowledge space | `DEFINED_AND_CHECKED` (M0 planted 7/7; M1 100 spaces) |
+| `KS-T04b` | exact-share retraction propagates to activation (i)–(iv) | `PROVED_V1`; F2; M1 400/400 |
+| `KS-T06b` | two-direction hub theorem | `PROVED_V1` (finite); F3; M1 P4 |
+| `KS-T10a` | translator invariance reduces to seed equality | `PROVED_V1`; KS-T10 stays `OPEN_M5` |
+| `KS-T11a` | reacting subgraph well-defined and unique; optimiser distinct | `PROVED_V1`; G2 |
+| `KS-T17` | stem-cell growth invariant | `PROVED_V1` (finite loop); G3 |
+| `KS-T18` | feedback cannot warrant; exact checker can | `PROVED_V1`; F4 |
+| `KS-T19` | navigation outcome exhaustive and exclusive; witness admissible | `PROVED_V1`; F6 |
+| `KS-T20` | compose is ⊗, not ⊕ | `PROVED_V1`; G2 |
+| `KS-A1` | edge vocabulary bound to the atlas source | `DEFINED_AND_CHECKED`; F1 |
+| `KS-A2` | budget clause; typing coverage prior; closed-under-shown | `DEFINED_AND_CHECKED`; F8–F10 |
+| `KS-P1` | no single parent owns label-gated exact-share retraction (8 run) | `SHOWN_ON_WITNESS`; F7 |
+
+Rows `KS-T12`–`KS-T16` of Part I remain open at their stated milestones; none is implied here.
+
+## 36. Freeze record
+
+`KSO_M0 = FROZEN_V1` at the digests in `../results/KSO_M0_FREEZE_V1.json` (this file, the
+architecture and parent files, the three checkers, the three unit-test files, the results). Reopen
+conditions: any counterexample to a Part I/II theorem; an independent implementation disagreeing
+with a checker; M1/M2 revealing an invariant unrealisable without changing its statement; a
+stronger parent product absorbing an asserted residual (none is asserted).
+
+```text
+KSO_M0_FINITE_MATH_CORE = GREEN
+KSO_M0_CONTRACT         = FROZEN_V1
+M1_KSO_INSTANCE         = GREEN_DEV_SPLIT (ME-X1, 50 worlds; protected NOT_RUN)
+M2_SOLVE_LOOP           = NOT_RUN
+KSO_NOVELTY             = NOT_ESTABLISHED
+```
