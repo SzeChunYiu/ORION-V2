@@ -29,3 +29,10 @@ ORION-V2 is a pre-implementation research programme until the exact ORION V1 fre
 ## Required receipt chain
 
 `source projection -> donor reconstruction -> structural mapping -> strongest donor product -> discriminator/falsifier -> protected evaluation -> external admission`.
+
+## Merging
+
+Every merge into `main` is decided by `scripts/pr_merge_gate.py` (five fields,
+exit 0 only; see `docs/00-programme/PR_MERGE_GATE.md`). The workflow
+`pr-merge-gate` is partial coverage, not enforcement: `main` has no branch
+protection, so run the gate at merge time and record its verdict in the PR.

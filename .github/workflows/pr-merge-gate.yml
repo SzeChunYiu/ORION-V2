@@ -1,0 +1,55 @@
+name: pr-merge-gate
+
+# Field 5 of the five-field merge gate (scripts/pr_merge_gate.py), run per PR:
+# no changed path may be pinned by digest by a live freeze on main. This is
+# PARTIAL enforcement. It sees the freeze only if the freeze is already on
+# main when this run starts; the #282/#276 pair (freeze merged 70 minutes
+# before the file it pinned was edited and merged, both individually green)
+# is only caught by re-running the gate at merge time. Fields 1-4 and the
+# merge-time re-scan are policy (docs/00-programme/PR_MERGE_GATE.md); main
+# has no branch protection, so nothing here can block a merge by itself.
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/pr_merge_gate.py"
+      - "tests/unit/test_pr_merge_gate.py"
+      - ".github/workflows/pr-merge-gate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  merge-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Gate controls (a gate that cannot fail is not a gate)
+        run: python scripts/pr_merge_gate.py --self-test
+
+      - name: Mutation tests, including the replay of the #282/#276 pair from history
+        env:
+          PR_MERGE_GATE_REQUIRE_HISTORY: "1"
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pytest
+          python -m pytest -q tests/unit/test_pr_merge_gate.py
+
+      - name: Field 5 scan of this PR against main as it is now
+        if: github.event_name == 'pull_request'
+        run: |
+          git fetch -q origin main
+          python scripts/pr_merge_gate.py --replay --git-dir . \
+            --base-ref origin/main --head-ref "${{ github.event.pull_request.head.sha }}"
