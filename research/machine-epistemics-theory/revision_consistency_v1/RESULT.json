@@ -1,0 +1,99 @@
+{
+  "base_commit": "24566f00a9dc4425a438fcfac05d13c6b2d903db",
+  "checks": {
+    "R1_context_descriptor": {
+      "cases": 256,
+      "insufficient": 196,
+      "mutant_killed": 1,
+      "nontrivial_valid_control": 1,
+      "sufficient": 60
+    },
+    "R2_dependency_validation": {
+      "coordinate_mutations": 11,
+      "coordinates": [
+        "assumptions",
+        "checker",
+        "decoder",
+        "evidence",
+        "implementation",
+        "model",
+        "policy",
+        "prompt",
+        "schema",
+        "scope",
+        "authority:commit"
+      ],
+      "logical_probe_budget": 14,
+      "phantom_mutant_killed": 1,
+      "total_hashing_cost": "O(N) in this reference; not counted as free",
+      "unrelated_no_alarm": 1
+    },
+    "R3_immutable_snapshot_counterexample": {
+      "full_readset_invariant_violations": 0,
+      "original_serializability_claim": "REFUTED_ORIGINAL_STATEMENT",
+      "schedules": 6,
+      "sequential_no_alarm_schedules": 2,
+      "snapshot_only_invariant_violations": 4
+    },
+    "R4_atomic_validation_parent": {
+      "comparisons": 2916,
+      "false_current_applicability": 0,
+      "parent_disagreements": 0,
+      "parent_terminal": "PARENT_SUFFICIENT",
+      "split_check_use_mutant_killed": 1,
+      "states": 27,
+      "validated_commit_denominator": 1,
+      "verdicts": {
+        "CANNOT_CHECK": 1863,
+        "FAIL": 1026,
+        "PASS": 1,
+        "REOPEN_REQUIRED": 26
+      }
+    },
+    "R5_async_freshness": {
+      "all_probability_values": "written proof in THEORY.md, not inferred from this grid",
+      "illustrative_randomized_policies": 5,
+      "indistinguishable_histories": 2,
+      "valid_escape": "CANNOT_CHECK, coordinate, or change the registered consistency contract",
+      "zero_error_and_useful": 0
+    },
+    "R6_anchored_replay": {
+      "current_anchor_pass": 1,
+      "freshness_beyond_anchor": "NOT_ESTABLISHED",
+      "initial_snapshot_substitution_caught": 1,
+      "own_historical_anchor_pass": 4,
+      "prefix_cases": 4,
+      "unanchored_cannot_check": 4
+    },
+    "R7_causal_cuts": {
+      "closed_but_jointly_invalid_witness": 1,
+      "closed_cuts": 561,
+      "cut_cases": 1098,
+      "graphs": 75,
+      "maximum_vertices": 4,
+      "missing_predecessor_caught": 1,
+      "reference_disagreements": 0
+    },
+    "R8_effect_receipt_boundary": {
+      "distinct_effects_for_same_local_log": 2,
+      "external_effects_executed": 0,
+      "histories": 2,
+      "unobserved_effect_terminal": "CANNOT_CHECK"
+    }
+  },
+  "design_commit": "59b6819574f494354b880605998ffddbc5687077",
+  "execution_class": "FORMAL_WITH_FINITE_CALIBRATION",
+  "foundation_overall": "OPEN_RESEARCH",
+  "grants_scientific_authority": false,
+  "independent_review": "NOT_OBTAINED__DISCLOSED_LIMITATION",
+  "non_consequences": [
+    "No OCM runtime or milestone closure",
+    "No all-size proof from enumeration",
+    "No field, novelty or empirical superiority claim",
+    "No authenticity from a hash alone"
+  ],
+  "parent_disposition": "PARENT_SUFFICIENT",
+  "production_atomicity": "CANNOT_CHECK",
+  "schema": "ME_REVISION_CONSISTENCY_CALIBRATION_V1",
+  "terminal": "CORRECTED_FOUNDATION_FRAGMENT"
+}
