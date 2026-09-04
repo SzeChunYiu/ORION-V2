@@ -19,7 +19,16 @@ name: pr-merge-gate
 
 on:
   pull_request:
+  push:
+    branches: [main]
+    paths:
+      - scripts/pr_merge_gate.py
+      - tests/unit/test_pr_merge_gate.py
+      - .github/workflows/pr-merge-gate.yml
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   freeze-binding-scan:
