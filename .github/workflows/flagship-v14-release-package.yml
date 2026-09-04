@@ -8,6 +8,8 @@ on:
       - "papers/flagship/FLAGSHIP_REFERENCES_V15_NEIGHBOR_SUPPLEMENT.bib"
       - "papers/flagship/FLAGSHIP_REFERENCES_V16_FOUNDATION_SUPPLEMENT.bib"
       - "scripts/assemble_flagship_v14_release.py"
+      - "scripts/check_render_bibliography_integrity.py"
+      - "papers/pipeline/FINAL_PUBLIC_MANUSCRIPT_INDEX_V1.md"
       - ".github/workflows/flagship-v14-release-package.yml"
   workflow_dispatch:
 
@@ -40,6 +42,15 @@ jobs:
             --out-dir build/flagship-v14/arxiv_v1 \
             --compile
 
+      - name: Enforce render bibliography integrity (de-wrapped .log + .blg + aux/bbl coverage)
+        run: |
+          python scripts/check_render_bibliography_integrity.py \
+            --root "$GITHUB_WORKSPACE" \
+            --registry papers/pipeline/FINAL_PUBLIC_MANUSCRIPT_INDEX_V1.md \
+            --package arxiv_v1=build/flagship-v14/arxiv_v1 \
+            --source arxiv_v1=papers/drafts/FLAGSHIP_MACHINE_EPISTEMICS_PERSPECTIVE_V14_CITED_ARXIV_JOURNAL_MASTER.md \
+            --json-out build/flagship-v14/RENDER_INTEGRITY_RECEIPT.json
+
       - name: Enforce mechanical release invariants
         run: |
           python - <<'PY'
@@ -57,7 +68,17 @@ jobs:
           assert r['pandoc_citation_markup_absent'] is True
           assert r['natbib_commands_present'] is True
           assert r['bibliography_rendered'] is True
+          # `bibliography_item_count > 0` is a PRESENCE test: a bibliography that
+          # dropped 18 of 41 entries satisfies it. Keep it, but gate on coverage.
           assert r['bibliography_item_count'] > 0
+          integrity = r['render_integrity']
+          assert integrity['status'] == 'PASS'
+          bib = integrity['bibliography']
+          assert bib['coverage_complete'] is True, bib['cited_keys_without_bibitem']
+          assert bib['cited_key_count'] > 0
+          assert bib['bibitem_count'] >= bib['cited_key_count']
+          assert not integrity['log']['dewrapped_scan_hits']
+          assert not integrity['blg']['scan_hits']
           assert '[@' not in tex
           assert '\\cite' in tex
           assert '\\bibitem' in bbl
@@ -68,6 +89,9 @@ jobs:
           print(f"FLAGSHIP_WITHIN_NMI_NOMINAL_TARGET={r['within_nominal_target']}")
           print(f"FLAGSHIP_PAGE_COUNT={r['page_count']}")
           print(f"FLAGSHIP_BIBLIOGRAPHY_ITEMS={r['bibliography_item_count']}")
+          print(f"FLAGSHIP_CITED_KEYS={bib['cited_key_count']}")
+          print(f"FLAGSHIP_LOG_WRAP_STATE={integrity['log']['wrap_state']}")
+          print(f"FLAGSHIP_DEWRAP_JOINS={integrity['log']['dewrap_joins_applied']}")
           print('FLAGSHIP_V14_RELEASE_PACKAGE_PASS')
           PY
 
@@ -75,6 +99,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: flagship-v14-arxiv-candidate
-          path: build/flagship-v14/arxiv_v1/
+          path: |
+            build/flagship-v14/arxiv_v1/
+            build/flagship-v14/RENDER_INTEGRITY_RECEIPT.json
           if-no-files-found: error
           retention-days: 30

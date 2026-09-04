@@ -7,6 +7,8 @@ on:
       - "scripts/check_llm_three_history_compatibility.py"
       - "scripts/assemble_llm_pra_release.py"
       - "scripts/assemble_llm_pra_release_safe_fonts.py"
+      - "scripts/check_render_bibliography_integrity.py"
+      - "papers/pipeline/FINAL_PUBLIC_MANUSCRIPT_INDEX_V1.md"
       - "tests/unit/test_llm_three_history_compatibility.py"
       - ".github/workflows/llm-pra-release-package.yml"
   workflow_dispatch:
@@ -57,6 +59,17 @@ jobs:
             --jmlr-style build/llm-release/style/jmlr2e.sty \
             --compile
 
+      - name: Enforce render bibliography integrity (de-wrapped .log + .blg + aux/bbl coverage)
+        run: |
+          python scripts/check_render_bibliography_integrity.py \
+            --root "$GITHUB_WORKSPACE" \
+            --registry papers/pipeline/FINAL_PUBLIC_MANUSCRIPT_INDEX_V1.md \
+            --package arxiv_v1=build/llm-release/packages/arxiv_v1 \
+            --package jmlr_v1=build/llm-release/packages/jmlr_v1 \
+            --source arxiv_v1=papers/llm-machine-epistemics/MANUSCRIPT_V12_ARXIV_JMLR_FINAL.md \
+            --source jmlr_v1=papers/llm-machine-epistemics/MANUSCRIPT_V12_ARXIV_JMLR_FINAL.md \
+            --json-out build/llm-release/RENDER_INTEGRITY_RECEIPT.json
+
       - name: Enforce release candidate invariants
         run: |
           python - <<'PY'
@@ -73,6 +86,17 @@ jobs:
               assert package['compiled_pdf_sha256']
               assert package['pdf_size_bytes'] > 0
               assert package['page_count'] is not None
+              integrity = package['render_integrity']
+              assert integrity['status'] == 'PASS'
+              bib = integrity['bibliography']
+              # Coverage, not presence: every cited key must have a \bibitem.
+              assert bib['coverage_complete'] is True, bib['cited_keys_without_bibitem']
+              assert bib['cited_key_count'] > 0
+              assert not integrity['log']['dewrapped_scan_hits']
+              assert not integrity['blg']['scan_hits']
+              print(f"{venue}_CITED={bib['cited_key_count']} BIBITEMS={bib['bibitem_count']} "
+                    f"WRAP={integrity['log']['wrap_state']} "
+                    f"DEWRAP_JOINS={integrity['log']['dewrap_joins_applied']}")
           jmlr = receipt['packages']['jmlr_v1']
           assert jmlr['pdf_size_bytes'] < 5 * 1024 * 1024
           if jmlr['page_count'] > 35:
@@ -88,6 +112,7 @@ jobs:
           name: llm-pra-release-candidates
           path: |
             build/llm-release/packages/
+            build/llm-release/RENDER_INTEGRITY_RECEIPT.json
             build/llm-release/three_history_compatibility.json
             build/llm-release/THREE_HISTORY_COMPATIBILITY_RECEIPT_V1.md
           if-no-files-found: error
