@@ -37,8 +37,9 @@
   "unit_test_contract": {
     "path": "tests/unit/test_kso_math_v1.py",
     "tests": 9,
-    "local_reproduction": "9 passed",
-    "note": "The finite implementation was reproduced in an isolated repo-relative layout before commit. CI/reviewer replay remains separate evidence."
+    "local_reproduction": "9 passed in 0.43s",
+    "replay_receipt": "research/orion-machine/results/KSO_M0_REPLAY_RECEIPT_V1.md",
+    "note": "Replay used the repo-relative path structure expected by the committed test loader. The disclosed first scratch invocation lacked that layout and failed before module load; no code or theorem statement changed between the failed layout and green replay."
   },
   "planted_controls": {
     "renormalize_survivors_after_revocation": "DETECTED",
