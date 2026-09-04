@@ -11,15 +11,25 @@
     "path": "research/experiments/PF_MACHINE_NATIVE_MECHANISM_FOLLOWUP_PROTOCOL_V1.md",
     "freeze_date": "2026-08-30",
     "frozen_pre_outcome": true,
-    "clauses_evaluated": ["1", "3", "7.6", "9"]
+    "clauses_evaluated": [
+      "1",
+      "3",
+      "7.6",
+      "9"
+    ]
   },
   "outcome": {
     "trigger": "DID_NOT_FIRE",
     "exit_code": 1,
-    "exit_code_semantics": {"0": "FIRED", "1": "DID_NOT_FIRE", "2": "CANNOT_CHECK"},
+    "exit_code_semantics": {
+      "0": "FIRED",
+      "1": "DID_NOT_FIRE",
+      "2": "CANNOT_CHECK"
+    },
     "primary_terminal": "NO_R2_EFFECT_TO_EXPLAIN__P_F_STANDALONE_ROUTE_CLOSED_OR_MERGE",
-    "co_terminal": "CANNOT_IDENTIFY_PREOUTCOME_MECHANISM",
-    "co_terminal_holds_independently_of_trigger_arithmetic": true
+    "co_terminal": "CANNOT_IDENTIFY_PREOUTCOME_MECHANISM__SCOPED_TO_THE_R2_ARM_REALIZATION",
+    "co_terminal_holds_independently_of_trigger_arithmetic": true,
+    "co_terminal_scope_note": "narrowed 2026-09-04 after a controlled search: the claim is about the R2 arm realization, not about every possible ORION F2 implementation. Protocol section 3 maps 'the actual current F2 implementation' and section 4's Phase A builds fresh arms, so an unscoped label would over-reach."
   },
   "measurement": {
     "study": "FG80",
@@ -33,11 +43,31 @@
     "paired_task_ids": 80,
     "task_id_union": 80,
     "accuracy": {
-      "TARGET_ONLY_DIRECT": {"correct": 42, "tasks": 80, "accuracy": 0.525},
-      "F0_PARENT_FEDERATION": {"correct": 34, "tasks": 80, "accuracy": 0.425},
-      "STRONGEST_DOMAIN_FORMAL_PARENT": {"correct": 33, "tasks": 80, "accuracy": 0.4125},
-      "F2_STATIC_NO_FORMAL_DISCOVERY": {"correct": 32, "tasks": 80, "accuracy": 0.4},
-      "F2_FORMAL_DISCOVERY_FULL": {"correct": 23, "tasks": 80, "accuracy": 0.2875}
+      "TARGET_ONLY_DIRECT": {
+        "correct": 42,
+        "tasks": 80,
+        "accuracy": 0.525
+      },
+      "F0_PARENT_FEDERATION": {
+        "correct": 34,
+        "tasks": 80,
+        "accuracy": 0.425
+      },
+      "STRONGEST_DOMAIN_FORMAL_PARENT": {
+        "correct": 33,
+        "tasks": 80,
+        "accuracy": 0.4125
+      },
+      "F2_STATIC_NO_FORMAL_DISCOVERY": {
+        "correct": 32,
+        "tasks": 80,
+        "accuracy": 0.4
+      },
+      "F2_FORMAL_DISCOVERY_FULL": {
+        "correct": 23,
+        "tasks": 80,
+        "accuracy": 0.2875
+      }
     },
     "primary_contrast": {
       "treatment": "F2_FORMAL_DISCOVERY_FULL",
@@ -48,14 +78,29 @@
       "mcnemar_b_control_only": 30,
       "mcnemar_c_treatment_only": 11,
       "mcnemar_neither": 27,
-      "mcnemar_exact_two_sided_p": 0.0043240,
+      "mcnemar_exact_two_sided_p": 0.004324,
       "direction": "OPPOSITE_TO_TRIGGER_REQUIREMENT",
       "statistically_supported_deficit": true
     },
     "secondary_contrasts": {
-      "vs_F2_STATIC_NO_FORMAL_DISCOVERY": {"b": 23, "c": 14, "delta_tasks": -9, "p": 0.18774},
-      "vs_F0_PARENT_FEDERATION": {"b": 24, "c": 13, "delta_tasks": -11, "p": 0.098872},
-      "vs_STRONGEST_DOMAIN_FORMAL_PARENT": {"b": 23, "c": 13, "delta_tasks": -10, "p": 0.13250}
+      "vs_F2_STATIC_NO_FORMAL_DISCOVERY": {
+        "b": 23,
+        "c": 14,
+        "delta_tasks": -9,
+        "p": 0.18774
+      },
+      "vs_F0_PARENT_FEDERATION": {
+        "b": 24,
+        "c": 13,
+        "delta_tasks": -11,
+        "p": 0.098872
+      },
+      "vs_STRONGEST_DOMAIN_FORMAL_PARENT": {
+        "b": 23,
+        "c": 13,
+        "delta_tasks": -10,
+        "p": 0.1325
+      }
     }
   },
   "voiders_checked_before_terminal_assignment": {
@@ -101,14 +146,41 @@
     "classes_differing_across_r2_arms": 1,
     "the_differing_class": "language_visible_rationale_scaffold",
     "classes_byte_identical_across_arms": [
-      "representation_internal_state", "persistent_memory",
-      "branching_or_nonlinear_search_topology", "control_scheduling_policy",
-      "external_tool_interface", "compute_token_toolcall_budgets"
+      "representation_internal_state",
+      "persistent_memory",
+      "branching_or_nonlinear_search_topology",
+      "control_scheduling_policy",
+      "external_tool_interface",
+      "compute_token_toolcall_budgets"
     ],
     "arm_realization": "one codex exec --ephemeral --sandbox read-only per dispatch; arms differ only in an ARM label line and one ARM PROCEDURE sentence from arm_instruction()",
-    "section_7_clause_6_status": "UNSATISFIABLE_IN_PRINCIPLE_ON_THIS_SUBSTRATE",
+    "section_7_clause_6_status": "UNSATISFIABLE_IN_PRINCIPLE_ON_THE_R2_ARM_SUBSTRATE",
     "section_7_clause_6_reason": "M1_FULL_NATIVE and M4_HUMAN_MIMETIC_SCAFFOLD_MATCH would be the same kind of object (two prompt strings on one model call), so the M1-vs-M4 contrast could not exist",
-    "would_have_manufactured_a_finding": true
+    "would_have_manufactured_a_finding": true,
+    "scope_justification": {
+      "decisive_fact": "neither scripts/orion_formal_discovery_arms.py nor scripts/run_formal_discovery_generated_suite.py references orion_v2 at all; no project module was inside any R2 arm",
+      "search_for_a_non_language_mechanism_elsewhere": {
+        "scope": "src/ and packages/, all 64 python files, by basename and content",
+        "control_that_matched": "grep -rl 'def ' over src/ and packages/ -> 62 files, proving the search works",
+        "patterns": [
+          "beam",
+          "branch",
+          "backtrack",
+          "search_tree",
+          "scheduler",
+          "persistent_memory",
+          "memory_store",
+          "replay_buffer"
+        ],
+        "hits": 0,
+        "packages_dir_contents": "README.md only, no python",
+        "closest_candidate": "src/orion_v2/development_controller.py FrameworkMemoryEntry / MemoryKind",
+        "closest_candidate_verdict": "a frozen immutable dataclass record with a payload digest \u2014 a typed entry, not a memory store; no read/write, no persistence, no runtime state",
+        "conclusion": "no F2 implementation carrying a non-language section 3 class was found under the stated scope; the modules are typed reference semantics"
+      },
+      "what_this_licenses": "the co-terminal as scoped to the R2 arm realization",
+      "what_this_does_not_license": "a claim that no ORION F2 mechanism could ever be named pre-outcome"
+    }
   },
   "r2_registered_vs_executed_arms": {
     "finding": "the suite runner applies a hardcoded uniform 5-arm DEFAULT_ARMS and never reads the plan's per-study arm sets",
@@ -121,10 +193,14 @@
     "never_run_dispatches": 4608,
     "never_run_fraction": 0.35,
     "distinct_registered_arms_never_executed": [
-      "ANTI_UNIFICATION_OR_MDL_PARENT_WHEN_APPLICABLE", "FCA_PARENT_WHEN_APPLICABLE",
-      "FIXED_FORMALISM_LESSON_INJECTION", "FIXED_LESSON_INJECTION",
-      "LOCAL_PATCH_OR_EXTRA_VARIABLE", "SEMANTIC_RETRIEVAL",
-      "SEMANTIC_RETRIEVAL_OF_EXISTING_FORMALISM", "STRUCTURE_MAPPING_PARENT"
+      "ANTI_UNIFICATION_OR_MDL_PARENT_WHEN_APPLICABLE",
+      "FCA_PARENT_WHEN_APPLICABLE",
+      "FIXED_FORMALISM_LESSON_INJECTION",
+      "FIXED_LESSON_INJECTION",
+      "LOCAL_PATCH_OR_EXTRA_VARIABLE",
+      "SEMANTIC_RETRIEVAL",
+      "SEMANTIC_RETRIEVAL_OF_EXISTING_FORMALISM",
+      "STRUCTURE_MAPPING_PARENT"
     ],
     "fg80_registered_arms": 8,
     "fg80_executed_arms": 5,
@@ -137,10 +213,26 @@
   "revival_attempt": {
     "performed": true,
     "levers_available_without_a_new_prospective_identity": [
-      {"stage": "channel_executor", "lever": "restrict to pure-executor stock", "outcome": "already pure, nothing to restrict"},
-      {"stage": "budget", "lever": "equalize or raise treatment budget", "outcome": "already equal and unexhausted"},
-      {"stage": "statistical_power", "lever": "more tasks", "outcome": "wrong-signed; power raises confidence in the deficit"},
-      {"stage": "comparator_strength", "lever": "complete the registered arm set", "outcome": "strictly adds competitors"}
+      {
+        "stage": "channel_executor",
+        "lever": "restrict to pure-executor stock",
+        "outcome": "already pure, nothing to restrict"
+      },
+      {
+        "stage": "budget",
+        "lever": "equalize or raise treatment budget",
+        "outcome": "already equal and unexhausted"
+      },
+      {
+        "stage": "statistical_power",
+        "lever": "more tasks",
+        "outcome": "wrong-signed; power raises confidence in the deficit"
+      },
+      {
+        "stage": "comparator_strength",
+        "lever": "complete the registered arm set",
+        "outcome": "strictly adds competitors"
+      }
     ],
     "single_stage_attribution": "ARM_IMPLEMENTATION",
     "attribution_detail": "the full machine-native treatment was realized as a prompt instruction, not as a substrate mechanism",
@@ -157,9 +249,19 @@
       "research/experiments/fmfg-r2/FMFG_R2_REGISTERED_SCALE_DISPATCH_RECEIPT.md"
     ],
     "per_task_custody_host": "billy-old:~/sd10run/ORION-V2/.orion-fmfg-r2-n80/",
-    "per_task_custody_files": ["EVALUATION_ROWS.json", "responses/", "FROZEN_SUITE.json", "PRIVATE_ORACLE_COMMITMENT.json", "DISPATCH_RECEIPT.json"],
+    "per_task_custody_files": [
+      "EVALUATION_ROWS.json",
+      "responses/",
+      "FROZEN_SUITE.json",
+      "PRIVATE_ORACLE_COMMITMENT.json",
+      "DISPATCH_RECEIPT.json"
+    ],
     "private_oracle_absent_during_dispatch": true,
-    "interpreters": {"local_analysis": "3.13.12", "remote_analysis": "3.14.4", "file_parsing_only": "3.9.6"}
+    "interpreters": {
+      "local_analysis": "3.13.12",
+      "remote_analysis": "3.14.4",
+      "file_parsing_only": "3.9.6"
+    }
   },
   "claims": {
     "claimed": "on the FG80 registered generated leg, at n=80 with identical single-call budgets on a single executor, a prompt-level full-ORION-formal-discovery instruction performs significantly worse than a plain direct-solve instruction; the P-F activation trigger consequently does not fire",
@@ -177,5 +279,6 @@
     "grants_publication_readiness": false,
     "grants_release_authorization": false,
     "submission_authorized": false
-  }
+  },
+  "primary_terminal_unaffected": "the DID_NOT_FIRE trigger verdict is settled by 23/80 vs 42/80 at exact paired p=4.3e-03 with both voiders closed, independently of this narrowing"
 }

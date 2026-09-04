@@ -110,6 +110,39 @@ seeing this analysis would be relaxing a frozen protocol, which §12 forbids.
 **No case has been assembled, so no branch is foreclosed.** This correction restores a choice
 that the current freeze would have quietly removed.
 
+### 4.1 What this document is, stated exactly
+
+**The protocol file is not amended.** §8 still reads 30 per domain and §9.1 still reads 10 pp.
+What ships is this sibling document plus a non-amending pointer added at FM80 §8/§9 naming it a
+binding pre-execution read. The pointer selects no branch, so no threshold, sample or test is
+changed and §12 is untouched.
+
+That is deliberate. Selecting a repair branch is a design act belonging to the lane that will
+execute FM80, and picking the cheapest branch after seeing this analysis is precisely what §12
+forbids. The accurate status vocabulary is therefore
+**`DEFECT_FOUND_AND_DOCUMENTED__REPAIR_BRANCH_UNSELECTED`**, not "corrected" — a distinction of
+the same kind as the programme's own finding that parent *implementations* were faithful while
+the parent *labels* overstated them.
+
+The pointer matters as much as the analysis. A correction nobody reads is a sentence nobody
+executed: without it, whoever opens FM80 to run it sees the defective floor with no warning.
+
+### 4.2 §8 states a floor, which is why the repair is cheap
+
+§8's words are *"**Minimum** target: 90 eligible cases, at least 30 per domain"* — a floor, not a
+ceiling or a plan. A compliant study may assemble more. So option 1 does not require finding
+extra cases the protocol never wanted; it requires **raising the stated floor from 30 to 61**,
+after which the §9.1/§9.2 conflict simply disappears. That strengthens the correction rather than
+weakening it: the defect is in the floor's arithmetic, not in the study's ambition.
+
+### 4.3 The defect does not depend on reading §9.2 as exact McNemar
+
+§8 specifies "exact paired tests with 95% intervals", so exact McNemar is the natural reading —
+but the conflict survives the alternative. A Wald interval on the paired difference at n = 30 with
+b = 3, c = 0 gives **0.100 ± 0.113** on the standard SE √((b+c)/n²), or **0.100 ± 0.107** with the
+(b−c)²/n correction. Both include zero **even unadjusted**, before Holm touches anything. A reader who takes "paired 95% interval" to mean something other than exact McNemar reaches
+the same conclusion.
+
 ## 5. Reachability audit of the remaining §9 clauses
 
 | clause | satisfiable? | failable? | note |

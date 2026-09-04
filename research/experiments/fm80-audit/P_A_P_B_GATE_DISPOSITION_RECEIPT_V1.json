@@ -2,7 +2,10 @@
   "schema_version": "orion.v2.pa-pb-gate-disposition.v1",
   "receipt_kind": "GATE_DISPOSITION_AND_PRE_OUTCOME_DESIGN_CORRECTION",
   "state_date": "2026-09-04",
-  "papers": ["P-A", "P-B"],
+  "papers": [
+    "P-A",
+    "P-B"
+  ],
   "disposition": "CANNOT_CHECK_INDEPENDENT_ADJUDICATION",
   "disposition_is_a_verdict": false,
   "disposition_is_a_named_blocker": true,
@@ -11,14 +14,20 @@
     "path": "research/experiments/FM80_NATURALISTIC_TRANSFER_DECISIVE_PROTOCOL_V1.md",
     "clause": "section 9 Standalone survival terminal",
     "freeze_date": "2026-08-30",
-    "governs_jointly": ["P-A", "P-B"],
+    "governs_jointly": [
+      "P-A",
+      "P-B"
+    ],
     "status": "BLOCKED_ELIGIBILITY_PRECONDITIONS_UNSATISFIED",
     "block_receipt": "research/experiments/fm-exact/FM80_BLOCKED_WITH_REASON_RECEIPT.md",
     "block_independently_verified": "2026-09-03"
   },
   "absence_claim_scope": {
     "claim": "FM80 section 9 is the only registered gate specified enough to deliver a P-A or P-B verdict",
-    "repos_searched_in_full": ["ORION-V2 @ ec3a13eda167d6dc9214d62206d4525bf27d0e30", "ORION-paper @ f22638613556d1fab5472da089458fb0f17e44ef"],
+    "repos_searched_in_full": [
+      "ORION-V2 @ ec3a13eda167d6dc9214d62206d4525bf27d0e30",
+      "ORION-paper @ f22638613556d1fab5472da089458fb0f17e44ef"
+    ],
     "method": "find by basename plus content grep, every negative paired with a control pattern required to match on the same files",
     "controls_that_matched": [
       "find *P_A*|*P_B*|*DONOR*|*RELATION_TRANSPORT* across both repos -> 114 hits",
@@ -28,9 +37,30 @@
     ]
   },
   "other_survival_condition_objects": [
-    {"path": "v2-papers/_portfolio/gates/NEXT_PROTECTED_EVIDENCE_DECISION_GATES_V1.md", "class": "paper-side decision contract", "executable": false, "cites_fm80": false},
-    {"path": "v2-papers/_portfolio/contraction/TOP_TIER_SURVIVOR_AND_CONTRACTION_MATRIX_V1.json", "class": "frozen pre-decision terminal matrix", "executable": false, "names_decisive_evidence": ["E80", "E90"]},
-    {"path": "research/experiments/EXECUTION_BACKLOG_V1.json", "class": "backlog cells E80/E90", "executable": false, "runnable_now": false, "has_frozen_protocol": false, "has_arms": false, "has_thresholds": false}
+    {
+      "path": "v2-papers/_portfolio/gates/NEXT_PROTECTED_EVIDENCE_DECISION_GATES_V1.md",
+      "class": "paper-side decision contract",
+      "executable": false,
+      "cites_fm80": false
+    },
+    {
+      "path": "v2-papers/_portfolio/contraction/TOP_TIER_SURVIVOR_AND_CONTRACTION_MATRIX_V1.json",
+      "class": "frozen pre-decision terminal matrix",
+      "executable": false,
+      "names_decisive_evidence": [
+        "E80",
+        "E90"
+      ]
+    },
+    {
+      "path": "research/experiments/EXECUTION_BACKLOG_V1.json",
+      "class": "backlog cells E80/E90",
+      "executable": false,
+      "runnable_now": false,
+      "has_frozen_protocol": false,
+      "has_arms": false,
+      "has_thresholds": false
+    }
   ],
   "ruled_out_as_second_gate": {
     "ME-X4": "unrelated machine-epistemics study sharing vocabulary; its own receipt says the naturalistic cell is a separate unexecuted identity and nothing transfers to it; comparator is a TMS/ATMS parent federation not P-B typed-relation composition; already terminated PARENT_SUFFICIENT; protocol dated 2026-09-01 postdates the 2026-08-30 P-B brief that supposedly refers to it",
@@ -40,7 +70,14 @@
   "why_e80_e90_cannot_substitute": {
     "registered_as_decisive": true,
     "specified": false,
-    "missing": ["frozen protocol", "study design", "arms", "endpoints", "pass thresholds", "terminal vocabulary"],
+    "missing": [
+      "frozen protocol",
+      "study design",
+      "arms",
+      "endpoints",
+      "pass thresholds",
+      "terminal vocabulary"
+    ],
     "runnable_now": false,
     "specifying_now_is_prohibited": true,
     "prohibiting_clause_path": "v2-papers/_portfolio/gates/NEXT_PROTECTED_EVIDENCE_DECISION_GATES_V1.md",
@@ -73,21 +110,47 @@
     "net_cases_at_bar": 3,
     "best_case_exact_p": 0.25,
     "best_case_assumption": "zero adverse discordance, a strict upper bound on achievable significance",
-    "holm_ladder": [0.016666666666666666, 0.025, 0.05],
+    "holm_ladder": [
+      0.016666666666666666,
+      0.025,
+      0.05
+    ],
     "clears_any_threshold": false,
-    "undetectable_effect_band_pp": [10.0, 20.0],
+    "undetectable_effect_band_pp": [
+      10.0,
+      20.0
+    ],
     "consequence_if_unrepaired": "a true effect at the bar satisfies 9.1, necessarily fails 9.2, and terminates on a section 10 contraction vocabulary that would read as an empirical negative",
     "repair_options": {
-      "raise_sample": {"n_per_domain": 61, "total": 183, "keeps_bar_pp": 10.0},
-      "raise_bar": {"n_per_domain": 30, "detectable_effect_pp": 23.3, "multiple_of_stated_bar": 2.3},
-      "change_test": {"allowed": false, "reason": "swapping the exact paired test for a more permissive one after seeing this analysis would relax a frozen protocol, which section 12 forbids"}
+      "raise_sample": {
+        "n_per_domain": 61,
+        "total": 183,
+        "keeps_bar_pp": 10.0
+      },
+      "raise_bar": {
+        "n_per_domain": 30,
+        "detectable_effect_pp": 23.3,
+        "multiple_of_stated_bar": 2.3
+      },
+      "change_test": {
+        "allowed": false,
+        "reason": "swapping the exact paired test for a more permissive one after seeing this analysis would relax a frozen protocol, which section 12 forbids"
+      }
     },
     "still_pre_outcome": true,
     "cases_assembled": 0,
     "branch_foreclosed": false,
     "verifier": "scripts/verify_fm80_section9_reachability.py",
     "verifier_self_test": "7/7 PASS including no-alarm controls and monotonicity",
-    "unblocks_fm80": false
+    "unblocks_fm80": false,
+    "protocol_file_amended": false,
+    "what_shipped": "a sibling correction document naming the defect and declining to pick a repair branch; the protocol's own section 8 and section 9.1 text is unchanged",
+    "why_no_amendment": "selecting a repair branch is a design act for the lane that will execute FM80; section 12 forbids relaxing the protocol, and picking the cheapest branch after seeing the analysis would be exactly that",
+    "annotation_added_to_protocol": true,
+    "annotation_is_non_amending": "it names the correction as a binding pre-execution read and picks no branch, so no threshold, sample or test is changed",
+    "status_vocabulary": "DEFECT_FOUND_AND_DOCUMENTED__REPAIR_BRANCH_UNSELECTED",
+    "section_8_is_a_floor_not_a_target": "section 8 says 'Minimum target: 90 eligible cases, at least 30 per domain' \u2014 a floor. A compliant study may assemble more, which is why the repair is cheap: state a floor of 61 per domain and the conflict disappears.",
+    "defect_is_robust_to_operationalization": "a Wald interval on the paired difference at n=30 with b=3, c=0 gives 0.100 +/- 0.113 on the standard SE sqrt((b+c)/n^2), or 0.100 +/- 0.107 with the (b-c)^2/n correction; both include zero even unadjusted, so the conflict does not depend on reading 'paired 95% interval' as exact McNemar"
   },
   "second_defect_reported_not_repaired": {
     "finding": "the paper-side survival gates and FM80 are not bound to each other",

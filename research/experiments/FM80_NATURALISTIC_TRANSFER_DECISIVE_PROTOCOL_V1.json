@@ -100,5 +100,22 @@
     "publication_readiness": false,
     "paper_survival": false,
     "field_status": false
+  },
+  "pre_execution_binding_reads": {
+    "added": "2026-09-04",
+    "non_amending": true,
+    "amends_no_threshold_sample_or_test": true,
+    "selects_no_repair_branch": true,
+    "reads": [
+      {
+        "path": "research/experiments/fm80-audit/FM80_PRE_OUTCOME_DESIGN_CORRECTION_V1.md",
+        "why": "sections 9.1 and 9.2 are jointly unsatisfiable at the section 8 minimum sample of 30 cases per domain; at that floor 10 percentage points is 3 net cases and the best possible exact two-sided p is 0.25 against Holm rungs of 0.0167 and 0.025",
+        "consequence_if_ignored": "any true effect in [10pp, 20pp) satisfies 9.1, necessarily fails 9.2, and terminates on a section 10 contraction vocabulary that would read as an empirical negative",
+        "required_before": "case assembly",
+        "status": "DEFECT_FOUND_AND_DOCUMENTED__REPAIR_BRANCH_UNSELECTED",
+        "verifier": "scripts/verify_fm80_section9_reachability.py"
+      }
+    ],
+    "disposition_unchanged": "BLOCKED_ELIGIBILITY_PRECONDITIONS_UNSATISFIED"
   }
 }

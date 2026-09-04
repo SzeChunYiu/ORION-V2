@@ -101,6 +101,20 @@ For each domain:
 
 Number of adjudicators is not treated as statistical independence.
 
+> **Binding pre-execution read (added 2026-09-04, non-amending).** Before assembling any case,
+> read `research/experiments/fm80-audit/FM80_PRE_OUTCOME_DESIGN_CORRECTION_V1.md`. It records
+> that §9.1's 10-percentage-point bar and §9.2's Holm-adjusted significance clause are **jointly
+> unsatisfiable** at the minimum this section states: at 30 cases per domain, 10 pp is 3 net
+> cases, and the most favourable table consistent with that — zero adverse discordance — gives an
+> exact two-sided p of 0.25 against Holm rungs of 0.0167 and 0.025. A domain landing exactly on
+> §9.1's bar fails §9.2 with certainty. Running at this floor would manufacture a negative for any
+> true effect in [10 pp, 20 pp).
+>
+> **This note amends nothing.** The 90/30 minimum, the 10 pp bar and the exact paired test all
+> stand as frozen; no threshold is relaxed and §12 is untouched. It selects no repair branch —
+> that is a design act for the executing lane, which must choose and freeze one *before* case
+> assembly. The correction document states the options and why the cheapest is not available.
+
 ## 8. Sample and analysis freeze
 
 Minimum target: **90 eligible cases**, at least 30 per domain. If fewer than 90 eligible cases can be assembled without weakening eligibility, the study may run as a scoped pilot but cannot grant the standalone top-tier terminal below.
@@ -108,6 +122,10 @@ Minimum target: **90 eligible cases**, at least 30 per domain. If fewer than 90 
 Primary comparison: A3 versus the strongest of A0/A1 selected by a pre-outcome rule based only on baseline identity, not A3 outcomes. Report paired differences and exact paired tests with 95% intervals; adjust across the three domain-level primary tests using Holm.
 
 No pooled claim may hide a domain loss.
+
+> **See the §8 binding pre-execution read.** Clauses 1 and 2 below are jointly unsatisfiable at
+> §8's stated minimum sample; the sample or the effect bar must be reconciled and frozen before
+> any case is assembled. Non-amending pointer added 2026-09-04.
 
 ## 9. Standalone survival terminal
 
