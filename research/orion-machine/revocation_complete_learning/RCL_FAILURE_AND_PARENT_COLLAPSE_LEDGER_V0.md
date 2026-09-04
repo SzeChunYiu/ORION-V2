@@ -56,3 +56,61 @@ proof-carrying execution
 ```
 
 reconstructs the final theorem with the same information and whole-system resources.
+
+## Custody note — binding re-freeze 2026-09-04
+
+The content binding recorded for this artifact no longer matches its bytes. The
+binding is re-taken over the current bytes. The prior binding is retained below
+and, alongside the new one, in every receipt that carries it.
+
+| | bytes | sha256 |
+|---|---|---|
+| binding recorded 2026-09-03 in `4655495` | 4751 | `466e6da9d056e815c0c58df5daa2c12f657c106ec4f6d3dd053559795a136bb6` |
+| bytes actually committed, and re-bound here | 4746 | `12ca96d8e8da0864802087e276b4e2d85ebae87d88c2e7329cb0f4b9e30ca23c` |
+
+**This records a drift; it does not bless one.** Nothing above this note was
+altered to make the hashes agree, and this note grants no scientific authority.
+
+### What is established
+
+This artifact and both receipts that bind it were created together in a single
+commit, `4655495`, which is all-insertions across 18 files. `git log --all
+--full-history` on this path returns only that commit and the later merge
+`7015cdb`. No blob of 4751 bytes exists anywhere in the repository object store
+(6,765 objects scanned; the 4,746-byte blob was found as the control), in either
+working checkout of this branch, or in the GitHub commit history for the path.
+The recorded binding was therefore taken over a pre-commit draft that was never
+pushed: **this file has never existed in version control at its recorded
+length.** The lane commits `0b4641e`, `24d5a11` and `313790b`, which restored
+other artifacts in this lane, never touched this path.
+
+### What was excluded
+
+Six reconstruction sweeps failed to produce bytes hashing to the recorded value.
+Each carried a positive control that had to fire, and did.
+
+| sweep | positive control | result |
+|---|---|---|
+| n-gram, 3,165 distinct 5-grams x 4,747 positions | recovered `end` | no contiguous run occurring elsewhere in the file |
+| inflection-aware anomaly scan | flagged `indepent` | no corrupted word; all 22 flagged tokens legitimate |
+| space multiset, 16,108,764 multisets | recovered a synthetic 5-space indentation loss | not 5 spaces at indentation or `+` sites |
+| structured whitespace, 113 combinations over 8 enumerated sites | exhaustive over the enumerated sites | no combination reproduces the binding |
+| typographic/encoding, hyphen to en/em dash pairs x every insertion position, 33.6M candidates | recovered a synthetic two-dash-plus-space original | no encoding-width restoration reproduces the binding |
+| whole-word omission, 5,007 four-letter words x every word boundary | recovered a synthetic omitted word | no single omitted word reproduces the binding |
+
+The first three were run by the preceding custody lane; the last three were run
+in this one.
+
+The visible whitespace irregularities — lines 39 and 40 carry a three-space
+indent where lines 35 to 38 carry four, and `+VERA` and `+Recurrent` lack the
+space their siblings carry — sum to four bytes, not five, and no completion of
+them to five reproduces the recorded hash. The difference is therefore not a
+single minimal edit of any shape tested above.
+
+### What remains open
+
+The bytes the recorded binding was taken over are not recoverable from any
+source reachable from this repository. Whether they differed from the current
+bytes in substance or only in transport formatting cannot be determined. No
+claim, disposition, strongest reason or reopen condition in the table above is
+changed by this note.

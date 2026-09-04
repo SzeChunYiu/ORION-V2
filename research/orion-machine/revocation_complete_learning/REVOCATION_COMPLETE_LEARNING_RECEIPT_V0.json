@@ -41,9 +41,17 @@
       "sha256": "babee7f488de0a674c1ecb1992642961833097ca627197bec9aa3bbf11836836"
     },
     {
-      "bytes": 4751,
+      "bytes": 8139,
       "path": "research/orion-machine/revocation_complete_learning/RCL_FAILURE_AND_PARENT_COLLAPSE_LEDGER_V0.md",
-      "sha256": "466e6da9d056e815c0c58df5daa2c12f657c106ec4f6d3dd053559795a136bb6"
+      "sha256": "ecce6abdb7c0a883cfca4fd7258b9a25aa23fbf6114a54e54d1f6ff1a08bd1b0",
+      "rebound_at": "2026-09-04",
+      "rebind_reason": "Recorded binding was taken over a pre-commit draft that was never pushed: no 4751-byte version of this artifact exists in any reachable git object, working checkout, or GitHub commit history for the path. Six reconstruction sweeps, each with a firing positive control, failed to recover it. Re-bound over the committed bytes. See the artifact's own 'Custody note - binding re-freeze 2026-09-04'.",
+      "superseded_binding": {
+        "bytes": 4751,
+        "sha256": "466e6da9d056e815c0c58df5daa2c12f657c106ec4f6d3dd053559795a136bb6",
+        "recorded_at": "2026-09-03",
+        "recorded_in_commit": "4655495"
+      }
     },
     {
       "bytes": 4560,
@@ -158,5 +166,25 @@
     "Independent proof reconstruction finds an assumption or quantifier defect."
   ],
   "repository": "SzeChunYiu/ORION-V2",
-  "schema": "orion-v2.rcl.validation-receipt.v0"
+  "schema": "orion-v2.rcl.validation-receipt.v0",
+  "content_binding_corrections": [
+    {
+      "artifact": "research/orion-machine/revocation_complete_learning/RCL_FAILURE_AND_PARENT_COLLAPSE_LEDGER_V0.md",
+      "recorded_binding": {
+        "bytes": 4751,
+        "sha256": "466e6da9d056e815c0c58df5daa2c12f657c106ec4f6d3dd053559795a136bb6"
+      },
+      "committed_binding": {
+        "bytes": 4746,
+        "sha256": "12ca96d8e8da0864802087e276b4e2d85ebae87d88c2e7329cb0f4b9e30ca23c"
+      },
+      "rebound_at": "2026-09-04",
+      "disposition": "DRIFT_RECORDED_NOT_BLESSED",
+      "finding": "The artifact and this receipt were created in one commit, 4655495. No 4751-byte version has ever existed in version control. The recorded binding was taken over a pre-commit draft that was never pushed.",
+      "recovery_attempted": true,
+      "recovery_result": "NOT_RECOVERABLE",
+      "exclusion_sweeps": 6,
+      "grants_scientific_authority": false
+    }
+  ]
 }
