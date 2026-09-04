@@ -2,26 +2,18 @@
 
 **Authority:** this is a programme-status and dependency artifact, not a field-status or novelty claim. `GENERAL_NOVELTY`, `FIELD_STATUS`, and `OCM_SUPERIORITY` remain `NOT_ESTABLISHED`.
 
-Base: ORION-V2 `24566f00a9dc4425a438fcfac05d13c6b2d903db`. Canonical atomic-gap source: `ME_THEORY_GAP_ATLAS_V1.md`. Machine twin: `ME_FOUNDATION_V1.json`. Batch-2 proofs: `ME_FOUNDATION_BATCH2_V1.md`. Batch-3 proofs: `ME_FOUNDATION_BATCH3_V1.md`.
+Base: ORION-V2 `24566f00a9dc4425a438fcfac05d13c6b2d903db`. Canonical atomic-gap source: `ME_THEORY_GAP_ATLAS_V1.md`. Machine twin: `ME_FOUNDATION_V1.json`. Theory/adoption batches: `ME_FOUNDATION_BATCH2_V1.md`, `ME_FOUNDATION_BATCH3_V1.md`, `ME_FOUNDATION_BATCH4_PARENT_ADOPTIONS_V1.md`.
 
 ## Foundation rule
 
-A foundation row is usable by ORION-OCM only at the status and scope recorded here. `PARENT_OWNED_ADOPTION_OPEN` means the science should adopt the parent faithfully rather than invent an ORION theorem; scope-limited results must carry their scope into machine certificates. Negative and refuted formulations are preserved as knowledge.
+A foundation row is usable by ORION-OCM only at the status and scope recorded here. Parent-owned rows are adopted at the exact parent information protocol/statistical contract rather than being renamed as ORION theorems. Scope-limited results must carry their scope into machine certificates. Negative and refuted formulations are preserved as knowledge.
 
 ## Current terminal
 
-`FOUNDATION_V1_CORE_SUBSTANTIALLY_CLOSED__FRONTIER_OPEN`
+`FOUNDATION_V1_CORE_SUBSTANTIALLY_CLOSED__SEVEN_FRONTIER_ROWS_OPEN`
 
-- 26/35 gaps are now proved/contracted: 11 merged in PR #317, 5 in Batch 2, and 10 in Batch 3.
-- 9/35 remain open, empirical, open-research, or parent-adoption work; they are listed below and are not implied by the core terminal.
-
-## Five Batch-2 advances
-
-1. **MEG-02 — statistical epistemics:** marginal/statistical coverage is separated from individual truth warrant. Statistical outputs remain truth-`UNKNOWN` unless independently warranted; risk-bounded actionability is a separate task-contract gate. Operator/config/checker/calibration/assumption/scope/epoch drift invalidates the receipt fail-closed.
-2. **MEG-03 — temporal epistemics:** validity epochs are scoped revocation; supersession is append + revoke + lineage, never history deletion; reopening follows the dependency cone.
-3. **MEG-16 — contradiction:** ATMS nogood filtering commutes with alternatives but is only a sub-homomorphism for conjunction. The atlas’s stronger conjunction-homomorphism wording is explicitly refuted.
-4. **MEG-17 — revision:** `reinstate` and `relearn` are lifecycle-distinct. Relearn can restore current behavior with a new evidence lineage while changing future revocation behavior; local non-macro repair is bounded by the explicit impact cone.
-5. **MEG-20 — representation sufficiency:** a summary may answer only under a content-bound certificate that binds the quotient, query family, revocation family, transition semantics, answer functional, checker, and epoch; lumpability + warrant measurability + answer factorization are the required proof obligations.
+- **28/35** gaps are proved, contracted, corrected, or explicitly parent-adopted: 11 merged in PR #317, 5 in Batch 2, 10 in Batch 3, and 2 parent adoptions in Batch 4.
+- **7/35** remain genuine theory/empirical frontier rows and are listed below. They are not implied by the foundation-core terminal.
 
 ## Atomic registry
 
@@ -40,7 +32,7 @@ A foundation row is usable by ORION-OCM only at the status and scope recorded he
 | `MEG-11` | `PROVED_SCOPE_LIMITED` | required pipeline small-step progress/preservation; CANNOT_CHECK absorbing |
 | `MEG-12` | `PROVED_SCOPE_LIMITED` | finite-class per-input VSW minimal agreement supports and exact revocation locality |
 | `MEG-13` | `PROVED_SCOPE_LIMITED` | finite/enumerable query-relative gap learning; ambiguity/contradiction fail-closed |
-| `MEG-14` | `PARENT_OWNED_ADOPTION_OPEN` | per-channel acquisition/sample bounds table |
+| `MEG-14` | `PARENT_OWNED_ADOPTED_WITH_CORRECTION` | acquisition bounds are protocol-specific; ordinary teaching dimension is not membership-query complexity |
 | `MEG-15` | `PROVED_SCOPE_LIMITED` | registered exact interaction outcome is observation; unregistered reward remains feedback |
 | `MEG-16` | `PROVED_WITH_CORRECTION` | ATMS nogoods: join homomorphism, meet sub-homomorphism; original meet-homomorphism wording refuted |
 | `MEG-17` | `PROVED_SCOPE_LIMITED` | reinstate vs relearn; explicit non-macro repair locality |
@@ -58,7 +50,7 @@ A foundation row is usable by ORION-OCM only at the status and scope recorded he
 | `MEG-29` | `PROVED` | no self-authority/self-calibration dependence |
 | `MEG-30` | `PROVED` | multi-timescale termination/snapshot consistency |
 | `MEG-31` | `PROVED` | certified-information unit |
-| `MEG-32` | `PARENT_OWNED_ADOPTION_OPEN` | equivalence margin/TOST discipline for PARENT_SUFFICIENT |
+| `MEG-32` | `PARENT_OWNED_ADOPTED` | measured parent equivalence requires a predeclared margin and valid paired-equivalence method; `p>alpha` is not equivalence |
 | `MEG-33` | `PROVED_SCOPE_LIMITED` | interval refinement action effects: positive support vs closure/exclusion |
 | `MEG-34` | `OPEN_RESEARCH` | infinite-class construction identifiability up to lifecycle equivalence |
 | `MEG-35` | `PROVED` | non-trivial upper-profile certificate refinements |
@@ -67,29 +59,32 @@ A foundation row is usable by ORION-OCM only at the status and scope recorded he
 
 | pillar | state | current boundary |
 |---|---|---|
-| `truth_warrant` | `CORE_CLOSED` | MEG-02/10/12/13/15/16/19/33 provide the finite/control core; probabilistic graded truth remains an explicitly separate MEG-02 research half, not required for certified-only gating |
-| `scope_time_revision` | `CORE_CLOSED_WITH_JUMP_CEILING_FRONTIER` | MEG-03/17/19/28 close registered time/relearn/macro-maintenance/preservation; J2+ ceiling discovery remains frontier |
-| `representation_sufficiency` | `PARTIAL_FRONTIER_OPEN` | MEG-20/21 close quotient + conservative-extension core; MEG-24 empirical codec invariance and MEG-34 infinite-class lifecycle identifiability remain |
-| `runtime_actionability` | `PARTIAL_LANGUAGE_FRONTIER_OPEN` | MEG-02/11/33 close risk-vs-truth, pipeline and epistemic-action effect types; MEG-25/27 remain language/renderer frontier |
-| `learning` | `FINITE_CORE_CLOSED__INFINITE_AND_BOUNDS_OPEN` | MEG-12/13/15 close finite exact query-relative learning; MEG-14 is parent-owned bounds adoption and MEG-34 infinite-class research |
-| `self_reorganization` | `PRESERVATION_CORE_CLOSED__ORGANIZATION_FRONTIER_OPEN` | MEG-28 closes preservation/rollback half; MEG-23 organization search remains open research |
-| `external_validation` | `OPEN` | Independent field/demarcation and replication remain external; no internal artifact grants field status. |
+| `truth_warrant` | `CORE_CLOSED` | finite/control core is bound; probabilistic graded truth remains an explicitly separate MEG-02 research half, not required for certified-only gating |
+| `scope_time_revision` | `CORE_CLOSED_WITH_JUMP_CEILING_FRONTIER` | registered time/relearn/macro-maintenance/Jump preservation is bound; general J2+ ceiling discovery remains frontier |
+| `representation_sufficiency` | `PARTIAL_FRONTIER_OPEN` | quotient + conservative-extension core closed; MEG-24 codec invariance and MEG-34 infinite-class lifecycle identifiability remain |
+| `runtime_actionability` | `PARTIAL_LANGUAGE_FRONTIER_OPEN` | risk-vs-truth, fail-closed pipeline and epistemic-action types closed; MEG-25/27 remain language/renderer frontier |
+| `learning` | `FINITE_CORE_AND_PARENT_ACCOUNTING_CLOSED__INFINITE_OPEN` | finite exact query-relative learning + channel-accounting parents bound; MEG-34 infinite-class research remains |
+| `evaluation` | `PARENT_ACCOUNTING_CORE_CLOSED` | measured equivalence uses predeclared paired-equivalence methods; identity/by-construction equality is reported separately |
+| `self_reorganization` | `PRESERVATION_CORE_CLOSED__ORGANIZATION_FRONTIER_OPEN` | Jump preservation/rollback half closed; MEG-23 organization search remains open research |
+| `external_validation` | `OPEN` | independent field/demarcation and replication remain external; no internal artifact grants field status |
 
-## Remaining frontier after Batches 1–3
+## Batch-4 parent corrections
 
-Nine atlas rows remain genuinely open or parent-adoption work:
+**MEG-14:** learning costs must name the information protocol. Helpful-teacher teaching dimension and learner-chosen membership-query complexity are not interchangeable: the exact checker gives `C={000,011,101}` with `TD(C)=1` but optimal membership-query depth `2`. Teaching/query/sample/experiment/lifecycle costs stay with their appropriate parent models.
 
-1. **MEG-07** — reaction-surprise/background no-drop guarantee. The current OCM development revival is 47/50, not a theorem; three attributed misses remain.
-2. **MEG-09** — multiscale/fibred navigation and cross-level commutation (`OPEN_RESEARCH`).
-3. **MEG-14** — per-channel acquisition/sample bounds (`PARENT_OWNED_ADOPTION_OPEN`): build the class-by-class parent table rather than inventing a theorem.
-4. **MEG-23** — learned organization/topology/router search (`OPEN_RESEARCH`).
-5. **MEG-24** — full translator invariance beyond canonicalization (`OPEN_EMPIRICAL`), requiring protected two-codec measurement.
-6. **MEG-25** — renderer capability + semantic commitment non-laundering; capability can be enforced by API, but semantic equality depends on MEG-24/language evidence.
-7. **MEG-27** — incremental prefix commitment (`OPEN_RESEARCH`, language stage).
-8. **MEG-32** — equivalence-margin/TOST discipline (`PARENT_OWNED_ADOPTION_OPEN`), an evaluation-policy adoption rather than new science.
-9. **MEG-34** — infinite-class construction identifiability up to lifecycle equivalence (`OPEN_RESEARCH`).
+**MEG-32:** failure to reject a paired difference is not equivalence. A `PARENT_SUFFICIENT` route based on measured equivalence must freeze an estimand, scientific equivalence margin, alpha, paired method/version, small-n/exactness handling, interval/test rule, power plan and missingness policy. Missing such evidence is `CANNOT_CHECK`; identity-by-construction is reported as identity rather than a measured equivalence win.
 
-The registry therefore calls the mathematical/control **core substantially closed**, not the frontier or field.
+## Seven remaining frontier rows
+
+1. **MEG-07 — reaction surprise.** The current OCM development revival reports 47/50 navigation-found with three attributed misses. That is useful evidence, not a universal no-drop theorem.
+2. **MEG-09 — multiscale/fibred navigation.** Need cross-level outcome coherence and revocation-aware commutation beyond ordinary quotients.
+3. **MEG-23 — learned organization/topology.** Need a context-relative organization search theory with preservation and strongest-parent comparison; no universal best topology is assumed.
+4. **MEG-24 — translator invariance.** The provable reduction to canonical meaning/seed equality is not the empirical claim that two independent codecs actually agree; protected language evidence is required.
+5. **MEG-25 — renderer/commitment.** Capability noninterference can be enforced by API, but semantic surface-plan preservation depends on MEG-24 and language evidence.
+6. **MEG-27 — incremental prefix commitment.** Requires a real language-generation/residual-obligation model and remains an open M6-style research problem.
+7. **MEG-34 — infinite-class lifecycle identifiability.** Finite VSW is closed; SHRG/CCG/open language-class identification under lifecycle equivalence remains open research.
+
+These seven are the frontier—not missing paperwork disguised as theory.
 
 ## OCM absorption contract
 
