@@ -283,6 +283,11 @@ def main() -> int:
         dispatch(args.plan, args.campaign_root, studies, args.max_concurrency, args.overwrite)
         evaluate(args.plan, args.campaign_root, studies)
         print(json.dumps(status(args.plan, args.campaign_root, studies), indent=2, sort_keys=True))
+    if args.command not in {"evaluate", "all"}:
+        # prepare/dispatch/status write no campaign evaluation summary. Reading one
+        # unconditionally made every `prepare` exit on a FileNotFoundError traceback
+        # after having done its work correctly.
+        return 0
     campaign_summary = load_json(args.campaign_root / "CAMPAIGN_EVALUATION_SUMMARY.json")
     if not campaign_summary.get("all_runs_valid", True):
         print(

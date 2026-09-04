@@ -1,0 +1,203 @@
+{
+  "schema_version": "orion.v2.formal-discovery-generated-campaign-plan.v2",
+  "status": "PROSPECTIVE_EXECUTION_PLAN_NO_RESULTS",
+  "owner_issue": 48,
+  "supersedes": "research/experiments/FORMAL_DISCOVERY_GENERATED_CAMPAIGN_PLAN_V1.json",
+  "sibling_receipts": [
+    "research/experiments/fmfg-r2/FMFG_R2_COVERAGE_RECONCILIATION_RECEIPT_V1.md",
+    "research/experiments/fmfg-r2/FMFG_R2_REGISTERED_CLAUSE_NARROWING_ERRATUM_V1.md"
+  ],
+  "supersession_reason": "V1 cannot be executed faithfully as written. Under the exact-id arm registry in scripts/orion_formal_discovery_arms.py its 17 registered arm ids resolve to 5 procedures: every named published-method parent (STRUCTURE_MAPPING_PARENT, ANTI_UNIFICATION_OR_MDL_PARENT_WHEN_APPLICABLE, FCA_PARENT_WHEN_APPLICABLE) and both federation ids collapse onto PARENT_GENERIC, and three control ids (SEMANTIC_RETRIEVAL, SEMANTIC_RETRIEVAL_OF_EXISTING_FORMALISM, LOCAL_PATCH_OR_EXTRA_VARIABLE) have no procedure designed at all. V2 discharges the CONSTRUCTIBILITY obligation that PR #269 deferred to this lane.",
+  "selection_rule": "Exactly one arm id per distinct procedure class implemented in ARM_PROCEDURE_CLASS, campaign-wide. The criterion is procedure identity, which is independent of any R2 outcome; no arm was added or removed on the basis of how it scored. V1's FM/FG naming split gave two ids to one procedure (TARGET_ONLY_DIRECT / CURRENT_FORMALISM_ONLY, F2_STATIC_NO_TRANSFER_DISCOVERY / F2_STATIC_NO_FORMALISM_GENESIS, F2_TRANSFER_DISCOVERY_FULL / F2_FORMALISM_GENESIS_FULL, FIXED_LESSON_INJECTION / FIXED_FORMALISM_LESSON_INJECTION). That is the same defect this plan is repairing, so V2 does not exempt itself from it: one id, used in both families. The retained procedure text already covers both (F2_STATIC reads 'do not perform open-ended transfer discovery, conceptual revision, or formalism genesis'), so nothing family-specific is lost.",
+  "protocols": {
+    "FM": "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_MECHANICS_PROTOCOL_V1.json",
+    "FG": "research/experiments/FORMALISM_GENESIS_PROTOCOL_V1.json"
+  },
+  "seed": 20260904,
+  "max_concurrency_default": 2,
+  "studies": {
+    "FM10": {
+      "tasks": 120,
+      "arms": [
+        "TARGET_ONLY_DIRECT",
+        "FIXED_LESSON_INJECTION",
+        "STRONGEST_DOMAIN_FORMAL_PARENT",
+        "F2_STATIC_NO_TRANSFER_DISCOVERY",
+        "F2_TRANSFER_DISCOVERY_FULL"
+      ]
+    },
+    "FM20": {
+      "tasks": 120,
+      "arms": [
+        "TARGET_ONLY_DIRECT",
+        "FIXED_LESSON_INJECTION",
+        "STRONGEST_DOMAIN_FORMAL_PARENT",
+        "F2_STATIC_NO_TRANSFER_DISCOVERY",
+        "F2_TRANSFER_DISCOVERY_FULL"
+      ]
+    },
+    "FM30": {
+      "tasks": 96,
+      "arms": [
+        "TARGET_ONLY_DIRECT",
+        "FIXED_LESSON_INJECTION",
+        "STRONGEST_DOMAIN_FORMAL_PARENT",
+        "F2_STATIC_NO_TRANSFER_DISCOVERY",
+        "F2_TRANSFER_DISCOVERY_FULL"
+      ]
+    },
+    "FM40": {
+      "tasks": 120,
+      "arms": [
+        "TARGET_ONLY_DIRECT",
+        "FIXED_LESSON_INJECTION",
+        "STRONGEST_DOMAIN_FORMAL_PARENT",
+        "F2_STATIC_NO_TRANSFER_DISCOVERY",
+        "F2_TRANSFER_DISCOVERY_FULL"
+      ]
+    },
+    "FM50": {
+      "tasks": 96,
+      "arms": [
+        "TARGET_ONLY_DIRECT",
+        "FIXED_LESSON_INJECTION",
+        "STRONGEST_DOMAIN_FORMAL_PARENT",
+        "F2_STATIC_NO_TRANSFER_DISCOVERY",
+        "F2_TRANSFER_DISCOVERY_FULL"
+      ]
+    },
+    "FM60": {
+      "tasks": 120,
+      "arms": [
+        "TARGET_ONLY_DIRECT",
+        "FIXED_LESSON_INJECTION",
+        "STRONGEST_DOMAIN_FORMAL_PARENT",
+        "F2_STATIC_NO_TRANSFER_DISCOVERY",
+        "F2_TRANSFER_DISCOVERY_FULL"
+      ]
+    },
+    "FG10": {
+      "tasks": 160,
+      "arms": [
+        "TARGET_ONLY_DIRECT",
+        "FIXED_LESSON_INJECTION",
+        "STRONGEST_DOMAIN_FORMAL_PARENT",
+        "F2_STATIC_NO_TRANSFER_DISCOVERY",
+        "F2_TRANSFER_DISCOVERY_FULL"
+      ]
+    },
+    "FG20": {
+      "tasks": 120,
+      "arms": [
+        "TARGET_ONLY_DIRECT",
+        "FIXED_LESSON_INJECTION",
+        "STRONGEST_DOMAIN_FORMAL_PARENT",
+        "F2_STATIC_NO_TRANSFER_DISCOVERY",
+        "F2_TRANSFER_DISCOVERY_FULL"
+      ]
+    },
+    "FG30": {
+      "tasks": 160,
+      "arms": [
+        "TARGET_ONLY_DIRECT",
+        "FIXED_LESSON_INJECTION",
+        "STRONGEST_DOMAIN_FORMAL_PARENT",
+        "F2_STATIC_NO_TRANSFER_DISCOVERY",
+        "F2_TRANSFER_DISCOVERY_FULL"
+      ]
+    },
+    "FG40": {
+      "tasks": 120,
+      "arms": [
+        "TARGET_ONLY_DIRECT",
+        "FIXED_LESSON_INJECTION",
+        "STRONGEST_DOMAIN_FORMAL_PARENT",
+        "F2_STATIC_NO_TRANSFER_DISCOVERY",
+        "F2_TRANSFER_DISCOVERY_FULL"
+      ]
+    },
+    "FG50": {
+      "tasks": 120,
+      "arms": [
+        "TARGET_ONLY_DIRECT",
+        "FIXED_LESSON_INJECTION",
+        "STRONGEST_DOMAIN_FORMAL_PARENT",
+        "F2_STATIC_NO_TRANSFER_DISCOVERY",
+        "F2_TRANSFER_DISCOVERY_FULL"
+      ]
+    },
+    "FG60": {
+      "tasks": 120,
+      "arms": [
+        "TARGET_ONLY_DIRECT",
+        "FIXED_LESSON_INJECTION",
+        "STRONGEST_DOMAIN_FORMAL_PARENT",
+        "F2_STATIC_NO_TRANSFER_DISCOVERY",
+        "F2_TRANSFER_DISCOVERY_FULL"
+      ]
+    },
+    "FG70": {
+      "tasks": 160,
+      "arms": [
+        "TARGET_ONLY_DIRECT",
+        "FIXED_LESSON_INJECTION",
+        "STRONGEST_DOMAIN_FORMAL_PARENT",
+        "F2_STATIC_NO_TRANSFER_DISCOVERY",
+        "F2_TRANSFER_DISCOVERY_FULL"
+      ]
+    },
+    "FG80": {
+      "tasks": 80,
+      "arms": [
+        "TARGET_ONLY_DIRECT",
+        "FIXED_LESSON_INJECTION",
+        "STRONGEST_DOMAIN_FORMAL_PARENT",
+        "F2_STATIC_NO_TRANSFER_DISCOVERY",
+        "F2_TRANSFER_DISCOVERY_FULL"
+      ]
+    }
+  },
+  "registered_dispatches": 8560,
+  "deferred_arms_pending_procedure_design": {
+    "STRUCTURE_MAPPING_PARENT": "Gentner-style structure mapping. Registered by V1, class PARENT_GENERIC - the same procedure as STRONGEST_DOMAIN_FORMAL_PARENT. Registering it as a parent baseline requires a structure-mapping procedure of its own.",
+    "ANTI_UNIFICATION_OR_MDL_PARENT_WHEN_APPLICABLE": "Plotkin-style anti-unification / MDL. Same: class PARENT_GENERIC, no procedure of its own.",
+    "FCA_PARENT_WHEN_APPLICABLE": "Formal concept analysis. Same: class PARENT_GENERIC, no procedure of its own.",
+    "F0_PARENT_FEDERATION": "A federation registered as distinct from the single strongest parent, but class PARENT_GENERIC. Requires a federation procedure that differs from the single-parent one. This is the pair whose contrast the R2 terminal reported; see the erratum.",
+    "F0_FORMAL_PARENT_FEDERATION": "The FG-family federation id. Same obligation.",
+    "SEMANTIC_RETRIEVAL": "ARM_PROCEDURE_CLASS = None: registered, procedure never designed. Also requires a retrieval corpus - the executor prompt states 'No network retrieval' and none is supplied.",
+    "SEMANTIC_RETRIEVAL_OF_EXISTING_FORMALISM": "ARM_PROCEDURE_CLASS = None. Same retrieval obligation.",
+    "LOCAL_PATCH_OR_EXTRA_VARIABLE": "ARM_PROCEDURE_CLASS = None: registered, procedure never designed.",
+    "CURRENT_FORMALISM_ONLY": "Not a design obligation - a duplicate id for the DIRECT procedure, dropped by the selection rule above. Re-register it only if the FG floor is ever given a procedure distinct from TARGET_ONLY_DIRECT.",
+    "F2_STATIC_NO_FORMALISM_GENESIS": "Duplicate id for F2_STATIC. Same.",
+    "F2_FORMALISM_GENESIS_FULL": "Duplicate id for F2_FULL. Same.",
+    "FIXED_FORMALISM_LESSON_INJECTION": "Duplicate id for FIXED. Same."
+  },
+  "deferred_arms_rule": "A deferred arm may be registered only once its own procedure exists in ARM_PROCEDURE_CLASS, distinct from every other registered arm's. Registering it earlier publishes a named baseline that is a label on a shared procedure.",
+  "excluded_from_generated_campaign": {
+    "FM70": "held-out contextual regime selector requires development/test fold construction rather than a standalone exact generated formal task",
+    "FM80": "naturalistic mathematics-science transfer requires real domains and independent adjudication",
+    "FG90": "real frontier lane remains exploratory and cannot be converted into synthetic confirmatory evidence"
+  },
+  "rules": {
+    "private_oracle_absent_during_model_calls": true,
+    "exact_or_mechanical_primary_scoring": true,
+    "same_model_repetitions_are_independent_replication": false,
+    "generated_results_alone_grant_cross_domain_naturalistic_claims": false,
+    "parent_sufficiency_is_valid_terminal": true,
+    "fixed_lesson_sufficiency_is_valid_terminal": true,
+    "new_mathematical_theory_authorized": false
+  },
+  "conformance": {
+    "auditor": "scripts/audit_formal_campaign_coverage.py",
+    "pre_registration_gate": "python scripts/audit_formal_campaign_coverage.py --pre-registration --plan research/experiments/FORMAL_DISCOVERY_GENERATED_CAMPAIGN_PLAN_V2.json",
+    "must_exit_zero_before_dispatch": true
+  },
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_F2_superiority": false,
+    "grants_new_mathematical_theory": false,
+    "grants_field_status": false,
+    "grants_R3": false,
+    "grants_R4": false
+  }
+}
