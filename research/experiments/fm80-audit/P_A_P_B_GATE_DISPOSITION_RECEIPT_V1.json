@@ -1,0 +1,124 @@
+{
+  "schema_version": "orion.v2.pa-pb-gate-disposition.v1",
+  "receipt_kind": "GATE_DISPOSITION_AND_PRE_OUTCOME_DESIGN_CORRECTION",
+  "state_date": "2026-09-04",
+  "papers": ["P-A", "P-B"],
+  "disposition": "CANNOT_CHECK_INDEPENDENT_ADJUDICATION",
+  "disposition_is_a_verdict": false,
+  "disposition_is_a_named_blocker": true,
+  "no_arm_executed": true,
+  "sole_registered_specified_gate": {
+    "path": "research/experiments/FM80_NATURALISTIC_TRANSFER_DECISIVE_PROTOCOL_V1.md",
+    "clause": "section 9 Standalone survival terminal",
+    "freeze_date": "2026-08-30",
+    "governs_jointly": ["P-A", "P-B"],
+    "status": "BLOCKED_ELIGIBILITY_PRECONDITIONS_UNSATISFIED",
+    "block_receipt": "research/experiments/fm-exact/FM80_BLOCKED_WITH_REASON_RECEIPT.md",
+    "block_independently_verified": "2026-09-03"
+  },
+  "absence_claim_scope": {
+    "claim": "FM80 section 9 is the only registered gate specified enough to deliver a P-A or P-B verdict",
+    "repos_searched_in_full": ["ORION-V2 @ ec3a13eda167d6dc9214d62206d4525bf27d0e30", "ORION-paper @ f22638613556d1fab5472da089458fb0f17e44ef"],
+    "method": "find by basename plus content grep, every negative paired with a control pattern required to match on the same files",
+    "controls_that_matched": [
+      "find *P_A*|*P_B*|*DONOR*|*RELATION_TRANSPORT* across both repos -> 114 hits",
+      "grep -c parent on the three ME-X4 docs -> 20/11/4 where P-A/P-B returned 0",
+      "grep -c 'P-' on both paper READMEs -> 3 each where FM80 returned 0",
+      "find *E30* -> 5+ design files versus find *E80*|*E90* -> 1 unrelated file"
+    ]
+  },
+  "other_survival_condition_objects": [
+    {"path": "v2-papers/_portfolio/gates/NEXT_PROTECTED_EVIDENCE_DECISION_GATES_V1.md", "class": "paper-side decision contract", "executable": false, "cites_fm80": false},
+    {"path": "v2-papers/_portfolio/contraction/TOP_TIER_SURVIVOR_AND_CONTRACTION_MATRIX_V1.json", "class": "frozen pre-decision terminal matrix", "executable": false, "names_decisive_evidence": ["E80", "E90"]},
+    {"path": "research/experiments/EXECUTION_BACKLOG_V1.json", "class": "backlog cells E80/E90", "executable": false, "runnable_now": false, "has_frozen_protocol": false, "has_arms": false, "has_thresholds": false}
+  ],
+  "ruled_out_as_second_gate": {
+    "ME-X4": "unrelated machine-epistemics study sharing vocabulary; its own receipt says the naturalistic cell is a separate unexecuted identity and nothing transfers to it; comparator is a TMS/ATMS parent federation not P-B typed-relation composition; already terminated PARENT_SUFFICIENT; protocol dated 2026-09-01 postdates the 2026-08-30 P-B brief that supposedly refers to it",
+    "SD80": "case-matrix intake feeding FM80; FM80 block receipt section 1 explicitly refuses to inherit its terminal",
+    "conceptual_transfer_protocols": "mention P-A/P-B only as merge targets and in an admission rule gating a different paper against them"
+  },
+  "why_e80_e90_cannot_substitute": {
+    "registered_as_decisive": true,
+    "specified": false,
+    "missing": ["frozen protocol", "study design", "arms", "endpoints", "pass thresholds", "terminal vocabulary"],
+    "runnable_now": false,
+    "specifying_now_is_prohibited": true,
+    "prohibiting_clause_path": "v2-papers/_portfolio/gates/NEXT_PROTECTED_EVIDENCE_DECISION_GATES_V1.md",
+    "prohibiting_clause_quote": "inventing a new donor benchmark after the registered decisive cells are null",
+    "global_rule_quote": "It may not create a new endpoint after outcome access merely to preserve a paper count."
+  },
+  "human_gate_is_multiply_determined": {
+    "clause_count": 4,
+    "clauses": {
+      "4.4": "an independent adjudicator accepts the donor is scientifically relevant, so REMOTE is not machine-decidable",
+      "7": "at least two qualified adjudicators per domain who did not build the arm, blinded, plus a third for terminal disagreements",
+      "9.4": "at least one winning domain contains genuinely REMOTE donors under section 4, inheriting 4.4",
+      "9.7": "independent adjudication finds no stronger omitted parent collapsing the residual"
+    },
+    "people_required": "six to nine qualified conflict-declared adjudicators independent of arm construction",
+    "compute_authorization_binds": false,
+    "compute_authorization_note": "no amount of computation substitutes for a person who did not build the arm"
+  },
+  "machine_surrogate_for_remoteness": {
+    "considered": true,
+    "rejected": true,
+    "reason": "section 4.4 makes REMOTE non-machine-decidable by construction; a surrogate would replace the clause rather than satisfy it, and section 9.4 would then be unsatisfiable in principle, manufacturing a negative"
+  },
+  "pre_outcome_design_correction": {
+    "detail_path": "research/experiments/fm80-audit/FM80_PRE_OUTCOME_DESIGN_CORRECTION_V1.md",
+    "defect": "sections 9.1 and 9.2 are jointly unsatisfiable at the section 8 registered sample",
+    "registered_n_per_domain": 30,
+    "registered_total_cases": 90,
+    "registered_effect_bar_pp": 10.0,
+    "net_cases_at_bar": 3,
+    "best_case_exact_p": 0.25,
+    "best_case_assumption": "zero adverse discordance, a strict upper bound on achievable significance",
+    "holm_ladder": [0.016666666666666666, 0.025, 0.05],
+    "clears_any_threshold": false,
+    "undetectable_effect_band_pp": [10.0, 20.0],
+    "consequence_if_unrepaired": "a true effect at the bar satisfies 9.1, necessarily fails 9.2, and terminates on a section 10 contraction vocabulary that would read as an empirical negative",
+    "repair_options": {
+      "raise_sample": {"n_per_domain": 61, "total": 183, "keeps_bar_pp": 10.0},
+      "raise_bar": {"n_per_domain": 30, "detectable_effect_pp": 23.3, "multiple_of_stated_bar": 2.3},
+      "change_test": {"allowed": false, "reason": "swapping the exact paired test for a more permissive one after seeing this analysis would relax a frozen protocol, which section 12 forbids"}
+    },
+    "still_pre_outcome": true,
+    "cases_assembled": 0,
+    "branch_foreclosed": false,
+    "verifier": "scripts/verify_fm80_section9_reachability.py",
+    "verifier_self_test": "7/7 PASS including no-alarm controls and monotonicity",
+    "unblocks_fm80": false
+  },
+  "second_defect_reported_not_repaired": {
+    "finding": "the paper-side survival gates and FM80 are not bound to each other",
+    "evidence": "grep -rln FM80 over the paper repo returns 7 files, none under the P-A or P-B directories; control grep -c 'P-' on both READMEs returns 3 each",
+    "risk": "amending FM80 section 9 leaves four other documents silently stating the old conditions",
+    "not_repaired_reason": "editing paper-side survival language is a manuscript act; this lane holds no claim authority over it"
+  },
+  "claims": {
+    "claimed": [
+      "FM80 section 9 is the sole registered specified standalone survival gate for P-A and P-B",
+      "it is blocked on a human-adjudication precondition required independently by four of its clauses",
+      "no second registered gate is specified enough to substitute and specifying one now is prohibited by the portfolio's own frozen rescue rules",
+      "the gate as frozen carried a sample/effect-size defect that would have manufactured a negative, now corrected pre-outcome"
+    ],
+    "not_claimed": [
+      "no scientific verdict on either paper; no arm ran",
+      "not that a residual does not exist",
+      "not PARENT_SUFFICIENT, which is a terminal only for a study that ran",
+      "not that the papers should be reopened, and not that they should be released"
+    ]
+  },
+  "existing_evidence_undisturbed": {
+    "P-A": "generated false-analogy battery null retained",
+    "P-B": "generated relation battery protected null retained: full interface 99/112, simple/static 100/112, paired exact McNemar p >= 0.75"
+  },
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_pa_pb_survival": false,
+    "grants_field_status": false,
+    "grants_publication_readiness": false,
+    "grants_release_authorization": false,
+    "submission_authorized": false
+  }
+}
