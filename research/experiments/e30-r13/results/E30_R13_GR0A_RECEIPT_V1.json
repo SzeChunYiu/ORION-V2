@@ -1,0 +1,41 @@
+{
+  "cells": {
+    "e30r13": {
+      "anchors": {
+        "pass": true,
+        "skipped": true
+      },
+      "comparison": {
+        "bit_exact": true,
+        "expected": 480,
+        "matched": 480,
+        "mismatch_list": [],
+        "mismatched": 0,
+        "missing": 0,
+        "missing_list": []
+      },
+      "pass": true,
+      "reproduction": "480/480",
+      "truth": "the campaign's own frozen-lane evaluation records (run/confirmatory-r{1,2,3}/evaluations/<ARM>/<task>.json); GR0a is self-consistency between the two evaluators over the same 480 proposals"
+    }
+  },
+  "checker_validation": {
+    "e30r13": {
+      "dropped_detected": 1,
+      "flipped_detected": 1,
+      "flipped_key": [
+        "1",
+        "F0_PARENT_FEDERATION",
+        "bugsinpy-ansible-1"
+      ],
+      "pass": true,
+      "self_compare_bit_exact": true
+    }
+  },
+  "design": "PC_R6_FULL_REGRESSION_EVALUATOR_LANE_DESIGN_V1",
+  "gate": "GR0(a) LANE_VALID: registered-failing-test vector bit-exact",
+  "generated_utc": "2026-09-03T16:34:13.003132+00:00",
+  "lane_version": "orion.v2.pc-r6-fullreg-evaluator-lane.v2",
+  "schema_version": "orion.v2.pc-r6-gr0a-receipt.v1",
+  "status": "PASS"
+}

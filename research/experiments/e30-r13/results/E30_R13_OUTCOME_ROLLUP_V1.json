@@ -1,0 +1,739 @@
+{
+  "E1_contrasts": [
+    {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+      "checkable_task_count": 40,
+      "ci95_excludes_zero": false,
+      "discordant_count": 6,
+      "discordant_left_win_probability": 0.8333333333333334,
+      "discordant_left_win_probability_exact_ci95": [
+        0.3587654210023249,
+        0.9957892554855106
+      ],
+      "exact_discordant_p": 0.21875,
+      "holm_adjusted_p": 0.4375,
+      "holm_p": 0.4375,
+      "holm_rank": 2,
+      "holm_reject": false,
+      "holm_reject_at_alpha_0_05": false,
+      "left_arm": "F2_ORION_METABOLIC_FULL",
+      "missing_task_ids": [],
+      "multiplicity_status": "HOLM_ADJUSTED",
+      "one_sided_97_5_lower_bound": 0.0,
+      "one_sided_97_5_upper_bound": 0.2,
+      "paired_table": {
+        "both_false": 29,
+        "both_true": 5,
+        "left_only": 5,
+        "right_only": 1
+      },
+      "right_arm": "F0_PARENT_FEDERATION",
+      "risk_difference": {
+        "bootstrap_repetitions": 10000,
+        "bootstrap_stratification": "PROJECT",
+        "bootstrap_unit": "TASK",
+        "ci95": [
+          0.0,
+          0.2
+        ],
+        "estimate": 0.1,
+        "pair_count": 40,
+        "seed": 20260903
+      },
+      "risk_difference_orientation": "F2_ORION_METABOLIC_FULL - F0_PARENT_FEDERATION (E1 success)"
+    },
+    {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+      "checkable_task_count": 40,
+      "ci95_excludes_zero": false,
+      "discordant_count": 7,
+      "discordant_left_win_probability": 0.7142857142857143,
+      "discordant_left_win_probability_exact_ci95": [
+        0.29042086373734277,
+        0.9633074338239145
+      ],
+      "exact_discordant_p": 0.453125,
+      "holm_adjusted_p": 0.453125,
+      "holm_p": 0.453125,
+      "holm_rank": 3,
+      "holm_reject": false,
+      "holm_reject_at_alpha_0_05": false,
+      "left_arm": "F2_ORION_METABOLIC_FULL",
+      "missing_task_ids": [],
+      "multiplicity_status": "HOLM_ADJUSTED",
+      "one_sided_97_5_lower_bound": -0.025,
+      "one_sided_97_5_upper_bound": 0.175,
+      "paired_table": {
+        "both_false": 28,
+        "both_true": 5,
+        "left_only": 5,
+        "right_only": 2
+      },
+      "right_arm": "SIMPLE_DIRECT",
+      "risk_difference": {
+        "bootstrap_repetitions": 10000,
+        "bootstrap_stratification": "PROJECT",
+        "bootstrap_unit": "TASK",
+        "ci95": [
+          -0.025,
+          0.175
+        ],
+        "estimate": 0.075,
+        "pair_count": 40,
+        "seed": 20260903
+      },
+      "risk_difference_orientation": "F2_ORION_METABOLIC_FULL - SIMPLE_DIRECT (E1 success)"
+    },
+    {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+      "checkable_task_count": 40,
+      "ci95_excludes_zero": true,
+      "discordant_count": 6,
+      "discordant_left_win_probability": 1.0,
+      "discordant_left_win_probability_exact_ci95": [
+        0.5407418735600997,
+        1.0
+      ],
+      "exact_discordant_p": 0.03125,
+      "holm_adjusted_p": 0.09375,
+      "holm_p": 0.09375,
+      "holm_rank": 1,
+      "holm_reject": false,
+      "holm_reject_at_alpha_0_05": false,
+      "left_arm": "F2_ORION_METABOLIC_FULL",
+      "missing_task_ids": [],
+      "multiplicity_status": "HOLM_ADJUSTED",
+      "one_sided_97_5_lower_bound": 0.05,
+      "one_sided_97_5_upper_bound": 0.25,
+      "paired_table": {
+        "both_false": 30,
+        "both_true": 4,
+        "left_only": 6,
+        "right_only": 0
+      },
+      "right_arm": "SAME_MODEL_REFLECTION",
+      "risk_difference": {
+        "bootstrap_repetitions": 10000,
+        "bootstrap_stratification": "PROJECT",
+        "bootstrap_unit": "TASK",
+        "ci95": [
+          0.05,
+          0.25
+        ],
+        "estimate": 0.15,
+        "pair_count": 40,
+        "seed": 20260903
+      },
+      "risk_difference_orientation": "F2_ORION_METABOLIC_FULL - SAME_MODEL_REFLECTION (E1 success)"
+    }
+  ],
+  "E1_sensitivity_condition": "REGISTERED_TEST_UNFIXABLE_BY_SOURCE_ONLY_PATCH",
+  "E1_sensitivity_contrasts": [
+    {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+      "checkable_task_count": 39,
+      "ci95_excludes_zero": false,
+      "discordant_count": 6,
+      "discordant_left_win_probability": 0.8333333333333334,
+      "discordant_left_win_probability_exact_ci95": [
+        0.3587654210023249,
+        0.9957892554855106
+      ],
+      "exact_discordant_p": 0.21875,
+      "holm_adjusted_p": 0.4375,
+      "holm_p": 0.4375,
+      "holm_rank": 2,
+      "holm_reject": false,
+      "holm_reject_at_alpha_0_05": false,
+      "left_arm": "F2_ORION_METABOLIC_FULL",
+      "missing_task_ids": [],
+      "multiplicity_status": "HOLM_ADJUSTED",
+      "one_sided_97_5_lower_bound": 0.0,
+      "one_sided_97_5_upper_bound": 0.20512820512820512,
+      "paired_table": {
+        "both_false": 28,
+        "both_true": 5,
+        "left_only": 5,
+        "right_only": 1
+      },
+      "right_arm": "F0_PARENT_FEDERATION",
+      "risk_difference": {
+        "bootstrap_repetitions": 10000,
+        "bootstrap_stratification": "PROJECT",
+        "bootstrap_unit": "TASK",
+        "ci95": [
+          0.0,
+          0.20512820512820512
+        ],
+        "estimate": 0.10256410256410256,
+        "pair_count": 39,
+        "seed": 20260903
+      },
+      "risk_difference_orientation": "F2_ORION_METABOLIC_FULL - F0_PARENT_FEDERATION (E1 success, sensitivity denominator)"
+    },
+    {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+      "checkable_task_count": 39,
+      "ci95_excludes_zero": false,
+      "discordant_count": 7,
+      "discordant_left_win_probability": 0.7142857142857143,
+      "discordant_left_win_probability_exact_ci95": [
+        0.29042086373734277,
+        0.9633074338239145
+      ],
+      "exact_discordant_p": 0.453125,
+      "holm_adjusted_p": 0.453125,
+      "holm_p": 0.453125,
+      "holm_rank": 3,
+      "holm_reject": false,
+      "holm_reject_at_alpha_0_05": false,
+      "left_arm": "F2_ORION_METABOLIC_FULL",
+      "missing_task_ids": [],
+      "multiplicity_status": "HOLM_ADJUSTED",
+      "one_sided_97_5_lower_bound": -0.02564102564102564,
+      "one_sided_97_5_upper_bound": 0.1794871794871795,
+      "paired_table": {
+        "both_false": 27,
+        "both_true": 5,
+        "left_only": 5,
+        "right_only": 2
+      },
+      "right_arm": "SIMPLE_DIRECT",
+      "risk_difference": {
+        "bootstrap_repetitions": 10000,
+        "bootstrap_stratification": "PROJECT",
+        "bootstrap_unit": "TASK",
+        "ci95": [
+          -0.02564102564102564,
+          0.1794871794871795
+        ],
+        "estimate": 0.07692307692307693,
+        "pair_count": 39,
+        "seed": 20260903
+      },
+      "risk_difference_orientation": "F2_ORION_METABOLIC_FULL - SIMPLE_DIRECT (E1 success, sensitivity denominator)"
+    },
+    {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+      "checkable_task_count": 39,
+      "ci95_excludes_zero": true,
+      "discordant_count": 6,
+      "discordant_left_win_probability": 1.0,
+      "discordant_left_win_probability_exact_ci95": [
+        0.5407418735600997,
+        1.0
+      ],
+      "exact_discordant_p": 0.03125,
+      "holm_adjusted_p": 0.09375,
+      "holm_p": 0.09375,
+      "holm_rank": 1,
+      "holm_reject": false,
+      "holm_reject_at_alpha_0_05": false,
+      "left_arm": "F2_ORION_METABOLIC_FULL",
+      "missing_task_ids": [],
+      "multiplicity_status": "HOLM_ADJUSTED",
+      "one_sided_97_5_lower_bound": 0.05128205128205128,
+      "one_sided_97_5_upper_bound": 0.2564102564102564,
+      "paired_table": {
+        "both_false": 29,
+        "both_true": 4,
+        "left_only": 6,
+        "right_only": 0
+      },
+      "right_arm": "SAME_MODEL_REFLECTION",
+      "risk_difference": {
+        "bootstrap_repetitions": 10000,
+        "bootstrap_stratification": "PROJECT",
+        "bootstrap_unit": "TASK",
+        "ci95": [
+          0.05128205128205128,
+          0.2564102564102564
+        ],
+        "estimate": 0.15384615384615385,
+        "pair_count": 39,
+        "seed": 20260903
+      },
+      "risk_difference_orientation": "F2_ORION_METABOLIC_FULL - SAME_MODEL_REFLECTION (E1 success, sensitivity denominator)"
+    }
+  ],
+  "E1_sensitivity_excluded_task_ids": [
+    "bugsinpy-cookiecutter-1"
+  ],
+  "E2_contrasts": [
+    {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+      "checkable_task_count": 8,
+      "ci95_excludes_zero": false,
+      "discordant_count": 1,
+      "discordant_left_win_probability": 0.0,
+      "discordant_left_win_probability_exact_ci95": [
+        0.0,
+        0.9750000000000001
+      ],
+      "exact_discordant_p": 1.0,
+      "holm_adjusted_p": 1.0,
+      "holm_p": 1.0,
+      "holm_rank": 1,
+      "holm_reject": false,
+      "holm_reject_at_alpha_0_05": false,
+      "left_arm": "F2_ORION_METABOLIC_FULL",
+      "missing_task_ids": [
+        "bugsinpy-ansible-1",
+        "bugsinpy-ansible-3",
+        "bugsinpy-ansible-5",
+        "bugsinpy-ansible-6",
+        "bugsinpy-black-2",
+        "bugsinpy-black-3",
+        "bugsinpy-black-4",
+        "bugsinpy-black-5",
+        "bugsinpy-cookiecutter-1",
+        "bugsinpy-cookiecutter-2",
+        "bugsinpy-cookiecutter-3",
+        "bugsinpy-cookiecutter-4",
+        "bugsinpy-fastapi-1",
+        "bugsinpy-fastapi-2",
+        "bugsinpy-fastapi-4",
+        "bugsinpy-fastapi-5",
+        "bugsinpy-pandas-1",
+        "bugsinpy-pandas-2",
+        "bugsinpy-pandas-3",
+        "bugsinpy-pandas-4",
+        "bugsinpy-pandas-5",
+        "bugsinpy-scrapy-2",
+        "bugsinpy-scrapy-5",
+        "bugsinpy-tornado-1",
+        "bugsinpy-tornado-3",
+        "bugsinpy-tornado-4",
+        "bugsinpy-tornado-5",
+        "bugsinpy-tqdm-1",
+        "bugsinpy-tqdm-2",
+        "bugsinpy-tqdm-3"
+      ],
+      "multiplicity_status": "HOLM_ADJUSTED",
+      "one_sided_97_5_lower_bound": -0.375,
+      "one_sided_97_5_upper_bound": 0.0,
+      "paired_table": {
+        "both_false": 7,
+        "both_true": 0,
+        "left_only": 0,
+        "right_only": 1
+      },
+      "right_arm": "F0_PARENT_FEDERATION",
+      "risk_difference": {
+        "bootstrap_repetitions": 10000,
+        "bootstrap_stratification": "PROJECT",
+        "bootstrap_unit": "TASK",
+        "ci95": [
+          -0.375,
+          0.0
+        ],
+        "estimate": -0.125,
+        "pair_count": 8,
+        "seed": 20260903
+      },
+      "risk_difference_orientation": "F2_ORION_METABOLIC_FULL - F0_PARENT_FEDERATION (E2 critical failure)"
+    },
+    {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+      "checkable_task_count": 9,
+      "ci95_excludes_zero": false,
+      "discordant_count": 1,
+      "discordant_left_win_probability": 0.0,
+      "discordant_left_win_probability_exact_ci95": [
+        0.0,
+        0.9750000000000001
+      ],
+      "exact_discordant_p": 1.0,
+      "holm_adjusted_p": 1.0,
+      "holm_p": 1.0,
+      "holm_rank": 2,
+      "holm_reject": false,
+      "holm_reject_at_alpha_0_05": false,
+      "left_arm": "F2_ORION_METABOLIC_FULL",
+      "missing_task_ids": [
+        "bugsinpy-ansible-1",
+        "bugsinpy-ansible-3",
+        "bugsinpy-ansible-5",
+        "bugsinpy-ansible-6",
+        "bugsinpy-black-2",
+        "bugsinpy-black-5",
+        "bugsinpy-cookiecutter-1",
+        "bugsinpy-cookiecutter-2",
+        "bugsinpy-cookiecutter-3",
+        "bugsinpy-cookiecutter-4",
+        "bugsinpy-fastapi-1",
+        "bugsinpy-fastapi-2",
+        "bugsinpy-fastapi-4",
+        "bugsinpy-fastapi-5",
+        "bugsinpy-pandas-1",
+        "bugsinpy-pandas-2",
+        "bugsinpy-pandas-3",
+        "bugsinpy-pandas-4",
+        "bugsinpy-pandas-5",
+        "bugsinpy-scrapy-2",
+        "bugsinpy-scrapy-3",
+        "bugsinpy-scrapy-5",
+        "bugsinpy-tornado-1",
+        "bugsinpy-tornado-3",
+        "bugsinpy-tornado-4",
+        "bugsinpy-tornado-5",
+        "bugsinpy-tqdm-1",
+        "bugsinpy-tqdm-2",
+        "bugsinpy-tqdm-3"
+      ],
+      "multiplicity_status": "HOLM_ADJUSTED",
+      "one_sided_97_5_lower_bound": -0.3333333333333333,
+      "one_sided_97_5_upper_bound": 0.0,
+      "paired_table": {
+        "both_false": 8,
+        "both_true": 0,
+        "left_only": 0,
+        "right_only": 1
+      },
+      "right_arm": "SIMPLE_DIRECT",
+      "risk_difference": {
+        "bootstrap_repetitions": 10000,
+        "bootstrap_stratification": "PROJECT",
+        "bootstrap_unit": "TASK",
+        "ci95": [
+          -0.3333333333333333,
+          0.0
+        ],
+        "estimate": -0.1111111111111111,
+        "pair_count": 9,
+        "seed": 20260903
+      },
+      "risk_difference_orientation": "F2_ORION_METABOLIC_FULL - SIMPLE_DIRECT (E2 critical failure)"
+    },
+    {
+      "analysis_unit": "TASK_AFTER_WITHIN_TASK_ARM_REPETITION_AGGREGATION",
+      "checkable_task_count": 6,
+      "ci95_excludes_zero": false,
+      "discordant_count": 0,
+      "discordant_left_win_probability": null,
+      "discordant_left_win_probability_exact_ci95": [
+        null,
+        null
+      ],
+      "exact_discordant_p": null,
+      "holm_adjusted_p": null,
+      "holm_p": null,
+      "holm_rank": null,
+      "holm_reject": false,
+      "holm_reject_at_alpha_0_05": false,
+      "left_arm": "F2_ORION_METABOLIC_FULL",
+      "missing_task_ids": [
+        "bugsinpy-ansible-1",
+        "bugsinpy-ansible-2",
+        "bugsinpy-ansible-3",
+        "bugsinpy-ansible-5",
+        "bugsinpy-ansible-6",
+        "bugsinpy-black-2",
+        "bugsinpy-black-3",
+        "bugsinpy-black-5",
+        "bugsinpy-cookiecutter-1",
+        "bugsinpy-cookiecutter-2",
+        "bugsinpy-cookiecutter-3",
+        "bugsinpy-cookiecutter-4",
+        "bugsinpy-fastapi-1",
+        "bugsinpy-fastapi-2",
+        "bugsinpy-fastapi-4",
+        "bugsinpy-fastapi-5",
+        "bugsinpy-pandas-1",
+        "bugsinpy-pandas-2",
+        "bugsinpy-pandas-3",
+        "bugsinpy-pandas-4",
+        "bugsinpy-pandas-5",
+        "bugsinpy-scrapy-2",
+        "bugsinpy-scrapy-3",
+        "bugsinpy-scrapy-4",
+        "bugsinpy-scrapy-5",
+        "bugsinpy-tornado-1",
+        "bugsinpy-tornado-3",
+        "bugsinpy-tornado-4",
+        "bugsinpy-tornado-5",
+        "bugsinpy-tqdm-1",
+        "bugsinpy-tqdm-2",
+        "bugsinpy-tqdm-3"
+      ],
+      "multiplicity_status": "CANNOT_CHECK_NO_DISCORDANT_PAIRS",
+      "one_sided_97_5_lower_bound": 0.0,
+      "one_sided_97_5_upper_bound": 0.0,
+      "paired_table": {
+        "both_false": 6,
+        "both_true": 0,
+        "left_only": 0,
+        "right_only": 0
+      },
+      "right_arm": "SAME_MODEL_REFLECTION",
+      "risk_difference": {
+        "bootstrap_repetitions": 10000,
+        "bootstrap_stratification": "PROJECT",
+        "bootstrap_unit": "TASK",
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "estimate": 0.0,
+        "pair_count": 6,
+        "seed": 20260903
+      },
+      "risk_difference_orientation": "F2_ORION_METABOLIC_FULL - SAME_MODEL_REFLECTION (E2 critical failure)"
+    }
+  ],
+  "E2_excluded_task_ids": [
+    "bugsinpy-ansible-4",
+    "bugsinpy-fastapi-3"
+  ],
+  "E2_exclusion_rule": [
+    "BASELINE_SUITE_NO_PASSING_TESTS"
+  ],
+  "authority": {
+    "grants_field_status": false,
+    "grants_publication_readiness": false,
+    "grants_scientific_truth": false
+  },
+  "bootstrap_draws": 10000,
+  "denominators": {
+    "E1": 40,
+    "E1_sensitivity": 39,
+    "E2": 38
+  },
+  "design": "E30_R13_CHANNEL_CONTRACT_RERUN_DESIGN_V1",
+  "endpoint_arithmetic_provenance": "build_tables, family, evaluate_gates and route imported from research/experiments/e30-r12/e30_r12_analysis.py under a sha256 pin; E30-R12's file is frozen terminal and is not modified by this study",
+  "gates": {
+    "GR0c": {
+      "envelopes_read": 480,
+      "expected_served_model": "glm-5.3",
+      "gate_id": "GR0c",
+      "name": "SERVED_MODEL_HOMOGENEITY",
+      "offender_count": 0,
+      "offenders": [],
+      "served_model_counts": {
+        "glm-5.3": 480
+      },
+      "status": "PASS"
+    },
+    "GR0d": {
+      "contract_id_counts": {
+        "thinking_disabled": 480
+      },
+      "contract_sha256_counts": {
+        "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab": 480
+      },
+      "envelopes_expected": 480,
+      "envelopes_read": 480,
+      "envelopes_with_a_channel_receipt": 480,
+      "expected_contract_id": "thinking_disabled",
+      "expected_contract_sha256": "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab",
+      "gate_id": "GR0d",
+      "model_calls_reporting_a_contract": 1080,
+      "model_calls_seen": 1080,
+      "name": "CHANNEL_CONTRACT_HOMOGENEITY",
+      "offender_count": 0,
+      "offenders": [],
+      "status": "PASS"
+    },
+    "GR0e": {
+      "envelopes_expected": 480,
+      "envelopes_with_a_channel_receipt": 480,
+      "gate_id": "GR0e",
+      "max_output_tokens_observed": 13885,
+      "model_calls_checked": 1080,
+      "name": "CHANNEL_BEHAVIOUR_CONFORMANCE",
+      "offender_count": 0,
+      "offenders": [],
+      "status": "PASS",
+      "stop_reason_counts": {
+        "end_turn": 480
+      }
+    },
+    "GR1": {
+      "gate_id": "GR1",
+      "name": "APPLY_RATE_DIAGNOSTIC",
+      "per_arm": {
+        "F0_PARENT_FEDERATION": {
+          "below_ceiling": false,
+          "below_comparator": true,
+          "patch_apply_failure_rate": 0.6916666666666667,
+          "pc_r6_comparator": 0.8
+        },
+        "F2_ORION_METABOLIC_FULL": {
+          "below_ceiling": false,
+          "below_comparator": true,
+          "patch_apply_failure_rate": 0.6916666666666667,
+          "pc_r6_comparator": 0.8167
+        },
+        "SAME_MODEL_REFLECTION": {
+          "below_ceiling": false,
+          "below_comparator": true,
+          "patch_apply_failure_rate": 0.7833333333333333,
+          "pc_r6_comparator": 0.8083
+        },
+        "SIMPLE_DIRECT": {
+          "below_ceiling": false,
+          "below_comparator": true,
+          "patch_apply_failure_rate": 0.7166666666666667,
+          "pc_r6_comparator": 0.7833
+        }
+      },
+      "registered_ceiling_failure_rate": 0.4,
+      "status": "FAIL"
+    },
+    "GR2": {
+      "direction": null,
+      "gate_id": "GR2",
+      "name": "PRIMARY_SEPARATION",
+      "rejected_contrasts": [],
+      "status": "NULL"
+    },
+    "GR3": {
+      "checkable_paired_tasks": 8,
+      "gate_id": "GR3",
+      "margin": 0.02,
+      "name": "CRITICAL_NON_INFERIORITY",
+      "one_sided_97_5_upper_bound": 0.0,
+      "risk_difference": -0.125,
+      "status": "PASS"
+    }
+  },
+  "generated_utc": "2026-09-03T18:08:19.820185+00:00",
+  "inputs": {
+    "analyzer_sha256": "ef195f7b8d6edafb9b48f3873eeb3f4041fcce6d87aad288e7ede1865428e3f2",
+    "campaign": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e30-r13-channelcontract-core4-rep3-20260903-427bfc90",
+    "design_sha256": "427bfc90e03c7504d4229a9e00d855931b560e9c40c66463757abdce3a924d24",
+    "e30_r12_analysis_sha256": "056996ebfea140f88aa32b81fe1ee9e950f679149d4a8a33da9cc8237b672723",
+    "gr0_sha256": "a16724cf9371b691a6ab44363875b6c0f8b30cbfba94af28a3096b1ffbf2cba5",
+    "gr0_status": null,
+    "rollup_sha256": "9351b4b8e72f90370a68fe0987687e1572950e9d297012b6f4a27d7e2e860b7e"
+  },
+  "no_rescue_clause": "E30-R11, E60, PC-R6 and E30-R12 receipts are frozen; nothing here revises, re-scores or reinterprets them. E30-R12 read no endpoint, so R13 is not a re-analysis of it; R13 is a new campaign identity with its own responses.",
+  "per_arm": {
+    "F0_PARENT_FEDERATION": {
+      "D1_below_comparator": true,
+      "D1_below_registered_ceiling": false,
+      "D1_evaluations": 120,
+      "D1_patch_applied": 37,
+      "D1_patch_apply_failure_rate": 0.6916666666666667,
+      "D1_patch_apply_rate": 0.30833333333333335,
+      "D1_patch_apply_rate_exact_ci95": [
+        0.22725511963383177,
+        0.399136764531952
+      ],
+      "D1_pc_r6_comparator_failure_rate": 0.8,
+      "E1_rate": 0.15,
+      "E1_rate_exact_ci95": [
+        0.0571022581545258,
+        0.2983526668395765
+      ],
+      "E1_rep_instability_task_count": 9,
+      "E1_tasks_checkable": 40,
+      "E1_tasks_success": 6,
+      "E2_rate": 0.09090909090909091,
+      "E2_tasks_any_critical_new_failure": 1,
+      "E2_tasks_checkable": 11,
+      "compile_failure_rate": 0.05405405405405406,
+      "none_reasons_per_evaluation": {
+        "NONE_BASELINE_UNAVAILABLE": 1,
+        "NONE_COMPILE_FAILED": 2,
+        "NONE_PATCH_NOT_APPLIED": 83,
+        "NONE_SUITE_NOT_COLLECTED": 1
+      }
+    },
+    "F2_ORION_METABOLIC_FULL": {
+      "D1_below_comparator": true,
+      "D1_below_registered_ceiling": false,
+      "D1_evaluations": 120,
+      "D1_patch_applied": 37,
+      "D1_patch_apply_failure_rate": 0.6916666666666667,
+      "D1_patch_apply_rate": 0.30833333333333335,
+      "D1_patch_apply_rate_exact_ci95": [
+        0.22725511963383177,
+        0.399136764531952
+      ],
+      "D1_pc_r6_comparator_failure_rate": 0.8167,
+      "E1_rate": 0.25,
+      "E1_rate_exact_ci95": [
+        0.12691479893284502,
+        0.41196198015142993
+      ],
+      "E1_rep_instability_task_count": 9,
+      "E1_tasks_checkable": 40,
+      "E1_tasks_success": 10,
+      "E2_rate": 0.0,
+      "E2_tasks_any_critical_new_failure": 0,
+      "E2_tasks_checkable": 11,
+      "compile_failure_rate": 0.0,
+      "none_reasons_per_evaluation": {
+        "NONE_BASELINE_UNAVAILABLE": 2,
+        "NONE_PATCH_NOT_APPLIED": 83
+      }
+    },
+    "SAME_MODEL_REFLECTION": {
+      "D1_below_comparator": true,
+      "D1_below_registered_ceiling": false,
+      "D1_evaluations": 120,
+      "D1_patch_applied": 26,
+      "D1_patch_apply_failure_rate": 0.7833333333333333,
+      "D1_patch_apply_rate": 0.21666666666666667,
+      "D1_patch_apply_rate_exact_ci95": [
+        0.14668149429210203,
+        0.30112851306566946
+      ],
+      "D1_pc_r6_comparator_failure_rate": 0.8083,
+      "E1_rate": 0.1,
+      "E1_rate_exact_ci95": [
+        0.02792541529421927,
+        0.23663739987609994
+      ],
+      "E1_rep_instability_task_count": 11,
+      "E1_tasks_checkable": 40,
+      "E1_tasks_success": 4,
+      "E2_rate": 0.0,
+      "E2_tasks_any_critical_new_failure": 0,
+      "E2_tasks_checkable": 6,
+      "compile_failure_rate": 0.0,
+      "none_reasons_per_evaluation": {
+        "NONE_BASELINE_UNAVAILABLE": 3,
+        "NONE_PATCH_NOT_APPLIED": 94
+      }
+    },
+    "SIMPLE_DIRECT": {
+      "D1_below_comparator": true,
+      "D1_below_registered_ceiling": false,
+      "D1_evaluations": 120,
+      "D1_patch_applied": 34,
+      "D1_patch_apply_failure_rate": 0.7166666666666667,
+      "D1_patch_apply_rate": 0.2833333333333333,
+      "D1_patch_apply_rate_exact_ci95": [
+        0.20485566786352266,
+        0.37282053842171126
+      ],
+      "D1_pc_r6_comparator_failure_rate": 0.7833,
+      "E1_rate": 0.175,
+      "E1_rate_exact_ci95": [
+        0.07338272935208517,
+        0.3277901333615859
+      ],
+      "E1_rep_instability_task_count": 9,
+      "E1_tasks_checkable": 40,
+      "E1_tasks_success": 7,
+      "E2_rate": 0.08333333333333333,
+      "E2_tasks_any_critical_new_failure": 1,
+      "E2_tasks_checkable": 12,
+      "compile_failure_rate": 0.029411764705882353,
+      "none_reasons_per_evaluation": {
+        "NONE_BASELINE_UNAVAILABLE": 1,
+        "NONE_COMPILE_FAILED": 1,
+        "NONE_PATCH_NOT_APPLIED": 86
+      }
+    }
+  },
+  "routing": {
+    "detail": "emission-side canonicalization did not materially raise the apply rate; E1/E2 are reported with the measured apply rate attached and the study does not claim to have tested repair",
+    "terminal": "INTERFACE_STILL_BROKEN"
+  },
+  "schema_version": "orion.v2.e30-r13-analysis.v1",
+  "seed": 20260903,
+  "stratification": "PROJECT"
+}

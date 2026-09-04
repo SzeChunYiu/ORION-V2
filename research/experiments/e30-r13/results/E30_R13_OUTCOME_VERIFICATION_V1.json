@@ -1,0 +1,185 @@
+{
+  "analysis_module": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e30-r13-channelcontract-core4-rep3-20260903-427bfc90/source/research/experiments/e30-r13/e30_r13_analysis.py",
+  "campaign": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e30-r13-channelcontract-core4-rep3-20260903-427bfc90",
+  "checks": [
+    {
+      "check_id": "V1_channel_gates_reproduce_from_envelopes",
+      "detail": "GR0d PASS over 480/480 envelopes and 1080 calls, 0 offenders; GR0e PASS, stop reasons {'end_turn': 480}, largest single call 13885 output tokens, 0 offenders",
+      "gr0d_recomputed": {
+        "contract_sha256_counts": {
+          "3312fc45f376f09feab984bb6ffe9f1dfadc5cfbb201288dc32e1ab7b50ba2ab": 480
+        },
+        "envelopes_expected": 480,
+        "envelopes_read": 480,
+        "envelopes_with_a_channel_receipt": 480,
+        "model_calls_reporting_a_contract": 1080,
+        "model_calls_seen": 1080,
+        "offender_count": 0,
+        "status": "PASS"
+      },
+      "gr0e_recomputed": {
+        "envelopes_with_a_channel_receipt": 480,
+        "max_output_tokens_observed": 13885,
+        "model_calls_checked": 1080,
+        "offender_count": 0,
+        "status": "PASS",
+        "stop_reason_counts": {
+          "end_turn": 480
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "check_id": "V2_predicates_replayed_on_e30_r12",
+      "detail": "119 E30-R12 envelopes read, 0 carrying a channel receipt: GR0d=COULD_NOT_CHECK GR0e=COULD_NOT_CHECK -> EXECUTION_NOT_COMPLETED__NO_ENDPOINT_READ. The gate does not silently pass an unreceipted campaign; it reports that it could not check and halts before any endpoint is read.",
+      "envelopes_read": 119,
+      "envelopes_with_a_channel_receipt": 0,
+      "gr0d_status": "COULD_NOT_CHECK",
+      "gr0e_status": "COULD_NOT_CHECK",
+      "status": "PASS",
+      "terminal": "EXECUTION_NOT_COMPLETED__NO_ENDPOINT_READ"
+    },
+    {
+      "check_id": "V3_gr0e_fires_on_the_e30_r12_signature",
+      "detail": "40 envelopes carrying E30-R12's measured signature (stop_reason max_tokens at the cap, zero text characters) -> GR0e FAIL with 80 offenders against the expected 80 (one truncation and one zero-text offence each); the offender LIST is capped at 50 entries, the COUNT is not, so the listed reasons {'CALL_TRUNCATED_AT_MAX_TOKENS': 25, 'CALL_EMITTED_ZERO_TEXT_CHARACTERS': 25} sum to 50, not to the count",
+      "offender_count": 80,
+      "offender_reasons_listed": {
+        "CALL_EMITTED_ZERO_TEXT_CHARACTERS": 25,
+        "CALL_TRUNCATED_AT_MAX_TOKENS": 25
+      },
+      "status": "PASS",
+      "synthetic_envelopes": 40
+    },
+    {
+      "check_id": "V3b_gr0e_silent_on_conforming_envelopes",
+      "detail": "the same 40 envelopes rewritten with end_turn and text present -> GR0e PASS, 0 offenders. A gate that cried wolf here would be switched off on its first real run.",
+      "status": "PASS"
+    },
+    {
+      "check_id": "V3c_gr0d_fires_on_contract_drift",
+      "detail": "one envelope out of 40 rewritten with a different contract sha256 -> GR0d FAIL, 1 offenders, 2 distinct contract digests. This is the E30-R12 drift mode -- a condition moving under a fixed served model id.",
+      "status": "PASS"
+    },
+    {
+      "check_id": "V4_per_arm_channel_load_matches_the_registered_contract",
+      "conforms": true,
+      "detail": "F0_PARENT_FEDERATION 360 calls over 120 envelopes (3.0/envelope, peak 12727 output tokens); F2_ORION_METABOLIC_FULL 360 calls over 120 envelopes (3.0/envelope, peak 12662 output tokens); SAME_MODEL_REFLECTION 240 calls over 120 envelopes (2.0/envelope, peak 13885 output tokens); SIMPLE_DIRECT 120 calls over 120 envelopes (1.0/envelope, peak 13529 output tokens). The registered execution-lane contract is {'F0_PARENT_FEDERATION': 3, 'F2_ORION_METABOLIC_FULL': 3, 'SAME_MODEL_REFLECTION': 2, 'SIMPLE_DIRECT': 1} calls per task-repetition and every arm matches it exactly; the measured loads span 3 distinct call totals across 4 arms. GR0d and GR0e aggregate over every call, so neither observes this breakdown and neither would notice arms that had collapsed onto the same call load.",
+      "distinct_call_totals": 3,
+      "per_arm": {
+        "F0_PARENT_FEDERATION": {
+          "calls_per_envelope": 3.0,
+          "envelopes": 120,
+          "max_output_tokens_observed": 12727,
+          "model_calls": 360
+        },
+        "F2_ORION_METABOLIC_FULL": {
+          "calls_per_envelope": 3.0,
+          "envelopes": 120,
+          "max_output_tokens_observed": 12662,
+          "model_calls": 360
+        },
+        "SAME_MODEL_REFLECTION": {
+          "calls_per_envelope": 2.0,
+          "envelopes": 120,
+          "max_output_tokens_observed": 13885,
+          "model_calls": 240
+        },
+        "SIMPLE_DIRECT": {
+          "calls_per_envelope": 1.0,
+          "envelopes": 120,
+          "max_output_tokens_observed": 13529,
+          "model_calls": 120
+        }
+      },
+      "registered_calls_per_task_repetition": {
+        "F0_PARENT_FEDERATION": 3,
+        "F2_ORION_METABOLIC_FULL": 3,
+        "SAME_MODEL_REFLECTION": 2,
+        "SIMPLE_DIRECT": 1
+      },
+      "status": "PASS"
+    },
+    {
+      "check_id": "V5_equal_apply_counts_are_coincidence_not_shared_state",
+      "detail": "F2_ORION_METABOLIC_FULL applied on 37 of 120 slots and F0_PARENT_FEDERATION on 37; the two sets share 25 slots and are distinct. Equal cardinality alone would not have distinguished coincidence from a shared evaluation path.",
+      "identical": false,
+      "intersection": 25,
+      "left_applied": 37,
+      "right_applied": 37,
+      "status": "PASS"
+    },
+    {
+      "check_id": "V6_e2_denominator_is_tasks_by_majority_not_countable_evaluations",
+      "countable_evaluations": {
+        "F0_PARENT_FEDERATION": 33,
+        "F2_ORION_METABOLIC_FULL": 35,
+        "SAME_MODEL_REFLECTION": 23,
+        "SIMPLE_DIRECT": 32
+      },
+      "detail": "reconstructed {'F2_ORION_METABOLIC_FULL': 11, 'F0_PARENT_FEDERATION': 11, 'SAME_MODEL_REFLECTION': 6, 'SIMPLE_DIRECT': 12} against published {'F2_ORION_METABOLIC_FULL': 11, 'F0_PARENT_FEDERATION': 11, 'SAME_MODEL_REFLECTION': 6, 'SIMPLE_DIRECT': 12}; countable EVALUATIONS per arm are {'F2_ORION_METABOLIC_FULL': 35, 'F0_PARENT_FEDERATION': 33, 'SAME_MODEL_REFLECTION': 23, 'SIMPLE_DIRECT': 32}, which is a different quantity and does not divide by three. E2 excludes ['bugsinpy-ansible-4', 'bugsinpy-fastapi-3'] with count, per the registered disposition.",
+      "excluded_task_ids": [
+        "bugsinpy-ansible-4",
+        "bugsinpy-fastapi-3"
+      ],
+      "published": {
+        "F0_PARENT_FEDERATION": 11,
+        "F2_ORION_METABOLIC_FULL": 11,
+        "SAME_MODEL_REFLECTION": 6,
+        "SIMPLE_DIRECT": 12
+      },
+      "reconstructed": {
+        "F0_PARENT_FEDERATION": 11,
+        "F2_ORION_METABOLIC_FULL": 11,
+        "SAME_MODEL_REFLECTION": 6,
+        "SIMPLE_DIRECT": 12
+      },
+      "status": "PASS"
+    },
+    {
+      "check_id": "V7_gr3_resolution_against_its_margin",
+      "detail": "GR3 is PASS at n=8, where the smallest risk difference the paired table can express is 1/8 = 0.1250. The registered margin is 0.02, which is 6.2x finer than the denominator can resolve, so no achievable outcome at this n separates non-inferiority within 0.02 from a 0.125 regression. The gate status is real; it is not informative at this denominator, and the observed upper bound of exactly 0.0 is the tell.",
+      "margin": 0.02,
+      "minimum_resolvable_risk_difference": 0.125,
+      "n": 8,
+      "ratio": 6.25,
+      "status": "PASS"
+    },
+    {
+      "check_id": "V8_terminal_is_the_first_firing_registered_clause",
+      "detail": "clauses firing in the registered order: ['INTERFACE_STILL_BROKEN']; emitted INTERFACE_STILL_BROKEN. GR1 FAIL preempts both PARENT_SUFFICIENT and NO_ARM_SEPARATION, so neither was reachable this run. Counterfactually, had GR1 passed, F0's E1 rate (0.15) is below F2's (0.25), so PARENT_SUFFICIENT would still not have fired and the terminal would have been NO_ARM_SEPARATION.",
+      "emitted_terminal": "INTERFACE_STILL_BROKEN",
+      "firing_clauses": [
+        "INTERFACE_STILL_BROKEN"
+      ],
+      "no_arm_separation_reachable": false,
+      "parent_sufficient_reachable": false,
+      "status": "PASS"
+    },
+    {
+      "baselines": 40,
+      "check_id": "V9_rollup_is_complete_over_published_denominators",
+      "detail": "complete=True; 40 baselines (0 missing); 160 arm-task keys = 4 arms x 40 tasks; 480 evaluation slots = that grid x 3 repetitions (0 missing). A three-second rollup over a complete grid is a fast read, not an empty one.",
+      "evaluation_keys": 160,
+      "evaluation_slots": 480,
+      "missing_baselines": [],
+      "missing_evaluations": 0,
+      "status": "PASS"
+    },
+    {
+      "archived_authorization": true,
+      "check_id": "V10_authorization_archived_and_guard_rearmed",
+      "detail": "live authorization present=False, archived present=True; seed revealed post-run as 20260903; registered denominators {'E1': 40, 'E1_sensitivity': 39, 'E2': 38}. A spent authorization left in place would let a later resubmission dispatch without a fresh one.",
+      "live_authorization": false,
+      "seed": 20260903,
+      "status": "PASS"
+    }
+  ],
+  "computes_no_endpoint_no_contrast_no_terminal": true,
+  "design": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e30-r13-channelcontract-core4-rep3-20260903-427bfc90/source/research/experiments/e30-r13/E30_R13_CHANNEL_CONTRACT_RERUN_DESIGN_V1.json",
+  "e30_r12_campaign": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e30-r12-applyclean-core4-rep3-20260902-8940881d",
+  "schema_version": "orion.v2.e30-r13-outcome-verification.v1",
+  "status_counts": {
+    "PASS": 12
+  },
+  "verifier_python": "3.11.5"
+}

@@ -4,14 +4,24 @@ E30-R11's registered question, asked again under a **registered channel request-
 contract**. A new prospective study under a **new campaign identity**: E30-R11's, E60's,
 PC-R6's and E30-R12's records stay frozen terminal.
 
+**The run is complete. Terminal: `INTERFACE_STILL_BROKEN`** — read
+`E30_R13_OUTCOME_RECEIPT.md` first. 480/480 responses, every registered gate computed,
+both endpoints read; patches still do not apply (GR1 FAIL on all four arms), so no
+separation claim is made and no repair is claimed.
+
 | file | what it is |
 |---|---|
+| `E30_R13_OUTCOME_RECEIPT.md` | **what happened** — terminal, endpoints, gates, and what none of it licenses |
 | `E30_R13_CHANNEL_CONTRACT_RERUN_DESIGN_V1.json` | canonical registered design (governs) |
 | `E30_R13_CHANNEL_CONTRACT_RERUN_DESIGN_V1.md` | the same design in prose |
 | `e30_r13_channel_calibration.py` | instrument measurement: what the channel does, per call shape |
 | `e30_r13_budget_note.py` | budget derivation + wall-time feasibility; no outcome input |
 | `e30_r13_fullreg_eval.py` | evaluation lane — the PC-R6 evaluator, one `e30r13` cell |
 | `e30_r13_analysis.py` | endpoints imported from E30-R12 under a sha pin, plus GR0d and GR0e |
+| `e30_r13_execution_tally.py` | descriptive transcription of the envelopes; no endpoint, contrast or gate |
+| `e30_r13_outcome_verification.py` | post-run reconciliation and gate non-vacuity checks; `PASS`/`FAIL`/`COULD_NOT_CHECK` carry distinct exit codes 0/4/5 |
+| `results/E30_R13_OUTCOME_ROLLUP_V1.json` / `.md` | the frozen analysis output, byte-identical to the campaign copy |
+| `results/E30_R13_OUTCOME_VERIFICATION_V1.json` | 12 checks, 12 PASS, exit 0 |
 | `sbatch/` | LUNARC drivers: setup → agents → frozen lane → GR0 → suite → rollup+analysis |
 | `../../../tests/unit/test_e30_r13_lane.py` | known-answer controls, including the negative ones |
 
@@ -52,6 +62,16 @@ The arithmetic is **imported** from `e30_r12_analysis.py` under a sha256 pin, no
 
 **`PARENT_SUFFICIENT` and `NO_ARM_SEPARATION` are registered, legitimate terminals.**
 If the arms do not separate once patches apply, that is reported as plainly as a positive.
+Neither fired in this run: GR1's failure precedes both in the registered order, so
+**patches never applied often enough for the separation question to be reached.**
+
+**What the completed run established about the gate.** GR0d and GR0e both PASSED across
+480/480 envelopes and 1080/1080 calls. Replayed read-only over E30-R12's 119 written
+envelopes — none of which carries a channel receipt — the same predicates return
+`COULD_NOT_CHECK` and route to `EXECUTION_NOT_COMPLETED__NO_ENDPOINT_READ`, R12's actual
+terminal: the gate refuses an unreceipted campaign rather than passing it. Fed R12's
+measured signature the predicates FAIL, and fed conforming envelopes they stay silent, so
+their `0 offenders` is a measurement rather than a gate that never ran.
 
 **R13 vs R11 is descriptive only**, twice over: R11's envelopes record no served model id,
 and R11 ran under no registered request-body contract. **R13 vs R12 is not a comparison at
