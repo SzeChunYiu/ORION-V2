@@ -76,3 +76,36 @@ These are **residual candidates**, not novelty claims. M0 establishes only a coh
 ## Source boundary
 
 Primary/theorem-bearing sources used above were checked on 2026-09-04. Current novelty is **not established**. This is a parent map, not a literature-saturation terminal; three clean post-material-addition passes are still required by #197 before any priority claim.
+
+## Executable rows — the parents #194 named, each *run* on one registered witness (checker F7, `../reference/kso_m0_freeze_checks_v1.py`; results `../results/KSO_M0_FREEZE_RESULTS_V1.json`)
+
+Witness `W`: seed `s → a`; `a → b` (b's label `{{0}}`), `a → z`; `b → c`, `z → c`; `c → d`;
+revocation `R = {0}`. The question for each parent is the same: after `R`, does `b` stop reacting,
+and does `z` — which never depended on `b` — keep exactly its share?
+
+| parent (primary source) | owns activation | owns retraction | what it does on `W` after `R = {0}` | label-gated activation with exact-share retraction |
+|---|---|---|---|---|
+| spreading activation — Collins & Loftus, *Psychological Review* 82(6), 1975, DOI `10.1037/0033-295X.82.6.407` | yes | no | `b` keeps positive activation (no labels to gate on) | no |
+| semantic networks / marker passing — Quillian, in Minsky (ed.) *Semantic Information Processing*, 1968 | yes (markers) | no | marker reaches `b` and everything `b` feeds | no |
+| ACT-R declarative activation — Anderson, *Rules of the Mind*, 1993; Anderson et al., *Psychological Review* 111(4), 2004, DOI `10.1037/0033-295X.111.4.1036` | yes (`A_i = B_i + Σ_j W_j S_ji`) | no | `b` receives spreading strength from its source regardless of warrant | no |
+| Hopfield associative memory — *PNAS* 79(8), 1982, DOI `10.1073/pnas.79.8.2554` | yes (recall) | no | the "revoked" pattern remains a stable fixed point of the unchanged weights | no |
+| case-based reasoning retrieval — Kolodner, *Case-Based Reasoning*, 1993; Aamodt & Plaza, *AI Communications* 7(1), 1994, DOI `10.3233/AIC-1994-7104` | yes (similarity ranking) | yes (delete the case) | deleting case `b` **raises** `z`'s share (survivors renormalised) | no — retraction redistributes |
+| knowledge-graph retrieval / random walk with restart — Tong, Faloutsos & Pan, ICDM 2006, DOI `10.1109/ICDM.2006.70`; personalised PageRank (Andersen, Chung & Lang, FOCS 2006) | yes | yes (delete the node) | deleting `b` and renormalising rows **raises** unrelated `z` (`navigation_matrix_bad_renormalize`) | no — retraction redistributes |
+| JTMS dependency-directed retraction — Doyle, *Artificial Intelligence* 12(3), 1979, DOI `10.1016/0004-3702(79)90008-0` | no | yes (IN/OUT) | IN/OUT status equals the KSO live set exactly; there is no activation quantity to take a share from | no — no activation |
+| ATMS labels — de Kleer, *Artificial Intelligence* 28(2), 1986 | no | yes (environments) | labels are the KSO profiles verbatim; no dynamics | no — no activation |
+| **product**: (JTMS/ATMS gate) ∘ (spreading activation with pre-revocation denominators) | yes | yes | **equals the KSO law entry-wise on `W`** | yes — as a product of two parents |
+
+**Finding (shown, not assumed).** 0 of 8 single parents owns label-gated activation with
+exact-share retraction; each owns activation or retraction, and the two that own both (CBR, KG/RWR)
+retract by deletion-and-renormalisation, which is precisely the planted defect of KS-T04. The KSO
+law is reproduced exactly by the product of a truth-maintenance gate and spreading activation over
+frozen denominators. **Consequence for the residual ledger:** the coupling is a design choice
+(*which* normalisation survives revocation), not a mechanism no parent has; it enters the table as
+`PARENT_PRODUCT_OWNED`, and any KSO claim about retraction dynamics has this product as its
+first-right-of-refusal comparator. M1 (`../results/KSO_M1_POPULATION_RECEIPT_V1.json`) shows the
+product and the KSO agreeing on 400 planted revocations over 50 ME-X1 worlds while the renormalising
+parents differ on 16 of them.
+
+| KSO mechanic | strongest parent | adopted rule | residual status |
+|---|---|---|---|
+| label-gated activation with exact-share retraction (#194's "OCM delta") | JTMS/ATMS gate ∘ PPR with frozen denominators | adopt the product; the only choice is the denominator convention | `PARENT_PRODUCT_OWNED` |
