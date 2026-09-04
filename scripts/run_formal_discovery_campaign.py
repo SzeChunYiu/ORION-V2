@@ -145,25 +145,60 @@ def dispatch(plan_path: Path, campaign_root: Path, studies: list[str], concurren
     )
 
 
+def executed_arms(workdir: Path, registered: list[str]) -> list[str]:
+    """Arm ids with a responses/ directory on disk - evidence, not intent.
+
+    Reads the filesystem rather than the requested arm list so an arm that was
+    registered and never dispatched is detected here instead of vanishing from the
+    denominator.
+    """
+    responses = workdir / "responses"
+    found = {path.name for path in responses.iterdir() if path.is_dir()} if responses.exists() else set()
+    return sorted(found | {arm for arm in registered if (responses / arm).exists()})
+
+
 def evaluate(plan_path: Path, campaign_root: Path, studies: list[str]) -> None:
     plan = load_json(plan_path)
     suite = load_suite()
     aggregate: dict[str, Any] = {}
+    coverage: dict[str, Any] = {}
     for study_id in studies:
         workdir = campaign_root / study_id
         arms = list(plan["studies"][study_id]["arms"])
-        suite.evaluate(workdir, arms)
+        # The registered denominator comes from the PLAN, never from whatever was
+        # dispatched. Passing `arms` for both would make coverage self-certifying.
+        executed = executed_arms(workdir, arms)
+        suite.evaluate(workdir, executed, arms)
         summary = load_json(workdir / "EVALUATION_SUMMARY.json")
         aggregate[study_id] = summary["summary"]
+        coverage[study_id] = summary["coverage"]
     all_valid = all(
         all(arm_summary.get("run_valid", True) for arm_summary in study_summary.values())
         for study_summary in aggregate.values()
     )
+    totals = {
+        key: sum(row[key] for row in coverage.values())
+        for key in (
+            "registered_dispatches",
+            "ran_dispatches",
+            "valid_dispatches",
+            "registered_never_ran_dispatches",
+            "ran_but_unregistered_dispatches",
+        )
+    }
+    totals["coverage_complete"] = all(row["coverage_complete"] for row in coverage.values())
+    totals["studies_with_unrun_registered_arms"] = sorted(
+        sid for sid, row in coverage.items() if row["registered_arms_never_run"]
+    )
     write_json(
         campaign_root / "CAMPAIGN_EVALUATION_SUMMARY.json",
         {
-            "schema_version": "orion.v2.formal-discovery-campaign-evaluation.v1",
+            "schema_version": "orion.v2.formal-discovery-campaign-evaluation.v2",
             "all_runs_valid": all_valid,
+            # registered / ran / valid, always together. `all_runs_valid` alone is a
+            # statement about the executed subset and is not a coverage claim.
+            "coverage_totals": totals,
+            "coverage": coverage,
             "studies": aggregate,
             "authority": {
                 "grants_scientific_truth": False,
@@ -185,18 +220,33 @@ def status(plan_path: Path, campaign_root: Path, studies: list[str]) -> dict[str
         dispatched = (workdir / "DISPATCH_RECEIPT.json").exists()
         evaluated = (workdir / "EVALUATION_SUMMARY.json").exists()
         spec = plan["studies"][study_id]
+        registered = list(spec["arms"])
+        ran = executed_arms(workdir, registered) if workdir.exists() else []
+        never_ran = [arm for arm in registered if arm not in set(ran)]
+        unregistered = [arm for arm in ran if arm not in set(registered)]
         rows.append(
             {
                 "study_id": study_id,
                 "registered_tasks": spec["tasks"],
-                "registered_arms": len(spec["arms"]),
+                "registered_arms": len(registered),
+                "executed_arms": len(ran),
+                "registered_dispatches": spec["tasks"] * len(registered),
+                "ran_dispatches": spec["tasks"] * len(ran),
+                "registered_never_ran_dispatches": spec["tasks"] * len(never_ran),
+                "ran_but_unregistered_dispatches": spec["tasks"] * len(unregistered),
+                "registered_arms_never_run": never_ran,
+                "executed_arms_not_registered": unregistered,
                 "prepared": frozen,
                 "dispatched": dispatched,
                 "evaluated": evaluated,
             }
         )
     result = {
-        "schema_version": "orion.v2.formal-discovery-campaign-status.v1",
+        "schema_version": "orion.v2.formal-discovery-campaign-status.v2",
+        "registered_dispatches": sum(row["registered_dispatches"] for row in rows),
+        "ran_dispatches": sum(row["ran_dispatches"] for row in rows),
+        "registered_never_ran_dispatches": sum(row["registered_never_ran_dispatches"] for row in rows),
+        "ran_but_unregistered_dispatches": sum(row["ran_but_unregistered_dispatches"] for row in rows),
         "studies": rows,
         "excluded_from_generated_campaign": plan.get("excluded_from_generated_campaign", {}),
     }
