@@ -197,3 +197,70 @@ prompt, no mandate, no served-model channel, and therefore no channel to drift.
 4. **"Could not check" is never "checked and fine."** Both the repaired Stage-2c checker and the
    Stage-2e checker give it a distinct disposition and a distinct exit code (5), separate from a
    failed control (4) and from a clean pass (0).
+
+## 8. Stage-2e result: the last lever cannot be tested on this substrate
+
+`E40_M5P_STAGE2E_OUTCOME_RECEIPT.md` carries the full record. Disposition
+**`E40_PROBE_PRECONDITION_UNMET__REPLICAS_DISJOINT`**, all controls PASS, 34/34 envelopes
+homogeneous, zero model calls.
+
+| quantity | k562 | rpe1 | pooled |
+|---|---|---|---|
+| seed-only J (same config, seeds differ) | 0.011–0.021 | 0.036–0.051 | **0.030** |
+| config-only J (same seed, configs differ) | 0.011–0.015 | 0.037–0.045 | 0.027 |
+| determinism repeat J (same run twice) | **1.0** | **1.0** | — |
+
+The substrate is deterministic given a seed and the seed alone erases 97–98 % of the graph: under
+`subset_data = 0.05` the seed picks the 5 % cell subsample and the inferred graph is sampling noise
+on top of a ~3 % stable core. Stage-2c's J band is exactly this floor. The consensus statistic
+therefore has no dynamic range **under any prompt form, mandate, or served model** — none of which
+touch the substrate — so the seed-replica gate G1 has nothing to rank, and the open half (b) of the
+revival in §4 is closed too: a mandate-free arm cannot rescue a statistic with no range.
+
+Descriptive, non-gating, and worth carrying: **the five knobs the metabolic loop tunes move the
+output graph less than the seed does** (config-only 0.027 vs seed-only 0.030). On this substrate the
+loop is optimising below the noise floor of its own output. That is not a registered finding of any
+E40 stage; it is the constraint that points at the adjacent niche.
+
+## 9. Disposition
+
+**The E40 line is CLOSED, as a well-measured negative whose last named lever is untestable on the
+pinned substrate.** Filed disposition: `E40_LINE_CLOSED__NEGATIVE_AND_LAST_LEVER_UNTESTABLE`.
+
+Precisely what that is and is not:
+
+- **It is** the registered drag negative — parent beats mechanism 11–1 (m2, mandate-free), 10–2
+  (m3), 11–1 (m4 CT1), reproduced again at 11–1 in Stage-2c's G0 — with the programme's revival
+  discipline applied: attribution to one stage (Stage-2d, `PROMPT_IMPLICATED`), the lever followed
+  (mandate removed), the re-test on the strongest parent already valid in m2 and **not** rescuing
+  the result, and the residual question (a readable probe) resolved by Stage-2e as unanswerable
+  here.
+- **It is not** the registered `E40_TERMINAL`. That terminal is awarded only by a valid probe run
+  with G0 passed and one of G1–G4 failed (Stage-2c design §6, row 2). No such run exists, and
+  Stage-2e establishes that none can be produced on this substrate. **The single artifact that
+  would award the registered terminal is a valid seed-replica probe run, and it is unobtainable
+  without a substrate change — which the design itself classes as a new mechanism class, outside
+  the E40 line.** Stated once, plainly: the registered terminal is unreachable, not merely unreached.
+- **m6 is not authorized.** No F2 claim, no component claim, no revival of any frozen negative.
+- **Stage-2c's disposition stays `CHECKER_INVALID__NO_VERDICT`** and Stage-2d's stays
+  `PROMPT_IMPLICATED`; nothing here re-reads either.
+- **The TP-family secondary is not promoted** (§5). It is named as the registered primary of a
+  possible *new* line, which would need its own freeze and its own orientation registered before
+  any data.
+- **What a successor line inherits as constraints:** (i) `subset_data = 0.05` on `gies`/weissmann
+  puts the loop's whole config space below the seed-noise floor of its output — any mechanism
+  claim on this substrate must first show its lever moves the graph more than the seed does;
+  (ii) the served model of every E40 stage before Stage-2c is INFERRED, not verified; (iii) a
+  cycle-1 mandate of any specificity suppresses exploration on `glm-5.3` (Stage-2d), so mandated
+  quantities must be injected out-of-band, never through the prompt.
+
+## 10. Custody of this receipt
+
+Lane branch `lane/e40-closure-20260903` (PR #253). Files: this receipt;
+`E40_M5P_STAGE2C_CHECKER_REPAIR_RECEIPT_R1.md`; `E40_M5P_STAGE2E_OVERLAP_PRECONDITION_DESIGN_V1.{md,json}`;
+`E40_M5P_STAGE2E_OUTCOME_RECEIPT.md`; `rollup-m5p-stage2e/`; `e40_m5p_stage2e_overlap_precondition.py`;
+`sbatch/e40_m5p_stage2e_{r1,eval_r1}.sbatch`; `tests/unit/test_e40_m5p_stage2{c,e}.py`. Every number in
+§1, §5 and §8 was re-read from the archived rollup JSON files in this directory by script, not
+copied from prose; the m4 CT3 orientation reversal was read from `rollup-m4/…json`
+`reproduction.tp_family_by_orientation`. Tests: 37 pass under Python 3.13.12 (project floor ≥3.12);
+the Stage-2e selftest passes on the node under the campaign venv (3.11.5) and locally.
