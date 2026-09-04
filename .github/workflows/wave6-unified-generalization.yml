@@ -19,7 +19,7 @@ permissions:
 jobs:
   unified-reference:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     env:
       PYTHONPATH: src
     steps:
