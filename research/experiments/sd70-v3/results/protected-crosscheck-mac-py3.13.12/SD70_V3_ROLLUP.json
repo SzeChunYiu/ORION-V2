@@ -1,0 +1,2108 @@
+{
+  "ablations": {
+    "no_failure_evidence": {
+      "b": 12,
+      "bootstrap": 4000,
+      "c": 16,
+      "ci_high": 0.025,
+      "ci_low": -0.058333333333333334,
+      "level": 0.95,
+      "midp_one_sided_a_gt_b": 0.77087084017694,
+      "n": 240,
+      "point": -0.016666666666666666,
+      "seed": 20260902
+    },
+    "no_parent_federation": {
+      "b": 18,
+      "bootstrap": 4000,
+      "c": 6,
+      "ci_high": 0.09166666666666666,
+      "ci_low": 0.0125,
+      "level": 0.95,
+      "midp_one_sided_a_gt_b": 0.007316648960113525,
+      "n": 240,
+      "point": 0.05,
+      "seed": 20260902
+    },
+    "no_recursion": {
+      "b": 9,
+      "bootstrap": 4000,
+      "c": 11,
+      "ci_high": 0.029166666666666667,
+      "ci_low": -0.04583333333333333,
+      "level": 0.95,
+      "midp_one_sided_a_gt_b": 0.6681880950927734,
+      "n": 240,
+      "point": -0.008333333333333333,
+      "seed": 20260902
+    }
+  },
+  "arm_divergence": {
+    "pairs": [
+      {
+        "all_prompts_differ": true,
+        "all_requests_differ": true,
+        "pair": [
+          "F2_RECURSIVE_META_DISCOVERY_FULL",
+          "F2_STATIC_NO_RECURSION"
+        ],
+        "prompts_differing": 240,
+        "requests_differing": 240,
+        "shared_tasks": 240
+      },
+      {
+        "all_prompts_differ": true,
+        "all_requests_differ": true,
+        "pair": [
+          "F2_RECURSIVE_META_DISCOVERY_FULL",
+          "F2_FULL_MINUS_FAILURE_EVIDENCE"
+        ],
+        "prompts_differing": 240,
+        "requests_differing": 240,
+        "shared_tasks": 240
+      },
+      {
+        "all_prompts_differ": true,
+        "all_requests_differ": true,
+        "pair": [
+          "F2_RECURSIVE_META_DISCOVERY_FULL",
+          "F2_FULL_MINUS_PARENT_FEDERATION"
+        ],
+        "prompts_differing": 240,
+        "requests_differing": 240,
+        "shared_tasks": 240
+      }
+    ],
+    "passed": true,
+    "schema_version": "orion.v2.sd70-v3.arm-divergence.v1",
+    "structural": [
+      {
+        "assertion": "F2_FULL_MINUS_PARENT_FEDERATION has no parent_advisory",
+        "denominator": 240,
+        "passed": true,
+        "violations": 0
+      },
+      {
+        "assertion": "F2_FULL_MINUS_FAILURE_EVIDENCE has no FAILURE episode",
+        "denominator": 240,
+        "passed": true,
+        "violations": 0
+      },
+      {
+        "advisory_present": 240,
+        "assertion": "POSITIVE CONTROL: the full arm DOES carry parent_advisory and FAILURE episodes (if this fails the two checks above are vacuous)",
+        "denominator": 240,
+        "failure_present": 240,
+        "passed": true
+      }
+    ]
+  },
+  "arms": {
+    "DECISION_LIST_PARENT": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 152,
+      "critical_false_direction": 13,
+      "critical_false_direction_rate": 0.05416666666666667,
+      "exact_accuracy": 0.6333333333333333,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.0004284166663031404,
+        "wall_seconds_total": 0.1028199999127537
+      },
+      "wilson95": [
+        0.5707115541361134,
+        0.6917540672128042
+      ]
+    },
+    "DECISION_LIST_PARENT__LP": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 57,
+      "critical_false_direction": 71,
+      "critical_false_direction_rate": 0.29583333333333334,
+      "exact_accuracy": 0.2375,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.0004340255332256978,
+        "wall_seconds_total": 0.10416612797416747
+      },
+      "wilson95": [
+        0.18806266832991592,
+        0.29520813963940246
+      ]
+    },
+    "DECISION_LIST_PARENT__QS": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 67,
+      "critical_false_direction": 13,
+      "critical_false_direction_rate": 0.05416666666666667,
+      "exact_accuracy": 0.2791666666666667,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.0004286088718799874,
+        "wall_seconds_total": 0.10286612925119698
+      },
+      "wilson95": [
+        0.22623372366580866,
+        0.3390575909750465
+      ]
+    },
+    "F0_PARENT_FEDERATION": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 173,
+      "critical_false_direction": 10,
+      "critical_false_direction_rate": 0.041666666666666664,
+      "exact_accuracy": 0.7208333333333333,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.010429170679223413,
+        "wall_seconds_total": 2.503000963013619
+      },
+      "wilson95": [
+        0.6609424090249535,
+        0.7737662763341914
+      ]
+    },
+    "F0_PARENT_FEDERATION__LP": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 51,
+      "critical_false_direction": 73,
+      "critical_false_direction_rate": 0.30416666666666664,
+      "exact_accuracy": 0.2125,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.010392092872643843,
+        "wall_seconds_total": 2.4941022894345224
+      },
+      "wilson95": [
+        0.16548476475374232,
+        0.26857373921265404
+      ]
+    },
+    "F0_PARENT_FEDERATION__QS": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 68,
+      "critical_false_direction": 8,
+      "critical_false_direction_rate": 0.03333333333333333,
+      "exact_accuracy": 0.2833333333333333,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.010347042518939512,
+        "wall_seconds_total": 2.483290204545483
+      },
+      "wilson95": [
+        0.2300847737601461,
+        0.34340859154786263
+      ]
+    },
+    "F2_FULL_MINUS_FAILURE_EVIDENCE": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 168,
+      "critical_false_direction": 9,
+      "critical_false_direction_rate": 0.0375,
+      "exact_accuracy": 0.7,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 3983201,
+        "model_calls": 240,
+        "output_tokens": 128547,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 4111748,
+        "wall_seconds_mean": 46.28559321165085,
+        "wall_seconds_total": 11108.542370796204
+      },
+      "wilson95": [
+        0.6392449572501318,
+        0.7544534747732448
+      ]
+    },
+    "F2_FULL_MINUS_PARENT_FEDERATION": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 152,
+      "critical_false_direction": 12,
+      "critical_false_direction_rate": 0.05,
+      "exact_accuracy": 0.6333333333333333,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 3970448,
+        "model_calls": 240,
+        "output_tokens": 181917,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 4152365,
+        "wall_seconds_mean": 49.39199910859267,
+        "wall_seconds_total": 11854.07978606224
+      },
+      "wilson95": [
+        0.5707115541361134,
+        0.6917540672128042
+      ]
+    },
+    "F2_RECURSIVE_META_DISCOVERY_FULL": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 164,
+      "critical_false_direction": 10,
+      "critical_false_direction_rate": 0.041666666666666664,
+      "exact_accuracy": 0.6833333333333333,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 4140356,
+        "model_calls": 240,
+        "output_tokens": 169416,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 4309772,
+        "wall_seconds_mean": 48.603565553824104,
+        "wall_seconds_total": 11664.855732917786
+      },
+      "wilson95": [
+        0.621987309049706,
+        0.7389029203050558
+      ]
+    },
+    "F2_RECURSIVE_META_DISCOVERY_FULL__LP": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2711111111111111,
+      "correct": 18,
+      "critical_false_direction": 20,
+      "critical_false_direction_rate": 0.3333333333333333,
+      "exact_accuracy": 0.3,
+      "n": 60,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 60,
+        "input_tokens": 1033033,
+        "model_calls": 60,
+        "output_tokens": 45532,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 1078565,
+        "wall_seconds_mean": 50.205469353993735,
+        "wall_seconds_total": 3012.328161239624
+      },
+      "wilson95": [
+        0.19898166138769108,
+        0.42508707946914487
+      ]
+    },
+    "F2_RECURSIVE_META_DISCOVERY_FULL__QS": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2711111111111111,
+      "correct": 17,
+      "critical_false_direction": 4,
+      "critical_false_direction_rate": 0.06666666666666667,
+      "exact_accuracy": 0.2833333333333333,
+      "n": 60,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 60,
+        "input_tokens": 1032842,
+        "model_calls": 60,
+        "output_tokens": 37663,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 1070505,
+        "wall_seconds_mean": 47.606272939840956,
+        "wall_seconds_total": 2856.376376390457
+      },
+      "wilson95": [
+        0.18506828428432714,
+        0.4076728516439118
+      ]
+    },
+    "F2_STATIC_NO_RECURSION": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 166,
+      "critical_false_direction": 10,
+      "critical_false_direction_rate": 0.041666666666666664,
+      "exact_accuracy": 0.6916666666666667,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 4034675,
+        "model_calls": 240,
+        "output_tokens": 148507,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 4183182,
+        "wall_seconds_mean": 40.6206700215737,
+        "wall_seconds_total": 9748.960805177689
+      },
+      "wilson95": [
+        0.6306052871856103,
+        0.7466890435034588
+      ]
+    },
+    "FIXED_META_LESSON": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 155,
+      "critical_false_direction": 14,
+      "critical_false_direction_rate": 0.058333333333333334,
+      "exact_accuracy": 0.6458333333333334,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 2.0097945040712753e-05,
+        "wall_seconds_total": 0.004823506809771061
+      },
+      "wilson95": [
+        0.5834633143794731,
+        0.7036084589709056
+      ]
+    },
+    "FIXED_META_LESSON__LP": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 60,
+      "critical_false_direction": 69,
+      "critical_false_direction_rate": 0.2875,
+      "exact_accuracy": 0.25,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 1.902079675346613e-05,
+        "wall_seconds_total": 0.004564991220831871
+      },
+      "wilson95": [
+        0.1994465391717465,
+        0.30843042079903293
+      ]
+    },
+    "FIXED_META_LESSON__QS": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 65,
+      "critical_false_direction": 20,
+      "critical_false_direction_rate": 0.08333333333333333,
+      "exact_accuracy": 0.2708333333333333,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 1.8243727390654384e-05,
+        "wall_seconds_total": 0.004378494573757052
+      },
+      "wilson95": [
+        0.2185494230887204,
+        0.3303377902178274
+      ]
+    },
+    "MATCHED_CASE_PARENT": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 141,
+      "critical_false_direction": 21,
+      "critical_false_direction_rate": 0.0875,
+      "exact_accuracy": 0.5875,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 1.8099824471088746e-05,
+        "wall_seconds_total": 0.004343957873061299
+      },
+      "wilson95": [
+        0.5243172909706177,
+        0.6479257730396095
+      ]
+    },
+    "MATCHED_CASE_PARENT__LP": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 61,
+      "critical_false_direction": 67,
+      "critical_false_direction_rate": 0.2791666666666667,
+      "exact_accuracy": 0.25416666666666665,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 1.8335094985862573e-05,
+        "wall_seconds_total": 0.0044004227966070175
+      },
+      "wilson95": [
+        0.20325441583962553,
+        0.3128245947983075
+      ]
+    },
+    "MATCHED_CASE_PARENT__QS": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 67,
+      "critical_false_direction": 18,
+      "critical_false_direction_rate": 0.075,
+      "exact_accuracy": 0.2791666666666667,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 1.7842210945673286e-05,
+        "wall_seconds_total": 0.004282130626961589
+      },
+      "wilson95": [
+        0.22623372366580866,
+        0.3390575909750465
+      ]
+    },
+    "MAXMARGIN_PARENT": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 166,
+      "critical_false_direction": 11,
+      "critical_false_direction_rate": 0.04583333333333333,
+      "exact_accuracy": 0.6916666666666667,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.006576086644781753,
+        "wall_seconds_total": 1.5782607947476208
+      },
+      "wilson95": [
+        0.6306052871856103,
+        0.7466890435034588
+      ]
+    },
+    "MAXMARGIN_PARENT__LP": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 51,
+      "critical_false_direction": 76,
+      "critical_false_direction_rate": 0.31666666666666665,
+      "exact_accuracy": 0.2125,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.0065563816713014,
+        "wall_seconds_total": 1.573531601112336
+      },
+      "wilson95": [
+        0.16548476475374232,
+        0.26857373921265404
+      ]
+    },
+    "MAXMARGIN_PARENT__QS": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 69,
+      "critical_false_direction": 6,
+      "critical_false_direction_rate": 0.025,
+      "exact_accuracy": 0.2875,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.006878440476915178,
+        "wall_seconds_total": 1.6508257144596428
+      },
+      "wilson95": [
+        0.23394165218682478,
+        0.3477537637883376
+      ]
+    },
+    "NAIVE_BAYES_PARENT": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 150,
+      "critical_false_direction": 18,
+      "critical_false_direction_rate": 0.075,
+      "exact_accuracy": 0.625,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 2.759932734382649e-05,
+        "wall_seconds_total": 0.006623838562518358
+      },
+      "wilson95": [
+        0.5622343547480164,
+        0.6838271652665939
+      ]
+    },
+    "NAIVE_BAYES_PARENT__LP": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 56,
+      "critical_false_direction": 76,
+      "critical_false_direction_rate": 0.31666666666666665,
+      "exact_accuracy": 0.23333333333333334,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 2.8517549314225713e-05,
+        "wall_seconds_total": 0.006844211835414171
+      },
+      "wilson95": [
+        0.18428167904109316,
+        0.2907870782610716
+      ]
+    },
+    "NAIVE_BAYES_PARENT__QS": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 69,
+      "critical_false_direction": 19,
+      "critical_false_direction_rate": 0.07916666666666666,
+      "exact_accuracy": 0.2875,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 2.74326914222911e-05,
+        "wall_seconds_total": 0.006583845941349864
+      },
+      "wilson95": [
+        0.23394165218682478,
+        0.3477537637883376
+      ]
+    },
+    "PAIRWISE_LINEAR_PARENT": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 169,
+      "critical_false_direction": 12,
+      "critical_false_direction_rate": 0.05,
+      "exact_accuracy": 0.7041666666666667,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.0010390885193676997,
+        "wall_seconds_total": 0.24938124464824796
+      },
+      "wilson95": [
+        0.6435730808997967,
+        0.7583274017907337
+      ]
+    },
+    "PAIRWISE_LINEAR_PARENT__LP": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 52,
+      "critical_false_direction": 74,
+      "critical_false_direction_rate": 0.30833333333333335,
+      "exact_accuracy": 0.21666666666666667,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.000988473777154771,
+        "wall_seconds_total": 0.23723370651714504
+      },
+      "wilson95": [
+        0.16922927423178538,
+        0.27303128040176466
+      ]
+    },
+    "PAIRWISE_LINEAR_PARENT__QS": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 71,
+      "critical_false_direction": 10,
+      "critical_false_direction_rate": 0.041666666666666664,
+      "exact_accuracy": 0.29583333333333334,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.0009950017323717476,
+        "wall_seconds_total": 0.2388004157692194
+      },
+      "wilson95": [
+        0.24167259820926645,
+        0.3564269191002034
+      ]
+    },
+    "PERCEPTRON_PARENT": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 168,
+      "critical_false_direction": 10,
+      "critical_false_direction_rate": 0.041666666666666664,
+      "exact_accuracy": 0.7,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.002370219291575874,
+        "wall_seconds_total": 0.5688526299782097
+      },
+      "wilson95": [
+        0.6392449572501318,
+        0.7544534747732448
+      ]
+    },
+    "PERCEPTRON_PARENT__LP": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 53,
+      "critical_false_direction": 77,
+      "critical_false_direction_rate": 0.32083333333333336,
+      "exact_accuracy": 0.22083333333333333,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.0023551066134435434,
+        "wall_seconds_total": 0.5652255872264504
+      },
+      "wilson95": [
+        0.17298136786408816,
+        0.2774812374366155
+      ]
+    },
+    "PERCEPTRON_PARENT__QS": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 65,
+      "critical_false_direction": 10,
+      "critical_false_direction_rate": 0.041666666666666664,
+      "exact_accuracy": 0.2708333333333333,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.002524451031543625,
+        "wall_seconds_total": 0.60586824757047
+      },
+      "wilson95": [
+        0.2185494230887204,
+        0.3303377902178274
+      ]
+    },
+    "SIMPLE_FREQUENCY_PARENT": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 129,
+      "critical_false_direction": 27,
+      "critical_false_direction_rate": 0.1125,
+      "exact_accuracy": 0.5375,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 1.561767615688344e-05,
+        "wall_seconds_total": 0.0037482422776520252
+      },
+      "wilson95": [
+        0.47432588319684194,
+        0.5994925728075412
+      ]
+    },
+    "SIMPLE_FREQUENCY_PARENT__LP": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 61,
+      "critical_false_direction": 70,
+      "critical_false_direction_rate": 0.2916666666666667,
+      "exact_accuracy": 0.25416666666666665,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 1.5033660262512665e-05,
+        "wall_seconds_total": 0.0036080784630030394
+      },
+      "wilson95": [
+        0.20325441583962553,
+        0.3128245947983075
+      ]
+    },
+    "SIMPLE_FREQUENCY_PARENT__QS": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 63,
+      "critical_false_direction": 28,
+      "critical_false_direction_rate": 0.11666666666666667,
+      "exact_accuracy": 0.2625,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 1.5426744357682765e-05,
+        "wall_seconds_total": 0.0037024186458438635
+      },
+      "wilson95": [
+        0.21088941348121418,
+        0.3215936984910262
+      ]
+    },
+    "STRONGEST_GENERATOR_FAITHFUL_PARENT": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 166,
+      "critical_false_direction": 11,
+      "critical_false_direction_rate": 0.04583333333333333,
+      "exact_accuracy": 0.6916666666666667,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.006568146361193309,
+        "wall_seconds_total": 1.5763551266863942
+      },
+      "wilson95": [
+        0.6306052871856103,
+        0.7466890435034588
+      ]
+    },
+    "STRONGEST_GENERATOR_FAITHFUL_PARENT__LP": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 51,
+      "critical_false_direction": 76,
+      "critical_false_direction_rate": 0.31666666666666665,
+      "exact_accuracy": 0.2125,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.0066603170106342684,
+        "wall_seconds_total": 1.5984760825522244
+      },
+      "wilson95": [
+        0.16548476475374232,
+        0.26857373921265404
+      ]
+    },
+    "STRONGEST_GENERATOR_FAITHFUL_PARENT__QS": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 69,
+      "critical_false_direction": 6,
+      "critical_false_direction_rate": 0.025,
+      "exact_accuracy": 0.2875,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.006608902208002595,
+        "wall_seconds_total": 1.5861365299206227
+      },
+      "wilson95": [
+        0.23394165218682478,
+        0.3477537637883376
+      ]
+    },
+    "TARGET_ONLY_DETERMINISTIC": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 60,
+      "critical_false_direction": 87,
+      "critical_false_direction_rate": 0.3625,
+      "exact_accuracy": 0.25,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 4.160448831195632e-06,
+        "wall_seconds_total": 0.0009985077194869518
+      },
+      "wilson95": [
+        0.1994465391717465,
+        0.30843042079903293
+      ]
+    },
+    "TARGET_ONLY_DETERMINISTIC__LP": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 60,
+      "critical_false_direction": 87,
+      "critical_false_direction_rate": 0.3625,
+      "exact_accuracy": 0.25,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 3.6663424301271637e-06,
+        "wall_seconds_total": 0.0008799221832305193
+      },
+      "wilson95": [
+        0.1994465391717465,
+        0.30843042079903293
+      ]
+    },
+    "TARGET_ONLY_DETERMINISTIC__QS": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2613888888888889,
+      "correct": 76,
+      "critical_false_direction": 89,
+      "critical_false_direction_rate": 0.37083333333333335,
+      "exact_accuracy": 0.31666666666666665,
+      "n": 240,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 3.42882606976976e-06,
+        "wall_seconds_total": 0.0008229182567447424
+      },
+      "wilson95": [
+        0.2610970796949443,
+        0.37801269095029394
+      ]
+    },
+    "TARGET_ONLY_NEGATIVE_CONTROL": {
+      "arm_failure_rate": 0.0,
+      "arm_failures": 0,
+      "chance_level": 0.2711111111111111,
+      "correct": 19,
+      "critical_false_direction": 16,
+      "critical_false_direction_rate": 0.26666666666666666,
+      "exact_accuracy": 0.31666666666666665,
+      "n": 60,
+      "resource_cost": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 60,
+        "input_tokens": 882002,
+        "model_calls": 60,
+        "output_tokens": 11871,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 893873,
+        "wall_seconds_mean": 28.48632149298986,
+        "wall_seconds_total": 1709.1792895793915
+      },
+      "wilson95": [
+        0.21305867552366523,
+        0.44233767026176773
+      ]
+    }
+  },
+  "authority": {
+    "grants_causal_law": false,
+    "grants_field_status": false,
+    "grants_publication_readiness": false,
+    "grants_scientific_truth": false,
+    "grants_submission_readiness": false
+  },
+  "cannot_check_reasons": [],
+  "channel_contract": {
+    "checks": [
+      {
+        "check": "canary_dispatch_succeeded",
+        "denominator": 18,
+        "detail": {
+          "failed": []
+        },
+        "passed": true
+      },
+      {
+        "check": "canary_prompts_byte_identical_to_frozen",
+        "denominator": 18,
+        "detail": {
+          "mismatched": []
+        },
+        "passed": true
+      },
+      {
+        "check": "served_manifest_observable",
+        "denominator": 18,
+        "detail": {
+          "observable_count": 18
+        },
+        "passed": true
+      },
+      {
+        "check": "comp_hash_matches_frozen",
+        "denominator": 18,
+        "detail": {
+          "expected": "2911",
+          "observed": [
+            "2911"
+          ]
+        },
+        "passed": true
+      },
+      {
+        "check": "served_slug_prefix_matches_frozen",
+        "denominator": 18,
+        "detail": {
+          "expected": [
+            "gpt-5.5",
+            "gpt-5.4",
+            "gpt-5.4-mini",
+            "gpt-5.3-codex-spark",
+            "codex-auto-review"
+          ],
+          "observed": [
+            [
+              "gpt-5.5",
+              "gpt-5.4",
+              "gpt-5.4-mini",
+              "gpt-5.3-codex-spark",
+              "codex-auto-review"
+            ]
+          ]
+        },
+        "passed": true
+      },
+      {
+        "check": "target_model_still_advertised",
+        "denominator": 18,
+        "detail": {
+          "model": "gpt-5.5"
+        },
+        "passed": true
+      },
+      {
+        "check": "canary_token_behaviour_stable",
+        "denominator": 9,
+        "detail": {
+          "rows": [
+            {
+              "abs_delta": 426.0,
+              "canary": "CANARY_DELIBERATIVE",
+              "end_mean": 14906.0,
+              "field": "input_tokens",
+              "start_mean": 14480.0,
+              "tolerance": 1300.0,
+              "within": true
+            },
+            {
+              "abs_delta": 6.333333333333336,
+              "canary": "CANARY_DELIBERATIVE",
+              "end_mean": 49.0,
+              "field": "output_tokens",
+              "start_mean": 55.333333333333336,
+              "tolerance": 20.0,
+              "within": true
+            },
+            {
+              "abs_delta": 6.333333333333336,
+              "canary": "CANARY_DELIBERATIVE",
+              "end_mean": 28.0,
+              "field": "reasoning_output_tokens",
+              "start_mean": 34.333333333333336,
+              "tolerance": 20.0,
+              "within": true
+            },
+            {
+              "abs_delta": 1.6666666666678793,
+              "canary": "CANARY_MINIMAL",
+              "end_mean": 14876.333333333334,
+              "field": "input_tokens",
+              "start_mean": 14874.666666666666,
+              "tolerance": 1300.0,
+              "within": true
+            },
+            {
+              "abs_delta": 0.0,
+              "canary": "CANARY_MINIMAL",
+              "end_mean": 19.0,
+              "field": "output_tokens",
+              "start_mean": 19.0,
+              "tolerance": 20.0,
+              "within": true
+            },
+            {
+              "abs_delta": 0.0,
+              "canary": "CANARY_MINIMAL",
+              "end_mean": 0.0,
+              "field": "reasoning_output_tokens",
+              "start_mean": 0.0,
+              "tolerance": 20.0,
+              "within": true
+            },
+            {
+              "abs_delta": 426.6666666666679,
+              "canary": "CANARY_STRUCTURED",
+              "end_mean": 14881.333333333334,
+              "field": "input_tokens",
+              "start_mean": 14454.666666666666,
+              "tolerance": 1300.0,
+              "within": true
+            },
+            {
+              "abs_delta": 0.0,
+              "canary": "CANARY_STRUCTURED",
+              "end_mean": 31.0,
+              "field": "output_tokens",
+              "start_mean": 31.0,
+              "tolerance": 20.0,
+              "within": true
+            },
+            {
+              "abs_delta": 0.0,
+              "canary": "CANARY_STRUCTURED",
+              "end_mean": 0.0,
+              "field": "reasoning_output_tokens",
+              "start_mean": 0.0,
+              "tolerance": 20.0,
+              "within": true
+            }
+          ]
+        },
+        "passed": true
+      },
+      {
+        "check": "canary_answer_tokens_unchanged",
+        "denominator": 3,
+        "detail": {
+          "rows": [
+            {
+              "canary": "CANARY_DELIBERATIVE",
+              "end_tokens": [
+                "TRUE"
+              ],
+              "same": true,
+              "start_tokens": [
+                "TRUE"
+              ]
+            },
+            {
+              "canary": "CANARY_MINIMAL",
+              "end_tokens": [
+                "OK"
+              ],
+              "same": true,
+              "start_tokens": [
+                "OK"
+              ]
+            },
+            {
+              "canary": "CANARY_STRUCTURED",
+              "end_tokens": [
+                "CANARY-STRUCTURED-1"
+              ],
+              "same": true,
+              "start_tokens": [
+                "CANARY-STRUCTURED-1"
+              ]
+            }
+          ]
+        },
+        "passed": true
+      }
+    ],
+    "failed_checks": [],
+    "reported_not_gating_failures": [],
+    "schema_version": "orion.v2.sd70-v3.channel-contract.v1",
+    "unobservable": [],
+    "verdict": "CHANNEL_CONTRACT_OK"
+  },
+  "design_sha256": "662837355020658ab77fc6067060df1b105e54ad757caf0378925178a7723138",
+  "development": false,
+  "envelope_homogeneity": {
+    "checks": {
+      "comp_hash_consistency": {
+        "denominator": 1140,
+        "expected": "2911",
+        "mismatches": 0,
+        "note": "partial silence is not clean: the observable FRACTION is gated, not merely the mismatch count",
+        "observable_envelopes": 1140,
+        "observable_fraction": 1.0,
+        "observable_threshold": 0.98,
+        "passed": true
+      },
+      "input_tokens_linear_model_residual_within_tolerance": {
+        "denominator": 1140,
+        "model": {
+          "base": 13473.2,
+          "form": "input_tokens ~= base + slope * prompt_bytes",
+          "min_fraction_within": 0.98,
+          "residual_abs_tolerance": 3600.0,
+          "slope": 0.49026
+        },
+        "passed": true,
+        "residual_max": 1159.1,
+        "residual_min": -798.4,
+        "threshold": 0.98,
+        "value": 1.0
+      },
+      "reasoning_cap_exceed_fraction": {
+        "cap": 3000,
+        "denominator": 1140,
+        "passed": true,
+        "threshold": 0.02,
+        "value": 0.0
+      },
+      "requested_model_matches_design": {
+        "denominator": 1140,
+        "expected": "gpt-5.5",
+        "note": "served_model_observed is None on this channel by design, so requested_model is the only per-envelope model attestation and it is gated at 1.0",
+        "passed": true,
+        "threshold": 1.0,
+        "value": 1.0
+      },
+      "usage_observed_fraction": {
+        "denominator": 1140,
+        "passed": true,
+        "threshold": 0.98,
+        "value": 1.0
+      }
+    },
+    "denominator": 1140,
+    "denominator_rule": "completed model envelopes only; failed envelopes are the missingness gate's business",
+    "failed_envelopes_excluded": 0,
+    "passed": true,
+    "schema_version": "orion.v2.sd70-v3.envelope-homogeneity.v1",
+    "unobservable_note": null,
+    "verdict": "CHANNEL_CONTRACT_OK"
+  },
+  "gates": {
+    "cost_within_budget": true,
+    "critical_false_direction": true,
+    "effect_minimum": false,
+    "effect_significant_holm": false,
+    "mechanism_recursion": false,
+    "model_negative_controls_behave": true,
+    "no_ablation_beats_full": true,
+    "non_regression": false,
+    "parent_ties_or_exceeds_f2": true
+  },
+  "missingness": {
+    "global_failure_rate": 0.0,
+    "model_arm_failures": 0,
+    "model_arm_tasks": 1140,
+    "per_arm_exceeding_threshold": []
+  },
+  "negative_controls": {
+    "F2_RECURSIVE_META_DISCOVERY_FULL__LP": {
+      "accuracy": 0.3,
+      "behaves": true,
+      "chance": 0.2711111111111111,
+      "wilson95": [
+        0.19898166138769108,
+        0.42508707946914487
+      ]
+    },
+    "F2_RECURSIVE_META_DISCOVERY_FULL__QS": {
+      "accuracy": 0.2833333333333333,
+      "behaves": true,
+      "chance": 0.2711111111111111,
+      "wilson95": [
+        0.18506828428432714,
+        0.4076728516439118
+      ]
+    },
+    "STRONGEST_GENERATOR_FAITHFUL_PARENT__LP": {
+      "accuracy": 0.2125,
+      "behaves": true,
+      "chance": 0.2613888888888889,
+      "wilson95": [
+        0.16548476475374232,
+        0.26857373921265404
+      ]
+    },
+    "STRONGEST_GENERATOR_FAITHFUL_PARENT__QS": {
+      "accuracy": 0.2875,
+      "behaves": true,
+      "chance": 0.2613888888888889,
+      "wilson95": [
+        0.23394165218682478,
+        0.3477537637883376
+      ]
+    },
+    "TARGET_ONLY_DETERMINISTIC": {
+      "accuracy": 0.25,
+      "behaves": true,
+      "chance": 0.2613888888888889,
+      "wilson95": [
+        0.1994465391717465,
+        0.30843042079903293
+      ]
+    },
+    "TARGET_ONLY_NEGATIVE_CONTROL": {
+      "accuracy": 0.31666666666666665,
+      "behaves": true,
+      "chance": 0.2711111111111111,
+      "wilson95": [
+        0.21305867552366523,
+        0.44233767026176773
+      ]
+    }
+  },
+  "primary_outcomes": {
+    "critical_false_direction": {
+      "F2_FULL_vs_SP": {
+        "b": 2,
+        "bootstrap": 4000,
+        "c": 3,
+        "ci_high": 0.0125,
+        "ci_low": -0.025,
+        "level": 0.95,
+        "midp_one_sided_a_gt_b": 0.65625,
+        "n": 240,
+        "point": -0.004166666666666667,
+        "seed": 20260902
+      },
+      "F2_STATIC_vs_SP": {
+        "b": 3,
+        "bootstrap": 4000,
+        "c": 4,
+        "ci_high": 0.016666666666666666,
+        "ci_low": -0.025,
+        "level": 0.95,
+        "midp_one_sided_a_gt_b": 0.63671875,
+        "n": 240,
+        "point": -0.004166666666666667,
+        "seed": 20260902
+      }
+    },
+    "holm": {
+      "F2_FULL_vs_SP": {
+        "holm_threshold": 0.05,
+        "p": 0.644464448094368,
+        "rank": 2,
+        "reject": false
+      },
+      "F2_STATIC_vs_SP": {
+        "holm_threshold": 0.025,
+        "p": 0.5,
+        "rank": 1,
+        "reject": false
+      }
+    },
+    "parent_non_regression": {
+      "delta_ci_low": -0.05,
+      "holds": false,
+      "margin": 0.05
+    },
+    "protected_decision_quality": {
+      "F2_FULL_vs_SP": {
+        "b": 13,
+        "bootstrap": 10000,
+        "c": 15,
+        "ci_high": 0.03333333333333333,
+        "ci_low": -0.05,
+        "level": 0.95,
+        "midp_one_sided_a_gt_b": 0.644464448094368,
+        "n": 240,
+        "point": -0.008333333333333333,
+        "seed": 20260902
+      },
+      "F2_STATIC_vs_SP": {
+        "b": 15,
+        "bootstrap": 10000,
+        "c": 15,
+        "ci_high": 0.04583333333333333,
+        "ci_low": -0.04583333333333333,
+        "level": 0.95,
+        "midp_one_sided_a_gt_b": 0.5,
+        "n": 240,
+        "point": 0.0,
+        "seed": 20260902
+      }
+    },
+    "resource_cost": {
+      "DECISION_LIST_PARENT": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.0004284166663031404,
+        "wall_seconds_total": 0.1028199999127537
+      },
+      "DECISION_LIST_PARENT__LP": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.0004340255332256978,
+        "wall_seconds_total": 0.10416612797416747
+      },
+      "DECISION_LIST_PARENT__QS": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.0004286088718799874,
+        "wall_seconds_total": 0.10286612925119698
+      },
+      "F0_PARENT_FEDERATION": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.010429170679223413,
+        "wall_seconds_total": 2.503000963013619
+      },
+      "F0_PARENT_FEDERATION__LP": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.010392092872643843,
+        "wall_seconds_total": 2.4941022894345224
+      },
+      "F0_PARENT_FEDERATION__QS": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.010347042518939512,
+        "wall_seconds_total": 2.483290204545483
+      },
+      "F2_FULL_MINUS_FAILURE_EVIDENCE": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 3983201,
+        "model_calls": 240,
+        "output_tokens": 128547,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 4111748,
+        "wall_seconds_mean": 46.28559321165085,
+        "wall_seconds_total": 11108.542370796204
+      },
+      "F2_FULL_MINUS_PARENT_FEDERATION": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 3970448,
+        "model_calls": 240,
+        "output_tokens": 181917,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 4152365,
+        "wall_seconds_mean": 49.39199910859267,
+        "wall_seconds_total": 11854.07978606224
+      },
+      "F2_RECURSIVE_META_DISCOVERY_FULL": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 4140356,
+        "model_calls": 240,
+        "output_tokens": 169416,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 4309772,
+        "wall_seconds_mean": 48.603565553824104,
+        "wall_seconds_total": 11664.855732917786
+      },
+      "F2_RECURSIVE_META_DISCOVERY_FULL__LP": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 60,
+        "input_tokens": 1033033,
+        "model_calls": 60,
+        "output_tokens": 45532,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 1078565,
+        "wall_seconds_mean": 50.205469353993735,
+        "wall_seconds_total": 3012.328161239624
+      },
+      "F2_RECURSIVE_META_DISCOVERY_FULL__QS": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 60,
+        "input_tokens": 1032842,
+        "model_calls": 60,
+        "output_tokens": 37663,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 1070505,
+        "wall_seconds_mean": 47.606272939840956,
+        "wall_seconds_total": 2856.376376390457
+      },
+      "F2_STATIC_NO_RECURSION": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 4034675,
+        "model_calls": 240,
+        "output_tokens": 148507,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 4183182,
+        "wall_seconds_mean": 40.6206700215737,
+        "wall_seconds_total": 9748.960805177689
+      },
+      "FIXED_META_LESSON": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 2.0097945040712753e-05,
+        "wall_seconds_total": 0.004823506809771061
+      },
+      "FIXED_META_LESSON__LP": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 1.902079675346613e-05,
+        "wall_seconds_total": 0.004564991220831871
+      },
+      "FIXED_META_LESSON__QS": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 1.8243727390654384e-05,
+        "wall_seconds_total": 0.004378494573757052
+      },
+      "MATCHED_CASE_PARENT": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 1.8099824471088746e-05,
+        "wall_seconds_total": 0.004343957873061299
+      },
+      "MATCHED_CASE_PARENT__LP": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 1.8335094985862573e-05,
+        "wall_seconds_total": 0.0044004227966070175
+      },
+      "MATCHED_CASE_PARENT__QS": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 1.7842210945673286e-05,
+        "wall_seconds_total": 0.004282130626961589
+      },
+      "MAXMARGIN_PARENT": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.006576086644781753,
+        "wall_seconds_total": 1.5782607947476208
+      },
+      "MAXMARGIN_PARENT__LP": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.0065563816713014,
+        "wall_seconds_total": 1.573531601112336
+      },
+      "MAXMARGIN_PARENT__QS": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.006878440476915178,
+        "wall_seconds_total": 1.6508257144596428
+      },
+      "NAIVE_BAYES_PARENT": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 2.759932734382649e-05,
+        "wall_seconds_total": 0.006623838562518358
+      },
+      "NAIVE_BAYES_PARENT__LP": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 2.8517549314225713e-05,
+        "wall_seconds_total": 0.006844211835414171
+      },
+      "NAIVE_BAYES_PARENT__QS": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 2.74326914222911e-05,
+        "wall_seconds_total": 0.006583845941349864
+      },
+      "PAIRWISE_LINEAR_PARENT": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.0010390885193676997,
+        "wall_seconds_total": 0.24938124464824796
+      },
+      "PAIRWISE_LINEAR_PARENT__LP": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.000988473777154771,
+        "wall_seconds_total": 0.23723370651714504
+      },
+      "PAIRWISE_LINEAR_PARENT__QS": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.0009950017323717476,
+        "wall_seconds_total": 0.2388004157692194
+      },
+      "PERCEPTRON_PARENT": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.002370219291575874,
+        "wall_seconds_total": 0.5688526299782097
+      },
+      "PERCEPTRON_PARENT__LP": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.0023551066134435434,
+        "wall_seconds_total": 0.5652255872264504
+      },
+      "PERCEPTRON_PARENT__QS": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.002524451031543625,
+        "wall_seconds_total": 0.60586824757047
+      },
+      "SIMPLE_FREQUENCY_PARENT": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 1.561767615688344e-05,
+        "wall_seconds_total": 0.0037482422776520252
+      },
+      "SIMPLE_FREQUENCY_PARENT__LP": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 1.5033660262512665e-05,
+        "wall_seconds_total": 0.0036080784630030394
+      },
+      "SIMPLE_FREQUENCY_PARENT__QS": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 1.5426744357682765e-05,
+        "wall_seconds_total": 0.0037024186458438635
+      },
+      "STRONGEST_GENERATOR_FAITHFUL_PARENT": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.006568146361193309,
+        "wall_seconds_total": 1.5763551266863942
+      },
+      "STRONGEST_GENERATOR_FAITHFUL_PARENT__LP": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.0066603170106342684,
+        "wall_seconds_total": 1.5984760825522244
+      },
+      "STRONGEST_GENERATOR_FAITHFUL_PARENT__QS": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 0.006608902208002595,
+        "wall_seconds_total": 1.5861365299206227
+      },
+      "TARGET_ONLY_DETERMINISTIC": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 4.160448831195632e-06,
+        "wall_seconds_total": 0.0009985077194869518
+      },
+      "TARGET_ONLY_DETERMINISTIC__LP": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 3.6663424301271637e-06,
+        "wall_seconds_total": 0.0008799221832305193
+      },
+      "TARGET_ONLY_DETERMINISTIC__QS": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 240,
+        "input_tokens": 0,
+        "model_calls": 0,
+        "output_tokens": 0,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 0,
+        "wall_seconds_mean": 3.42882606976976e-06,
+        "wall_seconds_total": 0.0008229182567447424
+      },
+      "TARGET_ONLY_NEGATIVE_CONTROL": {
+        "aggregation_rule": "sum over arm-tasks (failed attempts included); mean = total / n",
+        "attempts_total": 60,
+        "input_tokens": 882002,
+        "model_calls": 60,
+        "output_tokens": 11871,
+        "retries": 0,
+        "tool_calls": 0,
+        "total_tokens": 893873,
+        "wall_seconds_mean": 28.48632149298986,
+        "wall_seconds_total": 1709.1792895793915
+      }
+    }
+  },
+  "route": "PARENT_SUFFICIENT",
+  "schema_version": "orion.v2.sd70-v3.rollup.v1",
+  "secondary": {
+    "F0_vs_SP": {
+      "b": 14,
+      "bootstrap": 4000,
+      "c": 7,
+      "ci_high": 0.06666666666666667,
+      "ci_low": -0.008333333333333333,
+      "level": 0.95,
+      "midp_one_sided_a_gt_b": 0.06690025329589844,
+      "n": 240,
+      "point": 0.029166666666666667,
+      "seed": 20260902
+    },
+    "F2_FULL_vs_F0": {
+      "b": 9,
+      "bootstrap": 4000,
+      "c": 18,
+      "ci_high": 0.004166666666666667,
+      "ci_low": -0.07916666666666666,
+      "level": 0.95,
+      "midp_one_sided_a_gt_b": 0.956420723348856,
+      "n": 240,
+      "point": -0.0375,
+      "seed": 20260902
+    },
+    "FIXED_vs_F2_FULL": {
+      "b": 25,
+      "bootstrap": 4000,
+      "c": 34,
+      "ci_high": 0.025,
+      "ci_low": -0.10416666666666667,
+      "level": 0.95,
+      "midp_one_sided_a_gt_b": 0.8774695834885273,
+      "n": 240,
+      "point": -0.0375,
+      "seed": 20260902
+    },
+    "FIXED_vs_SP": {
+      "b": 23,
+      "bootstrap": 4000,
+      "c": 34,
+      "ci_high": 0.0125,
+      "ci_low": -0.10833333333333334,
+      "level": 0.95,
+      "midp_one_sided_a_gt_b": 0.9259970996198968,
+      "n": 240,
+      "point": -0.04583333333333333,
+      "seed": 20260902
+    },
+    "SP_vs_SIMPLE_FREQUENCY": {
+      "b": 58,
+      "bootstrap": 4000,
+      "c": 21,
+      "ci_high": 0.225,
+      "ci_low": 0.08333333333333333,
+      "level": 0.95,
+      "midp_one_sided_a_gt_b": 1.2645551282335305e-05,
+      "n": 240,
+      "point": 0.15416666666666667,
+      "seed": 20260902
+    }
+  },
+  "strongest_generator_faithful_parent": "MAXMARGIN_PARENT",
+  "study_id": "SD70-V3",
+  "task_count": 240
+}
