@@ -6,14 +6,13 @@ Base: ORION-V2 `24566f00a9dc4425a438fcfac05d13c6b2d903db`. Canonical atomic-gap 
 
 ## Foundation rule
 
-A foundation row is usable by ORION-OCM only at the status and scope recorded here. A `PENDING_PR` row is not proved; `PARENT_OWNED_ADOPTION_OPEN` means the science should adopt the parent faithfully rather than invent an ORION theorem; scope-limited results must carry their scope into machine certificates. Negative and refuted formulations are preserved as knowledge.
+A foundation row is usable by ORION-OCM only at the status and scope recorded here. `PARENT_OWNED_ADOPTION_OPEN` means the science should adopt the parent faithfully rather than invent an ORION theorem; scope-limited results must carry their scope into machine certificates. Negative and refuted formulations are preserved as knowledge.
 
 ## Current terminal
 
 `FOUNDATION_V1_PARTIAL__OPEN_RESEARCH_REMAINS`
 
-- 5/35 gaps are proved/contracted by Batch 2 on this branch.
-- 11/35 are owned by open PR #317 and remain pending until merge.
+- 16/35 gaps are now proved/contracted: 11 merged in PR #317 plus 5 Batch-2 results on this branch.
 - 19/35 remain open, empirical, open-research, or parent-adoption work.
 
 ## Five Batch-2 advances
@@ -28,14 +27,14 @@ A foundation row is usable by ORION-OCM only at the status and scope recorded he
 
 | gap | status | disposition |
 |---|---|---|
-| `MEG-01` | `PENDING_PR` | derived evidence flattening/shared-source dependence |
+| `MEG-01` | `PROVED` | derived evidence flattening/shared-source dependence |
 | `MEG-02` | `PROVED_WITH_CONTRACTION` | statistical guarantee != individual truth; risk actionability separated; identity drift fail-closed |
 | `MEG-03` | `PROVED_SCOPE_LIMITED` | half-open epoch scopes + scoped revocation + supersession locality |
-| `MEG-04` | `PENDING_PR` | commit authority bottom under internal composition |
+| `MEG-04` | `PROVED` | commit authority bottom under internal composition |
 | `MEG-05` | `OPEN` | discourse-state warrant/non-laundering |
-| `MEG-06` | `PENDING_PR` | budget bracket / restart iteration |
+| `MEG-06` | `PROVED` | budget bracket / restart iteration |
 | `MEG-07` | `OPEN` | surprise/background no-drop guarantee; OCM dev revival is not V2 theorem |
-| `MEG-08` | `PENDING_PR` | feedback updates weights, never warrant |
+| `MEG-08` | `PROVED` | feedback updates weights, never warrant |
 | `MEG-09` | `OPEN_RESEARCH` | multiscale/fibred navigation and cross-level commutation |
 | `MEG-10` | `OPEN` | procedure algebra trace-vs-static warrant, choice, bounded iteration |
 | `MEG-11` | `OPEN` | small-step runtime preservation/progress and CANNOT_CHECK absorption |
@@ -45,24 +44,24 @@ A foundation row is usable by ORION-OCM only at the status and scope recorded he
 | `MEG-15` | `OPEN` | registered outcome observation vs feedback-only endpoint |
 | `MEG-16` | `PROVED_WITH_CORRECTION` | ATMS nogoods: join homomorphism, meet sub-homomorphism; original meet-homomorphism wording refuted |
 | `MEG-17` | `PROVED_SCOPE_LIMITED` | reinstate vs relearn; explicit non-macro repair locality |
-| `MEG-18` | `PENDING_PR` | Jump rollback via revoke + quarantine |
+| `MEG-18` | `PROVED` | Jump rollback via revoke + quarantine |
 | `MEG-19` | `OPEN` | KS-T12 maintenance locality / macro recheck; deconsolidation parent territory |
 | `MEG-20` | `PROVED_SCOPE_LIMITED` | content-bound sufficiency certificate over registered Q, Gamma and answer functional |
 | `MEG-21` | `OPEN` | non-quotient conservative representation moves |
-| `MEG-22` | `PENDING_PR` | shared-evidence cross-fibre interference |
+| `MEG-22` | `PROVED` | shared-evidence cross-fibre interference |
 | `MEG-23` | `OPEN_RESEARCH` | learned organization/topology/router search space |
 | `MEG-24` | `OPEN_EMPIRICAL` | full codec/translator invariance; canonical meaning representation + protected measurement |
 | `MEG-25` | `OPEN` | renderer capability + semantic commitment non-laundering |
-| `MEG-26` | `PENDING_PR` | meaning-candidate warrant and ambiguity set |
+| `MEG-26` | `PROVED` | meaning-candidate warrant and ambiguity set |
 | `MEG-27` | `OPEN_RESEARCH` | incremental prefix commitment with satisfiable residual obligations |
 | `MEG-28` | `OPEN` | DPO Jump preservation; J2+ ceiling predicates remain open |
-| `MEG-29` | `PENDING_PR` | no self-authority/self-calibration dependence |
-| `MEG-30` | `PENDING_PR` | multi-timescale termination/snapshot consistency |
-| `MEG-31` | `PENDING_PR` | certified-information unit |
+| `MEG-29` | `PROVED` | no self-authority/self-calibration dependence |
+| `MEG-30` | `PROVED` | multi-timescale termination/snapshot consistency |
+| `MEG-31` | `PROVED` | certified-information unit |
 | `MEG-32` | `PARENT_OWNED_ADOPTION_OPEN` | equivalence margin/TOST discipline for PARENT_SUFFICIENT |
 | `MEG-33` | `OPEN` | epistemic action value / closure acquisition |
 | `MEG-34` | `OPEN_RESEARCH` | infinite-class construction identifiability up to lifecycle equivalence |
-| `MEG-35` | `PENDING_PR` | non-trivial upper-profile certificate refinements |
+| `MEG-35` | `PROVED` | non-trivial upper-profile certificate refinements |
 
 ## Foundation pillars
 
@@ -76,7 +75,7 @@ A foundation row is usable by ORION-OCM only at the status and scope recorded he
 | `self_reorganization` | `OPEN` | open: MEG-23, MEG-28 |
 | `external_validation` | `OPEN` | Independent field/demarcation and replication remain external; no internal artifact grants field status. |
 
-## Highest-priority remaining science after Batch 2 and PR #317
+## Highest-priority remaining science after Batch 2 and merged PR #317
 
 The next tranche should prefer foundational dependencies over milestone cosmetics:
 
