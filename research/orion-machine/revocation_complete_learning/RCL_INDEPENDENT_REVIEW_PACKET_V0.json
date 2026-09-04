@@ -100,28 +100,35 @@
     {
       "bytes": 10224,
       "path": "research/orion-machine/revocation_complete_learning/REVOCATION_COMPLETE_LEARNING_RECEIPT_V0.json",
-      "sha256": "988aec28ac30b13f840ad5af224033f29a1e9f920a3d63aaa7b13782df318d96",
+      "sha256": "1530082555201ef6c1a4bed3fe4cc393df530363ac9e48a7d64feaff63d6a858",
       "rebound_at": "2026-09-04",
-      "rebind_reason": "Consequential rebind: this artifact's bytes changed only because the README rebind of 2026-09-04 was recorded in it. Chain corrected 2026-09-04 after Cursor Bugbot on PR #281 found the superseded entry mis-attributed to 4655495 and the earlier entries overwritten: the full chain 6417@4655495 -> 8017@a809410 -> 8624@d4eb281 is now nested.",
+      "rebind_reason": "Consequential rebind: the receipt's bytes changed because pre-rebase commit references inside it were remapped to the rebased commits after PR #281 was rebased onto main.",
       "superseded_binding": {
-        "bytes": 8624,
-        "sha256": "9787785965d295cd7621500b809f1b3a717633530dbb60e3618eaae08f40c17f",
+        "bytes": 10224,
+        "sha256": "988aec28ac30b13f840ad5af224033f29a1e9f920a3d63aaa7b13782df318d96",
         "recorded_at": "2026-09-04",
-        "recorded_in_commit": "d4eb281",
+        "recorded_in_commit": "a080531",
+        "note": "branch-intermediate binding on PR #281 (unmerged), superseded before merge",
         "superseded_binding": {
-          "bytes": 8017,
-          "sha256": "47639a9ffeaba195dd2c5890305aeef2c66eecfa0b550f28b7d52e87e8064366",
+          "bytes": 8624,
+          "sha256": "9787785965d295cd7621500b809f1b3a717633530dbb60e3618eaae08f40c17f",
           "recorded_at": "2026-09-04",
-          "recorded_in_commit": "a809410",
+          "recorded_in_commit": "d4eb281",
           "superseded_binding": {
-            "bytes": 6417,
-            "sha256": "d8fd061fed6acf8eca5fdeaedefb523453323795a6a101d34e7bf40f0d84e041",
-            "recorded_at": "2026-09-03",
-            "recorded_in_commit": "4655495"
+            "bytes": 8017,
+            "sha256": "47639a9ffeaba195dd2c5890305aeef2c66eecfa0b550f28b7d52e87e8064366",
+            "recorded_at": "2026-09-04",
+            "recorded_in_commit": "a809410",
+            "superseded_binding": {
+              "bytes": 6417,
+              "sha256": "d8fd061fed6acf8eca5fdeaedefb523453323795a6a101d34e7bf40f0d84e041",
+              "recorded_at": "2026-09-03",
+              "recorded_in_commit": "4655495"
+            }
           }
         }
       },
-      "rebound_in_commit": "a080531",
+      "rebound_in_commit": "14ca7d7",
       "branch_intermediate_bindings": []
     }
   ],
