@@ -21,6 +21,15 @@ the surprise baseline (uniform background is wrong at small seed cardinality; co
 the background walk at matched seed cardinality, or degree-normalised reactivity), re-tested on
 the same 50 against the strongest parent, all costs charged, no tuning to the outcome.
 
+Per-row fields for the comparator join: `store_read` (COMPOSE used ≥ 1 live request atom outside
+`G_Q`), `navigation_only_answer` (= `answer` when `store_read` is false, else `null`, scored as
+`KSO_NAVIGATION_ONLY` by the guards lane), `dead_request_atoms_read_through_fire`. One precision
+the split needs: a **dead** request atom is never in `G_Q` by construction (KS-T04b: its
+activation is exactly 0), so the decisive dead atom of a non-UPDATE answer is always read through
+the compose hyperedge's tail gate — that is the FIRE stage (label-gated enabling, a mechanic), not
+a read beyond the subgraph. `store_read` therefore counts only *live* request atoms the walk
+failed to surface, which is exactly the EXTRACT finding.
+
 ## Terminal (as defined in the frozen design: G1 ∧ G2)
 
 ```text

@@ -274,15 +274,20 @@
           "compose_detail": {
             "decisive_atom": "identity:r1"
           },
+          "dead_request_atoms_read_through_fire": [
+            "identity:r1"
+          ],
           "exact": true,
           "exact_by": "FOUND_BY_STORE_READ",
           "extraction_sha256": "72f28ff804b70fb1799176d6a0bd03893146a5ffc87a717e16d5013a79dd6b38",
+          "navigation_only_answer": null,
           "navigation_outcome": "FOUND",
           "request_atoms": 10,
           "stage_failures": {
             "EXTRACT": "live request atoms outside G_Q: ['criterion:c2', 'src:e04', 'ident:e04', 'cal:e04', 'src:e05', 'ident:e05', 'cal:e05', 'evaluator:r1', 'authority']"
           },
           "status": "SCORED",
+          "store_read": true,
           "translator_invariant": true
         }
       },
@@ -318,13 +323,19 @@
           "compose_detail": {
             "decisive_atom": ""
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "96581db8b146353ddf4200ac509c733788399e64773f7d780325901f3cd791b6",
+          "navigation_only_answer": {
+            "action": "UPDATE",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 11,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -363,13 +374,19 @@
               "UPDATE"
             ]
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "60a65fb0406e9253ebbffab0b101e81525a4770168a406b7da45615d808a6ccf",
+          "navigation_only_answer": {
+            "action": "DEFER_CANNOT_CHECK",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 11,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -405,13 +422,21 @@
           "compose_detail": {
             "decisive_atom": "identity:r1"
           },
+          "dead_request_atoms_read_through_fire": [
+            "identity:r1"
+          ],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "2fd40075d0ce8b07fc2d605e9a269fcfe49c70085d45603583defff9aaecfc5d",
+          "navigation_only_answer": {
+            "action": "REVALIDATE",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 9,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -447,13 +472,19 @@
           "compose_detail": {
             "decisive_atom": ""
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "e47ec4c285b3bbfe5918020418334bc30507015a7648854ceba42e8988fb6c84",
+          "navigation_only_answer": {
+            "action": "UPDATE",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 11,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -489,13 +520,21 @@
           "compose_detail": {
             "decisive_atom": "cal:e07"
           },
+          "dead_request_atoms_read_through_fire": [
+            "cal:e07"
+          ],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "64bc28d29c38bfbc28a57298d219b98bb57a964529592b45949e8478c9757318",
+          "navigation_only_answer": {
+            "action": "REVALIDATE",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 7,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -531,15 +570,18 @@
           "compose_detail": {
             "decisive_atom": ""
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_STORE_READ",
           "extraction_sha256": "f4f76552fd64ad40873e4c234f58c0c53f6262dcb026a59d9727726250633af4",
+          "navigation_only_answer": null,
           "navigation_outcome": "FOUND",
           "request_atoms": 13,
           "stage_failures": {
             "EXTRACT": "live request atoms outside G_Q: ['identity:r1', 'criterion:c1', 'src:e04', 'ident:e04', 'cal:e04', 'src:e05', 'ident:e05', 'cal:e05', 'src:e06', 'ident:e06', 'cal:e06', 'evaluator:r1', 'authority']"
           },
           "status": "SCORED",
+          "store_read": true,
           "translator_invariant": true
         }
       },
@@ -578,13 +620,19 @@
               "UPDATE"
             ]
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "6572bd60833c52c1b21b4accfa76754d55c52c014666ad802fd9beb056fae48f",
+          "navigation_only_answer": {
+            "action": "DEFER_CANNOT_CHECK",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 7,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -620,15 +668,23 @@
           "compose_detail": {
             "decisive_atom": "cal:e05"
           },
+          "dead_request_atoms_read_through_fire": [
+            "cal:e05"
+          ],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "d96c314ffcf2a42fcd16e0264b6edef21934a1473be0c31fd04dc728dbe4bc88",
+          "navigation_only_answer": {
+            "action": "REVALIDATE",
+            "reopened": []
+          },
           "navigation_outcome": "GAP_NOT_FOUND",
           "request_atoms": 9,
           "stage_failures": {
             "NAVIGATE": "target claim:c1 GAP_NOT_FOUND"
           },
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -664,13 +720,19 @@
           "compose_detail": {
             "decisive_atom": ""
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "75d56b5c7a8cf5e224409989fd560fdaed483d587125bf93c8bb57a3cc6c0a32",
+          "navigation_only_answer": {
+            "action": "UPDATE",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 7,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -706,13 +768,21 @@
           "compose_detail": {
             "decisive_atom": "support:r1"
           },
+          "dead_request_atoms_read_through_fire": [
+            "support:r1"
+          ],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "d2cfe60d73be5fe434aeb2c4ec1ff1fa7839eb0c455b9a20b3c47c0fa5be3751",
+          "navigation_only_answer": {
+            "action": "REQUEST_NEW_EVIDENCE",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 11,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -746,13 +816,19 @@
             "wall_ns": 0
           },
           "compose_detail": {},
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "0c4f46b332e51b9c4924f21ba40eaaf25625d89f284583a0def5646083a52d80",
+          "navigation_only_answer": {
+            "action": "PRESERVE",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 1,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -791,13 +867,19 @@
               "c2"
             ]
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "ac11647a10be43f23e3dd11ad16c1e6367a6e83dcf60152b321239c45ff80e07",
+          "navigation_only_answer": {
+            "action": "DEFER_CANNOT_CHECK",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 1,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -833,15 +915,23 @@
             "wall_ns": 0
           },
           "compose_detail": {},
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "4f8c9c8994f1a46bbc8bcab87e03ac88c271a593e8bd85a7470f1d456a5d679a",
+          "navigation_only_answer": {
+            "action": "SELECTIVELY_REOPEN",
+            "reopened": [
+              "c3"
+            ]
+          },
           "navigation_outcome": "GAP_NOT_FOUND",
           "request_atoms": 1,
           "stage_failures": {
             "NAVIGATE": "target claim:c3 GAP_NOT_FOUND"
           },
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -877,13 +967,19 @@
             "wall_ns": 0
           },
           "compose_detail": {},
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "07e8244bbd09d48096425dce9881afc318255b149e385a88c220286a1896781e",
+          "navigation_only_answer": {
+            "action": "PRESERVE",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 1,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -919,13 +1015,21 @@
           "compose_detail": {
             "decisive_atom": "transport:r1"
           },
+          "dead_request_atoms_read_through_fire": [
+            "transport:r1"
+          ],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "9c1f460ee38bed67e3f0b21fded339e98a4bba731c0be3c20f739c18c4171a86",
+          "navigation_only_answer": {
+            "action": "BLOCK_TRANSPORT",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 7,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -961,15 +1065,18 @@
           "compose_detail": {
             "decisive_atom": ""
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_STORE_READ",
           "extraction_sha256": "a2b458a16892922219848aa0cd206d7d1d91986dc8b4a0c28ff6e020727aed77",
+          "navigation_only_answer": null,
           "navigation_outcome": "FOUND",
           "request_atoms": 7,
           "stage_failures": {
             "EXTRACT": "live request atoms outside G_Q: ['identity:r1', 'criterion:c0', 'src:e08', 'ident:e08', 'transport:r1', 'evaluator:r1', 'authority']"
           },
           "status": "SCORED",
+          "store_read": true,
           "translator_invariant": true
         }
       },
@@ -1008,13 +1115,19 @@
               "UPDATE"
             ]
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "03412b7c14557ea99d0878329d5109730dff0c3825d8469f2b2edd78faebb8f1",
+          "navigation_only_answer": {
+            "action": "DEFER_CANNOT_CHECK",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 8,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -1050,13 +1163,21 @@
           "compose_detail": {
             "decisive_atom": "transport:r1"
           },
+          "dead_request_atoms_read_through_fire": [
+            "transport:r1"
+          ],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "262cabd7490d931f49b0d992d0540c306da83adb72e68b9928f7d26633f1e0fc",
+          "navigation_only_answer": {
+            "action": "BLOCK_TRANSPORT",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 7,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -1092,15 +1213,18 @@
           "compose_detail": {
             "decisive_atom": ""
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_STORE_READ",
           "extraction_sha256": "8fc02d50ca3a1819b84898d7af8718efe6cbdd588f2499566b3652fb401ad031",
+          "navigation_only_answer": null,
           "navigation_outcome": "FOUND",
           "request_atoms": 8,
           "stage_failures": {
             "EXTRACT": "live request atoms outside G_Q: ['identity:r1', 'criterion:c0', 'src:e08', 'ident:e08', 'cal:e08', 'transport:r1', 'evaluator:r1', 'authority']"
           },
           "status": "SCORED",
+          "store_read": true,
           "translator_invariant": true
         }
       },
@@ -1137,15 +1261,24 @@
             "wall_ns": 0
           },
           "compose_detail": {},
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "839a83276e4124ba34ebc88d67b78948c72f08593163f29346ffa35d5215d75f",
+          "navigation_only_answer": {
+            "action": "SELECTIVELY_REOPEN",
+            "reopened": [
+              "c4",
+              "q_down"
+            ]
+          },
           "navigation_outcome": "GAP_NOT_FOUND",
           "request_atoms": 1,
           "stage_failures": {
             "NAVIGATE": "target claim:c4 GAP_NOT_FOUND"
           },
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -1182,13 +1315,19 @@
             "wall_ns": 0
           },
           "compose_detail": {},
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "9f326097b9b79a4570bcc44829fd83b4239006296ece2a45bf004335cb7760af",
+          "navigation_only_answer": {
+            "action": "PRESERVE",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 1,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -1226,13 +1365,19 @@
               "c2"
             ]
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "e65ec62b213687e0152ba00c43b0d5782bfa9b50f5513e7572f873a330a8c3c1",
+          "navigation_only_answer": {
+            "action": "DEFER_CANNOT_CHECK",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 1,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -1269,15 +1414,24 @@
             "wall_ns": 0
           },
           "compose_detail": {},
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "215f9bfde83ba31ac9d811b19fc6eed5959c3697e51b1b1d62aa5d7b40295f93",
+          "navigation_only_answer": {
+            "action": "SELECTIVELY_REOPEN",
+            "reopened": [
+              "c4",
+              "q_down"
+            ]
+          },
           "navigation_outcome": "GAP_NOT_FOUND",
           "request_atoms": 1,
           "stage_failures": {
             "NAVIGATE": "target claim:c4 GAP_NOT_FOUND"
           },
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -1314,13 +1468,19 @@
             "wall_ns": 0
           },
           "compose_detail": {},
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "bbdf87b109f0125f4b22509915e0d566c6c312d6a2cad995d1c1fab776b1e0a1",
+          "navigation_only_answer": {
+            "action": "PRESERVE",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 1,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -1356,13 +1516,21 @@
           "compose_detail": {
             "decisive_atom": "evaluator:r1"
           },
+          "dead_request_atoms_read_through_fire": [
+            "evaluator:r1"
+          ],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "301eca4fe07834b9409c6e234fbcbf32989539bccb20cf91fab9ad9b706af66a",
+          "navigation_only_answer": {
+            "action": "REPLACE_OR_CHALLENGE_EVALUATOR",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 7,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -1398,13 +1566,19 @@
           "compose_detail": {
             "decisive_atom": ""
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "61b252b73d2617b26cd61c8fb54c21db26c64944d262d8fdf6be8fd4b0bb3190",
+          "navigation_only_answer": {
+            "action": "UPDATE",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 9,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -1443,15 +1617,18 @@
               "UPDATE"
             ]
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_STORE_READ",
           "extraction_sha256": "14df201a43b0acaf2724c990e577063ef1fa04291e1cc7c9ee55844cfd8aca3a",
+          "navigation_only_answer": null,
           "navigation_outcome": "FOUND",
           "request_atoms": 9,
           "stage_failures": {
             "EXTRACT": "live request atoms outside G_Q: ['identity:r1', 'criterion:c0', 'src:e01', 'ident:e01', 'src:e02', 'ident:e02', 'cal:e02', 'evaluator:r1', 'authority']"
           },
           "status": "SCORED",
+          "store_read": true,
           "translator_invariant": true
         }
       },
@@ -1487,13 +1664,21 @@
           "compose_detail": {
             "decisive_atom": "evaluator:r1"
           },
+          "dead_request_atoms_read_through_fire": [
+            "evaluator:r1"
+          ],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "dcdd4234de2a9af1256f1d4341ecd6efec4c16039d60950061d3a7d4c0298b12",
+          "navigation_only_answer": {
+            "action": "REPLACE_OR_CHALLENGE_EVALUATOR",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 6,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -1529,15 +1714,21 @@
           "compose_detail": {
             "decisive_atom": ""
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "11e622c3512f6c4395a12d8f86ae6595ac1960bb45ffcef901ffee48062cf9de",
+          "navigation_only_answer": {
+            "action": "UPDATE",
+            "reopened": []
+          },
           "navigation_outcome": "GAP_NOT_FOUND",
           "request_atoms": 10,
           "stage_failures": {
             "NAVIGATE": "target claim:c4 GAP_NOT_FOUND"
           },
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -1573,13 +1764,21 @@
           "compose_detail": {
             "decisive_atom": "authority"
           },
+          "dead_request_atoms_read_through_fire": [
+            "authority"
+          ],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "045f07b3642d7bcf70eea4f58b1e972d661f512f00074ed9afc5af49c118f20d",
+          "navigation_only_answer": {
+            "action": "ABSTAIN_AUTHORITY",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 11,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -1615,15 +1814,18 @@
           "compose_detail": {
             "decisive_atom": ""
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_STORE_READ",
           "extraction_sha256": "3ce8def608d8ac7acba63a5afaf8561c627cb152866b609287b4aed68f8d3dde",
+          "navigation_only_answer": null,
           "navigation_outcome": "FOUND",
           "request_atoms": 10,
           "stage_failures": {
             "EXTRACT": "live request atoms outside G_Q: ['identity:r1', 'criterion:c1', 'src:e04', 'ident:e04', 'src:e05', 'ident:e05', 'src:e06', 'ident:e06', 'evaluator:r1', 'authority']"
           },
           "status": "SCORED",
+          "store_read": true,
           "translator_invariant": true
         }
       },
@@ -1662,13 +1864,19 @@
               "UPDATE"
             ]
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "133df9a9688043fb3a794eac54f4333f561c3ed5a253e3d6d82bdaaae8448a67",
+          "navigation_only_answer": {
+            "action": "DEFER_CANNOT_CHECK",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 6,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -1704,13 +1912,21 @@
           "compose_detail": {
             "decisive_atom": "authority"
           },
+          "dead_request_atoms_read_through_fire": [
+            "authority"
+          ],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "bd90976f6fa005258f4941560a0fcdb7e5b661fa6c2580d64204023a1fd2fb23",
+          "navigation_only_answer": {
+            "action": "ABSTAIN_AUTHORITY",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 11,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -1746,15 +1962,18 @@
           "compose_detail": {
             "decisive_atom": ""
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_STORE_READ",
           "extraction_sha256": "443d6c46726889638b39d7bdcd2881b3f689be85898094fba8294ce5d08c148c",
+          "navigation_only_answer": null,
           "navigation_outcome": "FOUND",
           "request_atoms": 8,
           "stage_failures": {
             "EXTRACT": "live request atoms outside G_Q: ['identity:r1', 'criterion:c3', 'src:e06', 'ident:e06', 'src:e07', 'ident:e07', 'evaluator:r1', 'authority']"
           },
           "status": "SCORED",
+          "store_read": true,
           "translator_invariant": true
         }
       },
@@ -1790,13 +2009,21 @@
           "compose_detail": {
             "decisive_atom": "spec:r1"
           },
+          "dead_request_atoms_read_through_fire": [
+            "spec:r1"
+          ],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "29c8b67d4b0d6c7e3e38a363e66c98c3877097981b7fe4937322ba3b68e15a49",
+          "navigation_only_answer": {
+            "action": "REVALIDATE",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 14,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -1832,13 +2059,19 @@
           "compose_detail": {
             "decisive_atom": ""
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "2c4b1a25dcdd184cddd57ab01ff45e8f34e7191a71a416b43bf3610de91e089c",
+          "navigation_only_answer": {
+            "action": "UPDATE",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 11,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -1877,13 +2110,19 @@
               "UPDATE"
             ]
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "28246369fd9c797ad16e9b877328615020d37be628e6a431fe566fb80da5829e",
+          "navigation_only_answer": {
+            "action": "DEFER_CANNOT_CHECK",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 9,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -1919,13 +2158,21 @@
           "compose_detail": {
             "decisive_atom": "spec:r1"
           },
+          "dead_request_atoms_read_through_fire": [
+            "spec:r1"
+          ],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "0102f2c997a63b9f666700066299ea57a4c1842d9cd2505b5e0e6c092d7b8455",
+          "navigation_only_answer": {
+            "action": "REVALIDATE",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 10,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -1961,15 +2208,18 @@
           "compose_detail": {
             "decisive_atom": ""
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_STORE_READ",
           "extraction_sha256": "70875c412ee985fe0612817656dd7f966da9ff340afc11ba1ffb694e2b7a7af7",
+          "navigation_only_answer": null,
           "navigation_outcome": "FOUND",
           "request_atoms": 13,
           "stage_failures": {
             "EXTRACT": "live request atoms outside G_Q: ['identity:r1', 'criterion:c3', 'spec:r1', 'checker:r1', 'src:e10', 'ident:e10', 'src:e11', 'ident:e11', 'cal:e11', 'src:e12', 'ident:e12', 'evaluator:r1', 'authority']"
           },
           "status": "SCORED",
+          "store_read": true,
           "translator_invariant": true
         }
       },
@@ -2005,15 +2255,20 @@
           "compose_detail": {
             "decisive_atom": "overlap:o:c0:c2"
           },
+          "dead_request_atoms_read_through_fire": [
+            "overlap:o:c0:c2"
+          ],
           "exact": true,
           "exact_by": "FOUND_BY_STORE_READ",
           "extraction_sha256": "30c2e08a00ad9a4aec1a3be43edbfee39c35445362033fa2e2cc7c678d41baea",
+          "navigation_only_answer": null,
           "navigation_outcome": "FOUND",
           "request_atoms": 8,
           "stage_failures": {
             "EXTRACT": "live request atoms outside G_Q: ['piece:c0', 'piece:c1', 'piece:c2']"
           },
           "status": "SCORED",
+          "store_read": true,
           "translator_invariant": true
         }
       },
@@ -2049,13 +2304,19 @@
           "compose_detail": {
             "decisive_atom": ""
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "6ff362d6c261a6760610ed9a958292d44abbc20498b272aab0dc7fee44e56e39",
+          "navigation_only_answer": {
+            "action": "UPDATE",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 5,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -2094,15 +2355,18 @@
               "UPDATE"
             ]
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_STORE_READ",
           "extraction_sha256": "a57b44d34ae02b165e1920609b48eb0fcd4ee69a6f3750e71f179435617b98de",
+          "navigation_only_answer": null,
           "navigation_outcome": "FOUND",
           "request_atoms": 8,
           "stage_failures": {
             "EXTRACT": "live request atoms outside G_Q: ['piece:c2', 'piece:c4']"
           },
           "status": "SCORED",
+          "store_read": true,
           "translator_invariant": true
         }
       },
@@ -2138,15 +2402,20 @@
           "compose_detail": {
             "decisive_atom": "overlap:o:c1:c2"
           },
+          "dead_request_atoms_read_through_fire": [
+            "overlap:o:c1:c2"
+          ],
           "exact": true,
           "exact_by": "FOUND_BY_STORE_READ",
           "extraction_sha256": "2ec63a32c1ee7651ca2e643c2ef8933ec562224fd5ca16b11e8e62530b627de1",
+          "navigation_only_answer": null,
           "navigation_outcome": "FOUND",
           "request_atoms": 5,
           "stage_failures": {
             "EXTRACT": "live request atoms outside G_Q: ['piece:c2']"
           },
           "status": "SCORED",
+          "store_read": true,
           "translator_invariant": true
         }
       },
@@ -2182,15 +2451,18 @@
           "compose_detail": {
             "decisive_atom": ""
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_STORE_READ",
           "extraction_sha256": "d1b942899d64398e1be77420d3ecfa901a88d804c89f9af41d6e86b47337d891",
+          "navigation_only_answer": null,
           "navigation_outcome": "FOUND",
           "request_atoms": 8,
           "stage_failures": {
             "EXTRACT": "live request atoms outside G_Q: ['piece:c0', 'piece:c1', 'piece:c2']"
           },
           "status": "SCORED",
+          "store_read": true,
           "translator_invariant": true
         }
       },
@@ -2226,13 +2498,19 @@
           "compose_detail": {
             "decisive_atom": ""
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "32dab61c12161ba31a4b866010330c5460da74e1cd6f7e044f85561ea54c63d6",
+          "navigation_only_answer": {
+            "action": "UPDATE",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 8,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -2266,13 +2544,19 @@
             "wall_ns": 0
           },
           "compose_detail": {},
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "522f117f950cda1bf76412ea1b9457b9e9959093f6963c3499c4b44bf9542b09",
+          "navigation_only_answer": {
+            "action": "PRESERVE",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 1,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -2308,13 +2592,19 @@
           "compose_detail": {
             "decisive_atom": ""
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "272eec2dd0d27af006b9677bd58d68196b662a9963d160818967467912367948",
+          "navigation_only_answer": {
+            "action": "UPDATE",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 9,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -2350,13 +2640,19 @@
           "compose_detail": {
             "decisive_atom": ""
           },
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "28262721712ca88fc90fc818ed6903c308e984c69b76b42401c137de2fe2920f",
+          "navigation_only_answer": {
+            "action": "UPDATE",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 12,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -2390,13 +2686,19 @@
             "wall_ns": 0
           },
           "compose_detail": {},
+          "dead_request_atoms_read_through_fire": [],
           "exact": true,
           "exact_by": "FOUND_BY_NAVIGATION",
           "extraction_sha256": "a6e4eca60b8bb1f9e1da7afd26a7f0607b118332f2132a2fe5d7714da1a84641",
+          "navigation_only_answer": {
+            "action": "PRESERVE",
+            "reopened": []
+          },
           "navigation_outcome": "FOUND",
           "request_atoms": 1,
           "stage_failures": {},
           "status": "SCORED",
+          "store_read": false,
           "translator_invariant": true
         }
       },
@@ -2414,7 +2716,7 @@
     }
   ],
   "provenance": {
-    "body_sha256": "d626ba93d4d07feabea507f8cf21c0353ee85dc690f1ff213d5cb8717ddd2c00",
+    "body_sha256": "d6d99a748ed475f41de043bb2bc9432e81fb4c5b344f268420157fe1ad517ab9",
     "byte_reproducible_in_process": true,
     "command": "python research/orion-machine/reference/kso_m2_solve_v1.py --out research/orion-machine/results/KSO_M2_SOLVE_RECEIPT_V1.json",
     "declared_nondeterminism": "none",

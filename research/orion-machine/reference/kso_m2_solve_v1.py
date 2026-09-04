@@ -418,7 +418,10 @@ def solve_instance(pop, w1, inst, exp, *, planted_flip: str | None = None) -> di
     # translator invariance: byte-identical canonical extraction from the two atomizers
     atomsB, edgesB, _, _ = reacting_subgraph_exact(ks, sB, R)
     invariant = canonical(atomsA, edgesA) == canonical(atomsB, edgesB)
-    row["arms"] = {"KSO_M2_SOLVE": {"answer": answer, "exact": exact, "exact_by": exact_by, "status": "SCORED" if nav == "FOUND" else "OBSTRUCTION" if nav == "OBSTRUCTION_WITNESSED" else "SCORED",
+    store_read = bool(missing)  # COMPOSE used >= 1 live request atom the walk did not surface into G_Q
+    navigation_only_answer = None if store_read else answer
+    row["arms"] = {"KSO_M2_SOLVE": {"answer": answer, "exact": exact, "exact_by": exact_by, "store_read": store_read, "navigation_only_answer": navigation_only_answer,
+                                    "dead_request_atoms_read_through_fire": [s.atom_id for s in specs if not kso.profile_live(amap[s.atom_id].profile, R)], "status": "SCORED" if nav == "FOUND" else "OBSTRUCTION" if nav == "OBSTRUCTION_WITNESSED" else "SCORED",
                                     "budget": {"steps": steps_used, "edge_visits": edge_visits, "incidence_visits": incidences, "restarts": 1, "wall_ns": 0, "steps_cap": budget.steps_cap, "edge_visits_cap": budget.edge_visits_cap},
                                     "navigation_outcome": nav, "attribution": attribution, "translator_invariant": invariant,
                                     "extraction_sha256": hashlib.sha256(canonical(atomsA, edgesA).encode()).hexdigest(), "request_atoms": len(specs), "stage_failures": stage_fail, "compose_detail": detail}}
