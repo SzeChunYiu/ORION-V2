@@ -17,6 +17,8 @@ import shutil
 import subprocess
 from pathlib import Path
 
+from check_render_bibliography_integrity import enforce_package
+
 TITLE = "Prospective Revision Adequacy: Auditing Autoregressive Representations Beyond Current Prediction and Decision"
 SHORT_TITLE = "Prospective Revision Adequacy"
 
@@ -334,11 +336,19 @@ def compile_pdf(package_dir: Path) -> dict[str, object]:
         match = re.search(r"(?m)^Pages:\s+(\d+)$", info)
         if match:
             page_count = int(match.group(1))
+    # This surface previously recorded no bibliography fact whatsoever: neither
+    # the .bbl, the .log nor the .blg was read, so a silently truncated
+    # bibliography compiled, exited 0 and shipped.
+    integrity = enforce_package(package_dir, label=package_dir.name)
+    bibliography = integrity["bibliography"]
     return {
         "compiled_pdf": str(pdf),
         "compiled_pdf_sha256": sha256(pdf),
         "pdf_size_bytes": pdf.stat().st_size,
         "page_count": page_count,
+        "bibliography_rendered": bibliography["bibitem_count"] > 0,
+        "bibliography_item_count": bibliography["bibitem_count"],
+        "render_integrity": integrity,
     }
 
 

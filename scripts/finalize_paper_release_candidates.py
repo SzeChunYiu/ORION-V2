@@ -19,6 +19,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+from check_render_bibliography_integrity import enforce_package
+
 AUTHOR = "Sze Chun Yiu"
 EMAIL = "sze-chun.yiu@fysik.su.se"
 JOURNAL_STATUS = "Independent researcher"
@@ -180,11 +182,16 @@ def compile_package(package: Path) -> dict[str, object]:
     pdf = package / "manuscript.pdf"
     info = run(["pdfinfo", str(pdf)], capture=True).stdout
     m = re.search(r"(?m)^Pages:\s+(\d+)$", info)
+    # These three packages are compiled here, after the .tex is patched, so the
+    # assemblers' own checks never see this build tree.  Read its transcripts.
+    integrity = enforce_package(package, label=package.name)
     return {
         "page_count": int(m.group(1)) if m else None,
         "pdf_size_bytes": pdf.stat().st_size,
         "pdf_sha256": sha256(pdf),
         "manuscript_tex_sha256": sha256(package / "manuscript.tex"),
+        "bibliography_item_count": integrity["bibliography"]["bibitem_count"],
+        "render_integrity": integrity,
     }
 
 

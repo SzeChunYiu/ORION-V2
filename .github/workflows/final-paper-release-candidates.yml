@@ -8,6 +8,8 @@ on:
       - 'papers/pipeline/FLAGSHIP_FORMAL_SPINE_INVENTORY_PR17_V1.md'
       - 'papers/llm-machine-epistemics/FORMAL_SPINE_INVENTORY_PR17_V1.md'
       - 'scripts/finalize_paper_release_candidates.py'
+      - 'scripts/check_render_bibliography_integrity.py'
+      - 'papers/pipeline/FINAL_PUBLIC_MANUSCRIPT_INDEX_V1.md'
       - '.github/workflows/final-paper-release-candidates.yml'
   workflow_dispatch:
 
@@ -39,6 +41,20 @@ jobs:
             --root "$GITHUB_WORKSPACE" \
             --out-root build/final-release/packages \
             --jmlr-style build/final-release/style/jmlr2e.sty
+      - name: Enforce render bibliography integrity (de-wrapped .log + .blg + aux/bbl coverage)
+        run: |
+          python scripts/check_render_bibliography_integrity.py \
+            --root "$GITHUB_WORKSPACE" \
+            --registry papers/pipeline/FINAL_PUBLIC_MANUSCRIPT_INDEX_V1.md \
+            --package flagship_arxiv=build/final-release/packages/flagship_arxiv \
+            --package llm_arxiv=build/final-release/packages/llm/arxiv_v1 \
+            --package llm_jmlr=build/final-release/packages/llm/jmlr_v1 \
+            --source flagship_arxiv=papers/drafts/FLAGSHIP_MACHINE_EPISTEMICS_PERSPECTIVE_V14_CITED_ARXIV_JOURNAL_MASTER.md \
+            --source llm_arxiv=papers/llm-machine-epistemics/MANUSCRIPT_V12_ARXIV_JMLR_FINAL.md \
+            --source llm_jmlr=papers/llm-machine-epistemics/MANUSCRIPT_V12_ARXIV_JMLR_FINAL.md \
+            --deviation flagship_arxiv=FORMAL_SPINE_MAIN_TEXT_V1_PATCHED_INTO_V14_BASE \
+            --json-out build/final-release/RENDER_INTEGRITY_RECEIPT.json
+
       - name: Enforce PR17 release invariants
         run: |
           python - <<'PY'
@@ -71,12 +87,24 @@ jobs:
               assert package['page_count']
               assert package['pdf_size_bytes'] > 0
               assert package['pdf_sha256']
+              integrity = package['render_integrity']
+              assert integrity['status'] == 'PASS', name
+              bib = integrity['bibliography']
+              assert bib['coverage_complete'] is True, (name, bib['cited_keys_without_bibitem'])
+              assert bib['cited_key_count'] > 0, name
+              assert not (integrity['log'] or {}).get('dewrapped_scan_hits'), name
+              assert not (integrity['blg'] or {}).get('scan_hits'), name
+              print(f"{name}_CITED={bib['cited_key_count']} BIBITEMS={bib['bibitem_count']} "
+                    f"WRAP={(integrity['log'] or {}).get('wrap_state')} "
+                    f"DEWRAP_JOINS={(integrity['log'] or {}).get('dewrap_joins_applied')}")
           print('FINAL_PAPER_RELEASE_PR17_PASS')
           PY
       - name: Upload final candidates
         uses: actions/upload-artifact@v4
         with:
           name: final-paper-release-candidates-pr17
-          path: build/final-release/packages/
+          path: |
+            build/final-release/packages/
+            build/final-release/RENDER_INTEGRITY_RECEIPT.json
           if-no-files-found: error
           retention-days: 30

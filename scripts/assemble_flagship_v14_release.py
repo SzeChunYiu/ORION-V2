@@ -11,6 +11,8 @@ import shutil
 import subprocess
 from pathlib import Path
 
+from check_render_bibliography_integrity import enforce_package
+
 TITLE = "Machine Epistemics"
 SUBTITLE = "Toward a Science of AI-Driven Inquiry and Scientific Change"
 PANDOC_CITE_RE = re.compile(r"\[@([^\]]+)\]")
@@ -117,12 +119,17 @@ def compile_pdf(package: Path) -> dict[str, object]:
             page_count = int(m.group(1))
     bbl = package / "manuscript.bbl"
     bbl_text = bbl.read_text(encoding="utf-8") if bbl.exists() else ""
+    # `bibliography_item_count > 0` is a presence test, not a coverage test: a
+    # bibliography that dropped 18 of 41 entries still satisfies it.  The
+    # de-wrapped .log / .blg / aux->bbl reads below are the coverage test.
+    integrity = enforce_package(package, label="flagship_arxiv")
     return {
         "pdf_sha256": sha256(pdf),
         "pdf_size_bytes": pdf.stat().st_size,
         "page_count": page_count,
         "bibliography_rendered": "\\bibitem" in bbl_text,
         "bibliography_item_count": bbl_text.count("\\bibitem"),
+        "render_integrity": integrity,
     }
 
 
