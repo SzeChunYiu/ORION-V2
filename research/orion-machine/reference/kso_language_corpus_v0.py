@@ -24,7 +24,7 @@ import re
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable, Sequence
+from typing import Sequence
 
 HERE = Path(__file__).resolve().parent
 TOKEN_RE = re.compile(r"[A-Za-z]+(?:'[A-Za-z]+)?")
@@ -158,12 +158,11 @@ def bind_roles_from_aligned_examples(
     examples: Sequence[tuple[lang.SemanticFrame, str]],
     evidence_id: int,
 ) -> SlotRoleBinding:
-    """Identify simple L0 English slot roles using independently supplied semantic frames.
+    """Identify simple L0 slot roles using independently supplied semantic frames.
 
     The binder does NOT parse arbitrary language. It is a finite calibration that asks whether the
-    same surface pattern positions consistently carry determiner/adjective/noun/verb categories
-    already grounded by the aligned frame+lexicon. If a position changes role across examples,
-    binding is refused.
+    same surface-pattern positions consistently carry roles already supplied by the aligned meaning.
+    If a position changes role across aligned examples, binding is refused.
     """
     if not examples:
         return SlotRoleBinding(pattern.pattern_id, (), evidence_id, "GAP_NO_ALIGNED_EVIDENCE")
@@ -176,18 +175,19 @@ def bind_roles_from_aligned_examples(
             if not fixed.startswith("<SLOT:") and toks[i] != fixed:
                 return SlotRoleBinding(pattern.pattern_id, (), evidence_id, "GAP_PATTERN_MISMATCH")
 
-        # Finite L0 role facts come from the aligned meaning + registered language lexicon, not raw text.
-        expected = {
-            frame.agent.adjective_concepts[0].lower(): "SUBJECT_ADJECTIVE" if frame.agent.adjective_concepts else "",
+        # Finite L0 role facts come from aligned meaning, not from raw-text position names.
+        expected: dict[str, str] = {
             frame.agent.noun_concept.lower(): "SUBJECT_NOUN",
             frame.predicate_concept.lower(): "VERB",
         }
+        if frame.agent.adjective_concepts:
+            expected[frame.agent.adjective_concepts[0].lower()] = "SUBJECT_ADJECTIVE"
         if frame.patient is not None:
             if frame.patient.adjective_concepts:
                 expected[frame.patient.adjective_concepts[0].lower()] = "OBJECT_ADJECTIVE"
             expected[frame.patient.noun_concept.lower()] = "OBJECT_NOUN"
 
-        # For the controlled binder, surfaces use lower-case concept labels at aligned positions.
+        # Controlled aligned surfaces use concept labels at the latent slot positions.
         mapping: dict[int, str] = {}
         for i in pattern.slot_positions:
             role = expected.get(toks[i])
@@ -246,14 +246,11 @@ def run_corpus_l1c_preflight() -> dict[str, object]:
         "admire",
         lang.NPConcept("painting", "the", ("blue",), lang.Number.SINGULAR),
     )
-    binding = bind_roles_from_aligned_examples(
-        pattern,
-        (
-            (frame1, "the curious robot open the red door"),
-            (frame2, "the small child admire the blue painting"),
-        ),
-        9100,
+    aligned = (
+        (frame1, "the curious robot open the red door"),
+        (frame2, "the small child admire the blue painting"),
     )
+    binding = bind_roles_from_aligned_examples(pattern, aligned, 9100)
     assert binding.status == "ALIGNED_ROLE_BINDING_IDENTIFIED"
     assert binding.roles() == {
         1: "SUBJECT_ADJECTIVE",
@@ -263,12 +260,16 @@ def run_corpus_l1c_preflight() -> dict[str, object]:
         6: "OBJECT_NOUN",
     }
 
+    # Same semantic frame with a swapped noun assignment conflicts with the first alignment.
     bad = bind_roles_from_aligned_examples(
         pattern,
-        ((frame1, "the curious door open the red robot"),),
+        (
+            aligned[0],
+            (frame1, "the curious door open the red robot"),
+        ),
         9101,
     )
-    assert bad.status == "GAP_INCONSISTENT_ROLE_BINDING" or bad.status == "GAP_UNIDENTIFIED_SLOT"
+    assert bad.status == "GAP_INCONSISTENT_ROLE_BINDING"
 
     return {
         "terminal": "LANGUAGE_CORPUS_L1C_FORM_PREFLIGHT_GREEN",
@@ -282,6 +283,7 @@ def run_corpus_l1c_preflight() -> dict[str, object]:
         "aligned": {
             "status": binding.status,
             "role_by_position": {str(k): v for k, v in binding.role_by_position},
+            "inconsistent_alignment_refused": bad.status,
         },
         "authority": {
             "real_book_corpus_run": False,
