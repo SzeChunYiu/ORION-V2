@@ -196,6 +196,8 @@ def main() -> int:
 \usepackage[margin=1in]{{geometry}}
 \usepackage{{amsmath,amssymb,mathtools}}
 \usepackage{{booktabs,longtable,array}}
+\makeatletter\@ifundefined{{c@none}}{{\newcounter{{none}}}}{{}}\makeatother
+\usepackage{{calc}}
 \usepackage{{graphicx}}
 \usepackage[round]{{natbib}}
 \usepackage{{microtype}}
