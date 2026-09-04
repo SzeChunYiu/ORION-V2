@@ -69,12 +69,15 @@ carries a constructibility clause.
 ### 3.1 Two of the five executed arms were the same arm
 
 `F0_PARENT_FEDERATION` and `STRONGEST_DOMAIN_FORMAL_PARENT` received **byte-identical**
-procedures. On the pure-executor stock they are a same-procedure replicate pair at
-0.8263 and 0.8166 — and those are the **maximum and minimum of all five arms**. The terminal's
-headline "all five arms lie within 0.0097" is therefore bounded by the spread between two arms
-given the same instruction. This *strengthens* the null's robustness reading (the observed
-between-arm spread does not exceed the campaign's own same-procedure noise floor) while
-withdrawing the claim that five distinct arms were compared.
+procedures. On the pure-executor stock they are a same-procedure pair at 0.8263 and 0.8166 —
+and those are the **maximum and minimum of all five arms**. So the terminal's five-arm ordering
+cannot be read as five distinct arms ranked: its two extremes are one arm wearing two labels.
+
+This withdraws the *ranking* claim. It does **not** establish a noise floor: one same-procedure
+pair is a single draw, not an estimate of the null distribution, and a 12-task gap between
+identically-instructed arms is consistent both with chance and with a real 12-task effect
+elsewhere in the table. The narrower statement is the defensible one, and it is the only one
+made here.
 
 ## 4. The repair
 
