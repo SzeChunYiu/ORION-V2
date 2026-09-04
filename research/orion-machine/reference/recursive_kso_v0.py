@@ -19,7 +19,7 @@ import json
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Iterable, Sequence
+from typing import Sequence
 
 HERE = Path(__file__).resolve().parent
 
@@ -102,8 +102,8 @@ class RecursiveKSO:
             raise ValueError("a scope cannot contain itself")
         if child not in self.scopes or parent not in self.scopes:
             raise KeyError("both scopes must exist")
-        # Adding child -> parent would form a containment cycle if parent already descends to child.
-        if child in self.descendants(parent):
+        # Adding child -> parent forms a cycle exactly when the proposed parent is already below child.
+        if parent in self.descendants(child):
             raise ValueError("containment cycle")
         self.scopes[child].parents.add(parent)
         self.scopes[parent].children.add(child)
