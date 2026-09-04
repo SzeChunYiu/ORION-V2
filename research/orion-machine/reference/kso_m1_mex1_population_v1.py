@@ -319,6 +319,13 @@ def check_P2_label_equals_oracle(pop: Population, world) -> dict[str, object]:
             if live != all(parts):
                 mismatches.append(f"{fam.family_id}@{sorted(inv[i] for i in r)}")
     assert not mismatches, mismatches[:5]
+    negatives = 0
+    for bits in itertools.product((True, False), repeat=len(unknown)):
+        resolved_false = {u for u, bit in zip(unknown, bits, strict=True) if not bit}
+        r = pop.registered_revoked | frozenset(resolved_false)
+        vals = {b: (pop.base_index[b] not in r) for b in table.atoms}
+        sup = oracle.evaluate_support(world, vals, table)
+        negatives += sum(1 for c in world.claims if not sup[c])
     # planted: a merged (⊕) family label disagrees with the oracle on a world where a family has ≥ 2 tails
     planted = "NO_FAMILY_WITH_TWO_TAILS"
     for e in pop.space.hyperedges:
@@ -333,7 +340,40 @@ def check_P2_label_equals_oracle(pop: Population, world) -> dict[str, object]:
                 planted = "CAUGHT" if kso.profile_live(merged, r) and not kso.profile_live(amap[e.heads[0]].profile, r) else "MISSED"
                 if planted == "CAUGHT":
                     break
-    return {"cells": cells, "mismatches": 0, "resolutions": 2 ** len(unknown), "planted_merged_family_label_caught": planted}
+    return {"cells": cells, "mismatches": 0, "oracle_negative_cells": negatives, "power": "POWERED" if negatives else "NO_POWER__ALL_CELLS_POSITIVE",
+            "resolutions": 2 ** len(unknown), "planted_merged_family_label_caught": planted}
+
+
+def check_P2_constraint_power(world, claim_id: str) -> dict[str, object]:
+    """The CONSTRAINT (nocontra) tail of a claim label is load-bearing only on a world with an
+    undefeated negative evidence item; the generator plants none (0 INVALID nocontra atoms on the
+    dev split), so a derived world with one negative evidence against ``claim_id`` from a valid
+    source is populated and the tail-drop mutant (claim label without ⊗ nocontra) must be caught."""
+    gen, model, oracle = _mex1()
+    w = world.copy()
+    claim = w.claims[claim_id]
+    valid_sources = [sid for sid, st in sorted(w.sources.items()) if st == model.SOURCE_VALID]
+    if not valid_sources:
+        raise CannotCheck("no valid source to attach a negative evidence to")
+    eid = f"neg:{claim_id}"
+    w.evidence[eid] = model.Evidence(eid, claim_id, valid_sources[0], claim.context_id, tuple(claim.scope), supports=False)
+    w.validate()
+    table = oracle.support_table(w)
+    assert table.atoms[f"nocontra:{claim_id}"] == model.STATUS_INVALID, "planted negative evidence did not invalidate nocontra"
+    pop = populate(w)
+    amap = pop.space.atom_map()
+    r = pop.registered_revoked
+    tri = {a: oracle._tri(st) for a, st in table.atoms.items()}
+    sup = oracle.evaluate_support(w, {a: (v if v is not None else True) for a, v in tri.items()}, table)
+    live = kso.profile_live(amap[f"claim:{claim_id}"].profile, r)
+    assert live == bool(sup[claim_id]) and live is False, ("label vs oracle on the negative-evidence world", live, sup[claim_id])
+    # tail-drop mutant: the claim label without its constraint tail = ⊕ of its family labels
+    dropped: tuple = ZERO
+    for fam in w.families_of(claim_id):
+        dropped = kso.profile_or(dropped, amap[f"fam:{fam.family_id}"].profile)
+    mutant_live = kso.profile_live(dropped, r)
+    return {"claim": claim_id, "nocontra_status": table.atoms[f"nocontra:{claim_id}"], "claim_label_dead": not live, "oracle_support": bool(sup[claim_id]),
+            "tail_drop_mutant_caught": "CAUGHT" if mutant_live and not live else ("NO_POWER__CLAIM_DEAD_WITHOUT_CONSTRAINT" if not mutant_live else "MISSED")}
 
 
 def dead_set(pop: Population, revoked: frozenset[int]) -> frozenset[str]:
@@ -436,35 +476,52 @@ def check_P3_events(pop: Population, inst) -> dict[str, object]:
                 agree += 1
             else:
                 disagree += 1
-    assert disagree == 0
+    assert disagree == 0, f"{inst.instance_id}: {disagree} claim cells disagree with the oracle at v1 under the replayed events"
     return {"events": len(inst.events), "status": "REPLAYED", "claim_cells_agree": agree, "claim_cells_disagree": disagree, "newly_revoked": len(r1 - pop.registered_revoked)}
 
 
 def check_P4_hub(pop: Population, *, alpha: Fraction = Fraction(1, 3)) -> dict[str, object]:
+    """KS-T06b on the real world, ranked over the atoms the question did not seed.
+
+    (i)  the evidence question — uniform over every live ``ev:`` atom — touches the hub (which
+         collects from many of them) and every specific family/claim; discriminating iff the hub is
+         first by raw activation AND not first by surprise AND the planted popularity ranker (raw
+         order) differs from the surprise order.  Reported per world; the receipt asserts ≥ 1
+         world exhibits it and reports the count.
+    (ii) hub-only question: hub first by surprise — NOT_DISCRIMINATING (any seeded atom is first);
+         kept as a record only.
+    (iii) background question: 0 everywhere — an identity (no-alarm), labelled as such.
+    """
     ks = pop.space
     degree = {x: 0 for x in ks.ids}
     for e in ks.hyperedges:
         for x in (*e.tails, *e.heads):
             degree[x] += 1
-    hub = max(ks.ids, key=lambda x: (degree[x], x))
     r0 = pop.registered_revoked
+    amap = ks.atom_map()
+    hub = max(ks.ids, key=lambda x: (degree[x], x))
     background = activation(ks, uniform(ks), alpha, revoked=r0)
     zero = m0.reaction_surprise_vector(background, background)
-    assert all(v == 0.0 for v in zero.values()) and zero[hub] == 0.0
+    assert all(v == 0.0 for v in zero.values())
+    ev_atoms = [x for x in ks.ids if x.startswith("ev:") and kso.profile_live(amap[x].profile, r0)]
+    if not ev_atoms:
+        raise CannotCheck("no live evidence atom to seed the evidence question")
+    seed = [Fraction(1, len(ev_atoms)) if x in ev_atoms else Fraction(0, 1) for x in ks.ids]
+    q = activation(ks, seed, alpha, revoked=r0)
+    s_q = m0.reaction_surprise_vector(q, background)
+    raw_rank = m0.rank_by(q, exclude=ev_atoms)
+    sur_rank = m0.rank_by(s_q, exclude=ev_atoms)
+    hub_raw_first = raw_rank[0] == hub
+    hub_sur_first = sur_rank[0] == hub
+    planted_ranker_differs = raw_rank != sur_rank
+    direction_i = hub_raw_first and not hub_sur_first and planted_ranker_differs
     hub_q = activation(ks, point(ks, hub), alpha, revoked=r0)
     s_hub = m0.reaction_surprise_vector(hub_q, background)
-    assert s_hub[hub] > 0.0
-    assert all(s_hub[hub] >= s_hub[x] for x in ks.ids)
-    # an evidence-seeded question: report where the hub lands
-    ev_atoms = [x for x in ks.ids if x.startswith("ev:") and kso.profile_live(ks.atom_map()[x].profile, r0)]
-    report = {}
-    if ev_atoms:
-        q = activation(ks, point(ks, ev_atoms[0]), alpha, revoked=r0)
-        s_q = m0.reaction_surprise_vector(q, background)
-        raw_rank = m0.rank_by(q, exclude=(ev_atoms[0],))
-        sur_rank = m0.rank_by(s_q, exclude=(ev_atoms[0],))
-        report = {"seed": ev_atoms[0], "hub_raw_rank": raw_rank.index(hub) + 1 if hub in raw_rank else None, "hub_surprise_rank": sur_rank.index(hub) + 1 if hub in sur_rank else None, "surprise_winner": sur_rank[0], "raw_winner": raw_rank[0]}
-    return {"hub": hub, "hub_degree": degree[hub], "background_zero_everywhere": 1, "hub_seeded_hub_positive_and_top": 1, "evidence_seeded": report}
+    return {"hub": hub, "hub_degree": degree[hub], "hub_is_seed": hub in ev_atoms,
+            "direction_i": {"seed": f"uniform over {len(ev_atoms)} live ev atoms", "hub_raw_rank": raw_rank.index(hub) + 1 if hub in raw_rank else None, "hub_surprise_rank": sur_rank.index(hub) + 1 if hub in sur_rank else None,
+                            "raw_winner": raw_rank[0], "surprise_winner": sur_rank[0], "planted_popularity_ranker_differs": planted_ranker_differs, "holds": direction_i},
+            "direction_ii_hub_only": {"hub_first_by_surprise": m0.rank_by(s_hub)[0] == hub, "status": "NOT_DISCRIMINATING__ANY_SEEDED_ATOM_IS_FIRST"},
+            "direction_iii_background": {"zero_everywhere": True, "status": "IDENTITY__NO_ALARM_ONLY"}}
 
 
 def check_P5_genome(pop: Population, digest_before: str) -> dict[str, object]:
@@ -526,7 +583,8 @@ def run(split: str = "dev", split_seed: str = "ME-X1-DEV-20260902", per_family: 
     pairs = gen.generate_split(split, split_seed, {f: per_family for f in model.FAMILIES})
     worlds = []
     totals = {"atoms": 0, "hyperedges": 0, "p2_cells": 0, "p3_revocations": 0, "p3_parent_raised_worlds": 0, "events_replayed": 0, "events_acquisition_needed": 0,
-              "v1_revoked_base_atoms": 0, "v1_unknown_base_atoms": 0, "v1_p2_cells": 0, "v1_worlds_with_revocation_or_censoring": 0}
+              "v1_revoked_base_atoms": 0, "v1_unknown_base_atoms": 0, "v1_p2_cells": 0, "v1_worlds_with_revocation_or_censoring": 0,
+              "v0_oracle_negative_cells": 0, "v1_oracle_negative_cells": 0, "constraint_power_worlds_caught": 0, "p4_direction_i_worlds": 0, "p4_hub_is_target_claim": 0}
     for inst, exp in pairs:
         pop = populate(inst.world_v0)
         rec = {"instance_id": inst.instance_id, "family": inst.family, "variant": inst.variant, "oracle_action": exp.action, "base_atoms": len(pop.base_index), "registered_revoked": len(pop.registered_revoked), "unknown": len(pop.unknown)}
@@ -536,6 +594,7 @@ def run(split: str = "dev", split_seed: str = "ME-X1-DEV-20260902", per_family: 
         rec["P3_events"] = check_P3_events(pop, inst)
         rec["P4_hub"] = check_P4_hub(pop)
         rec["P5_genome"] = check_P5_genome(pop, digest_before)
+        rec["P2_constraint_power"] = check_P2_constraint_power(inst.world_v0, inst.request.target_claim_id)
         # the post-event world v1 carries the registered INVALID / UNKNOWN statuses: populate it too,
         # so that P2 is exercised on real revoked and censored base atoms, not only on an all-VALID v0
         w1 = oracle.final_world(inst.world_v0, inst.events)
@@ -546,6 +605,11 @@ def run(split: str = "dev", split_seed: str = "ME-X1-DEV-20260902", per_family: 
         totals["v1_unknown_base_atoms"] += rec["v1"]["unknown"]
         totals["v1_p2_cells"] += rec["v1"]["P2_label_equals_oracle"]["cells"]
         totals["v1_worlds_with_revocation_or_censoring"] += 1 if (rec["v1"]["registered_revoked"] or rec["v1"]["unknown"]) else 0
+        totals["v0_oracle_negative_cells"] += rec["P2_label_equals_oracle"]["oracle_negative_cells"]
+        totals["v1_oracle_negative_cells"] += rec["v1"]["P2_label_equals_oracle"]["oracle_negative_cells"]
+        totals["constraint_power_worlds_caught"] += 1 if rec["P2_constraint_power"]["tail_drop_mutant_caught"] == "CAUGHT" else 0
+        totals["p4_direction_i_worlds"] += 1 if rec["P4_hub"]["direction_i"]["holds"] else 0
+        totals["p4_hub_is_target_claim"] += 1 if rec["P4_hub"]["hub"] == f"claim:{inst.request.target_claim_id}" else 0
         worlds.append(rec)
         totals["atoms"] += rec["P1_dense"]["atoms"]
         totals["hyperedges"] += rec["P1_dense"]["hyperedges"]
@@ -556,6 +620,9 @@ def run(split: str = "dev", split_seed: str = "ME-X1-DEV-20260902", per_family: 
         totals["events_acquisition_needed"] += 1 if rec["P3_events"]["status"] != "REPLAYED" else 0
     assert totals["p3_parent_raised_worlds"] >= 1, "the renormalising parent never differed — the must-differ control did not fire"
     assert totals["v1_worlds_with_revocation_or_censoring"] >= 1, "no v1 world carries a revoked or censored base atom — P2 would be vacuous"
+    assert totals["v1_oracle_negative_cells"] >= 1, "P2 has no oracle-negative cell anywhere — NO_POWER"
+    assert totals["constraint_power_worlds_caught"] >= 1, "the CONSTRAINT tail-drop mutant was never caught — NO_POWER"
+    assert totals["p4_direction_i_worlds"] >= 1, "KS-T06b direction (i) never exhibited on a real world — NO_POWER"
     seconds = round(time.time() - t0, 1)
     return {
         "schema": "orion.kso.m1-population-receipt.v1",
@@ -568,6 +635,11 @@ def run(split: str = "dev", split_seed: str = "ME-X1-DEV-20260902", per_family: 
         "worlds": worlds,
         "totals": {**totals, "worlds": len(worlds)},
         "genome_digest": digest_before,
+        "power": {"P2_v0": "NO_POWER__ALL_CELLS_POSITIVE (reported, not evidence)" if totals["v0_oracle_negative_cells"] == 0 else "POWERED",
+                  "P2_v1": f"POWERED: {totals['v1_oracle_negative_cells']} oracle-negative cells over {totals['v1_worlds_with_revocation_or_censoring']} worlds",
+                  "P2_constraint_edge": f"POWERED by derived negative-evidence worlds: tail-drop mutant caught on {totals['constraint_power_worlds_caught']}/{len(worlds)} (generator plants 0 negatives)",
+                  "P4_direction_i": f"{totals['p4_direction_i_worlds']}/{len(worlds)} worlds exhibit hub-raw-first ∧ specific-surprise-first with the planted popularity ranker differing; hub is the target claim on {totals['p4_hub_is_target_claim']}/{len(worlds)}",
+                  "P4_direction_ii": "NOT_DISCRIMINATING (record only)", "P4_direction_iii": "IDENTITY (no-alarm only)"},
         "terminals": {"M1_KSO_INSTANCE": "GREEN_DEV_SPLIT", "M1_PROTECTED": "NOT_RUN", "M2_SOLVE_LOOP": "NOT_RUN", "GENERAL_NOVELTY": "NOT_ESTABLISHED"},
         "authority": "development split; population and invariant checks only; no solve-loop, comparator or novelty authority",
     }

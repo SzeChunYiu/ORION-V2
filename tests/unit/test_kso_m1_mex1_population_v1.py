@@ -7,7 +7,9 @@ map changes them and must be re-pinned deliberately.
 
 from __future__ import annotations
 
+import hashlib
 import importlib.util
+import json
 import sys
 from fractions import Fraction
 from pathlib import Path
@@ -45,6 +47,9 @@ def test_population_totals_pinned(receipt):
     assert t["p3_revocations"] == 80
     assert t["events_replayed"] == 10 and t["events_acquisition_needed"] == 0
     assert t["v1_revoked_base_atoms"] == 3 and t["v1_worlds_with_revocation_or_censoring"] == 2
+    assert t["v0_oracle_negative_cells"] == 0 and t["v1_oracle_negative_cells"] == 2
+    assert t["constraint_power_worlds_caught"] == 10 and t["p4_direction_i_worlds"] == 3
+    assert receipt["power"]["P2_v0"].startswith("NO_POWER")
 
 
 def test_every_world_is_dense_and_label_equals_oracle(receipt):
@@ -67,10 +72,35 @@ def test_retraction_both_directions_on_real_worlds(receipt):
     assert raised >= 1
 
 
-def test_hub_normalisation_both_directions(receipt):
+def test_hub_two_directions_discriminating_form(receipt):
+    holds = 0
     for w in receipt["worlds"]:
-        assert w["P4_hub"]["background_zero_everywhere"] == 1
-        assert w["P4_hub"]["hub_seeded_hub_positive_and_top"] == 1
+        d = w["P4_hub"]["direction_i"]
+        if d["holds"]:
+            holds += 1
+            assert d["hub_raw_rank"] == 1 and d["hub_surprise_rank"] != 1 and d["planted_popularity_ranker_differs"]
+        assert w["P4_hub"]["direction_ii_hub_only"]["status"].startswith("NOT_DISCRIMINATING")
+        assert w["P4_hub"]["direction_iii_background"]["status"].startswith("IDENTITY")
+    assert holds >= 1
+
+
+def test_constraint_edge_is_powered_by_derived_negative_evidence_worlds(receipt):
+    for w in receipt["worlds"]:
+        c = w["P2_constraint_power"]
+        assert c["nocontra_status"] == "INVALID" and c["claim_label_dead"] and c["oracle_support"] is False
+        assert c["tail_drop_mutant_caught"] == "CAUGHT"
+
+
+def test_receipt_self_bindings_match_the_committed_files():
+    receipt = json.loads((ROOT / "research" / "orion-machine" / "results" / "KSO_M1_POPULATION_RECEIPT_V1.json").read_text(encoding="utf-8"))
+    where = {"mex1_generator.py": ROOT / "research/experiments/me-x1", "mex1_oracle.py": ROOT / "research/experiments/me-x1", "mex1_model.py": ROOT / "research/experiments/me-x1",
+             "kso_math_v1.py": ROOT / "research/orion-machine/reference", "kso_m0_freeze_checks_v1.py": ROOT / "research/orion-machine/reference", "kso_m1_mex1_population_v1.py": ROOT / "research/orion-machine/reference"}
+    for name, digest in receipt["bindings"].items():
+        assert hashlib.sha256((where[name] / name).read_bytes()).hexdigest() == digest, name
+    freeze = json.loads((ROOT / "research" / "orion-machine" / "results" / "KSO_M0_FREEZE_V1.json").read_text(encoding="utf-8"))
+    for rel, digest in freeze["bindings"].items():
+        assert hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() == digest, rel
+    assert freeze["m1_receipt_body_sha256"] == receipt["provenance"]["body_sha256"]
 
 
 def test_genome_holds_and_is_unchanged_by_population(receipt, mod):
