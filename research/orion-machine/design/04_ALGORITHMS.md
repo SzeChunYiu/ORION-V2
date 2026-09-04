@@ -99,7 +99,7 @@ self_revise(φ): assert S4(φ) ∧ S5(φ); 𝒦 ← φ(𝒦); assert every previ
 ```
 Parent: Gödel machine (proof-gated self-modification) × ATMS. Checker: planted `T` edit outside Jump rejected.
 
-## A11 solve (the loop) `[SPEC → M2; traces in 05]`
+## A11 solve (the loop) `[MACHINE: kso_m2_solve_v1 (#295) — NAVIGATION_EXACT 38/50, STORE_EXACT 50/50, exact_by recorded per row; traces in 05]`
 ```
 solve(question, B) -> (answer, X_Q, warrant, Ω, B_spent)
   (s_Q, req, η_Q) ← A2;  (ρ*, ok) ← A3;  if not ok: return (⊥, ∅, 0, CANNOT_CHECK, B)
@@ -126,7 +126,7 @@ jump(witness): level ← min j ∈ J0..J8 such that rewrite_j makes ceiling reac
 ```
 Benchmark: v1 #558 84 opaque worlds; ME-X2 0 false escalations.
 
-## A14 comparator arms `[SPEC → M2 comparator (lane-guards-2)]`
+## A14 comparator arms `[MACHINE: kso_m2_comparator_v1 (#298, stacked on #295) — B5 50/50, RWR/PPR 32/50, CBR/KG 34/50, null 5/50, oracle 50/50; KSO_NAVIGATION_ONLY column being added]`
 Arms on identical `(𝒦, s_Q, B)`: strongest `mex1_parents` solver; RWR/PPR retrieval (renormalised —
 the parent, so the delta is visible); CBR / KG retrieval; (M5) LLM alone; retrieval-QA. Scoring: exact
 agreement with the oracle per instance; paired test; overrun ⇒ `CANNOT_CHECK` (KS-T17).
