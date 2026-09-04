@@ -18,11 +18,14 @@ def test_registry_has_exactly_35_unique_atomic_gaps():
     assert d["counts"]["total"] == 35
 
 
-def test_pending_pr_is_not_silently_proved():
+def test_merged_pr317_rows_are_proved_and_bound():
     d = load()
-    pending = {r["id"] for r in d["rows"] if r["status"] == "PENDING_PR"}
-    assert pending == set(d["pending_dependencies"]["PR_317"]["owned_meg"])
-    assert all(not r["status"].startswith("PROVED") for r in d["rows"] if r["id"] in pending)
+    merged = d["merged_dependencies"]["PR_317"]
+    assert merged["status"] == "MERGED"
+    assert merged["merge_sha"] == "d756c086edc46ad4e5e682f69730b72c1dc26a4c"
+    by = {r["id"]: r for r in d["rows"]}
+    assert all(by[x]["status"] == "PROVED" for x in merged["owned_meg"])
+    assert all("d756c086" in by[x]["evidence"] for x in merged["owned_meg"])
 
 
 def test_batch2_rows_have_honest_scope_or_contraction():
@@ -45,9 +48,4 @@ def test_no_scientific_authority_upgrade():
 def test_foundation_terminal_is_explicitly_partial():
     d = load()
     assert d["foundation_terminal"] == "FOUNDATION_V1_PARTIAL__OPEN_RESEARCH_REMAINS"
-    assert d["counts"] == {
-        "total": 35,
-        "proved_or_contracted_on_this_branch": 5,
-        "pending_pr_317": 11,
-        "other_open_or_parent_adoption": 19,
-    }
+    assert d["counts"] == {"total": 35, "proved_or_contracted": 16, "open_or_parent_adoption": 19}
