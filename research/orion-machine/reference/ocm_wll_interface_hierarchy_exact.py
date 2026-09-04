@@ -84,6 +84,39 @@ INTERFACES: tuple[tuple[str, Callable[[World], Hashable]], ...] = (
 )
 
 
+TARGET_WIDTH = 6
+
+# Lower bounds transcribed from Section 6 of
+# research/orion-machine/theory/OCM_WLL_STRICT_INTERFACE_HIERARCHY_V1.md.
+# The theorem states bounds ("I0: at least five of six target coordinates may require
+# abstention"), not equalities, so they are asserted as bounds. The denominator is
+# pinned separately by TARGET_WIDTH so a bound cannot be satisfied vacuously.
+# (exact_lifecycle_identification, min_answerable, min_abstentions)
+THEOREM_BOUNDS: dict[str, tuple[bool, int, int]] = {
+    "I0_ENDPOINT_ONLY": (False, 0, 5),
+    "I1_RAW_LOCAL_TRACE": (False, 3, 3),
+    "I2_POSITIVE_CERTIFIED_SUPPORT": (False, 3, 3),
+    "I3_CLOSURE_CERTIFIED_WARRANT": (True, 6, 0),
+}
+
+# Exact values of the registered 256-world model. These must satisfy THEOREM_BOUNDS.
+# I0 was corrected from (1, 5) to (0, 6). The endpoint observation reveals the parity
+# relation theta_0 XOR theta_1 = 0, which constrains the fiber but leaves every one of
+# the six target coordinates non-constant on it, so no coordinate is guaranteed
+# answerable. This correction is recorded as a repaired checker defect in
+# research/orion-machine/receipts/OCM_WLL_P0_THEOREM_BUNDLE_RECEIPT_V1.json
+# ("endpoint parity relation counted as one individually known target coordinate",
+# theorem_statement_changed: false); the repair was recorded there but had not landed
+# in this module. No theorem statement is changed by this table.
+# (min_answerable, min_abstentions) as measured
+REGISTERED_MODEL_VALUES: dict[str, tuple[int, int]] = {
+    "I0_ENDPOINT_ONLY": (0, 6),
+    "I1_RAW_LOCAL_TRACE": (3, 3),
+    "I2_POSITIVE_CERTIFIED_SUPPORT": (3, 3),
+    "I3_CLOSURE_CERTIFIED_WARRANT": (6, 0),
+}
+
+
 def fibers(worlds: Iterable[World], observation: Callable[[World], Hashable]):
     out: dict[Hashable, list[World]] = {}
     for world in worlds:
@@ -186,23 +219,41 @@ def run_exact_calibration():
             worlds, lower, upper
         )
 
-    expected = {
-        "I0_ENDPOINT_ONLY": (False, 1, 5),
-        "I1_RAW_LOCAL_TRACE": (False, 3, 3),
-        "I2_POSITIVE_CERTIFIED_SUPPORT": (False, 3, 3),
-        "I3_CLOSURE_CERTIFIED_WARRANT": (True, 6, 0),
-    }
-    for name, (
-        exact,
-        answerable,
-        abstentions,
-    ) in expected.items():
-        if metrics[name]["exact_lifecycle_identification"] != exact:
+    for name, (exact, min_answerable, min_abstentions) in THEOREM_BOUNDS.items():
+        row = metrics[name]
+        answerable = row["minimum_guaranteed_answerable_coordinates"]
+        abstentions = row["maximum_required_abstentions_zero_error"]
+        if row["exact_lifecycle_identification"] != exact:
             raise AssertionError(f"{name} exactness drift")
-        if metrics[name]["minimum_guaranteed_answerable_coordinates"] != answerable:
-            raise AssertionError(f"{name} coverage drift")
-        if metrics[name]["maximum_required_abstentions_zero_error"] != abstentions:
-            raise AssertionError(f"{name} abstention drift")
+        # Pin the denominator: a coverage/abstention pair is only meaningful if the two
+        # numbers partition the whole registered target. Without this an empty or
+        # short-circuited evaluation could satisfy the bounds below with (0, 0).
+        if row["target_width"] != TARGET_WIDTH:
+            raise AssertionError(f"{name} target-width drift")
+        if answerable + abstentions != TARGET_WIDTH:
+            raise AssertionError(f"{name} coverage and abstention do not partition the target")
+        if answerable < min_answerable:
+            raise AssertionError(f"{name} coverage below the theorem bound")
+        if abstentions < min_abstentions:
+            raise AssertionError(f"{name} abstention below the theorem bound")
+        if (answerable, abstentions) != REGISTERED_MODEL_VALUES[name]:
+            raise AssertionError(f"{name} registered-model drift")
+
+    # Theorem WLL-8 (strict hierarchy): the interfaces are nested refinements, so
+    # guaranteed coverage cannot fall and required abstention cannot rise as the
+    # interface strengthens. Checked on the measured metrics, not on the tables.
+    ordered_metrics = [metrics[name] for name, _ in INTERFACES]
+    for lower_row, upper_row in zip(ordered_metrics, ordered_metrics[1:]):
+        if (
+            upper_row["minimum_guaranteed_answerable_coordinates"]
+            < lower_row["minimum_guaranteed_answerable_coordinates"]
+        ):
+            raise AssertionError("interface refinement lost guaranteed coverage")
+        if (
+            upper_row["maximum_required_abstentions_zero_error"]
+            > lower_row["maximum_required_abstentions_zero_error"]
+        ):
+            raise AssertionError("interface refinement increased required abstention")
 
     positive_world = next(
         world
@@ -236,6 +287,14 @@ def run_exact_calibration():
         "world_count": len(worlds),
         "interface_order": [name for name, _ in INTERFACES],
         "metrics": metrics,
+        "theorem_bounds": {
+            name: {
+                "exact_lifecycle_identification": exact,
+                "min_answerable_coordinates": min_answerable,
+                "min_required_abstentions": min_abstentions,
+            }
+            for name, (exact, min_answerable, min_abstentions) in THEOREM_BOUNDS.items()
+        },
         "strict_refinement_witnesses": strict_witnesses,
         "positive_certificate_local_gain": {
             "world": {
