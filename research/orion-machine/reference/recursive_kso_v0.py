@@ -89,10 +89,14 @@ class RecursiveKSO:
             raise KeyError(f"unknown parent scopes: {missing}")
         s = Scope(scope_id, kind)
         self.scopes[scope_id] = s
+        linked: list[str] = []
         try:
             for p in parents:
                 self.link_parent(scope_id, p)
+                linked.append(p)
         except Exception:
+            for p in linked:
+                self.scopes[p].children.discard(scope_id)
             self.scopes.pop(scope_id, None)
             raise
         return s
