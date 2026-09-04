@@ -6,16 +6,9 @@
     "GENERAL_NOVELTY": "NOT_ESTABLISHED",
     "FIELD_STATUS": "NOT_ESTABLISHED",
     "OCM_SUPERIORITY": "NOT_ESTABLISHED",
-    "rule": "No row implies a stronger row. PENDING_PR is not PROVED. Scope-limited theorems may not be quoted outside their registered scope. Negative/refuted formulations are preserved."
+    "rule": "No row implies a stronger row. Scope-limited theorems may not be quoted outside their registered scope. Negative/refuted formulations are preserved. Merged dependency status is bound to the recorded merge SHA."
   },
-  "status_vocabulary": ["PROVED_WITH_CONTRACTION","PROVED_WITH_CORRECTION","PROVED_SCOPE_LIMITED","PENDING_PR","PARENT_OWNED_ADOPTION_OPEN","OPEN","OPEN_RESEARCH","OPEN_EMPIRICAL","CANNOT_CHECK"],
-  "pending_dependencies": {
-    "PR_317": {
-      "url": "https://github.com/SzeChunYiu/ORION-V2/pull/317",
-      "owned_meg": ["MEG-01","MEG-04","MEG-06","MEG-08","MEG-18","MEG-22","MEG-26","MEG-29","MEG-30","MEG-31","MEG-35"],
-      "rule": "Do not count as merged foundation until the PR is merged and its CI/merge gate remains valid."
-    }
-  },
+  "status_vocabulary": ["PROVED","PROVED_WITH_CONTRACTION","PROVED_WITH_CORRECTION","PROVED_SCOPE_LIMITED","PARENT_OWNED_ADOPTION_OPEN","OPEN","OPEN_RESEARCH","OPEN_EMPIRICAL","CANNOT_CHECK"],
   "foundation_pillars": {
     "truth_warrant": {"status":"PARTIAL","closed_rows":["MEG-02","MEG-16"],"open_rows":["MEG-10","MEG-12","MEG-13","MEG-15","MEG-19","MEG-33"]},
     "scope_time_revision": {"status":"PARTIAL","closed_rows":["MEG-03","MEG-17"],"open_rows":["MEG-19","MEG-28"]},
@@ -26,14 +19,14 @@
     "external_validation": {"status":"OPEN","note":"Independent field/demarcation and replication remain external; no internal artifact grants field status."}
   },
   "rows": [
-    {"id":"MEG-01","status":"PENDING_PR","evidence":"PR #317","summary":"derived evidence flattening/shared-source dependence"},
+    {"id":"MEG-01","status":"PROVED","evidence":"PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c","summary":"derived evidence flattening/shared-source dependence"},
     {"id":"MEG-02","status":"PROVED_WITH_CONTRACTION","evidence":"ME_FOUNDATION_BATCH2_V1 T1","summary":"statistical guarantee != individual truth; risk actionability separated; identity drift fail-closed"},
     {"id":"MEG-03","status":"PROVED_SCOPE_LIMITED","evidence":"ME_FOUNDATION_BATCH2_V1 T2","summary":"half-open epoch scopes + scoped revocation + supersession locality"},
-    {"id":"MEG-04","status":"PENDING_PR","evidence":"PR #317","summary":"commit authority bottom under internal composition"},
+    {"id":"MEG-04","status":"PROVED","evidence":"PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c","summary":"commit authority bottom under internal composition"},
     {"id":"MEG-05","status":"OPEN","evidence":"ME_THEORY_GAP_ATLAS_V1","summary":"discourse-state warrant/non-laundering"},
-    {"id":"MEG-06","status":"PENDING_PR","evidence":"PR #317","summary":"budget bracket / restart iteration"},
+    {"id":"MEG-06","status":"PROVED","evidence":"PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c","summary":"budget bracket / restart iteration"},
     {"id":"MEG-07","status":"OPEN","evidence":"ME_THEORY_GAP_ATLAS_V1","summary":"surprise/background no-drop guarantee; OCM dev revival is not V2 theorem"},
-    {"id":"MEG-08","status":"PENDING_PR","evidence":"PR #317","summary":"feedback updates weights, never warrant"},
+    {"id":"MEG-08","status":"PROVED","evidence":"PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c","summary":"feedback updates weights, never warrant"},
     {"id":"MEG-09","status":"OPEN_RESEARCH","evidence":"ME_THEORY_GAP_ATLAS_V1","summary":"multiscale/fibred navigation and cross-level commutation"},
     {"id":"MEG-10","status":"OPEN","evidence":"ME_THEORY_GAP_ATLAS_V1","summary":"procedure algebra trace-vs-static warrant, choice, bounded iteration"},
     {"id":"MEG-11","status":"OPEN","evidence":"ME_THEORY_GAP_ATLAS_V1","summary":"small-step runtime preservation/progress and CANNOT_CHECK absorption"},
@@ -43,25 +36,33 @@
     {"id":"MEG-15","status":"OPEN","evidence":"ME_THEORY_GAP_ATLAS_V1","summary":"registered outcome observation vs feedback-only endpoint"},
     {"id":"MEG-16","status":"PROVED_WITH_CORRECTION","evidence":"ME_FOUNDATION_BATCH2_V1 T3","summary":"ATMS nogoods: join homomorphism, meet sub-homomorphism; original meet-homomorphism wording refuted"},
     {"id":"MEG-17","status":"PROVED_SCOPE_LIMITED","evidence":"ME_FOUNDATION_BATCH2_V1 T4","summary":"reinstate vs relearn; explicit non-macro repair locality"},
-    {"id":"MEG-18","status":"PENDING_PR","evidence":"PR #317","summary":"Jump rollback via revoke + quarantine"},
+    {"id":"MEG-18","status":"PROVED","evidence":"PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c","summary":"Jump rollback via revoke + quarantine"},
     {"id":"MEG-19","status":"OPEN","evidence":"ME_THEORY_GAP_ATLAS_V1","summary":"KS-T12 maintenance locality / macro recheck; deconsolidation parent territory"},
     {"id":"MEG-20","status":"PROVED_SCOPE_LIMITED","evidence":"ME_FOUNDATION_BATCH2_V1 T5","summary":"content-bound sufficiency certificate over registered Q, Gamma and answer functional"},
     {"id":"MEG-21","status":"OPEN","evidence":"ME_THEORY_GAP_ATLAS_V1","summary":"non-quotient conservative representation moves"},
-    {"id":"MEG-22","status":"PENDING_PR","evidence":"PR #317","summary":"shared-evidence cross-fibre interference"},
+    {"id":"MEG-22","status":"PROVED","evidence":"PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c","summary":"shared-evidence cross-fibre interference"},
     {"id":"MEG-23","status":"OPEN_RESEARCH","evidence":"ME_THEORY_GAP_ATLAS_V1","summary":"learned organization/topology/router search space"},
     {"id":"MEG-24","status":"OPEN_EMPIRICAL","evidence":"ME_THEORY_GAP_ATLAS_V1","summary":"full codec/translator invariance; canonical meaning representation + protected measurement"},
     {"id":"MEG-25","status":"OPEN","evidence":"ME_THEORY_GAP_ATLAS_V1","summary":"renderer capability + semantic commitment non-laundering"},
-    {"id":"MEG-26","status":"PENDING_PR","evidence":"PR #317","summary":"meaning-candidate warrant and ambiguity set"},
+    {"id":"MEG-26","status":"PROVED","evidence":"PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c","summary":"meaning-candidate warrant and ambiguity set"},
     {"id":"MEG-27","status":"OPEN_RESEARCH","evidence":"ME_THEORY_GAP_ATLAS_V1","summary":"incremental prefix commitment with satisfiable residual obligations"},
     {"id":"MEG-28","status":"OPEN","evidence":"ME_THEORY_GAP_ATLAS_V1","summary":"DPO Jump preservation; J2+ ceiling predicates remain open"},
-    {"id":"MEG-29","status":"PENDING_PR","evidence":"PR #317","summary":"no self-authority/self-calibration dependence"},
-    {"id":"MEG-30","status":"PENDING_PR","evidence":"PR #317","summary":"multi-timescale termination/snapshot consistency"},
-    {"id":"MEG-31","status":"PENDING_PR","evidence":"PR #317","summary":"certified-information unit"},
+    {"id":"MEG-29","status":"PROVED","evidence":"PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c","summary":"no self-authority/self-calibration dependence"},
+    {"id":"MEG-30","status":"PROVED","evidence":"PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c","summary":"multi-timescale termination/snapshot consistency"},
+    {"id":"MEG-31","status":"PROVED","evidence":"PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c","summary":"certified-information unit"},
     {"id":"MEG-32","status":"PARENT_OWNED_ADOPTION_OPEN","evidence":"ME_THEORY_GAP_ATLAS_V1","summary":"equivalence margin/TOST discipline for PARENT_SUFFICIENT"},
     {"id":"MEG-33","status":"OPEN","evidence":"ME_THEORY_GAP_ATLAS_V1","summary":"epistemic action value / closure acquisition"},
     {"id":"MEG-34","status":"OPEN_RESEARCH","evidence":"ME_THEORY_GAP_ATLAS_V1","summary":"infinite-class construction identifiability up to lifecycle equivalence"},
-    {"id":"MEG-35","status":"PENDING_PR","evidence":"PR #317","summary":"non-trivial upper-profile certificate refinements"}
+    {"id":"MEG-35","status":"PROVED","evidence":"PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c","summary":"non-trivial upper-profile certificate refinements"}
   ],
-  "counts": {"total":35,"proved_or_contracted_on_this_branch":5,"pending_pr_317":11,"other_open_or_parent_adoption":19},
-  "foundation_terminal": "FOUNDATION_V1_PARTIAL__OPEN_RESEARCH_REMAINS"
+  "counts": {"total":35,"proved_or_contracted":16,"open_or_parent_adoption":19},
+  "foundation_terminal": "FOUNDATION_V1_PARTIAL__OPEN_RESEARCH_REMAINS",
+  "merged_dependencies": {
+    "PR_317": {
+      "url": "https://github.com/SzeChunYiu/ORION-V2/pull/317",
+      "merge_sha": "d756c086edc46ad4e5e682f69730b72c1dc26a4c",
+      "owned_meg": ["MEG-01","MEG-04","MEG-06","MEG-08","MEG-18","MEG-22","MEG-26","MEG-29","MEG-30","MEG-31","MEG-35"],
+      "status": "MERGED"
+    }
+  }
 }
