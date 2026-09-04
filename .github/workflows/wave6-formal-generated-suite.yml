@@ -11,6 +11,8 @@ on:
       - "scripts/run_formal_discovery_campaign.sh"
       - "tests/unit/test_formal_discovery_generated_suite_wave6.py"
       - "tests/unit/test_formal_discovery_campaign_plan_wave6.py"
+      - "tests/unit/test_formal_campaign_coverage_audit.py"
+      - "scripts/audit_formal_campaign_coverage.py"
       - "research/experiments/FORMAL_DISCOVERY_GENERATED_CAMPAIGN_PLAN_V1.json"
       - "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_MECHANICS_PROTOCOL_V1.json"
       - "research/experiments/FORMALISM_GENESIS_PROTOCOL_V1.json"
@@ -23,6 +25,8 @@ on:
       - "scripts/run_formal_discovery_campaign.sh"
       - "tests/unit/test_formal_discovery_generated_suite_wave6.py"
       - "tests/unit/test_formal_discovery_campaign_plan_wave6.py"
+      - "tests/unit/test_formal_campaign_coverage_audit.py"
+      - "scripts/audit_formal_campaign_coverage.py"
       - "research/experiments/FORMAL_DISCOVERY_GENERATED_CAMPAIGN_PLAN_V1.json"
       - "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_MECHANICS_PROTOCOL_V1.json"
       - "research/experiments/FORMALISM_GENESIS_PROTOCOL_V1.json"
@@ -49,12 +53,14 @@ jobs:
           python -m py_compile scripts/run_formal_discovery_generated_suite.py
           python -m py_compile scripts/orion_formal_discovery_arms.py
           python -m py_compile scripts/run_formal_discovery_campaign.py
+          python -m py_compile scripts/audit_formal_campaign_coverage.py
           bash -n scripts/run_formal_discovery_campaign.sh
       - name: Run focused tests
         run: |
           python -m pytest -q \
             tests/unit/test_formal_discovery_generated_suite_wave6.py \
-            tests/unit/test_formal_discovery_campaign_plan_wave6.py
+            tests/unit/test_formal_discovery_campaign_plan_wave6.py \
+            tests/unit/test_formal_campaign_coverage_audit.py
       - name: Validate frozen campaign plan
         run: |
           python - <<'PY'
@@ -68,6 +74,41 @@ jobs:
           assert all(item['tasks'] > 0 and item['arms'] for item in plan['studies'].values())
           assert all(v is False for v in plan['authority'].values())
           PY
+      - name: Campaign coverage audit - registered vs ran vs valid
+        run: |
+          set -euo pipefail
+          # The checker must FIRE on the recorded FM/FG R2 shortfall. Exit 6 = both
+          # clauses violated (2 coverage | 4 constructibility). Any other code means
+          # the auditor stopped detecting a defect we know is present.
+          set +e
+          python scripts/audit_formal_campaign_coverage.py \
+            --campaign-root research/experiments/fmfg-r2/rollup-r2
+          code=$?
+          set -e
+          echo "auditor exit on archived R2 evidence: $code"
+          test "$code" -eq 6
+
+          # ... and it must STAY QUIET on a plan that was honoured, or it is a checker
+          # that cries wolf and gets switched off.
+          mkdir -p /tmp/covclean
+          cat >/tmp/covclean/plan.json <<'JSON'
+          {"seed":1,"studies":{"S1":{"tasks":4,"arms":["TARGET_ONLY_DIRECT","FIXED_LESSON_INJECTION"]}}}
+          JSON
+          cat >/tmp/covclean/EVALUATION_SUMMARY_s1.json <<'JSON'
+          {"summary":{"TARGET_ONLY_DIRECT":{"tasks":4,"missing_or_invalid":0,"correct":4,"run_valid":true},
+                      "FIXED_LESSON_INJECTION":{"tasks":4,"missing_or_invalid":0,"correct":4,"run_valid":true}}}
+          JSON
+          python scripts/audit_formal_campaign_coverage.py \
+            --plan /tmp/covclean/plan.json \
+            --campaign-root /tmp/covclean
+
+          # "could not check" must be its own exit code, never 0.
+          set +e
+          python scripts/audit_formal_campaign_coverage.py --campaign-root /tmp/does-not-exist
+          missing=$?
+          set -e
+          test "$missing" -eq 8
+
       - name: Prepare all generated FM and FG families
         run: |
           python scripts/run_formal_discovery_generated_suite.py prepare \

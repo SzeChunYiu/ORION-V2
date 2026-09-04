@@ -27,12 +27,20 @@ STUDIES = (
     "FM10", "FM20", "FM30", "FM40", "FM50", "FM60",
     "FG10", "FG20", "FG30", "FG40", "FG50", "FG60", "FG70", "FG80",
 )
-DEFAULT_ARMS = (
-    "TARGET_ONLY_DIRECT",
-    "STRONGEST_DOMAIN_FORMAL_PARENT",
-    "F0_PARENT_FEDERATION",
-    "F2_STATIC_NO_FORMAL_DISCOVERY",
-    "F2_FORMAL_DISCOVERY_FULL",
+# There is deliberately NO default arm set.
+#
+# A uniform 5-arm default silently overrode the registered per-study arm lists for the
+# whole FM/FG R2 registered-scale campaign (2026-08-30): 10,112 registered dispatches
+# were never run and 5,504 dispatches carried an arm id registered for no study, while
+# the receipt reported "8,560/8,560 valid" - true of what ran, silent about what was
+# registered. The plan-reading orchestrator scripts/run_formal_discovery_campaign.py
+# already derives arms per study; this harness is the low-level primitive it drives.
+# --arms is therefore REQUIRED, so a campaign-scale run can no longer inherit an arm
+# set nobody chose.
+ARMS_HELP = (
+    "comma-separated arm ids. REQUIRED - there is no default. For a registered "
+    "campaign, drive this harness through scripts/run_formal_discovery_campaign.py, "
+    "which reads the per-study arm lists from the campaign plan."
 )
 
 
@@ -537,6 +545,7 @@ def prepare(workdir: Path, studies: list[str], per_study: int, seed: int, arms: 
             "per_study": per_study,
             "task_count": len(public_tasks),
             "arms": arms,
+            "registered_dispatches": len(public_tasks) * len(arms),
             "private_oracle_visible_to_solver": False,
             "authority": {
                 "grants_scientific_truth": False,
@@ -620,7 +629,15 @@ def dispatch(workdir: Path, arms: list[str], concurrency: int, overwrite: bool) 
     )
 
 
-def evaluate(workdir: Path, arms: list[str]) -> None:
+def evaluate(workdir: Path, arms: list[str], registered_arms: list[str] | None = None) -> None:
+    """Score `arms`, and publish coverage against `registered_arms` as THREE numbers.
+
+    `registered_arms` defaults to the arm list frozen at prepare time, NOT to `arms`.
+    A rate computed over the executed subset and presented as coverage is the defect
+    this function exists to prevent: arms that were registered and never dispatched
+    contribute no rows, so "N/N valid" stays true while the registered denominator
+    never appears. Set differences are published by name, never as a ratio.
+    """
     answers = read_json(workdir / "private_oracle.json")["answers"]
     rows = []
     summary = {}
@@ -663,10 +680,36 @@ def evaluate(workdir: Path, arms: list[str]) -> None:
             "missing_or_invalid": failures,
             "run_valid": failures == 0,
         }
+    if registered_arms is None:
+        freeze_path = workdir / "FROZEN_SUITE.json"
+        registered_arms = list(read_json(freeze_path)["arms"]) if freeze_path.exists() else list(arms)
+    task_total = len(answers)
+    ran_arms = [arm for arm in registered_arms if arm in set(arms)]
+    never_ran_arms = [arm for arm in registered_arms if arm not in set(arms)]
+    unregistered_ran_arms = [arm for arm in arms if arm not in set(registered_arms)]
+    coverage = {
+        "registered_arms": list(registered_arms),
+        "executed_arms": list(arms),
+        "tasks": task_total,
+        # --- the three numbers, always published together ---
+        "registered_dispatches": task_total * len(registered_arms),
+        "ran_dispatches": sum(summary[arm]["tasks"] for arm in arms),
+        "valid_dispatches": sum(
+            summary[arm]["tasks"] - summary[arm]["missing_or_invalid"] for arm in arms
+        ),
+        # --- set differences, by name, never as a ratio ---
+        "registered_and_ran_dispatches": task_total * len(ran_arms),
+        "registered_never_ran_dispatches": task_total * len(never_ran_arms),
+        "ran_but_unregistered_dispatches": task_total * len(unregistered_ran_arms),
+        "registered_arms_never_run": never_ran_arms,
+        "executed_arms_not_registered": unregistered_ran_arms,
+        "coverage_complete": not never_ran_arms and not unregistered_ran_arms,
+    }
     write_json(workdir / "EVALUATION_ROWS.json", rows)
     write_json(
         workdir / "EVALUATION_SUMMARY.json",
         {
+            "coverage": coverage,
             "summary": summary,
             "authority": {
                 "grants_scientific_truth": False,
@@ -686,18 +729,23 @@ def main() -> int:
     command.add_argument("--studies", default=",".join(STUDIES))
     command.add_argument("--per-study", type=int, default=8)
     command.add_argument("--seed", type=int, default=20260829)
-    command.add_argument("--arms", default=",".join(DEFAULT_ARMS))
+    command.add_argument("--arms", required=True, help=ARMS_HELP)
     command.add_argument("--force", action="store_true")
 
     command = sub.add_parser("dispatch")
     command.add_argument("--workdir", type=Path, default=DEFAULT_WORKDIR)
-    command.add_argument("--arms", default=",".join(DEFAULT_ARMS))
+    command.add_argument("--arms", required=True, help=ARMS_HELP)
     command.add_argument("--max-concurrency", type=int, default=2)
     command.add_argument("--overwrite", action="store_true")
 
     command = sub.add_parser("evaluate")
     command.add_argument("--workdir", type=Path, default=DEFAULT_WORKDIR)
-    command.add_argument("--arms", default=",".join(DEFAULT_ARMS))
+    command.add_argument("--arms", required=True, help=ARMS_HELP)
+    command.add_argument(
+        "--registered-arms",
+        default=None,
+        help="registered arm list for the coverage denominator (default: FROZEN_SUITE arms)",
+    )
 
     args = parser.parse_args()
     arms = [item for item in args.arms.split(",") if item]
@@ -706,7 +754,9 @@ def main() -> int:
     elif args.cmd == "dispatch":
         dispatch(args.workdir, arms, args.max_concurrency, args.overwrite)
     else:
-        evaluate(args.workdir, arms)
+        raw = getattr(args, "registered_arms", None)
+        registered = [item for item in raw.split(",") if item] if raw else None
+        evaluate(args.workdir, arms, registered)
     return 0
 
 

@@ -17,18 +17,105 @@ def schema() -> dict[str,Any]:
       "additionalProperties":False,
     }
 
-def arm_instruction(arm:str)->str:
-    if arm in {"TARGET_ONLY_DIRECT","CURRENT_FORMALISM_ONLY"}:
-        return "Solve directly using only the task representation; do not invent extra structure unless logically required."
-    if "FIXED" in arm:
-        return "Use only simple fixed/general textbook heuristics; do not perform open-ended representation invention."
-    if "PARENT" in arm or arm.startswith("F0"):
-        return "Use the strongest applicable native formal parent method first; prefer an exact parent solution and refuse unnecessary new formalism."
-    if "STATIC" in arm:
-        return "Use the existing integrated ORION concepts but do not perform open-ended transfer discovery, conceptual revision, or formalism genesis."
-    if "FULL" in arm or arm.startswith("F2"):
-        return "Use full ORION formal discovery: inspect structural relations, invariants, counterexamples, parent sufficiency, and only invent/revise representation when simpler routes fail."
-    return "Use the smallest justified formal method."
+class UnregisteredArm(RuntimeError):
+    """Arm id is not in ARM_PROCEDURE_CLASS. Never fall back to a generic default."""
+
+
+class UnspecifiedArmProcedure(RuntimeError):
+    """Arm id is registered by a campaign plan but has no distinct procedure designed.
+
+    Running it would execute a *generic* instruction under a *specific* arm label -
+    a contrast that could not exist. Designing the missing procedure is the owning
+    lane's design act, not this executable's; the only honest behaviour here is to
+    refuse loudly so the arm surfaces as a named failure rather than as a plausible
+    row in a results table.
+    """
+
+
+# Procedure text, keyed by procedure class. Text is byte-identical to the
+# pre-2026-09-04 substring-dispatch implementation so the frozen FM/FG R2 lane
+# remains reproducible for every arm id it actually executed.
+PROCEDURE_TEXT = {
+    "DIRECT": "Solve directly using only the task representation; do not invent extra structure unless logically required.",
+    "FIXED": "Use only simple fixed/general textbook heuristics; do not perform open-ended representation invention.",
+    "PARENT_GENERIC": "Use the strongest applicable native formal parent method first; prefer an exact parent solution and refuse unnecessary new formalism.",
+    "F2_STATIC": "Use the existing integrated ORION concepts but do not perform open-ended transfer discovery, conceptual revision, or formalism genesis.",
+    "F2_FULL": "Use full ORION formal discovery: inspect structural relations, invariants, counterexamples, parent sufficiency, and only invent/revise representation when simpler routes fail.",
+}
+
+# Exact-id registry. `None` = registered by a plan, no distinct procedure designed.
+#
+# Two arms sharing a procedure class are a COLLAPSE: they are the same arm wearing
+# two labels, and any contrast between them is uninterpretable. Collapses are not
+# fatal at dispatch time (that gate would be unsatisfiable on the current design),
+# but scripts/audit_formal_campaign_coverage.py reports them under its own exit
+# code so they can never be silent.
+ARM_PROCEDURE_CLASS = {
+    # --- direct / no-transfer floors ---
+    "TARGET_ONLY_DIRECT": "DIRECT",
+    "CURRENT_FORMALISM_ONLY": "DIRECT",
+    # --- fixed-lesson controls ---
+    "FIXED_LESSON_INJECTION": "FIXED",
+    "FIXED_FORMALISM_LESSON_INJECTION": "FIXED",
+    # --- parent baselines (ALL currently collapsed onto PARENT_GENERIC) ---
+    "STRONGEST_DOMAIN_FORMAL_PARENT": "PARENT_GENERIC",
+    "F0_PARENT_FEDERATION": "PARENT_GENERIC",
+    "F0_FORMAL_PARENT_FEDERATION": "PARENT_GENERIC",
+    "STRUCTURE_MAPPING_PARENT": "PARENT_GENERIC",
+    "ANTI_UNIFICATION_OR_MDL_PARENT_WHEN_APPLICABLE": "PARENT_GENERIC",
+    "FCA_PARENT_WHEN_APPLICABLE": "PARENT_GENERIC",
+    # --- integrated static arms ---
+    "F2_STATIC_NO_TRANSFER_DISCOVERY": "F2_STATIC",
+    "F2_STATIC_NO_FORMALISM_GENESIS": "F2_STATIC",
+    # --- integrated full arms ---
+    "F2_TRANSFER_DISCOVERY_FULL": "F2_FULL",
+    "F2_FORMALISM_GENESIS_FULL": "F2_FULL",
+    # --- registered, procedure NOT designed: refuse loudly, do not invent ---
+    "SEMANTIC_RETRIEVAL": None,
+    "SEMANTIC_RETRIEVAL_OF_EXISTING_FORMALISM": None,
+    "LOCAL_PATCH_OR_EXTRA_VARIABLE": None,
+    # --- legacy ids executed by the FM/FG R2 campaign; registered by NO study.
+    #     Retained solely so the frozen lane stays reproducible. ---
+    "F2_STATIC_NO_FORMAL_DISCOVERY": "F2_STATIC",
+    "F2_FORMAL_DISCOVERY_FULL": "F2_FULL",
+}
+
+LEGACY_UNREGISTERED_ARMS = frozenset({
+    "F2_STATIC_NO_FORMAL_DISCOVERY",
+    "F2_FORMAL_DISCOVERY_FULL",
+})
+
+
+def arm_instruction(arm: str) -> str:
+    """Exact-id lookup. Raises rather than silently returning a generic default.
+
+    The previous implementation dispatched by substring and ended in an
+    unconditional ``return "Use the smallest justified formal method."``, so an
+    unknown or undesigned arm id produced a plausible response under a generic
+    procedure with no signal anywhere that the named arm had never been built.
+    """
+    if arm not in ARM_PROCEDURE_CLASS:
+        raise UnregisteredArm(
+            f"arm id {arm!r} has no registered procedure; "
+            "add it to ARM_PROCEDURE_CLASS or fix the dispatching plan"
+        )
+    procedure = ARM_PROCEDURE_CLASS[arm]
+    if procedure is None:
+        raise UnspecifiedArmProcedure(
+            f"arm id {arm!r} is registered but its procedure has not been designed; "
+            "refusing to execute it under a generic instruction"
+        )
+    return PROCEDURE_TEXT[procedure]
+
+
+def collapse_classes(arms):
+    """Map procedure class -> sorted arm ids, for arms sharing one instruction."""
+    groups: dict[str, list[str]] = {}
+    for arm in arms:
+        cls = ARM_PROCEDURE_CLASS.get(arm, "__UNREGISTERED__")
+        groups.setdefault("__UNSPECIFIED__" if cls is None else cls, []).append(arm)
+    return {key: sorted(value) for key, value in sorted(groups.items())}
+
 
 def answer_encoding_instruction(contract: dict) -> str:
     ex = {}
@@ -100,12 +187,24 @@ def execute(req:dict[str,Any])->dict[str,Any]:
 def main():
     p=argparse.ArgumentParser(); p.add_argument("--request",type=Path,required=True); p.add_argument("--response",type=Path,required=True); a=p.parse_args()
     req=json.loads(a.request.read_text())
+    # An arm that cannot be CONSTRUCTED is a different failure from a model call that
+    # did not land. Give each its own status so a downstream evaluator can never file
+    # "this arm was never built" under "the backend was flaky".
+    def _fail(status, exc, falsifier):
+        return {"schema_version":"orion.v2.formal-discovery-response.v1","task_id":req.get("task_id"),"arm_id":req.get("arm_id"),
+                "status":status,"answer":None,"reasoning_summary":str(exc),
+                "falsifier":falsifier,"resource_receipt":{"model_calls":0},
+                "scientific_truth_authorized":False,"new_mathematical_theory_authorized":False,"publication_readiness_authorized":False}
     try: out=execute(req)
+    except UnregisteredArm as exc:
+        out=_fail("EXECUTION_FAILED_ARM_UNREGISTERED", exc,
+                  "register the arm id or correct the dispatching plan, then rerun")
+    except UnspecifiedArmProcedure as exc:
+        out=_fail("EXECUTION_FAILED_ARM_PROCEDURE_UNSPECIFIED", exc,
+                  "the owning lane must design this arm's procedure before it can be dispatched")
     except Exception as exc:
-        out={"schema_version":"orion.v2.formal-discovery-response.v1","task_id":req.get("task_id"),"arm_id":req.get("arm_id"),
-             "status":"EXECUTION_FAILED_MODEL_RESPONSE","answer":None,"reasoning_summary":str(exc),
-             "falsifier":"repair execution binding and rerun under a new identity","resource_receipt":{"model_calls":0},
-             "scientific_truth_authorized":False,"new_mathematical_theory_authorized":False,"publication_readiness_authorized":False}
+        out=_fail("EXECUTION_FAILED_MODEL_RESPONSE", exc,
+                  "repair execution binding and rerun under a new identity")
     a.response.parent.mkdir(parents=True,exist_ok=True); a.response.write_text(json.dumps(out,indent=2,sort_keys=True)+"\n")
     return 0
 if __name__=="__main__": raise SystemExit(main())
