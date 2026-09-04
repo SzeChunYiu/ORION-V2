@@ -25,9 +25,27 @@ def test_meg19():
 
 def test_meg21():
     r=m.check_meg21(); assert r['registered_old_query_fixed_point_preserved']==1 and r['nonconservative_leak_mutant_caught']==1
+    assert r['rollback_by_quarantine_restores']==1
 
 def test_meg28():
     r=m.check_meg28(); assert r['rollback_active_state_exact']==1 and r['proposal_self_adoption_refused']==1
+    assert r['quarantined_identity_reuse_refused']==1 and r['external_adoption_no_alarm']==1
+
+def test_jump_identity_is_immutable_across_quarantine():
+    pre=m.GState(('a',),(),(('a','old:a'),))
+    post=m.additive_jump(pre,'J',('x',)); rb=m.rollback_jump(post,'J')
+    assert 'x' in rb.quarantined
+    try:
+        m.additive_jump(rb,'J2',('x',))
+    except ValueError as e:
+        assert str(e)=='id collision'
+    else:
+        raise AssertionError('quarantined identity reuse accepted')
+
+def test_jump_adoption_requires_external_constitution_authority():
+    p=m.JumpProposal('J','runtime','representation')
+    assert m.adopt_jump(p,'PROPOSER') is False
+    assert m.adopt_jump(p,'EXTERNAL_CONSTITUTION') is True
 
 def test_meg33():
     r=m.check_meg33(); assert r['lower_only_never_dead_checks']>0 and r['upper_only_never_live_checks']>0
