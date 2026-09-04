@@ -27,9 +27,23 @@ class ExtractionCoverageCertificate:
     scope: str
     epoch: str
 
-    def validate(self, possible_decisive_sets):
-        if self.capacity < 0:
+    def validate(
+        self,
+        possible_decisive_sets,
+        *,
+        capacity: int,
+        task_family: str,
+        state_digest: str,
+        checker_id: str,
+        scope: str,
+        epoch: str,
+    ):
+        if self.capacity < 0 or capacity < 0:
             raise ValueError("negative capacity")
+        expected = (capacity, task_family, state_digest, checker_id, scope, epoch)
+        bound = (self.capacity, self.task_family, self.state_digest, self.checker_id, self.scope, self.epoch)
+        if bound != expected:
+            return "CANNOT_CHECK_IDENTITY_DRIFT"
         if len(self.candidates) > self.capacity:
             return "CAPACITY_OVERFLOW"
         union = frozenset().union(*possible_decisive_sets) if possible_decisive_sets else frozenset()
@@ -39,6 +53,8 @@ class ExtractionCoverageCertificate:
 
 
 def deterministic_impossibility(n=4, k=2):
+    if not (0 <= k < n):
+        raise ValueError("registered impossibility witness requires 0 <= k < n")
     V = tuple(f"v{i}" for i in range(n))
     selectors = []
     for size in range(k + 1):
@@ -57,11 +73,15 @@ def deterministic_impossibility(n=4, k=2):
 
 
 def union_condition(possible_decisive_sets, k):
+    if k < 0:
+        raise ValueError("negative capacity")
     union = frozenset().union(*possible_decisive_sets) if possible_decisive_sets else frozenset()
     return len(union) <= k, union
 
 
 def randomized_uniform_k_subset(n=4, k=2):
+    if not (0 <= k < n):
+        raise ValueError("registered randomized witness requires 0 <= k < n")
     V = tuple(range(n))
     subsets = tuple(itertools.combinations(V, k))
     probs = {}
@@ -72,6 +92,19 @@ def randomized_uniform_k_subset(n=4, k=2):
     assert all(p == Fraction(k, n) for p in probs.values())
     assert all(p < 1 for p in probs.values())
     return probs
+
+
+def _validate(cert, possible, **overrides):
+    ctx = {
+        "capacity": 2,
+        "task_family": "registered-family",
+        "state_digest": "z1",
+        "checker_id": "checker-v1",
+        "scope": "S",
+        "epoch": "e1",
+    }
+    ctx.update(overrides)
+    return cert.validate(possible, **ctx)
 
 
 def check_meg07():
@@ -88,20 +121,33 @@ def check_meg07():
     ok, union = union_condition(possible, 2)
     assert ok and union == {"a", "b"}
     cert = ExtractionCoverageCertificate(union, 2, "registered-family", "z1", "checker-v1", "S", "e1")
-    assert cert.validate(possible) == "CERTIFIED"
+    assert _validate(cert, possible) == "CERTIFIED"
 
     overflow = ExtractionCoverageCertificate(frozenset({"a", "b", "c"}), 2, "registered-family", "z1", "checker-v1", "S", "e1")
-    assert overflow.validate((frozenset({"a"}),)) == "CAPACITY_OVERFLOW"
+    assert _validate(overflow, (frozenset({"a"}),)) == "CAPACITY_OVERFLOW"
 
     too_many = (frozenset({"a"}), frozenset({"b"}), frozenset({"c"}))
     ok2, union2 = union_condition(too_many, 2)
     assert not ok2 and len(union2) == 3
     undercert = ExtractionCoverageCertificate(frozenset({"a", "b"}), 2, "registered-family", "z1", "checker-v1", "S", "e1")
-    assert undercert.validate(too_many) == "COVERAGE_NOT_PROVED"
+    assert _validate(undercert, too_many) == "COVERAGE_NOT_PROVED"
 
     no_alarm = (frozenset({"a"}), frozenset({"a", "b"}))
     ok3, union3 = union_condition(no_alarm, 2)
-    assert ok3 and ExtractionCoverageCertificate(union3, 2, "f", "z", "c", "S", "e").validate(no_alarm) == "CERTIFIED"
+    assert ok3
+    no_alarm_cert = ExtractionCoverageCertificate(union3, 2, "registered-family", "z1", "checker-v1", "S", "e1")
+    assert _validate(no_alarm_cert, no_alarm) == "CERTIFIED"
+
+    # A true coverage statement for another extractor state/family/checker/scope/epoch/capacity is stale here.
+    drift_results = {
+        "capacity": _validate(cert, possible, capacity=3),
+        "task_family": _validate(cert, possible, task_family="other-family"),
+        "state_digest": _validate(cert, possible, state_digest="z2"),
+        "checker_id": _validate(cert, possible, checker_id="checker-v2"),
+        "scope": _validate(cert, possible, scope="T"),
+        "epoch": _validate(cert, possible, epoch="e2"),
+    }
+    assert set(drift_results.values()) == {"CANNOT_CHECK_IDENTITY_DRIFT"}
 
     return {
         "deterministic": det,
@@ -112,6 +158,7 @@ def check_meg07():
         "union_exceeds_capacity_impossible": 1,
         "undercertificate_rejected": 1,
         "capacity_exact_no_alarm": 1,
+        "certificate_identity_drift_dimensions_caught": len(drift_results),
         "terminal": "NO_UNIVERSAL_NO_DROP_WITHOUT_DISCRIMINATING_STRUCTURE",
         "GENERAL_NOVELTY": "NOT_ESTABLISHED",
     }
