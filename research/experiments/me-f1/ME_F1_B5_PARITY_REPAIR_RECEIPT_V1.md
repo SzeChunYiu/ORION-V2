@@ -257,46 +257,73 @@ prompt asymmetry — the rival explanation §5.1 warned about, now measured rath
 terminal rested on that gap (the receipt declined to read it), so no terminal changes; but any
 successor that had inherited it would have inherited a confound.
 
-## 7. Is the asymmetry present in the programme's other studies? No — and for a structural reason
+## 7. Is the asymmetry present in the other studies? Confined to ME-F1 — after a corrected scope
 
-A comparator repair is only interesting if the defect generalises, so the question was put to every
-other study rather than assumed to be local.
+### 7.1 The first answer was wrong, and the correction is recorded rather than quietly fixed
 
-**Method and its control.** All 123 `.py` files under `research/experiments/` on `origin/main` were
-extracted and scanned for model-channel and control-text markers (`codex`, `call_control`,
-`anthropic`, `openai`, `ARM_CONTROL`, `YOUR PROCEDURE`). The **positive control is `me-f1` itself**,
-which matches every marker strongly (`YOUR PROCEDURE` ×11, `_ARM_CONTROL` ×3, `call_control` ×5).
-That control is load-bearing: a first attempt using piped `grep -c` returned **0 for `me-f1` itself**
-— the rtk proxy corrupting counts on piped output — and the absence claim below would have been
-false if it had been trusted.
+This lane first scanned `research/experiments/**/*.py` — **123 of the repository's 465 `.py` files** —
+found per-arm control text only in `me-f1`, and concluded that the other studies "have no prompt at
+all, so the defect is structurally impossible there". **That conclusion was false, and its scope was
+never justified.** Seven model-arm modules live under `scripts/`, outside the scanned path:
 
-**Result.** Only three of the programme's studies touch a model at all, and only one has per-arm
-control text:
+`orion_pd_arms.py`, `orion_claude_arms.py`, `orion_codex_arms.py`, `orion_epistemic_atlas_arms.py`,
+`orion_epistemic_locality_arms.py`, `orion_formal_discovery_arms.py`,
+`orion_scientific_development_arms.py` — plus `sd70-v2` / `sd70-v3` model arms and three `e30`/`e40`
+runners. Rescanned properly: **28 of 465 files** carry a model-channel or prompt marker.
 
-| study | model surface | per-arm control text |
-|---|---|---|
-| **`me-f1`** | Codex CLI channel | **yes — the only one in the programme** |
-| `sd70-v2` | `sd70v2_model_arm.py` | prompt built from a data `surface`, not hand-authored per arm |
-| `e40-matched` | `anthropic` ×3 in one stage-2d file | not an M-versus-parent arm contrast |
+The error mattered in exactly the place it could do most damage. **H-EXT-1 — one of only two studies
+in the programme where M beats the strongest parent on a routed endpoint — is a prompted study.**
+`H_EXT1_CONDITIONAL_ACTIVATION_DESIGN_V1.json` declares `"arms_are_model_calls": true`, cost unit
+*"model_calls per instance (every arm = 1 codex exec call)"*, arms module `scripts/orion_pd_arms.py`,
+with M = `P_D_FULL` and parent = `STRONGEST_ASSURANCE_FEDERATION`. The first scan never saw it, and
+it carries no `.py` file of its own under `research/experiments/h-ext1/`, which is why a
+directory-scoped search returned nothing and read as an absence.
 
-`ME-X1`–`ME-X7`, `FG70` and `FM10`/`FM20` implement **every** arm — M and the parents alike — as
-deterministic code engines. Verified concretely rather than inferred: ME-X1 carries
-`engine_direct` / `engine_abstain` / `engine_provenance_verifier` / `engine_assurance` /
-`engine_transition_control` (B0/B1/B2/B3/M); ME-X2 carries `arm_specs()` / `make_policy()`, and its
-only long triple-quoted strings are module docstrings. ME-X3's `subprocess` calls are the Lean
-binary, not a model channel.
+### 7.2 The corrected test, and the corrected answer
 
-**A prompt/code asymmetry is therefore structurally impossible in those studies: they have no
-prompt.** In particular ME-X2's parent-dominance result is a contest between two code engines and is
-untouched by this finding.
+The ME-F1 defect is not "an arm has a prompt". It is a **prompt/code parity mismatch**: an arm that
+has **both** a prompt **and** a deterministic implementation *of the same method*, where the code
+does something the prompt does not say. That is what makes it objectively a defect rather than a
+design choice — the study's own code is the ground truth for what the method does. Detecting it
+requires the prompted arm and the code arm to be the same method.
 
-### 7.1 What this does NOT establish
+| module | per-arm prompt | deterministic twin | same method on both sides? |
+|---|---|---|---|
+| `research/experiments/me-f1/mef1_arms.py` | yes | yes | **YES** — `B5_STRONGEST_FAITHFUL_PARENT_FEDERATION` and `B5_ALGORITHMIC_CORE_NO_MODEL` are the same federation, declared so by §5.1 |
+| `scripts/orion_pd_arms.py` (H-EXT-1) | yes | yes | **no** for the routed contrast — see below |
+| the other 8 prompted modules | 4 yes / 4 no | **none** | n/a — no code twin exists to disagree with |
 
-"No prompts elsewhere" is **not** "the parents are fairly constructed elsewhere". Those are different
-claims and only the first is established here. The code-engine studies carry an *analogous* fairness
-question — whether each parent engine is implemented at the strength its published method actually
-specifies — and this audit does not answer it. That is a **`CANNOT_CHECK`, not a clean bill**, and it
-is recorded as such rather than allowed to read as an all-clear.
+**H-EXT-1's routed arms have no code twin.** `OFFLINE_ARMS` is
+`{CURRENT_INDEPENDENT_COUNTING, PROVENANCE_TRACKING, STANDARD_DEPENDENCE_META_ANALYSIS,
+ARGUMENT_ACCEPTABILITY, SIMPLE_DIRECT_CONTROL}` — five simpler baselines. Neither `P_D_FULL` (M) nor
+`STRONGEST_ASSURANCE_FEDERATION` (the routed parent) is in it; both are model-only. So no
+prompt/code disagreement is detectable for the contrast the terminal rests on.
+
+**So the ME-F1 defect class is confined to ME-F1 — but for a much narrower reason than first
+reported.** Not "nowhere else has prompts" (false). Rather: ME-F1 is the only study that runs the
+same method both as a prompted arm and as code, which is the only configuration in which this defect
+is even well-defined.
+
+### 7.3 What remains open, and is NOT cleared
+
+H-EXT-1 **does** carry a prompt-level asymmetry between M and its parent:
+
+- M (`P_D_FULL`): *"infer dependence from shared latent assumptions/calibrations stated in method
+  text (not just declared lineage)"*
+- parent (`STRONGEST_ASSURANCE_FEDERATION`): *"a dependence graph over **declared** correlations …
+  Use only these parent capabilities; **refuse any further integration concept**."*
+
+That is a real instruction-level restriction on the parent. It reads as **definitional rather than
+defective** — latent-dependence inference versus declared-correlation graphs *is* H-EXT-1's
+independent variable, so restricting the parent is the experiment, not a glue omission. But this
+receipt did not measure it, and the distinction between "the parent's registered method boundary"
+and "the parent held below its published strength" is exactly the judgement §5.1 says a comparator
+change must not make unilaterally.
+
+Recorded as **`CANNOT_CHECK`, for the coordinator to scope** — not as a clean bill, and not as a
+defect. Two further facts bound it: H-EXT-1's routed winner is the **GATED** conditional-activation
+policy, not M (always-on M scores 0.8942 and **loses** to the parent's 0.9558), and no residual
+anywhere in the programme is awarded on an M-over-parent gap.
 
 ## 8. Disposition: no R2 freeze is taken here
 
