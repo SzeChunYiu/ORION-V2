@@ -30,6 +30,11 @@ Exit codes (bitwise, so several can be read at once)
     6  both violated
     8  COULD NOT CHECK - plan unreadable, evidence absent, arm table unimportable.
        Distinct from every "checked and fine" and every "checked and failed" code.
+
+--pre-registration audits a prospective plan that has no run: CONSTRUCTIBILITY is a
+property of the plan and the arm table alone, so it is checkable before dispatch and is
+the gate a successor plan must pass before it is frozen. COVERAGE is reported
+NOT_APPLICABLE and never contributes to the exit code - it is not a pass.
 """
 from __future__ import annotations
 
@@ -240,6 +245,12 @@ def main() -> int:
     parser.add_argument("--campaign-root", type=Path, default=None,
                         help="directory searched recursively for EVALUATION_SUMMARY*.json")
     parser.add_argument("--json-out", type=Path, default=None)
+    parser.add_argument("--pre-registration", action="store_true",
+                        help="check CONSTRUCTIBILITY alone, with no executed evidence. For a "
+                             "prospective plan being frozen: whether every registered arm "
+                             "resolves to its own procedure is a property of the plan and the "
+                             "arm table, and needs no run. COVERAGE is reported NOT_APPLICABLE "
+                             "and never contributes to the exit code.")
     args = parser.parse_args()
 
     try:
@@ -248,19 +259,44 @@ def main() -> int:
             if not args.campaign_root.exists():
                 raise CouldNotCheck(f"campaign root does not exist: {args.campaign_root}")
             summaries += sorted(args.campaign_root.rglob("EVALUATION_SUMMARY*.json"))
-        report = audit(load_plan(args.plan), executed_from_summaries(summaries), load_arms_module())
+        if args.pre_registration:
+            if summaries:
+                raise CouldNotCheck(
+                    "--pre-registration audits a plan with no run; evidence was supplied. "
+                    "Drop --summary/--campaign-root, or drop --pre-registration to audit both clauses."
+                )
+            report = audit(load_plan(args.plan), {}, load_arms_module())
+            report["coverage"] = {"clause_satisfied": None, "mode": "NOT_APPLICABLE_PRE_REGISTRATION"}
+            report["mode"] = "PRE_REGISTRATION"
+        else:
+            report = audit(load_plan(args.plan), executed_from_summaries(summaries), load_arms_module())
     except CouldNotCheck as exc:
         print(f"COULD NOT CHECK: {exc}", file=sys.stderr)
         print("This is NOT a clean result. Exit 8 is distinct from exit 0.", file=sys.stderr)
         return EXIT_COULD_NOT_CHECK
 
-    print(render(report))
+    if args.pre_registration:
+        con = report["constructibility"]
+        print("FORMAL CAMPAIGN PRE-REGISTRATION AUDIT (CONSTRUCTIBILITY only)")
+        print(f"  plan ........................ {args.plan}")
+        print(f"  registered arm ids .......... {con['registered_arm_ids']}")
+        print(f"  distinct procedures ......... {con['distinct_procedures']}")
+        print(f"  CLAUSE 2 CONSTRUCTIBILITY ... {'SATISFIED' if con['clause_satisfied'] else 'VIOLATED'}")
+        print("  CLAUSE 1 COVERAGE ........... NOT APPLICABLE (no run; this is not a pass)")
+        for cls, ids in sorted((con["collapse_classes"] or {}).items()):
+            print(f"    COLLAPSE {cls}: {', '.join(ids)}")
+        for arm in con["registered_but_procedure_unspecified"]:
+            print(f"    NO PROCEDURE DESIGNED: {arm}")
+        for arm in con["registered_but_absent_from_arm_table"]:
+            print(f"    ABSENT FROM ARM TABLE: {arm}")
+    else:
+        print(render(report))
     if args.json_out is not None:
         args.json_out.parent.mkdir(parents=True, exist_ok=True)
         args.json_out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
     code = EXIT_OK
-    if not report["coverage"]["clause_satisfied"]:
+    if not args.pre_registration and not report["coverage"]["clause_satisfied"]:
         code |= EXIT_COVERAGE
     if not report["constructibility"]["clause_satisfied"]:
         code |= EXIT_CONSTRUCTIBILITY

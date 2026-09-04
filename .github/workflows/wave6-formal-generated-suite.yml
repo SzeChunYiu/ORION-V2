@@ -14,6 +14,8 @@ on:
       - "tests/unit/test_formal_campaign_coverage_audit.py"
       - "scripts/audit_formal_campaign_coverage.py"
       - "research/experiments/FORMAL_DISCOVERY_GENERATED_CAMPAIGN_PLAN_V1.json"
+      - "research/experiments/FORMAL_DISCOVERY_GENERATED_CAMPAIGN_PLAN_V2.json"
+      - "tests/unit/test_formal_campaign_successor_plan_v2.py"
       - "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_MECHANICS_PROTOCOL_V1.json"
       - "research/experiments/FORMALISM_GENESIS_PROTOCOL_V1.json"
       - ".github/workflows/wave6-formal-generated-suite.yml"
@@ -28,6 +30,8 @@ on:
       - "tests/unit/test_formal_campaign_coverage_audit.py"
       - "scripts/audit_formal_campaign_coverage.py"
       - "research/experiments/FORMAL_DISCOVERY_GENERATED_CAMPAIGN_PLAN_V1.json"
+      - "research/experiments/FORMAL_DISCOVERY_GENERATED_CAMPAIGN_PLAN_V2.json"
+      - "tests/unit/test_formal_campaign_successor_plan_v2.py"
       - "research/experiments/CONCEPTUAL_TRANSFER_FORMAL_MECHANICS_PROTOCOL_V1.json"
       - "research/experiments/FORMALISM_GENESIS_PROTOCOL_V1.json"
   workflow_dispatch:
@@ -60,7 +64,32 @@ jobs:
           python -m pytest -q \
             tests/unit/test_formal_discovery_generated_suite_wave6.py \
             tests/unit/test_formal_discovery_campaign_plan_wave6.py \
-            tests/unit/test_formal_campaign_coverage_audit.py
+            tests/unit/test_formal_campaign_coverage_audit.py \
+            tests/unit/test_formal_campaign_successor_plan_v2.py
+      - name: Successor plan must pass the pre-registration gate
+        run: |
+          python scripts/audit_formal_campaign_coverage.py --pre-registration \
+            --plan research/experiments/FORMAL_DISCOVERY_GENERATED_CAMPAIGN_PLAN_V2.json
+
+      - name: Superseded plan must fail it, on CONSTRUCTIBILITY alone
+        run: |
+          set +e
+          python scripts/audit_formal_campaign_coverage.py --pre-registration \
+            --plan research/experiments/FORMAL_DISCOVERY_GENERATED_CAMPAIGN_PLAN_V1.json
+          code=$?
+          set -e
+          test "$code" = "4" || { echo "expected CONSTRUCTIBILITY (4), got $code"; exit 1; }
+
+      - name: Pre-registration must refuse evidence rather than ignore it
+        run: |
+          set +e
+          python scripts/audit_formal_campaign_coverage.py --pre-registration \
+            --plan research/experiments/FORMAL_DISCOVERY_GENERATED_CAMPAIGN_PLAN_V2.json \
+            --campaign-root research/experiments/fmfg-r2/rollup-r2
+          code=$?
+          set -e
+          test "$code" = "8" || { echo "expected COULD NOT CHECK (8), got $code"; exit 1; }
+
       - name: Validate frozen campaign plan
         run: |
           python - <<'PY'

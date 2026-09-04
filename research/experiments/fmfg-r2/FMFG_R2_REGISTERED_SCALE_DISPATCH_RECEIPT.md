@@ -19,6 +19,10 @@ campaign. The registered plan's per-study minimums are materially larger:
 | n160 | FG10, FG30, FG70 (160) | 480 | 2,400 |
 | **Total** | 14 studies | **1,712** | **8,560** |
 
+The **Dispatches** column is what this runner invocation would dispatch, not what the plan
+registers: the plan declares per-study arm sets of 5 to 9, for **13,168**. *(Corrected
+2026-09-04; erratum §1.)*
+
 R1's aggregate null (TARGET_ONLY_DIRECT 0.8929 = F2_STATIC 0.8929 > F2_FULL 0.8839 >
 STRONGEST_PARENT 0.8750 > F0 0.8661, 11/14 studies tied at ceiling) was a pilot-scale
 statement; the registered counts are the pre-declared evidence base for the lane.
@@ -30,10 +34,16 @@ This receipt records the dispatch binding before any outcome is read.
   `--per-study` value per invocation → 4 size-class workdirs).
 - **Workdirs:** `.orion-fmfg-r2-n80`, `.orion-fmfg-r2-n96`, `.orion-fmfg-r2-n120`,
   `.orion-fmfg-r2-n160` under `~/sd10run/ORION-V2` (billy-old).
-- **Seed:** `20260829` (plan seed) for every class; generators + arm set frozen by the plan.
+- **Seed:** `20260829` (plan seed) for every class; generators frozen by the plan. **The
+  arm set was not**: it came from the runner's hardcoded `DEFAULT_ARMS`, a uniform 5-arm
+  tuple, while the plan registers per-study sets of 5 to 9. *(Corrected 2026-09-04; erratum
+  §1. `DEFAULT_ARMS` has since been deleted and `--arms` made required.)*
 - **Arms (verified in FROZEN_SUITE at n80):** TARGET_ONLY_DIRECT,
   STRONGEST_DOMAIN_FORMAL_PARENT, F0_PARENT_FEDERATION,
-  F2_STATIC_NO_FORMAL_DISCOVERY, F2_FORMAL_DISCOVERY_FULL.
+  F2_STATIC_NO_FORMAL_DISCOVERY, F2_FORMAL_DISCOVERY_FULL. Five labels, **four** distinct
+  procedures — `F0_PARENT_FEDERATION` and `STRONGEST_DOMAIN_FORMAL_PARENT` are both
+  `PARENT_GENERIC`; and the last two ids are registered by no study in the plan.
+  *(Corrected 2026-09-04; erratum §3.)*
 - **Concurrency:** `dispatch --max-concurrency 2`.
 - **Model lane:** `ORION_CODEX_BIN=$HOME/.npm-terra/bin/codex` (0.147.0 side-by-side;
   canonical repo pin 0.129.0-alpha.15 untouched), `ORION_CODEX_MODEL=gpt-5.6-terra`,
