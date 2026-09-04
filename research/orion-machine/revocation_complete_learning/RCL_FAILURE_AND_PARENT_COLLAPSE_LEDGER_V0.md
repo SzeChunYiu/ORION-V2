@@ -74,11 +74,20 @@ altered to make the hashes agree, and this note grants no scientific authority.
 ### What is established
 
 This artifact and both receipts that bind it were created together in a single
-commit, `4655495`, which is all-insertions across 18 files. `git log --all
---full-history` on this path returns only that commit and the later merge
-`7015cdb`. No blob of 4751 bytes exists anywhere in the repository object store
-(6,765 objects scanned; the 4,746-byte blob was found as the control), in either
-working checkout of this branch, or in the GitHub commit history for the path.
+commit, `4655495`, which is all-insertions across 18 files.
+
+Three independent searches agree, and the scope of each is stated rather than
+assumed. (i) `git log --all --full-history` on this path returns only `4655495`
+and the later merge `7015cdb`; the same query on `RCL_AI_SESSION_HANDOFF_V0.md`
+returns three commits, so the short answer is not an artefact of history
+simplification. (ii) No blob of 4751 bytes exists in the local object store:
+6,765 objects were scanned and the 4,746-byte blob was found as the control.
+The local clone is shallow, so that scan is exhaustive for the retained history
+rather than for everything the remote holds. (iii) The GitHub commits API for
+this path on this branch closes that gap for the branch the artifact lives on,
+and returns the same single commit. Neither working checkout of this branch on
+the authoring machine holds a differing copy.
+
 The recorded binding was therefore taken over a pre-commit draft that was never
 pushed: **this file has never existed in version control at its recorded
 length.** The lane commits `0b4641e`, `24d5a11` and `313790b`, which restored
