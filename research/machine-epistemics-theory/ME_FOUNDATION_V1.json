@@ -3,13 +3,14 @@
   "generated_date": "2026-09-04",
   "base_sha": "24566f00a9dc4425a438fcfac05d13c6b2d903db",
   "authority": {"GENERAL_NOVELTY":"NOT_ESTABLISHED","FIELD_STATUS":"NOT_ESTABLISHED","OCM_SUPERIORITY":"NOT_ESTABLISHED","rule":"No row implies a stronger row. Scope-limited theorems may not be quoted outside their registered scope. Negative/refuted formulations are preserved. Merged dependency status is bound to the recorded merge SHA."},
-  "status_vocabulary": ["PROVED","PROVED_WITH_CONTRACTION","PROVED_WITH_CORRECTION","PROVED_SCOPE_LIMITED","PARENT_OWNED_ADOPTION_OPEN","OPEN","OPEN_RESEARCH","OPEN_EMPIRICAL","CANNOT_CHECK"],
+  "status_vocabulary": ["PROVED","PROVED_WITH_CONTRACTION","PROVED_WITH_CORRECTION","PROVED_SCOPE_LIMITED","PARENT_OWNED_ADOPTED","PARENT_OWNED_ADOPTED_WITH_CORRECTION","OPEN","OPEN_RESEARCH","OPEN_EMPIRICAL","CANNOT_CHECK"],
   "foundation_pillars": {
     "truth_warrant":{"status":"CORE_CLOSED","closed_rows":["MEG-02","MEG-10","MEG-12","MEG-13","MEG-15","MEG-16","MEG-19","MEG-33"],"open_rows":[]},
     "scope_time_revision":{"status":"CORE_CLOSED_WITH_JUMP_CEILING_FRONTIER","closed_rows":["MEG-03","MEG-17","MEG-19","MEG-28"],"open_rows":[]},
     "representation_sufficiency":{"status":"PARTIAL_FRONTIER_OPEN","closed_rows":["MEG-20","MEG-21"],"open_rows":["MEG-24","MEG-34"]},
     "runtime_actionability":{"status":"PARTIAL_LANGUAGE_FRONTIER_OPEN","closed_rows":["MEG-02","MEG-11","MEG-33"],"open_rows":["MEG-25","MEG-27"]},
-    "learning":{"status":"FINITE_CORE_CLOSED__INFINITE_AND_BOUNDS_OPEN","closed_rows":["MEG-12","MEG-13","MEG-15"],"open_rows":["MEG-14","MEG-34"]},
+    "learning":{"status":"FINITE_CORE_AND_PARENT_ACCOUNTING_CLOSED__INFINITE_OPEN","closed_rows":["MEG-12","MEG-13","MEG-14","MEG-15"],"open_rows":["MEG-34"]},
+    "evaluation":{"status":"PARENT_ACCOUNTING_CORE_CLOSED","closed_rows":["MEG-32"],"open_rows":[]},
     "self_reorganization":{"status":"PRESERVATION_CORE_CLOSED__ORGANIZATION_FRONTIER_OPEN","closed_rows":["MEG-28"],"open_rows":["MEG-23"]},
     "external_validation":{"status":"OPEN","note":"Independent field/demarcation and replication remain external; no internal artifact grants field status."}
   },
@@ -27,7 +28,7 @@
     {"id":"MEG-11","status":"PROVED_SCOPE_LIMITED","evidence":"ME_FOUNDATION_BATCH3_V1 T3","summary":"required pipeline small-step progress/preservation; CANNOT_CHECK absorbing"},
     {"id":"MEG-12","status":"PROVED_SCOPE_LIMITED","evidence":"ME_FOUNDATION_BATCH3_V1 T4","summary":"finite-class per-input VSW minimal agreement supports and exact revocation locality"},
     {"id":"MEG-13","status":"PROVED_SCOPE_LIMITED","evidence":"ME_FOUNDATION_BATCH3_V1 T5","summary":"finite/enumerable query-relative gap learning; ambiguity/contradiction fail-closed"},
-    {"id":"MEG-14","status":"PARENT_OWNED_ADOPTION_OPEN","evidence":"ME_THEORY_GAP_ATLAS_V1","summary":"per-channel acquisition/sample bounds table"},
+    {"id":"MEG-14","status":"PARENT_OWNED_ADOPTED_WITH_CORRECTION","evidence":"ME_FOUNDATION_BATCH4_PARENT_ADOPTIONS_V1 P1","summary":"acquisition bounds are protocol-specific; ordinary teaching dimension is not membership-query complexity"},
     {"id":"MEG-15","status":"PROVED_SCOPE_LIMITED","evidence":"ME_FOUNDATION_BATCH3_V1 T6","summary":"registered exact interaction outcome is observation; unregistered reward remains feedback"},
     {"id":"MEG-16","status":"PROVED_WITH_CORRECTION","evidence":"ME_FOUNDATION_BATCH2_V1 T3","summary":"ATMS nogoods: join homomorphism, meet sub-homomorphism; original meet-homomorphism wording refuted"},
     {"id":"MEG-17","status":"PROVED_SCOPE_LIMITED","evidence":"ME_FOUNDATION_BATCH2_V1 T4","summary":"reinstate vs relearn; explicit non-macro repair locality"},
@@ -45,12 +46,12 @@
     {"id":"MEG-29","status":"PROVED","evidence":"PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c","summary":"no self-authority/self-calibration dependence"},
     {"id":"MEG-30","status":"PROVED","evidence":"PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c","summary":"multi-timescale termination/snapshot consistency"},
     {"id":"MEG-31","status":"PROVED","evidence":"PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c","summary":"certified-information unit"},
-    {"id":"MEG-32","status":"PARENT_OWNED_ADOPTION_OPEN","evidence":"ME_THEORY_GAP_ATLAS_V1","summary":"equivalence margin/TOST discipline for PARENT_SUFFICIENT"},
+    {"id":"MEG-32","status":"PARENT_OWNED_ADOPTED","evidence":"ME_FOUNDATION_BATCH4_PARENT_ADOPTIONS_V1 P2","summary":"PARENT_SUFFICIENT by measured equivalence requires predeclared margin and valid paired-equivalence method; p>alpha is not equivalence"},
     {"id":"MEG-33","status":"PROVED_SCOPE_LIMITED","evidence":"ME_FOUNDATION_BATCH3_V1 T10","summary":"lower-only support cannot resolve UNKNOWN->DEAD; upper-only closure cannot resolve UNKNOWN->LIVE"},
     {"id":"MEG-34","status":"OPEN_RESEARCH","evidence":"ME_THEORY_GAP_ATLAS_V1","summary":"infinite-class construction identifiability up to lifecycle equivalence"},
     {"id":"MEG-35","status":"PROVED","evidence":"PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c","summary":"non-trivial upper-profile certificate refinements"}
   ],
-  "counts":{"total":35,"proved_or_contracted":26,"open_or_parent_adoption":9},
-  "foundation_terminal":"FOUNDATION_V1_CORE_SUBSTANTIALLY_CLOSED__FRONTIER_OPEN",
+  "counts":{"total":35,"proved_contracted_or_parent_adopted":28,"open_frontier":7},
+  "foundation_terminal":"FOUNDATION_V1_CORE_SUBSTANTIALLY_CLOSED__SEVEN_FRONTIER_ROWS_OPEN",
   "merged_dependencies":{"PR_317":{"url":"https://github.com/SzeChunYiu/ORION-V2/pull/317","merge_sha":"d756c086edc46ad4e5e682f69730b72c1dc26a4c","owned_meg":["MEG-01","MEG-04","MEG-06","MEG-08","MEG-18","MEG-22","MEG-26","MEG-29","MEG-30","MEG-31","MEG-35"],"status":"MERGED"}}
 }
