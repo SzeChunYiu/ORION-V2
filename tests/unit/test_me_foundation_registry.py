@@ -29,8 +29,7 @@ def test_merged_pr317_rows_are_proved_and_bound():
 
 
 def test_batch2_rows_have_honest_scope_or_contraction():
-    d = load()
-    by = {r["id"]: r for r in d["rows"]}
+    by = {r["id"]: r for r in load()["rows"]}
     assert by["MEG-02"]["status"] == "PROVED_WITH_CONTRACTION"
     assert by["MEG-03"]["status"] == "PROVED_SCOPE_LIMITED"
     assert by["MEG-16"]["status"] == "PROVED_WITH_CORRECTION"
@@ -39,10 +38,16 @@ def test_batch2_rows_have_honest_scope_or_contraction():
 
 
 def test_batch3_closes_ten_more_scoped_core_rows():
-    d = load(); by = {r["id"]: r for r in d["rows"]}
+    by = {r["id"]: r for r in load()["rows"]}
     for x in ("MEG-05","MEG-10","MEG-11","MEG-12","MEG-13","MEG-15","MEG-21","MEG-28","MEG-33"):
         assert by[x]["status"] == "PROVED_SCOPE_LIMITED"
     assert by["MEG-19"]["status"] == "PROVED_WITH_CORRECTION"
+
+
+def test_batch4_parent_adoptions_close_without_novelty():
+    by = {r["id"]: r for r in load()["rows"]}
+    assert by["MEG-14"]["status"] == "PARENT_OWNED_ADOPTED_WITH_CORRECTION"
+    assert by["MEG-32"]["status"] == "PARENT_OWNED_ADOPTED"
 
 
 def test_no_scientific_authority_upgrade():
@@ -52,7 +57,10 @@ def test_no_scientific_authority_upgrade():
     assert a["OCM_SUPERIORITY"] == "NOT_ESTABLISHED"
 
 
-def test_foundation_terminal_core_closed_frontier_open():
+def test_foundation_terminal_seven_frontier_rows_open():
     d = load()
-    assert d["foundation_terminal"] == "FOUNDATION_V1_CORE_SUBSTANTIALLY_CLOSED__FRONTIER_OPEN"
-    assert d["counts"] == {"total": 35, "proved_or_contracted": 26, "open_or_parent_adoption": 9}
+    assert d["foundation_terminal"] == "FOUNDATION_V1_CORE_SUBSTANTIALLY_CLOSED__SEVEN_FRONTIER_ROWS_OPEN"
+    assert d["counts"] == {"total": 35, "proved_contracted_or_parent_adopted": 28, "open_frontier": 7}
+    by = {r["id"]: r for r in d["rows"]}
+    open_ids = {x for x, row in by.items() if row["status"] in {"OPEN", "OPEN_RESEARCH", "OPEN_EMPIRICAL"}}
+    assert open_ids == {"MEG-07", "MEG-09", "MEG-23", "MEG-24", "MEG-25", "MEG-27", "MEG-34"}
