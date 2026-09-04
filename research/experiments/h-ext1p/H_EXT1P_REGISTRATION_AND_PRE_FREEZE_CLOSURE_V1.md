@@ -91,10 +91,36 @@ By study family, the concentration is sharper still:
 the gate never activates once**. The mechanism's own net contribution to the parent
 margin, across the two families where it fires at all, is **+1 task in 280**.
 
-**The secondary cell replicates the pattern independently.** RETROSPECTIVE_EVAL, n = 520:
-suite b = 7, c = 1; gate-active b = 0, **c = 1** (the one discordant active task is one
-`GATED_M` *loses*); gate-inactive b = 7, c = 0. In both cells, every task favouring
-`GATED_M` over the parent is a task where the gate is off.
+**The secondary cell replicates the pattern independently.** Over the **whole
+retrospective run** (`RETROSPECTIVE`, n = 520 — the dev and eval halves together, as keyed
+in `H_EXT1P_PRE_FREEZE_AUDIT_V1.json`): suite b = 7, c = 1; gate-active b = 0, **c = 1**
+(the one discordant active task is one `GATED_M` *loses*); gate-inactive b = 7, c = 0.
+
+> **Scope correction, 2026-09-04.** An earlier revision of this paragraph labelled those
+> n = 520 figures `RETROSPECTIVE_EVAL`. They are not the eval cell. `RETROSPECTIVE_EVAL`
+> is the odd-parity half, **n = 244** (`H_EXT1_CELL_RETROSPECTIVE_EVAL.json`, dev is the
+> complementary 276 committed as `dev_task_ids_sha256 e60050ed…`). The audit artifact was
+> keyed correctly as `RETROSPECTIVE`; only this sentence named the wrong cell. The
+> distinction matters because the mislabelled figures include the dev half **the gate was
+> selected on**, so as previously written the "replication" was not held-out: the single
+> gate-active task `GATED_M` loses is `pd-s1-0137`, and it sits in dev. Restricted to the
+> genuinely held-out eval cell the pattern is **cleaner, not weaker**:
+>
+> | cell | n | subset | n | `GATED_M` | `PARENT` | b | c |
+> |---|---|---|---|---|---|---|---|
+> | **`RETROSPECTIVE_EVAL` (held out)** | 244 | gate active | **72** | **72** | **72** | **0** | **0** |
+> | | | gate inactive | 172 | 172 | 166 | 6 | 0 |
+> | `RETROSPECTIVE_DEV` (gate selected here) | 276 | gate active | 98 | 97 | 98 | 0 | 1 |
+> | | | gate inactive | 178 | 178 | 177 | 1 | 0 |
+>
+> The held-out cell therefore has **zero** gate-active discordant pairs, not one. No
+> conclusion of this document changes; the estimand argument is marginally strengthened.
+> Independently corroborated by the frozen cell's own `activations = 72`, `acc_GATED = 1.0`
+> and `acc_PARENT = 0.97541` (× 244 = 238 = 72 + 166), and by P-D claim PD-A28, which
+> already published the eval half as 244/244 gated versus 238/244 federation.
+
+In both cells, every task favouring `GATED_M` over the parent is a task where the gate is
+off, and in the held-out eval cell every such task is gate-inactive without exception.
 
 ## 3. Why that closes the study rather than shrinking it
 
@@ -200,7 +226,9 @@ effect to test.
   function is separately checked for **size** under the null (`pb = pc` ⇒ power ≤ α) and
   saturation under a large effect.
 - **Denominators are published with every zero**: 0 discordant of 170 gate-active
-  (PROSPECTIVE); 1 discordant of 170, in the parent's favour (RETROSPECTIVE); 0 of 120 in
+  (PROSPECTIVE); 1 discordant of 170, in the parent's favour, over the whole retrospective
+  run (`RETROSPECTIVE`, n = 520 — that single task is `pd-s1-0137`, in the **dev** half, so
+  the held-out `RETROSPECTIVE_EVAL` cell is **0 discordant of 72** gate-active); 0 of 120 in
   PD-S3 and 0 of 120 in PD-S4.
 
 **Stated as a limitation of this audit, not glossed:** the power figures use the frozen
