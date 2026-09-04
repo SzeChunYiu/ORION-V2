@@ -1,0 +1,135 @@
+{
+  "check": "ARM_GLUE_CONTROL_TEXT_PARITY",
+  "control_text_parity": {
+    "arms": {
+      "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": {
+        "control_text_chars": 1719,
+        "n_forms_matched": 1,
+        "n_forms_probed": 4,
+        "names_inconclusive_trigger_by_name": true,
+        "names_tool_switch_action": true,
+        "status": "EXPOSED",
+        "tool_switch_forms_matched": [
+          "the other tool"
+        ]
+      },
+      "M_ME_FRONTIER_CONTROL": {
+        "control_text_chars": 1851,
+        "n_forms_matched": 2,
+        "n_forms_probed": 4,
+        "names_inconclusive_trigger_by_name": false,
+        "names_tool_switch_action": true,
+        "status": "EXPOSED",
+        "tool_switch_forms_matched": [
+          "switch tool class",
+          "local_search <-> exact_solve"
+        ]
+      }
+    },
+    "code_capability": "INCONCLUSIVE -> switch tool class -> if still INCONCLUSIVE, abandon this block",
+    "gap_arms": [],
+    "n_arms_checked": 2,
+    "n_arms_required": 2,
+    "n_gaps": 0,
+    "probes": [
+      {
+        "must_hold": true,
+        "note": "the shared preamble already carries the INFORMATION; the claim under test is about the procedural rule, not the information",
+        "observed": true,
+        "probe": "CONTROL_preamble_states_local_search_limit"
+      },
+      {
+        "must_hold": true,
+        "observed": true,
+        "probe": "CONTROL_code_branch_locatable"
+      },
+      {
+        "must_hold": true,
+        "note": "literal guard 'if r.outcome == \"INCONCLUSIVE\"' in the deterministic B5 branch",
+        "observed": true,
+        "probe": "CONTROL_code_has_inconclusive_fallback"
+      }
+    ],
+    "verdict": "PARITY"
+  },
+  "design_sha256": "f9ecd9ecba3b632cbf32304ab5a66e88640e655584e4991243f9af7858c4c704",
+  "fallback_ablation": {
+    "action_cap": 7,
+    "arm": "B5_ALGORITHMIC_CORE_NO_MODEL",
+    "delta_lines_between_variants": 11,
+    "geometry": {
+      "budget_checks": 300000,
+      "level": "L2",
+      "n_vars": 30,
+      "why": "frozen by ME_F1_CALIBRATION_RECEIPT.json measured by tree b6350ba9c462571f\u2026"
+    },
+    "n_campaigns": 8,
+    "variants": {
+      "WITHOUT_FALLBACK": {
+        "coverage": 0.2,
+        "inconclusive_rate": 0.75,
+        "n_actions": 56,
+        "n_actions_on_block_critical_rung": 49,
+        "n_claimed_rungs": 32,
+        "n_decided_rungs": 160,
+        "n_inconclusive": 42,
+        "primary": 0.2,
+        "tool_counts": {
+          "exact_solve": 7,
+          "local_search": 49
+        },
+        "unwarranted_claims": 0
+      },
+      "WITH_FALLBACK": {
+        "coverage": 0.4875,
+        "inconclusive_rate": 0.3393,
+        "n_actions": 56,
+        "n_actions_on_block_critical_rung": 33,
+        "n_claimed_rungs": 78,
+        "n_decided_rungs": 160,
+        "n_inconclusive": 19,
+        "primary": 0.4875,
+        "tool_counts": {
+          "exact_solve": 34,
+          "local_search": 22
+        },
+        "unwarranted_claims": 0
+      }
+    },
+    "verdict": "MEASURED"
+  },
+  "hard": true,
+  "schema_version": "orion.v2.me-f1.frontier-study-analysis.v1.parity",
+  "source_provenance": {
+    "checked": true,
+    "drifted_files": [],
+    "frozen_combined_source_sha256": "9455f24b51366822cfcea574efeda40abdd03f66bf686cc9e7b584e4e3e9e41e",
+    "import_path_violations": [],
+    "live": {
+      "combined_source_sha256": "9455f24b51366822cfcea574efeda40abdd03f66bf686cc9e7b584e4e3e9e41e",
+      "design_sha256": "f9ecd9ecba3b632cbf32304ab5a66e88640e655584e4991243f9af7858c4c704",
+      "executed_at_utc": "2026-09-03T06:28:39Z",
+      "hostname": "billy-laptop-old",
+      "import_path_violations": [],
+      "imported_from": "/home/billy/mef1-b5repair",
+      "python_version": "3.14.4",
+      "source_files_sha256": {
+        "mef1_arms.py": "34cdccae14a86be2f767fa8351b1cad6c2d906024a75082e01f12419c4fa680c",
+        "mef1_channel.py": "c3eca24f5dfaab8887d652d344b93a50a8665f983b8bc2118b74e27a0206300b",
+        "mef1_generator.py": "fd86479a784ad1298950920951f9e236647acb446e6ca29c4f3fbc7f44b98c4a",
+        "mef1_model.py": "1d551c2c71ecd78a17eb37d41d74f666712c9f8cdc34b11400e641b2e6beea42",
+        "mef1_parents.py": "a3c139b85eecd008c8bbd51307d16f8786cb27f0392ceae5788d0d594a25f4d4",
+        "mef1_parity.py": "7ff55c530008f2fcb4374fc260771144d4528372d290fe2c993bfdd657eefd55",
+        "mef1_reference.py": "ad5fc48fec4e4af65df3825b13c672405fa6b008317a52f93ad0e5f381481710",
+        "mef1_run.py": "57545552c7f0f42d9bce68e695db3c900e6478006c904996d78a1c462d82a11b",
+        "mef1_score.py": "8ae26548a6bf24aeb904745588043d0faceb92df1620985b62827caf0e68f016",
+        "mef1_stats.py": "1667644afb3f37d7ee81a743422f2813b1eb07243d635c3e6ae0f137d41fb517",
+        "mef1_toolbox.py": "db26557bb4e562834dc9851b43ddeccdd2fb0046e8418f0290df0b34deae5164"
+      }
+    },
+    "live_combined_source_sha256": "9455f24b51366822cfcea574efeda40abdd03f66bf686cc9e7b584e4e3e9e41e",
+    "match": true,
+    "n_files_frozen": 11,
+    "n_files_live": 11
+  }
+}
