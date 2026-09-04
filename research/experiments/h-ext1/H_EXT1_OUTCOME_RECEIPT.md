@@ -45,6 +45,18 @@ PDS1A/PDS1C tasks and on **none** of PDS1B/PDS1D/PD-S2/PD-S4; GATED = the oracle
 ceiling (0.9769) exactly. The 12 residual misses are PD-S2 C/D tasks where both `M` and
 `OFF` fail on gpt-5.5 — not gate errors.
 
+> **Claim-integrity correction, 2026-09-04.** The sentence above ("The 12 residual misses are
+> PD-S2 C/D tasks where both `M` and `OFF` fail on gpt-5.5") is false as written. Recounted from the
+> pinned `data/PROSPECTIVE_instances.json` (n=520): the gate fires on none of PD-S2, so GATED = `OFF`
+> there and its 12 misses are `OFF`'s 12 misses (PDS2C 5, PDS2D 7), inherited, not jointly unsolvable.
+> Per stratum, (both ok / `M` only / `OFF` only / both fail): PDS2C 19 / 5 / 6 / 0; PDS2D 15 / 2 / 8 / 5.
+> Only 5 of the 12 are tasks where both arms fail; on the other 7, `M` is correct. `M` fails 19 PD-S2
+> tasks in total. Activating `M` on PD-S2 would lose 14 tasks (`OFF` right, `M` wrong) to gain 7
+> (`OFF` wrong, `M` right), so the gate's non-activation there is still the right call — for that
+> reason, not the one previously stated. **No gate value, null, terminal or datum changed**; the
+> per-instance counts above reproduce GATED 508/520 = 0.9769 from the pinned file, and this is a
+> correction to this receipt's prose in the same form as the 2026-09-03 one.
+
 ## Retrospective cell (secondary; held-out half of the frozen gpt-5.6-terra run, n=244)
 
 GATED 1.000 (244/244) vs M 0.9836, OFF 0.8361, PARENT 0.9754; advantage +0.0164 vs pooled
