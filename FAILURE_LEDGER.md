@@ -198,6 +198,28 @@ report rather than a methodologically specified census. Records, evidence grades
   this class's own tell reappearing at the mitigation layer, in exactly the form the guard above
   exists to catch.
 
+- `INTERFACE_ASKS_FOR_WHAT_IT_WITHHELD` — the harness presents an arm a truncated view of its
+  workspace and then asks the arm to return information only the untruncated view contains
+  (verbatim context lines and line numbers for a unified diff), so the arm's output fails at the
+  interface for every arm alike and the failure is scored as the arm's. Distinct from
+  `HANDICAPPED_COMPARATOR` (an asymmetry between arms; here every arm is handicapped equally, so
+  no paired contrast notices) and from `UNPINNED_SUBSTRATE_CONDITION` (the channel; here the
+  channel answered every call and the served id held). The tell is an apply-failure rate that
+  is flat across arms of very different capability, with the non-applying patches declaring
+  edit positions beyond the shown prefix of a file the snapshot cut. Guard: the interface is a
+  registered condition — the edit contract asks only for what the presentation showed, the
+  presentation policy exempts every file the task names from truncation, and a per-envelope
+  `interface_receipt` (interface id and fingerprint, files shown, mentioned files truncated) is
+  gated for homogeneity ahead of any endpoint, so "every patch applied" can never be read out
+  of "the model saw nothing". First observed 2026-09-04 (E30-R13 read-only attribution,
+  `research/experiments/e30-r14/results/E30_R14_R13_APPLY_FAILURE_ATTRIBUTION_V1.json`: of the
+  205 canonical-but-non-applying patches, **152 edit a region the 30 000-character per-file
+  snapshot never showed**; 201 of the 346 failures are unrecoverable by any reader of the
+  archived text because the quoted context does not occur in the file; apply-failure
+  0.69–0.78 on all four arms including the parent federation. The presentation replication was
+  controlled against the archived `source_snapshot_truncation` receipts, and a fabricated
+  context block returned 0 anchors while a real one from the same file returned exactly 1).
+
 ### Corrections to entries above, recorded rather than applied
 
 This ledger is append-only, so two earlier entries are corrected here rather than edited in place.
