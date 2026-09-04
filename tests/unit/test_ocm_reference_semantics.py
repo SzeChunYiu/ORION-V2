@@ -70,6 +70,7 @@ def test_S4_coarsest_authority_preserving_representation_is_generated_partition(
     assert by["pairs_01_23"]["generated_partition"] == [[0, 1], [2, 3]] and by["pairs_01_23"]["exact_partitions"] == 4
     assert by["one_set_12"]["generated_partition"] == [[0, 3], [1, 2]] and by["one_set_12"]["exact_partitions"] == 4
     assert all(r["generated_is_coarsest_exact"] for r in s4["families"])
+    assert all(r["policies_evaluated"] == ["over", "under"] and r["abstain_counted_separately"] for r in s4["families"])
     planted = s4["planted_split_coarsening"]
     assert planted["caught"] and planted["false_retract_witness"] == {"profile": [[2]], "revoked": [1]}
     assert planted["false_retain_witness"] == {"profile": [[1]], "revoked": [1]}
@@ -101,6 +102,25 @@ def test_mutations_asserted_applied_and_detected(result):
         if isinstance(v, dict):
             assert v["applied"] is True and v["detected"] is True, k
     assert m["M2_live_ignores_revocation"]["two_evaluator_agreement"]["agree"] < 2688
+    # M3 must be caught for its registered reason: exactness disagrees with the independent judge
+    assert m["M3_block_union_always_true"]["exact_partition_counts_under_mutation"] != {"singletons": 1, "pairs_01_23": 4, "nested_0_01_012": 1, "one_set_12": 4}
+
+
+def test_S4_exactness_is_not_measurability_by_construction(mod):
+    """The census must be able to disagree with the measurability judge: corrupt the
+    store's block-union test alone and the exact-partition counts must change."""
+    orig = mod.is_block_union
+    mod.is_block_union = lambda r, pi: True
+    try:
+        res = mod.check_S4_representation_revision(4)
+    finally:
+        mod.is_block_union = orig
+    counts = {r["gamma"]: r["exact_partitions"] for r in res["families"]}
+    assert counts == {"singletons": 15, "pairs_01_23": 15, "nested_0_01_012": 15, "one_set_12": 15}
+    assert res["holds"] is False
+    # and the independent judge is untouched by that mutation
+    assert mod.is_block_union_b(frozenset({1}), (frozenset({0}), frozenset({1, 2}), frozenset({3}))) is False
+    assert mod.is_block_union_b(frozenset({1, 2}), (frozenset({0}), frozenset({1, 2}), frozenset({3}))) is True
 
 
 def test_endpoint_only_and_certified_empty_records(mod):
