@@ -35,13 +35,11 @@ def push(vec, blocks):
     return [sum(vec[i] for i in block) for block in blocks]
 
 
-def fixed_point(P, seed, alpha=Fraction(1, 3), max_steps=1000):
-    # exact iteration; for the small triangular-ish witness it stabilizes only asymptotically,
-    # so use closed form Gaussian solve of (I-(1-a)P^T)x = a s.
+def fixed_point(P, seed, alpha=Fraction(1, 3)):
+    # Exact closed-form Gaussian solve of (I-(1-a)P^T)x = a s.
     n = len(seed)
     A = [[Fraction(int(i == j)) - (1-alpha)*P[j][i] for j in range(n)] for i in range(n)]
     b = [alpha*x for x in seed]
-    # Gauss-Jordan over Q
     aug = [A[i][:] + [b[i]] for i in range(n)]
     for c in range(n):
         pivot = next((r for r in range(c, n) if aug[r][c] != 0), None)
@@ -51,7 +49,8 @@ def fixed_point(P, seed, alpha=Fraction(1, 3), max_steps=1000):
         z = aug[c][c]
         aug[c] = [x/z for x in aug[c]]
         for r in range(n):
-            if r == c: continue
+            if r == c:
+                continue
             z = aug[r][c]
             if z:
                 aug[r] = [x-z*y for x, y in zip(aug[r], aug[c])]
@@ -62,13 +61,33 @@ def measurable(blocks, values):
     return all(len({values[i] for i in block}) <= 1 for block in blocks)
 
 
+def validate_multiscale_certificate(P_by_revocation, liveness_by_revocation, answer_by_revocation, blocks, revocation_family):
+    """MEG-09 + MEG-20 gate over the *whole registered revocation family*.
+
+    Transition commutation is parent-owned lumpability. KSO additionally requires that liveness and
+    the registered answer/decision observable factor through the same fibre projection.
+    """
+    for R in revocation_family:
+        if R not in P_by_revocation or R not in liveness_by_revocation or R not in answer_by_revocation:
+            return "CANNOT_CHECK_MISSING_REGISTERED_STATE"
+        if not strong_lumpable(P_by_revocation[R], blocks):
+            return "REFINE_REQUIRED_NON_LUMPABLE"
+        if not measurable(blocks, liveness_by_revocation[R]):
+            return "REFINE_REQUIRED_WARRANT_NONMEASURABLE"
+        if not measurable(blocks, answer_by_revocation[R]):
+            return "REFINE_REQUIRED_ANSWER_NONFACTORING"
+    return "CERTIFIED"
+
+
 def cemetery_embed(P):
     n = len(P)
     out = [[Fraction(0) for _ in range(n+1)] for _ in range(n+1)]
     for i,row in enumerate(P):
-        for j,x in enumerate(row): out[i][j] = x
+        for j,x in enumerate(row):
+            out[i][j] = x
         missing = Fraction(1) - sum(row)
-        if missing < 0: raise ValueError("SUPERSTOCHASTIC")
+        if missing < 0:
+            raise ValueError("SUPERSTOCHASTIC")
         out[i][n] = missing
     out[n][n] = Fraction(1)
     return out
@@ -90,9 +109,18 @@ def check_meg09():
     aq = fixed_point(Q,push(s,F))
     assert push(a,F) == aq
 
+    # The certificate must hold for every registered revocation state, not merely the nominal state.
+    family = ("none", "rev")
+    P_by_R = {"none": P, "rev": P}
+    live_good = {"none": [LIVE,LIVE,DEAD,DEAD], "rev": [DEAD,DEAD,LIVE,LIVE]}
+    answer_good = {"none": ["A","A","B","B"], "rev": ["C","C","D","D"]}
+    assert validate_multiscale_certificate(P_by_R, live_good, answer_good, F, family) == "CERTIFIED"
+
     bad = [row[:] for row in P]
     bad[1] = [0,Fraction(3,4),0,Fraction(1,4)]
     assert not strong_lumpable(bad,F)
+    P_bad = {"none": P, "rev": bad}
+    assert validate_multiscale_certificate(P_bad, live_good, answer_good, F, family) == "REFINE_REQUIRED_NON_LUMPABLE"
     try:
         quotient(bad,F)
     except ValueError as e:
@@ -100,10 +128,13 @@ def check_meg09():
     else:
         raise AssertionError("non-lumpable cross-fibre mutant accepted")
 
-    good_live = [LIVE,LIVE,DEAD,DEAD]
-    bad_live = [LIVE,DEAD,DEAD,DEAD]
-    assert measurable(F,good_live)
-    assert not measurable(F,bad_live)
+    live_bad = {"none": [LIVE,LIVE,DEAD,DEAD], "rev": [LIVE,DEAD,LIVE,LIVE]}
+    assert validate_multiscale_certificate(P_by_R, live_bad, answer_good, F, family) == "REFINE_REQUIRED_WARRANT_NONMEASURABLE"
+
+    answer_bad = {"none": ["A","A","B","B"], "rev": ["C","X","D","D"]}
+    assert validate_multiscale_certificate(P_by_R, live_good, answer_bad, F, family) == "REFINE_REQUIRED_ANSWER_NONFACTORING"
+
+    assert validate_multiscale_certificate({"none": P}, live_good, answer_good, F, family) == "CANNOT_CHECK_MISSING_REGISTERED_STATE"
 
     # Substochastic parent: missing mass becomes a cemetery state without changing live-state solve.
     Psub = [
@@ -121,16 +152,19 @@ def check_meg09():
     assert strong_lumpable(Pcem,Fcem)
 
     return {
-        "fine_states":4,"fibres":2,"lumpable":1,"pushforward_fixed_point_exact":1,
-        "cross_fibre_nonlumpable_mutant_caught":1,"warrant_measurable_no_alarm":1,
-        "warrant_nonmeasurable_refine_required":1,"substochastic_cemetery_live_projection_equal":1,
+        "fine_states":4,"fibres":2,"registered_revocation_states":len(family),"lumpable":1,
+        "pushforward_fixed_point_exact":1,"full_certificate_no_alarm":1,
+        "cross_fibre_nonlumpable_mutant_caught":1,"warrant_nonmeasurable_refine_required":1,
+        "answer_nonfactoring_refine_required":1,"missing_registered_state_cannot_check":1,
+        "substochastic_cemetery_live_projection_equal":1,
         "terminal":"PARENT_LUMPABILITY_SUFFICIENT__KSO_ADDS_WARRANT_AND_ANSWER_MEASURABILITY",
         "GENERAL_NOVELTY":"NOT_ESTABLISHED"
     }
 
 
 def main():
-    try: out=check_meg09()
+    try:
+        out=check_meg09()
     except Exception as e:
         print(json.dumps({"status":"FAIL","type":type(e).__name__,"reason":str(e)},sort_keys=True)); return 1
     print(json.dumps({"status":"PASS","result":out},sort_keys=True)); return 0
