@@ -71,6 +71,37 @@ critical defect.
   announce the move on the issue that administers it rather than leaving the reviewer to discover it.
   First observed 2026-09-04 (see the concrete record below).
 
+- `TARGET_ARCHITECTURE_PRESUPPOSED` — a theorem candidate is phrased as "the OCM architecture
+  achieves X", so its statement already contains the architecture whose existence the programme is
+  supposed to establish, and every parent-subtraction outcome is read as a verdict on an
+  architecture rather than on a substrate constraint. The operator directive of 2026-09-04 (#194,
+  comment 5539487737) names the failure: MNI/MNSI are not target architectures, and the object of
+  study is the minimal substrate plus its constraints. Guard: state every theorem candidate in the
+  form "under substrate `Σ` with constraints `C`, a machine can/cannot …", and record the
+  architecture-shaped residual names (`STRICT_*_RESIDUAL`) as `NOT_EARNED` rather than as open
+  targets. First observed 2026-09-04 across #200–#205 as chartered; every lane restated in
+  `theory/OCM_DIRECTIVE_RESCOPE_V1.md` §2.
+
+- `PARALLELISM_CEILING_BREACHED` — a lane spawns sub-workers against a stated programme-wide
+  ceiling on concurrent workers, so the ceiling's purpose (bounded, attributable, sequential
+  reasoning per lane) is defeated while each worker's output still looks well-formed. The tell is
+  a worktree or branch touching the lane's paths whose author is not the lane. Guard: a lane under
+  a ceiling does the work sequentially itself; children's committed work is recovered and built on,
+  uncommitted children's work is re-derived. First observed 2026-09-04 (this lane's previous
+  attempt spawned a lane-202 checker builder and a lane-203 semantics builder against a
+  three-worker ceiling; the lane-202 checker was recovered from the shared worktree at 838 lines
+  and re-verified, and the lane-203 semantics was re-derived from scratch since none was committed).
+
+- `SUPERSEDED_BINDING_MISATTRIBUTED` — a rebind replaces a carrier's `superseded_binding` with the
+  immediately previous bytes but defaults its `recorded_in_commit` to the original freeze commit
+  and discards the earlier superseded entry, so the custody chain is both mis-attributed (a commit
+  that never held those bytes) and truncated (the original binding gone). Every hash still
+  verifies, so the byte-exact tests pass; the defect is in provenance, not content. Guard: a rebind
+  nests the previous entry (with the commit that actually carried it, checked by `git show`) rather
+  than replacing it, and never defaults a commit field. First observed 2026-09-04 (this lane's
+  README rebind cascade on PR #281; found by Cursor Bugbot; corrected before merge with the full
+  chains nested and every commit verified against the blob it carried).
+
 ## Retained concrete failure records
 
 - **`BINDING_OVER_UNCOMMITTED_BYTES` — RCL parent-collapse ledger, 2026-09-03/04.** The binding
@@ -144,6 +175,49 @@ critical defect.
   #245 have been told the target moved. Record: audit rows `IA-02` and `IA-03` in
   `OCM_SNAPSHOT_V1.json`.
 
+- **`IMMUTABLE_TARGET_MUTATED_BY_ITS_OWN_BINDING_TEST` — second instance, spine README, 2026-09-04.**
+  `research/orion-machine/README.md` is the programme spine (D01) *and* an entry in the `artifacts[]`
+  arrays of `REVOCATION_COMPLETE_LEARNING_RECEIPT_V0.json` and `RCL_INDEPENDENT_REVIEW_PACKET_V0.json`,
+  both walked byte-exactly by `tests/unit/test_revocation_complete_learning.py`. The operator
+  directive of 2026-09-04 requires the spine's terminal block to change, so the README was edited
+  (1,076 → 3,317 bytes) and the two V0 carriers were re-bound with `superseded_binding` retained and
+  `rebind_reason` stated; the packet V0 edit cascaded into `RCL_INDEPENDENT_REVIEW_PACKET_V1.json`,
+  which binds packet V0, and was re-bound the same way. Every non-`artifacts` key of both packets is
+  unchanged. Bindings were recomputed from committed blobs (`git show <commit>:<path>`), never from
+  working-tree files. This is the same conflict as the first instance — a frozen target that binds a
+  mutable spine — and the same least-bad action; the structural fix (freeze the review *question*,
+  bind the spine elsewhere) is still not applied and is recorded as owed. The move is announced on
+  #199 and #245, which administer the targets. The pre-directive README bytes remain bound in
+  `OCM_SNAPSHOT_V1.json` `content_bindings` at commit `d4eb281` as history, unedited.
+
+- **`VACUOUS_CONTRAST` — below-frontier arm of `rcl_checks_v1.py`, 2026-09-04, on a merged
+  artifact.** The V1 checker written to repair three vacuous V0 controls carried one of its own:
+  `candidate_profiles` never deduplicated, so below the frontier the candidate set always had
+  `2^(N−S−Q) > 1` members and the assertion "below the frontier yet every profile reconstructed
+  exactly" could not fire; only the collision-pair arm carried content. **Found by Cursor Bugbot on
+  PR #281** at `2f54e77`, after the module had merged in #278. Repaired in place (the module is
+  bound only by its own PR receipt, regenerated with superseded bindings retained, not by a frozen
+  review target): candidates are deduplicated, soundness (truth among candidates) and completeness
+  (exactly `2^(N−S−Q)` distinct candidates) are asserted for every profile, and mutation `M6`
+  (collapsing reconstructor) is registered and caught for that reason; 6/6 mutations. Denominators
+  unchanged (28,863 reconstructions, 64 collision pairs). The lesson is the root ledger's second
+  `VACUOUS_CONTRAST` instance restated: a guard against vacuity can carry a vacuous arm.
+
+- **`VACUOUS_CONTRAST` — S4 census of the reference semantics, 2026-09-04, caught before merge.**
+  The first draft of `reference/ocm_reference_semantics.py::check_S4_representation_revision`
+  scored the `abstain` policy inside the exactness loop. Since `abstain` returns `None` on every
+  revocation a coarse partition cannot express, `exact` was false exactly when `is_block_union`
+  was false, so the biconditional "exact iff measurable" **could not fail** — the same shape as the
+  three RCL controls above — and mutation `M3` was being "detected" by the unrelated coarsest-
+  partition assertion rather than for its registered reason. **Found by Cursor Bugbot** on PR #279
+  at `e9a0222`, reproduced, and repaired in place because the PR was unmerged and the module was
+  bound only by its own PR receipt, not by a frozen review target: the two committed policies are
+  evaluated separately on all 168 profiles, abstention is its own count (zero iff measurable), and
+  measurability is judged by an independently written `is_block_union_b`, so `M3` now moves the
+  exact-partition counts from 1/4/1/4 to 15/15/15/15 and is caught for that reason; a new test pins
+  the disagreement. No theorem statement changed; Theorem S4 gained its committed-policy clause,
+  which it had silently assumed. Repaired in `a855f57`, receipt regenerated in `58282c5` (both squash-merged to `main` as `e1bd52b`).
+
 - **`VACUOUS_CONTRAST` — three RCL controls that cannot fail, 2026-09-04.** This is the repository's
   existing vocabulary from the root `FAILURE_LEDGER.md`, applied to a new instance; no class is minted
   for it. Three controls in the revocation-complete-learning lane are structurally incapable of
@@ -184,6 +258,16 @@ critical defect.
 
   **Scope of the withdrawal, stated rather than assumed.** `RCL-1c`, *"exact storage-query frontier"*, carries the status `HAND_PROOF_COMPLETE_FINITE_CONSTRUCTION_GREEN`. The `FINITE_CONSTRUCTION_GREEN` half is produced by `verify_storage_query_frontier` and is withdrawn with it, as is `storage_query_reconstruction_checks: 5329` in both
   `REVOCATION_COMPLETE_LEARNING_RECEIPT_V0.json` and `REVOCATION_COMPLETE_LEARNING_EXACT_RESULT_V0.json` and the `frontier_points` / `all_exact` roll-ups. The `HAND_PROOF_COMPLETE` half is not implicated and is neither confirmed nor disturbed here. `RCL-0`, `RCL-1b`, `RCL-1d`, `RCL-2`, `RCL-2a` and `RCL-3` take `FINITE_ORACLE_GREEN` from other verifiers; `RCL-2b` rests on the planted over-retraction control, which compares `live(full, revoked)` against `live(emitted_one, revoked)` — two distinct expressions. A withdrawal with an unstated scope is the same defect in miniature.
+
+- **`TERMINAL_OVERSTATES_ITS_PROCEDURE` — near miss in the #204/#205 precondition record,
+  2026-09-04.** The uncommitted draft of `theory/OCM_LANES_204_205_PRECONDITION_RECORD_V1.md`
+  recorded lane #202's terminal as `TRANSFORMER_EQUIVALENT_UNDER_MATCHED_RESOURCES` before any
+  comparator manifest existed or anything had been compiled — the root ledger's class, applied to
+  a terminal string written ahead of its procedure. Caught on resumption by reading the lane-202
+  checker's own `authority` block (`transformer_equivalence_proved_here: false`) against the draft;
+  corrected to `TRADEOFF_FRONTIER_ONLY` with comparator equivalence `CANNOT_CHECK` before the record
+  was committed. Recorded because the string would have read as a result on the lane that consumes
+  it (#204's precondition table). No artifact carried it into version control.
 
 ### Unreturned by construction, not repaired
 

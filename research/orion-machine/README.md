@@ -2,21 +2,35 @@
 
 Umbrella: ORION-V2 #194  
 Execution master: ORION-V2 #197  
-Current branch lane: `research/ocm-revocation-complete-learning-20260903`
+Governing directive: #194 comment `5539487737` (2026-09-04) — **substrate + constraints, not an architecture**; MNI/MNSI emergent, not specified.
 
 ## Current terminal
 
 ```text
-OCM_EXPRESSIVITY_NOVELTY = PARENT_SUFFICIENT / NOT A TARGET
-TRACE_LEARNING_IN_GENERAL = PARENT_OWNED
-STATIC_PROVENANCE_AND_RETRACTION = PARENT_OWNED
-REVOCATION_COMPLETE_LEARNING = NEW_THEORETICAL_RESIDUAL_CANDIDATE
-EXTERNAL_NOVELTY = NOT_ESTABLISHED
-POST_TRANSFORMER_ARCHITECTURE = NOT_ESTABLISHED
+OBJECT_OF_STUDY                     = SUBSTRATE_AND_CONSTRAINTS (directive 2026-09-04); MNI/MNSI emergent, not specified
+SUBSTRATE_SEMANTICS (#203)          = PARENT_OBJECT_ADOPTED (ATMS label + PCC gate + resource vector); FREEZE = CANNOT_CHECK (audit unreturned)
+CHANNEL_SUFFICIENCY (a) (#200)      = INTERFACE_HIERARCHY_ONLY; every rung PARENT_OWNED; residual NOT_EARNED__OBSTRUCTION_NAMED
+COMPOSITION_WITH_WARRANT (b)        = PARENT_OWNED (ATMS label combination; S2)
+SELF_REVISION_AUTHORITY (c) (#201)  = PARENT_SUFFICIENT (Blackwell/CEGAR/L4; Theorem S4); Godel machine x ATMS owns the constraint
+REVOCATION_COMPLETE_LEARNING        = CONSTRAINT_ON_(c); elementary pack = CALIBRATION; RCL-C = OPEN_NOT_PROVED__NO_REGISTERED_CLASS_QUALIFIES
+SUBSTRATE_COST (#202)               = TRADEOFF_FRONTIER_ONLY; comparator equivalence CANNOT_CHECK
+LANGUAGE_BRIDGE (#204)              = FORMAL_ONLY (dissolved into channel encoding)
+QUANTUM_OPERATOR (#205)             = NO_ELIGIBLE_OPERATOR (dissolved)
+SEPARATION_CLAIM (procedure-learner vs large-exposure approximator) = NOT_ESTABLISHED; test NOT_FROZEN (audit failed)
+EXTERNAL_NOVELTY                    = NOT_ESTABLISHED
+INDEPENDENT_REVIEW (#199, #245)     = NOT_OBTAINED__DISCLOSED_LIMITATION
+MECHANIZATION                       = CANNOT_CHECK (no toolchain)
 ```
 
-Start with `revocation_complete_learning/README.md`.
+## Start here
 
-The active research question is whether a system can jointly learn reusable operator semantics and enough counterfactual warrant structure to preserve exact authority and useful skill after later evidence, checker, scope, or authority changes, with an honest storage–proof-query–recourse–abstention frontier.
+1. `theory/OCM_DIRECTIVE_RESCOPE_V1.md` — the programme under the directive: lane restatements, parent subtraction for the five channels / composition / self-revision, what is open and why.
+2. `theory/OCM_OPERATIONAL_SEMANTICS_V1.md` + `reference/ocm_reference_semantics.py` — the substrate and its constraints S1–S7.
+3. Lane records: `theory/OCM_LANE_200_TERMINAL_V1.md`, `OCM_LANE_201_TERMINAL_V1.md`, `OCM_LANE_202_TERMINAL_V1.md`, `OCM_LANES_204_205_PRECONDITION_RECORD_V1.md`.
+4. `theory/OCM_SEPARATION_TEST_DESIGN_V1.md` — the separation claim's registered-test design and why its pre-run audit fails.
+5. `revocation_complete_learning/` — the RCL pack (`README.md` there), the V1 checker `rcl_checks_v1.py`, and `RCL_KILL_GATE_AUDIT_V1.md` (authoring-side, not the #245 terminal).
+6. `OCM_TASK_LEDGER_V1.json`, `OCM_FAILURE_LEDGER.md`, `theory/OCM_FALSIFIER_REGISTER_V1.json`.
 
-This directory is math-first. It authorizes no frontier-model training, protected evaluation, natural-language competence, quantum advantage, paper existence, novelty, or architecture-superiority claim.
+The active research question is now: what is the minimal substrate under which a machine can acquire procedures with warrant from instruction, demonstration, interaction, experimentation and feedback; compose them with warrant preserved; and revise its own representation, learning strategy and architecture without losing exact authority over what it already knows. Revocation-complete learning is the authority-preservation constraint on the last of these, not the programme.
+
+This directory is math-first. It authorizes no frontier-model training, protected evaluation, natural-language competence, quantum advantage, paper existence, novelty, or architecture-superiority claim. The pre-directive terminal block is retained in `OCM_SNAPSHOT_V1.json` (`terminals_recorded_elsewhere_quoted_not_asserted`) as history.
