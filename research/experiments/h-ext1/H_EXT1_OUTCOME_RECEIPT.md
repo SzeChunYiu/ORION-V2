@@ -85,6 +85,31 @@ gates pass; same terminal.
    cell pre-registering a paired null on `acc(GATED_M) − acc(PARENT)` with its own
    freeze, gates and routed terminals.
 
+   > **Addendum, 2026-09-04 — the parent margin decomposed, extending item 4 below.**
+   > `H-EXT-1P` was subsequently registered and **closed pre-freeze**, terminal
+   > `REGISTERED_CONTRAST_CANNOT_BE_ABOUT_THE_MECHANISM`, on the estimand and **not** on
+   > power (exact McNemar power 0.4605 at n = 520, ≥ 0.80 at n = 1040; task supply is
+   > unbounded, so a larger run was feasible and would have been misleading). Splitting the
+   > frozen PROSPECTIVE cell by whether `G_B_PLUS_XREF` actually fires: on the **170
+   > gate-active tasks `GATED_M` and `PARENT` are both 170/170 and never differ — zero
+   > discordant pairs.** All 29 discordant pairs, and the whole +11-task margin, lie on the
+   > 350 gate-inactive tasks (b = 20, c = 9), where `GATED_M` **is** `P_D_MINUS_DEPENDENCE`
+   > by construction; 28 of the 29 are `PD-S2`, a family the gate never activates on once.
+   > RETROSPECTIVE_EVAL replicates it (gate-active b = 0, c = 1; gate-inactive b = 7, c = 0).
+   > So the caution in this item strengthens: the +2.1 pp margin is not merely un-null-tested,
+   > it is **composed entirely of tasks where the mechanism's gate never fired**, and cannot
+   > be read as evidence about conditional activation whatever a null on it returned.
+   >
+   > **This changes nothing in H-EXT-1 and is not a correction to it.** It *extends* item 4's
+   > own ceiling disclosure from 90 activations to all 170, and it is the same caution item 2
+   > already registered, measured rather than warned about. No gate value, null, terminal or
+   > datum moves; the binding terminal still rests on G1/G3 against always-on `M`
+   > (`GATED_M` 508 vs `M` 465, advantage +0.0827, exceedance 0/2000 in both nulls), a
+   > contrast this decomposition does not touch. The successor stays closed: no successor may
+   > freeze until a suite is shown on which the strongest parent is **off ceiling on the
+   > gate-active regime**, and none is claimed to exist.
+   > Receipt: `research/experiments/h-ext1p/H_EXT1P_REGISTRATION_AND_PRE_FREEZE_CLOSURE_V1.md`.
+
 3. **Always-on `M` does not beat the parent in the binding cell.** In PROSPECTIVE,
    `P_D_FULL` 0.8942 (465/520) is **below** `STRONGEST_ASSURANCE_FEDERATION` 0.9558
    (497/520) — −6.2 pp, 32 tasks. What clears the parent here is the conditional-activation
