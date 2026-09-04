@@ -165,7 +165,24 @@
         "class": "This is the repository's existing VACUOUS_CONTRAST and STRUCTURALLY_DETERMINED_REGISTERED_CLAUSE vocabulary from the root FAILURE_LEDGER.md. No new class is minted for it.",
         "action_taken": "Recorded, not repaired. The three files are hash-bound inside RCL_INDEPENDENT_REVIEW_PACKET_V0.json, the frozen review target of issues 199 and 245, and repairing them here would break that binding a second time and would remove the evidence that checkbox RCL-R03 of issue 245 exists to surface: 'Confirm the planted over-retraction control fires, the no-alarm control passes, and the mutation control fails the intended invariant.' The finding is disclosed on both review issues and routed to them.",
         "affected_evidence": "The RCL-1c frontier control evidence and the no-alarm and mutation controls of the RCL lane are withdrawn to CANNOT_CHECK. No theorem statement is altered, and the planted over-retraction control, which does compare two distinct expressions, is not implicated.",
-        "grants_scientific_authority": false
+        "grants_scientific_authority": false,
+        "downstream_scope_of_the_withdrawal": {
+          "method": "Every theorem status in RCL_THEOREM_LEDGER_V0.json was read, and REVOCATION_COMPLETE_LEARNING_RECEIPT_V0.json, REVOCATION_COMPLETE_LEARNING_EXACT_RESULT_V0.json and the theorem ledger were searched for 'frontier', '5329' and 'all_exact', with 'authority' as a control term that fired in all three files.",
+          "affected": [
+            {
+              "row": "RCL-1c, 'exact storage-query frontier'",
+              "recorded_status": "HAND_PROOF_COMPLETE_FINITE_CONSTRUCTION_GREEN",
+              "finding": "The FINITE_CONSTRUCTION_GREEN half of that status is produced by verify_storage_query_frontier and is therefore withdrawn to CANNOT_CHECK. The HAND_PROOF_COMPLETE half rests on the hand proof and is not implicated by this finding; it is neither confirmed nor disturbed here.",
+              "downstream_numbers": "storage_query_reconstruction_checks: 5329, carried in both REVOCATION_COMPLETE_LEARNING_RECEIPT_V0.json and REVOCATION_COMPLETE_LEARNING_EXACT_RESULT_V0.json, and the frontier_points / all_exact roll-ups in the exact-result artifact, are counts of an identity reconstruction and may not be quoted as frontier evidence."
+            }
+          ],
+          "not_affected": [
+            "RCL-0, RCL-1b, RCL-1d, RCL-2, RCL-2a, RCL-3: each carries FINITE_ORACLE_GREEN from a different verifier and none is produced by verify_storage_query_frontier.",
+            "RCL-2b: COUNTEREXAMPLE_COMPLETE_PLANTED_POSITIVE_GREEN rests on the planted over-retraction control, which compares live(full, revoked) against live(emitted_one, revoked) — two distinct expressions — and is not implicated.",
+            "RCL-1, RCL-4, RCL-5, RCL-6: HAND_PROOF_COMPLETE, with no oracle component."
+          ],
+          "why_this_scope_is_stated": "A withdrawal with an unstated scope is the same defect in miniature. The scope above is stated so that it can be checked rather than assumed."
+        }
       }
     ]
   },

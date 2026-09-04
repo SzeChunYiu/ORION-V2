@@ -182,6 +182,9 @@ critical defect.
   `IA-07` in `OCM_SNAPSHOT_V1.json`; deliverable row `D09` in `OCM_TASK_LEDGER_V1.json`, downgraded
   from `PRESENT` to `PARTIAL` on this finding.
 
+  **Scope of the withdrawal, stated rather than assumed.** `RCL-1c`, *"exact storage-query frontier"*, carries the status `HAND_PROOF_COMPLETE_FINITE_CONSTRUCTION_GREEN`. The `FINITE_CONSTRUCTION_GREEN` half is produced by `verify_storage_query_frontier` and is withdrawn with it, as is `storage_query_reconstruction_checks: 5329` in both
+  `REVOCATION_COMPLETE_LEARNING_RECEIPT_V0.json` and `REVOCATION_COMPLETE_LEARNING_EXACT_RESULT_V0.json` and the `frontier_points` / `all_exact` roll-ups. The `HAND_PROOF_COMPLETE` half is not implicated and is neither confirmed nor disturbed here. `RCL-0`, `RCL-1b`, `RCL-1d`, `RCL-2`, `RCL-2a` and `RCL-3` take `FINITE_ORACLE_GREEN` from other verifiers; `RCL-2b` rests on the planted over-retraction control, which compares `live(full, revoked)` against `live(emitted_one, revoked)` — two distinct expressions. A withdrawal with an unstated scope is the same defect in miniature.
+
 ### Unreturned by construction, not repaired
 
 Issue #221's deliverable 10 — *"independent hostile review stating which candidates collapse and what
