@@ -1,4 +1,11 @@
 {
+  "arm_text_sha256": {
+    "M_ME_FRONTIER_CONTROL": "8f4b6a96b7d951cade70e0d5aadb5f904a4b28556116faf4c9455318284c9d2b",
+    "M_MINUS_LOCUS_DIAGNOSIS": "3dcf90f88f7fd4dec102a879ddb99af1eb63f4a7835ea88fdabe2ce9c088050c",
+    "M_MINUS_MINIMUM_ESCALATION": "02c72dc98e3e056df822ee8e6d5deb60522a54fae35ca742da1a72a59742b923",
+    "M_MINUS_WARRANT_GATE": "bb7f38905e1599e894a79a638a2aa494ef5b89cc38f534f6c04b330eef675c40",
+    "SIMPLE_DIRECT": "e61f97ae2ae4c5a7e3c652b8ca018ce7b16c1970960672b903ebc3452689e409"
+  },
   "arms": [
     "SIMPLE_DIRECT",
     "M_ME_FRONTIER_CONTROL",
@@ -18,12 +25,20 @@
   "design_json_sha256": "813e9fba4a8d72bef8673e3b4844ea06f1f682d4025370ab46b81fbc58b29c49",
   "max_concurrency": 3,
   "n_campaigns": 8,
+  "pre_outcome_correction_r1": {
+    "arm_changed_by_pr276_not_run_here": "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION (40e96181... -> 2b9d589c...)",
+    "arms_this_design_runs_changed_by_pr276": [],
+    "date": "2026-09-04",
+    "record": "ME_F1_R3_PRE_OUTCOME_CORRECTION_R1.md",
+    "what": "freeze V1 bound the whole of mef1_arms.py; ORION-V2 #276 (dc27ced) changed the B5 text only, invalidating that binding with no R3 outcome in existence; re-frozen against post-#276 main with per-arm bindings; design, gates, seed, envelope and routing unchanged"
+  },
   "runs": [
     "r1",
     "r2"
   ],
-  "schema_version": "orion.v2.me-f1-r3.freeze.v1",
+  "schema_version": "orion.v2.me-f1-r3.freeze.v2",
   "selected_level": "L2",
-  "v1_arms_py_sha256": "7f73565d1d835f55fb1274086a6ade0da2b2d8fc5b7c7893cc2971bcaf391a47",
-  "v1_source_manifest_sha256": "b1a4483770aad945c641570002e55464d294d18732de1a65be304547ccb0b8e4"
+  "v1_arms_py_sha256": "34cdccae14a86be2f767fa8351b1cad6c2d906024a75082e01f12419c4fa680c",
+  "v1_source_manifest_sha256": "687a428ec96ea840e81862d5759ba8926b6be15b955b38dca1b02d6d902edfd3",
+  "v1_tree_commit": "3d28db48aa2f625c1ee8ef50b11251a9c4719074"
 }

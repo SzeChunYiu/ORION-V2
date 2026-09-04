@@ -92,18 +92,45 @@ def freeze() -> dict[str, Any]:
     if cal.get("decision") != "WINDOW_HIT" or not cal.get("selected_level"):
         raise CannotCheck("V1 calibration receipt is not a WINDOW_HIT; the dev geometry would fall back")
     manifest = V1 / "ME_F1_SOURCE_MANIFEST_V1.json"
-    fz = {"schema_version": "orion.v2.me-f1-r3.freeze.v1", "design": DESIGN,
+    fz = {"schema_version": "orion.v2.me-f1-r3.freeze.v2", "design": DESIGN,
           "design_json_sha256": sha256_file(DESIGN_JSON),
           "arms": list(ARMS), "runs": list(RUNS), "n_campaigns": N_CAMPAIGNS, "max_concurrency": MAX_CONCURRENCY,
           "calibration_receipt_sha256": sha256_file(CALIBRATION), "selected_level": cal["selected_level"],
           "v1_source_manifest_sha256": sha256_file(manifest) if manifest.exists() else None,
+          # what the run CONSUMES is bound and asserted: each arm text R3 dispatches, by sha256.
+          # The whole-file sha and the tree commit are recorded for provenance; a later merge that
+          # changes an arm this design never runs (B5, PR #276) must not invalidate the freeze.
+          "arm_text_sha256": arm_text_sha256(),
           "v1_arms_py_sha256": sha256_file(V1 / "mef1_arms.py"),
+          "v1_tree_commit": _tree_commit(),
+          "pre_outcome_correction_r1": {
+              "date": "2026-09-04",
+              "what": "freeze V1 bound the whole of mef1_arms.py; ORION-V2 #276 (dc27ced) changed the B5 text only, "
+                      "invalidating that binding with no R3 outcome in existence; re-frozen against post-#276 main "
+                      "with per-arm bindings; design, gates, seed, envelope and routing unchanged",
+              "arms_this_design_runs_changed_by_pr276": [],
+              "arm_changed_by_pr276_not_run_here": "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION (40e96181... -> 2b9d589c...)",
+              "record": "ME_F1_R3_PRE_OUTCOME_CORRECTION_R1.md"},
           "channel": "mef1_channel.call_control (frozen V1: codex-cli 0.129.0-alpha.15, gpt-5.5, medium; served id not exposed)",
           "authority": {"alters_me_f1_terminal": False, "authorizes_protected_dispatch": False,
                         "grants_scientific_truth": False, "grants_field_status": False}}
     RESULTS.mkdir(parents=True, exist_ok=True)
     (RESULTS / "ME_F1_R3_FREEZE_V1.json").write_text(json.dumps(fz, indent=2, sort_keys=True) + "\n")
     return fz
+
+
+def arm_text_sha256() -> dict[str, str]:
+    """sha256 of every control text this design dispatches, read from the live V1 table."""
+    import mef1_arms as A  # noqa: E402  (frozen V1, read-only)
+    return {a: hashlib.sha256(A._ARM_CONTROL[a].encode()).hexdigest() for a in ARMS}
+
+
+def _tree_commit() -> str | None:
+    try:
+        cp = subprocess.run(["/usr/bin/git", "rev-parse", "HEAD"], cwd=str(HERE), capture_output=True, text=True, check=False)
+        return cp.stdout.strip() or None
+    except OSError:
+        return None
 
 
 def _assert_frozen() -> dict[str, Any]:
@@ -113,8 +140,10 @@ def _assert_frozen() -> dict[str, Any]:
     fz = json.loads(fp.read_text())
     if fz["design_json_sha256"] != sha256_file(DESIGN_JSON):
         raise CannotCheck("design twin changed after the freeze")
-    if fz["v1_arms_py_sha256"] != sha256_file(V1 / "mef1_arms.py"):
-        raise CannotCheck("V1 mef1_arms.py changed after the freeze (arm texts are not frozen any more)")
+    live = arm_text_sha256()
+    drift = sorted(a for a in ARMS if fz.get("arm_text_sha256", {}).get(a) != live[a])
+    if drift:
+        raise CannotCheck(f"arm text changed after the freeze for {drift} (the freeze binds every arm R3 dispatches)")
     if fz["calibration_receipt_sha256"] != sha256_file(CALIBRATION):
         raise CannotCheck("V1 calibration receipt changed after the freeze")
     return fz
@@ -348,6 +377,15 @@ def selftest() -> int:
     cb, gb = run_gates(bad, inc)
     check("instrument control fails when the parent falls outside V1's envelope, and the verdict is refused",
           not all(x["pass"] for x in cb) and gb["terminal"].startswith("CANNOT_CHECK"))
+    live = arm_text_sha256()
+    check("binding: every dispatched arm text has a sha256 and they are distinct", len(set(live.values())) == len(ARMS))
+    fp = RESULTS / "ME_F1_R3_FREEZE_V1.json"
+    if fp.exists():
+        fz = json.loads(fp.read_text())
+        check("binding: the committed freeze names every dispatched arm text, and they match the live table",
+              all(fz.get("arm_text_sha256", {}).get(a) == live[a] for a in ARMS))
+        check("binding: B5 is not among the arms this freeze binds (the #276 change is out of scope by construction)",
+              "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION" not in fz.get("arm_text_sha256", {}))
     if DESIGN_JSON.exists():
         dc = json.loads(DESIGN_JSON.read_text())["constants"]
         check("design twin: constants agree with the script",

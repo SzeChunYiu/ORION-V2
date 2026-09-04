@@ -91,4 +91,11 @@ gap). Written before dispatch so neither can be read afterwards as a surprise.
 No arm, constant, envelope, gate, seed or routing row changes after dispatch begins. A defect found
 afterwards is recorded in the receipt and repaired under a new identity.
 
+## 8. Correction R1 (2026-09-04, pre-outcome)
+
+§2 and §5 say `mef1_arms.py` is "sha256-asserted at freeze, run and evaluate". The asserted
+object is now each of the five dispatched control texts (per-arm sha256), with the file sha and
+tree commit recorded for provenance; see `ME_F1_R3_PRE_OUTCOME_CORRECTION_R1.md`. No constant,
+gate, seed, envelope or routing row changed; the JSON twin is byte-identical.
+
 skills-applied: none (frozen design, no manuscript content)

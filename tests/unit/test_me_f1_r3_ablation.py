@@ -52,5 +52,23 @@ def test_frozen_state_if_present_matches_inputs():
         return
     fz = json.loads(fp.read_text())
     assert fz["design_json_sha256"] == RS.sha256_file(RS.DESIGN_JSON)
-    assert fz["v1_arms_py_sha256"] == RS.sha256_file(V1 / "mef1_arms.py")
+    # The freeze binds what the run consumes: every dispatched arm text, by sha256, against the
+    # live V1 table. It does NOT bind the whole file: #276 changed B5's text (an arm R3 never runs)
+    # and the first freeze, which did bind the file, went stale on that merge with no outcome yet.
+    live = RS.arm_text_sha256()
+    assert set(fz["arm_text_sha256"]) == set(RS.ARMS)
+    assert all(fz["arm_text_sha256"][a] == live[a] for a in RS.ARMS)
     assert fz["calibration_receipt_sha256"] == RS.sha256_file(RS.CALIBRATION)
+    assert fz["pre_outcome_correction_r1"]["arms_this_design_runs_changed_by_pr276"] == []
+
+
+def test_freeze_assertion_can_fail_on_a_dispatched_arm_text(monkeypatch):
+    fp = RS.RESULTS / "ME_F1_R3_FREEZE_V1.json"
+    if not fp.exists():
+        return
+    real = RS.arm_text_sha256()
+    fake = dict(real, SIMPLE_DIRECT="0" * 64)
+    monkeypatch.setattr(RS, "arm_text_sha256", lambda: fake)
+    import pytest
+    with pytest.raises(RS.CannotCheck):
+        RS._assert_frozen()
