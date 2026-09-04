@@ -341,6 +341,35 @@ hostile proof reconstruction, so no candidate advances past its recorded termina
 stays `BLOCKED` with `RCL-F11` `BLOCKED_HIGH_COLLISION`. The smallest next action is to route issues
 #199 and #245 to a party outside the authoring sessions.
 
+- **`VACUOUS_CONTRAST` ×2 and a stale self-binding — KSO M1 population receipt, 2026-09-04 (PR #295), found by
+  the guards lane's adversarial replay.** (1) *Label ≡ oracle on the CONSTRAINT edge*: every `nocontra:<c>`
+  atom is VALID on the dev split at v0 and v1 (the ME-X1 generator plants no negative evidence), so a
+  population that drops the constraint tail from every claim label passed 100/100 populations — the
+  counter could not fire. Repair landed: `check_P2_constraint_power` derives, per world, a registered
+  world with one negative evidence item from a valid source against the request's target claim, asserts
+  the oracle reads `nocontra` INVALID, the claim label dead, and catches the tail-drop mutant (50/50
+  worlds); v0 agreement is now reported `NO_POWER__ALL_CELLS_POSITIVE` and the claim is carried on the
+  v1 worlds' oracle-negative cells only. (2) *"Hub-seeded ⇒ hub positive and top"*: true of any seeded
+  atom, including the least connected — an identity presented as a direction. Repair landed: direction
+  (i) of KS-T06b in its discriminating form (evidence question touching hub and specifics: hub first by
+  raw activation, not first by surprise, planted popularity ranker differs), counted per world with the
+  receipt asserting ≥ 1; direction (ii) kept as `NOT_DISCRIMINATING`, background as `IDENTITY`. (3) *Stale
+  self-binding*: the receipt's own `bindings["kso_m1_mex1_population_v1.py"]` was left behind by a later
+  edit (`populate(request=)`), and `KSO_M0_FREEZE_V1.json` froze the stale receipt — the
+  `REPAIR_DOCUMENTED_NOT_LANDED` / `BINDING_OVER_UNCOMMITTED_BYTES` shape. Repair landed: receipt
+  regenerated at the head, freeze record rebound in the same commit, and a unit test that recomputes
+  every binding in both files against the committed bytes.
+
+- **`UNPINNED_SUBSTRATE_CONDITION` + `M2B_V1_GATING_DEFECT` — KSO M2b, 2026-09-04 (PR #295).** The first M2b run
+  (21-atom algebra source, every constraint conjoined on its target) was executed **without a pre-run
+  freeze**; it returned exact 5/30 with FIRE attributed on 25/30 (the three mutually exclusive Δ-case
+  constraints were conjoined so `proc:quadratic_formula` could never fire; `proc:linear` fired on
+  a = b = 0). Both defects were repaired by a design change made after seeing the outcome (case
+  constraints disjoin; `con:a_zero`, `con:b_nonzero` added). Disposition: V1 kept as a superseded
+  reconstruction (`ALGEBRA_SOURCE_V1_SUPERSEDED_RECONSTRUCTED.json`, sha `712a33e4ec1c…`) with its
+  outcome recorded in `results/KSO_M2B_ALGEBRA_OUTCOME_V1.md`; V2 frozen (`results/KSO_M2B_DESIGN_V2.json`)
+  before its 30/30 receipt is cited; the module refuses to run on design drift from V2.
+
 ## Reopening rule
 
 This ledger reopens on any of the following, each of which produces a *passing* artifact and is

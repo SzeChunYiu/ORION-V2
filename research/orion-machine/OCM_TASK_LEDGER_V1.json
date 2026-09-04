@@ -61,7 +61,7 @@
     "head_oid": "authored in this lane on the 254 carrier"
    },
    "execution_master_correspondence": [
-    "OM-WP0-008 (partial: 'source/version custody rules and a current-main snapshot receipt' \u2014 the snapshot receipt exists; standing custody rules are not written by it)"
+    "OM-WP0-008 (partial: 'source/version custody rules and a current-main snapshot receipt' — the snapshot receipt exists; standing custody rules are not written by it)"
    ],
    "note": "Records the import-authority audit IA-01..IA-06, including one dangling cross-reference, two stale review targets, one unrecoverable binding drift, one late-landed recorded repair, and one identifier that could not be resolved and was therefore not synthesized."
   },
@@ -475,5 +475,43 @@
    "strongest_parent": "Angluin 1988 (subset queries); Balcazar-Castro-Guijarro 2001 (general dimension)"
   },
   "checkbox_authority": "closes nothing (OPS-012); #199/#245 unreturned and not simulated"
+ },
+ "kso_m0_freeze_and_m1_2026_09_04": {
+  "issue": "ORION-V2 #284 (prototype plan) / #194 / #197",
+  "prs": [
+   "#290 (relanded as #296, main 68d8e59)",
+   "#295"
+  ],
+  "records": [
+   "theory/KSO_SUBSTRATE_CONTRACT_V1.md",
+   "theory/KSO_ARCHITECTURE_V1.md",
+   "theory/KSO_PARENT_SUBTRACTION_V1.md",
+   "theory/KSO_M2_SOLVE_DESIGN_V1.md",
+   "CONVERGENCE_MAP_V1.md"
+  ],
+  "checkers": [
+   "reference/kso_math_v1.py",
+   "reference/kso_m0_freeze_checks_v1.py",
+   "reference/kso_m1_mex1_population_v1.py",
+   "reference/kso_m2_solve_v1.py",
+   "reference/kso_trace_v1.py"
+  ],
+  "results": [
+   "results/KSO_M0_EXACT_RESULTS_V1.json",
+   "results/KSO_M0_FREEZE_RESULTS_V1.json",
+   "results/KSO_M1_POPULATION_RECEIPT_V1.json",
+   "results/KSO_M0_FREEZE_V1.json",
+   "results/KSO_M2_SOLVE_RECEIPT_V1.json",
+   "results/KSO_M2_SOLVE_OUTCOME_V1.md",
+   "results/KSO_TRACES_V1.json"
+  ],
+  "terminals": {
+   "KSO_M0": "FROZEN_V1",
+   "KSO_M1": "GREEN_DEV_SPLIT (ME-X1 50 worlds; protected NOT_RUN)",
+   "KSO_M2": "M2_EXACT_ON_DEV (store 50/50) / NAVIGATION_EXACT 38/50, EXTRACT attributed; comparator PARENT_SUFFICIENT vs B5 ceiling",
+   "KSO_NOVELTY": "NOT_ESTABLISHED",
+   "label_gated_exact_share_retraction": "PARENT_PRODUCT_OWNED ((JTMS/ATMS gate) o (spreading activation, frozen denominators))"
+  },
+  "next": "M2.1 extraction revival (surprise baseline); M2b algebra domain through the instruction channel with SymPy EXACT_CHECKER; parameter study; M3 gap loop; M5 codecs"
  }
 }

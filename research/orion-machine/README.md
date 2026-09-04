@@ -21,6 +21,11 @@ SEPARATION_CLAIM (procedure-learner vs large-exposure approximator) = NOT_ESTABL
 EXTERNAL_NOVELTY                    = NOT_ESTABLISHED
 INDEPENDENT_REVIEW (#199, #245)     = NOT_OBTAINED__DISCLOSED_LIMITATION
 MECHANIZATION                       = CANNOT_CHECK (no toolchain)
+KSO_M0 (#284; theory/KSO_SUBSTRATE_CONTRACT_V1.md Part I+II, KSO_ARCHITECTURE_V1.md) = FROZEN_V1 (S1-S7 bound on the machine; retraction/hub both directions; obstruction witness a definition; 8 parents run: PARENT_PRODUCT_OWNED)
+KSO_M1 (reference/kso_m1_mex1_population_v1.py; results/KSO_M1_POPULATION_RECEIPT_V1.json) = GREEN_DEV_SPLIT (ME-X1, 50 worlds, label == oracle 0 mismatches on 1,344 cells; protected NOT_RUN)
+KSO_M2 (reference/kso_m2_solve_v1.py; results/KSO_M2_SOLVE_RECEIPT_V1.json) = NAVIGATION_EXACT 38/50 on the ME-X1 dev split (STORE_EXACT 50/50 is the store's, not the walk's; 12 misses attributed to EXTRACT, M2.1 revival open); two-atomizer invariance 50/50; 0 budget overruns
+KSO_M2 comparator (guards lane; results/KSO_M2_COMPARATOR_RECEIPT_V1.json) = PARENT_SUFFICIENT vs the B5 ceiling (50/50 both); navigation-only 38/50 indistinguishable from RWR/PPR 32/50 (p=0.31) and CBR/KG 34/50 (p=0.52) at n=50; null 5/50
+KSO_M2b (algebra domain; results/KSO_M2B_ALGEBRA_RECEIPT_V1.json) = P0_OPEN — procedures are code and the discriminant gate is a conditional, so the instruction-channel requirement is NOT met (independent replay, #295 comment 6); V1 kept as M2B_GATING_DEFECT, V2 superseded, V3 fix pending
 ```
 
 ## Start here
@@ -32,6 +37,7 @@ MECHANIZATION                       = CANNOT_CHECK (no toolchain)
 4a. `theory/OCM_NONRECTANGULAR_CLASS_V1.md` + `reference/ocm_nonrectangular_class_exact.py` — the lane-200 revival: rectangularity criterion, decomposability, Theorem R (rectangular ⇔ affine), the registered natural non-decomposable instance `VSW(SINGLETONS_5)`.
 5. `revocation_complete_learning/` — the RCL pack (`README.md` there), the V1 checker `rcl_checks_v1.py`, and `RCL_KILL_GATE_AUDIT_V1.md` (authoring-side, not the #245 terminal).
 6. `OCM_TASK_LEDGER_V1.json`, `OCM_FAILURE_LEDGER.md`, `theory/OCM_FALSIFIER_REGISTER_V1.json`.
+7. The knowledge-space object (#284): `CONVERGENCE_MAP_V1.md` (every artifact as a KSO component), `theory/KSO_SUBSTRATE_CONTRACT_V1.md` (maths + mechanics, Part I/II), `theory/KSO_ARCHITECTURE_V1.md` (components, dependency graph), `theory/KSO_PARENT_SUBTRACTION_V1.md`; checkers `reference/kso_math_v1.py`, `reference/kso_m0_freeze_checks_v1.py`, `reference/kso_m1_mex1_population_v1.py`; results under `results/KSO_*`.
 
 The active research question is now: what is the minimal substrate under which a machine can acquire procedures with warrant from instruction, demonstration, interaction, experimentation and feedback; compose them with warrant preserved; and revise its own representation, learning strategy and architecture without losing exact authority over what it already knows. Revocation-complete learning is the authority-preservation constraint on the last of these, not the programme.
 
