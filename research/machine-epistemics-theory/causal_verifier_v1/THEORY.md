@@ -103,7 +103,7 @@ The checked witness is two PASS labels in both worlds. It is not an assertion th
 
 ## 9. CV-T08 — a joint composition needs a coupling contract
 
-For two finite component laws mu and nu, let C(mu,nu) be the admitted set of couplings, optionally restricted by justified dependence information. Let h be a bounded query on the joint state. The joint answer is identified exactly when E_pi[h] is constant over all pi in C. If not, a sound result is the range of these expectations (or a certified outer bound), not the value under an unregistered independent coupling.
+For two finite component laws mu and nu, let C(mu,nu) be a NONEMPTY admitted set of couplings, optionally restricted by justified dependence information. An empty coupling set is INCONSISTENT, not an identified answer. Let h be a bounded query on the joint state. The joint answer is identified exactly when E_pi[h] is constant over all pi in C. If not, a sound result is the range of these expectations (or a certified outer bound), not the value under an unregistered independent coupling.
 
 **Proof.** Constancy is sufficient by universal evaluation. If expectations differ for two admitted couplings, those couplings are indistinguishable from the provided component marginals but require different joint answers, proving necessity. For the finite binary case the exact range is CV-T06. QED.
 
