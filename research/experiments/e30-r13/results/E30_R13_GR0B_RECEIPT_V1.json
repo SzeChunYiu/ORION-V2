@@ -1,0 +1,166 @@
+{
+  "design": "PC_R6_FULL_REGRESSION_EVALUATOR_LANE_DESIGN_V1",
+  "gate": "GR0(b) LANE_VALID: gold patch flips registered failing test AND critical_new_failure_count == 0",
+  "generated_utc": "2026-09-03T17:10:05.791332+00:00",
+  "lane_version": "orion.v2.pc-r6-fullreg-evaluator-lane.v2",
+  "not_applicable": [
+    {
+      "baseline_passing_count": 10,
+      "baseline_status": "BASELINE_OK",
+      "bug_reproduced_at_baseline": true,
+      "critical_new_failure_count": 0,
+      "critical_new_failure_status": "COUNTED",
+      "gold_compile_status": "PASS",
+      "gold_control_status": "GOLD_NOT_APPLICABLE_MISSING_FIXTURE:tests/test-generate-context/non_ascii.json",
+      "gold_native_success": false,
+      "gold_patch_apply_returncode": 0,
+      "newly_passing_count": 0,
+      "pass": null,
+      "project": "cookiecutter",
+      "registered_test_in_suite": {
+        "baseline": {
+          "tests/test_generate_context.py::test_generate_context_decodes_non_ascii_chars": "failed"
+        },
+        "gold": {
+          "tests/test_generate_context.py::test_generate_context_decodes_non_ascii_chars": "failed"
+        }
+      },
+      "suite_registered_test_divergence": false,
+      "suite_runner_family": "pytest",
+      "task_id": "bugsinpy-cookiecutter-1"
+    }
+  ],
+  "projects_controlled": 5,
+  "schema_version": "orion.v2.pc-r6-gr0b-receipt.v1",
+  "selection_rule": "projects in lexicographic order; within a project tasks in bug_id order; a task whose gold source patch cannot flip the registered failing test because the frozen workspace lacks a fixture that only the fixed commit adds is GOLD_NOT_APPLICABLE_MISSING_FIXTURE and the next bug_id of the same project is tried; the first five projects with an applicable control (amendments A4, A13)",
+  "status": "PASS",
+  "tasks": [
+    {
+      "baseline_passing_count": 57,
+      "baseline_status": "BASELINE_OK",
+      "bug_reproduced_at_baseline": true,
+      "critical_new_failure_count": 0,
+      "critical_new_failure_status": "COUNTED",
+      "gold_compile_status": "PASS",
+      "gold_control_status": "APPLICABLE",
+      "gold_native_success": true,
+      "gold_patch_apply_returncode": 0,
+      "newly_passing_count": 2,
+      "pass": true,
+      "project": "ansible",
+      "registered_test_in_suite": {
+        "baseline": {
+          "test/units/galaxy/test_collection.py::test_verify_collections_no_version": "failed"
+        },
+        "gold": {
+          "test/units/galaxy/test_collection.py::test_verify_collections_no_version": "passed"
+        }
+      },
+      "suite_registered_test_divergence": false,
+      "suite_runner_family": "pytest",
+      "task_id": "bugsinpy-ansible-1"
+    },
+    {
+      "baseline_passing_count": 128,
+      "baseline_status": "BASELINE_OK",
+      "bug_reproduced_at_baseline": true,
+      "critical_new_failure_count": 0,
+      "critical_new_failure_status": "COUNTED",
+      "gold_compile_status": "PASS",
+      "gold_control_status": "APPLICABLE",
+      "gold_native_success": true,
+      "gold_patch_apply_returncode": 0,
+      "newly_passing_count": 0,
+      "pass": true,
+      "project": "black",
+      "registered_test_in_suite": {
+        "baseline": {
+          "tests.test_black.BlackTestCase.test_works_in_mono_process_only_environment": "failed"
+        },
+        "gold": {
+          "tests.test_black.BlackTestCase.test_works_in_mono_process_only_environment": "failed"
+        }
+      },
+      "suite_registered_test_divergence": true,
+      "suite_runner_family": "unittest",
+      "task_id": "bugsinpy-black-1"
+    },
+    {
+      "baseline_passing_count": 8,
+      "baseline_status": "BASELINE_OK",
+      "bug_reproduced_at_baseline": true,
+      "critical_new_failure_count": 0,
+      "critical_new_failure_status": "COUNTED",
+      "gold_compile_status": "PASS",
+      "gold_control_status": "APPLICABLE",
+      "gold_native_success": true,
+      "gold_patch_apply_returncode": 0,
+      "newly_passing_count": 2,
+      "pass": true,
+      "project": "cookiecutter",
+      "registered_test_in_suite": {
+        "baseline": {
+          "tests/test_hooks.py::TestExternalHooks::test_run_hook": "failed",
+          "tests/test_hooks.py::TestFindHooks::test_find_hook": "failed"
+        },
+        "gold": {
+          "tests/test_hooks.py::TestExternalHooks::test_run_hook": "passed",
+          "tests/test_hooks.py::TestFindHooks::test_find_hook": "passed"
+        }
+      },
+      "suite_registered_test_divergence": false,
+      "suite_runner_family": "pytest",
+      "task_id": "bugsinpy-cookiecutter-2"
+    },
+    {
+      "baseline_passing_count": 11,
+      "baseline_status": "BASELINE_OK",
+      "bug_reproduced_at_baseline": true,
+      "critical_new_failure_count": 0,
+      "critical_new_failure_status": "COUNTED",
+      "gold_compile_status": "PASS",
+      "gold_control_status": "APPLICABLE",
+      "gold_native_success": true,
+      "gold_patch_apply_returncode": 0,
+      "newly_passing_count": 1,
+      "pass": true,
+      "project": "fastapi",
+      "registered_test_in_suite": {
+        "baseline": {
+          "tests/test_jsonable_encoder.py::test_encode_model_with_default": "failed"
+        },
+        "gold": {
+          "tests/test_jsonable_encoder.py::test_encode_model_with_default": "passed"
+        }
+      },
+      "suite_registered_test_divergence": false,
+      "suite_runner_family": "pytest",
+      "task_id": "bugsinpy-fastapi-1"
+    },
+    {
+      "baseline_passing_count": 259,
+      "baseline_status": "BASELINE_OK",
+      "bug_reproduced_at_baseline": true,
+      "critical_new_failure_count": 0,
+      "critical_new_failure_status": "COUNTED",
+      "gold_compile_status": "PASS",
+      "gold_control_status": "APPLICABLE",
+      "gold_native_success": true,
+      "gold_patch_apply_returncode": 0,
+      "newly_passing_count": 1,
+      "pass": true,
+      "project": "pandas",
+      "registered_test_in_suite": {
+        "baseline": {
+          "pandas/tests/dtypes/test_dtypes.py::TestCategoricalDtype::test_not_string": "AMBIGUOUS"
+        },
+        "gold": {
+          "pandas/tests/dtypes/test_dtypes.py::TestCategoricalDtype::test_not_string": "AMBIGUOUS"
+        }
+      },
+      "suite_registered_test_divergence": true,
+      "suite_runner_family": "pytest",
+      "task_id": "bugsinpy-pandas-1"
+    }
+  ]
+}

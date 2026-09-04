@@ -559,3 +559,223 @@ def test_design_registers_the_contract_by_bytes_and_matches_the_executable():
     assert binding["extra_body"] == arms.CHANNEL_CONTRACTS[binding["contract_id"]]
     assert binding["contract_sha256"] == arms.channel_contract_sha256(binding["contract_id"])
     assert binding["system"] == arms.ARM_SYSTEM_PROMPT
+
+
+# ------------------------------------------------------------- outcome verification
+verification = _load("e30_r13_outcome_verification",
+                     R13 / "e30_r13_outcome_verification.py")
+
+
+def _cell(counts, applied):
+    """A minimal raw-rollup cell.
+
+    ``counts[arm][task]`` is the per-repetition critical-new-failure count (``None`` for
+    uncountable); ``applied[arm]`` is the set of ``(rep, task)`` slots that applied.
+    """
+    evaluations = {}
+    for arm in ARMS:
+        for task in TASKS:
+            entries = {}
+            for i, rep in enumerate(REPS):
+                entries[f"r{rep}"] = {
+                    "critical_new_failure_count": counts[arm][task][i],
+                    "patch_apply_returncode": 0 if (f"r{rep}", task) in applied[arm] else 1,
+                }
+            evaluations[f"{arm}/{task}"] = entries
+    return {
+        "arms": ARMS, "reps": REPS, "task_ids": TASKS,
+        "baselines": {task: {"status": "OK"} for task in TASKS},
+        "evaluations": evaluations,
+        "arm_totals": {arm: {"counted": sum(
+            1 for task in TASKS for v in counts[arm][task] if v is not None)} for arm in ARMS},
+    }
+
+
+def test_e2_denominator_helper_counts_tasks_by_majority_not_countable_evaluations():
+    """One uncountable repetition still leaves a task checkable; two do not."""
+    counts = {arm: {task: [0, 0, 0] for task in TASKS} for arm in ARMS}
+    counts[ARMS[0]][TASKS[0]] = [0, 0, None]         # majority resolves -> still checkable
+    counts[ARMS[0]][TASKS[1]] = [None, None, None]   # nothing to resolve -> not checkable
+    cell = _cell(counts, {arm: set() for arm in ARMS})
+    assert verification.e2_checkable_by_majority(cell, ARMS[0], []) == 2
+    assert verification.e2_checkable_by_majority(cell, ARMS[1], []) == len(TASKS)
+    # Countable EVALUATIONS for that arm is 5: neither the checkable-task count (2) nor
+    # three times it (6).  Quoting one where the receipt means the other is the defect
+    # this helper exists to prevent.
+    assert cell["arm_totals"][ARMS[0]]["counted"] == 5
+    # An excluded task leaves the denominator, with count.
+    assert verification.e2_checkable_by_majority(cell, ARMS[1], [TASKS[0]]) == len(TASKS) - 1
+
+
+def test_applied_set_helper_distinguishes_equal_counts_from_the_same_slots():
+    applied = {arm: set() for arm in ARMS}
+    applied[ARMS[0]] = {("r1", TASKS[0]), ("r1", TASKS[1])}
+    applied[ARMS[1]] = {("r1", TASKS[0]), ("r2", TASKS[1])}   # same size, different slots
+    counts = {arm: {task: [0, 0, 0] for task in TASKS} for arm in ARMS}
+    cell = _cell(counts, applied)
+    left = verification.applied_set(cell, ARMS[0])
+    right = verification.applied_set(cell, ARMS[1])
+    assert len(left) == len(right) == 2
+    assert left != right and len(left & right) == 1
+
+
+def test_per_arm_channel_load_reads_each_arm_separately(tmp_path):
+    campaign = _campaign(tmp_path, lambda r, a, t: _clean(calls=3 if a == ARMS[0] else 1))
+    load = verification.per_arm_channel_load(campaign, ARMS, REPS, TASKS)
+    envelopes = len(REPS) * len(TASKS)
+    assert load[ARMS[0]]["model_calls"] == 3 * envelopes
+    assert load[ARMS[0]]["calls_per_envelope"] == 3.0
+    assert load[ARMS[1]]["calls_per_envelope"] == 1.0
+    assert all(item["envelopes"] == envelopes for item in load.values())
+
+
+def test_exit_code_gives_could_not_check_its_own_code_and_never_hides_a_failure():
+    assert verification.exit_code([{"status": "PASS"}]) == 0
+    assert verification.exit_code([{"status": "PASS"}, {"status": "COULD_NOT_CHECK"}]) == 5
+    assert verification.exit_code([{"status": "PASS"}, {"status": "FAIL"}]) == 4
+    # A FAIL alongside a COULD_NOT_CHECK still reports the failure.
+    assert verification.exit_code([{"status": "COULD_NOT_CHECK"}, {"status": "FAIL"}]) == 4
+
+
+def _rollup(cell, *, gr1="FAIL", gr3_n=8, terminal="INTERFACE_STILL_BROKEN"):
+    per_arm = {arm: {"E1_rate": 0.25 if arm == "F2_ORION_METABOLIC_FULL" else 0.15,
+                     "E2_tasks_checkable": verification.e2_checkable_by_majority(cell, arm, [])}
+               for arm in ARMS}
+    return {
+        "seed": 20260903, "denominators": {"E1": len(TASKS)}, "E2_excluded_task_ids": [],
+        "per_arm": per_arm, "routing": {"terminal": terminal},
+        "gates": {
+            "GR0c": {"status": "PASS"},
+            "GR0d": {"status": "PASS", "expected_contract_id": CONTRACT,
+                     "expected_contract_sha256": CONTRACT_SHA,
+                     "envelopes_read": len(REPS) * len(ARMS) * len(TASKS),
+                     "model_calls_seen": len(REPS) * len(ARMS) * len(TASKS),
+                     "offender_count": 0},
+            "GR0e": {"status": "PASS", "offender_count": 0,
+                     "stop_reason_counts": {"end_turn": len(REPS) * len(ARMS) * len(TASKS)},
+                     "max_output_tokens_observed": 900},
+            "GR1": {"status": gr1}, "GR2": {"status": "NULL", "direction": None},
+            "GR3": {"status": "PASS", "checkable_paired_tasks": gr3_n, "margin": 0.02,
+                    "one_sided_97_5_upper_bound": 0.0},
+        },
+    }
+
+
+def _fixture(tmp_path, receipt_for=None):
+    counts = {arm: {task: [0, 0, 0] for task in TASKS} for arm in ARMS}
+    applied = {arm: {("r1", TASKS[0])} for arm in ARMS}
+    applied[ARMS[1]] = {("r2", TASKS[0])}       # same size, different slots
+    cell = _cell(counts, applied)
+    campaign = _campaign(tmp_path, receipt_for or (lambda r, a, t: _clean()))
+    (campaign / "PROTECTED_RUN_AUTHORIZATION_ARCHIVED.json").write_text("{}")
+    raw = {"complete": True, "cells": {"e30r13": cell}}
+    design = {"execution_lane_contract": {"calls_per_task_repetition_by_arm":
+                                          {arm: 1 for arm in ARMS}}}
+    return campaign, _rollup(cell), raw, design
+
+
+def test_the_verifier_passes_on_a_clean_fixture_and_names_every_check(tmp_path):
+    campaign, rollup, raw, design = _fixture(tmp_path)
+    checks = verification.run_checks(campaign, rollup, raw, analysis, None, design)
+    by_id = {c["check_id"]: c for c in checks}
+    # V2 has no E30-R12 archive here, and must say so rather than pass.
+    assert by_id["V2_predicates_replayed_on_e30_r12"]["status"] == "COULD_NOT_CHECK"
+    assert verification.exit_code(checks) == 5
+    others = [c for c in checks if c["check_id"] != "V2_predicates_replayed_on_e30_r12"]
+    assert {c["status"] for c in others} == {"PASS"}, [
+        (c["check_id"], c["status"]) for c in others if c["status"] != "PASS"]
+
+
+def test_the_verifier_fails_when_the_published_gate_does_not_reproduce(tmp_path):
+    campaign, rollup, raw, design = _fixture(tmp_path)
+    # The published receipt claims a larger denominator than the envelopes support.
+    rollup["gates"]["GR0d"]["envelopes_read"] += 1
+    checks = verification.run_checks(campaign, rollup, raw, analysis, None, design)
+    by_id = {c["check_id"]: c for c in checks}
+    assert by_id["V1_channel_gates_reproduce_from_envelopes"]["status"] == "FAIL"
+    assert verification.exit_code(checks) == 4
+
+
+def test_the_verifier_fails_when_two_arms_share_the_same_applied_slots(tmp_path):
+    campaign, rollup, raw, design = _fixture(tmp_path)
+    cell = raw["cells"]["e30r13"]
+    for task in TASKS:                       # make F0's applied slots identical to F2's
+        for rep in REPS:
+            cell["evaluations"][f"F0_PARENT_FEDERATION/{task}"][f"r{rep}"][
+                "patch_apply_returncode"] = cell["evaluations"][
+                    f"F2_ORION_METABOLIC_FULL/{task}"][f"r{rep}"]["patch_apply_returncode"]
+    checks = verification.run_checks(campaign, rollup, raw, analysis, None, design)
+    by_id = {c["check_id"]: c for c in checks}
+    assert by_id["V5_equal_apply_counts_are_coincidence_not_shared_state"]["status"] == "FAIL"
+
+
+def test_the_verifier_fails_when_the_terminal_is_not_the_first_firing_clause(tmp_path):
+    campaign, rollup, raw, design = _fixture(tmp_path)
+    rollup["routing"]["terminal"] = "NO_ARM_SEPARATION"   # GR1 FAIL preempts this
+    checks = verification.run_checks(campaign, rollup, raw, analysis, None, design)
+    by_id = {c["check_id"]: c for c in checks}
+    assert by_id["V8_terminal_is_the_first_firing_registered_clause"]["status"] == "FAIL"
+
+
+def test_the_verifier_fails_when_a_live_authorization_was_left_in_place(tmp_path):
+    campaign, rollup, raw, design = _fixture(tmp_path)
+    (campaign / "PROTECTED_RUN_AUTHORIZATION.json").write_text("{}")
+    checks = verification.run_checks(campaign, rollup, raw, analysis, None, design)
+    by_id = {c["check_id"]: c for c in checks}
+    assert by_id["V10_authorization_archived_and_guard_rearmed"]["status"] == "FAIL"
+
+
+def test_the_verifier_fails_when_the_measured_load_contradicts_the_contract(tmp_path):
+    campaign, rollup, raw, design = _fixture(tmp_path)
+    design["execution_lane_contract"]["calls_per_task_repetition_by_arm"] = {
+        ARMS[0]: 3, ARMS[1]: 1, ARMS[2]: 1, ARMS[3]: 1}    # contract says they differ
+    checks = verification.run_checks(campaign, rollup, raw, analysis, None, design)
+    by_id = {c["check_id"]: c for c in checks}
+    # every fixture envelope makes one call, so the measured load contradicts the contract
+    check = by_id["V4_per_arm_channel_load_matches_the_registered_contract"]
+    assert check["status"] == "FAIL" and check["conforms"] is False
+
+
+def test_the_verifier_reports_a_uniform_load_without_calling_it_a_violation(tmp_path):
+    """Uniformity is a property of the design, not a defect the verifier invents."""
+    campaign, rollup, raw, design = _fixture(tmp_path)
+    checks = verification.run_checks(campaign, rollup, raw, analysis, None, design)
+    check = {c["check_id"]: c for c in checks}[
+        "V4_per_arm_channel_load_matches_the_registered_contract"]
+    assert check["status"] == "PASS" and check["distinct_call_totals"] == 1
+
+
+def test_the_verifier_replays_the_predicates_on_an_unreceipted_campaign(tmp_path):
+    """The E30-R12 shape: envelopes present, no channel receipt anywhere."""
+    campaign, rollup, raw, design = _fixture(tmp_path)
+    r12 = _campaign(tmp_path / "r12", lambda r, a, t: None)
+    checks = verification.run_checks(campaign, rollup, raw, analysis, r12, design)
+    by_id = {c["check_id"]: c for c in checks}
+    replay = by_id["V2_predicates_replayed_on_e30_r12"]
+    assert replay["status"] == "PASS"
+    assert replay["gr0d_status"] == replay["gr0e_status"] == "COULD_NOT_CHECK"
+    assert replay["terminal"] == "EXECUTION_NOT_COMPLETED__NO_ENDPOINT_READ"
+    assert replay["envelopes_with_a_channel_receipt"] == 0
+    assert replay["envelopes_read"] == len(REPS) * len(ARMS) * len(TASKS)
+
+
+def test_the_verifier_would_fail_the_replay_if_an_unreceipted_campaign_passed(tmp_path):
+    """A receipted R12 stand-in must NOT reach the could-not-check terminal."""
+    campaign, rollup, raw, design = _fixture(tmp_path)
+    r12 = _campaign(tmp_path / "r12", lambda r, a, t: _clean())
+    checks = verification.run_checks(campaign, rollup, raw, analysis, r12, design)
+    by_id = {c["check_id"]: c for c in checks}
+    assert by_id["V2_predicates_replayed_on_e30_r12"]["status"] == "FAIL"
+
+
+def test_the_archived_verification_receipt_matches_this_module(tmp_path):
+    """The committed receipt was produced by this code, with every check PASS."""
+    receipt = json.loads((R13 / "results" /
+                          "E30_R13_OUTCOME_VERIFICATION_V1.json").read_text())
+    assert receipt["schema_version"] == verification.SCHEMA
+    assert receipt["computes_no_endpoint_no_contrast_no_terminal"] is True
+    assert receipt["status_counts"] == {"PASS": 12}
+    assert verification.exit_code(receipt["checks"]) == 0
+    assert receipt["verifier_python"].startswith("3.11")
+    ids = [c["check_id"] for c in receipt["checks"]]
+    assert len(ids) == len(set(ids)) == 12
