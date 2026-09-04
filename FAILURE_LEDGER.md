@@ -331,6 +331,25 @@ Every concrete failure must preserve its source identities, affected claims and 
 - `research/experiments/e40-matched/E40_M5P_STAGE2C_OUTCOME_RECEIPT.md` — E40-m5′ Stage-2c: registered planted positive control FAILED (terminal quality 0.6412 vs 0.9877 in m3, 1.0 in m2), so the campaign's computed routing terminal was **not** filed; disposition `CHECKER_INVALID__NO_VERDICT` and the E40 line stays open. Carries the three classes above. Cause discrimination is frozen as Stage-2d (`E40_M5P_STAGE2D_PLANT_DISCRIMINATION_DESIGN_V1`).
 - `research/experiments/me-x7/ME_X7_OUTCOME_RECEIPT.md` — ME-X7 V1: hard gate G0b failed on a lane defect (`UNGUARDED_DEPENDENT_CHECK`); routed `CANNOT_CHECK`, witness terminal `NONE`, no arm verdict, protected seed burned. Re-frozen as `research/experiments/me-x7-v2/` with the two coupled corrections its §7 prescribes, and closed there: the V2 protected run passed every hard gate with `cross_implementation_agree` 1250/1250 and `S2_REPLAY_SUPPORT` 1250/1250 **while the cell that exposed the defect was still in the split** (`CENSOR_ENV` 11 draws, 7 in `MODE_COMPUTATIONAL`) — `research/experiments/me-x7-v2/ME_X7_V2_OUTCOME_RECEIPT.md`.
 
+- **Operational hygiene, 2026-09-04 (named, not classed, per the group-05 rule above)** — two hazards that
+  each produce a *green* artifact and are settled by `scripts/pr_merge_gate.py` (`docs/MERGE_GATE.md`),
+  a five-field merge gate with a distinct could-not-check exit, mutation-tested on every field:
+  (a) **a pair of individually green PRs across a live freeze** — #282 (`538e017`) froze
+  `research/experiments/me-f1-r3/results/ME_F1_R3_FREEZE_V1.json` binding `me-f1/mef1_arms.py` by sha256;
+  #276 (`dc27ced`) changed that file 70 minutes later and merged; `main` was red on
+  `test_frozen_state_if_present_matches_inputs` until #286 (`d1dfd12`) re-pinned it. No per-PR check can see a
+  pair; the gate's field 5 scans the base at merge time and, replayed at `d696d74` (main before #276), refuses
+  #276 naming the freeze and its owner, and passes #289 as the no-alarm control.
+  (b) **a job cap presenting as `cancelled`** — measured through the jobs API on `main@b53dba5` (last 25 runs
+  of every workflow), the five full-suite jobs run at p95 9.9–10.3 min under 10–12 min caps; every cancelled
+  job in the sample (4 of 100) died at 10.0–10.2 min with the pytest step cancelled and no failed step, and
+  #283/#288/#290 read red on it while `gh run view --log-failed` printed nothing (empty on cancellation by
+  design). Two lanes nearly debugged non-existent failures. The gate's field 4 reads `cancelled` (or any
+  incomplete status) as could-not-check with the advice "re-run the workflow on this head", never as a
+  failure and never as a pass; the caps are resized at >= 2x the measured p95 in #292. The test that settles
+  each: (a) `--replay` against the historical pair; (b) the jobs API step list for the run (a cancelled step
+  with no failed step is a cap or a manual cancel, not the code).
+
 Their current closure classification is machine-recorded in:
 
 `research/closure/CRITICAL_FAILURE_DISPOSITION_WAVE06_V1.json`
