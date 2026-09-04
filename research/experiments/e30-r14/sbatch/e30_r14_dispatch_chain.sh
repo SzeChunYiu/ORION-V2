@@ -20,6 +20,8 @@ R14="${R14:?set R14=$E45/campaign-e30-r14-channelcontract-core4-rep3-<date>-<sha
 # E30-R12 inherited two budgets that were both inadequate.
 : "${E30R14_PER_CALL_MAX_TOKENS:?set E30R14_PER_CALL_MAX_TOKENS to the registered per-call cap}"
 E30R14_CHANNEL_CONTRACT="${E30R14_CHANNEL_CONTRACT:-thinking_disabled}"
+: "${E30R14_EDIT_INTERFACE:?set E30R14_EDIT_INTERFACE to the registered edit interface}"
+: "${E30R14_PRESENTATION_POLICY:?set E30R14_PRESENTATION_POLICY to the registered presentation policy}"
 SB="$R14/source/research/experiments/e30-r14/sbatch"
 mkdir -p "$E45/logs-e30-r14"
 
@@ -51,7 +53,7 @@ cat > "$R14/PROTECTED_RUN_AUTHORIZATION.json" <<AUTH
 AUTH
 echo "AUTHORIZATION_WRITTEN design_sha256=$DESIGN_SHA"
 
-export R13 R13_SOURCE_SHA="$MERGE_SHA" E30R14_PER_CALL_MAX_TOKENS E30R14_CHANNEL_CONTRACT
+export R14 R14_SOURCE_SHA="$MERGE_SHA" E30R14_PER_CALL_MAX_TOKENS E30R14_CHANNEL_CONTRACT E30R14_EDIT_INTERFACE E30R14_PRESENTATION_POLICY
 # --export=ALL, not a comma list: SLURM splits --export on commas, so a value that
 # itself contains one is silently truncated.  (Measured here: a comma-separated arms
 # list submitted that way reached the job as its first element only.)
@@ -69,6 +71,8 @@ E30R14_CAMPAIGN=$R14
 E30R14_SOURCE_SHA=$MERGE_SHA
 E30R14_DESIGN_SHA256=$DESIGN_SHA
 E30R14_CHANNEL_CONTRACT=$E30R14_CHANNEL_CONTRACT
+E30R14_EDIT_INTERFACE=$E30R14_EDIT_INTERFACE
+E30R14_PRESENTATION_POLICY=$E30R14_PRESENTATION_POLICY
 E30R14_PER_CALL_MAX_TOKENS=$E30R14_PER_CALL_MAX_TOKENS
 E30R14_SETUP=$J_SETUP
 E30R14_AGENTS=$J_AGENTS

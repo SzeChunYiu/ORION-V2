@@ -7,7 +7,7 @@
 #SBATCH --time=12:00:00
 #SBATCH --output=/projects/hep/fs9/users/scyiu/orion-v2-e45/logs-e30-r14/frozenlane-%j.out
 #SBATCH --error=/projects/hep/fs9/users/scyiu/orion-v2-e45/logs-e30-r14/frozenlane-%j.err
-# Frozen-lane evaluation of the 480 R13 proposals (registered failing test only).
+# Frozen-lane evaluation of the 480 R14 proposals (registered failing test only).
 # This produces the vector GR0a checks the full-regression lane against: two
 # independent evaluators over the same proposals must agree bit-exactly.
 set -euo pipefail
@@ -21,7 +21,7 @@ LOGI="$LOGD/frozenlane-items"; mkdir -p "$LOGI"
 R14="$R14" "$PY" - > "$RUN/e30r14-eval-pending.tsv" <<'PY'
 import json, os, sys
 from pathlib import Path
-run = Path(os.environ["R13"]) / "run"
+run = Path(os.environ["R14"]) / "run"
 items = json.loads((run / "e30-taskmap-core480.json").read_text())
 pending = done = 0
 for x in items:
@@ -51,7 +51,7 @@ rm -f "$WORKER"
 R14="$R14" "$PY" - <<'PY'
 import json, os, sys
 from pathlib import Path
-run = Path(os.environ["R13"]) / "run"
+run = Path(os.environ["R14"]) / "run"
 items = json.loads((run / "e30-taskmap-core480.json").read_text())
 missing = [x for x in items
            if not (run / f"confirmatory-r{x['repeat']}/evaluations/{x['arm']}/{x['task']}.json").is_file()]

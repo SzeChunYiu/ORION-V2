@@ -46,7 +46,7 @@ export ORION_ARM_SERVED_MODEL="${E30R14_SERVED_MODEL:-glm-5.3}"
 export ORION_ARM_MAX_TOKENS="${E30R14_PER_CALL_MAX_TOKENS:?set E30R14_PER_CALL_MAX_TOKENS to the registered per-call cap}"
 unset ORION_ARM_TOTAL_OUTPUT_TOKEN_BUDGET
 export ORION_ARM_HTTP_RETRIES=10
-echo "CHANNEL_CONTRACT=$ORION_ARM_CHANNEL_CONTRACT PER_CALL_MAX_TOKENS=$ORION_ARM_MAX_TOKENS"
+echo "CHANNEL_CONTRACT=$ORION_ARM_CHANNEL_CONTRACT PER_CALL_MAX_TOKENS=$ORION_ARM_MAX_TOKENS EDIT_INTERFACE=$ORION_EDIT_INTERFACE PRESENTATION=$ORION_PRESENTATION_POLICY"
 
 # ---- coordinator authorization gate (design section 13) ----
 # Dispatch is refused unless a coordinator authorization exists, quotes the operator's
@@ -80,7 +80,7 @@ if problems:
 print("AUTHORIZATION_OK design_sha256", expected)
 AUTHZ
 
-# ---- the arms must import the post-#168 emission module from the R13 tree ----
+# ---- the arms must import the post-#168 emission module from the R14 tree ----
 R14SRC="$R14SRC" "$PY" -c "
 import inspect, os, sys
 import orion_v2.patch_emission as m
@@ -94,7 +94,7 @@ for PASS in $(seq 1 "$MAX_PASSES"); do
   R14="$R14" "$PY" - > "$RUN/e30r14-pending.tsv" <<'SCAN'
 import json, os, sys
 from pathlib import Path
-run = Path(os.environ["R13"]) / "run"
+run = Path(os.environ["R14"]) / "run"
 tasks = [t["task_id"] for t in json.loads((run / "confirmatory-r1/frozen_tasks.json").read_text())["tasks"]]
 arms = ["SIMPLE_DIRECT", "SAME_MODEL_REFLECTION", "F0_PARENT_FEDERATION", "F2_ORION_METABOLIC_FULL"]
 pending = 0
@@ -160,12 +160,13 @@ R14="$R14" "$PY" - <<'FINAL'
 import json, os, sys
 from collections import Counter
 from pathlib import Path
-run = Path(os.environ["R13"]) / "run"
+run = Path(os.environ["R14"]) / "run"
 tasks = [t["task_id"] for t in json.loads((run / "confirmatory-r1/frozen_tasks.json").read_text())["tasks"]]
 arms = ["SIMPLE_DIRECT", "SAME_MODEL_REFLECTION", "F0_PARENT_FEDERATION", "F2_ORION_METABOLIC_FULL"]
 counts, pending, served = Counter(), 0, Counter()
 contracts, stops = Counter(), Counter()
 envelopes_with_a_channel_receipt = 0
+envelopes_with_an_interface_receipt, interface_shas = 0, Counter()
 for rep in ("1", "2", "3"):
     for arm in arms:
         for task in tasks:
@@ -178,6 +179,10 @@ for rep in ("1", "2", "3"):
                 pending += 1
             for value in (d.get("resource_receipt") or {}).get("served_model_ids", []):
                 served[value] += 1
+            iface = d.get("interface_receipt")
+            if isinstance(iface, dict):
+                envelopes_with_an_interface_receipt += 1
+                interface_shas[iface.get("edit_interface_sha256")] += 1
             channel = d.get("channel_receipt")
             if isinstance(channel, dict):
                 envelopes_with_a_channel_receipt += 1
@@ -192,9 +197,12 @@ print("FINAL served model ids:", dict(served))
 print(f"FINAL channel receipts: {envelopes_with_a_channel_receipt}/480 envelopes")
 print("FINAL channel contract sha256s:", dict(contracts))
 print("FINAL stop reasons:", dict(stops))
+print(f"FINAL interface receipts: {envelopes_with_an_interface_receipt}/480 envelopes; sha256s:", dict(interface_shas))
 ok = (pending == 0 and len(served) == 1
       and envelopes_with_a_channel_receipt == 480
       and len(contracts) == 1
+      and envelopes_with_an_interface_receipt == 480
+      and len(interface_shas) == 1
       and set(stops) <= {"end_turn"})
 sys.exit(0 if ok else 3)
 FINAL

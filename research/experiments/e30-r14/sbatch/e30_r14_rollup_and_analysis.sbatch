@@ -27,6 +27,12 @@ spec = importlib.util.spec_from_file_location('arms', os.environ['R14SRC'] + '/s
 m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
 print(m.channel_contract_sha256(os.environ['CONTRACT']))")
 echo "CHANNEL_CONTRACT=$CHANNEL_CONTRACT sha256=$CONTRACT_SHA"
+IFACE_SHA=$("$PY" -c "
+import os, importlib.util
+spec = importlib.util.spec_from_file_location('arms', os.environ['R14SRC'] + '/scripts/orion_claude_arms.py')
+m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
+print(m.edit_interface_sha256(m.edit_interface_id()))")
+echo "EDIT_INTERFACE=$EDIT_INTERFACE PRESENTATION=$PRESENTATION_POLICY sha256=$IFACE_SHA"
 "$PY" "$RUNNER" --stage rollup "${COMMON[@]}"
 "$PY" -c "
 import json,sys
@@ -48,6 +54,11 @@ ANALYSIS_RC=0
   --r12-analysis-sha256 "$(sha256sum "$R12ANALYSIS" | cut -c1-64)" \
   --channel-contract "$CHANNEL_CONTRACT" \
   --channel-contract-sha256 "$CONTRACT_SHA" \
+  --r13-analysis "$R13ANALYSIS" \
+  --r13-analysis-sha256 "$(sha256sum "$R13ANALYSIS" | cut -c1-64)" \
+  --edit-interface "$EDIT_INTERFACE" \
+  --edit-interface-sha256 "$IFACE_SHA" \
+  --presentation-policy "$PRESENTATION_POLICY" \
   --out "$R14/fullreg" || ANALYSIS_RC=$?
 echo "ANALYSIS_EXIT=$ANALYSIS_RC (0 complete, 3 precondition refused, 4 gate FAIL, 5 gate CANNOT-CHECK)"
 # 4 and 5 are distinct on purpose: neither is a null, and neither may be reported as one.

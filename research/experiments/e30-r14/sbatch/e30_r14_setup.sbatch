@@ -9,11 +9,11 @@
 #SBATCH --error=/projects/hep/fs9/users/scyiu/orion-v2-e45/logs-e30-r14/setup-%j.err
 # Build the E30-R14 campaign from E30-R11's frozen substrate.
 #
-# R13 must present the SAME 40 frozen tasks under the SAME per-project runtimes, so
+# R14 must present the SAME 40 frozen tasks under the SAME per-project runtimes, so
 # the gold-blind requests, the frozen task table and the evaluator's private oracle
 # tree are reused verbatim rather than regenerated -- the only thing that changes is
 # the arm code (apply-clean emission) and the served-model pin.  responses/ and
-# evaluations/ start EMPTY: R13 makes its own model calls.
+# evaluations/ start EMPTY: R14 makes its own model calls.
 #
 # evaluator_private (11G) is symlinked, not copied: the frozen-lane adapter only ever
 # copytree()s out of it into per-evaluation scratch, so the tree stays byte-identical
@@ -63,11 +63,11 @@ EXPECT=829abb411ccf0bd71182eea4c11d2e07fae60f3b743872f7b4fce0a8635aae93
 GOT=$(sha256sum "$ADAPTER" | cut -c1-64)
 [ "$GOT" = "$EXPECT" ] || { echo "ADAPTER_SHA_MISMATCH $GOT != $EXPECT"; exit 3; }
 
-# ---- ORION-V2 source at the R13 anchor ----
+# ---- ORION-V2 source at the R14 anchor ----
 # NO FALLBACK.  A degraded source tree here would dispatch the pre-#168 arm code that
 # this whole study exists to replace, and every compile check would still pass, so a
 # failure to reach the anchor sha must abort setup rather than silently continue.
-: "${R14_SOURCE_SHA:?set R13_SOURCE_SHA to the merged PR sha}"
+: "${R14_SOURCE_SHA:?set R14_SOURCE_SHA to the merged PR sha}"
 test -d "$R14SRC/.git" || { echo "R14SRC is not a git clone: $R14SRC"; exit 3; }
 # A clone pre-staged at the anchor needs no network; anything else must reach it.
 if [ "$(git -C "$R14SRC" rev-parse HEAD)" != "$R14_SOURCE_SHA" ]; then
@@ -138,6 +138,31 @@ if problems:
 print("CHANNEL_CONTRACT_OK", name, got, "per_call_max_tokens", cap)
 CONTRACT
 
+# ---- the dispatched INTERFACE is the one the design froze (E30-R14's registration) ----
+# Fingerprinted by the arms executable over the prompt template and the emission module
+# bytes, so a changed prompt or a changed locator under an unchanged label halts here.
+R14SRC="$R14SRC" DESIGN="$DESIGN" "$PY" - <<'IFACE'
+import importlib.util, json, os, sys
+from pathlib import Path
+spec = importlib.util.spec_from_file_location("arms", os.environ["R14SRC"] + "/scripts/orion_claude_arms.py")
+arms = importlib.util.module_from_spec(spec); spec.loader.exec_module(arms)
+design = json.loads(Path(os.environ["DESIGN"]).read_text())
+registered = design["interface_binding"]
+problems = []
+name = arms.edit_interface_id()
+policy = arms.presentation_policy()
+if name != registered["edit_interface"]:
+    problems.append(f"dispatching interface {name!r} but the design registers {registered['edit_interface']!r}")
+if policy != registered["presentation_policy"]:
+    problems.append(f"dispatching presentation {policy!r} but the design registers {registered['presentation_policy']!r}")
+got = arms.edit_interface_sha256(name)
+if got != registered["edit_interface_sha256"]:
+    problems.append(f"interface sha256 {got} != registered {registered['edit_interface_sha256']}")
+if problems:
+    print("INTERFACE_BINDING_MISMATCH:", "; ".join(problems)); sys.exit(3)
+print("INTERFACE_BINDING_OK", name, policy, got)
+IFACE
+
 # ---- responses/ and evaluations/ must start EMPTY, on the FIRST setup only ----
 # A new campaign identity means a clean run.  E30-R12 left 3 envelopes completed under
 # the provider default; pooling them into a differently-configured campaign would mix
@@ -154,7 +179,7 @@ else
   R14="$R14" "$PY" - <<'EMPTY'
 import json, os, sys
 from pathlib import Path
-run = Path(os.environ["R13"]) / "run"
+run = Path(os.environ["R14"]) / "run"
 responses = sorted(run.rglob("responses/*/*.json"))
 evaluations = sorted(run.rglob("evaluations/*/*.json"))
 print(f"pre-existing responses={len(responses)} evaluations={len(evaluations)} (both must be 0)")
@@ -171,7 +196,7 @@ fi
 R14="$R14" "$PY" - <<'WS'
 import json, os, sys
 from pathlib import Path
-run = Path(os.environ["R13"]) / "run"
+run = Path(os.environ["R14"]) / "run"
 missing, checked = [], 0
 for rep in ("1", "2", "3"):
     for request in sorted((run / f"confirmatory-r{rep}" / "requests").rglob("*.json")):
@@ -263,14 +288,14 @@ BEHAVIOUR
 "$PY" - <<'ID'
 import json, os, hashlib
 from pathlib import Path
-r13 = Path(os.environ["R13"]); src = Path(os.environ["R14SRC"])
+r14 = Path(os.environ["R14"]); src = Path(os.environ["R14SRC"])
 design = src / "research/experiments/e30-r14/E30_R14_INTERFACE_CONTRACT_RERUN_DESIGN_V1.json"
-(r13 / "RUN_IDENTITY.json").write_text(json.dumps({
+(r14 / "RUN_IDENTITY.json").write_text(json.dumps({
     "schema_version": "orion.v2.execution-run-identity.v1",
-    "run_id": r13.name, "study_id": "E30-R14",
+    "run_id": r14.name, "study_id": "E30-R14",
     "design": "E30_R14_INTERFACE_CONTRACT_RERUN_DESIGN_V1",
     "design_sha256": hashlib.sha256(design.read_bytes()).hexdigest() if design.is_file() else None,
-    "source_sha": os.environ.get("R13_SOURCE_SHA"),
+    "source_sha": os.environ.get("R14_SOURCE_SHA"),
     "bugsinpy_commit": "11c5f1eea954a42132cfd06bf257766a7963e0fd",
     "requested_model": os.environ.get("ANTHROPIC_MODEL"),
     "pinned_served_model": os.environ.get("ORION_ARM_SERVED_MODEL"),
