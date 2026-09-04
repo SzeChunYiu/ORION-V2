@@ -195,7 +195,7 @@ critical defect.
   `candidate_profiles` never deduplicated, so below the frontier the candidate set always had
   `2^(N−S−Q) > 1` members and the assertion "below the frontier yet every profile reconstructed
   exactly" could not fire; only the collision-pair arm carried content. **Found by Cursor Bugbot on
-  PR #281** at `177f185`, after the module had merged in #278. Repaired in place (the module is
+  PR #281** at `2f54e77`, after the module had merged in #278. Repaired in place (the module is
   bound only by its own PR receipt, regenerated with superseded bindings retained, not by a frozen
   review target): candidates are deduplicated, soundness (truth among candidates) and completeness
   (exactly `2^(N−S−Q)` distinct candidates) are asserted for every profile, and mutation `M6`
@@ -216,7 +216,7 @@ critical defect.
   measurability is judged by an independently written `is_block_union_b`, so `M3` now moves the
   exact-partition counts from 1/4/1/4 to 15/15/15/15 and is caught for that reason; a new test pins
   the disagreement. No theorem statement changed; Theorem S4 gained its committed-policy clause,
-  which it had silently assumed. Repaired in `a855f57`, receipt regenerated in `58282c5`.
+  which it had silently assumed. Repaired in `a855f57`, receipt regenerated in `58282c5` (both squash-merged to `main` as `e1bd52b`).
 
 - **`VACUOUS_CONTRAST` — three RCL controls that cannot fail, 2026-09-04.** This is the repository's
   existing vocabulary from the root `FAILURE_LEDGER.md`, applied to a new instance; no class is minted
