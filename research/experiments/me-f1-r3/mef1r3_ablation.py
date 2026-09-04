@@ -230,9 +230,9 @@ def evaluate_gates(ctrls: list[dict[str, Any]], contrasts: dict[str, Any], summa
     if not all(c["pass"] for c in ctrls):
         return {"A0_CONTROLS_VALID": False, "terminal": "CANNOT_CHECK__CONTROL_FAILED",
                 "failed_controls": [c["control"] for c in ctrls if not c["pass"]]}
-    esc = contrasts["M_MINUS_MINIMUM_ESCALATION_vs_M"]
-    wg = contrasts["M_MINUS_WARRANT_GATE_vs_M"]
-    ld = contrasts["M_MINUS_LOCUS_DIAGNOSIS_vs_M"]
+    esc = contrasts[f"M_MINUS_MINIMUM_ESCALATION_vs_{M}"]
+    wg = contrasts[f"M_MINUS_WARRANT_GATE_vs_{M}"]
+    ld = contrasts[f"M_MINUS_LOCUS_DIAGNOSIS_vs_{M}"]
     a1 = (esc["mean_diff"] > 0 and esc["p_a_above_b"] <= ALPHA
           and summaries["M_MINUS_MINIMUM_ESCALATION"]["inconclusive_rate"] < summaries[M]["inconclusive_rate"])
     a2 = wg["mean_diff"] > 0 and wg["p_a_above_b"] <= ALPHA
