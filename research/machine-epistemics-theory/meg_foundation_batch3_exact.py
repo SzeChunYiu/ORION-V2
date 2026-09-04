@@ -227,7 +227,6 @@ def check_meg15():
 
 
 def summary_warrant(corr, exports): return meet_all([corr, *exports])
-
 def content_recheck(changed, content_deps, exception_deps):
     return bool(set(changed) & (set(content_deps) | set(exception_deps)))
 
@@ -261,6 +260,48 @@ def fp(P, s, alpha=Fraction(1, 2), steps=100):
     return a
 
 
+@dataclass(frozen=True)
+class GState:
+    active_nodes: tuple[str, ...]
+    quarantined: tuple[str, ...] = ()
+    payloads: tuple[tuple[str, str], ...] = ()
+
+    @property
+    def known_ids(self):
+        return frozenset(self.active_nodes) | frozenset(self.quarantined) | frozenset(dict(self.payloads))
+
+
+@dataclass(frozen=True)
+class JumpProposal:
+    jump_id: str
+    proposer: str
+    target_component: str
+
+
+def additive_jump(g, jump_id, additions):
+    additions = tuple(additions)
+    if len(set(additions)) != len(additions):
+        raise ValueError('duplicate addition id')
+    if any(x in g.known_ids for x in additions):
+        raise ValueError('id collision')
+    payload = dict(g.payloads)
+    payload.update({x: f'jump:{jump_id}' for x in additions})
+    return GState(tuple(sorted((*g.active_nodes, *additions))), g.quarantined, tuple(sorted(payload.items())))
+
+
+def rollback_jump(g, jump_id):
+    payload = dict(g.payloads)
+    added = {x for x, v in payload.items() if v == f'jump:{jump_id}'}
+    return GState(tuple(x for x in g.active_nodes if x not in added), tuple(sorted(set(g.quarantined) | added)), g.payloads)
+
+
+def adopt_jump(proposal, actor_authority):
+    """A proposal is data. Only the external constitution authority can adopt it."""
+    if not isinstance(proposal, JumpProposal):
+        raise TypeError('proposal required')
+    return actor_authority == 'EXTERNAL_CONSTITUTION'
+
+
 def check_meg21():
     P = [[Fraction(0), Fraction(1)], [Fraction(0), Fraction(0)]]
     s = [Fraction(1), Fraction(0)]; old = fp(P, s)
@@ -269,26 +310,15 @@ def check_meg21():
     assert new[:2] == old
     bad = [[Fraction(0), Fraction(1, 2), Fraction(1, 2)], [Fraction(0), Fraction(0), Fraction(0)], [Fraction(0), Fraction(0), Fraction(0)]]
     assert fp(bad, s + [Fraction(0)])[:2] != old
+    # Actual active-state extension + quarantine rollback, not a claimed counter.
+    pre = GState(('a', 'b'), (), (('a', 'old:a'), ('b', 'old:b')))
+    ext = additive_jump(pre, 'REP', ('c',))
+    restored = rollback_jump(ext, 'REP')
+    assert restored.active_nodes == pre.active_nodes
+    assert 'c' in restored.quarantined
+    assert dict(restored.payloads)['a'] == 'old:a' and dict(restored.payloads)['b'] == 'old:b'
     return {'injective_old_state_preserved': 1, 'registered_old_query_fixed_point_preserved': 1,
             'nonconservative_leak_mutant_caught': 1, 'rollback_by_quarantine_restores': 1}
-
-
-@dataclass(frozen=True)
-class GState:
-    active_nodes: tuple[str, ...]
-    quarantined: tuple[str, ...] = ()
-    payloads: tuple[tuple[str, str], ...] = ()
-
-
-def additive_jump(g, jump_id, additions):
-    if any(x in g.active_nodes for x in additions): raise ValueError('id collision')
-    payload = dict(g.payloads); payload.update({x: f'jump:{jump_id}' for x in additions})
-    return GState(tuple(sorted((*g.active_nodes, *additions))), g.quarantined, tuple(sorted(payload.items())))
-
-
-def rollback_jump(g, jump_id):
-    payload = dict(g.payloads); added = {x for x, v in payload.items() if v == f'jump:{jump_id}'}
-    return GState(tuple(x for x in g.active_nodes if x not in added), tuple(sorted((*g.quarantined, *added))), g.payloads)
 
 
 def check_meg28():
@@ -297,9 +327,20 @@ def check_meg28():
     assert dict(post.payloads)['a'] == 'old:a' and dict(post.payloads)['b'] == 'old:b'
     rb = rollback_jump(post, 'J')
     assert rb.active_nodes == pre.active_nodes and 'ab' in rb.quarantined
-    proposal = {'adopted': False}; assert proposal['adopted'] is False
-    return {'interface_payload_preserved': 2, 'rollback_active_state_exact': 1, 'added_structure_quarantined': 1,
-            'proposal_self_adoption_refused': 1}
+    # Historical/quarantined identity is immutable and cannot be reused by a successor jump.
+    try:
+        additive_jump(rb, 'J2', ('ab',))
+    except ValueError as e:
+        assert str(e) == 'id collision'
+    else:
+        raise AssertionError('quarantined identity was reused')
+    # Exercise the actual adoption boundary: the proposer cannot adopt its own proposal.
+    proposal = JumpProposal('J3', 'runtime', 'representation')
+    assert adopt_jump(proposal, 'PROPOSER') is False
+    assert adopt_jump(proposal, 'EXTERNAL_CONSTITUTION') is True
+    return {'interface_payload_preserved': 2, 'rollback_active_state_exact': 1,
+            'added_structure_quarantined': 1, 'quarantined_identity_reuse_refused': 1,
+            'proposal_self_adoption_refused': 1, 'external_adoption_no_alarm': 1}
 
 
 def check_meg33(n=2):
