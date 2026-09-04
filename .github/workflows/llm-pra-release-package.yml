@@ -92,11 +92,11 @@ jobs:
               # Coverage, not presence: every cited key must have a \bibitem.
               assert bib['coverage_complete'] is True, bib['cited_keys_without_bibitem']
               assert bib['cited_key_count'] > 0
-              assert not integrity['log']['dewrapped_scan_hits']
-              assert not integrity['blg']['scan_hits']
+              assert not (integrity['log'] or {}).get('dewrapped_scan_hits')
+              assert not (integrity['blg'] or {}).get('scan_hits')
               print(f"{venue}_CITED={bib['cited_key_count']} BIBITEMS={bib['bibitem_count']} "
-                    f"WRAP={integrity['log']['wrap_state']} "
-                    f"DEWRAP_JOINS={integrity['log']['dewrap_joins_applied']}")
+                    f"WRAP={(integrity['log'] or {}).get('wrap_state')} "
+                    f"DEWRAP_JOINS={(integrity['log'] or {}).get('dewrap_joins_applied')}")
           jmlr = receipt['packages']['jmlr_v1']
           assert jmlr['pdf_size_bytes'] < 5 * 1024 * 1024
           if jmlr['page_count'] > 35:

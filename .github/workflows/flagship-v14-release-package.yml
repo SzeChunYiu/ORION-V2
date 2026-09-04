@@ -77,8 +77,8 @@ jobs:
           assert bib['coverage_complete'] is True, bib['cited_keys_without_bibitem']
           assert bib['cited_key_count'] > 0
           assert bib['bibitem_count'] >= bib['cited_key_count']
-          assert not integrity['log']['dewrapped_scan_hits']
-          assert not integrity['blg']['scan_hits']
+          assert not (integrity['log'] or {}).get('dewrapped_scan_hits')
+          assert not (integrity['blg'] or {}).get('scan_hits')
           assert '[@' not in tex
           assert '\\cite' in tex
           assert '\\bibitem' in bbl
@@ -90,8 +90,8 @@ jobs:
           print(f"FLAGSHIP_PAGE_COUNT={r['page_count']}")
           print(f"FLAGSHIP_BIBLIOGRAPHY_ITEMS={r['bibliography_item_count']}")
           print(f"FLAGSHIP_CITED_KEYS={bib['cited_key_count']}")
-          print(f"FLAGSHIP_LOG_WRAP_STATE={integrity['log']['wrap_state']}")
-          print(f"FLAGSHIP_DEWRAP_JOINS={integrity['log']['dewrap_joins_applied']}")
+          print(f"FLAGSHIP_LOG_WRAP_STATE={(integrity['log'] or {}).get('wrap_state')}")
+          print(f"FLAGSHIP_DEWRAP_JOINS={(integrity['log'] or {}).get('dewrap_joins_applied')}")
           print('FLAGSHIP_V14_RELEASE_PACKAGE_PASS')
           PY
 

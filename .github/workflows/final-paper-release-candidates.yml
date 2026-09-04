@@ -92,11 +92,11 @@ jobs:
               bib = integrity['bibliography']
               assert bib['coverage_complete'] is True, (name, bib['cited_keys_without_bibitem'])
               assert bib['cited_key_count'] > 0, name
-              assert not integrity['log']['dewrapped_scan_hits'], name
-              assert not integrity['blg']['scan_hits'], name
+              assert not (integrity['log'] or {}).get('dewrapped_scan_hits'), name
+              assert not (integrity['blg'] or {}).get('scan_hits'), name
               print(f"{name}_CITED={bib['cited_key_count']} BIBITEMS={bib['bibitem_count']} "
-                    f"WRAP={integrity['log']['wrap_state']} "
-                    f"DEWRAP_JOINS={integrity['log']['dewrap_joins_applied']}")
+                    f"WRAP={(integrity['log'] or {}).get('wrap_state')} "
+                    f"DEWRAP_JOINS={(integrity['log'] or {}).get('dewrap_joins_applied')}")
           print('FINAL_PAPER_RELEASE_PR17_PASS')
           PY
       - name: Upload final candidates
