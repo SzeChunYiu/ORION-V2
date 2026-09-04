@@ -92,6 +92,16 @@ critical defect.
   three-worker ceiling; the lane-202 checker was recovered from the shared worktree at 838 lines
   and re-verified, and the lane-203 semantics was re-derived from scratch since none was committed).
 
+- `SUPERSEDED_BINDING_MISATTRIBUTED` — a rebind replaces a carrier's `superseded_binding` with the
+  immediately previous bytes but defaults its `recorded_in_commit` to the original freeze commit
+  and discards the earlier superseded entry, so the custody chain is both mis-attributed (a commit
+  that never held those bytes) and truncated (the original binding gone). Every hash still
+  verifies, so the byte-exact tests pass; the defect is in provenance, not content. Guard: a rebind
+  nests the previous entry (with the commit that actually carried it, checked by `git show`) rather
+  than replacing it, and never defaults a commit field. First observed 2026-09-04 (this lane's
+  README rebind cascade on PR #281; found by Cursor Bugbot; corrected before merge with the full
+  chains nested and every commit verified against the blob it carried).
+
 ## Retained concrete failure records
 
 - **`BINDING_OVER_UNCOMMITTED_BYTES` — RCL parent-collapse ledger, 2026-09-03/04.** The binding
@@ -179,6 +189,19 @@ critical defect.
   bind the spine elsewhere) is still not applied and is recorded as owed. The move is announced on
   #199 and #245, which administer the targets. The pre-directive README bytes remain bound in
   `OCM_SNAPSHOT_V1.json` `content_bindings` at commit `d4eb281` as history, unedited.
+
+- **`VACUOUS_CONTRAST` — below-frontier arm of `rcl_checks_v1.py`, 2026-09-04, on a merged
+  artifact.** The V1 checker written to repair three vacuous V0 controls carried one of its own:
+  `candidate_profiles` never deduplicated, so below the frontier the candidate set always had
+  `2^(N−S−Q) > 1` members and the assertion "below the frontier yet every profile reconstructed
+  exactly" could not fire; only the collision-pair arm carried content. **Found by Cursor Bugbot on
+  PR #281** at `177f185`, after the module had merged in #278. Repaired in place (the module is
+  bound only by its own PR receipt, regenerated with superseded bindings retained, not by a frozen
+  review target): candidates are deduplicated, soundness (truth among candidates) and completeness
+  (exactly `2^(N−S−Q)` distinct candidates) are asserted for every profile, and mutation `M6`
+  (collapsing reconstructor) is registered and caught for that reason; 6/6 mutations. Denominators
+  unchanged (28,863 reconstructions, 64 collision pairs). The lesson is the root ledger's second
+  `VACUOUS_CONTRAST` instance restated: a guard against vacuity can carry a vacuous arm.
 
 - **`VACUOUS_CONTRAST` — S4 census of the reference semantics, 2026-09-04, caught before merge.**
   The first draft of `reference/ocm_reference_semantics.py::check_S4_representation_revision`
