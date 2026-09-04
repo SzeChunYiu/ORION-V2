@@ -393,34 +393,34 @@
         "P_unsafe_claims": 0,
         "counter_liveness_control": {
           "counter_is_live": true,
-          "max_any_arm": 9,
+          "max_any_arm": 12,
           "unsafe_claims_by_arm": {
-            "C_ALWAYS_ACCEPT": 9,
-            "C_ALWAYS_BLOCK": 9,
-            "C_RANDOM_DISPOSITION": 8,
+            "C_ALWAYS_ACCEPT": 12,
+            "C_ALWAYS_BLOCK": 0,
+            "C_RANDOM_DISPOSITION": 1,
             "F0_PARENT_FEDERATION": 0,
             "M_F2_OBSTRUCTION_DISCOVERY_FULL": 0,
             "M_MINUS_MINIMALITY_ESCALATION": 0,
             "M_MINUS_MULTIPLICITY_CHECK": 0,
-            "M_MINUS_OBSTRUCTION_SEARCH": 9,
+            "M_MINUS_OBSTRUCTION_SEARCH": 0,
             "M_MINUS_PROOF_WITNESS": 0,
-            "P0_INDUCTIVE_CONFIRMATION": 3,
-            "P1_FIXED_LESSON_TABLE": 8,
+            "P0_INDUCTIVE_CONFIRMATION": 0,
+            "P1_FIXED_LESSON_TABLE": 0,
             "P2_EXHAUSTIVE_MODEL_SEARCH": 0,
-            "P3_DERIVATION_PROOF_SEARCH": 9,
-            "P4_SMALL_SCOPE_BOUNDED_CHECK": 3
+            "P3_DERIVATION_PROOF_SEARCH": 0,
+            "P4_SMALL_SCOPE_BOUNDED_CHECK": 0
           }
         },
-        "n_in_scope": 9,
-        "unsafe_endpoint": "over-acceptance"
+        "n_in_scope": 12,
+        "unsafe_endpoint": "conjecture accepted where the oracle blocks it"
       },
       "gate": "G2_ANTI_PERMISSIVENESS",
       "hard": true,
       "min_required_evaluated": 10,
-      "n_evaluated": 9,
+      "n_evaluated": 12,
       "n_violations": 0,
-      "rule": "on the instances in scope, M_F2_OBSTRUCTION_DISCOVERY_FULL makes no more unsafe claims (over-acceptance) than F0_PARENT_FEDERATION; AND the counter is shown live on those same instances by at least one arm registering a nonzero count",
-      "verdict": "CANNOT_CHECK"
+      "rule": "on the instances in scope, M_F2_OBSTRUCTION_DISCOVERY_FULL makes no more unsafe claims (conjecture accepted where the oracle blocks it) than F0_PARENT_FEDERATION; AND the counter is shown live on those same instances by at least one arm registering a nonzero count",
+      "verdict": "PASS"
     },
     {
       "applicable": false,
@@ -481,7 +481,7 @@
   "results_sha256": "a97a9bd211a246866cf55633c5e8fce64514ad207a7e4eba20d10f367228dc46",
   "route": {
     "cost_flag": "COST_ADVANTAGE_PARENT",
-    "reason": "F0_PARENT_FEDERATION reproduces M_F2_OBSTRUCTION_DISCOVERY_FULL's dispositions (identity 1.0000); NOTE 1 hard gate(s) could not be evaluated on this split and are NOT reported as passing: ['G2_ANTI_PERMISSIVENESS']",
+    "reason": "F0_PARENT_FEDERATION reproduces M_F2_OBSTRUCTION_DISCOVERY_FULL's dispositions (identity 1.0000)",
     "route": "PARENT_SUFFICIENT"
   },
   "schema_version": "orion.v2.fm-exact.analysis.v1",
@@ -491,7 +491,7 @@
         "exact": 3,
         "exact_rate": 0.2,
         "n": 15,
-        "over_accept": 9,
+        "over_accept": 12,
         "per_family": {
           "minimal_counterexample": {
             "exact": 0,
@@ -526,7 +526,7 @@
         "exact": 3,
         "exact_rate": 0.2,
         "n": 15,
-        "over_accept": 9,
+        "over_accept": 0,
         "per_family": {
           "minimal_counterexample": {
             "exact": 0,
@@ -561,7 +561,7 @@
         "exact": 0,
         "exact_rate": 0.0,
         "n": 15,
-        "over_accept": 8,
+        "over_accept": 1,
         "per_family": {
           "minimal_counterexample": {
             "exact": 0,
@@ -589,7 +589,7 @@
             "n": 3
           }
         },
-        "under_accept": 2,
+        "under_accept": 0,
         "wall_ms": 0.13266
       },
       "F0_PARENT_FEDERATION": {
@@ -729,14 +729,14 @@
             "n": 3
           }
         },
-        "under_accept": 3,
+        "under_accept": 0,
         "wall_ms": 2.30069
       },
       "M_MINUS_OBSTRUCTION_SEARCH": {
         "exact": 3,
         "exact_rate": 0.2,
         "n": 15,
-        "over_accept": 9,
+        "over_accept": 0,
         "per_family": {
           "minimal_counterexample": {
             "exact": 0,
@@ -806,7 +806,7 @@
         "exact": 3,
         "exact_rate": 0.2,
         "n": 15,
-        "over_accept": 3,
+        "over_accept": 0,
         "per_family": {
           "minimal_counterexample": {
             "exact": 0,
@@ -834,14 +834,14 @@
             "n": 3
           }
         },
-        "under_accept": 3,
+        "under_accept": 0,
         "wall_ms": 0.402546
       },
       "P1_FIXED_LESSON_TABLE": {
         "exact": 1,
         "exact_rate": 0.06666666666666667,
         "n": 15,
-        "over_accept": 8,
+        "over_accept": 0,
         "per_family": {
           "minimal_counterexample": {
             "exact": 0,
@@ -869,7 +869,7 @@
             "n": 3
           }
         },
-        "under_accept": 1,
+        "under_accept": 0,
         "wall_ms": 0.46968
       },
       "P2_EXHAUSTIVE_MODEL_SEARCH": {
@@ -911,7 +911,7 @@
         "exact": 3,
         "exact_rate": 0.2,
         "n": 15,
-        "over_accept": 9,
+        "over_accept": 0,
         "per_family": {
           "minimal_counterexample": {
             "exact": 0,
@@ -946,7 +946,7 @@
         "exact": 9,
         "exact_rate": 0.6,
         "n": 15,
-        "over_accept": 3,
+        "over_accept": 0,
         "per_family": {
           "minimal_counterexample": {
             "exact": 2,
@@ -980,7 +980,5 @@
     }
   },
   "suite": "FM60",
-  "unchecked_hard_gates": [
-    "G2_ANTI_PERMISSIVENESS"
-  ]
+  "unchecked_hard_gates": []
 }

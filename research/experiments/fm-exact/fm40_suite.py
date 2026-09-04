@@ -1516,6 +1516,54 @@ def parent_fidelity() -> list[dict]:
         (not native.violated_case_ids)
         == all(F.pv[g[i]] == F.pv[i] for i in range(F.n)),
     )
+
+    # ---- F0 federation: the named comparator, tested like any parent ------
+    # A comparator whose fidelity is asserted but never checked is a rendered
+    # status.  F0 composes three complete per-stratum procedures under the
+    # registered precedence (P2, then P4, then P0), so the identity check at the
+    # end is a check on that precedence rule and is labelled as an identity, not
+    # as independent evidence about the mechanic.
+    check(
+        "F0_PARENT_FEDERATION",
+        "takes_the_equivariance_solver_on_the_invariance_and_equivariance_strata",
+        federation(inv)["source"] == "P2"
+        and federation(inv)["disposition"] == "TRANSFER_VALID"
+        and federation(equi)["source"] == "P2"
+        and federation(equi)["disposition"] == "BLOCK_EQUIVARIANT_NOT_INVARIANT",
+    )
+    check(
+        "F0_PARENT_FEDERATION",
+        "consults_the_regime_parent_only_after_an_outright_break",
+        federation(regime)["source"] == "P4"
+        and federation(regime)["disposition"] == "BLOCK_REGIME_BOUNDED_INVARIANT",
+    )
+    check(
+        "F0_PARENT_FEDERATION",
+        "consults_the_surface_scan_only_after_the_regime_parent_declines",
+        federation(surf)["source"] == "P0"
+        and federation(surf)["disposition"] == "BLOCK_SURFACE_SYMMETRY_ONLY"
+        and federation(broke)["disposition"] == "BLOCK_NON_INVARIANT",
+    )
+    fx = {f["name"]: f for f in known_answer_fixtures()}
+    dominance = fx["KA-06-REGIME_DOMINATES_SURFACE"]["instance"]
+    check(
+        "F0_PARENT_FEDERATION",
+        "registered_precedence_an_actionable_sub_regime_dominates_the_surface_diagnosis",
+        federation(dominance)["disposition"] == "BLOCK_REGIME_BOUNDED_INVARIANT"
+        and federation(dominance)["source"] == "P4",
+    )
+    ident = [
+        (n, federation(f["instance"])["disposition"], oracle_element_closure(f["instance"]).disposition)
+        for n, f in fx.items()
+    ]
+    check(
+        "F0_PARENT_FEDERATION",
+        "composition_rule_reproduces_the_oracle_on_every_registered_fixture__IDENTITY_NOT_MEASUREMENT",
+        all(a == b for _, a, b in ident),
+        f"{sum(a == b for _, a, b in ident)}/{len(ident)} fixtures; F0 composes complete "
+        "per-stratum procedures, so its agreement with the oracle is entailed by "
+        "construction: this checks the precedence rule and is not evidence about M",
+    )
     return T
 
 

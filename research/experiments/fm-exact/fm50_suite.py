@@ -1522,6 +1522,55 @@ def parent_fidelity() -> list[dict]:
         empty.verdict == "CANNOT_CHECK" and gate.verdict == "PASS",
         f"empty={empty.verdict} live={gate.verdict} n={gate.n_evaluated}",
     )
+
+    # ---- F0 federation: the named comparator, tested like any parent ------
+    # A comparator whose fidelity is asserted but never checked is a rendered
+    # status.  F0 composes the law parent (P2) and the faithfulness parent (P4)
+    # under the registered rule (P2 decides every law; P4 is consulted only when
+    # every law holds), so the identity check at the end is a check on that rule
+    # and is labelled as an identity, not as independent evidence about M.
+    law_fixtures = {
+        "KA-03-ENDPOINT-VIOLATION": "BLOCK_ENDPOINT_VIOLATION",
+        "KA-04-IDENTITY-NOT-PRESERVED": "BLOCK_IDENTITY_NOT_PRESERVED",
+        "KA-05-COMPOSITION-NOT-PRESERVED": "BLOCK_COMPOSITION_NOT_PRESERVED",
+        "KA-06-MIXED-LAW-OBSTRUCTION": "BLOCK_MIXED_LAW_OBSTRUCTION",
+        "KA-09-ENDPOINT-DOMINATES-COLLAPSE": "BLOCK_ENDPOINT_VIOLATION",
+        "KA-10-COMPOSITION-DOMINATES-COLLAPSE": "BLOCK_COMPOSITION_NOT_PRESERVED",
+    }
+    check(
+        "F0_PARENT_FEDERATION",
+        "takes_the_law_parent_on_every_law_violation_including_the_precedence_fixtures",
+        all(
+            federation(fx[k])["source"] == "P2" and federation(fx[k])["disposition"] == d
+            for k, d in law_fixtures.items()
+        ),
+    )
+    fe = federation(fx["KA-07-FALSE-EQUIVALENCE-CONSTANT-FUNCTOR"])
+    check(
+        "F0_PARENT_FEDERATION",
+        "consults_the_faithfulness_parent_only_after_every_law_holds",
+        fe["source"] == "P4" and fe["disposition"] == "BLOCK_FALSE_EQUIVALENCE",
+    )
+    check(
+        "F0_PARENT_FEDERATION",
+        "accepts_only_when_both_parents_accept",
+        all(
+            federation(fx[k])["source"] == "P2+P4" and federation(fx[k])["disposition"] == "TRANSFER_VALID"
+            for k in ("KA-01-IDENTITY-FUNCTOR", "KA-08-LICENSED-COLLAPSE", "KA-11-SURFACE-NAME-DECOY")
+        ),
+    )
+    ident = [
+        (f["name"], federation(f["instance"])["disposition"], oracle_exhaustive(f["instance"]).disposition)
+        for f in known_answer_fixtures()
+    ]
+    check(
+        "F0_PARENT_FEDERATION",
+        "composition_rule_reproduces_the_oracle_on_every_registered_fixture__IDENTITY_NOT_MEASUREMENT",
+        all(a == b for _, a, b in ident),
+        f"{sum(a == b for _, a, b in ident)}/{len(ident)} fixtures; F0 composes two "
+        "complete predicates, so its agreement with the oracle is entailed by "
+        "construction: this checks the composition rule and is not evidence about M",
+    )
     return T
 
 

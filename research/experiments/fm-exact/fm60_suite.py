@@ -1783,6 +1783,24 @@ def parent_fidelity() -> list[dict]:
             "REJECT_MINIMAL_COUNTEREXAMPLE_REQUIRED", "MULTIPLE_INDEPENDENT_OBSTRUCTIONS"),
         federation(undis)["disposition"],
     )
+    # On the generator's population F0 is oracle-identical by construction: every
+    # reject family is decided by the exhaustive parent and no_obstruction
+    # conclusions are drawn from the rule base's closure, which the derivation
+    # parent saturates.  The check below is therefore a check on the composition
+    # rule and is labelled as an identity, not as evidence about M.  Off the
+    # population it is NOT an identity: the abstention fixture above is a
+    # bounded-valid claim the oracle accepts and neither parent can discharge.
+    ident = [
+        (f["name"], federation(f["instance"])["disposition"], oracle_exhaustive(f["instance"]).disposition)
+        for f in known_answer_fixtures()
+    ]
+    check(
+        "F0_PARENT_FEDERATION",
+        "composition_rule_reproduces_the_oracle_on_every_registered_fixture__IDENTITY_NOT_MEASUREMENT",
+        all(a == b for _, a, b in ident),
+        f"{sum(a == b for _, a, b in ident)}/{len(ident)} fixtures; identity on the "
+        "generator's population by construction, not an independent measurement",
+    )
 
     # ---- witness validator -------------------------------------------------
     good = parent_exhaustive_model_search(non_theorem)["witness"]
@@ -2055,6 +2073,16 @@ SPEC = SuiteSpec(
     dev_per_family=3,
     protected_per_family=25,  # 5 x 25 = 125 >= 120
     design_json="FM60_OBSTRUCTION_COUNTEREXAMPLE_EXACT_STUDY_DESIGN_V1.json",
+    # G2 as REGISTERED: "on instances the oracle blocks, M accepts no more
+    # conjectures than F0".  Bound explicitly, because the shared runner's
+    # fallback reads any label not starting with BLOCK/REJECT as an acceptance,
+    # which on this suite drops every MULTIPLE_INDEPENDENT_OBSTRUCTIONS instance
+    # out of scope and counts an abstention, a witness failure or a multiplicity
+    # verdict as an unsafe claim (REGISTERED_SCOPE_DIVERGENCE; found on the
+    # development split 2026-09-03, bound here before the protected run).
+    unsafe_scope=lambda e: e["disposition"] != "TRANSFER_VALID",
+    unsafe_claim=lambda rec, e: rec["disposition"] == "TRANSFER_VALID",
+    unsafe_name="conjecture accepted where the oracle blocks it",
     generate=generate_split,
     oracle=oracle_exhaustive,
     cross_check=oracle_stratified_dpll,
