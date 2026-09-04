@@ -16,11 +16,20 @@
 FM10_STATUS            = EXECUTED_PROTECTED
 ROUTE                  = PARENT_SUFFICIENT
 PRIMARY_COMPARATOR     = F0_PARENT_FEDERATION
+COMPARATOR_CLASS       = ALGEBRAIC_IDENTITY_TO_THE_ORACLE__NOT_AN_INDEPENDENT_MEASUREMENT
+                         -- F0 composes two COMPLETE predicates, so it computes the oracle
+                            function exactly BY CONSTRUCTION. Pre-registered; stated in the
+                            study design and in section 5 of this receipt.
+                         -- Re-verified on main: F0 differs from the oracle 0 times across 251
+                            protected instances (FM10 126 + FM20 125); every other non-M arm
+                            differs 2-125 times.
+                         -- CONSEQUENCE: the 126/126 reported below is an IDENTITY, not a
+                            measurement. Agreement with F0 is not evidence for or against M.
 COST_FLAG              = COST_ADVANTAGE_PARENT (wall-clock ratio 3.14; reported, no route)
 FIELD_STATUS_AUTHORITY = NONE
 ```
 
-**Finite relational mapping is parent-owned.** On 126 protected instances across all seven families, the pre-registered parent federation reproduces `M`'s disposition **identically on every instance** (decision identity 126/126; 0 discordant pairs; exact two-sided p = 1.0; Wald CI [0, 0]). Holm across the seven per-family paired tests: every adjusted p = 1.0.
+**Finite relational mapping is parent-owned.** On 126 protected instances across all seven families, the pre-registered parent federation reproduces `M`'s disposition **identically on every instance** (decision identity 126/126; 0 discordant pairs; exact two-sided p = 1.0; Wald CI [0, 0]). Holm across the seven per-family paired tests: every adjusted p = 1.0. **Read that 126/126 as an identity, not a measurement:** `F0` composes two complete predicates and so *is* the oracle function algebraically, pre-registered as such, and `M` is exact here too — so the tie is entailed by construction and no agreement statistic over it can discriminate the two. What the run does establish is the separation of the *other* twelve arms (0.190-1.000).
 
 ## 2. Gates (frozen pre-outcome; every verdict carries its own denominator)
 
@@ -95,7 +104,7 @@ Generator rejections (published, not hidden): `SURFACE_DECOY` 135, `ISOMORPHIC_T
 
 ## 7. Programme consequence
 
-`FM10_STATUS = PARENT_SUFFICIENT`. ORION's L2 transfer-discovery loop for finite relational mapping contracts to **the pre-registered composition of two mature parents** — a complete typed relational homomorphism search and an invariance check — with no control residual and a cost disadvantage. This is the fourth sibling exact study to find the strongest faithful parent sufficient (after ME-X1, ME-X2, ME-X4).
+`FM10_STATUS = PARENT_SUFFICIENT`. ORION's L2 transfer-discovery loop for finite relational mapping contracts to **the pre-registered composition of two mature parents** — a complete typed relational homomorphism search and an invariance check — with no control residual and a cost disadvantage. This is the fourth sibling exact study to find the strongest faithful parent sufficient (after ME-X1, ME-X2, ME-X4). **The sufficiency verdict rests on the parent composition being complete, not on a measured contest:** `F0` is algebraically the oracle, so `PARENT_SUFFICIENT` here reports that the pre-registered composition is exact on this generator and that `M` adds nothing on top of it — it is not a finding that `F0` out-measured `M`.
 
 It also supersedes nothing and *repairs* something: the FM/FG R2 `fm10` cell scored 1.000 for all five arms and could not have detected a difference. This run separates fourteen arms across a 0.190–1.000 range under a gate that would have failed the run had it not.
 
