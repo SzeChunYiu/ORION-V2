@@ -275,7 +275,19 @@ def solve_instance(pop: m1.Population, inst, answer) -> dict:
             "oracle": answer.as_dict(), "exact": exact, "attribution": attribution, "stage_failures": stage}
 
 
+DESIGN_V2 = ROOT / "research" / "orion-machine" / "results" / "KSO_M2B_DESIGN_V2.json"
+
+
+def check_design_drift() -> dict:
+    frozen = json.loads(DESIGN_V2.read_text(encoding="utf-8"))
+    now = hashlib.sha256(alg.SOURCE.read_bytes()).hexdigest()
+    if frozen["v2"]["source_sha256"] != now:
+        raise CannotCheck(f"DESIGN_DRIFT: algebra source {now[:12]} != frozen {frozen['v2']['source_sha256'][:12]}")
+    return {"design": "KSO_M2B_DESIGN_V2.json", "source_sha256": now, "supersedes": frozen["supersession"]["v1"]["source_sha256"]}
+
+
 def run(per_family: int = 5) -> dict:
+    design = check_design_drift()
     pop, types = populate_from_source()
     digest_before = m0.genome_digest()
     p1 = m1.check_P1_dense(pop)
@@ -313,7 +325,7 @@ def run(per_family: int = 5) -> dict:
     planted_row = solve_instance(plant, inst0, ans0)
     assert not planted_row["fired_procedures"] or set(planted_row["fired_procedures"]) <= {"proc:linear"}, planted_row["fired_procedures"]
     return {
-        "schema": "orion.kso.m2b-algebra-receipt.v1", "contract": "KnowledgeSpace.v1-M2b",
+        "schema": "orion.kso.m2b-algebra-receipt.v1", "contract": "KnowledgeSpace.v1-M2b", "design": {**design, "run": "V2 (V1 outcome M2B_V1_GATING_DEFECT recorded in KSO_M2B_ALGEBRA_OUTCOME_V1.md)"},
         "source": {"file": str(alg.SOURCE.relative_to(ROOT)), "sha256": hashlib.sha256(alg.SOURCE.read_bytes()).hexdigest(), "atoms": len(types)},
         "provenance": {"command": f"python research/orion-machine/reference/kso_m2b_algebra_population_v1.py --per-family {per_family} --out research/orion-machine/results/KSO_M2B_ALGEBRA_RECEIPT_V1.json", "python": sys.version.split()[0], "split_seed": "ALGEBRA-DEV-20260904", "parameters": {"alpha": str(ALPHA), "status": "PRE_STUDY_PLACEHOLDER (KSO_PARAMETER_STUDY_V1)"}},
         "population": {"atoms": len(pop.space.atoms), "hyperedges": len(pop.space.hyperedges), "P1_dense": p1, "genome": genome, "channel": "INSTRUCTION via admit() for every atom", "meter": {"admit": pop.governed.meter.admit, "compose": pop.governed.meter.compose}},
