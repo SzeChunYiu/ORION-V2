@@ -1,5 +1,18 @@
 # FM40 — Parent Fidelity Receipt and Development-Split Summary (V1)
 
+> **SUPERSEDED IN PART, 2026-09-04.** The status line below was true when this
+> receipt was written and is no longer true. FM40's protected run has since been
+> executed under `PROTECTED_RUN_AUTHORIZATION_ARCHIVED_FM40.json`; the terminal
+> now stands on `FM40_OUTCOME_RECEIPT.md` (126 protected instances, route
+> `PARENT_SUFFICIENT`, every hard gate PASS, `G2_ANTI_PERMISSIVENESS` on 108
+> in-scope instances, M-vs-F0 identity 1.0000 — an identity entailed by F0 being
+> the oracle by construction, not a measurement). **Everything below this line
+> describes the development split only and must not be read as this study's
+> terminal.** The parent-fidelity and frozen-hash content remains valid, with one
+> addition made pre-run: §2 did not test `F0_PARENT_FEDERATION`, the primary
+> comparator; five F0 checks were added (`parents 30/30`), see
+> `FM40_PRE_RUN_AUDIT_V1.md` §A4.
+
 **Scope of this file:** FM40 only. It is a separate file from
 `FM_PARENT_FIDELITY_RECEIPT_V1.md` (which covers FM10) so that sibling suites
 landing in parallel do not contend for the same lines. Together they are the

@@ -289,6 +289,30 @@
       "parent": "ELIGIBILITY_GATE",
       "passed": true,
       "test": "an_unevaluated_eligibility_gate_reports_CANNOT_CHECK_not_PASS"
+    },
+    {
+      "detail": "",
+      "parent": "F0_PARENT_FEDERATION",
+      "passed": true,
+      "test": "takes_the_law_parent_on_every_law_violation_including_the_precedence_fixtures"
+    },
+    {
+      "detail": "",
+      "parent": "F0_PARENT_FEDERATION",
+      "passed": true,
+      "test": "consults_the_faithfulness_parent_only_after_every_law_holds"
+    },
+    {
+      "detail": "",
+      "parent": "F0_PARENT_FEDERATION",
+      "passed": true,
+      "test": "accepts_only_when_both_parents_accept"
+    },
+    {
+      "detail": "11/11 fixtures; F0 composes two complete predicates, so its agreement with the oracle is entailed by construction: this checks the composition rule and is not evidence about M",
+      "parent": "F0_PARENT_FEDERATION",
+      "passed": true,
+      "test": "composition_rule_reproduces_the_oracle_on_every_registered_fixture__IDENTITY_NOT_MEASUREMENT"
     }
   ],
   "passed": true,

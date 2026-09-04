@@ -1,12 +1,12 @@
 {
   "cost": {
-    "M_wall_ms": 7.500634,
-    "P_wall_ms": 0.909756,
+    "M_wall_ms": 24.616996,
+    "P_wall_ms": 4.03787,
     "flag": "COST_ADVANTAGE_PARENT",
-    "ratio_P_over_M": 0.12129054690576824,
+    "ratio_P_over_M": 0.16402773108465385,
     "rule": "wall-clock flag at 2x; reported only, routes nothing"
   },
-  "custody_sha256": "2d4603df3cce807499a5290599db6e37825a9c8f5de4535a31f9cf9705f60324",
+  "custody_sha256": "4095a452b06f1e32b98ab9f2e11838628e46b4a183fbeb81cbf0d2db6b440505",
   "gates": [
     {
       "applicable": true,
@@ -98,12 +98,12 @@
       "applicable": true,
       "detail": {
         "n_disagreements": 0,
-        "n_evaluated": 15
+        "n_evaluated": 125
       },
       "gate": "G0b_ORACLE_SELF_AGREEMENT",
       "hard": true,
       "min_required_evaluated": 1,
-      "n_evaluated": 15,
+      "n_evaluated": 125,
       "n_violations": 0,
       "rule": "exhaustive enumeration and the independent branch-and-bound search agree on disposition, min_missing, optimal profile and optimal-map count for every instance of the split",
       "verdict": "PASS"
@@ -115,11 +115,11 @@
           "C_ALWAYS_ACCEPT": 0.2,
           "C_ALWAYS_BLOCK": 0.2
         },
-        "random_rate": 0.0,
+        "random_rate": 0.16,
         "shuffled_label_null": {
-          "exact_against_shuffled": 4,
-          "n": 15,
-          "rate": 0.26666666666666666,
+          "exact_against_shuffled": 38,
+          "n": 125,
+          "rate": 0.304,
           "seed": 20260902
         },
         "violations": []
@@ -137,9 +137,9 @@
       "detail": {
         "below_minimum": {},
         "counts": {
-          "minimal_counterexample": 3,
-          "misleading_surface_support": 3,
-          "multiple_obstruction": 3
+          "minimal_counterexample": 25,
+          "misleading_surface_support": 25,
+          "multiple_obstruction": 25
         },
         "minimum": 3
       },
@@ -216,10 +216,10 @@
             "threshold": 0.85,
             "violation": false,
             "weak_arms_at_or_below_threshold": {
-              "M_MINUS_OBSTRUCTION_SEARCH": 0.2,
-              "P0_INDUCTIVE_CONFIRMATION": 0.2,
-              "P1_FIXED_LESSON_TABLE": 0.06666666666666667,
-              "P4_SMALL_SCOPE_BOUNDED_CHECK": 0.6
+              "M_MINUS_OBSTRUCTION_SEARCH": 0.192,
+              "P0_INDUCTIVE_CONFIRMATION": 0.192,
+              "P1_FIXED_LESSON_TABLE": 0.2,
+              "P4_SMALL_SCOPE_BOUNDED_CHECK": 0.728
             }
           },
           "solvable": {
@@ -233,18 +233,18 @@
         "per_arm_exact": {
           "C_ALWAYS_ACCEPT": 0.2,
           "C_ALWAYS_BLOCK": 0.2,
-          "C_RANDOM_DISPOSITION": 0.0,
+          "C_RANDOM_DISPOSITION": 0.16,
           "F0_PARENT_FEDERATION": 1.0,
-          "M_F2_OBSTRUCTION_DISCOVERY_FULL": 1.0,
-          "M_MINUS_MINIMALITY_ESCALATION": 0.6666666666666666,
-          "M_MINUS_MULTIPLICITY_CHECK": 0.8,
-          "M_MINUS_OBSTRUCTION_SEARCH": 0.2,
+          "M_F2_OBSTRUCTION_DISCOVERY_FULL": 0.992,
+          "M_MINUS_MINIMALITY_ESCALATION": 0.768,
+          "M_MINUS_MULTIPLICITY_CHECK": 0.792,
+          "M_MINUS_OBSTRUCTION_SEARCH": 0.192,
           "M_MINUS_PROOF_WITNESS": 0.8,
-          "P0_INDUCTIVE_CONFIRMATION": 0.2,
-          "P1_FIXED_LESSON_TABLE": 0.06666666666666667,
+          "P0_INDUCTIVE_CONFIRMATION": 0.192,
+          "P1_FIXED_LESSON_TABLE": 0.2,
           "P2_EXHAUSTIVE_MODEL_SEARCH": 0.8,
           "P3_DERIVATION_PROOF_SEARCH": 0.2,
-          "P4_SMALL_SCOPE_BOUNDED_CHECK": 0.6
+          "P4_SMALL_SCOPE_BOUNDED_CHECK": 0.728
         }
       },
       "gate": "G0f_FAMILY_DISCRIMINATION",
@@ -260,128 +260,128 @@
       "detail": {
         "counter_liveness_control": {
           "ablation_vs_parent_discordance": {
-            "M_MINUS_MINIMALITY_ESCALATION": 5,
-            "M_MINUS_MULTIPLICITY_CHECK": 3,
-            "M_MINUS_OBSTRUCTION_SEARCH": 12,
-            "M_MINUS_PROOF_WITNESS": 3
+            "M_MINUS_MINIMALITY_ESCALATION": 29,
+            "M_MINUS_MULTIPLICITY_CHECK": 26,
+            "M_MINUS_OBSTRUCTION_SEARCH": 101,
+            "M_MINUS_PROOF_WITNESS": 25
           },
           "counter_is_live": true
         },
-        "decision_identity_rate": 1.0,
+        "decision_identity_rate": 0.992,
         "paired": {
-          "diff_x_minus_y": 0.0,
-          "discordant": 0,
+          "diff_x_minus_y": -0.008,
+          "discordant": 1,
           "exact_p_two_sided": 1.0,
-          "n": 15,
+          "n": 125,
           "wald_ci95": [
-            0.0,
-            0.0
+            -0.023617154055717068,
+            0.007617154055717067
           ],
           "x_only": 0,
-          "y_only": 0
+          "y_only": 1
         },
         "per_family": {
           "minimal_counterexample": {
             "M_only_exact": 0,
             "P_only_exact": 0,
             "discordant": 0,
-            "n": 3
+            "n": 25
           },
           "misleading_surface_support": {
             "M_only_exact": 0,
             "P_only_exact": 0,
             "discordant": 0,
-            "n": 3
+            "n": 25
           },
           "multiple_obstruction": {
             "M_only_exact": 0,
             "P_only_exact": 0,
             "discordant": 0,
-            "n": 3
+            "n": 25
           },
           "no_obstruction": {
             "M_only_exact": 0,
-            "P_only_exact": 0,
-            "discordant": 0,
-            "n": 3
+            "P_only_exact": 1,
+            "discordant": 1,
+            "n": 25
           },
           "single_hidden_obstruction": {
             "M_only_exact": 0,
             "P_only_exact": 0,
             "discordant": 0,
-            "n": 3
+            "n": 25
           }
         },
         "per_family_effective_allowance": {
-          "minimal_counterexample": 0,
-          "misleading_surface_support": 0,
-          "multiple_obstruction": 0,
-          "no_obstruction": 0,
-          "single_hidden_obstruction": 0
+          "minimal_counterexample": 1,
+          "misleading_surface_support": 1,
+          "multiple_obstruction": 1,
+          "no_obstruction": 1,
+          "single_hidden_obstruction": 1
         },
         "per_family_threshold_note": "the 5% per-family rule is reported with the integer number of discordant instances it actually permits at this family size; where that is 0 the rule is exactly 'no discordance in this family', which is what it is enforcing"
       },
       "gate": "G1a_PARENT_REPRODUCES_M",
       "hard": true,
       "min_required_evaluated": 1,
-      "n_evaluated": 15,
-      "n_violations": 0,
+      "n_evaluated": 125,
+      "n_violations": 1,
       "rule": "F0_PARENT_FEDERATION reproduces M_F2_OBSTRUCTION_DISCOVERY_FULL's disposition on >= 99.5% of instances and no family exceeds 5% discordance; AND the discordance counter is shown live on this split by at least one ablation arm disagreeing with the parent",
-      "verdict": "PASS"
+      "verdict": "FAIL"
     },
     {
       "applicable": true,
       "detail": {
-        "discordant_pairs": 0,
+        "discordant_pairs": 1,
         "paired": {
-          "diff_x_minus_y": 0.0,
-          "discordant": 0,
+          "diff_x_minus_y": -0.008,
+          "discordant": 1,
           "exact_p_two_sided": 1.0,
-          "n": 15,
+          "n": 125,
           "wald_ci95": [
-            0.0,
-            0.0
+            -0.023617154055717068,
+            0.007617154055717067
           ],
           "x_only": 0,
-          "y_only": 0
+          "y_only": 1
         },
         "per_family": {
           "minimal_counterexample": {
             "M_only_exact": 0,
             "P_only_exact": 0,
             "discordant": 0,
-            "n": 3
+            "n": 25
           },
           "misleading_surface_support": {
             "M_only_exact": 0,
             "P_only_exact": 0,
             "discordant": 0,
-            "n": 3
+            "n": 25
           },
           "multiple_obstruction": {
             "M_only_exact": 0,
             "P_only_exact": 0,
             "discordant": 0,
-            "n": 3
+            "n": 25
           },
           "no_obstruction": {
             "M_only_exact": 0,
-            "P_only_exact": 0,
-            "discordant": 0,
-            "n": 3
+            "P_only_exact": 1,
+            "discordant": 1,
+            "n": 25
           },
           "single_hidden_obstruction": {
             "M_only_exact": 0,
             "P_only_exact": 0,
             "discordant": 0,
-            "n": 3
+            "n": 25
           }
         }
       },
       "gate": "G1b_M_ADVANTAGE",
       "hard": false,
       "min_required_evaluated": 1,
-      "n_evaluated": 15,
+      "n_evaluated": 125,
       "n_violations": 1,
       "rule": "paired instance-exact difference (M_F2_OBSTRUCTION_DISCOVERY_FULL - F0_PARENT_FEDERATION) > 0, exact two-sided p <= 0.05, and >= 1 family with >= 5 M-only-exact instances",
       "verdict": "NOT_FIRED"
@@ -393,11 +393,11 @@
         "P_unsafe_claims": 0,
         "counter_liveness_control": {
           "counter_is_live": true,
-          "max_any_arm": 12,
+          "max_any_arm": 100,
           "unsafe_claims_by_arm": {
-            "C_ALWAYS_ACCEPT": 12,
+            "C_ALWAYS_ACCEPT": 100,
             "C_ALWAYS_BLOCK": 0,
-            "C_RANDOM_DISPOSITION": 1,
+            "C_RANDOM_DISPOSITION": 12,
             "F0_PARENT_FEDERATION": 0,
             "M_F2_OBSTRUCTION_DISCOVERY_FULL": 0,
             "M_MINUS_MINIMALITY_ESCALATION": 0,
@@ -411,13 +411,13 @@
             "P4_SMALL_SCOPE_BOUNDED_CHECK": 0
           }
         },
-        "n_in_scope": 12,
+        "n_in_scope": 100,
         "unsafe_endpoint": "conjecture accepted where the oracle blocks it"
       },
       "gate": "G2_ANTI_PERMISSIVENESS",
       "hard": true,
       "min_required_evaluated": 10,
-      "n_evaluated": 12,
+      "n_evaluated": 100,
       "n_violations": 0,
       "rule": "on the instances in scope, M_F2_OBSTRUCTION_DISCOVERY_FULL makes no more unsafe claims (conjecture accepted where the oracle blocks it) than F0_PARENT_FEDERATION; AND the counter is shown live on those same instances by at least one arm registering a nonzero count",
       "verdict": "PASS"
@@ -438,11 +438,11 @@
     }
   ],
   "generator_rejections": {
-    "minimal_counterexample": 11,
-    "misleading_surface_support": 377,
-    "multiple_obstruction": 8,
-    "no_obstruction": 1,
-    "single_hidden_obstruction": 27
+    "minimal_counterexample": 362,
+    "misleading_surface_support": 1965,
+    "multiple_obstruction": 109,
+    "no_obstruction": 61,
+    "single_hidden_obstruction": 191
   },
   "holm_across_families": {
     "minimal_counterexample": {
@@ -476,506 +476,506 @@
       "raw_p": 1.0
     }
   },
-  "label": "DEVELOPMENT",
-  "n_instances": 15,
-  "results_sha256": "a97a9bd211a246866cf55633c5e8fce64514ad207a7e4eba20d10f367228dc46",
+  "label": "PROTECTED",
+  "n_instances": 125,
+  "results_sha256": "20041fd5ed96b4286ca2382ff7acac837af27950cb64d0bf468033cc64713ffd",
   "route": {
     "cost_flag": "COST_ADVANTAGE_PARENT",
-    "reason": "F0_PARENT_FEDERATION reproduces M_F2_OBSTRUCTION_DISCOVERY_FULL's dispositions (identity 1.0000)",
+    "reason": "no significant M advantage over the strongest faithful parent",
     "route": "PARENT_SUFFICIENT"
   },
   "schema_version": "orion.v2.fm-exact.analysis.v1",
   "score": {
     "per_arm": {
       "C_ALWAYS_ACCEPT": {
-        "exact": 3,
+        "exact": 25,
         "exact_rate": 0.2,
-        "n": 15,
+        "n": 125,
+        "over_accept": 100,
+        "per_family": {
+          "minimal_counterexample": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 25
+          },
+          "misleading_surface_support": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 25
+          },
+          "multiple_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 25
+          },
+          "no_obstruction": {
+            "exact": 25,
+            "exact_rate": 1.0,
+            "n": 25
+          },
+          "single_hidden_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 25
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.053409
+      },
+      "C_ALWAYS_BLOCK": {
+        "exact": 25,
+        "exact_rate": 0.2,
+        "n": 125,
+        "over_accept": 0,
+        "per_family": {
+          "minimal_counterexample": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 25
+          },
+          "misleading_surface_support": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 25
+          },
+          "multiple_obstruction": {
+            "exact": 25,
+            "exact_rate": 1.0,
+            "n": 25
+          },
+          "no_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 25
+          },
+          "single_hidden_obstruction": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 25
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.043334
+      },
+      "C_RANDOM_DISPOSITION": {
+        "exact": 20,
+        "exact_rate": 0.16,
+        "n": 125,
         "over_accept": 12,
         "per_family": {
           "minimal_counterexample": {
-            "exact": 0,
-            "exact_rate": 0.0,
-            "n": 3
+            "exact": 5,
+            "exact_rate": 0.2,
+            "n": 25
           },
           "misleading_surface_support": {
-            "exact": 0,
-            "exact_rate": 0.0,
-            "n": 3
+            "exact": 4,
+            "exact_rate": 0.16,
+            "n": 25
           },
           "multiple_obstruction": {
-            "exact": 0,
-            "exact_rate": 0.0,
-            "n": 3
+            "exact": 1,
+            "exact_rate": 0.04,
+            "n": 25
           },
           "no_obstruction": {
-            "exact": 3,
-            "exact_rate": 1.0,
-            "n": 3
+            "exact": 5,
+            "exact_rate": 0.2,
+            "n": 25
           },
           "single_hidden_obstruction": {
-            "exact": 0,
-            "exact_rate": 0.0,
-            "n": 3
+            "exact": 5,
+            "exact_rate": 0.2,
+            "n": 25
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.020721
-      },
-      "C_ALWAYS_BLOCK": {
-        "exact": 3,
-        "exact_rate": 0.2,
-        "n": 15,
-        "over_accept": 0,
-        "per_family": {
-          "minimal_counterexample": {
-            "exact": 0,
-            "exact_rate": 0.0,
-            "n": 3
-          },
-          "misleading_surface_support": {
-            "exact": 0,
-            "exact_rate": 0.0,
-            "n": 3
-          },
-          "multiple_obstruction": {
-            "exact": 3,
-            "exact_rate": 1.0,
-            "n": 3
-          },
-          "no_obstruction": {
-            "exact": 0,
-            "exact_rate": 0.0,
-            "n": 3
-          },
-          "single_hidden_obstruction": {
-            "exact": 0,
-            "exact_rate": 0.0,
-            "n": 3
-          }
-        },
-        "under_accept": 0,
-        "wall_ms": 0.014152
-      },
-      "C_RANDOM_DISPOSITION": {
-        "exact": 0,
-        "exact_rate": 0.0,
-        "n": 15,
-        "over_accept": 1,
-        "per_family": {
-          "minimal_counterexample": {
-            "exact": 0,
-            "exact_rate": 0.0,
-            "n": 3
-          },
-          "misleading_surface_support": {
-            "exact": 0,
-            "exact_rate": 0.0,
-            "n": 3
-          },
-          "multiple_obstruction": {
-            "exact": 0,
-            "exact_rate": 0.0,
-            "n": 3
-          },
-          "no_obstruction": {
-            "exact": 0,
-            "exact_rate": 0.0,
-            "n": 3
-          },
-          "single_hidden_obstruction": {
-            "exact": 0,
-            "exact_rate": 0.0,
-            "n": 3
-          }
-        },
-        "under_accept": 0,
-        "wall_ms": 0.13266
+        "wall_ms": 0.903043
       },
       "F0_PARENT_FEDERATION": {
-        "exact": 15,
+        "exact": 125,
         "exact_rate": 1.0,
-        "n": 15,
+        "n": 125,
         "over_accept": 0,
         "per_family": {
           "minimal_counterexample": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           },
           "misleading_surface_support": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           },
           "multiple_obstruction": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           },
           "no_obstruction": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           },
           "single_hidden_obstruction": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.909756
+        "wall_ms": 4.03787
       },
       "M_F2_OBSTRUCTION_DISCOVERY_FULL": {
-        "exact": 15,
-        "exact_rate": 1.0,
-        "n": 15,
+        "exact": 124,
+        "exact_rate": 0.992,
+        "n": 125,
         "over_accept": 0,
         "per_family": {
           "minimal_counterexample": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           },
           "misleading_surface_support": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           },
           "multiple_obstruction": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           },
           "no_obstruction": {
-            "exact": 3,
-            "exact_rate": 1.0,
-            "n": 3
+            "exact": 24,
+            "exact_rate": 0.96,
+            "n": 25
           },
           "single_hidden_obstruction": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           }
         },
         "under_accept": 0,
-        "wall_ms": 7.500634
+        "wall_ms": 24.616996
       },
       "M_MINUS_MINIMALITY_ESCALATION": {
-        "exact": 10,
-        "exact_rate": 0.6666666666666666,
-        "n": 15,
+        "exact": 96,
+        "exact_rate": 0.768,
+        "n": 125,
         "over_accept": 0,
         "per_family": {
           "minimal_counterexample": {
             "exact": 0,
             "exact_rate": 0.0,
-            "n": 3
+            "n": 25
           },
           "misleading_surface_support": {
-            "exact": 1,
-            "exact_rate": 0.3333333333333333,
-            "n": 3
+            "exact": 22,
+            "exact_rate": 0.88,
+            "n": 25
           },
           "multiple_obstruction": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           },
           "no_obstruction": {
-            "exact": 3,
-            "exact_rate": 1.0,
-            "n": 3
+            "exact": 24,
+            "exact_rate": 0.96,
+            "n": 25
           },
           "single_hidden_obstruction": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           }
         },
         "under_accept": 0,
-        "wall_ms": 7.228557
+        "wall_ms": 23.43059
       },
       "M_MINUS_MULTIPLICITY_CHECK": {
-        "exact": 12,
-        "exact_rate": 0.8,
-        "n": 15,
+        "exact": 99,
+        "exact_rate": 0.792,
+        "n": 125,
         "over_accept": 0,
         "per_family": {
           "minimal_counterexample": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           },
           "misleading_surface_support": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           },
           "multiple_obstruction": {
             "exact": 0,
             "exact_rate": 0.0,
-            "n": 3
+            "n": 25
           },
           "no_obstruction": {
-            "exact": 3,
-            "exact_rate": 1.0,
-            "n": 3
+            "exact": 24,
+            "exact_rate": 0.96,
+            "n": 25
           },
           "single_hidden_obstruction": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           }
         },
         "under_accept": 0,
-        "wall_ms": 2.30069
+        "wall_ms": 6.635455
       },
       "M_MINUS_OBSTRUCTION_SEARCH": {
-        "exact": 3,
-        "exact_rate": 0.2,
-        "n": 15,
+        "exact": 24,
+        "exact_rate": 0.192,
+        "n": 125,
         "over_accept": 0,
         "per_family": {
           "minimal_counterexample": {
             "exact": 0,
             "exact_rate": 0.0,
-            "n": 3
+            "n": 25
           },
           "misleading_surface_support": {
             "exact": 0,
             "exact_rate": 0.0,
-            "n": 3
+            "n": 25
           },
           "multiple_obstruction": {
             "exact": 0,
             "exact_rate": 0.0,
-            "n": 3
+            "n": 25
           },
           "no_obstruction": {
-            "exact": 3,
-            "exact_rate": 1.0,
-            "n": 3
+            "exact": 24,
+            "exact_rate": 0.96,
+            "n": 25
           },
           "single_hidden_obstruction": {
             "exact": 0,
             "exact_rate": 0.0,
-            "n": 3
+            "n": 25
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.351505
+        "wall_ms": 2.307494
       },
       "M_MINUS_PROOF_WITNESS": {
-        "exact": 12,
+        "exact": 100,
         "exact_rate": 0.8,
-        "n": 15,
+        "n": 125,
         "over_accept": 0,
         "per_family": {
           "minimal_counterexample": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           },
           "misleading_surface_support": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           },
           "multiple_obstruction": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           },
           "no_obstruction": {
             "exact": 0,
             "exact_rate": 0.0,
-            "n": 3
+            "n": 25
           },
           "single_hidden_obstruction": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           }
         },
         "under_accept": 0,
-        "wall_ms": 10.329572
+        "wall_ms": 40.90234
       },
       "P0_INDUCTIVE_CONFIRMATION": {
-        "exact": 3,
-        "exact_rate": 0.2,
-        "n": 15,
+        "exact": 24,
+        "exact_rate": 0.192,
+        "n": 125,
         "over_accept": 0,
         "per_family": {
           "minimal_counterexample": {
             "exact": 0,
             "exact_rate": 0.0,
-            "n": 3
+            "n": 25
           },
           "misleading_surface_support": {
             "exact": 0,
             "exact_rate": 0.0,
-            "n": 3
+            "n": 25
           },
           "multiple_obstruction": {
             "exact": 0,
             "exact_rate": 0.0,
-            "n": 3
+            "n": 25
           },
           "no_obstruction": {
             "exact": 0,
             "exact_rate": 0.0,
-            "n": 3
+            "n": 25
           },
           "single_hidden_obstruction": {
-            "exact": 3,
-            "exact_rate": 1.0,
-            "n": 3
+            "exact": 24,
+            "exact_rate": 0.96,
+            "n": 25
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.402546
+        "wall_ms": 1.886791
       },
       "P1_FIXED_LESSON_TABLE": {
-        "exact": 1,
-        "exact_rate": 0.06666666666666667,
-        "n": 15,
+        "exact": 25,
+        "exact_rate": 0.2,
+        "n": 125,
         "over_accept": 0,
         "per_family": {
           "minimal_counterexample": {
             "exact": 0,
             "exact_rate": 0.0,
-            "n": 3
+            "n": 25
           },
           "misleading_surface_support": {
-            "exact": 0,
-            "exact_rate": 0.0,
-            "n": 3
+            "exact": 8,
+            "exact_rate": 0.32,
+            "n": 25
           },
           "multiple_obstruction": {
-            "exact": 0,
-            "exact_rate": 0.0,
-            "n": 3
+            "exact": 7,
+            "exact_rate": 0.28,
+            "n": 25
           },
           "no_obstruction": {
             "exact": 0,
             "exact_rate": 0.0,
-            "n": 3
+            "n": 25
           },
           "single_hidden_obstruction": {
-            "exact": 1,
-            "exact_rate": 0.3333333333333333,
-            "n": 3
+            "exact": 10,
+            "exact_rate": 0.4,
+            "n": 25
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.46968
+        "wall_ms": 2.392656
       },
       "P2_EXHAUSTIVE_MODEL_SEARCH": {
-        "exact": 12,
+        "exact": 100,
         "exact_rate": 0.8,
-        "n": 15,
+        "n": 125,
         "over_accept": 0,
         "per_family": {
           "minimal_counterexample": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           },
           "misleading_surface_support": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           },
           "multiple_obstruction": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           },
           "no_obstruction": {
             "exact": 0,
             "exact_rate": 0.0,
-            "n": 3
+            "n": 25
           },
           "single_hidden_obstruction": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.534943
+        "wall_ms": 1.850865
       },
       "P3_DERIVATION_PROOF_SEARCH": {
-        "exact": 3,
+        "exact": 25,
         "exact_rate": 0.2,
-        "n": 15,
+        "n": 125,
         "over_accept": 0,
         "per_family": {
           "minimal_counterexample": {
             "exact": 0,
             "exact_rate": 0.0,
-            "n": 3
+            "n": 25
           },
           "misleading_surface_support": {
             "exact": 0,
             "exact_rate": 0.0,
-            "n": 3
+            "n": 25
           },
           "multiple_obstruction": {
             "exact": 0,
             "exact_rate": 0.0,
-            "n": 3
+            "n": 25
           },
           "no_obstruction": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           },
           "single_hidden_obstruction": {
             "exact": 0,
             "exact_rate": 0.0,
-            "n": 3
+            "n": 25
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.522391
+        "wall_ms": 2.424708
       },
       "P4_SMALL_SCOPE_BOUNDED_CHECK": {
-        "exact": 9,
-        "exact_rate": 0.6,
-        "n": 15,
+        "exact": 91,
+        "exact_rate": 0.728,
+        "n": 125,
         "over_accept": 0,
         "per_family": {
           "minimal_counterexample": {
-            "exact": 2,
-            "exact_rate": 0.6666666666666666,
-            "n": 3
+            "exact": 21,
+            "exact_rate": 0.84,
+            "n": 25
           },
           "misleading_surface_support": {
-            "exact": 1,
-            "exact_rate": 0.3333333333333333,
-            "n": 3
+            "exact": 22,
+            "exact_rate": 0.88,
+            "n": 25
           },
           "multiple_obstruction": {
-            "exact": 3,
-            "exact_rate": 1.0,
-            "n": 3
+            "exact": 23,
+            "exact_rate": 0.92,
+            "n": 25
           },
           "no_obstruction": {
             "exact": 0,
             "exact_rate": 0.0,
-            "n": 3
+            "n": 25
           },
           "single_hidden_obstruction": {
-            "exact": 3,
+            "exact": 25,
             "exact_rate": 1.0,
-            "n": 3
+            "n": 25
           }
         },
         "under_accept": 0,
-        "wall_ms": 0.459378
+        "wall_ms": 1.556582
       }
     }
   },
