@@ -14,6 +14,28 @@ class ParityExecutionStatus(str, Enum):
     BLOCKED_PARENT_BASELINE_BINDING = "BLOCKED_PARENT_BASELINE_BINDING"
     BLOCKED_RESOURCE_BUDGET_BINDING = "BLOCKED_RESOURCE_BUDGET_BINDING"
     READY_FOR_PROTECTED_PARITY_RUN = "READY_FOR_PROTECTED_PARITY_RUN"
+    READY_WITH_DISCLOSED_EVALUATOR_CUSTODY_LIMITATION = (
+        "READY_WITH_DISCLOSED_EVALUATOR_CUSTODY_LIMITATION"
+    )
+
+
+SEMANTIC_CUSTODY_DISPOSITION_TOKEN = "NOT_OBTAINED__DISCLOSED_LIMITATION"
+
+_REQUIRED_SEMANTIC_CASE_IDS = frozenset(
+    {
+        "C2_SAME_WORDS_DIFFERENT_NATIVE_STRUCTURE",
+        "C3_DIFFERENT_WORDS_SAME_REGISTERED_STRUCTURE",
+        "D2_LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION",
+        "D3_NEW_REPRESENTATION_OPENS_ROUTE",
+    }
+)
+
+_READY_STATUSES = frozenset(
+    {
+        ParityExecutionStatus.READY_FOR_PROTECTED_PARITY_RUN,
+        ParityExecutionStatus.READY_WITH_DISCLOSED_EVALUATOR_CUSTODY_LIMITATION,
+    }
+)
 
 
 @dataclass(frozen=True, slots=True)
@@ -25,6 +47,8 @@ class ParityExecutionAssessment:
     grants_v2_closeout: bool = False
     grants_scientific_truth: bool = False
     grants_novelty: bool = False
+    disclosed_limitations: tuple[str, ...] = ()
+    terminal_ceiling: str | None = None
 
     def __post_init__(self) -> None:
         object.__setattr__(self, "status", ParityExecutionStatus(self.status))
@@ -35,8 +59,64 @@ class ParityExecutionAssessment:
             or self.grants_novelty
         ):
             raise ValueError("parity execution gate is non-authorizing")
-        if self.status is not ParityExecutionStatus.READY_FOR_PROTECTED_PARITY_RUN and self.run_authorized:
+        if self.status not in _READY_STATUSES and self.run_authorized:
             raise ValueError("blocked parity gate cannot authorize execution")
+        if (
+            self.status is ParityExecutionStatus.READY_WITH_DISCLOSED_EVALUATOR_CUSTODY_LIMITATION
+            and not self.disclosed_limitations
+        ):
+            raise ValueError(
+                "a disclosed-limitation terminal must name the limitation it discloses"
+            )
+        if self.disclosed_limitations and self.terminal_ceiling is None:
+            raise ValueError(
+                "a disclosed limitation must scope the terminal it still permits"
+            )
+
+
+
+def _semantic_custody_disposition(evaluator_registry: Mapping[str, Any]) -> str | None:
+    """Return the terminal ceiling when a valid disclosed custody limitation is declared.
+
+    Returns ``None`` when no valid disposition is present, so the caller fails
+    closed on a missing, partial or malformed declaration. A disposition is only
+    accepted when it states plainly that independent custody was *not* obtained,
+    keeps the requirement itself registered as required, names every semantic case
+    it leaves unresolved, publishes the affected capability-cell denominator, and
+    caps the terminal a run may reach.
+    """
+
+    if evaluator_registry.get("independence_disposition") != SEMANTIC_CUSTODY_DISPOSITION_TOKEN:
+        return None
+    limitation = evaluator_registry.get("disclosed_limitation")
+    if not isinstance(limitation, Mapping):
+        return None
+    if limitation.get("grants_independent_evaluator_custody") is not False:
+        return None
+    if limitation.get("protected_independent_evaluator_required") is not True:
+        return None
+    if limitation.get("protected_independent_evaluator_obtained") is not False:
+        return None
+    if not str(limitation.get("disposition_path", "")).strip():
+        return None
+    unresolved_cases = limitation.get("unresolved_case_ids")
+    if not isinstance(unresolved_cases, (list, tuple)):
+        return None
+    if set(map(str, unresolved_cases)) != set(_REQUIRED_SEMANTIC_CASE_IDS):
+        return None
+    unresolved_cells = limitation.get("unresolved_capability_cell_ids")
+    if not isinstance(unresolved_cells, (list, tuple)) or not unresolved_cells:
+        return None
+    total = limitation.get("frozen_capability_cell_total")
+    scorable = limitation.get("scorable_capability_cell_count")
+    if not isinstance(total, int) or not isinstance(scorable, int):
+        return None
+    if scorable + len(set(map(str, unresolved_cells))) != total:
+        return None
+    ceiling = str(limitation.get("reachable_terminal_ceiling", "")).strip()
+    if not ceiling:
+        return None
+    return ceiling
 
 
 def assess_parity_execution_readiness(
@@ -93,18 +173,36 @@ def assess_parity_execution_readiness(
             ("protected held-out case identities/selection receipt are not bound",),
         )
 
+    disclosed_limitations: tuple[str, ...] = ()
+    terminal_ceiling: str | None = None
+
     evaluator_registry = custody_protocol.get("evaluator_registry")
-    if not isinstance(evaluator_registry, Mapping) or evaluator_registry.get("bound") is not True:
+    if not isinstance(evaluator_registry, Mapping):
         return ParityExecutionAssessment(
             ParityExecutionStatus.BLOCKED_EVALUATOR_CUSTODY,
             ("protected evaluator/custody identities are not bound",),
         )
+    if evaluator_registry.get("bound") is not True:
+        ceiling = _semantic_custody_disposition(evaluator_registry)
+        if ceiling is None:
+            return ParityExecutionAssessment(
+                ParityExecutionStatus.BLOCKED_EVALUATOR_CUSTODY,
+                ("protected evaluator/custody identities are not bound",),
+            )
+        disclosed_limitations += (
+            "independent semantic evaluator custody for PARITY-C and PARITY-D was "
+            f"{SEMANTIC_CUSTODY_DISPOSITION_TOKEN}; the requirement remains registered as "
+            "required and is not satisfied",
+        )
+        terminal_ceiling = ceiling
 
     implementation_bindings = baseline_registry.get("implementation_bindings")
     if not isinstance(implementation_bindings, Mapping) or implementation_bindings.get("bound") is not True:
         return ParityExecutionAssessment(
             ParityExecutionStatus.BLOCKED_PARENT_BASELINE_BINDING,
             ("strongest parent-composed comparator implementations are not bound",),
+            disclosed_limitations=disclosed_limitations,
+            terminal_ceiling=terminal_ceiling,
         )
 
     case_budget = resource_protocol.get("case_budget_manifest")
@@ -112,6 +210,8 @@ def assess_parity_execution_readiness(
         return ParityExecutionAssessment(
             ParityExecutionStatus.BLOCKED_RESOURCE_BUDGET_BINDING,
             ("matched per-case provider/tool/time/compute budgets are not bound",),
+            disclosed_limitations=disclosed_limitations,
+            terminal_ceiling=terminal_ceiling,
         )
 
     for artifact_name, artifact in (
@@ -125,6 +225,15 @@ def assess_parity_execution_readiness(
                 ParityExecutionStatus.INVALID_PROTOCOL,
                 (f"{artifact_name} lacks a run gate",),
             )
+
+    if disclosed_limitations:
+        return ParityExecutionAssessment(
+            ParityExecutionStatus.READY_WITH_DISCLOSED_EVALUATOR_CUSTODY_LIMITATION,
+            (),
+            run_authorized=True,
+            disclosed_limitations=disclosed_limitations,
+            terminal_ceiling=terminal_ceiling,
+        )
 
     return ParityExecutionAssessment(
         ParityExecutionStatus.READY_FOR_PROTECTED_PARITY_RUN,

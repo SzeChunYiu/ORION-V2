@@ -1,0 +1,175 @@
+{
+  "schema_version": "orion.v2.v1-parity-semantic-evaluator-custody-disposition.v1",
+  "disposition_id": "ORION-V2-V1-PARITY-SEMANTIC-CUSTODY-DISPOSITION-WAVE06-V1",
+  "disposition": "NOT_OBTAINED__DISCLOSED_LIMITATION",
+  "supersedes_blocking_status": "BLOCKED_EVALUATOR_CUSTODY",
+  "v1_commit": "8f250fc3e55d6d6a28fb1fb33d9932ef1a8760b5",
+  "v2_subject_commit": "f33d2f45554583f9e612f7a186b7d92e6bc8d01a",
+  "paired_outcomes_accessed": false,
+  "authored_before_paired_outcome_access": true,
+  "why_this_artifact_exists": "The frozen evaluator registry requires two independent blinded semantic reviewers for PARITY-C, two for PARITY-D, and a tiebreaker. No external reviewer pool is available to this programme. Rather than leave the requirement as an indefinite BLOCKED terminal that reads to a downstream consumer as an unexamined gap, this artifact states exactly what the independence requirement was registered to do, which of its functions can and cannot be honestly discharged without external reviewers, and precisely how much of the parity surface is thereby unresolved.",
+  "what_independence_was_registered_to_mean": {
+    "method": "Decomposed from the four primary sources that define the slot, not from a summary of them.",
+    "sources": [
+      {
+        "path": "research/evaluation/V1_PARITY_CUSTODY_PROTOCOL_WAVE06_V1.json",
+        "field": "custody_invariants"
+      },
+      {
+        "path": "research/evaluation/V1_PARITY_SCORING_ADJUDICATION_WAVE06_V1.json",
+        "field": "semantic_adjudication"
+      },
+      {
+        "path": "research/evaluation/PARITY_CD_SEMANTIC_REVIEWER_BRIEF_WAVE06_V1.md",
+        "field": "Reviewer eligibility / Authority boundary"
+      },
+      {
+        "path": "research/evaluation/V1_PARITY_EVALUATOR_REGISTRY_WAVE06_V1.json",
+        "field": "dependence_screen"
+      }
+    ],
+    "functions": [
+      {
+        "function_id": "F1_OUTCOME_BLINDNESS",
+        "registered_as": "V1/V2 or comparator outputs are stripped of subject labels and presented in randomized order; neutral packet IDs that do not identify V1, V2 or a parent comparator.",
+        "purpose": "prevent arm-aware scoring",
+        "requires_a_human": false,
+        "mechanically_substitutable": true,
+        "status": "NOT_EXERCISED__NO_ADJUDICATION_PERFORMED",
+        "note": "This function is fully mechanical and would be satisfied by any arm-label-stripped presentation. It is not the reason custody is unobtained. It is recorded as NOT_EXERCISED rather than SATISFIED because no semantic adjudication has been performed at all; claiming it satisfied would be a property asserted of an event that never occurred."
+      },
+      {
+        "function_id": "F2_NON_SELF_AUTHORSHIP",
+        "registered_as": "case authoring/selection and outcome-producing subject code may not be the sole evaluator authority; reviewer is not the sole author of the V2 subject or case under review.",
+        "purpose": "prevent the scorer inheriting the mechanism's own blind spots by supplying both the artefact and its answer key",
+        "requires_a_human": false,
+        "mechanically_substitutable": "ONLY_WHERE_THE_ANSWER_KEY_PREDATES_THE_SUBJECT",
+        "status_deterministic_surface": "SATISFIED_BY_INHERITED_CRITERION",
+        "status_semantic_surface": "NOT_SATISFIED",
+        "note": "For the 25 deterministic cases the criterion is inherited from frozen V1-native test assertions that predate the V2 subject commit, so the answer key is not authored by the thing being scored. The four semantic cases were authored by this programme after the subject freeze and have no external answer key; any scorer available here would be the case author scoring its own case."
+      },
+      {
+        "function_id": "F3_NON_DUPLICATE_EVALUATOR",
+        "registered_as": "same-model, same-data or same-source evaluators are not counted as independent without a declared dependence disposition; the first two reviewers for a case cannot both depend on the same undisclosed material evaluator source; two agreeing independent labels decide the invariant.",
+        "purpose": "make the two-label agreement rule an actual error-correcting redundancy rather than one evaluator counted twice",
+        "requires_a_human": true,
+        "mechanically_substitutable": false,
+        "status": "NOT_OBTAINED",
+        "note": "This is the irreducible content of the requirement. Two labels drawn from the same programme, the same model family, or the same authorship are one evaluator wearing two names. No instrument constructible inside this programme produces a second genuinely independent evaluator source."
+      },
+      {
+        "function_id": "F4_INDEPENDENT_SCIENTIFIC_AUTHORITY",
+        "registered_as": "NOT part of this slot.",
+        "purpose": "n/a",
+        "status": "OUT_OF_SCOPE_BY_REGISTRATION",
+        "evidence": [
+          "V1_PARITY_CUSTODY_PROTOCOL_WAVE06_V1.json authority.grants_independent_authority = false",
+          "V1_PARITY_SCORING_ADJUDICATION_WAVE06_V1.json semantic_adjudication.authority: 'grants no scientific truth, architecture, novelty, adoption, or publication authority'",
+          "PARITY_CD_SEMANTIC_REVIEWER_BRIEF_WAVE06_V1.md Authority boundary",
+          "frozen parity case H2_EXTERNAL_REVIEW_NONAUTHORIZING, which the programme scores mechanically and which would be self-contradictory if reviewer binding conferred authority"
+        ],
+        "note": "The semantic reviewer slot was never registered as an authority-supplying slot. Its absence therefore removes evidence, not authority. External/protected authority was already carved out separately and is unaffected by this disposition."
+      }
+    ],
+    "blocking_content": [
+      "F2_NON_SELF_AUTHORSHIP",
+      "F3_NON_DUPLICATE_EVALUATOR"
+    ],
+    "conclusion": "The requirement is a blind-spot and correlated-error requirement over four programme-authored semantic cases, not an authority requirement. Its blocking content cannot be discharged without an evaluator source outside this programme. No such source is available."
+  },
+  "what_was_explicitly_refused": [
+    "recruiting, simulating, role-playing or generating 'independent' reviewer identities",
+    "counting same-model or same-programme critique as an independent second label",
+    "binding a programme-authored mechanical oracle as discharge of the semantic slot, which the frozen non_substitution_rule of each campaign forbids in terms: PARITY-C requires that 'Independent native semantic adjudication remains required' and PARITY-D that 'Independent native reconstruction/gluing adjudication remains required'",
+    "flipping evaluator_registry.registry_bound or any per-slot bound flag to true",
+    "flipping case-registry coverage_assertions.protected_independent_evaluator_required to false"
+  ],
+  "requirement_status": {
+    "protected_independent_evaluator_required": true,
+    "protected_independent_evaluator_obtained": false,
+    "note": "The requirement remains registered as required. Only its obtainment is dispositioned. This artifact narrows what may be claimed; it does not retire the requirement."
+  },
+  "scope_of_the_limitation": {
+    "method": "computed from the frozen case registry and the frozen scoring spec, not asserted",
+    "recomputation_test": "tests/unit/test_parity_semantic_custody_disposition.py",
+    "frozen_capability_cell_total": 59,
+    "semantic_case_ids": [
+      "C2_SAME_WORDS_DIFFERENT_NATIVE_STRUCTURE",
+      "C3_DIFFERENT_WORDS_SAME_REGISTERED_STRUCTURE",
+      "D2_LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION",
+      "D3_NEW_REPRESENTATION_OPENS_ROUTE"
+    ],
+    "cells_reachable_only_through_semantic_cases": {
+      "count": 6,
+      "ids": [
+        "ABSORB.CLAIM.v0",
+        "ABSORB.CONTEXT.v0",
+        "ABSORB.REPRESENTATION_MAP.v0",
+        "ABSORB.SCIENTIFIC_LANGUAGE.v0",
+        "RECONSTRUCT.GLUE.v0",
+        "RECONSTRUCT.SEARCH_UNIVERSE.v0"
+      ]
+    },
+    "cells_referenced_by_both_a_deterministic_and_a_semantic_case": {
+      "count": 2,
+      "ids": [
+        "RECONSTRUCT.ATLAS_UPDATE.v0",
+        "RECONSTRUCT.PORTRAIT.v0"
+      ],
+      "why_also_unresolved": "capability_cell_rule.aggregation is PER_CELL_WORST_REQUIRED_CASE_NONCOMPENSATORY and capability_cell_rule.cannot_check makes a cell CANNOT_CHECK if at least one required case remains unresolved. Every case in the frozen registry is required. A deterministic PASS on D1 therefore cannot lift these cells."
+    },
+    "cells_unresolved_under_this_disposition": 8,
+    "cells_scorable_by_the_bound_deterministic_scorer": 51,
+    "denominator_statement": "51 of 59 frozen capability cells remain scorable by PARITY-DET-FROZEN-INVARIANT-SCORER-V1. 8 of 59 are CANNOT_CHECK for want of semantic evaluator custody. These 8 are not failures and not passes; they are unexamined."
+  },
+  "terminal_scoping": {
+    "rule": "A parity run executed under this disposition may not report an unqualified full-surface terminal.",
+    "prohibited_unqualified_terminals": [
+      "V2_PARITY_NONINFERIOR",
+      "V2_PARITY_STRICT_GAIN_WITH_NO_MANDATORY_REGRESSION",
+      "V1_NONINFERIOR"
+    ],
+    "reachable_terminal_ceiling": "PARTIAL_SURFACE_TERMINAL_OVER_51_OF_59_CELLS_WITH_8_CELLS_DISCLOSED_CANNOT_CHECK",
+    "required_reporting_form": "Any terminal reported under this disposition must carry the denominator 51/59 and name the 8 unresolved cells. '51/59 PASS' reported without the 8 disclosed cells is a scope-laundering defect, not a parity result.",
+    "unchanged": "The scoring specification is not mutated by this disposition. This scoping is an external constraint on what the existing frozen rules may be reported to have established, applied before paired outcome access."
+  },
+  "named_follow_on_not_bound_here": {
+    "route_id": "MECHANICAL_ARM_BLIND_KNOWN_ANSWER_ADJUDICATION_FOR_SEMANTIC_CASES",
+    "bound": false,
+    "why_not_bound": "It does not exist, has not been executed, and would not discharge the frozen non_substitution_rule. Binding an unexecuted instrument would be a counter that never ran reporting zero violations.",
+    "status": "CANDIDATE_ROUTE_ONLY",
+    "would_discharge": [
+      "F1_OUTCOME_BLINDNESS"
+    ],
+    "would_partially_discharge": [
+      "F2_NON_SELF_AUTHORSHIP"
+    ],
+    "would_not_discharge": [
+      "F3_NON_DUPLICATE_EVALUATOR"
+    ],
+    "unmet_preconditions": [
+      "no frozen input fixture or evidence packet exists for C2, C3, D2 or D3; the case registry freezes only case_id, capability_ids and expected_invariants",
+      "it is not established that the V1 and V2 subjects emit outputs structured enough for these invariants to be decided exactly rather than read as prose",
+      "the run cannot execute at all while implementation_bindings.bound is false in the baseline registry",
+      "the answer key would have to be a property of the constructed instance rather than a programme opinion, which is plausible for D2 global obstruction and C3 witnessed mapping but has not been demonstrated for C2 ambiguity handling or D3 coverage rewriting"
+    ],
+    "honest_ceiling_if_built": "Such an instrument could reduce the disclosed limitation from 'unexamined' to 'examined by a programme-internal arm-blind oracle', which is strictly stronger than nothing and strictly weaker than the registered requirement. It would still require its own disclosed limitation and could not set protected_independent_evaluator_obtained to true."
+  },
+  "silent_failure_controls": {
+    "distinct_from_pass": "NOT_OBTAINED__DISCLOSED_LIMITATION is not PASS. It records that a required check was not performed.",
+    "distinct_from_cannot_check": "CANNOT_CHECK is a per-invariant label a bound evaluator emits after inspecting a packet. This token records that no evaluator was ever bound to inspect anything, which is a custody state, not an evaluation outcome.",
+    "distinct_gate_terminal": "src/orion_v2/parity_execution_gate.py returns READY_WITH_DISCLOSED_EVALUATOR_CUSTODY_LIMITATION, never READY_FOR_PROTECTED_PARITY_RUN, while this disposition is in force.",
+    "denominators_published": true,
+    "counter_that_never_ran": "The 51/8/59 split is recomputed from the frozen registry by tests/unit/test_parity_semantic_custody_disposition.py rather than read from this file, so a stale number here fails the suite."
+  },
+  "authority": {
+    "grants_independent_evaluator_custody": false,
+    "grants_v1_parity": false,
+    "grants_v2_closeout": false,
+    "grants_scientific_truth": false,
+    "grants_novelty": false,
+    "grants_publication_authority": false,
+    "grants_run_authorization": false,
+    "note": "This disposition removes an indefinite block and replaces it with a stated, scoped limitation. It authorises nothing and improves no result."
+  }
+}

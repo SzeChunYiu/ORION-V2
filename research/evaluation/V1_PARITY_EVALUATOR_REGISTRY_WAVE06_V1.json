@@ -1,7 +1,7 @@
 {
   "schema_version": "orion.v2.v1-parity-evaluator-registry.v1",
   "registry_id": "ORION-V2-V1-PARITY-EVALUATORS-WAVE06-V1",
-  "status": "DETERMINISTIC_SCORER_BOUND_SEMANTIC_EVALUATOR_IDENTITIES_OPEN",
+  "status": "DETERMINISTIC_SCORER_BOUND_SEMANTIC_EVALUATOR_CUSTODY_NOT_OBTAINED_DISCLOSED",
   "case_registry_git_blob_sha": "79f5e9d47d65994bae77695f37718c0c86079257",
   "scoring_spec_path": "research/evaluation/V1_PARITY_SCORING_ADJUDICATION_WAVE06_V1.json",
   "scoring_spec_git_blob_sha": "599c80442d01b4239d7bb957122bd0be989042cd",
@@ -14,14 +14,31 @@
       "bound": true,
       "criterion_source": "frozen V1-native test assertions plus frozen post-subject hostile supplements",
       "covers": [
-        "A1_CRITERION_CONSERVATION", "A2_DECOMPOSITION_COUPLING", "A3_DIRECT_BLOCKED_CONTROL",
-        "B1_RETRIEVAL_REPLAY_IDENTITY", "B2_CENSORED_NOVELTY_CONTROL", "B3_SOURCE_PASSAGE_BINDING",
-        "C1_PROVENANCE_NOT_CORROBORATION", "D1_SEMANTIC_PROJECTION_HISTORY",
-        "E1_NONIDENTIFYING_FAILURE_DISCRIMINATOR", "E2_MISSING_EVIDENCE_NOT_CONTRADICTION", "E3_EXPERIENCE_CONTEXT_FOR_DIAGNOSIS",
-        "F1_ROOT_INCLUSIVE_SELECTIVE_REOPEN", "F2_ALTERNATIVE_SUPPORT_SURVIVES", "F3_LOWER_LEVEL_SUFFICIENCY",
-        "G1_BOUNDED_MULTIAXIS_SATURATION", "G2_OMISSION_CHALLENGE_AND_STOP", "G3_BOUNDED_RESULT_NO_SCOPE_LAUNDERING",
-        "H1_TYPED_AUTHORITY_NONCOMPENSATION", "H2_EXTERNAL_REVIEW_NONAUTHORIZING", "H3_CRITERION_CHURN", "H4_EXPERIMENT_SELECTION_AUTHORITY",
-        "I1_EXECUTION_FAILURE_NOT_SCIENCE", "I2_MANDATORY_CONTEXT_BUDGET", "I3_PROCESS_AND_PAYLOAD_SAFETY", "I4_MEMORY_EXPERIENCE_RETENTION"
+        "A1_CRITERION_CONSERVATION",
+        "A2_DECOMPOSITION_COUPLING",
+        "A3_DIRECT_BLOCKED_CONTROL",
+        "B1_RETRIEVAL_REPLAY_IDENTITY",
+        "B2_CENSORED_NOVELTY_CONTROL",
+        "B3_SOURCE_PASSAGE_BINDING",
+        "C1_PROVENANCE_NOT_CORROBORATION",
+        "D1_SEMANTIC_PROJECTION_HISTORY",
+        "E1_NONIDENTIFYING_FAILURE_DISCRIMINATOR",
+        "E2_MISSING_EVIDENCE_NOT_CONTRADICTION",
+        "E3_EXPERIENCE_CONTEXT_FOR_DIAGNOSIS",
+        "F1_ROOT_INCLUSIVE_SELECTIVE_REOPEN",
+        "F2_ALTERNATIVE_SUPPORT_SURVIVES",
+        "F3_LOWER_LEVEL_SUFFICIENCY",
+        "G1_BOUNDED_MULTIAXIS_SATURATION",
+        "G2_OMISSION_CHALLENGE_AND_STOP",
+        "G3_BOUNDED_RESULT_NO_SCOPE_LAUNDERING",
+        "H1_TYPED_AUTHORITY_NONCOMPENSATION",
+        "H2_EXTERNAL_REVIEW_NONAUTHORIZING",
+        "H3_CRITERION_CHURN",
+        "H4_EXPERIMENT_SELECTION_AUTHORITY",
+        "I1_EXECUTION_FAILURE_NOT_SCIENCE",
+        "I2_MANDATORY_CONTEXT_BUDGET",
+        "I3_PROCESS_AND_PAYLOAD_SAFETY",
+        "I4_MEMORY_EXPERIENCE_RETENTION"
       ],
       "authority_ceiling": "MECHANICAL_SCORING_ONLY",
       "independence_note": "The criterion is inherited from frozen V1/native source artifacts and the scorer may mechanically apply it, but this evaluator does not independently establish scientific semantics or external scientific authority."
@@ -30,39 +47,73 @@
       "evaluator_id": "PARITY-C-SEMANTIC-REVIEWER-1",
       "type": "BLINDED_NATIVE_SCIENTIFIC_SEMANTICS_REVIEWER",
       "bound": false,
-      "identity": "TO_BIND_BEFORE_PAIRED_OUTPUT_ACCESS",
-      "covers": ["C2_SAME_WORDS_DIFFERENT_NATIVE_STRUCTURE", "C3_DIFFERENT_WORDS_SAME_REGISTERED_STRUCTURE"]
+      "identity": "NOT_OBTAINED",
+      "covers": [
+        "C2_SAME_WORDS_DIFFERENT_NATIVE_STRUCTURE",
+        "C3_DIFFERENT_WORDS_SAME_REGISTERED_STRUCTURE"
+      ],
+      "independence_disposition": "NOT_OBTAINED__DISCLOSED_LIMITATION",
+      "disposition_reason": "no evaluator source outside this programme is available; the two functions this slot was registered to perform (non-self-authorship over programme-authored semantic cases, and a second non-duplicate evaluator source) cannot be discharged from inside it",
+      "disposition_artifact": "research/evaluation/V1_PARITY_SEMANTIC_EVALUATOR_CUSTODY_DISPOSITION_WAVE06_V1.json",
+      "authority_ceiling": "NONE_SLOT_UNFILLED"
     },
     {
       "evaluator_id": "PARITY-C-SEMANTIC-REVIEWER-2",
       "type": "BLINDED_NATIVE_SCIENTIFIC_SEMANTICS_REVIEWER",
       "bound": false,
-      "identity": "TO_BIND_BEFORE_PAIRED_OUTPUT_ACCESS",
-      "covers": ["C2_SAME_WORDS_DIFFERENT_NATIVE_STRUCTURE", "C3_DIFFERENT_WORDS_SAME_REGISTERED_STRUCTURE"]
+      "identity": "NOT_OBTAINED",
+      "covers": [
+        "C2_SAME_WORDS_DIFFERENT_NATIVE_STRUCTURE",
+        "C3_DIFFERENT_WORDS_SAME_REGISTERED_STRUCTURE"
+      ],
+      "independence_disposition": "NOT_OBTAINED__DISCLOSED_LIMITATION",
+      "disposition_reason": "no evaluator source outside this programme is available; the two functions this slot was registered to perform (non-self-authorship over programme-authored semantic cases, and a second non-duplicate evaluator source) cannot be discharged from inside it",
+      "disposition_artifact": "research/evaluation/V1_PARITY_SEMANTIC_EVALUATOR_CUSTODY_DISPOSITION_WAVE06_V1.json",
+      "authority_ceiling": "NONE_SLOT_UNFILLED"
     },
     {
       "evaluator_id": "PARITY-D-RECONSTRUCTION-REVIEWER-1",
       "type": "BLINDED_RECONSTRUCTION_GLUING_REVIEWER",
       "bound": false,
-      "identity": "TO_BIND_BEFORE_PAIRED_OUTPUT_ACCESS",
-      "covers": ["D2_LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION", "D3_NEW_REPRESENTATION_OPENS_ROUTE"]
+      "identity": "NOT_OBTAINED",
+      "covers": [
+        "D2_LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION",
+        "D3_NEW_REPRESENTATION_OPENS_ROUTE"
+      ],
+      "independence_disposition": "NOT_OBTAINED__DISCLOSED_LIMITATION",
+      "disposition_reason": "no evaluator source outside this programme is available; the two functions this slot was registered to perform (non-self-authorship over programme-authored semantic cases, and a second non-duplicate evaluator source) cannot be discharged from inside it",
+      "disposition_artifact": "research/evaluation/V1_PARITY_SEMANTIC_EVALUATOR_CUSTODY_DISPOSITION_WAVE06_V1.json",
+      "authority_ceiling": "NONE_SLOT_UNFILLED"
     },
     {
       "evaluator_id": "PARITY-D-RECONSTRUCTION-REVIEWER-2",
       "type": "BLINDED_RECONSTRUCTION_GLUING_REVIEWER",
       "bound": false,
-      "identity": "TO_BIND_BEFORE_PAIRED_OUTPUT_ACCESS",
-      "covers": ["D2_LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION", "D3_NEW_REPRESENTATION_OPENS_ROUTE"]
+      "identity": "NOT_OBTAINED",
+      "covers": [
+        "D2_LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION",
+        "D3_NEW_REPRESENTATION_OPENS_ROUTE"
+      ],
+      "independence_disposition": "NOT_OBTAINED__DISCLOSED_LIMITATION",
+      "disposition_reason": "no evaluator source outside this programme is available; the two functions this slot was registered to perform (non-self-authorship over programme-authored semantic cases, and a second non-duplicate evaluator source) cannot be discharged from inside it",
+      "disposition_artifact": "research/evaluation/V1_PARITY_SEMANTIC_EVALUATOR_CUSTODY_DISPOSITION_WAVE06_V1.json",
+      "authority_ceiling": "NONE_SLOT_UNFILLED"
     },
     {
       "evaluator_id": "PARITY-SEMANTIC-TIEBREAKER",
       "type": "BLINDED_INDEPENDENT_TIEBREAKER",
       "bound": false,
-      "identity": "TO_BIND_OR_INSTANTIATE_BEFORE_ANY_CASE_REQUIRING_TIEBREAK_IS_OPENED",
+      "identity": "NOT_OBTAINED",
       "covers": [
-        "C2_SAME_WORDS_DIFFERENT_NATIVE_STRUCTURE", "C3_DIFFERENT_WORDS_SAME_REGISTERED_STRUCTURE",
-        "D2_LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION", "D3_NEW_REPRESENTATION_OPENS_ROUTE"
-      ]
+        "C2_SAME_WORDS_DIFFERENT_NATIVE_STRUCTURE",
+        "C3_DIFFERENT_WORDS_SAME_REGISTERED_STRUCTURE",
+        "D2_LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION",
+        "D3_NEW_REPRESENTATION_OPENS_ROUTE"
+      ],
+      "independence_disposition": "NOT_OBTAINED__DISCLOSED_LIMITATION",
+      "disposition_reason": "no evaluator source outside this programme is available; the two functions this slot was registered to perform (non-self-authorship over programme-authored semantic cases, and a second non-duplicate evaluator source) cannot be discharged from inside it",
+      "disposition_artifact": "research/evaluation/V1_PARITY_SEMANTIC_EVALUATOR_CUSTODY_DISPOSITION_WAVE06_V1.json",
+      "authority_ceiling": "NONE_SLOT_UNFILLED"
     }
   ],
   "binding_rule": "registry_bound may become true only after the four primary semantic reviewer identities are immutable, their declared dependencies are screened, and the scoring-spec digest is unchanged. The tiebreaker must be bound before it receives any disputed output packet.",
@@ -73,13 +124,41 @@
     "reviewer is bound to the frozen scoring specification",
     "reviewer has no authority to mutate case, subject, criterion, resource budget, or comparator after output access"
   ],
-  "current_blocker": "BIND_INDEPENDENT_SEMANTIC_REVIEWER_IDENTITIES_FOR_PARITY_C_AND_PARITY_D",
+  "current_blocker": "NONE_SEMANTIC_EVALUATOR_CUSTODY_DEMOTED_TO_DISCLOSED_LIMITATION",
   "authority": {
     "grants_protected_custody": false,
     "grants_v1_parity": false,
     "grants_v2_closeout": false,
     "grants_scientific_truth": false,
     "grants_novelty": false,
-    "grants_publication_authority": false
+    "grants_publication_authority": false,
+    "grants_independent_evaluator_custody": false
+  },
+  "independence_disposition": "NOT_OBTAINED__DISCLOSED_LIMITATION",
+  "disclosed_limitation": {
+    "disposition_path": "research/evaluation/V1_PARITY_SEMANTIC_EVALUATOR_CUSTODY_DISPOSITION_WAVE06_V1.json",
+    "grants_independent_evaluator_custody": false,
+    "protected_independent_evaluator_required": true,
+    "protected_independent_evaluator_obtained": false,
+    "unresolved_case_ids": [
+      "C2_SAME_WORDS_DIFFERENT_NATIVE_STRUCTURE",
+      "C3_DIFFERENT_WORDS_SAME_REGISTERED_STRUCTURE",
+      "D2_LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION",
+      "D3_NEW_REPRESENTATION_OPENS_ROUTE"
+    ],
+    "unresolved_capability_cell_ids": [
+      "ABSORB.CLAIM.v0",
+      "ABSORB.CONTEXT.v0",
+      "ABSORB.REPRESENTATION_MAP.v0",
+      "ABSORB.SCIENTIFIC_LANGUAGE.v0",
+      "RECONSTRUCT.ATLAS_UPDATE.v0",
+      "RECONSTRUCT.GLUE.v0",
+      "RECONSTRUCT.PORTRAIT.v0",
+      "RECONSTRUCT.SEARCH_UNIVERSE.v0"
+    ],
+    "scorable_capability_cell_count": 51,
+    "frozen_capability_cell_total": 59,
+    "reachable_terminal_ceiling": "PARTIAL_SURFACE_TERMINAL_OVER_51_OF_59_CELLS_WITH_8_CELLS_DISCLOSED_CANNOT_CHECK",
+    "not_a_pass": "this token records that a required check was never performed; it is neither PASS nor an evaluator-emitted CANNOT_CHECK"
   }
 }

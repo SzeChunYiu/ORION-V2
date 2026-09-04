@@ -1,7 +1,7 @@
 {
   "schema_version": "orion.v2.v1-parity-custody-protocol.v1",
   "protocol_id": "ORION-V2-V1-PARITY-CUSTODY-WAVE06-V1",
-  "status": "CASE_AND_SCORING_BOUND_SEMANTIC_EVALUATOR_IDENTITIES_OPEN",
+  "status": "CASE_SCORING_AND_BUDGETS_BOUND_SEMANTIC_EVALUATOR_CUSTODY_NOT_OBTAINED_DISCLOSED",
   "subject_commit": "f33d2f45554583f9e612f7a186b7d92e6bc8d01a",
   "frozen_v1_commit": "8f250fc3e55d6d6a28fb1fb33d9932ef1a8760b5",
   "custody_invariants": [
@@ -14,7 +14,8 @@
     "same-model, same-data or same-source evaluators are not counted as independent without a declared dependence disposition",
     "public availability of a case does not confer protected custody",
     "any evaluator, scorer, criterion or case mutation after subject-output access creates a new run identity and invalidates the prior parity terminal",
-    "negative, blocked and CANNOT_CHECK outcomes remain admissible and may not be hidden by selection or reporting"
+    "negative, blocked and CANNOT_CHECK outcomes remain admissible and may not be hidden by selection or reporting",
+    "an unobtainable custody requirement is dispositioned as NOT_OBTAINED__DISCLOSED_LIMITATION with published denominators and a scoped terminal ceiling; it is never recorded as satisfied, never silently dropped, and never discharged by a programme-internal substitute for an external evaluator source"
   ],
   "required_bound_objects": [
     "protected_case_manifest_digest",
@@ -30,9 +31,9 @@
   "evaluator_registry": {
     "bound": false,
     "path": "research/evaluation/V1_PARITY_EVALUATOR_REGISTRY_WAVE06_V1.json",
-    "digest": "git-sha1:93ce327e3021e5ae1ed1352e939fd08797e18bb6",
-    "status": "DETERMINISTIC_SCORER_BOUND_SEMANTIC_EVALUATOR_IDENTITIES_OPEN",
-    "current_blocker": "BIND_INDEPENDENT_SEMANTIC_REVIEWER_IDENTITIES_FOR_PARITY_C_AND_PARITY_D",
+    "digest": "git-sha1:ae22fd7b402fee39c332858c47e576835f7b444b",
+    "status": "DETERMINISTIC_SCORER_BOUND_SEMANTIC_EVALUATOR_CUSTODY_NOT_OBTAINED_DISCLOSED",
+    "current_blocker": "NONE_SEMANTIC_EVALUATOR_CUSTODY_DEMOTED_TO_DISCLOSED_LIMITATION",
     "required_fields": [
       "evaluator_id",
       "evaluator_type",
@@ -42,7 +43,37 @@
       "criterion_digest",
       "scorer_or_adjudicator_digest",
       "authority_ceiling"
-    ]
+    ],
+    "independence_disposition": "NOT_OBTAINED__DISCLOSED_LIMITATION",
+    "disposition_artifact": "research/evaluation/V1_PARITY_SEMANTIC_EVALUATOR_CUSTODY_DISPOSITION_WAVE06_V1.json",
+    "disposition_artifact_digest": "git-sha1:736de633827e0db9519bfcc05a88b97489b37a5a",
+    "bound_note": "bound stays false because the four primary semantic reviewer identities were never obtained. The preflight gate advances on the declared disposition, not on a bound registry, and reports a distinct limitation-carrying terminal.",
+    "disclosed_limitation": {
+      "disposition_path": "research/evaluation/V1_PARITY_SEMANTIC_EVALUATOR_CUSTODY_DISPOSITION_WAVE06_V1.json",
+      "grants_independent_evaluator_custody": false,
+      "protected_independent_evaluator_required": true,
+      "protected_independent_evaluator_obtained": false,
+      "unresolved_case_ids": [
+        "C2_SAME_WORDS_DIFFERENT_NATIVE_STRUCTURE",
+        "C3_DIFFERENT_WORDS_SAME_REGISTERED_STRUCTURE",
+        "D2_LOCAL_COMPATIBILITY_GLOBAL_OBSTRUCTION",
+        "D3_NEW_REPRESENTATION_OPENS_ROUTE"
+      ],
+      "unresolved_capability_cell_ids": [
+        "ABSORB.CLAIM.v0",
+        "ABSORB.CONTEXT.v0",
+        "ABSORB.REPRESENTATION_MAP.v0",
+        "ABSORB.SCIENTIFIC_LANGUAGE.v0",
+        "RECONSTRUCT.ATLAS_UPDATE.v0",
+        "RECONSTRUCT.GLUE.v0",
+        "RECONSTRUCT.PORTRAIT.v0",
+        "RECONSTRUCT.SEARCH_UNIVERSE.v0"
+      ],
+      "scorable_capability_cell_count": 51,
+      "frozen_capability_cell_total": 59,
+      "reachable_terminal_ceiling": "PARTIAL_SURFACE_TERMINAL_OVER_51_OF_59_CELLS_WITH_8_CELLS_DISCLOSED_CANNOT_CHECK",
+      "not_a_pass": "this token records that a required check was never performed; it is neither PASS nor an evaluator-emitted CANNOT_CHECK"
+    }
   },
   "scoring_registry": {
     "bound": true,
@@ -62,9 +93,11 @@
   "run_gate": {
     "allowed_now": false,
     "blocked_on": [
-      "independent semantic evaluator identities for PARITY-C and PARITY-D",
-      "strongest parent-composed baseline identities",
-      "case budget manifest"
+      "strongest parent-composed baseline implementation identities"
+    ],
+    "resolved_since_previous_revision": [
+      "matched per-case budgets (V1_PARITY_RESOURCE_MATCHING_PROTOCOL_WAVE06_V1.json case_budget_manifest.bound is true; the previous blocked_on list was stale on this item)",
+      "independent semantic evaluator identities for PARITY-C and PARITY-D, not by obtaining them but by the disclosed limitation recorded in V1_PARITY_SEMANTIC_EVALUATOR_CUSTODY_DISPOSITION_WAVE06_V1.json"
     ]
   },
   "authority": {
