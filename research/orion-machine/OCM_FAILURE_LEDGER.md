@@ -360,6 +360,16 @@ stays `BLOCKED` with `RCL-F11` `BLOCKED_HIGH_COLLISION`. The smallest next actio
   regenerated at the head, freeze record rebound in the same commit, and a unit test that recomputes
   every binding in both files against the committed bytes.
 
+- **`UNPINNED_SUBSTRATE_CONDITION` + `M2B_V1_GATING_DEFECT` — KSO M2b, 2026-09-04 (PR #295).** The first M2b run
+  (21-atom algebra source, every constraint conjoined on its target) was executed **without a pre-run
+  freeze**; it returned exact 5/30 with FIRE attributed on 25/30 (the three mutually exclusive Δ-case
+  constraints were conjoined so `proc:quadratic_formula` could never fire; `proc:linear` fired on
+  a = b = 0). Both defects were repaired by a design change made after seeing the outcome (case
+  constraints disjoin; `con:a_zero`, `con:b_nonzero` added). Disposition: V1 kept as a superseded
+  reconstruction (`ALGEBRA_SOURCE_V1_SUPERSEDED_RECONSTRUCTED.json`, sha `712a33e4ec1c…`) with its
+  outcome recorded in `results/KSO_M2B_ALGEBRA_OUTCOME_V1.md`; V2 frozen (`results/KSO_M2B_DESIGN_V2.json`)
+  before its 30/30 receipt is cited; the module refuses to run on design drift from V2.
+
 ## Reopening rule
 
 This ledger reopens on any of the following, each of which produces a *passing* artifact and is
