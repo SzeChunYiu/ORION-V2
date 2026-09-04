@@ -165,7 +165,7 @@ def run_thought_speech_v0() -> dict[str, object]:
         },
         "discriminator": {
             "surface_depends_on_selected_cognitive_method": True,
-            "user_text_continuation_path_present": False,
+            "user_text_continuation_path_absent": True,
             "sentence_plan_precedes_surface": True,
         },
         "authority": {
