@@ -135,6 +135,37 @@
         "search_scope": "The bodies of issues 194, 197, 199, 221 and 245, each searched for 'A-0' and 'A-1' with a control term that fired in every file (194: 205, 197: 126, 199: 10, 221: 16, 245: 31 control hits, 0 hits for the identifier in all five); and every one of the 52 files under research/orion-machine/ on both carrier pull requests. The nearest range in issue 197 is OM-WP5-A01..A10, which is the Candidate A tournament checklist for Verified Trace Learnability, not a custody audit.",
         "action_taken": "The audit above is numbered IA-01.. on its own evidence. No row structure was invented to match an identifier that could not be traced.",
         "grants_scientific_authority": false
+      },
+      {
+        "id": "IA-07",
+        "import": "the control evidence imported by REVOCATION_COMPLETE_LEARNING_RECEIPT_V0.json and RCL_INDEPENDENT_REVIEW_PACKET_V0.json from research/orion-machine/revocation_complete_learning/rcl_checks_core.py and rcl_checks_finish.py",
+        "resolves_to": "three controls that cannot fail, so the evidence they are cited for is not established by them",
+        "disposition": "CONTROL_EVIDENCE_WITHDRAWN_TO_CANNOT_CHECK",
+        "found_by": "the Cursor Bugbot check run on pull request 244 head d4eb281, 2026-09-04, which reported three medium-severity findings. Each was then confirmed independently against the committed source before being recorded here; a checker's report is not accepted as a finding until the finding is reproduced.",
+        "confirmed_findings": [
+          {
+            "site": "rcl_checks_core.py verify_storage_query_frontier",
+            "defect": "the reconstruction is profile_from_bits(bits[:stored] + bits[stored:], n), which is an identity on the full bit vector for every value of stored, and the emitted 'exact' field is the literal True. The loop over stored varies nothing, so no storage bit is ever withheld and no coordinate query is ever issued.",
+            "consequence": "the 5,329 reconstruction checks do not test the RCL-1c storage/query frontier they are cited for.",
+            "confirmation": "bits[:s] + bits[s:] == bits verified for every split of a 5-element vector; the literal '\"exact\": True' located in the committed source."
+          },
+          {
+            "site": "rcl_checks_finish.py verify_controls, mutation_control",
+            "defect": "one coordinate of a copied signature tuple is flipped and the copy is compared to the original, so mutation_detected is True for every boolean vector.",
+            "consequence": "the mutation control cannot detect a mutated profile, a colliding signature, or a broken signature function.",
+            "confirmation": "true for all 16 boolean 4-vectors, with no vector making it False."
+          },
+          {
+            "site": "rcl_checks_finish.py verify_controls, no_alarm",
+            "defect": "live(full, revoked) is stored twice under two keys and agreement is len(set(values)) == 1, so the comparison is x == x.",
+            "consequence": "no distinct complete-updater path is exercised and the control cannot catch a false retraction or a live() that always returns the same boolean.",
+            "confirmation": "the exact two-line source pattern located in the committed source; agreement holds for either value of live()."
+          }
+        ],
+        "class": "This is the repository's existing VACUOUS_CONTRAST and STRUCTURALLY_DETERMINED_REGISTERED_CLAUSE vocabulary from the root FAILURE_LEDGER.md. No new class is minted for it.",
+        "action_taken": "Recorded, not repaired. The three files are hash-bound inside RCL_INDEPENDENT_REVIEW_PACKET_V0.json, the frozen review target of issues 199 and 245, and repairing them here would break that binding a second time and would remove the evidence that checkbox RCL-R03 of issue 245 exists to surface: 'Confirm the planted over-retraction control fires, the no-alarm control passes, and the mutation control fails the intended invariant.' The finding is disclosed on both review issues and routed to them.",
+        "affected_evidence": "The RCL-1c frontier control evidence and the no-alarm and mutation controls of the RCL lane are withdrawn to CANNOT_CHECK. No theorem statement is altered, and the planted over-retraction control, which does compare two distinct expressions, is not implicated.",
+        "grants_scientific_authority": false
       }
     ]
   },
@@ -574,6 +605,7 @@
     "This snapshot does not close any checkbox in issue 197 or issue 221.",
     "This snapshot does not establish novelty, priority, external authority, architecture separation, parameter efficiency, natural-language competence, quantum advantage or publication readiness.",
     "The absence of a file from main is a custody fact and carries no scientific meaning.",
-    "A green check on a carrier pull request is evidence that the registered checkers ran and did not fire; it is not evidence that a theorem is correct or that a residual survives its parents."
+    "A green check on a carrier pull request is evidence that the registered checkers ran and did not fire; it is not evidence that a theorem is correct or that a residual survives its parents.",
+    "Audit row IA-07 withdraws three RCL control results to CANNOT_CHECK. That withdrawal is not converted into a repaired defect, and the artifacts it concerns are merged with the withdrawal attached rather than silently."
   ]
 }

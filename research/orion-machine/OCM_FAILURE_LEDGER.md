@@ -144,6 +144,44 @@ critical defect.
   #245 have been told the target moved. Record: audit rows `IA-02` and `IA-03` in
   `OCM_SNAPSHOT_V1.json`.
 
+- **`VACUOUS_CONTRAST` — three RCL controls that cannot fail, 2026-09-04.** This is the repository's
+  existing vocabulary from the root `FAILURE_LEDGER.md`, applied to a new instance; no class is minted
+  for it. Three controls in the revocation-complete-learning lane are structurally incapable of
+  reporting the condition they exist to catch:
+
+  1. `rcl_checks_core.py::verify_storage_query_frontier` reconstructs from
+     `profile_from_bits(bits[:stored] + bits[stored:], n)`. That expression is the identity on the
+     full bit vector for **every** value of `stored`, and the emitted `exact` field is the literal
+     `True`. The loop over `stored` varies nothing: no storage bit is ever withheld and no coordinate
+     query is ever issued, so the 5,329 reconstruction checks do not test the RCL-1c storage/query
+     frontier they are cited for.
+  2. `rcl_checks_finish.py::verify_controls` sets `mutation_detected` by flipping one coordinate of a
+     **copied** signature tuple and comparing the copy to the original. That inequality holds for
+     every boolean vector — verified over all 16 four-vectors, with none making it false — so the
+     control cannot detect a mutated profile, a colliding signature, or a broken `signature`.
+  3. The same function builds `no_alarm` by storing `live(full, revoked)` twice under two keys and
+     calling `len(set(values)) == 1` agreement. That is `x == x`, true for either value of `live()`.
+     No distinct complete-updater path is exercised, so the control cannot catch a false retraction or
+     a `live()` that always returns the same boolean.
+
+  This is the exact shape the root ledger names: *"a comparator with no contrast reports `1.000`,
+  which reads as strength and has no denominator to interrogate."* **Found by an automated reviewer**
+  — the Cursor Bugbot check run on pull request #244 at head `d4eb281`, which reported three
+  medium-severity findings — and each was then reproduced independently against the committed source
+  before being recorded here. A checker's report is not a finding until the finding is confirmed.
+
+  **Recorded, not repaired.** All three sites are hash-bound inside
+  `RCL_INDEPENDENT_REVIEW_PACKET_V0.json`, the frozen review target of issues #199 and #245.
+  Repairing them here would break that binding a second time, and would delete the evidence that
+  checkbox **RCL-R03** of issue #245 exists to surface: *"Confirm the planted over-retraction control
+  fires, the no-alarm control passes, and the mutation control fails the intended invariant."* The
+  authoring side repairing a control before the independent review that is chartered to test it has
+  run would convert a finding into a green result. The three control results are withdrawn to
+  `CANNOT_CHECK`; no theorem statement is altered; the planted over-retraction control, which does
+  compare two distinct expressions, is not implicated. Disclosed on #244 and #245. Record: audit row
+  `IA-07` in `OCM_SNAPSHOT_V1.json`; deliverable row `D09` in `OCM_TASK_LEDGER_V1.json`, downgraded
+  from `PRESENT` to `PARTIAL` on this finding.
+
 ### Unreturned by construction, not repaired
 
 Issue #221's deliverable 10 — *"independent hostile review stating which candidates collapse and what
@@ -177,6 +215,8 @@ therefore invisible to a green suite:
   review, or a file declared immutable is shown to have been edited without disclosure;
 - an independent review terminal is found to have been produced by, or on behalf of, a session that
   authored the work it reviews.
+- a registered control is shown to be incapable of failing — a comparison of an expression with
+  itself, a loop whose parameter changes nothing, or a verdict field written as a literal.
 
 A verdict resting on any of these is withdrawn to `CANNOT_CHECK`. It is not converted into a repaired
 defect, and a later green result does not erase how the earlier one was obtained.

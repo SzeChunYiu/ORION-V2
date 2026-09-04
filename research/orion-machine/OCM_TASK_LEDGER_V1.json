@@ -242,7 +242,7 @@
     {
       "id": "D09",
       "declared_in_issue_221_as": "exact finite checkers with planted failures",
-      "status": "PRESENT",
+      "status": "PARTIAL",
       "evidence": [
         {
           "path": "research/orion-machine/reference/",
@@ -266,7 +266,8 @@
       "execution_master_correspondence": [
         "OM-WP9-004 ('every no-alarm gate has a planted positive and no-false-alarm control'), correspondence only"
       ],
-      "note": "The interface-hierarchy checker additionally carries a denominator pin (answerable + abstentions == target_width) that refuses a vacuous (0, 0) satisfaction of a theorem bound, and mutation controls M1..M5 with M0 as the no-alarm case. Recorded as import-authority finding IA-05 in OCM_SNAPSHOT_V1.json because the receipt declared this repair before the module carried it."
+      "note": "The interface-hierarchy checker additionally carries a denominator pin (answerable + abstentions == target_width) that refuses a vacuous (0, 0) satisfaction of a theorem bound, and mutation controls M1..M5 with M0 as the no-alarm case. Recorded as import-authority finding IA-05 in OCM_SNAPSHOT_V1.json because the receipt declared this repair before the module carried it.",
+      "gap": "Checkers and planted failures exist, and the nine WLL/parity suites carry key denominators and planted positives. Three controls in the RCL lane cannot fail and are withdrawn to CANNOT_CHECK: the RCL-1c storage/query frontier reconstruction is an identity over the full bit vector with a hardcoded exact flag; the mutation control compares a one-bit-flipped copy to its original, which is true for every boolean vector; and the no-alarm control stores one expression twice and calls the equality agreement. Found by the Cursor Bugbot check run on pull request 244 and each confirmed independently against the committed source before being recorded. Recorded, not repaired: the files are hash-bound in the frozen review target of issues 199 and 245, and checkbox RCL-R03 of issue 245 is chartered to test exactly these three controls. See audit row IA-07 in OCM_SNAPSHOT_V1.json."
     },
     {
       "id": "D10",
