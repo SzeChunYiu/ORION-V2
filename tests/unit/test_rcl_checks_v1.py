@@ -43,6 +43,7 @@ def test_v0_files_are_not_modified_by_v1() -> None:
 def test_frontier_v1_has_real_withheld_summary_and_collisions() -> None:
     result = V1.verify_storage_query_frontier_v1(5)
     assert result["reconstruction_checks"] == 28863
+    assert result["distinct_candidate_completeness_checks"] == 28863
     assert result["splits_on_or_above_frontier"] == 22
     assert result["splits_below_frontier"] == 64
     assert result["collision_pairs_exhibited"] == 64
@@ -63,7 +64,7 @@ def test_frontier_v1_exactness_is_computed_not_literal() -> None:
 
 def test_mutations_are_applied_and_detected() -> None:
     result = V1.verify_mutation_controls_v1()
-    assert result["mutations_planted"] == 5 and result["mutations_detected"] == 5
+    assert result["mutations_planted"] == 6 and result["mutations_detected"] == 6
     cases = result["cases"]
     for name in (
         "M1_live_ignores_revocation",
@@ -71,6 +72,7 @@ def test_mutations_are_applied_and_detected() -> None:
         "M3_negated_coordinate_oracle",
         "M4_reconstructor_drops_last_coordinate",
         "M5_complement_updater",
+        "M6_reconstructor_collapses_fillings",
     ):
         assert cases[name]["applied"] is True
     assert cases["M1_live_ignores_revocation"]["injectivity_survives"] is False
@@ -78,7 +80,29 @@ def test_mutations_are_applied_and_detected() -> None:
     assert cases["M3_negated_coordinate_oracle"]["detected"] is True
     assert cases["M4_reconstructor_drops_last_coordinate"]["detected"] is True
     assert cases["M5_complement_updater"]["detected"] is True
+    assert cases["M6_reconstructor_collapses_fillings"]["detected"] is True
+    assert "candidates" in cases["M6_reconstructor_collapses_fillings"]["failure"]
     assert cases["M0_unmutated"] == {"injectivity": True, "frontier": True}
+
+
+def test_below_frontier_arm_is_falsifiable() -> None:
+    """The below-frontier arm must be able to fail: a reconstructor that collapses
+    every filling makes the distinct-candidate count wrong, and candidate_profiles
+    deduplicates so the count is a real quantity."""
+    honest = V1.candidate_profiles({0: True}, 4)
+    assert len(honest) == 2 ** (len(V1.fixed_certificate_profiles(4)[1]) - 1)
+    assert len(set(honest)) == len(honest)
+
+    def collapse(bits, n):
+        return V1.profile_from_bits(tuple(False for _ in bits), n)
+
+    assert len(V1.candidate_profiles({0: True}, 4, collapse)) == 1
+    try:
+        V1.verify_storage_query_frontier_v1(4, reconstruct=collapse)
+    except AssertionError as exc:
+        assert "candidates" in str(exc)
+    else:
+        raise AssertionError("collapsing reconstructor passed the frontier check")
 
 
 def test_no_alarm_uses_three_distinct_updaters_and_a_planted_incomplete_one() -> None:

@@ -8,10 +8,13 @@ deliverable ``D09`` of ``OCM_TASK_LEDGER_V1.json``):
    ``bits[:stored] + bits[stored:]`` (the identity for every ``stored``) and wrote
    ``"exact": True`` as a literal.  Here the summary really withholds the
    unstored coordinates, the queries are issued against the *profile* through a
-   charged coordinate oracle, the reconstructor returns the full candidate set
-   compatible with what it holds, and exactness is *computed*.  Splits with
-   ``S + Q < N`` must exhibit an explicit collision pair; splits with ``S + Q >= N``
-   must reconstruct every profile.  Both halves can fail.
+   charged coordinate oracle, the reconstructor returns the full *deduplicated*
+   candidate set compatible with what it holds, and exactness is *computed*.
+   Splits with ``S + Q < N`` must exhibit an explicit collision pair and a
+   candidate set of exactly ``2^(N-S-Q)`` distinct members containing the truth;
+   splits with ``S + Q >= N`` must reconstruct every profile.  Every arm can fail
+   (a first draft's below-frontier arm could not — VACUOUS_CONTRAST, Cursor
+   Bugbot on PR #281 — repaired here with mutation M6 registered against it).
 2. ``rcl_checks_finish.verify_controls`` flipped one bit of a *copied* signature
    and compared the copy to the original (true for every boolean vector).  Here
    each mutation is applied to the object under test (``live``, ``signature``,
@@ -106,14 +109,14 @@ def candidate_profiles(
     _, alternatives, _ = fixed_certificate_profiles(n)
     total = len(alternatives)
     unknown = [j for j in range(total) if j not in known]
-    out: list[Profile] = []
+    out: dict[Profile, None] = {}  # deduplicated, insertion-ordered: distinct hypotheses only
     for fill in itertools.product((False, True), repeat=len(unknown)):
         bits = [False] * total
         for j, value in known.items():
             bits[j] = value
         for j, value in zip(unknown, fill, strict=True):
             bits[j] = value
-        out.append(reconstruct(tuple(bits), n))
+        out[reconstruct(tuple(bits), n)] = None
     return tuple(out)
 
 
@@ -138,6 +141,16 @@ def verify_storage_query_frontier_v1(
     check must additionally *exhibit* a collision pair: two profiles with
     identical stored bits and identical oracle answers whose full revocation
     signatures differ.
+
+    Two further assertions make the below-frontier arm falsifiable rather than
+    true by construction (a first draft asserted only "not every profile is
+    exact", which no reconstructor could violate because the candidate list was
+    never deduplicated -- VACUOUS_CONTRAST, found by Cursor Bugbot on PR #281):
+
+    * soundness: the true profile is among the (deduplicated) candidates;
+    * completeness: the candidate set has exactly ``2^(N - S - Q)`` *distinct*
+      members -- a reconstructor that collapses fillings (mutation M6) or drops a
+      coordinate (M4) makes this fail below the frontier.
     """
     if oracle is None:
         def oracle(profile: Profile, index: int, n: int) -> bool:
@@ -146,6 +159,7 @@ def verify_storage_query_frontier_v1(
         raise CannotCheck("max_n must be at least 1")
     cases: list[dict[str, object]] = []
     exact_checks = 0
+    completeness_checks = 0
     collision_pairs = 0
     below_frontier_splits = 0
     on_frontier_splits = 0
@@ -173,6 +187,18 @@ def verify_storage_query_frontier_v1(
                             f"n={n} S={stored} Q={queries}: theorem predicts exact "
                             f"reconstruction, observed candidate set of size {len(candidates)}"
                         )
+                    if profile not in candidates:
+                        raise AssertionError(
+                            f"n={n} S={stored} Q={queries}: reconstruction unsound, true profile "
+                            "not among the candidates"
+                        )
+                    expected_distinct = 2 ** (total - stored - queries)
+                    if len(candidates) != expected_distinct:
+                        raise AssertionError(
+                            f"n={n} S={stored} Q={queries}: expected {expected_distinct} distinct "
+                            f"candidates, observed {len(candidates)}"
+                        )
+                    completeness_checks += 1
                     observed_exact_all = observed_exact_all and exact_here
                     key = (stored_bits, answers)
                     if key in transcripts and collision is None:
@@ -226,6 +252,7 @@ def verify_storage_query_frontier_v1(
     return {
         "max_n": max_n,
         "reconstruction_checks": exact_checks,
+        "distinct_candidate_completeness_checks": completeness_checks,
         "splits_on_or_above_frontier": on_frontier_splits,
         "splits_below_frontier": below_frontier_splits,
         "collision_pairs_exhibited": collision_pairs,
@@ -323,6 +350,30 @@ def verify_mutation_controls_v1() -> dict[str, object]:
     if not detected:
         raise AssertionError("M4 not detected")
 
+    # M6: reconstructor that collapses every filling to one profile — the
+    # below-frontier completeness arm must fail (candidate set of size 1 where
+    # 2^(N-S-Q) distinct members are required), and soundness fails as well.
+    def reconstruct_m6(bits: Sequence[bool], n: int) -> Profile:
+        return profile_from_bits(tuple(False for _ in bits), n)
+
+    applied = reconstruct_m6(full_bits, 4) != profile_from_bits(full_bits, 4)
+    if not applied:
+        raise AssertionError("M6 mutation not applied on witness")
+    probe_known = {0: True}
+    applied = applied and len(candidate_profiles(probe_known, 4, reconstruct_m6)) == 1 < len(candidate_profiles(probe_known, 4))
+    if not applied:
+        raise AssertionError("M6 mutation not applied: candidate set did not collapse")
+    try:
+        verify_storage_query_frontier_v1(4, reconstruct=reconstruct_m6)
+        detected = False
+        reason = ""
+    except AssertionError as exc:
+        detected = True
+        reason = str(exc)
+    results["M6_reconstructor_collapses_fillings"] = {"applied": True, "detected": detected, "failure": reason}
+    if not detected or "candidates" not in reason:
+        raise AssertionError("M6 not detected for the registered reason (candidate-set size)")
+
     # M5: a live() that is the *complement* — a broken updater the no-alarm
     # control must catch (used again in verify_no_alarm_v1).
     def live_complement(profile: Profile, r: frozenset[int]) -> bool:
@@ -347,7 +398,7 @@ def verify_mutation_controls_v1() -> dict[str, object]:
     }
     if not all(results["M0_unmutated"].values()):
         raise AssertionError("M0 unmutated suite failed")
-    return {"mutations_planted": 5, "mutations_detected": 5, "cases": results}
+    return {"mutations_planted": 6, "mutations_detected": 6, "cases": results}
 
 
 # ----------------------------------------------------------------------------
