@@ -208,6 +208,17 @@ def run_task(task: int) -> int:
     return 0
 
 
+REGIME_CANON = {"interventional": "interventional", "partialinterventional": "partial_interventional",
+                "partialintervational": "partial_interventional",  # upstream's recorded spelling
+                "observational": "observational"}
+
+
+def canon_regime(v: str) -> str:
+    """Canonical regime name. Unknown strings are returned verbatim (so they mismatch loudly)."""
+    key = v.strip().lower().replace("_", "").replace("-", "")
+    return REGIME_CANON.get(key, v)
+
+
 # ------------------------------------------------- per-envelope homogeneity gate
 def envelope_status(s: dict[str, Any]) -> dict[str, Any]:
     """Every run must be settled AND provably the config the design froze for its slot.
@@ -227,6 +238,12 @@ def envelope_status(s: dict[str, Any]) -> dict[str, Any]:
         have = got.get(k)
         if isinstance(want, float) or isinstance(have, float):
             ok = have is not None and abs(float(have) - float(want)) < 1e-12
+        elif k == "training_regime":
+            # Upstream canonicalises the CLI value before recording it
+            # ('interventional' -> 'Interventional', 'partial_interventional' ->
+            # 'PartialIntervational' [sic, upstream spelling]). Compare by canonical
+            # form; a genuinely different regime still mismatches (unit-tested both ways).
+            ok = have is not None and canon_regime(str(have)) == canon_regime(str(want))
         else:
             ok = str(have) == str(want)
         if not ok:

@@ -161,3 +161,34 @@ def test_design_json_matches_the_code_constants():
     assert d["gates"]["P2_CONSENSUS_DISCRIMINATES"]["alpha"] == s2e.P2_ALPHA
     assert {k: list(v) for k, v in d["seed_table_inherited_from_stage2c"].items()} == \
         {n: [m, p] for n, m, p in s2e.SEEDS}
+
+
+def test_homogeneity_gate_accepts_upstream_canonical_regime_and_rejects_a_different_one():
+    """The real campaign records 'Interventional' / 'PartialIntervational' / 'Observational'
+    (upstream canonical forms, one misspelt) for the CLI values the design froze. The gate
+    must accept the canonical form of the SAME regime and reject a DIFFERENT regime."""
+    import tempfile
+    s = next(x for x in s2e.slots() if x["cfg"]["training_regime"] == "partial_interventional")
+    with tempfile.TemporaryDirectory() as td:
+        root = Path(td)
+        g = s2e.__dict__
+        saved = g["RESULTS"]
+        g["RESULTS"] = root
+        try:
+            d = root / str(s["exp_id"])
+            d.mkdir(parents=True)
+            (d / "metrics.json").write_text("{}")
+            (d / "output_network.csv").write_text(",0,1\n0,A,B\n")
+            for recorded, expect in (("PartialIntervational", "COMPLETE"),
+                                     ("partial_interventional", "COMPLETE"),
+                                     ("Interventional", "INHOMOGENEOUS"),
+                                     ("Observational", "INHOMOGENEOUS"),
+                                     ("", "INHOMOGENEOUS")):
+                (d / "arguments.json").write_text(json.dumps({**s["cfg"], "training_regime": recorded}))
+                assert s2e.envelope_status(s)["status"] == expect, (recorded, expect)
+        finally:
+            g["RESULTS"] = saved
+    assert s2e.canon_regime("Interventional") == "interventional"
+    assert s2e.canon_regime("PartialIntervational") == "partial_interventional"
+    assert s2e.canon_regime("Observational") == "observational"
+    assert s2e.canon_regime("garbage") == "garbage"
