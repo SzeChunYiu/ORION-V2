@@ -177,9 +177,11 @@ repository** and is recorded here as the unarchived in-flight observation it was
 evidence; the distribution above is the evidence, and 49 of 480 envelopes exceed 6 741 in
 the completed run.) An early check is not the run.
 
-The near-cap calls sit in the arms that make *fewer, larger* calls: per-arm peaks are
-13 885 (`SAME_MODEL_REFLECTION`, 2 calls/envelope) and 13 529 (`SIMPLE_DIRECT`, 1), against
-12 727 (`F0_PARENT_FEDERATION`, 3) and 12 662 (`F2_ORION_METABOLIC_FULL`, 3).
+Per-arm peaks are 13 885 (`SAME_MODEL_REFLECTION`, 2 calls/envelope), 13 529
+(`SIMPLE_DIRECT`, 1), 12 727 (`F0_PARENT_FEDERATION`, 3) and 12 662
+(`F2_ORION_METABOLIC_FULL`, 3). The two highest sit in the two lowest-call-count arms,
+but these are four singleton maxima over one envelope each and the receipt reads no
+mechanism into their ordering.
 
 **The per-arm channel load matches the registered execution-lane contract exactly**:
 360 / 360 / 240 / 120 calls over 120 envelopes each, i.e. 3 / 3 / 2 / 1 per
@@ -195,10 +197,14 @@ estimate was not. Under the provider default at R12's escalated budget the same 
 calls were projected at 785.81 s/call and 235.7 serial hours, which fits in no single
 allocation at any concurrency this lane uses.
 
-The agents stage ran five resumption passes with pending counts 480 → 178 → 17 → 3 → 0,
-re-dispatching only `EXECUTION_FAILED_MODEL_RESPONSE` envelopes as the registered
-resumability clause permits. **No completed response was re-rolled**, and the final tally
-is 480 `COMPLETED_PROPOSAL_ONLY` with 0 failures.
+The agents stage ran five scan-and-dispatch passes, its logged pending count falling
+480 → 178 → 17 → 3 → 0. Under the registered resumability clause a pass re-invokes the
+arm only where the response is absent or carries `EXECUTION_FAILED_MODEL_RESPONSE`, so
+**no completed response was ever re-rolled**. The logs record the pending count, not
+which pending items were absent versus failed, so this receipt does not claim a
+retry count it cannot substantiate; what it does record is the terminal state the stage
+asserted for itself — `ALL_RESPONSES_REAL`, 480 `COMPLETED_PROPOSAL_ONLY`, 480/480
+channel receipts, one contract digest, `{end_turn: 480}`.
 
 `F2_ORION_METABOLIC_FULL` and `F0_PARENT_FEDERATION` both applied on exactly 37 of 120
 slots. That equality is a coincidence, not shared state: the two sets of applying
