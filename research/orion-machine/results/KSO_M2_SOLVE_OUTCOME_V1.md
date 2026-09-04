@@ -30,6 +30,26 @@ the compose hyperedge's tail gate — that is the FIRE stage (label-gated enabli
 a read beyond the subgraph. `store_read` therefore counts only *live* request atoms the walk
 failed to surface, which is exactly the EXTRACT finding.
 
+## Comparator join (guards lane, `KSO_M2_COMPARATOR_RECEIPT_V1.json`, #298, scored on the 066aaf9 receipt; joined on `instance_id` + `graph_sha256`, 50/50 rows)
+
+```text
+B5_STRONGEST_FAITHFUL_PARENT_FEDERATION  50/50   ceiling control (oracle by construction)
+KSO_M2_SOLVE (full)                      50/50   paired vs B5: 0/0 discordant, p = 1   -> PARENT_SUFFICIENT
+KSO_NAVIGATION_ONLY                      38/50   12 OBSTRUCTION (store_read rows scored not-exact)
+RWR_PPR_SPREADING_ACTIVATION             32/50   NAV vs RWR 15/9 discordant, p = 0.31
+CBR_KG_RETRIEVAL                         34/50   NAV vs CBR 13/9 discordant, p = 0.52
+C_RANDOM_ACTION (null)                    5/50   null band 0–9 over 200 re-seeds
+ORACLE_POSITIVE_CONTROL                  50/50
+NAV vs B5                                        0/12 discordant, p = 4.9e-4
+```
+
+Reading, as the guards lane stated it: the full arm reproduces the ceiling (`PARENT_SUFFICIENT`;
+`GENERAL_NOVELTY NOT_ESTABLISHED`); the navigation-only mechanic is indistinguishable from the two
+oracle-independent retrieval parents at n = 50 and loses to the ceiling on exactly the 12
+store-read instances. Per-arm permissions (label-gated firing over graph structure allowed for
+every graph arm; `store_read` = a live atom neither the walk nor firing surfaced) are in
+`KSO_M2_COMPARATOR_OUTCOME_V1.md`.
+
 ## Terminal (as defined in the frozen design: G1 ∧ G2)
 
 ```text
