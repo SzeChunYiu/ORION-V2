@@ -1,0 +1,173 @@
+{
+  "all_size_proof_authority": false,
+  "check_count": 530312,
+  "control_count": 61,
+  "evidence_class": "EXACT_DEVELOPMENT_CALIBRATION_NOT_PROTECTED_EMPIRICAL_EVIDENCE",
+  "group_count": 11,
+  "groups": {
+    "adaptive_risk": {
+      "checks": 433,
+      "controls": {
+        "reuse does not erase exposure risk": "EXPECTED_DISTINCTION_OBSERVED"
+      },
+      "status": "PASS",
+      "two_step_predictable_policies": 216
+    },
+    "certificates": {
+      "bound_coordinate_mutations": 15,
+      "checks": 30,
+      "controls": {
+        "absent checker": "EXPECTED_DISTINCTION_OBSERVED",
+        "checker unavailable": "EXPECTED_DISTINCTION_OBSERVED",
+        "contradicted support": "EXPECTED_DISTINCTION_OBSERVED",
+        "coverage cannot become exact assertion": "EXPECTED_DISTINCTION_OBSERVED",
+        "exact checked target no-alarm": "EXPECTED_DISTINCTION_OBSERVED",
+        "expired certificate": "EXPECTED_DISTINCTION_OBSERVED",
+        "failed checker": "EXPECTED_DISTINCTION_OBSERVED",
+        "graded exact kind refused": "EXPECTED_DISTINCTION_OBSERVED",
+        "marginal is not prequential": "EXPECTED_DISTINCTION_OBSERVED",
+        "no self-authorization": "EXPECTED_DISTINCTION_OBSERVED",
+        "revoked support": "EXPECTED_DISTINCTION_OBSERVED",
+        "risk action is not target truth": "EXPECTED_DISTINCTION_OBSERVED",
+        "risk budget too small": "EXPECTED_DISTINCTION_OBSERVED",
+        "scope mismatch": "EXPECTED_DISTINCTION_OBSERVED",
+        "untyped checker answer": "EXPECTED_DISTINCTION_OBSERVED"
+      },
+      "status": "PASS",
+      "trust_model": "explicit fixture registry, not real attestation"
+    },
+    "drift": {
+      "checks": 14401,
+      "controls": {
+        "shift consumes risk": "EXPECTED_DISTINCTION_OBSERVED"
+      },
+      "distributions": 15,
+      "event_transport_cases": 14400,
+      "status": "PASS"
+    },
+    "intervals": {
+      "checks": 253716,
+      "controls": {
+        "inconsistent upper certificate refused": "EXPECTED_DISTINCTION_OBSERVED",
+        "negative available mask rejected": "EXPECTED_DISTINCTION_OBSERVED",
+        "oversize enumeration is cannot-check": "EXPECTED_DISTINCTION_OBSERVED",
+        "unsupported does not encode proposition negation": "EXPECTED_DISTINCTION_OBSERVED"
+      },
+      "evidence_atoms": 3,
+      "homomorphism_cases": 225792,
+      "intervals": 168,
+      "profiles": 20,
+      "refinement_cases": 27920,
+      "status": "PASS"
+    },
+    "learning": {
+      "checks": 517,
+      "controls": {
+        "contradictory class not vacuous proof": "EXPECTED_DISTINCTION_OBSERVED",
+        "empty version spaces do not warrant arbitrary answers": "EXPECTED_DISTINCTION_OBSERVED",
+        "essential learning cannot survive all revocations": "EXPECTED_DISTINCTION_OBSERVED",
+        "global uniqueness unnecessary for a known query": "EXPECTED_DISTINCTION_OBSERVED",
+        "held-out affine answer retains alternative lessons": "EXPECTED_DISTINCTION_OBSERVED"
+      },
+      "hypotheses": 8,
+      "oracle_comparisons": 512,
+      "queries": 4,
+      "revocation_masks": 16,
+      "status": "PASS",
+      "teachers": 8
+    },
+    "lifecycle": {
+      "checks": 15,
+      "controls": {
+        "dependency cycle finite closure": "EXPECTED_DISTINCTION_OBSERVED",
+        "event identity mismatch": "EXPECTED_DISTINCTION_OBSERVED",
+        "idempotent replay no-alarm": "EXPECTED_DISTINCTION_OBSERVED",
+        "malformed event refused": "EXPECTED_DISTINCTION_OBSERVED",
+        "new exposure charged despite same certificate": "EXPECTED_DISTINCTION_OBSERVED",
+        "overlapping evidence can retain independent alternative support": "EXPECTED_DISTINCTION_OBSERVED",
+        "risk overspend refused": "EXPECTED_DISTINCTION_OBSERVED",
+        "shared dependency need not cause liveness change": "EXPECTED_DISTINCTION_OBSERVED",
+        "snapshot-local validity not global serializability": "EXPECTED_DISTINCTION_OBSERVED",
+        "strict positive real charges do not imply termination": "EXPECTED_DISTINCTION_OBSERVED",
+        "summary iff child-changes claim is false": "EXPECTED_DISTINCTION_OBSERVED",
+        "uncharged transition refused": "EXPECTED_DISTINCTION_OBSERVED",
+        "version validation detects stale second transaction": "EXPECTED_DISTINCTION_OBSERVED",
+        "zero-work budget cannot progress": "EXPECTED_DISTINCTION_OBSERVED"
+      },
+      "status": "PASS"
+    },
+    "navigation": {
+      "bracket_cases": 2592,
+      "checks": 21210,
+      "controls": {
+        "FOUND can precede width-only MORE_BUDGET hook": "EXPECTED_DISTINCTION_OBSERVED",
+        "exact fixed-point threshold can be attained finitely": "EXPECTED_DISTINCTION_OBSERVED",
+        "float is not exact certificate": "EXPECTED_DISTINCTION_OBSERVED",
+        "full-operator rollback no-alarm": "EXPECTED_DISTINCTION_OBSERVED",
+        "gate-only rollback fails": "EXPECTED_DISTINCTION_OBSERVED",
+        "zero restart rejected": "EXPECTED_DISTINCTION_OBSERVED"
+      },
+      "locality_cases": 5184,
+      "matrices": 36,
+      "monotonicity_cases": 900,
+      "perturbation_cases": 5184,
+      "restarts": 3,
+      "seed_change_cases": 1728,
+      "seeds": 4,
+      "status": "PASS"
+    },
+    "nogoods": {
+      "checks": 145855,
+      "controls": {
+        "LIVE plus LIVE need not be jointly LIVE": "EXPECTED_DISTINCTION_OBSERVED",
+        "no-nogood no-alarm": "EXPECTED_DISTINCTION_OBSERVED",
+        "pre-filter-only mutant differs": "EXPECTED_DISTINCTION_OBSERVED"
+      },
+      "evidence_atoms": 3,
+      "nogood_families": 20,
+      "normalized_triples": 28926,
+      "profile_pairs": 8000,
+      "shared_world_cases": 64000,
+      "status": "PASS"
+    },
+    "selection": {
+      "checks": 65325,
+      "controls": {
+        "95 percent marginal coverage permits 100 percent selected error": "EXPECTED_DISTINCTION_OBSERVED",
+        "empty selection not success": "EXPECTED_DISTINCTION_OBSERVED",
+        "wrong conformal quantile loses registered coverage": "EXPECTED_DISTINCTION_OBSERVED"
+      },
+      "rank_permutations": 600,
+      "selection_cases": 65280,
+      "status": "PASS",
+      "tied_score_orbits": 32
+    },
+    "semantics": {
+      "checks": 6,
+      "controls": {
+        "disagreeing meanings remain unknown": "EXPECTED_DISTINCTION_OBSERVED",
+        "empty model not vacuous truth": "EXPECTED_DISTINCTION_OBSERVED",
+        "equal seeds not equivalent meanings": "EXPECTED_DISTINCTION_OBSERVED",
+        "multiple meanings same answer": "EXPECTED_DISTINCTION_OBSERVED",
+        "realized information gain can be superadditive": "EXPECTED_DISTINCTION_OBSERVED"
+      },
+      "status": "PASS"
+    },
+    "substitution": {
+      "checks": 28804,
+      "controls": {
+        "distinct-source no-alarm": "EXPECTED_DISTINCTION_OBSERVED",
+        "independent-product risk formula fails for copied source": "EXPECTED_DISTINCTION_OBSERVED",
+        "missing provenance not certified": "EXPECTED_DISTINCTION_OBSERVED",
+        "shared-source alias idempotence": "EXPECTED_DISTINCTION_OBSERVED"
+      },
+      "status": "PASS",
+      "substitution_pairs": 14400
+    }
+  },
+  "independent_review": "NOT_OBTAINED",
+  "novelty": "NOT_CLAIMED",
+  "ocm_adoption": "NOT_GRANTED",
+  "study": "ME-FOUNDATION-TYPED-LIFECYCLE-V1",
+  "terminal": "EXACT_CALIBRATION_PASS"
+}
