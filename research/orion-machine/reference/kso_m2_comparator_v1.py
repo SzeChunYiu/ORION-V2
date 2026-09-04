@@ -32,7 +32,13 @@ Arms (every arm returns the answer object the oracle scores: ``{"action", "reope
       reopened set adapted from the retrieved neighbourhood.
   C_RANDOM_ACTION   ME-X1's registered random control (null).
   ORACLE_POSITIVE_CONTROL   the oracle's own decision (positive control; must score 1.0).
-  KSO_M2_SOLVE   reserved column, merged from lane-ocm-3's receipt with ``--kso-column``.
+  KSO_M2_SOLVE   reserved column, merged from lane-ocm-3's receipt with ``--kso-column``. Its COMPOSE
+      step may read the store beyond the navigated subgraph (``store_read`` per row), so its
+      exactness is the store's; it is paired against B5 (PARENT_SUFFICIENT).
+  KSO_NAVIGATION_ONLY   derived from the same receipt: ``navigation_only_answer`` (what EXTRACT
+      alone returned; null ⇒ OBSTRUCTION, never exact). This is the mechanic's honest number and
+      the column paired against RWR and CBR, which may not read the store either. A receipt
+      without the field leaves this column CANNOT_CHECK and the run exits 2.
 
 Information matching, stated: every arm receives the same ``ArmView`` (world at v0, world at
 the request, events, request, accepted list) that ME-X1 gave every arm; the graph arms receive
@@ -95,7 +101,12 @@ CBR = "CBR_KG_RETRIEVAL"
 RANDOM = "C_RANDOM_ACTION"
 ORACLE = "ORACLE_POSITIVE_CONTROL"
 KSO_COL = "KSO_M2_SOLVE"
+KSO_NAV = "KSO_NAVIGATION_ONLY"
 ARMS = (B5, RWR, CBR, RANDOM, ORACLE)
+# Which arms may read the store (the populated space beyond what navigation reached) when they answer:
+STORE_READ = {B5: "yes (its parent modules read the whole world)", KSO_COL: "yes (COMPOSE may consult the store; store_read is recorded per row)",
+              KSO_NAV: "NO (answer = what EXTRACT returned from the navigated subgraph only)", RWR: "NO (reachable activation only)",
+              CBR: "NO (2-hop retrieved neighbourhood only)", RANDOM: "n/a", ORACLE: "n/a (positive control)"}
 NAVIGATING = (RWR, CBR)
 CAP_STEPS_PER_ATOM, CAP_VISITS_PER_EDGE, CAP_RESTARTS = 2, 2, 1
 
@@ -489,6 +500,24 @@ def arm_cbr(inst, frame: Frame) -> Answer:
 # ----------------------------------------------------------------------------------------------
 
 
+def navigation_only_cell(full: dict, expected) -> dict:
+    """The KSO's answer restricted to what EXTRACT returned (no store read). Requires the receipt
+    fields `navigation_only_answer` ({action, reopened} | null) and `store_read` (bool); without
+    them the column is CANNOT_CHECK -- a store-reading answer must never be scored as navigation."""
+    if "navigation_only_answer" not in full:
+        return {"answer": {"action": "", "reopened": []}, "exact": False, "status": "CANNOT_CHECK", "attribution": "",
+                "budget": full.get("budget", {}), "store_read": full.get("store_read"),
+                "note": "receipt lacks navigation_only_answer; a store-reading answer is not scored as navigation"}
+    nav = full["navigation_only_answer"]
+    if not nav:
+        return {"answer": {"action": "", "reopened": []}, "exact": False, "status": "OBSTRUCTION", "attribution": "",
+                "budget": full.get("budget", {}), "store_read": full.get("store_read"),
+                "navigation_outcome": full.get("navigation_outcome"), "note": "EXTRACT returned nothing decisive; obstruction witness, never exact"}
+    ans = Answer(str(nav.get("action")), tuple(nav.get("reopened", ())))
+    return {"answer": ans.as_dict(), "exact": exact(ans, expected), "status": "SCORED", "attribution": "",
+            "budget": full.get("budget", {}), "store_read": full.get("store_read"), "navigation_outcome": full.get("navigation_outcome"), "note": ""}
+
+
 def exact(ans: Answer, expected) -> bool:
     return ans.status == "SCORED" and (ans.action, tuple(ans.reopened)) == (expected.decision()[0], tuple(expected.decision()[1]))
 
@@ -574,7 +603,12 @@ def run(cap_scale: float = 1.0, kso_column: dict | None = None, quiet: bool = Fa
             if theirs is not None and theirs != fr.graph_sha256:
                 raise CannotCheck(f"{inst.instance_id}: the KSO column was scored on graph {theirs[:12]}, this run on {fr.graph_sha256[:12]}; "
                                   "the two receipts did not see the same graph -- the join is refused")
-            row_arms[KSO_COL] = {kk: vv for kk, vv in k.items() if kk != "_graph_sha256"}
+            full = {kk: vv for kk, vv in k.items() if kk != "_graph_sha256"}
+            full_ans = Answer(str(full["answer"].get("action")), tuple(full["answer"].get("reopened", ())), status=str(full.get("status", "SCORED")))
+            full["exact_declared"] = full.get("exact")
+            full["exact"] = exact(full_ans, exp)            # recomputed here, never trusted from the column
+            row_arms[KSO_COL] = full
+            row_arms[KSO_NAV] = navigation_only_cell(full, exp)
         rows.append({"instance_id": inst.instance_id, "family": inst.family, "variant": inst.variant,
                      "request_kind": inst.request.kind, "oracle": {"action": exp.action, "reopened": list(exp.reopened)},
                      "graph": {"sha256": fr.graph_sha256, "atoms": n_atoms, "hyperedges": n_edges,
@@ -592,11 +626,21 @@ def run(cap_scale: float = 1.0, kso_column: dict | None = None, quiet: bool = Fa
     table = [paired(a, B5, flags[a], flags[B5]) for a in (RWR, CBR, RANDOM, ORACLE)]
     kso_flags = None
     if kso_column is not None:
-        kso_flags = [bool(r["arms"][KSO_COL].get("exact", False)) and r["arms"][KSO_COL].get("status") == "SCORED" for r in rows]
+        kso_flags = [bool(r["arms"][KSO_COL]["exact"]) and r["arms"][KSO_COL].get("status") == "SCORED" for r in rows]
+        nav_flags = [bool(r["arms"][KSO_NAV]["exact"]) and r["arms"][KSO_NAV]["status"] == "SCORED" for r in rows]
+        nav_cnc = [r["instance_id"] for r in rows if r["arms"][KSO_NAV]["status"] == "CANNOT_CHECK"]
+        cannot += [f"{i}/{KSO_NAV}: navigation_only_answer not provided" for i in nav_cnc]
         per_arm[KSO_COL] = {"exact": sum(kso_flags), "n_scored": sum(1 for r in rows if r["arms"][KSO_COL].get("status") == "SCORED"),
                             "n_cannot_check": sum(1 for r in rows if r["arms"][KSO_COL].get("status") == "CANNOT_CHECK"),
-                            "exact_rate": sum(kso_flags) / len(rows), "role": "the machine under test"}
-        table += [paired(KSO_COL, a, kso_flags, flags[a]) for a in (B5, RWR, CBR)]
+                            "exact_rate": sum(kso_flags) / len(rows), "role": "the machine under test (full arm; COMPOSE may read the store)",
+                            "store_read_rows": sum(1 for r in rows if r["arms"][KSO_COL].get("store_read") is True),
+                            "exact_declared_disagreements": sum(1 for r in rows if r["arms"][KSO_COL].get("exact_declared") not in (None, r["arms"][KSO_COL]["exact"]))}
+        per_arm[KSO_NAV] = {"exact": sum(nav_flags), "n_scored": sum(1 for r in rows if r["arms"][KSO_NAV]["status"] == "SCORED"),
+                            "n_obstruction": sum(1 for r in rows if r["arms"][KSO_NAV]["status"] == "OBSTRUCTION"),
+                            "n_cannot_check": len(nav_cnc), "exact_rate": sum(nav_flags) / len(rows),
+                            "role": "the machine under test, navigation only (may NOT read the store): the mechanic's honest number"}
+        table += [paired(KSO_COL, B5, kso_flags, flags[B5])]
+        table += [paired(KSO_NAV, a, nav_flags, flags[a]) for a in (B5, RWR, CBR)]
 
     # checkers
     b5_flags = flags[B5]
@@ -616,6 +660,8 @@ def run(cap_scale: float = 1.0, kso_column: dict | None = None, quiet: bool = Fa
         "K3_budget_no_overrun": {"cannot_check": cannot, "pass": not cannot, "cap_scale": cap_scale},
         "K4_paired_red_on_planted_disagreement": {"plant": k4_red, "no_alarm": k4_quiet,
                                                   "pass": k4_red["red"] and k4_red["discordant"] == min(12, len(planted)) and not k4_quiet["red"] and k4_quiet["exact_p_two_sided"] == 1.0},
+        "K7_joined_exact_recomputed": {"pass": (per_arm.get(KSO_COL, {}).get("exact_declared_disagreements", 0) == 0),
+                                       "note": "the joined column's exact flags are recomputed against the oracle here; a disagreement is red"} if kso_column is not None else {"pass": True, "note": "no column joined"},
         "K5_information_matching": {"pass": graph_ok and all(r["graph"]["request_atoms"] == rows[0]["graph"]["request_atoms"] for r in rows),
                                     "request_atoms": rows[0]["graph"]["request_atoms"], "note": "every arm read one graph, one seed set and one typed-status map per instance (Frame); the digest is on the row"},
     }
@@ -626,12 +672,14 @@ def run(cap_scale: float = 1.0, kso_column: dict | None = None, quiet: bool = Fa
                    "population": "research/orion-machine/reference/kso_m1_mex1_population_v1.py",
                    "request_atoms": rows[0]["graph"]["request_atoms"]},
         "information_matching": "every arm: the ME-X1 ArmView (world v0, world at request, events, request, accepted); graph arms: the same populated graph (sha256 per row), seed set S = {req:<id>, claim:<target>} ∪ {res:<result>}, typed-module statuses (mex1_arms._status_for, all modules typed = what B5 reads); CBR additionally reads the 14 public known-answer fixtures; no arm imports the oracle",
+        "store_read_permissions": STORE_READ,
         "budget_matched": {"steps": f"{CAP_STEPS_PER_ATOM}*|atoms|", "edge_visits": f"{CAP_VISITS_PER_EDGE}*|hyperedges|", "restarts": CAP_RESTARTS,
                            "wall_proxy": "ops = steps + edge_visits", "cap_scale": cap_scale, "applies_to": list(NAVIGATING) + [KSO_COL],
                            "recorded_not_capped": [B5, RANDOM, ORACLE], "overrun": "CANNOT_CHECK on that instance; run exit 2"},
         "per_arm": per_arm, "paired": table, "checkers": checkers, "instances": rows,
         "terminals": {"COMPARATOR_TABLE": "READY", "KSO_COLUMN": "PRESENT" if kso_column is not None else "ABSENT",
                       "PARENT_SUFFICIENT": ("YES" if per_arm[KSO_COL]["exact"] <= per_arm[B5]["exact"] else "NO") if kso_column is not None else "EXPECTED_WHEN_KSO_COLUMN_MERGED",
+                      "NAVIGATION_ONLY_VS_RETRIEVAL_PARENTS": ("REPORTED" if kso_column is not None and not nav_cnc else "NOT_SCORED"),
                       "GENERAL_NOVELTY": "NOT_ESTABLISHED"},
         "authority": "development split; comparator table and budget matching only; no solve-loop, protected or novelty authority. NO NOVELTY OR BREAKTHROUGH CLAIM.",
     }

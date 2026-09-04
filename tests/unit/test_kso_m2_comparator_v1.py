@@ -159,6 +159,48 @@ def test_byte_reproducible_once_timing_is_zeroed(m, body):
     assert m.strip_timing({"a": {"wall_ns": 5, "b": [{"wall_ns": 1}]}}) == {"a": {"wall_ns": 0, "b": [{"wall_ns": 0}]}}
 
 
+def _fake_column(m, body, with_nav=True, nav_null_every=4):
+    col = {}
+    for i, r in enumerate(body["instances"]):
+        cell = {"answer": r["arms"][m.B5]["answer"], "exact": r["arms"][m.B5]["exact"], "status": "SCORED", "attribution": "",
+                "navigation_outcome": "FOUND", "translator_invariant": True, "budget": r["arms"][m.RWR]["budget"],
+                "_graph_sha256": r["graph"]["sha256"]}
+        if with_nav:
+            null = (i % nav_null_every == 3)
+            cell["store_read"] = null
+            cell["navigation_only_answer"] = None if null else r["arms"][m.B5]["answer"]
+        col[r["instance_id"]] = cell
+    return col
+
+
+def test_navigation_only_column_scores_extract_only_and_obstructs_on_null(m, body):
+    joined = m.run(kso_column=_fake_column(m, body))
+    nav = joined["per_arm"][m.KSO_NAV]
+    assert nav["n_obstruction"] == 12 and nav["n_scored"] == 38 and nav["exact"] == 38 and nav["n_cannot_check"] == 0
+    assert joined["per_arm"][m.KSO_COL]["exact"] == 50 and joined["per_arm"][m.KSO_COL]["store_read_rows"] == 12
+    pairs = {(t["x"], t["y"]): t for t in joined["paired"]}
+    assert (m.KSO_COL, m.B5) in pairs and (m.KSO_NAV, m.RWR) in pairs and (m.KSO_NAV, m.CBR) in pairs
+    assert (m.KSO_COL, m.RWR) not in pairs          # the store-reading arm is never paired against a navigation-only parent
+    assert joined["terminals"]["PARENT_SUFFICIENT"] == "YES" and joined["terminals"]["NAVIGATION_ONLY_VS_RETRIEVAL_PARENTS"] == "REPORTED"
+    assert m.verdict(joined) == 0
+    assert joined["store_read_permissions"][m.KSO_NAV].startswith("NO") and joined["store_read_permissions"][m.RWR].startswith("NO")
+
+
+def test_navigation_only_column_without_the_field_is_cannot_check_and_exit_2(m, body):
+    joined = m.run(kso_column=_fake_column(m, body, with_nav=False))
+    assert joined["per_arm"][m.KSO_NAV]["n_cannot_check"] == 50 and joined["terminals"]["NAVIGATION_ONLY_VS_RETRIEVAL_PARENTS"] == "NOT_SCORED"
+    assert m.verdict(joined) == 2
+
+
+def test_joined_exact_flag_is_recomputed_not_trusted(m, body):
+    col = _fake_column(m, body)
+    first = next(iter(col))
+    col[first]["exact"] = False                       # a lying flag on a correct answer
+    joined = m.run(kso_column=col)
+    assert joined["per_arm"][m.KSO_COL]["exact"] == 50 and joined["per_arm"][m.KSO_COL]["exact_declared_disagreements"] == 1
+    assert not joined["checkers"]["K7_joined_exact_recomputed"]["pass"] and m.verdict(joined) == 1
+
+
 def test_terminals_carry_no_superiority_language(body):
     t = body["terminals"]
     assert t["GENERAL_NOVELTY"] == "NOT_ESTABLISHED" and t["PARENT_SUFFICIENT"] == "EXPECTED_WHEN_KSO_COLUMN_MERGED"

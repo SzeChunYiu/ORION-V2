@@ -4,6 +4,7 @@
   "CBR_KG_RETRIEVAL": "oracle-independent comparator: 2-hop KG retrieval, (module,status) defeater signature, Jaccard-nearest of the 14 public known-answer fixtures, action reused, reopened set adapted from the neighbourhood",
   "C_RANDOM_ACTION": "null control (ME-X1 C_RANDOM_ACTION)",
   "KSO_M2_SOLVE": "reserved; joined from lane-ocm-3's receipt with --kso-column; rows may carry navigation_outcome, attribution, translator_invariant",
+  "KSO_NAVIGATION_ONLY": "derived from the KSO receipt: navigation_only_answer (what EXTRACT returned without a store read); the mechanic's honest number; paired against RWR and CBR",
   "ORACLE_POSITIVE_CONTROL": "positive control (registered expected decision)",
   "RWR_PPR_SPREADING_ACTIVATION": "oracle-independent comparator: undirected warrant-gated RWR/PPR (alpha 1/3, exact fixed point), highest-activated reachable defeater decides (registered action / DEFER if censored / UPDATE if none); PROPAGATE_DEFEAT reopens accepted claims whose support carries a reachable INVALID atom"
  },
@@ -81,7 +82,7 @@
   "kso_m2_solve_design_path": "research/orion-machine/theory/KSO_M2_SOLVE_DESIGN_V1.md",
   "kso_m2_solve_design_sha256": "78931b75c15f894662167cc5c45cc19e46c8f675b3f47069ee22de4bbac9a6b0",
   "m1_population_receipt_body_sha256": "35468fc7f0b2839c48e8ff6245c30cfa89bbc92ddc729e9ea66aa4f8d582f62a",
-  "module_sha256_at_freeze": "181bccf68fc0fd6311fe1f1e794aead3d94e3a7991e9f08e7addd64a2d2df17f",
+  "module_sha256_at_freeze": "abc668b048a1d8352aba03552fb07c6a255b794a995feab77d8f69449bd7b2fd",
   "n_instances": 50,
   "per_family": 5,
   "protected_split": "NOT_RUN (custody seed; same as M1)",
@@ -120,10 +121,13 @@
   "paired": "mex1_run.paired_summary semantics (exact two-sided McNemar on discordant pairs); red iff p < 0.01",
   "terminal": "PARENT_SUFFICIENT iff KSO exact count <= B5 exact count once the KSO column is joined; EXPECTED_WHEN_KSO_COLUMN_MERGED until then"
  },
+ "store_read_permissions": {
+  "rule": "label-gated FIRING over graph structure (a dead request atom read through a compose hyperedge's tail gate, KS-T04b) is a mechanic available to every arm that sees the graph; reading a LIVE atom that neither the walk nor firing reached is what store_read flags. Arms that may: B5 (parent modules read the whole world), KSO_M2_SOLVE (COMPOSE; flagged per row). Arms that may not: KSO_NAVIGATION_ONLY, RWR_PPR_SPREADING_ACTIVATION, CBR_KG_RETRIEVAL."
+ },
  "supersession": {
-  "kso_m2_solve_head": "36ecbc3d61d22c97fd82d68d391101f605d2a17f",
+  "kso_m2_solve_head": "066aaf9",
   "prior_commit": "68c9c14",
   "prior_module_sha256": "9effaa259292f4576b58f3e087020b3b74fc58096ae7fb9cf1d10be86234b852",
-  "reason": "pre-outcome, before any receipt was scored: (1) graph_sha256 aligned to the shared definition pinned by kso_m2_solve_v1 (newline-joined, no trailing newline) so the two receipts join on one digest; (2) the --kso-column join now refuses rows scored on a different graph (CannotCheck). Arms, caps, seeds, gates and instance set unchanged. (3) K6 byte-reproducibility and body_sha256 are asserted with wall_ns zeroed (a clock is not a result); design provenance reads the commitment block. Still pre-outcome: the first scored receipt is the one committed after this freeze."
+  "reason": "pre-outcome, before any receipt was scored: (1) graph_sha256 aligned to the shared definition pinned by kso_m2_solve_v1 (newline-joined, no trailing newline) so the two receipts join on one digest; (2) the --kso-column join now refuses rows scored on a different graph (CannotCheck). Arms, caps, seeds, gates and instance set unchanged. (3) K6 byte-reproducibility and body_sha256 are asserted with wall_ns zeroed (a clock is not a result); design provenance reads the commitment block. Still pre-outcome: the first scored receipt is the one committed after this freeze. (4) Coordinator matching correction before gating: a KSO_NAVIGATION_ONLY column (navigation_only_answer from lane-ocm-3's receipt @ 066aaf9; null => OBSTRUCTION; field absent => CANNOT_CHECK, exit 2) is the column paired against RWR/CBR; the full KSO_M2_SOLVE column (COMPOSE may read a live atom the walk did not surface; store_read per row) stays paired against B5 for PARENT_SUFFICIENT; joined exact flags are recomputed (K7); store-read permissions per arm are declared. The first scored receipt on this design is the one committed after this freeze; the receipt scored at 3abbb22 is superseded."
  }
 }
