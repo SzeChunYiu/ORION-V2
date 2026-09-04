@@ -263,6 +263,8 @@ def write_arxiv_tex(out: Path, title: str, abstract_tex: str, body_tex: str) -> 
 \usepackage[margin=1in]{{geometry}}
 \usepackage{{amsmath,amssymb,mathtools}}
 \usepackage{{booktabs,longtable,array}}
+\makeatletter\@ifundefined{{c@none}}{{\newcounter{{none}}}}{{}}\makeatother
+\usepackage{{calc}}
 \usepackage{{graphicx}}
 \usepackage[round]{{natbib}}
 \usepackage{{microtype}}
@@ -297,6 +299,8 @@ def write_jmlr_tex(out: Path, title: str, abstract_tex: str, body_tex: str) -> N
 \usepackage[preprint]{{jmlr2e}}
 \usepackage{{amsmath,mathtools}}
 \usepackage{{booktabs,longtable,array}}
+\makeatletter\@ifundefined{{c@none}}{{\newcounter{{none}}}}{{}}\makeatother
+\usepackage{{calc}}
 \usepackage{{microtype}}
 \providecommand{{\tightlist}}{{\setlength{{\itemsep}}{{0pt}}\setlength{{\parskip}}{{0pt}}}}
 \ShortHeadings{{{SHORT_TITLE}}}{{Author metadata pending}}

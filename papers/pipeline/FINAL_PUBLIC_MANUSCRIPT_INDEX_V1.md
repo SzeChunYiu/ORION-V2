@@ -111,7 +111,7 @@ Scientific state:
 
 ## 6. #51 — Prospective Revision Adequacy
 
-Canonical public source lives on PR #52 branch:
+Canonical public source (merged to main in PR #52):
 
 `papers/llm-machine-epistemics/MANUSCRIPT_V12_ARXIV_JMLR_FINAL.md`
 
