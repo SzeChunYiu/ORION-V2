@@ -1,0 +1,461 @@
+{
+  "attribution": {
+    "delta_pp": 21.25,
+    "frozen_at_7_actions": 0.4875,
+    "lever_isolation": {
+      "luby_sizing_alone": 0.4875,
+      "probe_schedule_alone": 0.44375,
+      "reading": "the trained selector carries the entire repair; sizing the Luby schedule to the action budget changes nothing because checks were never the binding resource; re-ordering probes by the federation's own portfolio_schedule makes it WORSE, and is reported because it was tried and failed",
+      "trained_tool_alone": 0.7
+    },
+    "rederived_at_7_actions": 0.7,
+    "single_stage": "SOLVER SELECTION, not probe ordering and not restart sizing"
+  },
+  "authority": {
+    "authorizes_protected_dispatch": false,
+    "grants_field_status": false,
+    "grants_scientific_truth": false,
+    "note": "G0e remains NO_LAUNDERING_VARIANCE and ME-F1 remains CANNOT_CHECK; stage_protected refuses on its own with exit 7/8. Discharging this precondition does not unblock dispatch and is not claimed to."
+  },
+  "geometry": {
+    "budget_checks": 300000,
+    "dev_seed": "ME-F1-DEV-20260902",
+    "level": "L2",
+    "n_campaigns": 8,
+    "n_vars": 30,
+    "why": "frozen by ME_F1_CALIBRATION_RECEIPT.json measured by tree b6350ba9c462571f\u2026"
+  },
+  "policies": {
+    "BUDGET_AWARE|cap=7": {
+      "action_cap": 7,
+      "action_outcomes": {
+        "exact_solve|REFUTED": 13,
+        "exact_solve|WITNESS_FOUND": 19,
+        "local_search|INCONCLUSIVE": 16,
+        "local_search|WITNESS_FOUND": 8
+      },
+      "actions_per_campaign": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "actions_total": 56,
+      "checks_total": 1058916,
+      "coverage": 0.45625,
+      "n_claimed_rungs": 73,
+      "policy": "BUDGET_AWARE",
+      "primary_warranted_correct_rate": 0.45625,
+      "unwarranted_claims": 0
+    },
+    "BUDGET_AWARE|cap=None": {
+      "action_cap": null,
+      "action_outcomes": {
+        "exact_solve|INCONCLUSIVE": 2,
+        "exact_solve|REFUTED": 34,
+        "exact_solve|WITNESS_FOUND": 38,
+        "local_search|INCONCLUSIVE": 38,
+        "local_search|WITNESS_FOUND": 12
+      },
+      "actions_per_campaign": [
+        16,
+        15,
+        17,
+        17,
+        11,
+        16,
+        15,
+        17
+      ],
+      "actions_total": 124,
+      "checks_total": 2143344,
+      "coverage": 0.9125,
+      "n_claimed_rungs": 146,
+      "policy": "BUDGET_AWARE",
+      "primary_warranted_correct_rate": 0.9125,
+      "unwarranted_claims": 0
+    },
+    "FROZEN|cap=7": {
+      "action_cap": 7,
+      "action_outcomes": {
+        "exact_solve|REFUTED": 16,
+        "exact_solve|WITNESS_FOUND": 18,
+        "local_search|INCONCLUSIVE": 19,
+        "local_search|WITNESS_FOUND": 3
+      },
+      "actions_per_campaign": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "actions_total": 56,
+      "checks_total": 970150,
+      "coverage": 0.4875,
+      "n_claimed_rungs": 78,
+      "policy": "FROZEN",
+      "primary_warranted_correct_rate": 0.4875,
+      "unwarranted_claims": 0
+    },
+    "FROZEN|cap=None": {
+      "action_cap": null,
+      "action_outcomes": {
+        "exact_solve|INCONCLUSIVE": 3,
+        "exact_solve|REFUTED": 32,
+        "exact_solve|WITNESS_FOUND": 35,
+        "local_search|INCONCLUSIVE": 39,
+        "local_search|WITNESS_FOUND": 11
+      },
+      "actions_per_campaign": [
+        18,
+        13,
+        15,
+        15,
+        16,
+        16,
+        12,
+        15
+      ],
+      "actions_total": 120,
+      "checks_total": 2090073,
+      "coverage": 0.925,
+      "n_claimed_rungs": 148,
+      "policy": "FROZEN",
+      "primary_warranted_correct_rate": 0.925,
+      "unwarranted_claims": 0
+    },
+    "LUBY_SIZED|cap=7": {
+      "action_cap": 7,
+      "action_outcomes": {
+        "exact_solve|REFUTED": 16,
+        "exact_solve|WITNESS_FOUND": 17,
+        "local_search|INCONCLUSIVE": 19,
+        "local_search|WITNESS_FOUND": 4
+      },
+      "actions_per_campaign": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "actions_total": 56,
+      "checks_total": 1080602,
+      "coverage": 0.4875,
+      "n_claimed_rungs": 78,
+      "policy": "LUBY_SIZED",
+      "primary_warranted_correct_rate": 0.4875,
+      "unwarranted_claims": 0
+    },
+    "LUBY_SIZED|cap=None": {
+      "action_cap": null,
+      "action_outcomes": {
+        "exact_solve|INCONCLUSIVE": 3,
+        "exact_solve|REFUTED": 32,
+        "exact_solve|WITNESS_FOUND": 35,
+        "local_search|INCONCLUSIVE": 39,
+        "local_search|WITNESS_FOUND": 11
+      },
+      "actions_per_campaign": [
+        18,
+        13,
+        15,
+        15,
+        16,
+        16,
+        12,
+        15
+      ],
+      "actions_total": 120,
+      "checks_total": 2090073,
+      "coverage": 0.925,
+      "n_claimed_rungs": 148,
+      "policy": "LUBY_SIZED",
+      "primary_warranted_correct_rate": 0.925,
+      "unwarranted_claims": 0
+    },
+    "REDERIVED|cap=7": {
+      "action_cap": 7,
+      "action_outcomes": {
+        "exact_solve|REFUTED": 22,
+        "exact_solve|WITNESS_FOUND": 34
+      },
+      "actions_per_campaign": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "actions_total": 56,
+      "checks_total": 1118151,
+      "coverage": 0.7,
+      "n_claimed_rungs": 112,
+      "policy": "REDERIVED",
+      "primary_warranted_correct_rate": 0.7,
+      "unwarranted_claims": 0
+    },
+    "REDERIVED|cap=None": {
+      "action_cap": null,
+      "action_outcomes": {
+        "exact_solve|REFUTED": 35,
+        "exact_solve|WITNESS_FOUND": 50
+      },
+      "actions_per_campaign": [
+        12,
+        10,
+        9,
+        11,
+        11,
+        12,
+        9,
+        11
+      ],
+      "actions_total": 85,
+      "checks_total": 1655202,
+      "coverage": 1.0,
+      "n_claimed_rungs": 160,
+      "policy": "REDERIVED",
+      "primary_warranted_correct_rate": 1.0,
+      "unwarranted_claims": 0
+    },
+    "SCHEDULE_ONLY|cap=7": {
+      "action_cap": 7,
+      "action_outcomes": {
+        "exact_solve|REFUTED": 13,
+        "exact_solve|WITNESS_FOUND": 19,
+        "local_search|INCONCLUSIVE": 17,
+        "local_search|WITNESS_FOUND": 7
+      },
+      "actions_per_campaign": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "actions_total": 56,
+      "checks_total": 975114,
+      "coverage": 0.44375,
+      "n_claimed_rungs": 71,
+      "policy": "SCHEDULE_ONLY",
+      "primary_warranted_correct_rate": 0.44375,
+      "unwarranted_claims": 0
+    },
+    "SCHEDULE_ONLY|cap=None": {
+      "action_cap": null,
+      "action_outcomes": {
+        "exact_solve|INCONCLUSIVE": 2,
+        "exact_solve|REFUTED": 34,
+        "exact_solve|WITNESS_FOUND": 38,
+        "local_search|INCONCLUSIVE": 38,
+        "local_search|WITNESS_FOUND": 12
+      },
+      "actions_per_campaign": [
+        16,
+        15,
+        17,
+        17,
+        11,
+        16,
+        15,
+        17
+      ],
+      "actions_total": 124,
+      "checks_total": 2143344,
+      "coverage": 0.9125,
+      "n_claimed_rungs": 146,
+      "policy": "SCHEDULE_ONLY",
+      "primary_warranted_correct_rate": 0.9125,
+      "unwarranted_claims": 0
+    },
+    "TRAINED_TOOL|cap=7": {
+      "action_cap": 7,
+      "action_outcomes": {
+        "exact_solve|REFUTED": 22,
+        "exact_solve|WITNESS_FOUND": 34
+      },
+      "actions_per_campaign": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "actions_total": 56,
+      "checks_total": 1118151,
+      "coverage": 0.7,
+      "n_claimed_rungs": 112,
+      "policy": "TRAINED_TOOL",
+      "primary_warranted_correct_rate": 0.7,
+      "unwarranted_claims": 0
+    },
+    "TRAINED_TOOL|cap=None": {
+      "action_cap": null,
+      "action_outcomes": {
+        "exact_solve|REFUTED": 35,
+        "exact_solve|WITNESS_FOUND": 50
+      },
+      "actions_per_campaign": [
+        12,
+        10,
+        9,
+        11,
+        11,
+        12,
+        9,
+        11
+      ],
+      "actions_total": 85,
+      "checks_total": 1655202,
+      "coverage": 1.0,
+      "n_claimed_rungs": 160,
+      "policy": "TRAINED_TOOL",
+      "primary_warranted_correct_rate": 1.0,
+      "unwarranted_claims": 0
+    }
+  },
+  "purpose": "discharge clause (b) of the conjunctive precondition in ME_F1_G0E_OUTCOME_RECEIPT_V1.md section 5.1: the parent's probe allocation re-derived for the action budget it is actually given",
+  "replica_control": {
+    "compared": [
+      "action tool/rung/budget/outcome sequence",
+      "claim sheet",
+      "checks spent"
+    ],
+    "frozen_policy_reproduces_the_shipped_core": true,
+    "n_campaigns_checked": 8
+  },
+  "schema_version": "orion.v2.me-f1-r2.allocation-rederivation.v1",
+  "tool_training_table": {
+    "3.2|exact_solve": {
+      "inconclusive": 0,
+      "mean_checks": 4346,
+      "n_probes": 32,
+      "ratio": 3.2,
+      "refuted": 0,
+      "settle_rate": 1.0,
+      "settled": 32,
+      "tool": "exact_solve",
+      "witness": 32
+    },
+    "3.2|local_search": {
+      "inconclusive": 9,
+      "mean_checks": 7888,
+      "n_probes": 32,
+      "ratio": 3.2,
+      "refuted": 0,
+      "settle_rate": 0.71875,
+      "settled": 23,
+      "tool": "local_search",
+      "witness": 23
+    },
+    "4.0|exact_solve": {
+      "inconclusive": 0,
+      "mean_checks": 15156,
+      "n_probes": 32,
+      "ratio": 4.0,
+      "refuted": 3,
+      "settle_rate": 1.0,
+      "settled": 32,
+      "tool": "exact_solve",
+      "witness": 29
+    },
+    "4.0|local_search": {
+      "inconclusive": 23,
+      "mean_checks": 11335,
+      "n_probes": 32,
+      "ratio": 4.0,
+      "refuted": 0,
+      "settle_rate": 0.28125,
+      "settled": 9,
+      "tool": "local_search",
+      "witness": 9
+    },
+    "4.267|exact_solve": {
+      "inconclusive": 0,
+      "mean_checks": 23127,
+      "n_probes": 32,
+      "ratio": 4.267,
+      "refuted": 11,
+      "settle_rate": 1.0,
+      "settled": 32,
+      "tool": "exact_solve",
+      "witness": 21
+    },
+    "4.267|local_search": {
+      "inconclusive": 28,
+      "mean_checks": 11986,
+      "n_probes": 32,
+      "ratio": 4.267,
+      "refuted": 0,
+      "settle_rate": 0.125,
+      "settled": 4,
+      "tool": "local_search",
+      "witness": 4
+    },
+    "4.7|exact_solve": {
+      "inconclusive": 0,
+      "mean_checks": 24384,
+      "n_probes": 32,
+      "ratio": 4.7,
+      "refuted": 22,
+      "settle_rate": 1.0,
+      "settled": 32,
+      "tool": "exact_solve",
+      "witness": 10
+    },
+    "4.7|local_search": {
+      "inconclusive": 31,
+      "mean_checks": 12545,
+      "n_probes": 32,
+      "ratio": 4.7,
+      "refuted": 0,
+      "settle_rate": 0.03125,
+      "settled": 1,
+      "tool": "local_search",
+      "witness": 1
+    },
+    "5.6|exact_solve": {
+      "inconclusive": 0,
+      "mean_checks": 19930,
+      "n_probes": 32,
+      "ratio": 5.6,
+      "refuted": 32,
+      "settle_rate": 1.0,
+      "settled": 32,
+      "tool": "exact_solve",
+      "witness": 0
+    },
+    "5.6|local_search": {
+      "inconclusive": 32,
+      "mean_checks": 12813,
+      "n_probes": 32,
+      "ratio": 5.6,
+      "refuted": 0,
+      "settle_rate": 0.0,
+      "settled": 0,
+      "tool": "local_search",
+      "witness": 0
+    }
+  }
+}

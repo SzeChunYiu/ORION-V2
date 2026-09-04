@@ -1,0 +1,72 @@
+{
+  "authority": {
+    "authorizes_protected_dispatch": false,
+    "grants_field_status": false,
+    "grants_manuscript_change": false,
+    "grants_scientific_truth": false
+  },
+  "carried_forward_unsoftened": [
+    "ME-F1 V1 routes CANNOT_CHECK (G0e failed, NO_LAUNDERING_VARIANCE), after a full revival attempt that falsified its own attribution.",
+    "PARENT_SUFFICIENT was never reached for ME-F1 and is not claimed.",
+    "At identical resources a bare direct arm beat BOTH the mechanism and the parent in BOTH runs: SIMPLE_DIRECT 0.7562 / 0.6625 against M_ME_FRONTIER_CONTROL 0.4062 / 0.4500 and B5 0.3000 / 0.2437.",
+    "The ME-F1 V1 protected campaign must never be dispatched."
+  ],
+  "dispatch_status": {
+    "authorized": false,
+    "reason": "ME-F1 routes CANNOT_CHECK. G0e is NO_LAUNDERING_VARIANCE, a hard fail that survived a full revival attempt, and mef1_run.stage_protected refuses on its own before generating a campaign (EXIT_G0E_FAILED = 7 when checked, EXIT_G0E_UNCHECKABLE = 8 when never evaluated).",
+    "what_would_change_it": "nothing in this file. G0e's failure is STRUCTURAL (V1 receipt section 7): the world made every arm's own warrant status self-evident, foreclosing the failure mode the primary endpoint measures. The only remaining lever -- withholding the world's licensing rules from the rung-0 arm -- is forbidden, because it manufactures laundering by making an arm ignorant. A world where warrant status is a judgment call is a DIFFERENT study, not ME-F1 R2."
+  },
+  "frozen_allocation_policy": "REDERIVED (research/experiments/me-f1-r2/mef1r2_allocation.py): midpoint bisection for probe SELECTION, solver selection TRAINED on the public development split, Luby restart schedule sized to the probes actually available, and the INCONCLUSIVE -> switch-tool fallback the algorithmic core already implemented.",
+  "frozen_b5_control_text": "\nYOUR PROCEDURE (the strongest published federation, applied faithfully).\nYou are running four established techniques together. Use all of them.\n 1. ALGORITHM SELECTION (Rice 1976; SATzilla, Xu et al. 2008). SATzilla does not ship a\n    fixed rule: it TRAINS the selector on the instance distribution it will face. The\n    selector below was trained on the public development split at this exact geometry,\n    one probe per (rung, tool), 32 probes per cell:\n\n      ratio   exact_solve settles   local_search settles\n      3.200   32/32 = 1.00          23/32 = 0.72\n      4.000   32/32 = 1.00           9/32 = 0.28\n      4.267   32/32 = 1.00           4/32 = 0.12\n      4.700   32/32 = 1.00           1/32 = 0.03\n      5.600   32/32 = 1.00           0/32 = 0.00\n\n    At this problem size local_search is dominated at every ratio, and at the cheapest\n    rung it is dominated on cost as well. USE exact_solve. It is the only tool that can\n    return either verdict, so it settles a rung in ONE action whichever way the rung\n    falls, and your budget is measured in ACTIONS.\n 2. BINARY SEARCH within each block. That block's satisfiable rungs form a prefix, so\n    its boundary can be localised in about log2(rungs per block) probes instead of one\n    probe per rung. Probe the midpoint of each block's still-open interval, given below.\n    Do not probe rungs already settled by closure. Budget is shared across blocks, so\n    spend it where it buys the most closure.\n 3. RESTART POLICY (Luby et al. 1993; Gomes et al. 1998). Backtracking runtimes are\n    heavy tailed: prefer several shorter attempts over one long one. The Luby budget\n    schedule for your remaining probes is given below, sized to the probes you actually\n    have rather than to a fixed twelve.\n 4. IF A PROBE RETURNS INCONCLUSIVE, SWITCH TOOL and retry that same rung once before\n    moving on. Nothing is established by an inconclusive probe. If both tools return\n    INCONCLUSIVE, that block cannot be advanced: move to another block rather than\n    spend further actions there.\n 5. VERSION SPACE (Mitchell 1982) + CALIBRATED ABSTENTION. Maintain the surviving\n    boundary positions; assert a verdict for a rung ONLY when every surviving position\n    entails it. Where the evidence does not entail a verdict, report UNRESOLVED, exactly\n    as a solver reports UNKNOWN rather than guessing.\n",
+  "frozen_b5_control_text_sha256": "a40ef94244b3a62db8a8d9a9b15148b6a6f0bcb76e063af033112230778302c8",
+  "geometry": {
+    "budget_checks": 300000,
+    "dev_seed": "ME-F1-DEV-20260902",
+    "level": "L2",
+    "n_campaigns": 8,
+    "n_vars": 30,
+    "why": "frozen by ME_F1_CALIBRATION_RECEIPT.json measured by tree b6350ba9c462571f\u2026"
+  },
+  "precondition_5_1": {
+    "clause_a_inconclusive_switch_tool_fallback_in_the_control_text": {
+      "evidence": "the string INCONCLUSIVE occurs four times in research/experiments/me-f1/mef1_arms.py: twice in the shared tool description (lines 80, 83) and twice inside run_deterministic_arm (lines 625, 631), the algorithmic core. No arm control text contains a switch-tool instruction. Control pattern local_search matched 11 times in the same file, so the search was working.",
+      "note": "The brief for this lane recorded clause (a) as already met. It is not, on main. What was repaired earlier is a DIFFERENT asymmetry -- the rung-0 prompt/warrant-field asymmetry of G0e receipt section 6 -- and repairing it did not touch B5's control text.",
+      "status_now": "DISCHARGED -- item 4 of the frozen control text below.",
+      "status_on_main_before_this_work": "NOT MET"
+    },
+    "clause_b_probe_allocation_rederived_for_the_action_budget": {
+      "lever_isolation": {
+        "luby_sizing_alone": 0.4875,
+        "probe_schedule_alone": 0.44375,
+        "reading": "the trained selector carries the entire repair; sizing the Luby schedule to the action budget changes nothing because checks were never the binding resource; re-ordering probes by the federation's own portfolio_schedule makes it WORSE, and is reported because it was tried and failed",
+        "trained_tool_alone": 0.7
+      },
+      "measured": {
+        "frozen_core_at_7_actions": {
+          "actions": 56,
+          "primary": 0.4875
+        },
+        "frozen_core_natural_budget": {
+          "actions": 120,
+          "primary": 0.925
+        },
+        "rederived_at_7_actions": {
+          "actions": 56,
+          "primary": 0.7
+        },
+        "rederived_natural_budget": {
+          "actions": 85,
+          "primary": 1.0
+        }
+      },
+      "receipt": "ME_F1_R2_ALLOCATION_REDERIVATION_V1.json",
+      "single_stage_attribution": "SOLVER SELECTION, not probe ordering and not restart sizing",
+      "status_before": "NOT MET",
+      "status_now": "DISCHARGED"
+    },
+    "form": "CONJUNCTIVE -- both clauses required before any successor may freeze B5"
+  },
+  "schema_version": "orion.v2.me-f1-r2.comparator-freeze.v1",
+  "study_id": "ME-F1-R2",
+  "what_this_freezes": "the COMPARATOR only: B5's control text and its probe allocation, as required by ME_F1_G0E_OUTCOME_RECEIPT_V1.md section 5.1. It is NOT a protected-run authorization and does not create one."
+}
