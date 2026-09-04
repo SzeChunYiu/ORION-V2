@@ -1,11 +1,12 @@
-"""One-command controlled KSO system demonstration through M6a.
+"""One-command controlled KSO system demonstration through M6a + multi-domain integration.
 
 The demo intentionally reports each milestone separately rather than collapsing them into a fake
 single score. Default mode executes M3 procedure learning, M4 governed Jump, M5 controlled chat,
-and M6a Lean proof-channel integration. `--with-m2` additionally runs a small M2 solve smoke pass
+M6a Lean proof-channel integration, and one controlled KnowledgeSpace containing both learned
+procedures and Lean-verified mathematics. `--with-m2` additionally runs a small M2 solve smoke pass
 on the upstream ME-X1 exact domain.
 
-This is a runnable integration demo, not an open-domain AGI/frontier-math claim.
+This is a runnable integration demo, not an open-domain AGI/frontier-math/scalability claim.
 """
 from __future__ import annotations
 
@@ -37,11 +38,13 @@ def run_system(*, with_m2: bool = False) -> dict[str, object]:
     m5 = _load("kso_m5_chat_v1")
     demo = _load("kso_demo_v1")
     m6 = _load("kso_m6_formal_math_v1")
+    multi = _load("kso_multidomain_v1")
 
     r3 = m3.run_m3()
     r4 = m4.run_m4()
     r5 = m5.run_m5()
     r6 = m6.run_m6a()
+    rm = multi.run_multidomain()
     transcript = demo.run_script()
 
     stages: dict[str, object] = {
@@ -68,6 +71,12 @@ def run_system(*, with_m2: bool = False) -> dict[str, object]:
             "registered_rejections": r6["source"]["registered_rejections"],
             "frontier_math_discovery": r6["authority"]["frontier_math_discovery"],
         },
+        "MULTIDOMAIN": {
+            "terminal": rm["terminal"],
+            "learned_procedures": rm["space"]["learned_procedures"],
+            "verified_math_proofs": rm["space"]["verified_math_proofs"],
+            "cross_domain_noninterference": all(rm["noninterference"].values()),
+        },
     }
 
     if with_m2:
@@ -89,6 +98,7 @@ def run_system(*, with_m2: bool = False) -> dict[str, object]:
         and r4["terminal"] == "M4_FINITE_GOVERNED_JUMP_GREEN"
         and r5["terminal"] == "M5_CONTROLLED_CODEC_CHAT_GREEN"
         and r6["terminal"] == "M6A_FORMAL_MATH_VERIFIER_CHANNEL_INTEGRATED_PARENT_SUFFICIENT"
+        and rm["terminal"] == "CONTROLLED_MULTIDOMAIN_KSO_GREEN"
         and r6["authority"]["M6_full"] is False
     )
     if not expected:
@@ -99,7 +109,9 @@ def run_system(*, with_m2: bool = False) -> dict[str, object]:
         "stages": stages,
         "chat_transcript": transcript,
         "boundary": {
-            "single_scalable_multidomain_kso": False,
+            "controlled_multidomain_kso": True,
+            "scalability_established": False,
+            "automatic_domain_router": False,
             "open_domain_language": False,
             "full_frontier_math": False,
             "novelty": False,
@@ -122,9 +134,10 @@ def print_human(result: dict[str, object]) -> None:
         print(f"> {row['user']}")
         print(row["kso"])
     print("\nBoundary:")
-    print("  scalable multi-domain KSO: NOT YET")
-    print("  open-domain language:      NOT YET")
-    print("  frontier math discovery:   NOT YET")
+    print("  controlled multi-domain KSO: YES")
+    print("  scalability / learned router: NOT YET")
+    print("  open-domain language:         NOT YET")
+    print("  frontier math discovery:      NOT YET")
 
 
 def main(argv=None) -> int:
