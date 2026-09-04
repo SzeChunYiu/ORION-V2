@@ -75,14 +75,19 @@
       "depends_on": [
         "FM00"
       ],
-      "status": "DESIGN_FROZEN_DEVELOPMENT_COMPLETE_PROTECTED_PENDING",
+      "status": "EXECUTED_PROTECTED",
       "exact_study": {
         "design": "research/experiments/fm-exact/FM40_INVARIANCE_EQUIVARIANCE_DISCOVERY_EXACT_STUDY_DESIGN_V1.{md,json}",
         "code": "research/experiments/fm-exact/{fm_core,fm_run,fm40_suite}.py",
         "parent_fidelity": "research/experiments/fm-exact/FM_PARENT_FIDELITY_RECEIPT_FM40_V1.md",
         "protected_tasks": 126,
-        "note": "supersedes nothing; the FM/FG R2 LLM-dispatch fm40 cell sat at ceiling (all five arms 1.000) and could not discriminate, which is the degeneracy G0f now gates"
-      }
+        "note": "supersedes nothing; the FM/FG R2 LLM-dispatch fm40 cell sat at ceiling (all five arms 1.000) and could not discriminate, which is the degeneracy G0f now gates",
+        "pre_run_audit": "research/experiments/fm-exact/FM40_PRE_RUN_AUDIT_V1.md",
+        "note_protected": "F0 fidelity gap closed pre-run (five F0 checks added, parents 30/30)."
+      },
+      "terminal": "PARENT_SUFFICIENT",
+      "terminal_detail": "G1a_PARENT_REPRODUCES_M PASSES at identity 1.0000 on 126 protected instances; every hard gate PASS, G2 on 108 in-scope instances. The identity is entailed: F0_PARENT_FEDERATION composes complete per-stratum procedures and differs from the oracle 0 times, so 126/126 is an identity, not a measurement. G1b is unfirable against an oracle-identical comparator. Measured content: M exact on all 18 instances every single parent misses (SURFACE_ONLY_SYMMETRY) and on all 36 the best single parent misses. Agrees with the development leg.",
+      "outcome_receipt": "research/experiments/fm-exact/FM40_OUTCOME_RECEIPT.md"
     },
     {
       "id": "FM50",
@@ -91,15 +96,20 @@
       "depends_on": [
         "FM00"
       ],
-      "status": "DESIGN_FROZEN_DEVELOPMENT_COMPLETE_PROTECTED_PENDING",
+      "status": "EXECUTED_PROTECTED",
       "exact_study": {
         "design": "research/experiments/fm-exact/FM50_FUNCTORIALITY_COMMUTING_DIAGRAMS_EXACT_STUDY_DESIGN_V1.{md,json}",
         "code": "research/experiments/fm-exact/{fm_core,fm_run,fm50_suite}.py",
         "parent_fidelity": "research/experiments/fm-exact/FM_PARENT_FIDELITY_RECEIPT_FM50_V1.md",
         "protected_tasks": 104,
         "eligibility_gate": "G0g_ELIGIBILITY - only constructions that form a lawful finite category enter the split; INELIGIBLE is a published third outcome, counted per family in generator_rejections, and is never negative evidence",
-        "note": "supersedes nothing; the FM/FG R2 LLM-dispatch fm50 cell sat near ceiling (1.000/0.927/0.969/1.000/0.990) and could not discriminate, which is what G0f now gates"
-      }
+        "note": "supersedes nothing; the FM/FG R2 LLM-dispatch fm50 cell sat near ceiling (1.000/0.927/0.969/1.000/0.990) and could not discriminate, which is what G0f now gates",
+        "pre_run_audit": "research/experiments/fm-exact/FM50_PRE_RUN_AUDIT_V1.md",
+        "note_protected": "F0 fidelity gap closed pre-run (four F0 checks added, parents 32/32)."
+      },
+      "terminal": "PARENT_SUFFICIENT",
+      "terminal_detail": "G1a_PARENT_REPRODUCES_M PASSES at identity 1.0000 on 104 protected eligible instances (22 INELIGIBLE, 43 not-realised, 0 of 208 probes missed); every hard gate PASS, G2 on 65 in-scope instances. The identity is entailed by F0 being the oracle by construction and, on this endpoint, by the law fragment being a total function of the candidate. G1b is unfirable. Measured content: M exact on all 13 instances the best single parent (the law checker) misses, the whole FALSE_EQUIVALENCE family; no instance is missed by every parent. Agrees with the development leg.",
+      "outcome_receipt": "research/experiments/fm-exact/FM50_OUTCOME_RECEIPT.md"
     },
     {
       "id": "FM60",
@@ -108,14 +118,19 @@
       "depends_on": [
         "FM00"
       ],
-      "status": "DESIGN_FROZEN_DEVELOPMENT_COMPLETE_PROTECTED_PENDING",
+      "status": "EXECUTED_PROTECTED",
       "exact_study": {
         "design": "research/experiments/fm-exact/FM60_OBSTRUCTION_COUNTEREXAMPLE_EXACT_STUDY_DESIGN_V1.{md,json}",
         "code": "research/experiments/fm-exact/{fm_core,fm_run,fm60_suite}.py",
         "parent_fidelity": "research/experiments/fm-exact/FM_PARENT_FIDELITY_RECEIPT_FM60_V1.md",
         "protected_tasks": 125,
-        "note": "the FM/FG R2 LLM-dispatch fm60 cell was the campaign's floor study (all five arms identical at 32/120, 0.267) and could not discriminate; the exact study registers G0f's solvable half as a hard gate and plants a synthetic 0.267 floor table that must fail it"
-      }
+        "note": "the FM/FG R2 LLM-dispatch fm60 cell was the campaign's floor study (all five arms identical at 32/120, 0.267) and could not discriminate; the exact study registers G0f's solvable half as a hard gate and plants a synthetic 0.267 floor table that must fail it",
+        "pre_run_audit": "research/experiments/fm-exact/FM60_PRE_RUN_AUDIT_V1.md",
+        "note_protected": "G2_ANTI_PERMISSIVENESS was bound to its registered clause pre-run (REGISTERED_SCOPE_DIVERGENCE in the runner's generic fallback); the development analysis was re-derived under the binding."
+      },
+      "terminal": "PARENT_SUFFICIENT",
+      "terminal_detail": "G1a_PARENT_REPRODUCES_M FAILS at identity 0.992 on 125 protected instances: M 0.992 vs F0 1.000, paired diff -0.008, exact p = 1.0, one no_obstruction instance on which M abstains (PROOF_STEP_BUDGET = 12) where the derivation parent proves the claim. The route is PARENT_SUFFICIENT because M shows no advantage over the strongest faithful parent, not because the parent reproduces M; the development leg (identity 1.0000) is superseded and the disagreement is reported plainly. G2 evaluated on 100 under the registered clause (CANNOT_CHECK on the development split), PASS; its pass for validated arms is entailed by rule-base soundness plus the witness gate.",
+      "outcome_receipt": "research/experiments/fm-exact/FM60_OUTCOME_RECEIPT.md"
     },
     {
       "id": "FM70",

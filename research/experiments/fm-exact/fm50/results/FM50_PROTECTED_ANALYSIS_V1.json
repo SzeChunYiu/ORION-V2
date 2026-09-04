@@ -1,0 +1,1311 @@
+{
+  "cost": {
+    "M_wall_ms": 0.976744,
+    "P_wall_ms": 3.854831,
+    "flag": "COST_ADVANTAGE_M",
+    "ratio_P_over_M": 3.9466134422120844,
+    "rule": "wall-clock flag at 2x; reported only, routes nothing"
+  },
+  "custody_sha256": "46b622996b71ff1874bfbbbf2bf65c6583aec390227adcd5bd5abbf43267d4fd",
+  "gates": [
+    {
+      "applicable": true,
+      "detail": {
+        "fixtures": [
+          {
+            "expected": "TRANSFER_VALID",
+            "name": "KA-01-IDENTITY-FUNCTOR",
+            "oracle": "TRANSFER_VALID",
+            "passed": true
+          },
+          {
+            "expected": "TRANSFER_VALID",
+            "name": "KA-02-EMBEDDING-IN-LARGER-TARGET",
+            "oracle": "TRANSFER_VALID",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_ENDPOINT_VIOLATION",
+            "name": "KA-03-ENDPOINT-VIOLATION",
+            "oracle": "BLOCK_ENDPOINT_VIOLATION",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_IDENTITY_NOT_PRESERVED",
+            "name": "KA-04-IDENTITY-NOT-PRESERVED",
+            "oracle": "BLOCK_IDENTITY_NOT_PRESERVED",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_COMPOSITION_NOT_PRESERVED",
+            "name": "KA-05-COMPOSITION-NOT-PRESERVED",
+            "oracle": "BLOCK_COMPOSITION_NOT_PRESERVED",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_MIXED_LAW_OBSTRUCTION",
+            "name": "KA-06-MIXED-LAW-OBSTRUCTION",
+            "oracle": "BLOCK_MIXED_LAW_OBSTRUCTION",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_FALSE_EQUIVALENCE",
+            "name": "KA-07-FALSE-EQUIVALENCE-CONSTANT-FUNCTOR",
+            "oracle": "BLOCK_FALSE_EQUIVALENCE",
+            "passed": true
+          },
+          {
+            "expected": "TRANSFER_VALID",
+            "name": "KA-08-LICENSED-COLLAPSE",
+            "oracle": "TRANSFER_VALID",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_ENDPOINT_VIOLATION",
+            "name": "KA-09-ENDPOINT-DOMINATES-COLLAPSE",
+            "oracle": "BLOCK_ENDPOINT_VIOLATION",
+            "passed": true
+          },
+          {
+            "expected": "BLOCK_COMPOSITION_NOT_PRESERVED",
+            "name": "KA-10-COMPOSITION-DOMINATES-COLLAPSE",
+            "oracle": "BLOCK_COMPOSITION_NOT_PRESERVED",
+            "passed": true
+          },
+          {
+            "expected": "TRANSFER_VALID",
+            "name": "KA-11-SURFACE-NAME-DECOY",
+            "oracle": "TRANSFER_VALID",
+            "passed": true
+          }
+        ]
+      },
+      "gate": "G0a_KNOWN_ANSWER",
+      "hard": true,
+      "min_required_evaluated": 8,
+      "n_evaluated": 11,
+      "n_violations": 0,
+      "rule": "every hand-authored fixture's disposition is reproduced by the exhaustive oracle",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "n_disagreements": 0,
+        "n_evaluated": 104
+      },
+      "gate": "G0b_ORACLE_SELF_AGREEMENT",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 104,
+      "n_violations": 0,
+      "rule": "exhaustive enumeration and the independent branch-and-bound search agree on disposition, min_missing, optimal profile and optimal-map count for every instance of the split",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "constant_arm_rates": {
+          "C_ALWAYS_BLOCK": 0.125,
+          "C_ALWAYS_TRANSFER": 0.375
+        },
+        "random_rate": 0.19230769230769232,
+        "shuffled_label_null": {
+          "exact_against_shuffled": 28,
+          "n": 104,
+          "rate": 0.2692307692307692,
+          "seed": 20260902
+        },
+        "violations": []
+      },
+      "gate": "G0c_NULL_CALIBRATION",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 4,
+      "n_violations": 0,
+      "rule": "constant-response arms <= 0.4, random arm <= 0.4, M against within-split shuffled oracle labels <= 0.4",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "below_minimum": {},
+        "counts": {
+          "FALSE_EQUIVALENCE": 13,
+          "IDENTITY_NOT_PRESERVED": 13,
+          "LICENSED_COLLAPSE": 13,
+          "SURFACE_NAME_DECOY": 13
+        },
+        "minimum": 3
+      },
+      "gate": "G0d_DECOY_COVERAGE",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 4,
+      "n_violations": 0,
+      "rule": "every registered decoy family carries >= 3 instances in the split",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "planted": [
+          {
+            "description": "an oracle that searches only the first object map must disagree with exhaustive enumeration on the valid-functor count of a hand-built instance",
+            "fired": true,
+            "gate": "G0b_ORACLE_SELF_AGREEMENT",
+            "name": "single_object_map_pseudo_oracle_is_detected"
+          },
+          {
+            "description": "the known-answer comparison must reject a deliberately wrong expected disposition",
+            "fired": true,
+            "gate": "G0a_KNOWN_ANSWER",
+            "name": "wrong_expected_label_is_detected"
+          },
+          {
+            "description": "the over-transfer counter must count C_ALWAYS_TRANSFER on an oracle-blocked instance",
+            "fired": true,
+            "gate": "G2_ANTI_PERMISSIVENESS",
+            "name": "over_transferring_arm_is_detected"
+          },
+          {
+            "description": "a synthetic per-arm table where every arm scores 1.0 must FAIL the discrimination gate (the FM/FG R2 ceiling defect that made the LLM-dispatch fm50 cell uninformative)",
+            "fired": true,
+            "gate": "G0f_FAMILY_DISCRIMINATION",
+            "name": "degenerate_all_ceiling_split_is_detected"
+          },
+          {
+            "description": "M_MINUS_FAITHFULNESS_RECOVERY must be wrong on a hand-built false equivalence on which M is right",
+            "fired": true,
+            "gate": "G3_MECHANISM_BY_OMISSION",
+            "name": "faithfulness_ablation_loses_the_false_equivalence_family"
+          },
+          {
+            "description": "a deliberately non-associative composition table must be caught by the eligibility checker and reported INELIGIBLE, never scored as a negative result about any arm",
+            "fired": true,
+            "gate": "G0g_ELIGIBILITY",
+            "name": "non_associative_construction_is_caught_not_counted_as_a_negative"
+          }
+        ]
+      },
+      "gate": "G0e_PLANTED_POSITIVES",
+      "hard": true,
+      "min_required_evaluated": 3,
+      "n_evaluated": 6,
+      "n_violations": 0,
+      "rule": "every registered planted positive trips its own gate predicate",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "halves": {
+          "separating": {
+            "n_evaluated": 4,
+            "threshold": 0.85,
+            "violation": false,
+            "weak_arms_at_or_below_threshold": {
+              "P0_NAME_SIMILARITY": 0.125,
+              "P1_GRAPH_HOMOMORPHISM": 0.5,
+              "P3_DIAGRAM_CHASE": 0.5673076923076923,
+              "P5_FIXED_LESSON_INJECTION": 0.5
+            }
+          },
+          "solvable": {
+            "best_arm": "F0_PARENT_FEDERATION",
+            "best_rate": 1.0,
+            "n_evaluated": 12,
+            "threshold": 0.95,
+            "violation": false
+          }
+        },
+        "per_arm_exact": {
+          "C_ALWAYS_BLOCK": 0.125,
+          "C_ALWAYS_TRANSFER": 0.375,
+          "C_RANDOM_DISPOSITION": 0.19230769230769232,
+          "F0_PARENT_FEDERATION": 1.0,
+          "M_F2_FUNCTORIAL_TRANSFER_FULL": 1.0,
+          "M_MINUS_COMPOSITION_CHECK": 0.75,
+          "M_MINUS_ENDPOINT_DISCIPLINE": 0.875,
+          "M_MINUS_FAITHFULNESS_RECOVERY": 0.875,
+          "M_MINUS_IDENTITY_CHECK": 0.75,
+          "P0_NAME_SIMILARITY": 0.125,
+          "P1_GRAPH_HOMOMORPHISM": 0.5,
+          "P2_CATEGORY_LAW_FUNCTOR": 0.875,
+          "P3_DIAGRAM_CHASE": 0.5673076923076923,
+          "P4_FAITHFULNESS": 0.5,
+          "P5_FIXED_LESSON_INJECTION": 0.5
+        }
+      },
+      "gate": "G0f_FAMILY_DISCRIMINATION",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 2,
+      "n_violations": 0,
+      "rule": "non-degenerate split, two independent halves: some arm >= 0.95 (not at floor) AND some registered weak arm <= 0.85 (not at ceiling); guards against the families that made FM/FG R2 uninformative",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "counter_liveness_control": {
+          "ablation_vs_parent_discordance": {
+            "M_MINUS_COMPOSITION_CHECK": 26,
+            "M_MINUS_ENDPOINT_DISCIPLINE": 13,
+            "M_MINUS_FAITHFULNESS_RECOVERY": 13,
+            "M_MINUS_IDENTITY_CHECK": 26
+          },
+          "counter_is_live": true
+        },
+        "decision_identity_rate": 1.0,
+        "paired": {
+          "diff_x_minus_y": 0.0,
+          "discordant": 0,
+          "exact_p_two_sided": 1.0,
+          "n": 104,
+          "wald_ci95": [
+            0.0,
+            0.0
+          ],
+          "x_only": 0,
+          "y_only": 0
+        },
+        "per_family": {
+          "COMPOSITION_NOT_PRESERVED": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 13
+          },
+          "ENDPOINT_VIOLATION": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 13
+          },
+          "FALSE_EQUIVALENCE": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 13
+          },
+          "IDENTITY_NOT_PRESERVED": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 13
+          },
+          "LICENSED_COLLAPSE": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 13
+          },
+          "MIXED_LAW_OBSTRUCTION": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 13
+          },
+          "SURFACE_NAME_DECOY": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 13
+          },
+          "VALID_FUNCTOR": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 13
+          }
+        },
+        "per_family_effective_allowance": {
+          "COMPOSITION_NOT_PRESERVED": 0,
+          "ENDPOINT_VIOLATION": 0,
+          "FALSE_EQUIVALENCE": 0,
+          "IDENTITY_NOT_PRESERVED": 0,
+          "LICENSED_COLLAPSE": 0,
+          "MIXED_LAW_OBSTRUCTION": 0,
+          "SURFACE_NAME_DECOY": 0,
+          "VALID_FUNCTOR": 0
+        },
+        "per_family_threshold_note": "the 5% per-family rule is reported with the integer number of discordant instances it actually permits at this family size; where that is 0 the rule is exactly 'no discordance in this family', which is what it is enforcing"
+      },
+      "gate": "G1a_PARENT_REPRODUCES_M",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 104,
+      "n_violations": 0,
+      "rule": "F0_PARENT_FEDERATION reproduces M_F2_FUNCTORIAL_TRANSFER_FULL's disposition on >= 99.5% of instances and no family exceeds 5% discordance; AND the discordance counter is shown live on this split by at least one ablation arm disagreeing with the parent",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "discordant_pairs": 0,
+        "paired": {
+          "diff_x_minus_y": 0.0,
+          "discordant": 0,
+          "exact_p_two_sided": 1.0,
+          "n": 104,
+          "wald_ci95": [
+            0.0,
+            0.0
+          ],
+          "x_only": 0,
+          "y_only": 0
+        },
+        "per_family": {
+          "COMPOSITION_NOT_PRESERVED": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 13
+          },
+          "ENDPOINT_VIOLATION": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 13
+          },
+          "FALSE_EQUIVALENCE": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 13
+          },
+          "IDENTITY_NOT_PRESERVED": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 13
+          },
+          "LICENSED_COLLAPSE": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 13
+          },
+          "MIXED_LAW_OBSTRUCTION": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 13
+          },
+          "SURFACE_NAME_DECOY": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 13
+          },
+          "VALID_FUNCTOR": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 13
+          }
+        }
+      },
+      "gate": "G1b_M_ADVANTAGE",
+      "hard": false,
+      "min_required_evaluated": 1,
+      "n_evaluated": 104,
+      "n_violations": 1,
+      "rule": "paired instance-exact difference (M_F2_FUNCTORIAL_TRANSFER_FULL - F0_PARENT_FEDERATION) > 0, exact two-sided p <= 0.05, and >= 1 family with >= 5 M-only-exact instances",
+      "verdict": "NOT_FIRED"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "M_unsafe_claims": 0,
+        "P_unsafe_claims": 0,
+        "counter_liveness_control": {
+          "counter_is_live": true,
+          "max_any_arm": 65,
+          "unsafe_claims_by_arm": {
+            "C_ALWAYS_BLOCK": 0,
+            "C_ALWAYS_TRANSFER": 65,
+            "C_RANDOM_DISPOSITION": 8,
+            "F0_PARENT_FEDERATION": 0,
+            "M_F2_FUNCTORIAL_TRANSFER_FULL": 0,
+            "M_MINUS_COMPOSITION_CHECK": 13,
+            "M_MINUS_ENDPOINT_DISCIPLINE": 0,
+            "M_MINUS_FAITHFULNESS_RECOVERY": 13,
+            "M_MINUS_IDENTITY_CHECK": 13,
+            "P0_NAME_SIMILARITY": 52,
+            "P1_GRAPH_HOMOMORPHISM": 52,
+            "P2_CATEGORY_LAW_FUNCTOR": 13,
+            "P3_DIAGRAM_CHASE": 43,
+            "P4_FAITHFULNESS": 52,
+            "P5_FIXED_LESSON_INJECTION": 39
+          }
+        },
+        "n_in_scope": 65,
+        "unsafe_endpoint": "over-acceptance"
+      },
+      "gate": "G2_ANTI_PERMISSIVENESS",
+      "hard": true,
+      "min_required_evaluated": 10,
+      "n_evaluated": 65,
+      "n_violations": 0,
+      "rule": "on the instances in scope, M_F2_FUNCTORIAL_TRANSFER_FULL makes no more unsafe claims (over-acceptance) than F0_PARENT_FEDERATION; AND the counter is shown live on those same instances by at least one arm registering a nonzero count",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": false,
+      "detail": {
+        "checks": {},
+        "claimed_families": []
+      },
+      "gate": "G3_MECHANISM_BY_OMISSION",
+      "hard": false,
+      "min_required_evaluated": 1,
+      "n_evaluated": 0,
+      "n_violations": 0,
+      "rule": "for every family with a claimed M advantage, the matching omission ablation's exact rate is <= the parent's on that family",
+      "verdict": "NOT_APPLICABLE"
+    }
+  ],
+  "generator_rejections": {
+    "COMPOSITION_NOT_PRESERVED": 8,
+    "ELIGIBILITY_PROBE_MISSED:COMPOSITION_NOT_PRESERVED": 0,
+    "ELIGIBILITY_PROBE_MISSED:ENDPOINT_VIOLATION": 0,
+    "ELIGIBILITY_PROBE_MISSED:FALSE_EQUIVALENCE": 0,
+    "ELIGIBILITY_PROBE_MISSED:IDENTITY_NOT_PRESERVED": 0,
+    "ELIGIBILITY_PROBE_MISSED:LICENSED_COLLAPSE": 0,
+    "ELIGIBILITY_PROBE_MISSED:MIXED_LAW_OBSTRUCTION": 0,
+    "ELIGIBILITY_PROBE_MISSED:SURFACE_NAME_DECOY": 0,
+    "ELIGIBILITY_PROBE_MISSED:VALID_FUNCTOR": 0,
+    "ENDPOINT_VIOLATION": 3,
+    "FALSE_EQUIVALENCE": 17,
+    "IDENTITY_NOT_PRESERVED": 2,
+    "INELIGIBLE_NOT_A_CATEGORY:COMPOSITION_NOT_PRESERVED": 3,
+    "INELIGIBLE_NOT_A_CATEGORY:ENDPOINT_VIOLATION": 4,
+    "INELIGIBLE_NOT_A_CATEGORY:FALSE_EQUIVALENCE": 6,
+    "INELIGIBLE_NOT_A_CATEGORY:IDENTITY_NOT_PRESERVED": 1,
+    "INELIGIBLE_NOT_A_CATEGORY:LICENSED_COLLAPSE": 5,
+    "INELIGIBLE_NOT_A_CATEGORY:MIXED_LAW_OBSTRUCTION": 3,
+    "INELIGIBLE_NOT_A_CATEGORY:SURFACE_NAME_DECOY": 0,
+    "INELIGIBLE_NOT_A_CATEGORY:VALID_FUNCTOR": 0,
+    "LICENSED_COLLAPSE": 8,
+    "MIXED_LAW_OBSTRUCTION": 2,
+    "SURFACE_NAME_DECOY": 1,
+    "VALID_FUNCTOR": 2
+  },
+  "holm_across_families": {
+    "COMPOSITION_NOT_PRESERVED": {
+      "holm_p": 1.0,
+      "m": 8,
+      "rank": 6,
+      "raw_p": 1.0
+    },
+    "ENDPOINT_VIOLATION": {
+      "holm_p": 1.0,
+      "m": 8,
+      "rank": 4,
+      "raw_p": 1.0
+    },
+    "FALSE_EQUIVALENCE": {
+      "holm_p": 1.0,
+      "m": 8,
+      "rank": 8,
+      "raw_p": 1.0
+    },
+    "IDENTITY_NOT_PRESERVED": {
+      "holm_p": 1.0,
+      "m": 8,
+      "rank": 5,
+      "raw_p": 1.0
+    },
+    "LICENSED_COLLAPSE": {
+      "holm_p": 1.0,
+      "m": 8,
+      "rank": 3,
+      "raw_p": 1.0
+    },
+    "MIXED_LAW_OBSTRUCTION": {
+      "holm_p": 1.0,
+      "m": 8,
+      "rank": 7,
+      "raw_p": 1.0
+    },
+    "SURFACE_NAME_DECOY": {
+      "holm_p": 1.0,
+      "m": 8,
+      "rank": 2,
+      "raw_p": 1.0
+    },
+    "VALID_FUNCTOR": {
+      "holm_p": 1.0,
+      "m": 8,
+      "rank": 1,
+      "raw_p": 1.0
+    }
+  },
+  "label": "PROTECTED",
+  "n_instances": 104,
+  "results_sha256": "e99bd75710a0445524f940e4a395ebd77a902ae104ee0b70e287dda5ff8e0cd0",
+  "route": {
+    "cost_flag": "COST_ADVANTAGE_M",
+    "reason": "F0_PARENT_FEDERATION reproduces M_F2_FUNCTORIAL_TRANSFER_FULL's dispositions (identity 1.0000)",
+    "route": "PARENT_SUFFICIENT"
+  },
+  "schema_version": "orion.v2.fm-exact.analysis.v1",
+  "score": {
+    "per_arm": {
+      "C_ALWAYS_BLOCK": {
+        "exact": 13,
+        "exact_rate": 0.125,
+        "n": 104,
+        "over_accept": 0,
+        "per_family": {
+          "COMPOSITION_NOT_PRESERVED": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "ENDPOINT_VIOLATION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "FALSE_EQUIVALENCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "IDENTITY_NOT_PRESERVED": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "LICENSED_COLLAPSE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "MIXED_LAW_OBSTRUCTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "SURFACE_NAME_DECOY": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "VALID_FUNCTOR": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          }
+        },
+        "under_accept": 39,
+        "wall_ms": 0.032333
+      },
+      "C_ALWAYS_TRANSFER": {
+        "exact": 39,
+        "exact_rate": 0.375,
+        "n": 104,
+        "over_accept": 65,
+        "per_family": {
+          "COMPOSITION_NOT_PRESERVED": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "ENDPOINT_VIOLATION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "FALSE_EQUIVALENCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "IDENTITY_NOT_PRESERVED": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "LICENSED_COLLAPSE": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "MIXED_LAW_OBSTRUCTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "SURFACE_NAME_DECOY": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "VALID_FUNCTOR": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.034829
+      },
+      "C_RANDOM_DISPOSITION": {
+        "exact": 20,
+        "exact_rate": 0.19230769230769232,
+        "n": 104,
+        "over_accept": 8,
+        "per_family": {
+          "COMPOSITION_NOT_PRESERVED": {
+            "exact": 3,
+            "exact_rate": 0.23076923076923078,
+            "n": 13
+          },
+          "ENDPOINT_VIOLATION": {
+            "exact": 2,
+            "exact_rate": 0.15384615384615385,
+            "n": 13
+          },
+          "FALSE_EQUIVALENCE": {
+            "exact": 2,
+            "exact_rate": 0.15384615384615385,
+            "n": 13
+          },
+          "IDENTITY_NOT_PRESERVED": {
+            "exact": 1,
+            "exact_rate": 0.07692307692307693,
+            "n": 13
+          },
+          "LICENSED_COLLAPSE": {
+            "exact": 5,
+            "exact_rate": 0.38461538461538464,
+            "n": 13
+          },
+          "MIXED_LAW_OBSTRUCTION": {
+            "exact": 2,
+            "exact_rate": 0.15384615384615385,
+            "n": 13
+          },
+          "SURFACE_NAME_DECOY": {
+            "exact": 3,
+            "exact_rate": 0.23076923076923078,
+            "n": 13
+          },
+          "VALID_FUNCTOR": {
+            "exact": 2,
+            "exact_rate": 0.15384615384615385,
+            "n": 13
+          }
+        },
+        "under_accept": 29,
+        "wall_ms": 0.794749
+      },
+      "F0_PARENT_FEDERATION": {
+        "exact": 104,
+        "exact_rate": 1.0,
+        "n": 104,
+        "over_accept": 0,
+        "per_family": {
+          "COMPOSITION_NOT_PRESERVED": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "ENDPOINT_VIOLATION": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "FALSE_EQUIVALENCE": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "IDENTITY_NOT_PRESERVED": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "LICENSED_COLLAPSE": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "MIXED_LAW_OBSTRUCTION": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "SURFACE_NAME_DECOY": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "VALID_FUNCTOR": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 3.854831
+      },
+      "M_F2_FUNCTORIAL_TRANSFER_FULL": {
+        "exact": 104,
+        "exact_rate": 1.0,
+        "n": 104,
+        "over_accept": 0,
+        "per_family": {
+          "COMPOSITION_NOT_PRESERVED": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "ENDPOINT_VIOLATION": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "FALSE_EQUIVALENCE": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "IDENTITY_NOT_PRESERVED": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "LICENSED_COLLAPSE": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "MIXED_LAW_OBSTRUCTION": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "SURFACE_NAME_DECOY": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "VALID_FUNCTOR": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.976744
+      },
+      "M_MINUS_COMPOSITION_CHECK": {
+        "exact": 78,
+        "exact_rate": 0.75,
+        "n": 104,
+        "over_accept": 13,
+        "per_family": {
+          "COMPOSITION_NOT_PRESERVED": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "ENDPOINT_VIOLATION": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "FALSE_EQUIVALENCE": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "IDENTITY_NOT_PRESERVED": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "LICENSED_COLLAPSE": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "MIXED_LAW_OBSTRUCTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "SURFACE_NAME_DECOY": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "VALID_FUNCTOR": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.730673
+      },
+      "M_MINUS_ENDPOINT_DISCIPLINE": {
+        "exact": 91,
+        "exact_rate": 0.875,
+        "n": 104,
+        "over_accept": 0,
+        "per_family": {
+          "COMPOSITION_NOT_PRESERVED": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "ENDPOINT_VIOLATION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "FALSE_EQUIVALENCE": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "IDENTITY_NOT_PRESERVED": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "LICENSED_COLLAPSE": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "MIXED_LAW_OBSTRUCTION": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "SURFACE_NAME_DECOY": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "VALID_FUNCTOR": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.834368
+      },
+      "M_MINUS_FAITHFULNESS_RECOVERY": {
+        "exact": 91,
+        "exact_rate": 0.875,
+        "n": 104,
+        "over_accept": 13,
+        "per_family": {
+          "COMPOSITION_NOT_PRESERVED": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "ENDPOINT_VIOLATION": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "FALSE_EQUIVALENCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "IDENTITY_NOT_PRESERVED": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "LICENSED_COLLAPSE": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "MIXED_LAW_OBSTRUCTION": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "SURFACE_NAME_DECOY": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "VALID_FUNCTOR": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.864292
+      },
+      "M_MINUS_IDENTITY_CHECK": {
+        "exact": 78,
+        "exact_rate": 0.75,
+        "n": 104,
+        "over_accept": 13,
+        "per_family": {
+          "COMPOSITION_NOT_PRESERVED": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "ENDPOINT_VIOLATION": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "FALSE_EQUIVALENCE": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "IDENTITY_NOT_PRESERVED": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "LICENSED_COLLAPSE": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "MIXED_LAW_OBSTRUCTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "SURFACE_NAME_DECOY": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "VALID_FUNCTOR": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.842707
+      },
+      "P0_NAME_SIMILARITY": {
+        "exact": 13,
+        "exact_rate": 0.125,
+        "n": 104,
+        "over_accept": 52,
+        "per_family": {
+          "COMPOSITION_NOT_PRESERVED": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "ENDPOINT_VIOLATION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "FALSE_EQUIVALENCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "IDENTITY_NOT_PRESERVED": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "LICENSED_COLLAPSE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "MIXED_LAW_OBSTRUCTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "SURFACE_NAME_DECOY": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "VALID_FUNCTOR": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          }
+        },
+        "under_accept": 26,
+        "wall_ms": 0.654463
+      },
+      "P1_GRAPH_HOMOMORPHISM": {
+        "exact": 52,
+        "exact_rate": 0.5,
+        "n": 104,
+        "over_accept": 52,
+        "per_family": {
+          "COMPOSITION_NOT_PRESERVED": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "ENDPOINT_VIOLATION": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "FALSE_EQUIVALENCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "IDENTITY_NOT_PRESERVED": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "LICENSED_COLLAPSE": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "MIXED_LAW_OBSTRUCTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "SURFACE_NAME_DECOY": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "VALID_FUNCTOR": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.441699
+      },
+      "P2_CATEGORY_LAW_FUNCTOR": {
+        "exact": 91,
+        "exact_rate": 0.875,
+        "n": 104,
+        "over_accept": 13,
+        "per_family": {
+          "COMPOSITION_NOT_PRESERVED": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "ENDPOINT_VIOLATION": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "FALSE_EQUIVALENCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "IDENTITY_NOT_PRESERVED": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "LICENSED_COLLAPSE": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "MIXED_LAW_OBSTRUCTION": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "SURFACE_NAME_DECOY": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "VALID_FUNCTOR": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 4.031414
+      },
+      "P3_DIAGRAM_CHASE": {
+        "exact": 59,
+        "exact_rate": 0.5673076923076923,
+        "n": 104,
+        "over_accept": 43,
+        "per_family": {
+          "COMPOSITION_NOT_PRESERVED": {
+            "exact": 10,
+            "exact_rate": 0.7692307692307693,
+            "n": 13
+          },
+          "ENDPOINT_VIOLATION": {
+            "exact": 10,
+            "exact_rate": 0.7692307692307693,
+            "n": 13
+          },
+          "FALSE_EQUIVALENCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "IDENTITY_NOT_PRESERVED": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "LICENSED_COLLAPSE": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "MIXED_LAW_OBSTRUCTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "SURFACE_NAME_DECOY": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "VALID_FUNCTOR": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.506753
+      },
+      "P4_FAITHFULNESS": {
+        "exact": 52,
+        "exact_rate": 0.5,
+        "n": 104,
+        "over_accept": 52,
+        "per_family": {
+          "COMPOSITION_NOT_PRESERVED": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "ENDPOINT_VIOLATION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "FALSE_EQUIVALENCE": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "IDENTITY_NOT_PRESERVED": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "LICENSED_COLLAPSE": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "MIXED_LAW_OBSTRUCTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "SURFACE_NAME_DECOY": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "VALID_FUNCTOR": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.090835
+      },
+      "P5_FIXED_LESSON_INJECTION": {
+        "exact": 52,
+        "exact_rate": 0.5,
+        "n": 104,
+        "over_accept": 39,
+        "per_family": {
+          "COMPOSITION_NOT_PRESERVED": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "ENDPOINT_VIOLATION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "FALSE_EQUIVALENCE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "IDENTITY_NOT_PRESERVED": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "LICENSED_COLLAPSE": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "MIXED_LAW_OBSTRUCTION": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 13
+          },
+          "SURFACE_NAME_DECOY": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          },
+          "VALID_FUNCTOR": {
+            "exact": 13,
+            "exact_rate": 1.0,
+            "n": 13
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.142454
+      }
+    }
+  },
+  "suite": "FM50",
+  "unchecked_hard_gates": []
+}

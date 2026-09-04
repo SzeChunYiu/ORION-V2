@@ -1,5 +1,17 @@
 # FM60 — Parent Fidelity Receipt and Development-Split Summary (V1)
 
+> **SUPERSEDED IN PART, 2026-09-04.** The status line below was true when this
+> receipt was written and is no longer true. FM60's protected run has since been
+> executed under `PROTECTED_RUN_AUTHORIZATION_ARCHIVED_FM60.json`; the terminal
+> now stands on `FM60_OUTCOME_RECEIPT.md` (125 protected instances, route
+> `PARENT_SUFFICIENT` by the no-advantage branch, `G1a_PARENT_REPRODUCES_M` **FAIL**
+> at identity 0.992, `G2_ANTI_PERMISSIVENESS` PASS on 100 in-scope instances under
+> the registered clause). **Everything below this line describes the development
+> split only and must not be read as this study's terminal.** The re-derivation
+> note in §3 is resolved: the `unsafe_scope`/`unsafe_claim` hooks it deferred were
+> bound pre-run (`FM60_PRE_RUN_AUDIT_V1.md` §A2) and the development analysis was
+> re-derived under them (`G2` PASS on 12, no longer `CANNOT_CHECK` on 9).
+
 **Scope of this file:** FM60 only. It is a separate file from
 `FM_PARENT_FIDELITY_RECEIPT_V1.md` (FM10) on purpose, so concurrent FM lanes do
 not contend for the same lines. The file is the single place where FM60's
