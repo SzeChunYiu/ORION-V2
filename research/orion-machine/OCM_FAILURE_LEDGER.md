@@ -102,6 +102,21 @@ critical defect.
   README rebind cascade on PR #281; found by Cursor Bugbot; corrected before merge with the full
   chains nested and every commit verified against the blob it carried).
 
+- `PRESENTATION_DEPENDENT_OBSTRUCTION` — an obstruction is named in a coordinate that is a
+  *presentation* of the problem rather than its content, so that objects satisfying the literal
+  negation of the obstruction exist and leave the underlying difficulty untouched. The lever the
+  obstruction names is then satisfiable without progress, and a lane that satisfies it reports a
+  reopen that reopens nothing. Two instances on 2026-09-04: lane #200's residual was recorded as
+  needing "a non-rectangular natural class" when the content of Theorem D is *decomposability into
+  two parent learners* — the three planted non-rectangular classes of the first pass are all
+  decomposable (`I = 0`, certified), so the literal lever was already satisfied by the first pass's
+  own controls; and the separation-test design named "a registered non-rectangular natural class"
+  as the missing object for condition (1) when the blocker is the comparator definition, which no
+  class property can change (Theorem N2, class-independent). Guard: when recording an obstruction,
+  state the *invariant* it stands for and give a planted object that satisfies the literal condition
+  without meeting the invariant; if none can be constructed, the coordinate is the content. Records:
+  `theory/OCM_NONRECTANGULAR_CLASS_V1.md` §2, `theory/OCM_SEPARATION_TEST_REAUDIT_V2.md` §1.
+
 ## Retained concrete failure records
 
 - **`BINDING_OVER_UNCOMMITTED_BYTES` — RCL parent-collapse ledger, 2026-09-03/04.** The binding
@@ -190,6 +205,18 @@ critical defect.
   #199 and #245, which administer the targets. The pre-directive README bytes remain bound in
   `OCM_SNAPSHOT_V1.json` `content_bindings` at commit `d4eb281` as history, unedited.
 
+- **`IMMUTABLE_TARGET_MUTATED_BY_ITS_OWN_BINDING_TEST` — third instance, spine README, lane-200
+  revival, 2026-09-04.** The terminal block had to change again (residual restated; natural
+  non-rectangular class line; RCL-C and separation lines). README.md (3,317 → 4,121 bytes) was re-bound
+  in `REVOCATION_COMPLETE_LEARNING_RECEIPT_V0.json` and `RCL_INDEPENDENT_REVIEW_PACKET_V0.json`
+  with the previous entry nested verbatim under `superseded_binding` (its own chain retained and
+  its `rebound_in_commit` verified against the blob it names before nesting), then the receipt
+  inside packet V0 and packet V0 inside packet V1 consequentially, one commit per link so that every
+  `rebound_in_commit` names the commit that actually carries the bound bytes. All 38 bindings in the
+  three carriers verified against `HEAD` from `git show`. The structural fix — freeze the review
+  *question*, bind the spine elsewhere — is still not applied and is still owed; a third occurrence
+  is the argument for doing it before a fourth.
+
 - **`VACUOUS_CONTRAST` — below-frontier arm of `rcl_checks_v1.py`, 2026-09-04, on a merged
   artifact.** The V1 checker written to repair three vacuous V0 controls carried one of its own:
   `candidate_profiles` never deduplicated, so below the frontier the candidate set always had
@@ -268,6 +295,33 @@ critical defect.
   corrected to `TRADEOFF_FRONTIER_ONLY` with comparator equivalence `CANNOT_CHECK` before the record
   was committed. Recorded because the string would have read as a result on the lane that consumes
   it (#204's precondition table). No artifact carried it into version control.
+
+- **`PRESENTATION_DEPENDENT_OBSTRUCTION` — lane #200 obstruction and separation-test condition (1),
+  2026-09-04.** The first pass's obstruction ("no registered class is non-rectangular") was correct as
+  a statement and wrong as a lever: `reference/ocm_nonrectangular_class_exact.py` shows COUPLED_FULL,
+  COUPLED_HALF and COUPLED_FORCED (648 worlds, all failing R0) each have interaction term 0 — a
+  B-first product of two parent learners meets the counting bound on every one — while a planted
+  pointer-chasing class shows the procedure can fire (`I = 1`, existence witness). The content of the
+  obstruction is non-decomposability; restated in `theory/OCM_NONRECTANGULAR_CLASS_V1.md` §2. The
+  same shape in `OCM_SEPARATION_TEST_DESIGN_V1.md` §5 item 1: the class half is now met by
+  `VSW(SINGLETONS_5)` and the test is still not freezable, for a class-independent reason
+  (`OCM_SEPARATION_TEST_REAUDIT_V2.md` Theorem N2). Neither first-pass record is edited; both are
+  superseded by reference.
+
+- **Near miss, no class minted — two exact-solver defects caught before any artifact, 2026-09-04.**
+  (1) The first draft of the decision-tree solver in `ocm_nonrectangular_class_exact.py` pruned its
+  query scan on the *world* count when the target was the coarser behaviour value, accepted a
+  suboptimal tree, overstated `D_B` on MONO_CONJ_2 by one, and reported `I = 1` — a spurious natural
+  non-decomposable class. Caught by re-deriving `D_B` by hand (2 membership queries identify 4
+  monotone conjunctions). (2) The sequential cost was then taken as `D_first + max fibre cost`; on
+  LTF_2 the simulated Z-first strategy costs 11 where the formula says 12, so the formula is not the
+  cost of any strategy of the shape it names. Caught by simulating the composite strategy on every
+  world. Both are retained as mutation controls (M1) and the guard is structural: every optimal
+  value is established by two independently written solvers that must agree *and* by an explicit
+  strategy simulated on every world; a non-decomposability claim is certified only when the
+  sequential cost exceeds a *simulated* joint tree. The lesson is the root ledger's
+  `TERMINAL_OVERSTATES_ITS_PROCEDURE` in miniature: an optimiser's number is not a bound until a
+  strategy attaining it has been run.
 
 ### Unreturned by construction, not repaired
 
