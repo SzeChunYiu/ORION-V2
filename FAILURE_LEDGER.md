@@ -265,8 +265,28 @@ This ledger is append-only, so two earlier entries are corrected here rather tha
 
 Every concrete failure must preserve its source identities, affected claims and reopening conditions. No failure may be deleted merely because a later theory is more successful.
 
+- `FREE_TEXT_CATEGORICAL_ENDPOINT` — a categorical endpoint is typed as a free string at the arm
+  interface and scored by exact equality, so the registered primary measures each arm's *rendering
+  habit* (whether it happens to emit the bare token) and not its decision. A strengthening of
+  `HANDICAPPED_COMPARATOR` in the other direction: no arm is isolated by a prompt asymmetry, every
+  arm is handicapped by the same untyped field, and the handicap is unequal only because the arms'
+  prose habits differ. Guard: an endpoint with a finite admissible set crosses the interface **as**
+  that set — named in the contract, enumerated in the output schema, rejected on non-membership — and
+  a descriptive rendering census of every wrong row is run before any exact-match contrast is read as
+  a decision-level result. First observed 2026-09-04 (FG80 R2: `representation_feature` typed
+  `"string"`; 34–50 of every arm's 80 answers carried the correct id decorated — `H_X = 1`,
+  `H_X is active (value 1)` — and were scored wrong; the −19-task paired deficit of the full
+  machine-native arm against the simple direct control, p = 4.3e-03, becomes −3 tasks, p = 0.375,
+  under a conservative normalisation that keeps every conjunction, negation and `= 0` wrong. Zero
+  rendering variants in the other thirteen studies of the same suite, whose endpoints are not
+  free-string categoricals. The R2 terminal and the P-F trigger verdict are **not** altered by the
+  census, which is descriptive; the prospective test is `research/experiments/fg80-r3/`, frozen
+  before dispatch with the ceiling row named as *no dynamic range*, never as a tie the mechanism
+  earned).
+
 ## Retained concrete failure records
 
+- `research/experiments/fg80-r3/FG80_R3_PRE_DISPATCH_RECEIPT_V1.md` — FG80 R2 rendering census (descriptive, non-gating, four controls PASS) attributing the P-F negative to `FREE_TEXT_CATEGORICAL_ENDPOINT`; R3 interface re-run frozen (seed 20260904, 400 dispatches) with dispatch deferred to the frozen channel's window. Carries the class above. Also records a pre-outcome detector repair caught by the selftest (`H_A AND H_B` was normalised to `H_A` by a `\b` that matched at the space) and the corrected census it produced.
 - `research/failures/2026-08-parallel-wave3-ownership-collision/README.md`
 - `research/failures/2026-08-wave4-recovery-and-ci-preterminal-defects/README.md`
 - `research/failures/2026-08-wave5-epoch-and-chain-binding-defects/README.md`

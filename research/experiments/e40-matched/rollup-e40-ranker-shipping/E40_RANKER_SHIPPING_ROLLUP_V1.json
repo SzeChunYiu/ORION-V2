@@ -1,0 +1,1154 @@
+{
+ "authority": {
+  "alters_e40_closure": false,
+  "authorizes_m6": false,
+  "grants_field_status": false,
+  "grants_scientific_truth": false,
+  "revives_e40": false
+ },
+ "constants": {
+  "alpha": 0.05,
+  "kinds": [
+   "FB8",
+   "CFG",
+   "FB8+CFG"
+  ],
+  "nullcal": {
+   "band": [
+    0.02,
+    0.09
+   ],
+   "flips": 400,
+   "reps": 100,
+   "seed": 20260903
+  },
+  "plant_min_recovered_fraction": 0.75,
+  "plant_noise_sd_fraction": 0.25,
+  "plant_seed": 20260904,
+  "primary_kind": "FB8+CFG",
+  "ridge_lambda": 1.0,
+  "rs2_min_recovered_fraction": 0.5,
+  "signflip_n": 4000,
+  "signflip_seed": 20260904
+ },
+ "contrasts_by_kind": {
+  "CFG": {
+   "campaign-e40-m2": {
+    "P0_f0best_minus_f2final": {
+     "mean_d": -0.008979257925700411,
+     "n": 12,
+     "name": "F0_best - F2_final (registered m-series primary)",
+     "p_neg": 0.000999750062484379,
+     "p_pos": 0.9992501874531368,
+     "ties": 0,
+     "wins_f0": 11,
+     "wins_f2": 1
+    },
+    "P1_f0best_minus_f2ship": {
+     "mean_d": -0.006801803235915821,
+     "n": 12,
+     "name": "F0_best - F2_ship[CFG]",
+     "p_neg": 0.02599350162459385,
+     "p_pos": 0.9742564358910273,
+     "ties": 1,
+     "wins_f0": 9,
+     "wins_f2": 2
+    },
+    "P2_improvement_f2final_minus_f2ship": {
+     "mean_d": 0.0021774546897845907,
+     "n": 12,
+     "name": "F2_final - F2_ship[CFG] (>0: lever helps)",
+     "p_neg": 0.8010497375656086,
+     "p_pos": 0.21069732566858285,
+     "ties": 4,
+     "wins_f0": 2,
+     "wins_f2": 6
+    },
+    "P3_fair_f0ship_minus_f2ship": {
+     "mean_d": -0.0015795465382956245,
+     "n": 12,
+     "name": "F0_ship[CFG] - F2_ship[CFG] (matched operator)",
+     "p_neg": 0.2989252686828293,
+     "p_pos": 0.7038240439890028,
+     "ties": 4,
+     "wins_f0": 4,
+     "wins_f2": 4
+    },
+    "P4_ceiling_f0best_minus_f2best": {
+     "mean_d": -0.003259109440039959,
+     "n": 12,
+     "name": "F0_best - F2_best (oracle both sides)",
+     "p_neg": 0.1229692576855786,
+     "p_pos": 0.8772806798300425,
+     "ties": 1,
+     "wins_f0": 8,
+     "wins_f2": 3
+    },
+    "recoverable_f2final_minus_f2best": {
+     "mean_d": 0.005720148485660453,
+     "n": 12,
+     "name": "F2_final - F2_best (what any shipping operator could recover)",
+     "p_neg": 1.0,
+     "p_pos": 0.005498625343664084,
+     "ties": 3,
+     "wins_f0": 0,
+     "wins_f2": 9
+    },
+    "recovered_fraction": 0.3806640151463096,
+    "ship_cycle_census": {
+     "1": 12,
+     "2": 0,
+     "3": 0,
+     "4": 0
+    }
+   },
+   "campaign-e40-m3": {
+    "P0_f0best_minus_f2final": {
+     "mean_d": -0.007413520834557391,
+     "n": 12,
+     "name": "F0_best - F2_final (registered m-series primary)",
+     "p_neg": 0.014496375906023495,
+     "p_pos": 0.9857535616095976,
+     "ties": 0,
+     "wins_f0": 10,
+     "wins_f2": 2
+    },
+    "P1_f0best_minus_f2ship": {
+     "mean_d": -0.006801803235915817,
+     "n": 12,
+     "name": "F0_best - F2_ship[CFG]",
+     "p_neg": 0.02599350162459385,
+     "p_pos": 0.9742564358910273,
+     "ties": 1,
+     "wins_f0": 9,
+     "wins_f2": 2
+    },
+    "P2_improvement_f2final_minus_f2ship": {
+     "mean_d": 0.0006117175986415738,
+     "n": 12,
+     "name": "F2_final - F2_ship[CFG] (>0: lever helps)",
+     "p_neg": 0.599100224943764,
+     "p_pos": 0.4071482129467633,
+     "ties": 2,
+     "wins_f0": 4,
+     "wins_f2": 6
+    },
+    "P3_fair_f0ship_minus_f2ship": {
+     "mean_d": -0.00157954653829562,
+     "n": 12,
+     "name": "F0_ship[CFG] - F2_ship[CFG] (matched operator)",
+     "p_neg": 0.2989252686828293,
+     "p_pos": 0.7038240439890028,
+     "ties": 3,
+     "wins_f0": 5,
+     "wins_f2": 4
+    },
+    "P4_ceiling_f0best_minus_f2best": {
+     "mean_d": -0.0012099336519952111,
+     "n": 12,
+     "name": "F0_best - F2_best (oracle both sides)",
+     "p_neg": 0.29967508122969255,
+     "p_pos": 0.7005748562859285,
+     "ties": 1,
+     "wins_f0": 7,
+     "wins_f2": 4
+    },
+    "recoverable_f2final_minus_f2best": {
+     "mean_d": 0.00620358718256218,
+     "n": 12,
+     "name": "F2_final - F2_best (what any shipping operator could recover)",
+     "p_neg": 1.0,
+     "p_pos": 0.015746063484128967,
+     "ties": 3,
+     "wins_f0": 0,
+     "wins_f2": 9
+    },
+    "recovered_fraction": 0.09860707694429867,
+    "ship_cycle_census": {
+     "1": 12,
+     "2": 0,
+     "3": 0,
+     "4": 0
+    }
+   },
+   "pooled": {
+    "P0_f0best_minus_f2final": {
+     "mean_d": -0.0081963893801289,
+     "n": 24,
+     "name": "F0_best - F2_final (registered m-series primary)",
+     "p_neg": 0.0004998750312421895,
+     "p_pos": 0.9997500624843789,
+     "ties": 0,
+     "wins_f0": 21,
+     "wins_f2": 3
+    },
+    "P1_f0best_minus_f2ship": {
+     "mean_d": -0.006801803235915819,
+     "n": 24,
+     "name": "F0_best - F2_ship[CFG]",
+     "p_neg": 0.0012496875781054736,
+     "p_pos": 0.9990002499375156,
+     "ties": 2,
+     "wins_f0": 18,
+     "wins_f2": 4
+    },
+    "P2_improvement_f2final_minus_f2ship": {
+     "mean_d": 0.0013945861442130822,
+     "n": 24,
+     "name": "F2_final - F2_ship[CFG] (>0: lever helps)",
+     "p_neg": 0.8015496125968508,
+     "p_pos": 0.1987003249187703,
+     "ties": 6,
+     "wins_f0": 6,
+     "wins_f2": 12
+    },
+    "P3_fair_f0ship_minus_f2ship": {
+     "mean_d": -0.001579546538295622,
+     "n": 24,
+     "name": "F0_ship[CFG] - F2_ship[CFG] (matched operator)",
+     "p_neg": 0.21619595101224695,
+     "p_pos": 0.7840539865033742,
+     "ties": 7,
+     "wins_f0": 9,
+     "wins_f2": 8
+    },
+    "P4_ceiling_f0best_minus_f2best": {
+     "mean_d": -0.002234521546017585,
+     "n": 24,
+     "name": "F0_best - F2_best (oracle both sides)",
+     "p_neg": 0.10022494376405898,
+     "p_pos": 0.9000249937515621,
+     "ties": 2,
+     "wins_f0": 15,
+     "wins_f2": 7
+    },
+    "recoverable_f2final_minus_f2best": {
+     "mean_d": 0.0059618678341113165,
+     "n": 24,
+     "name": "F2_final - F2_best (what any shipping operator could recover)",
+     "p_neg": 1.0,
+     "p_pos": 0.0004998750312421895,
+     "ties": 6,
+     "wins_f0": 0,
+     "wins_f2": 18
+    },
+    "recovered_fraction": 0.23391765517407867,
+    "ship_cycle_census": {
+     "1": 24,
+     "2": 0,
+     "3": 0,
+     "4": 0
+    }
+   }
+  },
+  "FB8": {
+   "campaign-e40-m2": {
+    "P0_f0best_minus_f2final": {
+     "mean_d": -0.008979257925700411,
+     "n": 12,
+     "name": "F0_best - F2_final (registered m-series primary)",
+     "p_neg": 0.000999750062484379,
+     "p_pos": 0.9992501874531368,
+     "ties": 0,
+     "wins_f0": 11,
+     "wins_f2": 1
+    },
+    "P1_f0best_minus_f2ship": {
+     "mean_d": -0.006516347967584965,
+     "n": 12,
+     "name": "F0_best - F2_ship[FB8]",
+     "p_neg": 0.04848787803049238,
+     "p_pos": 0.9517620594851287,
+     "ties": 0,
+     "wins_f0": 9,
+     "wins_f2": 3
+    },
+    "P2_improvement_f2final_minus_f2ship": {
+     "mean_d": 0.0024629099581154473,
+     "n": 12,
+     "name": "F2_final - F2_ship[FB8] (>0: lever helps)",
+     "p_neg": 0.767808047988003,
+     "p_pos": 0.23319170207448137,
+     "ties": 3,
+     "wins_f0": 2,
+     "wins_f2": 7
+    },
+    "P3_fair_f0ship_minus_f2ship": {
+     "mean_d": -0.00011301053387760089,
+     "n": 12,
+     "name": "F0_ship[FB8] - F2_ship[FB8] (matched operator)",
+     "p_neg": 0.4771307173206698,
+     "p_pos": 0.5236190952261934,
+     "ties": 2,
+     "wins_f0": 6,
+     "wins_f2": 4
+    },
+    "P4_ceiling_f0best_minus_f2best": {
+     "mean_d": -0.003259109440039959,
+     "n": 12,
+     "name": "F0_best - F2_best (oracle both sides)",
+     "p_neg": 0.1229692576855786,
+     "p_pos": 0.8772806798300425,
+     "ties": 1,
+     "wins_f0": 8,
+     "wins_f2": 3
+    },
+    "recoverable_f2final_minus_f2best": {
+     "mean_d": 0.005720148485660453,
+     "n": 12,
+     "name": "F2_final - F2_best (what any shipping operator could recover)",
+     "p_neg": 1.0,
+     "p_pos": 0.005498625343664084,
+     "ties": 3,
+     "wins_f0": 0,
+     "wins_f2": 9
+    },
+    "recovered_fraction": 0.43056748689122143,
+    "ship_cycle_census": {
+     "1": 3,
+     "2": 5,
+     "3": 3,
+     "4": 1
+    }
+   },
+   "campaign-e40-m3": {
+    "P0_f0best_minus_f2final": {
+     "mean_d": -0.007413520834557391,
+     "n": 12,
+     "name": "F0_best - F2_final (registered m-series primary)",
+     "p_neg": 0.014496375906023495,
+     "p_pos": 0.9857535616095976,
+     "ties": 0,
+     "wins_f0": 10,
+     "wins_f2": 2
+    },
+    "P1_f0best_minus_f2ship": {
+     "mean_d": -0.007868178902285616,
+     "n": 12,
+     "name": "F0_best - F2_ship[FB8]",
+     "p_neg": 0.01699575106223444,
+     "p_pos": 0.9832541864533867,
+     "ties": 1,
+     "wins_f0": 9,
+     "wins_f2": 2
+    },
+    "P2_improvement_f2final_minus_f2ship": {
+     "mean_d": -0.0004546580677282248,
+     "n": 12,
+     "name": "F2_final - F2_ship[FB8] (>0: lever helps)",
+     "p_neg": 0.4303924018995251,
+     "p_pos": 0.5736065983504124,
+     "ties": 4,
+     "wins_f0": 4,
+     "wins_f2": 4
+    },
+    "P3_fair_f0ship_minus_f2ship": {
+     "mean_d": -0.0014648414685782517,
+     "n": 12,
+     "name": "F0_ship[FB8] - F2_ship[FB8] (matched operator)",
+     "p_neg": 0.3684078980254936,
+     "p_pos": 0.6318420394901275,
+     "ties": 1,
+     "wins_f0": 6,
+     "wins_f2": 5
+    },
+    "P4_ceiling_f0best_minus_f2best": {
+     "mean_d": -0.0012099336519952111,
+     "n": 12,
+     "name": "F0_best - F2_best (oracle both sides)",
+     "p_neg": 0.29967508122969255,
+     "p_pos": 0.7005748562859285,
+     "ties": 1,
+     "wins_f0": 7,
+     "wins_f2": 4
+    },
+    "recoverable_f2final_minus_f2best": {
+     "mean_d": 0.00620358718256218,
+     "n": 12,
+     "name": "F2_final - F2_best (what any shipping operator could recover)",
+     "p_neg": 1.0,
+     "p_pos": 0.015746063484128967,
+     "ties": 3,
+     "wins_f0": 0,
+     "wins_f2": 9
+    },
+    "recovered_fraction": -0.07328954270300814,
+    "ship_cycle_census": {
+     "1": 4,
+     "2": 3,
+     "3": 2,
+     "4": 3
+    }
+   },
+   "pooled": {
+    "P0_f0best_minus_f2final": {
+     "mean_d": -0.0081963893801289,
+     "n": 24,
+     "name": "F0_best - F2_final (registered m-series primary)",
+     "p_neg": 0.0004998750312421895,
+     "p_pos": 0.9997500624843789,
+     "ties": 0,
+     "wins_f0": 21,
+     "wins_f2": 3
+    },
+    "P1_f0best_minus_f2ship": {
+     "mean_d": -0.00719226343493529,
+     "n": 24,
+     "name": "F0_best - F2_ship[FB8]",
+     "p_neg": 0.0029992501874531365,
+     "p_pos": 0.9972506873281679,
+     "ties": 1,
+     "wins_f0": 18,
+     "wins_f2": 5
+    },
+    "P2_improvement_f2final_minus_f2ship": {
+     "mean_d": 0.0010041259451936113,
+     "n": 24,
+     "name": "F2_final - F2_ship[FB8] (>0: lever helps)",
+     "p_neg": 0.6870782304423894,
+     "p_pos": 0.31317170707323166,
+     "ties": 7,
+     "wins_f0": 6,
+     "wins_f2": 11
+    },
+    "P3_fair_f0ship_minus_f2ship": {
+     "mean_d": -0.0007889260012279263,
+     "n": 24,
+     "name": "F0_ship[FB8] - F2_ship[FB8] (matched operator)",
+     "p_neg": 0.3806548362909273,
+     "p_pos": 0.6195951012246939,
+     "ties": 3,
+     "wins_f0": 12,
+     "wins_f2": 9
+    },
+    "P4_ceiling_f0best_minus_f2best": {
+     "mean_d": -0.002234521546017585,
+     "n": 24,
+     "name": "F0_best - F2_best (oracle both sides)",
+     "p_neg": 0.10022494376405898,
+     "p_pos": 0.9000249937515621,
+     "ties": 2,
+     "wins_f0": 15,
+     "wins_f2": 7
+    },
+    "recoverable_f2final_minus_f2best": {
+     "mean_d": 0.0059618678341113165,
+     "n": 24,
+     "name": "F2_final - F2_best (what any shipping operator could recover)",
+     "p_neg": 1.0,
+     "p_pos": 0.0004998750312421895,
+     "ties": 6,
+     "wins_f0": 0,
+     "wins_f2": 18
+    },
+    "recovered_fraction": 0.16842472411891157,
+    "ship_cycle_census": {
+     "1": 7,
+     "2": 8,
+     "3": 5,
+     "4": 4
+    }
+   }
+  },
+  "FB8+CFG": {
+   "campaign-e40-m2": {
+    "P0_f0best_minus_f2final": {
+     "mean_d": -0.008979257925700411,
+     "n": 12,
+     "name": "F0_best - F2_final (registered m-series primary)",
+     "p_neg": 0.000999750062484379,
+     "p_pos": 0.9992501874531368,
+     "ties": 0,
+     "wins_f0": 11,
+     "wins_f2": 1
+    },
+    "P1_f0best_minus_f2ship": {
+     "mean_d": -0.004713912493835991,
+     "n": 12,
+     "name": "F0_best - F2_ship[FB8+CFG]",
+     "p_neg": 0.06198450387403149,
+     "p_pos": 0.9382654336415897,
+     "ties": 0,
+     "wins_f0": 9,
+     "wins_f2": 3
+    },
+    "P2_improvement_f2final_minus_f2ship": {
+     "mean_d": 0.00426534543186442,
+     "n": 12,
+     "name": "F2_final - F2_ship[FB8+CFG] (>0: lever helps)",
+     "p_neg": 0.968507873031742,
+     "p_pos": 0.04598850287428143,
+     "ties": 4,
+     "wins_f0": 2,
+     "wins_f2": 6
+    },
+    "P3_fair_f0ship_minus_f2ship": {
+     "mean_d": -0.0006218536976053171,
+     "n": 12,
+     "name": "F0_ship[FB8+CFG] - F2_ship[FB8+CFG] (matched operator)",
+     "p_neg": 0.42164458885278683,
+     "p_pos": 0.5791052236940765,
+     "ties": 1,
+     "wins_f0": 5,
+     "wins_f2": 6
+    },
+    "P4_ceiling_f0best_minus_f2best": {
+     "mean_d": -0.003259109440039959,
+     "n": 12,
+     "name": "F0_best - F2_best (oracle both sides)",
+     "p_neg": 0.1229692576855786,
+     "p_pos": 0.8772806798300425,
+     "ties": 1,
+     "wins_f0": 8,
+     "wins_f2": 3
+    },
+    "recoverable_f2final_minus_f2best": {
+     "mean_d": 0.005720148485660453,
+     "n": 12,
+     "name": "F2_final - F2_best (what any shipping operator could recover)",
+     "p_neg": 1.0,
+     "p_pos": 0.005498625343664084,
+     "ties": 3,
+     "wins_f0": 0,
+     "wins_f2": 9
+    },
+    "recovered_fraction": 0.7456704039339181,
+    "ship_cycle_census": {
+     "1": 5,
+     "2": 2,
+     "3": 3,
+     "4": 2
+    }
+   },
+   "campaign-e40-m3": {
+    "P0_f0best_minus_f2final": {
+     "mean_d": -0.007413520834557391,
+     "n": 12,
+     "name": "F0_best - F2_final (registered m-series primary)",
+     "p_neg": 0.014496375906023495,
+     "p_pos": 0.9857535616095976,
+     "ties": 0,
+     "wins_f0": 10,
+     "wins_f2": 2
+    },
+    "P1_f0best_minus_f2ship": {
+     "mean_d": -0.006801803235915819,
+     "n": 12,
+     "name": "F0_best - F2_ship[FB8+CFG]",
+     "p_neg": 0.02599350162459385,
+     "p_pos": 0.9742564358910273,
+     "ties": 1,
+     "wins_f0": 9,
+     "wins_f2": 2
+    },
+    "P2_improvement_f2final_minus_f2ship": {
+     "mean_d": 0.0006117175986415715,
+     "n": 12,
+     "name": "F2_final - F2_ship[FB8+CFG] (>0: lever helps)",
+     "p_neg": 0.599100224943764,
+     "p_pos": 0.4071482129467633,
+     "ties": 3,
+     "wins_f0": 4,
+     "wins_f2": 5
+    },
+    "P3_fair_f0ship_minus_f2ship": {
+     "mean_d": -0.0027097444396851447,
+     "n": 12,
+     "name": "F0_ship[FB8+CFG] - F2_ship[FB8+CFG] (matched operator)",
+     "p_neg": 0.22069482629342665,
+     "p_pos": 0.7805548612846789,
+     "ties": 1,
+     "wins_f0": 7,
+     "wins_f2": 4
+    },
+    "P4_ceiling_f0best_minus_f2best": {
+     "mean_d": -0.0012099336519952111,
+     "n": 12,
+     "name": "F0_best - F2_best (oracle both sides)",
+     "p_neg": 0.29967508122969255,
+     "p_pos": 0.7005748562859285,
+     "ties": 1,
+     "wins_f0": 7,
+     "wins_f2": 4
+    },
+    "recoverable_f2final_minus_f2best": {
+     "mean_d": 0.00620358718256218,
+     "n": 12,
+     "name": "F2_final - F2_best (what any shipping operator could recover)",
+     "p_neg": 1.0,
+     "p_pos": 0.015746063484128967,
+     "ties": 3,
+     "wins_f0": 0,
+     "wins_f2": 9
+    },
+    "recovered_fraction": 0.0986070769442983,
+    "ship_cycle_census": {
+     "1": 10,
+     "2": 0,
+     "3": 0,
+     "4": 2
+    }
+   },
+   "pooled": {
+    "P0_f0best_minus_f2final": {
+     "mean_d": -0.0081963893801289,
+     "n": 24,
+     "name": "F0_best - F2_final (registered m-series primary)",
+     "p_neg": 0.0004998750312421895,
+     "p_pos": 0.9997500624843789,
+     "ties": 0,
+     "wins_f0": 21,
+     "wins_f2": 3
+    },
+    "P1_f0best_minus_f2ship": {
+     "mean_d": -0.005757857864875905,
+     "n": 24,
+     "name": "F0_best - F2_ship[FB8+CFG]",
+     "p_neg": 0.005248687828042989,
+     "p_pos": 0.9950012496875781,
+     "ties": 1,
+     "wins_f0": 18,
+     "wins_f2": 5
+    },
+    "P2_improvement_f2final_minus_f2ship": {
+     "mean_d": 0.002438531515252996,
+     "n": 24,
+     "name": "F2_final - F2_ship[FB8+CFG] (>0: lever helps)",
+     "p_neg": 0.941764558860285,
+     "p_pos": 0.058485378655336165,
+     "ties": 7,
+     "wins_f0": 6,
+     "wins_f2": 11
+    },
+    "P3_fair_f0ship_minus_f2ship": {
+     "mean_d": -0.001665799068645231,
+     "n": 24,
+     "name": "F0_ship[FB8+CFG] - F2_ship[FB8+CFG] (matched operator)",
+     "p_neg": 0.22869282679330166,
+     "p_pos": 0.7715571107223195,
+     "ties": 2,
+     "wins_f0": 12,
+     "wins_f2": 10
+    },
+    "P4_ceiling_f0best_minus_f2best": {
+     "mean_d": -0.002234521546017585,
+     "n": 24,
+     "name": "F0_best - F2_best (oracle both sides)",
+     "p_neg": 0.10022494376405898,
+     "p_pos": 0.9000249937515621,
+     "ties": 2,
+     "wins_f0": 15,
+     "wins_f2": 7
+    },
+    "recoverable_f2final_minus_f2best": {
+     "mean_d": 0.0059618678341113165,
+     "n": 24,
+     "name": "F2_final - F2_best (what any shipping operator could recover)",
+     "p_neg": 1.0,
+     "p_pos": 0.0004998750312421895,
+     "ties": 6,
+     "wins_f0": 0,
+     "wins_f2": 18
+    },
+    "recovered_fraction": 0.40902139784124997,
+    "ship_cycle_census": {
+     "1": 15,
+     "2": 2,
+     "3": 3,
+     "4": 4
+    }
+   }
+  }
+ },
+ "controls": [
+  {
+   "control": "M2_M3_PRIMARY_AND_CENSUS_REPRODUCED",
+   "expected_census": {
+    "interventional": 5,
+    "observational": 4,
+    "partial_interventional": 3
+   },
+   "f0_best_regime_census": {
+    "interventional": 5,
+    "observational": 4,
+    "partial_interventional": 3
+   },
+   "pass": true,
+   "primary": {
+    "campaign-e40-m2": {
+     "abs_delta": 2.5792570041219265e-07,
+     "expected_receipt_rounded": -0.008979,
+     "mean_d": -0.008979257925700411,
+     "n_pairs": 12
+    },
+    "campaign-e40-m3": {
+     "abs_delta": 4.791654426086756e-07,
+     "expected_receipt_rounded": -0.007414,
+     "mean_d": -0.007413520834557391,
+     "n_pairs": 12
+    }
+   },
+   "tol": 1e-06
+  },
+  {
+   "chains_with_a_better_earlier_cycle": 18,
+   "control": "RECOVERABLE_IMPROVEMENT_EXISTS",
+   "mean_recoverable": 0.0059618678341113165,
+   "n": 24,
+   "pass": true,
+   "rule": "mean > 0 and movable >= 12"
+  },
+  {
+   "control": "PLANTED_SIGNAL_SHIPS",
+   "improvement_mean": 0.00596186783411131,
+   "pass": true,
+   "recovered_fraction_FB8": 0.9999999999999989,
+   "rule": "recovered_fraction >= 0.75"
+  },
+  {
+   "band": [
+    0.02,
+    0.09
+   ],
+   "control": "NULL_CALIBRATION",
+   "flips": 400,
+   "pass": true,
+   "rejection_rate": 0.04,
+   "reps": 100
+  }
+ ],
+ "design": "E40_RANKER_SHIPPING_REANALYSIS_DESIGN_V1",
+ "design_json_sha256": "4f0ef32aad61fee71d577cf152be01506abb4722eef9f257428ed55e30e2cf73",
+ "gates": {
+  "RS0_CONTROLS_VALID": true,
+  "RS1_SHIPPING_LEVER_HELPS": false,
+  "RS2_RECOVERS_HALF_OR_MORE": false,
+  "RS3_drag_under_ranker_shipping": {
+   "mean_d": -0.005757857864875905,
+   "p_f2_worse": 0.005248687828042989,
+   "still_significantly_negative": true
+  },
+  "RS4_fair_matched_operator": {
+   "mean_d": -0.001665799068645231,
+   "p_f2_better": 0.7715571107223195,
+   "p_f2_worse": 0.22869282679330166
+  },
+  "recovered_fraction": 0.40902139784124997,
+  "terminal": "SHIPPING_LEVER_EXHAUSTED__NO_OOS_RANKER_ON_VISIBLE_FIELDS_SHIPS_BETTER_THAN_THE_LOOPS_FINAL"
+ },
+ "interpreter": "3.13.12",
+ "n_pairs": 24,
+ "pairs": [
+  {
+   "campaign": "campaign-e40-m2",
+   "chain": "24_f2_weissmann_k562_0",
+   "f0_best": 0.16626829801946227,
+   "f0_chain": "12_f0_weissmann_k562_0",
+   "f0_ship[CFG]": 0.16688056661438358,
+   "f0_ship[FB8+CFG]": 0.1690013822478335,
+   "f0_ship[FB8]": 0.16688056661438358,
+   "f2_best": 0.16068034127878422,
+   "f2_final": 0.16068034127878422,
+   "f2_ship[CFG]": 0.16419530106407304,
+   "f2_ship[FB8+CFG]": 0.16419530106407304,
+   "f2_ship[FB8]": 0.16068034127878422,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 1,
+   "f2_ship_cycle[FB8]": 2
+  },
+  {
+   "campaign": "campaign-e40-m2",
+   "chain": "25_f2_weissmann_k562_1",
+   "f0_best": 0.15517536096282838,
+   "f0_chain": "13_f0_weissmann_k562_1",
+   "f0_ship[CFG]": 0.16743046618435586,
+   "f0_ship[FB8+CFG]": 0.15517536096282838,
+   "f0_ship[FB8]": 0.15517536096282838,
+   "f2_best": 0.1753687876997643,
+   "f2_final": 0.17855872812166798,
+   "f2_ship[CFG]": 0.17855872812166798,
+   "f2_ship[FB8+CFG]": 0.17855872812166804,
+   "f2_ship[FB8]": 0.1753687876997643,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 3,
+   "f2_ship_cycle[FB8]": 2
+  },
+  {
+   "campaign": "campaign-e40-m2",
+   "chain": "26_f2_weissmann_k562_2",
+   "f0_best": 0.15840007064372924,
+   "f0_chain": "14_f0_weissmann_k562_2",
+   "f0_ship[CFG]": 0.16607748160766067,
+   "f0_ship[FB8+CFG]": 0.16607748160766067,
+   "f0_ship[FB8]": 0.16607748160766067,
+   "f2_best": 0.16607748160766067,
+   "f2_final": 0.1685123255541351,
+   "f2_ship[CFG]": 0.16607748160766067,
+   "f2_ship[FB8+CFG]": 0.16607748160766067,
+   "f2_ship[FB8]": 0.16607748160766067,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 1,
+   "f2_ship_cycle[FB8]": 1
+  },
+  {
+   "campaign": "campaign-e40-m2",
+   "chain": "27_f2_weissmann_k562_3",
+   "f0_best": 0.15840007064372924,
+   "f0_chain": "15_f0_weissmann_k562_3",
+   "f0_ship[CFG]": 0.16533432420687863,
+   "f0_ship[FB8+CFG]": 0.1619062389782819,
+   "f0_ship[FB8]": 0.1619062389782819,
+   "f2_best": 0.1653343242068786,
+   "f2_final": 0.16533432420687863,
+   "f2_ship[CFG]": 0.16533432420687863,
+   "f2_ship[FB8+CFG]": 0.16533432420687863,
+   "f2_ship[FB8]": 0.16533432420687863,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 1,
+   "f2_ship_cycle[FB8]": 1
+  },
+  {
+   "campaign": "campaign-e40-m2",
+   "chain": "28_f2_weissmann_k562_4",
+   "f0_best": 0.15929531694114057,
+   "f0_chain": "16_f0_weissmann_k562_4",
+   "f0_ship[CFG]": 0.15929531694114057,
+   "f0_ship[FB8+CFG]": 0.15929531694114057,
+   "f0_ship[FB8]": 0.15929531694114057,
+   "f2_best": 0.16077750468342072,
+   "f2_final": 0.1688889781515597,
+   "f2_ship[CFG]": 0.1688889781515597,
+   "f2_ship[FB8+CFG]": 0.1688889781515597,
+   "f2_ship[FB8]": 0.16077750468342072,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 1,
+   "f2_ship_cycle[FB8]": 3
+  },
+  {
+   "campaign": "campaign-e40-m2",
+   "chain": "29_f2_weissmann_k562_5",
+   "f0_best": 0.15607174567691418,
+   "f0_chain": "17_f0_weissmann_k562_5",
+   "f0_ship[CFG]": 0.15607174567691418,
+   "f0_ship[FB8+CFG]": 0.15607174567691418,
+   "f0_ship[FB8]": 0.15607174567691418,
+   "f2_best": 0.15607174567691418,
+   "f2_final": 0.17132500886864202,
+   "f2_ship[CFG]": 0.15607174567691418,
+   "f2_ship[FB8+CFG]": 0.15751171348668974,
+   "f2_ship[FB8]": 0.15751171348668974,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 3,
+   "f2_ship_cycle[FB8]": 3
+  },
+  {
+   "campaign": "campaign-e40-m2",
+   "chain": "30_f2_weissmann_rpe1_0",
+   "f0_best": 0.15390264600286993,
+   "f0_chain": "18_f0_weissmann_rpe1_0",
+   "f0_ship[CFG]": 0.15390264600286993,
+   "f0_ship[FB8+CFG]": 0.15390264600286993,
+   "f0_ship[FB8]": 0.18566357449701737,
+   "f2_best": 0.16150221692008657,
+   "f2_final": 0.16150221692008657,
+   "f2_ship[CFG]": 0.17593469166680287,
+   "f2_ship[FB8+CFG]": 0.16150221692008657,
+   "f2_ship[FB8]": 0.16150221692008657,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 4,
+   "f2_ship_cycle[FB8]": 4
+  },
+  {
+   "campaign": "campaign-e40-m2",
+   "chain": "31_f2_weissmann_rpe1_1",
+   "f0_best": 0.14742247072364795,
+   "f0_chain": "19_f0_weissmann_rpe1_1",
+   "f0_ship[CFG]": 0.1539026460028699,
+   "f0_ship[FB8+CFG]": 0.1539026460028699,
+   "f0_ship[FB8]": 0.16851410421966928,
+   "f2_best": 0.15390264600286988,
+   "f2_final": 0.15390264600286993,
+   "f2_ship[CFG]": 0.1539026460028699,
+   "f2_ship[FB8+CFG]": 0.15390264600286988,
+   "f2_ship[FB8]": 0.16851410421966928,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 3,
+   "f2_ship_cycle[FB8]": 2
+  },
+  {
+   "campaign": "campaign-e40-m2",
+   "chain": "32_f2_weissmann_rpe1_2",
+   "f0_best": 0.15381554554098728,
+   "f0_chain": "20_f0_weissmann_rpe1_2",
+   "f0_ship[CFG]": 0.15381554554098728,
+   "f0_ship[FB8+CFG]": 0.15381554554098728,
+   "f0_ship[FB8]": 0.15381554554098728,
+   "f2_best": 0.148238739791624,
+   "f2_final": 0.16150221692008654,
+   "f2_ship[CFG]": 0.1615022169200865,
+   "f2_ship[FB8+CFG]": 0.148238739791624,
+   "f2_ship[FB8]": 0.148238739791624,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 2,
+   "f2_ship_cycle[FB8]": 2
+  },
+  {
+   "campaign": "campaign-e40-m2",
+   "chain": "33_f2_weissmann_rpe1_3",
+   "f0_best": 0.15261263298411495,
+   "f0_chain": "21_f0_weissmann_rpe1_3",
+   "f0_ship[CFG]": 0.16480427230502914,
+   "f0_ship[FB8+CFG]": 0.16480427230502914,
+   "f0_ship[FB8]": 0.16480427230502914,
+   "f2_best": 0.15586995309055876,
+   "f2_final": 0.15586995309055876,
+   "f2_ship[CFG]": 0.15586995309055876,
+   "f2_ship[FB8+CFG]": 0.15586995309055876,
+   "f2_ship[FB8]": 0.17770409423407857,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 4,
+   "f2_ship_cycle[FB8]": 3
+  },
+  {
+   "campaign": "campaign-e40-m2",
+   "chain": "34_f2_weissmann_rpe1_4",
+   "f0_best": 0.16861595715936595,
+   "f0_chain": "22_f0_weissmann_rpe1_4",
+   "f0_ship[CFG]": 0.16861595715936595,
+   "f0_ship[FB8+CFG]": 0.16861595715936595,
+   "f0_ship[FB8]": 0.16861595715936595,
+   "f2_best": 0.15323311286361108,
+   "f2_final": 0.17027335447519068,
+   "f2_ship[CFG]": 0.15323311286361108,
+   "f2_ship[FB8+CFG]": 0.15323311286361108,
+   "f2_ship[FB8]": 0.15323311286361108,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 1,
+   "f2_ship_cycle[FB8]": 1
+  },
+  {
+   "campaign": "campaign-e40-m2",
+   "chain": "35_f2_weissmann_rpe1_5",
+   "f0_best": 0.15037649641748357,
+   "f0_chain": "23_f0_weissmann_rpe1_5",
+   "f0_ship[CFG]": 0.1668927238452602,
+   "f0_ship[FB8+CFG]": 0.1668927238452602,
+   "f0_ship[FB8]": 0.15037649641748357,
+   "f2_best": 0.16240907117458006,
+   "f2_final": 0.17175761323421834,
+   "f2_ship[CFG]": 0.16240907117458006,
+   "f2_ship[FB8+CFG]": 0.16361036633502532,
+   "f2_ship[FB8]": 0.16361036633502532,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 2,
+   "f2_ship_cycle[FB8]": 2
+  },
+  {
+   "campaign": "campaign-e40-m3",
+   "chain": "00_f2_weissmann_k562_0",
+   "f0_best": 0.16626829801946227,
+   "f0_chain": "12_f0_weissmann_k562_0",
+   "f0_ship[CFG]": 0.16688056661438358,
+   "f0_ship[FB8+CFG]": 0.1690013822478335,
+   "f0_ship[FB8]": 0.16688056661438358,
+   "f2_best": 0.16068034127878422,
+   "f2_final": 0.17033194707715743,
+   "f2_ship[CFG]": 0.16419530106407304,
+   "f2_ship[FB8+CFG]": 0.16419530106407304,
+   "f2_ship[FB8]": 0.16419530106407304,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 1,
+   "f2_ship_cycle[FB8]": 1
+  },
+  {
+   "campaign": "campaign-e40-m3",
+   "chain": "01_f2_weissmann_k562_1",
+   "f0_best": 0.15517536096282838,
+   "f0_chain": "13_f0_weissmann_k562_1",
+   "f0_ship[CFG]": 0.16743046618435586,
+   "f0_ship[FB8+CFG]": 0.15517536096282838,
+   "f0_ship[FB8]": 0.15517536096282838,
+   "f2_best": 0.16498400278108544,
+   "f2_final": 0.17855872812166798,
+   "f2_ship[CFG]": 0.17855872812166798,
+   "f2_ship[FB8+CFG]": 0.17855872812166798,
+   "f2_ship[FB8]": 0.17685461892342388,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 4,
+   "f2_ship_cycle[FB8]": 2
+  },
+  {
+   "campaign": "campaign-e40-m3",
+   "chain": "02_f2_weissmann_k562_2",
+   "f0_best": 0.15840007064372924,
+   "f0_chain": "14_f0_weissmann_k562_2",
+   "f0_ship[CFG]": 0.16607748160766067,
+   "f0_ship[FB8+CFG]": 0.16607748160766067,
+   "f0_ship[FB8]": 0.16607748160766067,
+   "f2_best": 0.16452548462584846,
+   "f2_final": 0.1657545149045858,
+   "f2_ship[CFG]": 0.1660774816076607,
+   "f2_ship[FB8+CFG]": 0.1660774816076607,
+   "f2_ship[FB8]": 0.16962696052148687,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 1,
+   "f2_ship_cycle[FB8]": 2
+  },
+  {
+   "campaign": "campaign-e40-m3",
+   "chain": "03_f2_weissmann_k562_3",
+   "f0_best": 0.15840007064372924,
+   "f0_chain": "15_f0_weissmann_k562_3",
+   "f0_ship[CFG]": 0.16533432420687863,
+   "f0_ship[FB8+CFG]": 0.1619062389782819,
+   "f0_ship[FB8]": 0.1619062389782819,
+   "f2_best": 0.1605704182113262,
+   "f2_final": 0.167836052016143,
+   "f2_ship[CFG]": 0.16533432420687863,
+   "f2_ship[FB8+CFG]": 0.16533432420687863,
+   "f2_ship[FB8]": 0.16533432420687863,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 1,
+   "f2_ship_cycle[FB8]": 1
+  },
+  {
+   "campaign": "campaign-e40-m3",
+   "chain": "04_f2_weissmann_k562_4",
+   "f0_best": 0.15929531694114057,
+   "f0_chain": "16_f0_weissmann_k562_4",
+   "f0_ship[CFG]": 0.15929531694114057,
+   "f0_ship[FB8+CFG]": 0.15929531694114057,
+   "f0_ship[FB8]": 0.15929531694114057,
+   "f2_best": 0.16888897815155965,
+   "f2_final": 0.1688889781515597,
+   "f2_ship[CFG]": 0.16888897815155965,
+   "f2_ship[FB8+CFG]": 0.16888897815155965,
+   "f2_ship[FB8]": 0.16941440468068494,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 1,
+   "f2_ship_cycle[FB8]": 3
+  },
+  {
+   "campaign": "campaign-e40-m3",
+   "chain": "05_f2_weissmann_k562_5",
+   "f0_best": 0.15607174567691418,
+   "f0_chain": "17_f0_weissmann_k562_5",
+   "f0_ship[CFG]": 0.15607174567691418,
+   "f0_ship[FB8+CFG]": 0.15607174567691418,
+   "f0_ship[FB8]": 0.15607174567691418,
+   "f2_best": 0.15607174567691418,
+   "f2_final": 0.1766826179494334,
+   "f2_ship[CFG]": 0.15607174567691418,
+   "f2_ship[FB8+CFG]": 0.15607174567691418,
+   "f2_ship[FB8]": 0.15607174567691418,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 1,
+   "f2_ship_cycle[FB8]": 1
+  },
+  {
+   "campaign": "campaign-e40-m3",
+   "chain": "06_f2_weissmann_rpe1_0",
+   "f0_best": 0.15390264600286993,
+   "f0_chain": "18_f0_weissmann_rpe1_0",
+   "f0_ship[CFG]": 0.15390264600286993,
+   "f0_ship[FB8+CFG]": 0.15390264600286993,
+   "f0_ship[FB8]": 0.18566357449701737,
+   "f2_best": 0.14553752926446567,
+   "f2_final": 0.1676487079601826,
+   "f2_ship[CFG]": 0.17593469166680287,
+   "f2_ship[FB8+CFG]": 0.17593469166680287,
+   "f2_ship[FB8]": 0.1676487079601826,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 1,
+   "f2_ship_cycle[FB8]": 4
+  },
+  {
+   "campaign": "campaign-e40-m3",
+   "chain": "07_f2_weissmann_rpe1_1",
+   "f0_best": 0.14742247072364795,
+   "f0_chain": "19_f0_weissmann_rpe1_1",
+   "f0_ship[CFG]": 0.1539026460028699,
+   "f0_ship[FB8+CFG]": 0.1539026460028699,
+   "f0_ship[FB8]": 0.16851410421966928,
+   "f2_best": 0.1539026460028699,
+   "f2_final": 0.15390264600286993,
+   "f2_ship[CFG]": 0.1539026460028699,
+   "f2_ship[FB8+CFG]": 0.15390264600286993,
+   "f2_ship[FB8]": 0.15390264600286993,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 4,
+   "f2_ship_cycle[FB8]": 4
+  },
+  {
+   "campaign": "campaign-e40-m3",
+   "chain": "08_f2_weissmann_rpe1_2",
+   "f0_best": 0.15381554554098728,
+   "f0_chain": "20_f0_weissmann_rpe1_2",
+   "f0_ship[CFG]": 0.15381554554098728,
+   "f0_ship[FB8+CFG]": 0.15381554554098728,
+   "f0_ship[FB8]": 0.15381554554098728,
+   "f2_best": 0.1615022169200865,
+   "f2_final": 0.16150221692008654,
+   "f2_ship[CFG]": 0.1615022169200865,
+   "f2_ship[FB8+CFG]": 0.1615022169200865,
+   "f2_ship[FB8]": 0.17289296336298288,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 1,
+   "f2_ship_cycle[FB8]": 2
+  },
+  {
+   "campaign": "campaign-e40-m3",
+   "chain": "09_f2_weissmann_rpe1_3",
+   "f0_best": 0.15261263298411495,
+   "f0_chain": "21_f0_weissmann_rpe1_3",
+   "f0_ship[CFG]": 0.16480427230502914,
+   "f0_ship[FB8+CFG]": 0.16480427230502914,
+   "f0_ship[FB8]": 0.16480427230502914,
+   "f2_best": 0.15586995309055876,
+   "f2_final": 0.15586995309055876,
+   "f2_ship[CFG]": 0.15586995309055876,
+   "f2_ship[FB8+CFG]": 0.15586995309055876,
+   "f2_ship[FB8]": 0.15586995309055876,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 1,
+   "f2_ship_cycle[FB8]": 1
+  },
+  {
+   "campaign": "campaign-e40-m3",
+   "chain": "10_f2_weissmann_rpe1_4",
+   "f0_best": 0.16861595715936595,
+   "f0_chain": "22_f0_weissmann_rpe1_4",
+   "f0_ship[CFG]": 0.16861595715936595,
+   "f0_ship[FB8+CFG]": 0.16861595715936595,
+   "f0_ship[FB8]": 0.16861595715936595,
+   "f2_best": 0.1521122917006495,
+   "f2_final": 0.1521122917006495,
+   "f2_ship[CFG]": 0.15323311286361102,
+   "f2_ship[FB8+CFG]": 0.15323311286361102,
+   "f2_ship[FB8]": 0.1521122917006495,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 1,
+   "f2_ship_cycle[FB8]": 4
+  },
+  {
+   "campaign": "campaign-e40-m3",
+   "chain": "11_f2_weissmann_rpe1_5",
+   "f0_best": 0.15037649641748357,
+   "f0_chain": "23_f0_weissmann_rpe1_5",
+   "f0_ship[CFG]": 0.1668927238452602,
+   "f0_ship[FB8+CFG]": 0.1668927238452602,
+   "f0_ship[FB8]": 0.15037649641748357,
+   "f2_best": 0.15023020783606758,
+   "f2_final": 0.15023020783606758,
+   "f2_ship[CFG]": 0.1624090711745801,
+   "f2_ship[FB8+CFG]": 0.1624090711745801,
+   "f2_ship[FB8]": 0.1708508413529957,
+   "f2_ship_cycle[CFG]": 1,
+   "f2_ship_cycle[FB8+CFG]": 1,
+   "f2_ship_cycle[FB8]": 3
+  }
+ ],
+ "schema_version": "orion.v2.e40-ranker-shipping.rollup.v1",
+ "script_sha256": "4e9e255f023f07e91ee8525f1c510688a55f50a494c6df71f13a23364705a86c",
+ "tuples_sha256": "b96d7f7857ed7740e65e95eab9a7c7ad1219874ce75895bb0cd8cb49dbc6d0d6"
+}

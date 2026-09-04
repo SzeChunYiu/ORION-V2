@@ -1,0 +1,70 @@
+{
+  "schema_version": "orion.v2.e40-channel-information-bound.design.v1",
+  "design_id": "E40_CHANNEL_INFORMATION_BOUND_DESIGN_V1",
+  "class": "registered re-analysis; zero model calls; zero native runs; pure Python, no numpy",
+  "frozen": "2026-09-04, before the rollup was computed",
+  "lineage": {
+    "m2": "METABOLIC_DRAG_MATCHED_NATIVE, F0 wins 11/12, mean_d -0.008979, p 0.999 (no cycle-1 mandate in the F2 prompt)",
+    "m3": "METABOLIC_DRAG_ROBUST_TO_ANCHOR, mean_d -0.007414, p 0.986; both_final and both_best null -> the deficit is the selection operator",
+    "m4": "G2 PROXY_CHANNEL_UNINFORMATIVE fired (pooled_tp rho P +0.191 ns / R -0.0007 ns); G1 not fired",
+    "m5p_stage1": "GS1 not fired: no frozen composite of the 8 visible fields ranks truth in-sample on R",
+    "stage2d": "PROMPT_IMPLICATED: mandate-induced exploration collapse; the model channel alone exonerated",
+    "stage2e": "cited from the closure lane (PR #277 when on main): seed-only replica Jaccard 0.030 vs config-only 0.027 -> the knobs move the output graph less than the seed does"
+  },
+  "question": "Does ANY linear function of the eight cycle-visible feedback fields rank the held-out primary OUT OF SAMPLE (fitted on every other chain, applied to a chain never seen)? And is the only out-of-sample signal on this substrate the prior over configurations rather than the feedback?",
+  "inputs": {
+    "tuples": "rollup-e40-channel-ib/E40_CHANNEL_IB_TUPLES_V1.json",
+    "tuples_sha256": "b96d7f7857ed7740e65e95eab9a7c7ad1219874ce75895bb0cd8cb49dbc6d0d6",
+    "rows": 144,
+    "cohorts": {"campaign-e40-m2/f0": 48, "campaign-e40-m2/f2": 48, "campaign-e40-m3/f2": 48},
+    "chains": 36,
+    "source_manifest_files": 576,
+    "source_root": "/projects/hep/fs9/users/scyiu/orion-v2-e45/ (LUNARC; per-file sha256 inside the tuples file)",
+    "feedback_fields": ["chipseq_evaluation", "corum_evaluation", "ligand_receptor_evaluation", "pooled_biological_evaluation", "pooled_biological_sigificant_evaluation", "run_time", "string_network_evaluation", "string_physical_evaluation"],
+    "truth": "quantitative_test_evaluation.output_graph.wasserstein_distance.mean of the cycle's own metrics.json (lower better); read only here, never by any decision artifact",
+    "m2_epoch_model_label": "the m2 F2 decisions were produced by a served model that is UNRECOVERABLE (no per-call model id); it is INFERRED, not verified, and is not glm-5.3"
+  },
+  "feature_sets": {
+    "FB8": "the eight visible feedback fields",
+    "CFG": "regime one-hot (observational, partial_interventional, interventional) + frac + frac^2",
+    "FB8+CFG": "both"
+  },
+  "ranker": {
+    "model": "ridge regression, columns standardised on the training fold, target centred",
+    "lambda": 1.0,
+    "fold": "leave-one-CHAIN-out over all 36 chains (F0 and F2 chains pooled; F0's four runs are treated as four cycles)",
+    "statistic_per_chain": "Spearman(prediction, truth) over the held-out chain's 4 rows; positive = ranks truth correctly; and top1_hit = argmin(pred) == argmin(truth), chance 0.25",
+    "pooled": "arithmetic mean of per-chain Spearman over chains with a defined rho"
+  },
+  "nulls": {
+    "IB1_IB2": {"kind": "within-chain permutation of truth with full LOCO refit", "n_perm": 2000, "seed": 20260904, "sided": "one-sided, >="},
+    "IB3": {"kind": "sign-flip of per-chain (rho_FB8+CFG - rho_CFG)", "n": 4000, "seed": 20260904}
+  },
+  "controls_evaluated_first_and_consumed_by_the_gates": {
+    "M4_M1_REPRODUCED": "per-chain raw Spearman(pooled_biological_evaluation, wasserstein), arithmetic mean over the 12 F2 chains of each cohort, equals m4's frozen pooled_rho_arithmetic (P = m3 F2, R = m2 F2) to 1e-9",
+    "M2_M3_PRIMARY_AND_CENSUS_REPRODUCED": "F0_best - F2_final mean over 12 pairs equals the m2 receipt's -0.008979 and the m3 receipt's -0.007414 to 1e-6; m2 F0 best-of-4 regime census equals interventional 5 / observational 4 / partial 3",
+    "PLANTED_SIGNAL_DETECTED": "run_time replaced on a copy by truth + N(0, 0.25 sd(truth)) (seed 20260904); the FB8 ranker must reach mean rho >= 0.5 with perm p <= 0.05 at 400 permutations",
+    "NULL_CALIBRATION": "100 within-chain truth shuffles, each tested with 200 permutations; rejection rate at alpha 0.05 must lie in [0.02, 0.09] (seed 20260903)"
+  },
+  "gates": {
+    "IB0_CONTROLS_VALID": "all four controls PASS and all 144 envelopes valid; else CANNOT_CHECK, exit 5, nothing filed",
+    "IB1_FEEDBACK_RANKS_TRUTH_OOS": "pooled mean rho(FB8) > 0 and perm p <= 0.05",
+    "IB2_CONFIG_RANKS_TRUTH_OOS": "pooled mean rho(CFG) > 0 and perm p <= 0.05",
+    "IB3_FEEDBACK_ADDS_TO_CONFIG": "mean over chains of rho(FB8+CFG) - rho(CFG) > 0 with sign-flip p <= 0.05"
+  },
+  "routing": {
+    "IB0 fail": "CANNOT_CHECK__CONTROL_FAILED (exit 5)",
+    "IB1 fires": "OOS_RANKER_EXISTS__PROSPECTIVE_M5PP_WARRANTED -- contradicts the m5' in-sample screen; licenses ONLY a prospective campaign under its own freeze, no revival claim",
+    "IB1 not fired, IB2 fires": "CHANNEL_INFORMATION_BOUND__PRIOR_OVER_CONFIGS_IS_THE_ONLY_OOS_SIGNAL -- the information a sequential loop could exploit is not in the feedback; it is in the prior over configurations, which an upfront federation exploits without feedback",
+    "neither": "CHANNEL_INFORMATION_BOUND__NO_OOS_SIGNAL_IN_FEEDBACK_OR_CONFIG"
+  },
+  "reachability_audit_pre_run": {
+    "seed_does_something": "yes: the permutation, sign-flip, plant and null-calibration draws",
+    "hard_gate_at_scale": "36 chains x 2000 permutations x 3 feature sets in pure Python; no crash path at this scale",
+    "contrast_could_exist": "yes: per-chain rho ranges over {-1,...,+1}; the planted control must reach >= 0.5 and the shuffled null must sit near 0",
+    "clause_reachable_both_ways": "IB1/IB2/IB3 each satisfiable (the plant satisfies IB1's form) and failable (the null-calibration shuffles fail it)",
+    "comparator_isolation": "not applicable -- no arm is run; the F0 and F2 tuples are pooled as substrate samples, not contrasted"
+  },
+  "no_rescue": "This re-analysis cannot revive the E40 line, cannot authorize m6, and does not alter any m2/m3/m4/m5'/Stage-2c/2d/2e disposition. The E40 line's closure is filed by the closure lane; this design adds a channel-information reading at exactly the strength the gates earn.",
+  "authority": {"grants_scientific_truth": false, "revives_e40": false, "authorizes_m6": false, "grants_field_status": false}
+}

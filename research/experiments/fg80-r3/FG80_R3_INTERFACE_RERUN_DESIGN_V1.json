@@ -1,0 +1,61 @@
+{
+  "schema_version": "orion.v2.fg80-r3.design.v1",
+  "design": "FG80_R3_INTERFACE_RERUN_DESIGN_V1",
+  "class": "prospective re-run of the FG80 study under a categorical answer contract; the P-F negative attributed to ONE stage (answer encoding at the arm/scorer interface) and re-tested with all five arms, same single-call budget, same scorer",
+  "lineage": {
+    "r2_receipt": "research/experiments/fmfg-r2/FMFG_R2_SUITE_TERMINAL_RESULTS_RECEIPT.md",
+    "r2_erratum": "research/experiments/fmfg-r2/FMFG_R2_REGISTERED_CLAUSE_NARROWING_ERRATUM_V1.md",
+    "pf_trigger_receipt": "research/experiments/pf-trigger/PF_R2_TRIGGER_EVALUATION_RECEIPT_V1.md",
+    "census": "research/experiments/fg80-r3/FG80_R2_RENDERING_CENSUS_V1.json"
+  },
+  "attribution": {
+    "stage": "ANSWER_ENCODING_AT_THE_INTERFACE",
+    "evidence": "R2 typed `representation_feature` as a free `string` and scored by exact JSON equality; the census finds 34-50 of every arm's 80 answers carry the correct feature id decorated (`H_X = 1`, `H_X is active (value 1)`), scored wrong. Under a conservative rendering-normalisation (a second feature id, any connective, any negation or `= 0` in the tail keeps the row WRONG) the R2 paired contrast F2_FULL vs TARGET_ONLY_DIRECT goes from b=30/c=11 (delta -19, p=4.3e-03) to b=4/c=1 (delta -3, p=0.375).",
+    "what_the_census_is_not": "descriptive and non-gating; it alters no registered R2 terminal and does not fire or un-fire the P-F trigger, which is a predicate over the frozen R2 campaign"
+  },
+  "lever": {
+    "where": "the interface contract, applied to every arm identically",
+    "what": "the categorical endpoint crosses the interface AS a categorical: `answer_contract` names the admissible feature ids and decisions; the output schema enumerates them (`enum`); the encoding instruction names them and forbids decoration; `validate_answer` rejects any non-member (the response is then EXECUTION_FAILED_MODEL_RESPONSE and the run is invalid, never silently rescored)",
+    "what_it_does_not_touch": "arm procedure texts (imported verbatim from scripts/orion_formal_discovery_arms.py), the task generator (imported verbatim, gen_fg80), the scorer (exact canonical-JSON equality, R2's), the single-call budget, the model channel"
+  },
+  "constants": {
+    "freeze_seed": 20260904,
+    "n_tasks": 80,
+    "arms": ["TARGET_ONLY_DIRECT", "STRONGEST_DOMAIN_FORMAL_PARENT", "F0_PARENT_FEDERATION", "F2_STATIC_NO_FORMAL_DISCOVERY", "F2_FORMAL_DISCOVERY_FULL"],
+    "treatment": "F2_FORMAL_DISCOVERY_FULL",
+    "parent": "TARGET_ONLY_DIRECT",
+    "alpha": 0.05,
+    "ceiling": 0.90,
+    "registered_dispatches": 400,
+    "statistic": "paired McNemar exact (two-sided binomial on discordant pairs) F2_FORMAL_DISCOVERY_FULL vs TARGET_ONLY_DIRECT over the 80 tasks",
+    "channel": "codex exec, side-by-side binary codex-cli 0.147.0 at ~/.npm-terra/bin/codex on billy-old, requested model gpt-5.6-terra, temperature not exposed by the CLI, --output-schema enforced, max concurrency 3 -- R2's instrument, unchanged",
+    "served_model_pin": "NOT_EXPOSED_BY_CODEX_CLI__HEADER_IS_REQUEST_ECHO -- carried as the same UNPINNED_SUBSTRATE_CONDITION residual R2 carries; the R3 primary is a within-run contrast so a substitution would have to be arm-selective to bias it, and the arms are dispatched interleaved in one pool"
+  },
+  "arm_identity_note": "per the R2 erratum, F0_PARENT_FEDERATION and STRONGEST_DOMAIN_FORMAL_PARENT are one procedure (PARENT_GENERIC) under two labels; R3 keeps all five ids so that its rows are comparable with R2's row-for-row, but reads four distinct conditions, and no federation claim is made",
+  "controls_consumed_by_the_gates": [
+    {"control": "CENSUS_CONTROLS_ALL_PASS", "rule": "the four census controls (R2 exact counts reproduced; detector fires on a planted variant; detector silent on a different answer; zero rendering variants outside FG80) PASS in the committed FG80_R2_RENDERING_CENSUS_V1.json"},
+    {"control": "FREEZE_DETERMINISTIC", "rule": "generating the 80 tasks twice from the seed is byte-identical, and a different seed changes them (selftest)"},
+    {"control": "ORACLE_COMMITMENT_ROUND_TRIP", "rule": "the private oracle's sha256 is committed before dispatch, the file is absent from disk during every model call, and the restored file matches the commitment"},
+    {"control": "DISPATCH_COMPLETE_AND_VALID", "rule": "400/400 responses COMPLETED_PROPOSAL_ONLY with an answer inside the enumerated contract; any EXECUTION_FAILED or out-of-enum answer makes the run invalid and routes CANNOT_CHECK -- an invalid answer is never rescored"},
+    {"control": "REQUEST_MODEL_UNIFORM", "rule": "every response's resource_receipt.requested_model equals the pin; the served id is NOT available and is reported as such, not as a pass"}
+  ],
+  "routing": [
+    {"row": 0, "condition": "any control fails, or either the treatment or the parent run is invalid", "terminal": "CANNOT_CHECK__INCOMPLETE_OR_INVALID_DISPATCH", "exit": 5},
+    {"row": 1, "condition": "acc(treatment) >= 0.90 and acc(parent) >= 0.90 and p > 0.05", "terminal": "FG80_AT_CEILING_UNDER_A_CATEGORICAL_CONTRACT__NO_DYNAMIC_RANGE_FOR_THE_P_F_TRIGGER", "reading": "the study has no dynamic range once decoding is removed; the R2 deficit was an encoding artifact and FG80 cannot discriminate the controller from the bare control -- hypothesis (c), suite, not (a) architecture nor (b) mandate"},
+    {"row": 2, "condition": "c > b and p <= 0.05", "terminal": "F2_FULL_ABOVE_DIRECT_AT_THE_SEMANTIC_LEVEL__CANDIDATE_ONLY__REQUIRES_ITS_OWN_TRIGGER_PROTOCOL", "reading": "cannot fire the P-F trigger (a predicate over R2); licenses only a prospectively frozen trigger protocol of its own"},
+    {"row": 3, "condition": "b > c and p <= 0.05", "terminal": "F2_FULL_BELOW_DIRECT_AT_THE_SEMANTIC_LEVEL__THE_R2_DEFICIT_IS_NOT_A_RENDERING_ARTIFACT", "reading": "the negative stands at the decision level; attribution moves to the arm's procedure -- hypothesis (a) or (b), to be split by a later single-lever test"},
+    {"row": 4, "condition": "otherwise", "terminal": "NO_SEMANTIC_CONTRAST__R2_DEFICIT_ATTRIBUTED_TO_THE_INTERFACE", "reading": "parity below ceiling: the R2 deficit was the interface; the controller neither beats nor loses to the bare control on FG80"}
+  ],
+  "pre_run_reachability_audit": {
+    "seed_does_something": "yes -- selftest asserts a different seed changes the tasks and the same seed reproduces them",
+    "hard_gate_at_scale": "evaluate is O(400) file reads; the freeze/dispatch/evaluate path was exercised by the selftest and by a 5-task dry generation",
+    "contrast_could_exist": "per-task correctness is free in both arms; b and c each range 0..80; rows 1-4 are all reachable (selftest exercises each routing row with synthetic inputs)",
+    "clause_narrowing": "the runner evaluates exactly the routing above; the selftest asserts the constants in this file equal the constants in fg80_r3.py",
+    "parent_isolation": "every arm gets one call, the same public task, the same contract and the same encoding instruction; the only per-arm difference is the ARM/ARM PROCEDURE lines, exactly as in R2",
+    "served_model": "NOT pinned by the channel (see constants); disclosed, not cleared",
+    "ceiling_control": "row 1 names the ceiling as a ceiling; it is the outcome the census predicts (semantic accuracies 73-76/80 in R2) and is registered as NO dynamic range, not as a tie the mechanism earned"
+  },
+  "pre_run_expectation_disclosed": "the census predicts every arm near 0.91-0.95 under the contract; row 1 is the expected terminal. Stated before dispatch so that a ceiling cannot be read afterwards as a surprise or as support.",
+  "no_rescue_clause": "no constant, arm set, contract, routing row, seed, scorer or channel may change after dispatch begins; a defect found afterwards is recorded in the receipt and repaired under a new identity",
+  "authority": {"grants_scientific_truth": false, "grants_F2_superiority": false, "fires_the_P_F_trigger": false, "alters_the_R2_registered_terminal": false, "alters_the_PF_trigger_terminal": false}
+}
