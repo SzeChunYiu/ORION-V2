@@ -196,6 +196,8 @@ Constructed known-answer cases establish semantics. Naturalistic value requires 
 - representative workflow/agent baseline;
 - strongest parent-specific method;
 - expert-configured F0 federation;
+
+**Disclosure — the strongest-parent arm is built from this project's own modules.** In the executed sibling studies (ME-X1, ME-X4, FM10) the corresponding strongest-parent arm is not assembled solely from third-party implementations: per its pre-registered information-matching field it holds this project's own typed `orion_v2` modules, at the mechanism's registry visibility and behind the same frozen adjudicator. It is therefore an information-matched **ceiling control** bounding what any faithful composition could reach, not a measurement of prior work; agreement with it is not evidence that published methods suffice.
 - human expert/team where feasible;
 - P-C FULL;
 - component, pair and parent replacements;

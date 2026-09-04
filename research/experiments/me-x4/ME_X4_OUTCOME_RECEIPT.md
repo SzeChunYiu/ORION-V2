@@ -16,6 +16,19 @@ ROUTE                   = PARENT_SUFFICIENT
 LADDER_TERMINAL (H-EXT-3) = RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL
 COST_FLAG               = COST_ADVANTAGE_M (wall-clock ratio 2.07; reported, no route)
 PRIMARY_COMPARATOR      = B5_STRONGEST_FAITHFUL_PARENT_FEDERATION
+COMPARATOR_CLASS        = CEILING_CONTROL_NOT_PRIOR_WORK
+                        -- Despite its name, B5 is NOT a published-method parent. Per the design's
+                           pre-registered b5_information_matching field it holds THIS PROJECT'S OWN
+                           typed orion_v2 modules, at the mechanism's registry visibility and behind
+                           the same frozen adjudicator. It is information-matched to M by construction,
+                           so it bounds what ANY faithful composition could reach. Agreement with it is
+                           therefore not evidence that prior work suffices.
+ROUTE_AS_READ           = ORION_TYPED_INTERFACE_SUFFICIENT__CONTROLLER_ADDS_NOTHING_ON_TOP
+                        -- PARENT_SUFFICIENT does NOT mean 'prior work suffices'. No arm citing a
+                           published method matches M: the best arm built only from published methods trails M; only B5, holding ORION's typed modules, ties it.
+                           This is the same statement as LADDER_TERMINAL
+                           RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL. Qualification only:
+                           no gate, datum, weight, seed or terminal verdict is changed.
 FIELD_STATUS_AUTHORITY  = NONE
 ```
 

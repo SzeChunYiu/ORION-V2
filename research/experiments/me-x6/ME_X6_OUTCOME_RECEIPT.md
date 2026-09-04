@@ -27,6 +27,12 @@ frozen in PR #227 and corrected **pre-run** in PR #232, both merged before this 
 ```text
 ME_X6_PROTECTED_ROUTE = MECHANISM_ESTABLISHED_NOT_A_RESIDUAL
 TERMINAL              = UNTYPED_AGGREGATE_CANNOT_REPRESENT_THE_CONJUNCTION_AT_MATCHED_INFORMATION
+                        -- NARROWED, do not quote bare; see QUALIFICATION at head of file
+TERMINAL_AS_READ      = FITTED_UNIT_SIGN_UNTYPED_AGGREGATE_DOES_NOT_RECOVER_THE_CONJUNCTION_AT_MATCHED_INFORMATION
+                        -- section 3 of this study exhibits an untyped aggregate at matched
+                           information that DOES recover the conjunction (56/56, control 28/56),
+                           so the bare string overreaches. Registered string retained verbatim.
+                           No number, denominator, gate verdict, route or terminal outcome changed.
 ME_X6_RESIDUAL        = NOT CLAIMED (no routing path awards one)
 FLAGSHIP_GATE         = FALSE
 FIELD_STATUS_AUTHORITY = NONE
@@ -302,6 +308,10 @@ real bibliometric aggregate behaves this way.
 ME_X6_STATUS                      = PROTECTED_RUN_COMPLETE
 ROUTE                             = MECHANISM_ESTABLISHED_NOT_A_RESIDUAL
 TERMINAL                          = UNTYPED_AGGREGATE_CANNOT_REPRESENT_THE_CONJUNCTION_AT_MATCHED_INFORMATION
+                                    -- NARROWED, do not quote bare; see QUALIFICATION at head of file
+TERMINAL_AS_READ                  = FITTED_UNIT_SIGN_UNTYPED_AGGREGATE_DOES_NOT_RECOVER_THE_CONJUNCTION_AT_MATCHED_INFORMATION
+                                    -- registered string retained verbatim; narrowed by this study's
+                                       own section 3. No number, gate verdict or route changed.
 RESULT_CLASS                      = CONSTRUCTIVE_SEPARATION_NOT_A_SAMPLING_STUDY
 M_OPTIMAL_BY_CONSTRUCTION         = TRUE (declared pre-run; the gap is not the finding)
 ME_X6_RESIDUAL_CLAIMED            = FALSE
