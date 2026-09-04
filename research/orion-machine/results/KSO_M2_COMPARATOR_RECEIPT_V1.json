@@ -82,6 +82,10 @@
   "K6_byte_reproducible": {
    "note": "wall_ns zeroed on both sides; every other byte identical",
    "pass": true
+  },
+  "K7_joined_exact_recomputed": {
+   "note": "the joined column's exact flags are recomputed against the oracle here; a disagreement is red",
+   "pass": true
   }
  },
  "contract": "KnowledgeSpace.v1-M2-comparator",
@@ -102,7 +106,7 @@
       "ops": 128,
       "restarts": 0,
       "steps": 11,
-      "wall_ns": 260000
+      "wall_ns": 257458
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -120,7 +124,7 @@
       "ops": 55,
       "restarts": 0,
       "steps": 18,
-      "wall_ns": 4532958
+      "wall_ns": 4688167
      },
      "exact": true,
      "note": "nearest case X1-DEV-001 (jaccard 1.0)",
@@ -138,7 +142,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2209
+      "wall_ns": 2959
      },
      "exact": false,
      "note": "registered null control",
@@ -162,15 +166,43 @@
      "compose_detail": {
       "decisive_atom": "identity:r1"
      },
+     "dead_request_atoms_read_through_fire": [
+      "identity:r1"
+     ],
      "exact": true,
+     "exact_by": "FOUND_BY_STORE_READ",
+     "exact_declared": true,
      "extraction_sha256": "72f28ff804b70fb1799176d6a0bd03893146a5ffc87a717e16d5013a79dd6b38",
+     "navigation_only_answer": null,
      "navigation_outcome": "FOUND",
      "request_atoms": 10,
      "stage_failures": {
       "EXTRACT": "live request atoms outside G_Q: ['criterion:c2', 'src:e04', 'ident:e04', 'cal:e04', 'src:e05', 'ident:e05', 'cal:e05', 'evaluator:r1', 'authority']"
      },
      "status": "SCORED",
+     "store_read": true,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 21,
+      "edge_visits_cap": 76,
+      "incidence_visits": 30,
+      "restarts": 1,
+      "steps": 57,
+      "steps_cap": 114,
+      "wall_ns": 0
+     },
+     "exact": false,
+     "navigation_outcome": "FOUND",
+     "note": "EXTRACT returned nothing decisive; obstruction witness, never exact",
+     "status": "OBSTRUCTION",
+     "store_read": true
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -202,7 +234,7 @@
       "ops": 92,
       "restarts": 1,
       "steps": 55,
-      "wall_ns": 20104833
+      "wall_ns": 21557792
      },
      "exact": false,
      "note": "",
@@ -248,7 +280,7 @@
       "ops": 263,
       "restarts": 0,
       "steps": 20,
-      "wall_ns": 377334
+      "wall_ns": 392333
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -266,7 +298,7 @@
       "ops": 76,
       "restarts": 0,
       "steps": 22,
-      "wall_ns": 129916
+      "wall_ns": 135000
      },
      "exact": true,
      "note": "nearest case X1-DEV-002 (jaccard 1.0)",
@@ -284,7 +316,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2625
+      "wall_ns": 3041
      },
      "exact": false,
      "note": "registered null control",
@@ -308,13 +340,42 @@
      "compose_detail": {
       "decisive_atom": ""
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "96581db8b146353ddf4200ac509c733788399e64773f7d780325901f3cd791b6",
+     "navigation_only_answer": {
+      "action": "UPDATE",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 11,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "UPDATE",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 24,
+      "edge_visits_cap": 108,
+      "incidence_visits": 47,
+      "restarts": 1,
+      "steps": 93,
+      "steps_cap": 186,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -346,7 +407,7 @@
       "ops": 147,
       "restarts": 1,
       "steps": 93,
-      "wall_ns": 54199542
+      "wall_ns": 55580750
      },
      "exact": true,
      "note": "",
@@ -392,7 +453,7 @@
       "ops": 175,
       "restarts": 0,
       "steps": 13,
-      "wall_ns": 270667
+      "wall_ns": 272458
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -410,7 +471,7 @@
       "ops": 68,
       "restarts": 0,
       "steps": 21,
-      "wall_ns": 106459
+      "wall_ns": 112625
      },
      "exact": false,
      "note": "nearest case X1-DEV-001 (jaccard 0.0)",
@@ -428,7 +489,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2833
+      "wall_ns": 3250
      },
      "exact": false,
      "note": "registered null control",
@@ -455,13 +516,42 @@
        "UPDATE"
       ]
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "60a65fb0406e9253ebbffab0b101e81525a4770168a406b7da45615d808a6ccf",
+     "navigation_only_answer": {
+      "action": "DEFER_CANNOT_CHECK",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 11,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "DEFER_CANNOT_CHECK",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 22,
+      "edge_visits_cap": 94,
+      "incidence_visits": 44,
+      "restarts": 1,
+      "steps": 70,
+      "steps_cap": 140,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -493,7 +583,7 @@
       "ops": 118,
       "restarts": 1,
       "steps": 71,
-      "wall_ns": 29564625
+      "wall_ns": 42071583
      },
      "exact": true,
      "note": "",
@@ -539,7 +629,7 @@
       "ops": 185,
       "restarts": 0,
       "steps": 11,
-      "wall_ns": 256750
+      "wall_ns": 266709
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -557,7 +647,7 @@
       "ops": 61,
       "restarts": 0,
       "steps": 18,
-      "wall_ns": 105250
+      "wall_ns": 105750
      },
      "exact": true,
      "note": "nearest case X1-DEV-001 (jaccard 1.0)",
@@ -575,7 +665,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2500
+      "wall_ns": 2708
      },
      "exact": true,
      "note": "registered null control",
@@ -599,13 +689,44 @@
      "compose_detail": {
       "decisive_atom": "identity:r1"
      },
+     "dead_request_atoms_read_through_fire": [
+      "identity:r1"
+     ],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "2fd40075d0ce8b07fc2d605e9a269fcfe49c70085d45603583defff9aaecfc5d",
+     "navigation_only_answer": {
+      "action": "REVALIDATE",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 9,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "REVALIDATE",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 18,
+      "edge_visits_cap": 88,
+      "incidence_visits": 25,
+      "restarts": 1,
+      "steps": 73,
+      "steps_cap": 146,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -637,7 +758,7 @@
       "ops": 114,
       "restarts": 1,
       "steps": 71,
-      "wall_ns": 31848375
+      "wall_ns": 37384375
      },
      "exact": false,
      "note": "",
@@ -683,7 +804,7 @@
       "ops": 225,
       "restarts": 0,
       "steps": 17,
-      "wall_ns": 315166
+      "wall_ns": 321250
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -701,7 +822,7 @@
       "ops": 69,
       "restarts": 0,
       "steps": 20,
-      "wall_ns": 112667
+      "wall_ns": 125042
      },
      "exact": true,
      "note": "nearest case X1-DEV-002 (jaccard 1.0)",
@@ -719,7 +840,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2667
+      "wall_ns": 2916
      },
      "exact": false,
      "note": "registered null control",
@@ -743,13 +864,42 @@
      "compose_detail": {
       "decisive_atom": ""
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "e47ec4c285b3bbfe5918020418334bc30507015a7648854ceba42e8988fb6c84",
+     "navigation_only_answer": {
+      "action": "UPDATE",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 11,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "UPDATE",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 22,
+      "edge_visits_cap": 98,
+      "incidence_visits": 44,
+      "restarts": 1,
+      "steps": 83,
+      "steps_cap": 166,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -781,7 +931,7 @@
       "ops": 132,
       "restarts": 1,
       "steps": 83,
-      "wall_ns": 33411250
+      "wall_ns": 41838125
      },
      "exact": true,
      "note": "",
@@ -827,7 +977,7 @@
       "ops": 136,
       "restarts": 0,
       "steps": 11,
-      "wall_ns": 221875
+      "wall_ns": 231375
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -845,7 +995,7 @@
       "ops": 45,
       "restarts": 0,
       "steps": 11,
-      "wall_ns": 83875
+      "wall_ns": 74000
      },
      "exact": true,
      "note": "nearest case X1-DEV-003 (jaccard 1.0)",
@@ -865,7 +1015,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 4958
+      "wall_ns": 4375
      },
      "exact": false,
      "note": "registered null control",
@@ -889,13 +1039,44 @@
      "compose_detail": {
       "decisive_atom": "cal:e07"
      },
+     "dead_request_atoms_read_through_fire": [
+      "cal:e07"
+     ],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "64bc28d29c38bfbc28a57298d219b98bb57a964529592b45949e8478c9757318",
+     "navigation_only_answer": {
+      "action": "REVALIDATE",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 7,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "REVALIDATE",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 10,
+      "edge_visits_cap": 80,
+      "incidence_visits": 10,
+      "restarts": 1,
+      "steps": 61,
+      "steps_cap": 122,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -927,7 +1108,7 @@
       "ops": 90,
       "restarts": 1,
       "steps": 56,
-      "wall_ns": 10569459
+      "wall_ns": 10167667
      },
      "exact": false,
      "note": "",
@@ -973,7 +1154,7 @@
       "ops": 150,
       "restarts": 0,
       "steps": 15,
-      "wall_ns": 283750
+      "wall_ns": 270208
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -991,7 +1172,7 @@
       "ops": 65,
       "restarts": 0,
       "steps": 23,
-      "wall_ns": 107708
+      "wall_ns": 120750
      },
      "exact": true,
      "note": "nearest case X1-DEV-002 (jaccard 1.0)",
@@ -1009,7 +1190,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2458
+      "wall_ns": 2875
      },
      "exact": false,
      "note": "registered null control",
@@ -1033,15 +1214,41 @@
      "compose_detail": {
       "decisive_atom": ""
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_STORE_READ",
+     "exact_declared": true,
      "extraction_sha256": "f4f76552fd64ad40873e4c234f58c0c53f6262dcb026a59d9727726250633af4",
+     "navigation_only_answer": null,
      "navigation_outcome": "FOUND",
      "request_atoms": 13,
      "stage_failures": {
       "EXTRACT": "live request atoms outside G_Q: ['identity:r1', 'criterion:c1', 'src:e04', 'ident:e04', 'cal:e04', 'src:e05', 'ident:e05', 'cal:e05', 'src:e06', 'ident:e06', 'cal:e06', 'evaluator:r1', 'authority']"
      },
      "status": "SCORED",
+     "store_read": true,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 24,
+      "edge_visits_cap": 86,
+      "incidence_visits": 48,
+      "restarts": 1,
+      "steps": 70,
+      "steps_cap": 140,
+      "wall_ns": 0
+     },
+     "exact": false,
+     "navigation_outcome": "FOUND",
+     "note": "EXTRACT returned nothing decisive; obstruction witness, never exact",
+     "status": "OBSTRUCTION",
+     "store_read": true
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -1073,7 +1280,7 @@
       "ops": 109,
       "restarts": 1,
       "steps": 67,
-      "wall_ns": 29334125
+      "wall_ns": 30655833
      },
      "exact": true,
      "note": "",
@@ -1119,7 +1326,7 @@
       "ops": 212,
       "restarts": 0,
       "steps": 13,
-      "wall_ns": 283458
+      "wall_ns": 313791
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -1137,7 +1344,7 @@
       "ops": 59,
       "restarts": 0,
       "steps": 18,
-      "wall_ns": 104417
+      "wall_ns": 116000
      },
      "exact": true,
      "note": "nearest case X1-DEV-014 (jaccard 1.0)",
@@ -1155,7 +1362,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2750
+      "wall_ns": 3375
      },
      "exact": true,
      "note": "registered null control",
@@ -1182,13 +1389,42 @@
        "UPDATE"
       ]
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "6572bd60833c52c1b21b4accfa76754d55c52c014666ad802fd9beb056fae48f",
+     "navigation_only_answer": {
+      "action": "DEFER_CANNOT_CHECK",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 7,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "DEFER_CANNOT_CHECK",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 18,
+      "edge_visits_cap": 82,
+      "incidence_visits": 31,
+      "restarts": 1,
+      "steps": 71,
+      "steps_cap": 142,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -1220,7 +1456,7 @@
       "ops": 113,
       "restarts": 1,
       "steps": 72,
-      "wall_ns": 29660375
+      "wall_ns": 30086667
      },
      "exact": true,
      "note": "",
@@ -1266,7 +1502,7 @@
       "ops": 199,
       "restarts": 0,
       "steps": 19,
-      "wall_ns": 368833
+      "wall_ns": 375125
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -1284,7 +1520,7 @@
       "ops": 52,
       "restarts": 0,
       "steps": 10,
-      "wall_ns": 106292
+      "wall_ns": 130125
      },
      "exact": true,
      "note": "nearest case X1-DEV-003 (jaccard 1.0)",
@@ -1302,7 +1538,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2666
+      "wall_ns": 3292
      },
      "exact": false,
      "note": "registered null control",
@@ -1326,15 +1562,46 @@
      "compose_detail": {
       "decisive_atom": "cal:e05"
      },
+     "dead_request_atoms_read_through_fire": [
+      "cal:e05"
+     ],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "d96c314ffcf2a42fcd16e0264b6edef21934a1473be0c31fd04dc728dbe4bc88",
+     "navigation_only_answer": {
+      "action": "REVALIDATE",
+      "reopened": []
+     },
      "navigation_outcome": "GAP_NOT_FOUND",
      "request_atoms": 9,
      "stage_failures": {
       "NAVIGATE": "target claim:c1 GAP_NOT_FOUND"
      },
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "REVALIDATE",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 13,
+      "edge_visits_cap": 102,
+      "incidence_visits": 15,
+      "restarts": 1,
+      "steps": 88,
+      "steps_cap": 176,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "GAP_NOT_FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -1366,7 +1633,7 @@
       "ops": 121,
       "restarts": 1,
       "steps": 79,
-      "wall_ns": 19078875
+      "wall_ns": 77556792
      },
      "exact": false,
      "note": "",
@@ -1412,7 +1679,7 @@
       "ops": 205,
       "restarts": 0,
       "steps": 15,
-      "wall_ns": 310709
+      "wall_ns": 346292
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -1430,7 +1697,7 @@
       "ops": 61,
       "restarts": 0,
       "steps": 14,
-      "wall_ns": 111125
+      "wall_ns": 114208
      },
      "exact": true,
      "note": "nearest case X1-DEV-002 (jaccard 1.0)",
@@ -1448,7 +1715,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2916
+      "wall_ns": 3000
      },
      "exact": false,
      "note": "registered null control",
@@ -1472,13 +1739,42 @@
      "compose_detail": {
       "decisive_atom": ""
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "75d56b5c7a8cf5e224409989fd560fdaed483d587125bf93c8bb57a3cc6c0a32",
+     "navigation_only_answer": {
+      "action": "UPDATE",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 7,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "UPDATE",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 16,
+      "edge_visits_cap": 94,
+      "incidence_visits": 26,
+      "restarts": 1,
+      "steps": 78,
+      "steps_cap": 156,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -1510,7 +1806,7 @@
       "ops": 125,
       "restarts": 1,
       "steps": 78,
-      "wall_ns": 65216750
+      "wall_ns": 75306334
      },
      "exact": true,
      "note": "",
@@ -1556,7 +1852,7 @@
       "ops": 181,
       "restarts": 0,
       "steps": 14,
-      "wall_ns": 297458
+      "wall_ns": 306333
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -1574,7 +1870,7 @@
       "ops": 63,
       "restarts": 0,
       "steps": 19,
-      "wall_ns": 113625
+      "wall_ns": 120542
      },
      "exact": false,
      "note": "nearest case X1-DEV-001 (jaccard 0.0)",
@@ -1592,7 +1888,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 3125
+      "wall_ns": 3208
      },
      "exact": false,
      "note": "registered null control",
@@ -1616,13 +1912,44 @@
      "compose_detail": {
       "decisive_atom": "support:r1"
      },
+     "dead_request_atoms_read_through_fire": [
+      "support:r1"
+     ],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "d2cfe60d73be5fe434aeb2c4ec1ff1fa7839eb0c455b9a20b3c47c0fa5be3751",
+     "navigation_only_answer": {
+      "action": "REQUEST_NEW_EVIDENCE",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 11,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "REQUEST_NEW_EVIDENCE",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 20,
+      "edge_visits_cap": 90,
+      "incidence_visits": 28,
+      "restarts": 1,
+      "steps": 75,
+      "steps_cap": 150,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -1654,7 +1981,7 @@
       "ops": 117,
       "restarts": 1,
       "steps": 73,
-      "wall_ns": 28318958
+      "wall_ns": 28469875
      },
      "exact": false,
      "note": "",
@@ -1700,7 +2027,7 @@
       "ops": 217,
       "restarts": 0,
       "steps": 11,
-      "wall_ns": 331667
+      "wall_ns": 353667
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -1718,7 +2045,7 @@
       "ops": 45,
       "restarts": 0,
       "steps": 6,
-      "wall_ns": 95541
+      "wall_ns": 99833
      },
      "exact": true,
      "note": "nearest case X1-DEV-004 (jaccard 1.0)",
@@ -1740,7 +2067,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 4375
+      "wall_ns": 4625
      },
      "exact": false,
      "note": "registered null control",
@@ -1762,13 +2089,42 @@
       "wall_ns": 0
      },
      "compose_detail": {},
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "0c4f46b332e51b9c4924f21ba40eaaf25625d89f284583a0def5646083a52d80",
+     "navigation_only_answer": {
+      "action": "PRESERVE",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 1,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "PRESERVE",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 4,
+      "edge_visits_cap": 78,
+      "incidence_visits": 5,
+      "restarts": 1,
+      "steps": 82,
+      "steps_cap": 164,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -1800,7 +2156,7 @@
       "ops": 121,
       "restarts": 1,
       "steps": 82,
-      "wall_ns": 36907417
+      "wall_ns": 39079417
      },
      "exact": true,
      "note": "",
@@ -1845,7 +2201,7 @@
       "ops": 60,
       "restarts": 0,
       "steps": 5,
-      "wall_ns": 139125
+      "wall_ns": 144708
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -1863,7 +2219,7 @@
       "ops": 23,
       "restarts": 0,
       "steps": 7,
-      "wall_ns": 112083
+      "wall_ns": 52375
      },
      "exact": false,
      "note": "nearest case X1-DEV-004 (jaccard 0.0)",
@@ -1881,7 +2237,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 25667
+      "wall_ns": 2750
      },
      "exact": false,
      "note": "registered null control",
@@ -1908,13 +2264,42 @@
        "c2"
       ]
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "ac11647a10be43f23e3dd11ad16c1e6367a6e83dcf60152b321239c45ff80e07",
+     "navigation_only_answer": {
+      "action": "DEFER_CANNOT_CHECK",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 1,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "DEFER_CANNOT_CHECK",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 6,
+      "edge_visits_cap": 32,
+      "incidence_visits": 7,
+      "restarts": 1,
+      "steps": 26,
+      "steps_cap": 52,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -1946,7 +2331,7 @@
       "ops": 43,
       "restarts": 1,
       "steps": 27,
-      "wall_ns": 3899542
+      "wall_ns": 5528875
      },
      "exact": true,
      "note": "",
@@ -1993,7 +2378,7 @@
       "ops": 109,
       "restarts": 0,
       "steps": 8,
-      "wall_ns": 385834
+      "wall_ns": 226417
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -2011,7 +2396,7 @@
       "ops": 26,
       "restarts": 0,
       "steps": 3,
-      "wall_ns": 60625
+      "wall_ns": 68583
      },
      "exact": false,
      "note": "nearest case X1-DEV-004 (jaccard 1.0)",
@@ -2029,7 +2414,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 1917
+      "wall_ns": 2375
      },
      "exact": false,
      "note": "registered null control",
@@ -2053,15 +2438,48 @@
       "wall_ns": 0
      },
      "compose_detail": {},
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "4f8c9c8994f1a46bbc8bcab87e03ac88c271a593e8bd85a7470f1d456a5d679a",
+     "navigation_only_answer": {
+      "action": "SELECTIVELY_REOPEN",
+      "reopened": [
+       "c3"
+      ]
+     },
      "navigation_outcome": "GAP_NOT_FOUND",
      "request_atoms": 1,
      "stage_failures": {
       "NAVIGATE": "target claim:c3 GAP_NOT_FOUND"
      },
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "SELECTIVELY_REOPEN",
+      "reopened": [
+       "c3"
+      ]
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 4,
+      "edge_visits_cap": 52,
+      "incidence_visits": 5,
+      "restarts": 1,
+      "steps": 51,
+      "steps_cap": 102,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "GAP_NOT_FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -2095,7 +2513,7 @@
       "ops": 71,
       "restarts": 1,
       "steps": 48,
-      "wall_ns": 6356750
+      "wall_ns": 6410917
      },
      "exact": false,
      "note": "",
@@ -2142,7 +2560,7 @@
       "ops": 149,
       "restarts": 0,
       "steps": 12,
-      "wall_ns": 233042
+      "wall_ns": 255000
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -2160,7 +2578,7 @@
       "ops": 36,
       "restarts": 0,
       "steps": 6,
-      "wall_ns": 74000
+      "wall_ns": 81291
      },
      "exact": true,
      "note": "nearest case X1-DEV-004 (jaccard 1.0)",
@@ -2178,7 +2596,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2541
+      "wall_ns": 3458
      },
      "exact": false,
      "note": "registered null control",
@@ -2200,13 +2618,42 @@
       "wall_ns": 0
      },
      "compose_detail": {},
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "07e8244bbd09d48096425dce9881afc318255b149e385a88c220286a1896781e",
+     "navigation_only_answer": {
+      "action": "PRESERVE",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 1,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "PRESERVE",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 4,
+      "edge_visits_cap": 60,
+      "incidence_visits": 5,
+      "restarts": 1,
+      "steps": 63,
+      "steps_cap": 126,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -2238,7 +2685,7 @@
       "ops": 93,
       "restarts": 1,
       "steps": 63,
-      "wall_ns": 14422209
+      "wall_ns": 19090875
      },
      "exact": true,
      "note": "",
@@ -2283,7 +2730,7 @@
       "ops": 227,
       "restarts": 0,
       "steps": 18,
-      "wall_ns": 332250
+      "wall_ns": 350834
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -2301,7 +2748,7 @@
       "ops": 57,
       "restarts": 0,
       "steps": 13,
-      "wall_ns": 125625
+      "wall_ns": 113208
      },
      "exact": true,
      "note": "nearest case X1-DEV-006 (jaccard 1.0)",
@@ -2319,7 +2766,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 3416
+      "wall_ns": 3167
      },
      "exact": false,
      "note": "registered null control",
@@ -2343,13 +2790,44 @@
      "compose_detail": {
       "decisive_atom": "transport:r1"
      },
+     "dead_request_atoms_read_through_fire": [
+      "transport:r1"
+     ],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "9c1f460ee38bed67e3f0b21fded339e98a4bba731c0be3c20f739c18c4171a86",
+     "navigation_only_answer": {
+      "action": "BLOCK_TRANSPORT",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 7,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "BLOCK_TRANSPORT",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 11,
+      "edge_visits_cap": 90,
+      "incidence_visits": 11,
+      "restarts": 1,
+      "steps": 89,
+      "steps_cap": 178,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -2381,7 +2859,7 @@
       "ops": 131,
       "restarts": 1,
       "steps": 87,
-      "wall_ns": 59658750
+      "wall_ns": 47705542
      },
      "exact": false,
      "note": "",
@@ -2427,7 +2905,7 @@
       "ops": 82,
       "restarts": 0,
       "steps": 8,
-      "wall_ns": 184459
+      "wall_ns": 180917
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -2445,7 +2923,7 @@
       "ops": 46,
       "restarts": 0,
       "steps": 16,
-      "wall_ns": 83792
+      "wall_ns": 72250
      },
      "exact": true,
      "note": "nearest case X1-DEV-002 (jaccard 1.0)",
@@ -2463,7 +2941,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2667
+      "wall_ns": 3417
      },
      "exact": false,
      "note": "registered null control",
@@ -2487,15 +2965,41 @@
      "compose_detail": {
       "decisive_atom": ""
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_STORE_READ",
+     "exact_declared": true,
      "extraction_sha256": "a2b458a16892922219848aa0cd206d7d1d91986dc8b4a0c28ff6e020727aed77",
+     "navigation_only_answer": null,
      "navigation_outcome": "FOUND",
      "request_atoms": 7,
      "stage_failures": {
       "EXTRACT": "live request atoms outside G_Q: ['identity:r1', 'criterion:c0', 'src:e08', 'ident:e08', 'transport:r1', 'evaluator:r1', 'authority']"
      },
      "status": "SCORED",
+     "store_read": true,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 14,
+      "edge_visits_cap": 60,
+      "incidence_visits": 22,
+      "restarts": 1,
+      "steps": 45,
+      "steps_cap": 90,
+      "wall_ns": 0
+     },
+     "exact": false,
+     "navigation_outcome": "FOUND",
+     "note": "EXTRACT returned nothing decisive; obstruction witness, never exact",
+     "status": "OBSTRUCTION",
+     "store_read": true
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -2527,7 +3031,7 @@
       "ops": 75,
       "restarts": 1,
       "steps": 45,
-      "wall_ns": 18416375
+      "wall_ns": 13954459
      },
      "exact": true,
      "note": "",
@@ -2573,7 +3077,7 @@
       "ops": 186,
       "restarts": 0,
       "steps": 15,
-      "wall_ns": 625834
+      "wall_ns": 263041
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -2591,7 +3095,7 @@
       "ops": 57,
       "restarts": 0,
       "steps": 14,
-      "wall_ns": 103792
+      "wall_ns": 94958
      },
      "exact": false,
      "note": "nearest case X1-DEV-001 (jaccard 0.0)",
@@ -2609,7 +3113,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2792
+      "wall_ns": 2291
      },
      "exact": false,
      "note": "registered null control",
@@ -2636,13 +3140,42 @@
        "UPDATE"
       ]
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "03412b7c14557ea99d0878329d5109730dff0c3825d8469f2b2edd78faebb8f1",
+     "navigation_only_answer": {
+      "action": "DEFER_CANNOT_CHECK",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 8,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "DEFER_CANNOT_CHECK",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 13,
+      "edge_visits_cap": 86,
+      "incidence_visits": 21,
+      "restarts": 1,
+      "steps": 79,
+      "steps_cap": 158,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -2674,7 +3207,7 @@
       "ops": 123,
       "restarts": 1,
       "steps": 80,
-      "wall_ns": 38405625
+      "wall_ns": 27729083
      },
      "exact": true,
      "note": "",
@@ -2720,7 +3253,7 @@
       "ops": 145,
       "restarts": 0,
       "steps": 12,
-      "wall_ns": 252833
+      "wall_ns": 237917
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -2738,7 +3271,7 @@
       "ops": 53,
       "restarts": 0,
       "steps": 16,
-      "wall_ns": 95917
+      "wall_ns": 90834
      },
      "exact": true,
      "note": "nearest case X1-DEV-006 (jaccard 1.0)",
@@ -2756,7 +3289,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2917
+      "wall_ns": 2834
      },
      "exact": false,
      "note": "registered null control",
@@ -2780,13 +3313,44 @@
      "compose_detail": {
       "decisive_atom": "transport:r1"
      },
+     "dead_request_atoms_read_through_fire": [
+      "transport:r1"
+     ],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "262cabd7490d931f49b0d992d0540c306da83adb72e68b9928f7d26633f1e0fc",
+     "navigation_only_answer": {
+      "action": "BLOCK_TRANSPORT",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 7,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "BLOCK_TRANSPORT",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 15,
+      "edge_visits_cap": 76,
+      "incidence_visits": 17,
+      "restarts": 1,
+      "steps": 63,
+      "steps_cap": 126,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -2818,7 +3382,7 @@
       "ops": 98,
       "restarts": 1,
       "steps": 61,
-      "wall_ns": 37825625
+      "wall_ns": 38495958
      },
      "exact": false,
      "note": "",
@@ -2864,7 +3428,7 @@
       "ops": 83,
       "restarts": 0,
       "steps": 9,
-      "wall_ns": 169166
+      "wall_ns": 165750
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -2882,7 +3446,7 @@
       "ops": 43,
       "restarts": 0,
       "steps": 14,
-      "wall_ns": 76500
+      "wall_ns": 172791
      },
      "exact": true,
      "note": "nearest case X1-DEV-002 (jaccard 1.0)",
@@ -2900,7 +3464,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2667
+      "wall_ns": 5500
      },
      "exact": false,
      "note": "registered null control",
@@ -2924,15 +3488,41 @@
      "compose_detail": {
       "decisive_atom": ""
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_STORE_READ",
+     "exact_declared": true,
      "extraction_sha256": "8fc02d50ca3a1819b84898d7af8718efe6cbdd588f2499566b3652fb401ad031",
+     "navigation_only_answer": null,
      "navigation_outcome": "FOUND",
      "request_atoms": 8,
      "stage_failures": {
       "EXTRACT": "live request atoms outside G_Q: ['identity:r1', 'criterion:c0', 'src:e08', 'ident:e08', 'cal:e08', 'transport:r1', 'evaluator:r1', 'authority']"
      },
      "status": "SCORED",
+     "store_read": true,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 13,
+      "edge_visits_cap": 58,
+      "incidence_visits": 21,
+      "restarts": 1,
+      "steps": 48,
+      "steps_cap": 96,
+      "wall_ns": 0
+     },
+     "exact": false,
+     "navigation_outcome": "FOUND",
+     "note": "EXTRACT returned nothing decisive; obstruction witness, never exact",
+     "status": "OBSTRUCTION",
+     "store_read": true
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -2964,7 +3554,7 @@
       "ops": 77,
       "restarts": 1,
       "steps": 48,
-      "wall_ns": 13036916
+      "wall_ns": 22099000
      },
      "exact": true,
      "note": "",
@@ -3013,7 +3603,7 @@
       "ops": 264,
       "restarts": 0,
       "steps": 15,
-      "wall_ns": 450625
+      "wall_ns": 1124417
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -3031,7 +3621,7 @@
       "ops": 43,
       "restarts": 0,
       "steps": 3,
-      "wall_ns": 111625
+      "wall_ns": 119750
      },
      "exact": false,
      "note": "nearest case X1-DEV-004 (jaccard 1.0)",
@@ -3049,7 +3639,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2542
+      "wall_ns": 3708
      },
      "exact": false,
      "note": "registered null control",
@@ -3074,15 +3664,50 @@
       "wall_ns": 0
      },
      "compose_detail": {},
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "839a83276e4124ba34ebc88d67b78948c72f08593163f29346ffa35d5215d75f",
+     "navigation_only_answer": {
+      "action": "SELECTIVELY_REOPEN",
+      "reopened": [
+       "c4",
+       "q_down"
+      ]
+     },
      "navigation_outcome": "GAP_NOT_FOUND",
      "request_atoms": 1,
      "stage_failures": {
       "NAVIGATE": "target claim:c4 GAP_NOT_FOUND"
      },
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "SELECTIVELY_REOPEN",
+      "reopened": [
+       "c4",
+       "q_down"
+      ]
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 4,
+      "edge_visits_cap": 100,
+      "incidence_visits": 5,
+      "restarts": 1,
+      "steps": 103,
+      "steps_cap": 206,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "GAP_NOT_FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -3117,7 +3742,7 @@
       "ops": 133,
       "restarts": 1,
       "steps": 93,
-      "wall_ns": 43492708
+      "wall_ns": 57778125
      },
      "exact": false,
      "note": "",
@@ -3165,7 +3790,7 @@
       "ops": 303,
       "restarts": 0,
       "steps": 17,
-      "wall_ns": 435792
+      "wall_ns": 1236834
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -3183,7 +3808,7 @@
       "ops": 53,
       "restarts": 0,
       "steps": 7,
-      "wall_ns": 109584
+      "wall_ns": 116750
      },
      "exact": true,
      "note": "nearest case X1-DEV-004 (jaccard 1.0)",
@@ -3201,7 +3826,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2917
+      "wall_ns": 3542
      },
      "exact": false,
      "note": "registered null control",
@@ -3223,13 +3848,42 @@
       "wall_ns": 0
      },
      "compose_detail": {},
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "9f326097b9b79a4570bcc44829fd83b4239006296ece2a45bf004335cb7760af",
+     "navigation_only_answer": {
+      "action": "PRESERVE",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 1,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "PRESERVE",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 4,
+      "edge_visits_cap": 96,
+      "incidence_visits": 5,
+      "restarts": 1,
+      "steps": 101,
+      "steps_cap": 202,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -3261,7 +3915,7 @@
       "ops": 144,
       "restarts": 1,
       "steps": 98,
-      "wall_ns": 37764083
+      "wall_ns": 99066250
      },
      "exact": true,
      "note": "",
@@ -3306,7 +3960,7 @@
       "ops": 168,
       "restarts": 0,
       "steps": 10,
-      "wall_ns": 242292
+      "wall_ns": 247083
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -3324,7 +3978,7 @@
       "ops": 37,
       "restarts": 0,
       "steps": 6,
-      "wall_ns": 84916
+      "wall_ns": 453625
      },
      "exact": false,
      "note": "nearest case X1-DEV-004 (jaccard 1.0)",
@@ -3342,7 +3996,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 3041
+      "wall_ns": 3417
      },
      "exact": true,
      "note": "registered null control",
@@ -3368,13 +4022,42 @@
        "c2"
       ]
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "e65ec62b213687e0152ba00c43b0d5782bfa9b50f5513e7572f873a330a8c3c1",
+     "navigation_only_answer": {
+      "action": "DEFER_CANNOT_CHECK",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 1,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "DEFER_CANNOT_CHECK",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 4,
+      "edge_visits_cap": 62,
+      "incidence_visits": 5,
+      "restarts": 1,
+      "steps": 62,
+      "steps_cap": 124,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -3406,7 +4089,7 @@
       "ops": 94,
       "restarts": 1,
       "steps": 63,
-      "wall_ns": 19439125
+      "wall_ns": 39270750
      },
      "exact": true,
      "note": "",
@@ -3454,7 +4137,7 @@
       "ops": 239,
       "restarts": 0,
       "steps": 18,
-      "wall_ns": 415083
+      "wall_ns": 3760083
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -3472,7 +4155,7 @@
       "ops": 39,
       "restarts": 0,
       "steps": 3,
-      "wall_ns": 108667
+      "wall_ns": 128000
      },
      "exact": false,
      "note": "nearest case X1-DEV-004 (jaccard 1.0)",
@@ -3490,7 +4173,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 3000
+      "wall_ns": 49375
      },
      "exact": false,
      "note": "registered null control",
@@ -3515,15 +4198,50 @@
       "wall_ns": 0
      },
      "compose_detail": {},
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "215f9bfde83ba31ac9d811b19fc6eed5959c3697e51b1b1d62aa5d7b40295f93",
+     "navigation_only_answer": {
+      "action": "SELECTIVELY_REOPEN",
+      "reopened": [
+       "c4",
+       "q_down"
+      ]
+     },
      "navigation_outcome": "GAP_NOT_FOUND",
      "request_atoms": 1,
      "stage_failures": {
       "NAVIGATE": "target claim:c4 GAP_NOT_FOUND"
      },
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "SELECTIVELY_REOPEN",
+      "reopened": [
+       "c4",
+       "q_down"
+      ]
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 4,
+      "edge_visits_cap": 86,
+      "incidence_visits": 5,
+      "restarts": 1,
+      "steps": 98,
+      "steps_cap": 196,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "GAP_NOT_FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -3558,7 +4276,7 @@
       "ops": 123,
       "restarts": 1,
       "steps": 87,
-      "wall_ns": 23482208
+      "wall_ns": 34126625
      },
      "exact": false,
      "note": "",
@@ -3606,7 +4324,7 @@
       "ops": 118,
       "restarts": 0,
       "steps": 9,
-      "wall_ns": 234167
+      "wall_ns": 498834
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -3624,7 +4342,7 @@
       "ops": 35,
       "restarts": 0,
       "steps": 8,
-      "wall_ns": 79375
+      "wall_ns": 1604083
      },
      "exact": true,
      "note": "nearest case X1-DEV-004 (jaccard 1.0)",
@@ -3642,7 +4360,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 3000
+      "wall_ns": 3500
      },
      "exact": false,
      "note": "registered null control",
@@ -3664,13 +4382,42 @@
       "wall_ns": 0
      },
      "compose_detail": {},
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "bbdf87b109f0125f4b22509915e0d566c6c312d6a2cad995d1c1fab776b1e0a1",
+     "navigation_only_answer": {
+      "action": "PRESERVE",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 1,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "PRESERVE",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 6,
+      "edge_visits_cap": 58,
+      "incidence_visits": 8,
+      "restarts": 1,
+      "steps": 58,
+      "steps_cap": 116,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -3702,7 +4449,7 @@
       "ops": 82,
       "restarts": 1,
       "steps": 55,
-      "wall_ns": 21628917
+      "wall_ns": 44629083
      },
      "exact": true,
      "note": "",
@@ -3747,7 +4494,7 @@
       "ops": 205,
       "restarts": 0,
       "steps": 15,
-      "wall_ns": 308584
+      "wall_ns": 324458
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -3765,7 +4512,7 @@
       "ops": 61,
       "restarts": 0,
       "steps": 18,
-      "wall_ns": 218625
+      "wall_ns": 111875
      },
      "exact": false,
      "note": "nearest case X1-DEV-001 (jaccard 0.0)",
@@ -3783,7 +4530,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 5208
+      "wall_ns": 3041
      },
      "exact": false,
      "note": "registered null control",
@@ -3807,13 +4554,44 @@
      "compose_detail": {
       "decisive_atom": "evaluator:r1"
      },
+     "dead_request_atoms_read_through_fire": [
+      "evaluator:r1"
+     ],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "301eca4fe07834b9409c6e234fbcbf32989539bccb20cf91fab9ad9b706af66a",
+     "navigation_only_answer": {
+      "action": "REPLACE_OR_CHALLENGE_EVALUATOR",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 7,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "REPLACE_OR_CHALLENGE_EVALUATOR",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 17,
+      "edge_visits_cap": 88,
+      "incidence_visits": 23,
+      "restarts": 1,
+      "steps": 78,
+      "steps_cap": 156,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -3845,7 +4623,7 @@
       "ops": 119,
       "restarts": 1,
       "steps": 76,
-      "wall_ns": 37413625
+      "wall_ns": 55480834
      },
      "exact": false,
      "note": "",
@@ -3891,7 +4669,7 @@
       "ops": 192,
       "restarts": 0,
       "steps": 12,
-      "wall_ns": 615834
+      "wall_ns": 317583
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -3909,7 +4687,7 @@
       "ops": 65,
       "restarts": 0,
       "steps": 20,
-      "wall_ns": 111291
+      "wall_ns": 220916
      },
      "exact": true,
      "note": "nearest case X1-DEV-002 (jaccard 1.0)",
@@ -3927,7 +4705,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2792
+      "wall_ns": 5000
      },
      "exact": false,
      "note": "registered null control",
@@ -3951,13 +4729,42 @@
      "compose_detail": {
       "decisive_atom": ""
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "61b252b73d2617b26cd61c8fb54c21db26c64944d262d8fdf6be8fd4b0bb3190",
+     "navigation_only_answer": {
+      "action": "UPDATE",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 9,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "UPDATE",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 21,
+      "edge_visits_cap": 90,
+      "incidence_visits": 39,
+      "restarts": 1,
+      "steps": 73,
+      "steps_cap": 146,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -3989,7 +4796,7 @@
       "ops": 118,
       "restarts": 1,
       "steps": 73,
-      "wall_ns": 48118042
+      "wall_ns": 59447875
      },
      "exact": true,
      "note": "",
@@ -4035,7 +4842,7 @@
       "ops": 131,
       "restarts": 0,
       "steps": 12,
-      "wall_ns": 226417
+      "wall_ns": 260584
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -4053,7 +4860,7 @@
       "ops": 54,
       "restarts": 0,
       "steps": 19,
-      "wall_ns": 95000
+      "wall_ns": 146750
      },
      "exact": true,
      "note": "nearest case X1-DEV-009 (jaccard 1.0)",
@@ -4071,7 +4878,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2500
+      "wall_ns": 3084
      },
      "exact": false,
      "note": "registered null control",
@@ -4098,15 +4905,41 @@
        "UPDATE"
       ]
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_STORE_READ",
+     "exact_declared": true,
      "extraction_sha256": "14df201a43b0acaf2724c990e577063ef1fa04291e1cc7c9ee55844cfd8aca3a",
+     "navigation_only_answer": null,
      "navigation_outcome": "FOUND",
      "request_atoms": 9,
      "stage_failures": {
       "EXTRACT": "live request atoms outside G_Q: ['identity:r1', 'criterion:c0', 'src:e01', 'ident:e01', 'src:e02', 'ident:e02', 'cal:e02', 'evaluator:r1', 'authority']"
      },
      "status": "SCORED",
+     "store_read": true,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 21,
+      "edge_visits_cap": 70,
+      "incidence_visits": 38,
+      "restarts": 1,
+      "steps": 51,
+      "steps_cap": 102,
+      "wall_ns": 0
+     },
+     "exact": false,
+     "navigation_outcome": "FOUND",
+     "note": "EXTRACT returned nothing decisive; obstruction witness, never exact",
+     "status": "OBSTRUCTION",
+     "store_read": true
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -4138,7 +4971,7 @@
       "ops": 87,
       "restarts": 1,
       "steps": 52,
-      "wall_ns": 27401375
+      "wall_ns": 52425541
      },
      "exact": true,
      "note": "",
@@ -4184,7 +5017,7 @@
       "ops": 302,
       "restarts": 0,
       "steps": 14,
-      "wall_ns": 391542
+      "wall_ns": 529917
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -4202,7 +5035,7 @@
       "ops": 68,
       "restarts": 0,
       "steps": 13,
-      "wall_ns": 120792
+      "wall_ns": 221541
      },
      "exact": false,
      "note": "nearest case X1-DEV-001 (jaccard 0.0)",
@@ -4220,7 +5053,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 3458
+      "wall_ns": 3500
      },
      "exact": false,
      "note": "registered null control",
@@ -4244,13 +5077,44 @@
      "compose_detail": {
       "decisive_atom": "evaluator:r1"
      },
+     "dead_request_atoms_read_through_fire": [
+      "evaluator:r1"
+     ],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "dcdd4234de2a9af1256f1d4341ecd6efec4c16039d60950061d3a7d4c0298b12",
+     "navigation_only_answer": {
+      "action": "REPLACE_OR_CHALLENGE_EVALUATOR",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 6,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "REPLACE_OR_CHALLENGE_EVALUATOR",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 14,
+      "edge_visits_cap": 112,
+      "incidence_visits": 16,
+      "restarts": 1,
+      "steps": 100,
+      "steps_cap": 200,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -4282,7 +5146,7 @@
       "ops": 153,
       "restarts": 1,
       "steps": 98,
-      "wall_ns": 63289500
+      "wall_ns": 150871125
      },
      "exact": false,
      "note": "",
@@ -4328,7 +5192,7 @@
       "ops": 185,
       "restarts": 0,
       "steps": 20,
-      "wall_ns": 389417
+      "wall_ns": 454375
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -4346,7 +5210,7 @@
       "ops": 59,
       "restarts": 0,
       "steps": 16,
-      "wall_ns": 137750
+      "wall_ns": 165833
      },
      "exact": true,
      "note": "nearest case X1-DEV-002 (jaccard 1.0)",
@@ -4368,7 +5232,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 5542
+      "wall_ns": 4917
      },
      "exact": false,
      "note": "registered null control",
@@ -4392,15 +5256,44 @@
      "compose_detail": {
       "decisive_atom": ""
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "11e622c3512f6c4395a12d8f86ae6595ac1960bb45ffcef901ffee48062cf9de",
+     "navigation_only_answer": {
+      "action": "UPDATE",
+      "reopened": []
+     },
      "navigation_outcome": "GAP_NOT_FOUND",
      "request_atoms": 10,
      "stage_failures": {
       "NAVIGATE": "target claim:c4 GAP_NOT_FOUND"
      },
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "UPDATE",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 19,
+      "edge_visits_cap": 122,
+      "incidence_visits": 36,
+      "restarts": 1,
+      "steps": 108,
+      "steps_cap": 216,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "GAP_NOT_FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -4432,7 +5325,7 @@
       "ops": 128,
       "restarts": 1,
       "steps": 85,
-      "wall_ns": 37404500
+      "wall_ns": 53178167
      },
      "exact": true,
      "note": "",
@@ -4478,7 +5371,7 @@
       "ops": 259,
       "restarts": 0,
       "steps": 15,
-      "wall_ns": 393250
+      "wall_ns": 370500
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -4496,7 +5389,7 @@
       "ops": 72,
       "restarts": 0,
       "steps": 20,
-      "wall_ns": 387958
+      "wall_ns": 203542
      },
      "exact": true,
      "note": "nearest case X1-DEV-010 (jaccard 1.0)",
@@ -4514,7 +5407,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 10459
+      "wall_ns": 3416
      },
      "exact": false,
      "note": "registered null control",
@@ -4538,13 +5431,44 @@
      "compose_detail": {
       "decisive_atom": "authority"
      },
+     "dead_request_atoms_read_through_fire": [
+      "authority"
+     ],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "045f07b3642d7bcf70eea4f58b1e972d661f512f00074ed9afc5af49c118f20d",
+     "navigation_only_answer": {
+      "action": "ABSTAIN_AUTHORITY",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 11,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "ABSTAIN_AUTHORITY",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 21,
+      "edge_visits_cap": 106,
+      "incidence_visits": 32,
+      "restarts": 1,
+      "steps": 87,
+      "steps_cap": 174,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -4576,7 +5500,7 @@
       "ops": 137,
       "restarts": 1,
       "steps": 85,
-      "wall_ns": 65890083
+      "wall_ns": 48602000
      },
      "exact": false,
      "note": "",
@@ -4622,7 +5546,7 @@
       "ops": 106,
       "restarts": 0,
       "steps": 11,
-      "wall_ns": 279209
+      "wall_ns": 207000
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -4640,7 +5564,7 @@
       "ops": 54,
       "restarts": 0,
       "steps": 19,
-      "wall_ns": 98584
+      "wall_ns": 99667
      },
      "exact": true,
      "note": "nearest case X1-DEV-002 (jaccard 1.0)",
@@ -4658,7 +5582,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 7792
+      "wall_ns": 3292
      },
      "exact": false,
      "note": "registered null control",
@@ -4682,15 +5606,41 @@
      "compose_detail": {
       "decisive_atom": ""
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_STORE_READ",
+     "exact_declared": true,
      "extraction_sha256": "3ce8def608d8ac7acba63a5afaf8561c627cb152866b609287b4aed68f8d3dde",
+     "navigation_only_answer": null,
      "navigation_outcome": "FOUND",
      "request_atoms": 10,
      "stage_failures": {
       "EXTRACT": "live request atoms outside G_Q: ['identity:r1', 'criterion:c1', 'src:e04', 'ident:e04', 'src:e05', 'ident:e05', 'src:e06', 'ident:e06', 'evaluator:r1', 'authority']"
      },
      "status": "SCORED",
+     "store_read": true,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 21,
+      "edge_visits_cap": 70,
+      "incidence_visits": 40,
+      "restarts": 1,
+      "steps": 50,
+      "steps_cap": 100,
+      "wall_ns": 0
+     },
+     "exact": false,
+     "navigation_outcome": "FOUND",
+     "note": "EXTRACT returned nothing decisive; obstruction witness, never exact",
+     "status": "OBSTRUCTION",
+     "store_read": true
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -4722,7 +5672,7 @@
       "ops": 85,
       "restarts": 1,
       "steps": 50,
-      "wall_ns": 20579667
+      "wall_ns": 20001709
      },
      "exact": true,
      "note": "",
@@ -4768,7 +5718,7 @@
       "ops": 348,
       "restarts": 0,
       "steps": 21,
-      "wall_ns": 526125
+      "wall_ns": 515625
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -4786,7 +5736,7 @@
       "ops": 67,
       "restarts": 0,
       "steps": 13,
-      "wall_ns": 128792
+      "wall_ns": 384083
      },
      "exact": false,
      "note": "nearest case X1-DEV-001 (jaccard 0.0)",
@@ -4810,7 +5760,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 4166
+      "wall_ns": 10459
      },
      "exact": false,
      "note": "registered null control",
@@ -4837,13 +5787,42 @@
        "UPDATE"
       ]
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "133df9a9688043fb3a794eac54f4333f561c3ed5a253e3d6d82bdaaae8448a67",
+     "navigation_only_answer": {
+      "action": "DEFER_CANNOT_CHECK",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 6,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "DEFER_CANNOT_CHECK",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 15,
+      "edge_visits_cap": 108,
+      "incidence_visits": 23,
+      "restarts": 1,
+      "steps": 102,
+      "steps_cap": 204,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -4875,7 +5854,7 @@
       "ops": 157,
       "restarts": 1,
       "steps": 103,
-      "wall_ns": 56150166
+      "wall_ns": 63069291
      },
      "exact": true,
      "note": "",
@@ -4921,7 +5900,7 @@
       "ops": 329,
       "restarts": 0,
       "steps": 20,
-      "wall_ns": 478541
+      "wall_ns": 1012333
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -4939,7 +5918,7 @@
       "ops": 80,
       "restarts": 0,
       "steps": 21,
-      "wall_ns": 142416
+      "wall_ns": 153708
      },
      "exact": true,
      "note": "nearest case X1-DEV-010 (jaccard 1.0)",
@@ -4957,7 +5936,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 3250
+      "wall_ns": 3208
      },
      "exact": false,
      "note": "registered null control",
@@ -4981,13 +5960,44 @@
      "compose_detail": {
       "decisive_atom": "authority"
      },
+     "dead_request_atoms_read_through_fire": [
+      "authority"
+     ],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "bd90976f6fa005258f4941560a0fcdb7e5b661fa6c2580d64204023a1fd2fb23",
+     "navigation_only_answer": {
+      "action": "ABSTAIN_AUTHORITY",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 11,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "ABSTAIN_AUTHORITY",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 23,
+      "edge_visits_cap": 120,
+      "incidence_visits": 33,
+      "restarts": 1,
+      "steps": 109,
+      "steps_cap": 218,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -5019,7 +6029,7 @@
       "ops": 166,
       "restarts": 1,
       "steps": 107,
-      "wall_ns": 76448542
+      "wall_ns": 165297417
      },
      "exact": false,
      "note": "",
@@ -5065,7 +6075,7 @@
       "ops": 121,
       "restarts": 0,
       "steps": 10,
-      "wall_ns": 189083
+      "wall_ns": 529334
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -5083,7 +6093,7 @@
       "ops": 53,
       "restarts": 0,
       "steps": 16,
-      "wall_ns": 94708
+      "wall_ns": 97542
      },
      "exact": true,
      "note": "nearest case X1-DEV-002 (jaccard 1.0)",
@@ -5101,7 +6111,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2875
+      "wall_ns": 3583
      },
      "exact": true,
      "note": "registered null control",
@@ -5125,15 +6135,41 @@
      "compose_detail": {
       "decisive_atom": ""
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_STORE_READ",
+     "exact_declared": true,
      "extraction_sha256": "443d6c46726889638b39d7bdcd2881b3f689be85898094fba8294ce5d08c148c",
+     "navigation_only_answer": null,
      "navigation_outcome": "FOUND",
      "request_atoms": 8,
      "stage_failures": {
       "EXTRACT": "live request atoms outside G_Q: ['identity:r1', 'criterion:c3', 'src:e06', 'ident:e06', 'src:e07', 'ident:e07', 'evaluator:r1', 'authority']"
      },
      "status": "SCORED",
+     "store_read": true,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 18,
+      "edge_visits_cap": 74,
+      "incidence_visits": 33,
+      "restarts": 1,
+      "steps": 51,
+      "steps_cap": 102,
+      "wall_ns": 0
+     },
+     "exact": false,
+     "navigation_outcome": "FOUND",
+     "note": "EXTRACT returned nothing decisive; obstruction witness, never exact",
+     "status": "OBSTRUCTION",
+     "store_read": true
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -5165,7 +6201,7 @@
       "ops": 88,
       "restarts": 1,
       "steps": 51,
-      "wall_ns": 21595625
+      "wall_ns": 98036042
      },
      "exact": true,
      "note": "",
@@ -5211,7 +6247,7 @@
       "ops": 328,
       "restarts": 0,
       "steps": 20,
-      "wall_ns": 797917
+      "wall_ns": 826417
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -5229,7 +6265,7 @@
       "ops": 88,
       "restarts": 0,
       "steps": 26,
-      "wall_ns": 148875
+      "wall_ns": 156791
      },
      "exact": true,
      "note": "nearest case X1-DEV-001 (jaccard 1.0)",
@@ -5247,7 +6283,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2708
+      "wall_ns": 3292
      },
      "exact": false,
      "note": "registered null control",
@@ -5271,13 +6307,44 @@
      "compose_detail": {
       "decisive_atom": "spec:r1"
      },
+     "dead_request_atoms_read_through_fire": [
+      "spec:r1"
+     ],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "29c8b67d4b0d6c7e3e38a363e66c98c3877097981b7fe4937322ba3b68e15a49",
+     "navigation_only_answer": {
+      "action": "REVALIDATE",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 14,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "REVALIDATE",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 26,
+      "edge_visits_cap": 126,
+      "incidence_visits": 41,
+      "restarts": 1,
+      "steps": 110,
+      "steps_cap": 220,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -5309,7 +6376,7 @@
       "ops": 170,
       "restarts": 1,
       "steps": 108,
-      "wall_ns": 84618292
+      "wall_ns": 184821250
      },
      "exact": false,
      "note": "",
@@ -5355,7 +6422,7 @@
       "ops": 188,
       "restarts": 0,
       "steps": 17,
-      "wall_ns": 302958
+      "wall_ns": 304708
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -5373,7 +6440,7 @@
       "ops": 64,
       "restarts": 0,
       "steps": 19,
-      "wall_ns": 120333
+      "wall_ns": 122958
      },
      "exact": true,
      "note": "nearest case X1-DEV-002 (jaccard 1.0)",
@@ -5391,7 +6458,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 3166
+      "wall_ns": 3250
      },
      "exact": true,
      "note": "registered null control",
@@ -5415,13 +6482,42 @@
      "compose_detail": {
       "decisive_atom": ""
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "2c4b1a25dcdd184cddd57ab01ff45e8f34e7191a71a416b43bf3610de91e089c",
+     "navigation_only_answer": {
+      "action": "UPDATE",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 11,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "UPDATE",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 21,
+      "edge_visits_cap": 90,
+      "incidence_visits": 38,
+      "restarts": 1,
+      "steps": 80,
+      "steps_cap": 160,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -5453,7 +6549,7 @@
       "ops": 125,
       "restarts": 1,
       "steps": 80,
-      "wall_ns": 36778000
+      "wall_ns": 151806084
      },
      "exact": true,
      "note": "",
@@ -5499,7 +6595,7 @@
       "ops": 389,
       "restarts": 0,
       "steps": 21,
-      "wall_ns": 532583
+      "wall_ns": 536375
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -5517,7 +6613,7 @@
       "ops": 84,
       "restarts": 0,
       "steps": 19,
-      "wall_ns": 143791
+      "wall_ns": 148500
      },
      "exact": false,
      "note": "nearest case X1-DEV-001 (jaccard 0.0)",
@@ -5535,7 +6631,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2917
+      "wall_ns": 3291
      },
      "exact": false,
      "note": "registered null control",
@@ -5562,13 +6658,42 @@
        "UPDATE"
       ]
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "28246369fd9c797ad16e9b877328615020d37be628e6a431fe566fb80da5829e",
+     "navigation_only_answer": {
+      "action": "DEFER_CANNOT_CHECK",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 9,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "DEFER_CANNOT_CHECK",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 20,
+      "edge_visits_cap": 130,
+      "incidence_visits": 33,
+      "restarts": 1,
+      "steps": 123,
+      "steps_cap": 246,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -5600,7 +6725,7 @@
       "ops": 189,
       "restarts": 1,
       "steps": 124,
-      "wall_ns": 71200667
+      "wall_ns": 224993208
      },
      "exact": true,
      "note": "",
@@ -5646,7 +6771,7 @@
       "ops": 152,
       "restarts": 0,
       "steps": 15,
-      "wall_ns": 256792
+      "wall_ns": 261250
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -5664,7 +6789,7 @@
       "ops": 56,
       "restarts": 0,
       "steps": 17,
-      "wall_ns": 95750
+      "wall_ns": 103625
      },
      "exact": true,
      "note": "nearest case X1-DEV-001 (jaccard 1.0)",
@@ -5682,7 +6807,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 3334
+      "wall_ns": 3250
      },
      "exact": false,
      "note": "registered null control",
@@ -5706,13 +6831,44 @@
      "compose_detail": {
       "decisive_atom": "spec:r1"
      },
+     "dead_request_atoms_read_through_fire": [
+      "spec:r1"
+     ],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "0102f2c997a63b9f666700066299ea57a4c1842d9cd2505b5e0e6c092d7b8455",
+     "navigation_only_answer": {
+      "action": "REVALIDATE",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 10,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "REVALIDATE",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 19,
+      "edge_visits_cap": 80,
+      "incidence_visits": 25,
+      "restarts": 1,
+      "steps": 65,
+      "steps_cap": 130,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -5744,7 +6900,7 @@
       "ops": 102,
       "restarts": 1,
       "steps": 63,
-      "wall_ns": 18241833
+      "wall_ns": 42281250
      },
      "exact": false,
      "note": "",
@@ -5790,7 +6946,7 @@
       "ops": 197,
       "restarts": 0,
       "steps": 14,
-      "wall_ns": 444167
+      "wall_ns": 294250
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -5808,7 +6964,7 @@
       "ops": 72,
       "restarts": 0,
       "steps": 23,
-      "wall_ns": 120125
+      "wall_ns": 127542
      },
      "exact": true,
      "note": "nearest case X1-DEV-002 (jaccard 1.0)",
@@ -5829,7 +6985,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 4542
+      "wall_ns": 4083
      },
      "exact": false,
      "note": "registered null control",
@@ -5853,15 +7009,41 @@
      "compose_detail": {
       "decisive_atom": ""
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_STORE_READ",
+     "exact_declared": true,
      "extraction_sha256": "70875c412ee985fe0612817656dd7f966da9ff340afc11ba1ffb694e2b7a7af7",
+     "navigation_only_answer": null,
      "navigation_outcome": "FOUND",
      "request_atoms": 13,
      "stage_failures": {
       "EXTRACT": "live request atoms outside G_Q: ['identity:r1', 'criterion:c3', 'spec:r1', 'checker:r1', 'src:e10', 'ident:e10', 'src:e11', 'ident:e11', 'cal:e11', 'src:e12', 'ident:e12', 'evaluator:r1', 'authority']"
      },
      "status": "SCORED",
+     "store_read": true,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 24,
+      "edge_visits_cap": 98,
+      "incidence_visits": 47,
+      "restarts": 1,
+      "steps": 74,
+      "steps_cap": 148,
+      "wall_ns": 0
+     },
+     "exact": false,
+     "navigation_outcome": "FOUND",
+     "note": "EXTRACT returned nothing decisive; obstruction witness, never exact",
+     "status": "OBSTRUCTION",
+     "store_read": true
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -5893,7 +7075,7 @@
       "ops": 123,
       "restarts": 1,
       "steps": 74,
-      "wall_ns": 42086958
+      "wall_ns": 58433000
      },
      "exact": true,
      "note": "",
@@ -5939,7 +7121,7 @@
       "ops": 198,
       "restarts": 0,
       "steps": 10,
-      "wall_ns": 334792
+      "wall_ns": 336542
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -5957,7 +7139,7 @@
       "ops": 60,
       "restarts": 0,
       "steps": 12,
-      "wall_ns": 102375
+      "wall_ns": 105209
      },
      "exact": false,
      "note": "nearest case X1-DEV-012 (jaccard 0.0)",
@@ -5979,7 +7161,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 4667
+      "wall_ns": 4792
      },
      "exact": false,
      "note": "registered null control",
@@ -6003,15 +7185,43 @@
      "compose_detail": {
       "decisive_atom": "overlap:o:c0:c2"
      },
+     "dead_request_atoms_read_through_fire": [
+      "overlap:o:c0:c2"
+     ],
      "exact": true,
+     "exact_by": "FOUND_BY_STORE_READ",
+     "exact_declared": true,
      "extraction_sha256": "30c2e08a00ad9a4aec1a3be43edbfee39c35445362033fa2e2cc7c678d41baea",
+     "navigation_only_answer": null,
      "navigation_outcome": "FOUND",
      "request_atoms": 8,
      "stage_failures": {
       "EXTRACT": "live request atoms outside G_Q: ['piece:c0', 'piece:c1', 'piece:c2']"
      },
      "status": "SCORED",
+     "store_read": true,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 10,
+      "edge_visits_cap": 98,
+      "incidence_visits": 10,
+      "restarts": 1,
+      "steps": 77,
+      "steps_cap": 154,
+      "wall_ns": 0
+     },
+     "exact": false,
+     "navigation_outcome": "FOUND",
+     "note": "EXTRACT returned nothing decisive; obstruction witness, never exact",
+     "status": "OBSTRUCTION",
+     "store_read": true
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -6043,7 +7253,7 @@
       "ops": 123,
       "restarts": 1,
       "steps": 75,
-      "wall_ns": 62896375
+      "wall_ns": 142363542
      },
      "exact": false,
      "note": "",
@@ -6088,7 +7298,7 @@
       "ops": 295,
       "restarts": 0,
       "steps": 15,
-      "wall_ns": 434584
+      "wall_ns": 448458
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -6106,7 +7316,7 @@
       "ops": 62,
       "restarts": 0,
       "steps": 10,
-      "wall_ns": 111750
+      "wall_ns": 126792
      },
      "exact": false,
      "note": "nearest case X1-DEV-012 (jaccard 0.0)",
@@ -6124,7 +7334,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2709
+      "wall_ns": 4375
      },
      "exact": false,
      "note": "registered null control",
@@ -6148,13 +7358,42 @@
      "compose_detail": {
       "decisive_atom": ""
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "6ff362d6c261a6760610ed9a958292d44abbc20498b272aab0dc7fee44e56e39",
+     "navigation_only_answer": {
+      "action": "UPDATE",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 5,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "UPDATE",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 8,
+      "edge_visits_cap": 104,
+      "incidence_visits": 13,
+      "restarts": 1,
+      "steps": 97,
+      "steps_cap": 194,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -6186,7 +7425,7 @@
       "ops": 149,
       "restarts": 1,
       "steps": 97,
-      "wall_ns": 63962083
+      "wall_ns": 93611875
      },
      "exact": true,
      "note": "",
@@ -6231,7 +7470,7 @@
       "ops": 203,
       "restarts": 0,
       "steps": 11,
-      "wall_ns": 331917
+      "wall_ns": 359083
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -6249,7 +7488,7 @@
       "ops": 58,
       "restarts": 0,
       "steps": 13,
-      "wall_ns": 110500
+      "wall_ns": 222792
      },
      "exact": true,
      "note": "nearest case X1-DEV-012 (jaccard 1.0)",
@@ -6267,7 +7506,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2833
+      "wall_ns": 5125
      },
      "exact": false,
      "note": "registered null control",
@@ -6294,15 +7533,41 @@
        "UPDATE"
       ]
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_STORE_READ",
+     "exact_declared": true,
      "extraction_sha256": "a57b44d34ae02b165e1920609b48eb0fcd4ee69a6f3750e71f179435617b98de",
+     "navigation_only_answer": null,
      "navigation_outcome": "FOUND",
      "request_atoms": 8,
      "stage_failures": {
       "EXTRACT": "live request atoms outside G_Q: ['piece:c2', 'piece:c4']"
      },
      "status": "SCORED",
+     "store_read": true,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 11,
+      "edge_visits_cap": 90,
+      "incidence_visits": 19,
+      "restarts": 1,
+      "steps": 79,
+      "steps_cap": 158,
+      "wall_ns": 0
+     },
+     "exact": false,
+     "navigation_outcome": "FOUND",
+     "note": "EXTRACT returned nothing decisive; obstruction witness, never exact",
+     "status": "OBSTRUCTION",
+     "store_read": true
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -6334,7 +7599,7 @@
       "ops": 125,
       "restarts": 1,
       "steps": 80,
-      "wall_ns": 61129167
+      "wall_ns": 97627334
      },
      "exact": true,
      "note": "",
@@ -6379,7 +7644,7 @@
       "ops": 205,
       "restarts": 0,
       "steps": 11,
-      "wall_ns": 319792
+      "wall_ns": 682375
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -6397,7 +7662,7 @@
       "ops": 50,
       "restarts": 0,
       "steps": 9,
-      "wall_ns": 90625
+      "wall_ns": 210541
      },
      "exact": false,
      "note": "nearest case X1-DEV-012 (jaccard 0.0)",
@@ -6415,7 +7680,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2875
+      "wall_ns": 5125
      },
      "exact": false,
      "note": "registered null control",
@@ -6439,15 +7704,43 @@
      "compose_detail": {
       "decisive_atom": "overlap:o:c1:c2"
      },
+     "dead_request_atoms_read_through_fire": [
+      "overlap:o:c1:c2"
+     ],
      "exact": true,
+     "exact_by": "FOUND_BY_STORE_READ",
+     "exact_declared": true,
      "extraction_sha256": "2ec63a32c1ee7651ca2e643c2ef8933ec562224fd5ca16b11e8e62530b627de1",
+     "navigation_only_answer": null,
      "navigation_outcome": "FOUND",
      "request_atoms": 5,
      "stage_failures": {
       "EXTRACT": "live request atoms outside G_Q: ['piece:c2']"
      },
      "status": "SCORED",
+     "store_read": true,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 7,
+      "edge_visits_cap": 84,
+      "incidence_visits": 7,
+      "restarts": 1,
+      "steps": 76,
+      "steps_cap": 152,
+      "wall_ns": 0
+     },
+     "exact": false,
+     "navigation_outcome": "FOUND",
+     "note": "EXTRACT returned nothing decisive; obstruction witness, never exact",
+     "status": "OBSTRUCTION",
+     "store_read": true
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -6479,7 +7772,7 @@
       "ops": 115,
       "restarts": 1,
       "steps": 74,
-      "wall_ns": 46529541
+      "wall_ns": 66394458
      },
      "exact": false,
      "note": "",
@@ -6524,7 +7817,7 @@
       "ops": 99,
       "restarts": 0,
       "steps": 8,
-      "wall_ns": 222875
+      "wall_ns": 472500
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -6542,7 +7835,7 @@
       "ops": 48,
       "restarts": 0,
       "steps": 13,
-      "wall_ns": 70833
+      "wall_ns": 82417
      },
      "exact": false,
      "note": "nearest case X1-DEV-012 (jaccard 0.0)",
@@ -6560,7 +7853,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2625
+      "wall_ns": 2959
      },
      "exact": false,
      "note": "registered null control",
@@ -6584,15 +7877,41 @@
      "compose_detail": {
       "decisive_atom": ""
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_STORE_READ",
+     "exact_declared": true,
      "extraction_sha256": "d1b942899d64398e1be77420d3ecfa901a88d804c89f9af41d6e86b47337d891",
+     "navigation_only_answer": null,
      "navigation_outcome": "FOUND",
      "request_atoms": 8,
      "stage_failures": {
       "EXTRACT": "live request atoms outside G_Q: ['piece:c0', 'piece:c1', 'piece:c2']"
      },
      "status": "SCORED",
+     "store_read": true,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 11,
+      "edge_visits_cap": 70,
+      "incidence_visits": 19,
+      "restarts": 1,
+      "steps": 52,
+      "steps_cap": 104,
+      "wall_ns": 0
+     },
+     "exact": false,
+     "navigation_outcome": "FOUND",
+     "note": "EXTRACT returned nothing decisive; obstruction witness, never exact",
+     "status": "OBSTRUCTION",
+     "store_read": true
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -6624,7 +7943,7 @@
       "ops": 87,
       "restarts": 1,
       "steps": 52,
-      "wall_ns": 27907750
+      "wall_ns": 34639958
      },
      "exact": true,
      "note": "",
@@ -6669,7 +7988,7 @@
       "ops": 239,
       "restarts": 0,
       "steps": 17,
-      "wall_ns": 324209
+      "wall_ns": 344917
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -6687,7 +8006,7 @@
       "ops": 64,
       "restarts": 0,
       "steps": 15,
-      "wall_ns": 116250
+      "wall_ns": 112958
      },
      "exact": true,
      "note": "nearest case X1-DEV-002 (jaccard 1.0)",
@@ -6709,7 +8028,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 4541
+      "wall_ns": 4625
      },
      "exact": false,
      "note": "registered null control",
@@ -6733,13 +8052,42 @@
      "compose_detail": {
       "decisive_atom": ""
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "32dab61c12161ba31a4b866010330c5460da74e1cd6f7e044f85561ea54c63d6",
+     "navigation_only_answer": {
+      "action": "UPDATE",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 8,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "UPDATE",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 17,
+      "edge_visits_cap": 98,
+      "incidence_visits": 27,
+      "restarts": 1,
+      "steps": 90,
+      "steps_cap": 180,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -6771,7 +8119,7 @@
       "ops": 139,
       "restarts": 1,
       "steps": 90,
-      "wall_ns": 31261667
+      "wall_ns": 46935250
      },
      "exact": true,
      "note": "",
@@ -6817,7 +8165,7 @@
       "ops": 241,
       "restarts": 0,
       "steps": 14,
-      "wall_ns": 315458
+      "wall_ns": 316708
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -6835,7 +8183,7 @@
       "ops": 49,
       "restarts": 0,
       "steps": 11,
-      "wall_ns": 87625
+      "wall_ns": 91708
      },
      "exact": true,
      "note": "nearest case X1-DEV-004 (jaccard 1.0)",
@@ -6853,7 +8201,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2500
+      "wall_ns": 2833
      },
      "exact": false,
      "note": "registered null control",
@@ -6875,13 +8223,42 @@
       "wall_ns": 0
      },
      "compose_detail": {},
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "522f117f950cda1bf76412ea1b9457b9e9959093f6963c3499c4b44bf9542b09",
+     "navigation_only_answer": {
+      "action": "PRESERVE",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 1,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "PRESERVE",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 8,
+      "edge_visits_cap": 76,
+      "incidence_visits": 13,
+      "restarts": 1,
+      "steps": 75,
+      "steps_cap": 150,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -6913,7 +8290,7 @@
       "ops": 113,
       "restarts": 1,
       "steps": 75,
-      "wall_ns": 38500417
+      "wall_ns": 43843125
      },
      "exact": true,
      "note": "",
@@ -6958,7 +8335,7 @@
       "ops": 132,
       "restarts": 0,
       "steps": 13,
-      "wall_ns": 227250
+      "wall_ns": 233042
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -6976,7 +8353,7 @@
       "ops": 56,
       "restarts": 0,
       "steps": 18,
-      "wall_ns": 85417
+      "wall_ns": 93709
      },
      "exact": true,
      "note": "nearest case X1-DEV-002 (jaccard 1.0)",
@@ -6994,7 +8371,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 2291
+      "wall_ns": 2583
      },
      "exact": false,
      "note": "registered null control",
@@ -7018,13 +8395,42 @@
      "compose_detail": {
       "decisive_atom": ""
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "272eec2dd0d27af006b9677bd58d68196b662a9963d160818967467912367948",
+     "navigation_only_answer": {
+      "action": "UPDATE",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 9,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "UPDATE",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 19,
+      "edge_visits_cap": 76,
+      "incidence_visits": 36,
+      "restarts": 1,
+      "steps": 60,
+      "steps_cap": 120,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -7056,7 +8462,7 @@
       "ops": 98,
       "restarts": 1,
       "steps": 60,
-      "wall_ns": 20792667
+      "wall_ns": 22683666
      },
      "exact": true,
      "note": "",
@@ -7102,7 +8508,7 @@
       "ops": 217,
       "restarts": 0,
       "steps": 15,
-      "wall_ns": 326416
+      "wall_ns": 335209
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -7120,7 +8526,7 @@
       "ops": 72,
       "restarts": 0,
       "steps": 23,
-      "wall_ns": 123167
+      "wall_ns": 136375
      },
      "exact": true,
      "note": "nearest case X1-DEV-002 (jaccard 1.0)",
@@ -7138,7 +8544,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 6416
+      "wall_ns": 4750
      },
      "exact": false,
      "note": "registered null control",
@@ -7162,13 +8568,42 @@
      "compose_detail": {
       "decisive_atom": ""
      },
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "28262721712ca88fc90fc818ed6903c308e984c69b76b42401c137de2fe2920f",
+     "navigation_only_answer": {
+      "action": "UPDATE",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 12,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "UPDATE",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 25,
+      "edge_visits_cap": 98,
+      "incidence_visits": 51,
+      "restarts": 1,
+      "steps": 82,
+      "steps_cap": 164,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -7200,7 +8635,7 @@
       "ops": 131,
       "restarts": 1,
       "steps": 82,
-      "wall_ns": 70918167
+      "wall_ns": 90095583
      },
      "exact": true,
      "note": "",
@@ -7246,7 +8681,7 @@
       "ops": 367,
       "restarts": 0,
       "steps": 19,
-      "wall_ns": 490917
+      "wall_ns": 496041
      },
      "exact": true,
      "note": "ceiling control; JTMS cost recorded, not capped",
@@ -7264,7 +8699,7 @@
       "ops": 59,
       "restarts": 0,
       "steps": 7,
-      "wall_ns": 122458
+      "wall_ns": 127000
      },
      "exact": true,
      "note": "nearest case X1-DEV-004 (jaccard 1.0)",
@@ -7282,7 +8717,7 @@
       "ops": 0,
       "restarts": 0,
       "steps": 0,
-      "wall_ns": 3083
+      "wall_ns": 3000
      },
      "exact": false,
      "note": "registered null control",
@@ -7304,13 +8739,42 @@
       "wall_ns": 0
      },
      "compose_detail": {},
+     "dead_request_atoms_read_through_fire": [],
      "exact": true,
+     "exact_by": "FOUND_BY_NAVIGATION",
+     "exact_declared": true,
      "extraction_sha256": "a6e4eca60b8bb1f9e1da7afd26a7f0607b118332f2132a2fe5d7714da1a84641",
+     "navigation_only_answer": {
+      "action": "PRESERVE",
+      "reopened": []
+     },
      "navigation_outcome": "FOUND",
      "request_atoms": 1,
      "stage_failures": {},
      "status": "SCORED",
+     "store_read": false,
      "translator_invariant": true
+    },
+    "KSO_NAVIGATION_ONLY": {
+     "answer": {
+      "action": "PRESERVE",
+      "reopened": []
+     },
+     "attribution": "",
+     "budget": {
+      "edge_visits": 4,
+      "edge_visits_cap": 104,
+      "incidence_visits": 5,
+      "restarts": 1,
+      "steps": 117,
+      "steps_cap": 234,
+      "wall_ns": 0
+     },
+     "exact": true,
+     "navigation_outcome": "FOUND",
+     "note": "",
+     "status": "SCORED",
+     "store_read": false
     },
     "ORACLE_POSITIVE_CONTROL": {
      "answer": {
@@ -7342,7 +8806,7 @@
       "ops": 169,
       "restarts": 1,
       "steps": 117,
-      "wall_ns": 61877667
+      "wall_ns": 65145417
      },
      "exact": true,
      "note": "",
@@ -7452,34 +8916,49 @@
    "y_only": 0
   },
   {
-   "diff_x_minus_y": 0.36,
-   "discordant": 18,
-   "exact_p_two_sided": 7.62939453125e-06,
+   "diff_x_minus_y": -0.24,
+   "discordant": 12,
+   "exact_p_two_sided": 0.00048828125,
    "n": 50,
    "red": true,
    "wald_ci95": [
-    0.22695078805193922,
-    0.49304921194806073
+    -0.35838140394504536,
+    -0.12161859605495463
    ],
-   "x": "KSO_M2_SOLVE",
-   "x_only": 18,
-   "y": "RWR_PPR_SPREADING_ACTIVATION",
-   "y_only": 0
+   "x": "KSO_NAVIGATION_ONLY",
+   "x_only": 0,
+   "y": "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION",
+   "y_only": 12
   },
   {
-   "diff_x_minus_y": 0.32,
-   "discordant": 16,
-   "exact_p_two_sided": 3.0517578125e-05,
+   "diff_x_minus_y": 0.12,
+   "discordant": 24,
+   "exact_p_two_sided": 0.30745625495910645,
    "n": 50,
-   "red": true,
+   "red": false,
    "wald_ci95": [
-    0.19069940758063017,
-    0.4493005924193698
+    -0.06913746112285635,
+    0.30913746112285634
    ],
-   "x": "KSO_M2_SOLVE",
-   "x_only": 16,
+   "x": "KSO_NAVIGATION_ONLY",
+   "x_only": 15,
+   "y": "RWR_PPR_SPREADING_ACTIVATION",
+   "y_only": 9
+  },
+  {
+   "diff_x_minus_y": 0.08,
+   "discordant": 22,
+   "exact_p_two_sided": 0.5234670639038086,
+   "n": 50,
+   "red": false,
+   "wald_ci95": [
+    -0.10252220467658175,
+    0.26252220467658177
+   ],
+   "x": "KSO_NAVIGATION_ONLY",
+   "x_only": 13,
    "y": "CBR_KG_RETRIEVAL",
-   "y_only": 0
+   "y_only": 9
   }
  ],
  "per_arm": {
@@ -7506,10 +8985,20 @@
   },
   "KSO_M2_SOLVE": {
    "exact": 50,
+   "exact_declared_disagreements": 0,
    "exact_rate": 1.0,
    "n_cannot_check": 0,
    "n_scored": 50,
-   "role": "the machine under test"
+   "role": "the machine under test (full arm; COMPOSE may read the store)",
+   "store_read_rows": 12
+  },
+  "KSO_NAVIGATION_ONLY": {
+   "exact": 38,
+   "exact_rate": 0.76,
+   "n_cannot_check": 0,
+   "n_obstruction": 12,
+   "n_scored": 38,
+   "role": "the machine under test, navigation only (may NOT read the store): the mechanic's honest number"
   },
   "ORACLE_POSITIVE_CONTROL": {
    "exact": 50,
@@ -7528,15 +9017,15 @@
  },
  "provenance": {
   "bindings": {
-   "kso_m1_mex1_population_v1.py": "278beda5062cf1f91af82af32ac3df0b1d521ff5959ce36494878d02b1446925",
-   "kso_m2_comparator_v1.py": "181bccf68fc0fd6311fe1f1e794aead3d94e3a7991e9f08e7addd64a2d2df17f",
-   "kso_m2_solve_v1.py": "4ab129c65fd0e8714c20fa592ac6e34b55d58af12a92fe941afabdbe63383a4b",
+   "kso_m1_mex1_population_v1.py": "a68503ee5f1cb2bf65939b147a0a94e4592e914d1127d00efa6332d57370f446",
+   "kso_m2_comparator_v1.py": "abc668b048a1d8352aba03552fb07c6a255b794a995feab77d8f69449bd7b2fd",
+   "kso_m2_solve_v1.py": "24c8cf35c788d1c89c7ca4fcb2115a531c11baab63c561cac58d8e03b77b37f1",
    "kso_math_v1.py": "bf163e264954faaec96b6a2a601c042123c1fab58da4965faa26c95cde6bd704",
    "mex1_arms.py": "cbe3d48e4feaab6b802af04306f1bb50f4820e2bdea231f3b1d3abab19680bf8",
    "mex1_generator.py": "08a50948c7fd12e4b0a0cbb24adc4b2b3225253bc9f821b1c5bddd2b539cc31d",
    "mex1_oracle.py": "5a34146ca067f03c0557cdb71d229aca0d0f6dfeea690d2dce20f1f95fba696f"
   },
-  "body_sha256": "ab44af93e51e9a8f85208e75b022e2977edbc84d8815ee3c5cdc9708146390b1",
+  "body_sha256": "975ee9a9c283fceba48938b4c29d950d21396aa7064aa38f647418786852dab0",
   "body_sha256_is_over": "the body with wall_ns zeroed",
   "command": "python research/orion-machine/reference/kso_m2_comparator_v1.py --out research/orion-machine/results/KSO_M2_COMPARATOR_RECEIPT_V1.json",
   "design": {
@@ -7544,9 +9033,9 @@
    "ids_sha256_declared": "b3bcb5e3448472993b14e21e35520a276b54b4ae4d66000002e40ae6cd019b72",
    "kso_m2_solve_design_sha256": "78931b75c15f894662167cc5c45cc19e46c8f675b3f47069ee22de4bbac9a6b0",
    "module_matches_freeze": true,
-   "module_sha256_at_freeze": "181bccf68fc0fd6311fe1f1e794aead3d94e3a7991e9f08e7addd64a2d2df17f",
+   "module_sha256_at_freeze": "abc668b048a1d8352aba03552fb07c6a255b794a995feab77d8f69449bd7b2fd",
    "path": "research/orion-machine/results/KSO_M2_COMPARATOR_DESIGN_V1.json",
-   "sha256": "c2cc4219ac5ca4b6dbb245ce733e0d4ebe4e093cad8c243e04ab736cd2b7892e"
+   "sha256": "bd25d4b458169bb3603cfaa4dd75f5c938d8b1805838ed760af1f35ba8044faa"
   },
   "python": "3.12.13"
  },
@@ -7561,10 +9050,20 @@
   "split": "dev",
   "split_seed": "ME-X1-DEV-20260902"
  },
+ "store_read_permissions": {
+  "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION": "yes (its parent modules read the whole world)",
+  "CBR_KG_RETRIEVAL": "NO (2-hop retrieved neighbourhood only)",
+  "C_RANDOM_ACTION": "n/a",
+  "KSO_M2_SOLVE": "yes (COMPOSE may consult the store; store_read is recorded per row)",
+  "KSO_NAVIGATION_ONLY": "NO (answer = what EXTRACT returned from the navigated subgraph only)",
+  "ORACLE_POSITIVE_CONTROL": "n/a (positive control)",
+  "RWR_PPR_SPREADING_ACTIVATION": "NO (reachable activation only)"
+ },
  "terminals": {
   "COMPARATOR_TABLE": "READY",
   "GENERAL_NOVELTY": "NOT_ESTABLISHED",
   "KSO_COLUMN": "PRESENT",
+  "NAVIGATION_ONLY_VS_RETRIEVAL_PARENTS": "REPORTED",
   "PARENT_SUFFICIENT": "YES"
  }
 }
