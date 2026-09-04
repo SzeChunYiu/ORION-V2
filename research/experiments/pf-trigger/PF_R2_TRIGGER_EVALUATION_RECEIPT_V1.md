@@ -167,8 +167,37 @@ follow-up been launched against this substrate, §7.6 would have returned a guar
 negative that read as an empirical finding about machine-native mechanism, while actually
 recording that the study had no mechanism to test.
 
-Recorded as a co-terminal: **`CANNOT_IDENTIFY_PREOUTCOME_MECHANISM`** (§9), holding
-independently of the trigger arithmetic.
+Recorded as a co-terminal: **`CANNOT_IDENTIFY_PREOUTCOME_MECHANISM__SCOPED_TO_THE_R2_ARM_REALIZATION`**
+(§9), holding independently of the trigger arithmetic.
+
+### 6.1 Why the co-terminal is scoped, and what justifies the scope
+
+The label was narrowed on 2026-09-04. §3 maps "the actual current F2 implementation" and §4's
+Phase A builds *fresh* arms M0–M4 rather than reusing R2's, so an unscoped
+`CANNOT_IDENTIFY_PREOUTCOME_MECHANISM` would assert something this evidence does not reach —
+that no ORION F2 mechanism could ever be named pre-outcome. What is established is narrower and
+sufficient: **on the arms R2 actually ran, there was no mechanism to name.**
+
+The decisive fact is simple. **Neither `scripts/orion_formal_discovery_arms.py` nor
+`scripts/run_formal_discovery_generated_suite.py` references `orion_v2` anywhere.** No project
+module was inside any R2 arm; the arms are a standalone `codex exec` wrapper.
+
+A separate search asked whether such a mechanism exists elsewhere to be wired in later, and the
+scope is stated rather than implied: `src/` and `packages/`, all 64 Python files, by basename and
+content, for `beam`, `branch`, `backtrack`, `search_tree`, `scheduler`, `persistent_memory`,
+`memory_store`, `replay_buffer`. **Zero hits**, against a control of `grep -rl "def "` over the
+same trees returning **62 files** — so the search demonstrably works. `packages/` holds a README
+and no Python. The closest candidate, `development_controller.py`'s `MemoryKind` /
+`FrameworkMemoryEntry`, is a frozen immutable dataclass carrying a payload digest — a typed
+record, not a memory store: no read, no write, no persistence, no runtime state. The modules are
+typed reference semantics.
+
+So under the stated scope there is no F2 implementation carrying a non-language §3 class. That
+licenses the co-terminal **as scoped**; it does not license the unscoped claim, and the scoped
+label is what is filed.
+
+**The primary terminal is unaffected either way.** `DID_NOT_FIRE` is settled by 23/80 against
+42/80 at exact paired p = 4.3e-03 with both voiders closed, and does not depend on this clause.
 
 ## 7. Registered-vs-executed arm narrowing in R2 — reported, and shown not to rescue P-F
 
