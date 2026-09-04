@@ -2,7 +2,7 @@
  "schema": "orion-v2.ocm.receipt.v1",
  "artifact": "research/orion-machine/receipts/OCM_DIRECTIVE_RESCOPE_RECEIPT_V1.json",
  "as_of": "2026-09-04",
- "source_commit": "ea6109730c26e9756359c5c5744e593ecc077e15",
+ "source_commit": "b646670764a5832fe3881e9bface910b5485a0e4",
  "directive": "ORION-V2 #194 comment 5539487737",
  "binding_method": "sha256 and byte length over the committed blob via /usr/bin/git show <commit>:<path> from a Python subprocess; a must-fail control (absent path) returned nonzero with 0 bytes in the same run",
  "python": "3.12.13 (CI pin 3.12)",
@@ -37,8 +37,8 @@
   },
   {
    "path": "research/orion-machine/OCM_FAILURE_LEDGER.md",
-   "bytes": 22239,
-   "sha256": "bd3f82c257c7deaceed5dd578602a330a7dec01297f941a15b5c9dbd3b029490"
+   "bytes": 23602,
+   "sha256": "9987d529d12bf72458e62338394f9a1d99cc228f318065bd39479e384c4c6062"
   },
   {
    "path": "research/orion-machine/theory/OCM_DIRECTIVE_RESCOPE_V1.md",
@@ -85,5 +85,7 @@
    "bytes": 2537,
    "sha256": "40cbddcfb69c491d218a64590e0e5ea376e8aa59dc11cfc2eea8b7b327b3289f"
   }
- ]
+ ],
+ "superseded_source_commit": "ea6109730c26e9756359c5c5744e593ecc077e15",
+ "regenerated_reason": "Branch rebased onto the repaired lane 202/203 head (S4 census vacuity, PR #279) and OCM_FAILURE_LEDGER.md gained the record of that repair; bindings recomputed from the new committed blobs. Not a frozen review target."
 }
