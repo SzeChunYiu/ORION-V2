@@ -1,0 +1,293 @@
+{
+  "cells": {
+    "PROSPECTIVE": {
+      "acc": {
+        "GATED": 0.9769230769230769,
+        "M": 0.8942307692307693,
+        "PARENT": 0.9557692307692308
+      },
+      "cell": "PROSPECTIVE",
+      "gate_activations": 170,
+      "n": 520,
+      "paired_GATED_vs_PARENT": {
+        "BY_STUDY": {
+          "PD-S1-DEPENDENT-CORROBORATION": {
+            "both": 159,
+            "discordant": 1,
+            "exact_mcnemar_two_sided_p": 1.0,
+            "gate_activations": 80,
+            "gated_correct": 160,
+            "gated_only_b": 1,
+            "margin_pp": 0.625,
+            "max_rejectable_at_alpha_0_05": false,
+            "n": 160,
+            "neither": 0,
+            "other_correct": 159,
+            "other_only_c": 0
+          },
+          "PD-S2-ARGUMENT-AND-ADEQUACY": {
+            "both": 89,
+            "discordant": 28,
+            "exact_mcnemar_two_sided_p": 0.08715855330228806,
+            "gate_activations": 0,
+            "gated_correct": 108,
+            "gated_only_b": 19,
+            "margin_pp": 8.3333,
+            "max_rejectable_at_alpha_0_05": true,
+            "n": 120,
+            "neither": 3,
+            "other_correct": 98,
+            "other_only_c": 9
+          },
+          "PD-S3-REVOCATION-AND-UPTAKE": {
+            "both": 120,
+            "discordant": 0,
+            "exact_mcnemar_two_sided_p": 1.0,
+            "gate_activations": 90,
+            "gated_correct": 120,
+            "gated_only_b": 0,
+            "margin_pp": 0.0,
+            "max_rejectable_at_alpha_0_05": false,
+            "n": 120,
+            "neither": 0,
+            "other_correct": 120,
+            "other_only_c": 0
+          },
+          "PD-S4-AUTHORITY-AND-RESPONSE": {
+            "both": 120,
+            "discordant": 0,
+            "exact_mcnemar_two_sided_p": 1.0,
+            "gate_activations": 0,
+            "gated_correct": 120,
+            "gated_only_b": 0,
+            "margin_pp": 0.0,
+            "max_rejectable_at_alpha_0_05": false,
+            "n": 120,
+            "neither": 0,
+            "other_correct": 120,
+            "other_only_c": 0
+          }
+        },
+        "GATE_ACTIVE": {
+          "both": 170,
+          "discordant": 0,
+          "exact_mcnemar_two_sided_p": 1.0,
+          "gated_correct": 170,
+          "gated_only_b": 0,
+          "margin_pp": 0.0,
+          "max_rejectable_at_alpha_0_05": false,
+          "n": 170,
+          "neither": 0,
+          "other_correct": 170,
+          "other_only_c": 0
+        },
+        "GATE_INACTIVE": {
+          "both": 318,
+          "discordant": 29,
+          "exact_mcnemar_two_sided_p": 0.06142834573984146,
+          "gated_correct": 338,
+          "gated_only_b": 20,
+          "margin_pp": 3.1429,
+          "max_rejectable_at_alpha_0_05": true,
+          "n": 350,
+          "neither": 3,
+          "other_correct": 327,
+          "other_only_c": 9
+        },
+        "SUITE": {
+          "both": 488,
+          "discordant": 29,
+          "exact_mcnemar_two_sided_p": 0.06142834573984146,
+          "gated_correct": 508,
+          "gated_only_b": 20,
+          "margin_pp": 2.1154,
+          "max_rejectable_at_alpha_0_05": true,
+          "n": 520,
+          "neither": 3,
+          "other_correct": 497,
+          "other_only_c": 9
+        }
+      },
+      "power_mechanism_estimand": {
+        "discordant_pairs": 0,
+        "n_active_in_frozen_cell": 170,
+        "n_for_80pc_power": null,
+        "note": "with zero discordant pairs the observed effect on this estimand is exactly zero and no n confers power on it; the two arms are tied at the suite ceiling wherever the gate fires",
+        "pb": 0.0,
+        "pc": 0.0
+      },
+      "power_suite_estimand": {
+        "alpha": 0.05,
+        "assumed_pb": 0.038461538461538464,
+        "assumed_pc": 0.01730769230769231,
+        "effect_source": "the frozen H-EXT-1 cell itself; this is an observed-effect power calculation and is optimistic by the winner's curse, so any n derived from it is a LOWER bound on what a prospective replication needs",
+        "power_by_n": {
+          "1000": 0.7865,
+          "1200": 0.8601,
+          "1500": 0.9279,
+          "2000": 0.9787,
+          "3000": 0.9985,
+          "520": 0.4605,
+          "800": 0.681
+        },
+        "smallest_n_for_power_0_80": 1040,
+        "smallest_n_for_power_0_90": 1360,
+        "test": "exact two-sided McNemar"
+      }
+    },
+    "RETROSPECTIVE": {
+      "acc": {
+        "GATED": 0.9980769230769231,
+        "M": 0.975,
+        "PARENT": 0.9865384615384616
+      },
+      "cell": "RETROSPECTIVE",
+      "gate_activations": 170,
+      "n": 520,
+      "paired_GATED_vs_PARENT": {
+        "BY_STUDY": {
+          "PD-S1-DEPENDENT-CORROBORATION": {
+            "both": 157,
+            "discordant": 3,
+            "exact_mcnemar_two_sided_p": 1.0,
+            "gate_activations": 80,
+            "gated_correct": 159,
+            "gated_only_b": 2,
+            "margin_pp": 0.625,
+            "max_rejectable_at_alpha_0_05": false,
+            "n": 160,
+            "neither": 0,
+            "other_correct": 158,
+            "other_only_c": 1
+          },
+          "PD-S2-ARGUMENT-AND-ADEQUACY": {
+            "both": 117,
+            "discordant": 3,
+            "exact_mcnemar_two_sided_p": 0.25,
+            "gate_activations": 0,
+            "gated_correct": 120,
+            "gated_only_b": 3,
+            "margin_pp": 2.5,
+            "max_rejectable_at_alpha_0_05": false,
+            "n": 120,
+            "neither": 0,
+            "other_correct": 117,
+            "other_only_c": 0
+          },
+          "PD-S3-REVOCATION-AND-UPTAKE": {
+            "both": 120,
+            "discordant": 0,
+            "exact_mcnemar_two_sided_p": 1.0,
+            "gate_activations": 90,
+            "gated_correct": 120,
+            "gated_only_b": 0,
+            "margin_pp": 0.0,
+            "max_rejectable_at_alpha_0_05": false,
+            "n": 120,
+            "neither": 0,
+            "other_correct": 120,
+            "other_only_c": 0
+          },
+          "PD-S4-AUTHORITY-AND-RESPONSE": {
+            "both": 118,
+            "discordant": 2,
+            "exact_mcnemar_two_sided_p": 0.5,
+            "gate_activations": 0,
+            "gated_correct": 120,
+            "gated_only_b": 2,
+            "margin_pp": 1.6667,
+            "max_rejectable_at_alpha_0_05": false,
+            "n": 120,
+            "neither": 0,
+            "other_correct": 118,
+            "other_only_c": 0
+          }
+        },
+        "GATE_ACTIVE": {
+          "both": 169,
+          "discordant": 1,
+          "exact_mcnemar_two_sided_p": 1.0,
+          "gated_correct": 169,
+          "gated_only_b": 0,
+          "margin_pp": -0.5882,
+          "max_rejectable_at_alpha_0_05": false,
+          "n": 170,
+          "neither": 0,
+          "other_correct": 170,
+          "other_only_c": 1
+        },
+        "GATE_INACTIVE": {
+          "both": 343,
+          "discordant": 7,
+          "exact_mcnemar_two_sided_p": 0.015625,
+          "gated_correct": 350,
+          "gated_only_b": 7,
+          "margin_pp": 2.0,
+          "max_rejectable_at_alpha_0_05": true,
+          "n": 350,
+          "neither": 0,
+          "other_correct": 343,
+          "other_only_c": 0
+        },
+        "SUITE": {
+          "both": 512,
+          "discordant": 8,
+          "exact_mcnemar_two_sided_p": 0.0703125,
+          "gated_correct": 519,
+          "gated_only_b": 7,
+          "margin_pp": 1.1538,
+          "max_rejectable_at_alpha_0_05": true,
+          "n": 520,
+          "neither": 0,
+          "other_correct": 513,
+          "other_only_c": 1
+        }
+      },
+      "power_mechanism_estimand": {
+        "discordant_pairs": 1,
+        "n_active_in_frozen_cell": 170,
+        "n_for_80pc_power": 1350,
+        "note": "with zero discordant pairs the observed effect on this estimand is exactly zero and no n confers power on it; the two arms are tied at the suite ceiling wherever the gate fires",
+        "pb": 0.0,
+        "pc": 0.0058823529411764705
+      },
+      "power_suite_estimand": {
+        "alpha": 0.05,
+        "assumed_pb": 0.013461538461538462,
+        "assumed_pc": 0.0019230769230769232,
+        "effect_source": "the frozen H-EXT-1 cell itself; this is an observed-effect power calculation and is optimistic by the winner's curse, so any n derived from it is a LOWER bound on what a prospective replication needs",
+        "power_by_n": {
+          "1000": 0.831,
+          "1200": 0.9045,
+          "1500": 0.9606,
+          "2000": 0.9916,
+          "3000": 0.9997,
+          "520": 0.4403,
+          "800": 0.7128
+        },
+        "smallest_n_for_power_0_80": 940,
+        "smallest_n_for_power_0_90": 1190,
+        "test": "exact two-sided McNemar"
+      }
+    }
+  },
+  "gate_id_from_freeze": "G_B_PLUS_XREF",
+  "gate_rule_source": "scripts/h_ext1_gate_study.py::gate_fires (imported, not reimplemented)",
+  "reads": {
+    "PROSPECTIVE": "research/experiments/h-ext1/data/PROSPECTIVE_instances.json",
+    "RETROSPECTIVE": "research/experiments/h-ext1/data/RETROSPECTIVE_instances.json"
+  },
+  "reconstruction_control": {
+    "expected_from_frozen_receipt": {
+      "activations": 170,
+      "gated_correct": 508,
+      "m_correct": 465,
+      "n": 520,
+      "off_correct": 428,
+      "parent_correct": 497
+    },
+    "note": "six independently published frozen quantities; a wrong gate rule or a wrong GATED routing rule would miss at least one",
+    "reproduced": true
+  },
+  "schema_version": "orion.v2.h-ext1p.pre-freeze-estimand-audit.v1"
+}
