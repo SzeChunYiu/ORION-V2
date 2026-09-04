@@ -9,6 +9,11 @@ CANNOT_CHECK, disagreement, or malformed receipt cannot become warranted knowled
 The upstream ME-X3 scientific terminal remains PARENT_SUFFICIENT (M and B5 tie 0.944 on the
 registered joint endpoint). This file only integrates the exact verifier channel.
 
+Important provenance rule: ME-X3 deliberately has one good and one corrupted proof file for the
+same theorem task. Therefore KSO certificate atoms are keyed by proof-file identity, not theorem
+identity. A theorem may have several candidate proofs; only kernel-verified proof certificates earn
+warrant.
+
 Exit: 0 pass, 1 defect, 2 CANNOT_CHECK.
 """
 from __future__ import annotations
@@ -26,7 +31,6 @@ from typing import Mapping, Sequence
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 LEAN_RECEIPT = ROOT / "research" / "experiments" / "me-x3" / "results" / "ME_X3_LEAN_RECEIPT_PROTECTED_V1.json"
-ME_X3_OUTCOME = ROOT / "research" / "experiments" / "me-x3" / "ME_X3_OUTCOME_RECEIPT.md"
 
 
 class CannotCheck(RuntimeError):
@@ -72,6 +76,10 @@ def _evidence_id(receipt: Mapping[str, object], row: Mapping[str, object]) -> in
         )
     )
     return int(hashlib.sha256(payload.encode()).hexdigest()[:15], 16)
+
+
+def _proof_atom_id(file: str) -> str:
+    return "math:proof:" + hashlib.sha256(file.encode()).hexdigest()[:20]
 
 
 def load_receipt(path: Path = LEAN_RECEIPT) -> dict[str, object]:
@@ -151,6 +159,7 @@ def admit_verified_rows(receipt: Mapping[str, object], accepted: Sequence[Mappin
     ks = base_math_space()
     atoms: list[VerifiedMathAtom] = []
     evidence_ids: set[int] = set()
+    atom_ids: set[str] = set()
     for row in accepted:
         eid = _evidence_id(receipt, row)
         if eid in evidence_ids:
@@ -158,10 +167,13 @@ def admit_verified_rows(receipt: Mapping[str, object], accepted: Sequence[Mappin
         evidence_ids.add(eid)
         task = str(row["task_id"])
         file = str(row["file"])
-        atom_id = f"math:theorem:{task}"
-        atom = kso.Atom(atom_id, "verified_theorem", (frozenset({eid}),))
+        atom_id = _proof_atom_id(file)
+        if atom_id in atom_ids:
+            raise CannotCheck("proof atom identity collision")
+        atom_ids.add(atom_id)
+        atom = kso.Atom(atom_id, "verified_proof_certificate", (frozenset({eid}),))
         edge = kso.Hyperedge(
-            f"math:kernel-certifies:{task}",
+            f"math:kernel-certifies:{hashlib.sha256(file.encode()).hexdigest()[:20]}",
             ("math:lean-kernel",),
             (atom_id,),
             "SUPPORT",
@@ -178,9 +190,9 @@ def check_revocation(ks, proof: VerifiedMathAtom) -> dict[str, object]:
     amap = ks.atom_map()
     atom = amap[proof.atom_id]
     if not kso.profile_live(atom.profile, ()):  # no-alarm
-        raise AssertionError("verified theorem is not live before revocation")
+        raise AssertionError("verified proof certificate is not live before revocation")
     if kso.profile_live(atom.profile, {proof.evidence_id}):
-        raise AssertionError("verified theorem stayed live after its proof evidence was revoked")
+        raise AssertionError("verified proof certificate stayed live after its evidence was revoked")
     before = kso.navigation_matrix(ks)
     after = kso.navigation_matrix(ks, revoked={proof.evidence_id})
     ids = ks.ids
@@ -189,7 +201,9 @@ def check_revocation(ks, proof: VerifiedMathAtom) -> dict[str, object]:
     if not (before[src][dst] > 0 and after[src][dst] == 0):
         raise AssertionError("revocation did not remove the certified path exactly")
     return {
-        "theorem": proof.atom_id,
+        "proof_atom": proof.atom_id,
+        "task_id": proof.task_id,
+        "source_file": proof.source_file,
         "evidence_id": proof.evidence_id,
         "pre_live": True,
         "post_live": False,
@@ -248,9 +262,9 @@ def run_m6a(path: Path = LEAN_RECEIPT) -> dict[str, object]:
     receipt = load_receipt(path)
     accepted, rejected = validate_receipt(receipt)
     ks, proof_atoms = admit_verified_rows(receipt, accepted)
-    bad_files = {str(r["file"]) for r in rejected}
-    if any(f"math:theorem:{r['task_id']}" in ks.ids for r in rejected):
-        raise AssertionError("a rejected proof became a warranted theorem atom")
+    rejected_atom_ids = {_proof_atom_id(str(r["file"])) for r in rejected}
+    if rejected_atom_ids & set(ks.ids):
+        raise AssertionError("a rejected proof certificate became a warranted KSO atom")
     if len(proof_atoms) != len(accepted) or len(set(p.atom_id for p in proof_atoms)) != len(proof_atoms):
         raise AssertionError("proof atom count/identity mismatch")
     if any(not kso.profile_live(ks.atom_map()[p.atom_id].profile, ()) for p in proof_atoms):
@@ -270,10 +284,10 @@ def run_m6a(path: Path = LEAN_RECEIPT) -> dict[str, object]:
             "disagreements": receipt.get("disagreements"),
         },
         "kso": {
-            "verified_theorem_atoms": len(proof_atoms),
+            "verified_proof_atoms": len(proof_atoms),
             "rejected_proof_atoms": 0,
             "all_verified_atoms_warranted_and_live": True,
-            "bad_files_count": len(bad_files),
+            "rejected_certificate_identities_excluded": len(rejected_atom_ids),
             "lifecycle": lifecycle,
         },
         "hostiles": hostiles,
