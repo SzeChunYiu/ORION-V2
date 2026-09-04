@@ -1,0 +1,70 @@
+{
+  "schema_version": "orion.v2.e40-ranker-shipping.design.v1",
+  "design": "E40_RANKER_SHIPPING_REANALYSIS_DESIGN_V1",
+  "class": "registered re-analysis over the frozen m2/m3 chain tuples; zero model calls, zero native runs; the m4 shipping lever pulled again with the out-of-sample ranker the channel-information-bound analysis found",
+  "inputs": {
+    "tuples": "rollup-e40-channel-ib/E40_CHANNEL_IB_TUPLES_V1.json",
+    "tuples_sha256": "b96d7f7857ed7740e65e95eab9a7c7ad1219874ce75895bb0cd8cb49dbc6d0d6",
+    "ib_rollup": "rollup-e40-channel-ib/E40_CHANNEL_IB_ROLLUP_V1.json",
+    "pairing": "each F2 chain (m2: 12, m3: 12) pairs to the m2 F0 chain of the same (dataset, rep) -- the pairing the m2/m3 receipts use, asserted by control M2_M3_PRIMARY_AND_CENSUS_REPRODUCED"
+  },
+  "attribution": {
+    "stage": "SELECTION_OPERATOR (shipping)",
+    "evidence": "m3: both_final and both_best are null, only F0_best - F2_final separates; m4: proxy shipping by pooled_biological_evaluation alone does not eliminate the drag; IB: a leave-one-chain-out ridge ranker on the visible fields ranks truth out of sample (FB8 rho 0.220 p 0.019, FB8+CFG rho 0.392 p 0.0005) -- so an operator strictly better than m4's single proxy exists and has never been used as the shipping operator"
+  },
+  "lever": "ship the cycle the LOCO ranker predicts best instead of the loop's last cycle; the ranker is fitted on the other 35 chains and never sees the chain it ships for; the same operator is applied to F0 for the matched-operator contrast",
+  "constants": {
+    "kinds": ["FB8", "CFG", "FB8+CFG"],
+    "primary_kind": "FB8+CFG",
+    "primary_kind_reason": "the controller's full visible information -- the feedback it received plus the configuration it chose; FB8 and CFG are reported alongside and are not gate-bearing",
+    "ridge_lambda": 1.0,
+    "signflip_n": 4000,
+    "signflip_seed": 20260904,
+    "plant_seed": 20260904,
+    "plant_noise_sd_fraction": 0.25,
+    "plant_min_recovered_fraction": 0.75,
+    "nullcal": {"reps": 100, "flips": 400, "seed": 20260903, "band": [0.02, 0.09]},
+    "alpha": 0.05,
+    "rs2_min_recovered_fraction": 0.5
+  },
+  "contrasts": {
+    "convention": "d = F0_x - F2_y on wasserstein_distance.mean (lower is better); negative d => F2 worse; 'improvement' = F2_final - F2_ship (> 0 => the lever helped)",
+    "P0": "F0_best - F2_final -- the registered m-series primary; reproduced as a control",
+    "P1": "F0_best - F2_ship[primary] -- the drag under ranker shipping",
+    "P2": "F2_final - F2_ship[primary] -- the lever's effect (gate-bearing)",
+    "P3": "F0_ship[primary] - F2_ship[primary] -- both arms shipped by the same operator (fair)",
+    "P4": "F0_best - F2_best -- oracle both sides (the ceiling of any shipping operator; m3 reports it null)",
+    "recoverable": "F2_final - F2_best -- what any shipping operator could recover at most",
+    "recovered_fraction": "mean(P2) / mean(recoverable), pooled over 24 chains"
+  },
+  "controls_consumed_by_the_gates": [
+    {"control": "M2_M3_PRIMARY_AND_CENSUS_REPRODUCED", "rule": "F0_best - F2_final reproduces -0.008979 (m2) and -0.007414 (m3) to 1e-6, and the F0 best-of-4 regime census reproduces 5/4/3 -- ties the pairing to the frozen receipts"},
+    {"control": "RECOVERABLE_IMPROVEMENT_EXISTS", "rule": "mean(F2_final - F2_best) > 0 pooled and >= 12 of 24 chains have a better earlier cycle -- the contrast could exist"},
+    {"control": "PLANTED_SIGNAL_SHIPS", "rule": "run_time := truth + N(0, 0.25 sd) on a copy (seed 20260904); FB8 ranker shipping must recover >= 0.75 of the recoverable improvement pooled -- the pipeline can ship on an informative channel"},
+    {"control": "NULL_CALIBRATION", "rule": "100 within-chain truth shuffles (seed 20260903), each tested by RS1's own statistic on the primary kind at 400 flips; rejection rate at alpha in [0.02, 0.09]"}
+  ],
+  "gates": {
+    "RS0_CONTROLS_VALID": "all four controls PASS; a failed control refuses every gate (exit 4)",
+    "RS1_SHIPPING_LEVER_HELPS": "pooled mean(P2) > 0 with one-sided sign-flip p <= 0.05 (4000 flips, seed 20260904)",
+    "RS2_RECOVERS_HALF_OR_MORE": "RS1 fired and recovered_fraction >= 0.5",
+    "RS3_reported": "P1 pooled: is the drag still significantly negative under ranker shipping (one-sided p <= 0.05)?",
+    "RS4_reported": "P3 pooled: the matched-operator contrast"
+  },
+  "routing": [
+    {"condition": "RS0 fails", "terminal": "CANNOT_CHECK__CONTROL_FAILED", "exit": 4},
+    {"condition": "RS1 and RS2", "terminal": "SHIPPING_OPERATOR_RECOVERS_HALF_OR_MORE_OF_THE_DRAG__PROSPECTIVE_SHIPPING_LINE_WARRANTED", "licenses": "only a prospectively frozen new line whose shipping operator is the ranker; no revival claim, m6 not authorized"},
+    {"condition": "RS1 and not RS2", "terminal": "SHIPPING_OPERATOR_HELPS_BUT_THE_DRAG_STANDS__PARTIAL", "reading": "intermediate; the residual is attributed to the loop's per-cycle configuration choices, not to shipping"},
+    {"condition": "not RS1", "terminal": "SHIPPING_LEVER_EXHAUSTED__NO_OOS_RANKER_ON_VISIBLE_FIELDS_SHIPS_BETTER_THAN_THE_LOOPS_FINAL", "reading": "the shipping lever class is saturated on this substrate"}
+  ],
+  "pre_run_reachability_audit": {
+    "seed_does_something": "sign flips, the plant, the null-calibration shuffles",
+    "hard_gate_at_scale": "36 LOCO fits per kind, 100 null reps x 36 fits; pure Python, no crash path",
+    "contrast_could_exist": "asserted by RECOVERABLE_IMPROVEMENT_EXISTS (must-match)",
+    "clause_narrowing": "the runner evaluates exactly the gates above; the selftest asserts the constants here equal the script's",
+    "parent_isolation": "none -- P3 applies the identical operator to both arms; P1 keeps the registered oracle parent so the claim stays comparable with m2/m3/m4",
+    "unfailable_clause": "RS2 cannot fire without RS1 (selftest-asserted)"
+  },
+  "pre_run_expectation_disclosed": "the IB rollup's top-1 hit rates (0.39-0.42 against 0.25 chance) were seen before this design was written; they suggest partial recovery. Stated so that neither a partial nor an exhausted outcome can be read afterwards as a surprise.",
+  "no_rescue_clause": "no constant, kind, gate, threshold, seed, pairing or routing row may change after the rollup is computed",
+  "authority": {"revives_e40": false, "authorizes_m6": false, "alters_e40_closure": false, "grants_field_status": false, "grants_scientific_truth": false}
+}
