@@ -67,8 +67,38 @@
   {
    "id": "SEP",
    "statement": "procedure-learner vs large-exposure approximator separation",
-   "falsifier": "none registered: test NOT_FROZEN (theory/OCM_SEPARATION_TEST_DESIGN_V1.md)",
-   "falsified_by": "n/a until a test is frozen"
+   "falsifier": "none registered: test NOT_FROZEN; theory/OCM_SEPARATION_TEST_REAUDIT_V2.md Theorem N2 shows condition (1) is unsatisfiable for any class with an unrestricted comparator",
+   "falsified_by": "a registered comparator class that excludes no strategy of the procedure-learner and still yields PASS/FAIL on some finite class (would refute N2 ii)"
+  },
+  {
+   "id": "L200-R0",
+   "statement": "coordinate rectangularity: registered classes pass, planted coupled classes fail",
+   "falsifier": "reference/ocm_nonrectangular_class_exact.py \u00a7A: 2,048 registered worlds must pass R0, 648 planted must fail",
+   "falsified_by": "a committed class failing R0, or a planted coupled class passing it"
+  },
+  {
+   "id": "L200-N1",
+   "statement": "non-rectangular does not imply non-decomposable; the three planted classes have I = 0; pointer-chasing has I = 1",
+   "falsifier": "same checker \u00a7B: two exact solvers must agree; every optimal strategy simulated on every world; existence witness on the pointer control; mutation M1 (formula cost) and M4 (no warrant queries) asserted applied",
+   "falsified_by": "a planted class whose simulated sequential strategy beats the certified joint tree, or a pointer control on which the procedure reports I = 0"
+  },
+  {
+   "id": "VSW-R",
+   "statement": "VSW(X, C) rectangular <=> agreement label-independent <=> C affine",
+   "falsifier": "same checker \u00a7C: exhaustive census over 15 + 255 + 65,535 classes; off-diagonal counts must be 0; mutations M2 (subspace test on a coset) and M3 (empty-sample label-independence) asserted applied",
+   "falsified_by": "any class on <= 4 points that is affine and label-dependent, or non-affine and label-independent; at larger sizes, a hand counterexample to (a) => (c)"
+  },
+  {
+   "id": "VSW-ATMS",
+   "statement": "the VSW warrant profile is the ATMS label induced by the hypothesis class",
+   "falsifier": "same checker: rcl_model.live on the minimal-specifying-set antichain must equal the direct version-space evaluator on every (world, x, R) cell (78,848 cells)",
+   "falsified_by": "one mismatched cell"
+  },
+  {
+   "id": "VSW-S5",
+   "statement": "SINGLETONS_5 is non-rectangular with certified interaction term 1 (joint 8 = counting bound, B-first 9, Z-first 9); liveness queries are subset queries",
+   "falsifier": "same checker \u00a7D: joint tree simulated on 160 worlds; sequential costs by solvers A and B agreeing and composite strategies simulated; subset-query identity on 400 cells with the 25 elimination cells stated",
+   "falsified_by": "a simulated sequential strategy of cost 8, or an identity cell failing"
   }
  ]
 }
