@@ -55,13 +55,18 @@
       "depends_on": [
         "FM00"
       ],
-      "status": "DESIGN_FROZEN_DEVELOPMENT_COMPLETE_PROTECTED_PENDING",
+      "status": "EXECUTED_PROTECTED",
       "exact_study": {
         "design": "research/experiments/fm-exact/FM30_FORMAL_CONCEPT_REVISION_EXACT_STUDY_DESIGN_V1.{md,json}",
         "code": "research/experiments/fm-exact/fm30_suite.py",
         "parent_fidelity": "research/experiments/fm-exact/FM_PARENT_FIDELITY_RECEIPT_FM30_V1.md",
-        "protected_tasks": 100
-      }
+        "pre_run_audit": "research/experiments/fm-exact/FM30_PRE_RUN_AUDIT_V1.md",
+        "protected_tasks": 100,
+        "note": "the development terminal carried G2_ANTI_PERMISSIVENESS at CANNOT_CHECK (1 instance evaluated, minimum 10); the protected split evaluates it on 36 in-scope instances and it PASSES"
+      },
+      "terminal": "PARENT_SUFFICIENT",
+      "terminal_detail": "G1a_PARENT_REPRODUCES_M FAILS at identity 0.920: M 0.920 vs F0 1.000, paired diff -0.080, exact p = 0.0078. The route is PARENT_SUFFICIENT because M shows no advantage, not because the parent reproduces M.",
+      "outcome_receipt": "research/experiments/fm-exact/FM30_OUTCOME_RECEIPT.md"
     },
     {
       "id": "FM40",
@@ -152,6 +157,8 @@
         "S8: zero FM80-eligible cases, not merely fewer than 90"
       ],
       "not_inherited_from": "SD80 terminated INSUFFICIENT_ELIGIBLE_NATURALISTIC_CASES on PC-R7's internal-vs-external population condition, which is a different requirement; SD80 records FM80 eligibility as PENDING for every case",
+      "single_blocking_artifact": "FM80 protocol S7: at least two qualified adjudicators per domain who did not build the evaluated arm. It is strictly harder than S3(c) (which has a prospective-discovery-criterion escape hatch) and S4 (an engineering freeze), and it is UPSTREAM of S4: S4's fourth remoteness condition itself requires an independent adjudicator to accept the donor as scientifically relevant, so freezing K, the corpus snapshot and the retrieval baseline does not unblock S4. The protocol names this outcome CANNOT_CHECK_INDEPENDENT_ADJUDICATION in S10.",
+      "verification": "receipt independently re-checked clause by clause against the frozen protocol 2026-09-03; disposition stands, two reporting imprecisions corrected in the receipt's section 6",
       "receipt": "research/experiments/fm-exact/FM80_BLOCKED_WITH_REASON_RECEIPT.md"
     },
     {

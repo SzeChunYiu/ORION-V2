@@ -1,5 +1,14 @@
 # FM30 — Parent Fidelity Receipt and Development-Split Summary (V1)
 
+> **SUPERSEDED IN PART, 2026-09-03.** The status line below was true when this
+> receipt was written and is no longer true. FM30's protected run has since been
+> executed under `PROTECTED_RUN_AUTHORIZATION_ARCHIVED_FM30.json`; the terminal
+> now stands on `FM30_OUTCOME_RECEIPT.md` (100 protected instances, route
+> `PARENT_SUFFICIENT`, `G2_ANTI_PERMISSIVENESS` PASS on 36 in-scope instances,
+> `G1a_PARENT_REPRODUCES_M` FAIL at identity 0.920). **Everything below this line
+> describes the development split only and must not be read as this study's
+> terminal.** The parent-fidelity and frozen-hash content remains valid.
+
 **Status:** development artifacts only. **No protected outcome has been generated
 or inspected.** `PROTECTED_RUN_AUTHORIZATION.json` is absent, so
 `fm_run.py FM30 protected` refuses (exit 3), asserted by test.

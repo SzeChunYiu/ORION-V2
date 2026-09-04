@@ -1,0 +1,924 @@
+{
+  "cost": {
+    "M_wall_ms": 5.935414,
+    "P_wall_ms": 24.415959,
+    "flag": "COST_ADVANTAGE_M",
+    "ratio_P_over_M": 4.113606734087968,
+    "rule": "wall-clock flag at 2x; reported only, routes nothing"
+  },
+  "custody_sha256": "359e594211054635bfaf592c8a9cb12a61722da8be7186ff70ebbed9d8009810",
+  "gates": [
+    {
+      "applicable": true,
+      "detail": {
+        "fixtures": [
+          {
+            "expected": "NO_CHANGE",
+            "name": "KA-01-NO_CHANGE",
+            "oracle": "NO_CHANGE",
+            "passed": true
+          },
+          {
+            "expected": "SPECIALIZE",
+            "name": "KA-02-SPECIALIZE",
+            "oracle": "SPECIALIZE",
+            "passed": true
+          },
+          {
+            "expected": "SPLIT",
+            "name": "KA-03-SPLIT",
+            "oracle": "SPLIT",
+            "passed": true
+          },
+          {
+            "expected": "MERGE",
+            "name": "KA-04-MERGE",
+            "oracle": "MERGE",
+            "passed": true
+          },
+          {
+            "expected": "MERGE",
+            "name": "KA-09-PRECEDENCE_MERGE_OVER_SPECIALIZE",
+            "oracle": "MERGE",
+            "passed": true
+          },
+          {
+            "expected": "BRIDGE",
+            "name": "KA-05-BRIDGE",
+            "oracle": "BRIDGE",
+            "passed": true
+          },
+          {
+            "expected": "NO_CHANGE",
+            "name": "KA-06-EMPTY_INCIDENCE",
+            "oracle": "NO_CHANGE",
+            "passed": true
+          },
+          {
+            "expected": "NO_CHANGE",
+            "name": "KA-07-FULL_INCIDENCE",
+            "oracle": "NO_CHANGE",
+            "passed": true
+          },
+          {
+            "expected": "SPECIALIZE",
+            "name": "KA-08-SPECIALIZE_ON_A_SINGLETON",
+            "oracle": "SPECIALIZE",
+            "passed": true
+          }
+        ]
+      },
+      "gate": "G0a_KNOWN_ANSWER",
+      "hard": true,
+      "min_required_evaluated": 8,
+      "n_evaluated": 9,
+      "n_violations": 0,
+      "rule": "every hand-authored fixture's disposition is reproduced by the exhaustive oracle",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "n_disagreements": 0,
+        "n_evaluated": 100
+      },
+      "gate": "G0b_ORACLE_SELF_AGREEMENT",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 100,
+      "n_violations": 0,
+      "rule": "exhaustive enumeration and the independent branch-and-bound search agree on disposition, min_missing, optimal profile and optimal-map count for every instance of the split",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "constant_arm_rates": {
+          "C_ALWAYS_NO_CHANGE": 0.12,
+          "C_ALWAYS_SPECIALIZE": 0.2
+        },
+        "random_rate": 0.07,
+        "shuffled_label_null": {
+          "exact_against_shuffled": 12,
+          "n": 100,
+          "rate": 0.12,
+          "seed": 20260902
+        },
+        "violations": []
+      },
+      "gate": "G0c_NULL_CALIBRATION",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 4,
+      "n_violations": 0,
+      "rule": "constant-response arms <= 0.4, random arm <= 0.4, M against within-split shuffled oracle labels <= 0.4",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "below_minimum": {},
+        "counts": {
+          "BRIDGE": 20,
+          "MERGE": 20,
+          "SPECIALIZE": 20,
+          "SPLIT": 20
+        },
+        "minimum": 3
+      },
+      "gate": "G0d_DECOY_COVERAGE",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 4,
+      "n_violations": 0,
+      "rule": "every registered decoy family carries >= 3 instances in the split",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "planted": [
+          {
+            "description": "a deliberately non-idempotent 'closure' (one derivation instead of two) must produce a different concept set from NextClosure",
+            "fired": true,
+            "gate": "G0b_ORACLE_SELF_AGREEMENT",
+            "name": "a_broken_closure_operator_is_detected"
+          },
+          {
+            "description": "a deliberately wrong expected transition must fail the comparison",
+            "fired": true,
+            "gate": "G0a_KNOWN_ANSWER",
+            "name": "wrong_expected_transition_is_detected"
+          },
+          {
+            "description": "M_MINUS_OLD_CASE_RETENTION must report retention_ok on an instance where the oracle says retention fails, if any such instance exists",
+            "fired": true,
+            "gate": "G2_ANTI_PERMISSIVENESS",
+            "name": "retention_violating_arm_is_detected"
+          },
+          {
+            "description": "a synthetic all-ceiling per-arm table must FAIL the gate",
+            "fired": true,
+            "gate": "G0f_FAMILY_DISCRIMINATION",
+            "name": "degenerate_all_ceiling_split_is_detected"
+          },
+          {
+            "description": "M_MINUS_EXTENT_GEOMETRY must be wrong on a hand-built split where M is right",
+            "fired": true,
+            "gate": "G3_MECHANISM_BY_OMISSION",
+            "name": "extent_geometry_ablation_loses_the_split_family"
+          },
+          {
+            "description": "a revision on which two transition predicates hold must be classified by the registered precedence, with the full hold-set published rather than the losing predicate silently dropped",
+            "fired": true,
+            "gate": "G0a_KNOWN_ANSWER",
+            "name": "registered_precedence_is_exercised_and_the_hold_set_published"
+          }
+        ]
+      },
+      "gate": "G0e_PLANTED_POSITIVES",
+      "hard": true,
+      "min_required_evaluated": 3,
+      "n_evaluated": 6,
+      "n_violations": 0,
+      "rule": "every registered planted positive trips its own gate predicate",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "halves": {
+          "separating": {
+            "n_evaluated": 4,
+            "threshold": 0.85,
+            "violation": false,
+            "weak_arms_at_or_below_threshold": {
+              "M_MINUS_EXTENT_GEOMETRY": 0.6,
+              "P0_FIXED_LESSON_INJECTION": 0.4,
+              "P1_GALOIS_CLOSURE": 0.4,
+              "P3_ATTRIBUTE_EXPLORATION": 0.4
+            }
+          },
+          "solvable": {
+            "best_arm": "F0_PARENT_FEDERATION",
+            "best_rate": 1.0,
+            "n_evaluated": 10,
+            "threshold": 0.95,
+            "violation": false
+          }
+        },
+        "per_arm_exact": {
+          "C_ALWAYS_NO_CHANGE": 0.12,
+          "C_ALWAYS_SPECIALIZE": 0.2,
+          "C_RANDOM_TRANSITION": 0.07,
+          "F0_PARENT_FEDERATION": 1.0,
+          "M_F2_CONCEPTUAL_DEVELOPMENT_FULL": 0.92,
+          "M_MINUS_BRIDGE_DETECTION": 0.77,
+          "M_MINUS_CLOSURE_RECOMPUTATION": 0.72,
+          "M_MINUS_EXTENT_GEOMETRY": 0.6,
+          "M_MINUS_OLD_CASE_RETENTION": 0.64,
+          "P0_FIXED_LESSON_INJECTION": 0.4,
+          "P1_GALOIS_CLOSURE": 0.4,
+          "P2_LATTICE_ORDER_GEOMETRY": 0.6,
+          "P3_ATTRIBUTE_EXPLORATION": 0.4
+        }
+      },
+      "gate": "G0f_FAMILY_DISCRIMINATION",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 2,
+      "n_violations": 0,
+      "rule": "non-degenerate split, two independent halves: some arm >= 0.95 (not at floor) AND some registered weak arm <= 0.85 (not at ceiling); guards against the families that made FM/FG R2 uninformative",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "counter_liveness_control": {
+          "ablation_vs_parent_discordance": {
+            "M_MINUS_BRIDGE_DETECTION": 23,
+            "M_MINUS_CLOSURE_RECOMPUTATION": 28,
+            "M_MINUS_EXTENT_GEOMETRY": 40,
+            "M_MINUS_OLD_CASE_RETENTION": 36
+          },
+          "counter_is_live": true
+        },
+        "decision_identity_rate": 0.92,
+        "paired": {
+          "diff_x_minus_y": -0.08,
+          "discordant": 8,
+          "exact_p_two_sided": 0.0078125,
+          "n": 100,
+          "wald_ci95": [
+            -0.1331734670677021,
+            -0.0268265329322979
+          ],
+          "x_only": 0,
+          "y_only": 8
+        },
+        "per_family": {
+          "BRIDGE": {
+            "M_only_exact": 0,
+            "P_only_exact": 5,
+            "discordant": 5,
+            "n": 20
+          },
+          "MERGE": {
+            "M_only_exact": 0,
+            "P_only_exact": 2,
+            "discordant": 2,
+            "n": 20
+          },
+          "NO_CHANGE": {
+            "M_only_exact": 0,
+            "P_only_exact": 1,
+            "discordant": 1,
+            "n": 20
+          },
+          "SPECIALIZE": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 20
+          },
+          "SPLIT": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 20
+          }
+        },
+        "per_family_effective_allowance": {
+          "BRIDGE": 1,
+          "MERGE": 1,
+          "NO_CHANGE": 1,
+          "SPECIALIZE": 1,
+          "SPLIT": 1
+        },
+        "per_family_threshold_note": "the 5% per-family rule is reported with the integer number of discordant instances it actually permits at this family size; where that is 0 the rule is exactly 'no discordance in this family', which is what it is enforcing"
+      },
+      "gate": "G1a_PARENT_REPRODUCES_M",
+      "hard": true,
+      "min_required_evaluated": 1,
+      "n_evaluated": 100,
+      "n_violations": 1,
+      "rule": "F0_PARENT_FEDERATION reproduces M_F2_CONCEPTUAL_DEVELOPMENT_FULL's disposition on >= 99.5% of instances and no family exceeds 5% discordance; AND the discordance counter is shown live on this split by at least one ablation arm disagreeing with the parent",
+      "verdict": "FAIL"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "discordant_pairs": 8,
+        "paired": {
+          "diff_x_minus_y": -0.08,
+          "discordant": 8,
+          "exact_p_two_sided": 0.0078125,
+          "n": 100,
+          "wald_ci95": [
+            -0.1331734670677021,
+            -0.0268265329322979
+          ],
+          "x_only": 0,
+          "y_only": 8
+        },
+        "per_family": {
+          "BRIDGE": {
+            "M_only_exact": 0,
+            "P_only_exact": 5,
+            "discordant": 5,
+            "n": 20
+          },
+          "MERGE": {
+            "M_only_exact": 0,
+            "P_only_exact": 2,
+            "discordant": 2,
+            "n": 20
+          },
+          "NO_CHANGE": {
+            "M_only_exact": 0,
+            "P_only_exact": 1,
+            "discordant": 1,
+            "n": 20
+          },
+          "SPECIALIZE": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 20
+          },
+          "SPLIT": {
+            "M_only_exact": 0,
+            "P_only_exact": 0,
+            "discordant": 0,
+            "n": 20
+          }
+        }
+      },
+      "gate": "G1b_M_ADVANTAGE",
+      "hard": false,
+      "min_required_evaluated": 1,
+      "n_evaluated": 100,
+      "n_violations": 1,
+      "rule": "paired instance-exact difference (M_F2_CONCEPTUAL_DEVELOPMENT_FULL - F0_PARENT_FEDERATION) > 0, exact two-sided p <= 0.05, and >= 1 family with >= 5 M-only-exact instances",
+      "verdict": "NOT_FIRED"
+    },
+    {
+      "applicable": true,
+      "detail": {
+        "M_unsafe_claims": 0,
+        "P_unsafe_claims": 0,
+        "counter_liveness_control": {
+          "counter_is_live": true,
+          "max_any_arm": 36,
+          "unsafe_claims_by_arm": {
+            "C_ALWAYS_NO_CHANGE": 36,
+            "C_ALWAYS_SPECIALIZE": 36,
+            "C_RANDOM_TRANSITION": 23,
+            "F0_PARENT_FEDERATION": 0,
+            "M_F2_CONCEPTUAL_DEVELOPMENT_FULL": 0,
+            "M_MINUS_BRIDGE_DETECTION": 0,
+            "M_MINUS_CLOSURE_RECOMPUTATION": 0,
+            "M_MINUS_EXTENT_GEOMETRY": 0,
+            "M_MINUS_OLD_CASE_RETENTION": 36,
+            "P0_FIXED_LESSON_INJECTION": 0,
+            "P1_GALOIS_CLOSURE": 0,
+            "P2_LATTICE_ORDER_GEOMETRY": 0,
+            "P3_ATTRIBUTE_EXPLORATION": 0
+          }
+        },
+        "n_in_scope": 36,
+        "unsafe_endpoint": "old-valid-case loss claimed as retained"
+      },
+      "gate": "G2_ANTI_PERMISSIVENESS",
+      "hard": true,
+      "min_required_evaluated": 10,
+      "n_evaluated": 36,
+      "n_violations": 0,
+      "rule": "on the instances in scope, M_F2_CONCEPTUAL_DEVELOPMENT_FULL makes no more unsafe claims (old-valid-case loss claimed as retained) than F0_PARENT_FEDERATION; AND the counter is shown live on those same instances by at least one arm registering a nonzero count",
+      "verdict": "PASS"
+    },
+    {
+      "applicable": false,
+      "detail": {
+        "checks": {},
+        "claimed_families": []
+      },
+      "gate": "G3_MECHANISM_BY_OMISSION",
+      "hard": false,
+      "min_required_evaluated": 1,
+      "n_evaluated": 0,
+      "n_violations": 0,
+      "rule": "for every family with a claimed M advantage, the matching omission ablation's exact rate is <= the parent's on that family",
+      "verdict": "NOT_APPLICABLE"
+    }
+  ],
+  "generator_rejections": {
+    "BRIDGE": 178,
+    "MERGE": 38,
+    "NO_CHANGE": 2,
+    "SPECIALIZE": 16,
+    "SPLIT": 79
+  },
+  "holm_across_families": {
+    "BRIDGE": {
+      "holm_p": 0.3125,
+      "m": 5,
+      "rank": 1,
+      "raw_p": 0.0625
+    },
+    "MERGE": {
+      "holm_p": 1.0,
+      "m": 5,
+      "rank": 2,
+      "raw_p": 0.5
+    },
+    "NO_CHANGE": {
+      "holm_p": 1.0,
+      "m": 5,
+      "rank": 3,
+      "raw_p": 1.0
+    },
+    "SPECIALIZE": {
+      "holm_p": 1.0,
+      "m": 5,
+      "rank": 4,
+      "raw_p": 1.0
+    },
+    "SPLIT": {
+      "holm_p": 1.0,
+      "m": 5,
+      "rank": 5,
+      "raw_p": 1.0
+    }
+  },
+  "label": "PROTECTED",
+  "n_instances": 100,
+  "results_sha256": "15f4895d7309b3ea8ed529a599b53e0e7712b9aab042444d2b0a159fc6d98fb0",
+  "route": {
+    "cost_flag": "COST_ADVANTAGE_M",
+    "reason": "no significant M advantage over the strongest faithful parent",
+    "route": "PARENT_SUFFICIENT"
+  },
+  "schema_version": "orion.v2.fm-exact.analysis.v1",
+  "score": {
+    "per_arm": {
+      "C_ALWAYS_NO_CHANGE": {
+        "exact": 12,
+        "exact_rate": 0.12,
+        "n": 100,
+        "over_accept": 36,
+        "per_family": {
+          "BRIDGE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          },
+          "MERGE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          },
+          "NO_CHANGE": {
+            "exact": 12,
+            "exact_rate": 0.6,
+            "n": 20
+          },
+          "SPECIALIZE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          },
+          "SPLIT": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.066036
+      },
+      "C_ALWAYS_SPECIALIZE": {
+        "exact": 20,
+        "exact_rate": 0.2,
+        "n": 100,
+        "over_accept": 36,
+        "per_family": {
+          "BRIDGE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          },
+          "MERGE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          },
+          "NO_CHANGE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          },
+          "SPECIALIZE": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          },
+          "SPLIT": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.037788
+      },
+      "C_RANDOM_TRANSITION": {
+        "exact": 7,
+        "exact_rate": 0.07,
+        "n": 100,
+        "over_accept": 23,
+        "per_family": {
+          "BRIDGE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          },
+          "MERGE": {
+            "exact": 2,
+            "exact_rate": 0.1,
+            "n": 20
+          },
+          "NO_CHANGE": {
+            "exact": 1,
+            "exact_rate": 0.05,
+            "n": 20
+          },
+          "SPECIALIZE": {
+            "exact": 2,
+            "exact_rate": 0.1,
+            "n": 20
+          },
+          "SPLIT": {
+            "exact": 2,
+            "exact_rate": 0.1,
+            "n": 20
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.968543
+      },
+      "F0_PARENT_FEDERATION": {
+        "exact": 100,
+        "exact_rate": 1.0,
+        "n": 100,
+        "over_accept": 0,
+        "per_family": {
+          "BRIDGE": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          },
+          "MERGE": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          },
+          "NO_CHANGE": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          },
+          "SPECIALIZE": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          },
+          "SPLIT": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 24.415959
+      },
+      "M_F2_CONCEPTUAL_DEVELOPMENT_FULL": {
+        "exact": 92,
+        "exact_rate": 0.92,
+        "n": 100,
+        "over_accept": 0,
+        "per_family": {
+          "BRIDGE": {
+            "exact": 15,
+            "exact_rate": 0.75,
+            "n": 20
+          },
+          "MERGE": {
+            "exact": 18,
+            "exact_rate": 0.9,
+            "n": 20
+          },
+          "NO_CHANGE": {
+            "exact": 19,
+            "exact_rate": 0.95,
+            "n": 20
+          },
+          "SPECIALIZE": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          },
+          "SPLIT": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 5.935414
+      },
+      "M_MINUS_BRIDGE_DETECTION": {
+        "exact": 77,
+        "exact_rate": 0.77,
+        "n": 100,
+        "over_accept": 0,
+        "per_family": {
+          "BRIDGE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          },
+          "MERGE": {
+            "exact": 18,
+            "exact_rate": 0.9,
+            "n": 20
+          },
+          "NO_CHANGE": {
+            "exact": 19,
+            "exact_rate": 0.95,
+            "n": 20
+          },
+          "SPECIALIZE": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          },
+          "SPLIT": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 5.382128
+      },
+      "M_MINUS_CLOSURE_RECOMPUTATION": {
+        "exact": 72,
+        "exact_rate": 0.72,
+        "n": 100,
+        "over_accept": 0,
+        "per_family": {
+          "BRIDGE": {
+            "exact": 15,
+            "exact_rate": 0.75,
+            "n": 20
+          },
+          "MERGE": {
+            "exact": 18,
+            "exact_rate": 0.9,
+            "n": 20
+          },
+          "NO_CHANGE": {
+            "exact": 19,
+            "exact_rate": 0.95,
+            "n": 20
+          },
+          "SPECIALIZE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          },
+          "SPLIT": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 5.215454
+      },
+      "M_MINUS_EXTENT_GEOMETRY": {
+        "exact": 60,
+        "exact_rate": 0.6,
+        "n": 100,
+        "over_accept": 0,
+        "per_family": {
+          "BRIDGE": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          },
+          "MERGE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          },
+          "NO_CHANGE": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          },
+          "SPECIALIZE": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          },
+          "SPLIT": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 1.131164
+      },
+      "M_MINUS_OLD_CASE_RETENTION": {
+        "exact": 64,
+        "exact_rate": 0.64,
+        "n": 100,
+        "over_accept": 36,
+        "per_family": {
+          "BRIDGE": {
+            "exact": 10,
+            "exact_rate": 0.5,
+            "n": 20
+          },
+          "MERGE": {
+            "exact": 9,
+            "exact_rate": 0.45,
+            "n": 20
+          },
+          "NO_CHANGE": {
+            "exact": 15,
+            "exact_rate": 0.75,
+            "n": 20
+          },
+          "SPECIALIZE": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          },
+          "SPLIT": {
+            "exact": 10,
+            "exact_rate": 0.5,
+            "n": 20
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 5.366825
+      },
+      "P0_FIXED_LESSON_INJECTION": {
+        "exact": 40,
+        "exact_rate": 0.4,
+        "n": 100,
+        "over_accept": 0,
+        "per_family": {
+          "BRIDGE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          },
+          "MERGE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          },
+          "NO_CHANGE": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          },
+          "SPECIALIZE": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          },
+          "SPLIT": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 0.66142
+      },
+      "P1_GALOIS_CLOSURE": {
+        "exact": 40,
+        "exact_rate": 0.4,
+        "n": 100,
+        "over_accept": 0,
+        "per_family": {
+          "BRIDGE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          },
+          "MERGE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          },
+          "NO_CHANGE": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          },
+          "SPECIALIZE": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          },
+          "SPLIT": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 1.496625
+      },
+      "P2_LATTICE_ORDER_GEOMETRY": {
+        "exact": 60,
+        "exact_rate": 0.6,
+        "n": 100,
+        "over_accept": 0,
+        "per_family": {
+          "BRIDGE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          },
+          "MERGE": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          },
+          "NO_CHANGE": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          },
+          "SPECIALIZE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          },
+          "SPLIT": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 14.808418
+      },
+      "P3_ATTRIBUTE_EXPLORATION": {
+        "exact": 40,
+        "exact_rate": 0.4,
+        "n": 100,
+        "over_accept": 0,
+        "per_family": {
+          "BRIDGE": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          },
+          "MERGE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          },
+          "NO_CHANGE": {
+            "exact": 20,
+            "exact_rate": 1.0,
+            "n": 20
+          },
+          "SPECIALIZE": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          },
+          "SPLIT": {
+            "exact": 0,
+            "exact_rate": 0.0,
+            "n": 20
+          }
+        },
+        "under_accept": 0,
+        "wall_ms": 14.177248
+      }
+    }
+  },
+  "suite": "FM30",
+  "unchecked_hard_gates": []
+}
