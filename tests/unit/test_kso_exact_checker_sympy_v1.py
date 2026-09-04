@@ -133,3 +133,58 @@ def test_without_sympy_the_checker_answers_cannot_check(tmp_path):
     env = {"PYTHONPATH": str(tmp_path), "PATH": "/usr/bin:/bin"}
     r = subprocess.run([sys.executable, str(MOD), "--self-test"], capture_output=True, text=True, env=env)
     assert r.returncode == 2 and "SymPy is not importable" in r.stdout
+
+
+# ---- agreement with lane-ocm-3's quadratic generator/oracle on the 30 dev instances -------------
+# A disagreement is attributed per instance, never averaged. Skips with an explicit PENDING reason
+# while `reference/kso_algebra_quadratic_v1.py` is not on the branch; that skip is reported in the PR.
+
+ALGEBRA = ROOT / "research" / "orion-machine" / "reference" / "kso_algebra_quadratic_v1.py"
+
+
+def _load_algebra():
+    if not ALGEBRA.exists():
+        pytest.skip(f"PENDING: {ALGEBRA.name} (lane-ocm-3) is not on this branch; agreement not run")
+    spec = importlib.util.spec_from_file_location("kso_algebra_quadratic_v1", ALGEBRA)
+    mod = importlib.util.module_from_spec(spec)
+    sys.modules["kso_algebra_quadratic_v1"] = mod
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def test_checker_agrees_with_the_quadratic_oracle_on_every_dev_instance(m):
+    alg = _load_algebra()
+    gen = getattr(alg, "generate_split", None) or getattr(alg, "generate_dev", None) or getattr(alg, "dev_instances", None)
+    assert gen is not None, "kso_algebra_quadratic_v1 exposes no generate_split/generate_dev/dev_instances"
+    try:
+        instances = gen("dev", "ALGEBRA-DEV-20260904")
+    except TypeError:
+        instances = gen()
+    assert len(instances) == 30, len(instances)
+    disagreements = []
+    decided = 0
+    for it in instances:
+        inst = it[0] if isinstance(it, tuple) else it
+        out = alg.oracle(inst)
+        status = getattr(out, "status", None) or (out.get("status") if isinstance(out, dict) else "DECIDED")
+        roots = getattr(out, "roots", None) if not isinstance(out, dict) else out.get("roots")
+        bindings = inst.bindings() if callable(getattr(inst, "bindings", None)) else {"a": str(inst.a), "b": str(inst.b), "c": str(inst.c)}
+        expr = inst.expr() if callable(getattr(inst, "expr", None)) else "(a)*x**2 + (b)*x + (c)"
+        instance = {"instance_id": inst.instance_id, "bindings": bindings}
+        if status == "CANNOT_CHECK" or not roots:
+            # the oracle declines (NO_EQUATION etc.): the checker must not warrant any root either
+            r = m.check(atom(f"{inst.instance_id}:probe", "0", "C", expr=expr), instance)
+            if r["status"] == "VALID" and status == "CANNOT_CHECK":
+                disagreements.append((inst.instance_id, "oracle CANNOT_CHECK but checker VALID on x=0"))
+            continue
+        for k, root in enumerate(roots):
+            r = m.check(atom(f"{inst.instance_id}:root{k}", str(root), "C", expr=expr), instance)
+            decided += 1
+            if r["status"] != "VALID":
+                disagreements.append((inst.instance_id, f"oracle root {root} -> checker {r['status']}: {r['witness'].get('reason')}"))
+        # a planted wrong root on the same instance must be INVALID (Vieta-rejected on their side)
+        wrong = m.check(atom(f"{inst.instance_id}:wrong", f"({roots[0]}) + 1", "C", expr=expr), instance)
+        if wrong["status"] == "VALID":
+            disagreements.append((inst.instance_id, "planted root+1 accepted as VALID"))
+    assert decided > 0
+    assert not disagreements, "\n".join(f"{i}: {why}" for i, why in disagreements)
