@@ -14,6 +14,8 @@ assert spec.loader is not None
 sys.modules[spec.name] = m
 spec.loader.exec_module(m)
 
+CTX = dict(capacity=2, task_family="F", state_digest="z", checker_id="checker", scope="S", epoch="e")
+
 
 def test_every_deterministic_capacity_limited_selector_has_a_relevance_relabeling_miss():
     r = m.deterministic_impossibility(4, 2)
@@ -32,9 +34,24 @@ def test_certificate_is_exact_sufficient_condition_and_fails_closed():
     ok, union = m.union_condition(possible, 2)
     assert ok and union == {"a", "b"}
     cert = m.ExtractionCoverageCertificate(union, 2, "F", "z", "checker", "S", "e")
-    assert cert.validate(possible) == "CERTIFIED"
+    assert cert.validate(possible, **CTX) == "CERTIFIED"
     bad = m.ExtractionCoverageCertificate(frozenset({"a"}), 2, "F", "z", "checker", "S", "e")
-    assert bad.validate(possible) == "COVERAGE_NOT_PROVED"
+    assert bad.validate(possible, **CTX) == "COVERAGE_NOT_PROVED"
+
+
+def test_certificate_identity_drift_is_cannot_check():
+    possible = (frozenset({"a"}),)
+    cert = m.ExtractionCoverageCertificate(frozenset({"a"}), 2, "F", "z", "checker", "S", "e")
+    for key, value in {
+        "capacity": 3,
+        "task_family": "G",
+        "state_digest": "z2",
+        "checker_id": "checker2",
+        "scope": "T",
+        "epoch": "e2",
+    }.items():
+        ctx = dict(CTX); ctx[key] = value
+        assert cert.validate(possible, **ctx) == "CANNOT_CHECK_IDENTITY_DRIFT"
 
 
 def test_cli_terminal_and_non_novelty():
@@ -42,5 +59,6 @@ def test_cli_terminal_and_non_novelty():
     assert p.returncode == 0, p.stdout + p.stderr
     d = json.loads(p.stdout)
     assert d["status"] == "PASS"
+    assert d["result"]["certificate_identity_drift_dimensions_caught"] == 6
     assert d["result"]["terminal"] == "NO_UNIVERSAL_NO_DROP_WITHOUT_DISCRIMINATING_STRUCTURE"
     assert d["result"]["GENERAL_NOVELTY"] == "NOT_ESTABLISHED"
