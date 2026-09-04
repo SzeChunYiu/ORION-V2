@@ -1,0 +1,194 @@
+{
+  "base_sha": "24566f00a9dc4425a438fcfac05d13c6b2d903db",
+  "bound_sha256": {
+    "INTEGRATION_V1.json": "c8405647075b9e7053ae7554862e0b67f3095c9110b0322fd322bd8225b1bd70",
+    "OCM_ABSORPTION.md": "f0602809b089893d2ed512cf388f0d77e0cec17dd517b3be289ae154f192c126",
+    "README.md": "e38a7c321c4175a3995f490190adbf0917e4bf6e9cc8ff020f39257f9add7edf",
+    "SOURCES_AND_REVIEW.md": "d3fa52f42a0d43552944525e7a4cb52b3c43d115e08fbb8376393703ece84b05",
+    "THEORY.md": "448d43fd02d33a7e49c9bd8e08f528bf340d099929eb31855aa5a74e0759af79",
+    "frontier.py": "df5b3f0392ba1a5e6014e81cfe9675cf47481d1f9ebe80dc1b315601286bb23a",
+    "run_checks.py": "95f0cab06b0384649a30750e02b7e7b578a9ed7af7db7677f71554b93fbd3fcb",
+    "test_frontier.py": "0a8eb98bdd5f91fb566cfe74ce2f089431b5d6ac66255bf4912ebb11020f417f"
+  },
+  "commands": [
+    "python -m unittest -v test_frontier",
+    "python run_checks.py --verify"
+  ],
+  "execution_class": "EXACT_FORMAL_CALIBRATION_NOT_PROTECTED_EMPIRICAL",
+  "issue": 314,
+  "limitations": [
+    "whole repository tests not run",
+    "no proof assistant",
+    "no independent review",
+    "no OCM adapter parity",
+    "no authorized protected study",
+    "no main merge"
+  ],
+  "proof_grade": "WRITTEN_FINITE_FAMILY_PROOFS_PLUS_FINITE_CALIBRATION",
+  "record_environment": {
+    "host_class": "isolated Linux analysis container; not operator compute",
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+    "python": "3.13.5"
+  },
+  "schema": "ME-DF-RECEIPT-1",
+  "scientific_payload": {
+    "constant_signal_no_query": {
+      "beliefs_solved": 1,
+      "cost_by_cells": {
+        "1": "INFINITY"
+      },
+      "partitions_enumerated": 1,
+      "signal_symbols": [
+        "same"
+      ],
+      "witnesses": {},
+      "zero_query_cover": null
+    },
+    "correlated_joint_cost": "2",
+    "counterexamples": [
+      "pairwise compatibility is not whole-set compatibility",
+      "no unique coarsest sufficient partition for set-valued acceptable actions",
+      "correlation invalidates unrestricted direct sum",
+      "revoked observation can invalidate an old decision",
+      "unobserved history cannot be encoded as free advice"
+    ],
+    "finite_corpus": {
+      "bellman_cells": 38416,
+      "cover_frontier_equalities": 5488,
+      "finite_models": 4558,
+      "impossible_models": 930,
+      "models": 5488,
+      "subset_monotonicity_checks": 104272,
+      "tree_equalities": 5488,
+      "world_replays": 13674
+    },
+    "full_foundation_complete": false,
+    "independent_review": "NOT_OBTAINED",
+    "novelty": "NOT_ESTABLISHED",
+    "ocm_adoption": false,
+    "overlap_frontier": {
+      "beliefs_solved": 7,
+      "cost_by_cells": {
+        "1": "INFINITY",
+        "2": "0",
+        "3": "0"
+      },
+      "partitions_enumerated": 5,
+      "witnesses": {
+        "2": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "3": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      }
+    },
+    "partial_signal_frontier": {
+      "beliefs_solved": 9,
+      "cost_by_cells": {
+        "1": "5",
+        "2": "2"
+      },
+      "partitions_enumerated": 2,
+      "signal_symbols": [
+        "0",
+        "1"
+      ],
+      "witnesses": {
+        "1": [
+          [
+            "0",
+            "1"
+          ]
+        ],
+        "2": [
+          [
+            "0"
+          ],
+          [
+            "1"
+          ]
+        ]
+      },
+      "zero_query_cover": null
+    },
+    "proof_assistant": "NOT_RUN",
+    "two_bit_frontier": {
+      "beliefs_solved": 15,
+      "cost_by_cells": {
+        "1": "5",
+        "2": "2",
+        "3": "2",
+        "4": "0"
+      },
+      "partitions_enumerated": 15,
+      "witnesses": {
+        "1": [
+          [
+            0,
+            1,
+            2,
+            3
+          ]
+        ],
+        "2": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "3": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "4": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ]
+      }
+    },
+    "undetectable_assumption_failures": [
+      "omitted actual world despite declared closure",
+      "wrong observation from a supposedly deterministic trusted channel"
+    ],
+    "unit_tests": {
+      "errors": 0,
+      "failures": 0,
+      "run": 32,
+      "skipped": 0
+    }
+  },
+  "task": "ME-DECISION-FRONTIER-V1"
+}
