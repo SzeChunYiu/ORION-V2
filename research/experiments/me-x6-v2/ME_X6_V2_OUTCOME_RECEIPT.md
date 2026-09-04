@@ -150,6 +150,32 @@ selftest report (`reachability_audit`):
    at n = 1400 and would return `inf`, making a `p > α` hard gate incapable of failing.
    The selftest asserts the tail is finite at protected scale.
 
+## 5b. Addendum — G0c's 0.60 is a hand-set constant, and where the derivable bar is
+
+Recorded because a threshold with no derivation is the kind of constant a later generator
+change breaks silently, and because no known defect should ship undisclosed. **It changes
+no verdict here.**
+
+`G0c_NULL_CALIBRATION` requires that no constant arm reach **0.60** capability accuracy.
+The best constant arm, `C_ALWAYS_FLAT`, scored **0.5714** (800/1400), so the gate passed
+with 4.3 percentage points of margin. **0.60 is hand-set: it is not traceable to any
+optimisation and no derivation appears in the frozen design.**
+
+The bar that *is* derivable from the design, and which should be preferred by any
+successor, is the **modal-class rate of the registered strata**. Of the 14 strata, 8
+declare a capability direction of `FLAT`, 4 `RISE` and 2 `FALL`, so an arm that always
+answers with the modal class scores exactly **8/14 = 0.5714** — which is precisely what
+`C_ALWAYS_FLAT` achieved, to four decimals. The principled rule is therefore *"no constant
+arm exceeds the modal-class rate"*, computed from `STRATA` rather than written down, and
+0.60 happens to sit just above it. That equality is asserted in
+`test_the_null_calibration_bar_is_hand_set_and_the_derivable_bar_is_the_modal_class_rate`
+so a future stratum change moves the computed bar instead of silently loosening the gate.
+
+The load-bearing null evidence does not rest on the constant in any case: the exact upper
+tail of the best constant arm against a uniform-⅓ null is **2.5e−74**, and the constant arm
+is **42.9 pp** behind the comparator (0.5714 against 1.0000). The threshold is a guard
+against a degenerate suite, not the finding.
+
 ## 6. Custody and provenance
 
 - New run identity. Worktree cut from `origin/main` `ec3a13e`; `/usr/bin/git` for every

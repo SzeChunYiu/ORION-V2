@@ -215,6 +215,31 @@ def test_the_protected_authorization_was_archived_after_use():
         used["acknowledged_seed_commitment_sha256"]
 
 
+def test_the_null_calibration_bar_is_hand_set_and_the_derivable_bar_is_the_modal_class_rate():
+    """G0c's 0.60 has no derivation in the design. The bar that DOES follow from the
+    design is the modal-class rate over the registered strata, and the best constant arm
+    achieves it exactly. Asserted so a stratum change moves the computed bar instead of
+    silently loosening a hand-set one."""
+    from collections import Counter
+
+    from mex6_generator import STRATA
+    counts = Counter(v[0] for v in STRATA.values())
+    modal_rate = counts.most_common(1)[0][1] / len(STRATA)
+    assert (counts["FLAT"], counts["RISE"], counts["FALL"]) == (8, 4, 2)
+    assert modal_rate == pytest.approx(8 / 14)
+
+    a = protected_analysis()
+    best_constant = max(a["score"]["per_arm"][k]["capability_rate"]
+                        for k in ("C_ALWAYS_RISE", "C_ALWAYS_FLAT", "C_ALWAYS_FALL"))
+    assert best_constant == pytest.approx(modal_rate)
+    g = a["gates"]["G0c_NULL_CALIBRATION"]
+    assert g["pass"] is True
+    assert g["best_control_rate"] == pytest.approx(modal_rate)
+    # the load-bearing null evidence does not rest on the hand-set constant
+    assert g["exact_upper_tail_vs_uniform_third"] < 1e-50
+    assert a["score"]["per_arm"]["B8_CAPACITY_MATCHED_BEST"]["capability_rate"] - best_constant > 0.4
+
+
 def test_the_exact_binomial_tail_does_not_overflow_at_protected_scale():
     from fractions import Fraction
     v = R.binom_upper_tail(900, 1400, Fraction(1, 3))
