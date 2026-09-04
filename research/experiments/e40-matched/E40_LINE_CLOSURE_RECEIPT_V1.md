@@ -256,7 +256,9 @@ Precisely what that is and is not:
 
 ## 10. Custody of this receipt
 
-Lane branch `lane/e40-closure-20260903` (PR #253). Files: this receipt;
+Checker repair R1 + Stage-2e freeze: PR #253 (squash-merged to main as `93a1944` at freeze commit
+`b5498bd`, while the Stage-2e array was running). Amendment R1 + Stage-2e outcome + this receipt:
+PR #277 (`lane/e40-closure-outcome-20260904`, cut from that main). Files: this receipt;
 `E40_M5P_STAGE2C_CHECKER_REPAIR_RECEIPT_R1.md`; `E40_M5P_STAGE2E_OVERLAP_PRECONDITION_DESIGN_V1.{md,json}`;
 `E40_M5P_STAGE2E_OUTCOME_RECEIPT.md`; `rollup-m5p-stage2e/`; `e40_m5p_stage2e_overlap_precondition.py`;
 `sbatch/e40_m5p_stage2e_{r1,eval_r1}.sbatch`; `tests/unit/test_e40_m5p_stage2{c,e}.py`. Every number in
