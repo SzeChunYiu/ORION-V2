@@ -53,7 +53,7 @@ and its served-model gate held on every one of them. The drift was in channel *b
 at a *fixed* served id, and no registered gate in the programme observed it.
 
 R13 registers the request body by sha256 over its bytes, records the configuration per
-envelope, and gates over it with GR0d and GR0e. Four things were checked, not assumed:
+envelope, and gates over it with GR0d and GR0e. Five things were checked, not assumed:
 
 **(a) The gates hold across the full run, not just an early sample.** GR0d: 480/480
 envelopes carry a channel receipt, 1080/1080 calls report a contract, one distinct
