@@ -93,6 +93,13 @@ def test_local_search_is_dominated_at_every_ratio_on_the_development_split():
         assert ex["n_probes"] == ls["n_probes"] == 32          # published denominator
         assert ex["settle_rate"] == 1.0
         assert ls["settle_rate"] < 1.0
+        # A saturated rate is exactly the shape that cannot tell a real measurement from
+        # a miscounted field, so the settled count is reconstructed from its parts and
+        # the completeness flag the version space actually reads is asserted.
+        assert ex["settled"] == ex["witness"] + ex["refuted_complete"]
+        assert ex["refuted"] == ex["refuted_complete"]
+        assert ex["refuted_incomplete"] == 0
+        assert ex["witness"] + ex["refuted"] + ex["inconclusive"] == 32
     cheapest = 3.2
     ex = next(v for v in rec.values() if v["ratio"] == cheapest and v["tool"] == "exact_solve")
     ls = next(v for v in rec.values() if v["ratio"] == cheapest and v["tool"] == "local_search")
@@ -150,6 +157,18 @@ def test_the_receipt_does_not_claim_to_authorize_dispatch():
     auth = receipt()["authority"]
     assert auth["authorizes_protected_dispatch"] is False
     assert auth["grants_scientific_truth"] is False
+
+
+def test_the_trained_selector_is_constant_at_this_geometry_and_says_so():
+    """The nearest-key lookup cannot branch here: every trained value is exact_solve.
+    The receipt claims that plainly rather than implying a guard the code lacks, and the
+    extrapolation flag is what makes an unseen geometry visible."""
+    assert set(A.TRAINED_PORTFOLIO_TABLE.values()) == {"exact_solve"}
+    for ratio in (3.2, 4.0, 4.267, 4.7, 5.6):
+        f = RungFeatures(0, 30, int(round(30 * ratio)))
+        assert A.trained_select(f) == "exact_solve"
+        assert A.trained_select_is_extrapolating(f) is False
+    assert A.trained_select_is_extrapolating(RungFeatures(0, 30, int(30 * 8.0))) is True
 
 
 def test_me_f1_v1_is_untouched():

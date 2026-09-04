@@ -68,14 +68,25 @@ def tool_training_table(campaigns) -> dict:
                 cnt = stat.setdefault(key, Counter())
                 cnt[res.outcome] += 1
                 cnt["checks"] += res.checks_spent
+                if res.outcome == "REFUTED":
+                    # `_State.note` records an UNSAT observation ONLY when the refutation
+                    # is complete, so a REFUTED that hit the node limit never reaches the
+                    # version space and must not be counted as settled.  The flag is read
+                    # rather than assumed.
+                    cnt["refuted_complete" if res.refutation_complete
+                        else "refuted_incomplete"] += 1
     out = {}
     for key, cnt in sorted(stat.items()):
-        n = sum(v for k, v in cnt.items() if k != "checks")
-        settled = cnt["WITNESS_FOUND"] + cnt["REFUTED"]
+        n = cnt["WITNESS_FOUND"] + cnt["REFUTED"] + cnt["INCONCLUSIVE"]
+        # SETTLED is what the version space would actually accept: a verified witness, or
+        # a COMPLETE refutation.  An incomplete refutation establishes nothing.
+        settled = cnt["WITNESS_FOUND"] + cnt["refuted_complete"]
         ratio, tool = key.split("|")
         out[key] = {"ratio": float(ratio), "tool": tool, "n_probes": n,
                     "settled": settled, "settle_rate": settled / n,
                     "witness": cnt["WITNESS_FOUND"], "refuted": cnt["REFUTED"],
+                    "refuted_complete": cnt["refuted_complete"],
+                    "refuted_incomplete": cnt["refuted_incomplete"],
                     "inconclusive": cnt["INCONCLUSIVE"],
                     "mean_checks": cnt["checks"] // n}
     return out

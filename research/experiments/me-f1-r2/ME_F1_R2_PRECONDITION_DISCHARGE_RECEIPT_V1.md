@@ -18,7 +18,8 @@ world is worth running."*
 
 Both clauses are discharged here. Freeze:
 `ME_F1_R2_COMPARATOR_FREEZE_V1.json` sha256
-`1599694b743691e81b5449a09cc6e208dea4917efa65f96e63bd56db3255f1cb`.
+`aaf16f9d0038f7a84fe167df169616ff1084108c3afa9024039fbd0a5e9a9657`; frozen B5 control
+text sha256 `f0ca74c2485ec7bfa504331479ecb99a751f50392663d2beda221bd98ecc515e`.
 
 ---
 
@@ -94,6 +95,14 @@ geometry, one probe per (rung, tool) at the cap-7 Luby unit budget, **32 probes 
 | 4.700 | 32/32 = 1.00 | 1/32 = 0.03 | 24 384 | 12 545 |
 | 5.600 | 32/32 = 1.00 | **0/32 = 0.00** | 19 930 | 12 813 |
 
+**"Settles" means what the version space accepts, and the flag was read rather than
+assumed.** `_State.note` records an UNSAT observation only when
+`res.refutation_complete` is true, so a `REFUTED` that hit the node limit establishes
+nothing. The training table counts complete refutations separately: **68 refutations, 68
+complete, 0 incomplete**, so the 1.00 settle rate is a rate of *usable* outcomes. A
+saturated rate is exactly the shape that cannot distinguish a real measurement from a
+miscounted field, which is why the count is reconstructed from its parts in the test.
+
 At `n_vars = 30` the complete solver is **not** the expensive one. `local_search` is
 dominated at every ratio, and at the cheapest rung — the one the shipped rule is most
 confident about — it is dominated on **both** resources. Under the frozen policy at 7
@@ -106,6 +115,14 @@ it will face. The frozen implementation skipped that training step and substitut
 literature constant. Training it on the public development split — the study's own
 declared tuning surface — is what a faithful implementer does, and it is what produces the
 difference.
+
+**The trained selector is constant at this geometry, and the freeze says so.** Every
+entry in the table is `exact_solve`, so `trained_select` is currently indistinguishable
+from `return "exact_solve"`; its nearest-key lookup is structure for a future geometry,
+not a guard that branches today. `trained_select_is_extrapolating` reports when a ratio
+sits further than 0.134 — half the smallest gap between trained keys — from anything
+measured, so an unseen geometry is visible rather than absorbed. Stated because an
+earlier draft of this receipt claimed a guard the code did not provide.
 
 **The re-derivation is not a budget-specific hack.** At the natural budget it also
 strictly dominates: **1.0000 on 85 actions** against the frozen core's 0.9250 on 120. It
@@ -172,7 +189,7 @@ Carried forward unsoftened:
   4 = a development campaign's ground truth is not monotone-consistent, 0 = measured.
 - **Every rate is published with its denominator**, including the training table's 32
   probes per cell and the zero-unwarranted-claims figure for every policy.
-- `tests/unit/test_me_f1_r2_allocation.py`: **13 passed, exit status 0** (`$?`, no pipe).
+- `tests/unit/test_me_f1_r2_allocation.py`: **14 passed, exit status 0** (`$?`, no pipe).
   `ruff` clean on the study directory and the test file.
 
 **What could not be checked, kept distinct from what was checked and is fine:** whether

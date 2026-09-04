@@ -115,13 +115,34 @@ TRAINED_PORTFOLIO_TABLE: dict[float, str] = {
 def trained_select(feat: RungFeatures) -> str:
     """Solver selection trained on the development split rather than hardcoded.
 
-    The table is keyed by the ratios the frozen ladder generates; an unseen ratio falls
-    back to the nearest trained key rather than silently reverting to the shipped rule,
-    so a geometry change is visible as an approximation and never as an unannounced
-    substitution.
+    **At this geometry the trained selector is constant.** Every entry in the table is
+    `exact_solve`, so this function is currently indistinguishable from
+    `return "exact_solve"`, and the nearest-key lookup is structure for a future geometry
+    rather than a guard that does anything today. Said plainly here because a lookup that
+    cannot branch would otherwise read as one that might.
+
+    An unseen ratio falls back to the nearest trained key rather than silently reverting
+    to the shipped rule. `trained_select_is_extrapolating` reports whether that fallback
+    was an interpolation or a reach, so a geometry change is visible rather than absorbed.
     """
     key = min(TRAINED_PORTFOLIO_TABLE, key=lambda k: abs(k - feat.ratio))
     return TRAINED_PORTFOLIO_TABLE[key]
+
+
+#: How far a ratio may sit from a trained key before the selection is an extrapolation
+#: rather than a lookup.  Half the smallest gap between trained keys (4.267 - 4.000).
+TRAINED_KEY_TOLERANCE = 0.134
+
+
+def trained_select_is_extrapolating(feat: RungFeatures) -> bool:
+    """True when no trained key is close to this rung's ratio.
+
+    The training table covers the five ratios this ladder generates. A geometry that
+    produces other ratios is outside what was measured, and this makes that visible
+    instead of letting the nearest-key lookup absorb it silently.
+    """
+    key = min(TRAINED_PORTFOLIO_TABLE, key=lambda k: abs(k - feat.ratio))
+    return abs(key - feat.ratio) > TRAINED_KEY_TOLERANCE
 
 
 @dataclass(frozen=True, slots=True)
