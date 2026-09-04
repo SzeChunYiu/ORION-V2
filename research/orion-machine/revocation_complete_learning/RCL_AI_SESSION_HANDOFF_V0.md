@@ -28,7 +28,7 @@ Let `C_n = binom(n, floor(n/2))`. There is a family of warrant profiles in which
 ```text
 zero-query retained information >= C_n - 1 bits
 coordinate-query full-audit frontier: S + Q >= C_n - 1
-m indepent skills: S + Q >= m(C_n - 1)
+m independent skills: S + Q >= m(C_n - 1)
 ```
 
 Matching constructions attain equality in the registered coordinate-query model.
