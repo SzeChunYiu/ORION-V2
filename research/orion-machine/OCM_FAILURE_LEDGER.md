@@ -205,6 +205,18 @@ critical defect.
   #199 and #245, which administer the targets. The pre-directive README bytes remain bound in
   `OCM_SNAPSHOT_V1.json` `content_bindings` at commit `d4eb281` as history, unedited.
 
+- **`IMMUTABLE_TARGET_MUTATED_BY_ITS_OWN_BINDING_TEST` — third instance, spine README, lane-200
+  revival, 2026-09-04.** The terminal block had to change again (residual restated; natural
+  non-rectangular class line; RCL-C and separation lines). README.md (3,317 → 4,121 bytes) was re-bound
+  in `REVOCATION_COMPLETE_LEARNING_RECEIPT_V0.json` and `RCL_INDEPENDENT_REVIEW_PACKET_V0.json`
+  with the previous entry nested verbatim under `superseded_binding` (its own chain retained and
+  its `rebound_in_commit` verified against the blob it names before nesting), then the receipt
+  inside packet V0 and packet V0 inside packet V1 consequentially, one commit per link so that every
+  `rebound_in_commit` names the commit that actually carries the bound bytes. All 38 bindings in the
+  three carriers verified against `HEAD` from `git show`. The structural fix — freeze the review
+  *question*, bind the spine elsewhere — is still not applied and is still owed; a third occurrence
+  is the argument for doing it before a fourth.
+
 - **`VACUOUS_CONTRAST` — below-frontier arm of `rcl_checks_v1.py`, 2026-09-04, on a merged
   artifact.** The V1 checker written to repair three vacuous V0 controls carried one of its own:
   `candidate_profiles` never deduplicated, so below the frontier the candidate set always had
