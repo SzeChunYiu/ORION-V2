@@ -1,0 +1,104 @@
+{
+ "campaign_root": "campaign-e40-m5p-stage2e",
+ "class": "substrate precondition probe; ZERO model calls",
+ "configs_fixed_by_design": {
+  "c0": [
+   "interventional",
+   0.0
+  ],
+  "c1": [
+   "partial_interventional",
+   0.5
+  ],
+  "c2": [
+   "partial_interventional",
+   0.8
+  ],
+  "c3": [
+   "observational",
+   0.0
+  ]
+ },
+ "design": "E40_M5P_STAGE2E_OVERLAP_PRECONDITION_DESIGN_V1",
+ "determinism_repeat": [
+  "c0",
+  "s0"
+ ],
+ "exit_codes": {
+  "0": "admissible verdict",
+  "3": "campaign not settled",
+  "5": "could-not-check (control failed or envelope inhomogeneous)"
+ },
+ "exp_ids": [
+  505000,
+  505033
+ ],
+ "explicit_non_equivalence": "a precondition terminal is NOT the registered E40_TERMINAL, which requires a valid run with G0 passed and one of G1-G4 failed; no such run exists and this probe does not create one",
+ "gates": {
+  "P0_CONTROLS_AND_ENVELOPES_VALID": "all 4 controls PASS and all 34 envelopes COMPLETE+homogeneous",
+  "P1_SEED_REPLICATION_INFORMATIVE": {
+   "seed_only_mean_J_in": [
+    0.2,
+    0.98
+   ]
+  },
+  "P2_CONSENSUS_DISCRIMINATES": {
+   "alpha": 0.05,
+   "strata": "dataset",
+   "test": "one-sided stratified exhaustive permutation"
+  }
+ },
+ "lineage": [
+  "E40_M5P_STAGE2C_OUTCOME_RECEIPT (CHECKER_INVALID__NO_VERDICT)",
+  "E40_M5P_STAGE2D_OUTCOME_RECEIPT (PROMPT_IMPLICATED, D2)"
+ ],
+ "n_model_calls": 0,
+ "n_native_runs": 34,
+ "no_rescue_clause": "no F2 claim, no component claim, no revival of any frozen negative, no m6 authorization, no change to the Stage-2c or Stage-2d dispositions; altering the grid, seed table, thresholds or gates after seeing the result is outcome tuning and is forbidden",
+ "rng_commitment": {
+  "jaccard_and_roundtrip_fixtures": 20260902,
+  "note": "no other stochastic element; all sums via math.fsum",
+  "null_calibration": {
+   "reps": 400,
+   "seed": 20260903
+  },
+  "p2_permutation": "exhaustive, no RNG, C(8,4)^2 = 4900 relabellings"
+ },
+ "routing": {
+  "P0_fail": "CANNOT_CHECK (exit 5)",
+  "P1_fail_high": "E40_PROBE_PRECONDITION_UNMET__REPLICATION_DEGENERATE",
+  "P1_fail_low": "E40_PROBE_PRECONDITION_UNMET__REPLICAS_DISJOINT",
+  "P2_fail": "AMBIGUOUS__PRECONDITION_MET_STATISTIC_NON_DISCRIMINATING",
+  "all_pass": "PROBE_PRECONDITION_MET"
+ },
+ "schema_version": "orion.v2.e40-matched.m5p-stage2e-design.v1",
+ "seed_table_inherited_from_stage2c": {
+  "s0": [
+   11,
+   13
+  ],
+  "s1": [
+   29,
+   31
+  ],
+  "s2": [
+   47,
+   53
+  ],
+  "s3": [
+   71,
+   79
+  ]
+ },
+ "substrate": {
+  "datasets": [
+   "weissmann_k562",
+   "weissmann_rpe1"
+  ],
+  "do_filter": true,
+  "max_path_length": -1,
+  "model_name": "gies",
+  "omission_estimation_size": 1000,
+  "subset_data": 0.05
+ }
+}
