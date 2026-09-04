@@ -146,7 +146,7 @@ report rather than a methodologically specified census. Records, evidence grades
   failing. The programme's standing rule against asserting absence from absent printed output is
   what caught the third, which is evidence the detector was already held rather than discovered.
 
-- `REPAIR_DOCUMENTED_NOT_LANDED` — a repair is analysed, decided and written into a record, and the
+- `REPAIR_DOCUMENTED_NOT_LANDED` (corrected below) — a repair is analysed, decided and written into a record, and the
   record reads as though it shipped, while the artifact it names is unchanged. The check ran, the
   analysis is correct and the decision is sound; the gap is between the **record and the tree**.
   Distinct from `TERMINAL_OVERSTATES_ITS_PROCEDURE`, its closest neighbour: there the gap is
@@ -214,6 +214,54 @@ This ledger is append-only, so two earlier entries are corrected here rather tha
   `glm-4.6`→`glm-5.3-flash`, with `glm-5.3`→`glm-5.3` as the negative control. The corollary belongs
   with the class: a run that logs **no** served id has an *inferred*, not a verified, producing
   model, and must be labelled as such.
+
+- `REPAIR_DOCUMENTED_NOT_LANDED` above records, of the mitigation shipped for its second instance,
+  that *"neither half of that mitigation has landed"* and that the pointer and the registry
+  re-statement exist *"only in ORION-V2 PR #264 (open, unmerged)"* and *"only in ORION-paper PR #111
+  (open, `CONFLICTING`)"*. That was true when verified, at ORION-V2 `main` `b2f7962` and ORION-paper
+  `main` `9c4a631`. **It was false by the time the entry merged.** Both PRs merged in the interval
+  between verification and merge: ORION-V2 #264 at 2026-09-04T07:34:40Z (`d3981d4`) and ORION-paper
+  #111 at 2026-09-04T07:39:03Z (`f9bb8e4`), against the entry's own merge at 07:42:16Z (`ffa5c34`) —
+  three minutes and seven minutes ahead of it. Both merge commits are ancestors of their respective
+  `main` (`git merge-base --is-ancestor`, run with a negative control — `4cb6dca`, still on the open
+  PR #254 branch — correctly reported not-an-ancestor). Verified on `main`: the protocol carries the
+  binding pre-execution read at §8 and §9 (`binding` ×3 case-insensitively, `pre-execution` ×2,
+  `pointer` ×1, `unsatisfiab` ×2, against `percentage points` ×1 as a control proving the search
+  fires) and `pre_execution_binding_reads` in the `.json` twin with `non_amending: true` and
+  `selects_no_repair_branch: true`; the registry now carries `FOUND_AND_DOCUMENTED` for P-A and P-B
+  with `FOUND_AND_CORRECTED` gone from both.
+- **This is the class in the mirror, and it is a distinct variant that the entry must not flatten.**
+  In both founding instances the record was false *when written*; here the record was true when
+  written and went **stale between verification and merge**. Overstatement and staleness produce the
+  same artifact — a record describing a state the tree does not have — and the same guard catches
+  both, which is the point: a repair record that names no commit cannot be checked for either, while
+  one that names a commit makes both detectable by a single ancestry question. The interval is not a
+  process failure to be drilled out; it is why the guard is written on the commit rather than on the
+  prose.
+- **Strength, on the two halves separately.** The mitigation-layer near miss rested on two facts, and
+  only one of them expired. The *unlanded* half is void and is withdrawn: both halves have landed.
+  The **cross-repository half survives the merge unchanged and is the part worth keeping** —
+  ORION-paper's registry asserts `binding_pre_execution_pointer_added_to_protocol: true` about a file
+  in ORION-V2, naming no commit there and no ancestry check, so nothing binds the two. Both artifacts
+  landing does not create a binding: the next edit to either desynchronises them silently and no gate
+  would notice. It remains a **near miss** on the ledger's own legend — the assertion is currently
+  true, and no contaminated result was produced by it — but it is a standing structural hazard, not a
+  transient one.
+- **Guard extended, and the extension is the operative output of this correction:** where a repair
+  record asserts a state of an artifact in **another repository**, it must name that repository's
+  commit and the ancestry must be checked *there*, in that repository, against that repository's
+  `main`. A cross-repo assertion carrying no foreign sha is unverifiable by construction and must be
+  recorded as `CANNOT_CHECK`, never as a fact.
+- The **second instance's own classification is unchanged and does not soften.** It was realised, not
+  a near miss: `..._PRE_OUTCOME_SAMPLE_EFFECT_DEFECT_FOUND_AND_CORRECTED_2026_09_04` stood on
+  ORION-paper `main` describing a protocol that had never been amended. It is now **remediated**, and
+  remediation is not retroactive absolution — this ledger's preamble holds that a repaired defect
+  remains visible and that a later green result may not erase how it was obtained. Everything else in
+  the entry stands as written: the FM80 protocol text is *still* unamended on `main` (§8 "at least 30
+  per domain" ×1, §9.1 "**10 percentage points**" ×1), which is what the pointer was placed to make
+  survivable rather than to hide; not amending remains the correct call on authority grounds; and the
+  first instance is untouched, its five red checks and the pinned `(False, 1, 5)` being a realised
+  defect on any reading.
 
 Every concrete failure must preserve its source identities, affected claims and reopening conditions. No failure may be deleted merely because a later theory is more successful.
 
