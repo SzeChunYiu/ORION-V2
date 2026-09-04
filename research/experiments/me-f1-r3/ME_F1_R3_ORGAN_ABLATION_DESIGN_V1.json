@@ -1,0 +1,71 @@
+{
+  "schema_version": "orion.v2.me-f1-r3.design.v1",
+  "design": "ME_F1_R3_ORGAN_ABLATION_DESIGN_V1",
+  "class": "development-split organ ablation of the ORION control M, using the omission-ablation arms ME-F1 V1 froze and never ran, on the same eight development campaigns, against the same strongest parent on that split, through the frozen V1 runner; cannot alter ME-F1's CANNOT_CHECK terminal and authorizes no protected dispatch",
+  "lineage": {
+    "v1_g0e_receipt": "research/experiments/me-f1/ME_F1_G0E_OUTCOME_RECEIPT_V1.md (S5: SIMPLE_DIRECT 0.7562 > M 0.4062 > B5 0.3000; S5.1: B5 lost on its own control text)",
+    "r2_receipt": "research/experiments/me-f1-r2/ME_F1_R2_PRECONDITION_DISCHARGE_RECEIPT_V1.md (trained selector; comparator frozen; dispatch refused)",
+    "b5_parity_receipt_pr276": "research/experiments/me-f1/ME_F1_B5_PARITY_REPAIR_RECEIPT_V1.md (open PR #276; M's prompt untouched there and M held at 0.31-0.45; M switches tool after INCONCLUSIVE 0.30-0.44 of the time)",
+    "divergence_noted_not_resolved": "the R2-frozen B5 text (f0ca74c2) and PR #276's measured B5 text (2b9d589c) differ and the frozen one has no model-arm measurement; this design does not run B5 and takes no position on which text is the comparator"
+  },
+  "negative_and_attribution": {
+    "negative": "at identical budget, toolbox, model and control-call count the bare SIMPLE_DIRECT beat M on the development split in every V1 run (0.7562/0.6625 vs 0.4062/0.4500; M INCONCLUSIVE rate 0.41-0.48 vs 0.054; M abstains 95 vs 39)",
+    "candidate_stages": {
+      "(b) mandate": "M's control text orders 'take the CHEAPEST action, escalate one level at a time, L0 more budget / L1 restart before L2 switch tool' -- which on this geometry sends the loop back to a dominated solver (R2 S3: local_search settles 0-12% at the critical ratios; exact_solve 100%)",
+      "(a) discipline": "the warrant gate scores abstention as zero on a world where nothing launders (G0e structural), so the discipline may pay coverage for a protection the world never needs",
+      "(a') architectural residual": "neither named organ carries the deficit"
+    },
+    "why_ablation": "V1 registered M_MINUS_WARRANT_GATE, M_MINUS_LOCUS_DIAGNOSIS and M_MINUS_MINIMUM_ESCALATION as omission ablations (design table 'omission ablations', mef1_arms.MODEL_ARMS) and wrote their texts before any outcome; running them discriminates (a) from (b) with zero new prompt text"
+  },
+  "constants": {
+    "arms": ["SIMPLE_DIRECT", "M_ME_FRONTIER_CONTROL", "M_MINUS_MINIMUM_ESCALATION", "M_MINUS_WARRANT_GATE", "M_MINUS_LOCUS_DIAGNOSIS"],
+    "parent": "SIMPLE_DIRECT",
+    "m": "M_ME_FRONTIER_CONTROL",
+    "ablations": ["M_MINUS_MINIMUM_ESCALATION", "M_MINUS_WARRANT_GATE", "M_MINUS_LOCUS_DIAGNOSIS"],
+    "runs": ["r1", "r2"],
+    "n_campaigns": 8,
+    "max_concurrency": 3,
+    "alpha": 0.05,
+    "signflip_n": 4000,
+    "signflip_seed": 20260904,
+    "instrument_envelope": {"SIMPLE_DIRECT": [0.5688, 0.8499], "M_ME_FRONTIER_CONTROL": [0.1750, 0.5875]},
+    "instrument_envelope_rule": "V1's observed run-to-run range (SIMPLE 0.6625-0.7562, M 0.3125-0.4500 across four runs in V1 and PR #276) widened by one range width on each side",
+    "primary_endpoint": "warranted_correct_rate over ground-truth-decided rungs, F_CRITICAL campaigns only (V1 design S3.3; abstention scores zero)",
+    "statistic": "per (run, campaign) paired difference of the primary; one-sided sign-flip permutation p over the 16 paired observations",
+    "channel": "V1 frozen: mef1_channel.call_control -> codex-cli 0.129.0-alpha.15, gpt-5.5, medium, on billy-old; served id not exposed by the CLI (carried as UNPINNED_SUBSTRATE_CONDITION)",
+    "geometry": "V1 calibration receipt (WINDOW_HIT, L2, n_vars 30, 300000 checks, 7 actions + closing call), sha256 asserted at freeze/run/evaluate",
+    "dev_seed": "V1's development seed (the same 8 campaigns as every V1 run; 7 F_CRITICAL + 1 F_PLANTED, the planted one excluded from the primary by registration)"
+  },
+  "controls_consumed_by_the_gates": [
+    {"control": "ALL_CELLS_PRESENT_AND_SCORABLE", "rule": "5 arms x 8 campaigns x 2 runs cells present, zero cannot_check"},
+    {"control": "BUDGET_MATCHED_ACROSS_ARMS", "rule": "one distinct action count and one distinct call count across every cell"},
+    {"control": "INSTRUMENT_REPRODUCES_V1_ENVELOPE", "rule": "the two untouched arms' mean primary lies inside the widened V1 envelope"},
+    {"control": "LAUNDERING_MEASUREMENT_POPULATED", "rule": "total claims > 0 so the unwarranted count is a measurement, not an empty denominator"}
+  ],
+  "gates": {
+    "A0_CONTROLS_VALID": "all controls PASS; a failure refuses every gate (exit 4)",
+    "A1_MANDATE_IMPLICATED": "mean(M_MINUS_MINIMUM_ESCALATION - M) > 0 with p <= 0.05 AND its INCONCLUSIVE rate is below M's (the mechanism the hypothesis names must move, not only the score)",
+    "A2_DISCIPLINE_COST": "mean(M_MINUS_WARRANT_GATE - M) > 0 with p <= 0.05",
+    "A3_reported": "mean(M_MINUS_LOCUS_DIAGNOSIS - M) > 0 with p <= 0.05",
+    "A4_reported": "the best ablation against SIMPLE_DIRECT (both directions' p published; parity is reported, never gated as an absence claim)"
+  },
+  "routing": [
+    {"condition": "A0 fails", "terminal": "CANNOT_CHECK__CONTROL_FAILED", "exit": 4},
+    {"condition": "A1 and not A2", "terminal": "M_HANDICAPPED_BY_ITS_ESCALATION_MANDATE__PROMPT_IMPLICATED_MODEL_EXONERATED", "hypothesis": "(b)"},
+    {"condition": "A2 and not A1", "terminal": "WARRANT_DISCIPLINE_COSTS_COVERAGE_ON_A_WORLD_THAT_FORECLOSES_LAUNDERING__REGIME_CONDITIONAL", "hypothesis": "(a), regime-conditional: intermediate, not terminal -- the world forecloses the failure the organ prevents"},
+    {"condition": "A1 and A2", "terminal": "BOTH_MANDATE_AND_DISCIPLINE_IMPLICATED__TWO_ORGANS_EACH_COST_COVERAGE"},
+    {"condition": "neither", "terminal": "M_DEFICIT_NOT_ATTRIBUTABLE_TO_A_NAMED_ORGAN__ARCHITECTURAL_RESIDUAL", "hypothesis": "(a')"}
+  ],
+  "pre_run_reachability_audit": {
+    "seed_does_something": "sign flips; the campaigns are V1's fixed development split by registration (the same instances every V1 run measured, so the instrument control is meaningful)",
+    "hard_gate_at_scale": "80 arm-campaign cells; the evaluator was exercised on synthetic tables covering every routing row",
+    "contrast_could_exist": "per-campaign rates range over [0, 1]; A1 requires the INCONCLUSIVE rate to move as well (a score change without the named mechanism moving does not fire)",
+    "clause_narrowing": "the runner evaluates exactly the gates above; the selftest asserts the twin's constants equal the script's",
+    "parent_isolation": "none: identical budget, toolbox, model, call count and campaigns; every arm text is V1-frozen (mef1_arms.py sha256 asserted at freeze/run/evaluate); no arm text is authored by this design",
+    "served_model": "not exposed by the CLI -- carried, not cleared",
+    "unsatisfiable_or_unfailable": "the instrument control can fail (selftest plants an out-of-envelope parent and the verdict is refused); every routing row is reachable on synthetic input"
+  },
+  "pre_run_expectation_disclosed": "PR #276 measured M switching tool after INCONCLUSIVE 0.30-0.44 of the time and holding at 0.31-0.45 while its prompt was untouched; the mandate hypothesis (b) predicts A1; the abstention gap (95 vs 39 UNRESOLVED) predicts A2 may also fire. Stated before dispatch so neither can be read afterwards as a surprise.",
+  "no_rescue_clause": "no arm, constant, envelope, gate, seed or routing row changes after dispatch begins; a defect found afterwards is recorded in the receipt and repaired under a new identity",
+  "authority": {"alters_me_f1_terminal": false, "authorizes_protected_dispatch": false, "grants_scientific_truth": false, "grants_field_status": false, "decides_the_b5_comparator_text": false}
+}
