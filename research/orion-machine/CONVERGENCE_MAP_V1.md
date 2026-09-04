@@ -106,15 +106,25 @@ An M2 loop that reports against a ceiling as if it were a parent reproduces the
 ceiling-labelled-as-parent defect the parent-strength audit found programme-wide; the ceiling is
 the *check* (does the KSO lose to it anywhere), the oracle-independent arm is the *comparator*.
 
+## 3b. The object's own rows (OCM lane, PRs #290 → #296 reland, #295)
+
+| artifact | KSO component | milestone | status | checker |
+|---|---|---|---|---|
+| `theory/KSO_SUBSTRATE_CONTRACT_V1.md` Part I (§1–§23), `reference/kso_math_v1.py`, `results/KSO_M0_EXACT_RESULTS_V1.json` (#290, relanded as #296) | **the substrate contract**: warrant semiring (KS-T01), conjunctive firing (T02), substochastic navigation (T03), exact-share pruning (T04), restart contraction (T05), zero-surprise (T06), lumpability gate (T07), connectivity-or-quarantine (T08), impact cone (T09) | M0 | proved (all-size) + checked (20 / 400 / 8,000; 2/2; 1/1; 200/200; 80/80 + 1/1; 5; 1/1) | `tests/unit/test_kso_math_v1.py` (9) |
+| `theory/KSO_SUBSTRATE_CONTRACT_V1.md` Part II (§24–§36), `reference/kso_m0_freeze_checks_v1.py`, `results/KSO_M0_FREEZE_RESULTS_V1.json` (#295) | the clauses this section listed absent: edge vocabulary bound to the atlas; **S1–S7 as predicates on the knowledge space** (the genome); KS-T04b retraction propagated to activation; KS-T06b two-direction hub; acquisition transaction with certificate kinds (KS-T18 feedback cannot warrant); atomisation; four-valued navigation outcome with the **obstruction witness** as a definition (KS-T19; ceiling-walker rule = H-EXT-1R; non-identifiability) binding to `jump.JumpTrigger`; compose = ⊗ (T20); extraction unique (T11a); translator invariance reduces to seed equality (T10a); **stem-cell invariant** (T17); budget clause; typing-as-coverage-prior; closed-under-shown | M0 | **frozen V1** — every clause has a planted failure, a must-differ control, a no-alarm case and a distinct `CANNOT_CHECK` | `tests/unit/test_kso_m0_freeze_v1.py` (18) |
+| `theory/KSO_PARENT_SUBTRACTION_V1.md` + executable rows (#295) | **parent-subtraction table**: 17 literature rows + 8 parents *run* on one witness (spreading activation, Quillian, ACT-R, Hopfield, CBR, KG/RWR, JTMS, ATMS) | M0 | 0/8 single parents own label-gated exact-share retraction; KSO law = (JTMS gate) ∘ (spreading activation, frozen denominators) entry-wise — `PARENT_PRODUCT_OWNED` | checker F7 |
+| `theory/KSO_ARCHITECTURE_V1.md` (#295) | **architecture**: C1 store · C2 solver · C3 codec · C4 channels · C5 immune system · C6 growth · C7 Jump proposer · C8 authority; dependency graph and the may-never rules (codec never writes a label; feedback never warrants; nothing modifies S1–S7; solver never writes; Jump never adopts) | M0 | record; each contract names its theorem, checker and parent | — |
+| `reference/kso_m1_mex1_population_v1.py` → `results/KSO_M1_POPULATION_RECEIPT_V1.json` (#295) | **KSO v0 populated from ME-X1** (generator + oracle read-only): atoms = base atoms / evidence / families / claims / results with the oracle's support algebra as ATMS labels; typed hyperedges COMPOSITION / SUPPORT / CONSTRAINT / DEPENDENCE | M1 | **GREEN on the dev split** (50 worlds, seed `ME-X1-DEV-20260902`, byte-reproducible): 3,492 atoms / 1,629 hyperedges, 0 isolated; label ≡ oracle on 585 + 759 cells (v1 with 18 revoked + 7 censored base atoms), 0 mismatches; retraction both directions 400/400 (renormalising parent differs on 16 worlds); events replayed 50/50; hub background-zero / hub-seeded-top 50/50 (evidence-seeded hub wins by surprise 2/50, reported); S1–S7 hold on 100 spaces, digest unchanged. Protected split `NOT_RUN` | `tests/unit/test_kso_m1_mex1_population_v1.py` (9) |
+
 ## 4. What is absent (the object is not formed until these rows exist)
 
 | component | milestone | state |
 |---|---|---|
-| `KSO_SUBSTRATE_CONTRACT_V1` — atom schema, edge types, label semantics, activation law, retraction law, obstruction-witness outcome, budget clause, Jump hooks, parent-subtraction table | M0 | **absent** (next OCM PR) |
-| label-gated activation with exact retraction propagation — the checker (planted retraction asserted applied; downstream activation drops exactly; no-alarm on an unrelated node; `CANNOT_CHECK` exit) | M0 | **absent**; built first |
-| hub surprise-weighting checker (two directions) · dense-by-construction checker (edges > 0 at acquisition; reachable by navigation) · atomization checker (k atoms exactly; non-atomic input rejected) · navigation determinism under a committed seed | M0 | **absent** |
-| KSO v0 populated from one exact domain (FM10 or ME-X1 generator; oracle held) | M1 | absent |
-| solve loop vs oracle; translator-invariance gate | M2 | absent |
+| `KSO_SUBSTRATE_CONTRACT_V1` — atom schema, edge types, label semantics, activation law, retraction law, obstruction-witness outcome, budget clause, Jump hooks, parent-subtraction table | M0 | **present, frozen V1** (§3b; #296 + #295) |
+| label-gated activation with exact retraction propagation — the checker (planted retraction asserted applied; downstream activation drops exactly; no-alarm on an unrelated node; `CANNOT_CHECK` exit) | M0 | **present** (F2; M1 P3 400/400 on real worlds) |
+| hub surprise-weighting checker (two directions) · dense-by-construction checker (edges > 0 at acquisition; reachable by navigation) · atomization checker (k atoms exactly; non-atomic input rejected) · navigation determinism under a committed seed | M0 | **present** (F3, F4, F5; M1 P1, P4) |
+| KSO v0 populated from one exact domain (FM10 or ME-X1 generator; oracle held) | M1 | **present on the dev split** (ME-X1, §3b); protected `NOT_RUN` |
+| solve loop vs oracle; translator-invariance gate | M2 | absent — design freeze + seed commitment next; comparator arm (B5 ceiling, RWR/PPR, CBR/KG, null, positive control) with the guards lane under one receipt schema |
 | gap loop: instruction + demonstration as node-acquisition with edges; revocation replay | M3 | absent |
 | Jump loop on v1's 84 opaque worlds | M4 | absent |
 | codec at the boundary; chat | M5 | absent (template exists, §2.3) |

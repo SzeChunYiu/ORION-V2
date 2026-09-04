@@ -113,7 +113,10 @@ def _and_all(profiles: Iterable[tuple]) -> tuple:
     return out
 
 
-def populate(world) -> Population:
+def populate(world, request=None, request_id: str = "req") -> Population:
+    """Build the governed knowledge space of one world; with ``request`` (a ``TransitionRequest``)
+    one goal atom ``req:<request_id>`` is added with DEPENDENCE hyperedges to its target claim and,
+    when set, to its result — the M2 seed convention."""
     _, model, oracle = _mex1()
     table = oracle.support_table(world)
     base_ids = sorted(table.atoms)
@@ -185,6 +188,12 @@ def populate(world) -> Population:
         if basis:
             edges.append(Hyperedge(f"compose:{rid}", tuple(basis), (rid,), "COMPOSITION", profile=ONE))
         edges.append(Hyperedge(f"bind:{r}", (rid,), (f"claim:{res.bound_claim_id}",), "DEPENDENCE", profile=ONE))
+    if request is not None:
+        rid = f"req:{request_id}"
+        add(rid, "goal", ONE, Cert.INSTRUCTION)
+        edges.append(Hyperedge(f"goal:{request_id}:claim", (rid,), (f"claim:{request.target_claim_id}",), "DEPENDENCE", profile=ONE))
+        if getattr(request, "result_id", "") and f"res:{request.result_id}" in profiles:
+            edges.append(Hyperedge(f"goal:{request_id}:result", (rid,), (f"res:{request.result_id}",), "DEPENDENCE", profile=ONE))
     ks = KnowledgeSpace(tuple(atoms), tuple(edges))
     ks.validate()
     m0.check_edge_vocabulary(ks)

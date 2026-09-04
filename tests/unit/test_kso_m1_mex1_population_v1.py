@@ -102,3 +102,18 @@ def test_gated_seed_gives_dead_atom_zero_activation(mod):
 def test_bindings_cover_generator_oracle_and_checkers(receipt):
     assert set(receipt["bindings"]) == {"mex1_generator.py", "mex1_oracle.py", "mex1_model.py", "kso_math_v1.py", "kso_m0_freeze_checks_v1.py", "kso_m1_mex1_population_v1.py"}
     assert all(len(v) == 64 for v in receipt["bindings"].values())
+
+
+def test_populate_with_request_adds_one_goal_atom_with_dependence_edges(mod):
+    gen, model, oracle = mod._mex1()
+    inst, exp = gen.generate_split("dev", "ME-X1-DEV-20260902", {model.FAMILIES[0]: 1})[0]
+    w1 = oracle.final_world(inst.world_v0, inst.events)
+    base = mod.populate(w1)
+    pop = mod.populate(w1, request=inst.request, request_id=inst.instance_id)
+    rid = f"req:{inst.instance_id}"
+    assert len(pop.space.atoms) == len(base.space.atoms) + 1
+    goal_edges = [e for e in pop.space.hyperedges if e.tails == (rid,)]
+    assert goal_edges and goal_edges[0].heads == (f"claim:{inst.request.target_claim_id}",) and goal_edges[0].relation_type == "DEPENDENCE"
+    assert (len(goal_edges) == 2) == bool(inst.request.result_id and f"res:{inst.request.result_id}" in pop.space.ids)
+    assert pop.governed.certificates[rid] == mod.Cert.INSTRUCTION
+    assert mod.check_P1_dense(pop)["isolated"] == 0
