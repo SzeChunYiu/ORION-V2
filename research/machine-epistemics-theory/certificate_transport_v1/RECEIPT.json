@@ -1,0 +1,183 @@
+{
+  "base_sha": "24566f00a9dc4425a438fcfac05d13c6b2d903db",
+  "commands": [
+    {
+      "command": "python -m py_compile transport.py checks.py extensions.py sampling.py test_transport.py verify_package.py",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "logs/compile.log",
+      "log_sha256": "a3680b6601c39b586ea892ad2bbaa58a7f72b62a64f73917b09aa8c5f188110e",
+      "seconds": 0.545646
+    },
+    {
+      "command": "python -m unittest -v test_transport.py",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "logs/unit.log",
+      "log_sha256": "13b6cba9bea66ddcd8101e829bec74b39b3c6f9a07d6a6aa562872dd525d15c6",
+      "seconds": 0.572547
+    },
+    {
+      "command": "python checks.py --verify RESULTS.json",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "logs/primary_replay.log",
+      "log_sha256": "7ae0842a7ced6cc8034c5f4d1c8d5117450ab5a85d465aab2a4667d58136cd79",
+      "seconds": 2.815209
+    },
+    {
+      "command": "python extensions.py --verify EXTENSION_RESULTS.json",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "logs/extension_replay.log",
+      "log_sha256": "dca0739d79fd9be810e1884ad5b116e8728dfd90b4b81e690226f6a87e3fa60f",
+      "seconds": 1.334791
+    },
+    {
+      "command": "python sampling.py --verify SAMPLING_RESULTS.json",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "logs/sampling_replay.log",
+      "log_sha256": "6e4dc9d530b9adc8117d314fca23d926573ecc52715466b33434da9f4445f0ef",
+      "seconds": 0.580651
+    },
+    {
+      "command": "python -O checks.py --verify RESULTS.json",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "logs/primary_optimized_replay.log",
+      "log_sha256": "7ae0842a7ced6cc8034c5f4d1c8d5117450ab5a85d465aab2a4667d58136cd79",
+      "seconds": 2.91923
+    },
+    {
+      "command": "python -O extensions.py --verify EXTENSION_RESULTS.json",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "logs/extension_optimized_replay.log",
+      "log_sha256": "dca0739d79fd9be810e1884ad5b116e8728dfd90b4b81e690226f6a87e3fa60f",
+      "seconds": 1.366182
+    },
+    {
+      "command": "python -O sampling.py --verify SAMPLING_RESULTS.json",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "logs/sampling_optimized_replay.log",
+      "log_sha256": "6e4dc9d530b9adc8117d314fca23d926573ecc52715466b33434da9f4445f0ef",
+      "seconds": 0.556842
+    },
+    {
+      "command": "python checks.py --verify /mnt/data/me_transport_corrupt_result.json",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "log": "logs/corrupt_result.log",
+      "log_sha256": "54299c32b34ebc2c392c1c7723019decf2cba87e5fe32bbb86dfd5e3043abe32",
+      "seconds": 2.901601
+    },
+    {
+      "command": "python checks.py --verify /mnt/data/me_transport_missing_result.json",
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "log": "logs/missing_result.log",
+      "log_sha256": "efdbe304d3f120d5aa519c8d99019a74cfba5337f6d1f79134345ae20d65c7ab",
+      "seconds": 2.928765
+    }
+  ],
+  "custody": "Receipt excludes its own bytes to avoid self-binding; its eventual Git commit binds this file. Metadata/hashes are not independent authentication.",
+  "environment": {
+    "execution": "isolated local Linux analysis container; partial artifact checkout, not a clone of the full repository",
+    "git_head_at_generation": "NOT_A_GIT_CHECKOUT",
+    "model_calls": 0,
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+    "protected_host_run": false,
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]"
+  },
+  "limitations": {
+    "OCM_runtime_integration": "NOT_IMPLEMENTED",
+    "full_foundation_closure": false,
+    "independent_review": "NOT_OBTAINED",
+    "novelty": "NOT_ESTABLISHED",
+    "proof_assistant": "NOT_RUN",
+    "real_model_validity": "NOT_ESTABLISHED",
+    "whole_repository_CI": "NOT_RUN_LOCALLY"
+  },
+  "log_archive": "VERIFICATION_LOGS.zip (fixed ZIP entry times are reproducibility metadata, not execution timestamps)",
+  "package_sha256": {
+    "ADDENDUM.md": "e519eeb6917c495b1c6cc62ebf457e1ba8a06b8015a4fa0852a9f5dccdee51c9",
+    "CLAIMS.json": "4feaaf160b941d8ea1b32bac4732b495cca12160b6d8a28fd9a497d87a96e283",
+    "EXTENSION_RESULTS.json": "24d023014462ed68e7d3718f251c0860df7dca21c4a3fda1e06ffc04f21f8e40",
+    "OCM_ABSORPTION.md": "56d071915e4153c12f405fc23ae8540a1222e91c6ec02d85ccdb69a37634e2c4",
+    "PROTOCOL.md": "8a33bd1e4cd099657b4d18ff4c8f1d266c9d4066d83ff4bd45777b4fab6c92cd",
+    "README.md": "c7e8891a804d945c8b95dd8b141fff965ef802727b7173bb06ec804d220f9178",
+    "RESULTS.json": "313a1a08410b5f8f277675a5a846663d820fba543791973ead4f35b196b17a4f",
+    "SAMPLING.md": "6f50ac83797142e58e6bcac4a23ec04fd3577ecd95781f7896be9cf350c904cc",
+    "SAMPLING_PROTOCOL.md": "892b79e24ac2c0afa1fabe2c7188358fdf8b49f2f2aa1ef33f6ade5eab4d3356",
+    "SAMPLING_RESULTS.json": "5da4c847c25801c0b88f210fea2d5bd9e363423d4ebc85c942e908da5e444113",
+    "SOURCES.md": "b80379ca7fb2702318c64ab4ffc77d8746fab55cfb13743dd0735d3aebb311b1",
+    "THEORY.md": "bfd423cdefab5d9da958f63703611d252ca31e94ffcff06416fb5aa659030776",
+    "VERIFICATION_LOGS.zip": "dc55927ac1e8e70b535288e88fa68428dcbf2a8227f44e7877969352c101c0b8",
+    "checks.py": "a83300fc90080982ff1f937738e1be55896606d10ceb392a1f000c15f2c429e1",
+    "extensions.py": "54eae08b86fc4bfb2b1c27bc2e416a656413095d49ca3b14103847ab2142fe2d",
+    "sampling.py": "f92bdb8e77d047736ab4af6f5e29ce174ccc02d4f630de02e289990a7865f920",
+    "test_transport.py": "fb8ed2804f0402a45852733eef3e2d82edab2a34edbce03fd3543dbda231cc0e",
+    "transport.py": "7b4daf4f1c070d35f6b7246ef3794098a2725a21a366e051840144df61d5d0ca",
+    "verify_package.py": "0d0c74dabce71412d2e089519f18c3fa0bb237d805e06c33d673bb262f941851"
+  },
+  "protocol_blob_checks": {
+    "ADDENDUM.md": "e53650813de37952ff6b89196bcb6de41e2e93d1",
+    "PROTOCOL.md": "6a282d67811e1c88831a29a6e9dcc43b87930b36",
+    "SAMPLING_PROTOCOL.md": "6668ef4389c876fc2a7f3286fa5784b1cb34057b"
+  },
+  "protocol_commits": {
+    "deductive_addendum": "798ac9a06174731ff207e8f4e3e90547c38dd434",
+    "primary": "a0c10be58bf280867f790dc8aafa9a98de743cfe",
+    "sampling": "3803ee2481c65b3909db2b0e50338efff0bdf377"
+  },
+  "results": {
+    "EXTENSION_RESULTS.json": {
+      "counts": {
+        "joint_parent_pairs": 10240,
+        "max_reachable_mass_states": 4,
+        "nested_monotonicity_checks": 8640,
+        "reachable_mass_states_total": 12976,
+        "subset_sum_transitions": 8356,
+        "supermodular_inequalities": 13720
+      },
+      "sha256": "24d023014462ed68e7d3718f251c0860df7dca21c4a3fda1e06ffc04f21f8e40"
+    },
+    "RESULTS.json": {
+      "counts": {
+        "applied_mutants_detected": 10,
+        "audit_parent_pairs": 28160,
+        "audit_semantic_cells": 8640,
+        "exhaustive_audit_masks": 95040,
+        "fixed_event_cells": 320,
+        "joint_candidate_masks": 34560,
+        "joint_frontier_cells": 10240,
+        "manifest_fields_mutated": 14,
+        "no_alarm_controls": 5,
+        "oracle_distribution_comparisons": 3200,
+        "parent_DP_work": 69760,
+        "parent_peak_states": 7
+      },
+      "sha256": "313a1a08410b5f8f277675a5a846663d820fba543791973ead4f35b196b17a4f"
+    },
+    "SAMPLING_RESULTS.json": {
+      "counts": {
+        "binomial_limits": 270,
+        "count_monotonicity": 234,
+        "disagreement_inclusions": 1536,
+        "exact_coverage_cells": 612,
+        "invalid_input_rejections": 8,
+        "minimal_grid_predecessors": 234,
+        "multiclass_strictness_witnesses": 1,
+        "selection_sample_vectors": 16,
+        "tail_certificates": 234
+      },
+      "sha256": "5da4c847c25801c0b88f210fea2d5bd9e363423d4ebc85c942e908da5e444113"
+    }
+  },
+  "schema": "ME-CertificateTransport-Receipt.v1",
+  "study": "ME-CERTIFICATE-TRANSPORT-V1",
+  "terminal": "FORMAL_FRAGMENT_WITH_EXACT_LOCAL_REPLAY_AND_PARENT_PARITY",
+  "workflow_sha256": "9df5b6032166699ffa49ce91c8cda8487fd831b6c65548d7b15aa41b15e039b0"
+}

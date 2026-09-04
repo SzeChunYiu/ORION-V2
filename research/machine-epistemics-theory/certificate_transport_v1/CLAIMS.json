@@ -1,0 +1,334 @@
+{
+  "base_sha": "24566f00a9dc4425a438fcfac05d13c6b2d903db",
+  "claims": [
+    {
+      "OCM_adoption": "NOT_IMPLEMENTED",
+      "assumptions": "See the named proof section; no unstated sampling, oracle, drift or authority premise is supplied by this ledger.",
+      "depends_on": [],
+      "evidence_state": "defined interface and inspected return vocabulary",
+      "finite_check": "manifest checks; 14 field mutations; typed negative tests",
+      "id": "CT-01",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_ESTABLISHED",
+      "parent_disposition": "PARENT_OWNED_OR_ELEMENTARY_SPECIALIZATION",
+      "proof_assistant": "NOT_RUN",
+      "proof_file": "THEORY.md",
+      "sources": [
+        "S3"
+      ],
+      "statement": "Typed binding is not predicate validity or action authority"
+    },
+    {
+      "OCM_adoption": "NOT_IMPLEMENTED",
+      "assumptions": "See the named proof section; no unstated sampling, oracle, drift or authority premise is supplied by this ledger.",
+      "depends_on": [],
+      "evidence_state": "written finite-n proof plus finite calibration",
+      "finite_check": "RESULTS.json: fixed_event_cells=320",
+      "id": "CT-02",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_ESTABLISHED",
+      "parent_disposition": "PARENT_OWNED_OR_ELEMENTARY_SPECIALIZATION",
+      "proof_assistant": "NOT_RUN",
+      "proof_file": "THEORY.md",
+      "sources": [
+        "S1"
+      ],
+      "statement": "Sharp finite fixed-event total-variation risk and attaining model"
+    },
+    {
+      "OCM_adoption": "NOT_IMPLEMENTED",
+      "assumptions": "See the named proof section; no unstated sampling, oracle, drift or authority premise is supplied by this ledger.",
+      "depends_on": [
+        "CT-02"
+      ],
+      "evidence_state": "written finite-n proof plus finite calibration",
+      "finite_check": "RESULTS.json: joint_frontier_cells=10240",
+      "id": "CT-03",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_ESTABLISHED",
+      "parent_disposition": "PARENT_OWNED_OR_ELEMENTARY_SPECIALIZATION",
+      "proof_assistant": "NOT_RUN",
+      "proof_file": "THEORY.md",
+      "sources": [
+        "S1",
+        "S4"
+      ],
+      "statement": "Exact joint distribution/failure-event frontier"
+    },
+    {
+      "OCM_adoption": "NOT_IMPLEMENTED",
+      "assumptions": "See the named proof section; no unstated sampling, oracle, drift or authority premise is supplied by this ledger.",
+      "depends_on": [
+        "CT-03"
+      ],
+      "evidence_state": "written finite-n proof plus finite calibration",
+      "finite_check": "EXTENSION_RESULTS.json: joint_parent_pairs=10240",
+      "id": "CT-03b",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_ESTABLISHED",
+      "parent_disposition": "PARENT_OWNED_OR_ELEMENTARY_SPECIALIZATION",
+      "proof_assistant": "NOT_RUN",
+      "proof_file": "THEORY.md",
+      "sources": [
+        "S4"
+      ],
+      "statement": "Dominated removals and exact subset-sum reduction"
+    },
+    {
+      "OCM_adoption": "NOT_IMPLEMENTED",
+      "assumptions": "See the named proof section; no unstated sampling, oracle, drift or authority premise is supplied by this ledger.",
+      "depends_on": [
+        "CT-02"
+      ],
+      "evidence_state": "written finite-n proof plus finite calibration",
+      "finite_check": "RESULTS.json: audit_semantic_cells=8640",
+      "id": "CT-04",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_ESTABLISHED",
+      "parent_disposition": "PARENT_OWNED_OR_ELEMENTARY_SPECIALIZATION",
+      "proof_assistant": "NOT_RUN",
+      "proof_file": "THEORY.md",
+      "sources": [
+        "S1"
+      ],
+      "statement": "Sharp no-change-audit risk and indistinguishable counterworld"
+    },
+    {
+      "OCM_adoption": "NOT_IMPLEMENTED",
+      "assumptions": "See the named proof section; no unstated sampling, oracle, drift or authority premise is supplied by this ledger.",
+      "depends_on": [
+        "CT-04"
+      ],
+      "evidence_state": "written finite-n proof plus finite calibration; hardness reduction not separately mechanized",
+      "finite_check": "RESULTS.json: audit_parent_pairs=28160",
+      "id": "CT-05",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_ESTABLISHED",
+      "parent_disposition": "PARENT_OWNED_OR_ELEMENTARY_SPECIALIZATION",
+      "proof_assistant": "NOT_RUN",
+      "proof_file": "THEORY.md",
+      "sources": [
+        "S4"
+      ],
+      "statement": "Audit-cost frontier, faithful knapsack DP and hardness reduction"
+    },
+    {
+      "OCM_adoption": "NOT_IMPLEMENTED",
+      "assumptions": "See the named proof section; no unstated sampling, oracle, drift or authority premise is supplied by this ledger.",
+      "depends_on": [
+        "CT-03",
+        "CT-04"
+      ],
+      "evidence_state": "written finite-n proof; selected monotonicity dimensions calibrated",
+      "finite_check": "EXTENSION_RESULTS.json: nested_monotonicity_checks=8640; revocation controls",
+      "id": "CT-06",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_ESTABLISHED",
+      "parent_disposition": "PARENT_OWNED_OR_ELEMENTARY_SPECIALIZATION",
+      "proof_assistant": "NOT_RUN",
+      "proof_file": "THEORY.md",
+      "sources": [
+        "S1"
+      ],
+      "statement": "Audit revocation and feasible-set monotonicity"
+    },
+    {
+      "OCM_adoption": "NOT_IMPLEMENTED",
+      "assumptions": "See the named proof section; no unstated sampling, oracle, drift or authority premise is supplied by this ledger.",
+      "depends_on": [
+        "CT-02"
+      ],
+      "evidence_state": "written probability proof; no dedicated chain enumeration",
+      "finite_check": null,
+      "id": "CT-07",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_ESTABLISHED",
+      "parent_disposition": "PARENT_OWNED_OR_ELEMENTARY_SPECIALIZATION",
+      "proof_assistant": "NOT_RUN",
+      "proof_file": "THEORY.md",
+      "sources": [
+        "S1",
+        "S2"
+      ],
+      "statement": "Sequential transport and separately charged verifier error"
+    },
+    {
+      "OCM_adoption": "NOT_IMPLEMENTED",
+      "assumptions": "See the named proof section; no unstated sampling, oracle, drift or authority premise is supplied by this ledger.",
+      "depends_on": [
+        "CT-01",
+        "CT-03",
+        "CT-04"
+      ],
+      "evidence_state": "countermodels, not an exhaustive defect inventory",
+      "finite_check": "RESULTS.json: applied_mutants_detected=10; manifest_fields_mutated=14",
+      "id": "CT-08",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_ESTABLISHED",
+      "parent_disposition": "PARENT_OWNED_OR_ELEMENTARY_SPECIALIZATION",
+      "proof_assistant": "NOT_RUN",
+      "proof_file": "THEORY.md",
+      "sources": [
+        "S1",
+        "S2",
+        "S3"
+      ],
+      "statement": "Invalid transport shortcuts have exact countermodels"
+    },
+    {
+      "OCM_adoption": "NOT_IMPLEMENTED",
+      "assumptions": "See the named proof section; no unstated sampling, oracle, drift or authority premise is supplied by this ledger.",
+      "depends_on": [
+        "CT-04",
+        "CT-06"
+      ],
+      "evidence_state": "written finite-n proof plus finite calibration",
+      "finite_check": "EXTENSION_RESULTS.json: supermodular_inequalities=13720; strict counterexample",
+      "id": "CT-09",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_ESTABLISHED",
+      "parent_disposition": "PARENT_OWNED_OR_ELEMENTARY_SPECIALIZATION",
+      "proof_assistant": "NOT_RUN",
+      "proof_file": "THEORY.md",
+      "sources": [
+        "S5"
+      ],
+      "statement": "No-change-audit benefits are monotone supermodular"
+    },
+    {
+      "OCM_adoption": "NOT_IMPLEMENTED",
+      "assumptions": "See the named proof section; no unstated sampling, oracle, drift or authority premise is supplied by this ledger.",
+      "depends_on": [],
+      "evidence_state": "written all-p fixed-n sampling proof plus finite numerical calibration",
+      "finite_check": "SAMPLING_RESULTS.json: binomial_limits=270; exact_coverage_cells=612",
+      "id": "CT-10",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_ESTABLISHED",
+      "parent_disposition": "PARENT_OWNED_OR_ELEMENTARY_SPECIALIZATION",
+      "proof_assistant": "NOT_RUN",
+      "proof_file": "SAMPLING.md",
+      "sources": [
+        "S6"
+      ],
+      "statement": "Conservative rational one-sided binomial upper coverage"
+    },
+    {
+      "OCM_adoption": "NOT_IMPLEMENTED",
+      "assumptions": "See the named proof section; no unstated sampling, oracle, drift or authority premise is supplied by this ledger.",
+      "depends_on": [
+        "CT-02",
+        "CT-10"
+      ],
+      "evidence_state": "written conditional sampling proof; no real predictor evaluation",
+      "finite_check": "SAMPLING_RESULTS.json: disagreement_inclusions=1536; multiclass strictness",
+      "id": "CT-10b",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_ESTABLISHED",
+      "parent_disposition": "PARENT_OWNED_OR_ELEMENTARY_SPECIALIZATION",
+      "proof_assistant": "NOT_RUN",
+      "proof_file": "SAMPLING.md",
+      "sources": [
+        "S1",
+        "S6",
+        "S7"
+      ],
+      "statement": "Label-free update transport via prediction disagreement"
+    },
+    {
+      "OCM_adoption": "NOT_IMPLEMENTED",
+      "assumptions": "See the named proof section; no unstated sampling, oracle, drift or authority premise is supplied by this ledger.",
+      "depends_on": [
+        "CT-10"
+      ],
+      "evidence_state": "written union-bound proof plus exact selection counterexample",
+      "finite_check": "SAMPLING_RESULTS.json: selection_sample_vectors=16",
+      "id": "CT-11",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_ESTABLISHED",
+      "parent_disposition": "PARENT_OWNED_OR_ELEMENTARY_SPECIALIZATION",
+      "proof_assistant": "NOT_RUN",
+      "proof_file": "SAMPLING.md",
+      "sources": [
+        "S6"
+      ],
+      "statement": "Simultaneous finite-family selection validity and naive-selection failure"
+    },
+    {
+      "OCM_adoption": "NOT_IMPLEMENTED",
+      "assumptions": "See the named proof section; no unstated sampling, oracle, drift or authority premise is supplied by this ledger.",
+      "depends_on": [],
+      "evidence_state": "written scoped impossibility proof plus constructed two-world witness",
+      "finite_check": "SAMPLING_RESULTS.json: examples.unrestricted_future",
+      "id": "CT-12",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_ESTABLISHED",
+      "parent_disposition": "PARENT_OWNED_OR_ELEMENTARY_SPECIALIZATION",
+      "proof_assistant": "NOT_RUN",
+      "proof_file": "SAMPLING.md",
+      "sources": [
+        "S7"
+      ],
+      "statement": "Identical histories cannot justify unrestricted future stability"
+    }
+  ],
+  "deductive_addendum_commit": "798ac9a06174731ff207e8f4e3e90547c38dd434",
+  "gap_links": [
+    {
+      "disposition": "SCOPED_FRAGMENT_ONLY_NOT_CLOSED",
+      "id": "MEG-02"
+    },
+    {
+      "disposition": "SCOPED_FRAGMENT_ONLY_NOT_CLOSED",
+      "id": "MEG-03"
+    },
+    {
+      "disposition": "SCOPED_FRAGMENT_ONLY_NOT_CLOSED",
+      "id": "MEG-17"
+    },
+    {
+      "disposition": "SCOPED_FRAGMENT_ONLY_NOT_CLOSED",
+      "id": "MEG-19"
+    },
+    {
+      "disposition": "SCOPED_FRAGMENT_ONLY_NOT_CLOSED",
+      "id": "MEG-22"
+    },
+    {
+      "disposition": "SCOPED_FRAGMENT_ONLY_NOT_CLOSED",
+      "id": "MEG-30"
+    },
+    {
+      "disposition": "SCOPED_FRAGMENT_ONLY_NOT_CLOSED",
+      "id": "MEG-31"
+    },
+    {
+      "disposition": "SCOPED_FRAGMENT_ONLY_NOT_CLOSED",
+      "id": "MEG-33"
+    }
+  ],
+  "not_closed": [
+    "overall foundation",
+    "OCM M2 or other milestones",
+    "real-model validity",
+    "independent review",
+    "general dependent/adaptive sampling",
+    "realizable backend restrictions",
+    "joint drift estimation",
+    "general language or learning",
+    "field status",
+    "publication authority"
+  ],
+  "primary_protocol_commit": "a0c10be58bf280867f790dc8aafa9a98de743cfe",
+  "review_roles": {
+    "algorithms": "subset-sum/knapsack parity and full cost",
+    "formal_semantics": "typed projections and premise scopes",
+    "hostile_evaluation": "countermodels and mutation power",
+    "independence": "analytic roles in one session; no external expert panel or additional workers",
+    "probability": "attainment, binomial coverage, selection",
+    "systems": "binding and reproducible byte custody"
+  },
+  "sampling_protocol_commit": "3803ee2481c65b3909db2b0e50338efff0bdf377",
+  "schema": "ME-CertificateTransport-Claims.v1",
+  "scope": "One additive foundation fragment, not overall Machine Epistemics closure",
+  "study": "ME-CERTIFICATE-TRANSPORT-V1"
+}

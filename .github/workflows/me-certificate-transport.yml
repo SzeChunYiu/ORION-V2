@@ -1,0 +1,37 @@
+name: ME certificate transport
+on:
+  pull_request:
+    paths:
+      - 'research/machine-epistemics-theory/certificate_transport_v1/**'
+      - '.github/workflows/me-certificate-transport.yml'
+  push:
+    branches: [main, research/me-certificate-transport-20260904]
+    paths:
+      - 'research/machine-epistemics-theory/certificate_transport_v1/**'
+      - '.github/workflows/me-certificate-transport.yml'
+permissions:
+  contents: read
+jobs:
+  exact-calibration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        python-version: ['3.12', '3.13']
+    defaults:
+      run:
+        working-directory: research/machine-epistemics-theory/certificate_transport_v1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m py_compile transport.py checks.py extensions.py sampling.py test_transport.py verify_package.py
+      - run: python -m unittest -v test_transport.py
+      - run: python checks.py --verify RESULTS.json
+      - run: python extensions.py --verify EXTENSION_RESULTS.json
+      - run: python sampling.py --verify SAMPLING_RESULTS.json
+      - run: python -O checks.py --verify RESULTS.json
+      - run: python -O extensions.py --verify EXTENSION_RESULTS.json
+      - run: python -O sampling.py --verify SAMPLING_RESULTS.json
+      - run: python verify_package.py
