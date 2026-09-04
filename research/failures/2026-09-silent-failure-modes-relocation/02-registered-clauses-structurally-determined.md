@@ -131,7 +131,8 @@ interrogate.
 
 ## D21 — A confound mistaken for a surface artifact (PRA GP2a, R0)
 
-**Class** `NONIDENTIFIABLE` (existing) · **Status** `REALISED`, corrected in the diagnosis
+**Class** `NONIDENTIFIABLE` (existing) · **Status** `NEAR_MISS` — the confound was diagnosed
+before it was read as evidence, and no protected or frozen artifact carried it
 
 The nominating hypothesis was that the probe keyed on **lexical surface**. It is false, and the
 diagnosis falsifies it with a control: a lexical surface reader on the exact frozen instance split

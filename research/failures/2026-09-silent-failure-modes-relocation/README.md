@@ -40,7 +40,7 @@ parents that already own the synthesis.
 | D6 | A registered clause the runner silently narrows (PRA GP2a) | `REGISTERED_SCOPE_DIVERGENCE` | `REALISED`, deliberately unpatched |
 | D19 | A registered clause unsatisfiable in principle (PRA GP2a R3) | `STRUCTURALLY_DETERMINED_REGISTERED_CLAUSE` | `NEAR_MISS` |
 | D20 | Two registered clauses unfailable by construction (PRA GP2a) | `STRUCTURALLY_DETERMINED_REGISTERED_CLAUSE` | `REALISED` |
-| D21 | A confound mistaken for a surface artifact (PRA GP2a R0) | `NONIDENTIFIABLE` | `REALISED`, corrected in the diagnosis |
+| D21 | A confound mistaken for a surface artifact (PRA GP2a R0) | `NONIDENTIFIABLE` | `NEAR_MISS`, diagnosed before it was read as evidence |
 | D7 | Pinning a served model id does not pin a condition (E30-R12) | `UNPINNED_SUBSTRATE_CONDITION` | `REALISED`, filed as could-not-check |
 | D8 | A checker staged against the wrong corpus (ME-X3) | `CHECKER_STAGED_ON_THE_WRONG_SUBSTRATE` | `NEAR_MISS`, guarded |
 | D9 | A toolchain shim with no default toolchain (ME-X3) | `CHECKER_STAGED_ON_THE_WRONG_SUBSTRATE` | `NEAR_MISS`, reconstructed, unattested; **fail-loud** |
