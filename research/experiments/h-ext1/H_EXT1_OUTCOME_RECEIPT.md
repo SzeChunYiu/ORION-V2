@@ -95,7 +95,12 @@ gates pass; same terminal.
    > discordant pairs.** All 29 discordant pairs, and the whole +11-task margin, lie on the
    > 350 gate-inactive tasks (b = 20, c = 9), where `GATED_M` **is** `P_D_MINUS_DEPENDENCE`
    > by construction; 28 of the 29 are `PD-S2`, a family the gate never activates on once.
-   > RETROSPECTIVE_EVAL replicates it (gate-active b = 0, c = 1; gate-inactive b = 7, c = 0).
+   > The retrospective run replicates it: over the whole run (`RETROSPECTIVE`, n = 520,
+   > dev+eval) gate-active b = 0, c = 1 and gate-inactive b = 7, c = 0; on the genuinely
+   > held-out `RETROSPECTIVE_EVAL` cell (n = 244) it is cleaner — gate-active 72/72 vs
+   > 72/72, **b = 0, c = 0**; gate-inactive 172: 172 vs 166, b = 6, c = 0. (An earlier
+   > revision of this addendum labelled the n = 520 figures as the eval cell; the single
+   > gate-active task `GATED_M` loses, `pd-s1-0137`, is in the dev half.)
    > So the caution in this item strengthens: the +2.1 pp margin is not merely un-null-tested,
    > it is **composed entirely of tasks where the mechanism's gate never fired**, and cannot
    > be read as evidence about conditional activation whatever a null on it returned.
