@@ -1,0 +1,651 @@
+{
+  "authority": {
+    "flagship_gate": false,
+    "grants_field_status": false,
+    "grants_manuscript_change": false,
+    "grants_scientific_truth": false
+  },
+  "comparators": {
+    "B4X_V1_UNIT_SIGN_LEARNED_CONTROL": "V1's fit_signs on the V3 development split (class {-1,0,+1})",
+    "B8_V2_FROZEN": {
+      "corroborated_by_fit_json": "ME_X6_V2_DEVELOPMENT_FIT_V1.json",
+      "corroborated_by_fit_sha256": "d86060a438fc2cf001a8fe0e52839ab730402ea8fe7b3d305452751ec6ae9aef",
+      "selected_fitter": "B6_GREEDY_SUBSET_UNTYPED",
+      "source_design_json": "ME_X6_V2_CAPACITY_MATCHED_COMPARATOR_DESIGN_V1.json",
+      "source_design_sha256": "ce7942af1d36092dc24c3ab310f80a0b836be4171d5e11a51bffe129772fa3d7",
+      "weights": {
+        "authors": 0,
+        "citations": 0,
+        "concentration": 0,
+        "corrections": 0,
+        "disruption": 0,
+        "downstream_reuse": 0,
+        "formal_artifacts": 1,
+        "independent_rederivations": 1,
+        "journal_papers": 0,
+        "preprints": 0,
+        "replications_failed": 0,
+        "replications_passed": 1,
+        "retractions": -1,
+        "semantic_novelty": 0,
+        "solution_cost": 0,
+        "topic_spread": 0
+      }
+    },
+    "B8_V3_REFIT": {
+      "fitted_on": {
+        "n": 72,
+        "per_cell": 2,
+        "seed": "ME-X6-V3-DEV-20260904",
+        "split": "PUBLIC DEVELOPMENT"
+      },
+      "procedure": "V2's select_capacity_matched (B6 greedy, B7 lasso, frozen selection rule) on the V3 development split",
+      "selected_fitter": "B7_L1_PATH_UNTYPED"
+    },
+    "B9_EXHAUSTIVE_UNTYPED_IDENTITY_CHECK": {
+      "chosen_equals_m_vector": false,
+      "class": "{-2,-1,0,+1}^8 over the eight validation channels, exhaustive",
+      "label": "IDENTITY CHECK, NOT EVIDENCE: the class contains M's vector, so a tie with M is a vacuity disclosure",
+      "m_vector_is_maximal": true,
+      "n_candidates": 65536,
+      "n_maximal_vectors": 16,
+      "reported_for": "how many class members the development split leaves maximal (identifiability of the rule from 72 public instances)"
+    },
+    "C_ALWAYS_RISE/FLAT/FALL": "null controls",
+    "M_TYPED_COLLECTIVE_STATE": "V1's _cap_typed over TYPED_SIGNS, imported unchanged; computed on the FieldWindow by V1's own code path",
+    "frozen_fitted_weights": {
+      "B4X_V1_UNIT_SIGN_LEARNED_CONTROL": {
+        "dev_capability_correct": 40,
+        "n_channels_zeroed": 2,
+        "n_dev": 72,
+        "weights": {
+          "authors": 1,
+          "citations": -1,
+          "concentration": 0,
+          "corrections": -1,
+          "disruption": 1,
+          "downstream_reuse": 1,
+          "formal_artifacts": 1,
+          "independent_rederivations": 1,
+          "journal_papers": 1,
+          "preprints": 1,
+          "replications_failed": -1,
+          "replications_passed": 1,
+          "retractions": -1,
+          "semantic_novelty": -1,
+          "solution_cost": -1,
+          "topic_spread": 0
+        }
+      },
+      "B6_V3_GREEDY_SUBSET_UNTYPED": {
+        "dev_capability_correct": 64,
+        "n_channels_zeroed": 11,
+        "n_dev": 72,
+        "weights": {
+          "authors": 0,
+          "citations": 0,
+          "concentration": 0,
+          "corrections": -2,
+          "disruption": 0,
+          "downstream_reuse": 0,
+          "formal_artifacts": 1,
+          "independent_rederivations": 1,
+          "journal_papers": 0,
+          "preprints": 0,
+          "replications_failed": -1,
+          "replications_passed": 0,
+          "retractions": 0,
+          "semantic_novelty": 0,
+          "solution_cost": -1,
+          "topic_spread": 0
+        }
+      },
+      "B7_V3_L1_PATH_UNTYPED": {
+        "dev_capability_correct": 72,
+        "n_channels_zeroed": 8,
+        "n_dev": 72,
+        "weights": {
+          "authors": 0.0,
+          "citations": 0.0,
+          "concentration": 0.0,
+          "corrections": -0.02393822400780899,
+          "disruption": 0.01767485822306238,
+          "downstream_reuse": 0.010963688184885833,
+          "formal_artifacts": 0.0,
+          "independent_rederivations": 0.03603133159268928,
+          "journal_papers": 0.0,
+          "preprints": 0.0,
+          "replications_failed": -0.02954545454545454,
+          "replications_passed": 0.018358818184929293,
+          "retractions": -0.012994760786503756,
+          "semantic_novelty": 0.0,
+          "solution_cost": -0.015789390826494866,
+          "topic_spread": 0.0
+        }
+      },
+      "B8_V3_REFIT_COVERAGE_MATCHED": {
+        "dev_capability_correct": 72,
+        "n_channels_zeroed": 8,
+        "n_dev": 72,
+        "weights": {
+          "authors": 0.0,
+          "citations": 0.0,
+          "concentration": 0.0,
+          "corrections": -0.02393822400780899,
+          "disruption": 0.01767485822306238,
+          "downstream_reuse": 0.010963688184885833,
+          "formal_artifacts": 0.0,
+          "independent_rederivations": 0.03603133159268928,
+          "journal_papers": 0.0,
+          "preprints": 0.0,
+          "replications_failed": -0.02954545454545454,
+          "replications_passed": 0.018358818184929293,
+          "retractions": -0.012994760786503756,
+          "semantic_novelty": 0.0,
+          "solution_cost": -0.015789390826494866,
+          "topic_spread": 0.0
+        }
+      },
+      "B9_EXHAUSTIVE_UNTYPED_IDENTITY_CHECK": {
+        "dev_capability_correct": 72,
+        "n_channels_zeroed": 8,
+        "n_dev": 72,
+        "weights": {
+          "authors": 0,
+          "citations": 0,
+          "concentration": 0,
+          "corrections": -1,
+          "disruption": 0,
+          "downstream_reuse": 1,
+          "formal_artifacts": 1,
+          "independent_rederivations": 1,
+          "journal_papers": 0,
+          "preprints": 0,
+          "replications_failed": -1,
+          "replications_passed": 1,
+          "retractions": -1,
+          "semantic_novelty": 0,
+          "solution_cost": -1,
+          "topic_spread": 0
+        }
+      }
+    },
+    "handicap_disclosure": "B8_V2_FROZEN is deliberately coverage-UNMATCHED: that is the manipulated variable, not a harness asymmetry.  B8_V3_REFIT is the parity arm that removes the handicap; G3 measures what removing it buys (HANDICAPPED_COMPARATOR guard)",
+    "provenance": "CONSTRUCTED_FOR_THIS_STUDY; NOT PUBLISHED-METHOD PARENTS (V2 design section 2 applies unchanged)"
+  },
+  "failure_ledger_audit": {
+    "AUTHORITY_LAUNDERING": "grants nothing; see authority",
+    "CHECK_THAT_RUNS_AND_CANNOT_FIRE": "every hard gate has a selftest fixture or control on which it fails (planter rejection, signature rejection, G0c above-bar fixture, un-zeroing counter, sign-flip controls)",
+    "FORECLOSED_FAILURE_MODE": "M's failure mode (a wrong a-priori sign) has dynamic range: single-sign-flip controls lose exactly one stratum each",
+    "HANDICAPPED_COMPARATOR": "the coverage handicap is the manipulated variable; the parity arm B8_V3_REFIT is registered and G3 reads it",
+    "NONREPRODUCIBLE_FROZEN_ARTIFACT": "no RNG draw ordered by an unordered container (CELLS_V3 is a tuple; per-instance seeds are sha256-derived); split digests compared across PYTHONHASHSEED 1 and 12345 in fresh processes, dev at selftest and protected after the run",
+    "REGISTERED_SCOPE_DIVERGENCE": "SCOPE_BINDING gate: the gate set evaluated must equal the gate set registered here; every clause is evaluated at BOTH scales separately",
+    "RENDERED_SURFACE_SUBSTITUTED_FOR_THE_FACT": "every number in the receipt is parsed from a results/analysis JSON; pytest exit status read from $? with no pipe",
+    "STRUCTURALLY_DETERMINED_REGISTERED_CLAUSE": "G1's comparator half is determined by construction and is disclosed as such; G1's measured content is M's side (G0d2, which can fail) and G3 attributes coverage; G2 is open in both directions (greedy 64/72 vs lasso 72/72 on dev shows the fitter class can lose)",
+    "TERMINAL_OVERSTATES_ITS_PROCEDURE": "each terminal names the gate verdicts that would have to be otherwise for it to be false; the G1-tie terminal cannot fire while a comparator is ahead",
+    "VACUOUS_CONTRAST": "M runs V1's typed code path on the window; comparators run V2's untyped rule on half-differences; vectors asserted to differ; the M-vector identity between the two paths is disclosed"
+  },
+  "gates": {
+    "hard": [
+      "G0a_KNOWN_ANSWER",
+      "G0b_GENERATOR_VALIDITY",
+      "G0c_NULL_CALIBRATION",
+      "G0d_M_EXACT_BY_CONSTRUCTION_ON_V1_STRATA",
+      "G0e_COVERAGE_AND_CAPACITY_BITS",
+      "G8_VERDICT_CONSTANCY_WITHIN_CELL"
+    ],
+    "live": [
+      "G0d2_M_ON_HELD_OUT_ROLES",
+      "G1_M_VS_B8_V2_FROZEN_ON_HELD_OUT_4",
+      "G2_M_VS_B8_V3_REFIT_ON_ALL_18",
+      "G3_B8_V3_REFIT_VS_B8_V2_FROZEN_ON_HELD_OUT_4",
+      "G6_CROSS_SCALE_CONSISTENCY"
+    ],
+    "note": "every gate is a POSITIVE test with its own n_evaluated; G0d2 is LIVE not hard so an a-priori sign error of M on a new stratum is a result, not a lane defect",
+    "null_bar": {
+      "class_counts": {
+        "FALL": 4,
+        "FLAT": 8,
+        "RISE": 6
+      },
+      "modal_class": "FLAT",
+      "modal_count": 8,
+      "n_strata": 18,
+      "rate": 0.4444444444444444,
+      "rule": "no constant arm exceeds the modal-class rate computed from STRATA_V3"
+    },
+    "paired_test": "exact two-sided discordant-pair (McNemar) binomial test, per scale and per stratum"
+  },
+  "out_of_scope": [
+    "re-running ME-X6 V1 or V2",
+    "re-fitting any V1/V2 frozen vector",
+    "any change to a V1/V2 gate, number, terminal or authorization",
+    "writing anything into research/experiments/me-x6/ or me-x6-v2/"
+  ],
+  "predecessors": {
+    "ME-X6": {
+      "role": "generator, oracle, M, fit_signs",
+      "status": "IMMUTABLE -- not edited, not re-run"
+    },
+    "ME-X6-V2": {
+      "role": "fitters, B8 frozen vector, custody conventions",
+      "status": "IMMUTABLE -- not edited, not re-run",
+      "terminal_as_receipted": "TYPING_NOT_SEPARATED_AT_MATCHED_CAPACITY"
+    }
+  },
+  "protected_run_authorization": {
+    "guard": "PROTECTED_RUN_AUTHORIZATION.json with human_written=true, token >= 16 chars, acknowledged_design_sha256 == this file's digest (else exit 3); custody seed must hash to the commitment (else exit 4); archived after use",
+    "operator_instruction_verbatim": "for the negative results we need to find ways to improve our orion v2 framework, so we can also improve the quality of the paper in order to make sure they are all top tier.",
+    "source": "operator directive 2026-09-04, relayed via the interface-revival lane brief"
+  },
+  "protected_split": {
+    "cells": 36,
+    "n": 1800,
+    "per_cell": 50,
+    "prefix": "protected",
+    "reporting": "per stratum, per scale, and the held-out-4 subset separately; the two scales are never pooled into one claim"
+  },
+  "question": "V2 attributed V1's separation to comparator capacity: a learned capacity-matched untyped vector ties M 1400/1400.  That vector zeroes exactly the four of M's eight declared roles that no V1 stratum exercises as a lone carrier, so the fitter dropped roles the development split never exercised in isolation.  On strata that exercise those roles alone, does the a-priori typed assignment separate from (a) V2's frozen coverage-UNMATCHED vector and (b) the same fitter refitted on a coverage-MATCHED development split?",
+  "reachability_audit_pre_run": {
+    "B9_is_an_identity_check": {
+      "chosen_equals_m_vector": false,
+      "m_vector_is_maximal": true,
+      "n_maximal_vectors": 16,
+      "statement": "the exhaustive class contains M's vector; its tie with M is a vacuity disclosure, never evidence.  Reported only for what it measures: how many class members the development split leaves maximal"
+    },
+    "G1_comparator_half_is_structurally_determined": {
+      "b8_v2_held_out_dev": {
+        "correct": 0,
+        "n": 16,
+        "note": "FLAT by construction -- disclosed, see G1",
+        "reads_FLAT": 16
+      },
+      "counter_moves_when_unzeroed": {
+        "correct": 16,
+        "counter_moved": true,
+        "n": 16
+      },
+      "statement": "The held-out strata move only channels B8_V2 zeroes, so B8_V2 reads FLAT on every held-out instance BY CONSTRUCTION.  This is disclosed as the operational meaning of 'coverage-unmatched', not as a finding.  G1's measured content is M's side (G0d2); G3 attributes what coverage buys."
+    },
+    "M_can_fail_on_a_new_stratum": {
+      "m_on_dev_all_strata": {
+        "correct": 72,
+        "n": 72
+      },
+      "single_sign_flip_controls": {
+        "corrections": {
+          "flipped_to": 1,
+          "n_lost": 4,
+          "strata_lost": [
+            "I11_SILENT_CORRECTION_EROSION"
+          ]
+        },
+        "downstream_reuse": {
+          "flipped_to": -1,
+          "n_lost": 4,
+          "strata_lost": [
+            "I14_REUSE_ONLY_GAIN"
+          ]
+        },
+        "replications_failed": {
+          "flipped_to": 1,
+          "n_lost": 4,
+          "strata_lost": [
+            "I12_FAILED_REPLICATION_WAVE"
+          ]
+        },
+        "solution_cost": {
+          "flipped_to": 1,
+          "n_lost": 4,
+          "strata_lost": [
+            "I13_COST_COLLAPSE"
+          ]
+        }
+      },
+      "statement": "M's signs were fixed in V1; each new stratum's effect was derived from protocol semantics.  A single flipped sign loses exactly that role's stratum, so an a-priori error would be visible and would route M_BEHIND_COMPARATOR through G2 rather than be hidden by a hard gate."
+    },
+    "every_terminal_is_reachable_by_fixture": {
+      "LANE_DEFECT": "LANE_DEFECT",
+      "M_BEHIND_COMPARATOR": "M_BEHIND_COMPARATOR",
+      "M_BEHIND_COMPARATOR_via_G1_tie_with_refit_ahead": "M_BEHIND_COMPARATOR",
+      "NONE": "NONE",
+      "NO_CROSS_SCALE_TRANSFER": "NO_CROSS_SCALE_TRANSFER",
+      "TYPING_IS_A_COVERAGE_PRIOR": "TYPING_IS_A_COVERAGE_PRIOR",
+      "TYPING_LOAD_BEARING_BEYOND_COVERAGE": "TYPING_LOAD_BEARING_BEYOND_COVERAGE",
+      "TYPING_NOT_SEPARATED_UNDER_COVERAGE_SHIFT": "TYPING_NOT_SEPARATED_UNDER_COVERAGE_SHIFT"
+    },
+    "every_terminal_reached": true,
+    "null_bar_is_derived_not_hand_set": {
+      "class_counts": {
+        "FALL": 4,
+        "FLAT": 8,
+        "RISE": 6
+      },
+      "modal_class": "FLAT",
+      "modal_count": 8,
+      "n_strata": 18,
+      "rate": 0.4444444444444444
+    },
+    "refit_sign_pattern_equals_m": false,
+    "refit_vector_equals_m_vector": false,
+    "the_activity_half_is_not_reported": {
+      "statement": "V1 computes the activity direction from the activity channels by the same call for every arm; it is equal by construction and not evidence"
+    },
+    "the_protected_seed_governs_instance_generation_only": {
+      "statement": "every fit is a deterministic, RNG-free function of the PUBLIC development split, frozen before the protected seed is revealed"
+    },
+    "the_refit_can_lose_and_can_win": {
+      "greedy_v3_dev": 64,
+      "l1_v3_dev": 72,
+      "n": 72,
+      "refit_dev": 72,
+      "statement": "both registered fitters are heuristics (V2 fixtures re-asserted in the selftest); whichever B8_V3_REFIT is, it is not M's vector unless the analysis flags refit_vector_equals_m_vector, in which case a G2 tie is an identity and is reported as one",
+      "unit_sign_control_dev": 40
+    },
+    "vacuous_contrast_guard": {
+      "b8_v2_differs_from_m": true,
+      "comparator_vectors_differ_from_m": {
+        "B4X_V1_UNIT_SIGN_LEARNED_CONTROL": true,
+        "B6_V3_GREEDY_SUBSET_UNTYPED": true,
+        "B7_V3_L1_PATH_UNTYPED": true,
+        "B8_V3_REFIT_COVERAGE_MATCHED": true,
+        "B9_EXHAUSTIVE_UNTYPED_IDENTITY_CHECK": true
+      },
+      "m_typed_path_equals_untyped_rule": {
+        "agree": 72,
+        "n": 72
+      },
+      "sign_pattern_equals_m": {
+        "B6_V3_GREEDY_SUBSET_UNTYPED": false,
+        "B7_V3_L1_PATH_UNTYPED": false,
+        "B8_V3_REFIT_COVERAGE_MATCHED": false,
+        "B9_EXHAUSTIVE_UNTYPED_IDENTITY_CHECK": true
+      }
+    }
+  },
+  "role_coverage_census_from_generated_instances": {
+    "b8_v2_zeroed_validation_channels": [
+      "replications_failed",
+      "corrections",
+      "downstream_reuse",
+      "solution_cost"
+    ],
+    "channels_with_no_lone_carrier_v1_stratum": [
+      "replications_failed",
+      "corrections",
+      "retractions",
+      "downstream_reuse",
+      "solution_cost"
+    ],
+    "lone_carrier_in": {
+      "corrections": [],
+      "downstream_reuse": [],
+      "formal_artifacts": [
+        "X6I7_ONE_BREAKTHROUGH"
+      ],
+      "independent_rederivations": [
+        "I10_INDEPENDENT_REDISCOVERY"
+      ],
+      "replications_failed": [],
+      "replications_passed": [
+        "I9_DELAYED_VALIDATION"
+      ],
+      "retractions": [],
+      "solution_cost": []
+    },
+    "m_declared_roles": [
+      "formal_artifacts",
+      "replications_passed",
+      "replications_failed",
+      "corrections",
+      "retractions",
+      "downstream_reuse",
+      "independent_rederivations",
+      "solution_cost"
+    ],
+    "moves_in": {
+      "corrections": [
+        "I4_RETRACTED_WORK"
+      ],
+      "downstream_reuse": [
+        "GENUINE_CAPABILITY_GAIN",
+        "GENUINE_CAPABILITY_LOSS",
+        "I4_RETRACTED_WORK"
+      ],
+      "formal_artifacts": [
+        "GENUINE_CAPABILITY_GAIN",
+        "GENUINE_CAPABILITY_LOSS",
+        "I4_RETRACTED_WORK",
+        "X6I7_ONE_BREAKTHROUGH"
+      ],
+      "independent_rederivations": [
+        "I10_INDEPENDENT_REDISCOVERY"
+      ],
+      "replications_failed": [],
+      "replications_passed": [
+        "GENUINE_CAPABILITY_GAIN",
+        "GENUINE_CAPABILITY_LOSS",
+        "I4_RETRACTED_WORK",
+        "I9_DELAYED_VALIDATION"
+      ],
+      "retractions": [
+        "I4_RETRACTED_WORK"
+      ],
+      "solution_cost": [
+        "GENUINE_CAPABILITY_GAIN",
+        "GENUINE_CAPABILITY_LOSS"
+      ]
+    },
+    "premise_holds": true,
+    "retractions_note": "retractions has no strictly-lone V1 stratum either (corrections co-moves x1 against its x3 inside I4), but B8_V2 kept it because I4 is decided by it; it is counted as covered, as the brief records"
+  },
+  "schema_version": "orion.v2.me-x6-v3.role-coverage-shift-design.v1",
+  "scored_half": {
+    "activity": "NOT SCORED AND NOT REPORTED (equal by construction, V1 provenance receipt section 3)",
+    "capability": "SCORED"
+  },
+  "seed_commitment": {
+    "note": "custody file /Users/billy/.orion-custody/me-x6-v3/PROTECTED_SEED_V1.txt; the seed value is revealed in the outcome receipt AFTER the run",
+    "protected_seed_sha256": "24fb06a989e41e23e87aa580012b5233e564e4acc332cbb8f2e9c1972d69f870",
+    "revealed": false
+  },
+  "strata": {
+    "generator": "mex6v3_generator.py: V1 strata via V1's build_window unchanged; new strata draw in V1's order",
+    "held_out_4": [
+      "I11_SILENT_CORRECTION_EROSION",
+      "I12_FAILED_REPLICATION_WAVE",
+      "I13_COST_COLLAPSE",
+      "I14_REUSE_ONLY_GAIN"
+    ],
+    "n_cells": 36,
+    "n_strata": 18,
+    "new_strata": {
+      "I11_SILENT_CORRECTION_EROSION": {
+        "activity": "FLAT",
+        "capability": "FALL",
+        "carrier_direction": "RISE",
+        "declared_channel_signature": {
+          "authors": "FLAT",
+          "citations": "FLAT",
+          "concentration": "FLAT",
+          "corrections": "RISE",
+          "disruption": "FLAT",
+          "downstream_reuse": "FLAT",
+          "formal_artifacts": "FLAT",
+          "independent_rederivations": "FLAT",
+          "journal_papers": "FLAT",
+          "preprints": "FLAT",
+          "replications_failed": "FLAT",
+          "replications_passed": "FLAT",
+          "retractions": "FLAT",
+          "semantic_novelty": "FLAT",
+          "solution_cost": "FLAT",
+          "topic_spread": "FLAT"
+        },
+        "lone_carrier": "corrections"
+      },
+      "I12_FAILED_REPLICATION_WAVE": {
+        "activity": "RISE",
+        "capability": "FALL",
+        "carrier_direction": "RISE",
+        "declared_channel_signature": {
+          "authors": "RISE",
+          "citations": "FLAT",
+          "concentration": "FLAT",
+          "corrections": "FLAT",
+          "disruption": "FLAT",
+          "downstream_reuse": "FLAT",
+          "formal_artifacts": "FLAT",
+          "independent_rederivations": "FLAT",
+          "journal_papers": "RISE",
+          "preprints": "RISE",
+          "replications_failed": "RISE",
+          "replications_passed": "FLAT",
+          "retractions": "FLAT",
+          "semantic_novelty": "FLAT",
+          "solution_cost": "FLAT",
+          "topic_spread": "FLAT"
+        },
+        "lone_carrier": "replications_failed"
+      },
+      "I13_COST_COLLAPSE": {
+        "activity": "FLAT",
+        "capability": "RISE",
+        "carrier_direction": "FALL",
+        "declared_channel_signature": {
+          "authors": "FLAT",
+          "citations": "FLAT",
+          "concentration": "FLAT",
+          "corrections": "FLAT",
+          "disruption": "FLAT",
+          "downstream_reuse": "FLAT",
+          "formal_artifacts": "FLAT",
+          "independent_rederivations": "FLAT",
+          "journal_papers": "FLAT",
+          "preprints": "FLAT",
+          "replications_failed": "FLAT",
+          "replications_passed": "FLAT",
+          "retractions": "FLAT",
+          "semantic_novelty": "FLAT",
+          "solution_cost": "FALL",
+          "topic_spread": "FLAT"
+        },
+        "lone_carrier": "solution_cost"
+      },
+      "I14_REUSE_ONLY_GAIN": {
+        "activity": "FLAT",
+        "capability": "RISE",
+        "carrier_direction": "RISE",
+        "declared_channel_signature": {
+          "authors": "FLAT",
+          "citations": "FLAT",
+          "concentration": "FLAT",
+          "corrections": "FLAT",
+          "disruption": "FLAT",
+          "downstream_reuse": "RISE",
+          "formal_artifacts": "FLAT",
+          "independent_rederivations": "FLAT",
+          "journal_papers": "FLAT",
+          "preprints": "FLAT",
+          "replications_failed": "FLAT",
+          "replications_passed": "FLAT",
+          "retractions": "FLAT",
+          "semantic_novelty": "FLAT",
+          "solution_cost": "FLAT",
+          "topic_spread": "FLAT"
+        },
+        "lone_carrier": "downstream_reuse"
+      }
+    },
+    "role_lone_carrier_stratum": {
+      "corrections": "I11_SILENT_CORRECTION_EROSION",
+      "downstream_reuse": "I14_REUSE_ONLY_GAIN",
+      "formal_artifacts": "X6I7_ONE_BREAKTHROUGH",
+      "independent_rederivations": "I10_INDEPENDENT_REDISCOVERY",
+      "replications_failed": "I12_FAILED_REPLICATION_WAVE",
+      "replications_passed": "I9_DELAYED_VALIDATION",
+      "retractions": "I4_RETRACTED_WORK",
+      "solution_cost": "I13_COST_COLLAPSE"
+    },
+    "v1_strata": {
+      "GENUINE_CAPABILITY_GAIN": [
+        "RISE",
+        "RISE"
+      ],
+      "GENUINE_CAPABILITY_LOSS": [
+        "FALL",
+        "FALL"
+      ],
+      "I10_INDEPENDENT_REDISCOVERY": [
+        "RISE",
+        "RISE"
+      ],
+      "I1_DUPLICATES": [
+        "FLAT",
+        "RISE"
+      ],
+      "I2_PARAPHRASE": [
+        "FLAT",
+        "RISE"
+      ],
+      "I3_MASS_LOW_INFORMATION": [
+        "FLAT",
+        "RISE"
+      ],
+      "I4_RETRACTED_WORK": [
+        "FALL",
+        "RISE"
+      ],
+      "I5_CITATION_RING": [
+        "FLAT",
+        "FLAT"
+      ],
+      "I6_VENUE_MIGRATION": [
+        "FLAT",
+        "FLAT"
+      ],
+      "I7_FIELD_SIZE_SCALING": [
+        "FLAT",
+        "RISE"
+      ],
+      "I8_FASHION_CONCENTRATION": [
+        "FLAT",
+        "RISE"
+      ],
+      "I9_DELAYED_VALIDATION": [
+        "RISE",
+        "FLAT"
+      ],
+      "NO_CHANGE": [
+        "FLAT",
+        "FLAT"
+      ],
+      "X6I7_ONE_BREAKTHROUGH": [
+        "RISE",
+        "FLAT"
+      ]
+    }
+  },
+  "study_id": "ME-X6-V3",
+  "substrate_pins_sha256": {
+    "me-x6-v2/ME_X6_V2_CAPACITY_MATCHED_COMPARATOR_DESIGN_V1.json": "ce7942af1d36092dc24c3ab310f80a0b836be4171d5e11a51bffe129772fa3d7",
+    "me-x6-v2/mex6v2_fitters.py": "021516be1ea28c3cd2c199e80f876bbc4bcb7f5474f1bbb4a038412ed2a9c359",
+    "me-x6-v2/results/ME_X6_V2_DEVELOPMENT_FIT_V1.json": "d86060a438fc2cf001a8fe0e52839ab730402ea8fe7b3d305452751ec6ae9aef",
+    "me-x6/mex6_arms.py": "a72d7de2557495262a2f9999f3372078310c8da8ee792a16ed2fea7f5254ea04",
+    "me-x6/mex6_generator.py": "9f510b54fe23c0e7c4413859fd981ca8486d16cf615a1273cc73ac38c80eb718",
+    "me-x6/mex6_model.py": "c0a7298265eaf34bd496a32c74ed29fc3d60c415b295ec5cda669eda09d07d9b",
+    "me-x6/mex6_oracle.py": "1d539ed60ff578606b02a0def5b90b4b0896d4e15e40c5b714ae6ff7087f26d7"
+  },
+  "terminals": {
+    "LANE_DEFECT": "any hard gate, coverage or scope binding fails -> route CANNOT_CHECK",
+    "M_BEHIND_COMPARATOR": "any comparator strictly ahead of M at both scales (wins cells, loses none)",
+    "NONE": "no clause holds as registered (mixed by cell) -> route CANNOT_CHECK",
+    "NO_CROSS_SCALE_TRANSFER": "G6 fails -> route CANNOT_CHECK",
+    "TYPING_IS_A_COVERAGE_PRIOR": "G1 M ahead AND G2 tie AND G3 refit ahead, at both scales -> route PARENT_SUFFICIENT_AT_FULL_COVERAGE",
+    "TYPING_LOAD_BEARING_BEYOND_COVERAGE": "G1 M ahead AND G2 M ahead, at both scales",
+    "TYPING_NOT_SEPARATED_UNDER_COVERAGE_SHIFT": "G1 tie at both scales AND no comparator strictly ahead of M -> route PARENT_SUFFICIENT",
+    "pre_outcome_correction": "the G1-tie terminal requires that no comparator is strictly ahead of M; a held-out tie produced by M being WRONG on the new strata routes M_BEHIND_COMPARATOR, not 'not separated' (TERMINAL_OVERSTATES_ITS_PROCEDURE guard)",
+    "precedence": "LANE_DEFECT > NO_CROSS_SCALE_TRANSFER > TYPING_IS_A_COVERAGE_PRIOR > TYPING_LOAD_BEARING_BEYOND_COVERAGE > TYPING_NOT_SEPARATED_UNDER_COVERAGE_SHIFT > M_BEHIND_COMPARATOR > NONE"
+  },
+  "title": "Is the a-priori typed assignment load-bearing under ROLE-COVERAGE SHIFT?"
+}
