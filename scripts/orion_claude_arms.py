@@ -12,7 +12,6 @@ import hashlib
 import json
 import os
 import re
-import subprocess
 import time
 import urllib.error
 import urllib.request
@@ -20,6 +19,11 @@ from pathlib import Path
 from typing import Any, Callable
 
 from orion_v2.patch_emission import PatchEmissionError, emit_apply_clean_patch
+from orion_v2.anchored_edit_interface import (
+    AnchoredEditError,
+    emit_anchored_edit_patch,
+    interface_source_sha256 as anchored_interface_source_sha256,
+)
 
 FULL_STAGES = (
     "INGEST", "DECOMPOSE", "SORT", "NATIVE_RECONSTRUCT", "REDUCE", "ABSORB",
@@ -48,6 +52,84 @@ CHANNEL_CONTRACTS: dict[str, dict[str, Any]] = {
 }
 
 ARM_SYSTEM_PROMPT = "You are a bounded experimental software-debugging arm."
+
+#: Registered arm<->workspace interface contracts, by id.
+#:
+#: E30-R13 showed that a served-model pin and a request-body contract together still
+#: leave the *interface* unregistered: 346 of 480 emitted diffs did not apply, 152 of
+#: them editing code the 30 000-character per-file snapshot never showed the model.
+#: An interface contract names (a) how the workspace is PRESENTED and (b) how an edit
+#: is EMITTED, and is fingerprinted over the bytes of the prompt template that asks for
+#: the edit plus the source of the emission module that reads it.  ``unified_diff`` is
+#: the historical behaviour and stays the default so no existing lane changes.
+EDIT_INTERFACES: dict[str, dict[str, Any]] = {
+    "unified_diff": {
+        "emission": "orion_v2.patch_emission.emit_apply_clean_patch",
+        "presentation": "per_file_cap",
+    },
+    "anchored_edits": {
+        "emission": "orion_v2.anchored_edit_interface.emit_anchored_edit_patch",
+        "presentation": "mentioned_files_full",
+    },
+}
+
+
+class EditInterfaceUnknown(RuntimeError):
+    """``ORION_EDIT_INTERFACE`` names an interface this executable does not define."""
+
+
+def edit_interface_id() -> str:
+    name = os.environ.get("ORION_EDIT_INTERFACE", "unified_diff").strip() or "unified_diff"
+    if name not in EDIT_INTERFACES:
+        raise EditInterfaceUnknown(
+            f"unknown ORION_EDIT_INTERFACE {name!r}; defined: {sorted(EDIT_INTERFACES)}")
+    return name
+
+
+PRESENTATION_POLICIES = ("per_file_cap", "mentioned_files_full")
+
+
+class PresentationPolicyUnknown(RuntimeError):
+    """``ORION_PRESENTATION_POLICY`` names a policy this executable does not define."""
+
+
+def presentation_policy() -> str:
+    """How the workspace snapshot is built.
+
+    ``per_file_cap`` is the historical behaviour (every file cut at
+    ``ORION_CONTEXT_MAX_FILE_CHARS`` inside a ``ORION_CONTEXT_MAX_CHARS`` budget);
+    ``mentioned_files_full`` exempts every file the baseline observation names from
+    both.  The policy follows the edit interface unless ``ORION_PRESENTATION_POLICY``
+    overrides it, which exists so a calibration can cross the two axes; an unknown value
+    fails closed.
+    """
+    override = os.environ.get("ORION_PRESENTATION_POLICY", "").strip()
+    if override:
+        if override not in PRESENTATION_POLICIES:
+            raise PresentationPolicyUnknown(
+                f"unknown ORION_PRESENTATION_POLICY {override!r}; defined: {PRESENTATION_POLICIES}")
+        return override
+    return EDIT_INTERFACES[edit_interface_id()]["presentation"]
+
+
+def edit_interface_sha256(name: str) -> str:
+    """sha256 over the bytes that define the interface: id, presentation policy, the
+    final-prompt template that asks for the edit, and the emission module source."""
+    if name == "anchored_edits":
+        template = _final_prompt_anchored("", "")
+        module_sha = anchored_interface_source_sha256()
+    else:
+        template = _final_prompt_unified("", "")
+        module_sha = hashlib.sha256(
+            (Path(__file__).resolve().parents[1] / "src" / "orion_v2" / "patch_emission.py").read_bytes()
+        ).hexdigest()
+    payload = {
+        "interface_id": name,
+        "presentation": presentation_policy() if name == edit_interface_id() else EDIT_INTERFACES[name]["presentation"],
+        "final_prompt_template": template,
+        "emission_module_sha256": module_sha,
+    }
+    return hashlib.sha256(json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
 
 
 class ChannelContractUnknown(RuntimeError):
@@ -134,7 +216,7 @@ def _json_object(text: str) -> dict[str, Any]:
     return value
 
 
-def _final_prompt(context: str, prior: str = "") -> str:
+def _final_prompt_unified(context: str, prior: str = "") -> str:
     return """Return only one JSON object with keys patch, diagnosis, assumptions, uncertainty, discriminator_or_tests, falsifier.
 `patch` must be one syntactically valid unified diff, rooted at repository paths (diff --git ...), with no Markdown fence.
 You are operating only in the gold-blind buggy workspace. Never claim success, novelty, scientific truth, field status, or publication readiness.
@@ -142,6 +224,26 @@ Do not use network retrieval and do not invent test results. Propose the smalles
 
 GOLD-BLIND TASK CONTEXT:
 """ + context + ("\n\nPRIOR DELIBERATION:\n" + prior if prior else "")
+
+
+def _final_prompt_anchored(context: str, prior: str = "") -> str:
+    return """Return only one JSON object with keys edits, diagnosis, assumptions, uncertainty, discriminator_or_tests, falsifier.
+`edits` must be a list of objects {"path": ..., "search": ..., "replace": ...}, one per contiguous change.
+`path` is the repository-relative path of an existing file shown in the source snapshots.
+`search` must be a contiguous block of complete lines copied VERBATIM from that file's snapshot (exact characters and indentation, no line numbers, no ellipses, no abbreviation), and must occur exactly once in the file: include enough surrounding lines to make it unique.
+`replace` is the block of complete lines that replaces `search` (an empty string deletes it). Do not use line numbers or unified-diff syntax.
+To create a new file use {"path": ..., "create": true, "replace": <full content>}.
+You are operating only in the gold-blind buggy workspace. Never claim success, novelty, scientific truth, field status, or publication readiness.
+Do not use network retrieval and do not invent test results. Propose the smallest change justified by the supplied evidence.
+
+GOLD-BLIND TASK CONTEXT:
+""" + context + ("\n\nPRIOR DELIBERATION:\n" + prior if prior else "")
+
+
+def _final_prompt(context: str, prior: str = "") -> str:
+    if edit_interface_id() == "anchored_edits":
+        return _final_prompt_anchored(context, prior)
+    return _final_prompt_unified(context, prior)
 
 
 def _stage_prompt(label: str, context: str, prior: str = "") -> str:
@@ -164,13 +266,21 @@ def _parse_patch(text: str, workspace: Path | None = None) -> tuple[Any, str, li
     gold-blind: only the solver workspace the arm already reads is consulted.
     """
     data = _json_object(text)
-    patch = data.get("patch")
-    if not isinstance(patch, str):
-        raise ValueError("model JSON lacks a unified diff patch")
-    try:
-        emission = emit_apply_clean_patch(patch, workspace=workspace)
-    except PatchEmissionError as exc:
-        raise ValueError(f"model JSON lacks a unified diff patch: {exc}") from exc
+    if edit_interface_id() == "anchored_edits":
+        if workspace is None:
+            raise ValueError("anchored_edits interface requires a readable solver workspace")
+        try:
+            emission = emit_anchored_edit_patch(data, workspace=workspace)
+        except AnchoredEditError as exc:
+            raise ValueError(f"model JSON lacks an extractable edit list: {exc}") from exc
+    else:
+        patch = data.get("patch")
+        if not isinstance(patch, str):
+            raise ValueError("model JSON lacks a unified diff patch")
+        try:
+            emission = emit_apply_clean_patch(patch, workspace=workspace)
+        except PatchEmissionError as exc:
+            raise ValueError(f"model JSON lacks a unified diff patch: {exc}") from exc
     diagnosis = str(data.get("diagnosis", "model-proposed patch"))
     assumptions = data.get("assumptions", [])
     tests = data.get("discriminator_or_tests", [])
@@ -200,13 +310,36 @@ def _solver_workspace(request: dict[str, Any]) -> Path | None:
     return workspace if workspace.is_dir() else None
 
 
+def build_interface_receipt(workspace_context: str) -> dict[str, Any]:
+    """The per-envelope interface record a homogeneity gate reads.
+
+    Carries the interface id and its byte fingerprint, and the presentation summary
+    (how many files were shown, how many of the baseline-mentioned files were cut),
+    so 'every patch applied' can never be read out of 'the model saw nothing'.
+    """
+    name = edit_interface_id()
+    try:
+        truncation = json.loads(workspace_context).get("source_snapshot_truncation", {})
+    except (json.JSONDecodeError, AttributeError):
+        truncation = {}
+    summary = {k: v for k, v in truncation.items() if k != "per_file"}
+    return {
+        "edit_interface": name,
+        "edit_interface_sha256": edit_interface_sha256(name),
+        "presentation": summary,
+    }
+
+
 def run_arm(
     request: dict[str, Any],
     *,
     call: Callable[[str], tuple[str, dict[str, int]]],
     workspace_context: str,
+    interface_receipt: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     arm = str(request["arm_id"])
+    if interface_receipt is None:
+        interface_receipt = build_interface_receipt(workspace_context)
     workspace = _solver_workspace(request)
     calls: list[dict[str, int]] = []
     served_models: set[str] = set()
@@ -302,6 +435,7 @@ def run_arm(
             "field_status_authorized": False, "publication_readiness_authorized": False,
             "resource_receipt": {"model_calls": len(calls), "input_tokens": sum(x["input_tokens"] for x in calls), "output_tokens": sum(x["output_tokens"] for x in calls), "served_model_ids": sorted(served_models)},
             "channel_receipt": channel_receipt(),
+            "interface_receipt": interface_receipt,
         }
         if stages is not None:
             response["metabolic_stages"] = stages
@@ -327,6 +461,7 @@ def run_arm(
             "scientific_truth_authorized": False, "field_status_authorized": False, "publication_readiness_authorized": False,
             "resource_receipt": {"model_calls": len(calls), "input_tokens": sum(x["input_tokens"] for x in calls), "output_tokens": sum(x["output_tokens"] for x in calls), "served_model_ids": sorted(served_models)},
             "channel_receipt": channel_receipt(),
+            "interface_receipt": interface_receipt,
         }
 
 
@@ -425,6 +560,7 @@ def _context(request: dict[str, Any]) -> str:
     workspace = Path(str(task.get("solver_workspace", "")))
     listing: list[str] = []
     snapshots: list[dict[str, str]] = []
+    presentation_rows: list[dict[str, Any]] = []
     if workspace.is_dir():
         candidates = [
             path for path in workspace.rglob("*.py")
@@ -445,16 +581,31 @@ def _context(request: dict[str, Any]) -> str:
 
         remaining = int(os.environ.get("ORION_CONTEXT_MAX_CHARS", "120000"))
         per_file = int(os.environ.get("ORION_CONTEXT_MAX_FILE_CHARS", "30000"))
+        policy = presentation_policy()
         for path in sorted(candidates, key=priority):
-            if remaining <= 0:
+            relative = path.relative_to(workspace).as_posix()
+            mentioned = relative in baseline or path.name in baseline
+            # ``mentioned_files_full``: a file the baseline observation names is shown
+            # whole and outside the budget.  E30-R13 measured 152 of 205 canonical
+            # non-applying patches editing a region beyond the 30 000-character cut of
+            # exactly such a file; a model cannot quote context it was never shown.
+            full = policy == "mentioned_files_full" and mentioned
+            if remaining <= 0 and not full:
                 break
             try:
                 content = path.read_text(encoding="utf-8", errors="replace")
             except OSError:
                 continue
-            content = content[: min(per_file, remaining)]
-            snapshots.append({"path": path.relative_to(workspace).as_posix(), "content": content})
-            remaining -= len(content)
+            total_chars = len(content)
+            if not full:
+                content = content[: min(per_file, remaining)]
+                remaining -= len(content)
+            snapshots.append({"path": relative, "content": content})
+            presentation_rows.append({
+                "path": relative, "mentioned_in_baseline": mentioned,
+                "chars_total": total_chars, "chars_shown": len(content),
+                "truncated": len(content) < total_chars,
+            })
     return json.dumps({
         "task": task,
         "python_files": listing,
@@ -462,6 +613,14 @@ def _context(request: dict[str, Any]) -> str:
         "source_snapshot_truncation": {
             "max_total_chars": int(os.environ.get("ORION_CONTEXT_MAX_CHARS", "120000")),
             "max_file_chars": int(os.environ.get("ORION_CONTEXT_MAX_FILE_CHARS", "30000")),
+            "presentation_policy": presentation_policy(),
+            "files_shown": len(presentation_rows),
+            "mentioned_files_shown": sum(1 for r in presentation_rows if r["mentioned_in_baseline"]),
+            "mentioned_files_truncated": sum(
+                1 for r in presentation_rows if r["mentioned_in_baseline"] and r["truncated"]),
+            "files_truncated": sum(1 for r in presentation_rows if r["truncated"]),
+            "context_chars": sum(r["chars_shown"] for r in presentation_rows),
+            "per_file": presentation_rows,
         },
         "gold_access": "NONE",
         "network_allowed_during_solution": False,
