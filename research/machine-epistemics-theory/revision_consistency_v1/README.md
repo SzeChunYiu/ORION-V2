@@ -17,8 +17,9 @@ python "$D/study.py" --verify "$D/RESULT.json"
 python "$D/verify_package.py" --verify
 ```
 
-Requires Python >=3.12, standard library only. Each verification command exits 0 on its
-specified checks, 1 on a defect, 2 when required input is unavailable. Neither exit 0 nor
+Requires Python >=3.12, standard library only. The study and package verifier exit 0 on
+their checks, 1 on a defect, 2 when required input is unavailable; unittest uses its native
+success/failure exits. Neither exit 0 nor
 an artifact hash grants scientific truth, external review, production atomicity or OCM
 milestone closure. `verify_package.py --write` is for issuing a new authoring receipt, not
 for repairing a frozen receipt after unnoticed drift.
