@@ -2,7 +2,7 @@
   "authority": "development split; population and invariant checks only; no solve-loop, comparator or novelty authority",
   "bindings": {
     "kso_m0_freeze_checks_v1.py": "d937a080ddce214ff7edb596252cd060ac1d9c630e0565d585de41f1f4120aa6",
-    "kso_m1_mex1_population_v1.py": "278beda5062cf1f91af82af32ac3df0b1d521ff5959ce36494878d02b1446925",
+    "kso_m1_mex1_population_v1.py": "a68503ee5f1cb2bf65939b147a0a94e4592e914d1127d00efa6332d57370f446",
     "kso_math_v1.py": "bf163e264954faaec96b6a2a601c042123c1fab58da4965faa26c95cde6bd704",
     "mex1_generator.py": "08a50948c7fd12e4b0a0cbb24adc4b2b3225253bc9f821b1c5bddd2b539cc31d",
     "mex1_model.py": "e31fba5ec2319f566d4a7f3948e54c48b0194bcab8d0a7854ad606a83506543a",
@@ -19,13 +19,13 @@
     "P4_direction_iii": "IDENTITY (no-alarm only)"
   },
   "provenance": {
-    "body_sha256": "98950638d6179fa0a613408191cd83b48e9d9200e9ada7664e1cb447678b63f1",
+    "body_sha256": "f36b45dd16836f093f91e58fc14a09a94c994a4441fe51cd16696657b0039896",
     "byte_reproducible_in_process": true,
     "command": "python research/orion-machine/reference/kso_m1_mex1_population_v1.py --per-family 5 --out research/orion-machine/results/KSO_M1_POPULATION_RECEIPT_V1.json",
     "declared_nondeterminism": "none: generator seeded by split_seed; all arithmetic exact rational; float only in reaction surprise (deterministic IEEE)",
     "python": "3.12.13",
     "split_seed": "ME-X1-DEV-20260902",
-    "wall_seconds_not_part_of_the_reproducible_body": 32.0
+    "wall_seconds_not_part_of_the_reproducible_body": 43.0
   },
   "schema": "orion.kso.m1-population-receipt.v1",
   "source": {

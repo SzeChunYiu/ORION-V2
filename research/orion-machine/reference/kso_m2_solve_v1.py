@@ -408,13 +408,17 @@ def solve_instance(pop, w1, inst, exp, *, planted_flip: str | None = None) -> di
     if set(answer) != {"action", "reopened"} or action not in model.ACTIONS:
         stage_fail["RENDER"] = "bad shape"
     exact = (action, tuple(sorted(reopened))) == (exp.action, tuple(sorted(exp.reopened)))
+    # attribution of an exact answer to the mechanic that produced it: NAVIGATION when every live
+    # request atom the walk composes over was reached by extraction; STORE_READ when COMPOSE had to
+    # read at least one of them from the store because the walk did not surface it
+    exact_by = "" if not exact else ("FOUND_BY_NAVIGATION" if not missing else "FOUND_BY_STORE_READ")
     if not exact and "COMPOSE" not in stage_fail and not any(k in stage_fail for k in ("ATOMIZE", "NAVIGATE", "FIRE", "EXTRACT", "CHECK", "RENDER")):
         stage_fail["COMPOSE"] = f"composed {answer} vs oracle {row['oracle']} given agreeing statuses; detail {detail}"
     attribution = "" if exact else next((s for s in STAGES if s in stage_fail), "ATTRIBUTION_FAILED")
     # translator invariance: byte-identical canonical extraction from the two atomizers
     atomsB, edgesB, _, _ = reacting_subgraph_exact(ks, sB, R)
     invariant = canonical(atomsA, edgesA) == canonical(atomsB, edgesB)
-    row["arms"] = {"KSO_M2_SOLVE": {"answer": answer, "exact": exact, "status": "SCORED" if nav == "FOUND" else "OBSTRUCTION" if nav == "OBSTRUCTION_WITNESSED" else "SCORED",
+    row["arms"] = {"KSO_M2_SOLVE": {"answer": answer, "exact": exact, "exact_by": exact_by, "status": "SCORED" if nav == "FOUND" else "OBSTRUCTION" if nav == "OBSTRUCTION_WITNESSED" else "SCORED",
                                     "budget": {"steps": steps_used, "edge_visits": edge_visits, "incidence_visits": incidences, "restarts": 1, "wall_ns": 0, "steps_cap": budget.steps_cap, "edge_visits_cap": budget.edge_visits_cap},
                                     "navigation_outcome": nav, "attribution": attribution, "translator_invariant": invariant,
                                     "extraction_sha256": hashlib.sha256(canonical(atomsA, edgesA).encode()).hexdigest(), "request_atoms": len(specs), "stage_failures": stage_fail, "compose_detail": detail}}
@@ -467,6 +471,8 @@ def run(per_family: int = 5) -> dict[str, object]:
         rows.append(row)
         graph_growth.append(len(added))
     n_exact = sum(1 for r in rows if r["arms"]["KSO_M2_SOLVE"]["exact"])
+    n_nav = sum(1 for r in rows if r["arms"]["KSO_M2_SOLVE"]["exact_by"] == "FOUND_BY_NAVIGATION")
+    n_store = sum(1 for r in rows if r["arms"]["KSO_M2_SOLVE"]["exact_by"] == "FOUND_BY_STORE_READ")
     n_inv = sum(1 for r in rows if r["arms"]["KSO_M2_SOLVE"]["translator_invariant"])
     attributions = {}
     for r in rows:
@@ -505,7 +511,10 @@ def run(per_family: int = 5) -> dict[str, object]:
         "provenance": {"command": "python research/orion-machine/reference/kso_m2_solve_v1.py --out research/orion-machine/results/KSO_M2_SOLVE_RECEIPT_V1.json", "python": sys.version.split()[0], "split": "dev", "split_seed": "ME-X1-DEV-20260902", "per_family": per_family,
                        "declared_nondeterminism": "none", "shared_with_oracle": "base status readers (source/identity/calibration/independence/transport/evaluator) and MODULE_RANK as registered data; request_atoms and the walk are re-implemented and cross-checked at the CHECK stage"},
         "G0_fixtures": fixtures,
-        "G1_exact": {"n": len(rows), "exact": n_exact, "attributions": attributions},
+        "G1_exact": {"n": len(rows), "exact": n_exact, "attributions": attributions,
+                     "FOUND_BY_NAVIGATION": n_nav, "FOUND_BY_STORE_READ": n_store,
+                     "reading": "exact = the store's exactness (labels + registered rule); FOUND_BY_NAVIGATION is the mechanic's own number — the walk surfaced every live request atom COMPOSE used; FOUND_BY_STORE_READ = COMPOSE read at least one live request atom the walk did not surface (EXTRACT finding)"},
+        "headline": {"NAVIGATION_EXACT": f"{n_nav}/{len(rows)}", "STORE_EXACT": f"{n_exact}/{len(rows)}", "mechanic_terminal": f"M2_NAVIGATION_EXACT_{n_nav}_OF_{len(rows)}__EXTRACT_ATTRIBUTED" if n_store else "M2_NAVIGATION_EXACT_ALL"},
         "G2_translator_invariance": {"n": len(rows), "invariant": n_inv, "atomizer_sources_differ": True},
         "G3_budget": {"caps": "steps 2|atoms|, edge_visits 2|hyperedges|, restarts 1", "overruns": 0, "max_steps_used": max(r["arms"]["KSO_M2_SOLVE"]["budget"]["steps"] for r in rows), "max_edge_visits": max(r["arms"]["KSO_M2_SOLVE"]["budget"]["edge_visits"] for r in rows)},
         "G5_planted_flip": {"flips": flips, "answers_changed": flipped_changes},

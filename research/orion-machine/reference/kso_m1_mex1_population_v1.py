@@ -502,7 +502,7 @@ def check_P4_hub(pop: Population, *, alpha: Fraction = Fraction(1, 3)) -> dict[s
     hub = max(ks.ids, key=lambda x: (degree[x], x))
     background = activation(ks, uniform(ks), alpha, revoked=r0)
     zero = m0.reaction_surprise_vector(background, background)
-    assert all(v == 0.0 for v in zero.values())
+    assert all(v == 0.0 for v in zero.values()), f"background question is surprising at {[x for x, v in zero.items() if v != 0.0][:3]} — the surprise normalisation is not an identity on its own baseline"
     ev_atoms = [x for x in ks.ids if x.startswith("ev:") and kso.profile_live(amap[x].profile, r0)]
     if not ev_atoms:
         raise CannotCheck("no live evidence atom to seed the evidence question")

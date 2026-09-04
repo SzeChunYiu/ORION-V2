@@ -51,7 +51,9 @@ def test_design_drift_is_cannot_check(mod, monkeypatch, tmp_path):
 
 def test_gates_on_the_dev_split(receipt):
     assert receipt["G0_fixtures"] == {**receipt["G0_fixtures"], "n": 14, "exact": 14}
-    assert receipt["G1_exact"] == {"n": 10, "exact": 10, "attributions": {}}
+    g1 = receipt["G1_exact"]
+    assert (g1["n"], g1["exact"], g1["attributions"], g1["FOUND_BY_NAVIGATION"], g1["FOUND_BY_STORE_READ"]) == (10, 10, {}, 8, 2)
+    assert receipt["headline"]["NAVIGATION_EXACT"] == "8/10" and receipt["headline"]["STORE_EXACT"] == "10/10"
     assert receipt["G2_translator_invariance"] == {"n": 10, "invariant": 10, "atomizer_sources_differ": True}
     assert receipt["G3_budget"]["overruns"] == 0
     assert receipt["G5_planted_flip"]["flips"] >= 1 and receipt["G5_planted_flip"]["answers_changed"] >= 1
@@ -67,6 +69,7 @@ def test_every_row_has_the_agreed_shape(receipt):
         assert arm["navigation_outcome"] in {"FOUND", "GAP_NOT_FOUND", "OBSTRUCTION_WITNESSED", "CANNOT_CHECK"}
         assert arm["budget"]["edge_visits"] <= arm["budget"]["edge_visits_cap"] and arm["budget"]["steps"] <= arm["budget"]["steps_cap"]
         assert arm["attribution"] == "" and arm["exact"] and arm["translator_invariant"]
+        assert arm["exact_by"] in {"FOUND_BY_NAVIGATION", "FOUND_BY_STORE_READ"}
         assert len(row["graph_sha256"]) == 64 and len(arm["extraction_sha256"]) == 64
 
 

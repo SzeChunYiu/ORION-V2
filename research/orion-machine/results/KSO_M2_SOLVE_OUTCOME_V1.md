@@ -6,12 +6,27 @@ Receipt: `KSO_M2_SOLVE_RECEIPT_V1.json` (one command, exit 0; byte-reproducible 
 Comparator arms and paired table: guards lane, `KSO_M2_COMPARATOR_RECEIPT_V1.json`, joined on
 `instance_id` and the shared `graph_sha256`. **NO NOVELTY OR BREAKTHROUGH CLAIM.**
 
-## Terminal
+## Headline (the mechanic's own number first)
+
+```text
+NAVIGATION_EXACT   38/50   the walk surfaced every live request atom COMPOSE used (FOUND_BY_NAVIGATION)
+STORE_EXACT        50/50   the store's exactness: on the other 12 COMPOSE read ≥ 1 live request atom the
+                           walk did not surface (FOUND_BY_STORE_READ) — attributed to EXTRACT (finding 1)
+mechanic terminal  M2_NAVIGATION_EXACT_38_OF_50__EXTRACT_ATTRIBUTED
+```
+
+The 50/50 is not a navigation result; it is the labels and the registered rule doing what they
+do. The 38/50 is what the mechanic did on its own. M2.1 (the revival) targets the 12 — lever =
+the surprise baseline (uniform background is wrong at small seed cardinality; compare against
+the background walk at matched seed cardinality, or degree-normalised reactivity), re-tested on
+the same 50 against the strongest parent, all costs charged, no tuning to the outcome.
+
+## Terminal (as defined in the frozen design: G1 ∧ G2)
 
 ```text
 M2_EXACT_ON_DEV
   G0 known-answer fixtures      14/14 exact
-  G1 exact agreement vs oracle  50/50   (attributions: none)
+  G1 exact agreement vs oracle  50/50   (attributions: none; by navigation 38, by store read 12)
   G2 translator invariance      50/50   byte-identical canonical extraction from two atomizers whose sources differ
   G3 budget                     0 overruns; KSO used ≤ 0.5 of the steps cap and ≤ 0.3 of the edge-visit cap
   G5 planted label flip         5/10 flips changed the answer (must-differ fired); 5 flips on atoms that were not decisive did not — recorded
