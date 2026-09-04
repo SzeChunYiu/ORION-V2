@@ -180,6 +180,21 @@ critical defect.
   #199 and #245, which administer the targets. The pre-directive README bytes remain bound in
   `OCM_SNAPSHOT_V1.json` `content_bindings` at commit `d4eb281` as history, unedited.
 
+- **`VACUOUS_CONTRAST` — S4 census of the reference semantics, 2026-09-04, caught before merge.**
+  The first draft of `reference/ocm_reference_semantics.py::check_S4_representation_revision`
+  scored the `abstain` policy inside the exactness loop. Since `abstain` returns `None` on every
+  revocation a coarse partition cannot express, `exact` was false exactly when `is_block_union`
+  was false, so the biconditional "exact iff measurable" **could not fail** — the same shape as the
+  three RCL controls above — and mutation `M3` was being "detected" by the unrelated coarsest-
+  partition assertion rather than for its registered reason. **Found by Cursor Bugbot** on PR #279
+  at `e9a0222`, reproduced, and repaired in place because the PR was unmerged and the module was
+  bound only by its own PR receipt, not by a frozen review target: the two committed policies are
+  evaluated separately on all 168 profiles, abstention is its own count (zero iff measurable), and
+  measurability is judged by an independently written `is_block_union_b`, so `M3` now moves the
+  exact-partition counts from 1/4/1/4 to 15/15/15/15 and is caught for that reason; a new test pins
+  the disagreement. No theorem statement changed; Theorem S4 gained its committed-policy clause,
+  which it had silently assumed. Repaired in `a855f57`, receipt regenerated in `58282c5`.
+
 - **`VACUOUS_CONTRAST` — three RCL controls that cannot fail, 2026-09-04.** This is the repository's
   existing vocabulary from the root `FAILURE_LEDGER.md`, applied to a new instance; no class is minted
   for it. Three controls in the revocation-complete-learning lane are structurally incapable of
