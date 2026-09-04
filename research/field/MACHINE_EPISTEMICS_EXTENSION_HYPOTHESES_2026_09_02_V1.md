@@ -23,6 +23,20 @@ Reading: the programme's residual, if it exists, is not "more control" but **reg
 
 **Terminal if negative.** `ACTIVATION_POLICY_NOT_IDENTIFIABLE_FROM_INPUTS` — conditional value is real but not exploitable without oracle regime knowledge (a boundary claim for P-D/P-C).
 
+## H-EXT-1P — A paired null on the parent margin of the activation gate (S2) — **REGISTERED AND CLOSED PRE-FREEZE**
+
+**Claim it would have tested.** That H-EXT-1's `+2.1 pp` margin of `GATED_M` over `STRONGEST_ASSURANCE_FEDERATION` — a registered *threshold* comparison decided by 11 tasks, carrying no null, p-value or interval — survives a pre-registered paired test on a fresh prospective seed.
+
+**Disposition: `REGISTERED_CONTRAST_CANNOT_BE_ABOUT_THE_MECHANISM`** (a `CANNOT_CHECK`-class terminal, reached before any freeze or dispatch; **not** a negative, and **not** a power failure). On the frozen PROSPECTIVE cell, the two arms are tied at ceiling on **every one of the 170 tasks where the gate actually fires** (170/170 vs 170/170, 0 discordant pairs). All 29 discordant pairs — 28 of them in the single family `PD-S2`, where the gate never activates once — lie on the 350 gate-inactive tasks, where `GATED_M` **is** `P_D_MINUS_DEPENDENCE` by construction. RETROSPECTIVE_EVAL replicates the pattern (gate-active b=0, c=1; gate-inactive b=7, c=0). A well-powered run would return a significant p on a quantity the activation mechanism does not participate in.
+
+**Power was not the binding constraint, and this is recorded so the decline is not misread.** Exact two-sided McNemar at the observed effect: power **0.4605 at n = 520**, **≥ 0.80 at n = 1040**, **≥ 0.90 at n = 1360**; the P-D generators take a free `strata_counts` plan and are unbounded in `index`, so n = 1200 (3600 model calls) was feasible. The study is declined on the **estimand**, not on n.
+
+**Lever named for any successor.** Attributed to one stage — the task suite. No successor may freeze until it demonstrates, on a development split and before any comparison, that the strongest parent is **off ceiling on the gate-active regime**. No such suite is claimed to exist and none is scoped.
+
+**Effect on H-EXT-1: none.** Its binding terminal rests on G1/G3 against always-on `M` (508 vs 465, exceedance 0/2000 in both nulls), which this audit does not touch. The finding extends H-EXT-1's own receipt item 4 (ceiling on the 90 PD-S3 activations) to all 170 activations.
+
+Receipt: `research/experiments/h-ext1p/H_EXT1P_REGISTRATION_AND_PRE_FREEZE_CLOSURE_V1.md`.
+
 ## H-EXT-2 — Internal-salience Goodhart in agentic scientific loops (S2)
 
 **Claim under test.** In a closed feedback loop around a native scientific learner, the loop's internally generated salience/"significance" signal is *negatively* correlated with the quantitative truth metric across cycles, and the correlation sign is stable across native learners and substrates. (E40 m5′ observed this in-sample on one learner; direction inversion was correctly forbidden there. A replication under a **different native learner and/or substrate, with the sign pre-registered**, is a new prospective identity.)
@@ -52,6 +66,7 @@ Reading: the programme's residual, if it exists, is not "more control" but **reg
 ## Custody
 
 - H-EXT-1: re-analysis + fresh-seed prospective cell on the P-D generated suite (design freeze first).
+- H-EXT-1P: **`REGISTERED_AND_CLOSED_PRE_FREEZE`** (2026-09-04) — never dispatched; 0 model calls, 0 tasks generated, no seed committed. Audit `research/experiments/h-ext1p/H_EXT1P_PRE_FREEZE_AUDIT_V1.json`, runner `scripts/h_ext1p_estimand_audit.py`, assertions `tests/unit/test_h_ext1p_estimand_audit.py`.
 - H-EXT-2: **`EXECUTION_BLOCKED_PRE_DISPATCH`** (2026-09-03) — design frozen, never dispatched; 0 native runs, 0 decision calls, fallback ladder unconsumed. `H-EXT-2-BLOCK-1`: the §9 licence is unsatisfiable — Stage-2b (SLURM 3563453) was `CANCELLED`, elapsed `00:00:00`, never started, has no outcome receipt, and was superseded by Stage-2c, whose disposition `CHECKER_INVALID__NO_VERDICT` resolves neither of §9's two registered branches. `H-EXT-2-BLOCK-2` (independent): the P′ cohort's registered G0 planted control is already measured FAIL on the current served channel — its prompts are byte-identical (sha256-verified) to Stage-2d arm `B_REGIME_ANCHOR`, and G1 is a conjunction requiring P′. Receipt: `research/experiments/h-ext2/H_EXT2_EXECUTION_BLOCKED_RECEIPT_V1.md`. The m5′ observation remains **unreplicated and unrefuted**; this is not the `SALIENCE_ANTI_RANKING_NOT_REPLICATED` terminal.
 - H-EXT-3: added as a pre-registered secondary axis to the ME-X4 exact study design; formal separation example as a separate note.
 - H-EXT-4: proof attempt with mechanized finite checks; result filed under `research/llm-machine-epistemics/`.
