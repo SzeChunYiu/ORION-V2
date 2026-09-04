@@ -1,0 +1,59 @@
+{
+  "allowed_terminals": [
+    "THEOREM_DEFECTS_FOUND",
+    "PARENT_SUFFICIENT",
+    "NEW_THEORETICAL_RESIDUAL_CANDIDATE",
+    "CANNOT_CHECK"
+  ],
+  "artifacts": [
+    {
+      "bytes": 7929,
+      "path": "research/orion-machine/revocation_complete_learning/RCL_INDEPENDENT_REVIEW_PACKET_V0.json",
+      "sha256": "0d728c4230067d62f1bd4713ee795f3a352b78f794e92544224eb9db6dd053a8",
+      "rebound_at": "2026-09-04",
+      "rebind_reason": "Consequential rebind: this artifact's bytes changed only because the ledger custody note of 2026-09-04 was recorded in it.",
+      "superseded_binding": {
+        "bytes": 5314,
+        "sha256": "cc52dc3c73520670a8918bbae68a0bb4afc30446bf35e7ecef860ecfd36312cd",
+        "recorded_at": "2026-09-03",
+        "recorded_in_commit": "4655495"
+      }
+    },
+    {
+      "bytes": 8839,
+      "path": "research/orion-machine/revocation_complete_learning/04_POSTFREEZE_PARENT_DELTA_AND_REVISED_RESIDUAL_V1.md",
+      "sha256": "5956a6253914132bed4b6b379d91dafb61e99adfc048530c41130ca95a8ba841"
+    },
+    {
+      "bytes": 5511,
+      "path": "research/orion-machine/revocation_complete_learning/05_DUAL_CERTIFICATE_BARRIER_V1.md",
+      "sha256": "946d9deb8f615b465eae7607863687bdc559ecb82a88fb64f17e2be128f4755a"
+    },
+    {
+      "bytes": 4288,
+      "path": "research/orion-machine/revocation_complete_learning/RCL_PARENT_DELTA_V1.json",
+      "sha256": "e864793dd4afc4bd7240a3bfd3f4d071ac47a2691dd6ff556f397f4324e56ae1"
+    },
+    {
+      "bytes": 1201,
+      "path": "research/orion-machine/revocation_complete_learning/RCL_POSTFREEZE_DELTA_RECEIPT_V1.json",
+      "sha256": "f8ef1c30af0f66ae8dbb1560fc7741ebc1e92ccd224107af0b630fa73dc10ddf"
+    }
+  ],
+  "as_of_date": "2026-09-03",
+  "authority": {
+    "novelty_precommitted": false,
+    "same_session_independent": false
+  },
+  "new_obligations": [
+    "Treat complete reasons and knowledge compilation as first-right-of-refusal parents.",
+    "Read the full provenance-guided rule-shift paper and grade every claimed collision.",
+    "Reconstruct RCL-7 independently and verify that it is only a conditional NP/coNP implication.",
+    "Attack RCL-C against complete-reason compilation plus provenance-guided repair and exact unlearning.",
+    "Reset post-material-addition clean-search count to zero."
+  ],
+  "pr": 244,
+  "review_issue": 245,
+  "schema": "orion-v2.rcl.independent-review-packet.v1",
+  "supersedes": "RCL_INDEPENDENT_REVIEW_PACKET_V0.json for terminal review; V0 remains immutable"
+}
