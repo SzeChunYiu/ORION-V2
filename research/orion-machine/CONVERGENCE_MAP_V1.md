@@ -136,3 +136,76 @@ Rows carried from #284 comments 5541151080 (seed table), 5541151080-FM (FM40/50/
 and the interface-revival comment (E30-R14 / ME-X6 V3 / H-EXT-1R, PRs #280/#285) are quoted at
 the strength their authors gave them; the FM60 dev/protected disagreement is carried as a
 disagreement. No number in this file was produced by the OCM lane except the stage-1 row.
+
+## 6. Absorption dispositions — one list for v1 + V2 (operator directive, #284 comment 5543833893)
+
+Disposition vocabulary (the gate; the status column above stays the note): `ABSORBED_AS_CODE`
+(re-implemented/imported on the substrate, parity test vs the original on its registered cases) ·
+`ABSORBED_AS_CONSTRAINT` (invariant/checker with planted violation + no-alarm) ·
+`ABSORBED_AS_BENCHMARK` (its problem set is a milestone's domain, oracle wired) ·
+`ABSORBED_AS_PARENT` (matched comparator arm) · `NOT_TRANSFERABLE` (reason + replacement) ·
+`PENDING_<milestone>` (disposition assigned, receipt due at that milestone).
+
+| artifact | disposition | milestone | receipt / checker on the machine |
+|---|---|---|---|
+| `epistemic_atlas.py` `ContextMapKind` vocabulary | `ABSORBED_AS_CONSTRAINT` | M0 | F1: bound to the source enum, drift = fail, unregistered type rejected (`kso_m0_freeze_checks_v1`) |
+| `epistemic_atlas.py` charts / gluing (`GluingStatus`, `HorizonStatus`, `UnknownKind`) | `PENDING_M4` (charts = subgraphs; horizon/unknown kinds = obstruction-witness vocabulary) | M4 | none yet; the four-valued outcome carries `GLOBAL_OBSTRUCTION` / `STRUCTURAL_NONIDENTIFIABILITY` today |
+| RCL profile = ATMS label; S1–S7; Theorem S4 | `ABSORBED_AS_CONSTRAINT` | M0 / M1 | G1 (7/7 planted violations), G3 growth, M1 P5 on 100 populated spaces; `KS-S1…S7` |
+| `ocm_reference_semantics.py` (record store S1–S7) | `NOT_TRANSFERABLE` as code (record-store object, not a hypergraph); replaced by the KSO predicates `ks_S1…S7` with the same planted violations — parity of *statements* recorded in contract §32 | M0 | G1 |
+| `ATOMIC_CLAIM_INVENTORY.json` atom schema | `PENDING_M2b` (atom types generalised in contract §2; the paper-package inventory is not yet loaded) | M2b | — |
+| `reference/ocm_nonrectangular_class_exact.py` (#288, VSW node type) | `PENDING_M6` (induced-warrant node type; gates M6) | M6 | #288's own checker (2,048/648 worlds, 65,805 classes) |
+| ME-X1 generator + oracle | `ABSORBED_AS_BENCHMARK` | M1 / M2 | M1 receipt (50 worlds, label ≡ oracle 0 mismatches on 1,344 + 22 negative cells); M2 receipt (G1 50/50) |
+| ME-X1 parents (`mex1_parents.py`, B5 federation) | `ABSORBED_AS_PARENT` (B5 = ceiling control; RWR/PPR, CBR/KG = oracle-independent comparators) | M2 | `KSO_M2_COMPARATOR_RECEIPT_V1.json` (guards lane; dry run B5 50/50, RWR 27/50, CBR 34/50, null 5/50) |
+| FM10 / FM20 / ME-X3 exact generators + oracles | `PENDING_M2b` (`ABSORBED_AS_BENCHMARK` when populated; same map as ME-X1) | M2b+ | — |
+| FM40 / FM50 / FM60 generators, oracles, protected legs | `PENDING_M2b` (`ABSORBED_AS_BENCHMARK`); their oracle-independent arms `ABSORBED_AS_PARENT` when run | M2b+ | §3 comparator line |
+| FM suites' `F0_PARENT_FEDERATION` identity (F0 = oracle by construction) | `ABSORBED_AS_CONSTRAINT` (a comparator sharing the oracle's procedure is a ceiling, never a parent) | M2 | design §0 + receipt labels; `HANDICAPPED_COMPARATOR` guard |
+| ME-X4 generator / oracle (B5 origin) | `PENDING_M2b` (`ABSORBED_AS_BENCHMARK`) — **row was missing from the map** | M2b+ | — |
+| E40 ranker | `NOT_TRANSFERABLE` (controller-around-LLM ranking; the negative that located the centre) — **row was missing** | — | replaced by label-gated navigation + surprise ranking (F3) |
+| E30-R13→R14 boundary contract; `anchored_edit_interface.py` | `ABSORBED_AS_CONSTRAINT` (closed-under-shown, content-hash location, codec never writes a label) | M0 / M5 | F10; **anchored-edit interface row was missing** — `PENDING_M5` as code (the M5 codec adopts its §6 substitution) |
+| ME-X6 V3 typing-is-a-coverage-prior | `ABSORBED_AS_CONSTRAINT` | M0 | F9 (full-coverage tie; unexercised type named; no typed advantage claimed) |
+| H-EXT-1 / H-EXT-1R witness rule | `ABSORBED_AS_CODE` (four-valued outcome; obstruction iff the ceiling walker also fails) | M0 / M2 | F6, G2-nonidentifiability; M2 outcomes FOUND 45 / GAP 5 |
+| ME-X2 locus + minimum escalation | `PENDING_M4` (`ABSORBED_AS_CODE`: the level gate) | M4 | witness → `JumpTrigger.is_admissible` today (F6) |
+| v1 `jump.py` J0–J8, `JumpTrigger`, `JumpProposal`, `JUMP_RESEARCH_PROGRAMME_V0` | `ABSORBED_AS_CODE` (hooks: witness binds to the trigger, admissible) / `PENDING_M4` (the loop) | M0 / M4 | F6 binding; loop `OPEN_M4` |
+| v1 #558 `ExecutableRegimeWitness.v1` + 84 opaque worlds | `PENDING_M4` (`ABSORBED_AS_BENCHMARK`, first Jump benchmark) | M4 | — |
+| v1 knowledge metabolism (`knowledge_metabolism.py`), `structural.py` | `NOT_TRANSFERABLE` as dynamics (static; no reaction) — replaced by §5–§6 navigation; `PENDING_M3` as acquisition vocabulary | M3 | — |
+| P-A donor discovery; P-B context-relative transport | `PENDING_M4` (Jump sources) | M4 | — |
+| PRA revision-adequacy audit / PRA V2 | `PENDING_M3` (revocation dynamics test bed) | M3 | M1 P3 events replay is the first instance |
+| SD70-V3 meta-policy | `PENDING_M2b` (navigation-policy candidate) | M2b | — |
+| ME-X3 Lean cross-check | `PENDING_M2b/M6` (EXACT_CHECKER channel; SymPy first, Lean at M6) | M2b / M6 | certificate kind exists (F4 case 6) |
+| parent-strength audit (14 faithful parents) | `ABSORBED_AS_PARENT` (table) | M0 | `KSO_PARENT_SUBTRACTION_V1.md` + F7 (8 parents run) |
+| `FAILURE_LEDGER.md` 28 classes + `OCM_FAILURE_LEDGER.md` 7 | `ABSORBED_AS_CONSTRAINT` for the classes with a checker on the machine (listed below); the rest stay process vocabularies | all | see class table |
+| `pr_merge_gate.py` (six fields) | `ABSORBED_AS_CONSTRAINT` (C5 immune system, merge side) | all | self-test; #297 field 0 |
+| LLM-centred arm code, controller-around-LLM designs (P-F, ME-F1, E40, E30-R13) | `NOT_TRANSFERABLE` — retained as the negatives that located the centre | — | — |
+| #284 inventory rows not listed above: `patch_emission.py` / `APPLY_CLEAN_BY_CONSTRUCTION` → boundary contract template (`ABSORBED_AS_CONSTRAINT`, F10); PRA audit (above); 26-class ledger (above); ME-X2 (above); atlas (above); RCL (above); FM/ME generators (above); v1 #558 (above); P-A/P-B (above); parent audit (above) | — | — | — |
+
+**Counts (this revision):** `ABSORBED_AS_CONSTRAINT` 9 · `ABSORBED_AS_CODE` 2 · `ABSORBED_AS_BENCHMARK` 1 ·
+`ABSORBED_AS_PARENT` 2 · `NOT_TRANSFERABLE` 4 · `PENDING_<milestone>` 12 (M2b 6 · M3 2 · M4 5 · M5 1 · M6 1, rows
+counted once at their earliest milestone). Rows added as missing: ME-X4 generator/oracle, E40 ranker,
+anchored-edit interface, FM F0 identity.
+
+### 6.1 Failure-ledger classes with a checker on the machine
+
+| class | checker on the machine |
+|---|---|
+| `VACUOUS_CONTRAST` | two atomizers asserted to differ in source (M2); B5 labelled ceiling; P2 `NO_POWER` labels (M1) |
+| `STRUCTURALLY_DETERMINED_REGISTERED_CLAUSE` | power labels per check (`POWERED` / `NO_POWER__…`), M1; design §0 declares G1 by construction |
+| `CHECK_THAT_RUNS_AND_CANNOT_FIRE` | every checker has a planted failure that must fire (M0 F1–F10, G1–G3; M1 P1–P5; M2 G5) |
+| `NONREPRODUCIBLE_FROZEN_ARTIFACT` | receipts byte-reproducible in-process, asserted (M1, M2) |
+| `HANDICAPPED_COMPARATOR` | budget clause: unmatched budgets ⇒ `CANNOT_CHECK` (F8); usage reported (M2) |
+| `AUTHORITY_LAUNDERING` | KS-S1 (warrant only through a warranting certificate); KS-T18 feedback cannot warrant |
+| `INTERFACE_ASKS_FOR_WHAT_IT_WITHHELD` | F10 closed-under-shown |
+| `UNPINNED_SUBSTRATE_CONDITION` / `REPAIR_DOCUMENTED_NOT_LANDED` / `BINDING_OVER_UNCOMMITTED_BYTES` / `RECORDED_REPAIR_NEVER_LANDED` | self-binding test over committed bytes (receipt + freeze record); `DESIGN_DRIFT` ⇒ `CANNOT_CHECK` (M2) |
+| `CENSORED_ROUTE` | distinct exit 2 everywhere; censored base atoms resolved exhaustively (M1 P2) or `DEFER_CANNOT_CHECK` (M2 COMPOSE) |
+| `UNGATED_CONTROL_VERDICT` | must-differ controls consumed by `run()` (M1 parent-raised ≥ 1; M2 G5) |
+| `DEGENERATE_PROBE_STATISTIC` | P4 direction (i) counted per world with the planted ranker |
+| `FORECLOSED_FAILURE_MODE` | constraint-edge power via derived negative-evidence worlds (M1) |
+| `NONIDENTIFIABLE` | `STRUCTURAL_NONIDENTIFIABILITY` obstruction witness (G2-nonidentifiability) |
+| `IMMUTABLE_TARGET_MUTATED_BY_ITS_OWN_BINDING_TEST` | the freeze record binds every other file and never itself |
+
+Without a checker on the machine (process vocabularies, audited by hand per PR): `COVERAGE_GAP`,
+`REPO_COLLISION`, `DONOR_RECONSTRUCTION_FAILURE`, `FALSE_STRUCTURAL_ANALOGY`, `DONOR_PRODUCT_TIE`,
+`V1_PARITY_RISK`, `PREMATURE_IMPLEMENTATION`, `SILENT_MODEL_SUBSTITUTION` (no LLM in the loop yet; becomes
+a checker at M5), `MANDATE_EXPLORATION_COLLAPSE`, `UNGUARDED_DEPENDENT_CHECK`,
+`TERMINAL_OVERSTATES_ITS_PROCEDURE`, `REGISTERED_SCOPE_DIVERGENCE`, `CHECKER_STAGED_ON_THE_WRONG_SUBSTRATE`,
+`RENDERED_SURFACE_SUBSTITUTED_FOR_THE_FACT`, and OCM `DANGLING_CROSS_REFERENCE`,
+`TARGET_ARCHITECTURE_PRESUPPOSED`, `PARALLELISM_CEILING_BREACHED`, `SUPERSEDED_BINDING_MISATTRIBUTED`.
