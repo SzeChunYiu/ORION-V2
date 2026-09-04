@@ -1,9 +1,17 @@
 #!/usr/bin/env python3
 """Five-field merge gate for a pull request, with a distinct could-not-check exit.
 
-A merge decision branches on five fields. Each one is here because a merge
-that omitted it went wrong in this repository:
+A merge decision branches on six fields, numbered 0-5. Each one is here
+because a merge that omitted it went wrong in this repository:
 
+    0. baseRefName == the repository's default branch (read from the API,
+       never hardcoded), checked FIRST. #290 passed fields 1-5 and squash-
+       merged onto `research/ocm-convergence-map-20260904` -- the #289 branch,
+       already landed -- as `54712cc0`, which is not an ancestor of main. A
+       stacked PR whose base has landed is still targeted at that base; the
+       gate never looked. This is the FM40 stranding class recurring (#187
+       merged to an integration branch, never to main; recovered by #215):
+       `state: MERGED` is not evidence that anything reached main.
     1. state == OPEN
     2. mergeable == MERGEABLE          (UNKNOWN is polled, never passed or failed)
     3. isDraft == false                (#244 and #254 sat green and unmergeable
@@ -48,7 +56,7 @@ that omitted it went wrong in this repository:
 
 Exit codes, deliberately three and never collapsed:
 
-    0  all five fields hold
+    0  all six fields hold
     1  a field fails (the output names which); a definite failure dominates a
        could-not-check elsewhere because the merge is refused either way
     2  could not check: the API was unreadable, mergeable stayed UNKNOWN after
@@ -58,6 +66,7 @@ Exit codes, deliberately three and never collapsed:
 Usage:
 
     pr_merge_gate.py --pr N [--repo OWNER/REPO] [--git-dir DIR] [--base-ref origin/main]
+    pr_merge_gate.py --snapshot FILE --default-branch main            (fields 0-4 from a saved `gh pr view --json` snapshot)
     pr_merge_gate.py --replay --git-dir DIR --base-ref REF --head-ref REF   (field 5 only, from history)
     pr_merge_gate.py --self-test
 
@@ -449,19 +458,43 @@ def classify_check(c: dict) -> tuple[str, str, str]:
     return name, "fail", f"{name}={concl or 'no conclusion'}"
 
 
-def evaluate_snapshot(pr: dict, allow_no_checks: bool = False,
-                      job_detail=None) -> list[FieldResult]:
-    """Fields 1-4 from a `gh pr view --json` snapshot.
+BASE_RETARGET_MSG = "PR base is {base}: retarget to {default} before gating (stacked PR whose base already landed?)"
 
-    Raises CouldNotCheck only when the snapshot itself is unreadable or field 2
-    is UNKNOWN on an open PR; every other could-not-check is a field status so
-    the report still shows the other fields.
+
+def field0_base_branch(pr: dict, default_branch: str | None, base_info: str | None = None) -> FieldResult:
+    """Field 0: the PR targets the repository's default branch.
+
+    Read from the API, never assumed: `baseRefName == "main"` must never be
+    assumed, and `state: MERGED` is not evidence that anything reached main
+    (FM40 stranding, #187/#215; recurred as #290 -> 54712cc0).
+    """
+    if "baseRefName" not in pr:
+        raise CouldNotCheck("PR snapshot lacks 'baseRefName'; the base branch cannot be read")
+    if not default_branch:
+        raise CouldNotCheck("the repository's default branch could not be read from the API; field 0 cannot be decided")
+    base = str(pr["baseRefName"])
+    notes = [base_info] if base_info else []
+    if base == default_branch:
+        return FieldResult(0, "baseRefName == default branch", PASS, f"base={base} default={default_branch}", notes)
+    return FieldResult(0, "baseRefName == default branch", FAIL,
+                       BASE_RETARGET_MSG.format(base=base, default=default_branch), notes)
+
+
+def evaluate_snapshot(pr: dict, allow_no_checks: bool = False,
+                      job_detail=None, default_branch: str | None = None,
+                      base_info: str | None = None) -> list[FieldResult]:
+    """Fields 0-4 from a `gh pr view --json` snapshot.
+
+    Raises CouldNotCheck only when the snapshot itself is unreadable, the
+    default branch is unreadable, or field 2 is UNKNOWN on an open PR; every
+    other could-not-check is a field status so the report still shows the
+    other fields.
     """
     for key in ("state", "mergeable", "isDraft", "statusCheckRollup"):
         if key not in pr:
             raise CouldNotCheck(f"PR snapshot lacks '{key}'; the API response is not readable as a PR")
 
-    out: list[FieldResult] = []
+    out: list[FieldResult] = [field0_base_branch(pr, default_branch, base_info)]
     state = str(pr["state"]).upper()
     out.append(FieldResult(1, "state == OPEN", PASS if state == "OPEN" else FAIL, f"state={state}"))
 
@@ -530,6 +563,39 @@ def _gh_json(args: list[str]) -> object:
         return json.loads(proc.stdout.decode())
     except (UnicodeDecodeError, json.JSONDecodeError) as exc:
         raise CouldNotCheck(f"gh {' '.join(args[:2])} output is not JSON ({exc})") from exc
+
+
+def fetch_default_branch(repo: str | None) -> str:
+    cmd = ["repo", "view", "--json", "defaultBranchRef"]
+    if repo:
+        cmd.insert(2, repo)
+    data = _gh_json(cmd)
+    name = (data or {}).get("defaultBranchRef", {}).get("name") if isinstance(data, dict) else None
+    if not name:
+        raise CouldNotCheck("gh repo view returned no defaultBranchRef; the default branch is unreadable")
+    return str(name)
+
+
+def base_branch_info(repo: str | None, base: str, default: str, git_dir: Path | None) -> str:
+    """For information only: does the base branch still exist, and is its tip an ancestor of the default?"""
+    if base == default:
+        return ""
+    slug = repo or ""
+    if not slug:
+        return "(base branch existence not checked: no --repo)"
+    proc = subprocess.run(["gh", "api", f"repos/{slug}/branches/{base}", "--jq", ".commit.sha"], capture_output=True)
+    if proc.returncode != 0:
+        return f"base branch '{base}' no longer exists on the remote (deleted after its PR landed?)"
+    tip = proc.stdout.decode().strip()
+    anc = "unknown (no --git-dir)"
+    if git_dir is not None:
+        fetched = _git(git_dir, "fetch", "-q", "origin", base, check=False).returncode == 0
+        if fetched:
+            rc = _git(git_dir, "merge-base", "--is-ancestor", tip, f"origin/{default}", check=False).returncode
+            anc = "yes (its work already reached the default; this PR's merge would NOT)" if rc == 0 else "no"
+        else:
+            anc = "unknown (fetch failed)"
+    return f"base branch '{base}' exists at {tip[:8]}; ancestor of {default}: {anc}"
 
 
 def fetch_pr(repo: str | None, number: int) -> dict:
@@ -618,7 +684,7 @@ def render(fields: list[FieldResult], header: str) -> tuple[int, str]:
         cnc = [f.number for f in fields if f.status == CNC]
         lines.append(f"COULD NOT CHECK: field(s) {cnc} could not be assessed. Not a pass, not a fail.")
     else:
-        lines.append("PASS: all five fields hold.")
+        lines.append("PASS: all six fields (0-5) hold.")
     return code, "\n".join(lines)
 
 
@@ -637,19 +703,25 @@ def self_test() -> int:
         return {"__typename": "CheckRun", "name": name, "status": status, "conclusion": concl}
 
     def snap(**over):
-        base = {"state": "OPEN", "mergeable": "MERGEABLE", "isDraft": False,
+        base = {"state": "OPEN", "mergeable": "MERGEABLE", "isDraft": False, "baseRefName": "main",
                 "statusCheckRollup": [run_("ci", "COMPLETED", "SUCCESS")]}
         base.update(over)
         return base
 
-    def code_of(pr, **kw):
+    def code_of(pr, default_branch="main", **kw):
         try:
-            return decide(evaluate_snapshot(pr, **kw))
+            return decide(evaluate_snapshot(pr, default_branch=default_branch, **kw))
         except CouldNotCheck:
             return EXIT_COULD_NOT_CHECK
 
+    no_base = snap(); del no_base["baseRefName"]
     table = [
         ("clean snapshot", code_of(snap()), EXIT_PASS),
+        ("field 0 base == default", code_of(snap(baseRefName="main")), EXIT_PASS),
+        ("field 0 base = another open branch", code_of(snap(baseRefName="research/other-open-20260904")), EXIT_FAIL),
+        ("field 0 base = a merged/deleted branch (#290's case)", code_of(snap(baseRefName="research/ocm-convergence-map-20260904")), EXIT_FAIL),
+        ("field 0 base unreadable (no baseRefName)", code_of(no_base), EXIT_COULD_NOT_CHECK),
+        ("field 0 default branch unreadable", code_of(snap(), default_branch=None), EXIT_COULD_NOT_CHECK),
         ("field 1 state=MERGED", code_of(snap(state="MERGED")), EXIT_FAIL),
         ("field 2 mergeable=CONFLICTING", code_of(snap(mergeable="CONFLICTING")), EXIT_FAIL),
         ("field 2 mergeable=UNKNOWN", code_of(snap(mergeable="UNKNOWN")), EXIT_COULD_NOT_CHECK),
@@ -664,13 +736,16 @@ def self_test() -> int:
         ("field 3 draft + field 4 cancelled -> 1 (a definite failure dominates)",
          code_of(snap(isDraft=True, statusCheckRollup=[run_("ci", "COMPLETED", "CANCELLED")])), EXIT_FAIL),
     ]
-    neutral = evaluate_snapshot(snap(statusCheckRollup=[run_("review-bot", "COMPLETED", "NEUTRAL")]))
+    f0 = evaluate_snapshot(snap(baseRefName="research/x"), default_branch="main")
+    table.append(("field 0 is checked first and carries the retarget message",
+                  EXIT_PASS if (f0[0].number == 0 and f0[0].status == FAIL and "retarget to main" in f0[0].detail) else EXIT_FAIL, EXIT_PASS))
+    neutral = evaluate_snapshot(snap(statusCheckRollup=[run_("review-bot", "COMPLETED", "NEUTRAL")]), default_branch="main")
     table.append(("field 4 NEUTRAL surfaced as NOT ASSESSED",
-                  EXIT_PASS if (neutral[3].ok and any("NOT ASSESSED" in n for n in neutral[3].notes)) else EXIT_FAIL,
+                  EXIT_PASS if (neutral[4].ok and any("NOT ASSESSED" in n for n in neutral[4].notes)) else EXIT_FAIL,
                   EXIT_PASS))
-    cancelled = evaluate_snapshot(snap(statusCheckRollup=[run_("ci", "COMPLETED", "CANCELLED")]))
+    cancelled = evaluate_snapshot(snap(statusCheckRollup=[run_("ci", "COMPLETED", "CANCELLED")]), default_branch="main")
     table.append(("field 4 CANCELLED carries the re-run advice",
-                  EXIT_PASS if any(RERUN_ADVICE in n for n in cancelled[3].notes) else EXIT_FAIL, EXIT_PASS))
+                  EXIT_PASS if any(RERUN_ADVICE in n for n in cancelled[4].notes) else EXIT_FAIL, EXIT_PASS))
 
     # field 5 on a synthetic repository with a planted binding
     with tempfile.TemporaryDirectory() as td:
@@ -763,6 +838,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--strict", action="store_true", help="refuse on provenance-class bindings too")
     ap.add_argument("--no-jobs-api", action="store_true", help="skip step-level detail for non-passing checks")
     ap.add_argument("--replay", action="store_true", help="field 5 only, from --base-ref/--head-ref history")
+    ap.add_argument("--snapshot", help="fields 0-4 from a saved `gh pr view --json` snapshot file (no API)")
+    ap.add_argument("--default-branch", help="override the repository default branch (otherwise read from the API)")
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args(argv)
@@ -787,11 +864,30 @@ def main(argv: list[str] | None = None) -> int:
             print(to_json(fields, code) if args.json else text)
             return code
 
+        if args.snapshot:
+            try:
+                pr = json.loads(Path(args.snapshot).read_text())
+            except (OSError, json.JSONDecodeError) as exc:
+                raise CouldNotCheck(f"snapshot {args.snapshot} unreadable ({exc})") from exc
+            default = args.default_branch or fetch_default_branch(args.repo)
+            fields = evaluate_snapshot(pr, allow_no_checks=args.allow_no_checks, default_branch=default,
+                                       base_info=base_branch_info(args.repo, str(pr.get("baseRefName", "")), default, None))
+            code, text = render(fields, f"snapshot {args.snapshot}: PR #{pr.get('number')} fields 0-4 (default branch {default})")
+            print(to_json(fields, code) if args.json else text)
+            return code
+
         if args.pr is None:
-            raise CouldNotCheck("--pr is required (or --replay / --self-test)")
+            raise CouldNotCheck("--pr is required (or --replay / --snapshot / --self-test)")
         pr = fetch_pr_polling(args.repo, args.pr, args.polls, args.poll_interval)
+        repo = args.repo
+        if not repo:
+            m = re.search(r"github\.com/([^/]+/[^/]+)/pull/", str(pr.get("url", "")))
+            repo = m.group(1) if m else None
+        default = args.default_branch or fetch_default_branch(repo)
         fields = evaluate_snapshot(pr, allow_no_checks=args.allow_no_checks,
-                                   job_detail=None if args.no_jobs_api else describe_job)
+                                   job_detail=None if args.no_jobs_api else describe_job,
+                                   default_branch=default,
+                                   base_info=base_branch_info(repo, str(pr.get("baseRefName", "")), default, git_dir))
 
         if not args.no_fetch:
             remote = args.base_ref.split("/", 1)[0] if "/" in args.base_ref else "origin"

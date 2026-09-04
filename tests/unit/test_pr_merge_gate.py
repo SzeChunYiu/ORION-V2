@@ -28,15 +28,20 @@ def _run(name, status, concl):
 
 
 def _snap(**over):
-    base = {"state": "OPEN", "mergeable": "MERGEABLE", "isDraft": False,
+    base = {"state": "OPEN", "mergeable": "MERGEABLE", "isDraft": False, "baseRefName": "main",
             "statusCheckRollup": [_run("ci", "COMPLETED", "SUCCESS")]}
     base.update(over)
     return base
 
 
+def _eval(pr, **kw):
+    kw.setdefault("default_branch", "main")
+    return G.evaluate_snapshot(pr, **kw)
+
+
 def _code(pr, **kw):
     try:
-        return G.decide(G.evaluate_snapshot(pr, **kw))
+        return G.decide(_eval(pr, **kw))
     except G.CouldNotCheck:
         return G.EXIT_COULD_NOT_CHECK
 
@@ -71,24 +76,24 @@ def test_each_field_can_fail(mutation, expected):
 
 def test_one_bad_check_among_good_ones_fails():
     checks = [_run("a", "COMPLETED", "SUCCESS"), _run("b", "COMPLETED", "SKIPPED"), _run("c", "COMPLETED", "FAILURE")]
-    fields = G.evaluate_snapshot(_snap(statusCheckRollup=checks))
-    assert fields[3].status == G.FAIL
-    assert "c=FAILURE" in " ".join(fields[3].notes)
+    fields = _eval(_snap(statusCheckRollup=checks))
+    assert fields[4].status == G.FAIL
+    assert "c=FAILURE" in " ".join(fields[4].notes)
 
 
 def test_planted_cancelled_check_is_could_not_check_with_rerun_advice():
     # three PRs read "red" on cancelled runs in one hour; the cause was a job cap, not the code
     checks = [_run("a", "COMPLETED", "SUCCESS"), _run("unified-reference", "COMPLETED", "CANCELLED")]
-    fields = G.evaluate_snapshot(_snap(statusCheckRollup=checks))
-    assert fields[3].status == G.CNC
+    fields = _eval(_snap(statusCheckRollup=checks))
+    assert fields[4].status == G.CNC
     assert G.decide(fields) == 2
-    joined = " ".join(fields[3].notes)
+    joined = " ".join(fields[4].notes)
     assert "unified-reference=CANCELLED" in joined and G.RERUN_ADVICE in joined
 
 
 def test_cancelled_never_reads_as_pass_or_fail():
-    fields = G.evaluate_snapshot(_snap(statusCheckRollup=[_run("ci", "COMPLETED", "CANCELLED")]))
-    assert fields[3].status not in (G.PASS, G.FAIL)
+    fields = _eval(_snap(statusCheckRollup=[_run("ci", "COMPLETED", "CANCELLED")]))
+    assert fields[4].status not in (G.PASS, G.FAIL)
 
 
 def test_failure_beside_cancelled_is_a_failure():
@@ -98,16 +103,16 @@ def test_failure_beside_cancelled_is_a_failure():
 
 def test_definite_failure_dominates_could_not_check():
     # draft + cancelled: the merge is refused either way, and the report names field 3
-    fields = G.evaluate_snapshot(_snap(isDraft=True, statusCheckRollup=[_run("ci", "COMPLETED", "CANCELLED")]))
+    fields = _eval(_snap(isDraft=True, statusCheckRollup=[_run("ci", "COMPLETED", "CANCELLED")]))
     assert G.decide(fields) == 1
-    assert fields[2].status == G.FAIL and fields[3].status == G.CNC
+    assert fields[3].status == G.FAIL and fields[4].status == G.CNC
 
 
 def test_neutral_is_not_a_failure_but_is_surfaced_as_not_assessed():
     checks = [_run("Cursor Bugbot", "COMPLETED", "NEUTRAL")]
-    fields = G.evaluate_snapshot(_snap(statusCheckRollup=checks))
-    assert fields[3].ok
-    assert any("NOT ASSESSED" in n and "Cursor Bugbot" in n for n in fields[3].notes)
+    fields = _eval(_snap(statusCheckRollup=checks))
+    assert fields[4].ok
+    assert any("NOT ASSESSED" in n and "Cursor Bugbot" in n for n in fields[4].notes)
 
 
 def test_unknown_on_a_merged_pr_is_field_1_not_could_not_check():
@@ -127,12 +132,78 @@ def test_zero_checks_needs_an_explicit_waiver():
 def test_job_detail_is_asked_only_for_non_passing_checks():
     asked = []
     checks = [_run("ok", "COMPLETED", "SUCCESS"), _run("bad", "COMPLETED", "FAILURE"), _run("cx", "COMPLETED", "CANCELLED")]
-    G.evaluate_snapshot(_snap(statusCheckRollup=checks), job_detail=lambda c: asked.append(c["name"]) or "detail")
+    _eval(_snap(statusCheckRollup=checks), job_detail=lambda c: asked.append(c["name"]) or "detail")
     assert asked == ["bad", "cx"]
 
 
 def test_describe_job_without_locator_does_not_raise():
     assert "no jobs-API locator" in G.describe_job({"detailsUrl": "https://cursor.com/docs/bugbot"})
+
+
+# ---- field 0: base branch == default ---------------------------------------
+
+def test_field0_is_checked_first_and_passes_on_default():
+    fields = _eval(_snap())
+    assert fields[0].number == 0 and fields[0].status == G.PASS
+
+
+@pytest.mark.parametrize("base", ["research/other-open-20260904", "research/ocm-convergence-map-20260904"])
+def test_field0_other_or_landed_base_fails_with_retarget_message(base):
+    fields = _eval(_snap(baseRefName=base))
+    assert fields[0].status == G.FAIL
+    assert fields[0].detail == G.BASE_RETARGET_MSG.format(base=base, default="main")
+    assert G.decide(fields) == 1
+
+
+def test_field0_missing_base_is_could_not_check():
+    pr = _snap(); del pr["baseRefName"]
+    assert _code(pr) == 2
+
+
+def test_field0_default_branch_unreadable_is_could_not_check():
+    assert _code(_snap(), default_branch=None) == 2
+
+
+def test_field0_is_read_from_the_api_not_hardcoded():
+    # a repository whose default branch is not `main`: a `main`-targeted PR fails, a `trunk` one passes
+    assert _code(_snap(baseRefName="main"), default_branch="trunk") == 1
+    assert _code(_snap(baseRefName="trunk"), default_branch="trunk") == 0
+
+
+def test_field0_carries_base_info_note():
+    fields = _eval(_snap(baseRefName="research/x"), base_info="base branch 'research/x' exists at deadbeef; ancestor of main: yes")
+    assert any("ancestor of main: yes" in n for n in fields[0].notes)
+
+
+# ---- field 0 replays: recorded API snapshots of the real PRs -----------------
+# #290 as it stood before its merge (state OPEN restored; every other field from the API record):
+# base = research/ocm-convergence-map-20260904, the #289 branch, already landed -> merged as 54712cc0,
+# not an ancestor of main. FM40 stranding class recurring (#187/#215).
+
+PR_290_PREMERGE = {"number": 290, "state": "OPEN", "mergeable": "MERGEABLE", "isDraft": False,
+                   "baseRefName": "research/ocm-convergence-map-20260904", "headRefOid": "2d8cd1dd",
+                   "statusCheckRollup": [_run("reference-tests", "COMPLETED", "SUCCESS")]}
+PR_296_RELAND = {"number": 296, "state": "OPEN", "mergeable": "MERGEABLE", "isDraft": False,
+                 "baseRefName": "main", "headRefOid": "572785ca",
+                 "statusCheckRollup": [_run("reference-tests", "COMPLETED", "SUCCESS")]}
+PR_289_CONTROL = {"number": 289, "state": "OPEN", "mergeable": "MERGEABLE", "isDraft": False,
+                  "baseRefName": "main", "headRefOid": "3a96e2ad",
+                  "statusCheckRollup": [_run("reference-tests", "COMPLETED", "SUCCESS")]}
+
+
+def test_replay_290_premerge_is_refused_on_field0():
+    fields = _eval(PR_290_PREMERGE)
+    assert fields[0].status == G.FAIL and "retarget to main" in fields[0].detail
+    assert all(f.status == G.PASS for f in fields[1:])   # fields 1-4 were green: field 0 is the only refusal
+    assert G.decide(fields) == 1
+
+
+def test_replay_296_reland_passes_field0():
+    assert _code(PR_296_RELAND) == 0
+
+
+def test_replay_289_control_passes_field0():
+    assert _code(PR_289_CONTROL) == 0
 
 
 # ---- field 5: synthetic repository -----------------------------------------

@@ -1,4 +1,4 @@
-# Merge gate: five fields, three exits
+# Merge gate: six fields (0–5), three exits
 
 `scripts/pr_merge_gate.py` decides whether a PR may be merged. It is **policy at
 merge time** (the person or lane merging runs it and acts on the exit code) plus
@@ -14,11 +14,20 @@ echo $?      # 0 merge; 1 refuse (a field is named); 2 could not check (never me
 
 | # | field | fails when | incident |
 |---|---|---|---|
-| 1 | `state == OPEN` | merged/closed | — |
+| **0** | `baseRefName == default branch` (read from the API, never assumed) — **checked first** | the PR targets any other branch: "PR base is X: retarget to main before gating (stacked PR whose base already landed?)"; default unreadable → 2 | #290 passed fields 1–5 and merged onto the #289 branch as `54712cc0`, not an ancestor of main — the **FM40 stranding class recurring** (#187 → integration branch, recovered by #215). For information the gate prints whether the base still exists and whether its tip is already an ancestor of the default |
+| 1 | `state == OPEN` | merged/closed | `MERGED` is not evidence anything reached main (see field 0) |
 | 2 | `mergeable == MERGEABLE` | `CONFLICTING`; `UNKNOWN` is polled, then exit 2 | — |
 | 3 | `isDraft == false` | draft | #244/#254 sat green and unmergeable for an hour |
 | 4 | every check `COMPLETED` with conclusion in `{SUCCESS, NEUTRAL, SKIPPED}` | `FAILURE`/`TIMED_OUT`/`ACTION_REQUIRED`/`STARTUP_FAILURE` → 1; **`CANCELLED` or not `COMPLETED` → 2** | review-bot `NEUTRAL` gave two false greens in one day → surfaced as **NOT ASSESSED**; three PRs read red on cap-killed runs → **could not check, re-run the workflow on this head** |
 | 5 | no changed path is pinned by digest in a live freeze on the base | a freeze-class binder on the base holds the base content's digest of a changed path and the PR does not rebind it | #282 froze `mef1_arms.py`; #276 changed it 70 min later; both green; main red for hours; repaired by #286 |
+
+## Field 0: the base branch is read, not assumed
+
+A stacked PR keeps its base after that base lands; `gh pr merge` then merges
+into the stale branch and reports `MERGED`. `--snapshot FILE --default-branch X`
+evaluates fields 0–4 from a saved `gh pr view --json` record, which is how the
+#290 pre-merge state is replayed in the tests (refused on field 0 alone; #296,
+the cherry-pick reland onto main, and #289 pass).
 
 ## Field 4: three states, and where the detail comes from
 
@@ -71,5 +80,5 @@ running check, an unreadable base ref, no binders on the base (waive with
 readable JSON. A definite failure elsewhere still exits 1 (the merge is refused
 either way) and the report shows both.
 
-`--self-test` runs the mutation table (every field made to fail, every
+`--self-test` runs the mutation table (every field 0–5 made to fail, every
 could-not-check kept distinct) and exits 2 if any row disagrees.
