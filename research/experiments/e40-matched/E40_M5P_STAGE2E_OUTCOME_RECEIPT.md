@@ -78,6 +78,6 @@ is what it is for.
 
 Campaign `campaign-e40-m5p-stage2e/` (LUNARC): `run/results/505000–505033/{arguments,metrics}.json`
 + `output_network.csv` + `slot.json`, `run/logs/native_*.log`, `run/rollup/`. Archived here:
-the rollup json (sha above), `selftest_prerun.json` (node selftest before the run array),
+the rollup json (sha above), `selftest_prerun.out` (node selftest before the run array),
 `e40m5p2e-eval-3573344.out`. No design constant was changed after the freeze; the design files are
 unmodified since `b5498bd`.
