@@ -1,0 +1,39 @@
+{
+  "schema_version": "orion.v2.e40-channel-ib-v2-twin-excluded.design.v1",
+  "design_id": "E40_CHANNEL_IB_V2_TWIN_EXCLUDED_DESIGN_V1",
+  "class": "registered re-analysis; a fold repair of two frozen V1 re-analyses; zero model calls; zero native runs; pure Python",
+  "frozen": "2026-09-04, before the V2 rollup was computed; the twin census counts below were measured before the freeze and are asserted by a must-fire control",
+  "supersedes_with_withdrawal": {
+    "E40_CHANNEL_INFORMATION_BOUND_DESIGN_V1": "IB1/IB2 verdicts (FB8 rho 0.220 p 0.019; CFG rho 0.324 p 0.003) WITHDRAWN to CANNOT_CHECK -- computed on contaminated folds",
+    "E40_RANKER_SHIPPING_REANALYSIS_DESIGN_V1": "recovered fraction 0.41 and the RS1 p 0.0585 WITHDRAWN to CANNOT_CHECK; the RS negative terminal is re-derived here under clean folds rather than kept on a favourable-direction argument"
+  },
+  "defect": {
+    "what": "the m2/m3 substrate is deterministic (same config => same native run => identical truth); 15 exact configurations (dataset, regime, frac, model_seed, partial_intervention_seed) were executed in more than one chain, so 39 of 144 rows have a byte-identical run in ANOTHER chain",
+    "how_it_contaminated_v1": "leave-one-chain-out held out one chain while its twin rows sat in the training fold, so 'out of sample' saw the sample it scored in 27 percent of its rows; the direction of the bias is FAVOURABLE to the ranker",
+    "why_the_pre_run_audit_missed_it": "the audit asked whether the contrast could exist and whether the clause was reachable; it did not ask whether the held-out stimulus had an exact twin across the fold boundary",
+    "ledger_class": "HELD_OUT_SAMPLE_HAS_A_TWIN_IN_THE_FOLD (appended to FAILURE_LEDGER.md with this design)",
+    "pre_freeze_measurement": {"twin_configs_across_chains": 15, "rows_with_a_twin_in_another_chain": 39, "twins_have_identical_truth": true}
+  },
+  "the_one_change": "for a held-out chain, the training fold excludes every row whose exact configuration equals any configuration in the held-out chain; nothing else changes",
+  "inherited_unchanged_from_v1": ["ridge regression, lambda 1.0, columns standardised on the training fold", "feature sets FB8 / CFG / FB8+CFG", "per-chain Spearman and top-1 statistics", "within-chain permutation null, 2000 refits, seed 20260904", "sign-flip null, 4000 flips, seed 20260904", "plant: run_time := truth + N(0, 0.25 sd), seed 20260904, min rho 0.5 / min recovered fraction 0.75", "null calibration: 100 reps, seed 20260903, band [0.02, 0.09]", "IB gates IB0-IB3 and routing", "RS pairing, contrasts P0-P4, gates RS0-RS4 and routing, primary kind FB8+CFG"],
+  "controls_evaluated_first_and_consumed_by_the_gates": {
+    "TWIN_CENSUS_FIRES": "the census must reproduce 15 configs / 39 rows with identical truth in every twin group -- the defect detector must fire on the real data",
+    "V2_FOLD_HAS_NO_TWIN": "for every held-out chain, the training fold size equals all-other-rows minus the twin rows, recounted from the rows rather than from the filter",
+    "M4_M1_REPRODUCED": "inherited",
+    "M2_M3_PRIMARY_AND_CENSUS_REPRODUCED": "inherited",
+    "PLANTED_SIGNAL_DETECTED": "inherited, evaluated under V2 folds",
+    "NULL_CALIBRATION": "inherited, evaluated under V2 folds (IB and RS separately)",
+    "RECOVERABLE_IMPROVEMENT_EXISTS": "inherited (RS)",
+    "PLANTED_SIGNAL_SHIPS": "inherited, evaluated under V2 folds (RS)"
+  },
+  "gates_and_routing": "inherited verbatim from the two V1 designs; the V2 terminals replace the withdrawn V1 terminals",
+  "reachability_audit_pre_run": {
+    "seed_does_something": "yes, inherited draws",
+    "contrast_could_exist": "yes: removing at most a handful of rows from a 140-row fold leaves the ranker fittable; the plant must still fire and the shuffled null must still sit near zero",
+    "clause_reachable_both_ways": "IB1/IB2/IB3 and RS1/RS2 each satisfiable (the plant) and failable (the null calibration)",
+    "held_out_sample_has_a_twin": "NO by construction, asserted by V2_FOLD_HAS_NO_TWIN",
+    "residual_nonindependence_disclosed": "chains sharing dataset and rep are still correlated substrate draws even when their configs differ; this is legitimate substrate structure (the configuration prior), not a twin, and it is what CFG measures"
+  },
+  "no_rescue": "no constant, gate, threshold, seed or routing row changes after the V2 rollup is computed; the V1 rollups are not edited; their verdicts are withdrawn in the receipt and the registry",
+  "authority": {"grants_scientific_truth": false, "revives_e40": false, "authorizes_m6": false, "grants_field_status": false}
+}
