@@ -32,8 +32,11 @@ ORION-V2 is a pre-implementation research programme until the exact ORION V1 fre
 
 ## Merging
 
-Every merge into `main` is decided by `scripts/pr_merge_gate.py` (five fields,
-exit 0 only; see `docs/00-programme/PR_MERGE_GATE.md`): open, mergeable, not
+Every merge into `main` is decided by `scripts/pr_merge_gate.py` (six fields,
+exit 0 only; see `docs/00-programme/PR_MERGE_GATE.md`): **base branch == the
+repository default, read from the API and checked first** (a stacked PR whose
+base already landed merges into that branch and reads `MERGED` while nothing
+reaches `main` — FM40 stranding, recurred as #290), open, mergeable, not
 draft, every check completed and not failing, and no changed path pinned by
 digest in a live freeze on the base (the #282/#276 pair). Exit 1 names the
 field; exit 2 is could-not-check and is never a merge -- a cancelled or

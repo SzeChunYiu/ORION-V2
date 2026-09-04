@@ -349,6 +349,17 @@ Every concrete failure must preserve its source identities, affected claims and 
   failure and never as a pass; the caps are resized at >= 2x the measured p95 in #292. The test that settles
   each: (a) `--replay` against the historical pair; (b) the jobs API step list for the run (a cancelled step
   with no failed step is a cap or a manual cancel, not the code).
+  (c) **the FM40 stranding class, recurring (2026-09-04)** — #290 passed the gate's five fields and
+  squash-merged onto `research/ocm-convergence-map-20260904` (the #289 branch, already landed) as
+  `54712cc0`, which is not an ancestor of `main`; the PR was stacked and never retargeted after its base
+  landed, and the gate had no base-branch field. Same mechanism as #187 (merged to the integration branch,
+  never to `main`; recovered by #215, recorded in `research/failures/2026-09-silent-failure-modes-relocation/
+  05-operational-tooling-and-version-control.md`): `state: MERGED` is not evidence that anything reached
+  `main`. Recovered by #296 (cherry-pick reland onto `main`). The gate now carries **field 0**, checked
+  first: `baseRefName == <default branch read from the API>`; any other base is refused with "retarget
+  before gating", an unreadable default is could-not-check, and the report prints whether the base still
+  exists and whether its tip is already an ancestor of the default. The test that settles it: the recorded
+  #290 pre-merge snapshot is refused on field 0 alone while #296 and #289 pass.
 
 Their current closure classification is machine-recorded in:
 
