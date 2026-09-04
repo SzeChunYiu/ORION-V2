@@ -206,12 +206,12 @@ class Frame:
 
 
 def graph_sha256(ks) -> str:
-    h = hashlib.sha256()
-    for a in sorted(ks.atoms, key=lambda x: x.atom_id):
-        h.update(f"A|{a.atom_id}|{a.atom_type}\n".encode())
-    for e in sorted(ks.hyperedges, key=lambda x: x.edge_id):
-        h.update(f"E|{e.edge_id}|{','.join(e.tails)}|{','.join(e.heads)}|{e.relation_type}\n".encode())
-    return h.hexdigest()
+    """The shared digest (one definition, pinned by lane-ocm-3's test_graph_digest_format_is_the_shared_one):
+    sorted ``A|id|type`` lines, then sorted ``E|edge_id|tails|heads|relation_type`` lines with tails and
+    heads comma-joined, lines newline-joined, no trailing newline."""
+    lines = sorted(f"A|{a.atom_id}|{a.atom_type}" for a in ks.atoms)
+    lines += sorted(f"E|{e.edge_id}|{','.join(e.tails)}|{','.join(e.heads)}|{e.relation_type}" for e in ks.hyperedges)
+    return hashlib.sha256("\n".join(lines).encode()).hexdigest()
 
 
 def make_view(inst):
@@ -570,7 +570,11 @@ def run(cap_scale: float = 1.0, kso_column: dict | None = None, quiet: bool = Fa
             k = kso_column.get(inst.instance_id)
             if k is None:
                 raise CannotCheck(f"KSO column lacks instance {inst.instance_id}")
-            row_arms[KSO_COL] = k
+            theirs = k.get("_graph_sha256")
+            if theirs is not None and theirs != fr.graph_sha256:
+                raise CannotCheck(f"{inst.instance_id}: the KSO column was scored on graph {theirs[:12]}, this run on {fr.graph_sha256[:12]}; "
+                                  "the two receipts did not see the same graph -- the join is refused")
+            row_arms[KSO_COL] = {kk: vv for kk, vv in k.items() if kk != "_graph_sha256"}
         rows.append({"instance_id": inst.instance_id, "family": inst.family, "variant": inst.variant,
                      "request_kind": inst.request.kind, "oracle": {"action": exp.action, "reopened": list(exp.reopened)},
                      "graph": {"sha256": fr.graph_sha256, "atoms": n_atoms, "hyperedges": n_edges,
@@ -652,8 +656,21 @@ def _default(o):
     raise TypeError(type(o).__name__)
 
 
+def strip_timing(obj):
+    """The body with every wall_ns zeroed: what byte-reproducibility is asserted on (a clock is not a result)."""
+    if isinstance(obj, dict):
+        return {k: (0 if k == "wall_ns" else strip_timing(v)) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [strip_timing(v) for v in obj]
+    return obj
+
+
+def canonical(body: dict) -> bytes:
+    return json.dumps(strip_timing(body), sort_keys=True, default=_default).encode()
+
+
 def finalize(body: dict, design_path: Path | None) -> dict:
-    canon = json.dumps(body, sort_keys=True, default=_default).encode()
+    canon = canonical(body)
     bindings = {"kso_m2_comparator_v1.py": sha256_file(HERE / "kso_m2_comparator_v1.py"),
                 "kso_m1_mex1_population_v1.py": sha256_file(HERE / "kso_m1_mex1_population_v1.py"),
                 "kso_math_v1.py": sha256_file(HERE / "kso_math_v1.py"),
@@ -667,13 +684,17 @@ def finalize(body: dict, design_path: Path | None) -> dict:
         design = {"path": str(design_path.relative_to(ROOT)), "sha256": sha256_file(design_path)}
         try:
             dj = json.loads(design_path.read_text())
-            design["kso_m2_solve_design_sha256"] = dj.get("kso_m2_solve_design_sha256")
-            design["ids_sha256_declared"] = dj.get("ids_sha256")
-            design["ids_match"] = dj.get("ids_sha256") == body["ids_sha256"]
+            cm = dj.get("commitment", {})
+            design["kso_m2_solve_design_sha256"] = cm.get("kso_m2_solve_design_sha256")
+            design["ids_sha256_declared"] = cm.get("ids_sha256")
+            design["ids_match"] = cm.get("ids_sha256") == body["ids_sha256"]
+            design["module_sha256_at_freeze"] = cm.get("module_sha256_at_freeze")
+            design["module_matches_freeze"] = cm.get("module_sha256_at_freeze") == sha256_file(HERE / "kso_m2_comparator_v1.py")
         except json.JSONDecodeError:
             design["error"] = "design json unreadable"
     out = dict(body)
-    out["provenance"] = {"body_sha256": hashlib.sha256(canon).hexdigest(), "bindings": bindings, "design": design,
+    out["provenance"] = {"body_sha256": hashlib.sha256(canon).hexdigest(), "body_sha256_is_over": "the body with wall_ns zeroed",
+                         "bindings": bindings, "design": design,
                          "python": sys.version.split()[0],
                          "command": "python research/orion-machine/reference/kso_m2_comparator_v1.py --out research/orion-machine/results/KSO_M2_COMPARATOR_RECEIPT_V1.json"}
     return out
@@ -703,13 +724,13 @@ def main(argv: list[str] | None = None) -> int:
                 cell = r.get("arms", {}).get(KSO_COL) or r.get(KSO_COL)
                 if not isinstance(cell, dict) or "answer" not in cell:
                     raise CannotCheck(f"KSO column row {r.get('instance_id')} lacks arms.{KSO_COL}.answer")
-                kso_col[r["instance_id"]] = cell
+                kso_col[r["instance_id"]] = {**cell, "_graph_sha256": r.get("graph_sha256")}
         body = run(cap_scale=args.cap_scale, kso_column=kso_col)
         code = verdict(body)
         if not args.no_repro_check and code == 0:
             again = run(cap_scale=args.cap_scale, kso_column=kso_col)
-            same = json.dumps(body, sort_keys=True, default=_default) == json.dumps(again, sort_keys=True, default=_default)
-            body["checkers"]["K6_byte_reproducible"] = {"pass": same}
+            same = canonical(body) == canonical(again)
+            body["checkers"]["K6_byte_reproducible"] = {"pass": same, "note": "wall_ns zeroed on both sides; every other byte identical"}
             if not same:
                 code = 1
         receipt = finalize(body, args.design)

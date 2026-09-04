@@ -141,10 +141,22 @@ def test_kso_column_joins_the_table_and_a_bad_column_is_could_not_check(m, body,
     partial = {k: v for k, v in list({row["instance_id"]: row["arms"][m.KSO_COL] for row in col["instances"]}.items())[:10]}
     with pytest.raises(m.CannotCheck):
         m.run(kso_column=partial)
+    # the join is refused when the KSO column was scored on a different graph
+    wrong_graph = {row["instance_id"]: {**row["arms"][m.KSO_COL], "_graph_sha256": "0" * 64} for row in col["instances"]}
+    with pytest.raises(m.CannotCheck, match="did not see the same graph"):
+        m.run(kso_column=wrong_graph)
+    same_graph = {r["instance_id"]: {**col["instances"][i]["arms"][m.KSO_COL], "_graph_sha256": r["graph"]["sha256"]} for i, r in enumerate(body["instances"])}
+    assert m.run(kso_column=same_graph)["per_arm"][m.KSO_COL]["exact"] == 50
     bad = tmp_path / "bad.json"
     bad.write_text("{not json")
     proc = subprocess.run([sys.executable, str(MOD), "--no-repro-check", "--kso-column", str(bad)], capture_output=True, text=True)
     assert proc.returncode == 2 and "COULD NOT CHECK" in proc.stderr
+
+
+def test_byte_reproducible_once_timing_is_zeroed(m, body):
+    again = m.run()
+    assert m.canonical(body) == m.canonical(again)
+    assert m.strip_timing({"a": {"wall_ns": 5, "b": [{"wall_ns": 1}]}}) == {"a": {"wall_ns": 0, "b": [{"wall_ns": 0}]}}
 
 
 def test_terminals_carry_no_superiority_language(body):

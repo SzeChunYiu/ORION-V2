@@ -81,7 +81,7 @@
   "kso_m2_solve_design_path": "research/orion-machine/theory/KSO_M2_SOLVE_DESIGN_V1.md",
   "kso_m2_solve_design_sha256": "78931b75c15f894662167cc5c45cc19e46c8f675b3f47069ee22de4bbac9a6b0",
   "m1_population_receipt_body_sha256": "35468fc7f0b2839c48e8ff6245c30cfa89bbc92ddc729e9ea66aa4f8d582f62a",
-  "module_sha256_at_freeze": "9effaa259292f4576b58f3e087020b3b74fc58096ae7fb9cf1d10be86234b852",
+  "module_sha256_at_freeze": "181bccf68fc0fd6311fe1f1e794aead3d94e3a7991e9f08e7addd64a2d2df17f",
   "n_instances": 50,
   "per_family": 5,
   "protected_split": "NOT_RUN (custody seed; same as M1)",
@@ -106,7 +106,7 @@
   "K6": "second in-process run byte-identical"
  },
  "graph": {
-  "digest": "sha256 over sorted atoms (id,type) and hyperedges (id,tails,heads,type), one per row",
+  "digest": "shared with kso_m2_solve_v1.graph_sha256: sorted 'A|id|type' lines then sorted 'E|edge_id|tails|heads|relation_type' lines (comma-joined tails/heads), newline-joined, no trailing newline",
   "population": "kso_m1_mex1_population_v1.populate(final_world, request=inst.request, request_id=inst.instance_id)",
   "request_level_atoms": "kso_m2_solve_v1.add_request_atoms(pop, w1, inst) when present beside the module (lane-ocm-3; sha bound in the receipt); otherwise M1_ONLY and the receipt says so",
   "seed_set": "S = {req:<instance_id>, claim:<target_claim_id>} \u222a {res:<result_id> if populated}, uniform over |S|, warrant-gated, no renormalisation"
@@ -119,5 +119,11 @@
   "exact": "answer.action == Expected.action AND set(answer.reopened) == set(Expected.reopened); OBSTRUCTION/CANNOT_CHECK are not exact and never dropped",
   "paired": "mex1_run.paired_summary semantics (exact two-sided McNemar on discordant pairs); red iff p < 0.01",
   "terminal": "PARENT_SUFFICIENT iff KSO exact count <= B5 exact count once the KSO column is joined; EXPECTED_WHEN_KSO_COLUMN_MERGED until then"
+ },
+ "supersession": {
+  "kso_m2_solve_head": "36ecbc3d61d22c97fd82d68d391101f605d2a17f",
+  "prior_commit": "68c9c14",
+  "prior_module_sha256": "9effaa259292f4576b58f3e087020b3b74fc58096ae7fb9cf1d10be86234b852",
+  "reason": "pre-outcome, before any receipt was scored: (1) graph_sha256 aligned to the shared definition pinned by kso_m2_solve_v1 (newline-joined, no trailing newline) so the two receipts join on one digest; (2) the --kso-column join now refuses rows scored on a different graph (CannotCheck). Arms, caps, seeds, gates and instance set unchanged. (3) K6 byte-reproducibility and body_sha256 are asserted with wall_ns zeroed (a clock is not a result); design provenance reads the commitment block. Still pre-outcome: the first scored receipt is the one committed after this freeze."
  }
 }
