@@ -1,0 +1,141 @@
+{
+ "disposition": "PROBE_PRECONDITION_MET",
+ "P0": true,
+ "P1": true,
+ "P2": true,
+ "seed_only_mean_J": 0.9674796747967479,
+ "config_only_mean_J": 0.0,
+ "perm": {
+  "status": "OK",
+  "t_obs": 0.9674796747967479,
+  "draws": 4900,
+  "exhaustive": true,
+  "p_one_sided": 0.00020408163265306123
+ },
+ "n_complete": 34,
+ "unsettled": []
+}
+{
+ "disposition": "E40_PROBE_PRECONDITION_UNMET__REPLICAS_DISJOINT",
+ "P0": true,
+ "P1": false,
+ "P2": false,
+ "seed_only_mean_J": 0.0,
+ "config_only_mean_J": 2.6074259491030454e-05,
+ "perm": {
+  "status": "OK",
+  "t_obs": -2.6074259491030454e-05,
+  "draws": 4900,
+  "exhaustive": true,
+  "p_one_sided": 1.0
+ },
+ "n_complete": 34,
+ "unsettled": []
+}
+{
+ "disposition": "E40_PROBE_PRECONDITION_UNMET__REPLICATION_DEGENERATE",
+ "P0": true,
+ "P1": false,
+ "P2": false,
+ "seed_only_mean_J": 1.0,
+ "config_only_mean_J": 1.0,
+ "perm": {
+  "status": "OK",
+  "t_obs": 0.0,
+  "draws": 4900,
+  "exhaustive": true,
+  "p_one_sided": 1.0
+ },
+ "n_complete": 34,
+ "unsettled": []
+}
+{
+ "disposition": "CANNOT_CHECK",
+ "P0": false,
+ "P1": false,
+ "P2": false,
+ "seed_only_mean_J": 0.9674796747967479,
+ "config_only_mean_J": 0.0,
+ "perm": {
+  "status": "OK",
+  "t_obs": 0.9674796747967479,
+  "draws": 4900,
+  "exhaustive": true,
+  "p_one_sided": 0.00020408163265306123
+ },
+ "n_complete": 33,
+ "unsettled": [
+  "weissmann_k562|c0|s3|r0"
+ ]
+}
+{
+ "failures": [],
+ "fast": false,
+ "records": {
+  "edge_roundtrip": {
+   "control": "edge_roundtrip",
+   "n_parsed": 417,
+   "rejects_bad_shape": true,
+   "verdict": "PASS"
+  },
+  "fixture_degenerate": {
+   "config_only_mean_J": 1.0,
+   "disposition": "E40_PROBE_PRECONDITION_UNMET__REPLICATION_DEGENERATE",
+   "rc": 0,
+   "seed_only_mean_J": 1.0
+  },
+  "fixture_disjoint": {
+   "config_only_mean_J": 2.6074259491030454e-05,
+   "disposition": "E40_PROBE_PRECONDITION_UNMET__REPLICAS_DISJOINT",
+   "rc": 0,
+   "seed_only_mean_J": 0.0
+  },
+  "fixture_high": {
+   "config_only_mean_J": 0.0,
+   "disposition": "PROBE_PRECONDITION_MET",
+   "rc": 0,
+   "seed_only_mean_J": 0.9674796747967479
+  },
+  "fixture_inhomogeneous": {
+   "disposition": "CANNOT_CHECK",
+   "rc": 5
+  },
+  "jaccard": {
+   "J_E_E": 1.0,
+   "J_E_empty": 0.0,
+   "J_E_shuffled": 0.00847457627118644,
+   "J_half": 0.3333333333333333,
+   "control": "jaccard_selftest",
+   "verdict": "PASS"
+  },
+  "nullcal": {
+   "accept_band": [
+    0.02,
+    0.09
+   ],
+   "control": "permutation_null_calibration",
+   "rejection_rate": 0.04,
+   "reps": 400,
+   "seed": 20260903,
+   "verdict": "PASS"
+  }
+ },
+ "selftest": "e40_m5p_stage2e"
+}
+{
+ "disposition": "E40_PROBE_PRECONDITION_UNMET__REPLICAS_DISJOINT",
+ "P0": true,
+ "P1": false,
+ "P2": false,
+ "seed_only_mean_J": 0.03008839451715487,
+ "config_only_mean_J": 0.026609015980343903,
+ "perm": {
+  "status": "OK",
+  "t_obs": 0.0034793785368109655,
+  "draws": 4900,
+  "exhaustive": true,
+  "p_one_sided": 0.05530612244897959
+ },
+ "n_complete": 34,
+ "unsettled": []
+}

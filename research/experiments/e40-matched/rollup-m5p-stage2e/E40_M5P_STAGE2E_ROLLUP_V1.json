@@ -1,0 +1,729 @@
+{
+ "analysis": {
+  "config_only_J_by_dataset": {
+   "weissmann_k562": [
+    0.01059762078673786,
+    0.015129928849259148,
+    0.011913821972624269,
+    0.01361008382515204
+   ],
+   "weissmann_rpe1": [
+    0.036979584647328874,
+    0.04047684400126043,
+    0.04516354587976415,
+    0.039000697880624456
+   ]
+  },
+  "config_only_mean_J": 0.026609015980343903,
+  "detail": {
+   "config_only:weissmann_k562:s0": {
+    "J": 0.01059762078673786,
+    "k": 4,
+    "n_edges": [
+     389,
+     385,
+     386,
+     361
+    ]
+   },
+   "config_only:weissmann_k562:s1": {
+    "J": 0.015129928849259148,
+    "k": 4,
+    "n_edges": [
+     422,
+     375,
+     402,
+     382
+    ]
+   },
+   "config_only:weissmann_k562:s2": {
+    "J": 0.011913821972624269,
+    "k": 4,
+    "n_edges": [
+     432,
+     380,
+     415,
+     389
+    ]
+   },
+   "config_only:weissmann_k562:s3": {
+    "J": 0.01361008382515204,
+    "k": 4,
+    "n_edges": [
+     378,
+     390,
+     374,
+     375
+    ]
+   },
+   "config_only:weissmann_rpe1:s0": {
+    "J": 0.036979584647328874,
+    "k": 4,
+    "n_edges": [
+     188,
+     179,
+     201,
+     149
+    ]
+   },
+   "config_only:weissmann_rpe1:s1": {
+    "J": 0.04047684400126043,
+    "k": 4,
+    "n_edges": [
+     205,
+     198,
+     178,
+     161
+    ]
+   },
+   "config_only:weissmann_rpe1:s2": {
+    "J": 0.04516354587976415,
+    "k": 4,
+    "n_edges": [
+     184,
+     202,
+     193,
+     184
+    ]
+   },
+   "config_only:weissmann_rpe1:s3": {
+    "J": 0.039000697880624456,
+    "k": 4,
+    "n_edges": [
+     201,
+     174,
+     195,
+     177
+    ]
+   },
+   "seed_only:weissmann_k562:c0": {
+    "J": 0.014992691579967575,
+    "k": 4,
+    "n_edges": [
+     389,
+     422,
+     432,
+     378
+    ]
+   },
+   "seed_only:weissmann_k562:c1": {
+    "J": 0.011252573859073791,
+    "k": 4,
+    "n_edges": [
+     385,
+     375,
+     380,
+     390
+    ]
+   },
+   "seed_only:weissmann_k562:c2": {
+    "J": 0.014361525320064098,
+    "k": 4,
+    "n_edges": [
+     386,
+     402,
+     415,
+     374
+    ]
+   },
+   "seed_only:weissmann_k562:c3": {
+    "J": 0.020982408819236673,
+    "k": 4,
+    "n_edges": [
+     361,
+     382,
+     389,
+     375
+    ]
+   },
+   "seed_only:weissmann_rpe1:c0": {
+    "J": 0.05047555276761467,
+    "k": 4,
+    "n_edges": [
+     188,
+     205,
+     184,
+     201
+    ]
+   },
+   "seed_only:weissmann_rpe1:c1": {
+    "J": 0.03627639026931853,
+    "k": 4,
+    "n_edges": [
+     179,
+     198,
+     202,
+     174
+    ]
+   },
+   "seed_only:weissmann_rpe1:c2": {
+    "J": 0.04681216188169554,
+    "k": 4,
+    "n_edges": [
+     201,
+     178,
+     193,
+     195
+    ]
+   },
+   "seed_only:weissmann_rpe1:c3": {
+    "J": 0.045553851640268074,
+    "k": 4,
+    "n_edges": [
+     149,
+     161,
+     184,
+     177
+    ]
+   }
+  },
+  "envelopes_ok": true,
+  "n_complete": 34,
+  "n_slots": 34,
+  "perm": {
+   "draws": 4900,
+   "exhaustive": true,
+   "p_one_sided": 0.05530612244897959,
+   "status": "OK",
+   "t_obs": 0.0034793785368109655
+  },
+  "seed_only_J_by_dataset": {
+   "weissmann_k562": [
+    0.014992691579967575,
+    0.011252573859073791,
+    0.014361525320064098,
+    0.020982408819236673
+   ],
+   "weissmann_rpe1": [
+    0.05047555276761467,
+    0.03627639026931853,
+    0.04681216188169554,
+    0.045553851640268074
+   ]
+  },
+  "seed_only_mean_J": 0.03008839451715487,
+  "unsettled": {}
+ },
+ "campaign_root": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e",
+ "controls": {
+  "determinism": {
+   "J_per_dataset": {
+    "weissmann_k562": 1.0,
+    "weissmann_rpe1": 1.0
+   },
+   "control": "determinism_repeat",
+   "note": "records the value; the PASS rule is only that BOTH repeats exist and parse",
+   "verdict": "PASS"
+  },
+  "edge_roundtrip": {
+   "control": "edge_roundtrip",
+   "n_parsed": 417,
+   "rejects_bad_shape": true,
+   "verdict": "PASS"
+  },
+  "jaccard": {
+   "J_E_E": 1.0,
+   "J_E_empty": 0.0,
+   "J_E_shuffled": 0.007246376811594203,
+   "J_half": 0.3333333333333333,
+   "control": "jaccard_selftest",
+   "verdict": "PASS"
+  },
+  "nullcal": {
+   "accept_band": [
+    0.02,
+    0.09
+   ],
+   "control": "permutation_null_calibration",
+   "rejection_rate": 0.04,
+   "reps": 400,
+   "seed": 20260903,
+   "verdict": "PASS"
+  }
+ },
+ "design": "E40_M5P_STAGE2E_OVERLAP_PRECONDITION_DESIGN_V1",
+ "gates": {
+  "P0_CONTROLS_AND_ENVELOPES_VALID": true,
+  "P1_SEED_REPLICATION_INFORMATIVE": false,
+  "P2_CONSENSUS_DISCRIMINATES": false,
+  "controls_gate": {
+   "per_control": {
+    "determinism": "PASS",
+    "edge_roundtrip": "PASS",
+    "jaccard": "PASS",
+    "nullcal": "PASS"
+   },
+   "status": "VALID"
+  },
+  "disposition": "E40_PROBE_PRECONDITION_UNMET__REPLICAS_DISJOINT",
+  "gates_admissible": true,
+  "preregistered_route": "seed-only replicas are near-disjoint: the consensus statistic has no dynamic range on this substrate under ANY prompt, mandate or model, so the Stage-2c probe is not testable here. This is a PRECONDITION terminal, explicitly NOT the registered E40_TERMINAL (which needs a valid G0-pass / G1-G4-fail run)."
+ },
+ "grid": {
+  "configs": [
+   [
+    "c0",
+    "interventional",
+    0.0
+   ],
+   [
+    "c1",
+    "partial_interventional",
+    0.5
+   ],
+   [
+    "c2",
+    "partial_interventional",
+    0.8
+   ],
+   [
+    "c3",
+    "observational",
+    0.0
+   ]
+  ],
+  "datasets": [
+   "weissmann_k562",
+   "weissmann_rpe1"
+  ],
+  "exp_id_base": 505000,
+  "seeds": [
+   [
+    "s0",
+    11,
+    13
+   ],
+   [
+    "s1",
+    29,
+    31
+   ],
+   [
+    "s2",
+    47,
+    53
+   ],
+   [
+    "s3",
+    71,
+    79
+   ]
+  ]
+ },
+ "manifest": {
+  "files": [
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505000/metrics.json",
+    "sha256": "ea3ed790331c650e86fb6c640ba53b6a9ea72ee34d5ee7c5b115ccd229f2335d"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505000/arguments.json",
+    "sha256": "2079d278c4c91fb223785e567c17edd4e497a69d0dd736267098392cb7ae2957"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505000/output_network.csv",
+    "sha256": "091b9ad653d0140a65cc693b90f202f0eb68523a8fdf4f9d56416c0f91dc5522"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505001/metrics.json",
+    "sha256": "ee45022826e9e436219555bdd2279a56bcce11716b3a310ce4591e73bbf7bbf1"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505001/arguments.json",
+    "sha256": "259a56d816c43467d455f26ee792bfb512a0e85dedbc9fd0ed0269f3f0561e98"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505001/output_network.csv",
+    "sha256": "3276876c814b7eeb954ca436c4f45e6b615cdd6a2f1f416f576cb3aebdeac999"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505002/metrics.json",
+    "sha256": "d2d708268f7b44e4251bd2c25c69e89a5b06740470056d1a72ee4ac774e306d2"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505002/arguments.json",
+    "sha256": "d938404eefd3f139d595706ef70782c115196a90f2e1175cbfbf51951e0da2cd"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505002/output_network.csv",
+    "sha256": "ce9141cbc31df5bced7b7a726f2c2c30afd7d4ef24d9d7b948b0d767b72a3948"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505003/metrics.json",
+    "sha256": "372a741e6c653c1ef4dc3c879c6df31ea5525a4ee6dd956b51005e0012227ae7"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505003/arguments.json",
+    "sha256": "9acbf2ff024e29ce174a753d642af6939e98626bae00f9cf6ac606dc7bd5fbe4"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505003/output_network.csv",
+    "sha256": "791ad3fefef06fdc2ce57aea20cfaf317186a879d52e9d8b56d4305bd447bdf8"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505004/metrics.json",
+    "sha256": "c004cc833d57f32cdf430fbd34ddfe42c5979d9631d9ae161c94258e576c3e99"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505004/arguments.json",
+    "sha256": "4b7816f77c5c90d7783703b954de41635749e25892f57eac4342955b41e03a3f"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505004/output_network.csv",
+    "sha256": "57f852d4671534bb327f171f93304f38b39570c294f682a68d2bdce7bc294f96"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505005/metrics.json",
+    "sha256": "d918b498f0cb6b0cfeec7487c7c706f09a223242c90f82f37eff4af83ff31de1"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505005/arguments.json",
+    "sha256": "70c6843703d36c53eb772064166e8bb2fffe0839b1bcd3dd431665c55da6a729"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505005/output_network.csv",
+    "sha256": "084965dd620a85434fbe608de0e519b95c130d71d5083d27cdc088a7508b4dcf"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505006/metrics.json",
+    "sha256": "92a48f57c1753ed3bc163b604ac28400dd28acfc61c5b533640d347b543a715e"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505006/arguments.json",
+    "sha256": "8c1fcca9d71a2bedb86a2c50e4cf6f204e0c9fb8f7ad229b52b5c9cc77c61d0d"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505006/output_network.csv",
+    "sha256": "5e4ed8ca3e54004dc54d1956c8496f5c5c29e7c530c29b7c0a64e1b6af8362f3"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505007/metrics.json",
+    "sha256": "e3b97b9b4aa6fd9c3a206d829d301dfeca69ee4855a6d3afb839395565758ddc"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505007/arguments.json",
+    "sha256": "15c5059505c1ff0f1c69c005e00b0664c0d5e37206c2af68a23080f2527a43cc"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505007/output_network.csv",
+    "sha256": "8db5820d98d63f5fdde8503bd8de85d33cd283271de1805167ca34d693b7a658"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505008/metrics.json",
+    "sha256": "0ffb1af1182319d2f0b1c4f2dc13f3beac02b1ce43a9f150e6b03662266fcdc2"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505008/arguments.json",
+    "sha256": "a9553f08e4b3901d20c8815586a09b0db76d4010c93313a7cf97637a29542d76"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505008/output_network.csv",
+    "sha256": "98d438968c5514cfa96a6a9010fefe8f45bd867bc8f16e1bb17501dfb410057c"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505009/metrics.json",
+    "sha256": "e617e2e39ed3e9c6747d0a028d2c5fed05914df77c2e5c568a5ac78cfc2a55b4"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505009/arguments.json",
+    "sha256": "3cad7fada4f490e2df3c238f3ba0f887cf53651ea2f3c67a22bef6fb34957c79"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505009/output_network.csv",
+    "sha256": "89a8d921649be98fe2cc231f8920e23ef0ef36a40caf72f49202a6717438aa0f"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505010/metrics.json",
+    "sha256": "e2a072734ca98680d87e184ff9b21ce41b61370b035230e45e8a1dd54ec94b74"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505010/arguments.json",
+    "sha256": "b6f7ba442618b8573beabd6251c0f4655d79809d4b6e5b226448d38703e4f299"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505010/output_network.csv",
+    "sha256": "362be96b2b7eabaab72f033763513877cbdd075ce98b8d15cefa88b7f12eb9ef"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505011/metrics.json",
+    "sha256": "8ae77e5c8976397aafdc7b5377aeb073cfebebb89e5b478e012150258dcf9321"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505011/arguments.json",
+    "sha256": "04965f6d445edaf13bf85a03f3c26c68247ee62772d514f43ecac3886ffdc973"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505011/output_network.csv",
+    "sha256": "988a0a9cab827c4dd8c21ae9629aa6a1fde3f7b4d49ae6b9b95834464e21d159"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505012/metrics.json",
+    "sha256": "d41bb1de1dba2f667d463982c56d2a449962a0bb0ab1fb11e28887887d27ba60"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505012/arguments.json",
+    "sha256": "95f6712a71a979ae57db6565895bbb495aea5458627dac45318fa5951e6f5eb1"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505012/output_network.csv",
+    "sha256": "9ffe50fcdfa454e2072605e63d6923f389cc8974a5f79b64488dca7bd70fe88e"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505013/metrics.json",
+    "sha256": "1fd319658cced711c6337595bbcb778aad25bcd2a5564036590fb99cf0df4952"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505013/arguments.json",
+    "sha256": "0718a78fda72a1c8908658561127ae562cf0a8d17bf7fc872f18522c81db95be"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505013/output_network.csv",
+    "sha256": "584b4d55f8e00d04253a2b090e95249e418a993aafa2457a54ab8f38e7ce751a"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505014/metrics.json",
+    "sha256": "97da302a3855447923b8b2e907d5318d933ff2b30a69aef910d6631d1940286f"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505014/arguments.json",
+    "sha256": "142b310d676af7fc3a850eeba1d3d31a233fe7dcee0234e9ec7b3ad833af4fc3"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505014/output_network.csv",
+    "sha256": "b3a07ac54c31b7fcd9cd07db30ce53cc053fbf2749947d185351caa7b9fdf72f"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505015/metrics.json",
+    "sha256": "5bfefd563751f54f644e6d4ca0969f342f13ddcb04ea4a03735ea8e0ec245d36"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505015/arguments.json",
+    "sha256": "52494808a20adf6b9f39b607a352a08804eb1bb2960703de27946148cdba42f9"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505015/output_network.csv",
+    "sha256": "41f63526412c4c3a50774ac0aa192fe0669b9237cae4f51f9bf53b9cfa862469"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505016/metrics.json",
+    "sha256": "24c533119bdef358ed95eda0670ba6633bbca3d4289bef4cecfc70c3e2dbfc33"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505016/arguments.json",
+    "sha256": "5f2bfe43e583083fec5e9acf7982c650b130018203fcfc495e92591a663230e6"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505016/output_network.csv",
+    "sha256": "7adaeeb97f5028730681f61996ba27ef14233fdfc16fd79fb2a3edf97ffa116c"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505017/metrics.json",
+    "sha256": "53a9e0c371b60cee4c54569746154ac57fc54b0aa57b8e20738394ee54c815eb"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505017/arguments.json",
+    "sha256": "789b3a5081638c7d80d3aa525158131dd5c8792561c113d65fbe0a16d21d6fea"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505017/output_network.csv",
+    "sha256": "e6255d9f42758e9fb17fde20270ec01762d83745ab1ec372306ab8bd8b5274f2"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505018/metrics.json",
+    "sha256": "61ed605f9b8f7f106d5e244cce5fae0f4999514896a5df969fb20f0ee95a5826"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505018/arguments.json",
+    "sha256": "10786d9798717780f63d7e30a017132ded4c3846ad128d583ccaff15aa738393"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505018/output_network.csv",
+    "sha256": "e2b849bdbc32bfa4fd81214e844cd2d3e4933d4e53e7b221ca91da61f56afae5"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505019/metrics.json",
+    "sha256": "4b535b7ca06238bc1d74fd45847936dac4c5d8cd228889692102f419ff12d347"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505019/arguments.json",
+    "sha256": "466b32a9a29cd541ad1c6e9c04a72a3d29d8b601150cb785af47f44026f75298"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505019/output_network.csv",
+    "sha256": "09fa2ba65d5de78b4df85035b5ae3fc94b02a0476f0d9bc198b216477096e746"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505020/metrics.json",
+    "sha256": "85bf392720947f223619af7562011e717ebb94be508b181653aa37706deeded7"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505020/arguments.json",
+    "sha256": "fc06e82fcdc4dd70ed440a553798e6ed0d2c2cbaef733789e3abadd49fff9c31"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505020/output_network.csv",
+    "sha256": "c20b6b09ccffb1fbeea9969039b7e98f23d8be806aa75d5db85ecb0f782906c2"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505021/metrics.json",
+    "sha256": "970bc88677961c5560f1c2753ff95526a09f78d6ad2d97dbc47ba2b0e789b8f7"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505021/arguments.json",
+    "sha256": "b6a6be7cae31e825b7035a79171fc11d94f41216007d446701685f9a5b4bb735"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505021/output_network.csv",
+    "sha256": "ac316bdfb9a68fd359354025a60b5cea668782d7f2c30a9e16004ac5d2c3fcc6"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505022/metrics.json",
+    "sha256": "99a3acbde2055511bd912959cfe0b609a4e9b8e1b2def46fa9b8739e29557daf"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505022/arguments.json",
+    "sha256": "8c986a42a119655ef4682368cde8676f15ec38fd744e8d524b5f2a1720fa1d7d"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505022/output_network.csv",
+    "sha256": "748f6405184da41ceb4c4ec3ee71c1cce761a969f22fbc708106383845186c6d"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505023/metrics.json",
+    "sha256": "87ce4571ff43c6c0d6655f5d1c42f5eb3cf6cea97aeb42d018ee4c812594eb80"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505023/arguments.json",
+    "sha256": "bba3142ad27b096e0ee39183a05d3e67a954cf711d41b8f63d97d16115246cd9"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505023/output_network.csv",
+    "sha256": "28bd72f7780e1e9379827683cc949c6b97beb5538c9cdcdf2ae22582c4597ea4"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505024/metrics.json",
+    "sha256": "c4fc571309e7819cfe7b7d16466544a47e4b0caca999a9b42d960c8a15779178"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505024/arguments.json",
+    "sha256": "8460863a2d60c24301de9869b5db5144728c6146c6be880afdbb8d3f382553a1"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505024/output_network.csv",
+    "sha256": "2a3d7cd36e526ff33679205d68f068116db357a769d2d574f056585d9ee2cb19"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505025/metrics.json",
+    "sha256": "21f08f5f0cbdaf77f0b6253c2f265a93027c6521e3d1d1066a8bf60bd6d5eb8a"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505025/arguments.json",
+    "sha256": "745fff38cc3b2f546aff992f9ab48d24db5fc0bbcde91b70f5d18c845aa5b335"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505025/output_network.csv",
+    "sha256": "0c1b4b31fc83aca6703fbf9cb20bfabd56a45adf304de7bbe31e88e9ed440aef"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505026/metrics.json",
+    "sha256": "4739000c2c6512399c962c361ae40870a1b6910d48dad77f596e1fe1b1e078a1"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505026/arguments.json",
+    "sha256": "5b7671f4e131749204468937c7dccf03671e621e92c66529f0f2e0ff0c743b83"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505026/output_network.csv",
+    "sha256": "f13212bdc40c4d773581f2491f30dce628bde76ce50a5d49b1796fa39868d5ac"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505027/metrics.json",
+    "sha256": "3dfb3821458872306a45b59570397219b57b12005fb4d90b1cb6d06760940660"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505027/arguments.json",
+    "sha256": "6e1d051f12890c3b98e57d91b8984f19242692920d16027d64aa5d7c149da372"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505027/output_network.csv",
+    "sha256": "229deeeb823324e26c9e4aebd229d24106540f480be39ccdd0f2a4a2b20fb42d"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505028/metrics.json",
+    "sha256": "d1f51e46707d5707641b25da3a6334003a30146db4d2cab4ff3e72430f27d49e"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505028/arguments.json",
+    "sha256": "fc52c40cce249e743b7e06eaa51a862bdc802a2cdc2f9827c82a08280b2e5b5c"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505028/output_network.csv",
+    "sha256": "77de5635d779c40129172212de77b6ea04e2a8fbe21c9c3d14d5eea04fb2c762"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505029/metrics.json",
+    "sha256": "e0e6d1580233754f83ca5c59586877e19f451944fb2cb65dcab4cb478f7dc668"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505029/arguments.json",
+    "sha256": "44630718392fd10406142a2be6349b52774274ad24412e0e8d6e5496a401b261"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505029/output_network.csv",
+    "sha256": "74ec21cdaba6664d52528236c267b955d131c1a7e382d07f14feb9f0253515b2"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505030/metrics.json",
+    "sha256": "36b152bf924b4d9e40096653a26cea4772037fc09a34ae1493f06316c4babb02"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505030/arguments.json",
+    "sha256": "56027b4402c9529132a7d274594ca04145eb5325c0250f6ead3d3c2efe6b1a10"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505030/output_network.csv",
+    "sha256": "bb30b219f75c8d5b7eed4acd85f92c0fecca99dbadb1a4431f291130e006d849"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505031/metrics.json",
+    "sha256": "d4d32e615325cd65d7db89f4dcea4ae9007befa236ff8f1b6ad073d2e56e9475"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505031/arguments.json",
+    "sha256": "3ef09eb777b902875c2dfc8e26221ed6f86247fbb0d8164637b9d8e9dbf3fe9e"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505031/output_network.csv",
+    "sha256": "8fbf91e1091c0bac746d394e48d328aac6a75796cdc34e5a0828c41b860cac82"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505032/metrics.json",
+    "sha256": "769b8768d67e617daeb3cbe163f59bed12a1ffa1b630ee1cced6c4287ddcabc2"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505032/arguments.json",
+    "sha256": "4c223183673c1f9832a95fc59bfc5371b6a048783e40f71b99211ea99f27420a"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505032/output_network.csv",
+    "sha256": "05d533171fd00bfc5ed5715810aa3d17549ad79c95f108531c635c0165a25bdd"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505033/metrics.json",
+    "sha256": "b1e08dbbc32f8bc618b82572fc36de23ee2b1abdc06a3802383060ca210c3e52"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505033/arguments.json",
+    "sha256": "7ad50881544b01bf6993a76ab3016921a944f7c9a7eaf5c1d94bc3c0773d64cb"
+   },
+   {
+    "path": "/projects/hep/fs9/users/scyiu/orion-v2-e45/campaign-e40-m5p-stage2e/run/results/505033/output_network.csv",
+    "sha256": "2cd4b4ae35d07de04e70d965f31733137a45385a8906751c4bd14060f229cf1e"
+   }
+  ],
+  "n_files": 102
+ },
+ "model_calls": 0,
+ "note": "zero model calls by construction: every config is fixed by the design",
+ "schema_version": "orion.v2.e40-matched.m5p-stage2e-overlap-precondition.v1"
+}
