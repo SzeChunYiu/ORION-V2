@@ -62,7 +62,8 @@ def run_auditor(*args: str) -> subprocess.CompletedProcess:
 
 def test_reproduces_the_r2_registered_scale_shortfall():
     result = run_auditor("--campaign-root", str(ROLLUP))
-    assert result.returncode == 2 | 4, result.stdout + result.stderr
+    # 6 == COVERAGE(2) | CONSTRUCTIBILITY(4): both clauses violated.
+    assert result.returncode == 6, result.stdout + result.stderr
     auditor = load(AUDITOR, "auditor")
     report = auditor.audit(
         auditor.load_plan(PLAN),
@@ -338,3 +339,25 @@ def test_every_arm_in_the_registered_plan_is_present_in_the_arm_table():
     plan = json.loads(PLAN.read_text())
     registered = {arm for spec in plan["studies"].values() for arm in spec["arms"]}
     assert registered <= set(arms.ARM_PROCEDURE_CLASS)
+
+
+# --------------------------------------------------------------------------
+# Evidence side: a directory is not an arm
+# --------------------------------------------------------------------------
+
+def test_phantom_response_directories_are_not_counted_as_executed_arms(tmp_path):
+    """A .tmp leftover or __pycache__ under responses/ must not inflate `ran`."""
+    campaign = load(ROOT / "scripts/run_formal_discovery_campaign.py", "campaign")
+    workdir = tmp_path / "S1"
+    responses = workdir / "responses"
+    (responses / "REAL_ARM").mkdir(parents=True)
+    (responses / "REAL_ARM" / "t1.json").write_text("{}")
+    (responses / "__pycache__").mkdir()           # no json inside
+    (responses / ".tmp-scratch").mkdir()          # no json inside
+    (responses / "EMPTY_ARM").mkdir()             # dispatched nothing
+    assert campaign.executed_arms(workdir, ["REAL_ARM", "EMPTY_ARM"]) == ["REAL_ARM"]
+
+
+def test_executed_arms_is_empty_when_nothing_was_dispatched(tmp_path):
+    campaign = load(ROOT / "scripts/run_formal_discovery_campaign.py", "campaign")
+    assert campaign.executed_arms(tmp_path / "never-prepared", ["A", "B"]) == []

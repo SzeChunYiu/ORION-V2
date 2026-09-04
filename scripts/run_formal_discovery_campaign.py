@@ -153,8 +153,17 @@ def executed_arms(workdir: Path, registered: list[str]) -> list[str]:
     denominator.
     """
     responses = workdir / "responses"
-    found = {path.name for path in responses.iterdir() if path.is_dir()} if responses.exists() else set()
-    return sorted(found | {arm for arm in registered if (responses / arm).exists()})
+    if not responses.exists():
+        return []
+    # A bare directory is not evidence of an arm: a .tmp leftover, __pycache__ or a scratch
+    # dir would otherwise become a phantom executed arm, inflating ran_dispatches and
+    # fabricating an unregistered-arm finding. Require at least one response file.
+    found = {
+        path.name
+        for path in responses.iterdir()
+        if path.is_dir() and any(path.glob("*.json"))
+    }
+    return sorted(found)
 
 
 def evaluate(plan_path: Path, campaign_root: Path, studies: list[str]) -> None:
