@@ -33,6 +33,11 @@ ORION-V2 is a pre-implementation research programme until the exact ORION V1 fre
 ## Merging
 
 Every merge into `main` is decided by `scripts/pr_merge_gate.py` (five fields,
-exit 0 only; see `docs/00-programme/PR_MERGE_GATE.md`). The workflow
-`pr-merge-gate` is partial coverage, not enforcement: `main` has no branch
-protection, so run the gate at merge time and record its verdict in the PR.
+exit 0 only; see `docs/00-programme/PR_MERGE_GATE.md`): open, mergeable, not
+draft, every check completed and not failing, and no changed path pinned by
+digest in a live freeze on the base (the #282/#276 pair). Exit 1 names the
+field; exit 2 is could-not-check and is never a merge -- a cancelled or
+still-running check is 2, not a failure: re-run the workflow on this head. The
+workflow `pr-merge-gate` is partial coverage, not enforcement: `main` has no
+branch protection and the pair is only visible at merge time, so run the gate
+then and record its verdict in the PR ("merge gate: exit 0 at <base sha>").

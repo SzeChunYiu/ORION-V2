@@ -1,55 +1,53 @@
 name: pr-merge-gate
 
-# Field 5 of the five-field merge gate (scripts/pr_merge_gate.py), run per PR:
-# no changed path may be pinned by digest by a live freeze on main. This is
-# PARTIAL enforcement. It sees the freeze only if the freeze is already on
-# main when this run starts; the #282/#276 pair (freeze merged 70 minutes
-# before the file it pinned was edited and merged, both individually green)
-# is only caught by re-running the gate at merge time. Fields 1-4 and the
-# merge-time re-scan are policy (docs/00-programme/PR_MERGE_GATE.md); main
-# has no branch protection, so nothing here can block a merge by itself.
+# Partial enforcement of scripts/pr_merge_gate.py (see docs/00-programme/PR_MERGE_GATE.md).
+#
+# What this workflow CAN enforce: field 5 -- no path this PR changes is pinned
+# by digest in a live freeze-class binder on the base branch -- measured
+# against the base as it is when the job runs, plus the gate's own self-test
+# (every field must be able to fail before the gate is trusted).
+#
+# What it CANNOT enforce, and why the script must also be run at merge time:
+# the #282/#276 pair is only visible AFTER the freeze has landed on the base.
+# A PR whose checks ran before the freeze merged stays green; GitHub does not
+# re-run pull_request checks when the base moves and this repository has no
+# required-checks protection. Fields 1-4 are read from the PR at merge time
+# by whoever merges. That part is policy, not enforcement.
+#
+# Exit 2 (could not check) fails this job on purpose: an unreadable base or a
+# grep control that did not match must never read as green.
 
 on:
   pull_request:
-  push:
-    branches:
-      - main
-    paths:
-      - "scripts/pr_merge_gate.py"
-      - "tests/unit/test_pr_merge_gate.py"
-      - ".github/workflows/pr-merge-gate.yml"
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 jobs:
-  merge-gate:
+  freeze-binding-scan:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-
-      - name: Gate controls (a gate that cannot fail is not a gate)
+          python-version: '3.12'
+      - name: Self-test (the gate must be able to fail on every field)
         run: python scripts/pr_merge_gate.py --self-test
-
-      - name: Mutation tests, including the replay of the #282/#276 pair from history
-        env:
-          PR_MERGE_GATE_REQUIRE_HISTORY: "1"
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install pytest
-          python -m pytest -q tests/unit/test_pr_merge_gate.py
-
-      - name: Field 5 scan of this PR against main as it is now
+      - name: Field 5 -- changed paths vs live freeze binders on the base
         if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
-          git fetch -q origin main
-          python scripts/pr_merge_gate.py --replay --git-dir . \
-            --base-ref origin/main --head-ref "${{ github.event.pull_request.head.sha }}"
+          set -euo pipefail
+          git fetch -q origin "$BASE_REF"
+          git fetch -q origin "$HEAD_SHA"
+          echo "measuring against origin/$BASE_REF @ $(git rev-parse --short "origin/$BASE_REF")"
+          python scripts/pr_merge_gate.py --replay --git-dir . --base-ref "origin/$BASE_REF" --head-ref "$HEAD_SHA"
+      - name: Mutation tests, including the #282/#276 replay against real history
+        env:
+          PR_MERGE_GATE_REQUIRE_HISTORY: '1'
+        run: |
+          python -m pip install -q pytest
+          python -m pytest -q tests/unit/test_pr_merge_gate.py
