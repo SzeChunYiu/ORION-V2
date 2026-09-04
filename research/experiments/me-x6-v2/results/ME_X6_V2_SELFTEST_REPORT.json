@@ -1,0 +1,124 @@
+{
+  "checks": [
+    {
+      "check": "soft(0.5,0.2)",
+      "pass": true
+    },
+    {
+      "check": "soft(-0.5,0.2)",
+      "pass": true
+    },
+    {
+      "check": "soft(0.1,0.2)",
+      "pass": true
+    },
+    {
+      "check": "lasso_large_lambda_is_zero",
+      "pass": true
+    },
+    {
+      "check": "lasso_small_lambda_recovers_sign",
+      "pass": true
+    },
+    {
+      "check": "direction_rule",
+      "pass": true
+    },
+    {
+      "check": "greedy_forward_selection_can_fail",
+      "detail": {
+        "exhaustive_best_correct": 6,
+        "exhaustive_best_weights": {
+          "f1": 0,
+          "f2": 1,
+          "f3": -2
+        },
+        "greedy_correct": 5,
+        "greedy_is_suboptimal": true,
+        "greedy_weights": {
+          "f1": 0,
+          "f2": 0,
+          "f3": -1
+        },
+        "hidden_rule": {
+          "f1": 0,
+          "f2": 1,
+          "f3": -2
+        },
+        "hidden_rule_correct": 6,
+        "n": 6,
+        "rounds": 1
+      },
+      "pass": true
+    },
+    {
+      "check": "l1_path_can_fail",
+      "detail": {
+        "hidden_rule": {
+          "f1": 0,
+          "f2": 1,
+          "f3": -2
+        },
+        "hidden_rule_correct": 8,
+        "l1_correct": 6,
+        "l1_is_suboptimal": true,
+        "l1_weights": {
+          "f1": 0.0,
+          "f2": 0.0,
+          "f3": -0.172411
+        },
+        "n": 8
+      },
+      "pass": true
+    },
+    {
+      "check": "planter_agrees_on_every_dev_instance",
+      "n": 56,
+      "pass": true
+    },
+    {
+      "check": "decidable_from_fit_window_on_every_dev_instance",
+      "n": 56,
+      "pass": true
+    },
+    {
+      "check": "all_registered_cells_generated",
+      "n": 28,
+      "pass": true
+    },
+    {
+      "check": "exact_tail_finite_at_protected_scale",
+      "pass": true,
+      "value": 2.0391881610263666e-123
+    }
+  ],
+  "n_checks": 12,
+  "passed": true,
+  "reachability_audit": {
+    "G0d_is_a_validity_check_not_a_contrast": {
+      "statement": "M is exact by construction on this generator (V1 design 1.3), so a clause of the form 'the comparator is AHEAD of M' is UNREACHABLE here and is deliberately NOT registered. The two live outcomes are G1b (tie) and G1a (M ahead); a comparator win is impossible against a ceiling and claiming to test for it would be a clause that could not fire."
+    },
+    "M_is_itself_a_member_of_the_untyped_class": {
+      "correct": 56,
+      "n": 56,
+      "witness": "M's own weight dict loaded into the untyped decision rule"
+    },
+    "class_contains_a_FAILING_member": {
+      "correct": 28,
+      "n": 56,
+      "witness": "all-+1 weights"
+    },
+    "class_contains_an_EXACT_member": {
+      "correct": 56,
+      "n": 56,
+      "witness": "V1 provenance receipt section 4's hand-set zeroing"
+    },
+    "the_activity_half_is_not_reported": {
+      "statement": "V1 computes the activity direction from the same channels by the same call for every arm, so it is equal BY CONSTRUCTION and is not evidence. V2 scores the capability half only rather than publishing a 100% agreement no arm could lose."
+    },
+    "the_protected_seed_does_nothing_to_the_fit": {
+      "statement": "The comparator fit is a deterministic, RNG-free function of the PUBLIC development split, frozen before the protected seed is revealed. The protected seed governs instance generation only. Recorded so that a seed with no effect on a parameter is disclosed rather than implied."
+    }
+  },
+  "schema_version": "orion.v2.me-x6-v2.capacity-matched-comparator-results.v1.selftest"
+}
