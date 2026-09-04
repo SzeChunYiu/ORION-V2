@@ -1,0 +1,189 @@
+{
+  "schema_version": "orion.v2.guards.evidence-bundle.v1",
+  "paper_id": "PRA",
+  "label": "PIN_PROPOSED",
+  "proposed_by": "lane-guards (ORION-V2)",
+  "built_utc": "2026-09-04T20:38:08Z",
+  "measured_against_main": {
+    "ref": "origin/main",
+    "commit": "ed9df3fe341d251e858cedadfa9952c5d6082fe3"
+  },
+  "paper_folder_in_orion_paper": "v2-papers/llm-machine-epistemics",
+  "registry_field_that_cites_these": "papers[#51].v16_revision_receipts (H-EXT-4 note)",
+  "registration": {
+    "registered": false,
+    "registry": "ORION-paper v2-papers/PAPER_REGISTRY.json",
+    "awaiting": "lane-paper-3 registers per-paper pins; then re-run the verifier and drop the label"
+  },
+  "authority": {
+    "grants_registration": false,
+    "grants_scientific_truth": false,
+    "grants_publication_authority": false,
+    "note": "A proposal by the guards lane of WHICH ORION-V2 commits and files a paper's cited evidence resolves to, with their identities at the pin. Registration is the paper lane's act in ORION-paper's PAPER_REGISTRY.json; until then the label stays PIN_PROPOSED. Nothing here asserts that a claim is true, only where its receipt lives and what bytes it had."
+  },
+  "frame": "digests measured AT EACH STUDY'S PIN; status_on_main is an advisory, never a failure",
+  "studies": [
+    {
+      "id": "H-EXT-4",
+      "orion_v2_commit": "51142ea37956a415e34a033198ac04721e447de2",
+      "short": "51142ea3",
+      "date": "2026-09-02",
+      "subject": "h-ext4: quantitative prospective-revision premium — proofs, mechanized checks, honest terminals (#147)",
+      "on_main": true,
+      "evidence_roots": [
+        "research/llm-machine-epistemics/",
+        "tests/unit/test_h_ext4_premium_bounds.py"
+      ],
+      "receipt": "research/llm-machine-epistemics/H_EXT4_QUANTITATIVE_REVISION_PREMIUM_V1.md",
+      "terminal_expected": "H-EXT-4",
+      "terminal_found_in_receipt_at_pin": true,
+      "claim_strings_found_in": {},
+      "files": [
+        {
+          "path": "research/llm-machine-epistemics/H_EXT4_QUANTITATIVE_REVISION_PREMIUM_V1.md",
+          "change": "A",
+          "git_blob_sha1": "216226d669dd9805091acdb5ce08e684bca80e94",
+          "sha256": "7c0877ecccf55e689d03720c073b9295730374f3db4bf2938e9e84d08ccbe649",
+          "bytes": 30395,
+          "status_on_main": "CHANGED_SINCE_PIN",
+          "touched_by_after_pin": [
+            {
+              "sha": "52d2578",
+              "subject": "h-ext-4: honest denominator for the label-identity check too (#175)"
+            },
+            {
+              "sha": "c30f182",
+              "subject": "h-ext-4: report the (ii) Fano-form check against an honest denominator, and exhaust the sweep (#166)"
+            }
+          ]
+        },
+        {
+          "path": "research/llm-machine-epistemics/H_EXT4_RESULT_V1.json",
+          "change": "A",
+          "git_blob_sha1": "50b0c1455ef88bc26975eaf08b8ab9ba49310400",
+          "sha256": "79829e1178d91b3c31c93218856df8fc3396138180f18683e65e0057e1f3237d",
+          "bytes": 42173,
+          "status_on_main": "CHANGED_SINCE_PIN",
+          "touched_by_after_pin": [
+            {
+              "sha": "52d2578",
+              "subject": "h-ext-4: honest denominator for the label-identity check too (#175)"
+            },
+            {
+              "sha": "c30f182",
+              "subject": "h-ext-4: report the (ii) Fano-form check against an honest denominator, and exhaust the sweep (#166)"
+            }
+          ]
+        },
+        {
+          "path": "research/llm-machine-epistemics/h_ext4_premium_bounds.py",
+          "change": "A",
+          "git_blob_sha1": "b9fbb8b14c63bdb9dfd3f78740ca487ad791256b",
+          "sha256": "817c4d412f3c467a10752c31778c64be3250620ee1484c3825900a947ac96495",
+          "bytes": 55989,
+          "status_on_main": "CHANGED_SINCE_PIN",
+          "touched_by_after_pin": [
+            {
+              "sha": "52d2578",
+              "subject": "h-ext-4: honest denominator for the label-identity check too (#175)"
+            },
+            {
+              "sha": "c30f182",
+              "subject": "h-ext-4: report the (ii) Fano-form check against an honest denominator, and exhaust the sweep (#166)"
+            }
+          ]
+        },
+        {
+          "path": "tests/unit/test_h_ext4_premium_bounds.py",
+          "change": "A",
+          "git_blob_sha1": "7a9ffba0ec0d5f6769e94dbe37c56622eb6f1b62",
+          "sha256": "a092dd0521cacacc2ce24099d1557adf34b390bb0b29e978afb78fc503e66623",
+          "bytes": 5379,
+          "status_on_main": "CHANGED_SINCE_PIN",
+          "touched_by_after_pin": [
+            {
+              "sha": "c30f182",
+              "subject": "h-ext-4: report the (ii) Fano-form check against an honest denominator, and exhaust the sweep (#166)"
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "files": 4,
+        "unchanged_on_main": 0,
+        "changed_since_pin": 4,
+        "removed_on_main": 0,
+        "missing_at_pin": 0
+      },
+      "role": "quantitative prospective-revision premium: proofs + mechanized checks; the registry already pins two of these paths at d9e588f and they are unchanged there"
+    }
+  ],
+  "unattributed_claim_strings_found_in": {},
+  "advisory_changed_or_removed_since_pin": [
+    {
+      "study": "H-EXT-4",
+      "path": "research/llm-machine-epistemics/H_EXT4_QUANTITATIVE_REVISION_PREMIUM_V1.md",
+      "status_on_main": "CHANGED_SINCE_PIN",
+      "touched_by_after_pin": [
+        {
+          "sha": "52d2578",
+          "subject": "h-ext-4: honest denominator for the label-identity check too (#175)"
+        },
+        {
+          "sha": "c30f182",
+          "subject": "h-ext-4: report the (ii) Fano-form check against an honest denominator, and exhaust the sweep (#166)"
+        }
+      ]
+    },
+    {
+      "study": "H-EXT-4",
+      "path": "research/llm-machine-epistemics/H_EXT4_RESULT_V1.json",
+      "status_on_main": "CHANGED_SINCE_PIN",
+      "touched_by_after_pin": [
+        {
+          "sha": "52d2578",
+          "subject": "h-ext-4: honest denominator for the label-identity check too (#175)"
+        },
+        {
+          "sha": "c30f182",
+          "subject": "h-ext-4: report the (ii) Fano-form check against an honest denominator, and exhaust the sweep (#166)"
+        }
+      ]
+    },
+    {
+      "study": "H-EXT-4",
+      "path": "research/llm-machine-epistemics/h_ext4_premium_bounds.py",
+      "status_on_main": "CHANGED_SINCE_PIN",
+      "touched_by_after_pin": [
+        {
+          "sha": "52d2578",
+          "subject": "h-ext-4: honest denominator for the label-identity check too (#175)"
+        },
+        {
+          "sha": "c30f182",
+          "subject": "h-ext-4: report the (ii) Fano-form check against an honest denominator, and exhaust the sweep (#166)"
+        }
+      ]
+    },
+    {
+      "study": "H-EXT-4",
+      "path": "tests/unit/test_h_ext4_premium_bounds.py",
+      "status_on_main": "CHANGED_SINCE_PIN",
+      "touched_by_after_pin": [
+        {
+          "sha": "c30f182",
+          "subject": "h-ext-4: report the (ii) Fano-form check against an honest denominator, and exhaust the sweep (#166)"
+        }
+      ]
+    }
+  ],
+  "defects": [],
+  "totals": {
+    "studies": 1,
+    "files": 4,
+    "unchanged_on_main": 0,
+    "changed_since_pin": 4,
+    "removed_on_main": 0,
+    "missing_at_pin": 0
+  }
+}

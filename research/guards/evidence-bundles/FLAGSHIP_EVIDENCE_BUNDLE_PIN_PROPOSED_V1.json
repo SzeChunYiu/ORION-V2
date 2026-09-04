@@ -1,0 +1,901 @@
+{
+  "schema_version": "orion.v2.guards.evidence-bundle.v1",
+  "paper_id": "FLAGSHIP",
+  "label": "PIN_PROPOSED",
+  "proposed_by": "lane-guards (ORION-V2)",
+  "built_utc": "2026-09-04T20:38:07Z",
+  "measured_against_main": {
+    "ref": "origin/main",
+    "commit": "ed9df3fe341d251e858cedadfa9952c5d6082fe3"
+  },
+  "paper_folder_in_orion_paper": "v2-papers/FLAGSHIP-machine-epistemics",
+  "registry_field_that_cites_these": "papers[FLAGSHIP].evidence_boundary",
+  "registration": {
+    "registered": false,
+    "registry": "ORION-paper v2-papers/PAPER_REGISTRY.json",
+    "awaiting": "lane-paper-3 registers per-paper pins; then re-run the verifier and drop the label"
+  },
+  "authority": {
+    "grants_registration": false,
+    "grants_scientific_truth": false,
+    "grants_publication_authority": false,
+    "note": "A proposal by the guards lane of WHICH ORION-V2 commits and files a paper's cited evidence resolves to, with their identities at the pin. Registration is the paper lane's act in ORION-paper's PAPER_REGISTRY.json; until then the label stays PIN_PROPOSED. Nothing here asserts that a claim is true, only where its receipt lives and what bytes it had."
+  },
+  "frame": "digests measured AT EACH STUDY'S PIN; status_on_main is an advisory, never a failure",
+  "studies": [
+    {
+      "id": "ME-X4",
+      "orion_v2_commit": "4929a44cf86ac0fe281b2f05cdb133fa43015870",
+      "short": "4929a44c",
+      "date": "2026-09-02",
+      "subject": "me-x4: protected run under operator authorization — outcome receipt (#149)",
+      "on_main": true,
+      "evidence_roots": [
+        "research/experiments/me-x4/"
+      ],
+      "receipt": "research/experiments/me-x4/ME_X4_OUTCOME_RECEIPT.md",
+      "terminal_expected": "ME_X4_STATUS = PARENT_SUFFICIENT",
+      "terminal_found_in_receipt_at_pin": true,
+      "claim_strings_found_in": {
+        "1200/1200": [
+          "research/experiments/me-x4/ME_X4_OUTCOME_RECEIPT.md"
+        ],
+        "12 strata": [
+          "research/experiments/me-x4/ME_X4_OUTCOME_RECEIPT.md"
+        ]
+      },
+      "files": [
+        {
+          "path": "research/experiments/me-x4/ME_X4_OUTCOME_RECEIPT.md",
+          "change": "A",
+          "git_blob_sha1": "622e235e167a1b8bd48817f7705e43096b867d2f",
+          "sha256": "2ca2e92007bada5cba0b1cacb07c3db61c0129199a206d5b20c498cbdf9f6165",
+          "bytes": 13538,
+          "status_on_main": "CHANGED_SINCE_PIN",
+          "touched_by_after_pin": [
+            {
+              "sha": "f4cb816",
+              "subject": "receipts: qualify tokens that travel without their prose (#260)"
+            }
+          ]
+        },
+        {
+          "path": "research/experiments/me-x4/results/ME_X4_PROTECTED_ANALYSIS_V1.json",
+          "change": "A",
+          "git_blob_sha1": "c20377875cf3de162d13fe4d89a86dac4fe6324f",
+          "sha256": "5ae1b8ab5c7e926d68e5b1a28f28ff1b0e937c5100b10221529149f294431c14",
+          "bytes": 82097,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x4/results/ME_X4_PROTECTED_ANALYSIS_V1.md",
+          "change": "A",
+          "git_blob_sha1": "36934550be49f43ebb38bb88a461790c4058fc21",
+          "sha256": "cb2d77bb7fbf8376a359e7d4f03f0531d413ec5213d64c6a6f98ddb771216d55",
+          "bytes": 6819,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x4/results/ME_X4_PROTECTED_EXPECTED_CUSTODY_V1.json",
+          "change": "A",
+          "git_blob_sha1": "5ad419eacf9208428ffb82e5919ee92f5481b220",
+          "sha256": "5ac9d3521d557220ef987d69b593c163a8e0863710af4e25b85e680ec856e708",
+          "bytes": 11195201,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x4/results/ME_X4_PROTECTED_RESULTS_V1.json",
+          "change": "A",
+          "git_blob_sha1": "f1db394183cd07494ad928eb29a8d1a5dd7802de",
+          "sha256": "7bd0f8c20c037a2000ffafe2fe1809287b2dbdb0e299125c99b72df554a87117",
+          "bytes": 5475842,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x4/results/ME_X4_PROTECTED_TIMING_V1.json",
+          "change": "A",
+          "git_blob_sha1": "f834238ab24675835e2e4913ca3c0492ef3722e2",
+          "sha256": "20d9242de0ed98c94e78c3102176a314a5110e34ae2e586b39af0f3a42526775",
+          "bytes": 813639,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x4/results/PROTECTED_RUN_AUTHORIZATION_ARCHIVED.json",
+          "change": "A",
+          "git_blob_sha1": "54ccc81490597d9e67c3c11d17f537d2452b1ddd",
+          "sha256": "fc1f7b1ac47f3bbc523ab4756e431e7062708b8aa0e2bf678ec321cd94c40f41",
+          "bytes": 529,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        }
+      ],
+      "counts": {
+        "files": 7,
+        "unchanged_on_main": 6,
+        "changed_since_pin": 1,
+        "removed_on_main": 0,
+        "missing_at_pin": 0
+      }
+    },
+    {
+      "id": "ME-X1",
+      "orion_v2_commit": "59b1f5b02d59140182c45976222cda08d32fe086",
+      "short": "59b1f5b0",
+      "date": "2026-09-02",
+      "subject": "me-x1: protected run under operator authorization — outcome receipt (#161)",
+      "on_main": true,
+      "evidence_roots": [
+        "research/experiments/me-x1/"
+      ],
+      "receipt": "research/experiments/me-x1/ME_X1_OUTCOME_RECEIPT.md",
+      "terminal_expected": "RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL",
+      "terminal_found_in_receipt_at_pin": true,
+      "claim_strings_found_in": {
+        "1000/1000": [
+          "research/experiments/me-x1/ME_X1_OUTCOME_RECEIPT.md"
+        ],
+        "3.7e-9": [
+          "research/experiments/me-x1/ME_X1_OUTCOME_RECEIPT.md"
+        ]
+      },
+      "files": [
+        {
+          "path": "research/experiments/me-x1/ME_X1_OUTCOME_RECEIPT.md",
+          "change": "A",
+          "git_blob_sha1": "01fb5fb8c99d7bfe795473b00476eb97d24bbccb",
+          "sha256": "bccb808b87719099b7fb4f5b0f4bd075de8521d600233ef51047814cfdc75bbb",
+          "bytes": 19662,
+          "status_on_main": "CHANGED_SINCE_PIN",
+          "touched_by_after_pin": [
+            {
+              "sha": "f4cb816",
+              "subject": "receipts: qualify tokens that travel without their prose (#260)"
+            }
+          ]
+        },
+        {
+          "path": "research/experiments/me-x1/results/ME_X1_PROTECTED_ANALYSIS_V1.json",
+          "change": "A",
+          "git_blob_sha1": "59253e4939b03aad0c5645032ba856310631787c",
+          "sha256": "cd69f435013c7fa57d06ffc63bf2984537104de5f49ea1059616406600f01951",
+          "bytes": 265513,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x1/results/ME_X1_PROTECTED_ANALYSIS_V1.md",
+          "change": "A",
+          "git_blob_sha1": "6ad616e6c3933c5d80e6e95a987ad32c41951007",
+          "sha256": "93926c6ef966803aecea0b401caaf81601a360334978cb834566b9a791c7b2a9",
+          "bytes": 8954,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x1/results/ME_X1_PROTECTED_EXPECTED_CUSTODY_V1.json",
+          "change": "A",
+          "git_blob_sha1": "3b3b92c5cadb6ad1a675e82560d73d9f5925905d",
+          "sha256": "387cec102ff843a9e0c024cb766d7ce763c583f3d1756e58af3aed14aefe223f",
+          "bytes": 7509849,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x1/results/ME_X1_PROTECTED_RESULTS_V1.json",
+          "change": "A",
+          "git_blob_sha1": "35bb2eba46334020a9b56d22ac52c46f66a5742e",
+          "sha256": "f3065bfee46c6326079a17b55af373fa752c3333c8861c90f894545e9606012f",
+          "bytes": 3091429,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x1/results/ME_X1_PROTECTED_TIMING_V1.json",
+          "change": "A",
+          "git_blob_sha1": "2df24d540dfdaa250e972b3fa444554dc8dd20c1",
+          "sha256": "9dc54c5ca0b93361d610958f9ece232f21850bab322b543c5ffc1fcd69310029",
+          "bytes": 758368,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x1/results/PROTECTED_RUN_AUTHORIZATION_ARCHIVED.json",
+          "change": "A",
+          "git_blob_sha1": "e1cfb37c00943bbf964b8aeb8c0f36336d5f0c39",
+          "sha256": "9dfb849bd5aca633bca0896f8c00529f222148c45bf18d57201872db68c5eb4c",
+          "bytes": 1112,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        }
+      ],
+      "counts": {
+        "files": 7,
+        "unchanged_on_main": 6,
+        "changed_since_pin": 1,
+        "removed_on_main": 0,
+        "missing_at_pin": 0
+      }
+    },
+    {
+      "id": "ME-X2",
+      "orion_v2_commit": "776d3a1649d8fb9a680397141c0eb349613b1193",
+      "short": "776d3a16",
+      "date": "2026-09-02",
+      "subject": "me-x2: protected run under operator authorization — outcome receipt (PARENT_SUFFICIENT, B5_DOMINATES) (#164)",
+      "on_main": true,
+      "evidence_roots": [
+        "research/experiments/me-x2/"
+      ],
+      "receipt": "research/experiments/me-x2/ME_X2_OUTCOME_RECEIPT.md",
+      "terminal_expected": "B5_DOMINATES",
+      "terminal_found_in_receipt_at_pin": true,
+      "claim_strings_found_in": {
+        "0.983": [
+          "research/experiments/me-x2/ME_X2_OUTCOME_RECEIPT.md",
+          "research/experiments/me-x2/results/ME_X2_PROTECTED_ANALYSIS_V1.json",
+          "research/experiments/me-x2/results/ME_X2_PROTECTED_ANALYSIS_V1.md",
+          "research/experiments/me-x2/results/ME_X2_PROTECTED_RESULTS_V1.json"
+        ],
+        "0.963": [
+          "research/experiments/me-x2/ME_X2_OUTCOME_RECEIPT.md",
+          "research/experiments/me-x2/results/ME_X2_PROTECTED_ANALYSIS_V1.json",
+          "research/experiments/me-x2/results/ME_X2_PROTECTED_ANALYSIS_V1.md",
+          "research/experiments/me-x2/results/ME_X2_PROTECTED_RESULTS_V1.json"
+        ],
+        "0.0032": [
+          "research/experiments/me-x2/ME_X2_OUTCOME_RECEIPT.md"
+        ],
+        "43": [
+          "research/experiments/me-x2/ME_X2_OUTCOME_RECEIPT.md",
+          "research/experiments/me-x2/results/ME_X2_PROTECTED_ANALYSIS_V1.json",
+          "research/experiments/me-x2/results/ME_X2_PROTECTED_ANALYSIS_V1.md",
+          "research/experiments/me-x2/results/ME_X2_PROTECTED_EXPECTED_CUSTODY_V1.json",
+          "research/experiments/me-x2/results/ME_X2_PROTECTED_RESULTS_V1.json",
+          "research/experiments/me-x2/results/ME_X2_PROTECTED_TIMING_V1.json",
+          "research/experiments/me-x2/results/PROTECTED_RUN_AUTHORIZATION_ARCHIVED.json"
+        ]
+      },
+      "files": [
+        {
+          "path": "research/experiments/me-x2/ME_X2_OUTCOME_RECEIPT.md",
+          "change": "A",
+          "git_blob_sha1": "627057c992afa16ec19db23b3199b6f4ae60df66",
+          "sha256": "b92e9c07c37b454f40957e1be8ed636a910b1f958568fa3610f8f4abf391c893",
+          "bytes": 18503,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x2/results/ME_X2_PROTECTED_ANALYSIS_V1.json",
+          "change": "A",
+          "git_blob_sha1": "f3d315a7f2a6f68138d4ce5613feccd29cbe6ef6",
+          "sha256": "e11a1e8fd3092a9f3a414da90bd9d8f17b84e4b208edbedf80f8414f95493c84",
+          "bytes": 107314,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x2/results/ME_X2_PROTECTED_ANALYSIS_V1.md",
+          "change": "A",
+          "git_blob_sha1": "70547c46f0fb69629ec41f804a77acc10cccf4c2",
+          "sha256": "b113c61af08c309851a46892bfb3aa6303bdf19b08524c5f43aceb5db4922578",
+          "bytes": 10684,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x2/results/ME_X2_PROTECTED_EXPECTED_CUSTODY_V1.json",
+          "change": "A",
+          "git_blob_sha1": "ae5243f8e59a7320e4f585a6c7e2db2a09ed911d",
+          "sha256": "19f4656232a38c893a72c0cd4808660521dd17363e872a2143f2fb78c3834919",
+          "bytes": 4424283,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x2/results/ME_X2_PROTECTED_RESULTS_V1.json",
+          "change": "A",
+          "git_blob_sha1": "90d895ffc48658094557495e59df0e5a9198a9ba",
+          "sha256": "33961a3df74711d9e3bd080a141bcab4b436005600aca74d28ebfe86e5260cd9",
+          "bytes": 20733334,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x2/results/ME_X2_PROTECTED_TIMING_V1.json",
+          "change": "A",
+          "git_blob_sha1": "c337fdfb31ef979a54a321aaf6dde3e0dcc77bde",
+          "sha256": "a5032746b6420d2fe7f15e8b45abfbc7ce6a30f29ca52dcc17312bccb0cffcb1",
+          "bytes": 982818,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x2/results/PROTECTED_RUN_AUTHORIZATION_ARCHIVED.json",
+          "change": "A",
+          "git_blob_sha1": "c7acfc534273d7a97bbbbfdc3762afea67520928",
+          "sha256": "3a133ad46ac36107f992052e3da3873481411fcc2c9075c301ed4e6f8e15d9e7",
+          "bytes": 1808,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        }
+      ],
+      "counts": {
+        "files": 7,
+        "unchanged_on_main": 7,
+        "changed_since_pin": 0,
+        "removed_on_main": 0,
+        "missing_at_pin": 0
+      }
+    },
+    {
+      "id": "ME-X5",
+      "orion_v2_commit": "024d97fd5a5e69695fa608c38d0732b6b567ff1d",
+      "short": "024d97fd",
+      "date": "2026-09-02",
+      "subject": "me-x5: protected run under operator authorization — outcome receipt (RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL, R1) (#183)",
+      "on_main": true,
+      "evidence_roots": [
+        "research/experiments/me-x5/"
+      ],
+      "receipt": "research/experiments/me-x5/ME_X5_OUTCOME_RECEIPT.md",
+      "terminal_expected": "RESIDUAL_IS_INTERFACE_STANDARD_NOT_CONTROL",
+      "terminal_found_in_receipt_at_pin": true,
+      "claim_strings_found_in": {
+        "1440": [
+          "research/experiments/me-x5/ME_X5_OUTCOME_RECEIPT.md",
+          "research/experiments/me-x5/results/ME_X5_PROTECTED_ANALYSIS_V1.json",
+          "research/experiments/me-x5/results/ME_X5_PROTECTED_ANALYSIS_V1.md",
+          "research/experiments/me-x5/results/ME_X5_PROTECTED_EXPECTED_CUSTODY_V1.json"
+        ]
+      },
+      "files": [
+        {
+          "path": "research/experiments/me-x5/ME_X5_OUTCOME_RECEIPT.md",
+          "change": "A",
+          "git_blob_sha1": "bfecc91cb2a574b2333b37ca8cf1a4a9bdec6d9e",
+          "sha256": "b299fa28afe8ad41c352245bd39e44e7f2245466709b9f59d1ecfbebfb8f2466",
+          "bytes": 20412,
+          "status_on_main": "CHANGED_SINCE_PIN",
+          "touched_by_after_pin": [
+            {
+              "sha": "e30526e",
+              "subject": "me-x5: erratum V1 — M is a bespoke composition, not a compilation to the ORION reference objects (#186)"
+            }
+          ]
+        },
+        {
+          "path": "research/experiments/me-x5/results/ME_X5_PROTECTED_ANALYSIS_V1.json",
+          "change": "A",
+          "git_blob_sha1": "97427649efcf1b5ac8888d40b70f1b520fe7b392",
+          "sha256": "277bcfbfb642c85039e49ef8500fc3cd96946af4ee14d710cc5dc2130324670e",
+          "bytes": 498565,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x5/results/ME_X5_PROTECTED_ANALYSIS_V1.md",
+          "change": "A",
+          "git_blob_sha1": "abdeb8f3f0ad06231838440198ef18808cb1eb5d",
+          "sha256": "035b18f92a706524b0c74b4e6d93f3a3c136901e3b7820089340bb5533c7fb98",
+          "bytes": 10234,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x5/results/ME_X5_PROTECTED_EXPECTED_CUSTODY_V1.json",
+          "change": "A",
+          "git_blob_sha1": "da198d8c42272480693d8594a3ed4f3f2ea0be00",
+          "sha256": "f35428b4044c5452fa7eb8ec78739ccff6e608f6b081281b051c444273f12200",
+          "bytes": 7463938,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x5/results/ME_X5_PROTECTED_RESULTS_V1.json",
+          "change": "A",
+          "git_blob_sha1": "ee58fae9041ce7e93bdc015d59e7cf819d39d562",
+          "sha256": "4bdad48135334844ab12578dc61046081b51a6b8244637e79d198d8a9aac6b91",
+          "bytes": 8905626,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x5/results/ME_X5_PROTECTED_TIMING_V1.json",
+          "change": "A",
+          "git_blob_sha1": "4230b21c74ab935a6374bffc7c60eeabc1dd36d0",
+          "sha256": "5eee91ef9336025ad82d859f6a248c5c8474cae30f1d1183ba3537a3363fad23",
+          "bytes": 1561203,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x5/results/PROTECTED_RUN_AUTHORIZATION_ARCHIVED.json",
+          "change": "A",
+          "git_blob_sha1": "f52ba6a47a4efba21cd0d93bdb0dc29e814d166c",
+          "sha256": "279194c75676d911cd42ef0df16058dda14651e1e1d0b16dd2877c397059c60d",
+          "bytes": 597,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        }
+      ],
+      "counts": {
+        "files": 7,
+        "unchanged_on_main": 6,
+        "changed_since_pin": 1,
+        "removed_on_main": 0,
+        "missing_at_pin": 0
+      },
+      "superseded_note": "ME_X5_OUTCOME_RECEIPT.md is corrected by erratum e30526e (pinned below); the results files are unchanged by the erratum."
+    },
+    {
+      "id": "ME-X5-ERRATUM",
+      "orion_v2_commit": "e30526ead84e5190a8b9bb3b3bc5a6b86b7aba7e",
+      "short": "e30526ea",
+      "date": "2026-09-03",
+      "subject": "me-x5: erratum V1 — M is a bespoke composition, not a compilation to the ORION reference objects (#186)",
+      "on_main": true,
+      "evidence_roots": [
+        "research/experiments/me-x5/"
+      ],
+      "receipt": "research/experiments/me-x5/ME_X5_OUTCOME_RECEIPT.md",
+      "terminal_expected": "ERRATUM",
+      "terminal_found_in_receipt_at_pin": true,
+      "claim_strings_found_in": {
+        "1440": [
+          "research/experiments/me-x5/ME_X5_ERRATUM_V1.md",
+          "research/experiments/me-x5/ME_X5_OUTCOME_RECEIPT.md"
+        ]
+      },
+      "files": [
+        {
+          "path": "research/experiments/me-x5/ME_X5_ERRATUM_V1.md",
+          "change": "A",
+          "git_blob_sha1": "ab9f65c7d48aa05cb2d2f7fc18121d2a28f46d6e",
+          "sha256": "a25649f4107bdaa6bdc2de20e840018c8074cd20659cac351fad9eb11f2be20a",
+          "bytes": 8113,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x5/ME_X5_OUTCOME_RECEIPT.md",
+          "change": "M",
+          "git_blob_sha1": "350a92463ca4d04c0336a2a3f85d5a351fd31055",
+          "sha256": "54f57ceb4286546e706d9e79e51995dbfa8eb2026d097aa2d15cc969f11b5513",
+          "bytes": 20973,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        }
+      ],
+      "counts": {
+        "files": 2,
+        "unchanged_on_main": 2,
+        "changed_since_pin": 0,
+        "removed_on_main": 0,
+        "missing_at_pin": 0
+      },
+      "role": "erratum: four corrections to claims about the code and ladder wording; no number, gate verdict or terminal changed (per the erratum's own header)"
+    },
+    {
+      "id": "ME-X6-V2",
+      "orion_v2_commit": "a60f1ea4238a5085d4e8d3c584d8241ae773bbc3",
+      "short": "a60f1ea4",
+      "date": "2026-09-04",
+      "subject": "ME-X6 V2: a LEARNED capacity-matched untyped comparator ties M, 1400/1400 (#263)",
+      "on_main": true,
+      "evidence_roots": [
+        "research/experiments/me-x6-v2/"
+      ],
+      "receipt": "research/experiments/me-x6-v2/ME_X6_V2_OUTCOME_RECEIPT.md",
+      "terminal_expected": "TYPING_NOT_SEPARATED_AT_MATCHED_CAPACITY",
+      "terminal_found_in_receipt_at_pin": true,
+      "claim_strings_found_in": {
+        "1400/1400": [
+          "research/experiments/me-x6-v2/ME_X6_V2_OUTCOME_RECEIPT.md"
+        ]
+      },
+      "files": [
+        {
+          "path": "research/experiments/me-x6-v2/ME_X6_V2_CAPACITY_MATCHED_COMPARATOR_DESIGN_V1.json",
+          "change": "A",
+          "git_blob_sha1": "39d65170643d53ddc59dc6548569415de4ce5128",
+          "sha256": "ce7942af1d36092dc24c3ab310f80a0b836be4171d5e11a51bffe129772fa3d7",
+          "bytes": 10138,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v2/ME_X6_V2_CAPACITY_MATCHED_COMPARATOR_DESIGN_V1.md",
+          "change": "A",
+          "git_blob_sha1": "f41eee18f0a8defadb5c0e829d6380c58a7e108a",
+          "sha256": "f9fa33b002ab093f90c6899c1c9c6c99cae3f51b95d050409a36ed9ea972ed04",
+          "bytes": 9268,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v2/ME_X6_V2_OUTCOME_RECEIPT.md",
+          "change": "A",
+          "git_blob_sha1": "b6092c2f5193cf524c11a2fe75a1085b74967261",
+          "sha256": "b509441f384c7e67b0e8677256f975928c79f6edaecae790c843d085fc46377c",
+          "bytes": 13418,
+          "status_on_main": "CHANGED_SINCE_PIN",
+          "touched_by_after_pin": [
+            {
+              "sha": "e0743fe",
+              "subject": "ME-X6 V2: disclose that G0c's 0.60 is hand-set, and name the derivable bar (#267)"
+            }
+          ]
+        },
+        {
+          "path": "research/experiments/me-x6-v2/PROTECTED_RUN_AUTHORIZATION_USED_V1.json",
+          "change": "A",
+          "git_blob_sha1": "000bafb3767daf11050faca709d81d8423ad12b8",
+          "sha256": "69a3aa1641d45fea33a2051e30b3f8a3ffa3ce0f95f930f9c275ac3bd2fc5a3a",
+          "bytes": 1178,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v2/mex6v2_fitters.py",
+          "change": "A",
+          "git_blob_sha1": "a59a8f5c6c80559d3a78b1690c109121c368cb3b",
+          "sha256": "021516be1ea28c3cd2c199e80f876bbc4bcb7f5474f1bbb4a038412ed2a9c359",
+          "bytes": 11059,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v2/mex6v2_run.py",
+          "change": "A",
+          "git_blob_sha1": "394070ad9d5d1968486a12d5d3f1e8d53fcfd80f",
+          "sha256": "73a5d66363b7eb2f3eea894b1cbcb8d8e8335dbaa2ab901275f020fbdb4fd77e",
+          "bytes": 38199,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v2/results/ME_X6_V2_DEVELOPMENT_ANALYSIS_V1.json",
+          "change": "A",
+          "git_blob_sha1": "44220f6e9a7684431fa009c5971df5e735af2402",
+          "sha256": "1221f4492db37509c779bbcc6a523a2d81fd04ba469ca298634aa7cd57a7e3ce",
+          "bytes": 17914,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v2/results/ME_X6_V2_DEVELOPMENT_ANALYSIS_V1.md",
+          "change": "A",
+          "git_blob_sha1": "8fc9d4c60203ded0560cf31531e4be42169523a9",
+          "sha256": "07f4698a0b1812ad9757b353b68faced1364661dfe34646b7770c0f91e0eacdd",
+          "bytes": 1761,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v2/results/ME_X6_V2_DEVELOPMENT_EXPECTED_CUSTODY_V1.json",
+          "change": "A",
+          "git_blob_sha1": "ebde8860a87ad745855af03405e621f56b95352b",
+          "sha256": "3f2d3f8f9a2f5bda5b721a40caa0314eb47af63b7cd8e929ce31a23b5b0f5587",
+          "bytes": 16681,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v2/results/ME_X6_V2_DEVELOPMENT_FIT_V1.json",
+          "change": "A",
+          "git_blob_sha1": "983815299c30c5a87959bca355eee3dca8874251",
+          "sha256": "d86060a438fc2cf001a8fe0e52839ab730402ea8fe7b3d305452751ec6ae9aef",
+          "bytes": 3474,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v2/results/ME_X6_V2_DEVELOPMENT_RESULTS_V1.json",
+          "change": "A",
+          "git_blob_sha1": "9344318049ff50df57a2546db6f3e15088ec69da",
+          "sha256": "d7b4cc72304c290f1767f4ef3852bf2074a6aa90f19268e550bece6b1075d7a3",
+          "bytes": 37163,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v2/results/ME_X6_V2_PROTECTED_ANALYSIS_V1.json",
+          "change": "A",
+          "git_blob_sha1": "d9a366a68dc577510d0aa9ef6c7c7e8335fdd660",
+          "sha256": "779006d52b943d6896217c826060a2adf47f8066a4e8fab65f01453d09601bd3",
+          "bytes": 18179,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v2/results/ME_X6_V2_PROTECTED_ANALYSIS_V1.md",
+          "change": "A",
+          "git_blob_sha1": "64c3a060ef34ab60bb32a56c20ea2f42ae8f458b",
+          "sha256": "a13bbe54563c8efc16e4b6099e5553bf7fc66fad16a1c19f466048ee7fed52f7",
+          "bytes": 1807,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v2/results/ME_X6_V2_PROTECTED_EXPECTED_CUSTODY_V1.json",
+          "change": "A",
+          "git_blob_sha1": "86b2a17e66da0f7087f7fafaa75ea15cd375b7bc",
+          "sha256": "b2abd63946f42395460d6a7e23091829b1c92a43cfee3415f4c63ac1696978ce",
+          "bytes": 422135,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v2/results/ME_X6_V2_PROTECTED_RESULTS_V1.json",
+          "change": "A",
+          "git_blob_sha1": "36ca4a1a766bd2dad7e98d34c323ab2074124b91",
+          "sha256": "9c7da8236a0438a55fa0093af68ea9c7ca8e465031a227842add44cf4df49047",
+          "bytes": 875387,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v2/results/ME_X6_V2_SELFTEST_REPORT.json",
+          "change": "A",
+          "git_blob_sha1": "a5f550457f1b574f97ece719e08afc77c40a0cd6",
+          "sha256": "85f160804ca5b0b01c22e376172862c2a998213fde0d290316c554b9e72db96e",
+          "bytes": 3535,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        }
+      ],
+      "counts": {
+        "files": 16,
+        "unchanged_on_main": 15,
+        "changed_since_pin": 1,
+        "removed_on_main": 0,
+        "missing_at_pin": 0
+      },
+      "role": "non-gating panel (FLAGSHIP_GATE = false). Cited by merge commit in the registry's evidence_boundary; NOT in the coordinator's pin list — included so no cited commit is left unpinned; the paper lane may drop it."
+    },
+    {
+      "id": "ME-X6-V3",
+      "orion_v2_commit": "d9e588fd366e3d223c6bafeb28e452a822580cc7",
+      "short": "d9e588fd",
+      "date": "2026-09-04",
+      "subject": "Interface revival: ME-X6 V3 terminal, E30-R14 attribution + registered interface, H-EXT-1R regime successor (pre-freeze) (#280)",
+      "on_main": true,
+      "evidence_roots": [
+        "research/experiments/me-x6-v3/"
+      ],
+      "receipt": "research/experiments/me-x6-v3/ME_X6_V3_OUTCOME_RECEIPT.md",
+      "terminal_expected": "TYPING_IS_A_COVERAGE_PRIOR",
+      "terminal_found_in_receipt_at_pin": true,
+      "claim_strings_found_in": {
+        "1800/1800": [
+          "research/experiments/me-x6-v3/ME_X6_V3_OUTCOME_RECEIPT.md",
+          "research/experiments/me-x6-v3/results/ME_X6_V3_PROTECTED_ANALYSIS_V1.md"
+        ],
+        "1400/1800": [
+          "research/experiments/me-x6-v3/ME_X6_V3_OUTCOME_RECEIPT.md",
+          "research/experiments/me-x6-v3/results/ME_X6_V3_PROTECTED_ANALYSIS_V1.md"
+        ],
+        "0/400": [
+          "research/experiments/me-x6-v3/ME_X6_V3_OUTCOME_RECEIPT.md"
+        ],
+        "36 cells": [
+          "research/experiments/me-x6-v3/ME_X6_V3_OUTCOME_RECEIPT.md",
+          "research/experiments/me-x6-v3/mex6v3_run.py"
+        ]
+      },
+      "files": [
+        {
+          "path": "research/experiments/me-x6-v3/ME_X6_V3_OUTCOME_RECEIPT.md",
+          "change": "A",
+          "git_blob_sha1": "9687f4de55643ff6baacc907eeaff42c9076a779",
+          "sha256": "057f179f57900a05b42a87b32cc006b9b6dade4958ff7c660ccdfc0e0450e944",
+          "bytes": 13600,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v3/ME_X6_V3_ROLE_COVERAGE_SHIFT_DESIGN_V1.json",
+          "change": "A",
+          "git_blob_sha1": "f88c15ef6ddf2152bd44b7b1bb990132e71c89fb",
+          "sha256": "d492e2b96420f3e3edf155766cf3c8ddc5c4f2a9505fdd77e72d53c1f70b9e3e",
+          "bytes": 25687,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v3/PROTECTED_RUN_AUTHORIZATION_USED_V1.json",
+          "change": "A",
+          "git_blob_sha1": "88933f184f36fa40b9110e3a1eb34903b29c8571",
+          "sha256": "13786a79600b4a7123d7d7e7757597264629a563cd090ae7c6affc9cc8ee4142",
+          "bytes": 1360,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v3/mex6v3_generator.py",
+          "change": "A",
+          "git_blob_sha1": "596ec24175506b0f72ea225b8f449ef04d419313",
+          "sha256": "9b798b102b0ee0a25d70f2ef39749beaacb307c92c84ea4a801897b46d305fed",
+          "bytes": 12036,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v3/mex6v3_run.py",
+          "change": "A",
+          "git_blob_sha1": "af1c1cb35d7eaae4235fb6a000a7aa637639d72a",
+          "sha256": "f7ba3e3a635d5d3a33df8a5f06c1bf2ae492b459da1de5c5bc76e5faec74ca57",
+          "bytes": 78089,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v3/results/ME_X6_V3_DEVELOPMENT_ANALYSIS_V1.json",
+          "change": "A",
+          "git_blob_sha1": "cba7c11c6035d248d46305f7244fdd3542a8107c",
+          "sha256": "e2c6181242ae7bee5e5964b6071366dabf25d518b802f69fb7b5d5d68d09c1c1",
+          "bytes": 47852,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v3/results/ME_X6_V3_DEVELOPMENT_ANALYSIS_V1.md",
+          "change": "A",
+          "git_blob_sha1": "6434f25f328fa68564315910585d0d5511b93143",
+          "sha256": "305d2b7495b15e4ba1539893995832242c978bed4ec5823483c87fb44f7a3eb9",
+          "bytes": 2159,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v3/results/ME_X6_V3_DEVELOPMENT_EXPECTED_CUSTODY_V1.json",
+          "change": "A",
+          "git_blob_sha1": "e5f8f749230e67c6987e6a3312ae9caae536b4c3",
+          "sha256": "79889ef541e01af4545baabc580e51a492ab2458c56f0553c3640e50c527b849",
+          "bytes": 28369,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v3/results/ME_X6_V3_DEVELOPMENT_FIT_V1.json",
+          "change": "A",
+          "git_blob_sha1": "23ec1b10d5df444da7229e5624e9eb9061e267c8",
+          "sha256": "78c85ad5f689a06422d5773d90b355f671c238d3569a18f08a341961a3541f24",
+          "bytes": 5326,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v3/results/ME_X6_V3_DEVELOPMENT_RESULTS_V1.json",
+          "change": "A",
+          "git_blob_sha1": "bffe5b2c73f756a6a7055f72d549c1b4d48f60a5",
+          "sha256": "1006def2c331c6b2ede8717bd89d57a0539eb0d5d923cb02a7dac683b9997629",
+          "bytes": 51433,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v3/results/ME_X6_V3_PROTECTED_ANALYSIS_V1.json",
+          "change": "A",
+          "git_blob_sha1": "7cabd1c3aa4c0c069a7120aef033e43611047745",
+          "sha256": "03df27a745bd4ba05d6be10f5f7739767a11ae74f72468a7b0af519393556c06",
+          "bytes": 48943,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v3/results/ME_X6_V3_PROTECTED_ANALYSIS_V1.md",
+          "change": "A",
+          "git_blob_sha1": "809f20daf6b21d7e1254623e32a105136b049649",
+          "sha256": "fe5cb9fe343b555a23bb827bf50c924715d840ed1387ffe5c1574f5d6853e9d2",
+          "bytes": 2323,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v3/results/ME_X6_V3_PROTECTED_EXPECTED_CUSTODY_V1.json",
+          "change": "A",
+          "git_blob_sha1": "f41098af4a34763084c64be17a0ca624a8d11b17",
+          "sha256": "70b654c0460b28576067655a0ddc7882e6b15ee66f1c2c10ba4734890de4e095",
+          "bytes": 716927,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v3/results/ME_X6_V3_PROTECTED_RESULTS_V1.json",
+          "change": "A",
+          "git_blob_sha1": "99b07f3853de96e90ad80880b77f79a4c0581699",
+          "sha256": "1e36839804cf331d86c7f082ecff3b9d43e592739f29d78d5538c65710c112cd",
+          "bytes": 1202905,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/experiments/me-x6-v3/results/ME_X6_V3_SELFTEST_REPORT.json",
+          "change": "A",
+          "git_blob_sha1": "dcfbbb96e4d1c21653cef8b16ec5903022c9dc63",
+          "sha256": "223ee4c63fa4dcf54683311fdd707b8c9f660f2e2bba1fcb4a12d5bdc33d71ae",
+          "bytes": 14899,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        }
+      ],
+      "counts": {
+        "files": 15,
+        "unchanged_on_main": 15,
+        "changed_since_pin": 0,
+        "removed_on_main": 0,
+        "missing_at_pin": 0
+      },
+      "role": "non-gating panel (FLAGSHIP_GATE = false); d9e588f is also the registry's current global orion_v2_evidence_head"
+    }
+  ],
+  "unattributed_claim_strings_found_in": {
+    "492": [
+      "ME-X4:research/experiments/me-x4/ME_X4_OUTCOME_RECEIPT.md",
+      "ME-X4:research/experiments/me-x4/results/ME_X4_PROTECTED_ANALYSIS_V1.json",
+      "ME-X4:research/experiments/me-x4/results/ME_X4_PROTECTED_EXPECTED_CUSTODY_V1.json",
+      "ME-X4:research/experiments/me-x4/results/ME_X4_PROTECTED_RESULTS_V1.json",
+      "ME-X4:research/experiments/me-x4/results/ME_X4_PROTECTED_TIMING_V1.json",
+      "ME-X4:research/experiments/me-x4/results/PROTECTED_RUN_AUTHORIZATION_ARCHIVED.json",
+      "ME-X1:research/experiments/me-x1/ME_X1_OUTCOME_RECEIPT.md",
+      "ME-X1:research/experiments/me-x1/results/ME_X1_PROTECTED_ANALYSIS_V1.json",
+      "ME-X1:research/experiments/me-x1/results/ME_X1_PROTECTED_ANALYSIS_V1.md",
+      "ME-X1:research/experiments/me-x1/results/ME_X1_PROTECTED_EXPECTED_CUSTODY_V1.json",
+      "ME-X1:research/experiments/me-x1/results/ME_X1_PROTECTED_RESULTS_V1.json",
+      "ME-X1:research/experiments/me-x1/results/ME_X1_PROTECTED_TIMING_V1.json",
+      "ME-X2:research/experiments/me-x2/ME_X2_OUTCOME_RECEIPT.md",
+      "ME-X2:research/experiments/me-x2/results/ME_X2_PROTECTED_ANALYSIS_V1.json",
+      "ME-X2:research/experiments/me-x2/results/ME_X2_PROTECTED_ANALYSIS_V1.md",
+      "ME-X2:research/experiments/me-x2/results/ME_X2_PROTECTED_EXPECTED_CUSTODY_V1.json",
+      "ME-X2:research/experiments/me-x2/results/ME_X2_PROTECTED_RESULTS_V1.json",
+      "ME-X2:research/experiments/me-x2/results/ME_X2_PROTECTED_TIMING_V1.json",
+      "ME-X5:research/experiments/me-x5/results/ME_X5_PROTECTED_ANALYSIS_V1.json",
+      "ME-X5:research/experiments/me-x5/results/ME_X5_PROTECTED_EXPECTED_CUSTODY_V1.json",
+      "ME-X5:research/experiments/me-x5/results/ME_X5_PROTECTED_RESULTS_V1.json",
+      "ME-X5:research/experiments/me-x5/results/ME_X5_PROTECTED_TIMING_V1.json",
+      "ME-X6-V3:research/experiments/me-x6-v3/ME_X6_V3_OUTCOME_RECEIPT.md",
+      "ME-X6-V3:research/experiments/me-x6-v3/ME_X6_V3_ROLE_COVERAGE_SHIFT_DESIGN_V1.json",
+      "ME-X6-V3:research/experiments/me-x6-v3/PROTECTED_RUN_AUTHORIZATION_USED_V1.json",
+      "ME-X6-V3:research/experiments/me-x6-v3/results/ME_X6_V3_DEVELOPMENT_ANALYSIS_V1.json",
+      "ME-X6-V3:research/experiments/me-x6-v3/results/ME_X6_V3_DEVELOPMENT_FIT_V1.json",
+      "ME-X6-V3:research/experiments/me-x6-v3/results/ME_X6_V3_DEVELOPMENT_RESULTS_V1.json",
+      "ME-X6-V3:research/experiments/me-x6-v3/results/ME_X6_V3_PROTECTED_ANALYSIS_V1.json",
+      "ME-X6-V3:research/experiments/me-x6-v3/results/ME_X6_V3_PROTECTED_RESULTS_V1.json"
+    ],
+    "163": [
+      "ME-X4:research/experiments/me-x4/ME_X4_OUTCOME_RECEIPT.md",
+      "ME-X4:research/experiments/me-x4/results/ME_X4_PROTECTED_ANALYSIS_V1.json",
+      "ME-X4:research/experiments/me-x4/results/ME_X4_PROTECTED_ANALYSIS_V1.md",
+      "ME-X4:research/experiments/me-x4/results/ME_X4_PROTECTED_EXPECTED_CUSTODY_V1.json",
+      "ME-X4:research/experiments/me-x4/results/ME_X4_PROTECTED_RESULTS_V1.json",
+      "ME-X4:research/experiments/me-x4/results/ME_X4_PROTECTED_TIMING_V1.json",
+      "ME-X1:research/experiments/me-x1/ME_X1_OUTCOME_RECEIPT.md",
+      "ME-X1:research/experiments/me-x1/results/ME_X1_PROTECTED_ANALYSIS_V1.json",
+      "ME-X1:research/experiments/me-x1/results/ME_X1_PROTECTED_ANALYSIS_V1.md",
+      "ME-X1:research/experiments/me-x1/results/ME_X1_PROTECTED_EXPECTED_CUSTODY_V1.json",
+      "ME-X1:research/experiments/me-x1/results/ME_X1_PROTECTED_RESULTS_V1.json",
+      "ME-X1:research/experiments/me-x1/results/ME_X1_PROTECTED_TIMING_V1.json",
+      "ME-X2:research/experiments/me-x2/ME_X2_OUTCOME_RECEIPT.md",
+      "ME-X2:research/experiments/me-x2/results/ME_X2_PROTECTED_ANALYSIS_V1.json",
+      "ME-X2:research/experiments/me-x2/results/ME_X2_PROTECTED_ANALYSIS_V1.md",
+      "ME-X2:research/experiments/me-x2/results/ME_X2_PROTECTED_EXPECTED_CUSTODY_V1.json",
+      "ME-X2:research/experiments/me-x2/results/ME_X2_PROTECTED_RESULTS_V1.json",
+      "ME-X2:research/experiments/me-x2/results/ME_X2_PROTECTED_TIMING_V1.json",
+      "ME-X5:research/experiments/me-x5/results/ME_X5_PROTECTED_EXPECTED_CUSTODY_V1.json",
+      "ME-X5:research/experiments/me-x5/results/ME_X5_PROTECTED_RESULTS_V1.json",
+      "ME-X5:research/experiments/me-x5/results/ME_X5_PROTECTED_TIMING_V1.json"
+    ],
+    "0.837": [
+      "ME-X1:research/experiments/me-x1/ME_X1_OUTCOME_RECEIPT.md",
+      "ME-X1:research/experiments/me-x1/results/ME_X1_PROTECTED_ANALYSIS_V1.json",
+      "ME-X1:research/experiments/me-x1/results/ME_X1_PROTECTED_ANALYSIS_V1.md",
+      "ME-X2:research/experiments/me-x2/results/ME_X2_PROTECTED_ANALYSIS_V1.json",
+      "ME-X2:research/experiments/me-x2/results/ME_X2_PROTECTED_RESULTS_V1.json"
+    ]
+  },
+  "advisory_changed_or_removed_since_pin": [
+    {
+      "study": "ME-X4",
+      "path": "research/experiments/me-x4/ME_X4_OUTCOME_RECEIPT.md",
+      "status_on_main": "CHANGED_SINCE_PIN",
+      "touched_by_after_pin": [
+        {
+          "sha": "f4cb816",
+          "subject": "receipts: qualify tokens that travel without their prose (#260)"
+        }
+      ]
+    },
+    {
+      "study": "ME-X1",
+      "path": "research/experiments/me-x1/ME_X1_OUTCOME_RECEIPT.md",
+      "status_on_main": "CHANGED_SINCE_PIN",
+      "touched_by_after_pin": [
+        {
+          "sha": "f4cb816",
+          "subject": "receipts: qualify tokens that travel without their prose (#260)"
+        }
+      ]
+    },
+    {
+      "study": "ME-X5",
+      "path": "research/experiments/me-x5/ME_X5_OUTCOME_RECEIPT.md",
+      "status_on_main": "CHANGED_SINCE_PIN",
+      "touched_by_after_pin": [
+        {
+          "sha": "e30526e",
+          "subject": "me-x5: erratum V1 — M is a bespoke composition, not a compilation to the ORION reference objects (#186)"
+        }
+      ]
+    },
+    {
+      "study": "ME-X6-V2",
+      "path": "research/experiments/me-x6-v2/ME_X6_V2_OUTCOME_RECEIPT.md",
+      "status_on_main": "CHANGED_SINCE_PIN",
+      "touched_by_after_pin": [
+        {
+          "sha": "e0743fe",
+          "subject": "ME-X6 V2: disclose that G0c's 0.60 is hand-set, and name the derivable bar (#267)"
+        }
+      ]
+    }
+  ],
+  "defects": [],
+  "totals": {
+    "studies": 7,
+    "files": 61,
+    "unchanged_on_main": 57,
+    "changed_since_pin": 4,
+    "removed_on_main": 0,
+    "missing_at_pin": 0
+  }
+}
