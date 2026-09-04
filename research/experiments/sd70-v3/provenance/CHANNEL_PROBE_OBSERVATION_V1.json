@@ -1,0 +1,63 @@
+{
+  "call_form": "codex exec --ephemeral --ignore-user-config --ignore-rules --skip-git-repo-check --sandbox read-only -C <empty> --model <M> -c model_reasoning_effort=\"medium\" --json --output-schema <schema> --output-last-message <out>",
+  "codex_cli_version": "codex-cli 0.129.0-alpha.15",
+  "gpt_5_5_manifest": {
+    "comp_hash": "2911",
+    "context_window": 272000,
+    "default_reasoning_level": "medium",
+    "default_reasoning_summary": "none",
+    "default_verbosity": "low",
+    "display_name": "GPT-5.5",
+    "max_context_window": 272000,
+    "prefer_websockets": true,
+    "support_verbosity": true
+  },
+  "gpt_5_5_supported_reasoning_efforts": [
+    "low",
+    "medium",
+    "high",
+    "xhigh"
+  ],
+  "gpt_5_6_terra_advertised": false,
+  "host": "billy-old (billy-laptop-old)",
+  "manifest_body_truncated": "The stderr log line is itself truncated by the CLI; slug extraction is over the captured prefix and is a lower bound on the served catalogue.",
+  "models_manifest_capture_note": "The served models manifest is only observable because this CLI fails to DECODE it (unknown reasoning variant `max`) and logs the raw body to stderr. If the server response later becomes decodable this scrape goes silent; the campaign therefore distinguishes CHANNEL_CONTRACT_UNOBSERVABLE from CHANNEL_DRIFT_DETECTED.",
+  "observed_utc": "2026-09-03T05:36Z",
+  "probe_gpt_5_5": {
+    "event_types": [
+      "thread.started",
+      "turn.started",
+      "item.completed",
+      "turn.completed"
+    ],
+    "exit_code": 0,
+    "structured_output_honored": true,
+    "usage": {
+      "cached_input_tokens": 2432,
+      "input_tokens": 13581,
+      "output_tokens": 61,
+      "reasoning_output_tokens": 24
+    }
+  },
+  "probe_gpt_5_6_terra": {
+    "auth_succeeded_evidence": "thread.started and turn.started emitted before the 400",
+    "error_message": "The 'gpt-5.6-terra' model requires a newer version of Codex. Please upgrade to the latest app or CLI and try again.",
+    "error_type": "invalid_request_error",
+    "event_types": [
+      "thread.started",
+      "turn.started",
+      "error",
+      "turn.failed"
+    ],
+    "exit_code": 1,
+    "http_status": 400
+  },
+  "schema_version": "orion.v2.sd70-v3.channel_probe.v1",
+  "served_model_slugs_advertised": [
+    "gpt-5.5",
+    "gpt-5.4",
+    "gpt-5.4-mini",
+    "gpt-5.3-codex-spark",
+    "codex-auto-review"
+  ]
+}
