@@ -190,7 +190,8 @@
   "conformance": {
     "auditor": "scripts/audit_formal_campaign_coverage.py",
     "pre_registration_gate": "python scripts/audit_formal_campaign_coverage.py --pre-registration --plan research/experiments/FORMAL_DISCOVERY_GENERATED_CAMPAIGN_PLAN_V2.json",
-    "must_exit_zero_before_dispatch": true
+    "must_exit_zero_before_dispatch": true,
+    "clause_scope_note": "The auditor's CONSTRUCTIBILITY clause is scoped campaign-wide: two arm ids sharing a procedure are flagged anywhere in the plan, not only where they are contrasted within one study. That is stricter than the defect strictly requires and is a design choice, recorded with its worked example (this plan's own first draft failed it on V1's FM/FG naming split) in FMFG_R2_REGISTERED_CLAUSE_NARROWING_ERRATUM_V1.md section 6. A lane with a genuine need for per-family naming should argue for per-contrast-set scoping on the record and change the clause, not work around it."
   },
   "authority": {
     "grants_scientific_truth": false,

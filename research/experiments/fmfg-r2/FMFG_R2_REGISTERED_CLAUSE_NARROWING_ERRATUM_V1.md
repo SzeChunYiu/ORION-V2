@@ -111,28 +111,39 @@ independent of any R2 score.
 
 ### Why amend the receipts rather than only append to them
 
-PR #269 left the R2 receipts byte-untouched by design, and a peer lane has flagged amending
-them as a freeze-implicating act. The reasons for amending, stated so a reader can disagree
-with them:
+PR #269 left the R2 receipts byte-untouched by design, and a peer lane flagged amending them
+as a freeze-implicating act. The grounds are ordered so that the ones a reader can check
+without leaving the repository come first; the argument does not depend on the last.
 
-1. **The operator asked for it.** The instruction opening this lane was explicit: *"Correct
-   the R2 suite receipt to publish both denominators (registered and executed) rather than
-   only the executed one."* The amendment is the requested work, not a unilateral edit.
+1. **A sibling document cannot fix a wrong heading.** The defect is a heading that reads
+   `Execution completeness (8,560/8,560 valid)`. A reader who reaches it and stops is
+   misled, and will be misled equally after any number of separate receipts are filed beside
+   it. This is the failure mode the repo's own failure ledger records as
+   `REPAIR_DOCUMENTED_NOT_LANDED`: a correction nobody reads is a sentence nobody executes.
+   The correction has to be where the claim is.
 2. **Nothing binds the bytes.** The receipt is referenced by path from four files
    (`fg/FG70_…_DESIGN_V1.json`, the two `pf-trigger` receipts, #269's own receipt) and by
    digest from none. Verified by hashing the blob at `origin/main` and searching all 1,873
    text files in the tree for that digest — zero hits, against a positive control digest
-   that returns nine. No test and no workflow asserts its bytes. There is no freeze to
-   break; "frozen" here is a lane convention about *results*, and no result is edited.
-3. **A sibling document does not fix a wrong sentence.** The defect is a heading that reads
-   `Execution completeness (8,560/8,560 valid)`. A reader who reaches that heading and stops
-   is misled, and will be misled equally after any number of separate receipts are filed
-   beside it. The correction has to be where the claim is.
-4. **What is amended is bounded and disclosed.** Every edit is a denominator, a scope, a
+   that returns nine. No test and no workflow asserts its bytes. **#269's byte-untouched
+   property is a lane discipline, not an enforced repository invariant**, and a later lane
+   should not infer an invariant that was never there.
+3. **What is amended is bounded and disclosed.** Every edit is a denominator, a scope, a
    pointer, or a withdrawn claim about the arms. **No measured value is touched** — not a
-   correct/total cell, a rate, a contrast, a p-value or a verdict — and each amendment
-   carries a dated marker naming this erratum. The `PERSTUDY_R2.csv` change is two `leg`
-   labels that disagreed with the `tasks` column beside them.
+   correct/total cell, a rate, a contrast, a p-value or a verdict — asserted mechanically
+   over all 14 per-study rows and all 5 pure-executor stock rows, with a control that
+   detects a planted rate change. Each amendment carries a dated marker naming this erratum.
+   The `PERSTUDY_R2.csv` change is two `leg` labels that disagreed with the `tasks` column
+   beside them.
+4. **The operator asked for it.** The instruction opening this lane was explicit: *"Correct
+   the R2 suite receipt to publish both denominators (registered and executed) rather than
+   only the executed one."* Listed last deliberately: a reader of this repository cannot
+   verify an instruction given in a session, so it should not be load-bearing. Grounds 1–3
+   carry the decision on their own.
+
+The line this draws is between **measured values and the design/gate freeze**, which stay
+append-only, and **a misleading denominator in prose**, which does not. The mechanical
+assertion in ground 3 is what makes that distinction checkable rather than rhetorical.
 
 The frozen *result* is untouched and is not re-run: re-running R2 against a corrected arm
 set is a new design, not a repair, and it is registered as V2 rather than performed here.
@@ -197,6 +208,29 @@ merely surplus labels. Deferred, not deleted.
 
 `scripts/run_formal_discovery_campaign.py` prepares V2 with no modification — verified on
 FM50 and FG80.
+
+### Recorded design choice: CONSTRUCTIBILITY is scoped campaign-wide, not per contrast set
+
+The auditor's CONSTRUCTIBILITY clause flags two arm ids sharing a procedure anywhere in a
+plan, not only where the two are contrasted within one study. That is **stricter** than the
+defect strictly requires — a collapse only misleads where the two arms are compared — and it
+is a design choice rather than a neutral reading. It is recorded here, with its worked
+example, so a future lane meeting it does not have to rediscover the reasoning.
+
+**Worked example: this plan failed it.** V2's first draft kept V1's FM/FG naming scheme, so
+`TARGET_ONLY_DIRECT` (FM) and `CURRENT_FORMALISM_ONLY` (FG) — plus three more pairs — were
+registered for disjoint studies and never contrasted with each other. Under a per-contrast-set
+rule the draft passes; under the campaign-wide rule it fails.
+
+**The plan was fixed, not the clause.** Two ids for one procedure is exactly the defect this
+erratum raises against `F0_PARENT_FEDERATION` and `STRONGEST_DOMAIN_FORMAL_PARENT`, and a
+successor that exempted itself from the rule its own lane enforces elsewhere would be
+self-serving. A family-specific naming scheme whose names promise a distinction the
+procedure does not deliver is a smaller version of the same problem, not a different one.
+
+A future lane with a genuine reason to name one procedure differently per family should
+argue for per-contrast-set scoping on the record and change the clause, rather than working
+around it.
 
 ## 7. Repairs landed here
 
