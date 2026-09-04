@@ -1,0 +1,46 @@
+{
+  "schema_version": "orion.v2.me-f1-r3.freeze-supersession.v1",
+  "supersedes": {
+    "v1_arms_py_sha256": "7f73565d1d835f55fb1274086a6ade0da2b2d8fc5b7c7893cc2971bcaf391a47",
+    "v1_source_manifest_sha256": "b1a4483770aad945c641570002e55464d294d18732de1a65be304547ccb0b8e4",
+    "frozen_in": "PR #282 (538e017)"
+  },
+  "superseded_by": {
+    "v1_arms_py_sha256": "34cdccae14a86be2f767fa8351b1cad6c2d906024a75082e01f12419c4fa680c",
+    "v1_source_manifest_sha256": "687a428ec96ea840e81862d5759ba8926b6be15b955b38dca1b02d6d902edfd3",
+    "changed_in": "PR #276 (dc27ced), merged after #282; the freeze pinned the file 70 minutes before it changed"
+  },
+  "why_the_freeze_broke": "test_frozen_state_if_present_matches_inputs asserts the pinned hash equals the live V1 mef1_arms.py; main went red at dc27ced (wave6-foundation-synthesis failure at dc27ced and 3d28db4, success at d696d74).",
+  "what_changed_between_the_two_hashes": {
+    "lines": 5,
+    "all_inside": "_ARM_CONTROL['B5_STRONGEST_FAITHFUL_PARENT_FEDERATION'] (the INCONCLUSIVE -> switch-tool fallback of V1 receipt S5.1)",
+    "arms_whose_control_text_changed": [
+      "B5_STRONGEST_FAITHFUL_PARENT_FEDERATION"
+    ]
+  },
+  "r3_arms": [
+    "SIMPLE_DIRECT",
+    "M_ME_FRONTIER_CONTROL",
+    "M_MINUS_MINIMUM_ESCALATION",
+    "M_MINUS_WARRANT_GATE",
+    "M_MINUS_LOCUS_DIAGNOSIS"
+  ],
+  "r3_runs_b5": false,
+  "per_arm_identity_old_vs_new": {
+    "SIMPLE_DIRECT": true,
+    "M_ME_FRONTIER_CONTROL": true,
+    "M_MINUS_MINIMUM_ESCALATION": true,
+    "M_MINUS_WARRANT_GATE": true,
+    "M_MINUS_LOCUS_DIAGNOSIS": true,
+    "_COMMON (shared preamble)": true,
+    "_ARM_INTERFACE for R3 arms": true,
+    "response_schema for R3 arms": true
+  },
+  "reading": "Every arm R3 runs -- its control text, the shared preamble, its interface tuple and its response schema -- is byte-identical under the superseded and the superseding hash. The re-pin changes nothing any R3 arm sees. It is recorded here instead of silently, because a freeze that moves without a record is indistinguishable from one that was tampered with.",
+  "r3_run_artifacts_present_under_old_pin": [],
+  "authority": {
+    "alters_r3_design": false,
+    "alters_me_f1_terminal": false,
+    "authorizes_protected_dispatch": false
+  }
+}
