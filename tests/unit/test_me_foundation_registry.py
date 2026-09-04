@@ -38,6 +38,13 @@ def test_batch2_rows_have_honest_scope_or_contraction():
     assert by["MEG-20"]["status"] == "PROVED_SCOPE_LIMITED"
 
 
+def test_batch3_closes_ten_more_scoped_core_rows():
+    d = load(); by = {r["id"]: r for r in d["rows"]}
+    for x in ("MEG-05","MEG-10","MEG-11","MEG-12","MEG-13","MEG-15","MEG-21","MEG-28","MEG-33"):
+        assert by[x]["status"] == "PROVED_SCOPE_LIMITED"
+    assert by["MEG-19"]["status"] == "PROVED_WITH_CORRECTION"
+
+
 def test_no_scientific_authority_upgrade():
     a = load()["authority"]
     assert a["GENERAL_NOVELTY"] == "NOT_ESTABLISHED"
@@ -45,7 +52,7 @@ def test_no_scientific_authority_upgrade():
     assert a["OCM_SUPERIORITY"] == "NOT_ESTABLISHED"
 
 
-def test_foundation_terminal_is_explicitly_partial():
+def test_foundation_terminal_core_closed_frontier_open():
     d = load()
-    assert d["foundation_terminal"] == "FOUNDATION_V1_PARTIAL__OPEN_RESEARCH_REMAINS"
-    assert d["counts"] == {"total": 35, "proved_or_contracted": 16, "open_or_parent_adoption": 19}
+    assert d["foundation_terminal"] == "FOUNDATION_V1_CORE_SUBSTANTIALLY_CLOSED__FRONTIER_OPEN"
+    assert d["counts"] == {"total": 35, "proved_or_contracted": 26, "open_or_parent_adoption": 9}
