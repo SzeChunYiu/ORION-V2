@@ -1,0 +1,486 @@
+{
+  "checks": [
+    {
+      "check": "direction_rule",
+      "pass": true
+    },
+    {
+      "check": "greedy_forward_selection_can_fail",
+      "detail": {
+        "exhaustive_best_correct": 6,
+        "greedy_correct": 5,
+        "n": 6
+      },
+      "pass": true
+    },
+    {
+      "check": "l1_path_can_fail",
+      "detail": {
+        "hidden_rule_correct": 8,
+        "l1_correct": 6,
+        "n": 8
+      },
+      "pass": true
+    },
+    {
+      "check": "planter_agrees_on_every_dev_instance",
+      "n": 72,
+      "pass": true
+    },
+    {
+      "check": "decidable_from_fit_window_on_every_dev_instance",
+      "n": 72,
+      "pass": true
+    },
+    {
+      "check": "declared_channel_signature_on_every_new_stratum_dev_instance",
+      "n": 16,
+      "pass": true
+    },
+    {
+      "check": "all_registered_cells_generated",
+      "n": 36,
+      "pass": true
+    },
+    {
+      "check": "planter_rejects_a_different_declared_effect",
+      "n": 72,
+      "pass": true,
+      "rejected": 72
+    },
+    {
+      "check": "channel_signature_check_rejects_another_new_stratum_signature",
+      "pass": true,
+      "rejected": 16
+    },
+    {
+      "check": "v3_generator_reproduces_v1_generator_on_v1_strata",
+      "n": 56,
+      "pass": true
+    },
+    {
+      "check": "role_coverage_census_premise_holds",
+      "detail": {
+        "b8_v2_zeroed_validation_channels": [
+          "replications_failed",
+          "corrections",
+          "downstream_reuse",
+          "solution_cost"
+        ],
+        "channels_with_no_lone_carrier_v1_stratum": [
+          "replications_failed",
+          "corrections",
+          "retractions",
+          "downstream_reuse",
+          "solution_cost"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "check": "b8_v2_reads_FLAT_on_every_held_out_dev_instance_BY_CONSTRUCTION_disclosed",
+      "n": 16,
+      "pass": true
+    },
+    {
+      "check": "unzeroing_the_four_roles_moves_the_counter",
+      "detail": {
+        "correct": 16,
+        "counter_moved": true,
+        "n": 16
+      },
+      "pass": true
+    },
+    {
+      "check": "each_single_sign_flip_of_M_loses_exactly_its_role_stratum",
+      "detail": {
+        "corrections": {
+          "flipped_to": 1,
+          "n_lost": 4,
+          "strata_lost": [
+            "I11_SILENT_CORRECTION_EROSION"
+          ]
+        },
+        "downstream_reuse": {
+          "flipped_to": -1,
+          "n_lost": 4,
+          "strata_lost": [
+            "I14_REUSE_ONLY_GAIN"
+          ]
+        },
+        "replications_failed": {
+          "flipped_to": 1,
+          "n_lost": 4,
+          "strata_lost": [
+            "I12_FAILED_REPLICATION_WAVE"
+          ]
+        },
+        "solution_cost": {
+          "flipped_to": 1,
+          "n_lost": 4,
+          "strata_lost": [
+            "I13_COST_COLLAPSE"
+          ]
+        }
+      },
+      "pass": true
+    },
+    {
+      "check": "m_typed_code_path_equals_untyped_rule_on_M_vector_identity_disclosure",
+      "n": 72,
+      "pass": true
+    },
+    {
+      "check": "vacuous_contrast_guard_comparator_vectors_differ_from_M",
+      "detail": {
+        "B4X_V1_UNIT_SIGN_LEARNED_CONTROL": true,
+        "B6_V3_GREEDY_SUBSET_UNTYPED": true,
+        "B7_V3_L1_PATH_UNTYPED": true,
+        "B8_V3_REFIT_COVERAGE_MATCHED": true,
+        "B9_EXHAUSTIVE_UNTYPED_IDENTITY_CHECK": true
+      },
+      "pass": true
+    },
+    {
+      "check": "m_verdict_and_direction_from_weights_are_different_code",
+      "pass": true
+    },
+    {
+      "check": "null_bar_is_the_modal_class_rate_of_STRATA_V3",
+      "detail": {
+        "class_counts": {
+          "FALL": 4,
+          "FLAT": 8,
+          "RISE": 6
+        },
+        "modal_class": "FLAT",
+        "modal_count": 8,
+        "n_strata": 18,
+        "rate": 0.4444444444444444
+      },
+      "pass": true
+    },
+    {
+      "check": "no_hand_set_null_constant_in_runner",
+      "literal_searched": "0.60",
+      "pass": true
+    },
+    {
+      "check": "G0c_fails_when_a_constant_arm_exceeds_the_derivable_bar",
+      "pass": true
+    },
+    {
+      "check": "exact_tail_finite_at_protected_scale",
+      "pass": true,
+      "value": 6.4048745524099476e-183
+    },
+    {
+      "check": "every_terminal_reachable_by_fixture",
+      "detail": {
+        "LANE_DEFECT": "LANE_DEFECT",
+        "M_BEHIND_COMPARATOR": "M_BEHIND_COMPARATOR",
+        "M_BEHIND_COMPARATOR_via_G1_tie_with_refit_ahead": "M_BEHIND_COMPARATOR",
+        "NONE": "NONE",
+        "NO_CROSS_SCALE_TRANSFER": "NO_CROSS_SCALE_TRANSFER",
+        "TYPING_IS_A_COVERAGE_PRIOR": "TYPING_IS_A_COVERAGE_PRIOR",
+        "TYPING_LOAD_BEARING_BEYOND_COVERAGE": "TYPING_LOAD_BEARING_BEYOND_COVERAGE",
+        "TYPING_NOT_SEPARATED_UNDER_COVERAGE_SHIFT": "TYPING_NOT_SEPARATED_UNDER_COVERAGE_SHIFT"
+      },
+      "pass": true
+    },
+    {
+      "check": "at_least_one_registered_fitter_is_below_ceiling_on_the_v3_dev_split",
+      "detail": {
+        "greedy": 64,
+        "l1": 72,
+        "n": 72
+      },
+      "pass": true
+    },
+    {
+      "check": "B9_class_contains_M_vector_identity_disclosure",
+      "detail": {
+        "chosen_equals_m_vector": false,
+        "n_candidates": 65536,
+        "n_maximal_vectors": 16
+      },
+      "pass": true
+    },
+    {
+      "check": "dev_split_digest_identical_across_PYTHONHASHSEED_1_and_12345_and_parent",
+      "digests": {
+        "hashseed_1": "314d9ef88d40d129c36b9e7d0474a27fff27789b9562b738970b42b522fce962",
+        "hashseed_12345": "314d9ef88d40d129c36b9e7d0474a27fff27789b9562b738970b42b522fce962",
+        "parent": "314d9ef88d40d129c36b9e7d0474a27fff27789b9562b738970b42b522fce962"
+      },
+      "pass": true
+    }
+  ],
+  "controls_on_dev": {
+    "b8_v2_differs_from_m": true,
+    "b8_v2_on_held_out_dev": {
+      "correct": 0,
+      "n": 16,
+      "note": "FLAT by construction -- disclosed, see G1",
+      "reads_FLAT": 16
+    },
+    "b8_v2_unzeroed_with_m_signs_on_held_out_dev": {
+      "correct": 16,
+      "counter_moved": true,
+      "n": 16
+    },
+    "m_single_sign_flip_controls": {
+      "corrections": {
+        "flipped_to": 1,
+        "n_lost": 4,
+        "strata_lost": [
+          "I11_SILENT_CORRECTION_EROSION"
+        ]
+      },
+      "downstream_reuse": {
+        "flipped_to": -1,
+        "n_lost": 4,
+        "strata_lost": [
+          "I14_REUSE_ONLY_GAIN"
+        ]
+      },
+      "replications_failed": {
+        "flipped_to": 1,
+        "n_lost": 4,
+        "strata_lost": [
+          "I12_FAILED_REPLICATION_WAVE"
+        ]
+      },
+      "solution_cost": {
+        "flipped_to": 1,
+        "n_lost": 4,
+        "strata_lost": [
+          "I13_COST_COLLAPSE"
+        ]
+      }
+    },
+    "m_typed_path_equals_untyped_rule_on_dev": {
+      "agree": 72,
+      "n": 72
+    },
+    "sign_pattern_equals_m": {
+      "B6_V3_GREEDY_SUBSET_UNTYPED": false,
+      "B7_V3_L1_PATH_UNTYPED": false,
+      "B8_V3_REFIT_COVERAGE_MATCHED": false,
+      "B9_EXHAUSTIVE_UNTYPED_IDENTITY_CHECK": true
+    },
+    "vectors_differ_from_m": {
+      "B4X_V1_UNIT_SIGN_LEARNED_CONTROL": true,
+      "B6_V3_GREEDY_SUBSET_UNTYPED": true,
+      "B7_V3_L1_PATH_UNTYPED": true,
+      "B8_V3_REFIT_COVERAGE_MATCHED": true,
+      "B9_EXHAUSTIVE_UNTYPED_IDENTITY_CHECK": true
+    }
+  },
+  "n_checks": 25,
+  "passed": true,
+  "python": "3.12.13 (main, Mar  3 2026, 12:39:30) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "reachability_audit": {
+    "B9_is_an_identity_check": {
+      "chosen_equals_m_vector": false,
+      "m_vector_is_maximal": true,
+      "n_maximal_vectors": 16,
+      "statement": "the exhaustive class contains M's vector; its tie with M is a vacuity disclosure, never evidence.  Reported only for what it measures: how many class members the development split leaves maximal"
+    },
+    "G1_comparator_half_is_structurally_determined": {
+      "b8_v2_held_out_dev": {
+        "correct": 0,
+        "n": 16,
+        "note": "FLAT by construction -- disclosed, see G1",
+        "reads_FLAT": 16
+      },
+      "counter_moves_when_unzeroed": {
+        "correct": 16,
+        "counter_moved": true,
+        "n": 16
+      },
+      "statement": "The held-out strata move only channels B8_V2 zeroes, so B8_V2 reads FLAT on every held-out instance BY CONSTRUCTION.  This is disclosed as the operational meaning of 'coverage-unmatched', not as a finding.  G1's measured content is M's side (G0d2); G3 attributes what coverage buys."
+    },
+    "M_can_fail_on_a_new_stratum": {
+      "m_on_dev_all_strata": {
+        "correct": 72,
+        "n": 72
+      },
+      "single_sign_flip_controls": {
+        "corrections": {
+          "flipped_to": 1,
+          "n_lost": 4,
+          "strata_lost": [
+            "I11_SILENT_CORRECTION_EROSION"
+          ]
+        },
+        "downstream_reuse": {
+          "flipped_to": -1,
+          "n_lost": 4,
+          "strata_lost": [
+            "I14_REUSE_ONLY_GAIN"
+          ]
+        },
+        "replications_failed": {
+          "flipped_to": 1,
+          "n_lost": 4,
+          "strata_lost": [
+            "I12_FAILED_REPLICATION_WAVE"
+          ]
+        },
+        "solution_cost": {
+          "flipped_to": 1,
+          "n_lost": 4,
+          "strata_lost": [
+            "I13_COST_COLLAPSE"
+          ]
+        }
+      },
+      "statement": "M's signs were fixed in V1; each new stratum's effect was derived from protocol semantics.  A single flipped sign loses exactly that role's stratum, so an a-priori error would be visible and would route M_BEHIND_COMPARATOR through G2 rather than be hidden by a hard gate."
+    },
+    "every_terminal_is_reachable_by_fixture": {
+      "LANE_DEFECT": "LANE_DEFECT",
+      "M_BEHIND_COMPARATOR": "M_BEHIND_COMPARATOR",
+      "M_BEHIND_COMPARATOR_via_G1_tie_with_refit_ahead": "M_BEHIND_COMPARATOR",
+      "NONE": "NONE",
+      "NO_CROSS_SCALE_TRANSFER": "NO_CROSS_SCALE_TRANSFER",
+      "TYPING_IS_A_COVERAGE_PRIOR": "TYPING_IS_A_COVERAGE_PRIOR",
+      "TYPING_LOAD_BEARING_BEYOND_COVERAGE": "TYPING_LOAD_BEARING_BEYOND_COVERAGE",
+      "TYPING_NOT_SEPARATED_UNDER_COVERAGE_SHIFT": "TYPING_NOT_SEPARATED_UNDER_COVERAGE_SHIFT"
+    },
+    "every_terminal_reached": true,
+    "null_bar_is_derived_not_hand_set": {
+      "class_counts": {
+        "FALL": 4,
+        "FLAT": 8,
+        "RISE": 6
+      },
+      "modal_class": "FLAT",
+      "modal_count": 8,
+      "n_strata": 18,
+      "rate": 0.4444444444444444
+    },
+    "refit_sign_pattern_equals_m": false,
+    "refit_vector_equals_m_vector": false,
+    "the_activity_half_is_not_reported": {
+      "statement": "V1 computes the activity direction from the activity channels by the same call for every arm; it is equal by construction and not evidence"
+    },
+    "the_protected_seed_governs_instance_generation_only": {
+      "statement": "every fit is a deterministic, RNG-free function of the PUBLIC development split, frozen before the protected seed is revealed"
+    },
+    "the_refit_can_lose_and_can_win": {
+      "greedy_v3_dev": 64,
+      "l1_v3_dev": 72,
+      "n": 72,
+      "refit_dev": 72,
+      "statement": "both registered fitters are heuristics (V2 fixtures re-asserted in the selftest); whichever B8_V3_REFIT is, it is not M's vector unless the analysis flags refit_vector_equals_m_vector, in which case a G2 tie is an identity and is reported as one",
+      "unit_sign_control_dev": 40
+    },
+    "vacuous_contrast_guard": {
+      "b8_v2_differs_from_m": true,
+      "comparator_vectors_differ_from_m": {
+        "B4X_V1_UNIT_SIGN_LEARNED_CONTROL": true,
+        "B6_V3_GREEDY_SUBSET_UNTYPED": true,
+        "B7_V3_L1_PATH_UNTYPED": true,
+        "B8_V3_REFIT_COVERAGE_MATCHED": true,
+        "B9_EXHAUSTIVE_UNTYPED_IDENTITY_CHECK": true
+      },
+      "m_typed_path_equals_untyped_rule": {
+        "agree": 72,
+        "n": 72
+      },
+      "sign_pattern_equals_m": {
+        "B6_V3_GREEDY_SUBSET_UNTYPED": false,
+        "B7_V3_L1_PATH_UNTYPED": false,
+        "B8_V3_REFIT_COVERAGE_MATCHED": false,
+        "B9_EXHAUSTIVE_UNTYPED_IDENTITY_CHECK": true
+      }
+    }
+  },
+  "role_coverage_census": {
+    "b8_v2_zeroed_validation_channels": [
+      "replications_failed",
+      "corrections",
+      "downstream_reuse",
+      "solution_cost"
+    ],
+    "channels_with_no_lone_carrier_v1_stratum": [
+      "replications_failed",
+      "corrections",
+      "retractions",
+      "downstream_reuse",
+      "solution_cost"
+    ],
+    "lone_carrier_in": {
+      "corrections": [],
+      "downstream_reuse": [],
+      "formal_artifacts": [
+        "X6I7_ONE_BREAKTHROUGH"
+      ],
+      "independent_rederivations": [
+        "I10_INDEPENDENT_REDISCOVERY"
+      ],
+      "replications_failed": [],
+      "replications_passed": [
+        "I9_DELAYED_VALIDATION"
+      ],
+      "retractions": [],
+      "solution_cost": []
+    },
+    "m_declared_roles": [
+      "formal_artifacts",
+      "replications_passed",
+      "replications_failed",
+      "corrections",
+      "retractions",
+      "downstream_reuse",
+      "independent_rederivations",
+      "solution_cost"
+    ],
+    "moves_in": {
+      "corrections": [
+        "I4_RETRACTED_WORK"
+      ],
+      "downstream_reuse": [
+        "GENUINE_CAPABILITY_GAIN",
+        "GENUINE_CAPABILITY_LOSS",
+        "I4_RETRACTED_WORK"
+      ],
+      "formal_artifacts": [
+        "GENUINE_CAPABILITY_GAIN",
+        "GENUINE_CAPABILITY_LOSS",
+        "I4_RETRACTED_WORK",
+        "X6I7_ONE_BREAKTHROUGH"
+      ],
+      "independent_rederivations": [
+        "I10_INDEPENDENT_REDISCOVERY"
+      ],
+      "replications_failed": [],
+      "replications_passed": [
+        "GENUINE_CAPABILITY_GAIN",
+        "GENUINE_CAPABILITY_LOSS",
+        "I4_RETRACTED_WORK",
+        "I9_DELAYED_VALIDATION"
+      ],
+      "retractions": [
+        "I4_RETRACTED_WORK"
+      ],
+      "solution_cost": [
+        "GENUINE_CAPABILITY_GAIN",
+        "GENUINE_CAPABILITY_LOSS"
+      ]
+    },
+    "premise_holds": true,
+    "retractions_note": "retractions has no strictly-lone V1 stratum either (corrections co-moves x1 against its x3 inside I4), but B8_V2 kept it because I4 is decided by it; it is counted as covered, as the brief records"
+  },
+  "schema_version": "orion.v2.me-x6-v3.role-coverage-shift-results.v1.selftest",
+  "substrate_pins": {
+    "me-x6-v2/ME_X6_V2_CAPACITY_MATCHED_COMPARATOR_DESIGN_V1.json": "ce7942af1d36092dc24c3ab310f80a0b836be4171d5e11a51bffe129772fa3d7",
+    "me-x6-v2/mex6v2_fitters.py": "021516be1ea28c3cd2c199e80f876bbc4bcb7f5474f1bbb4a038412ed2a9c359",
+    "me-x6-v2/results/ME_X6_V2_DEVELOPMENT_FIT_V1.json": "d86060a438fc2cf001a8fe0e52839ab730402ea8fe7b3d305452751ec6ae9aef",
+    "me-x6/mex6_arms.py": "a72d7de2557495262a2f9999f3372078310c8da8ee792a16ed2fea7f5254ea04",
+    "me-x6/mex6_generator.py": "9f510b54fe23c0e7c4413859fd981ca8486d16cf615a1273cc73ac38c80eb718",
+    "me-x6/mex6_model.py": "c0a7298265eaf34bd496a32c74ed29fc3d60c415b295ec5cda669eda09d07d9b",
+    "me-x6/mex6_oracle.py": "1d539ed60ff578606b02a0def5b90b4b0896d4e15e40c5b714ae6ff7087f26d7"
+  }
+}
