@@ -2,7 +2,9 @@
 
 Notation: `n = |A|`, `m = Σ_h (|tails(h)| + |heads(h)|)`, `ℓ = max |L(x)|`, `k = ⌈log ε / log(1−α)⌉`.
 Complexity is measured once on real ME-X1 worlds (50 worlds, 3,492 atoms, 1,629 hyperedges) and the
-receipt cites the row; a stated cost without a measurement is a defect. All numeric parameters are
+receipt cites the row; a stated cost without a measurement is a defect. **Measured (#295):** M1
+population 29 s / 50 worlds; M2 solve ≤ 123 steps and ≤ 26 hyperedge visits per instance under caps
+of 2·atoms / 2·hyperedges / 1 restart, 0 overruns; trace T1 57 steps / 21 visits, T2 88 / 13. All numeric parameters are
 in §P and have no literal default in code.
 
 ## A1 populate `[MACHINE: kso_m1_mex1_population_v1]`

@@ -1,12 +1,12 @@
 # 05 — Mechanics: what happens, step by step, when a question enters
 
-Three traces, each to be reproduced by one command and byte-bound in the freeze once M2 lands
-(`[SPEC → M2]` for the ME-X1 traces; `[SPEC → M5]` for the two operator probes). The state after
-every step is named, and each step names the algorithm (04) and the invariant it preserves (02/03).
-Until the commands exist, the traces below are the **specification of what the receipt must show**,
-not a claim that it has been shown.
+Three traces plus the growth loop are reproduced by one command on #295 —
+`reference/kso_trace_v1.py` → `results/KSO_TRACES_V1.json` (`all_reached`, exit 0), on **real ME-X1
+dev instances**; the two operator probes remain `[SPEC → M5]`. The state after every step is named,
+and each step names the algorithm (04) and the invariant it preserves (02/03). The tables are what
+the receipt shows; the receipt is the evidence, the table is not.
 
-## Trace 1 — FOUND (ME-X1 registered instance) `[MACHINE (M2 on #295): kso_m2_solve_v1; per-step trace command → M2.1]`
+## Trace 1 — FOUND `[MACHINE: kso_trace_v1 T1_FOUND — instance dev-X1-A_CLAIM_PROBLEM_IDENTITY-000, 57 steps, 21 hyperedge visits, reached]`
 
 | step | algorithm | state after | invariant |
 |---|---|---|---|
@@ -19,7 +19,7 @@ not a claim that it has been shown.
 | 6 outcome | A12 | `Ω = FOUND`, `warrant = L(π)`, `live(L(π), R) = true` | S7: `Ω` computed, not written |
 | 7 score | — | answer object = the claim value the oracle scores; `agree = true` | receipt row: instance id, `Ω`, agree, `B_spent`, stage of any disagreement |
 
-## Trace 2 — GAP_NOT_FOUND with the channel hook `[SPEC → M2/M3: same command on an instance with one atom removed]`
+## Trace 2 — GAP_NOT_FOUND with the channel hook `[MACHINE: kso_trace_v1 T2_GAP_NOT_FOUND — instance dev-X1-B_MEASUREMENT_CALIBRATION-003, 88 steps, 13 visits, GAP_NOT_FOUND:WARRANT with acquisition hook; step 7 (acquire) → M3]`
 
 | step | state after | note |
 |---|---|---|
@@ -28,7 +28,7 @@ not a claim that it has been shown.
 | 6 outcome | ceiling walker (ungated, all types) **does** reach `req` through `a†`'s registered edge type ⇒ `Ω = GAP_NOT_FOUND`, hook = `(missing: a†, type: τ(h†))` | KS-T19: gap, not obstruction |
 | 7 (M3) acquire | INSTRUCTION transaction supplies `a†` with `{{src}}` label ⇒ re-run ⇒ `Ω = FOUND` | KS-T13: labels of pre-existing atoms unchanged; a FEEDBACK transaction with the same content must **not** close the gap (KS-T15) |
 
-## Trace 3 — OBSTRUCTION_WITNESSED with the Jump trigger `[SPEC → M2 (witness) / M4 (Jump): instance whose target is non-identifiable]`
+## Trace 3 — OBSTRUCTION_WITNESSED with the Jump trigger `[MACHINE: kso_trace_v1 T3_OBSTRUCTION_WITNESSED — the §29 island witness, admissible JumpTrigger, lower-level dispositions recorded, controls present; step 7 (Jump) → M4]`
 
 | step | state after | note |
 |---|---|---|
@@ -37,7 +37,7 @@ not a claim that it has been shown.
 | 7 (M4) Jump | minimum sufficient level `J_j` proposed as an atom with an EXPERIMENTATION/EXACT_CHECKER certificate; admitted only if S4/S5 hold; re-run τ1 | KS-T14; benchmark v1 #558 |
 | control | a planted instance where the ceiling walker *does* reach `req` must produce GAP, not OBSTRUCTION | the alarm must be able to be wrong |
 
-## Trace 4 — the growth loop `[MACHINE: stem-cell invariant (3 steps, fixed point, three cancers)]`
+## Trace 4 — the growth loop `[MACHINE: kso_trace_v1 G_GROWTH_LOOP — fixed point reached, genome digest unchanged, cancers caught; stem-cell invariant in kso_m0_freeze_checks_v1]`
 
 acquire (INSTRUCTION) → compose → self-revise (admissible `φ`) → registered revocation → assert `Σ`
 digest unchanged and every pre-existing live label still live → repeat to fixed point (`≤ k`). The
