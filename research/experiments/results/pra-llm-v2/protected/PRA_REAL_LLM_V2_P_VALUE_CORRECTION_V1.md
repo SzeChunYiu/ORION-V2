@@ -85,3 +85,37 @@ the runner from this commit forward, so any future run reports exact values dire
 the frozen rollup, and cite this record beside the rollup. Reporting the old numbers would
 understate the evidence; reporting the new ones without this record would misrepresent what the
 frozen artifact says.
+
+---
+
+## Addendum, 2026-09-05: detectable-difference ceilings now reported
+
+A second gap in the same record, found while answering the question "why can't every weakness be
+improved?". `mcnemar_mde` — "minimal detectable accuracy difference for paired McNemar" — has
+existed in the runner since the design was written and was **called nowhere in the repository**, so
+no rollup carried a ceiling and a reader of a "no difference" control had no way to know what
+difference the design could have registered. That is why the limitation was recorded as needing
+"new analysis": the analysis had been written and never wired in.
+
+It is now emitted on every contrast as `detectable_ceiling`. Two regimes, because `mcnemar_mde`
+returns `nan` at zero discordance by construction: with no discordant pairs the exact two-sided 95%
+Clopper–Pearson upper bound for 0 of n applies, and otherwise the normal-approximation minimal
+detectable difference.
+
+The ceilings for this rollup's zero-discordance controls, computed from the frozen record and
+identical for both models because every one of these contrasts is 0/0 discordant:
+
+| contrast | n | difference the design could have registered |
+|---|---|---|
+| GP1 contrast C (R3 vs R0), and its same-fibre variant | 240 | ≤ 0.0153 |
+| GP1 contrast E (R3 vs R4) | 240 | ≤ 0.0153 |
+| GP3 p0 (R2 vs R3) | 120 | ≤ 0.0303 |
+| GP3 recon (R2 vs R3) | 120 | ≤ 0.0303 |
+
+So a difference below roughly 1.5 accuracy points on the 240-instance controls, or 3 points on the
+120-instance ones, would not have produced a single discordant pair. The instrument is the
+programme's own: the same formula reproduces the 0-of-480 → 0.0077 bound the FLAGSHIP Article
+already reports for its zero-discordance case.
+
+No number in the frozen rollup changes and no terminal moves; this adds a column that was missing.
+Future runs report it directly.
