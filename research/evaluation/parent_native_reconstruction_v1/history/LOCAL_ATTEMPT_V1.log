@@ -1,0 +1,101 @@
+test_actual_native_versions_source_identity_and_resources (test_adapter.NativeParentTests.test_actual_native_versions_source_identity_and_resources) ... FAIL
+test_all_two_edge_patches_pass_full_union_has_native_cycle_witness (test_adapter.NativeParentTests.test_all_two_edge_patches_pass_full_union_has_native_cycle_witness) ... FAIL
+test_missing_required_value_is_native_shacl_nonconformance (test_adapter.NativeParentTests.test_missing_required_value_is_native_shacl_nonconformance) ... FAIL
+test_native_malformed_shape_remains_error_not_scientific_negative (test_adapter.NativeParentTests.test_native_malformed_shape_remains_error_not_scientific_negative) ... FAIL
+test_plural_candidates_same_projection_distinct_native_contexts (test_adapter.NativeParentTests.test_plural_candidates_same_projection_distinct_native_contexts) ... FAIL
+test_supplied_representation_expansion_preserves_old_candidates (test_adapter.NativeParentTests.test_supplied_representation_expansion_preserves_old_candidates) ... FAIL
+test_dependency_version_mismatch_is_rejected (test_adapter.RequestContractTests.test_dependency_version_mismatch_is_rejected) ... ok
+test_duplicate_candidate_or_context_cannot_merge_histories (test_adapter.RequestContractTests.test_duplicate_candidate_or_context_cannot_merge_histories) ... ok
+test_empty_candidates_not_obstruction (test_adapter.RequestContractTests.test_empty_candidates_not_obstruction) ... ok
+test_incomplete_candidates_not_obstruction (test_adapter.RequestContractTests.test_incomplete_candidates_not_obstruction) ... ok
+test_input_and_check_budgets (test_adapter.RequestContractTests.test_input_and_check_budgets) ... ok
+test_missing_shapes_and_targets_not_vacuous_pass (test_adapter.RequestContractTests.test_missing_shapes_and_targets_not_vacuous_pass) ... ok
+test_public_fixtures_are_valid_and_nonempty (test_adapter.RequestContractTests.test_public_fixtures_are_valid_and_nonempty) ... ok
+test_target_only_shape_not_vacuous_pass (test_adapter.RequestContractTests.test_target_only_shape_not_vacuous_pass) ... ok
+test_unbound_endpoint_and_parallel_edge_not_erased (test_adapter.RequestContractTests.test_unbound_endpoint_and_parallel_edge_not_erased) ... ok
+test_unknown_constraint_completeness_is_not_conformance (test_adapter.RequestContractTests.test_unknown_constraint_completeness_is_not_conformance) ... ok
+test_unknown_fields_not_ignored (test_adapter.RequestContractTests.test_unknown_fields_not_ignored) ... ok
+test_unsupported_shape_semantics_not_silently_dropped (test_adapter.RequestContractTests.test_unsupported_shape_semantics_not_silently_dropped) ... ok
+
+======================================================================
+FAIL: test_actual_native_versions_source_identity_and_resources (test_adapter.NativeParentTests.test_actual_native_versions_source_identity_and_resources)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d4f32334f6f3/ORION-V2-parent/research/evaluation/parent_native_reconstruction_v1/test_adapter.py", line 112, in test_actual_native_versions_source_identity_and_resources
+    out = self.observed(name)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/d4f32334f6f3/ORION-V2-parent/research/evaluation/parent_native_reconstruction_v1/test_adapter.py", line 102, in observed
+    self.assertEqual(result["status"], "OBSERVED", result)
+AssertionError: 'CANNOT_CHECK' != 'OBSERVED'
+- CANNOT_CHECK
++ OBSERVED
+ : {'authority_granted': False, 'input_sha256': '2c7ab3b9c65627a5fcf66a4b0de12eec6cdad9827516d31fbf7997f0bc5198ff', 'native_error_type': 'PackageNotFoundError', 'parent_binding': False, 'reason': 'No package metadata was found for networkx', 'schema': 'PUBLIC_PARENT_NATIVE_RECONSTRUCTION_V1', 'scientific_terminal': 'CANNOT_CHECK', 'status': 'CANNOT_CHECK', 'execution': {'input_sha256': '2c7ab3b9c65627a5fcf66a4b0de12eec6cdad9827516d31fbf7997f0bc5198ff', 'stdout_sha256': 'a8ae0c7c3a955a1b8b42aceed733722bf76062eac7ef30cdb9c3b3ed799a41ce', 'stderr_sha256': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'observed_output_bytes': 340, 'elapsed_seconds': 0.19112619399675168, 'returncode': 0, 'stderr': '', 'profile': {'input_bytes': 1000000, 'output_bytes': 1000000, 'worker_seconds': 5.0, 'wall_seconds': 30.0, 'native_check_ceiling': 8, 'network_calls': 0, 'provider_calls': 0, 'retries': 0}, 'retries': 0}, 'adapter_sha256': '8f4e2c90e6a7ca538be11be5058e5b9a3b1ca14614ce09f45cdf63a9afc580f3', 'requirements_sha256': '44d1b866586a8ed7256ab4d50b884509464e6c6c9f28e2ba2c3633d6a1f51b14'}
+
+======================================================================
+FAIL: test_all_two_edge_patches_pass_full_union_has_native_cycle_witness (test_adapter.NativeParentTests.test_all_two_edge_patches_pass_full_union_has_native_cycle_witness)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d4f32334f6f3/ORION-V2-parent/research/evaluation/parent_native_reconstruction_v1/test_adapter.py", line 135, in test_all_two_edge_patches_pass_full_union_has_native_cycle_witness
+    full = self.observed("global_cycle")["results"][0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/d4f32334f6f3/ORION-V2-parent/research/evaluation/parent_native_reconstruction_v1/test_adapter.py", line 102, in observed
+    self.assertEqual(result["status"], "OBSERVED", result)
+AssertionError: 'CANNOT_CHECK' != 'OBSERVED'
+- CANNOT_CHECK
++ OBSERVED
+ : {'authority_granted': False, 'input_sha256': '2c7ab3b9c65627a5fcf66a4b0de12eec6cdad9827516d31fbf7997f0bc5198ff', 'native_error_type': 'PackageNotFoundError', 'parent_binding': False, 'reason': 'No package metadata was found for networkx', 'schema': 'PUBLIC_PARENT_NATIVE_RECONSTRUCTION_V1', 'scientific_terminal': 'CANNOT_CHECK', 'status': 'CANNOT_CHECK', 'execution': {'input_sha256': '2c7ab3b9c65627a5fcf66a4b0de12eec6cdad9827516d31fbf7997f0bc5198ff', 'stdout_sha256': 'a8ae0c7c3a955a1b8b42aceed733722bf76062eac7ef30cdb9c3b3ed799a41ce', 'stderr_sha256': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'observed_output_bytes': 340, 'elapsed_seconds': 0.19112619399675168, 'returncode': 0, 'stderr': '', 'profile': {'input_bytes': 1000000, 'output_bytes': 1000000, 'worker_seconds': 5.0, 'wall_seconds': 30.0, 'native_check_ceiling': 8, 'network_calls': 0, 'provider_calls': 0, 'retries': 0}, 'retries': 0}, 'adapter_sha256': '8f4e2c90e6a7ca538be11be5058e5b9a3b1ca14614ce09f45cdf63a9afc580f3', 'requirements_sha256': '44d1b866586a8ed7256ab4d50b884509464e6c6c9f28e2ba2c3633d6a1f51b14'}
+
+======================================================================
+FAIL: test_missing_required_value_is_native_shacl_nonconformance (test_adapter.NativeParentTests.test_missing_required_value_is_native_shacl_nonconformance)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d4f32334f6f3/ORION-V2-parent/research/evaluation/parent_native_reconstruction_v1/test_adapter.py", line 155, in test_missing_required_value_is_native_shacl_nonconformance
+    result = self.observed("missing_required_value")["results"][0]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/d4f32334f6f3/ORION-V2-parent/research/evaluation/parent_native_reconstruction_v1/test_adapter.py", line 102, in observed
+    self.assertEqual(result["status"], "OBSERVED", result)
+AssertionError: 'CANNOT_CHECK' != 'OBSERVED'
+- CANNOT_CHECK
++ OBSERVED
+ : {'authority_granted': False, 'input_sha256': '8aec18edab6119ed93a729ec68ce72cc09f67ef5db795bf2edaa01eed27e038b', 'native_error_type': 'PackageNotFoundError', 'parent_binding': False, 'reason': 'No package metadata was found for networkx', 'schema': 'PUBLIC_PARENT_NATIVE_RECONSTRUCTION_V1', 'scientific_terminal': 'CANNOT_CHECK', 'status': 'CANNOT_CHECK', 'execution': {'input_sha256': '8aec18edab6119ed93a729ec68ce72cc09f67ef5db795bf2edaa01eed27e038b', 'stdout_sha256': 'be7ac0c5d36ecfb98c9ad659baf17f5d3120cc90c23a0ade54f955b924899fd8', 'stderr_sha256': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'observed_output_bytes': 340, 'elapsed_seconds': 0.17067854799825, 'returncode': 0, 'stderr': '', 'profile': {'input_bytes': 1000000, 'output_bytes': 1000000, 'worker_seconds': 5.0, 'wall_seconds': 30.0, 'native_check_ceiling': 8, 'network_calls': 0, 'provider_calls': 0, 'retries': 0}, 'retries': 0}, 'adapter_sha256': '8f4e2c90e6a7ca538be11be5058e5b9a3b1ca14614ce09f45cdf63a9afc580f3', 'requirements_sha256': '44d1b866586a8ed7256ab4d50b884509464e6c6c9f28e2ba2c3633d6a1f51b14'}
+
+======================================================================
+FAIL: test_native_malformed_shape_remains_error_not_scientific_negative (test_adapter.NativeParentTests.test_native_malformed_shape_remains_error_not_scientific_negative)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d4f32334f6f3/ORION-V2-parent/research/evaluation/parent_native_reconstruction_v1/test_adapter.py", line 183, in test_native_malformed_shape_remains_error_not_scientific_negative
+    self.assertNotEqual(result.get("native_error_type"), "PackageNotFoundError")
+AssertionError: 'PackageNotFoundError' == 'PackageNotFoundError'
+
+======================================================================
+FAIL: test_plural_candidates_same_projection_distinct_native_contexts (test_adapter.NativeParentTests.test_plural_candidates_same_projection_distinct_native_contexts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d4f32334f6f3/ORION-V2-parent/research/evaluation/parent_native_reconstruction_v1/test_adapter.py", line 126, in test_plural_candidates_same_projection_distinct_native_contexts
+    out = self.observed("plural_history")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/d4f32334f6f3/ORION-V2-parent/research/evaluation/parent_native_reconstruction_v1/test_adapter.py", line 102, in observed
+    self.assertEqual(result["status"], "OBSERVED", result)
+AssertionError: 'CANNOT_CHECK' != 'OBSERVED'
+- CANNOT_CHECK
++ OBSERVED
+ : {'authority_granted': False, 'input_sha256': '60a559fa3e65fb1be1fbe2502e016cfc5562a697b8ec1b398e05468e7aa1d20f', 'native_error_type': 'PackageNotFoundError', 'parent_binding': False, 'reason': 'No package metadata was found for networkx', 'schema': 'PUBLIC_PARENT_NATIVE_RECONSTRUCTION_V1', 'scientific_terminal': 'CANNOT_CHECK', 'status': 'CANNOT_CHECK', 'execution': {'input_sha256': '60a559fa3e65fb1be1fbe2502e016cfc5562a697b8ec1b398e05468e7aa1d20f', 'stdout_sha256': '4cbae7fee96e3b0a4f66c23ee85ca794ac9e2398339d5eb2c5cac9f6636a56f4', 'stderr_sha256': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'observed_output_bytes': 340, 'elapsed_seconds': 0.1714263829999254, 'returncode': 0, 'stderr': '', 'profile': {'input_bytes': 1000000, 'output_bytes': 1000000, 'worker_seconds': 5.0, 'wall_seconds': 30.0, 'native_check_ceiling': 8, 'network_calls': 0, 'provider_calls': 0, 'retries': 0}, 'retries': 0}, 'adapter_sha256': '8f4e2c90e6a7ca538be11be5058e5b9a3b1ca14614ce09f45cdf63a9afc580f3', 'requirements_sha256': '44d1b866586a8ed7256ab4d50b884509464e6c6c9f28e2ba2c3633d6a1f51b14'}
+
+======================================================================
+FAIL: test_supplied_representation_expansion_preserves_old_candidates (test_adapter.NativeParentTests.test_supplied_representation_expansion_preserves_old_candidates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d4f32334f6f3/ORION-V2-parent/research/evaluation/parent_native_reconstruction_v1/test_adapter.py", line 162, in test_supplied_representation_expansion_preserves_old_candidates
+    old = self.observed("plural_history")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/d4f32334f6f3/ORION-V2-parent/research/evaluation/parent_native_reconstruction_v1/test_adapter.py", line 102, in observed
+    self.assertEqual(result["status"], "OBSERVED", result)
+AssertionError: 'CANNOT_CHECK' != 'OBSERVED'
+- CANNOT_CHECK
++ OBSERVED
+ : {'authority_granted': False, 'input_sha256': '60a559fa3e65fb1be1fbe2502e016cfc5562a697b8ec1b398e05468e7aa1d20f', 'native_error_type': 'PackageNotFoundError', 'parent_binding': False, 'reason': 'No package metadata was found for networkx', 'schema': 'PUBLIC_PARENT_NATIVE_RECONSTRUCTION_V1', 'scientific_terminal': 'CANNOT_CHECK', 'status': 'CANNOT_CHECK', 'execution': {'input_sha256': '60a559fa3e65fb1be1fbe2502e016cfc5562a697b8ec1b398e05468e7aa1d20f', 'stdout_sha256': '4cbae7fee96e3b0a4f66c23ee85ca794ac9e2398339d5eb2c5cac9f6636a56f4', 'stderr_sha256': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'observed_output_bytes': 340, 'elapsed_seconds': 0.1714263829999254, 'returncode': 0, 'stderr': '', 'profile': {'input_bytes': 1000000, 'output_bytes': 1000000, 'worker_seconds': 5.0, 'wall_seconds': 30.0, 'native_check_ceiling': 8, 'network_calls': 0, 'provider_calls': 0, 'retries': 0}, 'retries': 0}, 'adapter_sha256': '8f4e2c90e6a7ca538be11be5058e5b9a3b1ca14614ce09f45cdf63a9afc580f3', 'requirements_sha256': '44d1b866586a8ed7256ab4d50b884509464e6c6c9f28e2ba2c3633d6a1f51b14'}
+
+----------------------------------------------------------------------
+Ran 18 tests in 1.424s
+
+FAILED (failures=6)

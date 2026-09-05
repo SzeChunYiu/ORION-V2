@@ -1,0 +1,208 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:orion:ocm:execution-backlog:v1",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "OCM_EXECUTION_BACKLOG_V1"
+    },
+    "source_issue": {
+      "const": "https://github.com/SzeChunYiu/ORION-V2/issues/197"
+    },
+    "source_body_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "source_numbered_tasks": {
+      "const": 214
+    },
+    "source_completion_obligations": {
+      "const": 17
+    },
+    "dependency_policy": {
+      "type": "string",
+      "minLength": 1
+    },
+    "snapshot_status": {
+      "const": "ENGINEERING_READY_FOR_REVIEW__PROGRAMME_OPEN"
+    },
+    "authority_delta": {
+      "const": "NONE"
+    },
+    "tasks": {
+      "type": "array",
+      "minItems": 231,
+      "maxItems": 231,
+      "items": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "task_kind": {
+            "enum": [
+              "PROTOCOL",
+              "WORK",
+              "COMPLETION_GATE"
+            ]
+          },
+          "source_line": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "source_checkbox": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "acceptance_text": {
+            "type": "string"
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "owner_cells": {
+            "type": "array",
+            "minItems": 2,
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "X1",
+                "X2",
+                "X3",
+                "X4",
+                "X5",
+                "X6",
+                "X7",
+                "X8",
+                "X9"
+              ]
+            }
+          },
+          "artifacts": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "status": {
+            "enum": [
+              "OPEN",
+              "IN_PROGRESS",
+              "READY_FOR_REVIEW",
+              "BLOCKED",
+              "COMPLETE"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "RELATED_HISTORICAL_ARTIFACT",
+                    "ENGINEERING_VERIFICATION"
+                  ]
+                },
+                "path": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "scope": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "commit": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{40}$"
+                },
+                "git_blob": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{40}$"
+                },
+                "verified_checkpoint_sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              },
+              "required": [
+                "kind",
+                "path",
+                "sha256",
+                "scope"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "terminal": {
+            "enum": [
+              null,
+              "PASS",
+              "REFUTED",
+              "PARENT_SUFFICIENT",
+              "CANNOT_CHECK",
+              "SUPERSEDED"
+            ]
+          },
+          "reopen_conditions": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "remaining_obligation": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "task_id",
+          "task_kind",
+          "source_line",
+          "source_checkbox",
+          "description",
+          "acceptance_text",
+          "dependencies",
+          "owner_cells",
+          "artifacts",
+          "status",
+          "evidence",
+          "terminal",
+          "reopen_conditions",
+          "remaining_obligation"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schema",
+    "source_issue",
+    "source_body_sha256",
+    "source_numbered_tasks",
+    "source_completion_obligations",
+    "dependency_policy",
+    "snapshot_status",
+    "authority_delta",
+    "tasks"
+  ],
+  "additionalProperties": false
+}

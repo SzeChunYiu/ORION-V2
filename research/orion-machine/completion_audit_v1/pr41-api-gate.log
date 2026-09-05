@@ -1,0 +1,8 @@
+pr_merge_gate: python 3.12.13; git dir /workspace/scratch/d4f32334f6f3/ORION-V2-completion; base ref origin/main
+snapshot /workspace/scratch/d4f32334f6f3/pr41-final-snapshot.json: PR #41 fields 0-4 (default branch main)
+  [PASS] field 0: baseRefName == default branch -- base=main default=main
+  [PASS] field 1: state == OPEN -- state=OPEN
+  [PASS] field 2: mergeable == MERGEABLE -- mergeable=MERGEABLE
+  [PASS] field 3: isDraft == false -- isDraft=False
+  [PASS] field 4: every check COMPLETED with conclusion in {SUCCESS,NEUTRAL,SKIPPED} -- 29 passing, 0 NOT ASSESSED (neutral), 0 failing, 0 cancelled, 0 incomplete
+PASS: all six fields (0-5) hold.

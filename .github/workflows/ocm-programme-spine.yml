@@ -1,0 +1,29 @@
+name: OCM programme spine
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  programme-spine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run source-bound programme checks and hostile controls
+        run: python research/orion-machine/programme_spine_v1/run_checks.py --output "$RUNNER_TEMP/ocm-spine-run.json"
+      - name: Verify read-only execution
+        run: git diff --exit-code
+      - name: Preserve exact check report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ocm-programme-spine-run
+          path: ${{ runner.temp }}/ocm-spine-run.json
+          if-no-files-found: error

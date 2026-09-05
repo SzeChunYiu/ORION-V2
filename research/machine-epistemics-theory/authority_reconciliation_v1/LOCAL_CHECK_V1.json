@@ -1,0 +1,45 @@
+{
+  "checks": {
+    "actual_first_FOUND": 1,
+    "earliest_rule_claimed_budget": 3,
+    "effective_rows": 56,
+    "excluded_clauses": 18,
+    "optimized_python": "PASS",
+    "ordinary_python": "PASS",
+    "original_stopping_counterexample": "COUNTEREXAMPLE_REPRODUCED",
+    "scoped_reference_rules": 36,
+    "source_files": 43,
+    "unittest_count": 27
+  },
+  "environment": {
+    "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "platform": "Linux",
+    "python": "3.12.13"
+  },
+  "ocm_adoption_authorized": false,
+  "protected_outcomes_consumed": false,
+  "repository_ci": "PUBLISHING_PR_REQUIRED_NOT_CLAIMED_BY_THIS_LOCAL_RECEIPT",
+  "review": {
+    "evidence_audit_teammate_test_count": 27,
+    "evidence_audit_teammate_test_result": "PASS",
+    "external_independent_review": "NOT_OBTAINED",
+    "new_antichain_footprint_counterexample": "CONCURRED_BY_EVIDENCE_AUDIT_TEAMMATE",
+    "review_is_authority": false,
+    "scope": "SAME_TEAM_HOSTILE_REVIEW",
+    "scope_review": "All36 selected scope/source clauses and18exclusions reviewed; no blocking defect found. load()/select() are the sealed public boundary; validate_overlay() alone is not."
+  },
+  "schema": "ME_AUTHORITY_RECONCILIATION_LOCAL_CHECK_V1",
+  "scientific_completion": false,
+  "source_sha256": {
+    ".github/workflows/me-authority-reconciliation.yml": "de530d7181c7d0bd1597acf4cbe7f7f7994ab984d899286777004ccca97ef542",
+    "research/machine-epistemics-theory/authority_reconciliation_v1/EFFECTIVE_AUTHORITY_V1.json": "e62b640b8436c68cf4f6264c3448febcfeb198201890f3f479f7eeb8e1e15f2d",
+    "research/machine-epistemics-theory/authority_reconciliation_v1/FND_CHECKLIST.md": "19344a65beb411950f2e8ea69b93ae5f0dfdc88def0864508713185b96afa752",
+    "research/machine-epistemics-theory/authority_reconciliation_v1/README.md": "70f008fa040100fff8fa80757cb2b664ebf60152784d04723caa6dd3c26160ee",
+    "research/machine-epistemics-theory/authority_reconciliation_v1/RECONCILIATION.md": "12c9fafd66f29690e6cadf77657dd560afe8f4c3b3442a76b728a721e5e985c0",
+    "research/machine-epistemics-theory/authority_reconciliation_v1/SOURCES_V1.json": "b85e2c633f96e0bf89fa757b5a8e9baf837bd181c17a5eb157e55c53febfad07",
+    "research/machine-epistemics-theory/authority_reconciliation_v1/resolve.py": "51bd92dc72835ef599c4fc862f83ac76770bc7f389fed9d19255095522d5fe29",
+    "research/machine-epistemics-theory/authority_reconciliation_v1/test_authority.py": "410a591aa129af7bc627762865da5b8a1d5ba55c32d4ab288fcd13e9239f0a0b"
+  },
+  "source_snapshot": "096e6f3df1854dede3c8a0fbe63d05ec30bcb119",
+  "terminal": "LOCAL_EFFECTIVE_AUTHORITY_CHECKS_PASS"
+}

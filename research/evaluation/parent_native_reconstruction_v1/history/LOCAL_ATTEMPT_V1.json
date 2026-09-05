@@ -1,0 +1,64 @@
+{
+  "errors": 0,
+  "failures": 6,
+  "paired_subject_outcomes_accessed": false,
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+  "protected_parity_run": false,
+  "public_cases": [
+    {
+      "file": "global_cycle.json",
+      "input_sha256": "2c7ab3b9c65627a5fcf66a4b0de12eec6cdad9827516d31fbf7997f0bc5198ff",
+      "sha256": "ef8c0b8a84ac562faf3c7f191f0c6bcaea01e46593f4c96ba3789f94db2d7d2d",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "file": "local_patch_0.json",
+      "input_sha256": "6c07ef17591593e175ed2a3334c652c6e0eeebd9b23a911a3b59c21678d03850",
+      "sha256": "823725d47acf44c947f56fafec567e894c13c16bbfa4acdbca1e92e60d5508ee",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "file": "local_patch_1.json",
+      "input_sha256": "7b249665507d79b2b44100b945e423c69d819b97d165e12e3e68d7ee65565e1b",
+      "sha256": "bac8d153fce333df94c1466430a84dacd36f57159a79f98dea577a57ba12173c",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "file": "local_patch_2.json",
+      "input_sha256": "486e232cddc9f67b8d8d2d33e00264b47df451db95f07cc07b968a68d5622ad7",
+      "sha256": "7e30e32cdabfa116de5a6562950dcd49cffe86f4164f6123b78d9d8b4b09eb52",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "file": "missing_required_value.json",
+      "input_sha256": "8aec18edab6119ed93a729ec68ce72cc09f67ef5db795bf2edaa01eed27e038b",
+      "sha256": "471b939dedfce39af5ac3b431ac04ac564181ac2304716ba072bbed6f35049ce",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "file": "plural_history.json",
+      "input_sha256": "60a559fa3e65fb1be1fbe2502e016cfc5562a697b8ec1b398e05468e7aa1d20f",
+      "sha256": "8764c2786df46b6980f2382e8ec86b9d1c7763cca08636ecfa1fbbf0e4bd66c7",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "file": "representation_expansion.json",
+      "input_sha256": "c38d6630728a54c057075c19ba145f1e562e45b0c4cb812fe9e471827e4fb218",
+      "sha256": "509ca07ed2114ce9cd63ded3928826f615b3f4fa03751cb06c206ef63663ec55",
+      "status": "CANNOT_CHECK"
+    }
+  ],
+  "python": "3.12.13 (main, Aug  7 2026, 02:25:39) [Clang 22.1.3 ]",
+  "schema": "PUBLIC_PARENT_NATIVE_FIT_RUN_V1",
+  "scientific_terminal": "CANNOT_CHECK",
+  "skips": 0,
+  "source_bindings": {
+    "authored_files": 16,
+    "manifest_sha256": "85b6c703a0754d1636c0c37fc1d26365771aa18fb989774315080113321cb797",
+    "read_only_contracts": 8,
+    "status": "SOURCE_BINDINGS_VALID"
+  },
+  "strongest_parent_bound": false,
+  "terminal": "PUBLIC_ENGINEERING_FIT_NOT_PASSED",
+  "tests": 18
+}

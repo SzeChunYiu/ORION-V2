@@ -1,0 +1,276 @@
+{
+  "all_checks_pass": false,
+  "engineering_scope": {
+    "checkpoint_phase": "PRE_ACCEPTANCE",
+    "source_body_sha256": "ed21e5f8ac7873fb26cc4b85a97ac23cb03531d81d871923a27c76ec080db482",
+    "task_identity_sha256": {
+      "OM-WP0-001": "09a4a9bd8a7ad504bd134a7eafa40eb6f8b08f0006c829d6191f7b29537ae08e",
+      "OM-WP0-002": "22faae628ea77c06b902d51cb25471be0efaa361243cd26006ff77308db85df7",
+      "OM-WP0-003": "a1ca200f62d83e5303110c3307ad2cbb2635124ecae6bb9c50f5c6d14257744f",
+      "OM-WP0-004": "d70627a5bbdd2ada19900a3d28f597f766ac92589ca6c7f7d06e9a8d706ec05d",
+      "OM-WP0-005": "4475ca2631b62e96d0a87557afedcc0f4d3e08ff024426a7c816a97b617a1fc7",
+      "OM-WP0-006": "3fd5cad29544dcefaed76376004617dca06ddcef664e0999bcacd626d7eea85e",
+      "OM-WP0-007": "e2a91f04efb7bb377f27d89684c7dd9f3686b52760c9b3e01102efe4998d5daf",
+      "OM-WP0-008": "ff8ff2714e6e2ae07f2e9e5b836581f8ebd4b2fe79b479b49c5606ab2e52c87c",
+      "OM-WP0-009": "f2801f9bec8e822531780a8c3a543f64133059bfcdd0dedfc01edb24376dd65a"
+    },
+    "task_ids": [
+      "OM-WP0-001",
+      "OM-WP0-002",
+      "OM-WP0-003",
+      "OM-WP0-004",
+      "OM-WP0-005",
+      "OM-WP0-006",
+      "OM-WP0-007",
+      "OM-WP0-008",
+      "OM-WP0-009"
+    ]
+  },
+  "final_receipt_hash": "22aa03334acc4244372229f827897e52b6d64a10b6e0695a34f6a1a7fc043df3",
+  "independent_review_satisfied": false,
+  "protected_outcomes_accessed": false,
+  "required_checks": 6,
+  "required_passes": 6,
+  "rows": [
+    {
+      "check_id": "SPINE",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-E",
+        "-B",
+        "-X",
+        "pycache_prefix=/tmp/ocm-spine-pycache-0ne0z6o1",
+        "/workspace/scratch/d4f32334f6f3/ORION-V2-completion/research/orion-machine/programme_spine_v1/validate.py"
+      ],
+      "elapsed_seconds": 0.859,
+      "exit_code": 0,
+      "previous_hash": "23e2d2047bc436f23d71b9a397b2c2cf646badf3689e9675c2295d0aab294ffc",
+      "receipt_hash": "ffb61e1031bf8c87f0b206c112f444234ed4f738cd82e2fe60cde24570cad458",
+      "required": true,
+      "result": {
+        "accepted_tasks": 0,
+        "completion_package_obligations": 17,
+        "event_count": 19,
+        "event_tip": "ef888a80bab12fc29220654a8e7d9b5434ed87c549a7eff225168378b80fc6c5",
+        "independent_review": "NOT_OBTAINED",
+        "numbered_source_tasks": 214,
+        "scientific_admission": false,
+        "source_bindings": 32,
+        "tasks": 231,
+        "terminal": "PASS_ENGINEERING_SPECIFICATION_ONLY"
+      },
+      "status": "PASS",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e1cf2db68eb260fcce02c7375b1f0ebcc563fd86e571bba33192c7c8d1db2a61"
+    },
+    {
+      "check_id": "HOSTILES",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-E",
+        "-B",
+        "-X",
+        "pycache_prefix=/tmp/ocm-spine-pycache-0ne0z6o1",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/workspace/scratch/d4f32334f6f3/ORION-V2-completion/research/orion-machine/programme_spine_v1",
+        "-p",
+        "test_spine.py",
+        "-v"
+      ],
+      "elapsed_seconds": 2.61,
+      "exit_code": 0,
+      "previous_hash": "ffb61e1031bf8c87f0b206c112f444234ed4f738cd82e2fe60cde24570cad458",
+      "receipt_hash": "3caa3cc436c459d936bd007998571d7a38c3e18065e244f80203ff81ed9082a4",
+      "required": true,
+      "result": {
+        "skips": 0,
+        "tests": 14
+      },
+      "status": "PASS",
+      "stderr_sha256": "ab44cd9e8c1fdea15ba23ccc453b64d80db742f9e5727b9d0cf1d1c3cfeb0210",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "check_id": "TRACE_PARENT",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-E",
+        "-B",
+        "-X",
+        "pycache_prefix=/tmp/ocm-spine-pycache-0ne0z6o1",
+        "research/orion-machine/reference/ocm_lane200_decomposition_exact.py",
+        "--json"
+      ],
+      "elapsed_seconds": 0.656,
+      "exit_code": 0,
+      "previous_hash": "3caa3cc436c459d936bd007998571d7a38c3e18065e244f80203ff81ed9082a4",
+      "receipt_hash": "4726255022fc31ce9e2b787ade4b3dd99f38ec92faf9c5a66eb71516a3c76e3d",
+      "required": true,
+      "result": {
+        "denominators": {
+          "mutations_planted": 4,
+          "planted_classes": 3,
+          "planted_worlds": 648,
+          "registered_classes": 3,
+          "registered_worlds": 2048
+        },
+        "terminal": "PASS_EVERY_REGISTERED_CLASS_IS_A_DIRECT_PRODUCT_OF_PARENT_PROBLEMS"
+      },
+      "status": "PASS",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "f4ae1384efef098f9f9e991b2a4072a75199a70064d330e2d173b6d3da6e7e5e"
+    },
+    {
+      "check_id": "REPRESENTATION",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-E",
+        "-B",
+        "-X",
+        "pycache_prefix=/tmp/ocm-spine-pycache-0ne0z6o1",
+        "research/orion-machine/reference/ocm_lane201_lattice_exact.py",
+        "--json"
+      ],
+      "elapsed_seconds": 0.386,
+      "exit_code": 0,
+      "previous_hash": "4726255022fc31ce9e2b787ade4b3dd99f38ec92faf9c5a66eb71516a3c76e3d",
+      "receipt_hash": "c318d6ae94f718403c382b6b0a01ff31ddd50e986f4a17d02f16037dd2d546c5",
+      "required": true,
+      "result": {
+        "denominators": {
+          "mutations": 4,
+          "partitions_enumerated": 8483,
+          "planted_failures": 4,
+          "query_orders": 6
+        },
+        "terminal": "PASS_REPRESENTATION_LATTICE_PARENT_OWNED_FINITE"
+      },
+      "status": "PASS",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "dfbad7e64f5f0b6bf18d184955f483d3d2e79e2880008110b6bb4425ee9f5fef"
+    },
+    {
+      "check_id": "COMPILER_CORRECTION",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-E",
+        "-B",
+        "-X",
+        "pycache_prefix=/tmp/ocm-spine-pycache-0ne0z6o1",
+        "research/orion-machine/reference/ocm_lane202_invariance_correction_exact.py"
+      ],
+      "elapsed_seconds": 0.347,
+      "exit_code": 0,
+      "previous_hash": "c318d6ae94f718403c382b6b0a01ff31ddd50e986f4a17d02f16037dd2d546c5",
+      "receipt_hash": "7c15f2acaf4808fc5f732a77c9898049aa05dcb7e162956d9d9ccd67abd47a72",
+      "required": true,
+      "result": {
+        "absolute_bound_zero_overhead_violations": 126,
+        "architecture_comparison": "NOT_PERFORMED",
+        "changed_output_mutant_caught": true,
+        "directional_program_checks": 512,
+        "independent_external_review": "NOT_OBTAINED",
+        "largest_registered_witness": {
+          "both_runtime_factors": 3,
+          "compiler_description_overhead": 0,
+          "gap": 120,
+          "n": 128,
+          "source_bits": 129,
+          "source_time": 257,
+          "target_bits": 9,
+          "target_time": 771
+        },
+        "old_F1_F3_outcomes_regenerated": false,
+        "registered_target_lengths": 128,
+        "terminal": "SCOPED_COMPILER_BOUND_CORRECTION_CALIBRATED",
+        "unbounded_proof": "WRITTEN_ARGUMENT_ONLY",
+        "unearned_runtime_factor_mutant_caught": true
+      },
+      "status": "PASS",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "a2414d234fddb13260d5d39dc8a741bfcb74f188ffd603cdcae4b776903df05b"
+    },
+    {
+      "check_id": "SUBSTRATE",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-E",
+        "-B",
+        "-X",
+        "pycache_prefix=/tmp/ocm-spine-pycache-0ne0z6o1",
+        "research/orion-machine/reference/ocm_reference_semantics.py",
+        "--json"
+      ],
+      "elapsed_seconds": 1.06,
+      "exit_code": 0,
+      "previous_hash": "7c15f2acaf4808fc5f732a77c9898049aa05dcb7e162956d9d9ccd67abd47a72",
+      "receipt_hash": "147680fee8a90316dd4504f79cf596de2cc66ac2702dba047764eefe4f40d574",
+      "required": true,
+      "result": {
+        "S3_denominator": 2688,
+        "S3_mismatches": 0,
+        "authority": {
+          "architecture_superiority_established": false,
+          "finite_model_only": true,
+          "novelty_established": false,
+          "proof_assistant_encoding": "CANNOT_CHECK: no toolchain provisioned",
+          "semantics_frozen": false
+        },
+        "mutations": {
+          "M1_compose_by_intersection": {
+            "applied": true,
+            "detected": true,
+            "registered_reason": "S2 liveness must stop being conjunctive"
+          },
+          "M2_live_ignores_revocation": {
+            "applied": true,
+            "detected": true,
+            "registered_reason": "the two evaluators must disagree and the completeness invariant must fail",
+            "two_evaluator_agreement": {
+              "agree": 1360,
+              "denominator": 2688
+            }
+          },
+          "M3_block_union_always_true": {
+            "applied": true,
+            "detected": true,
+            "exact_partition_counts_under_mutation": {
+              "nested_0_01_012": 15,
+              "one_set_12": 15,
+              "pairs_01_23": 15,
+              "singletons": 15
+            },
+            "registered_reason": "S4 exactness must disagree with the independent measurability judge (exact-partition counts change)"
+          },
+          "M4_checker_not_charged": {
+            "applied": true,
+            "detected": true,
+            "registered_reason": "admission must charge V_cost"
+          },
+          "detected": 4,
+          "planted": 4
+        },
+        "terminal": "PASS_SUBSTRATE_CONSTRAINTS_EXACT"
+      },
+      "status": "PASS",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "5310fda808168e09d1f1c30725c4d50b3eacb60fbbb5901fe702baf804b75545"
+    },
+    {
+      "check_id": "PROOF_ASSISTANT",
+      "exit_code": null,
+      "previous_hash": "147680fee8a90316dd4504f79cf596de2cc66ac2702dba047764eefe4f40d574",
+      "reason": "No proof-assistant statement/toolchain/dependency identity is registered in this spine checkpoint. Other mechanization lanes are separate evidence.",
+      "receipt_hash": "22aa03334acc4244372229f827897e52b6d64a10b6e0695a34f6a1a7fc043df3",
+      "required": false,
+      "status": "CANNOT_CHECK"
+    }
+  ],
+  "schema": "OCM_PROGRAMME_VERIFIER_RUN_V1",
+  "scientific_admission": false,
+  "source_snapshot_sha256": "23e2d2047bc436f23d71b9a397b2c2cf646badf3689e9675c2295d0aab294ffc",
+  "terminal": "PASS_REQUIRED_ENGINEERING_CHECKS"
+}
