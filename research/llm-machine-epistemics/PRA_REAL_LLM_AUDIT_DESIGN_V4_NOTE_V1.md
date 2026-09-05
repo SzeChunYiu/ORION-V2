@@ -1,7 +1,16 @@
-# PRA real-LLM audit, design V3 — registered successor
+# PRA real-LLM audit, design V4 — registered successor
 
-**Status: registered, pre-outcome, not executed.** Frozen before any V3 instance exists. This note
-is the human-readable design; `PRA_REAL_LLM_AUDIT_DESIGN_V3.json` is the machine-readable
+> **Correction, 2026-09-05.** This note was first written and merged as "design V4" (V2 PR #355,
+> merge `9a7e6e1`). That was an error: a design V4 already existed, frozen in PR #251
+> ("construct-valid alternate-channel gate + pre-run certificates"), with its own test suite
+> `tests/unit/test_pra_real_llm_audit_v3.py`, and my file overwrote it. The overwrite was caught
+> by that suite failing on the very next PR. V4 is restored byte-identically, and this design is
+> re-registered as **V4, built from V3 rather than from V2**, so every gate and clause of V3 —
+> including `CERT` and the alternate-channel work — is inherited unchanged. One consequence is
+> that V3 already closes limitation V-M3, so V4 registers only the closures for V-M1 and V-M7.
+
+**Status: registered, pre-outcome, not executed.** Frozen before any V4 instance exists. This note
+is the human-readable design; `PRA_REAL_LLM_AUDIT_DESIGN_V4.json` is the machine-readable
 authority and is what the runner consumes. `NO NOVELTY OR BREAKTHROUGH CLAIM`.
 
 ## 1. Why a successor exists
@@ -21,7 +30,7 @@ Three limitations were then recorded on the manuscript and could not be closed b
 | V-M3 | the probe readings leave two explanations undiscriminated |
 | V-M7 | one row precedence was adopted after unblinding |
 
-V3 addresses all three by design, before any outcome exists.
+V4 addresses the two that remain by design, before any outcome exists.
 
 ## 2. The attribution behind the main change
 
@@ -37,7 +46,7 @@ single draw.
 
 The design already contains the right pattern for this: `GPC` screens model *competence* pre-run
 on the dev split, and replaces a model that fails, with the replacement recorded. V2 simply did not
-extend that pattern to *equivalence*. V3 does.
+extend that pattern to *equivalence*. V4 does.
 
 **This is not a rescue of the mistral arm.** A model that cannot hold the two representations
 equivalent on present behaviour is not admitted to the protected run at all, and its exclusion is
@@ -71,7 +80,7 @@ protected and that is a finding about the screen, reported as
 `NO_MODEL_HOLDS_PRESENT_EQUIVALENCE__CONSTRUCTION_BOUND`, which would bound the construction rather
 than the thesis, and is a first-class outcome.
 
-### 3.2 Probe discrimination (closes V-M3)
+### 3.2 Probe discrimination (V-M3) — inherited from V3, not re-registered here
 
 V2's probe left two explanations undiscriminated. V3 registers the discriminating contrast in
 advance and pre-declares what each outcome means, rather than reporting a max-over-layers statistic
@@ -86,9 +95,9 @@ whose null is not stated:
 
 ### 3.3 Row precedence pre-registered (closes V-M7)
 
-The row precedence V2 adopted after unblinding is **fixed in this design, before any V3 instance
+The row precedence V2 adopted after unblinding is **fixed in this design, before any V4 instance
 exists**, in the exact form V2 ended up using. It is therefore pre-registered here and requires no
-disclosure of post-hoc adoption in a V3 report. The V2 disclosure stands unchanged for V2.
+disclosure of post-hoc adoption in a V4 report. The V2 disclosure stands unchanged for V2.
 
 ### 3.4 Inherited, unchanged
 
@@ -99,11 +108,11 @@ new explicit authorization.
 
 ## 4. Freeze and custody
 
-- This note and `PRA_REAL_LLM_AUDIT_DESIGN_V3.json` are frozen at the commit that lands them; the
+- This note and `PRA_REAL_LLM_AUDIT_DESIGN_V4.json` are frozen at the commit that lands them; the
   JSON carries its own `design_sha256` field computed over the canonical serialization without
   that field.
 - The protected seed is committed by hash in the design and revealed in the outcome record. The
-  seed is generated into `~/.orion-custody/pra-llm-v3/` and never leaves operator-owned machines.
+  seed is generated into `~/.orion-custody/pra-llm-v4/` and never leaves operator-owned machines.
 - Runner: the current `pra_real_llm_audit.py` at the commit this design lands on, recorded by
   sha256 in `frozen_inputs`. Note that this hash necessarily differs from the value V2 froze: the
   runner has since been corrected twice, for the saturating two-sided p (merge `096e6f3`) and for
@@ -111,7 +120,7 @@ new explicit authorization.
 - Compute: LUNARC `gpua100`, one A100-80GB per model arm, one array task per model, as V2 ran.
   Nothing runs on the operator's Mac.
 
-## 5. What V3 cannot fix
+## 5. What V4 cannot fix
 
 - It cannot make V2's single protected draw into two. V2's terminal stands as reported.
 - It cannot establish anything about deployed language models; both designs are bounded to their

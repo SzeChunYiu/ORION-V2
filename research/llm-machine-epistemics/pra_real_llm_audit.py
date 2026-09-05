@@ -1073,7 +1073,7 @@ def equivalence_gate(design: dict, present_records: list[dict]) -> dict:
     """GPE -- present equivalence per family, on the dev split, before the seed is sealed.
 
     Applies GP0's own per-instance criterion to EVERY registered family instead of the canonical
-    P2 fixture alone, which is limitation V-M1 of design V2: a model whose two representations
+    P2 fixture alone, which is limitation V-M1 of design V2 (GPE is registered in design V4): a model whose two representations
     are not behaviourally equivalent in the present is a model for which the prospective question
     is not well posed, and V2 discovered that at protected time, on one fixture, after its single
     draw was spent (mistral-small-24b: GP0 per-unit 0.296; present-task accuracy 0.317 under R1
@@ -1085,7 +1085,7 @@ def equivalence_gate(design: dict, present_records: list[dict]) -> dict:
     """
     g = design.get("gates", {})
     if "GPE" not in g:
-        raise SystemExit("equivalence-gate requires a design that registers gates.GPE (design V3+)")
+        raise SystemExit("equivalence-gate requires a design that registers gates.GPE (design V4+)")
     spec = g["GPE"]
     eps_inst = spec["epsilon_pred_per_instance_nats_per_token"]
     eps_mean = spec["epsilon_pred_mean_nats_per_token"]

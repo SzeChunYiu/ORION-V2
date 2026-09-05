@@ -1,0 +1,497 @@
+{
+  "custody": {
+    "archive_in_repo": "research/llm-machine-epistemics/results/pra-llm-v3/PRA_REAL_LLM_AUDIT_ROLLUP_V3.{json,md}",
+    "logged_per_call": [
+      "prompt sha256",
+      "raw completion",
+      "parsed action",
+      "status-line log-probs",
+      "hidden-state probe results (float16 dumps)",
+      "token counts",
+      "seeds",
+      "model revision",
+      "runner sha256",
+      "design sha256",
+      "suite sha256",
+      "pre-run certificate (identifiability + clause coverage)",
+      "model-free surface null per condition",
+      "per-clause status, value and reachability note"
+    ],
+    "model_identity": "Carried verbatim from V1: revision_requested AND revision_resolved (the latter read from model.config._commit_hash after load) are recorded per stage, with HF_HUB_OFFLINE=1, TRANSFORMERS_OFFLINE=1 and local weights, so identity is ASSERTED, not inferred, and no served-model substitution risk applies. Stated caveat kept: a snapshot revision is not a weight-shard digest.",
+    "results_root_lunarc": "/projects/hep/fs9/users/scyiu/orion-v2-pra-llm/campaign-pra-llm-v3/"
+  },
+  "decoding": {
+    "answer_format": "brief reasoning (<=3 sentences) then a final line 'Answer: <ACTION>'; registered extraction = last 'Answer:' match, fallback last bare action word, else UNPARSEABLE (counted incorrect)",
+    "batch_size": 1,
+    "chat_template": "model default; contract and state placed in a single user turn (no system role, uniform across models)",
+    "do_sample": false,
+    "dtype": "bfloat16",
+    "max_new_tokens": 160,
+    "mode": "deterministic_greedy",
+    "num_beams": 1,
+    "seed": 51
+  },
+  "design_id": "ORION51.PRA_REAL_LLM_AUDIT.design.v4",
+  "design_sha256": "d564ba22ce9dba12fb06f0f1b2fcaf03b8cf832dfc66b7594d0019b244d80217",
+  "environment": {
+    "account": "lu2026-2-51",
+    "hf_home": "/projects/hep/fs9/users/scyiu/orion-v2-pra-llm/hf-cache",
+    "lunarc_base": "/projects/hep/fs9/users/scyiu/orion-v2-pra-llm",
+    "partition": "gpua100",
+    "v2_files": "/projects/hep/fs9/users/scyiu/orion-v2-pra-llm/v2/ (runner copy, design JSON, sealed seed); the V1 runner/design at the base directory are left untouched for the queued V1 R1 array",
+    "v3_files": "/projects/hep/fs9/users/scyiu/orion-v2-pra-llm/v3/ (V3 runner copy, design JSON, sealed seed). The V1 files at the base directory and the V2 files under v2/ are left untouched; the V2 protected array 3566415 depends on them.",
+    "venv": ".venv (Python 3.11.5, torch 2.6.0+cu124, transformers 4.51.3, accelerate 1.6.0, safetensors 0.8.0, numpy 2.2.6, scipy 1.17.1, scikit-learn 1.9.0, protobuf 7.36.1, sentencepiece 0.2.2) shared with V1, unchanged"
+  },
+  "families": {
+    "F0_ACQ": {
+      "expected_terminal": "ACQUISITION_LIMIT__FULL_HISTORY_INSUFFICIENT",
+      "gold_future": "ESCALATE both arms",
+      "role": "acquisition-limit control"
+    },
+    "F1_P0": {
+      "expected": "no R2/R3 gap",
+      "gold_future": "REOPEN (direct refutation) or RETAIN (administrative notice) for both arms",
+      "role": "zero-extra-state control"
+    },
+    "F2_P1": {
+      "contrast": "A: R1 vs R2 on current action",
+      "gold_current": "hValid RETAIN vs hDefeated REOPEN",
+      "role": "current cross-channel"
+    },
+    "F3_P2_CANON": {
+      "contrast": "B (load-bearing, GP1): R2 vs R3",
+      "gold_future": "hA REOPEN vs hB RETAIN after RETRACT(A)",
+      "role": "provenance/retraction canonical fixture, unique current action RETAIN (PRIMARY; identical to V1; successors in distinct predictive fibres: hA's successor status line is REOPENED, hB's stays SUPPORTED)"
+    },
+    "F3_P2_CANON_SF": {
+      "contrast": "B-SF (reported beside B, never gated): R2 vs R3; C-SF: R3 vs R0",
+      "gold_future": "hA REOPEN vs hB RETAIN after RETRACT(A)+FLAG_POLICY",
+      "role": "H-EXT-4 same-successor-fibre variant of the canonical fixture (REGISTERED SECONDARY): same histories, same gold, evidence = RETRACT(A) + registry flag policy that sets both arms' successor status line to 'Claim <id> is currently listed as FLAGGED.' whatever the action; predictive congruence therefore holds by construction and the R2/R3 gap is decision-driven only",
+      "successor_linguistic_target": "registered per arm in the suite (successor_linguistic_target.continuation, identical across arms); not measured by the runner (fibre equality is a property of the registered target, not of model output)",
+      "why_secondary": "GP1 and its terminal mapping are carried verbatim from V1 on F3_P2_CANON for comparability with V1 R1; H-EXT-4 requires that the premium be REPORTED under predictive congruence, which B-SF provides; both variants are reported in every rollup"
+    },
+    "F3_P2_INDEP": {
+      "gold_future": "hAB RETAIN vs hA REOPEN after RETRACT(A)",
+      "role": "independent-support selective reopening"
+    },
+    "F3_P2_MIRROR": {
+      "gold_future": "RETAIN both after RETRACT(Z)",
+      "role": "maintain mirror"
+    },
+    "F3_P2_RECON": {
+      "gold_future": "annotation reveals support role; expected no R2/R3 gap",
+      "role": "future-evidence-reconstructs-variable negative control"
+    },
+    "F3_P2_TIE": {
+      "gold_future": "hA {ESCALATE,REOPEN} vs hB {RETAIN,ESCALATE}: joint intersection {ESCALATE} nonempty -> compatible cell",
+      "role": "tie-semantics"
+    },
+    "F4_control_condition": "R4 dependency-ledger state on every family (contrast E: R3 vs R4)",
+    "alternate_channel_conditions_on_F3_P2_CANON": {
+      "R2_TEXT_REMOVED_KV_RETAINED": "alternate-channel-survival synthetic control (R0 prefix KV cache retained, R2 text continues)",
+      "R2_TRUE_REMOVAL": "alternate-channel-true-removal positive control (fresh cache, R2 text only)"
+    }
+  },
+  "frozen_inputs": {
+    "design_doc": "research/llm-machine-epistemics/PRA_REAL_LLM_AUDIT_DESIGN_V3.md",
+    "diagnosis": "research/llm-machine-epistemics/PRA_GP2A_CONSTRUCT_VALIDITY_DIAGNOSIS_V1.md (reproduction of the R1 GP2a divergence and the R0/R3 asymmetry; the design decisions above are its conclusions)",
+    "manuscript": "ORION-paper v2-papers/llm-machine-epistemics/MANUSCRIPT_V13_SCHOLARLY_SURFACE_FINAL.md (not modified by this design)",
+    "protocol": "research/llm-machine-epistemics/PROSPECTIVE_REVISION_AUDIT_PROTOCOL_V2.md (section 16) as amended by PROTOCOL_V3.md, MANUSCRIPT_CORRECTION_REGISTER_V1.md CR-02/CR-03/CR-07/CR-08, PROSPECTIVE_REVISION_COMPATIBILITY_CRITERION_V1.md, PREDICTION_CHANNEL_AND_INTERVENTION_SCOPE_V1.md; H_EXT4_QUANTITATIVE_REVISION_PREMIUM_V1.md (predictive-congruence finding, same_succ_fibre witness)",
+    "runner": "research/llm-machine-epistemics/pra_real_llm_audit_v3.py (V3 OWN COPY; the V1/V2 runner is not read, imported or edited \u2014 the V2 protected run depends on its frozen sha256)"
+  },
+  "frozen_inputs_v4_note": "pra_real_llm_audit.py at the commit this design lands on; its sha256 differs from the values V2 and V3 froze, because the runner was corrected for the saturating two-sided p (096e6f3) and the detectable-difference ceiling (9f8d169), and gained the equivalence-gate stage. A V2 or V3 re-run must check out that design's pinned revision.",
+  "gates": {
+    "CERT": {
+      "blocking": true,
+      "clauses": [],
+      "name": "pre_run_certificates",
+      "rule": "Run BEFORE any protected model call, model-free, from the frozen suite alone. (i) LABEL IDENTIFIABILITY: the set of conditions in which the probe label is recoverable from the effective context must equal probe.identifiable_conditions_registered exactly, and the label must be balanced within 0.45-0.55. (ii) CLAUSE COVERAGE: every registered clause must declare a source path, and no clause may be UNSATISFIABLE or UNFAILABLE given the certified identifiability. Failure blocks the run; it does not become a CANNOT_CHECK to be carried forward."
+    },
+    "GP0": {
+      "clauses": [
+        {
+          "id": "GP0.present_equivalence",
+          "required": true,
+          "source": "GP0.pass",
+          "text": "present-decision equivalence holds across representation conditions (per-unit pass fraction and paired TOST on mean delta-logprob within the frozen margin)"
+        }
+      ],
+      "epsilon_pred_mean_nats_per_token": 0.05,
+      "epsilon_pred_per_instance_nats_per_token": 0.15,
+      "fail_terminal": "CURRENT_STATE_DEFICIT__NOT_PROSPECTIVE_EVIDENCE",
+      "min_pass_fraction": 0.9,
+      "name": "present_equivalence_on_P2",
+      "note_v4": "Retained unchanged at protected time. Under V4 it confirms a property already established on dev by GPE; if an admitted model still fails it, the screen did not transfer -- terminal GPE_DID_NOT_TRANSFER__SCREEN_INSUFFICIENT.",
+      "rule": "per (instance, arm): |logprob(R3)-logprob(R2)| <= eps AND current action identical across R0,R2,R3 AND current action correct AND token budgets matched; fraction passing >= 0.90 AND TOST equivalent on the mean difference"
+    },
+    "GP1": {
+      "alpha": 0.05,
+      "clauses": [
+        {
+          "id": "GP1.contrast_B_significant",
+          "required": true,
+          "source": "GP1.pass",
+          "text": "contrast B (R2 -> R3) is significant at alpha on the canonical family"
+        }
+      ],
+      "min_accuracy_gain": 0.15,
+      "name": "R3_beats_R2_on_P2",
+      "r3_competence_floor": 0.7,
+      "rule": "instance-level exact McNemar p <= 0.05 AND arm-level accuracy gain >= 0.15, in BOTH models; R3 arm-level accuracy >= 0.70 distinguishes NO_MECHANISM_EFFECT from ORDINARY_REASONING_FAILURE; evaluated on F3_P2_CANON (primary); the same statistics on F3_P2_CANON_SF are reported as contrast B-SF and never gate"
+    },
+    "GP2": {
+      "alpha": 0.05,
+      "clauses": [
+        {
+          "direction": "min",
+          "id": "GP2a.probe_decodes_R0",
+          "probe_condition": "R0",
+          "required": true,
+          "source": "GP2.clause_values.GP2a.probe_decodes_R0.pass",
+          "text": "probe decodes the recorded-basis attribute under R0 (>= 0.80)",
+          "threshold": 0.8
+        },
+        {
+          "direction": "min",
+          "history": "THIS IS THE CLAUSE V1 AND V2 REGISTERED AND NEVER EVALUATED. Under the V1 label it was unsatisfiable in principle; under the V3 label and randomised roster it is a genuine open question, and the reachability limb of the clause-coverage certificate proves so before the run.",
+          "id": "GP2a.probe_decodes_R3",
+          "probe_condition": "R3",
+          "required": true,
+          "source": "GP2.clause_values.GP2a.probe_decodes_R3.pass",
+          "text": "probe decodes the recorded-basis attribute under R3 (>= 0.80)",
+          "threshold": 0.8
+        },
+        {
+          "direction": "min",
+          "id": "GP2b.probe_kv_retained_decodes",
+          "probe_condition": "R2_TEXT_REMOVED_KV_RETAINED",
+          "required": false,
+          "source": "GP2.clause_values.GP2b.probe_kv_retained_decodes.pass",
+          "text": "probe decodes under R2 text with the R0 KV prefix retained (>= 0.80)",
+          "threshold": 0.8
+        },
+        {
+          "id": "GP2b.kv_recovers_R0",
+          "required": false,
+          "source": "GP2.clause_values.GP2b.kv_recovers_R0.pass",
+          "text": "KV-retained behavioural accuracy >= R0 accuracy - 0.10"
+        },
+        {
+          "id": "GP2b.contrast_D_significant",
+          "required": false,
+          "source": "GP2.clause_values.GP2b.contrast_D_significant.pass",
+          "text": "contrast D (R2 -> KV retained) exact two-sided p <= 0.05, with a registered same-path witness"
+        }
+      ],
+      "kv_recovery_margin": 0.1,
+      "name": "alternate_channel",
+      "probe_positive_control_min_acc": 0.8,
+      "probe_survival_min_acc": 0.8,
+      "removal_limb_note": "V1/V2 registered 'at chance under R2_TRUE_REMOVAL (<= 0.65)' and 'true-removal accuracy below R0 by >= 0.15'. Both are STRUCTURALLY UNFAILABLE: R2 and R2_TRUE_REMOVAL render identically to one another AND identically across the two arms, so the probe is pinned at chance whatever the model does. They are NOT re-registered as empirical clauses. The proposition they were meant to establish \u2014 the intervention leaves no trace of the dormant variable in the R2 representation \u2014 is established a priori by the identifiability certificate, which proves the two arms are the same string. Reporting a measured 0.51 for this was a contrast that could not have come out otherwise.",
+      "rule": "GP2a (required): the probe decodes the recorded-basis attribute in EVERY condition the design registers as label-identifiable and in which the basis is named \u2014 R0 AND R3, both >= 0.80. GP2b (control quality): the probe decodes under the retained-KV condition (>= 0.80), KV-retained behavioural accuracy >= R0 - 0.10, and contrast D (R2 -> KV retained) has exact p <= 0.05."
+    },
+    "GP3": {
+      "clauses": [
+        {
+          "id": "GP3.p0_no_gap",
+          "required": true,
+          "source": "GP3.checks.p0_no_gap",
+          "text": "F1_P0 shows no R2/R3 gap beyond max_control_gap"
+        },
+        {
+          "id": "GP3.mirror_not_falsely_revised_under_R3",
+          "required": true,
+          "source": "GP3.checks.mirror_not_falsely_revised_under_R3",
+          "text": "F3_P2_MIRROR false-revision rate under R3 is <= the registered threshold"
+        },
+        {
+          "id": "GP3.recon_no_gap",
+          "required": true,
+          "source": "GP3.checks.recon_no_gap",
+          "text": "F3_P2_RECON shows |R2-R3| within max_control_gap"
+        }
+      ],
+      "max_control_gap": 0.1,
+      "max_mirror_false_revision_R3": 0.1,
+      "name": "controls",
+      "rule": "F1_P0 shows |R2-R3| <= 0.10; F3_P2_RECON shows |R2-R3| <= 0.10; F3_P2_MIRROR false-revision rate under R3 <= 0.10"
+    },
+    "GPC": {
+      "classes": {
+        "maintain": "MAINTAIN_REQUIRED arms of every dev family",
+        "update": "UPDATE_REQUIRED arms of every dev family"
+      },
+      "condition": "R0",
+      "fail_outcome": "GPC_FAIL__MODEL_REPLACED_BEFORE_PROTECTED_SEED (administrative, pre-run; not a terminal of the protected run)",
+      "min_maintain_accuracy_R0": 0.75,
+      "min_update_accuracy_R0": 0.75,
+      "name": "pre_run_model_competence_on_dev_split",
+      "rule": "per model, on the full dev split under the complete history R0: maintain accuracy >= 0.75 AND update accuracy >= 0.75. Evaluated BEFORE the protected seed is sealed. A model that fails is replaced by another ungated open-weight instruct model that fits one A100-80GB in bf16, the replacement is recorded in the design note section 9, and GPC is re-run on the replacement; the dev split may be used for this purpose only (registered legitimate pre-run use). GPC never enters GP0-GP3, the terminal mapping or the routing; it is reported in every rollup.",
+      "split": "dev"
+    },
+    "GPE": {
+      "criterion": "the per-instance rule of GP0: |logprob(R3)-logprob(R2)| <= eps AND current action identical across R0,R2,R3 AND current action correct AND token budgets matched",
+      "epsilon_pred_mean_nats_per_token": 0.05,
+      "epsilon_pred_per_instance_nats_per_token": 0.15,
+      "evaluated": "BEFORE the protected seed is sealed",
+      "fail_outcome": "GPE_FAIL__MODEL_NOT_ADMITTED (administrative, pre-run; not a terminal of the protected run)",
+      "implemented_by": "pra_real_llm_audit.py --stage equivalence-gate (dev split only)",
+      "min_pass_fraction": 0.9,
+      "name": "pre_run_present_equivalence_per_family",
+      "rationale": "V2 discovered a model's present-state deficit at protected time, on one fixture, after the single draw was spent (mistral-small-24b: GP0 per-unit 0.296; present-task accuracy 0.317 under R1 against 1.000 under R2, 82/120 discordant one way). That is an admission question answerable on dev. Not a rescue: a model failing GPE is excluded, not re-scored.",
+      "rule": "per model, per family, on the dev split: pass fraction >= 0.90 AND TOST equivalent on the mean difference. A model failing on ANY family is not admitted to the protected run and is replaced by another ungated open-weight instruct model fitting one A100-80GB in bf16, exactly as GPC prescribes; the failing per-family numbers are recorded. GPE never enters GP0-GP3, the terminal mapping or the routing, and is reported in every rollup.",
+      "scope": "every registered family, per model (V2 gated the canonical fixture only -- limitation V-M1)",
+      "split": "dev"
+    }
+  },
+  "issue": 51,
+  "kv_channel": {
+    "conditions": [
+      "R2",
+      "R2_TEXT_REMOVED_KV_RETAINED"
+    ],
+    "families": [
+      "F3_P2_CANON"
+    ],
+    "mechanism": "forward the unpadded R0 state through the model with use_cache=True, keep past_key_values, then continue with the R2-based future_action chat prompt; TRUE_REMOVAL uses a fresh cache",
+    "representation_cost": "retained tokens (R0 prefix + R2 text vs R2 text)"
+  },
+  "lineage": {
+    "adds": "GPE, the per-family present-equivalence admission screen",
+    "closes_from_the_v2_protected_run": {
+      "V-M1": "GPE: present equivalence screened per family on dev, before the seed is sealed",
+      "V-M7": "row precedence pre-registered here, pre-outcome"
+    },
+    "inherits": "every gate and clause of V3, including CERT and the construct-valid alternate-channel gate, unchanged",
+    "note": "V-M3 (probe construct validity) is closed by V3's own CERT gate and alternate-channel work and is not re-registered here. V2's terminal (P2_SINGLE_MODEL_ONLY__REGISTERED_BOUNDARY_RESULT, 3858bc4) stands unrevised.",
+    "predecessor": "ORION51.PRA_REAL_LLM_AUDIT.design.v3",
+    "predecessor_status": "FROZEN_PRE_OUTCOME__PROTECTED_RUN_NOT_AUTHORIZED"
+  },
+  "metrics": [
+    "update_accuracy",
+    "maintain_accuracy",
+    "false_revision_rate",
+    "missed_revision_rate",
+    "current_regret (current action correctness)",
+    "representation_cost_retained_tokens",
+    "incompatible_cell_rate (joint intersection, primary structural metric, CR-02/CR-03)",
+    "pairwise_disjoint_collision_rate (secondary)"
+  ],
+  "models": [
+    {
+      "alias": "qwen2.5-32b-instruct",
+      "bf16_checkpoint_gb": 65.5,
+      "fits_one_a100_80gb_bf16": true,
+      "gated": false,
+      "hf_id": "Qwen/Qwen2.5-32B-Instruct",
+      "license": "Apache-2.0",
+      "parameters_b": 32.5,
+      "resolved_on": "2026-09-02 via HfApi.model_info().sha, snapshot pre-downloaded to LUNARC hf-cache",
+      "revision": "5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd"
+    },
+    {
+      "alias": "mistral-small-24b-instruct-2501",
+      "bf16_checkpoint_gb": 47.2,
+      "fits_one_a100_80gb_bf16": true,
+      "gated": false,
+      "hf_id": "mistralai/Mistral-Small-24B-Instruct-2501",
+      "license": "Apache-2.0",
+      "parameters_b": 23.6,
+      "resolved_on": "2026-09-02 via HfApi.model_info().sha, snapshot pre-downloaded to LUNARC hf-cache",
+      "revision": "9527884be6e5616bdd54de542f9ae13384489724",
+      "tokenizer_note": "HF-format tokenizer.json (Tekken vocabulary) loads with the stock fast tokenizer; the model card's optional SYSTEM_PROMPT.txt is NOT used (uniform single user turn, as V1); consolidated.safetensors is skipped at download"
+    }
+  ],
+  "no_rescue_clause": "No post-hoc change to families, instance counts, prompts, filler, tolerances, gate thresholds, probe label, probe split, certificates or terminal mapping. A defect discovered after unblinding is reported as CANNOT_CHECK for the affected component, with its own exit code, and fixed only under a new design version with a fresh protected seed. The pre-run certificate stage is the ONLY use of the dev split beyond GPC and is exhausted once the protected seed is sealed.",
+  "probe": {
+    "capture": "hidden state of the last prompt token of the current_action prompt (pre-evidence), every layer including embeddings",
+    "clause_bindings": [
+      [
+        "GP2a.probe_decodes_R0",
+        "R0",
+        "min",
+        0.8
+      ],
+      [
+        "GP2a.probe_decodes_R3",
+        "R3",
+        "min",
+        0.8
+      ],
+      [
+        "GP2b.probe_kv_retained_decodes",
+        "R2_TEXT_REMOVED_KV_RETAINED",
+        "min",
+        0.8
+      ]
+    ],
+    "conditions": [
+      "R0",
+      "R1",
+      "R2",
+      "R3",
+      "R2_TEXT_REMOVED_KV_RETAINED"
+    ],
+    "families": [
+      "F3_P2_CANON"
+    ],
+    "identifiability_note": "R1 and R2 are registered NON-identifiable: their two arms render identically, so no accuracy is reported for them and no gate clause may name them. R2_TEXT_REMOVED_KV_RETAINED is certified on its EFFECTIVE CONTEXT (retained R0 prefix + R2 text), not on the text alone \u2014 certifying the text alone would call it non-identifiable and be wrong.",
+    "identifiable_conditions_registered": [
+      "R0",
+      "R2_TEXT_REMOVED_KV_RETAINED",
+      "R3"
+    ],
+    "kind": "mass_mean_difference_direction_linear_probe",
+    "label": "registry_class_of_recorded_basis (class 1 = {SRR,CRX,OSL}, class 0 = {TRK,QDB,MRG}) \u2014 an attribute the text states wherever the recorded basis is named",
+    "label_rationale": "V1/V2 used support_source (A=1,B=0), an index into the generator's source dict. Under the A<->B exchange \u2014 a symmetry the generator's law respects, since A and B are drawn i.i.d. \u2014 R3's rendering maps onto itself while that label flips, so the expected accuracy of ANY classifier on R3 is exactly 0.5. Measured R3 was 0.542/0.594 against a registered 0.80. The V3 label transforms consistently with the text under the same exchange and is therefore identifiable wherever the basis is named.",
+    "reported": "test accuracy per layer; max over layers is the gate statistic, reported ALWAYS with (i) its max-over-layers null band and (ii) the model-free surface null on the same stimuli and split",
+    "split_rule": "first 60% of instances in frozen instance order are train; remainder test; frozen before any outcome is inspected",
+    "surface_null": {
+      "calibration_requirement": "the relational reader MUST score >= 0.95 on the V1 frozen R0 stimuli under the V1 label. That is the known-bad case: a surface null that clears V1's positional shortcut is useless. Verified at 1.0000 (lexical reader: 0.4896 \u2014 which is why the null cannot be lexical only).",
+      "estimator": "the same mass-mean difference direction as the neural probe, on features instead of hidden states, with the same frozen instance split",
+      "interpretation": "a condition where the surface null matches the probe licenses 'the information is present in the context', NEVER 'the model represents the variable'. The residual is reported; it does not silently enter the pass.",
+      "readers": [
+        "lexical (word + character 4-gram counts)",
+        "relational (roster slot of the matched basis, first-mention offset, names-before-basis)"
+      ]
+    },
+    "train_fraction": 0.6
+  },
+  "protected_run": {
+    "authorization_token": "PROTECTED_RUN_AUTHORIZED_AFTER_DESIGN_REVIEW__ORION51_PRA_V3_R1",
+    "authorized": false,
+    "exit_codes": {
+      "0": "every registered gate evaluated; outcome recorded",
+      "3": "a registered clause could not be checked (CANNOT_CHECK); no pass is implied",
+      "4": "a registered clause is unimplemented, unevaluated or unreachable (design defect)"
+    },
+    "note": "COMPUTE AUTHORIZATION FOR A V3 RUN IS OUT OF SCOPE OF THE DESIGN PR AND IS NOT REQUESTED. The runner refuses the protected split unless this token is passed explicitly AND a sealed seed file hashing to a published commitment is supplied \u2014 and no commitment is published yet. Preconditions, in order: (1) the V2 protected run (SLURM array 3566415) COMPLETES and its rollup lands; (2) the operator decides V3 should run at all, in light of V2's outcome; (3) the pre-run certificate stage passes on the dev split; (4) the protected seed is sealed on LUNARC and its sha256 published into this design in a commit of its own; (5) the run is authorized. Nothing in this design queues, stages or submits anything."
+  },
+  "registered_expectation_preoutcome": {
+    "expectation": "With GPE in place the protected run admits only models for which the prospective question is well posed, so the expected terminal is P2_PROSPECTIVE_REVISION_STATE_REQUIRED on every admitted model.",
+    "falsifiers": [
+      "GPE_DID_NOT_TRANSFER__SCREEN_INSUFFICIENT",
+      "NO_MODEL_HOLDS_PRESENT_EQUIVALENCE__CONSTRUCTION_BOUND",
+      "any admitted model reaching CURRENT_STATE_DEFICIT__NOT_PROSPECTIVE_EVIDENCE"
+    ],
+    "stated_before_any_v4_instance_exists": true
+  },
+  "registered_scope": {
+    "alternate_state_channels_enumerated": [
+      "remaining prompt text",
+      "KV cache (checked: Gate C)",
+      "residual/hidden activations (checked: Gate A, all layers)",
+      "fixed model parameters (controlled: nonce source identities, Gate D)",
+      "tool/session state (not present in this surface)",
+      "retrieval metadata (not present in this surface)"
+    ],
+    "current_responsibility": "claim-status contract with action set {RETAIN, REOPEN, ESCALATE}; ANY_OPTIMAL_ACTION semantics; loss = 0/1 against the registered acceptable set",
+    "dormant_variable": "support_source (support_set for the independent-support family; current_defeat for the P1 family)",
+    "future_evidence_intervention_family": "controlled exogenous registry notices supplied identically to every representation condition: RETRACT(source), EXPRESSION_OF_CONCERN(source), DIRECT_REFUTATION(claim), ADMINISTRATIVE_NOTICE, RETRACT(source)+REGISTRY_ANNOTATION, RETRACT(source)+REGISTRY_FLAG_POLICY (same-fibre variant)",
+    "future_responsibility": "same contract evaluated after the intervention",
+    "parametric_side_information_control": "source identities are episode-local nonces (invented surname + year + registry code) that fixed parameters cannot know; claim texts are templated fictitious scientific claims",
+    "prediction_reference_protocol_rho": "registry_status_line: given the representation state, emit the registry status line 'Claim <id> is currently listed as <STATUS>.' (teacher-forced mean per-token log-probability of the registered continuation is the frozen surrogate)",
+    "present_linguistic_target": "the registered status-line continuation under rho"
+  },
+  "representation_conditions": {
+    "R0": "complete record history (numbered lines)",
+    "R1": "deterministic prediction-preserving summary: claim, source roster, status line; collapses support_source and current_defeat",
+    "R2": "current-decision-sufficient state: claim, current support validity, status line",
+    "R3": "R2 + recorded support (the registered dormant variable)",
+    "R4": "R2 + full dependency ledger (controlled-future stronger-state control, Protocol V3 section 7)"
+  },
+  "routing": {
+    "any_fail": "reported as a registered negative or boundary result under the mapped terminal; P0-dominated suite is a valid negative; no family, prompt, threshold or gate may change post-outcome (no-rescue clause)",
+    "full_pass": "GP0+GP1+GP2a+GP3 pass in BOTH models -> the manuscript MAY gain ONE registered empirical section under a NEW manuscript version and a NEW freeze; never automatic; claim authority stays with the freeze ledgers; the section must report contrast B on both the canonical and the same-fibre variant (H-EXT-4 predictive-congruence requirement)",
+    "relation_to_v1_outcome": "V1 R1 and V2 R1 are reported side by side; neither overrides the other; a V1 ORDINARY_REASONING_FAILURE terminal plus a V2 pass is the registered 'competence boundary of the surface' reading, not a rescue"
+  },
+  "row_precedence_preregistered": {
+    "closes": "V-M7",
+    "statement": "The row precedence V2 adopted after unblinding is fixed here, before any V4 instance exists, in the exact form V2 used. V2's disclosure stands unchanged for V2."
+  },
+  "schema_version": "orion.v2.pra.real-llm-audit-design.v3",
+  "scientific_authority": false,
+  "statistics": {
+    "accuracy_intervals": "Wilson 95%",
+    "equivalence": "paired TOST on status-line mean log-prob differences with frozen margin; 90% CI must lie inside +-margin; non-significance is never read as equivalence",
+    "independent_unit": "instance (episode); arm-level decisions reported alongside and are nested",
+    "power_note": "N=120 canonical P2 instances (and N=120 same-fibre instances, identical power): instance-level R2 accuracy is 0 by construction under deterministic decoding (identical prompts for hA/hB), so contrast B detects R3 instance accuracy >= 0.15 (exact binomial, alpha 0.05, power > 0.99 at R3 = 0.70); arm-level MDE for a paired McNemar at discordance 0.2-0.3 is 0.11-0.14 accuracy points (alpha 0.05, power 0.8); control families (N=60) detect |gap| >= 0.16-0.20 and are therefore read against the frozen max_control_gap 0.10 as a bound, not as a null",
+    "primary_test": "exact McNemar (two-sided binomial on discordant pairs) at instance level (instance correct iff every arm correct)",
+    "secondary_test": "exact McNemar at arm level"
+  },
+  "status": "REGISTERED_PREOUTCOME__NOT_EXECUTED",
+  "suite_generator": {
+    "arms_per_instance": 2,
+    "domains": 8,
+    "instances_per_family": {
+      "dev": {
+        "F0_ACQ": 4,
+        "F1_P0": 4,
+        "F2_P1": 4,
+        "F3_P2_CANON": 4,
+        "F3_P2_CANON_SF": 4,
+        "F3_P2_INDEP": 4,
+        "F3_P2_MIRROR": 4,
+        "F3_P2_RECON": 4,
+        "F3_P2_TIE": 4
+      },
+      "protected": {
+        "F0_ACQ": 40,
+        "F1_P0": 60,
+        "F2_P1": 60,
+        "F3_P2_CANON": 120,
+        "F3_P2_CANON_SF": 120,
+        "F3_P2_INDEP": 60,
+        "F3_P2_MIRROR": 60,
+        "F3_P2_RECON": 60,
+        "F3_P2_TIE": 40
+      }
+    },
+    "leakage_controls": [
+      "nonce source identities per instance",
+      "domain rotation",
+      "claim identifier per instance",
+      "identical evidence text across arms except in F3_P2_RECON where the annotation IS the control",
+      "no surface feature encodes the gold action outside the registered evidence relation",
+      "F3_P2_CANON_SF: the registry-flag policy sentence is identical across arms and applies to both arms' files (both list source A), so it carries no arm information"
+    ],
+    "seed": {
+      "dev": 20260922,
+      "protected_commitment_sha256": "PENDING_UNTIL_PRE_RUN_CERTIFICATE_PASSES_ON_DEV",
+      "protected_seed_custody": "sealed file '<int>:<256-bit salt>' generated on LUNARC ONLY AFTER the pre-run certificate stage passes on the dev split (identifiability matches registration AND every registered clause is declared and reachable); stored outside the repo at /projects/hep/fs9/users/scyiu/orion-v2-pra-llm/v3/protected_seed.sealed (mode 0600), never printed; its sha256 is published into this design as protected_commitment_sha256 BEFORE the protected run, in a commit of its own, exactly as V2 did; the runner refuses to generate the protected split unless the supplied file hashes to the commitment; the seed itself is archived in the repo only after the protected run completes (post-run reveal). NO COMMITMENT VALUE IS PUBLISHED HERE, because no sealed file backs one yet \u2014 publishing a digest with nothing behind it would be precisely the unexecuted sentence this design exists to prevent."
+    }
+  },
+  "terminal_definitions_v4": {
+    "GPE_DID_NOT_TRANSFER__SCREEN_INSUFFICIENT": "An admitted model failed GP0 at protected time despite passing GPE on every family on dev. A finding about the screen, not the model or the thesis.",
+    "NO_MODEL_HOLDS_PRESENT_EQUIVALENCE__CONSTRUCTION_BOUND": "No candidate model passed GPE. Bounds the construction, not the thesis. A first-class outcome."
+  },
+  "terminals": [
+    "ACQUISITION_LIMIT__FULL_HISTORY_INSUFFICIENT",
+    "CANNOT_CHECK_ALTERNATE_CHANNEL_CAUSAL_USE",
+    "CANNOT_CHECK_ALTERNATE_CHANNEL_RETENTION",
+    "CONTROL_FAILURE__SUITE_NOT_INTERPRETABLE",
+    "CURRENT_STATE_DEFICIT__NOT_PROSPECTIVE_EVIDENCE",
+    "FUTURE_EVIDENCE_RECONSTRUCTS_DORMANT_STATE__NO_RETENTION_REQUIRED",
+    "INCOMPLETE__MODELS_MISSING",
+    "INCOMPLETE__STAGES_MISSING",
+    "INTERVENTION_DID_NOT_REMOVE_DORMANT_INFORMATION",
+    "INTERVENTION_REMOVED_REGISTERED_DORMANT_INFORMATION__KV_INFORMATION_RETAINED_BUT_NOT_USED",
+    "INTERVENTION_REMOVED_REGISTERED_DORMANT_INFORMATION__KV_SURVIVAL_CONTROL_CONFIRMED",
+    "INTERVENTION_REMOVED_REGISTERED_DORMANT_INFORMATION__KV_SURVIVAL_CONTROL_NOT_REPRODUCED",
+    "LABEL_NOT_IDENTIFIABLE_FROM_CONDITION",
+    "NO_MECHANISM_EFFECT__PROSPECTIVE_AUGMENTATION_REDUNDANT",
+    "ORDINARY_REASONING_FAILURE_DESPITE_RETAINED_STATE",
+    "P0_CURRENT_AND_PROSPECTIVE_SUFFICIENT",
+    "P2_PROSPECTIVE_REVISION_STATE_REQUIRED",
+    "P2_SINGLE_MODEL_ONLY__REGISTERED_BOUNDARY_RESULT",
+    "REGISTERED_CLAUSE_NOT_EVALUATED__SUITE_NOT_INTERPRETABLE",
+    "GPE_DID_NOT_TRANSFER__SCREEN_INSUFFICIENT",
+    "NO_MODEL_HOLDS_PRESENT_EQUIVALENCE__CONSTRUCTION_BOUND"
+  ],
+  "token_budget": {
+    "filler_line": "Filler line: this line is intentionally uninformative and must be ignored.",
+    "filler_token": " ignore",
+    "rule": "per (instance, arm) every R-condition is padded to the maximum unpadded token count across R0..R4: whole frozen filler lines, then single ' ignore' tokens until the count reaches the target (exact up to tokenizer merges; tolerance 4)",
+    "tolerance_tokens": 4
+  }
+}
