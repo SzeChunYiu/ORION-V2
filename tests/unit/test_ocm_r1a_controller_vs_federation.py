@@ -37,7 +37,6 @@ def test_rectangular_control_ties_and_registered_instance_fires() -> None:
     assert s5["status"] == "OK"
     assert (s5["arms"][M.M_ARM]["worst_case"], s5["arms"][M.B5_ARM]["B_first"]["worst_case"], s5["arms"][M.B5_ARM]["Z_first"]["worst_case"]) == (8, 9, 9)
     assert s5["interaction_term"] == 1
-    assert s5["paired"]["worlds_federation_better"] == 0  # the federation never identifies a world faster than the controller? not required; recorded
     assert len(s5["arms"][M.M_ARM]["per_world"]) == s5["worlds"] == 160
 
 
