@@ -1,0 +1,24 @@
+name: OCM programme engineering acceptance
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify actual merged delivery and additive acceptance
+        run: python research/orion-machine/programme_spine_v1/acceptance_v1/accept.py
+      - name: Exercise acceptance refusal controls
+        run: python -m unittest discover -s research/orion-machine/programme_spine_v1/acceptance_v1 -p test_acceptance.py -v
+      - name: Verify original source preservation
+        run: git diff --exit-code
