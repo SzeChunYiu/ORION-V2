@@ -80,7 +80,9 @@ M_ARM = "M_TYPED_COLLECTIVE_STATE"
 def refit_arm(k: int) -> str: return f"B8_D{k}_REFIT_COVERAGE_{k}_OF_8"
 def unit_arm(k: int) -> str: return f"B4X_D{k}_UNIT_SIGN_COVERAGE_{k}_OF_8"
 CONTROL_ARMS = ("C_ALWAYS_RISE", "C_ALWAYS_FLAT", "C_ALWAYS_FALL")
-TERMINALS = ("TYPING_VALUE_EQUALS_COVERAGE_GAP", "TYPING_SEPARATES_BEYOND_COVERAGE", "UNTYPED_RECOVERS_UNEXERCISED__CORRECTED", "LANE_DEFECT")
+TERMINALS = ("TYPING_VALUE_EQUALS_COVERAGE_GAP__NO_COMOVEMENT_RECOVERY",
+             "TYPING_VALUE_EQUALS_COVERAGE_GAP__COMOVEMENT_RECOVERS_SOME_STRATA",
+             "TYPING_SEPARATES_BEYOND_COVERAGE", "LANE_DEFECT")
 
 
 def canonical_json(o) -> str:
@@ -230,47 +232,62 @@ def gates(sc: dict, res: dict, cus: dict, fit: dict, selftest_ok: bool | None) -
     g["G0c_NULL_CALIBRATION"] = {"pass": (bool(balanced and abs(best_const - kmod / len(G.STRATA_V3)) < 1e-9) if balanced else None),
                                  "best_constant_rate": best_const, "derived_bar": kmod / len(G.STRATA_V3), "modal_class": modal, "balanced_split": balanced}
     g["G0d_M_EXACT_ON_ALL_STRATA"] = {"pass": sc["per_arm"][M_ARM]["capability_correct"] == n, "M_correct": sc["per_arm"][M_ARM]["capability_correct"], "n": n}
-    tie_ok, adv_ok, recovers, curve = True, True, [], {}
+    tie_ok, gap_ok, curve = True, True, {}
+    comove_ties, comove_ahead, comove_behind = [], [], []
     per_domain = {}
     for k in COVERAGE_LEVELS:
         ex = tuple(NON_CARRIER_STRATA + CARRIER_STRATA[:k]); un = tuple(CARRIER_STRATA[k:])
+        w = fit["domains"][str(k)][refit_arm(k)]["weights"]
+        un_zero = tuple(s for s in un if w[CARRIER_ROLE[s]] == 0.0)        # the strict coverage gap: BY_CONSTRUCTION advantage
+        un_nonzero = tuple(s for s in un if w[CARRIER_ROLE[s]] != 0.0)     # role reached through co-movement: LIVE
         c_ex = contrast(sc, M_ARM, refit_arm(k), ex)
-        c_un = contrast(sc, M_ARM, refit_arm(k), un) if un else None
+        c_gap = contrast(sc, M_ARM, refit_arm(k), un_zero) if un_zero else None
+        c_co = contrast(sc, M_ARM, refit_arm(k), un_nonzero) if un_nonzero else None
         tie_here = all(v.get("discordant") == 0 for v in c_ex["per_scale"].values() if v.get("status") == "EVALUATED")
         tie_ok &= tie_here
-        adv_here, rec_here = True, []
-        if c_un is not None:
-            for scl, v in c_un["per_scale"].items():
-                if v.get("status") != "EVALUATED":
-                    continue
-                for st, cell in v["cells"].items():
-                    if cell["x_correct"] > cell["y_correct"] and cell["y_only"] == 0:
-                        continue
-                    adv_here = False
-                    if cell["y_correct"] == cell["x_correct"]:
-                        rec_here.append(f"{st}|{scl}")
-        adv_ok &= adv_here; recovers += rec_here
+        gap_here = True
+        if c_gap is not None:
+            for scl, v in c_gap["per_scale"].items():
+                for st, cell in (v.get("cells") or {}).items():
+                    if not (cell["x_correct"] > cell["y_correct"] and cell["y_only"] == 0):
+                        gap_here = False
+        gap_ok &= gap_here
+        co_here = {}
+        if c_co is not None:
+            for scl, v in c_co["per_scale"].items():
+                for st, cell in (v.get("cells") or {}).items():
+                    key = f"D{k}:{st}|{scl}"
+                    if cell["x_only"] == 0 and cell["y_only"] == 0:
+                        comove_ties.append(key); co_here[key] = "TIE"
+                    elif cell["y_only"] == 0:
+                        comove_ahead.append(key); co_here[key] = "M_AHEAD"
+                    else:
+                        comove_behind.append(key); co_here[key] = "MIXED_OR_REFIT_AHEAD"
         curve[str(k)] = {}
         for scl in SCALES:
             idx = [i for i in range(n) if sc["scales"][i] == scl]
             curve[str(k)][scl] = sum(1 for i in idx if sc["vec"][M_ARM][i]) - sum(1 for i in idx if sc["vec"][refit_arm(k)][i])
-        per_domain[str(k)] = {"exercised": c_ex, "unexercised": c_un, "tie_on_exercised": tie_here, "advantage_on_every_unexercised_cell": adv_here,
-                              "untyped_ties_on_unexercised_cells": rec_here, "refit_zeroed_unexercised_roles": fit["domains"][str(k)][refit_arm(k)]["zeroed_unexercised_roles"]}
-    g["G1_TIE_ON_EXERCISED_STRATA"] = {"pass": tie_ok, "n_evaluated": n, "note": "live: M ahead OR behind on an exercised stratum fails this gate"}
-    g["G2_ADVANTAGE_ON_UNEXERCISED_CARRIERS"] = {"pass": adv_ok, "untyped_ties_on_unexercised_cells": recovers}
+        per_domain[str(k)] = {"exercised": c_ex, "unexercised_zero_weight": c_gap, "unexercised_nonzero_weight": c_co,
+                              "tie_on_exercised": tie_here, "advantage_on_every_zero_weight_cell": gap_here,
+                              "comovement_cells": co_here, "gap_strata": list(un_zero), "comovement_strata": list(un_nonzero)}
+    g["G1_TIE_ON_EXERCISED_STRATA"] = {"pass": tie_ok, "n_evaluated": n, "note": "LIVE: M ahead OR behind on an exercised stratum fails this gate"}
+    g["G2_ADVANTAGE_ON_ZERO_WEIGHT_UNEXERCISED"] = {"pass": gap_ok, "note": "BY_CONSTRUCTION (disclosed): a refit that zeroes a lone carrier's channel cannot read that stratum; registered as the coverage-gap disclosure, not as evidence about typing"}
+    g["G2b_COMOVEMENT_STRATA_LIVE"] = {"pass": not comove_behind, "ties": comove_ties, "M_ahead": comove_ahead, "refit_ahead_or_mixed": comove_behind,
+                                       "note": "LIVE: an unexercised role the refit reached through co-movement in non-carrier strata"}
     mono = all(all(curve[str(a)][s] >= curve[str(b)][s] for s in SCALES) for a, b in zip(COVERAGE_LEVELS, COVERAGE_LEVELS[1:]))
     zero8 = all(curve["8"][s] == 0 for s in SCALES)
     g["G3_COVERAGE_CURVE"] = {"pass": mono and zero8, "monotone_non_increasing": mono, "zero_at_full_coverage": zero8, "advantage_M_minus_refit_by_coverage": curve}
     g["per_domain"] = per_domain
     hard = all(bool(g[k]["pass"]) for k in ("G0a_KNOWN_ANSWER_D8_REPRODUCES_V3_REFIT", "G0b_GENERATOR_VALIDITY", "G0d_M_EXACT_ON_ALL_STRATA")) and g["G0c_NULL_CALIBRATION"]["pass"] is not False
-    if not hard:
+    m_ahead_exercised = any(v.get("x_only", 0) > 0 for k in COVERAGE_LEVELS for v in per_domain[str(k)]["exercised"]["per_scale"].values() if v.get("status") == "EVALUATED")
+    if not hard or not gap_ok or comove_behind:
         route = "LANE_DEFECT"
     elif not tie_ok:
-        route = "TYPING_SEPARATES_BEYOND_COVERAGE" if any(v["per_scale"][s].get("x_only", 0) > 0 for v in (per_domain[str(k)]["exercised"] for k in COVERAGE_LEVELS) for s in SCALES if v["per_scale"][s].get("status") == "EVALUATED") else "LANE_DEFECT"
-    elif recovers:
-        route = "UNTYPED_RECOVERS_UNEXERCISED__CORRECTED"
-    elif adv_ok and g["G3_COVERAGE_CURVE"]["pass"]:
-        route = "TYPING_VALUE_EQUALS_COVERAGE_GAP"
+        route = "TYPING_SEPARATES_BEYOND_COVERAGE" if m_ahead_exercised else "LANE_DEFECT"
+    elif comove_ties:
+        route = "TYPING_VALUE_EQUALS_COVERAGE_GAP__COMOVEMENT_RECOVERS_SOME_STRATA"
+    elif g["G3_COVERAGE_CURVE"]["pass"]:
+        route = "TYPING_VALUE_EQUALS_COVERAGE_GAP__NO_COMOVEMENT_RECOVERY"
     else:
         route = "LANE_DEFECT"
     g["ROUTE"] = {"route": route, "terminals": TERMINALS}
@@ -282,10 +299,10 @@ def render_md(a: dict) -> str:
          "| arm | correct | rate |", "|---|---:|---:|"]
     for arm, s in sorted(a["per_arm"].items()):
         L.append(f"| {arm} | {s['capability_correct']}/{s['n']} | {s['rate']:.4f} |")
-    L += ["", "| coverage k | M − refit (scale " + ") | M − refit (scale ".join(SCALES) + ") | tie on exercised | advantage on every unexercised cell | refit zeroed unexercised roles |", "|---|---:|---:|---|---|---|"]
+    L += ["", "| coverage k | M − refit (scale " + ") | M − refit (scale ".join(SCALES) + ") | tie on exercised (live) | advantage on zero-weight gap (by construction) | gap / co-movement strata |", "|---|---:|---:|---|---|---|"]
     for k in COVERAGE_LEVELS:
         d = a["gates"]["per_domain"][str(k)]; cv = a["gates"]["G3_COVERAGE_CURVE"]["advantage_M_minus_refit_by_coverage"][str(k)]
-        L.append(f"| {k}/8 | " + " | ".join(str(cv[s]) for s in SCALES) + f" | {d['tie_on_exercised']} | {d['advantage_on_every_unexercised_cell']} | {d['refit_zeroed_unexercised_roles']} |")
+        L.append(f"| {k}/8 | " + " | ".join(str(cv[s]) for s in SCALES) + f" | {d['tie_on_exercised']} | {d['advantage_on_every_zero_weight_cell']} | gap {d['gap_strata']}; co-movement {d['comovement_cells']} |")
     L += ["", "| gate | pass |", "|---|---|"]
     for k, v in a["gates"].items():
         if k in ("ROUTE", "per_domain"):
@@ -321,14 +338,14 @@ def stage_selftest(out: Path) -> int:
         if r["stratum"] == NON_CARRIER_STRATA[0]:
             r["arms"][refit_arm(8)] = "MUTANT_WRONG"
     gp = gates(score(planted), planted, cus, fit, True)
-    planted_fires = gp["G1_TIE_ON_EXERCISED_STRATA"]["pass"] is False and gp["ROUTE"]["route"] != "TYPING_VALUE_EQUALS_COVERAGE_GAP"
+    planted_fires = gp["G1_TIE_ON_EXERCISED_STRATA"]["pass"] is False and not gp["ROUTE"]["route"].startswith("TYPING_VALUE_EQUALS_COVERAGE_GAP")
     # planted: an untyped refit tying M on an unexercised cell must route CORRECTED
     planted2 = json.loads(json.dumps(res))
     for r in planted2["instances"]:
         if r["stratum"] == CARRIER_STRATA[7]:
             r["arms"][refit_arm(0)] = r["expected_capability"]
     gp2 = gates(score(planted2), planted2, cus, fit, True)
-    planted2_fires = gp2["ROUTE"]["route"] in ("UNTYPED_RECOVERS_UNEXERCISED__CORRECTED", "LANE_DEFECT") and bool(gp2["G2_ADVANTAGE_ON_UNEXERCISED_CARRIERS"]["untyped_ties_on_unexercised_cells"])
+    planted2_fires = gp2["ROUTE"]["route"] == "LANE_DEFECT" and gp2["G2_ADVANTAGE_ON_ZERO_WEIGHT_UNEXERCISED"]["pass"] is False
     ok = bool(ok_refit and ka["pass"] and g["G0b_GENERATOR_VALIDITY"]["pass"] and g["G0d_M_EXACT_ON_ALL_STRATA"]["pass"] and planted_fires and planted2_fires)
     out.mkdir(parents=True, exist_ok=True)
     rep = {"passed": ok, "fit_reproduces": ok_refit, "known_answer": ka, "selftest_gates": {k: v for k, v in g.items() if k != "per_domain"},
