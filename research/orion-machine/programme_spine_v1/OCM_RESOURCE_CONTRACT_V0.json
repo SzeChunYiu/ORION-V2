@@ -1,0 +1,121 @@
+{
+  "schema": "OCM_WHOLE_SYSTEM_RESOURCE_CONTRACT_V0",
+  "status": "PROSPECTIVE_ACCOUNTING_CONTRACT",
+  "coordinates": [
+    {
+      "name": "B_theta",
+      "unit": "bit",
+      "definition": "Finite immutable learned description, including precision and encoding.",
+      "measurement_status": "UNKNOWN",
+      "value": null
+    },
+    {
+      "name": "B_static",
+      "unit": "bit",
+      "definition": "Immutable interpreter, libraries, parser, renderer, verifier and index descriptions; charge once to named owner.",
+      "measurement_status": "UNKNOWN",
+      "value": null
+    },
+    {
+      "name": "B_mut_peak",
+      "unit": "bit",
+      "definition": "Maximum simultaneously resident mutable state, including caches and proof state.",
+      "measurement_status": "UNKNOWN",
+      "value": null
+    },
+    {
+      "name": "B_mut_total",
+      "unit": "bit-written",
+      "definition": "Cumulative newly written mutable bits; separate from retained peak.",
+      "measurement_status": "UNKNOWN",
+      "value": null
+    },
+    {
+      "name": "T_seq",
+      "unit": "declared-step",
+      "definition": "Sequential depth/time in an explicitly named cost model.",
+      "measurement_status": "UNKNOWN",
+      "value": null
+    },
+    {
+      "name": "W_total",
+      "unit": "declared-operation",
+      "definition": "Sum of operations across parallel workers and retries.",
+      "measurement_status": "UNKNOWN",
+      "value": null
+    },
+    {
+      "name": "IO",
+      "unit": "bit",
+      "definition": "All external input/output and retrieved content, including intermediate model tokens under an encoding.",
+      "measurement_status": "UNKNOWN",
+      "value": null
+    },
+    {
+      "name": "BW",
+      "unit": "bit-per-declared-time",
+      "definition": "Peak/average communication rate, both window and statistic declared.",
+      "measurement_status": "UNKNOWN",
+      "value": null
+    },
+    {
+      "name": "V_cost",
+      "unit": "declared-operation",
+      "definition": "Verifier execution plus construction/acquisition, separate from solver work; information privilege enumerated.",
+      "measurement_status": "UNKNOWN",
+      "value": null
+    },
+    {
+      "name": "train_cost",
+      "unit": "declared-operation",
+      "definition": "Training, data acquisition and preprocessing with amortization population and reuse horizon.",
+      "measurement_status": "UNKNOWN",
+      "value": null
+    },
+    {
+      "name": "Q_resource",
+      "unit": "structured",
+      "definition": "Query, gate, ancilla, preparation, readout and fault-tolerance costs if quantum applies.",
+      "measurement_status": "UNKNOWN",
+      "value": null
+    },
+    {
+      "name": "energy_if_valid",
+      "unit": "joule",
+      "definition": "Measured system-boundary energy with instrumentation; otherwise UNKNOWN, never zero.",
+      "measurement_status": "UNKNOWN",
+      "value": null
+    }
+  ],
+  "required_context": [
+    "task_family",
+    "input_access_model",
+    "precision",
+    "uniformity",
+    "error_tolerance",
+    "comparator",
+    "resource_model",
+    "accounting_owner",
+    "measurement_or_proof_source",
+    "distribution_or_worst_case",
+    "amortization_population",
+    "excluded_costs"
+  ],
+  "comparability": "Only common units, task/access/error/precision and explicit all-coordinate accounting admit Pareto comparison; UNKNOWN blocks domination claims.",
+  "non_compensatory": [
+    "Stronger uncharged oracle or verifier labels invalidate parity.",
+    "Parser, preprocessing and retrieval are never free by relocation.",
+    "Positive measured counts require exact units and source; zero still requires evaluated denominator.",
+    "A finite calibration is not an all-size simulation theorem."
+  ],
+  "source_refs": [
+    "theory/OCM_OPERATIONAL_SEMANTICS_V1.md",
+    "theory/OCM_LANE_201_TERMINAL_V1.md",
+    "theory/OCM_LANE_202_RESOURCE_INVARIANCE_CORRECTION_V1.md"
+  ],
+  "remaining": [
+    "Full matched manifests for fixed/recurrent Transformer, SSM, NTM/DNC, retrieval and OCM.",
+    "Independent accounting audit and compiled simulation witness."
+  ],
+  "authority_delta": "NONE"
+}

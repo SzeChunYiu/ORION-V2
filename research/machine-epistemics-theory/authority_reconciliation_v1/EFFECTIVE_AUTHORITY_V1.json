@@ -1,0 +1,3817 @@
+{
+  "corrections": [
+    {
+      "atlas_id": "MEG-06",
+      "authority": "NONE",
+      "disposition": "REFUTED",
+      "id": "B1:T2(c):EARLIEST_BUDGET",
+      "reason": "The old-width crossing rule is not the earliest deciding budget; lower endpoint can cross earlier.",
+      "source": {
+        "clause": "C01",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/CONCURRENT_RECONCILIATION.md"
+      }
+    },
+    {
+      "atlas_id": "MEG-06",
+      "authority": "NONE",
+      "disposition": "REFUTED",
+      "id": "B1:T2:EQUALITY_ALWAYS_UNDECIDABLE",
+      "reason": "Nilpotent chains can reach equality in finitely many steps; some nonnilpotent systems remain unresolved at every finite step.",
+      "source": {
+        "clause": "B1-T2, equality boundary",
+        "path": "research/machine-epistemics-theory/foundation_typed_lifecycle_v1/POST_BASELINE_DELTA.md"
+      }
+    },
+    {
+      "atlas_id": "MEG-18",
+      "authority": "NONE",
+      "disposition": "REFUTED",
+      "id": "B1:T4(iii):DENOMINATOR_CHANGE_ALWAYS_CHANGES_OUTPUT",
+      "reason": "Structural denominator changes can affect output, but alpha=1 or zero active input can leave it unchanged.",
+      "source": {
+        "clause": "B1-T4(iii), possibility versus necessity",
+        "path": "research/machine-epistemics-theory/foundation_typed_lifecycle_v1/POST_BASELINE_DELTA.md"
+      }
+    },
+    {
+      "atlas_id": "MEG-29",
+      "authority": "NONE",
+      "disposition": "REFUTED",
+      "id": "B1:T7:FOOTPRINT_DISJOINTNESS_NECESSARY",
+      "reason": "Shared-footprint certificate may survive via an alternative support; no statistical independence follows.",
+      "source": {
+        "clause": "B1-T7, disjointness",
+        "path": "research/machine-epistemics-theory/foundation_typed_lifecycle_v1/POST_BASELINE_DELTA.md"
+      }
+    },
+    {
+      "atlas_id": "MEG-30",
+      "authority": "NONE",
+      "disposition": "UNSUPPORTED_EXTENSION",
+      "id": "B1:T8(i):TOTAL_RUN_TERMINATION_WITH_UNCHARGED_QUERIES",
+      "reason": "A finite bound on charged mutations does not bound repeated uncharged queries, stuttering or waits.",
+      "source": {
+        "clause": "Remaining scope differences",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/CONCURRENT_RECONCILIATION.md"
+      }
+    },
+    {
+      "atlas_id": "MEG-30",
+      "authority": "NONE",
+      "disposition": "UNSUPPORTED_EXTENSION",
+      "id": "B1:T8(ii):ARBITRARY_CONCURRENT_SERIALIZABILITY",
+      "reason": "Immutable query replay does not validate concurrent writes from different snapshots; separate commit protocol required.",
+      "source": {
+        "clause": "B1-T8, scope",
+        "path": "research/machine-epistemics-theory/foundation_typed_lifecycle_v1/POST_BASELINE_DELTA.md"
+      }
+    },
+    {
+      "atlas_id": "MEG-16",
+      "authority": "NONE",
+      "disposition": "REFUTED",
+      "id": "ATLAS:UNCONDITIONAL_KLEENE_NOGOOD_MEET",
+      "reason": "Individually live supports can form a nogood; filter after product.",
+      "source": {
+        "clause": "MEG-16",
+        "path": "research/machine-epistemics-theory/MEG16_NOGOOD_ALGEBRA_V1.md"
+      }
+    },
+    {
+      "atlas_id": "MEG-19",
+      "authority": "NONE",
+      "disposition": "REFUTED",
+      "id": "ATLAS:CHILD_CHANGE_IFF_MACRO_CHANGE",
+      "reason": "Changed factor may be absorbed or irrelevant; full signatures and complete dependencies are required.",
+      "source": {
+        "clause": "F07",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md"
+      }
+    },
+    {
+      "atlas_id": "MEG-22",
+      "authority": "NONE",
+      "disposition": "REFUTED",
+      "id": "ATLAS:SHARED_SUPPORT_IMPLIES_ACTUAL_CHANGE",
+      "reason": "Alternative support can preserve the dependent claim.",
+      "source": {
+        "clause": "T09",
+        "path": "research/machine-epistemics-theory/foundation_typed_lifecycle_v1/THEORY.md"
+      }
+    },
+    {
+      "atlas_id": "MEG-24",
+      "authority": "NONE",
+      "disposition": "UNSUPPORTED_EXTENSION",
+      "id": "ATLAS:GROUNDING_EQUALITY_IMPLIES_MEANING_EQUALITY",
+      "reason": "The converse requires an injective/sufficient representation.",
+      "source": {
+        "clause": "F12",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md"
+      }
+    },
+    {
+      "atlas_id": "MEG-26",
+      "authority": "NONE",
+      "disposition": "UNSUPPORTED_EXTENSION",
+      "id": "ATLAS:UNIQUE_MEANING_NECESSARY_FOR_QUERY_ANSWER",
+      "reason": "Consensus over true-meaning-containing candidates can suffice for a query.",
+      "source": {
+        "clause": "F12",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md"
+      }
+    },
+    {
+      "atlas_id": "MEG-31",
+      "authority": "NONE",
+      "disposition": "REFUTED",
+      "id": "ATLAS:GENERAL_INFORMATION_SUBADDITIVITY",
+      "reason": "General dependence admits superadditive realized information; only specified nested/independent cases survive.",
+      "source": {
+        "clause": "F13",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md"
+      }
+    },
+    {
+      "atlas_id": "MEG-33",
+      "authority": "NONE",
+      "disposition": "REFUTED",
+      "id": "ATLAS:LOWER_ONLY_REFINEMENT_ESTABLISHES_DEAD",
+      "reason": "Changing only the lower bound cannot certify upper absence.",
+      "source": {
+        "clause": "F15",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md"
+      }
+    },
+    {
+      "atlas_id": "MEG-35",
+      "authority": "NONE",
+      "disposition": "REFUTED",
+      "id": "ATLAS:UNCHECKED_UPPER_REPLACEMENT",
+      "reason": "Intersection and lower<=upper consistency are required; actual completeness is a certificate premise.",
+      "source": {
+        "clause": "T03",
+        "path": "research/machine-epistemics-theory/foundation_typed_lifecycle_v1/THEORY.md"
+      }
+    },
+    {
+      "atlas_id": "MEG-02",
+      "authority": "NONE",
+      "disposition": "REFUTED",
+      "id": "B6:F6:SCALAR_GRADE_SEMIRING_HOMOMORPHISM",
+      "reason": "Source-idempotence e*e=e is inconsistent with generic scalar g*g=g for g in (0,1).",
+      "source": {
+        "clause": "Graded antichains",
+        "path": "research/machine-epistemics-theory/KSO_LIFETIME_BATCH6_INTEGRATION_REVIEW_V1.md"
+      }
+    },
+    {
+      "atlas_id": "MEG-32",
+      "authority": "NONE",
+      "disposition": "REFUTED",
+      "id": "B6:F2:EXCHANGEABILITY_IMPLIES_BINOMIAL_NULL",
+      "reason": "Independent fair discordant signs or a justified randomization distribution is required; distinct seeds are insufficient.",
+      "source": {
+        "clause": "Exchangeability alone",
+        "path": "research/machine-epistemics-theory/KSO_LIFETIME_BATCH6_INTEGRATION_REVIEW_V1.md"
+      }
+    },
+    {
+      "atlas_id": "MEG-28",
+      "authority": "NONE",
+      "disposition": "UNSUPPORTED_EXTENSION",
+      "id": "B6:F7:UNAVAILABLE_ORACLE_MEANS_NO_MINIMUM",
+      "reason": "Cannot-check in one algorithm does not establish nonexistence of a mathematical minimum.",
+      "source": {
+        "clause": "An unavailable ceiling oracle",
+        "path": "research/machine-epistemics-theory/KSO_LIFETIME_BATCH6_INTEGRATION_REVIEW_V1.md"
+      }
+    },
+    {
+      "atlas_id": "MEG-22",
+      "authority": "NONE",
+      "disposition": "REFUTED",
+      "id": "B1:T5(iii):PRODUCT_FOOTPRINT_EQUALS_UNION",
+      "reason": "Antichain absorption can remove evidence: {{a}} times {{a},{b}}={{a}}. The evidence footprint is a subset of the operand union, not always equal; shared-footprint membership is only a one-way implication.",
+      "source": {
+        "clause": "Theorem T5",
+        "path": "research/machine-epistemics-theory/KSO_ONE_DAY_THEOREMS_BATCH1_V1.md"
+      }
+    }
+  ],
+  "historical_registry_policy": "IMMUTABLE_SOURCE_RECORDS_NOT_STANDALONE_AUTHORITY",
+  "independent_external_review": "NOT_OBTAINED",
+  "new_import_policy": "MANDATORY_NAMED_RULE_RESOLUTION_THEN_INDEPENDENT_PARITY_AND_EXTERNAL_ADOPTION",
+  "rows": [
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-01:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Finite acyclic root substitution; distinct IDs do not imply statistical independence.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c",
+          "id": "MEG-01",
+          "status": "PROVED",
+          "summary": "derived evidence flattening/shared-source dependence"
+        },
+        "canonical": {
+          "authority": "PARITY",
+          "source": "d756c086edc46ad4e5e682f69730b72c1dc26a4c#317",
+          "status": "PROVED",
+          "terminal": "PROVED_WITH_EXACT_CHECKER__PR317"
+        },
+        "revision_registry": {
+          "depends_on": [],
+          "id": "MEG-01",
+          "parent": "ATMS/provenance",
+          "proofs": [
+            "F03"
+          ],
+          "remaining": "Latent statistical dependence and cyclic implementations require their own semantics.",
+          "scope": "Finite DAG root substitution; declared logical dependence.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "substitution"
+          ],
+          "concurrent_result": "Batch #317 has a scoped result; see POST_BASELINE_DELTA.md. This row is not a global absence claim.",
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-01",
+          "programme_closed": false,
+          "remaining": "Statistical dependence, latent common causes and cyclic provenance are not inferred from IDs.",
+          "result": "Positive acyclic provenance flattens homomorphically; aliases are idempotent in the support algebra.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T01"
+          ],
+          "topic": "Evidence dependence"
+        }
+      },
+      "id": "MEG-01",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-02 (graded half) | D3 scored operator outputs as \u27e60,U\u27e7 + score outside the lattice; coverage receipt = scoped EXPERIMENTATION bridge; no all-UNKNOWN composition is LIVE; certificate does not cross scope; exact conformal coverage; certified-only gating | PROVED (definitional half) / PARENT_OWNED (Chow 1970, split conformal); graded semiring with exact-share retraction stays OPEN \u2014 tightened | M2 \u00a77 backends, M3 \u00a76 ranking, M6 uncertainty; `navigation` gates read liveness only |",
+          "section": "## H. Status after batch 4 (2026-09-05)"
+        },
+        {
+          "row": "| MEG-02 (graded) | R3 witness: (max,\u00d7) has no inverse for retraction; (+,\u00d7) double-counts a shared assumption (1/2 vs 3/8) | OPEN with witness; D3 certified-only gating remains the answer | \u2014 |",
+          "section": "## I. Status after batch 5 (2026-09-05)"
+        },
+        {
+          "row": "| MEG-02 (graded) | F6 (max,\u00d7) graded antichain: absorption exact for grades \u2264 1, retraction by dropping monomials exact (60 032 cases), positive iff LIVE; scalar retraction is not a function (smallest witness {{a}} vs {{a},{b}}: 9/10 \u2192 0 vs 3/5); (+,\u00d7) is a measure (inclusion\u2013exclusion), exact on the antichain but not a homomorphism | PROVED (max,\u00d7) / PARENT_OWNED measure | `kso/warrant.WarrantProfile` may carry a grade per alternative; probability sums stay outside the lattice (D3) |",
+          "section": "## J. Status after batch 6 (2026-09-05)"
+        },
+        {
+          "row": "| MEG-02 ((+,\u00d7) reading) | G6 \u03bc_R(D) = P(a surviving alternative holds) is a valuation on the antichain lattice (800), monotone (336), retracts exactly (320); product rule on evidence-disjoint pairs only (188 / 612 strict failures); homomorphic sum = \u03bc iff \u2264 1 alternative, exceeds 1 (7/6); licenses \u03a3\u03bc_i expectation receipts under sharing (1 540) but concentration needs the joint law (independent value wrong on 1 404 batches); never a warrant (\u27e60,{a}\u27e7 with \u03bc = 9/10 stays UNKNOWN) | PROVED (finite); measure facts PARENT_OWNED (provenance semirings, probabilistic DBs, Harris\u2013FKG) | `kso/warrant.WarrantProfile` grade per alternative; D3 score-outside-lattice rule stands |",
+          "section": "## K. Status after batch 7 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-02:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Population risk is distinct from individual truth; adaptive risk requires declared validity assumptions.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_FOUNDATION_BATCH2_V1 T1",
+          "id": "MEG-02",
+          "status": "PROVED_WITH_CONTRACTION",
+          "summary": "statistical guarantee != individual truth; risk actionability separated; identity drift fail-closed"
+        },
+        "canonical": {
+          "authority": "PARITY",
+          "source": "2d6739048866a698998891906634a72e570d762c#319",
+          "status": "PROVED",
+          "terminal": "MEG02_TRUTH_ACTION_SPLIT_V1"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-01"
+          ],
+          "id": "MEG-02",
+          "parent": "Probability/linear-system parent composition",
+          "proofs": [
+            "F02",
+            "F09",
+            "F16"
+          ],
+          "remaining": "Correlated probabilistic warrant algebra, learned calibration and OCM parity remain open.",
+          "scope": "Typed exact/risk distinction, selection bound and monotone graded navigation.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "selection",
+            "adaptive_risk",
+            "drift",
+            "navigation",
+            "certificates"
+          ],
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-02",
+          "programme_closed": false,
+          "remaining": "Real calibration, conditional-risk certificates under adaptive shift and probabilistic support semantics remain open.",
+          "result": "Risk-bound propositions cannot become exact target assertions; fixed-normalization graded navigation is proved.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T04",
+            "T05",
+            "T06",
+            "T07",
+            "T14",
+            "T16"
+          ],
+          "topic": "Statistical and graded warrant"
+        }
+      },
+      "id": "MEG-02",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-03 | B5 scope / epoch / supersession as revocation families | PROVED | `ocm.kso.types.Scope` (epochs) |",
+          "section": "## F. Status after batch 2 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-03:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Explicit validity interval and scoped supersession/revocation; no unmodeled distributed time.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_FOUNDATION_BATCH2_V1 T2",
+          "id": "MEG-03",
+          "status": "PROVED_SCOPE_LIMITED",
+          "summary": "half-open epoch scopes + scoped revocation + supersession locality"
+        },
+        "canonical": {
+          "authority": "NONE",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_NO_AUTHORITY"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-01"
+          ],
+          "id": "MEG-03",
+          "parent": "Temporal databases and incremental computation",
+          "proofs": [
+            "F07",
+            "F08"
+          ],
+          "remaining": "Bitemporal runtime, concurrent updates and integration tests not supplied.",
+          "scope": "Expiry/supersession as versioned dependencies at fixed validity scope.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "certificates"
+          ],
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-03",
+          "programme_closed": false,
+          "remaining": "General bitemporal supersession, conflict and distributed clock semantics remain open.",
+          "result": "Expiry is an applicability check; context changes are not monotone refinement.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T03",
+            "T14"
+          ],
+          "topic": "Epoch and supersession"
+        }
+      },
+      "id": "MEG-03",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-04:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Authority meet includes the operator; authenticated external issuance is a premise.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c",
+          "id": "MEG-04",
+          "status": "PROVED",
+          "summary": "commit authority bottom under internal composition"
+        },
+        "canonical": {
+          "authority": "PARITY",
+          "source": "d756c086edc46ad4e5e682f69730b72c1dc26a4c#317",
+          "status": "PROVED",
+          "terminal": "PROVED_WITH_EXACT_CHECKER__PR317"
+        },
+        "revision_registry": {
+          "depends_on": [],
+          "id": "MEG-04",
+          "parent": "Lattice authority/capabilities",
+          "proofs": [
+            "F01"
+          ],
+          "remaining": "Enforce pre-action capabilities and authenticate issuers in OCM.",
+          "scope": "Meet cannot amplify permissions; authorization precedes action.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "certificates"
+          ],
+          "concurrent_result": "Batch #317 has a scoped result; see POST_BASELINE_DELTA.md. This row is not a global absence claim.",
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-04",
+          "programme_closed": false,
+          "remaining": "Authenticated capability issuance, actual action protocol and OCM implementation refinement are required.",
+          "result": "Permission must precede effect; observations and successful receipts do not mint authority.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T14",
+            "T16"
+          ],
+          "topic": "Authority and commitment"
+        }
+      },
+      "id": "MEG-04",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-05 | B1 discourse-state warrant, authority bottom, no laundering | PROVED (corollary of KS-T20) | `ocm.language.interpret.SaidRecord` / `promote_authority` |",
+          "section": "## F. Status after batch 2 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-05:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Testimony about p is distinct from truth of p; target binding is explicit.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_FOUNDATION_BATCH3_V1 T1",
+          "id": "MEG-05",
+          "status": "PROVED_SCOPE_LIMITED",
+          "summary": "discourse-state speech/commitment cannot mint world-truth or commit authority"
+        },
+        "canonical": {
+          "authority": "NONE",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_NO_AUTHORITY"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-04"
+          ],
+          "id": "MEG-05",
+          "parent": "Commitment-store/type separation",
+          "proofs": [
+            "F08"
+          ],
+          "remaining": "Natural-language assertion extraction and dialogue integration unvalidated.",
+          "scope": "Testimony is a proposition distinct from its quoted content.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "semantics",
+            "certificates"
+          ],
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-05",
+          "programme_closed": false,
+          "remaining": "Full dialogue commitments and independent semantic-fidelity evaluation remain open.",
+          "result": "Observed testimony is not its factual content; renderer cannot negate a proposition merely because its warrant is DEAD.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T13",
+            "T14"
+          ],
+          "topic": "Discourse-state warrant"
+        }
+      },
+      "id": "MEG-05",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-06:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Nonnegative finite substochastic operator, restart in (0,1], exact lower/tail enclosure; no earliest-budget or finite equality-completeness claim.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c",
+          "id": "MEG-06",
+          "status": "PROVED",
+          "summary": "budget bracket / restart iteration"
+        },
+        "canonical": {
+          "authority": "PARITY",
+          "source": "d756c086edc46ad4e5e682f69730b72c1dc26a4c#317",
+          "status": "PROVED",
+          "terminal": "PROVED_WITH_EXACT_CHECKER__PR317"
+        },
+        "revision_registry": {
+          "depends_on": [],
+          "id": "MEG-06",
+          "parent": "Neumann/Banach linear systems",
+          "proofs": [
+            "F09"
+          ],
+          "remaining": "Outward-rounded floating/sparse implementation and resource sweep not run.",
+          "scope": "Finite nonnegative substochastic fixed-point residual/tail bounds.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "navigation"
+          ],
+          "concurrent_result": "Batch #317 has a scoped result; see POST_BASELINE_DELTA.md. This row is not a global absence claim.",
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-06",
+          "programme_closed": false,
+          "remaining": "Certified floating arithmetic and end-to-end threshold extraction implementation remain open.",
+          "result": "Exact tail, residual and perturbation bounds under explicit substochastic/restart assumptions.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T07"
+          ],
+          "topic": "Budgeted navigation"
+        }
+      },
+      "id": "MEG-06",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-07 | D4 no-drop guarantee: one-hop lower bound, matched-cardinality background is a no-op, teleport-free background \u03c0' \u2264 \u03c0 never drops, M2 fan-out finding reproduced exactly ((1\u2212\u03b1)(\\|V\\|\u22121) < k), KS-T06/T06b preserved | PROVED (exact); tightened: the atlas lever \"matched seed cardinality\" is inert, the guarantee is for \u03c0' (`ocm.kso.surprise` PROPAGATED); per-source normalisation for the 3 residual misses OPEN | M2.1 extraction revival receipt; drop the seed-count lever from the design |",
+          "section": "## H. Status after batch 4 (2026-09-05)"
+        },
+        {
+          "row": "| MEG-07 (per-source normalisation) | G2 M2.1 miss reproduced exactly (a_Q = 4/975 < \u03c0 = 89/11050, 13/13 LIVE one-hop heads); no monotone functional of (a_Q, \u03c0) satisfying KS-T06 admits any a_Q < \u03c0; matched-cardinality background equals the uniform background (linearity, 127 seed sets); registered structural clause (LIVE one-hop heads, in-share \u2265 \u03c3) gives no-drop with cone bound \u03a3_s min(k_s, \u230a1/\u03c3\u230b) = 13 and leaves KS-T06/T06b untouched; seed-conditioned background drops everything, rescaled background admits 13 second-hop atoms, attribution ratio ties hub and specific | PROVED (impossibility + placebo + clause) | `kso/extraction.reacting_subgraph_from_surprise` (clause = one more union term); `kso/surprise` PROPAGATED admissible only as a change of pair, T06/T06b as registration precondition |",
+          "section": "## K. Status after batch 7 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-07:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Registered finite observation transcript class; nondiscriminating scores cannot certify no-drop extraction; no practical learned-extractor guarantee.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_THEORY_GAP_ATLAS_V1",
+          "id": "MEG-07",
+          "status": "OPEN",
+          "summary": "surprise/background no-drop guarantee; OCM dev revival is not V2 theorem"
+        },
+        "canonical": {
+          "authority": "NONE",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_NO_AUTHORITY"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-06"
+          ],
+          "id": "MEG-07",
+          "parent": "PageRank and relevance ranking",
+          "proofs": [
+            "F09"
+          ],
+          "remaining": "A useful no-drop extraction algorithm versus faithful directed parents remains untested.",
+          "scope": "Surprise is an ordering heuristic, not an obligation-completeness theorem.",
+          "status": "SPECIFIED_NOT_PROVED"
+        },
+        "typed_registry": {
+          "check_groups": [],
+          "disposition": "OPEN_RESEARCH",
+          "id": "MEG-07",
+          "programme_closed": false,
+          "remaining": "Learn or register background policies, compare directed strongest parents and charge extracted-subgraph growth.",
+          "result": "No new optimality claim; inherited development improvement is not a protected general guarantee.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [],
+          "topic": "Surprise under fan-out"
+        }
+      },
+      "id": "MEG-07",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-08:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "A weight change alone leaves warrant fixed; it may change firing/ranking.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c",
+          "id": "MEG-08",
+          "status": "PROVED",
+          "summary": "feedback updates weights, never warrant"
+        },
+        "canonical": {
+          "authority": "PARITY",
+          "source": "d756c086edc46ad4e5e682f69730b72c1dc26a4c#317",
+          "status": "PROVED",
+          "terminal": "PROVED_WITH_EXACT_CHECKER__PR317"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-01"
+          ],
+          "id": "MEG-08",
+          "parent": "TMS plus operational firing distinction",
+          "proofs": [
+            "F08"
+          ],
+          "remaining": "OCM feedback write isolation and learned relevance stability not checked.",
+          "scope": "Fixed labels preserve liveness under weight edits, not threshold firing.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "navigation",
+            "certificates"
+          ],
+          "concurrent_result": "Batch #317 has a scoped result; see POST_BASELINE_DELTA.md. This row is not a global absence claim.",
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-08",
+          "programme_closed": false,
+          "remaining": "Learning stability, useful routing guarantees and joint resource bounds remain open.",
+          "result": "Weight changes may alter ranking without changing warrant; gate decreases are monotone only with fixed normalization.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T07",
+            "T14"
+          ],
+          "topic": "Learned navigation weights"
+        }
+      },
+      "id": "MEG-08",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-09 | D7 multiscale coherence: coarse GAP \u2192 REFINE_REQUIRED, OBSTRUCTION only after the fine ceiling; prune\u2013solve commutation \u21d4 KS-T07b-admissible on the 52-partition fixture (both directions) | PROVED (two-level fixture); tightened: the converse needs \"all seeds\" (Kemeny\u2013Snell), a restricted Q gets the sufficient direction (D5) | M8 `RecursiveKSO` descend/ascend; coarse walk is a registered structure, not the quotient |",
+          "section": "## H. Status after batch 4 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-09:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Explicit intertwining projection and compatible restart seeds; parent-owned fixed-point commutation, not generic multiscale sufficiency.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_THEORY_GAP_ATLAS_V1",
+          "id": "MEG-09",
+          "status": "OPEN_RESEARCH",
+          "summary": "multiscale/fibred navigation and cross-level commutation"
+        },
+        "canonical": {
+          "authority": "NONE",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_NO_AUTHORITY"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-06",
+            "MEG-20"
+          ],
+          "id": "MEG-09",
+          "parent": "Quotients/lumpability",
+          "proofs": [
+            "F11"
+          ],
+          "remaining": "Construct/test multiscale navigation and revocation commutation.",
+          "scope": "Cross-level answers require full registered-signature sufficiency.",
+          "status": "OPEN_RESEARCH"
+        },
+        "typed_registry": {
+          "check_groups": [],
+          "disposition": "OPEN_RESEARCH",
+          "id": "MEG-09",
+          "programme_closed": false,
+          "remaining": "Define interfaces and prove conservative transport or identify counterexamples under query families.",
+          "result": "No closure inferred from ordinary finite navigation.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [],
+          "topic": "Multiscale/fibred navigation"
+        }
+      },
+      "id": "MEG-09",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-10 | C5 procedure-algebra warrant laws: \u2297 semiring laws, certified \u2295, guarded choice \u2297, metered iteration idempotent, TRACE vs STATIC | PROVED (n = 3 exhaustive); \u2295 only under an equivalence certificate \u2014 tightened | `kso.procedures` (KS-T26) \u2014 add meter and certified/uncertified alternative |",
+          "section": "## G. Status after batch 3 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-10:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Finite registered guarded traces versus static procedure warrants; no unrestricted recursion.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_FOUNDATION_BATCH3_V1 T2",
+          "id": "MEG-10",
+          "status": "PROVED_SCOPE_LIMITED",
+          "summary": "finite procedure control: static worst-case warrant <= trace warrant; bounded unchanged iteration idempotent"
+        },
+        "canonical": {
+          "authority": "NONE",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_NO_AUTHORITY"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-01",
+            "MEG-16"
+          ],
+          "id": "MEG-10",
+          "parent": "KAT/provenance",
+          "proofs": [
+            "F06"
+          ],
+          "remaining": "General recursion, changing support, parallel interference and backend refinement open.",
+          "scope": "Bounded trace/static warrant distinction including guards.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "substitution",
+            "learning",
+            "certificates"
+          ],
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-10",
+          "programme_closed": false,
+          "remaining": "General choice/iteration, trace versus universal program correctness, effects and recursive procedures remain open.",
+          "result": "Positive support composition and finite query-specific procedure warrants are available.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T01",
+            "T12",
+            "T14"
+          ],
+          "topic": "Procedure and control-flow algebra"
+        }
+      },
+      "id": "MEG-10",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-11 | C4 small-step semantics of the solve pipeline: preservation, progress into four typed terminals, CANNOT_CHECK absorbing, replay-invariant | PROVED / PARENT_OWNED (Wright\u2013Felleisen; Bruns\u2013Godefroid) | `runtime/solve` \u2014 enabled set currently discarded; FIRE CANNOT_CHECK not absorbing |",
+          "section": "## G. Status after batch 3 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-11:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Positive integer fuel bounds charged transitions; uncharged calls and external waits require separate bounds.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_FOUNDATION_BATCH3_V1 T3",
+          "id": "MEG-11",
+          "status": "PROVED_SCOPE_LIMITED",
+          "summary": "required pipeline small-step progress/preservation; CANNOT_CHECK absorbing"
+        },
+        "canonical": {
+          "authority": "NONE",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_NO_AUTHORITY"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-04",
+            "MEG-10"
+          ],
+          "id": "MEG-11",
+          "parent": "Type preservation and well-founded termination",
+          "proofs": [
+            "F01",
+            "F15"
+          ],
+          "remaining": "Canonical runtime transition system and persistence refinement not proved.",
+          "scope": "Finite derivation preservation and natural-number fuel progress.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "certificates"
+          ],
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-11",
+          "programme_closed": false,
+          "remaining": "Sandboxed effectful exploration, consequence modeling and complete operator runtime refinement remain open.",
+          "result": "Pure exploration is distinct from exact assertion and externally authorized risk action.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T14",
+            "T16"
+          ],
+          "topic": "UNKNOWN-enabled execution"
+        }
+      },
+      "id": "MEG-11",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-12 | B2 per-input version-space warrant, per-input reopening | PROVED | `ocm.language.acquisition` (M3), `ocm.learning.learner` |",
+          "section": "## F. Status after batch 2 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-12:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Finite nonempty realizable noiseless hypothesis class; exact query agreement with revocable supports.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_FOUNDATION_BATCH3_V1 T4",
+          "id": "MEG-12",
+          "status": "PROVED_SCOPE_LIMITED",
+          "summary": "finite-class per-input VSW minimal agreement supports and exact revocation locality"
+        },
+        "canonical": {
+          "authority": "NONE",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_NO_AUTHORITY"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-01"
+          ],
+          "id": "MEG-12",
+          "parent": "Version spaces and ATMS",
+          "proofs": [
+            "F05"
+          ],
+          "remaining": "Efficient support compilation for large structured classes not established.",
+          "scope": "Exact minimal per-query agreement supports in finite realizable noiseless H.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "learning"
+          ],
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-12",
+          "programme_closed": false,
+          "remaining": "Larger structured classes, approximation and efficient support compilation require separate proofs.",
+          "result": "Exact minimal-support retention for every query in a finite consistent hypothesis class.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T12"
+          ],
+          "topic": "Per-input learned-procedure warrants"
+        }
+      },
+      "id": "MEG-12",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-13 | B3 gap-learning soundness on a finite class | PROVED (finite classes) | `ocm.learning.learner`, `ocm.kso.admission` |",
+          "section": "## F. Status after batch 2 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-13:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Query-specific agreement under true-model inclusion; empty compatible class is not success.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_FOUNDATION_BATCH3_V1 T5",
+          "id": "MEG-13",
+          "status": "PROVED_SCOPE_LIMITED",
+          "summary": "finite/enumerable query-relative gap learning; ambiguity/contradiction fail-closed"
+        },
+        "canonical": {
+          "authority": "NONE",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_NO_AUTHORITY"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-12",
+            "MEG-16"
+          ],
+          "id": "MEG-13",
+          "parent": "Exact learning/version spaces",
+          "proofs": [
+            "F05"
+          ],
+          "remaining": "Unknown class, noise, infinite grammar learnability and full S1-S7 runtime proof open.",
+          "scope": "Query agreement, contradiction refusal and deletion-local admission.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "learning",
+            "semantics"
+          ],
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-13",
+          "programme_closed": false,
+          "remaining": "Real acquisition-channel soundness, class inclusion, infinite classes and language transfer remain open.",
+          "result": "Agreement on a query suffices without unique global identification; empty version space is conflict.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T12",
+            "T13"
+          ],
+          "topic": "Gap-learning soundness"
+        }
+      },
+      "id": "MEG-13",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-14 | D2 per-channel bounds table (TD, XTD, MQ, exact random-pair identification, closure, LI-1 envelope) on ALL16 / AFFINE8 / MONOTONE6 / six orders, with the `audit_measured` falsifier | PARENT_OWNED table (no new theorem); M3 measured counts equal the bounds; six-order class NOT_MEASURED | M7 RQ3 / `INFORMATION_BUDGET_RECEIPT`; M5 \u00a715 sample efficiency |",
+          "section": "## H. Status after batch 4 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-14:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Finite nonempty version spaces; explicit acquisition channel and counting costs; no universal sample-complexity bound.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_FOUNDATION_BATCH4_PARENT_ADOPTIONS_V1 P1",
+          "id": "MEG-14",
+          "status": "PARENT_OWNED_ADOPTED_WITH_CORRECTION",
+          "summary": "acquisition bounds are protocol-specific; ordinary teaching dimension is not membership-query complexity"
+        },
+        "canonical": {
+          "authority": "NONE",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_NO_AUTHORITY"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-12",
+            "MEG-31"
+          ],
+          "id": "MEG-14",
+          "parent": "Teaching/query/PAC learning",
+          "proofs": [
+            "F05",
+            "F13"
+          ],
+          "remaining": "Per-class channel/sample/resource frontier tables not executed.",
+          "scope": "Version-space information and explicit exponential reference cost.",
+          "status": "PARENT_ADOPTION"
+        },
+        "typed_registry": {
+          "check_groups": [],
+          "disposition": "OPEN_RESEARCH",
+          "id": "MEG-14",
+          "programme_closed": false,
+          "remaining": "Reconstruct strongest exact/PAC/query/teaching bounds under actual information-access and corruption models.",
+          "result": "No theorem imported from a channel name or cardinality score.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [],
+          "topic": "Per-channel sample bounds"
+        }
+      },
+      "id": "MEG-14",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-15 | C6 discriminating-interaction certificate: elimination sound iff the outcome function is registered; FEEDBACK \u27e60,0\u27e7; procedure interval feedback-free; claim warrant = B2 VSW | PROVED (finite class) | M5 E3 grounded interaction; `learning.learner` INTERACTION/EXPERIMENTATION contract |",
+          "section": "## G. Status after batch 3 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-15:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "A registered outcome has target-relative evidence semantics; reward alone is not truth.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_FOUNDATION_BATCH3_V1 T6",
+          "id": "MEG-15",
+          "status": "PROVED_SCOPE_LIMITED",
+          "summary": "registered exact interaction outcome is observation; unregistered reward remains feedback"
+        },
+        "canonical": {
+          "authority": "NONE",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_NO_AUTHORITY"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-05",
+            "MEG-12"
+          ],
+          "id": "MEG-15",
+          "parent": "Target-relative observation and exact learning",
+          "proofs": [
+            "F08"
+          ],
+          "remaining": "Grounded interaction measurement validity and transfer study required.",
+          "scope": "Registered outcome evidence is distinct from reward-as-truth.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "semantics",
+            "certificates"
+          ],
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-15",
+          "programme_closed": false,
+          "remaining": "Define and validate outcome channels and conditional observation models; do not enforce arbitrary channel-name theology.",
+          "result": "A registered observed outcome has its own target; reward is not automatically evidence for a factual procedure.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T13",
+            "T14"
+          ],
+          "topic": "Feedback versus discriminating observation"
+        }
+      },
+      "id": "MEG-15",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-16 | C7 contradiction resolution policy: UNKNOWN while both live on an overlapping scope; resolution only by scoped bridge, revocation or supersession; majority never | PROVED (the policy half left open by KS-T25) | `dialogue/workspace.commit` verdict policy; `propose_promote` bridge semantics (defects listed in the note) |",
+          "section": "## G. Status after batch 3 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-16:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Common evidence alphabet and registered nogoods; post-product filtering; scalar meet equality only under compatibility.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_FOUNDATION_BATCH2_V1 T3",
+          "id": "MEG-16",
+          "status": "PROVED_WITH_CORRECTION",
+          "summary": "ATMS nogoods: join homomorphism, meet sub-homomorphism; original meet-homomorphism wording refuted"
+        },
+        "canonical": {
+          "authority": "PARITY",
+          "source": "2d6739048866a698998891906634a72e570d762c#319",
+          "status": "PROVED",
+          "terminal": "MEG16_NOGOOD_ALGEBRA_V1"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-01"
+          ],
+          "id": "MEG-16",
+          "parent": "ATMS nogoods/absorptive provenance",
+          "proofs": [
+            "F04"
+          ],
+          "remaining": "OCM nogood parity and full independent ATMS reconstruction remain unperformed.",
+          "scope": "Filtered-support algebra; meet upper bound; homomorphism only on consistent environments.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "nogoods",
+            "intervals"
+          ],
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-16",
+          "programme_closed": false,
+          "remaining": "Contextual runtime integration, nogood provenance, revocation and scalable inconsistency handling remain open.",
+          "result": "Normalized products use a common compatible witness; scalar Kleene conjunction equality fails in general.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T02",
+            "T03"
+          ],
+          "topic": "Nogoods and contradictions"
+        }
+      },
+      "id": "MEG-16",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-17 | B6 repair after REOPEN: reinstate exact, relearn new id, work \u2264 cone | PROVED / PARENT_OWNED (DRed, B/F) | M4 obligation |",
+          "section": "## F. Status after batch 2 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-17:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Complete pure dependency DAG and full semantic signatures; candidate cone is an upper bound.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_FOUNDATION_BATCH2_V1 T4",
+          "id": "MEG-17",
+          "status": "PROVED_SCOPE_LIMITED",
+          "summary": "reinstate vs relearn; explicit non-macro repair locality"
+        },
+        "canonical": {
+          "authority": "NONE",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_NO_AUTHORITY"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-03",
+            "MEG-12"
+          ],
+          "id": "MEG-17",
+          "parent": "Self-adjusting computation",
+          "proofs": [
+            "F05",
+            "F07"
+          ],
+          "remaining": "Cyclic/stateful repair, real cost model and OCM lifecycle replay required.",
+          "scope": "Repair upper bound in a complete indexed pure dependency DAG.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "lifecycle",
+            "learning"
+          ],
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-17",
+          "programme_closed": false,
+          "remaining": "Real repair algorithms, dynamic/cyclic dependencies and measured costs remain open.",
+          "result": "Conservative dependency maintenance and exact finite lesson-revocation decisions have stated premises.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T09",
+            "T12"
+          ],
+          "topic": "Repair and relearning"
+        }
+      },
+      "id": "MEG-17",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-18 / MEG-28 / M11 \u00a711\u201312 | E6 adoption = stamped DPO rewrite; revoke e_A kills exactly the produced objects, reopening = their cone; rollback hash-identical incl. compiled cache; \"rollback leaves a cache\" and \"rollback without revocation\" caught | PROVED; tightened: \"produced\" is stamp-transitive, not the rule image | `govern.AdoptionLedger.rollback` must own cache recompile and the state-hash assertion |",
+          "section": "## I. Status after batch 5 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-18:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Rollback restores full effective operator and context; gate-only revocation is insufficient in general.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c",
+          "id": "MEG-18",
+          "status": "PROVED",
+          "summary": "Jump rollback via revoke + quarantine"
+        },
+        "canonical": {
+          "authority": "PARITY",
+          "source": "d756c086edc46ad4e5e682f69730b72c1dc26a4c#317",
+          "status": "PROVED",
+          "terminal": "PROVED_WITH_EXACT_CHECKER__PR317"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-06",
+            "MEG-17"
+          ],
+          "id": "MEG-18",
+          "parent": "State restoration and resolvents",
+          "proofs": [
+            "F10"
+          ],
+          "remaining": "Transactional/causal undo with intervening writes and OCM parity open.",
+          "scope": "Exact rollback under restoration of the full operator/context; revocation-only counterexample.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "navigation"
+          ],
+          "concurrent_result": "Batch #317 has a scoped result; see POST_BASELINE_DELTA.md. This row is not a global absence claim.",
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-18",
+          "programme_closed": false,
+          "remaining": "General graph rewrite inverses, concurrent updates, history retention and external effects remain open.",
+          "result": "Gate-only rollback is refuted; restoring the effective operator and all extraction inputs is sufficient.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T07",
+            "T08"
+          ],
+          "topic": "Structural rollback"
+        }
+      },
+      "id": "MEG-18",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-19 | B7 consolidation locality (the provable half of KS-T12) | PROVED; improvement half OPEN | M4 obligation |",
+          "section": "## F. Status after batch 2 (2026-09-05)"
+        },
+        {
+          "row": "| MEG-19 (deconsolidation) | R1 undo exact and answer-preserving (384 checks); exception-cost crossover table | PROVED (exactness half) / OPEN decision (PARENT_OWNED: DreamCoder/LILO) | M8 split policy |",
+          "section": "## I. Status after batch 5 (2026-09-05)"
+        },
+        {
+          "row": "| MEG-19 (deconsolidation decision) | G4 MDL two-part code closed form KEEP iff (k+1)(1+e) \u2264 u(k\u22121) (315 cases; crossover table); exceptions count only while LIVE (dead-counted mutant splits 7/7 prematurely); MDL-keep \u2260 navigation gain (k = 2, u = 8: keep, Q = {t, x1} 4 \u2192 5); split is a proposal | PARENT_OWNED decision (DreamCoder/LILO), executable; PROVED not-parent-owned parts (LIVE-gating, exactness R1, governance, MDL \u2260 navigation) | M8 split policy; exception ledger = warrant-bearing atoms |",
+          "section": "## K. Status after batch 7 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-19:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Full-signature conservative maintenance; child-change does not imply macro-change; no globally optimal consolidation claim.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_FOUNDATION_BATCH3_V1 T7",
+          "id": "MEG-19",
+          "status": "PROVED_WITH_CORRECTION",
+          "summary": "macro maintenance locality half; factor-change converse corrected; deconsolidation remains parent/open"
+        },
+        "canonical": {
+          "authority": "NONE",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_NO_AUTHORITY"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-17",
+            "MEG-20"
+          ],
+          "id": "MEG-19",
+          "parent": "Incremental computation/abstraction",
+          "proofs": [
+            "F07",
+            "F11"
+          ],
+          "remaining": "General macro synthesis, minimal-cost repair and deconsolidation not solved.",
+          "scope": "Full-signature conservative maintenance; liveness-only iff refuted.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "lifecycle"
+          ],
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-19",
+          "programme_closed": false,
+          "remaining": "General KS-T12, compressed provenance costs, deconsolidation and dynamic dependency maintenance remain open.",
+          "result": "The claimed child-change iff summary-change implication is refuted; a DAG recomputation bound is stated.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T09"
+          ],
+          "topic": "Consolidation locality"
+        }
+      },
+      "id": "MEG-19",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-20 | D5 SufficiencyCertificate content: restricted lumpability on the seed-reachable subchain per R \u2208 \u0393 \u2227 measurability; accepted iff the restricted check passes | PROVED (finite) / PARENT_OWNED (Kemeny\u2013Snell); tightened: measurability does not imply lumpability under gating (co-tail witness) \u2014 check per R | `abstraction.SufficiencyCertificate.proof_ref`, `answer_with_summary` |",
+          "section": "## H. Status after batch 4 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-20:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Sufficiency is relative to a registered query and lifecycle signature; no unrestricted future-query guarantee.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_FOUNDATION_BATCH2_V1 T5",
+          "id": "MEG-20",
+          "status": "PROVED_SCOPE_LIMITED",
+          "summary": "content-bound sufficiency certificate over registered Q, Gamma and answer functional"
+        },
+        "canonical": {
+          "authority": "NONE",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_NO_AUTHORITY"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-01",
+            "MEG-06"
+          ],
+          "id": "MEG-20",
+          "parent": "Sufficient statistics/quotients",
+          "proofs": [
+            "F11"
+          ],
+          "remaining": "Efficient certificate construction and richer query families open.",
+          "scope": "Finite signature-factorization criterion for query/lifecycle sufficiency.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "learning",
+            "semantics"
+          ],
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-20",
+          "programme_closed": false,
+          "remaining": "Navigation lumpability alone does not establish solver/renderer sufficiency; prove full interfaces and costs.",
+          "result": "Query-family agreement gives a finite semantic sufficiency criterion under true-model inclusion.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T12",
+            "T13"
+          ],
+          "topic": "Summary sufficiency"
+        }
+      },
+      "id": "MEG-20",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-21 | C8 non-quotient representation lifts: injective interval/content/edge-preserving map, signatures over \u0393, FOUND preserved with answer and nothing degraded, exact rollback; M4 affine\u2192quadratic is the instance | PROVED (bounded); outcome preservation tightened to FOUND-preserving / non-degrading | `kso.jump` lift admissibility check (M4/M8) |",
+          "section": "## G. Status after batch 3 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-21:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Conservative preservation over registered semantic outputs, not arbitrary graph-shape identity.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_FOUNDATION_BATCH3_V1 T8",
+          "id": "MEG-21",
+          "status": "PROVED_SCOPE_LIMITED",
+          "summary": "registered conservative non-quotient extension preserves predecessor fixed points"
+        },
+        "canonical": {
+          "authority": "NONE",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_NO_AUTHORITY"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-18",
+            "MEG-20"
+          ],
+          "id": "MEG-21",
+          "parent": "Refinement/conservative extension",
+          "proofs": [
+            "F10",
+            "F11"
+          ],
+          "remaining": "Implement/check a useful non-quotient move and rollback; no universal homomorphism iff.",
+          "scope": "Non-quotient moves must preserve declared semantics, not just graph shape.",
+          "status": "SPECIFIED_NOT_PROVED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "navigation",
+            "semantics"
+          ],
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-21",
+          "programme_closed": false,
+          "remaining": "Construct conservative embeddings with backward simulation, query preservation and rollback certificates.",
+          "result": "Preservation is judged on registered semantic outputs and effective operators, not injectivity alone.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T08",
+            "T13"
+          ],
+          "topic": "Non-quotient representations"
+        }
+      },
+      "id": "MEG-21",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-22:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Shared evidence gives a possible-impact bound; surviving alternative support may preserve liveness.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c",
+          "id": "MEG-22",
+          "status": "PROVED",
+          "summary": "shared-evidence cross-fibre interference"
+        },
+        "canonical": {
+          "authority": "PARITY",
+          "source": "d756c086edc46ad4e5e682f69730b72c1dc26a4c#317",
+          "status": "PROVED",
+          "terminal": "PROVED_WITH_EXACT_CHECKER__PR317"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-01",
+            "MEG-17"
+          ],
+          "id": "MEG-22",
+          "parent": "Provenance/incremental computation",
+          "proofs": [
+            "F03",
+            "F07"
+          ],
+          "remaining": "Cross-domain runtime replay and semantic transport adequacy untested.",
+          "scope": "Shared support gives a conservative impact cone, not an exact change set.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "substitution",
+            "nogoods",
+            "lifecycle"
+          ],
+          "concurrent_result": "Batch #317 has a scoped result; see POST_BASELINE_DELTA.md. This row is not a global absence claim.",
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-22",
+          "programme_closed": false,
+          "remaining": "Transfer-map fidelity, latent dependence and complete cross-domain operational replay remain open.",
+          "result": "Shared support defines possible impact, not inevitable change; compatible context and alternatives matter.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T01",
+            "T02",
+            "T09"
+          ],
+          "topic": "Shared evidence across domains"
+        }
+      },
+      "id": "MEG-22",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-23 | D8 Adm(Org) := fibre rows KS-T07b-admissible \u2227 exports KS-T20/T23 \u2227 transports KS-T20 \u2227 \ud835\udd20 untouched; global Adm \u21d4 DPO interface kept \u2227 affected fibres re-certify (17/17 moves); Pareto vector never a scalar; router = J0 feedback | PROVED (fixture, exhaustive moves) / PARENT_OWNED (DPO, Kemeny\u2013Snell, NFL); tightened: closure is local (rewritten fibres + in-neighbours re-certify) | M8 organisation search, \u00a711 tournament reporting |",
+          "section": "## H. Status after batch 4 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-23:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Registered finite organization fixture and recertified affected interfaces; no global topology-search optimality.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_THEORY_GAP_ATLAS_V1",
+          "id": "MEG-23",
+          "status": "OPEN_RESEARCH",
+          "summary": "learned organization/topology/router search space"
+        },
+        "canonical": {
+          "authority": "NONE",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_NO_AUTHORITY"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-21",
+            "MEG-22"
+          ],
+          "id": "MEG-23",
+          "parent": "Algorithm selection/abstraction",
+          "proofs": [
+            "F11",
+            "F16"
+          ],
+          "remaining": "No learned organization optimizer or residual versus strongest composition established.",
+          "scope": "Context-specific organization search with explicit Pareto resources.",
+          "status": "OPEN_RESEARCH"
+        },
+        "typed_registry": {
+          "check_groups": [],
+          "disposition": "OPEN_RESEARCH",
+          "id": "MEG-23",
+          "programme_closed": false,
+          "remaining": "Register organization/access models and strong parent products before invariance or efficiency theorems.",
+          "result": "No structural optimality or DPO admissibility equivalence claimed.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [],
+          "topic": "Organization search"
+        }
+      },
+      "id": "MEG-23",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-24 | B4 canonical meaning graph, exact for \\|V\\| \u2264 7, WL-1 collision | PROVED (bounded) / PARENT_OWNED (McKay\u2013Piperno) | `ocm.language.meaning.canonical` |",
+          "section": "## F. Status after batch 2 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-24:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Meaning equality implies deterministic grounding equality; converse requires injectivity; real-language fidelity unproved.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_THEORY_GAP_ATLAS_V1",
+          "id": "MEG-24",
+          "status": "OPEN_EMPIRICAL",
+          "summary": "full codec/translator invariance; canonical meaning representation + protected measurement"
+        },
+        "canonical": {
+          "authority": "NONE",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_NO_AUTHORITY"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-12"
+          ],
+          "id": "MEG-24",
+          "parent": "Canonicalization versus semantic equivalence",
+          "proofs": [
+            "F12"
+          ],
+          "remaining": "Semantic parser equivalence and protected natural-language coverage unmeasured.",
+          "scope": "Equal meanings/seeds are sufficient contracts; extraction equality alone is not semantic equivalence.",
+          "status": "SPECIFIED_NOT_PROVED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "semantics"
+          ],
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-24",
+          "programme_closed": false,
+          "remaining": "Independent semantic correctness, canonical graph labels, ambiguity and live codec experiments remain open.",
+          "result": "Meaning equality implies seed equality under deterministic grounding; the converse fails without injectivity.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T13"
+          ],
+          "topic": "Codec invariance"
+        }
+      },
+      "id": "MEG-24",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-25 | C2 external commitment / codec gate: meaning-digest equality, marker = \u03bc(state), authority \u2265 act, no protected proposition; renderer is a pure function of the plan | PROVED (finite semantic half); capability half by construction | M4 \u00a78 gate \u2014 `runtime/solve.commitment_gate` must add G1/G3/G4 |",
+          "section": "## G. Status after batch 3 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-25:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Rendering capability and semantic entailment are distinct; lack of warrant for p does not entail not-p.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_THEORY_GAP_ATLAS_V1",
+          "id": "MEG-25",
+          "status": "OPEN",
+          "summary": "renderer capability + semantic commitment non-laundering"
+        },
+        "canonical": {
+          "authority": "NONE",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_NO_AUTHORITY"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-04",
+            "MEG-24"
+          ],
+          "id": "MEG-25",
+          "parent": "Noninterference plus semantic refinement",
+          "proofs": [
+            "F01",
+            "F08",
+            "F12"
+          ],
+          "remaining": "Natural-language semantic-fidelity checker and deployment bridge missing.",
+          "scope": "No authority from rendering; DEAD is not negation; read-only is not semantic safety.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "semantics",
+            "certificates"
+          ],
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-25",
+          "programme_closed": false,
+          "remaining": "Typed semantic plan-to-text checking and real language fidelity remain open.",
+          "result": "Read-only capability is not semantic entailment; DEAD(p) does not license not-p.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T13",
+            "T14"
+          ],
+          "topic": "Rendering and commitment"
+        }
+      },
+      "id": "MEG-25",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-26:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "True-meaning inclusion and query agreement can permit an answer without unique full interpretation; singleton policy remains allowed.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c",
+          "id": "MEG-26",
+          "status": "PROVED",
+          "summary": "meaning-candidate warrant and ambiguity set"
+        },
+        "canonical": {
+          "authority": "PARITY",
+          "source": "d756c086edc46ad4e5e682f69730b72c1dc26a4c#317",
+          "status": "PROVED",
+          "terminal": "PROVED_WITH_EXACT_CHECKER__PR317"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-12",
+            "MEG-24"
+          ],
+          "id": "MEG-26",
+          "parent": "Universal agreement/abstract interpretation",
+          "proofs": [
+            "F12"
+          ],
+          "remaining": "Construct a sound interpretation-set coverage certificate for real language.",
+          "scope": "Query consensus over a sound ambiguity set is enough; singleton not necessary.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "learning",
+            "semantics"
+          ],
+          "concurrent_result": "Batch #317 has a scoped result; see POST_BASELINE_DELTA.md. This row is not a global absence claim.",
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-26",
+          "programme_closed": false,
+          "remaining": "Define true-meaning inclusion, correlated interpretations, contextual updates and real grounding.",
+          "result": "Multiple meanings can support the same query answer; forced global collapse is unnecessary.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T12",
+            "T13"
+          ],
+          "topic": "Interpretation ambiguity"
+        }
+      },
+      "id": "MEG-26",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-27 | C3 prefix commitment with bounded lookahead: committed \u21d2 acceptable completion, CANNOT_CHECK at the bound never commits, repair only as `COMMIT_WITH_REPAIR` | PROVED (finite inventory); open-inventory half OPEN (M6) | M6 incremental realiser; M4 \u00a77 reopen events (three #8 \u00a77 cases reproduced) |",
+          "section": "## G. Status after batch 3 (2026-09-05)"
+        },
+        {
+          "row": "| MEG-27 (open inventory) | R2 regular inventory: prefix commitment decided by DFA reachability; bound = \\|states\\| complete for SAT, never UNSAT on a cyclic inventory (17 cases); bound-as-pass caught (89) | PROVED (regular; CF cited via Bar-Hillel) / OPEN non-regular acceptability | M6 incremental realiser: use reachability, keep CANNOT_CHECK only where no automaton exists |",
+          "section": "## I. Status after batch 5 (2026-09-05)"
+        },
+        {
+          "row": "| MEG-27 (non-regular acceptability) | G3 context-free inventory (centre embedding) with state-regular acceptability: exact prefix commitment by product fixed point (11 712 cases; set fixed point = min-plus table); bounded lookahead complete iff k \u2265 \u2113* (2 643/2 643), honest CANNOT_CHECK below; \u2113* = d + 1 for d open clauses (no prefix-independent bound); dead-claim UNSAT never reached by any bound (213); bound-as-pass commits 1 374, bound-as-UNSAT stalls 4 542, regular approximation commits a prefix outside the inventory | PROVED (CF inventory, state-regular acceptability); CF acceptability = CFL \u2229 CFL emptiness, undecidable \u2014 PARENT_OWNED (Bar-Hillel\u2013Perles\u2013Shamir 1961) | M6 incremental realiser: product fixed point or threshold certificate; never a DFA approximation |",
+          "section": "## K. Status after batch 7 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-27:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Complete finite registered semantic continuation system; robust universal admissibility, not existential grammatical completion.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_THEORY_GAP_ATLAS_V1",
+          "id": "MEG-27",
+          "status": "OPEN_RESEARCH",
+          "summary": "incremental prefix commitment with satisfiable residual obligations"
+        },
+        "canonical": {
+          "authority": "NONE",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_NO_AUTHORITY"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-25",
+            "MEG-26"
+          ],
+          "id": "MEG-27",
+          "parent": "Constraint satisfaction/incremental realization",
+          "proofs": [
+            "F12"
+          ],
+          "remaining": "Sound incremental semantics/repair under bounded cost remains a research task.",
+          "scope": "Prefix satisfiability alone does not prevent an already unsupported assertion.",
+          "status": "SPECIFIED_NOT_PROVED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "semantics"
+          ],
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-27",
+          "programme_closed": false,
+          "remaining": "Specify repairable speech acts, semantic prefix commitments and accountable revision at runtime.",
+          "result": "Grammatical satisfiability is not a proof of factual entailment.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T13"
+          ],
+          "topic": "Prefix commitment"
+        }
+      },
+      "id": "MEG-27",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-28 | B8 Jump preservation as a DPO rewrite (the preservation half of KS-T14) | PROVED / PARENT_OWNED (DPO); improvement half OPEN | M4 obligation |",
+          "section": "## F. Status after batch 2 (2026-09-05)"
+        },
+        {
+          "row": "| MEG-28 / M11 \u00a74 | E3 ObstructionCertificate(Q, R, witness) \u21d4 governed-Jump precondition (128/128 on the M4 fixture); dead-warrant failure = REINSTATE_FIRST, never an obstruction; enumeration must be the registered composition closure | PROVED (Boolean fixture, J1/J3); J2+ ceilings still OPEN | `diagnose.ObstructionCertificate.valid` \u2014 alternatives from the component registry, not from the certificate |",
+          "section": "## I. Status after batch 5 (2026-09-05)"
+        },
+        {
+          "row": "| MEG-18 / MEG-28 / M11 \u00a711\u201312 | E6 adoption = stamped DPO rewrite; revoke e_A kills exactly the produced objects, reopening = their cone; rollback hash-identical incl. compiled cache; \"rollback leaves a cache\" and \"rollback without revocation\" caught | PROVED; tightened: \"produced\" is stamp-transitive, not the rule image | `govern.AdoptionLedger.rollback` must own cache recompile and the state-hash assertion |",
+          "section": "## I. Status after batch 5 (2026-09-05)"
+        },
+        {
+          "row": "| MEG-28 (J2+ ceilings) | F7 3-input Boolean tower (affine 16 \u2282 degree \u2264 2 128 \u2282 all 256): minimum level = ANF degree, checkable sub-cube-parity witnesses; Jump admissible iff proposed level = minimum level (768 checks); S6 skip refused (112); level-2 oracle missing \u21d2 CANNOT_CHECK (240), never a jump; partial level-2 enumeration caught (64) | PROVED J2/J3; J4+ OPEN | `kso/jump.assess_jump` takes `lower_level_sufficient` from the caller; `minimum_level` is not the minimum sufficient level |",
+          "section": "## J. Status after batch 6 (2026-09-05)"
+        },
+        {
+          "row": "| MEG-28 (J4+ ceilings) | G1 depth-4 tower (32 \u2282 2 048 \u2282 32 768 \u2282 65 536): minimum level = ANF degree, independently checked witnesses (65 504), Jump admissible iff proposed = minimum level (393 216); missing level-3 oracle \u21d2 CANNOT_CHECK (63 488); J4 reformulation under the 1 344 affine maps gains nothing (degree invariant, 344 064), one registered non-affine transposition gains 8 functions \u2014 the J4 ceiling is a function of the registered class; J5 tool invention has no uniform ceiling (t = q witnesses vacuity on all 240 non-affine targets), decidable per registered class (80 / 176) | PROVED depth-4; J4 exact per registry (witness); J5 uniform ceiling IMPOSSIBLE, decidable per registered class | `kso/jump.assess_jump` / `minimum_level`: level = (tower, registered class); `lower_level_sufficient` from the registered enumerator |",
+          "section": "## K. Status after batch 7 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-28:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Effective-state restoration for the stated structural rollback model; arbitrary Jump ceilings are separate.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_FOUNDATION_BATCH3_V1 T9",
+          "id": "MEG-28",
+          "status": "PROVED_SCOPE_LIMITED",
+          "summary": "Jump preservation/rollback half; general J2+ ceiling predicates remain open"
+        },
+        "canonical": {
+          "authority": "NONE",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_NO_AUTHORITY"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-18",
+            "MEG-21"
+          ],
+          "id": "MEG-28",
+          "parent": "CEGAR/refinement/graph rewriting",
+          "proofs": [
+            "F10",
+            "F11",
+            "F15"
+          ],
+          "remaining": "DPO runtime refinement, useful level-specific ceilings and improvement study open.",
+          "scope": "Class-scoped obstruction, semantic preservation and external adoption obligations.",
+          "status": "SPECIFIED_NOT_PROVED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "navigation",
+            "lifecycle",
+            "certificates"
+          ],
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-28",
+          "programme_closed": false,
+          "remaining": "Arbitrary DPO rewrites, semantic interface preservation and minimum-level completeness certificates remain open.",
+          "result": "Rollback and current-epoch authorization require explicit effective-state preservation.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T08",
+            "T11",
+            "T16"
+          ],
+          "topic": "Jump preservation and ceilings"
+        }
+      },
+      "id": "MEG-28",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-29 (ext.) | E1 K_self fibre: object liveness and activation identical with and without K_self (both directions); composition with a K_self tail has world_truth 0 / commit 0; a self record cannot close an object claim (scope self \u2229 task = \u2205); a proposal is \u27e60,U\u27e7 until an external commit receipt | PROVED (corollary of T1/T5/T7; 2 832 + 472 checks) | `selfmodel/model.SelfModel.record` (authority `{self_model:1}`, scope `self`); edge rule \"K_self tails \u21d2 K_self heads\"; `adopt` requires external commit |",
+          "section": "## I. Status after batch 5 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-29:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Internal composition cannot mint external authority; factored dependence can kill a certificate, complete footprint disjointness is not necessary for survival.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c",
+          "id": "MEG-29",
+          "status": "PROVED",
+          "summary": "no self-authority/self-calibration dependence"
+        },
+        "canonical": {
+          "authority": "PARITY",
+          "source": "d756c086edc46ad4e5e682f69730b72c1dc26a4c#317",
+          "status": "PROVED",
+          "terminal": "PROVED_WITH_EXACT_CHECKER__PR317"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-04"
+          ],
+          "id": "MEG-29",
+          "parent": "Reference-monitor/trust-boundary discipline",
+          "proofs": [
+            "F01",
+            "F18"
+          ],
+          "remaining": "Self-model calibration, governance enforcement and external validation absent.",
+          "scope": "Self-reference cannot mint permissions or evaluator independence.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "certificates"
+          ],
+          "concurrent_result": "Batch #317 has a scoped result; see POST_BASELINE_DELTA.md. This row is not a global absence claim.",
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-29",
+          "programme_closed": false,
+          "remaining": "Self-model calibration, observation fidelity and safe meta-updates need bounded studies.",
+          "result": "A self-authored score or claim does not satisfy the external checker/authority premises.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T14",
+            "T16"
+          ],
+          "topic": "Self-model authority"
+        }
+      },
+      "id": "MEG-29",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-30 (ext.) | E7 metered proposals: \u2264 \u230aB/\u03b4_min\u230b proposals, adoptions per window \u2264 window budget; charge-zero proposal refused; halving schedule livelocks at the cap | PROVED; tightened: non-decreasing charge is necessary | `govern.AdoptionLedger` \u2014 meter structurally outside the proposal write set (not a string-prefix test) |",
+          "section": "## I. Status after batch 5 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-30:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Natural-number metering bounds charged transitions only; total-run liveness and concurrent serialization require separate premises.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c",
+          "id": "MEG-30",
+          "status": "PROVED",
+          "summary": "multi-timescale termination/snapshot consistency"
+        },
+        "canonical": {
+          "authority": "PARITY",
+          "source": "d756c086edc46ad4e5e682f69730b72c1dc26a4c#317",
+          "status": "PROVED",
+          "terminal": "PROVED_WITH_EXACT_CHECKER__PR317"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-06"
+          ],
+          "id": "MEG-30",
+          "parent": "Well-founded termination/transaction theory",
+          "proofs": [
+            "F07",
+            "F15"
+          ],
+          "remaining": "Serializable runtime commits, crash consistency and fairness proof open.",
+          "scope": "Natural-number fuel terminates; bounded positive real cost and immutable snapshots do not suffice.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "lifecycle"
+          ],
+          "concurrent_result": "Batch #317 has a scoped result; see POST_BASELINE_DELTA.md. This row is not a global absence claim.",
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-30",
+          "programme_closed": false,
+          "remaining": "Unmetered internal loops, external waits, durable replay, distributed and crash consistency remain open.",
+          "result": "Positive integer/lower-bounded charges and atomic version validation replace two false sufficient conditions.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T10",
+            "T11",
+            "T16"
+          ],
+          "topic": "Termination and snapshot consistency"
+        }
+      },
+      "id": "MEG-30",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-31:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Realized finite version-space gains telescope; arbitrary dependence has no blanket marginal subadditivity law.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c",
+          "id": "MEG-31",
+          "status": "PROVED",
+          "summary": "certified-information unit"
+        },
+        "canonical": {
+          "authority": "PARITY",
+          "source": "d756c086edc46ad4e5e682f69730b72c1dc26a4c#317",
+          "status": "PROVED",
+          "terminal": "PROVED_WITH_EXACT_CHECKER__PR317"
+        },
+        "revision_registry": {
+          "depends_on": [],
+          "id": "MEG-31",
+          "parent": "Hartley counting and conditional information",
+          "proofs": [
+            "F13"
+          ],
+          "remaining": "Universal cross-channel physical information price is not defined.",
+          "scope": "Conditional Hartley gains telescope; unconditional subadditivity refuted.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "semantics"
+          ],
+          "concurrent_result": "Batch #317 has a scoped result; see POST_BASELINE_DELTA.md. This row is not a global absence claim.",
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-31",
+          "programme_closed": false,
+          "remaining": "Choose correct expected/realized information object and charge acquisition, representation and verification bits.",
+          "result": "Sequential realized gains telescope; blanket marginal subadditivity is refuted.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T15"
+          ],
+          "topic": "Certified information accounting"
+        }
+      },
+      "id": "MEG-31",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-32 | D1 pre-registered exact rules: RESIDUAL_SUPPORTED / PARENT_DOMINATES / PARENT_SUFFICIENT (TOST) on the discordant scale, \u03b8-scale equivalence, exact power curves; false RESIDUAL \u2264 \u03b1 exhaustively over small-n tables | PARENT_OWNED (exact binomial / McNemar, TOST) \u2014 adopted, executable; wording tightened: \"0/540 discordant\" is a \u03b8-scale equivalence at \u03b4_u \u2265 7/1000, INCONCLUSIVE on the discordant scale; TOST at \u03b4 = 1/10 needs n_d \u2265 76 | M7 \u00a712/\u00a715 statistical report and terminal table; \u00a714 hostiles \"stop when leading\", \"post-hoc exclusion\", \"p > 0.05 \u21d2 equivalent\" now have computed sizes |",
+          "section": "## H. Status after batch 4 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-32:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Theorem identity or predeclared powered equivalence evidence is needed; nonsignificance is not equivalence.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_FOUNDATION_BATCH4_PARENT_ADOPTIONS_V1 P2",
+          "id": "MEG-32",
+          "status": "PARENT_OWNED_ADOPTED",
+          "summary": "PARENT_SUFFICIENT by measured equivalence requires predeclared margin and valid paired-equivalence method; p>alpha is not equivalence"
+        },
+        "canonical": {
+          "authority": "PARITY",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "ADOPTED",
+          "terminal": "PARENT_STATISTICS_RULE_ADOPTED"
+        },
+        "revision_registry": {
+          "depends_on": [],
+          "id": "MEG-32",
+          "parent": "Exact binomial inversion/equivalence testing",
+          "proofs": [
+            "F14"
+          ],
+          "remaining": "Register estimands/margins and run independent-task protected comparisons.",
+          "scope": "Distinguish algorithmic identity from empirical equivalence; exact zero-discordance bound.",
+          "status": "PARENT_ADOPTION"
+        },
+        "typed_registry": {
+          "check_groups": [],
+          "disposition": "OPEN_RESEARCH",
+          "id": "MEG-32",
+          "programme_closed": false,
+          "remaining": "Pre-register estimand, equivalence/noninferiority margin, dependence and missingness handling; execute powered studies.",
+          "result": "Non-significance is not equivalence; inherited parent-sufficiency terminals retain their original scope.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [],
+          "topic": "Parent equivalence testing"
+        }
+      },
+      "id": "MEG-32",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-33 | C1 epistemic action value over intervals: irrelevant ambiguity worthless, refinement monotone, repeats non-positive, closure the only DEAD-side mover | PROVED (refinement order; incomparable questions not ordered \u2014 tightened) / PARENT_OWNED (Howard VOI, BED) | M4 \u00a74 `clarification policy` (`select_question`, cost/risk registered) |",
+          "section": "## G. Status after batch 3 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-33:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Lower-only refinement cannot establish DEAD; upper-only refinement cannot establish LIVE; no universal value-of-information algorithm.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_FOUNDATION_BATCH3_V1 T10",
+          "id": "MEG-33",
+          "status": "PROVED_SCOPE_LIMITED",
+          "summary": "lower-only support cannot resolve UNKNOWN->DEAD; upper-only closure cannot resolve UNKNOWN->LIVE"
+        },
+        "canonical": {
+          "authority": "NONE",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_NO_AUTHORITY"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-12",
+            "MEG-35"
+          ],
+          "id": "MEG-33",
+          "parent": "Active learning/value of information",
+          "proofs": [
+            "F02",
+            "F15"
+          ],
+          "remaining": "Construct costed closure/query acquisition policy versus strongest active-learning parent.",
+          "scope": "Refutation and informative negative queries can refine upper support.",
+          "status": "SPECIFIED_NOT_PROVED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "selection",
+            "adaptive_risk",
+            "drift",
+            "certificates"
+          ],
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-33",
+          "programme_closed": false,
+          "remaining": "Finite value-of-information planning, noisy outcome models and empirically justified action-value policies remain open.",
+          "result": "Risk-compatible action contracts are defined; names alone cannot certify information gain or closure.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T04",
+            "T05",
+            "T06",
+            "T14"
+          ],
+          "topic": "Epistemic action and closure acquisition"
+        }
+      },
+      "id": "MEG-33",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [
+        {
+          "row": "| MEG-34 | D6 \u2261_L identifiability: behaviour + per-input warrant signature up to id renaming; behaviour-equal but not \u2261_L witness; nonidentifiability witness lifted; distributions with P(distinct pair) > 0 identify the behaviour, lifecycle class sample-dependent | PROVED (six-order class, exhaustive \u2264 3 examples); SHRG/CCG infinite-class half OPEN | M3 \u00a713, M5 \u00a74, M7 RQ3 lifecycle test |",
+          "section": "## H. Status after batch 4 (2026-09-05)"
+        },
+        {
+          "row": "| MEG-34 (SHRG/CCG half) | G9 L_1\u2026L_6 \u222a L_\u221e (conjunct bound): no finite positive text separates L_\u221e from a finite member (6/6, smallest {NP VP}); a positive-only learner locks on the finite language; one registered membership query separates each pair; finite class alone identified | PARENT_OWNED, exactly bounded (Gold 1967; Angluin 1980) | `language.acquisition` identifiability receipt records the closing channel (C6) |",
+          "section": "## K. Status after batch 7 (2026-09-05)"
+        }
+      ],
+      "candidate_rules": [
+        "MEG-34:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Only finite realizable query agreement; infinite grammar identification remains distinct.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "ME_THEORY_GAP_ATLAS_V1",
+          "id": "MEG-34",
+          "status": "OPEN_RESEARCH",
+          "summary": "infinite-class construction identifiability up to lifecycle equivalence"
+        },
+        "canonical": {
+          "authority": "NONE",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_NO_AUTHORITY"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-12",
+            "MEG-24"
+          ],
+          "id": "MEG-34",
+          "parent": "Automata/exact learning and representation sufficiency",
+          "proofs": [
+            "F05",
+            "F11",
+            "F12"
+          ],
+          "remaining": "Structured/infinite grammar identification, noisy channels and constructive learner open.",
+          "scope": "Lifecycle equivalence on declared tests is an explicit quotient target.",
+          "status": "OPEN_RESEARCH"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "learning",
+            "semantics"
+          ],
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-34",
+          "programme_closed": false,
+          "remaining": "Infinite grammar identifiability, constructive acquisition and corruption-resistant lifecycle equivalence remain open.",
+          "result": "Only the bounded finite-class agreement/retention theorem is supplied.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T12",
+            "T13"
+          ],
+          "topic": "Lifecycle language identification"
+        }
+      },
+      "id": "MEG-34",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-35:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Upper refinement retains lower<=upper consistency and scope; certificate validity is an external premise.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "batch_registry": {
+          "evidence": "PR #317 merged d756c086edc46ad4e5e682f69730b72c1dc26a4c",
+          "id": "MEG-35",
+          "status": "PROVED",
+          "summary": "non-trivial upper-profile certificate refinements"
+        },
+        "canonical": {
+          "authority": "PARITY",
+          "source": "d756c086edc46ad4e5e682f69730b72c1dc26a4c#317",
+          "status": "PROVED",
+          "terminal": "PROVED_WITH_EXACT_CHECKER__PR317"
+        },
+        "revision_registry": {
+          "depends_on": [
+            "MEG-01",
+            "MEG-16"
+          ],
+          "id": "MEG-35",
+          "parent": "Interval knowledge order",
+          "proofs": [
+            "F15"
+          ],
+          "remaining": "Acquire trustworthy bounded-alternatives certificates on useful domains.",
+          "scope": "Refinement requires L<=Lnew<=Unew<=U; conflicting upper certificates rejected.",
+          "status": "PROVED_SCOPED"
+        },
+        "typed_registry": {
+          "check_groups": [
+            "intervals"
+          ],
+          "concurrent_result": "Batch #317 has a scoped result; see POST_BASELINE_DELTA.md. This row is not a global absence claim.",
+          "disposition": "PARTIAL_RESULT_NOT_CLOSED",
+          "id": "MEG-35",
+          "programme_closed": false,
+          "remaining": "Construct actual closure/alternative-family certificates and verify their scope/epoch completeness.",
+          "result": "A sound upper certificate refines by intersection; inconsistent bounds are rejected.",
+          "runtime_owner": "ORION-OCM",
+          "science_owner": "ORION-V2",
+          "theorems": [
+            "T03"
+          ],
+          "topic": "Nontrivial upper profiles"
+        }
+      },
+      "id": "MEG-35",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-36:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Certificate about the declared operator behavior tuple; all nine fields and assumptions/scope/epoch must match; immutable-output proofs have their own subject identity.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "canonical": {
+          "authority": "PARITY",
+          "source": "2d6739048866a698998891906634a72e570d762c#319",
+          "status": "PROVED",
+          "terminal": "MEG36_BEHAVIOR_IDENTITY_V1"
+        }
+      },
+      "id": "MEG-36",
+      "kind": "ATLAS",
+      "remaining_scope_policy": "Historical remaining fields are source-relative, not current absence claims. Later atlas entries remain separately bounded; no row label certifies every clause or closes the programme.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-01:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Evidence is content-addressed; derivations retain source/provenance identity. Historical status is not whole-topic authority; use a named scoped fragment and its exclusions.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "canonical": {
+          "authority": "PARITY",
+          "id": "FND-P01",
+          "name": "Evidence identity & provenance",
+          "parent": "cryptographic content addressing + provenance semirings",
+          "reopen": "hash/identity scheme changes",
+          "resources": "hash/provenance storage",
+          "scope": "all evidence",
+          "semantics": "Evidence is content-addressed; derivations retain source/provenance identity.",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "ADOPTED",
+          "terminal": "EVIDENCE_IDENTITY_ADOPTED"
+        }
+      },
+      "id": "FND-P01",
+      "kind": "PRIMITIVE",
+      "remaining_scope_policy": "No raw primitive status admits an OCM rule. Causal, evaluator, control and testimony studies remain native contracts requiring separate clause registration; this absence is not absence of their delivered packages.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-16:SCOPED_FRAGMENT_V1",
+        "MEG-35:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Warrant is interval [L,U]; LIVE/DEAD/UNKNOWN is KS-T21 Kleene semantics. Historical status is not whole-topic authority; use a named scoped fragment and its exclusions.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "canonical": {
+          "authority": "PARITY",
+          "id": "FND-P02",
+          "name": "Warrant interval algebra",
+          "parent": "Kleene + ATMS + rough sets",
+          "reopen": "statement/checker changes",
+          "resources": "antichain storage/checking",
+          "scope": "finite warrant profiles",
+          "semantics": "Warrant is interval [L,U]; LIVE/DEAD/UNKNOWN is KS-T21 Kleene semantics.",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:KSO_THREE_VALUED_WARRANT_AND_REOPENING_V1",
+          "status": "PROVED",
+          "terminal": "KS-T21"
+        }
+      },
+      "id": "FND-P02",
+      "kind": "PRIMITIVE",
+      "remaining_scope_policy": "No raw primitive status admits an OCM rule. Causal, evaluator, control and testimony studies remain native contracts requiring separate clause registration; this absence is not absence of their delivered packages.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-02:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Individual truth and risk-bounded action are distinct judgements. Historical status is not whole-topic authority; use a named scoped fragment and its exclusions.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "canonical": {
+          "authority": "PARITY",
+          "id": "FND-P03",
+          "name": "Truth warrant vs actionability",
+          "parent": "selective classification + conformal/UQ boundary",
+          "reopen": "assumptions or policy semantics change",
+          "resources": "risk budget + certificate checks",
+          "scope": "registered decision policy",
+          "semantics": "Individual truth and risk-bounded action are distinct judgements.",
+          "source": "2d6739048866a698998891906634a72e570d762c:MEG02_STATISTICAL_WARRANT_ACTIONABILITY_V1",
+          "status": "PROVED",
+          "terminal": "MEG02_TRUTH_ACTION_SPLIT_V1"
+        }
+      },
+      "id": "FND-P03",
+      "kind": "PRIMITIVE",
+      "remaining_scope_policy": "No raw primitive status admits an OCM rule. Causal, evaluator, control and testimony studies remain native contracts requiring separate clause registration; this absence is not absence of their delivered packages.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-02:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Coverage/calibration warrants a scoped procedure meta-claim, not an individual candidate truth. Historical status is not whole-topic authority; use a named scoped fragment and its exclusions.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "canonical": {
+          "authority": "PARITY",
+          "id": "FND-P04",
+          "name": "Statistical evidence",
+          "parent": "conformal prediction / calibrated risk",
+          "reopen": "guarantee kind or validity assumptions change",
+          "resources": "calibration data+checker",
+          "scope": "certificate scope+assumptions+epoch",
+          "semantics": "Coverage/calibration warrants a scoped procedure meta-claim, not an individual candidate truth.",
+          "source": "2d6739048866a698998891906634a72e570d762c:MEG02_STATISTICAL_WARRANT_ACTIONABILITY_V1",
+          "status": "PROVED",
+          "terminal": "MEG02_STATISTICAL_META_CLAIM_V1"
+        }
+      },
+      "id": "FND-P04",
+      "kind": "PRIMITIVE",
+      "remaining_scope_policy": "No raw primitive status admits an OCM rule. Causal, evaluator, control and testimony studies remain native contracts requiring separate clause registration; this absence is not absence of their delivered packages.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-36:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Certificates bind exact BehaviorIdentityV1; relevant drift fails closed. Historical status is not whole-topic authority; use a named scoped fragment and its exclusions.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "canonical": {
+          "authority": "PARITY",
+          "id": "FND-P05",
+          "name": "Operator/certificate drift",
+          "parent": "provenance/versioned certification",
+          "reopen": "semantic-equivalence certificate is later proved",
+          "resources": "9-field behavior identity",
+          "scope": "operator invocation",
+          "semantics": "Certificates bind exact BehaviorIdentityV1; relevant drift fails closed.",
+          "source": "2d6739048866a698998891906634a72e570d762c:OPERATOR_CERTIFICATE_IDENTITY_DRIFT_V1",
+          "status": "PROVED",
+          "terminal": "MEG36_BEHAVIOR_IDENTITY_V1"
+        }
+      },
+      "id": "FND-P05",
+      "kind": "PRIMITIVE",
+      "remaining_scope_policy": "No raw primitive status admits an OCM rule. Causal, evaluator, control and testimony studies remain native contracts requiring separate clause registration; this absence is not absence of their delivered packages.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-16:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "ATMS nogoods require post-product filtering; cross-nogood composition returns CONTRADICTED. Historical status is not whole-topic authority; use a named scoped fragment and its exclusions.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "canonical": {
+          "authority": "PARITY",
+          "id": "FND-P06",
+          "name": "Contradiction / nogoods",
+          "parent": "ATMS nogoods",
+          "reopen": "nogood semantics/checker changes",
+          "resources": "nogood filtering",
+          "scope": "registered inconsistent assumption sets",
+          "semantics": "ATMS nogoods require post-product filtering; cross-nogood composition returns CONTRADICTED.",
+          "source": "2d6739048866a698998891906634a72e570d762c:MEG16_NOGOOD_ALGEBRA_V1",
+          "status": "PROVED",
+          "terminal": "MEG16_NOGOOD_ALGEBRA_V1"
+        }
+      },
+      "id": "FND-P06",
+      "kind": "PRIMITIVE",
+      "remaining_scope_policy": "No raw primitive status admits an OCM rule. Causal, evaluator, control and testimony studies remain native contracts requiring separate clause registration; this absence is not absence of their delivered packages.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-17:SCOPED_FRAGMENT_V1",
+        "MEG-22:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Reopening is impact-cone intersect liveness-change; unaffected state is invariant. Historical status is not whole-topic authority; use a named scoped fragment and its exclusions.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "canonical": {
+          "authority": "PARITY",
+          "id": "FND-P07",
+          "name": "Revocation & reopening",
+          "parent": "TMS + DRed/BF",
+          "reopen": "dependency/reopening semantics change",
+          "resources": "dependency index",
+          "scope": "registered evidence revocation",
+          "semantics": "Reopening is impact-cone intersect liveness-change; unaffected state is invariant.",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:KSO_THREE_VALUED_WARRANT_AND_REOPENING_V1",
+          "status": "PROVED",
+          "terminal": "KS-T22"
+        }
+      },
+      "id": "FND-P07",
+      "kind": "PRIMITIVE",
+      "remaining_scope_policy": "No raw primitive status admits an OCM rule. Causal, evaluator, control and testimony studies remain native contracts requiring separate clause registration; this absence is not absence of their delivered packages.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-04:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Authority composes by meet; internal composition cannot raise authority. Historical status is not whole-topic authority; use a named scoped fragment and its exclusions.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "canonical": {
+          "authority": "PARITY",
+          "id": "FND-P08",
+          "name": "Scope & authority",
+          "parent": "Denning/Biba + OCM authority contract",
+          "reopen": "authority lattice changes",
+          "resources": "authority vector",
+          "scope": "registered authority lattice",
+          "semantics": "Authority composes by meet; internal composition cannot raise authority.",
+          "source": "d756c086edc46ad4e5e682f69730b72c1dc26a4c:KSO_ONE_DAY_THEOREMS_BATCH1_V1",
+          "status": "ADOPTED",
+          "terminal": "AUTHORITY_MEET_CORE"
+        }
+      },
+      "id": "FND-P08",
+      "kind": "PRIMITIVE",
+      "remaining_scope_policy": "No raw primitive status admits an OCM rule. Causal, evaluator, control and testimony studies remain native contracts requiring separate clause registration; this absence is not absence of their delivered packages.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-35:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Absence of exhibited warrant under incomplete upper knowledge is UNKNOWN, not false. Historical status is not whole-topic authority; use a named scoped fragment and its exclusions.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "canonical": {
+          "authority": "PARITY",
+          "id": "FND-P09",
+          "name": "Unknown truth",
+          "parent": "Kleene/rough-set lower-upper semantics",
+          "reopen": "three-valued semantics changes",
+          "resources": "upper-profile certificate",
+          "scope": "partial warrant intervals",
+          "semantics": "Absence of exhibited warrant under incomplete upper knowledge is UNKNOWN, not false.",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:KSO_THREE_VALUED_WARRANT_AND_REOPENING_V1",
+          "status": "PROVED",
+          "terminal": "KS-T21_UNKNOWN"
+        }
+      },
+      "id": "FND-P09",
+      "kind": "PRIMITIVE",
+      "remaining_scope_policy": "No raw primitive status admits an OCM rule. Causal, evaluator, control and testimony studies remain native contracts requiring separate clause registration; this absence is not absence of their delivered packages.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [],
+      "current_boundary": "Unify CANNOT_CHECK across statistical/tool/action/evaluator layers. Historical status is not whole-topic authority; use a named scoped fragment and its exclusions.",
+      "effective_status": "OPEN",
+      "historical_records": {
+        "canonical": {
+          "authority": "NONE",
+          "id": "FND-P10",
+          "name": "CANNOT_CHECK taxonomy",
+          "parent": "three-valued verification + runtime monitors",
+          "reopen": "registered V2 terminal",
+          "resources": "typed failure receipts",
+          "scope": "cross-layer",
+          "semantics": "Unify CANNOT_CHECK across statistical/tool/action/evaluator layers.",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_NO_AUTHORITY"
+        }
+      },
+      "id": "FND-P10",
+      "kind": "PRIMITIVE",
+      "remaining_scope_policy": "No raw primitive status admits an OCM rule. Causal, evaluator, control and testimony studies remain native contracts requiring separate clause registration; this absence is not absence of their delivered packages.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-20:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Query-relative sufficiency certificates and minimal reopening. Historical status is not whole-topic authority; use a named scoped fragment and its exclusions.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "canonical": {
+          "authority": "NONE",
+          "id": "FND-P11",
+          "name": "Representation sufficiency",
+          "parent": "Blackwell + CEGAR + data structures",
+          "reopen": "issue #201 terminal",
+          "resources": "representation/checker cost",
+          "scope": "issue #201",
+          "semantics": "Query-relative sufficiency certificates and minimal reopening.",
+          "source": "#201",
+          "status": "OPEN",
+          "terminal": "OPEN_201"
+        }
+      },
+      "id": "FND-P11",
+      "kind": "PRIMITIVE",
+      "remaining_scope_policy": "No raw primitive status admits an OCM rule. Causal, evaluator, control and testimony studies remain native contracts requiring separate clause registration; this absence is not absence of their delivered packages.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-12:SCOPED_FRAGMENT_V1",
+        "MEG-13:SCOPED_FRAGMENT_V1",
+        "MEG-34:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Lifecycle-safe learning and strongest-parent comparison. Historical status is not whole-topic authority; use a named scoped fragment and its exclusions.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "canonical": {
+          "authority": "NONE",
+          "id": "FND-P12",
+          "name": "Learning under revision",
+          "parent": "exact/query learning + WLL parents",
+          "reopen": "issue #200 terminal",
+          "resources": "trace/certificate/revalidation cost",
+          "scope": "issue #200",
+          "semantics": "Lifecycle-safe learning and strongest-parent comparison.",
+          "source": "#200",
+          "status": "OPEN",
+          "terminal": "OPEN_200"
+        }
+      },
+      "id": "FND-P12",
+      "kind": "PRIMITIVE",
+      "remaining_scope_policy": "No raw primitive status admits an OCM rule. Causal, evaluator, control and testimony studies remain native contracts requiring separate clause registration; this absence is not absence of their delivered packages.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-14:SCOPED_FRAGMENT_V1",
+        "MEG-32:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Whole-system resource vector including verifier/information privilege. Historical status is not whole-topic authority; use a named scoped fragment and its exclusions.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "canonical": {
+          "authority": "NONE",
+          "id": "FND-P13",
+          "name": "Resource epistemics",
+          "parent": "complexity/resource-frontier parents",
+          "reopen": "issue #202 terminal",
+          "resources": "core+memory+time+verification+IO",
+          "scope": "issue #202",
+          "semantics": "Whole-system resource vector including verifier/information privilege.",
+          "source": "#202",
+          "status": "OPEN",
+          "terminal": "OPEN_202"
+        }
+      },
+      "id": "FND-P13",
+      "kind": "PRIMITIVE",
+      "remaining_scope_policy": "No raw primitive status admits an OCM rule. Causal, evaluator, control and testimony studies remain native contracts requiring separate clause registration; this absence is not absence of their delivered packages.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-11:SCOPED_FRAGMENT_V1",
+        "MEG-30:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Frozen small-step semantics, finite reference machine and mechanization. Historical status is not whole-topic authority; use a named scoped fragment and its exclusions.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "canonical": {
+          "authority": "NONE",
+          "id": "FND-P14",
+          "name": "Operational semantics",
+          "parent": "operational semantics + proof assistants",
+          "reopen": "issue #203 terminal",
+          "resources": "machine+proof/checker cost",
+          "scope": "issue #203",
+          "semantics": "Frozen small-step semantics, finite reference machine and mechanization.",
+          "source": "#203",
+          "status": "OPEN",
+          "terminal": "OPEN_203"
+        }
+      },
+      "id": "FND-P14",
+      "kind": "PRIMITIVE",
+      "remaining_scope_policy": "No raw primitive status admits an OCM rule. Causal, evaluator, control and testimony studies remain native contracts requiring separate clause registration; this absence is not absence of their delivered packages.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [],
+      "current_boundary": "Checker drift, disagreement, incompleteness and meta-warrant remain explicit. Historical status is not whole-topic authority; use a named scoped fragment and its exclusions.",
+      "effective_status": "OPEN",
+      "historical_records": {
+        "canonical": {
+          "authority": "NONE",
+          "id": "FND-P15",
+          "name": "Evaluator epistemics",
+          "parent": "proof-carrying computation + runtime verification",
+          "reopen": "registered evaluator study terminal",
+          "resources": "checker identities + recourse",
+          "scope": "all evaluators",
+          "semantics": "Checker drift, disagreement, incompleteness and meta-warrant remain explicit.",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_EVALUATOR_EPISTEMICS"
+        }
+      },
+      "id": "FND-P15",
+      "kind": "PRIMITIVE",
+      "remaining_scope_policy": "No raw primitive status admits an OCM rule. Causal, evaluator, control and testimony studies remain native contracts requiring separate clause registration; this absence is not absence of their delivered packages.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [],
+      "current_boundary": "Observation and intervention authority must be distinguished under assumptions. Historical status is not whole-topic authority; use a named scoped fragment and its exclusions.",
+      "effective_status": "OPEN",
+      "historical_records": {
+        "canonical": {
+          "authority": "NONE",
+          "id": "FND-P16",
+          "name": "Causal/interventional evidence",
+          "parent": "causal inference / experimental design",
+          "reopen": "registered causal study terminal",
+          "resources": "experiment+assumption cost",
+          "scope": "interventional claims",
+          "semantics": "Observation and intervention authority must be distinguished under assumptions.",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_CAUSAL_EPISTEMICS"
+        }
+      },
+      "id": "FND-P16",
+      "kind": "PRIMITIVE",
+      "remaining_scope_policy": "No raw primitive status admits an OCM rule. Causal, evaluator, control and testimony studies remain native contracts requiring separate clause registration; this absence is not absence of their delivered packages.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [],
+      "current_boundary": "Delegation/testimony/conflict must preserve common-source dependence and authority. Historical status is not whole-topic authority; use a named scoped fragment and its exclusions.",
+      "effective_status": "OPEN",
+      "historical_records": {
+        "canonical": {
+          "authority": "NONE",
+          "id": "FND-P17",
+          "name": "Multi-agent epistemics",
+          "parent": "distributed epistemic logic + provenance",
+          "reopen": "registered multi-agent study terminal",
+          "resources": "communication+verification",
+          "scope": "multi-agent testimony",
+          "semantics": "Delegation/testimony/conflict must preserve common-source dependence and authority.",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_MULTI_AGENT_EPISTEMICS"
+        }
+      },
+      "id": "FND-P17",
+      "kind": "PRIMITIVE",
+      "remaining_scope_policy": "No raw primitive status admits an OCM rule. Causal, evaluator, control and testimony studies remain native contracts requiring separate clause registration; this absence is not absence of their delivered packages.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [],
+      "current_boundary": "Answer/search/experiment/clarify/abstain/Jump choice is a bounded decision problem. Historical status is not whole-topic authority; use a named scoped fragment and its exclusions.",
+      "effective_status": "OPEN",
+      "historical_records": {
+        "canonical": {
+          "authority": "NONE",
+          "id": "FND-P18",
+          "name": "Epistemic control",
+          "parent": "VOI + active learning + metareasoning",
+          "reopen": "registered control-theory terminal",
+          "resources": "cost+risk+information gain",
+          "scope": "registered action set",
+          "semantics": "Answer/search/experiment/clarify/abstain/Jump choice is a bounded decision problem.",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "OPEN",
+          "terminal": "OPEN_EPISTEMIC_CONTROL"
+        }
+      },
+      "id": "FND-P18",
+      "kind": "PRIMITIVE",
+      "remaining_scope_policy": "No raw primitive status admits an OCM rule. Causal, evaluator, control and testimony studies remain native contracts requiring separate clause registration; this absence is not absence of their delivered packages.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [
+        "MEG-28:SCOPED_FRAGMENT_V1"
+      ],
+      "current_boundary": "Escalation witnesses exist only in bounded finite calibrations; general residual is unearned. Historical status is not whole-topic authority; use a named scoped fragment and its exclusions.",
+      "effective_status": "SCOPED_FRAGMENT_WITH_OPEN_BOUNDARY",
+      "historical_records": {
+        "canonical": {
+          "authority": "SCOPED_PARITY",
+          "id": "FND-P19",
+          "name": "Model-class insufficiency / Jump",
+          "parent": "CEGAR + DPO/refinement + strongest-parent protocol",
+          "reopen": "general theorem or stronger parent result",
+          "resources": "full resource manifest",
+          "scope": "registered finite witness",
+          "semantics": "Escalation witnesses exist only in bounded finite calibrations; general residual is unearned.",
+          "source": "24566f00a9dc4425a438fcfac05d13c6b2d903db:ME_THEORY_GAP_ATLAS_V1",
+          "status": "FINITE_CALIBRATION",
+          "terminal": "FINITE_JUMP_CALIBRATION"
+        }
+      },
+      "id": "FND-P19",
+      "kind": "PRIMITIVE",
+      "remaining_scope_policy": "No raw primitive status admits an OCM rule. Causal, evaluator, control and testimony studies remain native contracts requiring separate clause registration; this absence is not absence of their delivered packages.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    },
+    {
+      "atlas_entries": [],
+      "candidate_rules": [],
+      "current_boundary": "Independent field/demarcation authority is not available internally. Historical status is not whole-topic authority; use a named scoped fragment and its exclusions.",
+      "effective_status": "CANNOT_CHECK",
+      "historical_records": {
+        "canonical": {
+          "authority": "NONE",
+          "id": "FND-P20",
+          "name": "External scientific validity",
+          "parent": "external peer/community authority",
+          "reopen": "external panel/reviewer evidence arrives",
+          "resources": "external reviewers/replication",
+          "scope": "external field claim",
+          "semantics": "Independent field/demarcation authority is not available internally.",
+          "source": "#38",
+          "status": "CANNOT_CHECK",
+          "terminal": "CANNOT_CHECK_EXTERNAL_FIELD"
+        }
+      },
+      "id": "FND-P20",
+      "kind": "PRIMITIVE",
+      "remaining_scope_policy": "No raw primitive status admits an OCM rule. Causal, evaluator, control and testimony studies remain native contracts requiring separate clause registration; this absence is not absence of their delivered packages.",
+      "terminal": "NO_ROW_LEVEL_AUTHORITY"
+    }
+  ],
+  "rules": [
+    {
+      "atlas_id": "MEG-01",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [],
+      "id": "MEG-01:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "ATMS/provenance",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "e082d731a9ca3db3eacb586683cb0e36b3cde54d4edba8e0cb3b6babe428bd4c",
+      "scientific_truth_authorized": false,
+      "scope": "Finite acyclic root substitution; distinct IDs do not imply statistical independence.",
+      "statement": {
+        "clause": "F03",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "0ede068e174d57f568a3ea0e7caed4398627236b31bf0d06197f4305517f7369"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-02",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [
+        "B6:F6:SCALAR_GRADE_SEMIRING_HOMOMORPHISM"
+      ],
+      "id": "MEG-02:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Probability/linear-system parent composition",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "04046a1d83856a60a861df2fa31fef3e8c3c4056c51b0ca92243d381366ef549",
+      "scientific_truth_authorized": false,
+      "scope": "Population risk is distinct from individual truth; adaptive risk requires declared validity assumptions.",
+      "statement": {
+        "clause": "F02",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "86267d81514ffb96f2a4b401d18aa5a7c27b0659c59f8a7632b16bc3c8f36b22"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-03",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [],
+      "id": "MEG-03:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Temporal databases and incremental computation",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "59c678a586ad04ec5bcc20ec63b584df298d97d2a2172d1761aed5aa8102aed4",
+      "scientific_truth_authorized": false,
+      "scope": "Explicit validity interval and scoped supersession/revocation; no unmodeled distributed time.",
+      "statement": {
+        "clause": "F08",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "974fc34cb6f3242175edc4bbddcbf5ca2ee4d5e1b2b8f8123a0f8f16746568a9"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-04",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [],
+      "id": "MEG-04:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Lattice authority/capabilities",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "9af3199ad8a5ed2aacebc3949fb887c654ef5d42a4a9456ed7994acd7eab3815",
+      "scientific_truth_authorized": false,
+      "scope": "Authority meet includes the operator; authenticated external issuance is a premise.",
+      "statement": {
+        "clause": "F01",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "35a90a1513fd53c1e7dacace2e68ddc1a167fb480b923389a0d54f23b11e38a6"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-05",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [],
+      "id": "MEG-05:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Commitment-store/type separation",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "87cf697df0518fc3e1f8baab204601c63696ed5135507915010bedf207ffe7c7",
+      "scientific_truth_authorized": false,
+      "scope": "Testimony about p is distinct from truth of p; target binding is explicit.",
+      "statement": {
+        "clause": "F08",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "974fc34cb6f3242175edc4bbddcbf5ca2ee4d5e1b2b8f8123a0f8f16746568a9"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-06",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [
+        "B1:T2(c):EARLIEST_BUDGET",
+        "B1:T2:EQUALITY_ALWAYS_UNDECIDABLE"
+      ],
+      "id": "MEG-06:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Neumann/Banach linear systems",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "ca003022aec4932b66f533b0d389976be531447ce209b95bb1303be6e862f269",
+      "scientific_truth_authorized": false,
+      "scope": "Nonnegative finite substochastic operator, restart in (0,1], exact lower/tail enclosure; no earliest-budget or finite equality-completeness claim.",
+      "statement": {
+        "clause": "F09",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "6c7f14c8f4e2b86da1a879588bc2d4c11fa9147e01da14b3e7e8ea722a295c26"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-07",
+      "checker": {
+        "path": "research/machine-epistemics-theory/meg_frontier_f1_extraction_exact.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [],
+      "id": "MEG-07:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "PageRank and relevance ranking",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "9de49b01ac5d88b208db0b1dfc1c238184334b3b1211532c83644c43aa22a694",
+      "scientific_truth_authorized": false,
+      "scope": "Registered finite observation transcript class; nondiscriminating scores cannot certify no-drop extraction; no practical learned-extractor guarantee.",
+      "statement": {
+        "clause": "F1.1",
+        "path": "research/machine-epistemics-theory/ME_FRONTIER_F1_EXTRACTION_NO_DROP_V1.md",
+        "section_sha256": "df33cceae10b7f353f2d1ecbd66d6f7fcfa2e0c3f88b31347b800beab93b078e"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-08",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [],
+      "id": "MEG-08:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "TMS plus operational firing distinction",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "2d03800b5b6b7079eff0166dd206e3df47f3ca6aaaecafe4cbb60752ed8f5489",
+      "scientific_truth_authorized": false,
+      "scope": "A weight change alone leaves warrant fixed; it may change firing/ranking.",
+      "statement": {
+        "clause": "F08",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "974fc34cb6f3242175edc4bbddcbf5ca2ee4d5e1b2b8f8123a0f8f16746568a9"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-09",
+      "checker": {
+        "path": "research/machine-epistemics-theory/meg_frontier_f2_multiscale_exact.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [],
+      "id": "MEG-09:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Quotients/lumpability",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "65bf593cab642c3303d61bd6561c2441241cbff14ed5ff4e4e0ba34c1220fa11",
+      "scientific_truth_authorized": false,
+      "scope": "Explicit intertwining projection and compatible restart seeds; parent-owned fixed-point commutation, not generic multiscale sufficiency.",
+      "statement": {
+        "clause": "F2.1",
+        "path": "research/machine-epistemics-theory/ME_FRONTIER_F2_MULTISCALE_PARENT_REDUCTION_V1.md",
+        "section_sha256": "f09ed48709c5ca949ebfadae03c528f460297e8872665da872fb3d793abdcb42"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-10",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [],
+      "id": "MEG-10:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "KAT/provenance",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "69c3354cc1765e1b5ee8b0b965f741b563c95ebe9c33d3edd46e2ad8cb4983ae",
+      "scientific_truth_authorized": false,
+      "scope": "Finite registered guarded traces versus static procedure warrants; no unrestricted recursion.",
+      "statement": {
+        "clause": "F06",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "0f3e5bc8ba72b2de162db55a5e4cf89f69d93c79480906c02fe287fc20064545"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-11",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [],
+      "id": "MEG-11:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Type preservation and well-founded termination",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "cc19505b62989004d4fd7c2c730018e55e1b727a12815a6efa2882c5935281fb",
+      "scientific_truth_authorized": false,
+      "scope": "Positive integer fuel bounds charged transitions; uncharged calls and external waits require separate bounds.",
+      "statement": {
+        "clause": "F15",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "ef011dd77f5b3ae1c09655a06c7fae356656cdae00b199ab67791e6bcfc7a9c1"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-12",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [],
+      "id": "MEG-12:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Version spaces and ATMS",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "e2893311a68c0b7645dd1789db8b9d598bea346c6a73d38f501ce9c861073d03",
+      "scientific_truth_authorized": false,
+      "scope": "Finite nonempty realizable noiseless hypothesis class; exact query agreement with revocable supports.",
+      "statement": {
+        "clause": "F05",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "90433bfbfe4347a90800fda7599360874d3d8ffd02d443100e7433d0181b577d"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-13",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [],
+      "id": "MEG-13:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Exact learning/version spaces",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "1c0eed4f24b64b6949e2f8a8e5a8dc5e4001b2b561f0cdf0a6177e9a5e724b19",
+      "scientific_truth_authorized": false,
+      "scope": "Query-specific agreement under true-model inclusion; empty compatible class is not success.",
+      "statement": {
+        "clause": "F05",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "90433bfbfe4347a90800fda7599360874d3d8ffd02d443100e7433d0181b577d"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-14",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [],
+      "id": "MEG-14:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Teaching/query/PAC learning",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "fd72ab36895a731461ba26da84cb337643a3024599598dcc5d8cc295cde8db41",
+      "scientific_truth_authorized": false,
+      "scope": "Finite nonempty version spaces; explicit acquisition channel and counting costs; no universal sample-complexity bound.",
+      "statement": {
+        "clause": "F13",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "c23a7c19ec5f80bf2e201c1cdf447f46f1fed68ce4c3d2842b9d5d43e82c61ba"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-15",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [],
+      "id": "MEG-15:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Target-relative observation and exact learning",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "29125d68a98d50c376c56a37a7fe9e68bab7db8940e0c23d63a5a1cce25dfc5a",
+      "scientific_truth_authorized": false,
+      "scope": "A registered outcome has target-relative evidence semantics; reward alone is not truth.",
+      "statement": {
+        "clause": "F08",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "974fc34cb6f3242175edc4bbddcbf5ca2ee4d5e1b2b8f8123a0f8f16746568a9"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-16",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [
+        "ATLAS:UNCONDITIONAL_KLEENE_NOGOOD_MEET"
+      ],
+      "id": "MEG-16:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "ATMS nogoods/absorptive provenance",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "ff76c3d43f5065d25c59b2429c305202def5299fc9acf10e659ee319f3644c37",
+      "scientific_truth_authorized": false,
+      "scope": "Common evidence alphabet and registered nogoods; post-product filtering; scalar meet equality only under compatibility.",
+      "statement": {
+        "clause": "F04",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "e3042c8b928bfe52b66a1b4a0306f5db7f1ea521c0322f50c167b9ba1c2221af"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-17",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [],
+      "id": "MEG-17:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Self-adjusting computation",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "0f6be1eff630904ee698b7140df2d9e941a6b5a325b0dcf31447929ea5f6b1dc",
+      "scientific_truth_authorized": false,
+      "scope": "Complete pure dependency DAG and full semantic signatures; candidate cone is an upper bound.",
+      "statement": {
+        "clause": "F07",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "e76483e4b558e33154fb7467c90e75f028d6ea56f5bdb24803f6340152ed24af"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-18",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [
+        "B1:T4(iii):DENOMINATOR_CHANGE_ALWAYS_CHANGES_OUTPUT"
+      ],
+      "id": "MEG-18:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "State restoration and resolvents",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "4f076981feca07c377e8427fcfb9b69a6aabc1035b503279f78c428c7f0e1482",
+      "scientific_truth_authorized": false,
+      "scope": "Rollback restores full effective operator and context; gate-only revocation is insufficient in general.",
+      "statement": {
+        "clause": "F10",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "2d1af9c6653ce2784ed0dc6ed5397d4d4e5f30a8c869ac97a07c9a7601b4ac54"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-19",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [
+        "ATLAS:CHILD_CHANGE_IFF_MACRO_CHANGE"
+      ],
+      "id": "MEG-19:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Incremental computation/abstraction",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "f9f431b887810237b44473b16abaab8441c7b65ee8eb7a0e627d34bdd2c0c85c",
+      "scientific_truth_authorized": false,
+      "scope": "Full-signature conservative maintenance; child-change does not imply macro-change; no globally optimal consolidation claim.",
+      "statement": {
+        "clause": "F07",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "e76483e4b558e33154fb7467c90e75f028d6ea56f5bdb24803f6340152ed24af"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-20",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [],
+      "id": "MEG-20:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Sufficient statistics/quotients",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "00066c5d0b2bba233e3277f50441e954dfe8369db8e209b98b761be68ec38b03",
+      "scientific_truth_authorized": false,
+      "scope": "Sufficiency is relative to a registered query and lifecycle signature; no unrestricted future-query guarantee.",
+      "statement": {
+        "clause": "F11",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "7e01c50ea04672dd3cf1d728d3c26f2be4983b18e97c293363d14a31ad1ab1cc"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-21",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [],
+      "id": "MEG-21:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Refinement/conservative extension",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "b32179e45ffb8b5795eaf99e27bd8d9eac1231d90ea1a433cf34b547013337d7",
+      "scientific_truth_authorized": false,
+      "scope": "Conservative preservation over registered semantic outputs, not arbitrary graph-shape identity.",
+      "statement": {
+        "clause": "F11",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "7e01c50ea04672dd3cf1d728d3c26f2be4983b18e97c293363d14a31ad1ab1cc"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-22",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [
+        "ATLAS:SHARED_SUPPORT_IMPLIES_ACTUAL_CHANGE",
+        "B1:T5(iii):PRODUCT_FOOTPRINT_EQUALS_UNION"
+      ],
+      "id": "MEG-22:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Provenance/incremental computation",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "5f9dc4dc4adbbd2ed94c9ed5bbc758ad7c56ebcc0c58c81b98ad7db86bbb7c2f",
+      "scientific_truth_authorized": false,
+      "scope": "Shared evidence gives a possible-impact bound; surviving alternative support may preserve liveness.",
+      "statement": {
+        "clause": "F07",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "e76483e4b558e33154fb7467c90e75f028d6ea56f5bdb24803f6340152ed24af"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-23",
+      "checker": {
+        "path": "research/machine-epistemics-theory/kso_comparison_prereqs_batch4_exact.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [],
+      "id": "MEG-23:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Algorithm selection/abstraction",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "82cfc35cd7d90d36db927228a8d4bb61bc11a46a9609a95f3d8c91c80926d2c3",
+      "scientific_truth_authorized": false,
+      "scope": "Registered finite organization fixture and recertified affected interfaces; no global topology-search optimality.",
+      "statement": {
+        "clause": "D8 \u00b7 MEG-23",
+        "path": "research/machine-epistemics-theory/KSO_COMPARISON_PREREQUISITE_THEOREMS_BATCH4_V1.md",
+        "section_sha256": "296b161d5c643f395aae31b42bdcf3ece4da342f2c56335ab41953dd06694142"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-24",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [
+        "ATLAS:GROUNDING_EQUALITY_IMPLIES_MEANING_EQUALITY"
+      ],
+      "id": "MEG-24:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Canonicalization versus semantic equivalence",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "48d92bf1bd8766624bc9d4b6feffeb063c0b4dded527f5954e2858502aa420d5",
+      "scientific_truth_authorized": false,
+      "scope": "Meaning equality implies deterministic grounding equality; converse requires injectivity; real-language fidelity unproved.",
+      "statement": {
+        "clause": "F12",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "164a1f3466d2630c8aa17ef867721bc826faaf17abba128c8e58f4c89b091979"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-25",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [],
+      "id": "MEG-25:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Noninterference plus semantic refinement",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "3ceec3ac014af06cc1228b4c3eb2289320c5aaceb301e6a5a7f07bf98bf777a1",
+      "scientific_truth_authorized": false,
+      "scope": "Rendering capability and semantic entailment are distinct; lack of warrant for p does not entail not-p.",
+      "statement": {
+        "clause": "F12",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "164a1f3466d2630c8aa17ef867721bc826faaf17abba128c8e58f4c89b091979"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-26",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [
+        "ATLAS:UNIQUE_MEANING_NECESSARY_FOR_QUERY_ANSWER"
+      ],
+      "id": "MEG-26:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Universal agreement/abstract interpretation",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "b3dd9a156306d9b998b14a140c3a7f966f13711104e70707acc80709c23c13ea",
+      "scientific_truth_authorized": false,
+      "scope": "True-meaning inclusion and query agreement can permit an answer without unique full interpretation; singleton policy remains allowed.",
+      "statement": {
+        "clause": "F12",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "164a1f3466d2630c8aa17ef867721bc826faaf17abba128c8e58f4c89b091979"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-27",
+      "checker": {
+        "path": "research/machine-epistemics-theory/meg_frontier_f6_safe_prefix_exact.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [],
+      "id": "MEG-27:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Constraint satisfaction/incremental realization",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "3c48b11efaa60931ff64f88d52205360709e9c2a8966a4cc4fa212c5cf92cb28",
+      "scientific_truth_authorized": false,
+      "scope": "Complete finite registered semantic continuation system; robust universal admissibility, not existential grammatical completion.",
+      "statement": {
+        "clause": "F6.1",
+        "path": "research/machine-epistemics-theory/ME_FRONTIER_F6_SAFE_PREFIX_V1.md",
+        "section_sha256": "82569390282605038e3f0b9c9bd09a2494c576aa8d00e9108c070753dabb3022"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-28",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [
+        "B6:F7:UNAVAILABLE_ORACLE_MEANS_NO_MINIMUM"
+      ],
+      "id": "MEG-28:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "CEGAR/refinement/graph rewriting",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "94518fd433bfdd04983f2684c54942a1d4a02ee1a2146cafbf2300dc7ef363c5",
+      "scientific_truth_authorized": false,
+      "scope": "Effective-state restoration for the stated structural rollback model; arbitrary Jump ceilings are separate.",
+      "statement": {
+        "clause": "F10",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "2d1af9c6653ce2784ed0dc6ed5397d4d4e5f30a8c869ac97a07c9a7601b4ac54"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-29",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [
+        "B1:T7:FOOTPRINT_DISJOINTNESS_NECESSARY"
+      ],
+      "id": "MEG-29:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Reference-monitor/trust-boundary discipline",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "68233964db1eb60fd7ac7e9445a6459c10af205b9a2abd8d3c51b27e8ac4aa97",
+      "scientific_truth_authorized": false,
+      "scope": "Internal composition cannot mint external authority; factored dependence can kill a certificate, complete footprint disjointness is not necessary for survival.",
+      "statement": {
+        "clause": "F01",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "35a90a1513fd53c1e7dacace2e68ddc1a167fb480b923389a0d54f23b11e38a6"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-30",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [
+        "B1:T8(i):TOTAL_RUN_TERMINATION_WITH_UNCHARGED_QUERIES",
+        "B1:T8(ii):ARBITRARY_CONCURRENT_SERIALIZABILITY"
+      ],
+      "id": "MEG-30:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Well-founded termination/transaction theory",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "9782a97a8a854bf811644cb6cf98e8cbe3f802373f75eae577aa871d391cf5b6",
+      "scientific_truth_authorized": false,
+      "scope": "Natural-number metering bounds charged transitions only; total-run liveness and concurrent serialization require separate premises.",
+      "statement": {
+        "clause": "F15",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "ef011dd77f5b3ae1c09655a06c7fae356656cdae00b199ab67791e6bcfc7a9c1"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-31",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [
+        "ATLAS:GENERAL_INFORMATION_SUBADDITIVITY"
+      ],
+      "id": "MEG-31:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Hartley counting and conditional information",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "f0f513c3c598b5debff91f49b3359aeeb59c7a7e62c67ac7548f66dbdcb7cb40",
+      "scientific_truth_authorized": false,
+      "scope": "Realized finite version-space gains telescope; arbitrary dependence has no blanket marginal subadditivity law.",
+      "statement": {
+        "clause": "F13",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "c23a7c19ec5f80bf2e201c1cdf447f46f1fed68ce4c3d2842b9d5d43e82c61ba"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-32",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [
+        "B6:F2:EXCHANGEABILITY_IMPLIES_BINOMIAL_NULL"
+      ],
+      "id": "MEG-32:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Exact binomial inversion/equivalence testing",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "f910969623bf1b10898a56cf6a9805b0323d71380f013c7d6401fcf74fb81d0f",
+      "scientific_truth_authorized": false,
+      "scope": "Theorem identity or predeclared powered equivalence evidence is needed; nonsignificance is not equivalence.",
+      "statement": {
+        "clause": "F14",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "2e2e4c4ea65f6061a6aa8281d7d8c869c3b4f39a2410a71161712577334ada61"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-33",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [
+        "ATLAS:LOWER_ONLY_REFINEMENT_ESTABLISHES_DEAD"
+      ],
+      "id": "MEG-33:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Active learning/value of information",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "a3abee7b105303e2037b6dad26b100bb3a7354f66442a2de38def754d0d542fc",
+      "scientific_truth_authorized": false,
+      "scope": "Lower-only refinement cannot establish DEAD; upper-only refinement cannot establish LIVE; no universal value-of-information algorithm.",
+      "statement": {
+        "clause": "F15",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "ef011dd77f5b3ae1c09655a06c7fae356656cdae00b199ab67791e6bcfc7a9c1"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-34",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/foundation.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [],
+      "id": "MEG-34:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Automata/exact learning and representation sufficiency",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "812caf34700949d3a597067db1c6f435bc12a33b50d74925fa3da113c711035c",
+      "scientific_truth_authorized": false,
+      "scope": "Only finite realizable query agreement; infinite grammar identification remains distinct.",
+      "statement": {
+        "clause": "F05",
+        "path": "research/machine-epistemics-theory/foundation_revision_v1/THEORY.md",
+        "section_sha256": "90433bfbfe4347a90800fda7599360874d3d8ffd02d443100e7433d0181b577d"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-35",
+      "checker": {
+        "path": "research/machine-epistemics-theory/foundation_typed_lifecycle_v1/check_calculus.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [
+        "ATLAS:UNCHECKED_UPPER_REPLACEMENT"
+      ],
+      "id": "MEG-35:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "Interval knowledge order",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "fe262d1448eafba9617fe0f995c25304728879d66f0d5e0f4b9beb87a00ad7f9",
+      "scientific_truth_authorized": false,
+      "scope": "Upper refinement retains lower<=upper consistency and scope; certificate validity is an external premise.",
+      "statement": {
+        "clause": "T03",
+        "path": "research/machine-epistemics-theory/foundation_typed_lifecycle_v1/THEORY.md",
+        "section_sha256": "f002149dceb3d876efd2dd27421fa392d35e60d4cc1b475fc2e4e69edc6e8b81"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    },
+    {
+      "atlas_id": "MEG-36",
+      "checker": {
+        "path": "research/machine-epistemics-theory/machine_epistemics_foundation_v1_check_v2.py",
+        "scope": "PACKAGE_FINITE_CALIBRATION_ONLY_NOT_AN_ALL_SIZE_PROOF_OR_EXTERNAL_REVIEW"
+      },
+      "excluded_claims": [],
+      "id": "MEG-36:SCOPED_FRAGMENT_V1",
+      "independent_external_review": "NOT_OBTAINED",
+      "ocm_adoption_authorized": false,
+      "parent": "provenance/versioned certification",
+      "resources": "All source-section construction, representation, inference, verifier, lifecycle and assumption-checking costs are retained; no resource advantage inferred.",
+      "rule_sha256": "3039fe9814d7f70a1277ce6e55354123db4478a8d52d31f9daffba942fe25d57",
+      "scientific_truth_authorized": false,
+      "scope": "Certificate about the declared operator behavior tuple; all nine fields and assumptions/scope/epoch must match; immutable-output proofs have their own subject identity.",
+      "statement": {
+        "clause": "MEG-36A",
+        "path": "research/machine-epistemics-theory/OPERATOR_CERTIFICATE_IDENTITY_DRIFT_V1.md",
+        "section_sha256": "79fe0321864215fa18c14bdda1d530e0b9a2d13d8e3a6d823b13a1e8c53edfe9"
+      },
+      "status": "SCOPED_REFERENCE_FRAGMENT",
+      "terminal": "PARITY_AND_EXTERNAL_ADOPTION_REQUIRED"
+    }
+  ],
+  "schema": "ME_EFFECTIVE_AUTHORITY_V1",
+  "scientific_completion": false,
+  "snapshot_commit": "096e6f3df1854dede3c8a0fbe63d05ec30bcb119",
+  "source_manifest_sha256": "b85e2c633f96e0bf89fa757b5a8e9baf837bd181c17a5eb157e55c53febfad07",
+  "terminal": "INTERNAL_SPECIFICATION_CANDIDATE"
+}

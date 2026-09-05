@@ -1,0 +1,27 @@
+name: ME effective authority reconciliation
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  authority-reconciliation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify source-bound effective registry
+        run: python research/machine-epistemics-theory/authority_reconciliation_v1/resolve.py
+      - name: Hostile imports and mathematical countermodels
+        run: python -m unittest discover -s research/machine-epistemics-theory/authority_reconciliation_v1 -p 'test_*.py' -v
+      - name: Verify refusals with assertions disabled
+        run: python -O -m unittest discover -s research/machine-epistemics-theory/authority_reconciliation_v1 -p 'test_*.py' -v
+      - name: Replay original retained stopping counterexample
+        run: python research/machine-epistemics-theory/foundation_revision_v1/stopping_counterexample.py
+      - name: Preserve source checkout
+        run: git diff --exit-code

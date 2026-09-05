@@ -1,0 +1,133 @@
+{
+  "schema": "PUBLIC_PARENT_NATIVE_RECONSTRUCTION_V1",
+  "case_id": "PUBLIC_MISSING_REQUIRED_VALUE",
+  "visibility": "PUBLIC_AUTHORED",
+  "source_id": "ORION-V2_PUBLIC_PARENT_FIXTURES_20260905",
+  "query_id": "supplied-candidate-dag-and-required-value-v1",
+  "representation_id": "authored-representation-v1",
+  "candidate_coverage": "EXPLICIT_SUPPLIED_SET_ONLY",
+  "constraints_complete": true,
+  "shapes": [
+    [
+      {
+        "iri": "urn:shape"
+      },
+      {
+        "iri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+      },
+      {
+        "iri": "http://www.w3.org/ns/shacl#NodeShape"
+      }
+    ],
+    [
+      {
+        "iri": "urn:shape"
+      },
+      {
+        "iri": "http://www.w3.org/ns/shacl#targetNode"
+      },
+      {
+        "iri": "urn:a"
+      }
+    ],
+    [
+      {
+        "iri": "urn:shape"
+      },
+      {
+        "iri": "http://www.w3.org/ns/shacl#property"
+      },
+      {
+        "iri": "urn:required"
+      }
+    ],
+    [
+      {
+        "iri": "urn:required"
+      },
+      {
+        "iri": "http://www.w3.org/ns/shacl#path"
+      },
+      {
+        "iri": "urn:label"
+      }
+    ],
+    [
+      {
+        "iri": "urn:required"
+      },
+      {
+        "iri": "http://www.w3.org/ns/shacl#minCount"
+      },
+      {
+        "literal": "1",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    ],
+    [
+      {
+        "iri": "urn:required"
+      },
+      {
+        "iri": "http://www.w3.org/ns/shacl#maxCount"
+      },
+      {
+        "literal": "1",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    ]
+  ],
+  "shape_targets": [
+    "urn:a"
+  ],
+  "candidates": [
+    {
+      "candidate_id": "portrait-A",
+      "context_id": "urn:context:history-A",
+      "history": [
+        "public-source-A",
+        "revision-1"
+      ],
+      "nodes": [
+        "urn:a",
+        "urn:b",
+        "urn:c"
+      ],
+      "edges": [
+        [
+          "urn:a",
+          "urn:b"
+        ],
+        [
+          "urn:b",
+          "urn:c"
+        ]
+      ],
+      "triples": [
+        [
+          {
+            "iri": "urn:a"
+          },
+          {
+            "iri": "urn:edge"
+          },
+          {
+            "iri": "urn:b"
+          }
+        ],
+        [
+          {
+            "iri": "urn:b"
+          },
+          {
+            "iri": "urn:edge"
+          },
+          {
+            "iri": "urn:c"
+          }
+        ]
+      ],
+      "require_dag": true
+    }
+  ]
+}

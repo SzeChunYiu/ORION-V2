@@ -1,0 +1,46 @@
+name: Parent native reconstruction
+
+on:
+  pull_request:
+    paths:
+      - 'research/evaluation/parent_native_reconstruction_v1/**'
+      - '.github/workflows/parent-native-reconstruction.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-native-fit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.13'
+      - name: Create isolated native dependency environment
+        shell: bash
+        run: python -m venv "$RUNNER_TEMP/parent-native-env"
+      - name: Install exact candidate and transitive versions
+        shell: bash
+        run: |
+          "$RUNNER_TEMP/parent-native-env/bin/python" -m pip install --only-binary=:all: --report "$RUNNER_TEMP/parent-native-install.json" -r research/evaluation/parent_native_reconstruction_v1/requirements.txt
+          "$RUNNER_TEMP/parent-native-env/bin/python" -m pip check
+          "$RUNNER_TEMP/parent-native-env/bin/python" research/evaluation/parent_native_reconstruction_v1/verify_install.py "$RUNNER_TEMP/parent-native-install.json"
+      - name: Verify source binding and execute native public fit tests
+        shell: bash
+        working-directory: research/evaluation/parent_native_reconstruction_v1
+        run: |
+          "$RUNNER_TEMP/parent-native-env/bin/python" run_public_suite.py --output "$RUNNER_TEMP/parent-native-fit"
+      - name: Preserve native outputs and installed distribution identities
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-parent-native-fit-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/parent-native-fit
+            ${{ runner.temp }}/parent-native-install.json
+          if-no-files-found: error
+      - name: Check unchanged tracked source
+        run: git diff --exit-code
