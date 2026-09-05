@@ -1,0 +1,41 @@
+{
+  "authority": {
+    "changes_pc_terminal": false,
+    "grants_scientific_truth": false,
+    "licenses_arm_comparison": false,
+    "novelty_claim": false
+  },
+  "authorization": {
+    "minted": "on the dispatch host immediately before dispatch; archived after use; dispatcher refuses without it",
+    "shape": "orion.v2.protected-run-authorization (ME-X shape)",
+    "source": "operator standing verbatim authorization 2026-09-02 'run all the computation tasks.. finish all the researxh asap'; reaffirmed 2026-09-04 'i sign off everything'"
+  },
+  "channel_dependent": true,
+  "deltas": [
+    "arm executable orion_codex_arms.py with E80 emission",
+    "receipt-aware header-exact endpoint in evaluate_one",
+    "fresh secret nonce (sha256 committed at dispatch, revealed after)",
+    "host billy-old, channel codex pinned binary / gpt-5.6-terra, window 2026-09-07T16:25 local"
+  ],
+  "frozen_at": "2026-09-05",
+  "parent_design": "research/experiments/e70-gc2/E70_GC2_OFFCEILING_DESIGN_V1.json",
+  "parent_design_sha256": "110c72773fcb530272badfb7fe9a1dd0804e417fe01a899d903715c8658baa21",
+  "pre_registered_expectation": "all rungs above the window on count-robust success; header-exact endpoint reported per rung, routes nothing",
+  "reason": "E70_GC2_INSTRUMENT_SUSPECT_RERUN_PENDING_V1.md (instrument defects D1-D3)",
+  "schema_version": "orion.v2.e70-gc2-r2.rerun-under-emission-design.v1",
+  "study_id": "E70-GC2-R2",
+  "terminals": [
+    "INSTRUMENT_REPAIRED__SATURATION_CONFIRMED",
+    "INSTRUMENT_REPAIRED__WINDOW_ENTERED",
+    "CALIBRATION_INVALID_UNSCORABLE_CELLS",
+    "LANE_DEFECT"
+  ],
+  "unchanged": [
+    "ladder L1-L3",
+    "window [0.30, 0.70]",
+    "16 dev tasks per rung",
+    "primary endpoint count_robust_hidden_oracle_success",
+    "calibration routing",
+    "arm set for calibration: SIMPLE_DIRECT"
+  ]
+}

@@ -559,12 +559,25 @@ def reference_solution(spec: dict[str, Any]) -> dict[str, str]:
     return files
 
 
+def _split_newline_exact_keepends(text: str) -> list[str]:
+    """Split on ``\\n`` only, keeping ends -- the line model ``git`` uses.  ``str.splitlines``
+    also breaks on VT/FF/FS/GS/RS/NEL/LS/PS, which would make difflib's hunk counts disagree
+    with git's on a file containing e.g. a form-feed page break (R5 instrument repair)."""
+    if not text:
+        return []
+    parts = text.split("\n")
+    out = [part + "\n" for part in parts[:-1]]
+    if parts[-1]:
+        out.append(parts[-1])
+    return out
+
+
 def rooted_patch(workspace: Path, files: dict[str, str]) -> str:
     """Unified diff (a/b rooted, exact hunk counts) replacing the given files."""
     chunks: list[str] = []
     for name in sorted(files):
         before = (workspace / name).read_text(encoding="utf-8") if (workspace / name).exists() else ""
-        body = "".join(difflib.unified_diff(before.splitlines(keepends=True), files[name].splitlines(keepends=True),
+        body = "".join(difflib.unified_diff(_split_newline_exact_keepends(before), _split_newline_exact_keepends(files[name]),
                                             fromfile=f"a/{name}", tofile=f"b/{name}"))
         chunks.append(f"diff --git a/{name} b/{name}\n" + body)
     return "".join(chunks)
@@ -806,8 +819,21 @@ def evaluate_one(workdir: Path, arm: str, task_id: str, rep: int) -> dict[str, A
     if audit.valid_or_canonicalizable and audit.canonical_diff is not None:
         cr_apply, cr_error, cr_score = lane("count_robust", audit.canonical_diff)
     resource = response.get("resource_receipt") if isinstance(response.get("resource_receipt"), dict) else {}
+    # Header-exact interface-fidelity endpoint.  Arms that emit through orion_v2.patch_emission (E80,
+    # merged after GC2's calibration) already return a canonical diff, so reading header-exactness off
+    # the archived content would be vacuous (always true).  The emission receipt preserves the
+    # pre-canonicalization fact; legacy responses without a receipt fall back to the syntax audit of
+    # the archived content, which is what GC1/GC2 measured.
+    emission = response.get("patch_emission_receipt") if isinstance(response.get("patch_emission_receipt"), dict) else None
+    if emission is not None and isinstance(emission.get("extracted_was_header_exact"), bool):
+        header_exact, header_exact_source = bool(emission["extracted_was_header_exact"]), "patch_emission_receipt.extracted_was_header_exact"
+    else:
+        header_exact, header_exact_source = bool(audit.valid_or_canonicalizable and not audit.changed), "syntax_audit_of_archived_content"
     return base | {
         "status": "EVALUATED",
+        "header_exact_endpoint": header_exact,
+        "header_exact_endpoint_source": header_exact_source,
+        "header_exact_hidden_oracle_success": bool(header_exact and cr_apply and cr_score.get("hidden_oracle_success")),
         "agent_status": response.get("status"),
         "raw_patch_sha256": sha256_text(patch),
         "canonical_patch_sha256": sha256_text(audit.canonical_diff) if audit.canonical_diff else None,
@@ -909,6 +935,7 @@ def analyze(workdir: Path, *, arms: list[str], seed: int, design: dict[str, Any]
                     rows[(task_id, rep)] = read_json(path)
         by_arm[arm] = rows
     endpoints = {"count_robust_hidden_oracle_success": "PRIMARY", "raw_hidden_oracle_success": "SECONDARY_INTERFACE_FIDELITY",
+                 "header_exact_hidden_oracle_success": "SECONDARY_INTERFACE_FIDELITY_RECEIPT_AWARE",
                  "count_robust_patch_apply_success": "SECONDARY", "raw_patch_apply_success": "SECONDARY"}
     summaries: dict[str, Any] = {}
     for arm, rows in by_arm.items():
@@ -1132,7 +1159,7 @@ def calibrate(design: dict[str, Any], root: Path, *, levels: list[str], dev_task
         blinded_dispatch(workdir, [arm], max_concurrency)
         records = evaluate(workdir, arms=[arm])
         k = sum(bool(r.get("count_robust_hidden_oracle_success")) for r in records)
-        raw_k = sum(bool(r.get("raw_hidden_oracle_success")) for r in records)
+        raw_k = sum(bool(r.get("header_exact_hidden_oracle_success", r.get("raw_hidden_oracle_success"))) for r in records)
         n = len(records)
         rate = k / n if n else 0.0
         row = {"level": level, "title": LADDER[level]["title"], "tasks": n, "count_robust_success": k, "rate": rate,
