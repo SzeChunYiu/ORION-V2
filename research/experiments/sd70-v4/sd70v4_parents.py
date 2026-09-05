@@ -52,19 +52,24 @@ def gated_maxmargin(surface: dict[str, Any]) -> tuple[list[float], dict[str, Any
             models = {}
             for r in (0, 1):
                 models[r] = P3.maxmargin_weights(P3.Encoded(_sub_surface(surface, halves[r]))) if halves[r] else pooled
-            # training consistency under the gated model
-            score = 0
+            # training consistency under the gated model, then the summed SUCCESS margin (score of the
+            # chosen action minus the best other action): the true gate separates both regimes cleanly
+            # and therefore with the largest margins; a wrong gate that still fits 16 episodes fits them tightly.
+            score, margin = 0, 0.0
             for ep in episodes:
                 cs = set(ep["context_features"])
                 r = int((fi in cs) ^ (fj in cs))
                 x = enc.vector(cs)
-                pred = P3.argmax_frozen([P3.dot(models[r][b], x) for b in range(enc.A)])
+                sc = [P3.dot(models[r][b], x) for b in range(enc.A)]
+                pred = P3.argmax_frozen(sc)
                 chosen = enc.cand_index.get(ep["chosen_action"])
                 if ep["validated_outcome"] == "SUCCESS":
                     score += int(pred == chosen)
+                    if chosen is not None and enc.A > 1:
+                        margin += sc[chosen] - max(sc[b] for b in range(enc.A) if b != chosen)
                 else:
                     score += int(pred != chosen)
-            key = (score, -i, -j)
+            key = (score, round(margin, 9), -i, -j)
             if best is None or key > best[0]:
                 best = (key, (fi, fj), models)
     if best is None:  # fewer than two vocabulary features: no gate expressible
