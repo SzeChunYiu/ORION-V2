@@ -4,8 +4,9 @@ Date 2026-09-05. Eighth one-day batch, the first of the field-completion program
 the Machine Epistemics field frontier (`field_dynamics_v1/FRONTIER.md`). Scope: four frontier rows —
 FDX-01 open-system epistemic closure (H1), FDX-02 controlled epistemic viability (H2), FDX-03
 information/interface conservation (H3), FDX-05 reversible and irreversible epistemic transitions (H4).
-Each row is closed as PROVED on a finite fixture, bounded exactly (an impossibility with a witness), or
-PARENT_SUFFICIENT / PARENT_OWNED with the executable rule and its falsifier. The FDX ids are kept.
+Each row has a finite-fixture disposition, an explicitly scoped impossibility witness, or a
+PARENT_SUFFICIENT / PARENT_OWNED reconstruction with an executable falsifier. These dispositions do not
+close the general FDX frontier questions. The FDX ids are kept.
 
 Every item has an exact finite checker (`kso_field_frontier_batch8_exact.py`, stdlib only; every count an
 integer, every probability an exact `Fraction`; exit 0 / 1 / 2 with 2 = CANNOT_CHECK), at least one planted
@@ -15,6 +16,15 @@ exit 0, wall 2.2 s, `"status": "ALL_HOLD"`, `"OPEN"` = the FD-07 general princip
 batches 5–8 together with the batch-6 revision-boundary suite 65/65. All objects are re-implemented inside the checker (dependency closure, a
 finite-horizon controller/environment game, deterministic channels as partitions of a 16-hypothesis class,
 an append-only ledger with a LIFO component stack); nothing imports `ocm`; nothing ran on the Mac.
+
+**Review boundary correction.** The original nine-test result above remains historical evidence at
+`564b6a913ae6055bf6b3282c5e35b99135e78a41`. Review found that H1 must distinguish total Boolean decisions
+from sound partial decisions, H3's risk result covers one use only, and H4's composition equivalence
+depends on its exact transition menu and lengths. Five added regression tests retain the counterexamples
+and refuse assertion-based verification under optimized Python (`CANNOT_CHECK`, exit 2). They do not
+replace the original finite counts, grant independent scientific review, or close broader frontiers.
+The machine result retains the historical `OPEN` list of this batch's named unresolved law and adds
+`SCOPE_LIMITATIONS`; `OPEN` is not an inventory of all FDX frontier obligations.
 
 NO NOVELTY OR SUPERIORITY CLAIM. Every fixed-point, game-theoretic, information-theoretic or
 transactional fact used is a named parent's; the contribution is the exact statement on the registered
@@ -49,8 +59,10 @@ is sound iff every root is monitored (3 456/3 456); a frozen root flipped by the
 unconditional reading wrong on 22 224 trajectory states while the conditional claim stays true. (iii)
 *Exact impossibility below the interface.* For every NO_CLOSURE pair (1 727 of 3 456) the environment that
 flips one uncovered root produces two states with identical registered view and different validity of `c`;
-hence **no function of the registered state** is a sound current-validity claim — not a weaker interface,
-not a smarter monitor, nothing that reads only `ρ`. Smallest witness: `D = {c ← x1}`, `x1` uncovered.
+hence **no total Boolean function of the registered view** gives the exact validity of `c` on every
+admissible state. This does not exclude sound partial decisions: for `c = x1 ∧ x2`, with `x1` uncovered
+and `x2` monitored, report INVALID when `x2 = 0` and UNKNOWN otherwise. Smallest indistinguishability
+witness for a total decision: `D = {c ← x1}`, `x1` uncovered.
 (iv) *Closure is relative to `D`.* A certificate computed over the direct tails only (the transitive root
 through `a` unmodelled) certifies 271 pairs the honest certificate refuses; each has the witness of (iii).
 Dependency completeness of `D` is a registered assumption of every certificate and `CANNOT_CHECK` from
@@ -71,19 +83,20 @@ Reading a CONDITIONAL certificate as unconditional — 22 224 caught. Reading a 
 13 128 caught. **No-alarm:** every MONITORED_CURRENT certificate is exact on every trajectory (75 712/75 712);
 the 9 root-free conclusions are closed vacuously.
 
-**Status.** PROVED (finite): the weakest checkable closure interface is *cover every dependency root of the
-conclusion, by a registered monitor or by a registered revocable assumption* — necessary by (iii),
-sufficient by (i); the unconditional form needs monitors on every root. Below the interface the
-current-validity guarantee is an EXACTLY_BOUNDED_IMPOSSIBILITY with witness. The interface itself is
+**Status.** PROVED (finite): for the registered total Boolean reporter over all eight environments, the
+weakest checkable closure interface is *cover every dependency root of the conclusion, by a registered
+monitor or by a registered revocable assumption* — necessary by (iii), sufficient by (i); the
+unconditional exact form needs monitors on every root. Below the interface, total exact Boolean
+current-validity decision is an EXACTLY_BOUNDED_IMPOSSIBILITY with witness. The interface itself is
 PARENT_OWNED: it is the assumption set of assume-guarantee reasoning (Pnueli 1985; Alur–Henzinger 1999,
 reactive modules), the monitorability boundary of runtime verification (Bauer–Leucker–Schallhart 2011), the
 assumption nodes of the ATMS (de Kleer 1986) and the closed-world assumption (Reiter 1978); robust /
 module checking (Kupferman–Vardi) owns the open-environment quantifier. What is registered here is only
 the typed certificate (MONITORED_CURRENT / CONDITIONAL / NO_CLOSURE with the assumption ids and the
 `D`-completeness premise) and the two readings it separates (FIELD distinction 6, historical replay ≠
-present validity). **Tightened:** FRONTIER's "or prove that no nontrivial current-validity guarantee exists
-without such an interface" — both halves hold: the interface exists and is checkable from `D`, and below it
-the impossibility is exact; the two are the same theorem read in two directions.
+present validity). **Scope:** FRONTIER's broader request about any nontrivial current-validity guarantee
+is not closed by this total-decision result. Partial INVALID/UNKNOWN reporting is a surviving
+counterexample to the original unqualified impossibility wording.
 
 ## H2 · FDX-02 · controlled epistemic viability: the kernel is the parent's; the typed interface gives its closed form and separates commit from closure
 
@@ -153,7 +166,8 @@ deterministic response map hence a partition of `H`: four observations `obs_x` (
 verifier `ver_affine` (degree ≤ 1; 8 functions), the verifier `ver_monotone` (6 functions). A *memory
 replay* returns the transcript already held. The *join* of a channel set `S` is the common refinement of its
 partitions (equivalently, the partition by transcripts). A *risk-typed* channel answers `obs_11` but the
-adversary may flip one answer per transcript. The *class assumption* `A_aff` (registered id) restricts `H`
+adversary may flip one answer per transcript. The checker uses this channel exactly once; repetition
+under a shared one-error budget is outside the risk claim. The *class assumption* `A_aff` (registered id) restricts `H`
 to the 8 affine functions. Decision-tree depth `D(V)` is the exact worst-case number of adaptive channel
 uses that identifies every member of `V ⊆ H` (bitmask DP over all 65 535 nonempty `V`).
 
@@ -170,8 +184,9 @@ observations only and with the verifiers added; on every `V`, `D(V) ≥ ⌈log2 
 (iv) *Typed scope.* For an affine truth and any observed input set `S` (128 cases) the inputs pinned
 unconditionally are exactly `S`; the class assumption pins further inputs in 32 cases (e.g. three
 observations pin the fourth); those inputs carry `A_aff` in their support and lose all warrant when `A_aff`
-is revoked (32/32 collapse to `S`). (v) *Risk is not truth.* The risk-typed channel leaves the exact version
-space unchanged (16/16) and yields a separate risk receipt; read as exact it eliminates the truth in the
+is revoked (32/32 collapse to `S`). (v) *One-use risk boundary.* One response from the risk-typed channel,
+with one error permitted, leaves the exact version space unchanged (16/16) and yields a separate risk
+receipt; read as exact it eliminates the truth in the
 error realisation for every truth (16/16). (vi) *Guaranteed-identification bound.* An arm that declares
 channels `S` and *guarantees* zero-error identification over all of `H` has used at least
 `⌈log2 L(S)⌉` undeclared bits, `L(S)` the largest join class: 4 with nothing declared, 1 with three
@@ -195,8 +210,8 @@ the four observations identify with bound 0, `D = 4`, and full unconditional sco
 
 **Status.** PROVED (finite, deterministic, typed fragment): reduction of exact uncertainty equals the join
 of the channels used; garbled channels (memory, repeated tests, coarser verifiers) add nothing; model
-restrictions are charged as assumption ids in the support; risk-typed channels never enter the exact
-lattice; identification guarantees are bounded by the declared join and observed success is never
+restrictions are charged as assumption ids in the support; the single risk-channel response checked here
+does not reduce the exact lattice; identification guarantees are bounded by the declared join and observed success is never
 evidence of a channel. The mathematics is PARENT_OWNED: decision-tree / query complexity (Buhrman–de Wolf
 2002), Blackwell's comparison of experiments (1953; deterministic garbling = coarsening), version spaces
 (Mitchell 1982), teaching dimension (Goldman–Kearns 1995; the numbers on ALL16 / AFFINE8 are batch-4 D2's),
@@ -206,6 +221,10 @@ not promoted by this finite fragment, and the pointwise realised reduction may s
 bound (FD-07's rare-outcome refutation stands). **Tightened:** FRONTIER's "distinguish exact truth,
 distributional risk, upper/closure evidence and action authority" is met by (iv)–(vii) only for
 deterministic channels; the distributional coordinate is typed and separated, not bounded.
+The one-use restriction is essential: three repeated `obs_11` responses with at most one total flip
+determine that bit exactly, reducing the 16-hypothesis space to eight. The review regression checks all
+16 truths and four error placements (64 cases). No "risk channels never supply exact information"
+principle follows from this fixture.
 
 ## H4 · FDX-05 · reversible and irreversible transitions: an exact four-way classification on the ledger fixture
 
@@ -221,7 +240,10 @@ shapes, external effects); `B_future` = `B_now` after revoking each identity of 
 (the future-revision probe, FIELD distinction 9). A transition (sequence) is classified by the best LIFO
 product of its registered inverse candidates (the identity move included): **ESI** if `π_sem` is restored;
 **BOI_STABLE** if `B_now` and `B_future` are restored but `π_sem` is not; **BOI_DIVERGENT** if only `B_now`
-is restored; **NI** if no candidate restores `B_now`.
+is restored; **NI** if no candidate restores `B_now`. The composition enumeration uses exactly `menu(xi)`
+and `inverse_candidates(...)` in the checker, at lengths 1, 2 and 3. In particular, forward deletion is
+offered only for original ids `e2` and `e3`; it never deletes a freshly admitted id or adoption stamp.
+The inverse table offers no deletion. These are essential restrictions of this finite experiment.
 
 **Theorem** (12 single transitions; 142 sequences of length 2; 1 667 of length 3). (i) *Singles.* revoke
 (×4) and quarantine are ESI (inverse reinstate / release); admit and adopt are BOI_STABLE (the inverse
@@ -232,8 +254,9 @@ BOI_DIVERGENT (shapes restored, stamps fresh: revoking the original stamp no lon
 the only support (`e2`) and acting are NI. (ii) *Relearn is not reinstatement.* From the revoked state,
 reinstate is ESI and relearn is BOI_DIVERGENT: current answers equal, `π_sem` and the future probe differ.
 (iii) *Composition.* If every component is ESI the LIFO composite inverse is ESI (150/150), and an ESI
-composite has only ESI components (150/150) — an identity-creating step anywhere in the sequence destroys
-exactness; any sequence containing an external act is NI (414/414). Histograms: length 2 — ESI 25,
+composite has only ESI components (150/150) **for that menu, inverse table and those lengths** — an
+identity-creating step in those enumerated sequences destroys exactness; any enumerated sequence
+containing an external act is NI (414/414). Histograms: length 2 — ESI 25,
 BOI_STABLE 44, BOI_DIVERGENT 34, NI 39; length 3 — 125 / 494 / 465 / 583. (iv) *The full state is never
 restored.* Every ESI inverse leaves the history strictly longer and the cost higher (5/5 singles; asserted on
 every chain): FD-05's refutation of full-state reversal holds on every transition of the fixture. (v)
@@ -245,8 +268,12 @@ OCM, the hash chain) witnesses the loss, and the registry rule "an id that appea
 is taken" refuses the re-admission.
 
 **Proof.** Enumeration over the registered inverse table; (iii) because every identity-creating transition
-grows the registry, which no registered transition shrinks except delete, and delete is never an inverse
-candidate; (iv) history append is the definition of a transition. ∎
+grows the registry, while the forward menu cannot delete a freshly created identity and the inverse
+table offers no deletion; (iv) history append is the definition of a transition. ∎
+
+The unrestricted transition API does not satisfy the composition converse: admit fresh `n0` for `b`,
+then delete `n0`, restores `π_sem` and is ESI, although admission alone is BOI_STABLE. The review test
+retains this counterexample and checks that fresh deletion is absent from the enumerated menu.
 
 **Hostiles.** `mutant_classify_by_current_behaviour` (any inverse restoring current answers reported as
 exact): on the route where reinstatement is impossible (`revoke e2`, `delete e2`) the only inverse is relearn
@@ -283,7 +310,9 @@ a claim about an M12 result.
   `at` — an epoch-bounded scope is committed on context alone, the H1 (iii)/(v) reading of registered
   liveness as current validity. Obligation: pass the evaluation epoch, and type the commitment receipt
   MONITORED_CURRENT / CONDITIONAL_ON_ASSUMPTIONS (assumption ids listed) / NO_CLOSURE, with the
-  `D`-completeness premise named (the `is_dependency_closed` result is that premise for the cited set).
+  `D`-completeness premise named separately. `is_dependency_closed` establishes set closure relative to
+  the supplied relation only; it cannot establish that the relation contains every applicable dependency.
+  That completeness premise remains an explicit registered assumption, as in H1/FD-03.
 * **H2 — reason-typed abstention; no envelope, risk or budget coordinate at the gate.**
   `src/ocm/runtime/solve.py::Decision` (line 52) is the licensed-terminal set; `decide` returns
   `Decision.UNKNOWN` with reason `"UNKNOWN"` (line 353) — an abstention without a registered reason class
@@ -316,10 +345,10 @@ a claim about an M12 result.
   `src/ocm/kso/admission.py::AdmissionReceipt.quarantined` (line 54) is the ESI quarantine coordinate.
 
 ```text
-H1  FDX-01  PROVED (finite): interface = cover every dependency root (monitor | revocable assumption); unconditional ⇔ all monitored; below it EXACTLY_BOUNDED_IMPOSSIBILITY (view-identical witness, 1 727); closure relative to D; PARENT_OWNED interface
+H1  FDX-01  PROVED (finite, registered total Boolean reporter): interface = cover every dependency root (monitor | revocable assumption); unconditional exactness ⇔ all monitored; no total exact Boolean decision below it (1 727 view-identical witnesses); partial decisions not excluded; closure relative to D; PARENT_OWNED interface
 H2  FDX-02  PARENT_SUFFICIENT (finite-horizon safety/reachability game); PROVED corollaries: closed form 10 584/10 584, commit attractor = no information action pending (312), abstain trivialisation, deadline vs indefinite contracts separate
-H3  FDX-03  PROVED (finite deterministic typed fragment): version space = join class; garbling adds nothing (memory 533); parity verifier = missing observation; D(H) = 4 = entropy bound; scope charged to assumption ids (32); risk never exact; identification bound ⌈log2 L⌉, success ≠ channel; FD-07 general OPEN
-H4  FDX-05  PROVED (finite classification): ESI / BOI_STABLE / BOI_DIVERGENT / NI on 12 singles, 142 + 1 667 sequences; all-ESI ⇔ ESI composite; act ⇒ NI; full state never restored; identity loss invisible to π_sem, witnessed by history; PARENT_OWNED components
+H3  FDX-03  PROVED (finite deterministic typed fragment): version space = join class; garbling adds nothing (memory 533); parity verifier = missing observation; D(H) = 4 = entropy bound; scope charged to assumption ids (32); one risk response leaves exact space unchanged, repeated-use claim excluded; identification bound ⌈log2 L⌉, success ≠ channel; FD-07 general OPEN
+H4  FDX-05  PROVED (finite registered-menu classification): ESI / BOI_STABLE / BOI_DIVERGENT / NI on 12 singles, 142 + 1 667 sequences; all-ESI ⇔ ESI composite only for menu/inverse table/lengths 1–3; act ⇒ NI; full state never restored; identity loss invisible to π_sem, witnessed by history; PARENT_OWNED components
 OPEN: FD-07 general information conservation (graded / continuous / adaptive prior)
 NOVELTY NOT_ESTABLISHED
 ```

@@ -14,11 +14,14 @@ Strong parents: robust model checking, assume-guarantee reasoning, open systems,
 
 Batch 8 disposition (H1, `../KSO_FIELD_FRONTIER_THEOREMS_BATCH8_V1.md`, checker
 `../kso_field_frontier_batch8_exact.py`): **PROVED (finite) + EXACTLY_BOUNDED_IMPOSSIBILITY.** The
-weakest checkable closure interface is "every dependency root of the conclusion is covered by a
-registered monitor or a registered revocable assumption" (necessary and sufficient, 3 456/3 456
+weakest checkable closure interface for the registered total Boolean reporter is "every dependency
+root of the conclusion is covered by a registered monitor or a registered revocable assumption"
+(necessary and sufficient, 3 456/3 456
 (D, coverage) pairs); unconditional current validity needs a monitor on every root. Below the
-interface no function of the registered state is a sound current-validity claim (1 727 view-identical
-witnesses). Closure is relative to `D`; dependency completeness stays a registered assumption
+interface no total Boolean function of the registered view gives exact validity on all admissible states
+(1 727 view-identical witnesses). Sound partial INVALID/UNKNOWN decisions remain possible, so the
+broader frontier's nontrivial-guarantee question is not closed. Closure is relative to `D`;
+dependency completeness stays a registered assumption
 (`CANNOT_CHECK` from inside). The interface is PARENT_OWNED (assume-guarantee assumptions,
 monitorability, ATMS assumptions); only the typed certificate MONITORED_CURRENT /
 CONDITIONAL_ON_ASSUMPTIONS / NO_CLOSURE is registered here.
@@ -50,8 +53,10 @@ risk-typed channel, a class assumption): the version space after any transcript 
 the channels used; a channel adds nothing iff it is a garbling of the join (384/384; memory 533/533
 zero); the parity verifier carries exactly the missing observation; `D(H) = 4 = ⌈log2 16⌉` with or
 without verifiers (65 535 subsets at or above the entropy bound); class-assumption extrapolations
-carry the assumption id and collapse on its revocation (32/32); a risk-typed channel never reduces
-the exact space; guaranteed identification against declared channels needs `⌈log2 L⌉` undeclared
+carry the assumption id and collapse on its revocation (32/32); exactly one risk-channel response with
+one permitted error leaves the exact space unchanged. This does not cover repetition under a shared
+error budget: three repeats with at most one total flip determine the observed bit exactly.
+Guaranteed identification against declared channels needs `⌈log2 L⌉` undeclared
 bits (`L` the largest join class) and observed success establishes nothing (null probability
 reported, never an accusation). PARENT_OWNED mathematics (query complexity, Blackwell, teaching
 dimension via batch-4 D2).
@@ -81,10 +86,13 @@ ledger fixture (12 single transitions, 142 + 1 667 sequences) every transition i
 ESI (semantic projection restored: revoke/reinstate, quarantine/release), BOI_STABLE (behaviour and
 future-revision probe restored, a dead identity persists: admit, adopt, LIFO rollback),
 BOI_DIVERGENT (current behaviour only: relearn, deletion of a redundant identity, DPO round trip with
-fresh stamps) or NI (external act, loss of the only support). All-ESI components ⇔ ESI composite;
-an act anywhere ⇒ NI; the full append-only state is never restored; a re-minted deleted identity
+fresh stamps) or NI (external act, loss of the only support). All-ESI components ⇔ ESI composite only
+for the checker's exact menu, inverse table and lengths 1–3; forward deletion of fresh identities is
+excluded from that menu. Admit-then-delete of a fresh identity is an ESI composite outside this scope.
+An enumerated act ⇒ NI; the full append-only state is never restored; a re-minted deleted identity
 restores the projection byte-for-byte and is witnessed only by the history. Event sourcing, LIFO
-transactional undo, AGM recovery and provenance identity own the components; FD-05 is extended.
+transactional undo, AGM recovery and provenance identity own the components; FD-05 is extended on the
+registered fixture. This is not a general FDX-05 composition or frontier-closeout theorem.
 
 ## FDX-06 — distributed Machine Epistemics
 

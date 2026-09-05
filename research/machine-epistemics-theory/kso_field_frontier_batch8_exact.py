@@ -12,6 +12,7 @@ deterministic channels as partitions, an append-only ledger with a LIFO componen
 imported from ``ocm``.  Every count is an integer; every probability an exact ``Fraction``.
 
 Exit codes: 0 all statements hold; 1 a statement fails; 2 CANNOT_CHECK (distinct, never a pass).
+Assertion-based verification refuses optimized Python execution before any check runs.
 NO NOVELTY OR SUPERIORITY CLAIM.
 """
 from __future__ import annotations
@@ -26,6 +27,11 @@ from fractions import Fraction
 
 class CannotCheck(RuntimeError):
     pass
+
+
+def require_assertions():
+    if not __debug__:
+        raise CannotCheck("ASSERTIONS_DISABLED: rerun without -O/-OO/PYTHONOPTIMIZE")
 
 
 def subsets(universe, min_size=0):
@@ -85,7 +91,8 @@ def closure_certificate(roots, coverage):
     MONITORED_CURRENT: every root has a registered synchronous monitor (observation channel that fires on
     change).  CONDITIONAL_ON_ASSUMPTIONS: every root is monitored or frozen by a registered, revocable
     invariance assumption (the assumption ids are part of the certificate).  NO_CLOSURE: some root has
-    neither — no validity claim is licensed.  Dependency completeness of D is a registered assumption of
+    neither — no total exact Boolean validity decision is licensed. Sound partial decisions remain
+    possible. Dependency completeness of D is a registered assumption of
     every certificate; it is never checked from inside."""
     uncovered = tuple(sorted(r for r in roots if coverage[r] == "UNCOVERED"))
     if uncovered:
@@ -126,6 +133,7 @@ def run_environment(seq):
 
 
 def check_h1_open_system_closure():
+    require_assertions()
     graphs = list(dependency_graphs())
     assert len(graphs) == 128
     coverages = [dict(zip(ROOTS, c)) for c in itertools.product(COVERAGE, repeat=3)]
@@ -177,7 +185,7 @@ def check_h1_open_system_closure():
                 counts["no_closure_cases"] += 1
                 # exact impossibility: an uncovered root r flipped by an unmodelled transition leaves the
                 # registered view unchanged while the conclusion's validity changes — no function of the
-                # registered state can be correct on both states
+                # registered state can give a total exact Boolean decision on both states
                 r = cert[1][0]
                 sigma1 = dict(SIGMA0)
                 sigma1[r] = 0
@@ -222,7 +230,7 @@ def check_h1_open_system_closure():
     assert counts["lag_read_as_current_wrong"] > 0
     counts["smallest_impossibility_witness"] = smallest_witness
     counts["closure_relative_to_D"] = "dependency completeness of D is a registered assumption; CANNOT_CHECK from inside"
-    counts["status"] = "PROVED (finite): sound iff every dependency root is covered (monitor or revocable assumption); unconditional current validity iff every root is monitored; EXACTLY_BOUNDED_IMPOSSIBILITY below that; PARENT_OWNED (assume-guarantee, monitorability, ATMS assumptions)"
+    counts["status"] = "PROVED (finite): registered total Boolean reporter exact iff every dependency root is covered (monitor or revocable assumption); unconditional exactness iff every root is monitored; no total exact Boolean decision below that interface, partial decisions not excluded; PARENT_OWNED (assume-guarantee, monitorability, ATMS assumptions)"
     return counts
 
 
@@ -403,6 +411,7 @@ def witness_trajectory(start, mutant_rules, honest_win):
 
 
 def check_h2_controlled_viability():
+    require_assertions()
     states = h2_states()
     assert len(states) == 3 * 2 * 3 * 2 * 2 * (B_MAX + 1) * (T_MAX + 1) * (RHO_MAX + 1)
     typed = solve_game("TYPED_CLOSE")
@@ -568,6 +577,7 @@ def mutant_single_success_is_proof(declared, observed_successes):
 
 
 def check_h3_information_conservation():
+    require_assertions()
     assert sum(is_affine(h) for h in HYPS) == 8 and sum(is_monotone(h) for h in HYPS) == 6
     names = tuple(CHANNELS)
     counts = {"hypotheses": 16, "channels": len(names), "channel_subsets": 0}
@@ -642,14 +652,15 @@ def check_h3_information_conservation():
     counts["scope_collapses_when_assumption_revoked"] = collapse_checks
     counts["mutant_class_scope_unconditional_caught"] = mutant_scope_caught
     assert extrapolated == collapse_checks == mutant_scope_caught > 0
-    # (d) a risk-typed channel (one adversarial error allowed per transcript) never reduces the exact version space
+    # (d) exactly one use of a risk-typed channel, with one adversarial error allowed.
+    # This single-response result does not cover repeated queries under a shared error budget.
     risk_exact_unchanged = mutant_risk_eliminates_truth = 0
     for h in HYPS:
         V = frozenset(HYPS)
-        honest_after = V                                   # RISK receipt recorded separately, exact V unchanged
+        flipped = 1 - hval(h, 3)                           # the error realisation
+        honest_after = frozenset(g for g in V if int(hval(g, 3) != flipped) <= 1)
         assert honest_after == V
         risk_exact_unchanged += 1
-        flipped = 1 - hval(h, 3)                           # the error realisation
         mutant_after = frozenset(g for g in V if hval(g, 3) == flipped)
         if h not in mutant_after:
             mutant_risk_eliminates_truth += 1
@@ -672,7 +683,7 @@ def check_h3_information_conservation():
     counts["mutant_single_success_is_proof_caught"] = 1
     # (f) authority: no registered channel carries commit authority; identification never raises it
     counts["commit_authority_after_every_channel"] = 0
-    counts["status"] = "PROVED (finite deterministic typed fragment) / PARENT_OWNED (query complexity, Blackwell garbling, teaching dimension via batch-4 D2); FD-07 general conservation stays OPEN_RESEARCH"
+    counts["status"] = "PROVED (finite deterministic typed fragment; risk result for exactly one response with one permitted error, no repeated-use claim) / PARENT_OWNED (query complexity, Blackwell garbling, teaching dimension via batch-4 D2); FD-07 general conservation stays OPEN_RESEARCH"
     return counts
 
 
@@ -942,6 +953,7 @@ def mutant_classify_by_current_behaviour(xi0, transitions):
 
 
 def check_h4_reversibility_classes():
+    require_assertions()
     xi0 = base_state()
     counts = {"singles": {}, "single_classes": {}, "sequences_len2": 0, "sequences_len3": 0,
               "class_histogram_len2": {}, "class_histogram_len3": {}, "all_esi_components_give_esi": 0,
@@ -1061,7 +1073,7 @@ def check_h4_reversibility_classes():
     assert classify(xi0, [("revoke:e1", lambda x: revoke(x, "e1"))]) == "ESI"
     assert classify(xi0, [("quarantine:a", lambda x: quarantine(x, "a"))]) == "ESI"
     counts["no_alarm_esi_pairs"] = 2
-    counts["status"] = "PROVED (finite classification) / PARENT_OWNED (event sourcing, LIFO transactional undo, AGM recovery, provenance identity); FD-05 extended"
+    counts["status"] = "PROVED (finite classification for menu-generated sequences of lengths 1, 2, 3 and registered inverse candidates) / PARENT_OWNED (event sourcing, LIFO transactional undo, AGM recovery, provenance identity); no arbitrary-transition composition theorem"
     return counts
 
 
@@ -1077,10 +1089,10 @@ CHECKS = {
 }
 
 STATUS = {
-    "H1_FDX-01": "PROVED (finite) + EXACTLY_BOUNDED_IMPOSSIBILITY; parents PARENT_OWNED (assume-guarantee, monitorability, ATMS assumptions, FD-03)",
+    "H1_FDX-01": "PROVED (finite registered total Boolean reporter) + impossibility of total exact Boolean decision below coverage, partial decisions not excluded; parents PARENT_OWNED (assume-guarantee, monitorability, ATMS assumptions, FD-03)",
     "H2_FDX-02": "PARENT_SUFFICIENT (finite-horizon safety/reachability game, viability kernel); PROVED corollaries on the fixture",
-    "H3_FDX-03": "PROVED (finite deterministic typed fragment) / PARENT_OWNED (query complexity, Blackwell garbling, teaching dimension); FD-07 general OPEN_RESEARCH",
-    "H4_FDX-05": "PROVED (finite classification) / PARENT_OWNED (event sourcing, transactional undo, AGM recovery, provenance)",
+    "H3_FDX-03": "PROVED (finite deterministic typed fragment; risk result for one response with one permitted error only) / PARENT_OWNED (query complexity, Blackwell garbling, teaching dimension); FD-07 general OPEN_RESEARCH",
+    "H4_FDX-05": "PROVED (finite classification for exact menu, inverse table, lengths 1, 2, 3 only; no forward fresh-identity deletion) / PARENT_OWNED (event sourcing, transactional undo, AGM recovery, provenance)",
 }
 
 OPEN = [
@@ -1088,17 +1100,25 @@ OPEN = [
 ]
 
 EXACTLY_BOUNDED_IMPOSSIBILITIES = [
-    "FDX-01: no function of the registered state is a sound current-validity claim for a conclusion with an uncovered dependency root (registered view identical, validity differs)",
+    "FDX-01: no total exact Boolean current-validity decision over all admissible states from the registered view when a dependency root is uncovered; sound partial decisions are not excluded",
     "FDX-02: against an adversarial declared envelope, commit is forceable only from states with no information action pending (every information action hands the answer to the environment)",
     "FDX-03: guaranteed zero-error identification over the whole class needs a discrete declared join; below it at least ceil(log2(largest class)) undeclared bits",
-    "FDX-05: the full append-only state is never restored by any transition; identity-creating transitions have no exact semantic inverse",
+    "FDX-05: full append-only state not restored; for the registered menu, inverse table and lengths 1, 2, 3, identity-creating components prevent an ESI composite; deletion of fresh identities is outside that menu",
 ]
 
 
 def run_all():
+    require_assertions()
     out = {name: fn() for name, fn in CHECKS.items()}
     out["ITEM_STATUS"] = STATUS
     out["OPEN"] = OPEN
+    out["SCOPE_LIMITATIONS"] = [
+        "OPEN lists this batch's unresolved named law, not all FDX frontier obligations; no general frontier closeout",
+        "H1: total exact Boolean decisions only; sound partial INVALID/UNKNOWN decisions remain possible",
+        "H3 risk: one response with one permitted error only; shared-budget repetition can reduce exact uncertainty",
+        "H4 composition: exact menu and inverse table, lengths 1, 2, 3 only; no forward deletion of fresh identities",
+        "Dependency closure is relative to supplied edges; dependency completeness remains an explicit assumption",
+    ]
     out["EXACTLY_BOUNDED_IMPOSSIBILITIES"] = EXACTLY_BOUNDED_IMPOSSIBILITIES
     out["NOVELTY"] = "NOT_ESTABLISHED"
     out["status"] = "ALL_HOLD"
