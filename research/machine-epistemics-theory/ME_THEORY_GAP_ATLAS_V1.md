@@ -129,3 +129,20 @@ Next tier (≤1 day each, do early): MEG-06 budget bracket, MEG-04 commit-author
 - **Kernel families K0–K6 and the seven BF-C commitments** (`V2:research/foundation-saturation/FOUNDATION_PRIMITIVE_OWNERSHIP_LEDGER_V1.json`): federated interfaces, not laws; the OCM substrate realises K1 (plural state), K3 (dependence/reopen), K4 (four-valued action), K5 (Jump) as executable objects — no new kernel family is justified (Saturation Pass M: 0 material findings).
 - **Statistics for matched comparison**: McNemar exact + TOST + pre-registration (MEG-32 is adoption, not theory).
 - **Evidence identity** (`ids.py` SHA-256 prefix, collision = error): cryptographic engineering, not a theorem.
+
+## F. Status after batch 2 (2026-09-05)
+
+`KSO_LANGUAGE_PREREQUISITE_THEOREMS_BATCH2_V1.md` + `kso_language_prereqs_batch2_exact.py` (exit 0, 3.63 s on billy-old; 12 tests) close, as exact finite theorems with planted mutants and no-alarm controls:
+
+| gap | theorem | status | OCM implementation |
+|---|---|---|---|
+| MEG-05 | B1 discourse-state warrant, authority bottom, no laundering | PROVED (corollary of KS-T20) | `ocm.language.interpret.SaidRecord` / `promote_authority` |
+| MEG-12 | B2 per-input version-space warrant, per-input reopening | PROVED | `ocm.language.acquisition` (M3), `ocm.learning.learner` |
+| MEG-13 | B3 gap-learning soundness on a finite class | PROVED (finite classes) | `ocm.learning.learner`, `ocm.kso.admission` |
+| MEG-24 | B4 canonical meaning graph, exact for \|V\| ≤ 7, WL-1 collision | PROVED (bounded) / PARENT_OWNED (McKay–Piperno) | `ocm.language.meaning.canonical` |
+| MEG-03 | B5 scope / epoch / supersession as revocation families | PROVED | `ocm.kso.types.Scope` (epochs) |
+| MEG-17 | B6 repair after REOPEN: reinstate exact, relearn new id, work ≤ cone | PROVED / PARENT_OWNED (DRed, B/F) | M4 obligation |
+| MEG-19 | B7 consolidation locality (the provable half of KS-T12) | PROVED; improvement half OPEN | M4 obligation |
+| MEG-28 | B8 Jump preservation as a DPO rewrite (the preservation half of KS-T14) | PROVED / PARENT_OWNED (DPO); improvement half OPEN | M4 obligation |
+
+Still open after batches 1–2: MEG-02 (graded half), MEG-07, MEG-09, MEG-10 (partly covered by KS-T26), MEG-11, MEG-14, MEG-15, MEG-16 (KS-T25 covers the interval lift; the resolution policy is open), MEG-20, MEG-21, MEG-23, MEG-25, MEG-27, MEG-32, MEG-33, MEG-34, and the improvement halves of KS-T12/KS-T14.
