@@ -1069,6 +1069,85 @@ def competence_gate(design: dict, revision_records: list[dict]) -> dict:
     }
 
 
+def equivalence_gate(design: dict, present_records: list[dict]) -> dict:
+    """GPE -- present equivalence per family, on the dev split, before the seed is sealed.
+
+    Applies GP0's own per-instance criterion to EVERY registered family instead of the canonical
+    P2 fixture alone, which is limitation V-M1 of design V2: a model whose two representations
+    are not behaviourally equivalent in the present is a model for which the prospective question
+    is not well posed, and V2 discovered that at protected time, on one fixture, after its single
+    draw was spent (mistral-small-24b: GP0 per-unit 0.296; present-task accuracy 0.317 under R1
+    against 1.000 under R2, 82 of 120 discordant one way).
+
+    A model failing on ANY family is not admitted and is replaced, exactly as GPC prescribes.
+    This is an admission screen, not a rescue: a failing model is excluded, never re-scored.
+    Reported in every rollup; never enters GP0-GP3, the terminal mapping or the routing.
+    """
+    g = design.get("gates", {})
+    if "GPE" not in g:
+        raise SystemExit("equivalence-gate requires a design that registers gates.GPE (design V3+)")
+    spec = g["GPE"]
+    eps_inst = spec["epsilon_pred_per_instance_nats_per_token"]
+    eps_mean = spec["epsilon_pred_mean_nats_per_token"]
+    min_frac = spec["min_pass_fraction"]
+    tol = design["token_budget"]["tolerance_tokens"]
+    idx = {(r["instance_id"], r["arm_id"], r["condition"]): r for r in present_records}
+    families = sorted({r["family"] for r in present_records})
+    per_family = {}
+    for fam in families:
+        flags, diffs = [], []
+        for (iid, aid, c), r in idx.items():
+            if c != "R2" or r["family"] != fam:
+                continue
+            r3, r0 = idx.get((iid, aid, "R3")), idx.get((iid, aid, "R0"))
+            if not r3 or not r0:
+                continue
+            d = r3["status_line_mean_logprob"] - r["status_line_mean_logprob"]
+            diffs.append(d)
+            same_action = (r["current_action"] == r3["current_action"] == r0["current_action"]
+                           and r["current_correct"])
+            budget_ok = abs(r["tokens_padded"] - r3["tokens_padded"]) <= tol
+            flags.append(abs(d) <= eps_inst and same_action and budget_ok)
+        if not flags:
+            per_family[fam] = {"pass": None, "units": 0, "reason": "no R2/R3/R0 triples for this family"}
+            continue
+        frac = sum(flags) / len(flags)
+        tost = paired_tost(diffs, eps_mean)
+        equivalent = tost.get("equivalent") is True or (tost.get("equivalent") is None and len(diffs) < 3)
+        per_family[fam] = {"pass": bool(frac >= min_frac and equivalent), "units": len(flags),
+                           "per_unit_pass_fraction": frac, "tost_R3_minus_R2": tost}
+    checked = [v for v in per_family.values() if v.get("pass") is not None]
+    failed = sorted(k for k, v in per_family.items() if v.get("pass") is False)
+    unchecked = sorted(k for k, v in per_family.items() if v.get("pass") is None)
+    if not checked:
+        verdict, admitted = "CANNOT_CHECK__NO_FAMILY_HAD_TRIPLES", None
+    elif failed:
+        verdict, admitted = "GPE_FAIL__MODEL_NOT_ADMITTED", False
+    else:
+        verdict, admitted = "GPE_PASS__MODEL_ADMITTED", True
+    return {"gate": "GPE", "admitted": admitted, "verdict": verdict,
+            "families_checked": len(checked), "families_failed": failed,
+            "families_unchecked": unchecked, "per_family": per_family,
+            "min_pass_fraction": min_frac,
+            "note": "administrative pre-run screen; never enters GP0-GP3, the terminal mapping or the routing"}
+
+
+def stage_equivalence_gate(args, design) -> dict:
+    if args.split != "dev":
+        raise SystemExit("equivalence-gate is a dev-split-only stage by registration")
+    mdir = model_dir(Path(args.workdir), args.model, args.split)
+    pg = mdir / "present_gate.json"
+    if not pg.exists():
+        raise SystemExit(f"equivalence-gate needs {pg} (run --stage present-gate on the dev split first)")
+    present = read_json(pg)
+    out = equivalence_gate(design, present["records"])
+    result = {"schema_version": RESULT_SCHEMA, "stage": "equivalence-gate", "model": args.model,
+              "split": args.split, "backend": present.get("backend"), "gate": out}
+    write_json(mdir / "equivalence_gate.json", result)
+    return {"admitted": out["admitted"], "verdict": out["verdict"],
+            "families_failed": out["families_failed"]}
+
+
 def stage_competence_gate(args, design) -> dict:
     if "GPC" not in design.get("gates", {}):
         raise SystemExit("competence-gate requires a design that registers gates.GPC (design V2+)")
@@ -1618,7 +1697,7 @@ def rollup_markdown(r: dict) -> str:
 
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--stage", required=True, choices=["generate-suite", "present-gate", "revision", "probe", "kv-channel", "competence-gate", "rollup", "all"])
+    p.add_argument("--stage", required=True, choices=["generate-suite", "present-gate", "revision", "probe", "kv-channel", "competence-gate", "equivalence-gate", "rollup", "all"])
     p.add_argument("--protected-seed-file", default=None, help="design V2: sealed protected seed file ('<int>:<salt>'); its sha256 must equal design.suite_generator.seed.protected_commitment_sha256")
     p.add_argument("--workdir", required=True)
     p.add_argument("--design", default=str(DEFAULT_DESIGN))
@@ -1654,6 +1733,10 @@ def main(argv: list[str] | None = None) -> int:
             if args.backend == "stub" and args.model == "stub":
                 args.model = f"stub-{args.stub_variant}"
             summary[stage] = stage_competence_gate(args, design)
+        elif stage == "equivalence-gate":
+            if args.backend == "stub" and args.model == "stub":
+                args.model = f"stub-{args.stub_variant}"
+            summary[stage] = stage_equivalence_gate(args, design)
         else:
             if backend is None:
                 backend = make_backend(args, design)
