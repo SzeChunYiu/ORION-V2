@@ -1,0 +1,58 @@
+{
+  "attributed_stage": "power (borderline, not null)",
+  "authority": {
+    "changes_e40_closure": false,
+    "grants_scientific_truth": false,
+    "novelty_claim": false
+  },
+  "authorization": {
+    "minted": "on the dispatch host immediately before dispatch; archived after; the dispatcher refuses without it",
+    "shape": "orion.v2.protected-run-authorization (ME-X shape)",
+    "source": "operator standing verbatim authorization 2026-09-02 'run all the computation tasks.. finish all the researxh asap'; reaffirmed 2026-09-04 'i sign off everything'"
+  },
+  "channel_dependent": true,
+  "design": {
+    "chain_runner": "scripts/e40_matched_runner.py chain --task k (4 cycles each) under the m2 and m3 campaign configurations",
+    "channel": "model channel of the parent campaigns (LUNARC codex campaign-e40-*); window ~2026-09-07",
+    "controls": "parent design verbatim (planted channel ships at recovered fraction 1.0; null calibration band 0.02-0.09)",
+    "expected": "RS1 fires iff the 0.41 recovery is real at the registered n; a non-fire at n=64 is a powered null and closes R4",
+    "primary": "RS1 on 64 fresh chains: P2 > 0, one-sided sign-flip 4000 flips, alpha 0.05, no peeking; the 24 parent chains are NOT pooled in",
+    "secondary": [
+      "per-cohort RS1 (32 m2-type, 32 m3-type), reported, not gate-bearing",
+      "RS2 recovered fraction >= 0.5",
+      "RS3/RS4 as in the parent design"
+    ]
+  },
+  "frozen_at": "2026-09-05",
+  "parent": {
+    "RS1_observed": {
+      "P2_mean": 0.002438531515252996,
+      "P2_sd": 0.0074778259846645925,
+      "dz": 0.32610166648085925,
+      "n_pairs": 24,
+      "p_one_sided_signflip": 0.0585
+    },
+    "receipt": "research/experiments/e40-matched/E40_CHANNEL_IB_AND_RANKER_SHIPPING_OUTCOME_RECEIPT_V1.md",
+    "rollup": "rollup-e40-ranker-shipping/E40_RANKER_SHIPPING_ROLLUP_V1.json",
+    "rollup_sha256": "a7948cf6752b0e2a34ee623dcfe871b9e52cdb1ad411eac6fe57c51af35270f0"
+  },
+  "power_computation": {
+    "effect_size_used": "the RECOVERED 0.41-fraction effect: dz = mean/sd of the 24 observed P2 values (computed before freezing, never re-estimated)",
+    "n_for_power_0.80": 59,
+    "n_for_power_0.90": 81,
+    "registered_n": 64,
+    "registered_n_reason": "n=64 fresh chains gives power ~0.83 at dz (normal approximation) and is 32+32 across the m2 and m3 cohorts so the cohort split (m2 recovers 0.75, m3 0.10) is pre-stratified",
+    "test": "one-sided paired sign-flip on P2 = F2_final - F2_ship[FB8+CFG] at alpha 0.05 (registered)"
+  },
+  "revival_row": "#308 R4a",
+  "schema_version": "orion.v2.e40-r4a.powered-rs1-replication-design.v1",
+  "seed_commitment": {
+    "custody": "~/.orion-custody/e40-r4a/PROTECTED_SEED_V1.txt (Mac; scp+md5 to LUNARC before dispatch); revealed after",
+    "protected_seed_sha256": "ffd29d627e8b5366b50ea41c163b232fc8b98e0cd23fd213ec8e155b1c73ade1"
+  },
+  "staging": {
+    "dispatcher": "e40_r4a_dispatch.sh on LUNARC: probes the channel every 30 min from the window, submits the array once it answers, logs to campaign-e40-r4a/logs",
+    "sbatch": "research/experiments/e40-r4a/e40_r4a_chain_array.sbatch (array 0-63, waits on the channel probe)"
+  },
+  "study_id": "E40-R4A"
+}

@@ -1,0 +1,42 @@
+{
+  "attributed_stage": "power / degenerate design (GR1 on 5 paired tasks, RDs all 0, degenerate CIs)",
+  "authority": {
+    "changes_pc_terminal": false,
+    "grants_scientific_truth": false,
+    "novelty_claim": false
+  },
+  "authorization": {
+    "minted": "on the dispatch host immediately before dispatch; archived after; the dispatcher refuses without it",
+    "shape": "orion.v2.protected-run-authorization (ME-X shape)",
+    "source": "operator standing verbatim authorization 2026-09-02 'run all the computation tasks.. finish all the researxh asap'; reaffirmed 2026-09-04 'i sign off everything'"
+  },
+  "channel_dependent": true,
+  "design": {
+    "arms": "F2_ORION_METABOLIC_FULL vs F0_PARENT_FEDERATION on the E30-R13 channel-contract campaign (rep-3 offline core4), full-regression evaluation via pc_r6_fullreg_eval.py (frozen adapter sha256 asserted)",
+    "expected": "GR1 PASS with a non-degenerate CI, or a real tail signal the parent could not see; both are publishable",
+    "gates": "GR1 non-inferiority at the parent's margin; GR2 tail insurance; GR3 component necessity \u2014 verbatim; each carries its denominator",
+    "non_degeneracy_rule": "GR1's 95% CI on the paired risk difference must have half-width <= 0.15 and at least 3 discordant pairs; otherwise CANNOT_CHECK__DEGENERATE (never PASS)",
+    "paired_task_set": "every E30-R13-eligible naturalistic task with both arms evaluable under the full-regression evaluator (target >= 40 paired tasks; the parent had 5)"
+  },
+  "frozen_at": "2026-09-05",
+  "parent": {
+    "GR1_contrast": [
+      "e30r11",
+      "F2_ORION_METABOLIC_FULL",
+      "F0_PARENT_FEDERATION"
+    ],
+    "design": "research/experiments/pc-r6/PC_R6_FULL_REGRESSION_EVALUATOR_LANE_DESIGN_V1.json",
+    "receipt": "research/experiments/pc-r6/PC_R6_DISPATCH_RECEIPT_V1.md"
+  },
+  "revival_row": "#308 R6",
+  "schema_version": "orion.v2.pc-r6b.tail-gate-reregistration-design.v1",
+  "seed_commitment": {
+    "custody": "~/.orion-custody/pc-r6b/PROTECTED_SEED_V1.txt (Mac); used for task-order and bootstrap seeds; revealed after",
+    "protected_seed_sha256": "a4650380ea75ce64e75908beb4cb1dda8ad5e391f80ab0e484b1c0daa48d146b"
+  },
+  "staging": {
+    "dependency": "the E30-R13 model channel for the new arm evaluations; window ~2026-09-07 (codex) / ~09-09 (z.ai)",
+    "sbatch": "research/experiments/pc-r6b/pc_r6b_suite_array.sbatch (array over the paired task set, %24, 2 CPU, 8 G)"
+  },
+  "study_id": "PC-R6B"
+}
