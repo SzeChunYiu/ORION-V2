@@ -1,0 +1,63 @@
+{
+  "attributed_stage": "gate design",
+  "authority": {
+    "amends_fm80": false,
+    "grants_pa_pb_survival": false,
+    "novelty_claim": false,
+    "proxy_claimed_external": false
+  },
+  "channel_dependent_stages": [
+    "A donor-key assembly",
+    "B proxy adjudication",
+    "C arms A0-A4"
+  ],
+  "clause_classes": {
+    "EXACT": [
+      "3c",
+      "3d",
+      "3e",
+      "3g",
+      "4.1",
+      "4.2",
+      "4.3",
+      "9.1",
+      "9.2",
+      "9.3",
+      "9.5",
+      "9.6"
+    ],
+    "HUMAN_ONLY": [
+      "4.4",
+      "7",
+      "9.4",
+      "9.7"
+    ],
+    "MODEL_PROXY": [
+      "3a",
+      "3b",
+      "3f"
+    ]
+  },
+  "executor": "research/experiments/fm80-exec/fm80_exec_gate.py",
+  "executor_sha256": "01983cd9a76443938e271b5473b1d34710684a65d37b9451b93837764b013c23",
+  "frozen_at": "2026-09-05",
+  "model_proxy_design": "FM80_MODEL_PROXY_ADJUDICATION_DESIGN_V1.md",
+  "parent_protocol": "research/experiments/FM80_NATURALISTIC_TRANSFER_DECISIVE_PROTOCOL_V1.json",
+  "parent_sha256": "5909a41a3a5799b21e4f7b22cc1e1a8f6926ba34bdd5ede5dfc90a4bd0ff53ab",
+  "proxy_label": "HUMAN_GATE_BYPASSED__MODEL_PROXY",
+  "revival_row": "#308 R11a",
+  "sample_rule": {
+    "bar_pp": 10,
+    "below_powered": "UNDERPOWERED_AT_REGISTERED_BAR (never a negative)",
+    "powered_min_per_domain": 61,
+    "registered_min_per_domain": 30,
+    "test": "exact paired two-sided + Holm over 3 domains"
+  },
+  "schema_version": "orion.v2.fm80-exec.executable-gate-subset.v1",
+  "terminals": [
+    "EXACT_SUBSET_PASS__HUMAN_CLAUSES_4.4_7_9.4_9.7_PENDING",
+    "EXACT_SUBSET_FAIL",
+    "UNDERPOWERED_AT_REGISTERED_BAR",
+    "CANNOT_CHECK"
+  ]
+}
