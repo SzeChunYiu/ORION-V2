@@ -41,6 +41,7 @@ import random
 import re
 import sys
 import time
+from fractions import Fraction
 from itertools import combinations
 from pathlib import Path
 from typing import Any, Iterable
@@ -1129,12 +1130,24 @@ def mass_mean_probe(xs_tr, ys_tr, xs_te, ys_te) -> tuple[float, float]:
 
 
 def binom_two_sided_p(k: int, n: int) -> float:
-    """Exact two-sided binomial test against p=0.5 (McNemar exact on discordant pairs)."""
+    """Exact two-sided binomial test against p=0.5 (McNemar exact on discordant pairs).
+
+    Integer arithmetic throughout: the comparison that selects "outcomes at least as extreme"
+    is made between binomial COEFFICIENTS, so it is exact at every n.
+
+    Defect fixed 2026-09-05: the previous form compared probabilities with an absolute
+    tolerance, `comb(n, i) / 2**n <= pk + 1e-15`. Once the point mass at k falls far below
+    1e-15 that predicate admits every outcome whose probability is under ~1e-15, so the sum
+    saturated near 1e-15 regardless of n: k=0 returned 1.7e-15 at n=82 (true 4.1e-25) and
+    1.2e-15 at n=221 (true 5.9e-67). The error was conservative -- reported p values were far
+    LARGER than the truth -- so no gate at alpha=0.05 was ever wrongly passed, and every gate
+    decision in the V2 protected rollup is unchanged under this fix (verified per contrast).
+    """
     if n == 0:
         return 1.0
-    pk = math.comb(n, k) / 2 ** n
-    total = sum(math.comb(n, i) for i in range(n + 1) if math.comb(n, i) / 2 ** n <= pk + 1e-15) / 2 ** n
-    return min(1.0, total)
+    pk = math.comb(n, k)
+    total = sum(math.comb(n, i) for i in range(n + 1) if math.comb(n, i) <= pk)
+    return min(1.0, Fraction(total, 2 ** n).__float__())
 
 
 def mcnemar(pairs: list[tuple[bool, bool]]) -> dict:
