@@ -156,7 +156,7 @@ def stage_dev(out: Path, seeds: int = DEV_SEEDS, tasks: int = DEV_TASKS) -> int:
     _write(out / "SD70_V4_DEVELOPMENT_RESULTS_V1.json", res)
     print(f"dev {n} tasks (rejections {rejections}; certificates/task min {min(certs)} mean {sum(certs)/n:.1f}); chance {sum(chance)/n:.3f}")
     for a in arms + ["F0_PARENT_FEDERATION", P4.F0_PLUS]:
-        s = summary[a]; print(f"  {a:28s} acc {s['exact_accuracy']:.4f} [{s['wilson95'][0]:.3f},{s['wilson95'][1]:.3f}] cfd {s['critical_false_direction_rate']:.3f} LP {s['control_LP_accuracy']:.3f} QS {s['control_QS_accuracy']:.3f}")
+        s = summary[a]; print(f"  {a:28s} acc {s['exact_accuracy']:.4f} [{s['wilson95'][0]:.3f},{s['wilson95'][1]:.3f}] cfd {s['critical_false_direction_rate']:.3f} LP {s.get('control_LP_accuracy', float('nan')):.3f} QS {s.get('control_QS_accuracy', float('nan')):.3f}")
     print(f"  strongest faithful: {strongest}; strongest linear: {linear_best}; gated − linear = {gated_vs_linear['point']:+.4f} [{gated_vs_linear['ci_low']:+.3f},{gated_vs_linear['ci_high']:+.3f}] (b={gated_vs_linear['b']}, c={gated_vs_linear['c']}); comparator = {comparator}")
     return 0
 
