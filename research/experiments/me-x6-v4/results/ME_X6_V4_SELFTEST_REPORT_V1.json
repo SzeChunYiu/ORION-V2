@@ -1,0 +1,95 @@
+{
+  "fit_reproduces": true,
+  "known_answer": {
+    "drift": {},
+    "pass": true,
+    "v3_design_sha256": "d492e2b96420f3e3edf155766cf3c8ddc5c4f2a9505fdd77e72d53c1f70b9e3e"
+  },
+  "n_selftest": 36,
+  "passed": true,
+  "planted_tie_violation_fires": true,
+  "planted_untyped_recovery_fires": true,
+  "selftest_gates": {
+    "G0a2_SELFTEST": {
+      "n_evaluated": 1,
+      "pass": true
+    },
+    "G0a_KNOWN_ANSWER_D8_REPRODUCES_V3_REFIT": {
+      "drift": {},
+      "pass": true,
+      "v3_design_sha256": "d492e2b96420f3e3edf155766cf3c8ddc5c4f2a9505fdd77e72d53c1f70b9e3e"
+    },
+    "G0b_GENERATOR_VALIDITY": {
+      "invalid": [],
+      "n_evaluated": 36,
+      "pass": true
+    },
+    "G0c_NULL_CALIBRATION": {
+      "balanced_split": true,
+      "best_constant_rate": 0.4444444444444444,
+      "derived_bar": 0.4444444444444444,
+      "modal_class": "FLAT",
+      "pass": true
+    },
+    "G0d_M_EXACT_ON_ALL_STRATA": {
+      "M_correct": 36,
+      "n": 36,
+      "pass": true
+    },
+    "G1_TIE_ON_EXERCISED_STRATA": {
+      "n_evaluated": 36,
+      "note": "LIVE: M ahead OR behind on an exercised stratum fails this gate",
+      "pass": true
+    },
+    "G2_ADVANTAGE_ON_ZERO_WEIGHT_UNEXERCISED": {
+      "note": "BY_CONSTRUCTION (disclosed): a refit that zeroes a lone carrier's channel cannot read that stratum; registered as the coverage-gap disclosure, not as evidence about typing",
+      "pass": true
+    },
+    "G2b_COMOVEMENT_STRATA_LIVE": {
+      "M_ahead": [],
+      "note": "LIVE: an unexercised role the refit reached through co-movement in non-carrier strata",
+      "pass": true,
+      "refit_ahead_or_mixed": [],
+      "ties": [
+        "D0:X6I7_ONE_BREAKTHROUGH|SCALE_SUBFIELD",
+        "D0:X6I7_ONE_BREAKTHROUGH|SCALE_PROBLEM_FAMILY"
+      ]
+    },
+    "G3_COVERAGE_CURVE": {
+      "advantage_M_minus_refit_by_coverage": {
+        "0": {
+          "SCALE_PROBLEM_FAMILY": 7,
+          "SCALE_SUBFIELD": 7
+        },
+        "2": {
+          "SCALE_PROBLEM_FAMILY": 6,
+          "SCALE_SUBFIELD": 6
+        },
+        "4": {
+          "SCALE_PROBLEM_FAMILY": 4,
+          "SCALE_SUBFIELD": 4
+        },
+        "6": {
+          "SCALE_PROBLEM_FAMILY": 2,
+          "SCALE_SUBFIELD": 2
+        },
+        "8": {
+          "SCALE_PROBLEM_FAMILY": 0,
+          "SCALE_SUBFIELD": 0
+        }
+      },
+      "monotone_non_increasing": true,
+      "pass": true,
+      "zero_at_full_coverage": true
+    },
+    "ROUTE": {
+      "route": "TYPING_VALUE_EQUALS_COVERAGE_GAP__COMOVEMENT_RECOVERS_SOME_STRATA",
+      "terminals": [
+        "TYPING_VALUE_EQUALS_COVERAGE_GAP__NO_COMOVEMENT_RECOVERY",
+        "TYPING_VALUE_EQUALS_COVERAGE_GAP__COMOVEMENT_RECOVERS_SOME_STRATA",
+        "TYPING_SEPARATES_BEYOND_COVERAGE",
+        "LANE_DEFECT"
+      ]
+    }
+  }
+}
