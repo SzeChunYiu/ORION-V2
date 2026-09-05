@@ -1,0 +1,521 @@
+{
+  "identity": "ME-FOUNDATION-REVISION-V1",
+  "base_sha": "24566f00a9dc4425a438fcfac05d13c6b2d903db",
+  "source_atlas_blob": "9bb8943f88f1096265c7156be520300d340f0a71",
+  "scientific_completion": false,
+  "status_scope": "Statuses describe ONLY the explicitly scoped fragment; hand arguments are not machine proofs.",
+  "independent_review": "NOT_PERFORMED",
+  "ocm_parity": "NOT_RUN",
+  "gaps": [
+    {
+      "id": "MEG-01",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F03"
+      ],
+      "scope": "Finite DAG root substitution; declared logical dependence.",
+      "remaining": "Latent statistical dependence and cyclic implementations require their own semantics.",
+      "parent": "ATMS/provenance",
+      "depends_on": []
+    },
+    {
+      "id": "MEG-02",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F02",
+        "F09",
+        "F16"
+      ],
+      "scope": "Typed exact/risk distinction, selection bound and monotone graded navigation.",
+      "remaining": "Correlated probabilistic warrant algebra, learned calibration and OCM parity remain open.",
+      "parent": "Probability/linear-system parent composition",
+      "depends_on": [
+        "MEG-01"
+      ]
+    },
+    {
+      "id": "MEG-03",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F07",
+        "F08"
+      ],
+      "scope": "Expiry/supersession as versioned dependencies at fixed validity scope.",
+      "remaining": "Bitemporal runtime, concurrent updates and integration tests not supplied.",
+      "parent": "Temporal databases and incremental computation",
+      "depends_on": [
+        "MEG-01"
+      ]
+    },
+    {
+      "id": "MEG-04",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F01"
+      ],
+      "scope": "Meet cannot amplify permissions; authorization precedes action.",
+      "remaining": "Enforce pre-action capabilities and authenticate issuers in OCM.",
+      "parent": "Lattice authority/capabilities",
+      "depends_on": []
+    },
+    {
+      "id": "MEG-05",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F08"
+      ],
+      "scope": "Testimony is a proposition distinct from its quoted content.",
+      "remaining": "Natural-language assertion extraction and dialogue integration unvalidated.",
+      "parent": "Commitment-store/type separation",
+      "depends_on": [
+        "MEG-04"
+      ]
+    },
+    {
+      "id": "MEG-06",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F09"
+      ],
+      "scope": "Finite nonnegative substochastic fixed-point residual/tail bounds.",
+      "remaining": "Outward-rounded floating/sparse implementation and resource sweep not run.",
+      "parent": "Neumann/Banach linear systems",
+      "depends_on": []
+    },
+    {
+      "id": "MEG-07",
+      "status": "SPECIFIED_NOT_PROVED",
+      "proofs": [
+        "F09"
+      ],
+      "scope": "Surprise is an ordering heuristic, not an obligation-completeness theorem.",
+      "remaining": "A useful no-drop extraction algorithm versus faithful directed parents remains untested.",
+      "parent": "PageRank and relevance ranking",
+      "depends_on": [
+        "MEG-06"
+      ]
+    },
+    {
+      "id": "MEG-08",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F08"
+      ],
+      "scope": "Fixed labels preserve liveness under weight edits, not threshold firing.",
+      "remaining": "OCM feedback write isolation and learned relevance stability not checked.",
+      "parent": "TMS plus operational firing distinction",
+      "depends_on": [
+        "MEG-01"
+      ]
+    },
+    {
+      "id": "MEG-09",
+      "status": "OPEN_RESEARCH",
+      "proofs": [
+        "F11"
+      ],
+      "scope": "Cross-level answers require full registered-signature sufficiency.",
+      "remaining": "Construct/test multiscale navigation and revocation commutation.",
+      "parent": "Quotients/lumpability",
+      "depends_on": [
+        "MEG-06",
+        "MEG-20"
+      ]
+    },
+    {
+      "id": "MEG-10",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F06"
+      ],
+      "scope": "Bounded trace/static warrant distinction including guards.",
+      "remaining": "General recursion, changing support, parallel interference and backend refinement open.",
+      "parent": "KAT/provenance",
+      "depends_on": [
+        "MEG-01",
+        "MEG-16"
+      ]
+    },
+    {
+      "id": "MEG-11",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F01",
+        "F15"
+      ],
+      "scope": "Finite derivation preservation and natural-number fuel progress.",
+      "remaining": "Canonical runtime transition system and persistence refinement not proved.",
+      "parent": "Type preservation and well-founded termination",
+      "depends_on": [
+        "MEG-04",
+        "MEG-10"
+      ]
+    },
+    {
+      "id": "MEG-12",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F05"
+      ],
+      "scope": "Exact minimal per-query agreement supports in finite realizable noiseless H.",
+      "remaining": "Efficient support compilation for large structured classes not established.",
+      "parent": "Version spaces and ATMS",
+      "depends_on": [
+        "MEG-01"
+      ]
+    },
+    {
+      "id": "MEG-13",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F05"
+      ],
+      "scope": "Query agreement, contradiction refusal and deletion-local admission.",
+      "remaining": "Unknown class, noise, infinite grammar learnability and full S1-S7 runtime proof open.",
+      "parent": "Exact learning/version spaces",
+      "depends_on": [
+        "MEG-12",
+        "MEG-16"
+      ]
+    },
+    {
+      "id": "MEG-14",
+      "status": "PARENT_ADOPTION",
+      "proofs": [
+        "F05",
+        "F13"
+      ],
+      "scope": "Version-space information and explicit exponential reference cost.",
+      "remaining": "Per-class channel/sample/resource frontier tables not executed.",
+      "parent": "Teaching/query/PAC learning",
+      "depends_on": [
+        "MEG-12",
+        "MEG-31"
+      ]
+    },
+    {
+      "id": "MEG-15",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F08"
+      ],
+      "scope": "Registered outcome evidence is distinct from reward-as-truth.",
+      "remaining": "Grounded interaction measurement validity and transfer study required.",
+      "parent": "Target-relative observation and exact learning",
+      "depends_on": [
+        "MEG-05",
+        "MEG-12"
+      ]
+    },
+    {
+      "id": "MEG-16",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F04"
+      ],
+      "scope": "Filtered-support algebra; meet upper bound; homomorphism only on consistent environments.",
+      "remaining": "OCM nogood parity and full independent ATMS reconstruction remain unperformed.",
+      "parent": "ATMS nogoods/absorptive provenance",
+      "depends_on": [
+        "MEG-01"
+      ]
+    },
+    {
+      "id": "MEG-17",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F05",
+        "F07"
+      ],
+      "scope": "Repair upper bound in a complete indexed pure dependency DAG.",
+      "remaining": "Cyclic/stateful repair, real cost model and OCM lifecycle replay required.",
+      "parent": "Self-adjusting computation",
+      "depends_on": [
+        "MEG-03",
+        "MEG-12"
+      ]
+    },
+    {
+      "id": "MEG-18",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F10"
+      ],
+      "scope": "Exact rollback under restoration of the full operator/context; revocation-only counterexample.",
+      "remaining": "Transactional/causal undo with intervening writes and OCM parity open.",
+      "parent": "State restoration and resolvents",
+      "depends_on": [
+        "MEG-06",
+        "MEG-17"
+      ]
+    },
+    {
+      "id": "MEG-19",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F07",
+        "F11"
+      ],
+      "scope": "Full-signature conservative maintenance; liveness-only iff refuted.",
+      "remaining": "General macro synthesis, minimal-cost repair and deconsolidation not solved.",
+      "parent": "Incremental computation/abstraction",
+      "depends_on": [
+        "MEG-17",
+        "MEG-20"
+      ]
+    },
+    {
+      "id": "MEG-20",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F11"
+      ],
+      "scope": "Finite signature-factorization criterion for query/lifecycle sufficiency.",
+      "remaining": "Efficient certificate construction and richer query families open.",
+      "parent": "Sufficient statistics/quotients",
+      "depends_on": [
+        "MEG-01",
+        "MEG-06"
+      ]
+    },
+    {
+      "id": "MEG-21",
+      "status": "SPECIFIED_NOT_PROVED",
+      "proofs": [
+        "F10",
+        "F11"
+      ],
+      "scope": "Non-quotient moves must preserve declared semantics, not just graph shape.",
+      "remaining": "Implement/check a useful non-quotient move and rollback; no universal homomorphism iff.",
+      "parent": "Refinement/conservative extension",
+      "depends_on": [
+        "MEG-18",
+        "MEG-20"
+      ]
+    },
+    {
+      "id": "MEG-22",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F03",
+        "F07"
+      ],
+      "scope": "Shared support gives a conservative impact cone, not an exact change set.",
+      "remaining": "Cross-domain runtime replay and semantic transport adequacy untested.",
+      "parent": "Provenance/incremental computation",
+      "depends_on": [
+        "MEG-01",
+        "MEG-17"
+      ]
+    },
+    {
+      "id": "MEG-23",
+      "status": "OPEN_RESEARCH",
+      "proofs": [
+        "F11",
+        "F16"
+      ],
+      "scope": "Context-specific organization search with explicit Pareto resources.",
+      "remaining": "No learned organization optimizer or residual versus strongest composition established.",
+      "parent": "Algorithm selection/abstraction",
+      "depends_on": [
+        "MEG-21",
+        "MEG-22"
+      ]
+    },
+    {
+      "id": "MEG-24",
+      "status": "SPECIFIED_NOT_PROVED",
+      "proofs": [
+        "F12"
+      ],
+      "scope": "Equal meanings/seeds are sufficient contracts; extraction equality alone is not semantic equivalence.",
+      "remaining": "Semantic parser equivalence and protected natural-language coverage unmeasured.",
+      "parent": "Canonicalization versus semantic equivalence",
+      "depends_on": [
+        "MEG-12"
+      ]
+    },
+    {
+      "id": "MEG-25",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F01",
+        "F08",
+        "F12"
+      ],
+      "scope": "No authority from rendering; DEAD is not negation; read-only is not semantic safety.",
+      "remaining": "Natural-language semantic-fidelity checker and deployment bridge missing.",
+      "parent": "Noninterference plus semantic refinement",
+      "depends_on": [
+        "MEG-04",
+        "MEG-24"
+      ]
+    },
+    {
+      "id": "MEG-26",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F12"
+      ],
+      "scope": "Query consensus over a sound ambiguity set is enough; singleton not necessary.",
+      "remaining": "Construct a sound interpretation-set coverage certificate for real language.",
+      "parent": "Universal agreement/abstract interpretation",
+      "depends_on": [
+        "MEG-12",
+        "MEG-24"
+      ]
+    },
+    {
+      "id": "MEG-27",
+      "status": "SPECIFIED_NOT_PROVED",
+      "proofs": [
+        "F12"
+      ],
+      "scope": "Prefix satisfiability alone does not prevent an already unsupported assertion.",
+      "remaining": "Sound incremental semantics/repair under bounded cost remains a research task.",
+      "parent": "Constraint satisfaction/incremental realization",
+      "depends_on": [
+        "MEG-25",
+        "MEG-26"
+      ]
+    },
+    {
+      "id": "MEG-28",
+      "status": "SPECIFIED_NOT_PROVED",
+      "proofs": [
+        "F10",
+        "F11",
+        "F15"
+      ],
+      "scope": "Class-scoped obstruction, semantic preservation and external adoption obligations.",
+      "remaining": "DPO runtime refinement, useful level-specific ceilings and improvement study open.",
+      "parent": "CEGAR/refinement/graph rewriting",
+      "depends_on": [
+        "MEG-18",
+        "MEG-21"
+      ]
+    },
+    {
+      "id": "MEG-29",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F01",
+        "F18"
+      ],
+      "scope": "Self-reference cannot mint permissions or evaluator independence.",
+      "remaining": "Self-model calibration, governance enforcement and external validation absent.",
+      "parent": "Reference-monitor/trust-boundary discipline",
+      "depends_on": [
+        "MEG-04"
+      ]
+    },
+    {
+      "id": "MEG-30",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F07",
+        "F15"
+      ],
+      "scope": "Natural-number fuel terminates; bounded positive real cost and immutable snapshots do not suffice.",
+      "remaining": "Serializable runtime commits, crash consistency and fairness proof open.",
+      "parent": "Well-founded termination/transaction theory",
+      "depends_on": [
+        "MEG-06"
+      ]
+    },
+    {
+      "id": "MEG-31",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F13"
+      ],
+      "scope": "Conditional Hartley gains telescope; unconditional subadditivity refuted.",
+      "remaining": "Universal cross-channel physical information price is not defined.",
+      "parent": "Hartley counting and conditional information",
+      "depends_on": []
+    },
+    {
+      "id": "MEG-32",
+      "status": "PARENT_ADOPTION",
+      "proofs": [
+        "F14"
+      ],
+      "scope": "Distinguish algorithmic identity from empirical equivalence; exact zero-discordance bound.",
+      "remaining": "Register estimands/margins and run independent-task protected comparisons.",
+      "parent": "Exact binomial inversion/equivalence testing",
+      "depends_on": []
+    },
+    {
+      "id": "MEG-33",
+      "status": "SPECIFIED_NOT_PROVED",
+      "proofs": [
+        "F02",
+        "F15"
+      ],
+      "scope": "Refutation and informative negative queries can refine upper support.",
+      "remaining": "Construct costed closure/query acquisition policy versus strongest active-learning parent.",
+      "parent": "Active learning/value of information",
+      "depends_on": [
+        "MEG-12",
+        "MEG-35"
+      ]
+    },
+    {
+      "id": "MEG-34",
+      "status": "OPEN_RESEARCH",
+      "proofs": [
+        "F05",
+        "F11",
+        "F12"
+      ],
+      "scope": "Lifecycle equivalence on declared tests is an explicit quotient target.",
+      "remaining": "Structured/infinite grammar identification, noisy channels and constructive learner open.",
+      "parent": "Automata/exact learning and representation sufficiency",
+      "depends_on": [
+        "MEG-12",
+        "MEG-24"
+      ]
+    },
+    {
+      "id": "MEG-35",
+      "status": "PROVED_SCOPED",
+      "proofs": [
+        "F15"
+      ],
+      "scope": "Refinement requires L<=Lnew<=Unew<=U; conflicting upper certificates rejected.",
+      "remaining": "Acquire trustworthy bounded-alternatives certificates on useful domains.",
+      "parent": "Interval knowledge order",
+      "depends_on": [
+        "MEG-01",
+        "MEG-16"
+      ]
+    }
+  ],
+  "additional_frontiers": [
+    {
+      "id": "FX-CAUSAL",
+      "proofs": [
+        "F17"
+      ],
+      "status": "BOUNDARY_ONLY",
+      "remaining": "Causal identification, measurement-validity and experiment-design pipeline."
+    },
+    {
+      "id": "FX-VERIFIER",
+      "proofs": [
+        "F18"
+      ],
+      "status": "BOUNDARY_ONLY",
+      "remaining": "Verifier error dependence, translation fidelity and external trust audit."
+    },
+    {
+      "id": "FX-FRONTIER",
+      "proofs": [
+        "F16"
+      ],
+      "status": "SCOPED_SYNTHESIS_ONLY",
+      "remaining": "Matched-resource certified local computation study and new surviving parent residual."
+    }
+  ]
+}

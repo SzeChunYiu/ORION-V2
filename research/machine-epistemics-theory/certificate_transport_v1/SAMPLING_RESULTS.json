@@ -1,0 +1,64 @@
+{
+  "authority": {
+    "all_size_proof_from_enumeration": false,
+    "independent_review": false,
+    "novelty": "NOT_ESTABLISHED",
+    "real_data_or_model_run": false
+  },
+  "counts": {
+    "binomial_limits": 270,
+    "count_monotonicity": 234,
+    "disagreement_inclusions": 1536,
+    "exact_coverage_cells": 612,
+    "invalid_input_rejections": 8,
+    "minimal_grid_predecessors": 234,
+    "multiclass_strictness_witnesses": 1,
+    "selection_sample_vectors": 16,
+    "tail_certificates": 234
+  },
+  "examples": {
+    "hypothetical_update": {
+      "calibration_confidence_at_least": "19/20",
+      "cost_inputs": {
+        "paired_predictor_evaluations": 200,
+        "paired_unlabeled_examples": 100,
+        "reference_labeled_examples": 100,
+        "reference_predictor_evaluations": 100
+      },
+      "disagreement_upper": "1785/32768",
+      "exact_truth_warrant": false,
+      "external_action_authority": false,
+      "joint_TV_assumed_upper": "1/50",
+      "kind": "CONDITIONAL_RISK_BOUND",
+      "premises_verified_by_this_function": false,
+      "reference_risk_upper": "4613/65536",
+      "requires": [
+        "fixed events or simultaneous validity",
+        "fixed sample sizes",
+        "IID reference and paired sample laws",
+        "correct reference labels",
+        "common semantic error predicate",
+        "justified joint deployment TV"
+      ],
+      "risk_upper": "237343/1638400"
+    },
+    "unrestricted_future": {
+      "future_risks": [
+        0,
+        1
+      ],
+      "joint_drift_restriction_missing": true,
+      "same_input_marginal": true,
+      "same_past": true
+    },
+    "zero_of_12_alpha_0.05_upper": "14479/65536"
+  },
+  "selection": {
+    "nominal_alpha": "1/2",
+    "simultaneous_adjusted_undercoverage": "0",
+    "true_each_risk": "3/4",
+    "unadjusted_selected_undercoverage": "175/256"
+  },
+  "study": "ME-CERTIFICATE-TRANSPORT-V1-FINITE-SAMPLE-EXTENSION",
+  "terminal": "EXACT_BINOMIAL_CALIBRATION_AND_SELECTION_COUNTEREXAMPLE"
+}

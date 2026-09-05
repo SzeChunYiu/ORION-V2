@@ -1,0 +1,13 @@
+{
+  "schema": "ORION_INFINITE_THRESHOLD_LIFECYCLE_PROTOCOL_V2",
+  "registration_date": "2026-09-05",
+  "predecessor": "PROTOCOL_V1.json",
+  "registration_kind": "REFERENCE_SCOPE_CLARIFICATION_AFTER_INITIAL_LOCAL_CALIBRATION_BEFORE_SUCCESSOR_VALIDATION",
+  "preserves": "The integer threshold class, algorithms, revocation protocol and all six theorem targets in PROTOCOL_V1.json",
+  "clarifications": {
+    "lower_bound_information_model": "The only target-dependent oracle information is the binary label. Authenticated identities and revocation-unit metadata are assigned by the host independently of the target. No hidden target encoding in metadata, timing or source selection is allowed. The learner's prior is exactly the surviving version-space interval.",
+    "oracle_authority": "Syntax/context validation is not authentication. Truthful fixed-target labels and actual revocation-unit custody are external premises; independent records do not imply independent revocation units.",
+    "bit_budget": "max_integer_bits bounds signed query and stored observation coordinates (abs(x).bit_length()+1); temporary bound/midpoint/doubling arithmetic can use a constant number of extra bits. No unit-cost unbounded-integer claim.",
+    "validation_authority": "This is deterministic reference calibration following an explicit hypothesis, not external preregistration, fresh protected evaluation, or scientific promotion. Finite cases do not prove the infinite statements."
+  }
+}

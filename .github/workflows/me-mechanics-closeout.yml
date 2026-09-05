@@ -1,0 +1,61 @@
+name: ME mechanics and mathematical corrections
+on:
+  pull_request:
+    paths:
+      - 'research/machine-epistemics-theory/**'
+      - 'research/orion-machine/**'
+      - 'tests/unit/test_me_field_dynamics*'
+      - 'tests/unit/test_meg_frontier*'
+      - 'tests/unit/test_kso_lifetime*'
+      - 'tests/unit/test_ocm_lane202_invariance_correction.py'
+      - 'tests/unit/test_semantic_codec_v1.py'
+      - 'tests/unit/test_infinite_threshold_lifecycle.py'
+      - 'tests/unit/test_method_learning_contract.py'
+      - '.github/workflows/me-mechanics-closeout.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'research/machine-epistemics-theory/**'
+      - 'research/orion-machine/**'
+      - 'tests/unit/test_me_field_dynamics*'
+      - 'tests/unit/test_meg_frontier*'
+      - 'tests/unit/test_kso_lifetime*'
+      - 'tests/unit/test_ocm_lane202_invariance_correction.py'
+      - 'tests/unit/test_semantic_codec_v1.py'
+      - 'tests/unit/test_infinite_threshold_lifecycle.py'
+      - 'tests/unit/test_method_learning_contract.py'
+      - '.github/workflows/me-mechanics-closeout.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-finite-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install pytest==8.3.5
+      - name: Check finite contracts, malformed premises and optimized-interpreter behavior
+        env:
+          PYTHONPATH: src
+        run: >-
+          python -m pytest -o addopts= -q
+          tests/unit/test_me_field_dynamics_v1.py
+          tests/unit/test_me_field_dynamics_boundaries.py
+          tests/unit/test_meg_frontier_f1_extraction.py
+          tests/unit/test_meg_frontier_f2_multiscale.py
+          tests/unit/test_meg_frontier_f6_safe_prefix.py
+          tests/unit/test_kso_lifetime_prereqs_batch6.py
+          tests/unit/test_kso_lifetime_revision_boundaries.py
+          tests/unit/test_ocm_lane202_invariance_correction.py
+          tests/unit/test_semantic_codec_v1.py
+          tests/unit/test_infinite_threshold_lifecycle.py
+          tests/unit/test_method_learning_contract.py
+      - name: Verify custody of the inherited V1 handoff
+        run: python scripts/check_v1_handoff.py
+      - run: git diff --exit-code

@@ -1,0 +1,50 @@
+{
+  "schema": "me-certificate-lifecycle-study/v1",
+  "issue": 318,
+  "task": "ME-CERTIFICATE-LIFECYCLE-V1",
+  "base_sha": "24566f00a9dc4425a438fcfac05d13c6b2d903db",
+  "design_status": "REGISTERED_BEFORE_LOCAL_EXECUTION",
+  "study_type": "THEORETICAL_WITH_DETERMINISTIC_FINITE_CALIBRATION",
+  "protected_empirical_run": false,
+  "scope": "Frozen finite certificate registry, explicit contextual bindings and externally supplied checker/trust judgments; serialized abstract lifecycle transitions only.",
+  "targets": [
+    "CL1: identity sufficiency iff the certified property is constant on identity fibers",
+    "CL2: contextual applicability with typed guarantees and no individual-truth coercion",
+    "CL3: grounded three-valued certificate dependencies and alternate-support preservation",
+    "CL4: selective reevaluation outside the transitive dependency cone",
+    "CL5: generation-and-snapshot-checked use, ABA rejection and immutable replay",
+    "CL6: exact-object certificates survive unrelated producer drift",
+    "CL7: source-bound absorption requires explicit external adoption and parity evidence"
+  ],
+  "controls": [
+    "mutate every mandatory operator-identity coordinate",
+    "same advertised operator identity with different prompt behavior",
+    "missing, revoked and conflicting checker judgments",
+    "unrooted cycle versus independently rooted alternate support",
+    "AND/OR dependency substitution mutants",
+    "statistical guarantee requested as exact individual claim",
+    "stale scope, epoch and operator binding",
+    "unrelated producer change preserves immutable-object proof applicability",
+    "revocation and ABA between prepare and use",
+    "reordered, changed or truncated event history against an external checkpoint",
+    "missing or changed source, statement, parity and adoption bindings"
+  ],
+  "execution": "Isolated session Linux container, Python standard library; exact Python/platform reported in receipt. No operator-host, training, protected corpus or real action execution.",
+  "parent_disposition": "Parent ownership expected: provenance, proof-carrying verification, assumption-based truth maintenance, optimistic version checks and deterministic state-machine replay.",
+  "review": "AUTHOR_ANALYTIC_LENSES_ONLY; independent review pending",
+  "non_consequences": [
+    "No discovery of hidden dependencies or proof that manifest fields are exhaustive",
+    "No cryptographic issuer authentication from a digest",
+    "No guarantee of checker soundness from checker execution alone",
+    "No statistical scope transport from set inclusion alone",
+    "No production crash consistency, distributed concurrency or real action fencing proof",
+    "No full-foundation, OCM milestone, novelty or field-recognition claim"
+  ],
+  "coordination": {
+    "typed_foundation": [312, 313],
+    "decision_frontier": 314,
+    "causal_transport": 315,
+    "division": 304,
+    "foundation_v1_ownership_overlap": "UNRESOLVED; no edits by this task"
+  }
+}

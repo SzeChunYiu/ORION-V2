@@ -1,0 +1,177 @@
+{
+  "alternate_oracle": {
+    "independent_author_or_external_reviewer": false,
+    "independent_implementation_paths": true,
+    "structural_vs_response_pushforward": 576
+  },
+  "body_sha256": "0c34c57050f607a51992d1001ffce57c88afe8114df3eae54d1b1769934b64f1",
+  "boundaries": {
+    "agreement_without_truth_link_refuted": 1,
+    "duplicate_no_new_logical_information": 1,
+    "full_observation_law_compatible_models": 8,
+    "inconsistent_no_vacuity": 1,
+    "marginal_component_composition_refuted": 1,
+    "registration_without_fidelity_refuted": 1,
+    "sample_compatible_models": 28,
+    "scope_mismatch_refused": 1,
+    "source_only_transport_refuted": 1
+  },
+  "calibration_class": "EXACT_FINITE_NOT_EMPIRICAL",
+  "couplings": {
+    "all_16_boolean_event_bound_checks": 4544,
+    "denominator_range": [
+      1,
+      8
+    ],
+    "feasible_integer_tables": 494,
+    "verifier_example": {
+      "independence_only_value": "1/400",
+      "joint_error_interval": [
+        "0",
+        "1/20"
+      ],
+      "marginals": [
+        "1/20",
+        "1/20"
+      ]
+    }
+  },
+  "full_foundation_closed": false,
+  "general_causal_discovery_or_real_llm_claim": false,
+  "hierarchy": {
+    "counterfactual_classes_per_interventional_class": {
+      "1": 32,
+      "2": 2
+    },
+    "counterfactual_response_classes": 36,
+    "do_not_counterfactual": {
+      "P_equal": [
+        "1",
+        "0"
+      ],
+      "models": [
+        {
+          "f": [
+            0,
+            0
+          ],
+          "g": [
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "f": [
+            0,
+            0
+          ],
+          "g": [
+            0,
+            1,
+            1,
+            0
+          ]
+        }
+      ]
+    },
+    "interventional_classes": 34,
+    "model_pairs": 4096,
+    "models": 64,
+    "obs_not_do": {
+      "P_Y1_do_X1": [
+        "1",
+        "1/2"
+      ],
+      "models": [
+        {
+          "f": [
+            0,
+            1
+          ],
+          "g": [
+            0,
+            0,
+            1,
+            1
+          ]
+        },
+        {
+          "f": [
+            0,
+            1
+          ],
+          "g": [
+            0,
+            1,
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    "observational_classes": 10
+  },
+  "identity": "ME-CAUSAL-VERIFIER-V1",
+  "independent_review": "NOT_OBTAINED",
+  "lifecycle": {
+    "active_subsets_per_model": 16,
+    "evidence_records_per_model": 4,
+    "hidden_models": 64,
+    "list_vs_bitset_comparisons": 12288,
+    "positive_negative_retraction_checks": 24576,
+    "query_value_claims_per_subset": 12,
+    "reinstatement_permutation_checks": 768,
+    "verdict_counts": {
+      "REFUTED": 6240,
+      "SUPPORTED": 3008,
+      "UNKNOWN": 3040
+    }
+  },
+  "revision_trace": [
+    {
+      "P_Y0_equals_Y1_is_1": "UNKNOWN",
+      "P_Y1_do_X1_is_half": "SUPPORTED",
+      "active_evidence_ids": [
+        "obs",
+        "do0",
+        "do1"
+      ],
+      "phase": "single_world_laws"
+    },
+    {
+      "P_Y0_equals_Y1_is_1": "SUPPORTED",
+      "P_Y1_do_X1_is_half": "SUPPORTED",
+      "active_evidence_ids": [
+        "obs",
+        "do0",
+        "do1",
+        "joint"
+      ],
+      "phase": "joint_certificate_added"
+    },
+    {
+      "P_Y0_equals_Y1_is_1": "UNKNOWN",
+      "P_Y1_do_X1_is_half": "SUPPORTED",
+      "active_evidence_ids": [
+        "obs",
+        "do0",
+        "do1"
+      ],
+      "phase": "joint_certificate_revoked"
+    },
+    {
+      "P_Y0_equals_Y1_is_1": "SUPPORTED",
+      "P_Y1_do_X1_is_half": "SUPPORTED",
+      "active_evidence_ids": [
+        "obs",
+        "do0",
+        "do1",
+        "joint"
+      ],
+      "phase": "joint_certificate_reinstated"
+    }
+  ],
+  "scientific_terminal": "PARENT_OWNED_FORMAL_FOUNDATION"
+}

@@ -1,0 +1,336 @@
+{
+  "schema": "MACHINE_EPISTEMICS_FIELD_DYNAMICS_V1",
+  "base_sha": "05f08fe71466d4dd192294fe00cf26d526026522",
+  "authority": {
+    "GENERAL_NOVELTY": "NOT_ESTABLISHED",
+    "FIELD_STATUS": "NOT_ESTABLISHED",
+    "OCM_SUPERIORITY": "NOT_ESTABLISHED",
+    "OCM_ADOPTION": "NOT_AUTHORIZED_BY_THIS_PACKAGE"
+  },
+  "state_object": [
+    "K",
+    "Lambda",
+    "D",
+    "N",
+    "A",
+    "S",
+    "P",
+    "H",
+    "O",
+    "Constitution",
+    "B",
+    "X"
+  ],
+  "transition_families": [
+    "F_FAST_INFERENCE",
+    "E_EVIDENCE_REVISION",
+    "L_LEARNING",
+    "R_REPRESENTATION_ORGANISATION",
+    "T_TEMPORAL_ENVIRONMENT",
+    "M_COMMUNICATION_MULTI_AGENT",
+    "G_GOVERNANCE_ACTION_SELF"
+  ],
+  "status_vocabulary": [
+    "DERIVED_FROM_EXISTING_FOUNDATION",
+    "PROVED_SCOPE_LIMITED",
+    "PARENT_SUFFICIENT",
+    "OPEN_RESEARCH",
+    "OPEN_EMPIRICAL",
+    "REFUTED",
+    "CANNOT_CHECK"
+  ],
+  "laws": [
+    {
+      "id": "FD-01",
+      "name": "authority non-amplification",
+      "status": "DERIVED_FROM_EXISTING_FOUNDATION",
+      "scope": "registered internal composition/transition authority lattice",
+      "parents": [
+        "Biba low-water-mark",
+        "information-flow authority lattices"
+      ],
+      "reopen": "authority algebra or external-source contract changes",
+      "sources": [
+        "../KSO_ONE_DAY_THEOREMS_BATCH1_V1.md",
+        "DYNAMICS.md#2-fd-01--authority-non-amplification"
+      ],
+      "checker": {
+        "entrypoint": "field_dynamics_exact.py:check_fd01",
+        "hostile_tests": "tests/unit/test_me_field_dynamics_boundaries.py",
+        "meaning": "Finite calibration/contracts only; no external model closure or adoption authority."
+      },
+      "proof_obligation": "Induction on finite derivations under per-rule meet ceiling; source legitimacy external."
+    },
+    {
+      "id": "FD-02",
+      "name": "warrant/source conservation",
+      "status": "DERIVED_FROM_EXISTING_FOUNDATION",
+      "scope": "registered support antichains, dependence flattening and nogoods",
+      "parents": [
+        "ATMS",
+        "provenance semirings"
+      ],
+      "reopen": "warrant algebra or contradiction semantics changes",
+      "sources": [
+        "https://doi.org/10.1145/1265530.1265535",
+        "../KSO_THREE_VALUED_WARRANT_AND_REOPENING_V1.md"
+      ],
+      "checker": {
+        "entrypoint": "field_dynamics_exact.py:check_fd02",
+        "hostile_tests": "tests/unit/test_me_field_dynamics_boundaries.py",
+        "meaning": "Finite calibration/contracts only; no external model closure or adoption authority."
+      },
+      "proof_obligation": "A LIVE conclusion has a known consistent active support; score is outside this algebra."
+    },
+    {
+      "id": "FD-03",
+      "name": "local revision law",
+      "status": "DERIVED_FROM_EXISTING_FOUNDATION",
+      "scope": "explicit registered dependency model D",
+      "parents": [
+        "TMS/ATMS",
+        "DRed/BF incremental maintenance"
+      ],
+      "reopen": "dependency model completeness/interface changes",
+      "sources": [
+        "../KSO_THREE_VALUED_WARRANT_AND_REOPENING_V1.md",
+        "DYNAMICS.md#4-fd-03--local-revision-law"
+      ],
+      "checker": {
+        "entrypoint": "field_dynamics_exact.py:check_fd03",
+        "hostile_tests": "tests/unit/test_me_field_dynamics_boundaries.py",
+        "meaning": "Finite calibration/contracts only; no external model closure or adoption authority."
+      },
+      "proof_obligation": "Only declared predecessor inputs can affect outputs; cycles require fixed-point selection preservation."
+    },
+    {
+      "id": "FD-04",
+      "name": "fast/slow fixed-point stability",
+      "status": "PROVED_SCOPE_LIMITED",
+      "scope": "nonnegative row-substochastic restart kernels, l1 seeds <=1, fixed alpha in (0,1]",
+      "parents": [
+        "Banach contraction",
+        "Markov/PageRank perturbation theory"
+      ],
+      "formula": "||a*'-a*||_1 <= ||s'-s||_1 + ((1-alpha)/alpha)||P'-P||_inf",
+      "reopen": "normalization, signed kernels, nonlinear dynamics or alpha semantics change",
+      "sources": [
+        "https://arxiv.org/abs/1804.09768v2",
+        "DYNAMICS.md#5-fd-04--fastslow-fixed-point-stability"
+      ],
+      "checker": {
+        "entrypoint": "field_dynamics_exact.py:check_fd04",
+        "hostile_tests": "tests/unit/test_me_field_dynamics_boundaries.py",
+        "meaning": "Finite calibration/contracts only; no external model closure or adoption authority."
+      },
+      "proof_obligation": "Subtract fixed-point equations and use induced l1 contraction plus unit seed mass; separate proof from finite calibration."
+    },
+    {
+      "id": "FD-05",
+      "name": "epistemic hysteresis/reversibility",
+      "status": "PROVED_SCOPE_LIMITED",
+      "scope": "Semantic projection under same previously admitted immutable evidence identity and unchanged semantics; full audit-state reversal is REFUTED.",
+      "parents": [
+        "event sourcing",
+        "transaction rollback",
+        "belief revision/provenance"
+      ],
+      "reopen": "history deletion, external effects, evidence identity or structural rollback protocol changes",
+      "sources": [
+        "DYNAMICS.md#6-fd-05--epistemic-hysteresis-and-reversibility"
+      ],
+      "checker": {
+        "entrypoint": "field_dynamics_exact.py:check_fd05",
+        "hostile_tests": "tests/unit/test_me_field_dynamics_boundaries.py",
+        "meaning": "Finite calibration/contracts only; no external model closure or adoption authority."
+      },
+      "proof_obligation": "Projection onto active admitted identities returns; full append-only history equality is refuted."
+    },
+    {
+      "id": "FD-06",
+      "name": "epistemic persistence/viability",
+      "status": "PARENT_SUFFICIENT",
+      "scope": "registered safe predicate, revision envelope and admissible epistemic actions",
+      "parents": [
+        "viability theory",
+        "safety games",
+        "runtime verification"
+      ],
+      "reopen": "typed epistemic safe set yields a theorem not reducible to parent controlled invariance",
+      "sources": [
+        "https://www.cs.cmu.edu/~ryzhyk/publications/Narodytska_LBRW_14.pdf",
+        "DYNAMICS.md#7-fd-06--epistemic-persistence-and-viability"
+      ],
+      "checker": {
+        "entrypoint": "field_dynamics_exact.py:check_fd06",
+        "hostile_tests": "tests/unit/test_me_field_dynamics_boundaries.py",
+        "meaning": "Finite calibration/contracts only; no external model closure or adoption authority."
+      },
+      "proof_obligation": "Descending greatest fixed point with exists-controller/forall-successor moves; deleted layers exclude safe policies."
+    },
+    {
+      "id": "FD-07",
+      "name": "information/interface conservation",
+      "status": "OPEN_RESEARCH",
+      "scope": "requires explicit access/information/resource model",
+      "parents": [
+        "communication complexity",
+        "query/decision-tree complexity",
+        "Blackwell sufficiency",
+        "information theory"
+      ],
+      "reopen": "A complete access/prior/side-information model supports a stronger general theorem; no universal entropy claim from finite counting.",
+      "sources": [
+        "https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf"
+      ],
+      "checker": {
+        "entrypoint": "field_dynamics_exact.py:check_fd07",
+        "hostile_tests": "tests/unit/test_me_field_dynamics_boundaries.py",
+        "meaning": "Finite calibration/contracts only; no external model closure or adoption authority."
+      },
+      "proof_obligation": "Finite uniform deterministic channel entropy inequality and exact response fibres; unrestricted information principle remains open.",
+      "finite_fragment": "PARENT_SUFFICIENT: uniform prior, complete finite deterministic channel, expected entropy reduction; pointwise log-alphabet bound REFUTED."
+    },
+    {
+      "id": "FD-08",
+      "name": "commuting abstraction/structural change",
+      "status": "PARENT_SUFFICIENT",
+      "scope": "finite quotient kernels plus warrant/answer measurability; conservative extension on registered queries",
+      "parents": [
+        "strong lumpability/intertwining",
+        "abstract interpretation/refinement mappings"
+      ],
+      "reopen": "future multiscale object not representable as finite projection/conservative extension",
+      "sources": [
+        "https://arxiv.org/html/0710.1986v2",
+        "https://lamport.azurewebsites.net/pubs/abadi-existence.pdf"
+      ],
+      "checker": {
+        "entrypoint": "field_dynamics_exact.py:check_fd08",
+        "hostile_tests": "tests/unit/test_me_field_dynamics_boundaries.py",
+        "meaning": "Finite calibration/contracts only; no external model closure or adoption authority."
+      },
+      "proof_obligation": "PQ=QPbar plus observable fibre constancy and qR=Rbarq for every registered revision; family closure required."
+    },
+    {
+      "id": "FD-09",
+      "name": "multi-agent non-laundering",
+      "status": "PROVED_SCOPE_LIMITED",
+      "scope": "source/dependence/authority preserving testimony composition",
+      "parents": [
+        "ATMS dependence",
+        "information-flow noninterference",
+        "dependence-robust probability bounds"
+      ],
+      "reopen": "quantitative fusion without explicit coupling/independence model",
+      "sources": [
+        "https://doi.org/10.1145/1265530.1265535",
+        "DYNAMICS.md#10-fd-09--multi-agent-non-laundering"
+      ],
+      "checker": {
+        "entrypoint": "field_dynamics_exact.py:check_fd09",
+        "hostile_tests": "tests/unit/test_me_field_dynamics_boundaries.py",
+        "meaning": "Finite calibration/contracts only; no external model closure or adoption authority."
+      },
+      "proof_obligation": "Idempotent union of shared support identities and meet authority preserve sources by finite-message induction."
+    },
+    {
+      "id": "FD-10",
+      "name": "self-model separation",
+      "status": "DERIVED_FROM_EXISTING_FOUNDATION",
+      "scope": "registered K_self boundary and external adoption protocol",
+      "parents": [
+        "reference monitor",
+        "noninterference",
+        "verified self-modification parents"
+      ],
+      "reopen": "self-model receives object-world or commit write authority",
+      "sources": [
+        "../KSO_SELF_MODEL_PREREQUISITE_THEOREMS_BATCH5_V1.md",
+        "https://lamport.azurewebsites.net/pubs/abadi-existence.pdf"
+      ],
+      "checker": {
+        "entrypoint": "field_dynamics_exact.py:check_fd10",
+        "hostile_tests": "tests/unit/test_me_field_dynamics_boundaries.py",
+        "meaning": "Finite calibration/contracts only; no external model closure or adoption authority."
+      },
+      "proof_obligation": "Finite shadow footprint preserves all object-world/commit coordinates; runtime isolation remains external."
+    },
+    {
+      "id": "FD-11",
+      "name": "resource monotonicity/no-free-representation",
+      "status": "PROVED_SCOPE_LIMITED",
+      "scope": "Exact nonnegative cumulative cost addition on fixed axes; stock/budget accounting separate.",
+      "parents": [
+        "multiobjective/Pareto accounting",
+        "complexity/data-structure lower bounds"
+      ],
+      "reopen": "formal lower-bound theorem frozen for a natural family",
+      "sources": [
+        "DYNAMICS.md#12-fd-11--resource-monotonicity--no-free-representation"
+      ],
+      "checker": {
+        "entrypoint": "field_dynamics_exact.py:check_fd11",
+        "hostile_tests": "tests/unit/test_me_field_dynamics_boundaries.py",
+        "meaning": "Finite calibration/contracts only; no external model closure or adoption authority."
+      },
+      "proof_obligation": "Nonnegative same-axis cumulative deltas telescope; instantaneous stocks and future lower bounds are distinct.",
+      "general_lower_bound": "OPEN_RESEARCH"
+    },
+    {
+      "id": "FD-12",
+      "name": "typed terminal completeness",
+      "status": "PROVED_SCOPE_LIMITED",
+      "scope": "Finite acyclic pipeline or every-step checked decreasing fuel/rank; arbitrary finite cyclic grammar excluded.",
+      "parents": [
+        "small-step operational semantics",
+        "three-valued/runtime verification"
+      ],
+      "reopen": "unbounded or asynchronous runtime semantics added",
+      "sources": [
+        "https://lamport.azurewebsites.net/pubs/abadi-existence.pdf",
+        "DYNAMICS.md#13-fd-12--typed-terminal-completeness"
+      ],
+      "checker": {
+        "entrypoint": "field_dynamics_exact.py:check_fd12",
+        "hostile_tests": "tests/unit/test_me_field_dynamics_boundaries.py",
+        "meaning": "Finite calibration/contracts only; no external model closure or adoption authority."
+      },
+      "proof_obligation": "Finite acyclic stage order and checked natural-valued fuel decrease; finite alphabet alone does not prove termination."
+    }
+  ],
+  "frontier_ids": [
+    "FDX-01",
+    "FDX-02",
+    "FDX-03",
+    "FDX-04",
+    "FDX-05",
+    "FDX-06",
+    "FDX-07",
+    "FDX-08",
+    "FDX-09",
+    "FDX-10",
+    "FDX-11",
+    "FDX-12",
+    "FDX-13",
+    "FDX-14",
+    "FDX-15",
+    "FDX-16"
+  ],
+  "terminal": "FIELD_DYNAMICS_V1_SYNTHESIS__NOVELTY_AND_EXTERNAL_FIELD_STATUS_NOT_ESTABLISHED",
+  "source_pr": {
+    "number": 346,
+    "head_sha": "f25a15ecd4a0e23474c948bcac1c9081a6750109",
+    "base_sha": "05f08fe71466d4dd192294fe00cf26d526026522",
+    "reuse": "Original nine-file package reused, then reviewed and corrected on successor integration branch."
+  },
+  "review_corrections": [
+    "Transient P.runtime and B/X metering made explicit in state object.",
+    "Full-history reversal refuted; semantic restoration scoped.",
+    "Controller/environment quantifier order and deadlocks made explicit.",
+    "Realised binary rare response may exceed one bit; expectation distinguished.",
+    "Revision commutation independent from navigation lumpability.",
+    "Cost dimension truncation and negative refunds rejected.",
+    "Malformed pipeline and assertion-disabled checker fail closed."
+  ]
+}

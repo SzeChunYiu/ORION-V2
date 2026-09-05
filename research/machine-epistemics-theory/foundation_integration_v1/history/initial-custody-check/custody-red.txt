@@ -1,0 +1,87 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+____ test_custody_requires_exact_independent_source_inventory[forged_head] _____
+
+kind = 'forged_head'
+
+    @pytest.mark.parametrize("kind", ["forged_head", "other_real_head", "omitted_file", "substituted_source_path"])
+    def test_custody_requires_exact_independent_source_inventory(kind):
+        checker = load("source_inventory", "foundation_integration_v1/check_integration.py")
+        manifest = json.loads((HERE / "foundation_integration_v1/MANIFEST.json").read_text())
+        if kind == "forged_head":
+            manifest["sources"][0]["head_sha"] = "0" * 40
+        elif kind == "other_real_head":
+            manifest["sources"][0]["head_sha"] = manifest["sources"][1]["head_sha"]
+        elif kind == "omitted_file":
+            manifest["sources"][0]["files"].pop()
+        else:
+            manifest["sources"][0]["files"][0]["source_path"] = "invented-but-unchecked-source.py"
+>       with pytest.raises(ValueError, match="source inventory"):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/unit/test_me_foundation_integration_v1.py:158: Failed
+__ test_custody_requires_exact_independent_source_inventory[other_real_head] ___
+
+kind = 'other_real_head'
+
+    @pytest.mark.parametrize("kind", ["forged_head", "other_real_head", "omitted_file", "substituted_source_path"])
+    def test_custody_requires_exact_independent_source_inventory(kind):
+        checker = load("source_inventory", "foundation_integration_v1/check_integration.py")
+        manifest = json.loads((HERE / "foundation_integration_v1/MANIFEST.json").read_text())
+        if kind == "forged_head":
+            manifest["sources"][0]["head_sha"] = "0" * 40
+        elif kind == "other_real_head":
+            manifest["sources"][0]["head_sha"] = manifest["sources"][1]["head_sha"]
+        elif kind == "omitted_file":
+            manifest["sources"][0]["files"].pop()
+        else:
+            manifest["sources"][0]["files"][0]["source_path"] = "invented-but-unchecked-source.py"
+>       with pytest.raises(ValueError, match="source inventory"):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/unit/test_me_foundation_integration_v1.py:158: Failed
+____ test_custody_requires_exact_independent_source_inventory[omitted_file] ____
+
+kind = 'omitted_file'
+
+    @pytest.mark.parametrize("kind", ["forged_head", "other_real_head", "omitted_file", "substituted_source_path"])
+    def test_custody_requires_exact_independent_source_inventory(kind):
+        checker = load("source_inventory", "foundation_integration_v1/check_integration.py")
+        manifest = json.loads((HERE / "foundation_integration_v1/MANIFEST.json").read_text())
+        if kind == "forged_head":
+            manifest["sources"][0]["head_sha"] = "0" * 40
+        elif kind == "other_real_head":
+            manifest["sources"][0]["head_sha"] = manifest["sources"][1]["head_sha"]
+        elif kind == "omitted_file":
+            manifest["sources"][0]["files"].pop()
+        else:
+            manifest["sources"][0]["files"][0]["source_path"] = "invented-but-unchecked-source.py"
+>       with pytest.raises(ValueError, match="source inventory"):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/unit/test_me_foundation_integration_v1.py:158: Failed
+_ test_custody_requires_exact_independent_source_inventory[substituted_source_path] _
+
+kind = 'substituted_source_path'
+
+    @pytest.mark.parametrize("kind", ["forged_head", "other_real_head", "omitted_file", "substituted_source_path"])
+    def test_custody_requires_exact_independent_source_inventory(kind):
+        checker = load("source_inventory", "foundation_integration_v1/check_integration.py")
+        manifest = json.loads((HERE / "foundation_integration_v1/MANIFEST.json").read_text())
+        if kind == "forged_head":
+            manifest["sources"][0]["head_sha"] = "0" * 40
+        elif kind == "other_real_head":
+            manifest["sources"][0]["head_sha"] = manifest["sources"][1]["head_sha"]
+        elif kind == "omitted_file":
+            manifest["sources"][0]["files"].pop()
+        else:
+            manifest["sources"][0]["files"][0]["source_path"] = "invented-but-unchecked-source.py"
+>       with pytest.raises(ValueError, match="source inventory"):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/unit/test_me_foundation_integration_v1.py:158: Failed
+=========================== short test summary info ============================
+FAILED tests/unit/test_me_foundation_integration_v1.py::test_custody_requires_exact_independent_source_inventory[forged_head]
+FAILED tests/unit/test_me_foundation_integration_v1.py::test_custody_requires_exact_independent_source_inventory[other_real_head]
+FAILED tests/unit/test_me_foundation_integration_v1.py::test_custody_requires_exact_independent_source_inventory[omitted_file]
+FAILED tests/unit/test_me_foundation_integration_v1.py::test_custody_requires_exact_independent_source_inventory[substituted_source_path]

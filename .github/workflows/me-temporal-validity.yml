@@ -1,0 +1,42 @@
+name: ME temporal validity
+on:
+  pull_request:
+    paths:
+      - 'research/machine-epistemics-theory/revision_consistency_v1/temporal_v2/**'
+      - '.github/workflows/me-temporal-validity.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'research/machine-epistemics-theory/revision_consistency_v1/temporal_v2/**'
+      - '.github/workflows/me-temporal-validity.yml'
+permissions:
+  contents: read
+concurrency:
+  group: me-temporal-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  exact-temporal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.12', '3.13']
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Recompute exact tables, hostile tests and complete bindings
+        run: |
+          D=research/machine-epistemics-theory/revision_consistency_v1/temporal_v2
+          python "$D/run.py" --verify
+          python "$D/run.py" --selftest
+      - name: Fresh-process and optimized-mode reproducibility
+        run: |
+          D=research/machine-epistemics-theory/revision_consistency_v1/temporal_v2
+          PYTHONHASHSEED=1 python "$D/calibrate.py" > /tmp/temporal-a.json
+          PYTHONHASHSEED=37 python -O "$D/calibrate.py" > /tmp/temporal-b.json
+          cmp /tmp/temporal-a.json /tmp/temporal-b.json
+          python -O "$D/run.py" --verify
+          python -m compileall -q "$D"

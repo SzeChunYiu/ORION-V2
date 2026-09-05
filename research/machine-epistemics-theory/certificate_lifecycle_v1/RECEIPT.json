@@ -1,0 +1,159 @@
+{
+  "artifacts": {
+    "MODULE_CLOSURE.json": "32a3ab3bebd969973627ef5643257b7fd255801210e3bfabe80572e099275fd5",
+    "README.md": "f6e89b2f270ecc1b7ce84eecca8ed8d182c658f0ce409a686670a0240b46fe16",
+    "STUDY.json": "119a50969dbc8a5a422bae552e98771e2fab549d49f1f53e35a3aa106e55b70e",
+    "THEORY.md": "8f0711481a70c51e40c7d57f410fb0ead08ad7196949ffb6f14e4c4158dc1f17",
+    "check.py": "c4c21010aceaeb2663d62afe5af541886dc64ff15d4b44a1a4ead9ad469b37ef",
+    "reference.py": "01da794f378def4adb88acf9089a042d6a57aa65e60aecebe1337eb653e5dee0",
+    "test_reference.py": "06cea936eeeb16b3b03cdec65e53c7d3374fa3ce859c12867ce3b8fb0d1f7483"
+  },
+  "baseline": {
+    "errors": 0,
+    "failures": 0,
+    "tests": 20
+  },
+  "denominators": {
+    "DNF_oracle_comparisons": 6885,
+    "applied_mutants": 12,
+    "cyclic_grounding_node_comparisons": 1152,
+    "factorization_models": 256,
+    "identity_coordinates": 16
+  },
+  "design_commit": "69181cbbf356563aad662985f384373d4c081ff9",
+  "environment": {
+    "implementation": "CPython",
+    "machine": "x86_64",
+    "python": "3.13.5",
+    "system": "Linux"
+  },
+  "full_repository_tests": "NOT_RUN; direct git clone unavailable in this container",
+  "independent_review": "PENDING",
+  "mutants": [
+    {
+      "assertion_failures": 1,
+      "detected": true,
+      "errors": 0,
+      "expected_test": "test_identity_all_16_coordinates",
+      "mutant": "M01_omit_prompt",
+      "mutated_source_sha256": "f2d8cfa74065bded8b1804763113ed4253da7e86913aa466fdbdb906028c0400",
+      "replacements": 1,
+      "tests_run": 20
+    },
+    {
+      "assertion_failures": 1,
+      "detected": true,
+      "errors": 0,
+      "expected_test": "test_missing_judgment_and_scoped_checker_trust",
+      "mutant": "M02_missing_as_valid",
+      "mutated_source_sha256": "8a96054f5e906c89d56eb86cabf4c9763c3207ba7782345d0310a4ac3ca07357",
+      "replacements": 1,
+      "tests_run": 20
+    },
+    {
+      "assertion_failures": 5,
+      "detected": true,
+      "errors": 0,
+      "expected_test": "test_alternate_support",
+      "mutant": "M03_destroy_alternate_support",
+      "mutated_source_sha256": "cc82c01368b79c35e5e933bfe241dc9a696e1ffdedd1b7c36410ab1cbc8a8dd1",
+      "replacements": 1,
+      "tests_run": 20
+    },
+    {
+      "assertion_failures": 3,
+      "detected": true,
+      "errors": 0,
+      "expected_test": "test_all_necessary_dependencies",
+      "mutant": "M04_ignore_necessary_support",
+      "mutated_source_sha256": "87dcf01b019a2a750edf3e400ef2061c8735e5866a9f6638500ccce8b9aa8331",
+      "replacements": 1,
+      "tests_run": 20
+    },
+    {
+      "assertion_failures": 3,
+      "detected": true,
+      "errors": 11,
+      "expected_test": "test_cycles_need_grounding",
+      "mutant": "M05_self_warrant_cycle",
+      "mutated_source_sha256": "537697df267b3d85d791448c2c549a01cad926ff8117bfcab935aa87344c23b2",
+      "replacements": 1,
+      "tests_run": 20
+    },
+    {
+      "assertion_failures": 3,
+      "detected": true,
+      "errors": 0,
+      "expected_test": "test_scope_epoch_and_operator_drift",
+      "mutant": "M06_ignore_context",
+      "mutated_source_sha256": "b44e45052b14a331cd7438f75eef2efa841e078caedb8c394a96ba7159ac0e15",
+      "replacements": 1,
+      "tests_run": 20
+    },
+    {
+      "assertion_failures": 1,
+      "detected": true,
+      "errors": 0,
+      "expected_test": "test_stale_and_aba_intents",
+      "mutant": "M07_ignore_snapshot_fence",
+      "mutated_source_sha256": "06a484fb1cd668a916d5c8af6f9aa987fe12ba34225667357defac3ff09f8e75",
+      "replacements": 1,
+      "tests_run": 20
+    },
+    {
+      "assertion_failures": 1,
+      "detected": true,
+      "errors": 0,
+      "expected_test": "test_no_guarantee_to_exact_coercion",
+      "mutant": "M08_coerce_guarantee_to_exact",
+      "mutated_source_sha256": "87d710aa7044c5823248cd361d6e76a98154955c4f7032f2ac90ef62f9c290ed",
+      "replacements": 1,
+      "tests_run": 20
+    },
+    {
+      "assertion_failures": 1,
+      "detected": true,
+      "errors": 0,
+      "expected_test": "test_registry_name_rebinding",
+      "mutant": "M09_allow_registry_rebinding",
+      "mutated_source_sha256": "f305d6881a86e3e9da655378ec535ca92166f9f8a6180b4ef2c0eb8e1674de4f",
+      "replacements": 2,
+      "tests_run": 20
+    },
+    {
+      "assertion_failures": 1,
+      "detected": true,
+      "errors": 0,
+      "expected_test": "test_replay_checkpoint_and_receipt_identity",
+      "mutant": "M10_omit_event_from_history",
+      "mutated_source_sha256": "dc05103cac367577420d50c2b123ca1b54cdf60bf360edc28954297c071583ea",
+      "replacements": 1,
+      "tests_run": 20
+    },
+    {
+      "assertion_failures": 1,
+      "detected": true,
+      "errors": 0,
+      "expected_test": "test_absorption_requires_external_evidence",
+      "mutant": "M11_self_authorize_absorption",
+      "mutated_source_sha256": "54d5d253ba791d0d3a089420bad348d3a2d84347386d3bafc1a2f7f830529ab5",
+      "replacements": 1,
+      "tests_run": 20
+    },
+    {
+      "assertion_failures": 1,
+      "detected": true,
+      "errors": 0,
+      "expected_test": "test_replay_checkpoint_and_receipt_identity",
+      "mutant": "M12_ignore_checkpoint",
+      "mutated_source_sha256": "0dca1ba6d96590c2dc5c433b73bbe4746aa82182cc249060da44695067d89d14",
+      "replacements": 1,
+      "tests_run": 20
+    }
+  ],
+  "ocm_adoption": "NOT_AUTHORIZED_BY_THIS_RECEIPT",
+  "proof_status": "WRITTEN_ARGUMENTS_NOT_PROOF_ASSISTANT_CHECKED",
+  "schema": "me-certificate-lifecycle-calibration/v1",
+  "terminal": "LOCAL_EXACT_CALIBRATION_PASS",
+  "workflow_sha256": "7873ce7f04b244ef26e96b9d135ea850724c0c97b83b35458041f584086109fd"
+}

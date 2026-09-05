@@ -1,0 +1,44 @@
+{
+  "checks": [
+    {
+      "argv": [
+        "python",
+        "research/machine-epistemics-theory/method_learning_v1/check.py"
+      ],
+      "exit_code": 0,
+      "result": {
+        "external_science": "NOT_RUN",
+        "fairness_cases": 1024,
+        "identification_cases": 512,
+        "parent_residual": "NOT_CLAIMED",
+        "proof_assistant": "NOT_RUN",
+        "status": "FINITE_CALIBRATION_PASS"
+      }
+    },
+    {
+      "argv": [
+        "python",
+        "-O",
+        "research/machine-epistemics-theory/method_learning_v1/check.py"
+      ],
+      "exit_code": 0,
+      "result": {
+        "external_science": "NOT_RUN",
+        "fairness_cases": 1024,
+        "identification_cases": 512,
+        "parent_residual": "NOT_CLAIMED",
+        "proof_assistant": "NOT_RUN",
+        "status": "FINITE_CALIBRATION_PASS"
+      }
+    }
+  ],
+  "external_scientific_admission": "NOT_GRANTED",
+  "proof_assistant": "NOT_RUN",
+  "schema": "orion.method-learning-convergence.v1",
+  "scope": "BOUNDED_ENGINEERING_AND_WRITTEN_PROOFS",
+  "source_sha256": {
+    "research/machine-epistemics-theory/method_learning_v1/THEORY.md": "f8bb311ad856dd783b273c1591fe284e42dd5a9b561f11d2d53f743b695541bd",
+    "research/machine-epistemics-theory/method_learning_v1/check.py": "d42cc5793af53c7c5d109f778f83197b6bb69dee28e6e2c590dd3396e9244641",
+    "tests/unit/test_method_learning_contract.py": "2d8342c330fa03ae68cad679da89a7cfd1148b9257aa5bf2fed6746926299f6f"
+  }
+}
