@@ -44,6 +44,13 @@ def test_planted_mutant_fires_on_linear_and_is_caught_by_selftest(tmp_path: Path
     assert rep["planted_mutant_caught"]["pass"] and rep["gated_parent_fidelity"]["pass"]
 
 
+def test_dev_smoke_runs_controls(tmp_path: Path) -> None:
+    assert M.stage_dev(tmp_path, 1, 6) == 0
+    res = json.loads((tmp_path / "SD70_V4_DEVELOPMENT_RESULTS_V1.json").read_text())
+    assert res["task_total"] == 6 and res["certificates_per_task"]["min"] >= 1
+    assert "GATED_MAXMARGIN_PARENT" in res["arms"] and "F0_PLUS_FEDERATION" in res["arms"]
+
+
 def test_design_pins_current_substrate() -> None:
     d = json.loads(M.DESIGN_JSON.read_text())
     assert d["substrate_pins_sha256"] == M.pins()

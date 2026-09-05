@@ -121,7 +121,7 @@ def stage_dev(out: Path, seeds: int = DEV_SEEDS, tasks: int = DEV_TASKS) -> int:
             for a in arms:
                 t0 = time.perf_counter(); pick, _ = P4.select(a, surf); wall[a] += time.perf_counter() - t0
                 correct[a].append(pick == o["correct_action"]); cfd[a].append(pick in o["worst_actions"])
-        for label, fn in (("LP", G3.label_permutation_controls), ("QS", G3.query_shuffle_controls)):
+        for label, fn in (("LP", G4.label_permutation_controls), ("QS", G4.query_shuffle_controls)):
             cp, cv = fn(pub, priv, seed)
             co = {t["task_id"]: t for t in cv["tasks"]}
             for task in cp["tasks"]:

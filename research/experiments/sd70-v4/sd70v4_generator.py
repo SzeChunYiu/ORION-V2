@@ -101,3 +101,52 @@ def build_suite(seed: int, tasks: int, train_episodes: int, task_prefix: str = "
               "gold_access": "NONE", "family": "LINEAR_CONTROL" if linear_control else "XOR_GATED", "tasks": public_tasks}
     private = {"schema_version": SCHEMA_PRIVATE, "seed": seed, "task_count": len(private_tasks), "rejections": rejections, "tasks": private_tasks}
     return public, private
+
+
+def label_permutation_controls(public: dict, private: dict, master_seed: int) -> tuple[dict, dict]:
+    """V3's label permutation verbatim (it touches no latent weights)."""
+    return G3.label_permutation_controls(public, private, master_seed)
+
+
+def query_shuffle_controls(public: dict, private: dict, master_seed: int) -> tuple[dict, dict]:
+    """V3's query-to-task shuffle with the GATED policy: task i keeps its training and vocabulary; its
+    query is task sigma(i)'s query bits mapped positionally; the correct action is task sigma(i)'s gated
+    rule on ITS bits mapped positionally into task i's candidates.  Same derangement rule and seed label."""
+    import random as _random
+    rng = _random.Random(G3.control_seed(master_seed, "QS"))
+    n = len(public["tasks"])
+    order = list(range(n))
+    if n > 1:
+        for _ in range(1000):
+            rng.shuffle(order)
+            if all(order[i] != i for i in range(n)):
+                break
+        else:
+            order = [(i + 1) % n for i in range(n)]
+    priv_list = private["tasks"]
+    pub_tasks, priv_tasks = [], []
+    for i, task in enumerate(public["tasks"]):
+        src_priv = priv_list[order[i]]
+        own_priv = priv_list[i]
+        own_features = own_priv["latent_feature_tokens"]
+        bits = list(src_priv["query_bits"])[: len(own_features)]
+        bits += [0] * (len(own_features) - len(bits))
+        if not any(bits):
+            bits[0] = 1
+        src_w = (src_priv["latent_weights"][0], src_priv["latent_weights"][1]); src_g = tuple(src_priv["latent_gate"])
+        src_best = gated_best_action(tuple(src_priv["query_bits"]), src_g, src_w)
+        target_idx = src_best % len(task["candidate_actions"])
+        new = dict(task)
+        new["task_id"] = task["task_id"] + "-QS"
+        new["query_context_features"] = [own_features[k] for k, b in enumerate(bits) if b]
+        pub_tasks.append(new)
+        own_w = (own_priv["latent_weights"][0], own_priv["latent_weights"][1]); own_g = tuple(own_priv["latent_gate"])
+        scores = gated_latent_scores(tuple(bits), own_g, own_w)
+        p = dict(own_priv)
+        p["task_id"] = new["task_id"]; p["control"] = "QUERY_TO_TASK_SHUFFLE"
+        p["correct_action"] = task["candidate_actions"][target_idx]; p["query_bits"] = bits; p["latent_query_scores"] = scores
+        p["worst_actions"] = [task["candidate_actions"][k] for k, s in enumerate(scores) if s == min(scores)]
+        p["shuffle_source_task_id"] = src_priv["task_id"]
+        priv_tasks.append(p)
+    return ({**public, "task_count": len(pub_tasks), "tasks": pub_tasks, "control": "QUERY_TO_TASK_SHUFFLE"},
+            {**private, "task_count": len(priv_tasks), "tasks": priv_tasks, "control": "QUERY_TO_TASK_SHUFFLE"})
