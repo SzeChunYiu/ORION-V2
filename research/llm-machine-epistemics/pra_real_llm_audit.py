@@ -1157,7 +1157,41 @@ def mcnemar(pairs: list[tuple[bool, bool]]) -> dict:
     c = sum(1 for x, y in pairs if y and not x)
     acc_x = sum(1 for x, _ in pairs if x) / n if n else float("nan")
     acc_y = sum(1 for _, y in pairs if y) / n if n else float("nan")
-    return {"n": n, "acc_x": acc_x, "acc_y": acc_y, "diff_y_minus_x": (acc_y - acc_x) if n else float("nan"), "discordant_x_only": b, "discordant_y_only": c, "p_two_sided_exact": binom_two_sided_p(c, b + c)}
+    return {"n": n, "acc_x": acc_x, "acc_y": acc_y, "diff_y_minus_x": (acc_y - acc_x) if n else float("nan"),
+            "discordant_x_only": b, "discordant_y_only": c,
+            "p_two_sided_exact": binom_two_sided_p(c, b + c),
+            "detectable_ceiling": detectable_ceiling(n, b, c)}
+
+
+def detectable_ceiling(n: int, b: int, c: int) -> dict:
+    """What size of difference could this contrast have registered at all?
+
+    A "no difference" result is uninterpretable without it. Two regimes, because one instrument
+    does not cover both:
+
+    * b + c == 0 (not one discordant pair): the exact two-sided 95% Clopper-Pearson upper bound
+      for 0 of n, 1 - 0.025**(1/n). It bounds the discordance rate, hence the accuracy
+      difference, that could have arisen without producing a single discordant pair. This is the
+      instrument the programme already uses for its other zero-discordance case.
+    * b + c > 0: the normal-approximation minimal detectable accuracy difference at alpha=0.05,
+      power=0.8, from `mcnemar_mde` -- which returns nan at zero discordance by construction,
+      which is precisely why the exact bound is needed for the first regime.
+
+    Wired in 2026-09-05. `mcnemar_mde` had existed since the design was written and was called
+    nowhere in the repository, so no rollup ever carried a ceiling and a reader of "no
+    difference" had no way to know what the design could have seen. Dead analysis code is how
+    that gap arose; emitting the ceiling on every contrast is how it stops recurring.
+    """
+    if n <= 0:
+        return {"method": "none", "bound": float("nan"), "note": "no instances"}
+    m = b + c
+    if m == 0:
+        return {"method": "clopper_pearson_upper_0_of_n",
+                "bound": 1.0 - 0.025 ** (1.0 / n),
+                "note": "exact two-sided 95% upper bound on the discordance rate at 0 discordant pairs"}
+    return {"method": "mcnemar_mde_normal_approx",
+            "bound": mcnemar_mde(n, m / n),
+            "note": "minimal detectable accuracy difference, alpha=0.05, power=0.8"}
 
 
 def wilson_ci(k: int, n: int, z: float = 1.959964) -> tuple[float, float]:
