@@ -30,10 +30,11 @@ from mex2_oracle import ArmView  # noqa: E402
 from mex2v2_levers import M2LookaheadBestHypothesis  # noqa: E402
 
 TAU_GRID: tuple[float, ...] = (0.0, 0.5, 0.6, 0.75, 0.9, 1.0)
+SELECTORS: tuple[str, ...] = ("MINRANK", "MAXSHARE")   # candidate rule: minimum-responsible rank | maximum coverage share
 
 
-def arm_name(tau: float) -> str:
-    return f"M3_THRESHOLD_TAU_{int(round(tau * 100)):03d}"
+def arm_name(tau: float, selector: str = "MINRANK") -> str:
+    return f"M3_{selector}_TAU_{int(round(tau * 100)):03d}"
 
 
 class M3IdentificationThreshold(M2LookaheadBestHypothesis):
@@ -41,6 +42,7 @@ class M3IdentificationThreshold(M2LookaheadBestHypothesis):
 
     name = "M3_IDENTIFICATION_THRESHOLD"
     tau: float = 1.0
+    selector: str = "MINRANK"
 
     def __init__(self, seed: str) -> None:
         super().__init__(seed)
@@ -55,7 +57,7 @@ class M3IdentificationThreshold(M2LookaheadBestHypothesis):
             if fix is None or fix.intervention_id in self.applied(view) or fix.cost > view.budget_left:
                 continue
             share = sum(1 for d in live if d in fix.resolves) / len(live)
-            key = (self._responsible_rank(view, c), c)
+            key = (self._responsible_rank(view, c), c) if self.selector == "MINRANK" else (-share, self._responsible_rank(view, c), c)
             if best is None or key < best[0]:
                 best = (key, c, fix, share)
         return None if best is None else best[1:]
@@ -79,12 +81,12 @@ class M3IdentificationThreshold(M2LookaheadBestHypothesis):
         return super().cannot_identify(view, live)
 
 
-def make_threshold_class(tau: float):
-    return type(f"M3Tau{int(round(tau * 100)):03d}", (M3IdentificationThreshold,), {"name": arm_name(tau), "tau": tau})
+def make_threshold_class(tau: float, selector: str = "MINRANK"):
+    return type(f"M3{selector}Tau{int(round(tau * 100)):03d}", (M3IdentificationThreshold,), {"name": arm_name(tau, selector), "tau": tau, "selector": selector})
 
 
-THRESHOLD_CLASSES = {tau: make_threshold_class(tau) for tau in TAU_GRID}
+THRESHOLD_CLASSES = {(tau, sel): make_threshold_class(tau, sel) for tau in TAU_GRID for sel in SELECTORS}
 M3_IDENTITY_ARM = arm_name(1.0)      # ≡ M2 (asserted in the selftest)
 M3_ALWAYS_COMMIT_ARM = arm_name(0.0)  # ablation
 
-__all__ = ["M3IdentificationThreshold", "THRESHOLD_CLASSES", "TAU_GRID", "arm_name", "make_threshold_class", "M3_IDENTITY_ARM", "M3_ALWAYS_COMMIT_ARM"]
+__all__ = ["M3IdentificationThreshold", "THRESHOLD_CLASSES", "TAU_GRID", "SELECTORS", "arm_name", "make_threshold_class", "M3_IDENTITY_ARM", "M3_ALWAYS_COMMIT_ARM"]

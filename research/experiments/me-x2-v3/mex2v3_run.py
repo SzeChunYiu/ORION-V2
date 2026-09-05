@@ -37,7 +37,7 @@ from mex2_generator import generate_split  # noqa: E402
 from mex2_model import STRATA, Instance, canonical_json, instance_to_json  # noqa: E402
 from mex2_oracle import Environment  # noqa: E402
 from mex2_run import exact_binomial_two_sided, paired_summary, score  # noqa: E402
-from mex2v3_arms import B5_ARM, LADDER, M2_ARM, M_V1_ARM, TAU_GRID, arm_name, arm_specs, make_policy  # noqa: E402
+from mex2v3_arms import B5_ARM, LADDER, M2_ARM, M_V1_ARM, SELECTORS, TAU_GRID, arm_name, arm_specs, make_policy  # noqa: E402
 
 STUDY_ID = "ME-X2-V3"
 SCHEMA_RESULTS = "orion.v2.me-x2-v3.threshold-study-results.v1"
@@ -73,8 +73,8 @@ def _scaled(inst: Instance, mult: float) -> Instance:
     return Instance(**{**{k: getattr(inst, k) for k in inst.__dataclass_fields__}, "budget": int(round(inst.budget * mult))})
 
 
-def run_instances(pairs, label: str, taus: tuple[float, ...], only=None) -> tuple[dict, dict]:
-    specs = [s for s in arm_specs(taus) if only is None or s.name in only]
+def run_instances(pairs, label: str, taus: tuple[float, ...], only=None, selectors: tuple[str, ...] = SELECTORS) -> tuple[dict, dict]:
+    specs = [s for s in arm_specs(taus, selectors) if only is None or s.name in only]
     results = {"schema_version": SCHEMA_RESULTS, "study_id": STUDY_ID, "label": label, "arms": [s.name for s in specs], "instances": []}
     custody = {"schema_version": SCHEMA_RESULTS + ".expected-custody", "label": label, "instances": []}
     timing: dict = {}
@@ -103,15 +103,19 @@ def arm_summary(sc: dict, arm: str) -> dict:
             "false_ci": sum(r["false_ci"] for r in rows), "correct_ci": sum(r["correct_ci"] for r in rows), "n": len(rows)}
 
 
-def calibration_rule(table: dict, b5: dict) -> tuple[float, str]:
-    """Frozen τ* selection on the PUBLIC calibration split: among grid points whose false escalations
-    and specification damage do not exceed B5's, the highest decision-correct rate; ties → the
-    LARGEST τ (most conservative).  If no grid point satisfies the constraint, τ* = 1.0 (≡ M2)."""
-    admissible = [t for t in TAU_GRID if table[arm_name(t)]["false_escalation"] <= b5["false_escalation"] and table[arm_name(t)]["spec_damage"] <= b5["spec_damage"]]
+def grid_arms() -> list[tuple[float, str]]:
+    return [(t, sel) for sel in SELECTORS for t in TAU_GRID if not (t == 1.0 and sel != "MINRANK")]
+
+
+def calibration_rule(table: dict, b5: dict) -> tuple[float, str, str]:
+    """Frozen τ*/selector selection on the PUBLIC calibration split: among grid points whose false
+    escalations and specification damage do not exceed B5's, the highest decision-correct rate; ties →
+    the LARGEST τ, then MINRANK.  If no grid point satisfies the constraint, τ* = 1.0 (≡ M2)."""
+    admissible = [(t, sel) for t, sel in grid_arms() if table[arm_name(t, sel)]["false_escalation"] <= b5["false_escalation"] and table[arm_name(t, sel)]["spec_damage"] <= b5["spec_damage"]]
     if not admissible:
-        return 1.0, "no grid point within B5's escalation harm; τ* = 1.0 (≡ M2)"
-    best = max(admissible, key=lambda t: (round(table[arm_name(t)]["decision_rate"], 12), t))
-    return best, f"highest decision rate among τ with false_escalation <= B5 ({b5['false_escalation']}) and spec_damage <= B5 ({b5['spec_damage']}); ties -> largest τ"
+        return 1.0, "MINRANK", "no grid point within B5's escalation harm; τ* = 1.0 (≡ M2)"
+    best = max(admissible, key=lambda ts: (round(table[arm_name(*ts)]["decision_rate"], 12), ts[0], ts[1] == "MINRANK"))
+    return best[0], best[1], f"highest decision rate among grid points with false_escalation <= B5 ({b5['false_escalation']}) and spec_damage <= B5 ({b5['spec_damage']}); ties -> largest τ, then MINRANK"
 
 
 def threshold_activity(results: dict, arm: str) -> dict:
@@ -193,10 +197,10 @@ def _pairs(split: str, seed: str, per: int):
 
 def stage_selftest(out: Path) -> int:
     pairs = _pairs("selftest", "ME-X2-V3-SELFTEST", 1)
-    res, cus = run_instances(pairs, "SELFTEST", (0.0, 1.0), only=(M2_ARM, arm_name(1.0), arm_name(0.0), B5_ARM, "C_RANDOM_POLICY", "C_NEVER_INTERVENE", M_V1_ARM) + tuple(LADDER))
+    res, cus = run_instances(pairs, "SELFTEST", (0.0, 1.0), only=(M2_ARM, arm_name(1.0), arm_name(0.0), B5_ARM, "C_RANDOM_POLICY", "C_NEVER_INTERVENE", M_V1_ARM) + tuple(LADDER), selectors=("MINRANK",))
     res.pop("_timing_wall_ns", None)
     sc = score(res, cus)
-    ident = [a["decision_correct"] == b["decision_correct"] and a["terminal"] == b["terminal"] for a, b in zip(sc["_rows"][arm_name(1.0)], sc["_rows"][M2_ARM])]
+    ident = [a["decision_correct"] == b["decision_correct"] and a["false_ci"] == b["false_ci"] and a["false_escalation"] == b["false_escalation"] for a, b in zip(sc["_rows"][arm_name(1.0)], sc["_rows"][M2_ARM])]
     identity_ok = all(ident)
     traj_identity = all(rec["arms"][arm_name(1.0)]["trajectory"]["steps"] == rec["arms"][M2_ARM]["trajectory"]["steps"] for rec in res["instances"])
     act0 = threshold_activity(res, arm_name(0.0))
@@ -222,32 +226,32 @@ def stage_calibrate(out: Path) -> int:
     res.pop("_timing_wall_ns", None)
     sc = score(res, cus)
     table = {a: arm_summary(sc, a) for a in res["arms"]}
-    tau_star, rule = calibration_rule(table, table[B5_ARM])
+    tau_star, sel_star, rule = calibration_rule(table, table[B5_ARM])
     cal = {"schema_version": SCHEMA_RESULTS + ".calibration", "study_id": STUDY_ID, "public_seed": CAL_SEED, "pairs_per_stratum": CAL_PAIRS, "n_instances": len(pairs),
-           "grid": list(TAU_GRID), "table": table, "tau_star": tau_star, "tau_star_arm": arm_name(tau_star), "selection_rule": rule,
-           "threshold_activity": {arm_name(t): {k: v for k, v in threshold_activity(res, arm_name(t)).items() if k != "committed_ids"} for t in TAU_GRID},
+           "grid": [list(x) for x in grid_arms()], "table": table, "tau_star": tau_star, "selector_star": sel_star, "tau_star_arm": arm_name(tau_star, sel_star), "selection_rule": rule,
+           "threshold_activity": {arm_name(t, sel): {k: v for k, v in threshold_activity(res, arm_name(t, sel)).items() if k != "committed_ids"} for t, sel in grid_arms()},
            "pins": pins(), "note": "PUBLIC calibration split; never protected evidence"}
     CALIBRATION_JSON.write_text(canonical_json(cal))
     out.mkdir(parents=True, exist_ok=True)
     (out / "ME_X2_V3_CALIBRATION_RESULTS_V1.json").write_text(canonical_json(res))
-    print(f"calibration on {len(pairs)}: τ* = {tau_star} ({rule})")
-    for t in TAU_GRID:
-        s = table[arm_name(t)]
-        print(f"  τ={t:.2f}: decision {s['decision_rate']:.4f} false_esc {s['false_escalation']} missed {s['missed_escalation']} spec {s['spec_damage']} committed {cal['threshold_activity'][arm_name(t)]['instances_committed']}")
+    print(f"calibration on {len(pairs)}: τ* = {tau_star} selector {sel_star} ({rule})")
+    for t, sel in grid_arms():
+        s = table[arm_name(t, sel)]
+        print(f"  {sel} τ={t:.2f}: decision {s['decision_rate']:.4f} false_esc {s['false_escalation']} missed {s['missed_escalation']} spec {s['spec_damage']} committed {cal['threshold_activity'][arm_name(t, sel)]['instances_committed']}")
     print(f"  M2 {table[M2_ARM]['decision_rate']:.4f} fe {table[M2_ARM]['false_escalation']}; B5 {table[B5_ARM]['decision_rate']:.4f} fe {table[B5_ARM]['false_escalation']}")
     return 0
 
 
-def frozen_tau() -> float:
+def frozen_tau() -> tuple[float, str]:
     d = json.loads(DESIGN_JSON.read_text())
-    return float(d["tau_star"])
+    return float(d["tau_star"]), str(d.get("selector_star", "MINRANK"))
 
 
 def _run_split(label: str, split: str, seed_public: str | None, seed: str, per: int, out: Path) -> int:
-    tau = frozen_tau()
+    tau, sel = frozen_tau()
     taus = tuple(sorted({tau, 0.0, 1.0}))
     pairs = _pairs(split, seed, per)
-    res, cus = run_instances(pairs, label, taus)
+    res, cus = run_instances(pairs, label, taus, selectors=tuple(dict.fromkeys(("MINRANK", sel))))
     timing = res.pop("_timing_wall_ns")
     res["split_seed"] = seed_public
     out.mkdir(parents=True, exist_ok=True)
@@ -290,7 +294,7 @@ def stage_analyze(rp: Path, cp: Path, out: Path, label: str | None = None) -> in
     sp = out / "ME_X2_V3_SELFTEST_REPORT_V1.json"
     selftest_ok = bool(json.loads(sp.read_text()).get("passed")) if sp.exists() else None
     sc = score(res, cus)
-    m3_arm = arm_name(frozen_tau()) if DESIGN_JSON.exists() else arm_name(0.0)
+    m3_arm = arm_name(*frozen_tau()) if DESIGN_JSON.exists() else arm_name(0.0)
     g = gates_v3(sc, res, m3_arm, selftest_ok, label)
     a = {"schema_version": SCHEMA_ANALYSIS, "study_id": STUDY_ID, "label": label, "n_instances": len(res["instances"]), "results_sha256": sha256_file(rp), "custody_sha256": sha256_file(cp), "gates": g}
     out.mkdir(parents=True, exist_ok=True)

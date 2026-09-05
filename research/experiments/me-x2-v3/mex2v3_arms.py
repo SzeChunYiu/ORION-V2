@@ -16,7 +16,7 @@ from mex2_arms import (  # noqa: E402
     MLocusMinimumEscalation, Policy, make_policy,
 )
 from mex2v2_levers import M2LookaheadBestHypothesis  # noqa: E402
-from mex2v3_levers import TAU_GRID, THRESHOLD_CLASSES, arm_name  # noqa: E402
+from mex2v3_levers import SELECTORS, TAU_GRID, THRESHOLD_CLASSES, arm_name  # noqa: E402
 
 M_V1_ARM = MLocusMinimumEscalation.name
 M2_ARM = M2LookaheadBestHypothesis.name
@@ -25,17 +25,20 @@ LADDER = [B5R1.name, B5R2.name, B5R3.name, B5R4.name, B5_ARM]
 EXTRA_SEARCH_ARM = "B3_EQUAL_EXTRA_SEARCH_1_5X"
 
 
-def arm_specs(taus: tuple[float, ...] = TAU_GRID) -> list[ArmSpec]:
+def arm_specs(taus: tuple[float, ...] = TAU_GRID, selectors: tuple[str, ...] = SELECTORS) -> list[ArmSpec]:
     specs = [
         ArmSpec(B3ModelBasedDiagnosisVoI.name, B3ModelBasedDiagnosisVoI), ArmSpec(EXTRA_SEARCH_ARM, B3ModelBasedDiagnosisVoI, 1.5, "control"),
         ArmSpec(B5R1.name, B5R1, group="ladder"), ArmSpec(B5R2.name, B5R2, group="ladder"), ArmSpec(B5R3.name, B5R3, group="ladder"),
         ArmSpec(B5R4.name, B5R4, group="ladder"), ArmSpec(Federation.name, Federation, group="ladder"),
         ArmSpec(M_V1_ARM, MLocusMinimumEscalation, group="M"), ArmSpec(M2_ARM, M2LookaheadBestHypothesis, group="M2"),
     ]
-    for tau in taus:
-        specs.append(ArmSpec(arm_name(tau), THRESHOLD_CLASSES[tau], group="M3"))
+    for sel in selectors:
+        for tau in taus:
+            if tau == 1.0 and sel != "MINRANK":
+                continue  # τ = 1.0 is M2 whatever the selector
+            specs.append(ArmSpec(arm_name(tau, sel), THRESHOLD_CLASSES[(tau, sel)], group="M3"))
     specs += [ArmSpec(CRandomPolicy.name, CRandomPolicy, group="control"), ArmSpec(CNeverIntervene.name, CNeverIntervene, group="control")]
     return specs
 
 
-__all__ = ["ArmSpec", "Policy", "arm_specs", "make_policy", "M_V1_ARM", "M2_ARM", "B5_ARM", "LADDER", "EXTRA_SEARCH_ARM", "arm_name", "TAU_GRID"]
+__all__ = ["ArmSpec", "Policy", "arm_specs", "make_policy", "M_V1_ARM", "M2_ARM", "B5_ARM", "LADDER", "EXTRA_SEARCH_ARM", "arm_name", "TAU_GRID", "SELECTORS"]
