@@ -146,3 +146,20 @@ Next tier (≤1 day each, do early): MEG-06 budget bracket, MEG-04 commit-author
 | MEG-28 | B8 Jump preservation as a DPO rewrite (the preservation half of KS-T14) | PROVED / PARENT_OWNED (DPO); improvement half OPEN | M4 obligation |
 
 Still open after batches 1–2: MEG-02 (graded half), MEG-07, MEG-09, MEG-10 (partly covered by KS-T26), MEG-11, MEG-14, MEG-15, MEG-16 (KS-T25 covers the interval lift; the resolution policy is open), MEG-20, MEG-21, MEG-23, MEG-25, MEG-27, MEG-32, MEG-33, MEG-34, and the improvement halves of KS-T12/KS-T14.
+
+## G. Status after batch 3 (2026-09-05)
+
+`KSO_DIALOGUE_PREREQUISITE_THEOREMS_BATCH3_V1.md` + `kso_dialogue_prereqs_batch3_exact.py` (exit 0, 3.2 s on billy-old; 13 tests) close, as exact finite theorems with planted mutants and no-alarm controls, the eight gaps the OCM M4 milestone (issue #6) needs:
+
+| gap | theorem | status | OCM implementation target |
+|---|---|---|---|
+| MEG-33 | C1 epistemic action value over intervals: irrelevant ambiguity worthless, refinement monotone, repeats non-positive, closure the only DEAD-side mover | PROVED (refinement order; incomparable questions not ordered — tightened) / PARENT_OWNED (Howard VOI, BED) | M4 §4 `clarification policy` (`select_question`, cost/risk registered) |
+| MEG-25 | C2 external commitment / codec gate: meaning-digest equality, marker = μ(state), authority ≥ act, no protected proposition; renderer is a pure function of the plan | PROVED (finite semantic half); capability half by construction | M4 §8 gate — `runtime/solve.commitment_gate` must add G1/G3/G4 |
+| MEG-27 | C3 prefix commitment with bounded lookahead: committed ⇒ acceptable completion, CANNOT_CHECK at the bound never commits, repair only as `COMMIT_WITH_REPAIR` | PROVED (finite inventory); open-inventory half OPEN (M6) | M6 incremental realiser; M4 §7 reopen events (three #8 §7 cases reproduced) |
+| MEG-11 | C4 small-step semantics of the solve pipeline: preservation, progress into four typed terminals, CANNOT_CHECK absorbing, replay-invariant | PROVED / PARENT_OWNED (Wright–Felleisen; Bruns–Godefroid) | `runtime/solve` — enabled set currently discarded; FIRE CANNOT_CHECK not absorbing |
+| MEG-10 | C5 procedure-algebra warrant laws: ⊗ semiring laws, certified ⊕, guarded choice ⊗, metered iteration idempotent, TRACE vs STATIC | PROVED (n = 3 exhaustive); ⊕ only under an equivalence certificate — tightened | `kso.procedures` (KS-T26) — add meter and certified/uncertified alternative |
+| MEG-15 | C6 discriminating-interaction certificate: elimination sound iff the outcome function is registered; FEEDBACK ⟦0,0⟧; procedure interval feedback-free; claim warrant = B2 VSW | PROVED (finite class) | M5 E3 grounded interaction; `learning.learner` INTERACTION/EXPERIMENTATION contract |
+| MEG-16 | C7 contradiction resolution policy: UNKNOWN while both live on an overlapping scope; resolution only by scoped bridge, revocation or supersession; majority never | PROVED (the policy half left open by KS-T25) | `dialogue/workspace.commit` verdict policy; `propose_promote` bridge semantics (defects listed in the note) |
+| MEG-21 | C8 non-quotient representation lifts: injective interval/content/edge-preserving map, signatures over Γ, FOUND preserved with answer and nothing degraded, exact rollback; M4 affine→quadratic is the instance | PROVED (bounded); outcome preservation tightened to FOUND-preserving / non-degrading | `kso.jump` lift admissibility check (M4/M8) |
+
+Still open after batches 1–3: MEG-02 (graded half), MEG-07, MEG-09, MEG-14 (table, parent-owned), MEG-20, MEG-23, MEG-32 (adopt TOST/exact equivalence), MEG-34, the open-inventory half of MEG-27, the deconsolidation half of MEG-19, and the improvement halves of KS-T12/KS-T14.
