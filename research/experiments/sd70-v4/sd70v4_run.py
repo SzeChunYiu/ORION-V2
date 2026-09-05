@@ -87,7 +87,9 @@ def stage_selftest(out: Path) -> int:
     rep["planted_mutant_caught"] = {"mutant_min_certificates_on_linear": min(mutant), "pass": min(mutant) >= 1}
     # 4. gated parent fidelity
     fid = P4.fidelity_selftest()
-    rep["gated_parent_fidelity"] = {**fid, "pass": bool(fid["gate_recovered"] and fid["gated_pick_correct"])}
+    # fidelity criterion = the held-out action (a gate other than the planted one can realise the same
+    # 14-context labelling; gate identity is reported, not required)
+    rep["gated_parent_fidelity"] = {**fid, "pass": bool(fid["gate_found"] is not None and fid["gated_pick_correct"])}
     # 5. determinism
     pub4b, _ = G4.build_suite(dev_seed(2), 40, TRAIN_EPISODES, "v4")
     rep["generator_deterministic"] = {"pass": json.dumps(pub4, sort_keys=True) == json.dumps(pub4b, sort_keys=True)}

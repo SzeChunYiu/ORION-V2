@@ -1,0 +1,91 @@
+{
+  "attributed_stage": "problem class",
+  "authority": {
+    "changes_sd70_v3_verdict": false,
+    "grants_field_status": false,
+    "grants_scientific_truth": false,
+    "novelty_claim": false
+  },
+  "comparator_rule": "max(strongest generator-faithful parent incl. GATED, F0_PLUS_FEDERATION, F0_PARENT_FEDERATION) by mean development exact accuracy; strongest = highest dev accuracy, tie -> lower wall time",
+  "compute": {
+    "exact_legs": "LUNARC lu48 .venv CPython 3.13.5 (registered interpreter)",
+    "model_legs": "billy-old CPython 3.14.4 marshals requests only"
+  },
+  "development": {
+    "controls": [
+      "label_permutation",
+      "query_shuffle"
+    ],
+    "seeds": "int(sha256('SD70-V4-DEV|k')[:15],16), k=0,1,2",
+    "tasks_per_seed": 200,
+    "train_episodes": 16
+  },
+  "family": {
+    "name": "XOR_GATED_TWO_REGIME",
+    "non_containment_certificate": "aabb XOR square (theorem in sd70v4_containment.py); checked per task; zero certificates proves nothing",
+    "rule": "best(x) = argmax_a W_{x_i xor x_j}[a] . x, lowest index on ties"
+  },
+  "frozen_at": "2026-09-05",
+  "model_arms": {
+    "authorization": "separate, minted at dispatch",
+    "channel": "gpt-5.5 via billy-old; window ~2026-09-07/09-09",
+    "gates": "V3 \u00a710 verbatim + mechanism gate acc(F2)-acc(F2_STATIC) >= 0.05",
+    "n": 240,
+    "reuse": [
+      "sd70-v3/sd70v3_model_arm.py",
+      "sd70-v3/sd70v3_channel.py"
+    ],
+    "status": "FROZEN_PENDING_CHANNEL"
+  },
+  "parents": {
+    "added": [
+      "GATED_MAXMARGIN_PARENT",
+      "F0_PLUS_FEDERATION"
+    ],
+    "faithful_candidates": [
+      "PERCEPTRON_PARENT",
+      "MAXMARGIN_PARENT",
+      "PAIRWISE_LINEAR_PARENT",
+      "DECISION_LIST_PARENT",
+      "NAIVE_BAYES_PARENT",
+      "GATED_MAXMARGIN_PARENT"
+    ],
+    "v3": [
+      "SIMPLE_FREQUENCY_PARENT",
+      "MATCHED_CASE_PARENT",
+      "NAIVE_BAYES_PARENT",
+      "DECISION_LIST_PARENT",
+      "PERCEPTRON_PARENT",
+      "MAXMARGIN_PARENT",
+      "PAIRWISE_LINEAR_PARENT"
+    ]
+  },
+  "pre_registered_expectations": {
+    "a": "every task >= 1 certificate",
+    "b": "linear parents below their V3 dev accuracies (MAXMARGIN 0.6783)",
+    "c": "GATED beats strongest linear parent (paired bootstrap CI excludes 0) else PARENT_CEILING_INFORMATION_BOUND",
+    "d": "F0_PLUS >= F0",
+    "e": "controls at chance"
+  },
+  "predecessor": {
+    "delta": -0.0083,
+    "study": "SD70-V3",
+    "terminal": "PARENT_SUFFICIENT"
+  },
+  "revival_row": "#308 R12",
+  "schema_version": "orion.v2.sd70-v4.gated-family-design.v1",
+  "seed_commitment": {
+    "custody": "~/.orion-custody/sd70-v4/SD70_V4_MASTER_SEED.txt (Mac; mode 600); revealed after the protected model-arm run",
+    "protected_seed_sha256": "304f81cd6a0fdd4dd836aef2c7ec90142b70cc3285afc7cd02e675b366421b78",
+    "revealed": false
+  },
+  "study_id": "SD70-V4",
+  "substrate_pins_sha256": {
+    "sd70-v3/sd70v3_generator.py": "4cbc36d1cafbf7605655590c9c703d461b7a185d22dff08b7a8531d94f8a5f0c",
+    "sd70-v3/sd70v3_parents.py": "e7cc1efe384245579be5cb31c2a67d379fbbfdd789df43e8d3fedcfdd4774309",
+    "sd70-v3/sd70v3_stats.py": "d3b7777f166760f7a99e7598c3727dca72898a853b36018ecd123f31a0ed9f79",
+    "sd70-v4/sd70v4_containment.py": "6a2406707e65f61d0f0cc923db7287a13d2c1e3004d011e482cb87403599cb4d",
+    "sd70-v4/sd70v4_generator.py": "b0ee737b419ee9a49dec73d986c0d4de47fff5979ba928d928faec4b17b723dd",
+    "sd70-v4/sd70v4_parents.py": "84ebe5acb713bbbb93a44491894a33a498fd1750690d7db80e021c8d96fc7e6f"
+  }
+}
