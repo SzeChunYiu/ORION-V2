@@ -1,0 +1,74 @@
+{
+  "arms": [
+    "M_JOINT_CONTROLLER",
+    "B5_SEQUENTIAL_FEDERATION",
+    "B5_ADAPTIVE_PARENT (identity, disclosed)",
+    "C_RANDOM_ADAPTIVE (20 reps/world)",
+    "LB_COUNTING"
+  ],
+  "attributed_stage": "problem class",
+  "authority": {
+    "grants_field_status": false,
+    "grants_scientific_truth": false,
+    "novelty_claim": false,
+    "residual_claim": false
+  },
+  "compute": {
+    "SINGLETONS_6_time_budget_s": 72000,
+    "host": "LUNARC lu48 (account lu2026-2-51)",
+    "interpreter": "orion-v2-wave6 .venv CPython 3.13.5"
+  },
+  "endpoints": {
+    "primary": "worst-case query count (exact, seed-free)",
+    "secondary": [
+      "per-world mean",
+      "paired per-world federation-minus-controller with exact two-sided sign test (routes nothing)"
+    ]
+  },
+  "frozen_at": "2026-09-05",
+  "gates": [
+    "G0a_KNOWN_ANSWER",
+    "G0b_SOLVERS_AGREE",
+    "G0c_PLANTED_MUTATION_FIRES",
+    "G0d_NO_ALARM_ON_DECOMPOSABLE",
+    "G1_CONTROLLER_BEATS_SEQUENTIAL_ON_REGISTERED_INSTANCE",
+    "G2_PARENT_OWNED_IDENTITY",
+    "G3_SINGLETONS_6_ATTEMPT",
+    "G4_RANDOM_CONTROL_ABOVE_CONTROLLER"
+  ],
+  "pre_registered_expectation": {
+    "SINGLETONS_5": {
+      "B_first": 9,
+      "D_joint": 8,
+      "I": 1,
+      "Z_first": 9
+    },
+    "SINGLETONS_6": "attempt; I >= 1 expected; CANNOT_CHECK on the 20 h budget permitted",
+    "decomposable_classes_tie": [
+      "LINEAR_F2^2",
+      "MONO_CONJ_2",
+      "LTF_2",
+      "SINGLETONS_4"
+    ],
+    "route": "PARENT_OWNED__CONTROLLER_BEATS_SEQUENTIAL_FEDERATION_BY_INTERACTION_TERM"
+  },
+  "question": "On a natural non-decomposable lifecycle class, does the joint controller beat the sequential parent federation, and does it do anything the adaptive parent cannot?",
+  "revival_row": "#308 R1a",
+  "schema_version": "orion.v2.ocm-r1a.controller-vs-federation-design.v1",
+  "seed_commitment": {
+    "consumed_by": "C_RANDOM_ADAPTIVE only",
+    "custody": "~/.orion-custody/ocm-r1a/PROTECTED_SEED_V1.txt (Mac; scp+md5 to the run host); revealed after the run",
+    "protected_seed_sha256": "5d4651ba9481aaf6bda41d7c8b018543df90b6a7ae46a29ba55c126fa4a7002f"
+  },
+  "study_id": "OCM-R1A",
+  "substrate_pins_sha256": {
+    "research/orion-machine/reference/ocm_nonrectangular_class_exact.py": "5e48551f7b537d1c8420862cd2f88b3ed2b70e91f4376edb86b0c0c234cc9a59",
+    "research/orion-machine/results/OCM_NONRECTANGULAR_CLASS_EXACT_RESULTS_V1.json": "985e800302801a62365fe623eb754e38201389b9f529f2e987bc272c10bc864b"
+  },
+  "terminals": [
+    "PARENT_OWNED__CONTROLLER_BEATS_SEQUENTIAL_FEDERATION_BY_INTERACTION_TERM",
+    "PARENT_SUFFICIENT__SEQUENTIAL_TIE",
+    "LANE_DEFECT"
+  ],
+  "title": "Controller vs B5 federation on VSW(SINGLETONS_m)"
+}
