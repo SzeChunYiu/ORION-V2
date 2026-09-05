@@ -1,0 +1,191 @@
+{
+  "arms": {
+    "DECISION_LIST_PARENT": {
+      "control_LP_accuracy": 0.25666666666666665,
+      "control_QS_accuracy": 0.24,
+      "critical_false_direction_rate": 0.18,
+      "exact_accuracy": 0.46166666666666667,
+      "wall_seconds_total": 0.6817151820287108,
+      "wilson95": [
+        0.42214702401068854,
+        0.5016740397336954
+      ]
+    },
+    "F0_PARENT_FEDERATION": {
+      "critical_false_direction_rate": 0.15666666666666668,
+      "exact_accuracy": 0.4816666666666667,
+      "members": [
+        "SIMPLE_FREQUENCY_PARENT",
+        "MATCHED_CASE_PARENT",
+        "NAIVE_BAYES_PARENT",
+        "DECISION_LIST_PARENT",
+        "PERCEPTRON_PARENT",
+        "MAXMARGIN_PARENT",
+        "PAIRWISE_LINEAR_PARENT"
+      ],
+      "strongest_member": "MAXMARGIN_PARENT",
+      "wilson95": [
+        0.44192980844556506,
+        0.5216367872582708
+      ]
+    },
+    "F0_PLUS_FEDERATION": {
+      "critical_false_direction_rate": 0.15166666666666667,
+      "exact_accuracy": 0.48,
+      "members": [
+        "SIMPLE_FREQUENCY_PARENT",
+        "MATCHED_CASE_PARENT",
+        "NAIVE_BAYES_PARENT",
+        "DECISION_LIST_PARENT",
+        "PERCEPTRON_PARENT",
+        "MAXMARGIN_PARENT",
+        "PAIRWISE_LINEAR_PARENT",
+        "GATED_MAXMARGIN_PARENT"
+      ],
+      "strongest_member": "MAXMARGIN_PARENT",
+      "wilson95": [
+        0.4402788116987365,
+        0.5199756563418116
+      ]
+    },
+    "GATED_MAXMARGIN_PARENT": {
+      "control_LP_accuracy": 0.255,
+      "control_QS_accuracy": 0.24666666666666667,
+      "critical_false_direction_rate": 0.14833333333333334,
+      "exact_accuracy": 0.4633333333333333,
+      "wall_seconds_total": 151.2750020418316,
+      "wilson95": [
+        0.42379315341914553,
+        0.503340037988526
+      ]
+    },
+    "MATCHED_CASE_PARENT": {
+      "control_LP_accuracy": 0.23666666666666666,
+      "control_QS_accuracy": 0.25,
+      "critical_false_direction_rate": 0.19166666666666668,
+      "exact_accuracy": 0.42833333333333334,
+      "wall_seconds_total": 0.017766851000487804,
+      "wilson95": [
+        0.38931826950361953,
+        0.468260240975011
+      ]
+    },
+    "MAXMARGIN_PARENT": {
+      "control_LP_accuracy": 0.26666666666666666,
+      "control_QS_accuracy": 0.26666666666666666,
+      "critical_false_direction_rate": 0.17,
+      "exact_accuracy": 0.47,
+      "wall_seconds_total": 9.298138935118914,
+      "wilson95": [
+        0.43038210643040314,
+        0.5099995956304189
+      ]
+    },
+    "NAIVE_BAYES_PARENT": {
+      "control_LP_accuracy": 0.24166666666666667,
+      "control_QS_accuracy": 0.25,
+      "critical_false_direction_rate": 0.17333333333333334,
+      "exact_accuracy": 0.4483333333333333,
+      "wall_seconds_total": 0.03005162626504898,
+      "wilson95": [
+        0.4089940104077698,
+        0.4883300320303127
+      ]
+    },
+    "PAIRWISE_LINEAR_PARENT": {
+      "control_LP_accuracy": 0.26166666666666666,
+      "control_QS_accuracy": 0.2683333333333333,
+      "critical_false_direction_rate": 0.17666666666666667,
+      "exact_accuracy": 0.465,
+      "wall_seconds_total": 1.4509443594142795,
+      "wilson95": [
+        0.42543972667536817,
+        0.5050055923955911
+      ]
+    },
+    "PERCEPTRON_PARENT": {
+      "control_LP_accuracy": 0.275,
+      "control_QS_accuracy": 0.27666666666666667,
+      "critical_false_direction_rate": 0.16166666666666665,
+      "exact_accuracy": 0.46166666666666667,
+      "wall_seconds_total": 3.361340413801372,
+      "wilson95": [
+        0.42214702401068854,
+        0.5016740397336954
+      ]
+    },
+    "SIMPLE_FREQUENCY_PARENT": {
+      "control_LP_accuracy": 0.25666666666666665,
+      "control_QS_accuracy": 0.26166666666666666,
+      "critical_false_direction_rate": 0.20666666666666667,
+      "exact_accuracy": 0.39166666666666666,
+      "wall_seconds_total": 0.016360667534172535,
+      "wilson95": [
+        0.35341694240118393,
+        0.431294759485118
+      ]
+    }
+  },
+  "certificates_per_task": {
+    "max": 29,
+    "mean": 5.483333333333333,
+    "min": 1
+  },
+  "comparator": "F0_PARENT_FEDERATION",
+  "comparator_rule": "max(strongest generator-faithful parent, F0_PLUS_FEDERATION, F0_PARENT_FEDERATION) by mean development exact accuracy (V3 \u00a74.1 extended to the gated family)",
+  "development_only": true,
+  "gated_minus_strongest_linear_paired": {
+    "b": 98,
+    "bootstrap": 2000,
+    "c": 102,
+    "ci_high": 0.04,
+    "ci_low": -0.051666666666666666,
+    "level": 0.95,
+    "n": 600,
+    "point": -0.006666666666666667,
+    "seed": 20260902
+  },
+  "generator_faithful_ranking": [
+    "MAXMARGIN_PARENT",
+    "PAIRWISE_LINEAR_PARENT",
+    "GATED_MAXMARGIN_PARENT",
+    "DECISION_LIST_PARENT",
+    "PERCEPTRON_PARENT",
+    "NAIVE_BAYES_PARENT"
+  ],
+  "generator_rejections": 202,
+  "mean_chance_level": 0.26016666666666666,
+  "pins": {
+    "sd70-v3/sd70v3_generator.py": "4cbc36d1cafbf7605655590c9c703d461b7a185d22dff08b7a8531d94f8a5f0c",
+    "sd70-v3/sd70v3_parents.py": "e7cc1efe384245579be5cb31c2a67d379fbbfdd789df43e8d3fedcfdd4774309",
+    "sd70-v3/sd70v3_stats.py": "d3b7777f166760f7a99e7598c3727dca72898a853b36018ecd123f31a0ed9f79",
+    "sd70-v4/sd70v4_containment.py": "6a2406707e65f61d0f0cc923db7287a13d2c1e3004d011e482cb87403599cb4d",
+    "sd70-v4/sd70v4_generator.py": "42ab3613fd1f9a53f3a504f20c48698a47961e33981d7ca0aaffa2f6644a8a18",
+    "sd70-v4/sd70v4_parents.py": "84ebe5acb713bbbb93a44491894a33a498fd1750690d7db80e021c8d96fc7e6f"
+  },
+  "protected_outcomes_inspected": false,
+  "schema_version": "orion.v2.sd70-v4.development-results.v1",
+  "second_candidate": "PAIRWISE_LINEAR_PARENT",
+  "seeds": [
+    {
+      "seed_index": 0,
+      "seed_sha256": "8f996fe48bbc8ee0dc0f1d5c302729c8c6e4d1bfdd01fd16feb62938e2c42b06",
+      "tasks": 200
+    },
+    {
+      "seed_index": 1,
+      "seed_sha256": "e72cd1cb6dcc9b5bc569d4a9c41aba4bbeb65c7403eaf9d85957c52a390c5ce0",
+      "tasks": 200
+    },
+    {
+      "seed_index": 2,
+      "seed_sha256": "e97368816ecd90e777e6540b7515c09431912ab4be5d6c8e3a9850c67da928f0",
+      "tasks": 200
+    }
+  ],
+  "strongest_generator_faithful_parent": "MAXMARGIN_PARENT",
+  "strongest_linear_parent": "MAXMARGIN_PARENT",
+  "study_id": "SD70-V4",
+  "task_total": 600,
+  "train_episodes": 16
+}

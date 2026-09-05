@@ -1,0 +1,49 @@
+{
+  "gated_parent_fidelity": {
+    "gate_found": [
+      "ctx-1",
+      "ctx-2"
+    ],
+    "gate_recovered": false,
+    "gated_pick_correct": true,
+    "maxmargin_pick_correct": false,
+    "n_training": 14,
+    "pass": true,
+    "rng_unused": true,
+    "training_consistency": 14
+  },
+  "generator_deterministic": {
+    "pass": true
+  },
+  "linear_control_zero_certificates": {
+    "max_certificates": 0,
+    "pass": true,
+    "tasks": 40
+  },
+  "passed": true,
+  "pins": {
+    "sd70-v3/sd70v3_generator.py": "4cbc36d1cafbf7605655590c9c703d461b7a185d22dff08b7a8531d94f8a5f0c",
+    "sd70-v3/sd70v3_parents.py": "e7cc1efe384245579be5cb31c2a67d379fbbfdd789df43e8d3fedcfdd4774309",
+    "sd70-v3/sd70v3_stats.py": "d3b7777f166760f7a99e7598c3727dca72898a853b36018ecd123f31a0ed9f79",
+    "sd70-v4/sd70v4_containment.py": "6a2406707e65f61d0f0cc923db7287a13d2c1e3004d011e482cb87403599cb4d",
+    "sd70-v4/sd70v4_generator.py": "42ab3613fd1f9a53f3a504f20c48698a47961e33981d7ca0aaffa2f6644a8a18",
+    "sd70-v4/sd70v4_parents.py": "84ebe5acb713bbbb93a44491894a33a498fd1750690d7db80e021c8d96fc7e6f"
+  },
+  "planted_mutant_caught": {
+    "mutant_min_certificates_on_linear": 18,
+    "pass": true
+  },
+  "study_id": "SD70-V4",
+  "v3_generator_zero_certificates": {
+    "max_certificates": 0,
+    "pass": true,
+    "tasks": 40
+  },
+  "v4_tasks_certified": {
+    "min_certificates": 1,
+    "pass": true,
+    "recheck_agrees": true,
+    "rejections": 21,
+    "tasks": 40
+  }
+}
