@@ -1,0 +1,1903 @@
+{
+  "custody_sha256": "fe3777b3ae9eb85bbc740ddbf84cb755e26bde7bc61c59eefb5c23f40310d398",
+  "gates": {
+    "G0a2_SELFTEST": {
+      "n_evaluated": 1,
+      "pass": true
+    },
+    "G0a_KNOWN_ANSWER_D8_REPRODUCES_V3_REFIT": {
+      "drift": {},
+      "pass": true,
+      "v3_design_sha256": "d492e2b96420f3e3edf155766cf3c8ddc5c4f2a9505fdd77e72d53c1f70b9e3e"
+    },
+    "G0b_GENERATOR_VALIDITY": {
+      "invalid": [],
+      "n_evaluated": 1800,
+      "pass": true
+    },
+    "G0c_NULL_CALIBRATION": {
+      "balanced_split": true,
+      "best_constant_rate": 0.4444444444444444,
+      "derived_bar": 0.4444444444444444,
+      "modal_class": "FLAT",
+      "pass": true
+    },
+    "G0d_M_EXACT_ON_ALL_STRATA": {
+      "M_correct": 1800,
+      "n": 1800,
+      "pass": true
+    },
+    "G1_TIE_ON_EXERCISED_STRATA": {
+      "n_evaluated": 1800,
+      "note": "LIVE: M ahead OR behind on an exercised stratum fails this gate",
+      "pass": true
+    },
+    "G2_ADVANTAGE_ON_ZERO_WEIGHT_UNEXERCISED": {
+      "note": "BY_CONSTRUCTION (disclosed): a refit that zeroes a lone carrier's channel cannot read that stratum; registered as the coverage-gap disclosure, not as evidence about typing",
+      "pass": true
+    },
+    "G2b_COMOVEMENT_STRATA_LIVE": {
+      "M_ahead": [],
+      "note": "LIVE: an unexercised role the refit reached through co-movement in non-carrier strata",
+      "pass": true,
+      "refit_ahead_or_mixed": [],
+      "ties": [
+        "D0:X6I7_ONE_BREAKTHROUGH|SCALE_SUBFIELD",
+        "D0:X6I7_ONE_BREAKTHROUGH|SCALE_PROBLEM_FAMILY"
+      ]
+    },
+    "G3_COVERAGE_CURVE": {
+      "advantage_M_minus_refit_by_coverage": {
+        "0": {
+          "SCALE_PROBLEM_FAMILY": 350,
+          "SCALE_SUBFIELD": 350
+        },
+        "2": {
+          "SCALE_PROBLEM_FAMILY": 300,
+          "SCALE_SUBFIELD": 300
+        },
+        "4": {
+          "SCALE_PROBLEM_FAMILY": 200,
+          "SCALE_SUBFIELD": 200
+        },
+        "6": {
+          "SCALE_PROBLEM_FAMILY": 100,
+          "SCALE_SUBFIELD": 100
+        },
+        "8": {
+          "SCALE_PROBLEM_FAMILY": 0,
+          "SCALE_SUBFIELD": 0
+        }
+      },
+      "monotone_non_increasing": true,
+      "pass": true,
+      "zero_at_full_coverage": true
+    },
+    "ROUTE": {
+      "route": "TYPING_VALUE_EQUALS_COVERAGE_GAP__COMOVEMENT_RECOVERS_SOME_STRATA",
+      "terminals": [
+        "TYPING_VALUE_EQUALS_COVERAGE_GAP__NO_COMOVEMENT_RECOVERY",
+        "TYPING_VALUE_EQUALS_COVERAGE_GAP__COMOVEMENT_RECOVERS_SOME_STRATA",
+        "TYPING_SEPARATES_BEYOND_COVERAGE",
+        "LANE_DEFECT"
+      ]
+    },
+    "per_domain": {
+      "0": {
+        "advantage_on_every_zero_weight_cell": true,
+        "comovement_cells": {
+          "D0:X6I7_ONE_BREAKTHROUGH|SCALE_PROBLEM_FAMILY": "TIE",
+          "D0:X6I7_ONE_BREAKTHROUGH|SCALE_SUBFIELD": "TIE"
+        },
+        "comovement_strata": [
+          "X6I7_ONE_BREAKTHROUGH"
+        ],
+        "exercised": {
+          "per_scale": {
+            "SCALE_PROBLEM_FAMILY": {
+              "cells": {
+                "GENUINE_CAPABILITY_GAIN": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "GENUINE_CAPABILITY_LOSS": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I1_DUPLICATES": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I2_PARAPHRASE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I3_MASS_LOW_INFORMATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I5_CITATION_RING": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I6_VENUE_MIGRATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I7_FIELD_SIZE_SCALING": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I8_FASHION_CONCENTRATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "NO_CHANGE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                }
+              },
+              "discordant": 0,
+              "exact_p_two_sided": 1.0,
+              "n": 500,
+              "status": "EVALUATED",
+              "x_correct": 500,
+              "x_only": 0,
+              "y_correct": 500,
+              "y_only": 0
+            },
+            "SCALE_SUBFIELD": {
+              "cells": {
+                "GENUINE_CAPABILITY_GAIN": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "GENUINE_CAPABILITY_LOSS": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I1_DUPLICATES": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I2_PARAPHRASE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I3_MASS_LOW_INFORMATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I5_CITATION_RING": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I6_VENUE_MIGRATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I7_FIELD_SIZE_SCALING": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I8_FASHION_CONCENTRATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "NO_CHANGE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                }
+              },
+              "discordant": 0,
+              "exact_p_two_sided": 1.0,
+              "n": 500,
+              "status": "EVALUATED",
+              "x_correct": 500,
+              "x_only": 0,
+              "y_correct": 500,
+              "y_only": 0
+            }
+          },
+          "strata": [
+            "NO_CHANGE",
+            "GENUINE_CAPABILITY_GAIN",
+            "GENUINE_CAPABILITY_LOSS",
+            "I1_DUPLICATES",
+            "I2_PARAPHRASE",
+            "I3_MASS_LOW_INFORMATION",
+            "I5_CITATION_RING",
+            "I6_VENUE_MIGRATION",
+            "I7_FIELD_SIZE_SCALING",
+            "I8_FASHION_CONCENTRATION"
+          ],
+          "x": "M_TYPED_COLLECTIVE_STATE",
+          "y": "B8_D0_REFIT_COVERAGE_0_OF_8"
+        },
+        "gap_strata": [
+          "I9_DELAYED_VALIDATION",
+          "I10_INDEPENDENT_REDISCOVERY",
+          "I4_RETRACTED_WORK",
+          "I11_SILENT_CORRECTION_EROSION",
+          "I12_FAILED_REPLICATION_WAVE",
+          "I13_COST_COLLAPSE",
+          "I14_REUSE_ONLY_GAIN"
+        ],
+        "tie_on_exercised": true,
+        "unexercised_nonzero_weight": {
+          "per_scale": {
+            "SCALE_PROBLEM_FAMILY": {
+              "cells": {
+                "X6I7_ONE_BREAKTHROUGH": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                }
+              },
+              "discordant": 0,
+              "exact_p_two_sided": 1.0,
+              "n": 50,
+              "status": "EVALUATED",
+              "x_correct": 50,
+              "x_only": 0,
+              "y_correct": 50,
+              "y_only": 0
+            },
+            "SCALE_SUBFIELD": {
+              "cells": {
+                "X6I7_ONE_BREAKTHROUGH": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                }
+              },
+              "discordant": 0,
+              "exact_p_two_sided": 1.0,
+              "n": 50,
+              "status": "EVALUATED",
+              "x_correct": 50,
+              "x_only": 0,
+              "y_correct": 50,
+              "y_only": 0
+            }
+          },
+          "strata": [
+            "X6I7_ONE_BREAKTHROUGH"
+          ],
+          "x": "M_TYPED_COLLECTIVE_STATE",
+          "y": "B8_D0_REFIT_COVERAGE_0_OF_8"
+        },
+        "unexercised_zero_weight": {
+          "per_scale": {
+            "SCALE_PROBLEM_FAMILY": {
+              "cells": {
+                "I10_INDEPENDENT_REDISCOVERY": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I11_SILENT_CORRECTION_EROSION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I12_FAILED_REPLICATION_WAVE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I13_COST_COLLAPSE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I14_REUSE_ONLY_GAIN": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I4_RETRACTED_WORK": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I9_DELAYED_VALIDATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                }
+              },
+              "discordant": 350,
+              "exact_p_two_sided": 8.720301752336693e-106,
+              "n": 350,
+              "status": "EVALUATED",
+              "x_correct": 350,
+              "x_only": 350,
+              "y_correct": 0,
+              "y_only": 0
+            },
+            "SCALE_SUBFIELD": {
+              "cells": {
+                "I10_INDEPENDENT_REDISCOVERY": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I11_SILENT_CORRECTION_EROSION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I12_FAILED_REPLICATION_WAVE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I13_COST_COLLAPSE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I14_REUSE_ONLY_GAIN": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I4_RETRACTED_WORK": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I9_DELAYED_VALIDATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                }
+              },
+              "discordant": 350,
+              "exact_p_two_sided": 8.720301752336693e-106,
+              "n": 350,
+              "status": "EVALUATED",
+              "x_correct": 350,
+              "x_only": 350,
+              "y_correct": 0,
+              "y_only": 0
+            }
+          },
+          "strata": [
+            "I9_DELAYED_VALIDATION",
+            "I10_INDEPENDENT_REDISCOVERY",
+            "I4_RETRACTED_WORK",
+            "I11_SILENT_CORRECTION_EROSION",
+            "I12_FAILED_REPLICATION_WAVE",
+            "I13_COST_COLLAPSE",
+            "I14_REUSE_ONLY_GAIN"
+          ],
+          "x": "M_TYPED_COLLECTIVE_STATE",
+          "y": "B8_D0_REFIT_COVERAGE_0_OF_8"
+        }
+      },
+      "2": {
+        "advantage_on_every_zero_weight_cell": true,
+        "comovement_cells": {},
+        "comovement_strata": [],
+        "exercised": {
+          "per_scale": {
+            "SCALE_PROBLEM_FAMILY": {
+              "cells": {
+                "GENUINE_CAPABILITY_GAIN": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "GENUINE_CAPABILITY_LOSS": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I1_DUPLICATES": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I2_PARAPHRASE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I3_MASS_LOW_INFORMATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I5_CITATION_RING": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I6_VENUE_MIGRATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I7_FIELD_SIZE_SCALING": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I8_FASHION_CONCENTRATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I9_DELAYED_VALIDATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "NO_CHANGE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "X6I7_ONE_BREAKTHROUGH": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                }
+              },
+              "discordant": 0,
+              "exact_p_two_sided": 1.0,
+              "n": 600,
+              "status": "EVALUATED",
+              "x_correct": 600,
+              "x_only": 0,
+              "y_correct": 600,
+              "y_only": 0
+            },
+            "SCALE_SUBFIELD": {
+              "cells": {
+                "GENUINE_CAPABILITY_GAIN": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "GENUINE_CAPABILITY_LOSS": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I1_DUPLICATES": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I2_PARAPHRASE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I3_MASS_LOW_INFORMATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I5_CITATION_RING": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I6_VENUE_MIGRATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I7_FIELD_SIZE_SCALING": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I8_FASHION_CONCENTRATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I9_DELAYED_VALIDATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "NO_CHANGE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "X6I7_ONE_BREAKTHROUGH": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                }
+              },
+              "discordant": 0,
+              "exact_p_two_sided": 1.0,
+              "n": 600,
+              "status": "EVALUATED",
+              "x_correct": 600,
+              "x_only": 0,
+              "y_correct": 600,
+              "y_only": 0
+            }
+          },
+          "strata": [
+            "NO_CHANGE",
+            "GENUINE_CAPABILITY_GAIN",
+            "GENUINE_CAPABILITY_LOSS",
+            "I1_DUPLICATES",
+            "I2_PARAPHRASE",
+            "I3_MASS_LOW_INFORMATION",
+            "I5_CITATION_RING",
+            "I6_VENUE_MIGRATION",
+            "I7_FIELD_SIZE_SCALING",
+            "I8_FASHION_CONCENTRATION",
+            "X6I7_ONE_BREAKTHROUGH",
+            "I9_DELAYED_VALIDATION"
+          ],
+          "x": "M_TYPED_COLLECTIVE_STATE",
+          "y": "B8_D2_REFIT_COVERAGE_2_OF_8"
+        },
+        "gap_strata": [
+          "I10_INDEPENDENT_REDISCOVERY",
+          "I4_RETRACTED_WORK",
+          "I11_SILENT_CORRECTION_EROSION",
+          "I12_FAILED_REPLICATION_WAVE",
+          "I13_COST_COLLAPSE",
+          "I14_REUSE_ONLY_GAIN"
+        ],
+        "tie_on_exercised": true,
+        "unexercised_nonzero_weight": null,
+        "unexercised_zero_weight": {
+          "per_scale": {
+            "SCALE_PROBLEM_FAMILY": {
+              "cells": {
+                "I10_INDEPENDENT_REDISCOVERY": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I11_SILENT_CORRECTION_EROSION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I12_FAILED_REPLICATION_WAVE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I13_COST_COLLAPSE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I14_REUSE_ONLY_GAIN": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I4_RETRACTED_WORK": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                }
+              },
+              "discordant": 300,
+              "exact_p_two_sided": 9.818186930595453e-91,
+              "n": 300,
+              "status": "EVALUATED",
+              "x_correct": 300,
+              "x_only": 300,
+              "y_correct": 0,
+              "y_only": 0
+            },
+            "SCALE_SUBFIELD": {
+              "cells": {
+                "I10_INDEPENDENT_REDISCOVERY": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I11_SILENT_CORRECTION_EROSION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I12_FAILED_REPLICATION_WAVE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I13_COST_COLLAPSE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I14_REUSE_ONLY_GAIN": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I4_RETRACTED_WORK": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                }
+              },
+              "discordant": 300,
+              "exact_p_two_sided": 9.818186930595453e-91,
+              "n": 300,
+              "status": "EVALUATED",
+              "x_correct": 300,
+              "x_only": 300,
+              "y_correct": 0,
+              "y_only": 0
+            }
+          },
+          "strata": [
+            "I10_INDEPENDENT_REDISCOVERY",
+            "I4_RETRACTED_WORK",
+            "I11_SILENT_CORRECTION_EROSION",
+            "I12_FAILED_REPLICATION_WAVE",
+            "I13_COST_COLLAPSE",
+            "I14_REUSE_ONLY_GAIN"
+          ],
+          "x": "M_TYPED_COLLECTIVE_STATE",
+          "y": "B8_D2_REFIT_COVERAGE_2_OF_8"
+        }
+      },
+      "4": {
+        "advantage_on_every_zero_weight_cell": true,
+        "comovement_cells": {},
+        "comovement_strata": [],
+        "exercised": {
+          "per_scale": {
+            "SCALE_PROBLEM_FAMILY": {
+              "cells": {
+                "GENUINE_CAPABILITY_GAIN": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "GENUINE_CAPABILITY_LOSS": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I10_INDEPENDENT_REDISCOVERY": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I1_DUPLICATES": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I2_PARAPHRASE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I3_MASS_LOW_INFORMATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I4_RETRACTED_WORK": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I5_CITATION_RING": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I6_VENUE_MIGRATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I7_FIELD_SIZE_SCALING": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I8_FASHION_CONCENTRATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I9_DELAYED_VALIDATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "NO_CHANGE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "X6I7_ONE_BREAKTHROUGH": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                }
+              },
+              "discordant": 0,
+              "exact_p_two_sided": 1.0,
+              "n": 700,
+              "status": "EVALUATED",
+              "x_correct": 700,
+              "x_only": 0,
+              "y_correct": 700,
+              "y_only": 0
+            },
+            "SCALE_SUBFIELD": {
+              "cells": {
+                "GENUINE_CAPABILITY_GAIN": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "GENUINE_CAPABILITY_LOSS": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I10_INDEPENDENT_REDISCOVERY": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I1_DUPLICATES": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I2_PARAPHRASE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I3_MASS_LOW_INFORMATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I4_RETRACTED_WORK": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I5_CITATION_RING": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I6_VENUE_MIGRATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I7_FIELD_SIZE_SCALING": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I8_FASHION_CONCENTRATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I9_DELAYED_VALIDATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "NO_CHANGE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "X6I7_ONE_BREAKTHROUGH": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                }
+              },
+              "discordant": 0,
+              "exact_p_two_sided": 1.0,
+              "n": 700,
+              "status": "EVALUATED",
+              "x_correct": 700,
+              "x_only": 0,
+              "y_correct": 700,
+              "y_only": 0
+            }
+          },
+          "strata": [
+            "NO_CHANGE",
+            "GENUINE_CAPABILITY_GAIN",
+            "GENUINE_CAPABILITY_LOSS",
+            "I1_DUPLICATES",
+            "I2_PARAPHRASE",
+            "I3_MASS_LOW_INFORMATION",
+            "I5_CITATION_RING",
+            "I6_VENUE_MIGRATION",
+            "I7_FIELD_SIZE_SCALING",
+            "I8_FASHION_CONCENTRATION",
+            "X6I7_ONE_BREAKTHROUGH",
+            "I9_DELAYED_VALIDATION",
+            "I10_INDEPENDENT_REDISCOVERY",
+            "I4_RETRACTED_WORK"
+          ],
+          "x": "M_TYPED_COLLECTIVE_STATE",
+          "y": "B8_D4_REFIT_COVERAGE_4_OF_8"
+        },
+        "gap_strata": [
+          "I11_SILENT_CORRECTION_EROSION",
+          "I12_FAILED_REPLICATION_WAVE",
+          "I13_COST_COLLAPSE",
+          "I14_REUSE_ONLY_GAIN"
+        ],
+        "tie_on_exercised": true,
+        "unexercised_nonzero_weight": null,
+        "unexercised_zero_weight": {
+          "per_scale": {
+            "SCALE_PROBLEM_FAMILY": {
+              "cells": {
+                "I11_SILENT_CORRECTION_EROSION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I12_FAILED_REPLICATION_WAVE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I13_COST_COLLAPSE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I14_REUSE_ONLY_GAIN": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                }
+              },
+              "discordant": 200,
+              "exact_p_two_sided": 1.2446030555722283e-60,
+              "n": 200,
+              "status": "EVALUATED",
+              "x_correct": 200,
+              "x_only": 200,
+              "y_correct": 0,
+              "y_only": 0
+            },
+            "SCALE_SUBFIELD": {
+              "cells": {
+                "I11_SILENT_CORRECTION_EROSION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I12_FAILED_REPLICATION_WAVE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I13_COST_COLLAPSE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I14_REUSE_ONLY_GAIN": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                }
+              },
+              "discordant": 200,
+              "exact_p_two_sided": 1.2446030555722283e-60,
+              "n": 200,
+              "status": "EVALUATED",
+              "x_correct": 200,
+              "x_only": 200,
+              "y_correct": 0,
+              "y_only": 0
+            }
+          },
+          "strata": [
+            "I11_SILENT_CORRECTION_EROSION",
+            "I12_FAILED_REPLICATION_WAVE",
+            "I13_COST_COLLAPSE",
+            "I14_REUSE_ONLY_GAIN"
+          ],
+          "x": "M_TYPED_COLLECTIVE_STATE",
+          "y": "B8_D4_REFIT_COVERAGE_4_OF_8"
+        }
+      },
+      "6": {
+        "advantage_on_every_zero_weight_cell": true,
+        "comovement_cells": {},
+        "comovement_strata": [],
+        "exercised": {
+          "per_scale": {
+            "SCALE_PROBLEM_FAMILY": {
+              "cells": {
+                "GENUINE_CAPABILITY_GAIN": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "GENUINE_CAPABILITY_LOSS": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I10_INDEPENDENT_REDISCOVERY": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I11_SILENT_CORRECTION_EROSION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I12_FAILED_REPLICATION_WAVE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I1_DUPLICATES": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I2_PARAPHRASE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I3_MASS_LOW_INFORMATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I4_RETRACTED_WORK": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I5_CITATION_RING": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I6_VENUE_MIGRATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I7_FIELD_SIZE_SCALING": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I8_FASHION_CONCENTRATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I9_DELAYED_VALIDATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "NO_CHANGE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "X6I7_ONE_BREAKTHROUGH": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                }
+              },
+              "discordant": 0,
+              "exact_p_two_sided": 1.0,
+              "n": 800,
+              "status": "EVALUATED",
+              "x_correct": 800,
+              "x_only": 0,
+              "y_correct": 800,
+              "y_only": 0
+            },
+            "SCALE_SUBFIELD": {
+              "cells": {
+                "GENUINE_CAPABILITY_GAIN": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "GENUINE_CAPABILITY_LOSS": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I10_INDEPENDENT_REDISCOVERY": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I11_SILENT_CORRECTION_EROSION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I12_FAILED_REPLICATION_WAVE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I1_DUPLICATES": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I2_PARAPHRASE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I3_MASS_LOW_INFORMATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I4_RETRACTED_WORK": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I5_CITATION_RING": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I6_VENUE_MIGRATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I7_FIELD_SIZE_SCALING": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I8_FASHION_CONCENTRATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I9_DELAYED_VALIDATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "NO_CHANGE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "X6I7_ONE_BREAKTHROUGH": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                }
+              },
+              "discordant": 0,
+              "exact_p_two_sided": 1.0,
+              "n": 800,
+              "status": "EVALUATED",
+              "x_correct": 800,
+              "x_only": 0,
+              "y_correct": 800,
+              "y_only": 0
+            }
+          },
+          "strata": [
+            "NO_CHANGE",
+            "GENUINE_CAPABILITY_GAIN",
+            "GENUINE_CAPABILITY_LOSS",
+            "I1_DUPLICATES",
+            "I2_PARAPHRASE",
+            "I3_MASS_LOW_INFORMATION",
+            "I5_CITATION_RING",
+            "I6_VENUE_MIGRATION",
+            "I7_FIELD_SIZE_SCALING",
+            "I8_FASHION_CONCENTRATION",
+            "X6I7_ONE_BREAKTHROUGH",
+            "I9_DELAYED_VALIDATION",
+            "I10_INDEPENDENT_REDISCOVERY",
+            "I4_RETRACTED_WORK",
+            "I11_SILENT_CORRECTION_EROSION",
+            "I12_FAILED_REPLICATION_WAVE"
+          ],
+          "x": "M_TYPED_COLLECTIVE_STATE",
+          "y": "B8_D6_REFIT_COVERAGE_6_OF_8"
+        },
+        "gap_strata": [
+          "I13_COST_COLLAPSE",
+          "I14_REUSE_ONLY_GAIN"
+        ],
+        "tie_on_exercised": true,
+        "unexercised_nonzero_weight": null,
+        "unexercised_zero_weight": {
+          "per_scale": {
+            "SCALE_PROBLEM_FAMILY": {
+              "cells": {
+                "I13_COST_COLLAPSE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I14_REUSE_ONLY_GAIN": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                }
+              },
+              "discordant": 100,
+              "exact_p_two_sided": 1.5777218104420236e-30,
+              "n": 100,
+              "status": "EVALUATED",
+              "x_correct": 100,
+              "x_only": 100,
+              "y_correct": 0,
+              "y_only": 0
+            },
+            "SCALE_SUBFIELD": {
+              "cells": {
+                "I13_COST_COLLAPSE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                },
+                "I14_REUSE_ONLY_GAIN": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 50,
+                  "y_correct": 0,
+                  "y_only": 0
+                }
+              },
+              "discordant": 100,
+              "exact_p_two_sided": 1.5777218104420236e-30,
+              "n": 100,
+              "status": "EVALUATED",
+              "x_correct": 100,
+              "x_only": 100,
+              "y_correct": 0,
+              "y_only": 0
+            }
+          },
+          "strata": [
+            "I13_COST_COLLAPSE",
+            "I14_REUSE_ONLY_GAIN"
+          ],
+          "x": "M_TYPED_COLLECTIVE_STATE",
+          "y": "B8_D6_REFIT_COVERAGE_6_OF_8"
+        }
+      },
+      "8": {
+        "advantage_on_every_zero_weight_cell": true,
+        "comovement_cells": {},
+        "comovement_strata": [],
+        "exercised": {
+          "per_scale": {
+            "SCALE_PROBLEM_FAMILY": {
+              "cells": {
+                "GENUINE_CAPABILITY_GAIN": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "GENUINE_CAPABILITY_LOSS": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I10_INDEPENDENT_REDISCOVERY": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I11_SILENT_CORRECTION_EROSION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I12_FAILED_REPLICATION_WAVE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I13_COST_COLLAPSE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I14_REUSE_ONLY_GAIN": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I1_DUPLICATES": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I2_PARAPHRASE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I3_MASS_LOW_INFORMATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I4_RETRACTED_WORK": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I5_CITATION_RING": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I6_VENUE_MIGRATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I7_FIELD_SIZE_SCALING": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I8_FASHION_CONCENTRATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I9_DELAYED_VALIDATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "NO_CHANGE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "X6I7_ONE_BREAKTHROUGH": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                }
+              },
+              "discordant": 0,
+              "exact_p_two_sided": 1.0,
+              "n": 900,
+              "status": "EVALUATED",
+              "x_correct": 900,
+              "x_only": 0,
+              "y_correct": 900,
+              "y_only": 0
+            },
+            "SCALE_SUBFIELD": {
+              "cells": {
+                "GENUINE_CAPABILITY_GAIN": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "GENUINE_CAPABILITY_LOSS": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I10_INDEPENDENT_REDISCOVERY": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I11_SILENT_CORRECTION_EROSION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I12_FAILED_REPLICATION_WAVE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I13_COST_COLLAPSE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I14_REUSE_ONLY_GAIN": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I1_DUPLICATES": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I2_PARAPHRASE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I3_MASS_LOW_INFORMATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I4_RETRACTED_WORK": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I5_CITATION_RING": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I6_VENUE_MIGRATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I7_FIELD_SIZE_SCALING": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I8_FASHION_CONCENTRATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "I9_DELAYED_VALIDATION": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "NO_CHANGE": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                },
+                "X6I7_ONE_BREAKTHROUGH": {
+                  "n": 50,
+                  "x_correct": 50,
+                  "x_only": 0,
+                  "y_correct": 50,
+                  "y_only": 0
+                }
+              },
+              "discordant": 0,
+              "exact_p_two_sided": 1.0,
+              "n": 900,
+              "status": "EVALUATED",
+              "x_correct": 900,
+              "x_only": 0,
+              "y_correct": 900,
+              "y_only": 0
+            }
+          },
+          "strata": [
+            "NO_CHANGE",
+            "GENUINE_CAPABILITY_GAIN",
+            "GENUINE_CAPABILITY_LOSS",
+            "I1_DUPLICATES",
+            "I2_PARAPHRASE",
+            "I3_MASS_LOW_INFORMATION",
+            "I5_CITATION_RING",
+            "I6_VENUE_MIGRATION",
+            "I7_FIELD_SIZE_SCALING",
+            "I8_FASHION_CONCENTRATION",
+            "X6I7_ONE_BREAKTHROUGH",
+            "I9_DELAYED_VALIDATION",
+            "I10_INDEPENDENT_REDISCOVERY",
+            "I4_RETRACTED_WORK",
+            "I11_SILENT_CORRECTION_EROSION",
+            "I12_FAILED_REPLICATION_WAVE",
+            "I13_COST_COLLAPSE",
+            "I14_REUSE_ONLY_GAIN"
+          ],
+          "x": "M_TYPED_COLLECTIVE_STATE",
+          "y": "B8_D8_REFIT_COVERAGE_8_OF_8"
+        },
+        "gap_strata": [],
+        "tie_on_exercised": true,
+        "unexercised_nonzero_weight": null,
+        "unexercised_zero_weight": null
+      }
+    }
+  },
+  "label": "PROTECTED",
+  "n_instances": 1800,
+  "per_arm": {
+    "B4X_D0_UNIT_SIGN_COVERAGE_0_OF_8": {
+      "capability_correct": 1000,
+      "n": 1800,
+      "rate": 0.5555555555555556
+    },
+    "B4X_D2_UNIT_SIGN_COVERAGE_2_OF_8": {
+      "capability_correct": 1000,
+      "n": 1800,
+      "rate": 0.5555555555555556
+    },
+    "B4X_D4_UNIT_SIGN_COVERAGE_4_OF_8": {
+      "capability_correct": 1000,
+      "n": 1800,
+      "rate": 0.5555555555555556
+    },
+    "B4X_D6_UNIT_SIGN_COVERAGE_6_OF_8": {
+      "capability_correct": 1000,
+      "n": 1800,
+      "rate": 0.5555555555555556
+    },
+    "B4X_D8_UNIT_SIGN_COVERAGE_8_OF_8": {
+      "capability_correct": 1000,
+      "n": 1800,
+      "rate": 0.5555555555555556
+    },
+    "B8_D0_REFIT_COVERAGE_0_OF_8": {
+      "capability_correct": 1100,
+      "n": 1800,
+      "rate": 0.6111111111111112
+    },
+    "B8_D2_REFIT_COVERAGE_2_OF_8": {
+      "capability_correct": 1200,
+      "n": 1800,
+      "rate": 0.6666666666666666
+    },
+    "B8_D4_REFIT_COVERAGE_4_OF_8": {
+      "capability_correct": 1400,
+      "n": 1800,
+      "rate": 0.7777777777777778
+    },
+    "B8_D6_REFIT_COVERAGE_6_OF_8": {
+      "capability_correct": 1600,
+      "n": 1800,
+      "rate": 0.8888888888888888
+    },
+    "B8_D8_REFIT_COVERAGE_8_OF_8": {
+      "capability_correct": 1800,
+      "n": 1800,
+      "rate": 1.0
+    },
+    "C_ALWAYS_FALL": {
+      "capability_correct": 400,
+      "n": 1800,
+      "rate": 0.2222222222222222
+    },
+    "C_ALWAYS_FLAT": {
+      "capability_correct": 800,
+      "n": 1800,
+      "rate": 0.4444444444444444
+    },
+    "C_ALWAYS_RISE": {
+      "capability_correct": 600,
+      "n": 1800,
+      "rate": 0.3333333333333333
+    },
+    "M_TYPED_COLLECTIVE_STATE": {
+      "capability_correct": 1800,
+      "n": 1800,
+      "rate": 1.0
+    }
+  },
+  "results_sha256": "c18a02a4b741c055dab696a865d4f506a19776bf0bdec0ca63718e2d5ef5d1f6",
+  "schema_version": "orion.v2.me-x6-v4.coverage-limited-analysis.v1",
+  "study_id": "ME-X6-V4"
+}
