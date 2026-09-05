@@ -1,0 +1,502 @@
+{
+  "schema_version": "orion.v2.guards.evidence-bundle.v1",
+  "paper_id": "PRA",
+  "label": "REGISTERED",
+  "proposed_by": "lane-guards (ORION-V2)",
+  "built_utc": "2026-09-05T01:15:33Z",
+  "measured_against_main": {
+    "ref": "origin/main",
+    "commit": "d756c086edc46ad4e5e682f69730b72c1dc26a4c"
+  },
+  "paper_folder_in_orion_paper": "v2-papers/llm-machine-epistemics",
+  "registry_field_that_cites_these": "papers[#51].v16_revision_receipts (H-EXT-4 note)",
+  "registration": {
+    "registered": true,
+    "registry": "ORION-paper v2-papers/PAPER_REGISTRY.json",
+    "registry_commit": "c22d89d3f3a13e8b0cb056d349df246b27964a48",
+    "registry_file_sha256": "46c6ca521054a7cc6120271f268a29e2426eace91a0870f99e8f431acc2f84bd",
+    "registry_pins_schema": "orion-paper.per-paper-evidence-pins.v1",
+    "registered_on": "2026-09-04",
+    "registered_pin": "fd7a4e44205480870315ef70609a2e1979fc09e6",
+    "registered_pin_is_ancestor_of_main": true,
+    "quantity_roots": [
+      "research/llm-machine-epistemics"
+    ],
+    "verified_utc": "2026-09-05T01:15:34Z",
+    "verified_by": "lane-evidence (ORION-V2)",
+    "verification": {
+      "artifacts": 18,
+      "identical": 18,
+      "gating_artifacts": 18,
+      "defects": [],
+      "rows": [
+        {
+          "path": "research/llm-machine-epistemics/H_EXT4_RESULT_V1.json",
+          "commit": "52d2578b48a10991bd9944bf3117355c7c86c1b5",
+          "registered_sha256": "496c823eec86441329e103107f270a4a36c7d3aa00ba2409f53380e780299e9a",
+          "registered_bytes": 48026,
+          "role": "H-EXT-4 output record (Appendix B.8)",
+          "gating": true,
+          "commit_is_ancestor_of_pin": true,
+          "commit_is_ancestor_of_main": true,
+          "git_blob_sha1": "f3dc28986b2cac5be4acb8a90b5a14bd125b6e94",
+          "measured_sha256": "496c823eec86441329e103107f270a4a36c7d3aa00ba2409f53380e780299e9a",
+          "measured_bytes": 48026,
+          "verdict": "IDENTICAL"
+        },
+        {
+          "path": "research/llm-machine-epistemics/h_ext4_premium_bounds.py",
+          "commit": "52d2578b48a10991bd9944bf3117355c7c86c1b5",
+          "registered_sha256": "17afd42d4eae75f13e7e66896130f245891698edcd44f96f0be95837361bc275",
+          "registered_bytes": 62498,
+          "role": "H-EXT-4 entry-point script (B.8)",
+          "gating": true,
+          "commit_is_ancestor_of_pin": true,
+          "commit_is_ancestor_of_main": true,
+          "git_blob_sha1": "0a956290edd395a39a168151d0a8b100a62e0ac8",
+          "measured_sha256": "17afd42d4eae75f13e7e66896130f245891698edcd44f96f0be95837361bc275",
+          "measured_bytes": 62498,
+          "verdict": "IDENTICAL"
+        },
+        {
+          "path": "research/llm-machine-epistemics/H_EXT4_QUANTITATIVE_REVISION_PREMIUM_V1.md",
+          "commit": "52d2578b48a10991bd9944bf3117355c7c86c1b5",
+          "registered_sha256": "f0d058ca8b23282f2c706dfd959a0e101dd5b22cd2a9c7bf59924ed54d57e3e8",
+          "registered_bytes": 33751,
+          "role": "H-EXT-4 finding record (predictive-congruence note)",
+          "gating": true,
+          "commit_is_ancestor_of_pin": true,
+          "commit_is_ancestor_of_main": true,
+          "git_blob_sha1": "b35b1ae4d5df30eba4c832aef6b8194c09082bdb",
+          "measured_sha256": "f0d058ca8b23282f2c706dfd959a0e101dd5b22cd2a9c7bf59924ed54d57e3e8",
+          "measured_bytes": 33751,
+          "verdict": "IDENTICAL"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/llm_epistemics_partition_audit.py",
+          "commit": "52d2578b48a10991bd9944bf3117355c7c86c1b5",
+          "registered_sha256": "4e21b602973e0c584ddc5df80774c31aaaf97f4a712881a70cb2b5633d900a89",
+          "registered_bytes": 3526,
+          "role": "B.1 script",
+          "gating": true,
+          "commit_is_ancestor_of_pin": true,
+          "commit_is_ancestor_of_main": true,
+          "git_blob_sha1": "a5dc721418b711b5c90b716f58cb1e4aba46db78",
+          "measured_sha256": "4e21b602973e0c584ddc5df80774c31aaaf97f4a712881a70cb2b5633d900a89",
+          "measured_bytes": 3526,
+          "verdict": "IDENTICAL"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/out/PARTITION_ENUMERATION_RECEIPT_V1.json",
+          "commit": "52d2578b48a10991bd9944bf3117355c7c86c1b5",
+          "registered_sha256": "d3e5719f33f9debe56463ba270beb4ad28cb457e01332acd8f79134af646c45f",
+          "registered_bytes": 2579,
+          "role": "B.1 record",
+          "gating": true,
+          "commit_is_ancestor_of_pin": true,
+          "commit_is_ancestor_of_main": true,
+          "git_blob_sha1": "cdd7e57a5e0c6c76100c657231f46e6a3f1c0fa9",
+          "measured_sha256": "d3e5719f33f9debe56463ba270beb4ad28cb457e01332acd8f79134af646c45f",
+          "measured_bytes": 2579,
+          "verdict": "IDENTICAL"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/llm_epistemics_selector_audit.py",
+          "commit": "52d2578b48a10991bd9944bf3117355c7c86c1b5",
+          "registered_sha256": "4b6855cadbfd7961f61495f60f22bce2f3c0df05297484cb5bd39a7adddfc21c",
+          "registered_bytes": 19288,
+          "role": "B.2 script",
+          "gating": true,
+          "commit_is_ancestor_of_pin": true,
+          "commit_is_ancestor_of_main": true,
+          "git_blob_sha1": "72dffa1026862ec39df990208d68db87a97e2318",
+          "measured_sha256": "4b6855cadbfd7961f61495f60f22bce2f3c0df05297484cb5bd39a7adddfc21c",
+          "measured_bytes": 19288,
+          "verdict": "IDENTICAL"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/out/RESPONSIBILITY_SELECTOR_AUDIT_V1.json",
+          "commit": "52d2578b48a10991bd9944bf3117355c7c86c1b5",
+          "registered_sha256": "7d74ab60c73bbbd7c4eacfa213b000c70f6fd1b0444094b3469f93406e667070",
+          "registered_bytes": 3194,
+          "role": "B.2 record",
+          "gating": true,
+          "commit_is_ancestor_of_pin": true,
+          "commit_is_ancestor_of_main": true,
+          "git_blob_sha1": "2cd3067f7a406f65cfe6df1487703237edf796a2",
+          "measured_sha256": "7d74ab60c73bbbd7c4eacfa213b000c70f6fd1b0444094b3469f93406e667070",
+          "measured_bytes": 3194,
+          "verdict": "IDENTICAL"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/llm_epistemics_dynamic_phase_audit.py",
+          "commit": "52d2578b48a10991bd9944bf3117355c7c86c1b5",
+          "registered_sha256": "19ed8e3abe908c4109de4a81e3e02d1114573146c2b3baa4b3e0ba59201c1dbf",
+          "registered_bytes": 41904,
+          "role": "B.3/B.4 script",
+          "gating": true,
+          "commit_is_ancestor_of_pin": true,
+          "commit_is_ancestor_of_main": true,
+          "git_blob_sha1": "68227d01ec181f3566b5ea0097bece8006820c4a",
+          "measured_sha256": "19ed8e3abe908c4109de4a81e3e02d1114573146c2b3baa4b3e0ba59201c1dbf",
+          "measured_bytes": 41904,
+          "verdict": "IDENTICAL"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/out/DYNAMIC_RESPONSIBILITY_OPTIMIZATION_V1.json",
+          "commit": "52d2578b48a10991bd9944bf3117355c7c86c1b5",
+          "registered_sha256": "3b174969b33ed5ad2635d149b6806290a4309b7aa6ac2bd26c380367291b6f7a",
+          "registered_bytes": 7222,
+          "role": "B.3 record",
+          "gating": true,
+          "commit_is_ancestor_of_pin": true,
+          "commit_is_ancestor_of_main": true,
+          "git_blob_sha1": "ee46ea15c3fe4207dd3ae6d616a36f4b1cee423d",
+          "measured_sha256": "3b174969b33ed5ad2635d149b6806290a4309b7aa6ac2bd26c380367291b6f7a",
+          "measured_bytes": 7222,
+          "verdict": "IDENTICAL"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/out/JOINT_DYNAMIC_SELECTOR_EQUIVALENCE_V1.json",
+          "commit": "52d2578b48a10991bd9944bf3117355c7c86c1b5",
+          "registered_sha256": "2aacdf5d2f5cca170cd97199c28961966ccd03f010a5d2e652620b7b6baa891c",
+          "registered_bytes": 18998,
+          "role": "B.3 record",
+          "gating": true,
+          "commit_is_ancestor_of_pin": true,
+          "commit_is_ancestor_of_main": true,
+          "git_blob_sha1": "9a8974ea4e714259210221cbc8060e40c2d25031",
+          "measured_sha256": "2aacdf5d2f5cca170cd97199c28961966ccd03f010a5d2e652620b7b6baa891c",
+          "measured_bytes": 18998,
+          "verdict": "IDENTICAL"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/out/RESPONSIBILITY_STATE_PHASE_AUDIT_V1.json",
+          "commit": "52d2578b48a10991bd9944bf3117355c7c86c1b5",
+          "registered_sha256": "e116b1216043d10aa3b85e639a373aa22aa1cc8fb9d83daf42995322edb67816",
+          "registered_bytes": 5061,
+          "role": "B.4 record",
+          "gating": true,
+          "commit_is_ancestor_of_pin": true,
+          "commit_is_ancestor_of_main": true,
+          "git_blob_sha1": "9d79bc1d6dbb872322840f7f766b62f8e17ff30b",
+          "measured_sha256": "e116b1216043d10aa3b85e639a373aa22aa1cc8fb9d83daf42995322edb67816",
+          "measured_bytes": 5061,
+          "verdict": "IDENTICAL"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/out/RESPONSIBILITY_HORIZON_CURVE_V1.json",
+          "commit": "52d2578b48a10991bd9944bf3117355c7c86c1b5",
+          "registered_sha256": "99d37bcd6bac6520337553afb47f6c0688ab986b1b01caceeb79004085330d96",
+          "registered_bytes": 19171,
+          "role": "B.4 record",
+          "gating": true,
+          "commit_is_ancestor_of_pin": true,
+          "commit_is_ancestor_of_main": true,
+          "git_blob_sha1": "ed75493f49446072619a0f998bc092cf0590c881",
+          "measured_sha256": "99d37bcd6bac6520337553afb47f6c0688ab986b1b01caceeb79004085330d96",
+          "measured_bytes": 19171,
+          "verdict": "IDENTICAL"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/llm_epistemics_universality_audit.py",
+          "commit": "52d2578b48a10991bd9944bf3117355c7c86c1b5",
+          "registered_sha256": "81bb9f1b7159400887d5309dfd2060adbd8981649f69db80577699ba1b926d37",
+          "registered_bytes": 19441,
+          "role": "B.5 script",
+          "gating": true,
+          "commit_is_ancestor_of_pin": true,
+          "commit_is_ancestor_of_main": true,
+          "git_blob_sha1": "0047bd4357154cd8e6608d4d1743f92c2882bcc6",
+          "measured_sha256": "81bb9f1b7159400887d5309dfd2060adbd8981649f69db80577699ba1b926d37",
+          "measured_bytes": 19441,
+          "verdict": "IDENTICAL"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/out/RESPONSIBILITY_UNIVERSALITY_AUDIT_V1.json",
+          "commit": "52d2578b48a10991bd9944bf3117355c7c86c1b5",
+          "registered_sha256": "eb7de22aa760d872c75ca3d04610f8b38555650b0eae9cec29e74ece17a43e5e",
+          "registered_bytes": 1601,
+          "role": "B.5 record",
+          "gating": true,
+          "commit_is_ancestor_of_pin": true,
+          "commit_is_ancestor_of_main": true,
+          "git_blob_sha1": "93a35ba19d881d20a430d08ed84f4fd4e794b944",
+          "measured_sha256": "eb7de22aa760d872c75ca3d04610f8b38555650b0eae9cec29e74ece17a43e5e",
+          "measured_bytes": 1601,
+          "verdict": "IDENTICAL"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/llm_epistemics_deficit_audit.py",
+          "commit": "52d2578b48a10991bd9944bf3117355c7c86c1b5",
+          "registered_sha256": "7be1d40a3ac245b0c3aeeaa76331f080514ccee33e59ee404dcbd8f0b821e960",
+          "registered_bytes": 11692,
+          "role": "B.6 script",
+          "gating": true,
+          "commit_is_ancestor_of_pin": true,
+          "commit_is_ancestor_of_main": true,
+          "git_blob_sha1": "be6942a4ab12fd3c0fb2f864a7a0d1fcb3f42b16",
+          "measured_sha256": "7be1d40a3ac245b0c3aeeaa76331f080514ccee33e59ee404dcbd8f0b821e960",
+          "measured_bytes": 11692,
+          "verdict": "IDENTICAL"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/out/EPISTEMIC_DEFICIT_IDENTITY_AUDIT_V1.json",
+          "commit": "52d2578b48a10991bd9944bf3117355c7c86c1b5",
+          "registered_sha256": "e7d9d78bca790dd52f99614ad90482f118b8e04a269410292f54af55a7ecd21c",
+          "registered_bytes": 6720,
+          "role": "B.6 record",
+          "gating": true,
+          "commit_is_ancestor_of_pin": true,
+          "commit_is_ancestor_of_main": true,
+          "git_blob_sha1": "be4f7efe440d53eecaca25dfc64be4cce0fea98c",
+          "measured_sha256": "e7d9d78bca790dd52f99614ad90482f118b8e04a269410292f54af55a7ecd21c",
+          "measured_bytes": 6720,
+          "verdict": "IDENTICAL"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/llm_epistemics_mutation_audit.py",
+          "commit": "52d2578b48a10991bd9944bf3117355c7c86c1b5",
+          "registered_sha256": "942ff840791b5fd954f74fa8280fc9a4df9f86ace19c7833d87285aad2232257",
+          "registered_bytes": 19432,
+          "role": "B.7 script",
+          "gating": true,
+          "commit_is_ancestor_of_pin": true,
+          "commit_is_ancestor_of_main": true,
+          "git_blob_sha1": "c67889bdad2a3695489336f33cbe926c085fd607",
+          "measured_sha256": "942ff840791b5fd954f74fa8280fc9a4df9f86ace19c7833d87285aad2232257",
+          "measured_bytes": 19432,
+          "verdict": "IDENTICAL"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/out/PREDICTIVE_COMPRESSION_ASSUMPTION_MATRIX_V1.json",
+          "commit": "52d2578b48a10991bd9944bf3117355c7c86c1b5",
+          "registered_sha256": "cef59cf39df321ee9acd942c458d3515be932d82dd380f43a0a20261ba430884",
+          "registered_bytes": 4007,
+          "role": "B.7 record",
+          "gating": true,
+          "commit_is_ancestor_of_pin": true,
+          "commit_is_ancestor_of_main": true,
+          "git_blob_sha1": "0809a008fc45e84a9629f7fed36ecbd75c614c9d",
+          "measured_sha256": "cef59cf39df321ee9acd942c458d3515be932d82dd380f43a0a20261ba430884",
+          "measured_bytes": 4007,
+          "verdict": "IDENTICAL"
+        }
+      ]
+    },
+    "planted_controls": {
+      "all_caught": true,
+      "controls": [
+        {
+          "control": "planted_zeroed_sha256",
+          "must": "FAIL",
+          "caught": true,
+          "detail": "DIGEST_MISMATCH"
+        },
+        {
+          "control": "planted_wrong_byte_count",
+          "must": "FAIL",
+          "caught": true,
+          "detail": "BYTES_MISMATCH"
+        },
+        {
+          "control": "planted_unresolvable_commit",
+          "must": "FAIL",
+          "caught": true,
+          "detail": "CouldNotCheck: git rev-parse --verify 0000000deadbeef^{commit}: fatal: Needed a single revision"
+        },
+        {
+          "control": "planted_commit_after_pin",
+          "must": "FAIL",
+          "caught": true,
+          "detail": "main d756c086 vs pin fd7a4e44"
+        }
+      ]
+    },
+    "cross_check_with_bundle": {
+      "bundle_agrees": [
+        {
+          "path": "research/llm-machine-epistemics/H_EXT4_RESULT_V1.json",
+          "commit": "52d2578b",
+          "bundle_sha256": "496c823eec86441329e103107f270a4a36c7d3aa00ba2409f53380e780299e9a",
+          "registry_sha256": "496c823eec86441329e103107f270a4a36c7d3aa00ba2409f53380e780299e9a"
+        },
+        {
+          "path": "research/llm-machine-epistemics/h_ext4_premium_bounds.py",
+          "commit": "52d2578b",
+          "bundle_sha256": "17afd42d4eae75f13e7e66896130f245891698edcd44f96f0be95837361bc275",
+          "registry_sha256": "17afd42d4eae75f13e7e66896130f245891698edcd44f96f0be95837361bc275"
+        },
+        {
+          "path": "research/llm-machine-epistemics/H_EXT4_QUANTITATIVE_REVISION_PREMIUM_V1.md",
+          "commit": "52d2578b",
+          "bundle_sha256": "f0d058ca8b23282f2c706dfd959a0e101dd5b22cd2a9c7bf59924ed54d57e3e8",
+          "registry_sha256": "f0d058ca8b23282f2c706dfd959a0e101dd5b22cd2a9c7bf59924ed54d57e3e8"
+        }
+      ],
+      "later_correction_pinned_by_registry_ADVISORY": [],
+      "DIFFERENT_bytes_between_bundle_and_registry": [],
+      "registry_only_not_in_bundle": [
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/llm_epistemics_partition_audit.py",
+          "commit": "52d2578b",
+          "role": "B.1 script"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/out/PARTITION_ENUMERATION_RECEIPT_V1.json",
+          "commit": "52d2578b",
+          "role": "B.1 record"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/llm_epistemics_selector_audit.py",
+          "commit": "52d2578b",
+          "role": "B.2 script"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/out/RESPONSIBILITY_SELECTOR_AUDIT_V1.json",
+          "commit": "52d2578b",
+          "role": "B.2 record"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/llm_epistemics_dynamic_phase_audit.py",
+          "commit": "52d2578b",
+          "role": "B.3/B.4 script"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/out/DYNAMIC_RESPONSIBILITY_OPTIMIZATION_V1.json",
+          "commit": "52d2578b",
+          "role": "B.3 record"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/out/JOINT_DYNAMIC_SELECTOR_EQUIVALENCE_V1.json",
+          "commit": "52d2578b",
+          "role": "B.3 record"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/out/RESPONSIBILITY_STATE_PHASE_AUDIT_V1.json",
+          "commit": "52d2578b",
+          "role": "B.4 record"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/out/RESPONSIBILITY_HORIZON_CURVE_V1.json",
+          "commit": "52d2578b",
+          "role": "B.4 record"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/llm_epistemics_universality_audit.py",
+          "commit": "52d2578b",
+          "role": "B.5 script"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/out/RESPONSIBILITY_UNIVERSALITY_AUDIT_V1.json",
+          "commit": "52d2578b",
+          "role": "B.5 record"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/llm_epistemics_deficit_audit.py",
+          "commit": "52d2578b",
+          "role": "B.6 script"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/out/EPISTEMIC_DEFICIT_IDENTITY_AUDIT_V1.json",
+          "commit": "52d2578b",
+          "role": "B.6 record"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/llm_epistemics_mutation_audit.py",
+          "commit": "52d2578b",
+          "role": "B.7 script"
+        },
+        {
+          "path": "research/llm-machine-epistemics/mechanical_execution/out/PREDICTIVE_COMPRESSION_ASSUMPTION_MATRIX_V1.json",
+          "commit": "52d2578b",
+          "role": "B.7 record"
+        }
+      ],
+      "counts": {
+        "agree": 3,
+        "later_correction": 0,
+        "different_bytes": 0,
+        "registry_only": 15
+      }
+    }
+  },
+  "authority": {
+    "grants_registration": false,
+    "grants_scientific_truth": false,
+    "grants_publication_authority": false,
+    "note": "A proposal by the guards lane of WHICH ORION-V2 commits and files a paper's cited evidence resolves to, with their identities at the pin. Registration is the paper lane's act in ORION-paper's PAPER_REGISTRY.json; until then the label stays PIN_PROPOSED. Nothing here asserts that a claim is true, only where its receipt lives and what bytes it had."
+  },
+  "frame": "digests measured AT EACH STUDY'S PIN; status_on_main is an advisory, never a failure",
+  "studies": [
+    {
+      "id": "H-EXT-4",
+      "orion_v2_commit": "52d2578b48a10991bd9944bf3117355c7c86c1b5",
+      "short": "52d2578b",
+      "date": "2026-09-02",
+      "subject": "h-ext-4: honest denominator for the label-identity check too (#175)",
+      "on_main": true,
+      "evidence_roots": [
+        "research/llm-machine-epistemics/",
+        "tests/unit/test_h_ext4_premium_bounds.py"
+      ],
+      "receipt": "research/llm-machine-epistemics/H_EXT4_QUANTITATIVE_REVISION_PREMIUM_V1.md",
+      "terminal_expected": "H-EXT-4",
+      "terminal_found_in_receipt_at_pin": true,
+      "claim_strings_found_in": {
+        "812,771": [
+          "research/llm-machine-epistemics/H_EXT4_QUANTITATIVE_REVISION_PREMIUM_V1.md"
+        ],
+        "1,745,628": [
+          "research/llm-machine-epistemics/H_EXT4_QUANTITATIVE_REVISION_PREMIUM_V1.md"
+        ]
+      },
+      "files": [
+        {
+          "path": "research/llm-machine-epistemics/H_EXT4_QUANTITATIVE_REVISION_PREMIUM_V1.md",
+          "change": "M",
+          "git_blob_sha1": "b35b1ae4d5df30eba4c832aef6b8194c09082bdb",
+          "sha256": "f0d058ca8b23282f2c706dfd959a0e101dd5b22cd2a9c7bf59924ed54d57e3e8",
+          "bytes": 33751,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/llm-machine-epistemics/H_EXT4_RESULT_V1.json",
+          "change": "M",
+          "git_blob_sha1": "f3dc28986b2cac5be4acb8a90b5a14bd125b6e94",
+          "sha256": "496c823eec86441329e103107f270a4a36c7d3aa00ba2409f53380e780299e9a",
+          "bytes": 48026,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        },
+        {
+          "path": "research/llm-machine-epistemics/h_ext4_premium_bounds.py",
+          "change": "M",
+          "git_blob_sha1": "0a956290edd395a39a168151d0a8b100a62e0ac8",
+          "sha256": "17afd42d4eae75f13e7e66896130f245891698edcd44f96f0be95837361bc275",
+          "bytes": 62498,
+          "status_on_main": "UNCHANGED_ON_MAIN"
+        }
+      ],
+      "counts": {
+        "files": 3,
+        "unchanged_on_main": 3,
+        "changed_since_pin": 0,
+        "removed_on_main": 0,
+        "missing_at_pin": 0
+      },
+      "role": "quantitative prospective-revision premium: proofs + mechanized checks. 52d2578b (#175, honest denominator for the label-identity check) is the commit ORION-paper's registry names as the finding source and pins the three H-EXT-4 paths at; it corrects the first landing 51142ea3 (#147) and #166. The registry pins fifteen further mechanical_execution/ paths at the same commit; they are verified in registered mode as registry-only entries.",
+      "superseded_note": "the PIN_PROPOSED bundle of 2026-09-04 pinned 51142ea3 (#147); the three H-EXT-4 paths changed at #166 and #175 and the registry binds the corrected bytes"
+    }
+  ],
+  "unattributed_claim_strings_found_in": {},
+  "advisory_changed_or_removed_since_pin": [],
+  "defects": [],
+  "totals": {
+    "studies": 1,
+    "files": 3,
+    "unchanged_on_main": 3,
+    "changed_since_pin": 0,
+    "removed_on_main": 0,
+    "missing_at_pin": 0
+  }
+}

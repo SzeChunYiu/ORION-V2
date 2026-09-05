@@ -30,8 +30,22 @@ Exit codes, deliberately three:
     2  could not check: git unreadable, a commit unresolvable, or a
        must-match control inside the self-test did not match
 
+Registered mode (`--registry FILE --registry-commit SHA`): once a paper lane has
+registered per-paper pins in ORION-paper's PAPER_REGISTRY.json
+(`orion_v2_evidence_pins`, schema orion-paper.per-paper-evidence-pins.v1), the
+same build re-verifies EVERY registered triple (path, commit, sha256, bytes)
+against this repository's object database -- blob read with `git cat-file`,
+hashed in-process -- and cross-checks it against the bundle's own pinned
+files. The label becomes REGISTERED only when every triple is IDENTICAL, every
+artifact commit is an ancestor of both the registered pin and --main-ref, and
+four planted controls fail as they must (a zeroed digest, a wrong byte count,
+an unresolvable commit, a commit that is not an ancestor of the pin). A
+control that does not fail is exit 2, never a pass: a verifier that cannot
+see a planted mismatch has verified nothing.
+
 Usage:
     build_evidence_bundle.py --paper FLAGSHIP|PRA --git-dir DIR --out DIR [--main-ref origin/main]
+    build_evidence_bundle.py --paper FLAGSHIP --git-dir DIR --out DIR --registry REGISTRY.json --registry-commit SHA
     build_evidence_bundle.py --self-test --git-dir DIR
 """
 
@@ -50,6 +64,10 @@ GIT = "/usr/bin/git" if Path("/usr/bin/git").exists() else "git"
 EXIT_OK, EXIT_FAIL, EXIT_CNC = 0, 1, 2
 SCHEMA = "orion.v2.guards.evidence-bundle.v1"
 LABEL = "PIN_PROPOSED"
+REGISTERED_LABEL = "REGISTERED"
+REGISTRY_PINS_SCHEMA = "orion-paper.per-paper-evidence-pins.v1"
+# ORION-paper registry `papers[].paper_id` for each bundle paper
+REGISTRY_PAPER_IDS = {"FLAGSHIP": ("FLAGSHIP",), "PRA": ("#51",)}
 
 # Bulk campaign material is not evidence a manuscript cites by path; it is bound
 # by the custody manifests that ARE included.
@@ -126,13 +144,18 @@ SPECS = {
         "paper_folder": "v2-papers/llm-machine-epistemics",
         "registry_field_that_cites_these": "papers[#51].v16_revision_receipts (H-EXT-4 note)",
         "studies": [
-            {"id": "H-EXT-4", "commit": "51142ea3",
+            {"id": "H-EXT-4", "commit": "52d2578b",
              "roots": ["research/llm-machine-epistemics/", "tests/unit/test_h_ext4_premium_bounds.py"],
              "receipt": "research/llm-machine-epistemics/H_EXT4_QUANTITATIVE_REVISION_PREMIUM_V1.md",
              "terminal_expected": "H-EXT-4",
-             "claim_strings": [],
-             "role": "quantitative prospective-revision premium: proofs + mechanized checks; the registry "
-                     "already pins two of these paths at d9e588f and they are unchanged there"},
+             "claim_strings": ["812,771", "1,745,628"],
+             "role": "quantitative prospective-revision premium: proofs + mechanized checks. 52d2578b (#175, "
+                     "honest denominator for the label-identity check) is the commit ORION-paper's registry names "
+                     "as the finding source and pins the three H-EXT-4 paths at; it corrects the first landing "
+                     "51142ea3 (#147) and #166. The registry pins fifteen further mechanical_execution/ paths at "
+                     "the same commit; they are verified in registered mode as registry-only entries.",
+             "superseded_note": "the PIN_PROPOSED bundle of 2026-09-04 pinned 51142ea3 (#147); the three H-EXT-4 "
+                                "paths changed at #166 and #175 and the registry binds the corrected bytes"},
         ],
         "unattributed_claim_strings": [],
     },
@@ -324,6 +347,171 @@ def build(paper: str, git_dir: str, main_ref: str) -> tuple[dict, int]:
     return bundle, (EXIT_FAIL if defects else EXIT_OK)
 
 
+def registry_pins(registry_path: Path, paper: str) -> tuple[dict, str]:
+    """(orion_v2_evidence_pins block, sha256 of the registry file) for a paper; CouldNotCheck if absent."""
+    data = registry_path.read_bytes()
+    reg = json.loads(data.decode("utf-8"))
+    for p in reg.get("papers", []):
+        if str(p.get("paper_id") or p.get("id")) in REGISTRY_PAPER_IDS[paper]:
+            pins = p.get("orion_v2_evidence_pins")
+            if not pins:
+                raise CouldNotCheck(f"registry paper {p.get('paper_id')} has no orion_v2_evidence_pins")
+            if pins.get("schema") != REGISTRY_PINS_SCHEMA:
+                raise CouldNotCheck(f"registry pins schema {pins.get('schema')!r} != {REGISTRY_PINS_SCHEMA!r}")
+            if not pins.get("artifacts"):
+                raise CouldNotCheck("registry pins carry zero artifacts (vacuous)")
+            return pins, hashlib.sha256(data).hexdigest()
+    raise CouldNotCheck(f"paper {paper} ({REGISTRY_PAPER_IDS[paper]}) not in registry {registry_path}")
+
+
+def verify_registry_artifact(git_dir: str, pin: str, main: str, art: dict) -> tuple[dict, list[str]]:
+    """Re-measure one registered (path, commit, sha256, bytes) triple against the object DB.
+
+    Raises CouldNotCheck for an unresolvable commit (could not check is never a pass)."""
+    defects: list[str] = []
+    commit = resolve(git_dir, art["commit"])
+    path = art["path"]
+    row = {"path": path, "commit": commit, "registered_sha256": art["sha256"], "registered_bytes": art.get("bytes"),
+           "role": art.get("role"), "gating": art.get("gating")}
+    row["commit_is_ancestor_of_pin"] = is_ancestor(git_dir, commit, pin)
+    row["commit_is_ancestor_of_main"] = is_ancestor(git_dir, commit, main)
+    if not row["commit_is_ancestor_of_pin"]:
+        defects.append(f"{path}: commit {commit[:8]} is not an ancestor of the registered pin {pin[:8]}")
+    if not row["commit_is_ancestor_of_main"]:
+        defects.append(f"{path}: commit {commit[:8]} is not an ancestor of the main ref")
+    kind, oid, _ = ls_tree(git_dir, commit, path)
+    if kind != "blob":
+        row["verdict"] = "MISSING_AT_COMMIT"
+        defects.append(f"{path}: missing at registered commit {commit[:8]}")
+        return row, defects
+    data = blob_bytes(git_dir, oid)
+    sha = hashlib.sha256(data).hexdigest()
+    row.update({"git_blob_sha1": oid, "measured_sha256": sha, "measured_bytes": len(data)})
+    if sha != art["sha256"]:
+        row["verdict"] = "DIGEST_MISMATCH"
+        defects.append(f"{path}@{commit[:8]}: registered sha256 {art['sha256'][:12]}… != measured {sha[:12]}…")
+    elif art.get("bytes") is not None and len(data) != art["bytes"]:
+        row["verdict"] = "BYTES_MISMATCH"
+        defects.append(f"{path}@{commit[:8]}: registered bytes {art['bytes']} != measured {len(data)}")
+    else:
+        row["verdict"] = "IDENTICAL"
+    return row, defects
+
+
+def registry_controls(git_dir: str, pin: str, main: str, art: dict) -> tuple[list[dict], bool]:
+    """Four planted faults against a REAL registered artifact; each MUST be caught."""
+    out = []
+
+    def rec(name: str, caught: bool, detail: str):
+        out.append({"control": name, "must": "FAIL", "caught": caught, "detail": detail})
+
+    row, d = verify_registry_artifact(git_dir, pin, main, dict(art, sha256="0" * 64))
+    rec("planted_zeroed_sha256", row["verdict"] == "DIGEST_MISMATCH" and bool(d), row["verdict"])
+    row, d = verify_registry_artifact(git_dir, pin, main, dict(art, bytes=int(art["bytes"]) + 1))
+    rec("planted_wrong_byte_count", row["verdict"] == "BYTES_MISMATCH" and bool(d), row["verdict"])
+    try:
+        verify_registry_artifact(git_dir, pin, main, dict(art, commit="0000000deadbeef"))
+        rec("planted_unresolvable_commit", False, "did not raise")
+    except CouldNotCheck as e:
+        rec("planted_unresolvable_commit", True, f"CouldNotCheck: {str(e)[:80]}")
+    # a commit that is NOT an ancestor of the pin: the pin's own first parent's sibling is not
+    # guaranteed to exist, so use the main ref when it is strictly after the pin, else a fresh
+    # orphan-like check is impossible and the control is recorded as could-not-plant (exit 2).
+    if main != pin and not is_ancestor(git_dir, main, pin):
+        row, d = verify_registry_artifact(git_dir, pin, main, dict(art, commit=main))
+        rec("planted_commit_after_pin", row["commit_is_ancestor_of_pin"] is False and any("not an ancestor of the registered pin" in x for x in d),
+            f"main {main[:8]} vs pin {pin[:8]}")
+    else:
+        rec("planted_commit_after_pin", False, "could not plant: main ref is not strictly after the pin")
+    return out, all(c["caught"] for c in out)
+
+
+def cross_check_bundle(git_dir: str, bundle: dict, rows: list[dict]) -> dict:
+    """Does the bundle's own measurement agree with every registered triple it also covers?
+
+    A registered path the bundle pins at an EARLIER commit with different bytes is a later
+    correction the registry binds at its own commit (P-D's lesson: pin the corrected bytes too).
+    It is an advisory, not a defect, when (a) the registry commit descends from the bundle's
+    commit and (b) the bundle already reports that path CHANGED_SINCE_PIN with the registry
+    commit among the commits that touched it. Anything else that hashes differently is a defect."""
+    by_path_commit: dict[tuple[str, str], dict] = {}
+    by_path: dict[str, list[tuple[str, dict]]] = {}
+    for st in bundle["studies"]:
+        for f in st["files"]:
+            if "sha256" in f:
+                by_path_commit[(f["path"], st["orion_v2_commit"])] = f
+                by_path.setdefault(f["path"], []).append((st["orion_v2_commit"], f))
+    agree, registry_only, later_correction, different = [], [], [], []
+    for r in rows:
+        key = (r["path"], r["commit"])
+        if key in by_path_commit:
+            b = by_path_commit[key]
+            entry = {"path": r["path"], "commit": r["commit"][:8], "bundle_sha256": b["sha256"], "registry_sha256": r["registered_sha256"]}
+            (agree if b["sha256"] == r.get("measured_sha256") == r["registered_sha256"] else different).append(entry)
+        elif r["path"] in by_path:
+            for c, b in by_path[r["path"]]:
+                entry = {"path": r["path"], "registry_commit": r["commit"][:8], "bundle_commit": c[:8],
+                         "bundle_sha256": b["sha256"], "registry_sha256": r["registered_sha256"]}
+                if b["sha256"] == r["registered_sha256"]:
+                    entry["note"] = "same bytes at both commits"
+                    agree.append(entry)
+                    continue
+                descends = is_ancestor(git_dir, c, r["commit"])
+                seen = b.get("status_on_main") == "CHANGED_SINCE_PIN" and any(
+                    r["commit"].startswith(t["sha"]) for t in b.get("touched_by_after_pin", []))
+                entry.update({"registry_commit_descends_from_bundle_commit": descends, "bundle_advisory_names_registry_commit": seen})
+                (later_correction if (descends and seen) else different).append(entry)
+        else:
+            registry_only.append({"path": r["path"], "commit": r["commit"][:8], "role": r.get("role")})
+    return {"bundle_agrees": agree, "later_correction_pinned_by_registry_ADVISORY": later_correction,
+            "DIFFERENT_bytes_between_bundle_and_registry": different,
+            "registry_only_not_in_bundle": registry_only,
+            "counts": {"agree": len(agree), "later_correction": len(later_correction),
+                       "different_bytes": len(different), "registry_only": len(registry_only)}}
+
+
+def build_registered(paper: str, git_dir: str, main_ref: str, registry: Path, registry_commit: str,
+                     verified_by: str) -> tuple[dict, int]:
+    bundle, rc = build(paper, git_dir, main_ref)
+    if rc != EXIT_OK:
+        return bundle, rc
+    pins, reg_sha = registry_pins(registry, paper)
+    main = bundle["measured_against_main"]["commit"]
+    pin = resolve(git_dir, pins["pin"])
+    rows, defects = [], []
+    for art in pins["artifacts"]:
+        row, d = verify_registry_artifact(git_dir, pin, main, art)
+        rows.append(row)
+        defects += d
+    controls, controls_ok = registry_controls(git_dir, pin, main, pins["artifacts"][0])
+    xc = cross_check_bundle(git_dir, bundle, rows)
+    if xc["counts"]["different_bytes"]:
+        defects.append(f"{xc['counts']['different_bytes']} path(s) hash differently in the bundle and the registry")
+    identical = sum(r["verdict"] == "IDENTICAL" for r in rows)
+    registered = controls_ok and not defects and identical == len(rows) and len(rows) > 0
+    bundle["label"] = REGISTERED_LABEL if registered else LABEL
+    bundle["registration"] = {
+        "registered": registered,
+        "registry": "ORION-paper v2-papers/PAPER_REGISTRY.json",
+        "registry_commit": registry_commit, "registry_file_sha256": reg_sha,
+        "registry_pins_schema": pins.get("schema"), "registered_on": pins.get("registered"),
+        "registered_pin": pin, "registered_pin_is_ancestor_of_main": is_ancestor(git_dir, pin, main),
+        "quantity_roots": pins.get("quantity_roots"),
+        "verified_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "verified_by": verified_by,
+        "verification": {"artifacts": len(rows), "identical": identical,
+                         "gating_artifacts": sum(bool(r.get("gating")) for r in rows),
+                         "defects": defects, "rows": rows},
+        "planted_controls": {"all_caught": controls_ok, "controls": controls},
+        "cross_check_with_bundle": xc,
+    }
+    if not registered:
+        bundle["registration"]["awaiting"] = "registry triples did not verify (see verification.defects / planted_controls); label kept PIN_PROPOSED"
+    bundle["defects"] = bundle["defects"] + defects
+    if not controls_ok:
+        return bundle, EXIT_CNC
+    return bundle, (EXIT_OK if registered else EXIT_FAIL)
+
+
 def self_test(git_dir: str) -> int:
     print("build_evidence_bundle self-test")
     ok = True
@@ -383,18 +571,26 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--main-ref", default="origin/main")
     ap.add_argument("--out", type=Path)
     ap.add_argument("--self-test", action="store_true")
+    ap.add_argument("--registry", type=Path, help="registered mode: local copy of ORION-paper v2-papers/PAPER_REGISTRY.json at --registry-commit")
+    ap.add_argument("--registry-commit", help="ORION-paper commit the --registry file was read from (recorded, not verified here)")
+    ap.add_argument("--verified-by", default="lane-evidence (ORION-V2)")
     a = ap.parse_args(argv)
     try:
         if a.self_test:
             return self_test(a.git_dir)
         if not a.paper or not a.out:
             ap.error("--paper and --out are required unless --self-test")
-        bundle, rc = build(a.paper, a.git_dir, a.main_ref)
+        if a.registry or a.registry_commit:
+            if not (a.registry and a.registry_commit):
+                ap.error("--registry and --registry-commit go together")
+            bundle, rc = build_registered(a.paper, a.git_dir, a.main_ref, a.registry, a.registry_commit, a.verified_by)
+        else:
+            bundle, rc = build(a.paper, a.git_dir, a.main_ref)
     except CouldNotCheck as e:
         print(f"COULD NOT CHECK: {e}")
         return EXIT_CNC
     a.out.mkdir(parents=True, exist_ok=True)
-    path = a.out / f"{a.paper}_EVIDENCE_BUNDLE_{LABEL}_V1.json"
+    path = a.out / f"{a.paper}_EVIDENCE_BUNDLE_{bundle['label']}_V1.json"
     path.write_text(json.dumps(bundle, indent=2, ensure_ascii=False) + "\n")
     t = bundle["totals"]
     print(f"{a.paper}: {t['studies']} studies, {t['files']} files; unchanged {t['unchanged_on_main']}, "
@@ -402,6 +598,15 @@ def main(argv: list[str] | None = None) -> int:
           f"defects {len(bundle['defects'])} -> {path}")
     for d in bundle["defects"]:
         print("  DEFECT:", d)
+    if "planted_controls" in bundle.get("registration", {}):
+        reg = bundle["registration"]
+        v, pc, xc = reg["verification"], reg["planted_controls"], reg["cross_check_with_bundle"]["counts"]
+        print(f"  registry {a.registry_commit[:8]} pin {reg['registered_pin'][:8]}: {v['identical']}/{v['artifacts']} triples IDENTICAL; "
+              f"controls caught {sum(c['caught'] for c in pc['controls'])}/{len(pc['controls'])}; "
+              f"cross-check agree {xc['agree']}, later-correction advisories {xc['later_correction']}, "
+              f"DIFFERENT {xc['different_bytes']}, registry-only {xc['registry_only']}; label {bundle['label']}")
+        for c in pc["controls"]:
+            print(f"    control {c['control']}: {'caught' if c['caught'] else 'NOT CAUGHT'} ({c['detail']})")
     return rc
 
 
