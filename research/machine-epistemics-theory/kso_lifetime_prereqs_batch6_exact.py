@@ -244,6 +244,8 @@ def pooled_orderings(per_ordering):
 def lifetime_design(per_ordering, distinct_streams):
     """Honest unit accounting: orderings of ONE task stream are re-orderings of one lifetime (n_lifetimes = 1); only distinct
     streams count.  Returns the unit count and the verdict tier."""
+    if not per_ordering:
+        return 0, "CANNOT_CHECK"
     n_units = len(per_ordering) if distinct_streams else 1
     if n_units < 5:                                                                    # no sign-test rejection region below 5 units
         return n_units, "DESCRIPTIVE"
@@ -261,7 +263,11 @@ def mutant_pool_orderings(per_ordering):
 def size_under_block_dependence(n, block):
     """Exact size of the item-level sign test at α when the n items fall into n/block blocks whose outcomes are decided by one
     fair latent coin each (ρ = 1 within a block, independent across blocks)."""
+    if type(n) is not int or type(block) is not int or n <= 0 or block <= 0 or n % block:
+        raise CannotCheck("positive integer n must be exactly partitioned into equal positive blocks")
     c = critical_value(n)
+    if c is None:
+        return Fraction(0)
     m = n // block
     need = -(-c // block)                                                                # ⌈c / block⌉ blocks must favour one arm
     return binom_tail(m, need, Fraction(1, 2))
@@ -670,6 +676,11 @@ def same_machine(before, ledger_after, running_after):
     fingerprints are the ledger-derived ones; the adoption lineage is the ledger-derived one (a prefix extension)."""
     if ledger_after.genesis != before["genesis"] or before["head"] not in ledger_after.heads():
         return False, "ROOT_OR_PREFIX_BROKEN"
+    fingerprints = {}
+    for component, previous, current in ledger_after.lineage():
+        if previous != fingerprints.get(component):
+            return False, "ADOPTION_PREDECESSOR_MISMATCH"
+        fingerprints[component] = current
     if ledger_after.fingerprints() != dict(running_after):
         return False, "COMPONENT_NOT_ADOPTED_THROUGH_LEDGER"
     if ledger_after.lineage()[: len(before["lineage"])] != before["lineage"]:
@@ -756,8 +767,14 @@ def commit_after(m, eids):
 
 
 def attributable(commitment, before, ledger_after, evidence_before):
-    ev = ledger_after.evidence()
-    return all(e in ev and ev[e] == evidence_before[e] for e in commitment["cites"]) and before["head"] in ledger_after.heads()
+    heads = ledger_after.heads()
+    if ledger_after.genesis != before["genesis"] or before["head"] not in heads or commitment.get("head") not in heads:
+        return False
+    committed_at = heads.index(commitment["head"])
+    if committed_at < heads.index(before["head"]):
+        return False
+    ev = Ledger(ledger_after.root_id, ledger_after.events[:committed_at]).evidence()
+    return all(e in evidence_before and e in ev and ev[e] == evidence_before[e] for e in commitment["cites"])
 
 
 def check_f5_epistemic_identity():
@@ -817,12 +834,11 @@ def check_f5_epistemic_identity():
     forged.append({"kind": "ADOPT", "component": "operator", "prev": "op-nowhere", "fp": "op-m0-v3"})
     running = {**m["components"], "operator": "op-m0-v3"}
     ok, why = same_machine(before, forged, running)
-    assert ok                                                                             # prefix + fingerprints + lineage prefix all hold: an extension is the same machine
-    before_ext = identity_of(forged, running)
+    assert not ok and why == "ADOPTION_PREDECESSOR_MISMATCH"
     rewritten = Ledger(m["active"].root_id, m["active"].events)
     rewritten.append({"kind": "ADOPT", "component": "operator", "prev": "op-m0-v2", "fp": "op-m0-v3"})
-    ok2, why2 = same_machine(before_ext, rewritten, running)
-    assert not ok2 and why2 == "ROOT_OR_PREFIX_BROKEN"
+    ok2, why2 = same_machine(before, rewritten, running)
+    assert ok2 and why2 == "SAME_MACHINE"
     return {"machines": len(machines), "honest_restart_same_machine": honest_pass, "atom_liveness_preserved_checks": liveness_preserved, "commitments_attributable_after_honest_restart": commitments_attributable,
             "s31_split_stale_handle_passes": stale_passes_split, "s31_split_caught": split_caught, "commitments_not_attributable_after_split": commitments_not_attributable,
             "truncated_log_path_check_passes": path_passes_truncated, "truncated_log_caught": truncated_caught, "out_of_band_component_swap_caught": swap_caught, "lineage_rewrite_caught": lineage_caught,
@@ -1136,26 +1152,44 @@ def version_space(examples):
 
 
 def unmeasured_bits_lower_bound(identified_at_k, class_size=16):
-    """Hartley: identifying one of M hypotheses needs log2 M bits; k registered examples supply k; the rest came from outside."""
-    return max(0, int(math.log2(class_size)) - identified_at_k)
+    """Worst-case extra binary capacity required for guaranteed zero-error identification.
+
+    This is a capacity theorem under a registered hypothesis class, not evidence that
+    a particular successful prediction consumed undisclosed information.
+    """
+    if type(class_size) is not int or class_size <= 0 or type(identified_at_k) is not int or identified_at_k < 0:
+        raise CannotCheck("a positive class size and nonnegative integer observed-bit count are required")
+    return max(0, (class_size - 1).bit_length() - identified_at_k)
 
 
-def arm_label(declared_channels, identified_at_k, bound_k=4):
+def arm_label(declared_channels, identified_at_k, bound_k=4, *, guaranteed_identification=False):
+    """Only a registered all-target identification guarantee can contradict the counting bound.
+
+    One correct output can be a guess. The Boolean is a model assumption supplied by the
+    finite specification, not a runtime attestation or evidence of a hidden channel.
+    """
     if any(b == "UNMEASURED" for b in declared_channels.values()):
         return "REFERENCE"
-    if identified_at_k < bound_k:
-        return "BELOW_LOWER_BOUND_UNDECLARED_CHANNEL"
+    if any(type(b) is not int or b < 0 for b in declared_channels.values()):
+        raise CannotCheck("declared channel capacities must be nonnegative integer bits")
+    if type(identified_at_k) is not int or identified_at_k < 0 or type(bound_k) is not int or bound_k < 0:
+        raise CannotCheck("identification capacity must be a nonnegative integer")
+    # INSTRUCTION is the example budget: only k observed example bits are counted.
+    # Other explicitly bounded channels can supply the remaining capacity.
+    capacity = identified_at_k + sum(b for name, b in declared_channels.items() if name != "INSTRUCTION")
+    if capacity < bound_k:
+        return "BELOW_LOWER_BOUND_UNDECLARED_CHANNEL" if guaranteed_identification else "IDENTIFICATION_NOT_ESTABLISHED"
     return "CONSISTENT_WITH_MATCHED"
 
 
 def paired_decision(ocm_wins, parent_wins):
-    """Batch-4 D1 shape (discordant-pairs sign test at α)."""
+    """Two-sided exact sign test at α; direction is reported only after both-tail control."""
     n_d = ocm_wins + parent_wins
     if n_d == 0:
         return "DESCRIPTIVE"
-    if sign_test_p(n_d, ocm_wins) <= ALPHA:
+    if 2 * sign_test_p(n_d, ocm_wins) <= ALPHA:
         return "RESIDUAL_SUPPORTED"
-    if sign_test_p(n_d, parent_wins) <= ALPHA:
+    if 2 * sign_test_p(n_d, parent_wins) <= ALPHA:
         return "PARENT_DOMINATES"
     return "DESCRIPTIVE"
 
@@ -1164,7 +1198,7 @@ def comparison_report(matched_table, reference_table, reference_label):
     """The reference arm's result is reported beside the paired decision, never inside it."""
     if reference_label != "REFERENCE":
         raise CannotCheck("an arm with an unmeasured channel must be labelled REFERENCE")
-    return {"paired_decision": paired_decision(*matched_table), "reference": {"table": reference_table, "reading": "upper reference, unmatched information"}}
+    return {"paired_decision": paired_decision(*matched_table), "reference": {"table": reference_table, "reading": "reference, unmatched information; no performance bound"}}
 
 
 def mutant_reference_as_matched(matched_table, reference_table):
@@ -1189,12 +1223,12 @@ def check_f8_reference_arm_binding():
                 vs_exact += 1
                 assert (len(vs) == 1) == (k == 4)
                 identified_iff_four += 1
-                # an arm that outputs the unique correct hypothesis after k registered examples used ≥ 4 − k bits from outside
+                # A zero-error guarantee over every target requires ≥ 4 − k additional bits in the worst case.
                 assert unmeasured_bits_lower_bound(k) == 4 - k
                 bits_checks += 1
     for declared in ({"INSTRUCTION": 4}, {"INSTRUCTION": 4, "PRETRAINING": "UNMEASURED"}):
         for k in range(5):
-            label = arm_label(declared, k)
+            label = arm_label(declared, k, guaranteed_identification=True)
             if "PRETRAINING" in declared:
                 assert label == "REFERENCE"
             else:
@@ -1211,7 +1245,8 @@ def check_f8_reference_arm_binding():
     except CannotCheck:
         pass                                                                                # the honest report refuses to enter it
     assert mutant_prompt_matching_is_matching({"INSTRUCTION": 4, "PRETRAINING": "UNMEASURED"}, 2) == "MATCHED"
-    assert arm_label({"INSTRUCTION": 4}, 2) == "BELOW_LOWER_BOUND_UNDECLARED_CHANNEL" and unmeasured_bits_lower_bound(2) == 2   # the audit finds 2 undeclared bits
+    assert arm_label({"INSTRUCTION": 4}, 2, guaranteed_identification=True) == "BELOW_LOWER_BOUND_UNDECLARED_CHANNEL" and unmeasured_bits_lower_bound(2) == 2
+    assert arm_label({"INSTRUCTION": 4}, 2) == "IDENTIFICATION_NOT_ESTABLISHED"
     # no-alarm: the matched parent identifies exactly at the bound; a declared reference reported beside the decision raises nothing
     assert arm_label({"INSTRUCTION": 4}, 4) == "CONSISTENT_WITH_MATCHED" and unmeasured_bits_lower_bound(4) == 0
     assert comparison_report((5, 5), (0, 10), "REFERENCE")["paired_decision"] == "DESCRIPTIVE"
@@ -1251,6 +1286,9 @@ def run_all():
 
 
 def main(argv=None):
+    if not __debug__:
+        print(json.dumps({"status": "CANNOT_CHECK", "reason": "assertion-based finite checks require assertions enabled"}))
+        return 2
     try:
         out = run_all()
     except CannotCheck as exc:

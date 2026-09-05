@@ -1,0 +1,22 @@
+name: ME causal verifier foundation
+on:
+  pull_request:
+  push:
+    branches: [main, research/me-causal-verifier-20260904]
+permissions:
+  contents: read
+jobs:
+  exact-foundation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        python-version: ['3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '${{ matrix.python-version }}'
+      - run: python tests/unit/test_me_causal_verifier_v1.py
+      - run: python -O research/machine-epistemics-theory/causal_verifier_v1/causal_verifier.py --verify research/machine-epistemics-theory/causal_verifier_v1/CALIBRATION.json
+      - run: python research/machine-epistemics-theory/causal_verifier_v1/verify_receipt.py

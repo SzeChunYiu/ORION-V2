@@ -1,0 +1,17 @@
+{
+  "schema": "ORION_INFINITE_THRESHOLD_LIFECYCLE_PROTOCOL_V1",
+  "registration_date": "2026-09-05",
+  "registration_kind": "REFERENCE_MODEL_DEFINED_AFTER_HYPOTHESIS_BEFORE_LOCAL_CHECKER_RUN",
+  "class": "H = {h_theta : theta in Z}; h_theta(x) = 1 iff x >= theta; x in Z",
+  "infinite_class": true,
+  "oracle": "Exact membership labels from a fixed realizable target, accompanied by an externally authenticated record identity and revocation unit in one fixed authority/scope/verifier/epoch context",
+  "revocation": "Any finite subset of declared revocation units; all records in a revoked unit become unavailable together",
+  "independence": "Distinct revocation units can be revoked separately. This is neither statistical independence nor a claim that copied records have independent authority.",
+  "warrant": "Agreement of all integer thresholds consistent with the surviving registered ledger; unregistered possible evidence is outside this snapshot",
+  "resources": ["membership query count", "maximum signed integer bit length", "stored authenticated record and revocation identities"],
+  "theorems": ["exact surviving interval and complete per-query witnesses", "adjacent boundary characterization of exact identification", "optimal finite-interval worst-case repair query count ceil(log2 N)", "unbounded interval has no uniform finite exact-query bound", "finite identification of every integer target by exponential bracketing and binary search", "sharp r-unit revocation robustness characterization"],
+  "strongest_parent": "Exact threshold membership learning plus a complete provenance-indexed ordered multiset; parent sufficient under the identical interface",
+  "calibration": "Exhaustive small integer intervals, ledger revocations and robustness witnesses, plus large integer and malformed-input controls. Finite tests calibrate code and do not prove the infinite theorem.",
+  "claim_terminal": "INFINITE_THRESHOLD_CLASS_PROVED__PARENT_SUFFICIENT__REFERENCE_ONLY",
+  "still_open": ["SHRG/CCG construction-inventory identification", "unrestricted natural language", "noisy or unauthenticated oracle models", "architecture advantage", "novelty and external admission"]
+}

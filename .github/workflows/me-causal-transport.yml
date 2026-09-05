@@ -1,0 +1,40 @@
+name: Machine Epistemics causal transport
+on:
+  pull_request:
+    paths:
+      - 'research/machine-epistemics-theory/causal_transport_v1/**'
+      - '.github/workflows/me-causal-transport.yml'
+  push:
+    branches: [main, research/me-causal-transport-20260904]
+    paths:
+      - 'research/machine-epistemics-theory/causal_transport_v1/**'
+      - '.github/workflows/me-causal-transport.yml'
+permissions:
+  contents: read
+concurrency:
+  group: causal-transport-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  exact-package-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        python-version: ['3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Source binding, exact tests and applied mutants
+        working-directory: research/machine-epistemics-theory/causal_transport_v1
+        run: python run_checks.py --verify
+      - name: Optimized checks must refuse
+        working-directory: research/machine-epistemics-theory/causal_transport_v1
+        shell: bash
+        run: |
+          set +e
+          python -O run_checks.py --verify
+          code=$?
+          set -e
+          test "$code" -eq 2

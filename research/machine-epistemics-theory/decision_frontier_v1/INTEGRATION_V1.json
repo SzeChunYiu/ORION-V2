@@ -1,0 +1,188 @@
+{
+  "authority": {
+    "field_recognition": false,
+    "full_foundation_complete": false,
+    "main_merge": false,
+    "novelty": "NOT_ESTABLISHED",
+    "ocm_adoption": false,
+    "publication": false
+  },
+  "base_sha": "24566f00a9dc4425a438fcfac05d13c6b2d903db",
+  "branch": "research/me-decision-frontier-20260904",
+  "claim_rows": [
+    {
+      "finite_check": "test_frontier.py",
+      "gap_closed": false,
+      "id": "DF-00",
+      "parent_disposition": "PARENT_ALIGNED_NO_NOVELTY_CLAIM",
+      "proof": "THEORY.md section DF-00",
+      "related_gaps": [
+        "MEG-13",
+        "MEG-26"
+      ],
+      "statement": "maximal common permissible action set",
+      "status": "PROVED_SCOPED_WRITTEN"
+    },
+    {
+      "finite_check": "test_frontier.py",
+      "gap_closed": false,
+      "id": "DF-01",
+      "parent_disposition": "PARENT_ALIGNED_NO_NOVELTY_CLAIM",
+      "proof": "THEORY.md section DF-01",
+      "related_gaps": [
+        "MEG-28"
+      ],
+      "statement": "observational solvability and whole-cell obstruction",
+      "status": "PROVED_SCOPED_WRITTEN"
+    },
+    {
+      "finite_check": "test_frontier.py",
+      "gap_closed": false,
+      "id": "DF-02",
+      "parent_disposition": "PARENT_ALIGNED_NO_NOVELTY_CLAIM",
+      "proof": "THEORY.md section DF-02",
+      "related_gaps": [
+        "MEG-06",
+        "MEG-30"
+      ],
+      "statement": "minimax cost and budget versus impossibility",
+      "status": "PROVED_SCOPED_WRITTEN"
+    },
+    {
+      "finite_check": "test_frontier.py",
+      "gap_closed": false,
+      "id": "DF-03",
+      "parent_disposition": "PARENT_ALIGNED_NO_NOVELTY_CLAIM",
+      "proof": "THEORY.md section DF-03",
+      "related_gaps": [
+        "MEG-20"
+      ],
+      "statement": "complete Bellman certificate and all-branch validation",
+      "status": "PROVED_SCOPED_WRITTEN"
+    },
+    {
+      "finite_check": "test_frontier.py",
+      "gap_closed": false,
+      "id": "DF-04",
+      "parent_disposition": "PARENT_ALIGNED_NO_NOVELTY_CLAIM",
+      "proof": "THEORY.md section DF-04",
+      "related_gaps": [
+        "MEG-17"
+      ],
+      "statement": "information monotonicity and revoked-observation reopening",
+      "status": "PROVED_SCOPED_WRITTEN"
+    },
+    {
+      "finite_check": "test_frontier.py",
+      "gap_closed": false,
+      "id": "DF-05",
+      "parent_disposition": "PARENT_ALIGNED_NO_NOVELTY_CLAIM",
+      "proof": "THEORY.md section DF-05",
+      "related_gaps": [
+        "MEG-20",
+        "MEG-26"
+      ],
+      "statement": "no unique coarsest sufficient partition for overlapping acceptable actions",
+      "status": "COUNTEREXAMPLE_TO_UNQUALIFIED_GENERALIZATION"
+    },
+    {
+      "finite_check": "test_frontier.py",
+      "gap_closed": false,
+      "id": "DF-06",
+      "parent_disposition": "PARENT_ALIGNED_NO_NOVELTY_CLAIM",
+      "proof": "THEORY.md section DF-06",
+      "related_gaps": [
+        "MEG-20",
+        "MEG-31"
+      ],
+      "statement": "zero-query memory message count equals action-cover number",
+      "status": "PROVED_SCOPED_WRITTEN"
+    },
+    {
+      "finite_check": "test_frontier.py",
+      "gap_closed": false,
+      "id": "DF-07",
+      "parent_disposition": "PARENT_ALIGNED_NO_NOVELTY_CLAIM",
+      "proof": "THEORY.md section DF-07",
+      "related_gaps": [
+        "MEG-20",
+        "MEG-31"
+      ],
+      "statement": "exact encoder-message versus decoder-query frontier",
+      "status": "PROVED_SCOPED_WRITTEN"
+    },
+    {
+      "finite_check": "test_frontier.py",
+      "gap_closed": false,
+      "id": "DF-08",
+      "parent_disposition": "PARENT_ALIGNED_NO_NOVELTY_CLAIM",
+      "proof": "THEORY.md section DF-08",
+      "related_gaps": [
+        "MEG-22",
+        "MEG-31"
+      ],
+      "statement": "direct sum under product worlds and local queries",
+      "status": "PROVED_SCOPED_WRITTEN"
+    },
+    {
+      "finite_check": "test_frontier.py",
+      "gap_closed": false,
+      "id": "DF-09",
+      "parent_disposition": "PARENT_ALIGNED_NO_NOVELTY_CLAIM",
+      "proof": "THEORY.md section DF-09",
+      "related_gaps": [
+        "MEG-22",
+        "MEG-31"
+      ],
+      "statement": "matched-interface max/sum bounds for shared evidence",
+      "status": "PROVED_SCOPED_WRITTEN"
+    },
+    {
+      "finite_check": "test_frontier.py",
+      "gap_closed": false,
+      "id": "DF-10",
+      "parent_disposition": "PARENT_ALIGNED_NO_NOVELTY_CLAIM",
+      "proof": "THEORY.md section DF-10",
+      "related_gaps": [
+        "MEG-30"
+      ],
+      "statement": "proper-subset termination and explicit exponential cost",
+      "status": "PROVED_SCOPED_WRITTEN"
+    },
+    {
+      "finite_check": "test_frontier.py",
+      "gap_closed": false,
+      "id": "DF-11",
+      "parent_disposition": "PARENT_ALIGNED_NO_NOVELTY_CLAIM",
+      "proof": "THEORY.md section DF-11",
+      "related_gaps": [
+        "MEG-20",
+        "MEG-31",
+        "MEG-34"
+      ],
+      "statement": "observation-constrained encoder frontier without hidden-world advice",
+      "status": "PROVED_SCOPED_WRITTEN"
+    }
+  ],
+  "gap_mapping_rule": "Complementary scoped fragments only. No MEG row is marked fully closed. MEG-06 activation error bounds are NOT supplied by decision-cost optimality.",
+  "issue": 314,
+  "open_obligations": [
+    "real-world family-closure attestation",
+    "noisy or unavailable observations",
+    "causal interventions with effects",
+    "efficient incremental recertification",
+    "learned decision regions and language grounding",
+    "OCM runtime parity",
+    "proof-assistant verification",
+    "independent assumption review",
+    "strongest-parent novelty saturation"
+  ],
+  "prior_atlas": "research/machine-epistemics-theory/ME_THEORY_GAP_ATLAS_V1.md",
+  "protected_ownership": {
+    "312": "foundation_v1 \u2014 not modified",
+    "313": "foundation_v1 \u2014 not modified",
+    "OCM": "runtime and milestone status \u2014 not modified"
+  },
+  "schema": "ME-DECISION-FRONTIER-INTEGRATION-1",
+  "task": "ME-DECISION-FRONTIER-V1"
+}

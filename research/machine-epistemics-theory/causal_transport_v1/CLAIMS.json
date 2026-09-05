@@ -1,0 +1,246 @@
+{
+  "base_git_sha": "24566f00a9dc4425a438fcfac05d13c6b2d903db",
+  "claims": [
+    {
+      "assumptions": "Finite acyclic total structural equations and normalized exact joint exogenous law.",
+      "id": "CT-01",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_CLAIMED",
+      "parents": [
+        "P1",
+        "P2"
+      ],
+      "proof_assistant": "NOT_RUN",
+      "section_sha256": "dda3db13bfcba645ae8a257e4f31aa9b37449debe1b3d7cb2260ef7a0c7b2c4b",
+      "status": "WRITTEN_PROOF_AND_FINITE_CALIBRATION",
+      "tests": [
+        "test_exact_calibration",
+        "test_cyclic_equation_rejected",
+        "test_missing_function_rows_rejected",
+        "test_unknown_interventions_rejected"
+      ],
+      "title": "SCM semantics and normalization"
+    },
+    {
+      "assumptions": "Entire declared nonempty compatible class; query defined on each member.",
+      "id": "CT-02",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_CLAIMED",
+      "parents": [
+        "P3"
+      ],
+      "proof_assistant": "NOT_RUN",
+      "section_sha256": "9e1ef2f0b1c24d3c3a548c03424136be4edca36b8947a165d503902e3415bde3",
+      "status": "WRITTEN_PROOF_AND_FINITE_CALIBRATION",
+      "tests": [
+        "test_empty_models_are_conflict_not_vacuous_truth",
+        "test_zero_condition_model_is_not_silently_dropped",
+        "test_model_is_not_population_truth"
+      ],
+      "title": "Compatible-class identifiability"
+    },
+    {
+      "assumptions": "Two explicit SCMs, same observational law, different surgical laws.",
+      "id": "CT-03",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_CLAIMED",
+      "parents": [
+        "P1"
+      ],
+      "proof_assistant": "NOT_RUN",
+      "section_sha256": "5b3c35f8088fd5a2921fc6511f7496f08968efbe16f6b005a78fe6fe1e79b893",
+      "status": "EXPLICIT_COUNTEREXAMPLE",
+      "tests": [
+        "test_observation_is_not_intervention"
+      ],
+      "title": "Observation does not identify intervention"
+    },
+    {
+      "assumptions": "Interventions on observed X,Y only; common exogenous state within each counterfactual.",
+      "id": "CT-04",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_CLAIMED",
+      "parents": [
+        "P2"
+      ],
+      "proof_assistant": "NOT_RUN",
+      "section_sha256": "74859bf9f88f3219c14f384d86cd8ea5f47266079a96dfd2b996171a1a0d4e78",
+      "status": "EXPLICIT_COUNTEREXAMPLE",
+      "tests": [
+        "test_all_interventions_still_do_not_fix_counterfactual",
+        "test_wrong_world_conditioning_mutant"
+      ],
+      "title": "Intervention marginals do not identify cross-world queries"
+    },
+    {
+      "assumptions": "Known exact binary potential-outcome marginals; no coupling constraint; p0<1.",
+      "id": "CT-05",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_CLAIMED",
+      "parents": [
+        "P2"
+      ],
+      "proof_assistant": "NOT_RUN",
+      "section_sha256": "8a81ee8ec9d1b1e68073782e6ab74cce5dfb34819060fe953dae305f55211ab2",
+      "status": "WRITTEN_PROOF_AND_FINITE_CALIBRATION",
+      "tests": [
+        "test_sharp_binary_bounds",
+        "test_impossible_counterfactual_condition",
+        "test_exact_calibration"
+      ],
+      "title": "Sharp binary counterfactual bounds"
+    },
+    {
+      "assumptions": "Conjunctive compatible-set evidence semantics; defined query; sample/law types kept distinct.",
+      "id": "CT-06",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_CLAIMED",
+      "parents": [
+        "P2",
+        "P3"
+      ],
+      "proof_assistant": "NOT_RUN",
+      "section_sha256": "04614a9deb1a952cf8330fc3b810bfba47066b6df9cbf6c5df5af86c74c5cd72",
+      "status": "WRITTEN_PROOF_AND_FINITE_CALIBRATION",
+      "tests": [
+        "test_revoking_constraint_reopens_interval",
+        "test_duplicate_constraint_adds_no_information",
+        "test_single_success_is_not_population_probability_one"
+      ],
+      "title": "Retraction widens identified sets"
+    },
+    {
+      "assumptions": "Common finite alphabets/estimand; exact populations and kernels; drift bounds are premises.",
+      "id": "CT-07",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_CLAIMED",
+      "parents": [
+        "P4"
+      ],
+      "proof_assistant": "NOT_RUN",
+      "section_sha256": "7c6a6ca9c346997b8396f5f144abbf620caefa7be34d313e057f0fa2226970f7",
+      "status": "WRITTEN_PROOF_AND_FINITE_CALIBRATION",
+      "tests": [
+        "test_transport_common_mass_bound_is_sharp",
+        "test_invariance_without_population_match_fails",
+        "test_same_population_without_mechanism_match_fails",
+        "test_transport_no_alarm",
+        "test_exact_calibration"
+      ],
+      "title": "Common-mass and sharp uniform transport envelopes"
+    },
+    {
+      "assumptions": "Relevant joint laws and same conditioning event with positive mass under both.",
+      "id": "CT-08",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_CLAIMED",
+      "parents": [
+        "P4"
+      ],
+      "proof_assistant": "NOT_RUN",
+      "section_sha256": "6da2d646f1576ca7944ed29d1e6e043cf4c83c36634c8050b171bc658472f12a",
+      "status": "WRITTEN_PROOF_AND_FINITE_CALIBRATION",
+      "tests": [
+        "test_rare_condition_amplification_and_sharpness",
+        "test_condition_zero_requires_unknown",
+        "test_exact_calibration"
+      ],
+      "title": "Sharp conditional-TV bound"
+    },
+    {
+      "assumptions": "CT-07/08; common bounded loss, valid joint-law Delta, positive event masses, maximum>=kappa>0.",
+      "id": "CT-09",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_CLAIMED",
+      "parents": [
+        "P3",
+        "P4"
+      ],
+      "proof_assistant": "NOT_RUN",
+      "section_sha256": "6bee74a835457cdac742c093a7ce53cd0ce18ecdaf0faf71425ecf6cb2eaf0c4",
+      "status": "WRITTEN_COROLLARY_WITH_COMPONENT_CALIBRATION",
+      "tests": [
+        "test_transport_common_mass_bound_is_sharp",
+        "test_rare_condition_amplification_and_sharpness",
+        "test_condition_zero_requires_unknown"
+      ],
+      "title": "Conditional risk-transport certificate"
+    },
+    {
+      "assumptions": "Same policy, common alphabets, fixed finite horizon, uniform same-history kernel TV bounds; equal-prior testing.",
+      "id": "CT-10",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_CLAIMED",
+      "parents": [
+        "P4",
+        "P5_NEIGHBOR_ONLY"
+      ],
+      "proof_assistant": "NOT_RUN",
+      "section_sha256": "85f6a348e2b72670d8a35dbd271a323e4548a195061e3b191ab4e616170c7b75",
+      "status": "WRITTEN_PROOF_AND_FINITE_CALIBRATION",
+      "tests": [
+        "test_adaptive_product_not_independence_assumption",
+        "test_same_policy_is_load_bearing",
+        "test_horizon_bound_cannot_be_bypassed",
+        "test_exact_calibration"
+      ],
+      "title": "Adaptive transcript and abstention limit"
+    },
+    {
+      "assumptions": "State-only inverse without hidden history; external world distinct from evidence store. Elementary injectivity result.",
+      "id": "CT-11",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_CLAIMED",
+      "parents": [],
+      "proof_assistant": "NOT_RUN",
+      "section_sha256": "9087b4530c1401e43c5b56e96112e9f1fb848b0f1d1d116de794b5de41450dbd",
+      "status": "WRITTEN_PROOF_AND_FINITE_CALIBRATION",
+      "tests": [
+        "test_irreversible_action_has_no_general_inverse",
+        "test_retraction_is_not_world_rollback"
+      ],
+      "title": "Evidence retraction is not physical inversion"
+    },
+    {
+      "assumptions": "Restricted canonical encoding; complete declared dependencies; no authenticity or semantic-equivalence inference.",
+      "id": "CT-12",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_CLAIMED",
+      "parents": [],
+      "proof_assistant": "NOT_RUN",
+      "section_sha256": "040674de28964c32516d8244d8b5c929f94ba7a213d350f64b6b986a9e652024",
+      "status": "SCOPED_IMPLEMENTATION_CONTRACT",
+      "tests": [
+        "test_model_fingerprint_binds_functions_and_population",
+        "test_query_fingerprint_binds_causal_kind",
+        "test_query_order_is_canonical",
+        "test_model_payload_is_immutable_from_input_lists",
+        "test_dependency_drift_revalidates",
+        "test_digest_does_not_pretend_floats_are_exact"
+      ],
+      "title": "Identity and custody contract"
+    },
+    {
+      "assumptions": "Common declared finite coordinates; a supplied joint law is checked, not a general feasibility problem solved.",
+      "id": "CT-13",
+      "independent_review": "NOT_OBTAINED",
+      "novelty": "NOT_CLAIMED",
+      "parents": [
+        "P4"
+      ],
+      "proof_assistant": "NOT_RUN",
+      "section_sha256": "19c9aead6b585d75a376bae5ffbde20b3ad28541af8501656eaeafa703db46c0",
+      "status": "PARENT_COUNTEREXAMPLE_AND_WITNESS_CHECKER",
+      "tests": [
+        "test_pairwise_optimal_couplings_do_not_glue",
+        "test_global_marginal_witness_positive_and_rejection",
+        "test_joint_witness_invalid_support_rejected"
+      ],
+      "title": "Pairwise coupling obstruction and joint witness"
+    }
+  ],
+  "full_foundation_closed": false,
+  "issue": 315,
+  "schema": "ME_CAUSAL_TRANSPORT_CLAIMS_V1",
+  "statement_hash_rule": "SHA256 of UTF-8 section body, excluding its CT header, up to the next level-two heading."
+}

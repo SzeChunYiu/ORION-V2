@@ -1,0 +1,71 @@
+{
+  "authority": {
+    "all_size_proof_from_enumeration": false,
+    "full_foundation": "OPEN",
+    "independent_review": "NOT_OBTAINED",
+    "novelty": "NOT_CLAIMED",
+    "runtime_adoption": "NOT_GRANTED",
+    "source_saturation": "NOT_ESTABLISHED",
+    "written_arguments": "PENDING_INDEPENDENT_REVIEW"
+  },
+  "baseline_commit": "24566f00a9dc4425a438fcfac05d13c6b2d903db",
+  "body_sha256": "bd1c4433d54cc6246cf1e32a533af78c3aff317009750eeea81aa780366f7a05",
+  "calibration": {
+    "check_count": 530312,
+    "control_count": 61,
+    "group_count": 11
+  },
+  "commands": [
+    "python check_calculus.py --output RESULTS.json",
+    "python verify_bundle.py",
+    "python -O verify_bundle.py",
+    "python verify_bundle.py --hostile",
+    "python verify_lean.py"
+  ],
+  "created_date": "2026-09-04",
+  "custody": "Body hash binds the record, not external authenticity. File set excludes the receipt itself to avoid self-reference; Git commit identity is separate.",
+  "development_revision": {
+    "final_run_checks": 530312,
+    "final_run_controls": 61,
+    "first_run_checks": 528031,
+    "first_run_controls": 52,
+    "protected_protocol_changed": false,
+    "reason": "Replaced weak rank-variable control by executed wrong-quantile control; added ties, seed perturbations, malformed events and finite lesson-revocation learning. See REVIEW.md. Concurrent #317 reconciliation added early FOUND, attained-threshold and alternative-support controls.",
+    "second_run_checks": 530309,
+    "second_run_controls": 58
+  },
+  "evidence_class": "EXACT_DEVELOPMENT_CALIBRATION_NOT_PROTECTED_EMPIRICAL_EVIDENCE",
+  "files": {
+    "ATLAS_MAP.json": "3412c1587ac4a7f3d7a7fa9515d5e007ed90aaa7f53fd63ab43f89dbc7c75cd4",
+    "FRONTIER.md": "bdf54d8ed06195fd7674d35b3026914d966b3724077ebafdb7cd61324e99836e",
+    "Foundation.lean": "172665be0c68fd60ea0dfd7fbee3e4558f4df2325f637a91f3ed49875822bc87",
+    "OCM_HANDOFF.md": "25c80fe848c54ebf9e3261b3610f3407045ecb6eeb960335c87effea8e80c5fc",
+    "POST_BASELINE_DELTA.md": "839e09ae27a9f99fea220e7d68099cbd5a08e5d309ef60daa3e45a1353befc23",
+    "README.md": "2eb6617330f671a3f52e952667eb0f4d6cf2fef82af0544b50b2dc1515ab8c4e",
+    "RESULTS.json": "f0c3c43f2285ef3f320c427bb09fd65c5d16cb0309a8cdd941ced0079de055b9",
+    "REVIEW.md": "101619e93f218e1670e6e1c47118c1f7bb2de5106d9e74158e09aef2f04a0014",
+    "SOURCES.md": "7e5ca1c83d35dba9e605ad78e362ef138e6c96bfefbf8dac0d2a0d2236041db0",
+    "THEORY.md": "f40b0a6b9f85782a7d69a4b05a315712234a11e546ecb4de7e62416644c7b794",
+    "calculus.py": "5e068f6677cdcd2298602f3096976b3d48a4ac5849a035c1bfcf56f33e8c65dd",
+    "check_calculus.py": "2e2e91ae64cc8cda7b7c89ef8a191b95c71ef048d3fd15b4ca382a800fa0506e",
+    "verify_bundle.py": "46e8342375f69c88313a61b61a977f288891bd0fc4ec46f0cf8f9786cc751f46",
+    "verify_lean.py": "5602ecf3f4d7350a30ed48ff42281d538ce9361244c6653364cb89a65a416721"
+  },
+  "identity": "ME-FOUNDATION-TYPED-LIFECYCLE-V1",
+  "integration_base_commit": "d756c086edc46ad4e5e682f69730b72c1dc26a4c",
+  "issue": 312,
+  "resources": {
+    "elapsed_seconds": "5.13",
+    "exit": "0",
+    "peak_rss_kb": "95912",
+    "system_seconds": "0.07",
+    "user_seconds": "5.46"
+  },
+  "terminal": "EXACT_CALIBRATION_PASS",
+  "toolchain": {
+    "dependencies": "Python standard library only",
+    "lean_local": "CANNOT_CHECK_BINARY_UNAVAILABLE",
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]"
+  }
+}

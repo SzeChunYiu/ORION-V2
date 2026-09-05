@@ -1,0 +1,57 @@
+name: ME foundation typed lifecycle
+on:
+  pull_request:
+    paths:
+      - 'research/machine-epistemics-theory/foundation_typed_lifecycle_v1/**'
+      - '.github/workflows/me-foundation-typed-lifecycle.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'research/machine-epistemics-theory/foundation_typed_lifecycle_v1/**'
+      - '.github/workflows/me-foundation-typed-lifecycle.yml'
+permissions:
+  contents: read
+concurrency:
+  group: me-foundation-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  exact-and-logical-bridge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Exact calibration, custody and hostile fixtures
+        run: |
+          python research/machine-epistemics-theory/foundation_typed_lifecycle_v1/verify_bundle.py --hostile | tee me-foundation-python312.json
+          python -O research/machine-epistemics-theory/foundation_typed_lifecycle_v1/verify_bundle.py
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Cross-version exact replay
+        run: python research/machine-epistemics-theory/foundation_typed_lifecycle_v1/verify_bundle.py | tee me-foundation-python313.json
+      - name: Pinned Lean release bootstrap
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive="$RUNNER_TEMP/lean-4.19.0-linux.tar.zst"
+          curl --fail --location --retry 2 --max-time 180 \
+            https://github.com/leanprover/lean4/releases/download/v4.19.0/lean-4.19.0-linux.tar.zst \
+            -o "$archive" || { echo 'CANNOT_CHECK: Lean release unavailable'; exit 2; }
+          test "$(stat -c%s "$archive")" = 343842845 || { echo 'FAIL: Lean asset size changed'; exit 1; }
+          sha256sum "$archive" | tee me-foundation-lean-archive.sha256
+          tar --zstd -xf "$archive" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/lean-4.19.0-linux/bin" >> "$GITHUB_PATH"
+      - name: Lean logical bridge and negative proof fixtures
+        run: python research/machine-epistemics-theory/foundation_typed_lifecycle_v1/verify_lean.py | tee me-foundation-lean.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: me-foundation-checks
+          path: |
+            me-foundation-python312.json
+            me-foundation-python313.json
+            me-foundation-lean.json
+            me-foundation-lean-archive.sha256

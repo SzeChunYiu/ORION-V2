@@ -1,0 +1,148 @@
+{
+  "schema": "OCM_LANE202_INVARIANCE_CORRECTION_RECEIPT_V1",
+  "date": "2026-09-05",
+  "issue": 202,
+  "terminal": "SCOPED_CORRECTION_CALIBRATED__AWAITING_INTEGRATION_ACCEPTANCE",
+  "scope_precedence": "New correction supersedes original F4 and F4-dependent claims only; original F1-F3 and original receipt remain unchanged.",
+  "historical_sources": [
+    {
+      "path": "research/orion-machine/theory/OCM_LANE_202_TERMINAL_V1.md",
+      "bytes": 9753,
+      "sha256": "c064cb533f673b4c9b1499344497ad0557dc0058cb09f092ab9fc3c7d6514029",
+      "git_blob_sha1": "eeec47166f557e681e0a93d47a4578fa788e155e",
+      "source_commit": "05f08fe71466d4dd192294fe00cf26d526026522",
+      "historical_bytes_unchanged": true
+    },
+    {
+      "path": "research/orion-machine/reference/ocm_lane202_core_frontier_exact.py",
+      "bytes": 36357,
+      "sha256": "0b31081ff4e9e4f87b9ad0536bcbca6de5698595e6b2e4ec232cee4b33ee261d",
+      "git_blob_sha1": "29d8aada94166dfbca13504a89978143e3456558",
+      "source_commit": "05f08fe71466d4dd192294fe00cf26d526026522",
+      "historical_bytes_unchanged": true
+    },
+    {
+      "path": "tests/unit/test_ocm_lane202_core_frontier_exact.py",
+      "bytes": 4698,
+      "sha256": "5ed1db19bbe459d0f1251dadf3669217f6f72a04c791dc474fc367559539231e",
+      "git_blob_sha1": "8838fec6ef89700f592ee9fea2b3daa0297d7fcc",
+      "source_commit": "05f08fe71466d4dd192294fe00cf26d526026522",
+      "historical_bytes_unchanged": true
+    },
+    {
+      "path": "research/orion-machine/receipts/OCM_LANES_202_203_RECEIPT_V1.json",
+      "bytes": 3362,
+      "sha256": "e266aafa6181cbb513ee5bb037d60985fe9ba15a4601ee7f1a4da5bde3fac9c5",
+      "git_blob_sha1": "74c7addf4923c8d842afdc477d544ace919ca9b9",
+      "source_commit": "05f08fe71466d4dd192294fe00cf26d526026522",
+      "historical_bytes_unchanged": true
+    }
+  ],
+  "new_artifacts": [
+    {
+      "path": "research/orion-machine/theory/OCM_LANE_202_RESOURCE_INVARIANCE_CORRECTION_V1.md",
+      "bytes": 7566,
+      "sha256": "d2f3becbfdb09b61492c06c4162aa48831f90a4df14b284a040ee1e2101ff610",
+      "git_blob_sha1": "e3abfe0e85a3427e4ace9d42dd2e66338dad1b69"
+    },
+    {
+      "path": "research/orion-machine/reference/ocm_lane202_invariance_correction_exact.py",
+      "bytes": 7096,
+      "sha256": "04c1a88e818a8db1b70ad02b518f0f8909c08041a49cbe7f729d9a9d2766eaf3",
+      "git_blob_sha1": "3f4b2810513855c825ce771ea6ebec3200aad4d1"
+    },
+    {
+      "path": "tests/unit/test_ocm_lane202_invariance_correction.py",
+      "bytes": 3247,
+      "sha256": "8aa4999905b6f334f75bc3ad42f12be5ef65ab14067438bb1bdc4cf7cf309131",
+      "git_blob_sha1": "fcc5b6b503b3a336277d0dd4aa0949e7c7e89c66"
+    }
+  ],
+  "environment": {
+    "python": "3.12.13",
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+    "executable": "/workspace/scratch/57b4973284eb/orion-env/bin/python"
+  },
+  "verification": {
+    "checker": {
+      "exit_code": 0,
+      "result": {
+        "absolute_bound_zero_overhead_violations": 126,
+        "architecture_comparison": "NOT_PERFORMED",
+        "changed_output_mutant_caught": true,
+        "directional_program_checks": 512,
+        "independent_external_review": "NOT_OBTAINED",
+        "largest_registered_witness": {
+          "both_runtime_factors": 3,
+          "compiler_description_overhead": 0,
+          "gap": 120,
+          "n": 128,
+          "source_bits": 129,
+          "source_time": 257,
+          "target_bits": 9,
+          "target_time": 771
+        },
+        "old_F1_F3_outcomes_regenerated": false,
+        "registered_target_lengths": 128,
+        "terminal": "SCOPED_COMPILER_BOUND_CORRECTION_CALIBRATED",
+        "unbounded_proof": "WRITTEN_ARGUMENT_ONLY",
+        "unearned_runtime_factor_mutant_caught": true
+      }
+    },
+    "optimized_checker": {
+      "exit_code": 0,
+      "byte_equal_to_normal": true
+    },
+    "outside_registered_cap": {
+      "exit_code": 2,
+      "result": {
+        "terminal": "CANNOT_CHECK",
+        "reason": "registered calibration cap is 128"
+      }
+    },
+    "pytest": {
+      "command": "python -m pytest -q -o addopts= tests/unit/test_ocm_lane202_invariance_correction.py",
+      "exit_code": 0,
+      "passed": 19,
+      "failed": 0
+    }
+  },
+  "prior_environment_attempts": [
+    {
+      "command": "python -m pytest -q tests/unit/test_ocm_lane202_invariance_correction.py",
+      "exit_code": 1,
+      "reason": "Default primary-runtime Python had no pytest; no tests executed."
+    },
+    {
+      "command": "/usr/bin/python3 -m pytest -q tests/unit/test_ocm_lane202_invariance_correction.py",
+      "exit_code": 1,
+      "reason": "System Python had no pytest; no tests executed."
+    }
+  ],
+  "independent_external_review": "NOT_OBTAINED",
+  "proof_assistant": "NOT_PERFORMED",
+  "protected_empirical_run": false,
+  "grants_novelty": false,
+  "grants_architecture_advantage": false,
+  "grants_ocm_adoption": false,
+  "closes_issue": false,
+  "internal_separate_agent_review": {
+    "reviewer_task": "/root/theory_dynamics",
+    "terminal": "NO_DEFECT_FOUND_IN_DECLARED_FINITE_TRANSDUCER_COMPILER_SCOPE",
+    "independently_enumerated_valid_binary_programs": 1533,
+    "program_lengths": [
+      2,
+      10
+    ],
+    "review_output_cap": 512,
+    "both_identity_runtime_directions_checked": true,
+    "independent_exhaustive_target_minima": 16,
+    "target_n_range": [
+      1,
+      8
+    ],
+    "written_unbounded_gap_induction_checked": true,
+    "directional_L_N_time_envelope_proof_checked": true,
+    "external_gate_authority": false
+  }
+}

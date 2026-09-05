@@ -1,0 +1,40 @@
+{
+  "schema": "me-certificate-lifecycle-closure/v1",
+  "issue": 318,
+  "task": "ME-CERTIFICATE-LIFECYCLE-V1",
+  "scope": "Frozen finite certificate graph with complete declared dependencies and external trust judgments",
+  "scientific_disposition": "SCOPED_THEORY_PARENT_OWNED",
+  "foundation_complete": false,
+  "ocm_adoption_authorized": false,
+  "claims": [
+    {"id": "CL1", "claim": "Identity sufficiency iff property is constant on identity fibers", "argument": "THEORY.md section 1", "test": "test_projection_counterexample", "status": "WRITTEN_PROOF_PENDING_INDEPENDENT_REVIEW"},
+    {"id": "CL2", "claim": "USE preserves kind, statement and subject without marginal-to-individual coercion", "argument": "THEORY.md section 2", "test": "test_no_guarantee_to_exact_coercion", "status": "REFERENCE_INVARIANT_PENDING_INTEGRATION"},
+    {"id": "CL3", "claim": "Least-information fixed point and grounded typed-use soundness under explicit root/checker premises", "argument": "THEORY.md section 3", "test": "test_cyclic_grounded_proof_oracle", "status": "WRITTEN_PROOF_PENDING_INDEPENDENT_REVIEW"},
+    {"id": "CL4", "claim": "Outside-cone invariance; affected does not imply must retract", "argument": "THEORY.md section 4", "test": "test_dependency_locality_and_root_retraction", "status": "WRITTEN_PROOF_PENDING_INDEPENDENT_REVIEW"},
+    {"id": "CL5", "claim": "Snapshot-checked serialized use, ABA rejection and deterministic checkpointed replay", "argument": "THEORY.md section 5", "test": "test_stale_and_aba_intents", "status": "ABSTRACT_MODEL_ONLY_PENDING_RUNTIME_REFINEMENT"},
+    {"id": "CL6", "claim": "Immutable-object certificates survive unrelated producer drift", "argument": "THEORY.md section 6", "test": "test_immutable_proof_survives_producer_drift", "status": "WRITTEN_COROLLARY_PENDING_INDEPENDENT_REVIEW"},
+    {"id": "CL7", "claim": "Source-bound absorption needs external source, review, parity and adoption facts", "argument": "THEORY.md section 7", "test": "test_absorption_requires_external_evidence", "status": "INTERFACE_CONTRACT_NOT_EXTERNAL_APPROVAL"}
+  ],
+  "gates": {
+    "registered_design": "69181cbbf356563aad662985f384373d4c081ff9",
+    "local_calibration": "READ_RECEIPT_JSON_AND_REPLAY",
+    "ci": "CONSULT_LIVE_CHECKS_NOT_THIS_FIELD",
+    "proof_assistant": "NOT_RUN",
+    "independent_proof_and_assumption_audit": "PENDING",
+    "full_repository_validation": "NOT_RUN",
+    "foundation_type_integration": "PENDING_312_313",
+    "ocm_runtime_parity": "NOT_RUN",
+    "external_adoption": "NOT_OBTAINED"
+  },
+  "open_obligations": [
+    "Establish complete manifests for actual opaque/model/tool deployments; hashes alone do not discover hidden dependencies",
+    "Authenticate and permission the external-root import boundary",
+    "Resolve and bind conflicting verifier reports; no automatic disagreement discovery is implemented",
+    "Review checker soundness and statement interpretation independently",
+    "Reconcile foundation_v1 ownership between #312 and #313 without overwriting either session",
+    "Refine abstract transitions into actual transaction/crash/concurrency and external-effect fencing semantics",
+    "Integrate with typed risk/decision/causal transport only through their accepted contracts",
+    "Obtain exact V2-to-OCM parity and external adoption receipts",
+    "Keep global foundation, field-recognition and novelty terminals separate"
+  ]
+}

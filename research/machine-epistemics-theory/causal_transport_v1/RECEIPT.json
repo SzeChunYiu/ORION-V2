@@ -1,0 +1,131 @@
+{
+  "base_git_sha": "24566f00a9dc4425a438fcfac05d13c6b2d903db",
+  "body_sha256": "ed4824cf8746e84933326df3a53746d58a1a8f2ff9e337c3918baaa1a317c36a",
+  "bound_files": {
+    "CLAIMS.json": "10558a6d318bfccbd5d21eed83fc6af42d5fc9b9644098949c28819a24ea5020",
+    "FRONTIER.md": "941a51214ee2af3055b5b700de8387c44f9f68069413756f275414a8bc1d2989",
+    "README.md": "259cca6c68f9b5064e425dcd9514bea827af5e35a96ca3f886fabef81e143793",
+    "SOURCES.md": "0bb012af0335c1e584bd5fb78ffc21776e7a6718f8a78e7f6b06ab564974f1d7",
+    "THEORY.md": "0674a43557863e4b13984cfaf84b2db31b95c97307ead9929474f1acaed57284",
+    "causal_core.py": "6d1115d66daa720ec5adb6339e83770a3c2306492e7b0654438018cad6457488",
+    "mutation_audit.py": "76e707827805ae2e8cec875dd813d6cb8fa7e68cd4f9a81bb1fd0729b1f8ab08",
+    "run_checks.py": "d587305a2860af7bf86a67dac1412b57f0de7d51fef846fa4d07de7fd6192cdb",
+    "test_causal_core.py": "ff491b67f8a0838210774696816b6409524de3bf6317cf1fd80bced853ebc35e"
+  },
+  "environment": {
+    "implementation": "CPython",
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+    "python": "3.13.5"
+  },
+  "execution_class": "LOCAL_EXACT_CALIBRATION_NOT_PROTECTED",
+  "issue": 315,
+  "result": {
+    "calibration": {
+      "adaptive_laws": 125,
+      "conditional_checks": 1113,
+      "counterfactual_queries": 672,
+      "normalized_marginals": 576,
+      "response_distributions": 494,
+      "scm_models": 64,
+      "selective_testing_rules": 1725,
+      "sharp_bound_cells": 240,
+      "sharp_transcript_witnesses": 20,
+      "structural_solutions": 1152,
+      "testing_rules": 348,
+      "transport_checks": 2025,
+      "tv_event_checks": 1800,
+      "undefined_conditions": 864
+    },
+    "claim_sections": 13,
+    "empirical_validation": "NOT_RUN",
+    "errors": 0,
+    "failures": 0,
+    "full_foundation_closed": false,
+    "independent_review": "NOT_OBTAINED",
+    "mutation_audit": {
+      "killed": 8,
+      "mutants": 8,
+      "reports": [
+        {
+          "anchor_occurrences": 1,
+          "applied": true,
+          "baseline_exit": 0,
+          "mutant": "condition_in_wrong_world",
+          "mutant_exit": 1,
+          "status": "KILLED_BY_ASSERTION",
+          "test": "test_wrong_world_conditioning_mutant"
+        },
+        {
+          "anchor_occurrences": 1,
+          "applied": true,
+          "baseline_exit": 0,
+          "mutant": "empty_class_promoted",
+          "mutant_exit": 1,
+          "status": "KILLED_BY_ASSERTION",
+          "test": "test_empty_models_are_conflict_not_vacuous_truth"
+        },
+        {
+          "anchor_occurrences": 1,
+          "applied": true,
+          "baseline_exit": 0,
+          "mutant": "undefined_query_promoted",
+          "mutant_exit": 1,
+          "status": "KILLED_BY_ASSERTION",
+          "test": "test_zero_condition_model_is_not_silently_dropped"
+        },
+        {
+          "anchor_occurrences": 1,
+          "applied": true,
+          "baseline_exit": 0,
+          "mutant": "population_drift_omitted",
+          "mutant_exit": 1,
+          "status": "KILLED_BY_ASSERTION",
+          "test": "test_invariance_without_population_match_fails"
+        },
+        {
+          "anchor_occurrences": 1,
+          "applied": true,
+          "baseline_exit": 0,
+          "mutant": "sample_promoted_to_exact_law",
+          "mutant_exit": 1,
+          "status": "KILLED_BY_ASSERTION",
+          "test": "test_single_success_is_not_population_probability_one"
+        },
+        {
+          "anchor_occurrences": 1,
+          "applied": true,
+          "baseline_exit": 0,
+          "mutant": "changed_dependency_ignored",
+          "mutant_exit": 1,
+          "status": "KILLED_BY_ASSERTION",
+          "test": "test_dependency_drift_revalidates"
+        },
+        {
+          "anchor_occurrences": 1,
+          "applied": true,
+          "baseline_exit": 0,
+          "mutant": "counterfactual_coupling_assumed",
+          "mutant_exit": 1,
+          "status": "KILLED_BY_ASSERTION",
+          "test": "test_sharp_binary_bounds"
+        },
+        {
+          "anchor_occurrences": 1,
+          "applied": true,
+          "baseline_exit": 0,
+          "mutant": "incompatible_marginal_accepted",
+          "mutant_exit": 1,
+          "status": "KILLED_BY_ASSERTION",
+          "test": "test_global_marginal_witness_positive_and_rejection"
+        }
+      ]
+    },
+    "novelty": "NOT_CLAIMED",
+    "proof_assistant": "NOT_RUN",
+    "scope": "DECLARED_FINITE_CAUSAL_TRANSPORT_FRAGMENT",
+    "skipped": 0,
+    "status": "PASS",
+    "unit_tests": 38
+  },
+  "schema": "ME_CAUSAL_TRANSPORT_RECEIPT_V1"
+}

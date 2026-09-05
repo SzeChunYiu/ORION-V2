@@ -1,0 +1,110 @@
+{
+  "additional_receipt_controls": [
+    {
+      "bound_files": 9,
+      "control": "clean_binding_verify",
+      "exit_code": 0
+    },
+    {
+      "control": "copied_packet_theory_tamper",
+      "exit_code": 1,
+      "reason": "FILE_DRIFT:research/machine-epistemics-theory/causal_verifier_v1/THEORY.md"
+    }
+  ],
+  "applied_mutants_caught": 8,
+  "base_sha": "24566f00a9dc4425a438fcfac05d13c6b2d903db",
+  "branch": "research/me-causal-verifier-20260904",
+  "calibration_body_sha256": "0c34c57050f607a51992d1001ffce57c88afe8114df3eae54d1b1769934b64f1",
+  "commands": [
+    {
+      "command": "python tests/unit/test_me_causal_verifier_v1.py",
+      "cpu_seconds_children_delta": 20.291317,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "stderr_sha256": "558fae5f14d5f9ce25f47e6aedacf9ed576bf3ca89e5cd2d05d30a5e93763c20",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "wall_seconds": 18.061091
+    },
+    {
+      "command": "python -O research/machine-epistemics-theory/causal_verifier_v1/causal_verifier.py --verify research/machine-epistemics-theory/causal_verifier_v1/CALIBRATION.json",
+      "cpu_seconds_children_delta": 4.069916,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "f1b51860f05848c6a8f064603833d1081856923b51ab653058b8e82dd3e493e7",
+      "wall_seconds": 3.679783
+    },
+    {
+      "command": "python -O research/machine-epistemics-theory/causal_verifier_v1/causal_verifier.py --control fail",
+      "cpu_seconds_children_delta": 1.129017,
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "ac108858ef76769247e8ca90f6a924f7624ee7c1f9756e7bf9ac7d8c9d12cf83",
+      "wall_seconds": 0.674088
+    },
+    {
+      "command": "python -O research/machine-epistemics-theory/causal_verifier_v1/causal_verifier.py --control cannot-check",
+      "cpu_seconds_children_delta": 1.677801,
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "10355b6988f9a60e8211c16e1ef90978289e95e7d4f5a6df47fea6951563d6ef",
+      "wall_seconds": 1.21223
+    },
+    {
+      "command": "python -m py_compile research/machine-epistemics-theory/causal_verifier_v1/causal_verifier.py research/machine-epistemics-theory/causal_verifier_v1/verify_receipt.py tests/unit/test_me_causal_verifier_v1.py",
+      "cpu_seconds_children_delta": 1.271465,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "wall_seconds": 0.807797
+    }
+  ],
+  "disclosures": [
+    "Initial mutation test expected a later error; actual intervention/observation substitution was already rejected at INCONSISTENT_BASE_FOR_MONOTONE_PROVENANCE. Test expectation repaired; algorithm and scientific outcomes unchanged.",
+    "List and bitset evaluators share Evidence.matches; structural and response-pushforward evaluators are separate algorithms but same-author implementations.",
+    "Public model family and full-law/response-law certificates are strong charged interfaces; no learned identification or naturalistic empirical result.",
+    "Current parent search includes an inaccessible August 2026 primary-source candidate; no literature saturation or novelty claim.",
+    "GitHub main/other sessions can advance after this pinned base; these bindings are not a claim about all current repository contents.",
+    "Final written-assumption audit made NONEMPTY explicit for the restricted coupling set in CV-T08; empty sets mean INCONSISTENT. The executable binary-coupling domain was already nonempty for valid marginals; code, numerical results and tests are unchanged. The earlier written version remains in Git history."
+  ],
+  "environment": {
+    "host_class": "ISOLATED_LINUX_ANALYSIS_CONTAINER",
+    "machine": "x86_64",
+    "model_calls": 0,
+    "network_calls_during_calibration": 0,
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "user_hosts_accessed": false
+  },
+  "execution_class": "EXACT_FINITE_CALIBRATION_NOT_PROTECTED_EMPIRICAL",
+  "file_sha256": {
+    ".github/workflows/me-causal-verifier.yml": "6a3a94ca6c0b4dc5f15388e69f1f03c0024e014301642d92b53798c752f298ea",
+    "research/machine-epistemics-theory/causal_verifier_v1/ABSORPTION.md": "3cf72d95ecfec36ffa618de26742839623e9470bd20628ea4a4cb1aae1800f30",
+    "research/machine-epistemics-theory/causal_verifier_v1/CALIBRATION.json": "f1b51860f05848c6a8f064603833d1081856923b51ab653058b8e82dd3e493e7",
+    "research/machine-epistemics-theory/causal_verifier_v1/README.md": "12c4720233ba715f8acf910d5087aff8f1212c0a05fae7920a9d367abd1f3622",
+    "research/machine-epistemics-theory/causal_verifier_v1/SOURCES.md": "4a2895106e824ae4c16ce6b18052a96cc9963452449f8fc376cab956f3d931c6",
+    "research/machine-epistemics-theory/causal_verifier_v1/THEORY.md": "c743fc9bc247b8bd4075cbb0a98ac425bf05e4af4d8af3331e65994a8b834a8d",
+    "research/machine-epistemics-theory/causal_verifier_v1/causal_verifier.py": "79e9e4dc20710ea8664064334aa0e8092e50e24adcae921e00262725db87df35",
+    "research/machine-epistemics-theory/causal_verifier_v1/verify_receipt.py": "1c208ea9014084bd061f383523d3abe249f9417c8883f5e67089871975c61a30",
+    "tests/unit/test_me_causal_verifier_v1.py": "1669935c2e1c7fc3de38e0ea4be1cb96aba213fe0d2f4c97e0a91e4c2d72d5de"
+  },
+  "full_foundation_closed": false,
+  "identity": "ME-CAUSAL-VERIFIER-V1",
+  "independent_review": "NOT_OBTAINED",
+  "issue": 316,
+  "ocm_runtime_adoption": "NOT_AUTHORIZED_BY_THIS_RECEIPT",
+  "proof_status": "WRITTEN_ARGUMENTS_NOT_PROOF_ASSISTANT_MECHANIZED",
+  "receipt_payload_sha256": "0bd7a53a5c98aaec0a63873ffb6825e23b37714de5e9027538dd076ab21a711e",
+  "remote_ci": "NOT_OBSERVED_AT_RECEIPT_GENERATION",
+  "repository_full_suite": "NOT_RUN",
+  "resource_observation": {
+    "peak_child_rss_kib": 99232,
+    "rss_semantics": "Linux RUSAGE_CHILDREN maximum, not sum of simultaneous process memory; exact study only",
+    "total_bound_file_bytes": 76351
+  },
+  "scientific_terminal": "PARENT_OWNED_FORMAL_FOUNDATION",
+  "unit_tests": 31
+}

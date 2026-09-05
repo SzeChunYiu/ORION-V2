@@ -1,0 +1,333 @@
+{
+  "date_utc": "2026-09-05",
+  "execution_scope": "Local Linux research reference replay; not protected external evaluation or external independent review.",
+  "independent_external_review": "NOT_OBTAINED",
+  "integration_artifacts_sha256": {
+    ".github/workflows/me-foundation-integration.yml": "4f118a9fd01a5fb027b9d56e593a11e8e147935f159ae2367373e1123e1e7ae4",
+    "research/machine-epistemics-theory/foundation_integration_v1/COMMON_CONTRACT.md": "c9b26017204fefaff9e1943dd6605644ac9f78841c0bea49919a19ec15d4344d",
+    "research/machine-epistemics-theory/foundation_integration_v1/CUSTODY_CORRECTION.md": "6b039e830919f7b0e8d8755e4bacb766455ed72efe652e735e89657c579c74f2",
+    "research/machine-epistemics-theory/foundation_integration_v1/MANIFEST.json": "df96e4365c5b5a1f9be074cefe5e9135d6e2620be34f140a73eceac164b37d4b",
+    "research/machine-epistemics-theory/foundation_integration_v1/README.md": "7bc5150499a9ee9bc022ae788f3a62b9c4f46469af79c45d35ca657971cb136f",
+    "research/machine-epistemics-theory/foundation_integration_v1/SOURCE_INVENTORY.json": "6be8f8c531b3881dd4b53b99b5b7620f975d3f42b6a9d290f0738a4a7df951d0",
+    "research/machine-epistemics-theory/foundation_integration_v1/check_integration.py": "30468cb27287e05bf678b806cb86bc9a8ca0b7ce0c3acb49d4becce4f3b178e9",
+    "research/machine-epistemics-theory/foundation_integration_v1/history/initial-custody-check/ARTIFACT_INDEX.json": "265df44beead3e988fd932025de7fddb2b94d7e514c0c6eceda04660fcff64a0",
+    "research/machine-epistemics-theory/foundation_integration_v1/history/initial-custody-check/custody-red.txt": "9594efd304d22b31cec65b0f7a4f4b1d9dbea96775e9be438f1c928861ffb521",
+    "research/machine-epistemics-theory/foundation_revision_v1/RELOCATION.md": "a9920930b43cb68d19fa9070faad165f320c2411c1985ebda83049824c2552b6",
+    "research/machine-epistemics-theory/foundation_typed_lifecycle_v1/RELOCATION.md": "e3a89f0c911a15b6c53bd6d66b9ccee0f8cb94b32cd59c42e28dc895f8df4773",
+    "tests/unit/test_me_foundation_integration_v1.py": "19f9cd554ec012a880a1a8d6f3112f92d48041b9d4b968f88f10e65fbe43e36e"
+  },
+  "internal_review": {
+    "disagreements": 0,
+    "independent_github_head_and_path_agreements": 10,
+    "original_two_counterexamples": "NOW_REJECTED",
+    "source": "Separate issue_evidence_audit agent; engineering custody only"
+  },
+  "lean_bridge": {
+    "actual_exit": 2,
+    "argv": [
+      "python",
+      "research/machine-epistemics-theory/foundation_typed_lifecycle_v1/verify_lean.py"
+    ],
+    "stderr": "",
+    "stdout": "{\"terminal\": \"CANNOT_CHECK\", \"reason\": \"Lean binary unavailable\"}\n",
+    "terminal": "CANNOT_CHECK"
+  },
+  "ocm_adoption_authorized": false,
+  "replay": {
+    "commands": [
+      {
+        "actual_exit": 0,
+        "argv": [
+          "python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/unit/test_me_foundation_registry.py",
+          "tests/unit/test_meg_foundation_batch2.py",
+          "tests/unit/test_meg_foundation_batch3.py",
+          "tests/unit/test_meg_foundation_batch4_parent_adoptions.py",
+          "tests/unit/test_me_foundation_revision_v1.py",
+          "tests/unit/test_machine_epistemics_foundation_v1_v2.py",
+          "tests/unit/test_me_causal_verifier_v1.py",
+          "tests/unit/test_me_foundation_integration_v1.py"
+        ],
+        "cwd": ".",
+        "expected_exit": 0,
+        "name": "foundation_unit_and_conformance",
+        "stderr": "",
+        "stdout": "........................................................................ [ 73%]\n..........................                                               [100%]\n"
+      },
+      {
+        "actual_exit": 0,
+        "argv": [
+          "python",
+          "-m",
+          "unittest",
+          "-v",
+          "test_frontier"
+        ],
+        "cwd": "research/machine-epistemics-theory/decision_frontier_v1",
+        "expected_exit": 0,
+        "name": "decision_frontier_tests",
+        "stderr": "test_bad_certificate_types (test_frontier.FrontierTests.test_bad_certificate_types) ... ok\ntest_bad_or_unknown_world (test_frontier.FrontierTests.test_bad_or_unknown_world) ... ok\ntest_budget_is_not_obstruction (test_frontier.FrontierTests.test_budget_is_not_obstruction) ... ok\ntest_certificate_drift_in_every_semantic_coordinate (test_frontier.FrontierTests.test_certificate_drift_in_every_semantic_coordinate) ... ok\ntest_certificate_empty_denominator_mutant (test_frontier.FrontierTests.test_certificate_empty_denominator_mutant) ... ok\ntest_certificate_optimism_mutant (test_frontier.FrontierTests.test_certificate_optimism_mutant) ... ok\ntest_complete_finite_corpus (test_frontier.FrontierTests.test_complete_finite_corpus) ... ok\ntest_direct_sum_and_correlated_counterexample (test_frontier.FrontierTests.test_direct_sum_and_correlated_counterexample) ... ok\ntest_duplicate_branch_mutant (test_frontier.FrontierTests.test_duplicate_branch_mutant) ... ok\ntest_empty_allowed_row_proves_no_registered_solution (test_frontier.FrontierTests.test_empty_allowed_row_proves_no_registered_solution) ... ok\ntest_empty_belief_is_not_vacuous_success (test_frontier.FrontierTests.test_empty_belief_is_not_vacuous_success) ... ok\ntest_encoder_cannot_read_unobserved_world (test_frontier.FrontierTests.test_encoder_cannot_read_unobserved_world) ... ok\ntest_exact_fractional_cost (test_frontier.FrontierTests.test_exact_fractional_cost) ... ok\ntest_fail_closed_types_and_costs (test_frontier.FrontierTests.test_fail_closed_types_and_costs) ... ok\ntest_full_memory_query_frontier (test_frontier.FrontierTests.test_full_memory_query_frontier) ... ok\ntest_interface_obstruction (test_frontier.FrontierTests.test_interface_obstruction) ... ok\ntest_known_action_needs_no_positive_query_budget (test_frontier.FrontierTests.test_known_action_needs_no_positive_query_budget) ... ok\ntest_missing_branch_mutant (test_frontier.FrontierTests.test_missing_branch_mutant) ... ok\ntest_missing_closure_cannot_check (test_frontier.FrontierTests.test_missing_closure_cannot_check) ... ok\ntest_missing_outcome_is_not_negative_evidence (test_frontier.FrontierTests.test_missing_outcome_is_not_negative_evidence) ... ok\ntest_new_channel_can_remove_obstruction (test_frontier.FrontierTests.test_new_channel_can_remove_obstruction) ... ok\ntest_no_unique_coarsest_partition (test_frontier.FrontierTests.test_no_unique_coarsest_partition) ... ok\ntest_noiseless_channel_assumption_not_noise_guarantee (test_frontier.FrontierTests.test_noiseless_channel_assumption_not_noise_guarantee) ... ok\ntest_observed_encoder_bad_signal_and_cap (test_frontier.FrontierTests.test_observed_encoder_bad_signal_and_cap) ... ok\ntest_observed_encoder_identity_recovers_full_frontier (test_frontier.FrontierTests.test_observed_encoder_identity_recovers_full_frontier) ... ok\ntest_omit_true_world_mutant (test_frontier.FrontierTests.test_omit_true_world_mutant) ... ok\ntest_pairwise_compatibility_false_green_mutant (test_frontier.FrontierTests.test_pairwise_compatibility_false_green_mutant) ... ok\ntest_product_sum_bound_with_common_interface (test_frontier.FrontierTests.test_product_sum_bound_with_common_interface) ... ok\ntest_reference_cap_is_not_obstruction (test_frontier.FrontierTests.test_reference_cap_is_not_obstruction) ... ok\ntest_revocation_reopens_answer (test_frontier.FrontierTests.test_revocation_reopens_answer) ... ok\ntest_shared_information_uses_matched_interface (test_frontier.FrontierTests.test_shared_information_uses_matched_interface) ... ok\ntest_unsafe_leaf_mutant (test_frontier.FrontierTests.test_unsafe_leaf_mutant) ... ok\n\n----------------------------------------------------------------------\nRan 32 tests in 3.129s\n\nOK\n",
+        "stdout": ""
+      },
+      {
+        "actual_exit": 0,
+        "argv": [
+          "python",
+          "run_checks.py",
+          "--verify"
+        ],
+        "cwd": "research/machine-epistemics-theory/decision_frontier_v1",
+        "expected_exit": 0,
+        "name": "decision_frontier_receipt",
+        "stderr": "",
+        "stdout": "{\"counts\": {\"bellman_cells\": 38416, \"cover_frontier_equalities\": 5488, \"finite_models\": 4558, \"impossible_models\": 930, \"models\": 5488, \"subset_monotonicity_checks\": 104272, \"tree_equalities\": 5488, \"world_replays\": 13674}, \"current_python\": \"3.12.13\", \"mode\": \"verify\", \"status\": \"PASS\", \"tests\": {\"errors\": 0, \"failures\": 0, \"run\": 32, \"skipped\": 0}}\n"
+      },
+      {
+        "actual_exit": 0,
+        "argv": [
+          "python",
+          "check.py"
+        ],
+        "cwd": "research/machine-epistemics-theory/certificate_lifecycle_v1",
+        "expected_exit": 0,
+        "name": "certificate_lifecycle",
+        "stderr": "",
+        "stdout": "{\n  \"artifacts\": {\n    \"MODULE_CLOSURE.json\": \"32a3ab3bebd969973627ef5643257b7fd255801210e3bfabe80572e099275fd5\",\n    \"README.md\": \"f6e89b2f270ecc1b7ce84eecca8ed8d182c658f0ce409a686670a0240b46fe16\",\n    \"STUDY.json\": \"119a50969dbc8a5a422bae552e98771e2fab549d49f1f53e35a3aa106e55b70e\",\n    \"THEORY.md\": \"8f0711481a70c51e40c7d57f410fb0ead08ad7196949ffb6f14e4c4158dc1f17\",\n    \"check.py\": \"c4c21010aceaeb2663d62afe5af541886dc64ff15d4b44a1a4ead9ad469b37ef\",\n    \"reference.py\": \"01da794f378def4adb88acf9089a042d6a57aa65e60aecebe1337eb653e5dee0\",\n    \"test_reference.py\": \"06cea936eeeb16b3b03cdec65e53c7d3374fa3ce859c12867ce3b8fb0d1f7483\"\n  },\n  \"baseline\": {\n    \"errors\": 0,\n    \"failures\": 0,\n    \"tests\": 20\n  },\n  \"denominators\": {\n    \"DNF_oracle_comparisons\": 6885,\n    \"applied_mutants\": 12,\n    \"cyclic_grounding_node_comparisons\": 1152,\n    \"factorization_models\": 256,\n    \"identity_coordinates\": 16\n  },\n  \"design_commit\": \"69181cbbf356563aad662985f384373d4c081ff9\",\n  \"environment\": {\n    \"implementation\": \"CPython\",\n    \"machine\": \"x86_64\",\n    \"python\": \"3.12.13\",\n    \"system\": \"Linux\"\n  },\n  \"full_repository_tests\": \"NOT_RUN; direct git clone unavailable in this container\",\n  \"independent_review\": \"PENDING\",\n  \"mutants\": [\n    {\n      \"assertion_failures\": 1,\n      \"detected\": true,\n      \"errors\": 0,\n      \"expected_test\": \"test_identity_all_16_coordinates\",\n      \"mutant\": \"M01_omit_prompt\",\n      \"mutated_source_sha256\": \"f2d8cfa74065bded8b1804763113ed4253da7e86913aa466fdbdb906028c0400\",\n      \"replacements\": 1,\n      \"tests_run\": 20\n    },\n    {\n      \"assertion_failures\": 1,\n      \"detected\": true,\n      \"errors\": 0,\n      \"expected_test\": \"test_missing_judgment_and_scoped_checker_trust\",\n      \"mutant\": \"M02_missing_as_valid\",\n      \"mutated_source_sha256\": \"8a96054f5e906c89d56eb86cabf4c9763c3207ba7782345d0310a4ac3ca07357\",\n      \"replacements\": 1,\n      \"tests_run\": 20\n    },\n    {\n      \"assertion_failures\": 5,\n      \"detected\": true,\n      \"errors\": 0,\n      \"expected_test\": \"test_alternate_support\",\n      \"mutant\": \"M03_destroy_alternate_support\",\n      \"mutated_source_sha256\": \"cc82c01368b79c35e5e933bfe241dc9a696e1ffdedd1b7c36410ab1cbc8a8dd1\",\n      \"replacements\": 1,\n      \"tests_run\": 20\n    },\n    {\n      \"assertion_failures\": 3,\n      \"detected\": true,\n      \"errors\": 0,\n      \"expected_test\": \"test_all_necessary_dependencies\",\n      \"mutant\": \"M04_ignore_necessary_support\",\n      \"mutated_source_sha256\": \"87dcf01b019a2a750edf3e400ef2061c8735e5866a9f6638500ccce8b9aa8331\",\n      \"replacements\": 1,\n      \"tests_run\": 20\n    },\n    {\n      \"assertion_failures\": 3,\n      \"detected\": true,\n      \"errors\": 11,\n      \"expected_test\": \"test_cycles_need_grounding\",\n      \"mutant\": \"M05_self_warrant_cycle\",\n      \"mutated_source_sha256\": \"537697df267b3d85d791448c2c549a01cad926ff8117bfcab935aa87344c23b2\",\n      \"replacements\": 1,\n      \"tests_run\": 20\n    },\n    {\n      \"assertion_failures\": 3,\n      \"detected\": true,\n      \"errors\": 0,\n      \"expected_test\": \"test_scope_epoch_and_operator_drift\",\n      \"mutant\": \"M06_ignore_context\",\n      \"mutated_source_sha256\": \"b44e45052b14a331cd7438f75eef2efa841e078caedb8c394a96ba7159ac0e15\",\n      \"replacements\": 1,\n      \"tests_run\": 20\n    },\n    {\n      \"assertion_failures\": 1,\n      \"detected\": true,\n      \"errors\": 0,\n      \"expected_test\": \"test_stale_and_aba_intents\",\n      \"mutant\": \"M07_ignore_snapshot_fence\",\n      \"mutated_source_sha256\": \"06a484fb1cd668a916d5c8af6f9aa987fe12ba34225667357defac3ff09f8e75\",\n      \"replacements\": 1,\n      \"tests_run\": 20\n    },\n    {\n      \"assertion_failures\": 1,\n      \"detected\": true,\n      \"errors\": 0,\n      \"expected_test\": \"test_no_guarantee_to_exact_coercion\",\n      \"mutant\": \"M08_coerce_guarantee_to_exact\",\n      \"mutated_source_sha256\": \"87d710aa7044c5823248cd361d6e76a98154955c4f7032f2ac90ef62f9c290ed\",\n      \"replacements\": 1,\n      \"tests_run\": 20\n    },\n    {\n      \"assertion_failures\": 1,\n      \"detected\": true,\n      \"errors\": 0,\n      \"expected_test\": \"test_registry_name_rebinding\",\n      \"mutant\": \"M09_allow_registry_rebinding\",\n      \"mutated_source_sha256\": \"f305d6881a86e3e9da655378ec535ca92166f9f8a6180b4ef2c0eb8e1674de4f\",\n      \"replacements\": 2,\n      \"tests_run\": 20\n    },\n    {\n      \"assertion_failures\": 1,\n      \"detected\": true,\n      \"errors\": 0,\n      \"expected_test\": \"test_replay_checkpoint_and_receipt_identity\",\n      \"mutant\": \"M10_omit_event_from_history\",\n      \"mutated_source_sha256\": \"dc05103cac367577420d50c2b123ca1b54cdf60bf360edc28954297c071583ea\",\n      \"replacements\": 1,\n      \"tests_run\": 20\n    },\n    {\n      \"assertion_failures\": 1,\n      \"detected\": true,\n      \"errors\": 0,\n      \"expected_test\": \"test_absorption_requires_external_evidence\",\n      \"mutant\": \"M11_self_authorize_absorption\",\n      \"mutated_source_sha256\": \"54d5d253ba791d0d3a089420bad348d3a2d84347386d3bafc1a2f7f830529ab5\",\n      \"replacements\": 1,\n      \"tests_run\": 20\n    },\n    {\n      \"assertion_failures\": 1,\n      \"detected\": true,\n      \"errors\": 0,\n      \"expected_test\": \"test_replay_checkpoint_and_receipt_identity\",\n      \"mutant\": \"M12_ignore_checkpoint\",\n      \"mutated_source_sha256\": \"0dca1ba6d96590c2dc5c433b73bbe4746aa82182cc249060da44695067d89d14\",\n      \"replacements\": 1,\n      \"tests_run\": 20\n    }\n  ],\n  \"ocm_adoption\": \"NOT_AUTHORIZED_BY_THIS_RECEIPT\",\n  \"proof_status\": \"WRITTEN_ARGUMENTS_NOT_PROOF_ASSISTANT_CHECKED\",\n  \"schema\": \"me-certificate-lifecycle-calibration/v1\",\n  \"terminal\": \"LOCAL_EXACT_CALIBRATION_PASS\",\n  \"workflow_sha256\": \"7873ce7f04b244ef26e96b9d135ea850724c0c97b83b35458041f584086109fd\"\n}\n"
+      },
+      {
+        "actual_exit": 0,
+        "argv": [
+          "python",
+          "verify_receipt.py"
+        ],
+        "cwd": "research/machine-epistemics-theory/causal_verifier_v1",
+        "expected_exit": 0,
+        "name": "causal_verifier_receipt",
+        "stderr": "",
+        "stdout": "{\"bound_files\": 9, \"grants_external_authority\": false, \"status\": \"PASS\"}\n"
+      },
+      {
+        "actual_exit": 0,
+        "argv": [
+          "python",
+          "verify_package.py",
+          "--verify"
+        ],
+        "cwd": "research/machine-epistemics-theory/revision_consistency_v1",
+        "expected_exit": 0,
+        "name": "revision_consistency",
+        "stderr": "",
+        "stdout": "{\n  \"exact_result_sha256\": \"3c0869ae720df565d8e4c9cb4b7c2127e8e27fd732a087c7215e8a3571ba5a00\",\n  \"foundation_overall\": \"OPEN_RESEARCH\",\n  \"grants_scientific_authority\": false,\n  \"parent_disposition\": \"PARENT_SUFFICIENT\",\n  \"terminal\": \"CORRECTED_FOUNDATION_FRAGMENT\",\n  \"tests\": {\n    \"errors\": 0,\n    \"failures\": 0,\n    \"skipped\": 0,\n    \"tests\": 37\n  }\n}\n"
+      },
+      {
+        "actual_exit": 0,
+        "argv": [
+          "python",
+          "verify_package.py",
+          "--selftest"
+        ],
+        "cwd": "research/machine-epistemics-theory/revision_consistency_v1",
+        "expected_exit": 0,
+        "name": "revision_consistency_hostile",
+        "stderr": "",
+        "stdout": "{\n  \"cases\": 5,\n  \"passed\": 5,\n  \"receipt_controls\": {\n    \"false_independence\": 1,\n    \"missing_source\": 2,\n    \"omitted_binding\": 1,\n    \"source_drift\": 1,\n    \"valid\": 0\n  }\n}\n"
+      },
+      {
+        "actual_exit": 0,
+        "argv": [
+          "python",
+          "run.py",
+          "--verify"
+        ],
+        "cwd": "research/machine-epistemics-theory/revision_consistency_v1/temporal_v2",
+        "expected_exit": 0,
+        "name": "temporal_validity",
+        "stderr": "",
+        "stdout": "{\n  \"errors\": 0,\n  \"failures\": 0,\n  \"result\": {\n    \"all_size_proof_source\": \"THEORY.md written arguments, not enumeration\",\n    \"exact\": {\n      \"adverse_paths\": 9298,\n      \"belief_cases\": 28868,\n      \"graphs\": 530,\n      \"kernel_cases\": 4164,\n      \"outcomes\": {\n        \"MODEL_PERSISTENCE_REFUTED\": 23298,\n        \"MODEL_PERSISTENT\": 5570\n      },\n      \"parent_disagreements\": 0,\n      \"path_cases\": 12420\n    },\n    \"foundation_overall\": \"OPEN_RESEARCH\",\n    \"grants_scientific_authority\": false,\n    \"partial\": {\n      \"belief_cases\": 972,\n      \"completion_cases\": 3072,\n      \"completion_disagreements\": 0,\n      \"decisive_flips\": 0,\n      \"envelopes\": 81,\n      \"outcomes\": {\n        \"CANNOT_CHECK\": 54,\n        \"MODEL_PERSISTENCE_REFUTED\": 621,\n        \"MODEL_PERSISTENT\": 297\n      },\n      \"refinement_cases\": 7500\n    },\n    \"production_model_closure\": \"CANNOT_CHECK\",\n    \"schema\": \"ME_TEMPORAL_CALIBRATION_V2\",\n    \"scope\": \"REGISTERED_FINITE_REVISION_MODELS_ONLY\",\n    \"terminal\": \"PARENT_SUFFICIENT\"\n  },\n  \"skipped\": 0,\n  \"tests\": 28\n}\n"
+      },
+      {
+        "actual_exit": 0,
+        "argv": [
+          "python",
+          "run.py",
+          "--selftest"
+        ],
+        "cwd": "research/machine-epistemics-theory/revision_consistency_v1/temporal_v2",
+        "expected_exit": 0,
+        "name": "temporal_validity_hostile",
+        "stderr": "",
+        "stdout": "{\n  \"cases\": 5,\n  \"controls\": {\n    \"false_independence\": 1,\n    \"missing_source\": 2,\n    \"omitted_binding\": 1,\n    \"source_drift\": 1,\n    \"valid\": 0\n  }\n}\n"
+      },
+      {
+        "actual_exit": 0,
+        "argv": [
+          "python",
+          "run_checks.py",
+          "--verify"
+        ],
+        "cwd": "research/machine-epistemics-theory/causal_transport_v1",
+        "expected_exit": 0,
+        "name": "causal_transport",
+        "stderr": "",
+        "stdout": "{\n  \"receipt_verified\": true,\n  \"receipt_written\": false,\n  \"result\": {\n    \"calibration\": {\n      \"adaptive_laws\": 125,\n      \"conditional_checks\": 1113,\n      \"counterfactual_queries\": 672,\n      \"normalized_marginals\": 576,\n      \"response_distributions\": 494,\n      \"scm_models\": 64,\n      \"selective_testing_rules\": 1725,\n      \"sharp_bound_cells\": 240,\n      \"sharp_transcript_witnesses\": 20,\n      \"structural_solutions\": 1152,\n      \"testing_rules\": 348,\n      \"transport_checks\": 2025,\n      \"tv_event_checks\": 1800,\n      \"undefined_conditions\": 864\n    },\n    \"claim_sections\": 13,\n    \"empirical_validation\": \"NOT_RUN\",\n    \"errors\": 0,\n    \"failures\": 0,\n    \"full_foundation_closed\": false,\n    \"independent_review\": \"NOT_OBTAINED\",\n    \"mutation_audit\": {\n      \"killed\": 8,\n      \"mutants\": 8,\n      \"reports\": [\n        {\n          \"anchor_occurrences\": 1,\n          \"applied\": true,\n          \"baseline_exit\": 0,\n          \"mutant\": \"condition_in_wrong_world\",\n          \"mutant_exit\": 1,\n          \"status\": \"KILLED_BY_ASSERTION\",\n          \"test\": \"test_wrong_world_conditioning_mutant\"\n        },\n        {\n          \"anchor_occurrences\": 1,\n          \"applied\": true,\n          \"baseline_exit\": 0,\n          \"mutant\": \"empty_class_promoted\",\n          \"mutant_exit\": 1,\n          \"status\": \"KILLED_BY_ASSERTION\",\n          \"test\": \"test_empty_models_are_conflict_not_vacuous_truth\"\n        },\n        {\n          \"anchor_occurrences\": 1,\n          \"applied\": true,\n          \"baseline_exit\": 0,\n          \"mutant\": \"undefined_query_promoted\",\n          \"mutant_exit\": 1,\n          \"status\": \"KILLED_BY_ASSERTION\",\n          \"test\": \"test_zero_condition_model_is_not_silently_dropped\"\n        },\n        {\n          \"anchor_occurrences\": 1,\n          \"applied\": true,\n          \"baseline_exit\": 0,\n          \"mutant\": \"population_drift_omitted\",\n          \"mutant_exit\": 1,\n          \"status\": \"KILLED_BY_ASSERTION\",\n          \"test\": \"test_invariance_without_population_match_fails\"\n        },\n        {\n          \"anchor_occurrences\": 1,\n          \"applied\": true,\n          \"baseline_exit\": 0,\n          \"mutant\": \"sample_promoted_to_exact_law\",\n          \"mutant_exit\": 1,\n          \"status\": \"KILLED_BY_ASSERTION\",\n          \"test\": \"test_single_success_is_not_population_probability_one\"\n        },\n        {\n          \"anchor_occurrences\": 1,\n          \"applied\": true,\n          \"baseline_exit\": 0,\n          \"mutant\": \"changed_dependency_ignored\",\n          \"mutant_exit\": 1,\n          \"status\": \"KILLED_BY_ASSERTION\",\n          \"test\": \"test_dependency_drift_revalidates\"\n        },\n        {\n          \"anchor_occurrences\": 1,\n          \"applied\": true,\n          \"baseline_exit\": 0,\n          \"mutant\": \"counterfactual_coupling_assumed\",\n          \"mutant_exit\": 1,\n          \"status\": \"KILLED_BY_ASSERTION\",\n          \"test\": \"test_sharp_binary_bounds\"\n        },\n        {\n          \"anchor_occurrences\": 1,\n          \"applied\": true,\n          \"baseline_exit\": 0,\n          \"mutant\": \"incompatible_marginal_accepted\",\n          \"mutant_exit\": 1,\n          \"status\": \"KILLED_BY_ASSERTION\",\n          \"test\": \"test_global_marginal_witness_positive_and_rejection\"\n        }\n      ]\n    },\n    \"novelty\": \"NOT_CLAIMED\",\n    \"proof_assistant\": \"NOT_RUN\",\n    \"scope\": \"DECLARED_FINITE_CAUSAL_TRANSPORT_FRAGMENT\",\n    \"skipped\": 0,\n    \"status\": \"PASS\",\n    \"unit_tests\": 38\n  },\n  \"status\": \"PASS\"\n}\n"
+      },
+      {
+        "actual_exit": 2,
+        "argv": [
+          "python",
+          "-O",
+          "run_checks.py",
+          "--verify"
+        ],
+        "cwd": "research/machine-epistemics-theory/causal_transport_v1",
+        "expected_exit": 2,
+        "name": "causal_transport_optimized_refusal",
+        "stderr": "",
+        "stdout": "{\"status\": \"CANNOT_CHECK\", \"reason\": \"OPTIMIZED_CHECKS_NOT_ALLOWED\"}\n"
+      },
+      {
+        "actual_exit": 0,
+        "argv": [
+          "python",
+          "verify_bundle.py",
+          "--hostile"
+        ],
+        "cwd": "research/machine-epistemics-theory/foundation_typed_lifecycle_v1",
+        "expected_exit": 0,
+        "name": "typed_lifecycle",
+        "stderr": "",
+        "stdout": "{\n  \"body_sha256\": \"bd1c4433d54cc6246cf1e32a533af78c3aff317009750eeea81aa780366f7a05\",\n  \"check_count\": 530312,\n  \"control_count\": 61,\n  \"custody_hostiles\": [\n    \"code_drift:FAIL\",\n    \"proof_missing:CANNOT_CHECK\",\n    \"binding_omitted:FAIL\",\n    \"empty_result:FAIL\",\n    \"atlas_promoted:FAIL\"\n  ],\n  \"gap_rows\": 35,\n  \"independent_review\": \"NOT_OBTAINED\",\n  \"proof_assistant_status\": \"SEPARATE_EXECUTION_REQUIRED\",\n  \"terminal\": \"BUNDLE_VERIFIED\",\n  \"theorem_rows\": 16\n}\n"
+      },
+      {
+        "actual_exit": 0,
+        "argv": [
+          "python",
+          "-O",
+          "verify_bundle.py"
+        ],
+        "cwd": "research/machine-epistemics-theory/foundation_typed_lifecycle_v1",
+        "expected_exit": 0,
+        "name": "typed_lifecycle_optimized",
+        "stderr": "",
+        "stdout": "{\n  \"body_sha256\": \"bd1c4433d54cc6246cf1e32a533af78c3aff317009750eeea81aa780366f7a05\",\n  \"check_count\": 530312,\n  \"control_count\": 61,\n  \"custody_hostiles\": [],\n  \"gap_rows\": 35,\n  \"independent_review\": \"NOT_OBTAINED\",\n  \"proof_assistant_status\": \"SEPARATE_EXECUTION_REQUIRED\",\n  \"terminal\": \"BUNDLE_VERIFIED\",\n  \"theorem_rows\": 16\n}\n"
+      },
+      {
+        "actual_exit": 0,
+        "argv": [
+          "python",
+          "stopping_counterexample.py"
+        ],
+        "cwd": "research/machine-epistemics-theory/foundation_revision_v1",
+        "expected_exit": 0,
+        "name": "revision_stopping_counterexample",
+        "stderr": "",
+        "stdout": "{\n  \"P\": [\n    [\n      \"1\"\n    ]\n  ],\n  \"a0\": \"1/2\",\n  \"a1\": \"3/4\",\n  \"actual_first_FOUND\": 1,\n  \"all_size_argument\": \"CONCURRENT_RECONCILIATION.md; not inferred from 21 controls\",\n  \"alpha\": \"1/2\",\n  \"claimed_earliest_budget\": 3,\n  \"independent_review\": \"NOT_PERFORMED\",\n  \"seed\": [\n    \"1\"\n  ],\n  \"source_commit\": \"d756c086edc46ad4e5e682f69730b72c1dc26a4c\",\n  \"target\": \"ORION-V2 #317 T2(c)\",\n  \"terminal\": \"COUNTEREXAMPLE_REPRODUCED\",\n  \"theta\": \"3/5\",\n  \"threshold_equality_controls\": 21\n}\n"
+      },
+      {
+        "actual_exit": 0,
+        "argv": [
+          "python",
+          "-m",
+          "unittest",
+          "-v",
+          "test_transport"
+        ],
+        "cwd": "research/machine-epistemics-theory/certificate_transport_v1",
+        "expected_exit": 0,
+        "name": "certificate_transport_tests",
+        "stderr": "test_audit_revocation (test_transport.TransportTests.test_audit_revocation) ... ok\ntest_bad_inputs (test_transport.TransportTests.test_bad_inputs) ... ok\ntest_binding_is_not_validity (test_transport.TransportTests.test_binding_is_not_validity) ... ok\ntest_caps_are_cannot_check (test_transport.TransportTests.test_caps_are_cannot_check) ... ok\ntest_claim_kind_not_coerced (test_transport.TransportTests.test_claim_kind_not_coerced) ... ok\ntest_empty_and_full_events (test_transport.TransportTests.test_empty_and_full_events) ... ok\ntest_exact_witness (test_transport.TransportTests.test_exact_witness) ... ok\ntest_granularity (test_transport.TransportTests.test_granularity) ... ok\ntest_integer_cost_contract (test_transport.TransportTests.test_integer_cost_contract) ... ok\ntest_mutable_scope (test_transport.TransportTests.test_mutable_scope) ... ok\ntest_no_event_change_is_identity (test_transport.TransportTests.test_no_event_change_is_identity) ... ok\ntest_parent_does_not_spend_on_plateau (test_transport.TransportTests.test_parent_does_not_spend_on_plateau) ... ok\ntest_parent_zero_mass_tie (test_transport.TransportTests.test_parent_zero_mass_tie) ... ok\ntest_zero_mass_is_not_impossible (test_transport.TransportTests.test_zero_mass_is_not_impossible) ... ok\n\n----------------------------------------------------------------------\nRan 14 tests in 0.003s\n\nOK\n",
+        "stdout": ""
+      },
+      {
+        "actual_exit": 0,
+        "argv": [
+          "python",
+          "checks.py",
+          "--verify",
+          "RESULTS.json"
+        ],
+        "cwd": "research/machine-epistemics-theory/certificate_transport_v1",
+        "expected_exit": 0,
+        "name": "certificate_transport",
+        "stderr": "",
+        "stdout": "{\n  \"authority\": {\n    \"OCM_adoption\": false,\n    \"all_size_proof_from_enumeration\": false,\n    \"external_action\": false,\n    \"independent_review\": false,\n    \"novelty\": \"NOT_ESTABLISHED\",\n    \"real_model_coverage\": false\n  },\n  \"controls\": {\n    \"dependency_revocation_ignored\": {\n      \"correct\": \"REVALIDATE\",\n      \"detected\": true,\n      \"mutated\": \"BINDING_MATCH_ONLY\"\n    },\n    \"empty_event_given_spurious_drift_risk\": {\n      \"correct\": \"0\",\n      \"detected\": true,\n      \"mutated\": \"1/4\"\n    },\n    \"fractional_relaxation_claimed_exact\": {\n      \"correct\": \"2/5\",\n      \"detected\": true,\n      \"mutated\": \"1/2\"\n    },\n    \"ignored_mutable_scope\": {\n      \"correct\": \"1/4\",\n      \"detected\": true,\n      \"mutated\": \"1\"\n    },\n    \"missing_TV_half\": {\n      \"correct\": \"1/2\",\n      \"detected\": true,\n      \"mutated\": \"3/8\"\n    },\n    \"omitted_distribution_drift\": {\n      \"correct\": \"1/2\",\n      \"detected\": true,\n      \"mutated\": \"1/4\"\n    },\n    \"omitted_operator_change\": {\n      \"correct\": \"1/4\",\n      \"detected\": true,\n      \"mutated\": \"0\"\n    },\n    \"revoked_audit_kept_valid\": {\n      \"correct\": \"1/4\",\n      \"detected\": true,\n      \"mutated\": \"0\"\n    },\n    \"unaudited_region_ignored\": {\n      \"correct\": \"1/4\",\n      \"detected\": true,\n      \"mutated\": \"0\"\n    },\n    \"zero_mass_error_declared_impossible\": {\n      \"correct\": \"1/4\",\n      \"detected\": true,\n      \"mutated\": \"0\"\n    }\n  },\n  \"counts\": {\n    \"applied_mutants_detected\": 10,\n    \"audit_parent_pairs\": 28160,\n    \"audit_semantic_cells\": 8640,\n    \"exhaustive_audit_masks\": 95040,\n    \"fixed_event_cells\": 320,\n    \"joint_candidate_masks\": 34560,\n    \"joint_frontier_cells\": 10240,\n    \"manifest_fields_mutated\": 14,\n    \"no_alarm_controls\": 5,\n    \"oracle_distribution_comparisons\": 3200,\n    \"parent_DP_work\": 69760,\n    \"parent_peak_states\": 7\n  },\n  \"examples\": {\n    \"audit_curve\": [\n      {\n        \"attaining_distribution\": [\n          \"1/2\",\n          \"1/3\",\n          \"1/6\",\n          \"0\"\n        ],\n        \"audited\": 0,\n        \"cost\": 0,\n        \"event\": 15,\n        \"peak_states\": 1,\n        \"risk\": \"1\",\n        \"work\": 4\n      },\n      {\n        \"attaining_distribution\": [\n          \"1/2\",\n          \"1/3\",\n          \"1/6\",\n          \"0\"\n        ],\n        \"audited\": 0,\n        \"cost\": 0,\n        \"event\": 15,\n        \"peak_states\": 2,\n        \"risk\": \"1\",\n        \"work\": 5\n      },\n      {\n        \"attaining_distribution\": [\n          \"7/12\",\n          \"1/4\",\n          \"1/6\",\n          \"0\"\n        ],\n        \"audited\": 2,\n        \"cost\": 2,\n        \"event\": 13,\n        \"peak_states\": 3,\n        \"risk\": \"3/4\",\n        \"work\": 7\n      },\n      {\n        \"attaining_distribution\": [\n          \"5/12\",\n          \"5/12\",\n          \"1/6\",\n          \"0\"\n        ],\n        \"audited\": 1,\n        \"cost\": 3,\n        \"event\": 14,\n        \"peak_states\": 4,\n        \"risk\": \"7/12\",\n        \"work\": 10\n      },\n      {\n        \"attaining_distribution\": [\n          \"5/12\",\n          \"5/12\",\n          \"1/6\",\n          \"0\"\n        ],\n        \"audited\": 1,\n        \"cost\": 3,\n        \"event\": 14,\n        \"peak_states\": 5,\n        \"risk\": \"7/12\",\n        \"work\": 11\n      },\n      {\n        \"attaining_distribution\": [\n          \"5/12\",\n          \"1/3\",\n          \"1/4\",\n          \"0\"\n        ],\n        \"audited\": 3,\n        \"cost\": 5,\n        \"event\": 12,\n        \"peak_states\": 6,\n        \"risk\": \"1/4\",\n        \"work\": 13\n      },\n      {\n        \"attaining_distribution\": [\n          \"5/12\",\n          \"1/3\",\n          \"1/4\",\n          \"0\"\n        ],\n        \"audited\": 3,\n        \"cost\": 5,\n        \"event\": 12,\n        \"peak_states\": 7,\n        \"risk\": \"1/4\",\n        \"work\": 14\n      },\n      {\n        \"attaining_distribution\": [\n          \"5/12\",\n          \"1/3\",\n          \"1/4\",\n          \"0\"\n        ],\n        \"audited\": 3,\n        \"cost\": 5,\n        \"event\": 12,\n        \"peak_states\": 7,\n        \"risk\": \"1/4\",\n        \"work\": 14\n      }\n    ],\n    \"granularity\": {\n      \"attaining_distribution\": [\n        \"2/5\",\n        \"3/5\"\n      ],\n      \"candidates\": 4,\n      \"change_mass\": \"2/5\",\n      \"event\": 1,\n      \"feasible\": 2,\n      \"risk\": \"2/5\"\n    },\n    \"zero_mass_after_audit\": {\n      \"attaining_distribution\": [\n        \"1\",\n        \"0\"\n      ],\n      \"event\": 0,\n      \"risk\": \"0\"\n    },\n    \"zero_mass_before_audit\": {\n      \"attaining_distribution\": [\n        \"3/4\",\n        \"1/4\"\n      ],\n      \"event\": 2,\n      \"risk\": \"1/4\"\n    }\n  },\n  \"grid\": {\n    \"atoms\": 3,\n    \"denominator\": 3,\n    \"distributions\": 10\n  },\n  \"no_alarm\": {\n    \"canonical_field_order\": true,\n    \"complete_audit\": true,\n    \"full_event\": true,\n    \"identity_transport\": true,\n    \"unrelated_revocation\": true\n  },\n  \"scope\": \"public complete finite rational model, not empirical calibration\",\n  \"study\": \"ME-CERTIFICATE-TRANSPORT-V1\",\n  \"terminal\": \"EXACT_FINITE_PARENT_PARITY\"\n}\n"
+      },
+      {
+        "actual_exit": 0,
+        "argv": [
+          "python",
+          "extensions.py",
+          "--verify",
+          "EXTENSION_RESULTS.json"
+        ],
+        "cwd": "research/machine-epistemics-theory/certificate_transport_v1",
+        "expected_exit": 0,
+        "name": "certificate_transport_extensions",
+        "stderr": "",
+        "stdout": "{\n  \"authority\": {\n    \"all_size_proof_from_enumeration\": false,\n    \"independent_review\": false,\n    \"novelty\": \"NOT_ESTABLISHED\",\n    \"real_model_validity\": false\n  },\n  \"counts\": {\n    \"joint_parent_pairs\": 10240,\n    \"max_reachable_mass_states\": 4,\n    \"nested_monotonicity_checks\": 8640,\n    \"reachable_mass_states_total\": 12976,\n    \"subset_sum_transitions\": 8356,\n    \"supermodular_inequalities\": 13720\n  },\n  \"registration\": \"ADDENDUM.md, after first primary run, before this supplementary run\",\n  \"strict_counterexample\": {\n    \"P\": [\n      \"1/2\",\n      \"1/2\"\n    ],\n    \"epsilon\": \"1/2\",\n    \"mutable\": 3,\n    \"old\": 0,\n    \"risk_by_audited_mask\": {\n      \"0\": \"1\",\n      \"1\": \"1\",\n      \"2\": \"1\",\n      \"3\": \"0\"\n    },\n    \"submodularity_claim_refuted\": true\n  },\n  \"study\": \"ME-CERTIFICATE-TRANSPORT-V1-DEDUCTIVE-ADDENDUM\",\n  \"terminal\": \"EXACT_FINITE_PARENT_PARITY_AND_SUPERMODULARITY_CALIBRATION\"\n}\n"
+      },
+      {
+        "actual_exit": 0,
+        "argv": [
+          "python",
+          "sampling.py",
+          "--verify",
+          "SAMPLING_RESULTS.json"
+        ],
+        "cwd": "research/machine-epistemics-theory/certificate_transport_v1",
+        "expected_exit": 0,
+        "name": "certificate_transport_sampling",
+        "stderr": "",
+        "stdout": "{\n  \"authority\": {\n    \"all_size_proof_from_enumeration\": false,\n    \"independent_review\": false,\n    \"novelty\": \"NOT_ESTABLISHED\",\n    \"real_data_or_model_run\": false\n  },\n  \"counts\": {\n    \"binomial_limits\": 270,\n    \"count_monotonicity\": 234,\n    \"disagreement_inclusions\": 1536,\n    \"exact_coverage_cells\": 612,\n    \"invalid_input_rejections\": 8,\n    \"minimal_grid_predecessors\": 234,\n    \"multiclass_strictness_witnesses\": 1,\n    \"selection_sample_vectors\": 16,\n    \"tail_certificates\": 234\n  },\n  \"examples\": {\n    \"hypothetical_update\": {\n      \"calibration_confidence_at_least\": \"19/20\",\n      \"cost_inputs\": {\n        \"paired_predictor_evaluations\": 200,\n        \"paired_unlabeled_examples\": 100,\n        \"reference_labeled_examples\": 100,\n        \"reference_predictor_evaluations\": 100\n      },\n      \"disagreement_upper\": \"1785/32768\",\n      \"exact_truth_warrant\": false,\n      \"external_action_authority\": false,\n      \"joint_TV_assumed_upper\": \"1/50\",\n      \"kind\": \"CONDITIONAL_RISK_BOUND\",\n      \"premises_verified_by_this_function\": false,\n      \"reference_risk_upper\": \"4613/65536\",\n      \"requires\": [\n        \"fixed events or simultaneous validity\",\n        \"fixed sample sizes\",\n        \"IID reference and paired sample laws\",\n        \"correct reference labels\",\n        \"common semantic error predicate\",\n        \"justified joint deployment TV\"\n      ],\n      \"risk_upper\": \"237343/1638400\"\n    },\n    \"unrestricted_future\": {\n      \"future_risks\": [\n        0,\n        1\n      ],\n      \"joint_drift_restriction_missing\": true,\n      \"same_input_marginal\": true,\n      \"same_past\": true\n    },\n    \"zero_of_12_alpha_0.05_upper\": \"14479/65536\"\n  },\n  \"selection\": {\n    \"nominal_alpha\": \"1/2\",\n    \"simultaneous_adjusted_undercoverage\": \"0\",\n    \"true_each_risk\": \"3/4\",\n    \"unadjusted_selected_undercoverage\": \"175/256\"\n  },\n  \"study\": \"ME-CERTIFICATE-TRANSPORT-V1-FINITE-SAMPLE-EXTENSION\",\n  \"terminal\": \"EXACT_BINOMIAL_CALIBRATION_AND_SELECTION_COUNTEREXAMPLE\"\n}\n"
+      },
+      {
+        "actual_exit": 0,
+        "argv": [
+          "python",
+          "verify_package.py"
+        ],
+        "cwd": "research/machine-epistemics-theory/certificate_transport_v1",
+        "expected_exit": 0,
+        "name": "certificate_transport_receipt",
+        "stderr": "",
+        "stdout": "{\"claims\": 14, \"files\": 19, \"independent_review\": false, \"scientific_authority\": false, \"status\": \"LOCAL_BINDINGS_AND_CLAIM_DAG_MATCH\"}\n"
+      }
+    ],
+    "custody": {
+      "adapted_callers": 2,
+      "historical_receipt_bindings": 7,
+      "relocated_files": 24,
+      "source_files": 130,
+      "source_prs": 10
+    },
+    "environment": {
+      "python": "3.12.13",
+      "system": "Linux"
+    },
+    "independent_external_review": "NOT_OBTAINED",
+    "lean_bridge": "NOT_RUN",
+    "ocm_adoption_authorized": false,
+    "post_replay_custody": {
+      "adapted_callers": 2,
+      "historical_receipt_bindings": 7,
+      "relocated_files": 24,
+      "source_files": 130,
+      "source_prs": 10
+    },
+    "schema": "ME_FOUNDATION_INTEGRATION_REPLAY_V1",
+    "scientific_completion": false,
+    "terminal": "REQUESTED_INTEGRATION_CHECKS_PASS"
+  },
+  "schema": "ME_FOUNDATION_INTEGRATION_RECEIPT_V2",
+  "scientific_completion": false,
+  "source_inventory_sha256": "6be8f8c531b3881dd4b53b99b5b7620f975d3f42b6a9d290f0738a4a7df951d0",
+  "source_manifest_sha256": "df96e4365c5b5a1f9be074cefe5e9135d6e2620be34f140a73eceac164b37d4b",
+  "supersedes": {
+    "reason": "Initial custody accepted forged source heads and incomplete inventories; four RED controls now pass with independently pinned complete source inventory.",
+    "receipt_path": "research/machine-epistemics-theory/foundation_integration_v1/history/initial-custody-check/REPLAY_RECEIPT.json",
+    "sha256": "b5ef8e442b670adabeeba735ff6f25055dc83a41834e31098b6f687e63f0f5be"
+  }
+}

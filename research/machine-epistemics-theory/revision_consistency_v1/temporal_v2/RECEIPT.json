@@ -1,0 +1,67 @@
+{
+  "bindings": {
+    ".github/workflows/me-temporal-validity.yml": "2515f3ccc31e86862fd42a6d7455e94bdbaf2b72ae8b746631babc2e56258dfa",
+    "research/machine-epistemics-theory/revision_consistency_v1/temporal_v2/DESIGN.md": "335a16201f5d1162e6a95916cca501ed89c9e1ad1c50fb0e6278eea292d915c6",
+    "research/machine-epistemics-theory/revision_consistency_v1/temporal_v2/README.md": "aa863ab751eb10e1124c549b99cf13256ebe72b157211899370788be2b551572",
+    "research/machine-epistemics-theory/revision_consistency_v1/temporal_v2/RESULT.json": "1d4e8a07f61e02da52969ed9dbb876f9be7ef1d7b79bb0a8d5f6928ba7a38fe5",
+    "research/machine-epistemics-theory/revision_consistency_v1/temporal_v2/SOURCES.md": "a7dda6fc874a2843c7e5be90c7a12072691d2b12775382c5da2d7dde8363cd94",
+    "research/machine-epistemics-theory/revision_consistency_v1/temporal_v2/THEORY.md": "0c33ff9b13f2df8b60bc80708694fed973c3d72dbc67dda6417c7c693d02832a",
+    "research/machine-epistemics-theory/revision_consistency_v1/temporal_v2/calibrate.py": "d7c6d2dc1f89152d029229661aafabbbbc19e6d3827a17044b735005bf1bf4fe",
+    "research/machine-epistemics-theory/revision_consistency_v1/temporal_v2/run.py": "153cac3816bf7c8e069e535c2e66a17bd6dfe73baa0c214e83877c75ae4543f1",
+    "research/machine-epistemics-theory/revision_consistency_v1/temporal_v2/temporal.py": "5532676beca66b6632f271bec5a33f6f7cdf26d1a61652e4407e215f92600639",
+    "research/machine-epistemics-theory/revision_consistency_v1/temporal_v2/test_temporal.py": "ef91e5dd61014374e8b6fcea5a80459da757694da24ae71a3e91bec54ce7b46a"
+  },
+  "design_commit": "81beff7df934d4502d01d252353d7a213e9f0a61",
+  "environment": {
+    "machine": "x86_64",
+    "python": "3.13.5",
+    "system": "Linux"
+  },
+  "execution_location": "isolated Linux analysis container; not Mac/LUNARC",
+  "full_local_clean_clone": false,
+  "grants_scientific_authority": false,
+  "independent_review": "NOT_OBTAINED__DISCLOSED_LIMITATION",
+  "predecessor_commit": "97d35a13c3213fbbfb0c090923bf4271bddbf757",
+  "production_model_closure": "CANNOT_CHECK",
+  "schema": "ME_TEMPORAL_RECEIPT_V2",
+  "verification": {
+    "errors": 0,
+    "failures": 0,
+    "result": {
+      "all_size_proof_source": "THEORY.md written arguments, not enumeration",
+      "exact": {
+        "adverse_paths": 9298,
+        "belief_cases": 28868,
+        "graphs": 530,
+        "kernel_cases": 4164,
+        "outcomes": {
+          "MODEL_PERSISTENCE_REFUTED": 23298,
+          "MODEL_PERSISTENT": 5570
+        },
+        "parent_disagreements": 0,
+        "path_cases": 12420
+      },
+      "foundation_overall": "OPEN_RESEARCH",
+      "grants_scientific_authority": false,
+      "partial": {
+        "belief_cases": 972,
+        "completion_cases": 3072,
+        "completion_disagreements": 0,
+        "decisive_flips": 0,
+        "envelopes": 81,
+        "outcomes": {
+          "CANNOT_CHECK": 54,
+          "MODEL_PERSISTENCE_REFUTED": 621,
+          "MODEL_PERSISTENT": 297
+        },
+        "refinement_cases": 7500
+      },
+      "production_model_closure": "CANNOT_CHECK",
+      "schema": "ME_TEMPORAL_CALIBRATION_V2",
+      "scope": "REGISTERED_FINITE_REVISION_MODELS_ONLY",
+      "terminal": "PARENT_SUFFICIENT"
+    },
+    "skipped": 0,
+    "tests": 28
+  }
+}
