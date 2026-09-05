@@ -1091,43 +1091,67 @@ def equivalence_gate(design: dict, present_records: list[dict]) -> dict:
     eps_mean = spec["epsilon_pred_mean_nats_per_token"]
     min_frac = spec["min_pass_fraction"]
     tol = design["token_budget"]["tolerance_tokens"]
-    idx = {(r["instance_id"], r["arm_id"], r["condition"]): r for r in present_records}
-    families = sorted({r["family"] for r in present_records})
+    suite = design.get("suite_generator", {})
+    expected = suite.get("instances_per_family", {}).get("dev")
+    arms = suite.get("arms_per_instance")
+    if (not isinstance(expected, dict) or not expected
+            or any(type(n) is not int or n <= 0 for n in expected.values())
+            or type(arms) is not int or arms <= 0):
+        raise SystemExit("equivalence-gate requires registered dev family counts and arms_per_instance")
+    idx, duplicates = {}, set()
+    for r in present_records:
+        key = (r["family"], r["instance_id"], r["arm_id"], r["condition"])
+        if key in idx:
+            duplicates.add(r["family"])
+        idx[key] = r
+    families = sorted(expected)
+    unexpected = sorted({r["family"] for r in present_records} - set(families))
     per_family = {}
     for fam in families:
+        expected_units = expected[fam] * arms
+        required = {"R0", "R2", "R3"}
+        units = {(iid, aid) for f, iid, aid, c in idx if f == fam and c in required}
+        instances = {iid for iid, aid in units}
+        complete = {(iid, aid) for iid, aid in units
+                    if all((fam, iid, aid, c) in idx for c in required)}
+        if (fam in duplicates or len(instances) != expected[fam]
+                or any(sum(i == iid for i, aid in units) != arms for iid in instances)
+                or len(complete) != expected_units or complete != units):
+            per_family[fam] = {"pass": None, "units": len(complete),
+                               "expected_units": expected_units,
+                               "reason": "incomplete or duplicate registered dev triples"}
+            continue
         flags, diffs = [], []
-        for (iid, aid, c), r in idx.items():
-            if c != "R2" or r["family"] != fam:
-                continue
-            r3, r0 = idx.get((iid, aid, "R3")), idx.get((iid, aid, "R0"))
-            if not r3 or not r0:
-                continue
+        for iid, aid in sorted(complete):
+            r, r3, r0 = (idx[(fam, iid, aid, c)] for c in ("R2", "R3", "R0"))
             d = r3["status_line_mean_logprob"] - r["status_line_mean_logprob"]
             diffs.append(d)
             same_action = (r["current_action"] == r3["current_action"] == r0["current_action"]
                            and r["current_correct"])
             budget_ok = abs(r["tokens_padded"] - r3["tokens_padded"]) <= tol
             flags.append(abs(d) <= eps_inst and same_action and budget_ok)
-        if not flags:
-            per_family[fam] = {"pass": None, "units": 0, "reason": "no R2/R3/R0 triples for this family"}
-            continue
-        frac = sum(flags) / len(flags)
+        frac = sum(flags) / expected_units
         tost = paired_tost(diffs, eps_mean)
-        equivalent = tost.get("equivalent") is True or (tost.get("equivalent") is None and len(diffs) < 3)
-        per_family[fam] = {"pass": bool(frac >= min_frac and equivalent), "units": len(flags),
+        equivalent = tost.get("equivalent")
+        passed = (False if frac < min_frac or equivalent is False
+                  else True if equivalent is True else None)
+        per_family[fam] = {"pass": passed, "units": len(flags), "expected_units": expected_units,
                            "per_unit_pass_fraction": frac, "tost_R3_minus_R2": tost}
     checked = [v for v in per_family.values() if v.get("pass") is not None]
     failed = sorted(k for k, v in per_family.items() if v.get("pass") is False)
     unchecked = sorted(k for k, v in per_family.items() if v.get("pass") is None)
-    if not checked:
-        verdict, admitted = "CANNOT_CHECK__NO_FAMILY_HAD_TRIPLES", None
-    elif failed:
+    if failed:
         verdict, admitted = "GPE_FAIL__MODEL_NOT_ADMITTED", False
+    elif not checked and not any(v["units"] for v in per_family.values()):
+        verdict, admitted = "CANNOT_CHECK__NO_FAMILY_HAD_TRIPLES", None
+    elif unchecked or unexpected:
+        verdict, admitted = "CANNOT_CHECK__INCOMPLETE_GPE_EVIDENCE", None
     else:
         verdict, admitted = "GPE_PASS__MODEL_ADMITTED", True
     return {"gate": "GPE", "admitted": admitted, "verdict": verdict,
             "families_checked": len(checked), "families_failed": failed,
             "families_unchecked": unchecked, "per_family": per_family,
+            "families_unregistered": unexpected,
             "min_pass_fraction": min_frac,
             "note": "administrative pre-run screen; never enters GP0-GP3, the terminal mapping or the routing"}
 
