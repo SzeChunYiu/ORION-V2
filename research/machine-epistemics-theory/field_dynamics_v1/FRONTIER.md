@@ -325,6 +325,32 @@ Mechanize a small but representative core: warrant intervals/support composition
 
 Mechanization validates a formal statement; it does not prove that the statement models the real OCM/environment.
 
+Batch 12 disposition (`../KSO_MECHANISED_CORE_BATCH12_V1.md`, Lake project `../lean/kso_core/`,
+`../../../tests/unit/test_kso_mechanised_core_batch12.py`; NOT sealed): **PROVED in Lean 4.14.0 (no
+Mathlib, no `sorry`, axioms ⊆ {propext, Quot.sound, Classical.choice}) for the warrant core**, with
+the OCM exact checkers as the finite oracle. Mechanised: the Kleene order and connectives as a
+distributive lattice with `∧₃` = min, `∨₃` = max, monotone (all 81 quadruples); `ℓ_R(P ⊕ Q)`,
+`ℓ_R(P ⊗ Q)` and the semiring laws on the liveness function (KS-T01, up to `Equiv`); OCM's syntactic
+`leq` ⇔ the semantic order (`synLeq_iff_leq`); warrant intervals with well-formedness carried by
+`⊕` / `⊗` by construction; **KS-T21** in full (`lam_otimes`, `lam_oplus`, reduction, refinement
+monotonicity); KS-T23's warrant half (`lam_otimesAll_*`); KS-T18 (`lam_zero_DEAD`); revoking more
+never revives (`lam_antitone`, batch-10 J1 (i)); revoked exhibited support ⇒ never LIVE, revoked
+possible support ⇒ DEAD; the fuel-bounded closure `reach` extensive, monotone, union-distributive
+(J1 (vii)), empty on an empty seed, with the non-LIVE seed and hence the cone monotone in `R`
+(`reachDead_mono`); KS-T22 (1)/(2) liveness halves and (3) on the changed set; the authority meet
+never raises (T1 (i)), is the glb, folds below every factor (KS-T20), `internal_authority` pins
+`commit = 0`, and no internal chain reaches commit (T1 (iii), with the operator-factor premise).
+Controls in the build: wrong Kleene order, OCM `mutant_unknown_as_dead` / `_as_live` /
+`mutant_meet_as_union` / `mutant_authority_max` / `mutant_impact_cone_direct_only`, the §1.3
+completeness bit (false-theorem control), the dropped `wf` premise (missing-premise control),
+MEG-16-REFUTED-V0 — each refuted by a proved witness; the failing `example` per mutant is described
+in the batch document. Tightened: semiring and interval laws hold up to liveness equivalence (canon
+normal form stays FINITE, `check_semiring`); the cone's least-closed-superset characterisation, the
+REOPEN / RECHECK / UNAFFECTED partition, KS-T04c, KS-T24, KS-T07b and MEG-16B/C/E stay FINITE
+(OCM checkers). **OPEN** on this row: typed terminals and a representation/revision commutation
+theorem (listed above, not attempted). **CANNOT_CHECK:** that the Lean `Interval` is the runtime's
+`WarrantProfile` as the solve loop uses it; `DecidableEq` of the OCM id universe. Row stays open.
+
 ## Empirical frontier, separately typed
 
 Theorems cannot establish these alone:
@@ -344,5 +370,7 @@ These must use frozen empirical protocols and strongest matched parents, with ne
 The highest-value mathematical sequence is FDX-02 → FDX-03 → FDX-04 → FDX-15, while FDX-06/09/12/13 develop the distributed, learning, language and self frontiers. FDX-16 should mechanize only statements that survive parent attack.
 
 After batches 8–10 the rows with a disposition are FDX-01/02/03/04/05/06/07/08/11/13/14/15; untouched: FDX-09, 10, 12, 16. The one open conjecture is FDX-15's general equivalence; batch 10's open items (graded / probabilistic trust, truthful revelation, coded redundancy / infinite classes) stand.
+
+After batch 12, FDX-16 carries a disposition (PROVED in Lean for the warrant core; typed terminals and the representation/revision commutation theorem remain OPEN on that row).
 
 `GENERAL_NOVELTY = NOT_ESTABLISHED`. `FIELD_STATUS = NOT_ESTABLISHED`.
