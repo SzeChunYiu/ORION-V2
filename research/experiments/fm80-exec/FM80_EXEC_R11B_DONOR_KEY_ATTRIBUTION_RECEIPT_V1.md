@@ -29,6 +29,23 @@ information about the pool: no SD80 case has ever been evaluated for a donor, be
 donor field at all (11 top-level keys per case, none donor- or transfer-related; `case_id` present 455/455 as
 the control that the enumeration works).
 
+### 2a. Why it survived: a green test was pinning it
+
+The constant was not one careless line. `tests/unit/test_fm80_exec_gate.py` contained
+
+```python
+def test_sd80_preconditions_3c_fails_everywhere() -> None:
+    ...
+    assert pre["3c"]["n_pass"] == 0 and pre["3c"]["status"] == "SOME_FAIL" and pre["3c"]["n_checkable"] == 455
+```
+
+— a passing test asserting the hardcoded value, named for the behaviour it was pinning. The suite was green
+throughout, and would have stayed green for as long as the adapter kept returning the constant; the test that
+existed to protect this clause was the thing guaranteeing the clause could never be corrected. This is the
+vacuous-check pattern in its exact form: a gate reported clean because it never ran on the case that mattered.
+It is recorded here because it is the part of R11b most worth learning from — the correction was cheap once
+seen, and what made it invisible was the test, not the adapter.
+
 ## 3. One-stage attribution
 
 The four candidate stages, and what eliminates three of them:
