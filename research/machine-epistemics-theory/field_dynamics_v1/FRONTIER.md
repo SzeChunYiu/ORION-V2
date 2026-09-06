@@ -159,11 +159,47 @@ For a natural infinite grammar/program/transducer family, identify behaviour **a
 
 Parents: Gold/Angluin learning, grammar/transducer learning, computational traces, characteristic samples, version spaces, incremental provenance.
 
+Batch 11 disposition (K1, `../KSO_FIELD_FRONTIER_THEOREMS_BATCH11_V1.md`, checker
+`../kso_field_frontier_batch11_exact.py`): **PARENT_OWNED mathematics; PROVED exact corollaries on the
+category-level construction fixture; NOT sealed.** The learner the OCM N1 grammar induction runs (the
+attested set of `H ← [dep … HEAD … dep]` rules, one relation label per dependent, a dependent slot accepting
+any phrase of its category) identifies every finite inventory of bounded arity in the limit from positive
+demonstrations (255/255 sub-inventories of an eight-rule universe; Gold 1967 for finite classes) after a
+characteristic sample of one demonstration per rule (4 trees for the six-rule treebank, lower bound
+⌈|G| / max rules per tree⌉ = 2); the expected cover time of a uniform demonstration text over `r` rules is
+`r·H_r` (761/35 for `r = 8`), a Zipf text pays ≈ 38.9; the unbounded-arity family changes its conjecture at
+every arity and never converges (G9 restated, 6/6). The exact obstruction for the class N1 uses: the
+derivation count of a category string is the number of projective trees × attested labellings (chart =
+brute force, 12/12); it is Catalan(k+1) = 1, 2, 5, 14, 42 for `N V N (P N)^k` under the saturated inventory
+and 3 / 2 / 1 for the treebank strings (two attachments plus two relation labellings of `N V N`); positive
+demonstrations never lower it (192/192 monotone), so a unique parse is unreachable from positive data once
+two attachments are attested — only revocation / a negative channel (C6) reaches `INTERPRETED` (14 of 64
+sub-inventories, all below). Evidence-licensed ranking orders derivations for unpacking and licenses
+nothing (top-1 commit picks the wrong gold; caught). A packing key that contains the sub-derivation's key
+stores one node per derivation (4, 10, 22, 50, 125 vs 4, 9, 16, 25, 36) — the item-cap consequence. OPEN:
+lexicalised inventories, the exact UD-EWT sample cost. CANNOT_CHECK: convergence of the UD-EWT inventory;
+that the real cap is reached for this reason.
+
 ## FDX-10 — endogenous representation discovery
 
 When can a machine discover a representation/partition/operator vocabulary from evidence rather than selecting from a fixed candidate menu, while preserving externally checked semantics and avoiding self-certification?
 
 Parents: program synthesis, representation learning, abstraction discovery, CEGAR, state aggregation, dictionary/library learning. A result must count search and evaluation information.
+
+Batch 11 disposition (K2): **PARENT_OWNED (Solomonoff/Levin size-ordered search, Rissanen MDL,
+DreamCoder-class library learning, Kolmogorov invariance); PROVED exact corollaries on the Boolean
+library fixture; NOT sealed.** Over `{x, y, NOT, AND, OR}` (9 168 terms up to size 8) the version space of
+every partial evidence table is a set of behaviours identical under every library (81/81), so the
+identification bits ⌈log2 |V|⌉ are representation-invariant and no unseen row is determined by a
+representation (104/104). A discovered operator moves search cost both ways: XOR falls from position 2 936
+to 16 and EQV from 6 990 to 38, seven functions rise, all positions stay within the finite Levin bound
+(32/32). The MDL / library-learning adoption rule (Σ size savings − definition cost) adopts XOR (cost 8)
+only on task sets containing both XOR and EQV (4 of 15 sets; a single XOR task has gain −2); discovering
+the operator costs 4 selection bits and 26 032 evaluated terms per candidate against 0 when it is given. The
+self-certification hostile (a memorising abstraction priced as one symbol) is adopted on 39 partial tables
+and claims the unseen row; honest table pricing adopts it on 0. A definition is identified only up to its
+extension (8 minimal XOR definitions, indistinguishable by any evidence). OPEN: the proposal policy over an
+infinite abstraction space. CANNOT_CHECK: that a real proposed abstraction's evaluator is registered.
 
 ## FDX-11 — epistemic bifurcation / obstruction
 
@@ -191,6 +227,23 @@ ATMS label change, hitting sets / F1, Dung 1995, batch-5 E3 / batch-7 G1).
 Find the exact condition under which a generated prefix may be externally committed while semantic, referential or evidential obligations remain unresolved. A candidate condition is invariance of already committed semantic content across all currently admissible completions plus live/authorized support.
 
 Parents: incremental NLG/parsing, safety games, runtime monitoring, prefix-closed languages. Natural-language measurement is empirical and separate.
+
+Batch 11 disposition (K3): **PARENT_SUFFICIENT (Alpern–Schneider safety; F6's finite criterion; G3's
+completeness threshold; Bar-Hillel for the context-free × regular product); PROVED exact corollaries on a
+finite-state generator with listener readings; NOT sealed.** A prefix may be emitted iff an accepting
+completion is reachable, every reachable accepting reading contains the prefix reading, and every
+committed claim is LIVE and authorised — decided by reachability (20 states; garden-path and late-negation
+prefixes UNSAFE, 5 states). A bounded lookahead is exact at two thresholds: SAFE is decisive iff `k ≥ ℓ*`
+(shortest accepting completion) when nothing is committed and iff `k ≥ max(ℓ*, d)` (saturation depth of the
+reachable set) otherwise; UNSAFE is decisive iff `k` reaches the first violating accepting state; decisive
+verdicts never contradict the exact ones (147 agreements, 33 CANNOT_CHECK). The channel is a premise: the
+atomic final-reading check the N2 realiser performs passes all 6 accepted strings, the streaming check
+passes 2 (the four refused strings carry an unsafe intermediate prefix). Revoking the evidence of a
+committed claim blocks further emission and keeps the history. Hostiles: existential lookahead (SAFE on all
+5 unsafe states), bounded pass read as SAFE (16 cases), forgetting committed content (emits through a
+revocation). Context-free acceptability with a regular reading is decidable by the product (stated, not
+checked); context-free readings are undecidable (G3, cited). CANNOT_CHECK: the listener's reading table
+for natural language.
 
 ## FDX-13 — self-model calibration and reflexive dependence
 
