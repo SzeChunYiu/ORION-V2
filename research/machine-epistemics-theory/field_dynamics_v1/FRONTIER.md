@@ -136,6 +136,23 @@ Develop a mathematically disciplined extension for uncertain/graded evidence wit
 
 The current graded navigation score is not this object. Parent families: imprecise probability, credal sets, Dempster-Shafer/possibility where applicable, probabilistic databases/provenance, selective/conformal prediction.
 
+Batch 9 disposition (I1, `../KSO_FIELD_FRONTIER_THEOREMS_BATCH9_V1.md`, checker
+`../kso_field_frontier_batch9_exact.py`): **PROVED (finite) + EXACTLY_BOUNDED_IMPOSSIBILITY.** A
+time-indexed claim "LIVE at t" is the ledger fact for t ≤ now and, for the future, a statement about the
+law of paths under a *registered generating model*; a receipt may state the ledger liveness exactly and a
+predictive probability only as CONDITIONAL_ON_MODEL with the model id as a revocable assumption
+(NO_MODEL_REGISTERED carries nothing stochastic). On 9 two-state chains × 64 paths: the predictive
+probability is not a function of the path (three values, spread ½, on every path; the empirical rate
+matches no registered model on 44/64); a reopening-rate bound exists iff a model or a revision envelope is
+registered (adversary with ρ revocations: ≤ min(2ρ, T) flips; unbudgeted: T, every smaller bound has a
+counter-path); Bayesian revocation is marginalisation (the divide-out is wrong on 320/384 pairs, exact only
+at the last step and on the i.i.d. subclass); a registered guarantee is revoked by an anytime-valid
+e-process (false revocation 0.011 ≤ α over 12 steps, Ville) where per-step fixed-level re-testing reaches
+0.075; the guarantee never touches an individual output's exactness (⟦0,{g}⟧ UNKNOWN on 4 096/4 096).
+PARENT_OWNED (Markov chains, test martingales / SPRT, Bayes). The graded half (imprecise probability,
+credal sets, D–S) is not entered: D3 / F6 / G6 stand and no scalar-semiring claim is added; batch 10's
+open item "graded / probabilistic trust and Byzantine-fraction thresholds for warrant exchange" stays open.
+
 ## FDX-09 — infinite structured lifecycle learning
 
 For a natural infinite grammar/program/transducer family, identify behaviour **and future revocation/reopening behaviour** up to a registered lifecycle equivalence. Derive positive bounds or a non-identifiability theorem under explicit channels.
@@ -154,6 +171,21 @@ Characterize points at which a registered task family ceases to be solvable unde
 
 This generalizes governed-Jump obstruction certificates. Parent first refusal: completeness thresholds, CEGAR, proof search, model-class misspecification tests.
 
+Batch 9 disposition (I2): **PROVED (finite).** On 512 states (16 evidence × 8 nogood × 4 authority) × 3 840
+single changes the flip set of the commitment set is exactly {revoked id is a cut of the live alternatives}
+∪ {reinstated id completes an alternative} ∪ {new nogood covers every live alternative} ∪ {authority bit of
+the meet}; all 2 524 flips are explained and none is a mechanism failure (the hostile that reads a jump ≥ 2
+as a defect alarms 588 times, always on an explained flip; a graded support score masks 1 688 flips).
+Evidence and nogood changes flip ≤ 2 atoms, an authority withdrawal up to 5 (the meet is discontinuous by
+FD-01). The C7 verdict policy equals Dung's grounded extension on 512/512 states; the 32 conflict states
+have two stable extensions and a credulous pick is not a function of the evidence. The obstruction
+certificate is exactly the *evidence-invariant failure inside the registered representation*: OBSTRUCTION
+iff the target fails at every evidence state (12/12 on the E3 fixture), so an obstruction lies on no
+E-boundary and only an R-transition moves it; certifying on an E-boundary (5 cases a reinstatement solves)
+is caught. That predicate is what separates an expressive obstruction from missing evidence and revoked
+support (E-boundaries) and from budget / search (E2 verdicts). PARENT_OWNED (monotone Boolean sensitivity,
+ATMS label change, hitting sets / F1, Dung 1995, batch-5 E3 / batch-7 G1).
+
 ## FDX-12 — safe incremental language commitment
 
 Find the exact condition under which a generated prefix may be externally committed while semantic, referential or evidential obligations remain unresolved. A candidate condition is invariance of already committed semantic content across all currently admissible completions plus live/authorized support.
@@ -165,6 +197,19 @@ Parents: incremental NLG/parsing, safety games, runtime monitoring, prefix-close
 Quantify what a self-model can reliably infer about the machine’s future performance when its own predictions affect routing, representation proposals or evaluation. Separate observational self-modeling from self-authority.
 
 Parents: adaptive data analysis, performative prediction, self-modifying systems, calibration under distribution shift.
+
+Batch 9 disposition (I3): **PROVED (finite).** With a router that adopts the self-prediction (at or above θ
+every task goes to the operator, below θ only the easy ones), the realised rate depends on the prediction;
+on 75 fixtures the performatively stable predictions are exactly {r_A if r_A < θ} ∪ {(r_A+r_B)/2 if ≥ θ} —
+none on 9, one on 59, two on 7 (bistability) — and repeated retraining converges in ≤ 2 steps iff a fixed
+point exists in the reached regime, else oscillates with period 2 (81 orbits); the counterfactual (shadow)
+rate is defined on all 75. A self-model that ignores the loop is wrong under adoption on 26 fixtures. A
+prediction scored on the outcomes its adoption caused is self-fulfilling (42 cases calibrated
+performatively and not counterfactually); the E4 disjointness clause is necessary and not sufficient when
+the router reads the prediction — the shadow (E5), whose routing does not, is the counterfactual arm and
+the only E4 evidence. Reusing one held-out across k = 3 candidates reports 47/64 for a true ½ (optimism
+15/64). A self-prediction may steer routing (J0) and is never a warrant (⟦0,{r}⟧ UNKNOWN). PARENT_OWNED
+(performative prediction — Perdomo et al. 2020; adaptive data analysis — Dwork et al. 2015; E1/E4/E5).
 
 ## FDX-14 — whole-system lower bounds
 
@@ -201,6 +246,26 @@ Then prove either:
 
 This is the load-bearing novelty/identity question.
 
+Batch 9 disposition (I4): **PROVED (finite attribution theorem) / PARENT_SUFFICIENT on the fixture /
+CONJECTURE for the general equivalence.** A measured residual over the strongest parent buildable is
+attributable to the declared experimental difference Δ iff (1) the reference arm is outside the decision
+(F8), (2) no unit is pooled (F2), (3) the pre-registered rule rejects on independent lifetimes (G8), (4) the
+ablation arm OCM−Δ equals the parent *unit for unit* on the matched channels — the only executable
+matching certificate; declared-identical inputs are necessary and not sufficient — and (5) the differences
+are not one coin. On the 12-task × 8-lifetime fixture: a real residual (differences vary, p = 1/256,
+ablation ≡ parent on 96/96 units) is attributable; a parent missing half the manifest rejects 8/8 on a family
+Δ never touches and the ablation arm still wins (16 units) — CONFOUNDED_BY_UNMATCHED_INFORMATION; a residual
+on three lifetimes gives p = 1/8 — INCONCLUSIVE_UNDERPOWERED (minimum detectable win probability 0.90 at
+power 0.8 with m = 8; inside one lifetime of four items D1 is INCONCLUSIVE on all 15 tables and
+PARENT_SUFFICIENT needs n_d ≥ 76); a deterministic family is 8/8 one coin — flagged; pooled orderings and a
+reference arm inside the decision (verdict flips with the grader, G7) are refused. Parent+Δ ≡ OCM and OCM−Δ
+≡ parent on the fixture by construction: the measured residual is Δ, and Δ is parent-owned machinery — the
+dichotomy FRONTIER poses is not exclusive (a real *measured* residual against the buildable parent with a nil
+*mathematical* residual). The general equivalence (FORMALISM_USEFUL_NO_ARCHITECTURE_RESIDUAL) is a
+CONJECTURE with the falsifier "an OCM−Δ arm that differs from the parent product on a matched unit"; no
+finite fixture promotes it. The M12 V4 result satisfies clauses 1, 2, 3, 5 and *declares* clause 4
+(RESIDUAL_ATTRIBUTION_DECLARED_NOT_ABLATED); V5 needs the ablation arm.
+
 ## FDX-16 — mechanized core semantics
 
 Mechanize a small but representative core: warrant intervals/support composition, nogood normalization, authority meet, local reopening, typed terminals, and at least one representation/revision commutation theorem. Include false-theorem, missing-premise and axiom/sorry leak controls.
@@ -224,5 +289,7 @@ These must use frozen empirical protocols and strongest matched parents, with ne
 ## Priority
 
 The highest-value mathematical sequence is FDX-02 → FDX-03 → FDX-04 → FDX-15, while FDX-06/09/12/13 develop the distributed, learning, language and self frontiers. FDX-16 should mechanize only statements that survive parent attack.
+
+After batches 8–10 the rows with a disposition are FDX-01/02/03/04/05/06/07/08/11/13/14/15; untouched: FDX-09, 10, 12, 16. The one open conjecture is FDX-15's general equivalence; batch 10's open items (graded / probabilistic trust, truthful revelation, coded redundancy / infinite classes) stand.
 
 `GENERAL_NOVELTY = NOT_ESTABLISHED`. `FIELD_STATUS = NOT_ESTABLISHED`.
