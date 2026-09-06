@@ -374,3 +374,22 @@ After batches 8–10 the rows with a disposition are FDX-01/02/03/04/05/06/07/08
 After batch 12, FDX-16 carries a disposition (PROVED in Lean for the warrant core; typed terminals and the representation/revision commutation theorem remain OPEN on that row).
 
 `GENERAL_NOVELTY = NOT_ESTABLISHED`. `FIELD_STATUS = NOT_ESTABLISHED`.
+
+Batch 13 disposition (field map, `../MACHINE_EPISTEMICS_FIELD_MAP_V1.md`, checker
+`../kso_field_map_v1_exact.py`, derived registry `../OCM_OBLIGATION_REGISTRY_DERIVED_V1.json`; NOT sealed):
+**first version of the field closed by consolidation, no new theorem.** The map is derived by the checker
+from batches 1–11 (exit 0 on billy-old, `"status": "CONSISTENT"`, 7/7 planted mutants caught, no-alarm
+control passes, 11 tests): 77 theorems (PROVED 48, PROVED (finite) 16, PARENT_OWNED 7, PARENT_SUFFICIENT 4,
+CONJECTURE 1, OPEN 1; parent-owned or parent-sufficient as primary status 11, as any mention 33), 22 exactly
+bounded impossibilities, 3 conjectures each with an executable or stated falsifier, 7 current OPEN items (all
+flagged NO_EXECUTABLE_FALSIFIER: FD-07 general, FDX-06/07/14 residues, FDX-09/10/12 residues), 6 CANNOT_CHECK
+items, 10 open halves of batches 2–6 closed by a later batch, 22 KS-T ids cited (21 resolve, KS-T14 flagged as
+a contract id without a registry row), 66 OCM registry rows linked (52 discharged, 14 left open), and the
+derived obligation registry KS-T118–T141 (4 existing rows kept, 20 new rows KS-T122–T141, all OPEN). Batch 12
+(FDX-16, Lean core, #367) fills the map's slot from `KSO_MECHANISED_CORE_BATCH12_V1.md` and `lean/kso_core/` in
+its own vocabulary: 35 correspondence rows (PROVED 33, TIGHTENED 2), status block PROVED 7 / REFUTED 1 / FINITE 1
+/ OPEN 1 / CANNOT_CHECK 1, 157 Lean theorems and lemmas declared, 113 names in the table all found, 0 `sorry`,
+12 KS-T ids cited all resolving. Rows with a disposition after batches 8–13: FDX-01 … FDX-16 (FDX-04
+parent-sufficient by `DYNAMICS.md`). Fourteen non-fatal inconsistencies in the earlier batches are listed in the
+map's §9 (none fixed), among them this paragraph's own "untouched" list, which still names FDX-09/10/12/16.
+`GENERAL_NOVELTY = NOT_ESTABLISHED`. `FIELD_STATUS = NOT_ESTABLISHED`.
