@@ -1,0 +1,149 @@
+{
+  "bar_per_domain": 61,
+  "domains": {
+    "CANCER_BIOLOGY_RPCB": {
+      "bar_reachable_before_stage_a": false,
+      "checkable_ceiling": 50,
+      "n_cases": 76,
+      "per_item": {
+        "a_question_and_decision_written_without_answer": {
+          "cannot_check": 0,
+          "fail": 0,
+          "fail_reasons": {},
+          "pass": 76
+        },
+        "b_strongest_native_parent_named": {
+          "cannot_check": 0,
+          "fail": 0,
+          "fail_reasons": {},
+          "pass": 76
+        },
+        "f_witness_exposes_wrong_decision": {
+          "cannot_check": 0,
+          "fail": 26,
+          "fail_reasons": {
+            "FAIL_NO_EFFECT_LEVEL_WITNESS": 26
+          },
+          "pass": 50
+        },
+        "g_visible_materials_free_of_hidden_key": {
+          "cannot_check": 0,
+          "fail": 0,
+          "fail_reasons": {},
+          "pass": 76
+        }
+      },
+      "required_stage_a_joint_yield": 1.22,
+      "status": "CEILING_BELOW_BAR__UNDERPOWERED_AT_REGISTERED_BAR_BY_ARITHMETIC"
+    },
+    "FORMAL_MATHEMATICS_1000PLUS": {
+      "bar_reachable_before_stage_a": true,
+      "checkable_ceiling": 243,
+      "n_cases": 243,
+      "per_item": {
+        "a_question_and_decision_written_without_answer": {
+          "cannot_check": 0,
+          "fail": 0,
+          "fail_reasons": {},
+          "pass": 243
+        },
+        "b_strongest_native_parent_named": {
+          "cannot_check": 0,
+          "fail": 0,
+          "fail_reasons": {},
+          "pass": 243
+        },
+        "f_witness_exposes_wrong_decision": {
+          "cannot_check": 0,
+          "fail": 0,
+          "fail_reasons": {},
+          "pass": 243
+        },
+        "g_visible_materials_free_of_hidden_key": {
+          "cannot_check": 0,
+          "fail": 0,
+          "fail_reasons": {},
+          "pass": 243
+        }
+      },
+      "required_stage_a_joint_yield": 0.251,
+      "status": "CEILING_ABOVE_BAR__STAGE_A_YIELD_REQUIRED"
+    },
+    "MACHINE_LEARNING_MLRC": {
+      "bar_reachable_before_stage_a": false,
+      "checkable_ceiling": 0,
+      "n_cases": 36,
+      "per_item": {
+        "a_question_and_decision_written_without_answer": {
+          "cannot_check": 0,
+          "fail": 36,
+          "fail_reasons": {
+            "FAIL_NO_OUTCOME_FREE_CONTRACT": 36
+          },
+          "pass": 0
+        },
+        "b_strongest_native_parent_named": {
+          "cannot_check": 0,
+          "fail": 0,
+          "fail_reasons": {},
+          "pass": 36
+        },
+        "f_witness_exposes_wrong_decision": {
+          "cannot_check": 0,
+          "fail": 0,
+          "fail_reasons": {},
+          "pass": 36
+        },
+        "g_visible_materials_free_of_hidden_key": {
+          "cannot_check": 0,
+          "fail": 36,
+          "fail_reasons": {
+            "FAIL_REPORT_TEXT_CARRIES_VERDICT__NO_STRIPPED_EVIDENCE_LAYER": 36
+          },
+          "pass": 0
+        }
+      },
+      "required_stage_a_joint_yield": null,
+      "status": "CEILING_BELOW_BAR__UNDERPOWERED_AT_REGISTERED_BAR_BY_ARITHMETIC"
+    },
+    "PSYCHOLOGY_RPP": {
+      "bar_reachable_before_stage_a": true,
+      "checkable_ceiling": 100,
+      "n_cases": 100,
+      "per_item": {
+        "a_question_and_decision_written_without_answer": {
+          "cannot_check": 0,
+          "fail": 0,
+          "fail_reasons": {},
+          "pass": 100
+        },
+        "b_strongest_native_parent_named": {
+          "cannot_check": 0,
+          "fail": 0,
+          "fail_reasons": {},
+          "pass": 100
+        },
+        "f_witness_exposes_wrong_decision": {
+          "cannot_check": 0,
+          "fail": 0,
+          "fail_reasons": {},
+          "pass": 100
+        },
+        "g_visible_materials_free_of_hidden_key": {
+          "cannot_check": 0,
+          "fail": 0,
+          "fail_reasons": {},
+          "pass": 100
+        }
+      },
+      "required_stage_a_joint_yield": 0.61,
+      "status": "CEILING_ABOVE_BAR__STAGE_A_YIELD_REQUIRED"
+    }
+  },
+  "domains_below_bar_before_stage_a": [
+    "CANCER_BIOLOGY_RPCB",
+    "MACHINE_LEARNING_MLRC"
+  ],
+  "reading": "Upper bound on eligible cases per domain from the eligibility clauses SD80 evaluates on its own records. Stage A can only reduce it. Domains already below the registered bar of 61 cannot reach it under any Stage A outcome: ['CANCER_BIOLOGY_RPCB', 'MACHINE_LEARNING_MLRC'].",
+  "source": "../sd80/SD80_CASE_MATRIX_CASES_V1.json"
+}

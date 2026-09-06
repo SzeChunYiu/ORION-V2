@@ -1,0 +1,65 @@
+{
+  "clause_scope_notes": {
+    "3g": "SD80's g_visible_materials_free_of_hidden_key covers the DISPOSITION/verdict-leak component of \u00a73g only (is the registered answer absent from the visible materials). \u00a73g's donor-key and gold-relation components remain unevaluable on this pool because no donor key exists, so a SOME_FAIL/PASS here is partial evidence on one component, never the whole clause."
+  },
+  "domains": {
+    "CANCER_BIOLOGY_RPCB": 76,
+    "FORMAL_MATHEMATICS_1000PLUS": 243,
+    "MACHINE_LEARNING_MLRC": 36,
+    "PSYCHOLOGY_RPP": 100
+  },
+  "n_cases": 455,
+  "preconditions": {
+    "3c": {
+      "class": "EXACT",
+      "n_cases": 455,
+      "n_checkable": 0,
+      "n_pass": 0,
+      "status": "CANNOT_CHECK"
+    },
+    "3d": {
+      "class": "EXACT",
+      "n_cases": 455,
+      "n_checkable": 0,
+      "n_pass": 0,
+      "status": "CANNOT_CHECK"
+    },
+    "3e": {
+      "class": "EXACT",
+      "n_cases": 455,
+      "n_checkable": 0,
+      "n_pass": 0,
+      "status": "CANNOT_CHECK"
+    },
+    "3g": {
+      "class": "EXACT",
+      "n_cases": 455,
+      "n_checkable": 455,
+      "n_pass": 419,
+      "status": "SOME_FAIL"
+    },
+    "4.1": {
+      "class": "EXACT",
+      "n_cases": 455,
+      "n_checkable": 0,
+      "n_pass": 0,
+      "status": "CANNOT_CHECK"
+    },
+    "4.2": {
+      "class": "EXACT",
+      "n_cases": 455,
+      "n_checkable": 0,
+      "n_pass": 0,
+      "status": "CANNOT_CHECK"
+    },
+    "4.3": {
+      "class": "EXACT",
+      "n_cases": 455,
+      "n_checkable": 0,
+      "n_pass": 0,
+      "status": "CANNOT_CHECK"
+    }
+  },
+  "reading": "FM80 \u00a73c/3d/3e/3g and \u00a74.1-4.3 are all CANNOT_CHECK on the SD80 pool: the records carry NOT_APPLICABLE_PC_R7_NO_DONOR_ARM__FM80_PENDING_DONOR_KEY on 455/455 for the donor clauses, so no donor-dependent clause has an input to score. Corrected 2026-09-06 (#308 R11b): \u00a73c previously read SOME_FAIL 0/455 because the adapter hardcoded has_donor_key=False; the pool never rejected a donor, it never carried one. The exact-checkable state of the only naturalistic pool is NOT_ASSEMBLED, not negative.",
+  "source": "../sd80/SD80_CASE_MATRIX_CASES_V1.json"
+}

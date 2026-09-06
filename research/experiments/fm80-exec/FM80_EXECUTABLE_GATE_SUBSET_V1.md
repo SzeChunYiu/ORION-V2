@@ -41,6 +41,16 @@ key exists** — and §3d/3e/3g/4.1–4.3 are `CANNOT_CHECK` until a donor key, 
 prompt-visible files exist. The exact-checkable state of FM80 is therefore `NOT_ASSEMBLED`, not negative; the executable gate has
 nothing to score yet, and says so with a denominator (`results/FM80_EXEC_SD80_PRECONDITIONS_V1.json`).
 
+> **CORRECTED 2026-09-06 (R11b, `FM80_EXEC_R11B_DONOR_KEY_ATTRIBUTION_RECEIPT_V1.md`).** The sentence above —
+> "§3c fails on 455/455" — was an artifact of the SD80 adapter, which hardcoded `has_donor_key = False`. The
+> records themselves carry `NOT_APPLICABLE_PC_R7_NO_DONOR_ARM__FM80_PENDING_DONOR_KEY` on 455/455, so §3c is
+> `CANNOT_CHECK` (0 checkable), not a rejection; §3g, read from the same records, is `SOME_FAIL` with 455
+> checkable and 419 pass (disposition component only). The conclusion `NOT_ASSEMBLED, not negative` stands and
+> is now reached by the exit code rather than by prose. Current results:
+> `results/FM80_EXEC_SD80_PRECONDITIONS_V2.json`, `results/FM80_EXEC_SD80_ELIGIBILITY_CEILING_V1.json`.
+> R11b further reports that RPCB's eligibility ceiling (50) is below the registered bar (61) under every Stage A
+> outcome, so Stage A was **not** dispatched.
+
 ## 4. The model-proxy path (channel-dependent; frozen here, dispatched at the window)
 
 `FM80_MODEL_PROXY_ADJUDICATION_DESIGN_V1.md`: (i) **donor-key assembly** for SD80 cases by a fresh-session model with a frozen
