@@ -103,6 +103,13 @@ def test_planted_mutants_are_caught(mod, model, out):
     assert all(out["mutants_caught"].values())
 
 
+def test_batch12_slot_filled_from_main(model):
+    slot = model["batch12_slot"]
+    assert slot["present"] and slot["correspondence"] and slot["status_block"]
+    assert slot["lean_sorry"] == 0 and slot["lean_names_missing"] == [] and slot["kst_unresolved"] == []
+    assert slot["lean_theorems_declared"] > 0 and all(r["status"] for r in slot["correspondence"])
+
+
 def test_summary_block_is_embedded_verbatim(mod, model):
     doc = (ROOT / mod.DOC_NAME).read_text(encoding="utf-8")
     assert mod.summary_block(model) in doc

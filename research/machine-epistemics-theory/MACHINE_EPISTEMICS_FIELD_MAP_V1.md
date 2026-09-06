@@ -55,7 +55,15 @@ atlas_sections_absent                         E
 atlas_gaps_listed                             35
 atlas_gaps_with_theorem                       35
 foundation_registry_atlas_status_at_freeze    ADOPTED 1, OPEN 21, PROVED 14
-inconsistencies_reported_non_fatal            13
+inconsistencies_reported_non_fatal            14
+batch12_slot                                  PRESENT (on main)
+batch12_correspondence_rows                   35
+batch12_rows_by_status                        PROVED 33, TIGHTENED 2
+batch12_status_block_rows_by_status           CANNOT_CHECK 1, FINITE 1, OPEN 1, PROVED 7, REFUTED 1
+batch12_lean_theorems_declared                157
+batch12_lean_names_in_table                   113
+batch12_lean_sorry                            0
+batch12_kst_cited                             12
 novelty                                       NOT_ESTABLISHED
 ```
 <!-- FIELD_MAP_GENERATED:summary END -->
@@ -94,10 +102,67 @@ the batch theorems that fix its laws:
 The foundation registry (`MACHINE_EPISTEMICS_FOUNDATION_V1.json`, `FROZEN_CANDIDATE` on #319) types the
 twenty primitives FND-P01…P20 the OCM depends on and carries the MEG-01…36 map *as it stood at the freeze*;
 §6 and §9 record that the sealed map is behind the theorems. The mechanised form of the core (Kleene order,
-intervals, `⊕`/`⊗`, reopening cone, authority meet) is batch 12's slot:
+intervals, `⊕`/`⊗`, reopening cone, authority meet) is batch 12 (`KSO_MECHANISED_CORE_BATCH12_V1.md`,
+`lean/kso_core/`, merged as #367); the checker fills this slot from that document's correspondence table and
+final status block and from the Lean sources (theorem names verified against the declarations, `sorry`
+counted), in batch 12's own status vocabulary — it is not added to the batches 1–11 counts above:
 
 <!-- FIELD_MAP_GENERATED:batch12 BEGIN -->
-Batch 12 (`KSO_MECHANISED_CORE_BATCH12_V1.md`, Lean 4 mechanised warrant core, branch `kso/theory-batch-12`) is NOT on main at the commit this map was checked; the slot stays PENDING_MERGE and the counts above exclude it.
+Batch 12 (`KSO_MECHANISED_CORE_BATCH12_V1.md`, sha256 `5f9301577653`; Lake project `lean/kso_core/`, modules `Authority.lean`, `Interval.lean`, `Liveness.lean`, `Mutants.lean`, `Profile.lean`, `Reopening.lean`) is on main. Lean theorems / lemmas declared: 157; names in the correspondence table: 113 (missing from the sources: none); `sorry` occurrences: 0; KS-T ids cited: KS-T01, KS-T02, KS-T04b, KS-T04c, KS-T07b, KS-T09, KS-T18, KS-T20, KS-T21, KS-T22, KS-T23, KS-T24. Status vocabulary is batch 12's own: PROVED (closed in Lean, no `sorry`, standard axioms), TIGHTENED (proved in a form that differs from the prose statement), FINITE (only the OCM finite check exists), CANNOT_CHECK, OPEN, REFUTED (a mutant refuted by a proved witness).
+
+| Lean theorems (module) | statement | KS-T / theory id | OCM finite oracle | status |
+|---|---|---|---|---|
+| `kand_comm`, `kand_assoc`, `kand_idem`, `kor_comm`, `kor_assoc`, `kor_idem`, `kand_absorb`, `kor_absorb`, `kand_kor_distrib` (Liveness) | `∧₃` / `∨₃` form a distributive lattice | KS-T21 (connectives) | `warrant.kleene_and` / `kleene_or` truth tables via `warrant.check_three_valued_reduction` | PROVED |
+| `kand_eq_min`, `kor_eq_max`, `kand_le_left`, `kand_le_right`, `le_kor_left`, `le_kor_right` | `∧₃` is the meet and `∨₃` the join of the Kleene order DEAD < UNKNOWN < LIVE | batch-10 notation `≤₃` | same | PROVED |
+| `kand_mono`, `kor_mono` | monotone in each argument over all 3⁴ cases | KS-T21 (c) shape | same | PROVED |
+| `le_refl`, `le_trans`, `le_antisymm`, `DEAD_le`, `le_LIVE`, `LIVE_le_iff`, `le_DEAD_iff` | the Kleene order is a bounded total order with DEAD bottom, LIVE top | — | — | PROVED |
+| `live_join`, `live_meet` (Profile) | `ℓ_R(P ⊕ Q) = ℓ_R(P) ∨ ℓ_R(Q)`, `ℓ_R(P ⊗ Q) = ℓ_R(P) ∧ ℓ_R(Q)` for all lists and all `R` | KS-T01 (monotone-Boolean-function reading); KS-T21 proof core | `warrant.check_semiring` (n = 3: 20 antichains, 400 pairs, 8 000 triples) | PROVED |
+| `join_comm`, `join_assoc`, `join_idem`, `join_zero`, `meet_comm`, `meet_assoc`, `meet_idem`, `meet_one`, `meet_zero`, `meet_join_distrib` | commutative idempotent semiring laws **up to `Equiv`** | KS-T01 | `warrant.check_semiring` | TIGHTENED: stated on the liveness function, not on canonical antichains (see §3.1) |
+| `meet_leq_left`, `meet_leq_right`, `leq_join_left`, `leq_join_right`, `zero_leq`, `leq_one` | `⊗` is the meet and `⊕` the join of the order; `0` bottom, `1` top | KS-T01 order; T10 (`U ⊗ 𝔽 ≤ U`) | `check_semiring`; batch-1 `check_t10_meg35_upper_certificates` | PROVED |
+| `join_mono`, `meet_mono`, `join_mono_left`, `join_mono_right`, `meet_mono_left`, `meet_mono_right` | `⊕`, `⊗` monotone in each argument | Definition 1.3 well-definedness | `check_three_valued_reduction` (interval construction never raises) | PROVED |
+| `avoids_iff`, `live_iff`, `live_eq_false_iff` | `ℓ_R(P) = 1 ⇔ ∃ W ∈ P, W ∩ R = ∅`; `= 0 ⇔` every warrant is hit | contract §3 definition | `warrant.live` | PROVED |
+| `leq_of_synLeq`, `synLeq_of_leq`, `synLeq_iff_leq` | OCM `leq` (subset witnesses) ⇔ `f_P ≤ f_Q` | KS-T01 order; `WarrantProfile.__post_init__` | `warrant.leq` on the 20 × 20 profile pairs that build the 168 intervals of `check_three_valued_reduction` | PROVED (needs `DecidableEq E`) |
+| `Interval.oplus`, `Interval.otimes` | interval well-formedness preserved by `⊕` / `⊗` | Definition 1.3 | `WarrantProfile.join` / `.meet` never raise `ValueError` on the 168² pairs | PROVED (by construction) |
+| `lam_eq_LIVE_iff`, `lam_eq_DEAD_iff`, `lam_eq_UNKNOWN_iff` | the three cases are exclusive and exhaustive because `L ≤ U` | Definition 1.2 | `WarrantProfile.liveness` | PROVED |
+| `lam_otimes` (Interval) | `λ_R(P ⊗ Q) = λ_R(P) ∧₃ λ_R(Q)` for all intervals, all `R` | **KS-T21** | `warrant.check_three_valued_reduction` (225 792 homomorphism checks) | PROVED |
+| `lam_oplus` | `λ_R(P ⊕ Q) = λ_R(P) ∨₃ λ_R(Q)` | **KS-T21** | same | PROVED |
+| `lam_certified_ne_UNKNOWN`, `lam_certified_eq` | KS-T21 (a): certified intervals are never UNKNOWN and agree with `ℓ_R` | KS-T21 (a) | same (160 reduction checks) | PROVED (certified = `Equiv lower upper`, weaker premise than `lower == upper`) |
+| `lam_refines`, `lam_refines_le`, `lam_refines_DEAD` | KS-T21 (b): a refinement changes the verdict only from UNKNOWN | KS-T21 (b); T10 (MEG-35) | same (27 920 refinement checks); batch-1 `check_t10_meg35_upper_certificates` | PROVED |
+| `oplus_comm`, `oplus_assoc`, `oplus_idem`, `otimes_comm`, `otimes_assoc`, `otimes_idem`, `otimes_oplus_distrib` | interval algebra up to `IEquiv` | Definition 1.3 | `check_three_valued_reduction` | TIGHTENED (up to `IEquiv`, §3.1) |
+| `oplus_mono`, `otimes_mono`, `oplus_refines`, `otimes_refines`, `lam_mono_ILeq` | monotone in the component order and in the refinement order; `λ_R` monotone in the component order | KS-T21 (b), T10 | same | PROVED |
+| `lam_otimesAll`, `lam_otimesAll_LIVE_iff`, `lam_otimesAll_LIVE_part`, `lam_otimesAll_DEAD_of_part` | `λ_R(⨂ parts)` is the Kleene fold; LIVE only if every exported part is LIVE; DEAD as soon as one is | **KS-T23** (warrant half, *no authority from abstraction*) | `checks.check_summary_no_authority` (`summary_live_dead_unknown = 3`) | PROVED |
+| `avoids_antitone`, `live_antitone` | `ℓ_R` antitone in `R` | batch-10 J1 (i) | batch-10 checker (4 536 antitone checks) | PROVED |
+| `lam_antitone` (Reopening) | **revoking more never revives**: `R ⊆ R' → λ_{R'} ≤₃ λ_R` | batch-10 J1 (i); KS-T22 premise | same | PROVED |
+| `nonLive_mono`, `DEAD_mono` | non-LIVE and DEAD are upward-closed in `R` | same | same | PROVED |
+| `lam_ne_LIVE_of_lower_hit`, `lam_ne_LIVE_of_common_evidence` | an atom all of whose exhibited supports are revoked is DEAD or UNKNOWN, never LIVE | KS-T02 shape (revoked tail disables) | `checks.check_firing` | PROVED |
+| `lam_DEAD_of_upper_hit` | an atom all of whose possible supports are revoked is DEAD | Definition 1.2 | `WarrantProfile.liveness` | PROVED |
+| `lam_zero_DEAD`, `lam_one_LIVE` | `⟦0,0⟧` is DEAD under every `R` (FEEDBACK atoms); `⟦1,1⟧` LIVE | **KS-T18** corollary | `checks.check_admission_channels` | PROVED |
+| `reach_extensive`, `reach_mono`, `reach_congr` | the cone contains its seed and is monotone in it | KS-T09 / KS-T22 (4) shape | `checks.check_impact_and_reopening` (`least_closed_superset = 3`) | PROVED for the fuel-bounded closure (§3.2) |
+| `reach_union` | `Impact_D(S₁ ∪ S₂) = Impact_D(S₁) ∪ Impact_D(S₂)` | batch-10 J1 (vii) | batch-10 checker (4 096 union checks) | PROVED |
+| `reach_nil`, `cone_nil_of_unchanged` | an irrelevant revocation (`C = ∅`) reopens nothing | KS-T22 (3) | `check_impact_and_reopening` (`irrelevant_revocation_noop = 1`) | PROVED |
+| `changed_sub_cone`, `unaffected_unchanged` | every liveness-changed atom is in the cone; an atom outside the cone did not change liveness | KS-T22 (1) first half, (2) first half | same (`cone_exact = 1`, `activation_change_within_reach = 1`) | PROVED |
+| `deadSet_mono`, `reachDead_mono` | the non-LIVE seed grows with `R`, hence `Reach(D_R) ⊆ Reach(D_{R'})` for `R ⊆ R'`: **the reopening cone never shrinks under more revocation** | KS-T04b (ii) / contract §25 `Reach(D_R)` | `revocation.reach_of_dead` in `check_impact_and_reopening` | PROVED |
+| `meet_le_left`, `meet_le_right`, `meet_never_raises` (Authority) | **the meet with any object authority never raises** any coordinate | T1 (i) (MEG-04); KS-T20 authority clause | batch-1 `check_t1_meg04_commit_bottom` (6 561 glb pairs); `checks.check_composition_law` | PROVED |
+| `le_meet`, `meet_comm`, `meet_assoc`, `meet_idem`, `meet_mono` | greatest lower bound; lattice laws; monotone | T1 (i) | same | PROVED |
+| `meetAll_le_base`, `meetAll_le_mem` | a fold over any list of factors is below every factor (no amplification) | KS-T20 (`A = A_b ∧ ⋀ A_i`) | `check_composition_law` (`rec.authority == Authority.of(src=1, ver=1)`) | PROVED |
+| `dropCommit_le`, `dropCommit_commit`, `internal_commit_zero` | `internal_authority` is below its input and has `commit = 0` | T1 (ii) | `types.internal_authority`; batch-1 checker | PROVED |
+| `InternalOnly.commit_zero`, `receipt_tail_cannot_lend_commit` | no chain of internal operations of any length produces `commit > 0`, even over receipt tails with `commit = 1` | T1 (iii) | batch-1 checker (receipt tails composed internally give 0) | PROVED (§3.3 on the operator-factor premise) |
+
+Final status block of the batch-12 document, row by row:
+
+| row | status | statement |
+|---|---|---|
+| KS-T21 | PROVED | PROVED (lam_otimes, lam_oplus, lam_certified_ne_UNKNOWN, lam_refines) |
+| KS-T01 | PROVED | PROVED up to Equiv (live_join, live_meet, semiring laws); canon normal form FINITE (check_semiring) |
+| KS-T23 | PROVED | PROVED warrant half (lam_otimesAll_LIVE_iff, lam_otimesAll_DEAD_of_part); authority half = meetAll_le_mem |
+| KS-T18 | PROVED | PROVED corollary (lam_zero_DEAD) |
+| KS-T22 | PROVED | PROVED (1)/(2) liveness halves, (3) empty seed, cone monotone/union-distributive (fuel-bounded); least-closed-superset and activation clause FINITE |
+| J1 (i) | PROVED | PROVED (lam_antitone; revoking more never revives) |
+| T1 | PROVED | PROVED (i)(ii)(iii) with the operator-factor premise (meet_le_left, le_meet, dropCommit_commit, InternalOnly.commit_zero) |
+| MEG-16 | REFUTED | REFUTED-V0 mechanised (nogood_breaks_unconditional_kleene); 16A PROVED (filterN_join); 16B/C/E FINITE |
+| FINITE | FINITE | KS-T04c, KS-T24, KS-T07b, KS-T22 partition, canon normal form, MEG-16B/C/E |
+| OPEN | OPEN | typed terminals; representation/revision commutation theorem (FDX-16 list items not attempted) |
+| CANNOT_CHECK | CANNOT_CHECK | Lean model ≡ runtime use of WarrantProfile; DecidableEq of the OCM id universe |
 <!-- FIELD_MAP_GENERATED:batch12 END -->
 
 ## 2. Every theorem, batches 1–11
@@ -479,8 +544,9 @@ if a `PROVED` row lacks a checker.
 * **Nothing here authorises OCM absorption.** A row enters the OCM only with an exact parity test
   (foundation absorption rule); the derived registry of §7 lists obligations, all `OPEN` unless the OCM
   registry already records a checker.
-* **Frontier rows not entered.** FDX-04 is parent-sufficient by `DYNAMICS.md`; FDX-16 is batch 12's slot
-  (§1); the graded / probabilistic half of FDX-08 (imprecise probability, credal sets, Dempster–Shafer) is
+* **Frontier rows not entered.** FDX-04 is parent-sufficient by `DYNAMICS.md`; FDX-16 is batch 12's row
+  (§1 slot: PROVED in Lean for the warrant core, typed terminals and the representation / revision commutation
+  theorem OPEN there); the graded / probabilistic half of FDX-08 (imprecise probability, credal sets, Dempster–Shafer) is
   deliberately not entered — D3 / F6 / G6 stand and no scalar-semiring claim is added.
 * **External demarcation stays external.** The registry cannot turn any issue into field recognition, nor
   upgrade `PARENT_SUFFICIENT`, `CANNOT_CHECK` or `NOT_ESTABLISHED`.
@@ -505,7 +571,8 @@ addenda §L–§O or the OCM registries was edited.
 | 10 | FRONTIER_PRIORITY_STALE FDX-09 listed as untouched in the Priority paragraph but carries a batch disposition |
 | 11 | FRONTIER_PRIORITY_STALE FDX-10 listed as untouched in the Priority paragraph but carries a batch disposition |
 | 12 | FRONTIER_PRIORITY_STALE FDX-12 listed as untouched in the Priority paragraph but carries a batch disposition |
-| 13 | FOUNDATION_REGISTRY_SEALED 21 atlas rows are OPEN in MACHINE_EPISTEMICS_FOUNDATION_V1.json (frozen at #319) while every one of the 35 atlas gap ids now carries a theorem; the sealed registry is not the current status |
+| 13 | FRONTIER_PRIORITY_STALE FDX-16 listed as untouched in the Priority paragraph but carries a batch disposition |
+| 14 | FOUNDATION_REGISTRY_SEALED 21 atlas rows are OPEN in MACHINE_EPISTEMICS_FOUNDATION_V1.json (frozen at #319) while every one of the 35 atlas gap ids now carries a theorem; the sealed registry is not the current status |
 <!-- FIELD_MAP_GENERATED:inconsistencies END -->
 
 Findings the checker cannot phrase mechanically, read from the same sources:
@@ -540,10 +607,11 @@ Findings the checker cannot phrase mechanically, read from the same sources:
 8. **Batch 10 files an OPEN item under FDX-08 "territory"** (graded / probabilistic trust) although FDX-08
    is batch 9's row; batch 9 records that it deliberately does not enter the graded half. The open item is
    therefore listed once, under J1 (its source), and FDX-08 (I1) carries no OPEN row.
-9. **Batch 12's branch (`kso/theory-batch-12`) is based before batch 11 merged**: its diff against
-   `origin/main` removes batch 11's files. Its slot in §1 is filled by the checker from
-   `KSO_MECHANISED_CORE_BATCH12_V1.md` when that file is on main; until then the slot reads
-   PENDING_MERGE and the counts exclude it.
+9. **Batch 12 was written on a base that predates batch 11** (its branch diff removed batch 11's files
+   until it was rebased and merged as #367); its addenda section P and its `FRONTIER.md` FDX-16 disposition
+   are on main, and the §1 slot is filled from its document. Batch 12's status vocabulary (PROVED /
+   TIGHTENED / FINITE / CANNOT_CHECK) differs from the nine-token vocabulary of batches 1–11, so the slot is
+   reported in its own vocabulary and not merged into the block's `theorems_by_status`.
 10. **KS-T13 and KS-T14 are contract ids without registry rows.** The atlas files MEG-13 under
     "KS-T13 OPEN_M3 (contract §20)" and MEG-28 under "KS-T14 OPEN_M4 (contract §20)"; the KSO registry has
     KS-T12 but neither of these. The theorem sections cite KS-T14 (B7, B8, E8, G5); KS-T13 is cited only
@@ -551,21 +619,20 @@ Findings the checker cannot phrase mechanically, read from the same sources:
 
 ## 10. Verification receipts
 
-billy-old, `~/ocm-verify/v2-b13` (rsync of this worktree, `.git` and `.code-review-graph` excluded), Python
-3.14.4; the OCM registries copied to `~/ocm-verify/ocm-registries/docs/theorems/` for the live comparison;
-exit codes written to `~/ocm-verify/b13-run4.log` and read back, never taken from the terminal proxy:
+billy-old, `~/ocm-verify/v2-b13` (rsync of this worktree after the rebase onto main with batch 12 (#367), `.git` and
+`.code-review-graph` excluded), Python 3.14.4; the OCM registries copied to `~/ocm-verify/ocm-registries/docs/theorems/`
+for the live comparison; exit codes written to `~/ocm-verify/b13-run7.log` and read back, never taken from the
+terminal proxy:
 
 ```text
 python3 research/machine-epistemics-theory/kso_field_map_v1_exact.py --emit-derived … --snapshot-from-ocm --ocm-root ~/ocm-verify/ocm-registries   emit_rc=0   (24 rows, errors [])
 python3 research/machine-epistemics-theory/kso_field_map_v1_exact.py --splice-doc --ocm-root ~/ocm-verify/ocm-registries                            splice_rc=0 (10 regions)
-PYTHONHASHSEED=1 / PYTHONHASHSEED=7 --render all, cmp                                                                                                 determinism_rc=0
-python3 research/machine-epistemics-theory/kso_field_map_v1_exact.py --ocm-root ~/ocm-verify/ocm-registries                                         check_rc=0  "status": "CONSISTENT", errors [], document_errors [], no_alarm_control true, 7/7 mutants caught, wall 0.37 s
-python3 -m pytest -q tests/unit/test_kso_field_map_v1.py                                                                                            pytest_rc=0 11 passed, wall 1.00 s
-md5 MACHINE_EPISTEMICS_FIELD_MAP_V1.md ab1ff5c91c48fa963bab4994ce359dc7, OCM_OBLIGATION_REGISTRY_DERIVED_V1.json 0991eca29105545a80b32d26c9d6d4b2 — identical on billy-old and in the Mac worktree
+python3 research/machine-epistemics-theory/kso_field_map_v1_exact.py --ocm-root ~/ocm-verify/ocm-registries                                         check_rc=0  "status": "CONSISTENT", errors [], document_errors [], no_alarm_control true, 7/7 mutants caught, wall 0.39 s
+python3 -m pytest -q tests/unit/test_kso_field_map_v1.py                                                                                            pytest_rc=0 12 passed, wall 0.99 s
 ```
 
-(The md5 of this document is the one *before* §10 was filled; the generated regions are unchanged by this
-section, and the final run recorded in the PR body re-checks them.)
+The generated regions are unchanged by this section; the run recorded in the PR body re-checks the committed
+file byte for byte.
 
 ## 11. Non-claims of this document
 

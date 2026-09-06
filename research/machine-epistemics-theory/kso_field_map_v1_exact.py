@@ -501,13 +501,8 @@ def build_model(root: Path = HERE, ocm_root: Path | None = None, snapshot: dict 
     frontier = read(root / "field_dynamics_v1" / "FRONTIER.md")
     inconsistencies = find_inconsistencies(theorems, batches, sections, obligations, frontier, foundation_summary)
     # batch-12 slot
-    b12 = root / BATCH12_DOC
-    slot = {"present": b12.exists()}
-    if b12.exists():
-        blk = last_text_block(read(b12))
-        slot["status_lines"] = [ln for ln in blk.splitlines() if ln.strip()]
-        slot["counts"] = Counter(primary_status(ln)[0] or "UNCLASSIFIED" for ln in slot["status_lines"] if not ln.startswith("Lean") and not ln.startswith("NOVELTY"))
-        slot["sha256"] = sha256(b12)
+    slot = batch12_slot(root, all_rows)
+    inconsistencies.extend(slot.get("findings", []))
     for t in theorems:
         t.pop("_body", None)
     return {
@@ -541,6 +536,70 @@ def owner_theorem(theorems: list[dict], batch: int, key: str | None, text: str) 
             if k in t["keys"]:
                 return t
     return None
+
+
+BATCH12_VOCAB = ("PROVED", "TIGHTENED", "FINITE", "CANNOT_CHECK", "OPEN", "REFUTED")
+
+
+def batch12_status(text: str) -> str | None:
+    found = [(text.find(tok), tok) for tok in BATCH12_VOCAB if tok in text]
+    return min(found)[1] if found else None
+
+
+def batch12_slot(root: Path, all_rows: dict) -> dict:
+    """Fill the batch-12 slot from KSO_MECHANISED_CORE_BATCH12_V1.md and lean/kso_core (present only once merged)."""
+    b12 = root / BATCH12_DOC
+    slot = {"present": b12.exists(), "findings": []}
+    if not b12.exists():
+        return slot
+    doc = read(b12)
+    slot["sha256"] = sha256(b12)
+    # correspondence table (§2)
+    m = re.search(r"^\| Lean theorem \|.*?$\n\|[-|]+\|\n(.*?)(?:\n\n|\Z)", doc, re.M | re.S)
+    rows = []
+    for line in (m.group(1).splitlines() if m else []):
+        cells = split_cells(line)
+        if len(cells) < 5:
+            continue
+        names = re.findall(r"`([^`]+)`", cells[0])
+        rows.append({"lean": names, "module": (re.search(r"\(([A-Za-z]+)\)\s*$", cells[0]) or [None, None])[1],
+                     "statement": cells[1], "id": cells[2], "oracle": cells[3], "status_text": cells[4], "status": batch12_status(cells[4])})
+    slot["correspondence"] = rows
+    slot["rows_by_status"] = OrderedDict(sorted(Counter(r["status"] or "UNCLASSIFIED" for r in rows).items()))
+    # lean sources
+    lean_dir = root / "lean" / "kso_core"
+    declared, theorems, sorry = {}, 0, 0
+    for lf in sorted(lean_dir.rglob("*.lean")) if lean_dir.exists() else []:
+        txt = read(lf)
+        for kind, name in re.findall(r"^(?:@\[[^\]]*\]\s*)?(theorem|lemma|def|abbrev|instance|structure|inductive)\s+([A-Za-z_][A-Za-z_0-9.']*)", txt, re.M):
+            declared[name] = lf.name
+            theorems += kind in ("theorem", "lemma")
+        sorry += len(re.findall(r"\bsorry\b", txt))
+    slot["lean_theorems_declared"] = theorems
+    slot["lean_declarations"] = len(declared)
+    slot["lean_modules"] = sorted({v for v in declared.values()})
+    slot["lean_sorry"] = sorry
+    named = [n for r in rows for n in r["lean"]]
+    missing = sorted({n for n in named if n not in declared and n.split(".")[-1] not in declared})
+    slot["lean_names_in_table"] = len(set(named))
+    slot["lean_names_missing"] = missing
+    if missing:
+        slot["findings"].append(f"BATCH12_LEAN_NAME_NOT_DECLARED correspondence table names {missing} not found as theorem/lemma in lean/kso_core")
+    if sorry:
+        slot["findings"].append(f"BATCH12_SORRY {sorry} occurrences of sorry in lean/kso_core")
+    # final status block
+    blk = last_text_block(doc)
+    lines = []
+    for ln in blk.splitlines():
+        mm = re.match(r"(\S+(?: \(i\))?)\s+(.*)$", ln.strip())
+        if mm and not ln.startswith("Lean") and not ln.startswith("NOVELTY"):
+            lines.append({"row": mm.group(1), "text": " ".join(mm.group(2).split()), "status": batch12_status(mm.group(1) + " " + mm.group(2))})
+    slot["status_block"] = lines
+    slot["status_block_by_status"] = OrderedDict(sorted(Counter(r["status"] or "UNCLASSIFIED" for r in lines).items()))
+    cited = sorted(set(re.findall(r"KS-T\d+[a-z]?", doc)), key=kst_key)
+    slot["kst_cited"] = cited
+    slot["kst_unresolved"] = [k for k in cited if k not in all_rows and k not in FLAGGED_KST]
+    return slot
 
 
 def derive_registry(obligations: list[dict], all_rows: dict, max_existing: int, theorems: list[dict]) -> list[dict]:
@@ -741,6 +800,15 @@ def check_consistency(model: dict) -> list[str]:
             errors.append(f"DERIVED_PROVED_WITHOUT_CHECKER {r['id']}")
         if r["existing_row"] and r["id"] not in rows:
             errors.append(f"DERIVED_EXISTING_MISSING {r['id']}")
+    slot = model["batch12_slot"]
+    if slot["present"]:
+        if not slot["correspondence"]:
+            errors.append("BATCH12_CORRESPONDENCE_TABLE_NOT_PARSED")
+        for r in slot["correspondence"]:
+            if r["status"] not in BATCH12_VOCAB:
+                errors.append(f"BATCH12_UNKNOWN_STATUS {r['lean'][:1]}: {r['status_text'][:40]!r}")
+        for k in slot["kst_unresolved"]:
+            errors.append(f"DANGLING_KST {k} cited by batch 12 but in no registry and not flagged")
     live = model.get("live_registries") or {}
     for fname, reg in live.items():
         snap = model["registry"].get(fname)
@@ -813,6 +881,14 @@ def summary_counts(model: dict) -> OrderedDict:
         ("atlas_gaps_with_theorem", next(s["gaps_with_theorem"] for s in model["sections"] if s["section"] == "B")),
         ("foundation_registry_atlas_status_at_freeze", OrderedDict(sorted(model["foundation"]["atlas_status"].items()))),
         ("inconsistencies_reported_non_fatal", len(model["inconsistencies"])),
+        ("batch12_slot", "PRESENT (on main)" if model["batch12_slot"]["present"] else "PENDING_MERGE"),
+        ("batch12_correspondence_rows", len(model["batch12_slot"].get("correspondence", []))),
+        ("batch12_rows_by_status", model["batch12_slot"].get("rows_by_status", OrderedDict())),
+        ("batch12_status_block_rows_by_status", model["batch12_slot"].get("status_block_by_status", OrderedDict())),
+        ("batch12_lean_theorems_declared", model["batch12_slot"].get("lean_theorems_declared", 0)),
+        ("batch12_lean_names_in_table", model["batch12_slot"].get("lean_names_in_table", 0)),
+        ("batch12_lean_sorry", model["batch12_slot"].get("lean_sorry", 0)),
+        ("batch12_kst_cited", len(model["batch12_slot"].get("kst_cited", []))),
         ("novelty", "NOT_ESTABLISHED"),
     ])
 
@@ -904,8 +980,20 @@ def render_regions(model: dict) -> OrderedDict:
     # batch-12 slot
     slot = model["batch12_slot"]
     if slot["present"]:
-        R["batch12"] = ("Batch 12 (`%s`, sha256 `%s`) is on main; its status block classifies as: %s.\n" % (
-            BATCH12_DOC, slot["sha256"][:12], ", ".join(f"{k} {v}" for k, v in sorted(slot["counts"].items()))))
+        head = ("Batch 12 (`%s`, sha256 `%s`; Lake project `lean/kso_core/`, modules %s) is on main. Lean theorems / lemmas declared: %d; "
+                "names in the correspondence table: %d (missing from the sources: %s); `sorry` occurrences: %d; KS-T ids cited: %s. "
+                "Status vocabulary is batch 12's own: PROVED (closed in Lean, no `sorry`, standard axioms), TIGHTENED (proved in a form that differs from the prose statement), "
+                "FINITE (only the OCM finite check exists), CANNOT_CHECK, OPEN, REFUTED (a mutant refuted by a proved witness).\n\n" % (
+                    BATCH12_DOC, slot["sha256"][:12], ", ".join(f"`{m}`" for m in slot["lean_modules"]), slot["lean_theorems_declared"],
+                    slot["lean_names_in_table"], ", ".join(slot["lean_names_missing"]) or "none", slot["lean_sorry"], ", ".join(slot["kst_cited"])))
+        lines = ["| Lean theorems (module) | statement | KS-T / theory id | OCM finite oracle | status |", "|---|---|---|---|---|"]
+        for r in slot["correspondence"]:
+            lines.append("| %s%s | %s | %s | %s | %s |" % (", ".join(f"`{n}`" for n in r["lean"]), f" ({r['module']})" if r["module"] else "",
+                                                       md_escape(r["statement"]), md_escape(r["id"]), md_escape(r["oracle"]), md_escape(r["status_text"])))
+        lines += ["", "Final status block of the batch-12 document, row by row:", "", "| row | status | statement |", "|---|---|---|"]
+        for r in slot["status_block"]:
+            lines.append(f"| {md_escape(r['row'])} | {r['status']} | {md_escape(r['text'])} |")
+        R["batch12"] = head + "\n".join(lines) + "\n"
     else:
         R["batch12"] = ("Batch 12 (`%s`, Lean 4 mechanised warrant core, branch `kso/theory-batch-12`) is NOT on main at the commit this "
                         "map was checked; the slot stays PENDING_MERGE and the counts above exclude it.\n" % BATCH12_DOC)

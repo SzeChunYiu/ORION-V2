@@ -386,7 +386,10 @@ flagged NO_EXECUTABLE_FALSIFIER: FD-07 general, FDX-06/07/14 residues, FDX-09/10
 items, 10 open halves of batches 2–6 closed by a later batch, 22 KS-T ids cited (21 resolve, KS-T14 flagged as
 a contract id without a registry row), 66 OCM registry rows linked (52 discharged, 14 left open), and the
 derived obligation registry KS-T118–T141 (4 existing rows kept, 20 new rows KS-T122–T141, all OPEN). Batch 12
-(FDX-16, Lean core) is a marked slot the checker fills from `KSO_MECHANISED_CORE_BATCH12_V1.md` once it is on
-main. Rows with a disposition after batches 8–13: FDX-01/02/03/04/05/06/07/08/09/10/11/12/13/14/15; FDX-16 per
-batch 12. Thirteen non-fatal inconsistencies in the earlier batches are listed in the map's §9 (none fixed).
+(FDX-16, Lean core, #367) fills the map's slot from `KSO_MECHANISED_CORE_BATCH12_V1.md` and `lean/kso_core/` in
+its own vocabulary: 35 correspondence rows (PROVED 33, TIGHTENED 2), status block PROVED 7 / REFUTED 1 / FINITE 1
+/ OPEN 1 / CANNOT_CHECK 1, 157 Lean theorems and lemmas declared, 113 names in the table all found, 0 `sorry`,
+12 KS-T ids cited all resolving. Rows with a disposition after batches 8–13: FDX-01 … FDX-16 (FDX-04
+parent-sufficient by `DYNAMICS.md`). Fourteen non-fatal inconsistencies in the earlier batches are listed in the
+map's §9 (none fixed), among them this paragraph's own "untouched" list, which still names FDX-09/10/12/16.
 `GENERAL_NOVELTY = NOT_ESTABLISHED`. `FIELD_STATUS = NOT_ESTABLISHED`.
