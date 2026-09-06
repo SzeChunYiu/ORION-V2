@@ -176,28 +176,154 @@ def planted_and_no_alarm() -> dict:
             "null_table_fails_9_1": not null["clauses"]["9.1"]["pass"] and null["terminal"] in ("EXACT_SUBSET_FAIL",),
             "fidelity_regression_fails_9_3": not fid["clauses"]["9.3"]["pass"],
             "a2_reproduction_fails_9_5": fid["clauses"]["9.5"]["pass"] is not False and a2["clauses"]["9.5"]["pass"] is False,
-            "best_case_p_at_bar_n30": best_case_exact_p_at_bar(30), "best_case_p_at_bar_n61": best_case_exact_p_at_bar(61)}
+            "best_case_p_at_bar_n30": best_case_exact_p_at_bar(30), "best_case_p_at_bar_n61": best_case_exact_p_at_bar(61),
+            **_precondition_controls()}
+
+
+def _precondition_controls() -> dict:
+    """No-alarm and vacuity controls for the precondition reader (#308 R11b).
+
+    The 2026-09-06 correction makes an ABSENT donor-key field report CANNOT_CHECK instead of a rejection.  A
+    fix that achieved this by never reporting a failure would be worse than the mislabel it removes, so the
+    genuine-False case is asserted here too: the gate must still say SOME_FAIL when a case really carries a
+    checked negative.
+    """
+    base = {"case_id": "X", "domain": "D", "eligible": None, "witness_disposition": None, "dispositions": {},
+            "critical_fidelity_failure": {}, "donor_visible_to_baseline_or_prompt": None}
+    absent = preconditions([{**base, "has_donor_key": None}])
+    real_false = preconditions([{**base, "has_donor_key": False}])
+    real_true = preconditions([{**base, "has_donor_key": True}])
+    mixed = preconditions([{**base, "has_donor_key": True}, {**base, "has_donor_key": False}])
+    return {
+        "absent_donor_key_field_is_cannot_check_not_a_rejection":
+            absent["3c"]["status"] == "CANNOT_CHECK" and absent["3c"]["n_checkable"] == 0,
+        "no_alarm_a_genuine_false_still_reports_some_fail":
+            real_false["3c"]["status"] == "SOME_FAIL" and real_false["3c"]["n_checkable"] == 1,
+        "a_genuine_true_reports_pass_all":
+            real_true["3c"]["status"] == "PASS_ALL" and real_true["3c"]["n_pass"] == 1,
+        "a_mixed_table_reports_some_fail_with_its_denominator":
+            mixed["3c"]["status"] == "SOME_FAIL" and mixed["3c"]["n_checkable"] == 2 and mixed["3c"]["n_pass"] == 1,
+        "sd80_token_mapping_pass_fail_pending":
+            tri_from_sd80_item("PASS") is True
+            and tri_from_sd80_item("PASS_BY_CONSTRUCTION") is True
+            and tri_from_sd80_item("FAIL_NO_OUTCOME_FREE_CONTRACT") is False
+            and tri_from_sd80_item("NOT_APPLICABLE_PC_R7_NO_DONOR_ARM__FM80_PENDING_DONOR_KEY") is None
+            and tri_from_sd80_item(None) is None,
+    }
+
+
+SD80_ELIGIBILITY_ITEM_FOR_FLAG = {
+    "has_donor_key": "c_remote_donor_known_or_prospective_criterion",
+    "donor_outside_baseline_topk": "d_donor_outside_local_retrieval_neighbourhood",
+    "transfer_consequence_nontrivial": "e_transfer_consequence_nontrivial",
+    "hidden_keys_absent_from_visible_files": "g_visible_materials_free_of_hidden_key",
+}
+# The eligibility items SD80 actually evaluates on its own records, i.e. the clauses whose inputs exist in
+# this pool.  §3c/d/e and §4 remoteness are NOT among them: SD80 records them as NOT_APPLICABLE…PENDING.
+SD80_CLAUSE_SCOPE_NOTES = {
+    "3g": ("SD80's g_visible_materials_free_of_hidden_key covers the DISPOSITION/verdict-leak component of "
+           "§3g only (is the registered answer absent from the visible materials). §3g's donor-key and "
+           "gold-relation components remain unevaluable on this pool because no donor key exists, so a "
+           "SOME_FAIL/PASS here is partial evidence on one component, never the whole clause."),
+}
+SD80_CHECKABLE_ELIGIBILITY_ITEMS = (
+    "a_question_and_decision_written_without_answer",
+    "b_strongest_native_parent_named",
+    "f_witness_exposes_wrong_decision",
+    "g_visible_materials_free_of_hidden_key",
+)
+
+
+def tri_from_sd80_item(value: Any) -> bool | None:
+    """SD80 eligibility tokens -> tri-state.  PASS* is True, FAIL* is False, and NOT_APPLICABLE/PENDING is
+    None, i.e. CANNOT_CHECK.  The distinction is the point: a clause whose input does not exist in the pool
+    is unevaluable, never a checked rejection (#308 R11b)."""
+    if not isinstance(value, str):
+        return None
+    if value.startswith("PASS"):
+        return True
+    if value.startswith("FAIL"):
+        return False
+    return None
 
 
 def case_table_from_sd80(path: Path) -> list[dict]:
-    """The SD80 case-matrix intake as an FM80 case table.  SD80 carries no donor key, no frozen retrieval
-    baseline and no arm run (intake md §2: FM80 eligibility PENDING for every case), so every donor-dependent
-    flag is None (CANNOT_CHECK) except `has_donor_key`, which is exactly False; `eligible` is None because §3a/b/f
-    are MODEL_PROXY judgements not yet rendered."""
+    """The SD80 case-matrix intake as an FM80 case table.
+
+    Every donor-dependent flag is read from the record's own `eligibility.items` through `tri_from_sd80_item`
+    rather than assumed.  SD80 carries no donor key, no frozen retrieval baseline and no arm run: it records
+    §3c/§3d/§3e as `NOT_APPLICABLE_PC_R7_NO_DONOR_ARM__FM80_PENDING_DONOR_KEY` on 455/455 cases, so those
+    flags are None (CANNOT_CHECK).  `eligible` is None because §3a/b/f are MODEL_PROXY judgements not yet
+    rendered under the frozen proxy design.
+
+    Corrected 2026-09-06 (#308 R11b): this adapter previously hardcoded `has_donor_key = False`, which turned
+    the pool's PENDING token into a checked rejection and produced the "§3c fails 455/455" reading.  The
+    literal is gone; the value now comes from the record.
+    """
     d = json.loads(path.read_text())
     rows = []
     for c in d["cases"]:
-        rows.append({"case_id": c["case_id"], "domain": c["domain"], "eligible": None, "witness_disposition": None, "dispositions": {},
-                     "critical_fidelity_failure": {}, "donor_visible_to_baseline_or_prompt": None, "has_donor_key": False,
-                     "donor_outside_baseline_topk": None, "transfer_consequence_nontrivial": None, "hidden_keys_absent_from_visible_files": None,
-                     "donor_outside_taxonomy_branch": None, "donor_not_named_in_visible_files": None, "witness_class": c.get("witness_class"),
-                     "source_record_sha256": c.get("record_sha256")})
+        items = (c.get("eligibility") or {}).get("items") or {}
+        row = {"case_id": c["case_id"], "domain": c["domain"], "eligible": None, "witness_disposition": None,
+               "dispositions": {}, "critical_fidelity_failure": {}, "donor_visible_to_baseline_or_prompt": None,
+               "donor_outside_taxonomy_branch": None, "donor_not_named_in_visible_files": None,
+               "witness_class": c.get("witness_class"), "source_record_sha256": c.get("record_sha256"),
+               "sd80_eligibility_items": items}
+        for flag, item in SD80_ELIGIBILITY_ITEM_FOR_FLAG.items():
+            row[flag] = tri_from_sd80_item(items.get(item))
+        rows.append(row)
     return rows
+
+
+def sd80_eligibility_ceiling(rows: list[dict]) -> dict:
+    """Per-domain ceiling on eligible cases from the clauses SD80 can actually evaluate, against the
+    registered bar of 61 (#308 R11b).
+
+    This is an upper bound and is stated as one: Stage A of the frozen proxy design marks a case INELIGIBLE
+    whenever the proxy proposes no donor, so realized eligibility is <= this ceiling.  A domain whose ceiling
+    is already below 61 cannot reach the registered bar no matter what Stage A returns, and the yield a
+    domain would need from Stage A to reach 61 is reported for the domains that still can.
+    """
+    from collections import Counter, defaultdict
+    by_domain: dict[str, list[dict]] = defaultdict(list)
+    for r in rows:
+        by_domain[r["domain"]].append(r)
+    out: dict[str, Any] = {"bar_per_domain": POWERED_MIN_PER_DOMAIN, "domains": {}}
+    for dom in sorted(by_domain):
+        rs = by_domain[dom]
+        per_item = {}
+        for item in SD80_CHECKABLE_ELIGIBILITY_ITEMS:
+            vals = [tri_from_sd80_item((r.get("sd80_eligibility_items") or {}).get(item)) for r in rs]
+            per_item[item] = {"pass": sum(1 for v in vals if v is True),
+                             "fail": sum(1 for v in vals if v is False),
+                             "cannot_check": sum(1 for v in vals if v is None),
+                             "fail_reasons": dict(Counter((r.get("sd80_eligibility_items") or {}).get(item)
+                                                          for r in rs
+                                                          if tri_from_sd80_item((r.get("sd80_eligibility_items") or {}).get(item)) is False))}
+        ceiling = sum(1 for r in rs
+                      if all(tri_from_sd80_item((r.get("sd80_eligibility_items") or {}).get(i)) is True
+                             for i in SD80_CHECKABLE_ELIGIBILITY_ITEMS))
+        reachable = ceiling >= POWERED_MIN_PER_DOMAIN
+        out["domains"][dom] = {
+            "n_cases": len(rs), "per_item": per_item, "checkable_ceiling": ceiling,
+            "bar_reachable_before_stage_a": reachable,
+            "required_stage_a_joint_yield": (round(POWERED_MIN_PER_DOMAIN / ceiling, 4) if ceiling else None),
+            "status": ("CEILING_ABOVE_BAR__STAGE_A_YIELD_REQUIRED" if reachable
+                       else "CEILING_BELOW_BAR__UNDERPOWERED_AT_REGISTERED_BAR_BY_ARITHMETIC"),
+        }
+    below = sorted(d for d, v in out["domains"].items() if not v["bar_reachable_before_stage_a"])
+    out["domains_below_bar_before_stage_a"] = below
+    out["reading"] = (
+        "Upper bound on eligible cases per domain from the eligibility clauses SD80 evaluates on its own "
+        "records. Stage A can only reduce it. Domains already below the registered bar of "
+        f"{POWERED_MIN_PER_DOMAIN} cannot reach it under any Stage A outcome: {below or 'none'}."
+    )
+    return out
 
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("mode", choices=("enumerate", "selftest", "preconditions", "survival", "sd80-preconditions"))
+    ap.add_argument("mode", choices=("enumerate", "selftest", "preconditions", "survival", "sd80-preconditions", "sd80-eligibility-ceiling"))
     ap.add_argument("--sd80", type=Path)
     ap.add_argument("--cases", type=Path); ap.add_argument("--baseline-rule", type=Path); ap.add_argument("--out", type=Path)
     a = ap.parse_args(argv)
@@ -212,7 +338,12 @@ def main(argv=None) -> int:
         pre = preconditions(rows)
         from collections import Counter
         rep = {"source": str(a.sd80), "n_cases": len(rows), "domains": dict(Counter(r["domain"] for r in rows)), "preconditions": pre,
-               "reading": "FM80 §3c fails on every SD80 case (no donor key exists); §3d/3e/3g/4.1-4.3 CANNOT_CHECK until a donor key, a frozen retrieval baseline and prompt-visible files exist. This is the exact-checkable state of the only naturalistic pool: NOT_ASSEMBLED, not negative."}
+               "clause_scope_notes": SD80_CLAUSE_SCOPE_NOTES,
+               "reading": "FM80 §3c/3d/3e/3g and §4.1-4.3 are all CANNOT_CHECK on the SD80 pool: the records carry NOT_APPLICABLE_PC_R7_NO_DONOR_ARM__FM80_PENDING_DONOR_KEY on 455/455 for the donor clauses, so no donor-dependent clause has an input to score. Corrected 2026-09-06 (#308 R11b): §3c previously read SOME_FAIL 0/455 because the adapter hardcoded has_donor_key=False; the pool never rejected a donor, it never carried one. The exact-checkable state of the only naturalistic pool is NOT_ASSEMBLED, not negative."}
+    elif a.mode == "sd80-eligibility-ceiling":
+        if not a.sd80:
+            print("CANNOT_CHECK: --sd80 required", file=sys.stderr); return 2
+        rep = {"source": str(a.sd80), **sd80_eligibility_ceiling(case_table_from_sd80(a.sd80))}
     elif a.mode == "preconditions":
         if not a.cases:
             print("CANNOT_CHECK: --cases required", file=sys.stderr); return 2
