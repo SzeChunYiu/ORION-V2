@@ -94,11 +94,41 @@ Required distinctions: causal consistency ≠ application invariant; message aut
 
 Parents: distributed knowledge, consensus, CRDT/replication theory, Byzantine agreement, information-flow security.
 
+Batch 10 disposition (J1, `../KSO_FIELD_FRONTIER_THEOREMS_BATCH10_V1.md`, checker
+`../kso_field_frontier_batch10_exact.py`): **PARENT_SUFFICIENT, with PROVED corollaries on the
+fixture.** Convergence of exchanged revocation state is the state-based CRDT theorem (revoke-wins
+observed set; 59 causally consistent delivery orders agree, a last-writer-wins flag diverges on 117
+order pairs); the freshness impossibility is R5 (a view missing an effective revocation is a prefix of
+two histories with different verdicts: 97 wrong / 0); Byzantine agreement is needed only for
+authority-bearing registry objects and is the parent's. Exact typed statements: liveness is antitone in
+the revocation set (4 536); a stale view over-claims only by a missing revocation and under-claims only
+by a missing reinstatement (354/354, 369/369); an import's authority is `drop_commit(A_sender ∧ trust
+cap)` — never raised, commit 0, bounded along relays (1 458), never joined across paths (490 caught);
+per-message assumptions make trust revocation local to the import cone (1 336) and leave native atoms
+untouched; `Impact_D` distributes over unions (4 096) so batched remote deltas never reopen more than
+sequenced ones (36); `k` agreeing sources are `⊕` alternatives at authority `source` — consensus is not
+world truth. The four required distinctions are met on the fixture. OPEN: graded / probabilistic trust
+(FDX-08). CANNOT_CHECK: message authenticity.
+
 ## FDX-07 — epistemic games
 
 Model agents that strategically choose what evidence, claims or certificates to reveal. Determine truthful-equilibrium or impossibility conditions for machine-to-machine/human-to-machine evidence exchange when verification and querying are costly.
 
 Parents: mechanism design, signaling, Bayesian games, interactive proofs, peer prediction. This is likely parent-heavy and must be attacked as such.
+
+Batch 10 disposition (J2): **PARENT_HEAVY / PARENT_SUFFICIENT, attacked as an attack surface.** The
+strategic results (truthful equilibria, disclosure, persuasion, inspection games, Sybil) are the
+parents'; the inspection-game equilibrium `q* = g/(g+f)`, `p* = c/d` is verified exactly on 63 rational
+grids as the parent's object. PROVED gate-specific, on 81 provider strategies × 6 claims × 3
+requirements: the provider's action set on the commitment gate is exactly {enable REPORT-typed commits
+of claims within its channel authority (36 / 61 / 18 strategies), force refusal of claims whose every
+exhibited warrant cites its ids (45 / 20 / 63; 0 for claims with a provider-free alternative), poison
+joint supports containing its ids}; it never changes the verdict on a provider-free claim (486/486),
+never reaches `world_truth` or `commit` (0/486, EXACTLY_BOUNDED), and has no persuasion lever because
+the gate computes no posterior (4 374 invariance checks). A licensed commit names its committing warrant
+so retraction reopens exactly the cone; three Sybil ids are one independent support over principals.
+OPEN: truthful mechanisms for real provider utilities. CANNOT_CHECK: that real utilities match any payoff
+matrix; a provider who compromises a typed channel is outside the model.
 
 ## FDX-08 — stochastic warrant dynamics
 
@@ -141,6 +171,22 @@ Parents: adaptive data analysis, performative prediction, self-modifying systems
 Derive lower bounds across immutable description, mutable memory, verification, communication and test-time computation for natural task families. Representation or external memory may move cost but cannot erase it.
 
 Parents: communication/cell-probe/branching-program/advice complexity, data-structure lower bounds, streaming and online computation.
+
+Batch 10 disposition (J3): **PARENT_OWNED mathematics; PROVED exact table on the registered classes
+ALL16 / AFFINE8 / MONOTONE6.** Identification: total channel bits along any adaptive transcript
+`≥ ⌈log2 |V|⌉` for every version space and every mix of 1-, 2- and 4-bit channels (327 675 checks;
+4 bits on the full class for all five mixes — wider channels move bits, they do not remove them).
+Retention: fewer than `log2 |H|` mutable bits cannot retain `H`; the affine description with 3 bits
+retains 8 and must refuse 8 (`CANNOT_REPRESENT`). Repair: `Σ(retained ids) + worst-case repair queries
+≥ n + k` against `k` revocations for every redundancy design (648 + 48 checks, tight on 164); a repair
+from memory replay violates it on 324 cases. Communication: equality of retained procedures needs
+`≥ 4` transcript bits (fooling set); a `d`-bit digest admits 56 / 24 / 8 / 0 false-equality pairs.
+Verification: oblivious probes / adaptive probes / entropy bound = 4/4/4, 3/3/3 and **4/3/3** on
+MONOTONE6 — one probe above the teaching-dimension bound for a target-oblivious verifier. Whole system:
+the affine description moves exactly one unit out of every phase and adds 8 `CANNOT_REPRESENT`
+targets — cost moves, it is not erased. Scale: four-row classes, checked at `n = 2` (repair at
+`n = 2, 3`); the general forms are the parents' pigeonhole facts. OPEN: coded cross-row redundancy
+(Singleton-type), infinite classes. CANNOT_CHECK: digest collision resistance.
 
 ## FDX-15 — parent-product equivalence / residual theorem
 
