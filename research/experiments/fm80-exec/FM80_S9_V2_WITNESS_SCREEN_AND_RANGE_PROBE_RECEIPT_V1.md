@@ -153,26 +153,47 @@ but the tagger-visible record carries **only original-study fields**. Verbatim f
 replication criterion."* The contract presupposes data the record does not contain. A0 diagnosed a
 defect in the case matrix; its 0.000 measures the contract, not the arm.
 
-### 3a.2 A1's 0.900 is recall of the hidden key
+### 3a.2 A1's 0.900 is contaminated by recall of the hidden key
 
-A1 is the retrieval / literature-based-discovery baseline, and what it retrieved was the answer.
+> **CORRECTED 2026-09-07, after first publication.** This subsection originally reported *"30/30
+> replies cite a recalled replication result"* and *"the non-recall subgroup is empty"*. Both came
+> from an ad-hoc matcher that also fired on a bare citation of the RP:P parent report — which 28 of
+> 30 replies contain and which is **legitimate literature use, not recall of the case's outcome**.
+> Re-run under the stricter, general pattern set now shipped in
+> `scripts/recall_signature_scan.py`, the figures are below. The over-broad matcher was exactly the
+> defect this lane keeps finding in other people's checkers, and it is corrected rather than
+> quietly restated.
 
-| signature | A0 | A1 | control |
-|---|---|---|---|
-| reply cites a **recalled replication result** (an r/p/N for the replication, or the RP:P parent report) | **0/30** | **30/30** | 0/30 |
-| reply names the hidden-key field **`Replicate (R)` verbatim** | — | **16/30** | — |
-| A1 accuracy among recall-citing replies | — | **27/30** | — |
-| A1 accuracy among non-recall replies | — | **0 of 0 — the subgroup is empty** | — |
+A1 is the retrieval / literature-based-discovery baseline, and part of what it retrieved was the
+answer.
 
-The matcher is not vacuous: it separates the two arms completely (0/30 against 30/30) and a control
-phrase that cannot occur returns 0/30 on both. Verbatim from A1 on RPP-36: *"the RP:P data row for
-this case reports … `Replicate.R = yes`"* — **that is the name of the hidden-key field this
-receipt's scorer reads the witness from.** On RPP-7 it recites the replication's `r = .131, N = 16,
-p = .317` and cites the reanalysis paper that tabulates the pair.
+| signature | A0 | A1 |
+|---|---|---|
+| names the hidden-key field **`Replicate (R)` verbatim** | **0/30** | **16/30** |
+| recites the replication's own statistics (an r/p/N for the *replication*) | **0/30** | **9/30** |
+| **either marker** | **0/30** | **21/30** |
+| neither marker | 30/30 | 9/30 |
+| merely cites the RP:P parent report — *not* a recall marker | — | 28/30 |
 
-All 27 correct answers come from recall-citing replies; there is no subgroup that got there any
-other way. RP:P is one of the most widely republished datasets in psychology, and the model has read
-it.
+A0 at 0/30 on both markers is the control that they discriminate; a phrase that cannot occur
+returns 0/30 on both arms.
+
+**16 of 30 replies name the column the grader reads.** Verbatim from A1 on RPP-36: *"the RP:P data
+row for this case reports … `Replicate.R = yes`"*. On RPP-7 it recites the replication's `r = .131,
+N = 16, p = .317`. There is no innocent route by which an arm names the hidden-key field; that is
+direct evidence the model holds the **dataset**, not merely the literature.
+
+**What the markers do not license.** Accuracy among marked replies is 19/21 = 0.905; among the 9
+unmarked replies it is 8/9 = 0.889. So A1's score **cannot be decomposed** into recall and
+reasoning by this marker, and the earlier claim that every correct answer was recall-citing is
+withdrawn. **Marker-absence proves nothing** — a model that knows the answer need not say so — which
+is precisely why a single verbatim key-field mention is treated as disqualifying for the *corpus*
+rather than used to split cases within it.
+
+The conclusion that survives is the one about the endpoint, and it is unweakened: RP:P is one of the
+most widely republished datasets in psychology, the arm demonstrably holds it, and §3g cannot be
+satisfied against it. Routing row 1 is unaffected either way — it reads `best` = 0.900 and nothing
+else.
 
 ### 3a.3 What that means for FM80 §3g
 
@@ -267,8 +288,9 @@ What is established is narrower and firmer than any of those, and it is two thin
 1. **The assembled pool cannot fill FM80 §2.1**, because its formal domain was drawn from a list of
    theorems that had already been formalized. Attributed to the case source.
 2. **RP:P cannot serve as a protected decision endpoint for an LLM arm**, because its outcomes are
-   published and recalled — 30/30 replies cite one, 16/30 name the hidden-key field itself. §3g is
-   unsatisfiable there by any workspace hygiene.
+   published and the arm demonstrably holds them — **16/30** replies name the hidden-key field
+   itself and 21/30 carry a direct recall marker, against 0/30 on the control arm. §3g is
+   unsatisfiable there by any workspace hygiene. (Figures corrected 2026-09-07; see §3a.2.)
 
 Both are properties of the *instrument and its case sources*. Neither is evidence about naturalistic
 transfer in either direction.
