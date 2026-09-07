@@ -75,6 +75,18 @@ def witness_screen(labels: list[str]) -> dict[str, Any]:
 
 
 def programme_terminal(domain_rows: dict[str, dict[str, Any]]) -> dict[str, Any]:
+    """Step-4 evaluation, over the three ASSEMBLED counting domains.
+
+    Refuses on fewer than three rather than returning a terminal. Called with two -- as the
+    range-finding probe would, since the third domain is not assembled until step 4 -- it
+    would otherwise return PROGRAMME_NO_RANGE unconditionally, manufacturing exactly the
+    structurally guaranteed negative this design exists to prevent, and a reader could not
+    tell it from a real one.
+    """
+    if len(domain_rows) < 3:
+        raise ValueError(
+            f"programme_terminal needs three assembled domains, got {len(domain_rows)}: "
+            f"{sorted(domain_rows)}. At probe stage report per-domain routing only.")
     counting = [d for d, r in domain_rows.items() if r["counts_toward_section_9"]]
     if len(counting) < 3:
         return {"terminal": PROGRAMME_NO_RANGE, "counting_domains": counting,

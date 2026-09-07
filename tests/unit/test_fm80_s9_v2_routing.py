@@ -84,3 +84,19 @@ def test_reserve_draw_is_deterministic_and_seed_sensitive() -> None:
     ids = [f"C-{i}" for i in range(200)]
     assert M.draw_reserve("s1", ids, 30) == M.draw_reserve("s1", ids, 30)
     assert M.draw_reserve("s1", ids, 30) != M.draw_reserve("s2", ids, 30)
+
+
+def test_programme_terminal_refuses_fewer_than_three_assembled_domains() -> None:
+    """Called with the probe's two domains it would return PROGRAMME_NO_RANGE unconditionally --
+    a structurally guaranteed negative indistinguishable from a real one. It must refuse."""
+    two_healthy = {k: {"counts_toward_section_9": True} for k in ("formal", "rpp")}
+    with pytest.raises(ValueError):
+        M.programme_terminal(two_healthy)
+    with pytest.raises(ValueError):
+        M.programme_terminal({})
+
+
+def test_probe_reports_no_programme_terminal() -> None:
+    probe = (BASE / "fm80_s9_range_probe.py").read_text()
+    assert "NOT_EVALUATED_AT_PROBE_STAGE" in probe
+    assert "R.programme_terminal(" not in probe
