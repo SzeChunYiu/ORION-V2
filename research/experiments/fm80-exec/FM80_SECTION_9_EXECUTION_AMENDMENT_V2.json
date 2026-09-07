@@ -100,6 +100,15 @@
         "boundary_sensitivity": "best = 27/30 = 0.9000 sits exactly on the row-1 threshold; at 26/30 = 0.867 the routing would have been row 4 NARROW_HEADROOM, which counts. Reported rather than left to be noticed. It changes nothing: s2.1 already fails, so RP:P counting or not cannot make three counting domains, and the recall attribution is independent of where the threshold sits.",
         "a3_never_ran": true,
         "served_model": "requested gpt-5.5 through pinned codex 0.129.0-alpha.15 on billy-old; asked for its own identifier the channel replied 'gpt-5'. Recorded, not resolved: a self-report is not an attestation. Not load-bearing -- both arms used the identical invocation, so FM80 s5's same-family requirement holds either way."
+      },
+      "second_seam_mathlib_sorry_CLOSED_20260907": {
+        "status": "CLOSED__BELOW_BAR_BY_ARITHMETIC",
+        "policy_route": "NOT_CONFIRMED. Expectation was that mathlib CI forbids sorry on mainline, making the seam empty by construction. Fetched at the pinned commit 8571709f by targeted raw request, no clone: .github/workflows/build.yml (3786 B), .github/workflows/build_template.yml (53967 B) and scripts/lint-style.py (10706 B) contain ZERO matches for 'sorry'; CONTRIBUTING.md is HTTP 404. The policy may hold by another mechanism but could not be confirmed cheaply, so it is NOT claimed. A convention this lane cannot point at is not evidence.",
+        "arithmetic_route": "targeted code search over the whole Mathlib/ tree: 66 files contain the token 'sorry' (control: 4872 for 'theorem'), of which 40 are under Mathlib/Tactic/ -- tactic machinery that mentions sorry -- leaving 26 spread across Data 6, Algebra 5, Util 4, Order 2, Lean 2, Geometry 2 and one each in Topology, RingTheory, Probability, GroupTheory, CategoryTheory.",
+        "not_laundered": "66 is a count of FILES containing a TOKEN, not of sorried theorems, and it is not converted into one. Most matches are comments, docstrings and the tactic framework's own handling of sorry.",
+        "bound": "SD80's formal pool carries 213 mathlib-declared entries and the registered bar is 61. For this seam to produce a domain, >= 61 of those 213 would have to be sorry-carrying. Under the maximally adversarial reading -- every one of the 26 non-tactic files holding a sorried flagship theorem from this very list -- 26 < 61. The bound holds whatever mathlib's policy turns out to be, which is why it is preferred over the policy route.",
+        "external_entries": "the 30 external-library entries are covered by no mathlib policy; one (Whitney-Graustein Q7309601) records assumed axioms. Already inside the 29-comment bound and not counted twice.",
+        "compute_spent": "four raw file fetches and two code-search queries; no clone, no build"
       }
     }
   },

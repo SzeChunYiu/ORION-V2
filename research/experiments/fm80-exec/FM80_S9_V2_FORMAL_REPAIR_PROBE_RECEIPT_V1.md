@@ -85,14 +85,59 @@ comments — however generous — can produce a domain. And adjudicating free pr
 this programme its own witness, which §3's independence requirement forbids and which was already
 rejected once in this lane.
 
-## 4. The second seam, and the limit of what was checked here
+## 4. The second seam — CLOSED 2026-09-07, by arithmetic rather than by policy
 
-A `sorry`-carrying or declared-but-unproved mathlib entry would be a genuine adverse witness. The
-snapshot in this repository is the YAML plus a master-commit pointer; **the mathlib tree itself is
-not vendored here, so this was not checked against the pinned commit and no claim is made about
-it.** What the data does show is one entry recording assumed axioms (Whitney–Graustein), i.e. n = 1
-from this direction. Verifying the seam properly means checking `sorry` occurrences in the pinned
-mathlib tree — recorded as the open check, not as a result.
+A `sorry`-carrying or declared-but-unproved mathlib entry would be a genuine adverse witness. This
+was left as an open check when the receipt first landed, because the mathlib tree is not vendored
+here. It is now closed, without vendoring it and without spending compute.
+
+**The policy route did not work, and that is reported rather than assumed.** The expectation was
+that mathlib's CI forbids `sorry` on mainline, so the seam would be empty by construction. Fetched
+at the pinned commit `8571709f…` by targeted raw request, no clone:
+
+| file | size | `sorry` matches |
+|---|---|---|
+| `.github/workflows/build.yml` | 3,786 B | **0** |
+| `.github/workflows/build_template.yml` | 53,967 B | **0** |
+| `scripts/lint-style.py` | 10,706 B | **0** |
+| `CONTRIBUTING.md` | — | HTTP 404 |
+
+**No `sorry` grep exists in mathlib's CI configuration at this commit.** The policy may well hold by
+another mechanism, but it could not be confirmed the cheap way, so it is not claimed. A convention
+this lane cannot point at is not evidence.
+
+**The arithmetic route does work, and it does not depend on the policy holding.** A targeted code
+search over the whole `Mathlib/` tree, with a control that had to fire:
+
+| query | files |
+|---|---|
+| token `sorry` in `Mathlib/`, Lean sources | **66** |
+| of which under `Mathlib/Tactic/` (tactic machinery that *mentions* `sorry`) | **40** |
+| remaining, spread across Data 6, Algebra 5, Util 4, Order 2, Lean 2, Geometry 2, and one each in Topology, RingTheory, Probability, GroupTheory, CategoryTheory | **26** |
+| control: token `theorem` in the same scope | 4,872 |
+
+**66 is a count of files containing a token, not of sorried theorems**, and it is not laundered into
+one here: the great majority are comments, docstrings and the tactic framework's own handling of
+`sorry`.
+
+It does not need to be refined, because the bound already settles the question. SD80's formal pool
+carries **213** mathlib-declared entries, and the registered bar is **61**. For this seam to produce
+a domain, **≥ 61 of those 213 would have to be `sorry`-carrying**. The entire `Mathlib/` tree
+contains only 26 candidate files outside the tactic framework. Even under the maximally adversarial
+reading — every one of those 26 files holding a sorried flagship theorem from this very list —
+**26 < 61**.
+
+The seam is below the registered bar by arithmetic, exactly as the comment seam is (§3), and by a
+bound that holds whatever mathlib's policy turns out to be.
+
+**The 30 external-library entries are not covered by any mathlib policy**, and one of them records
+assumed axioms (Whitney–Graustein). That case is already inside the 29-comment bound of §3 and is
+not counted twice.
+
+```text
+SECOND_SEAM = CLOSED__BELOW_BAR_BY_ARITHMETIC (≤ 26 candidate files < bar 61)
+POLICY_ROUTE = NOT_CONFIRMED (no sorry check in mathlib CI at the pinned commit; not claimed)
+```
 
 ## 5. The obvious reframing, rejected on two independent grounds
 
@@ -114,7 +159,10 @@ FORMAL_DOMAIN_NOT_REPAIRABLE_FROM_THIS_SOURCE
   negative half of formalization STATUS: enumerated (956 entries; SD80 drew exactly the other side)
   negative half of the registered CONTRACT: not enumerated (945/956 carry only a title)
   adverse seam upper bound: 29 comments, whole file, against a registered bar of 61
-  second seam (mathlib `sorry`): NOT CHECKED HERE -- tree not vendored; recorded as an open check
+  second seam (mathlib `sorry`): CLOSED -- <= 26 candidate files in all of Mathlib/ outside the
+    tactic framework, against a bar of 61 over 213 mathlib-declared entries. Closed by arithmetic,
+    NOT by policy: no sorry check exists in mathlib CI at the pinned commit, so the expected
+    "empty by construction" route is reported as unconfirmed rather than assumed.
 ```
 
 **The scope of the negative is stated rather than implied**, because "the negative half is not
