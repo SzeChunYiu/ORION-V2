@@ -12,8 +12,13 @@
 
 ```text
 FORMAL_MATHEMATICS_1000PLUS = WITNESS_DEGENERATE__CANNOT_EXPOSE_A_WRONG_TRANSFER
-PSYCHOLOGY_RPP              = NON_DEGENERATE
+PSYCHOLOGY_RPP              = NON_DEGENERATE (witness screen)
+                            = AT_CEILING__SECTION_9_1_UNREACHABLE_BY_ARITHMETIC (routing row 1)
 ```
+
+Two registered rows fired, in two different domains, for two different reasons. The formal domain
+has no witness that can expose a wrong transfer; RP:P has one, but the arm that reaches the bar
+reaches it by **recalling the published answer** (§3a). Neither is a scientific null.
 
 Composing that with FM80 §2.1 gives the programme-level reading:
 
@@ -113,6 +118,98 @@ Its corpus-level properties stand as recorded (331 rows; `HTTP 200`; the reprodu
 field disjoint from the fields describing the original claim). Whether ≥ 61 of its rows survive the
 registered §3 screen is **still unanswered**, and this receipt does not answer it.
 
+## 3a. The range-finding probe: the registered ceiling row fired, and the reason is memorisation
+
+The formal domain was excluded by the screen, so the probe ran on the reserved 30 RP:P cases,
+arms A0 and A1 only, 60 dispatches, **60/60 completed, 0 failed, parse rate 1.000 on both arms**.
+Seed revealed: `1bfac8c48cb10439b5e79699c1aaa63c`, whose sha256 is the pre-run commitment
+`3f8e805c…2b41`.
+
+| arm | n dispatched | n scored | correct | accuracy | disposition histogram |
+|---|---|---|---|---|---|
+| A0 native parent | 30 | 30 | 0 | **0.000** | `INCONCLUSIVE_REOPEN` 30 |
+| A1 retrieval / LBD | 30 | 30 | 27 | **0.900** | SATISFIES 14, FAILS 15, INCONCLUSIVE 1 |
+
+majority-class rate `maj` = 0.600. `best` = 0.900, so **registered routing row 1 fired**:
+
+```text
+PSYCHOLOGY_RPP = AT_CEILING__SECTION_9_1_UNREACHABLE_BY_ARITHMETIC
+```
+
+Neither number is what it looks like, and the read-out exists because a bare accuracy would have
+hidden both.
+
+### 3a.1 A0's 0.000 is a contract defect, not a measurement
+
+A0 answered `INCONCLUSIVE_REOPEN` on **30 of 30**, with a parse rate of 1.000 — so this is a
+refusal to commit, not a parsing failure, and a score of exactly zero is again the signature of a
+constant rather than a measurement. The arm was right. The registered decision contract asks:
+
+> Given the original claim, the registered replication protocol/constraints **and the replication's
+> reported summary statistics**, does the replication satisfy the a-priori replication criterion?
+
+but the tagger-visible record carries **only original-study fields**. Verbatim from A0 on RPP-36:
+*"it does not provide the replication's reported summary statistics needed to apply the a-priori
+replication criterion."* The contract presupposes data the record does not contain. A0 diagnosed a
+defect in the case matrix; its 0.000 measures the contract, not the arm.
+
+### 3a.2 A1's 0.900 is recall of the hidden key
+
+A1 is the retrieval / literature-based-discovery baseline, and what it retrieved was the answer.
+
+| signature | A0 | A1 | control |
+|---|---|---|---|
+| reply cites a **recalled replication result** (an r/p/N for the replication, or the RP:P parent report) | **0/30** | **30/30** | 0/30 |
+| reply names the hidden-key field **`Replicate (R)` verbatim** | — | **16/30** | — |
+| A1 accuracy among recall-citing replies | — | **27/30** | — |
+| A1 accuracy among non-recall replies | — | **0 of 0 — the subgroup is empty** | — |
+
+The matcher is not vacuous: it separates the two arms completely (0/30 against 30/30) and a control
+phrase that cannot occur returns 0/30 on both. Verbatim from A1 on RPP-36: *"the RP:P data row for
+this case reports … `Replicate.R = yes`"* — **that is the name of the hidden-key field this
+receipt's scorer reads the witness from.** On RPP-7 it recites the replication's `r = .131, N = 16,
+p = .317` and cites the reanalysis paper that tabulates the pair.
+
+All 27 correct answers come from recall-citing replies; there is no subgroup that got there any
+other way. RP:P is one of the most widely republished datasets in psychology, and the model has read
+it.
+
+### 3a.3 What that means for FM80 §3g
+
+FM80 §3 requires that *"target-case materials visible to model arms do not contain the hidden donor
+key, gold relation label, or terminal disposition"*, and §11 that the keys be *"absent from all
+model-visible workspaces"*. §4 of this receipt closes the pointer route by redacting URLs. **Recall
+is a route redaction cannot close.** The key is not in the workspace; it is in the weights.
+
+So RP:P cannot serve as a protected decision endpoint for an LLM arm, and the failure is not
+operational. No amount of prompt hygiene fixes a published, famous outcome.
+
+**The reach of this, stated at the strength it is earned.** Demonstrated for RP:P against this
+channel; the mechanism — a protected endpoint whose answer is itself published — applies in
+principle to *any* published replication corpus used this way, `EMPIRICAL_ASSET_PRICING_OSAP`
+included, whose per-signal grades are likewise published. That is a **prospective risk requiring a
+contamination control**, not a measured finding about OSAP, which was never screened. The general
+lever is the control this probe accidentally became: **a recall-signature check should be a
+precondition for admitting any published corpus as a protected endpoint**, run before the corpus is
+assembled rather than after.
+
+### 3a.4 One case from the boundary, and why it does not matter here
+
+`best` = 27/30 = **0.9000**, exactly the registered row-1 threshold. At 26/30 = 0.867 the routing
+would instead have been row 4, `NARROW_HEADROOM`, which *counts*. The row that fired is therefore
+sensitive to a single case, and that is reported rather than left for a reader to notice.
+
+It changes nothing. §2.1 already fails on the formal domain, so RP:P counting or not counting cannot
+produce three counting domains; and the attributed cause of A1's score — recall — is unaffected by
+where the threshold sits. The finding does not rest on the boundary.
+
+### 3a.5 Served model
+
+Requested `gpt-5.5` through the pinned codex 0.129.0-alpha.15 on billy-old. Asked to state its own
+identifier, the channel replied `gpt-5`. The discrepancy is recorded rather than resolved: a
+self-report is not an attestation. It is not load-bearing — both arms used the identical
+invocation, so FM80 §5's same-family requirement holds whichever is served.
+
 ## 4. A leak the pool's own screen could not see
 
 Every one of the 100 RP:P tagger-visible records carries `Project URL` and `osf_project_id`, which
@@ -157,10 +254,23 @@ only, and two regression tests pin both halves.
 
 ## 7. What a reader must not take from this
 
-Not that structural donor discovery or typed transfer adds nothing — **no arm ran**. Not that P-A or
+Not that structural donor discovery or typed transfer adds nothing. **A3 never ran** — the probe
+deliberately runs baselines only, so no §9 contrast was observed and none could be. Not that P-A or
 P-B is refuted, and not that either is reopened; both dispositions are unchanged. Not that the third
-domain failed — it was never screened. What is established is narrower and firmer than any of those:
-**the assembled naturalistic pool cannot fill FM80 §2.1, because its formal domain was drawn from a
-list of theorems that had already been formalized.**
+domain failed — it was never screened.
+
+Not, either, that A1 "solved" replication prediction. It recalled published outcomes, and an arm
+that recites the answer has demonstrated nothing about the decision.
+
+What is established is narrower and firmer than any of those, and it is two things:
+
+1. **The assembled pool cannot fill FM80 §2.1**, because its formal domain was drawn from a list of
+   theorems that had already been formalized. Attributed to the case source.
+2. **RP:P cannot serve as a protected decision endpoint for an LLM arm**, because its outcomes are
+   published and recalled — 30/30 replies cite one, 16/30 name the hidden-key field itself. §3g is
+   unsatisfiable there by any workspace hygiene.
+
+Both are properties of the *instrument and its case sources*. Neither is evidence about naturalistic
+transfer in either direction.
 
 skills-applied: none (evidence lane, no manuscript content)
