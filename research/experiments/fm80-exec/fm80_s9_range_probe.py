@@ -71,13 +71,14 @@ def witness_of(case_id: str, domain: str, key: dict[str, Any]) -> str | None:
 def build_prompt(case: dict[str, Any], arm: str) -> str:
     contract = case["registered_decision_contract"]
     dispositions = contract["dispositions"]
+    visible, _removed = redact(case["tagger_visible_record"])
     return (
         f"{ARM_PREAMBLE[arm]}\n\n"
         f"FIELD / DOMAIN: {case['domain']}\n"
         f"STRONGEST NATIVE PARENT: {contract['strongest_native_parent']}\n\n"
         f"QUESTION:\n{contract['question']}\n\n"
         f"CASE RECORD (this is everything you are given):\n"
-        f"{json.dumps(case['tagger_visible_record'], indent=1, ensure_ascii=False)[:6000]}\n\n"
+        f"{json.dumps(visible, indent=1, ensure_ascii=False)[:6000]}\n\n"
         f"Choose exactly one disposition from: {', '.join(dispositions)}\n\n"
         f"Answer contract: reason briefly, then end your reply with a final line of exactly\n"
         f"DISPOSITION: <one of the listed values>\n"
@@ -86,6 +87,31 @@ def build_prompt(case: dict[str, Any], arm: str) -> str:
 
 
 DISP_RE = re.compile(r"DISPOSITION:\s*([A-Z_]+)")
+
+# FM80 §11: the hidden key must be absent from every model-visible workspace. SD80's own §3g
+# screen covers only the disposition/verdict-leak component of the record TEXT, and it passes
+# these cases -- but an RP:P record carries `Project URL` / `osf_project_id`, which resolve to
+# the replication project and therefore to the outcome. A pointer to the key is the key. These
+# fields are redacted from the arm-visible record, and the redaction is recorded rather than
+# assumed: it is a tightening of §11, in the conservative direction, and it applies identically
+# to A0 and A1 so it cannot favour either.
+LEAK_FIELDS = ("Project URL", "osf_project_id", "osf_registrations_public_api", "url",
+               "OSF project link", "Link to Registered Report")
+URL_RE = re.compile(r"https?://\S+")
+
+
+def redact(record: dict[str, Any]) -> tuple[dict[str, Any], list[str]]:
+    out, removed = {}, []
+    for k, v in record.items():
+        if k in LEAK_FIELDS:
+            removed.append(k)
+            continue
+        if isinstance(v, str) and URL_RE.search(v):
+            out[k] = URL_RE.sub("[REDACTED_URL]", v)
+            removed.append(f"{k}:inline_url")
+            continue
+        out[k] = v
+    return out, removed
 
 
 def parse(out: str, allowed: list[str]) -> str | None:

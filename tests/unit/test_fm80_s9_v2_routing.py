@@ -100,3 +100,35 @@ def test_probe_reports_no_programme_terminal() -> None:
     probe = (BASE / "fm80_s9_range_probe.py").read_text()
     assert "NOT_EVALUATED_AT_PROBE_STAGE" in probe
     assert "R.programme_terminal(" not in probe
+
+
+def _probe():
+    s = importlib.util.spec_from_file_location("probe", BASE / "fm80_s9_range_probe.py")
+    m = importlib.util.module_from_spec(s)
+    sys.modules["probe"] = m
+    s.loader.exec_module(m)
+    return m
+
+
+def test_arm_visible_record_carries_no_url_and_the_check_is_not_vacuous() -> None:
+    """FM80 §11: no route to the hidden key in a model-visible workspace. An RP:P record's
+    `Project URL` resolves to the replication project, hence to the outcome; SD80's own §3g
+    screen passes these cases because it reads the record text, not its pointers."""
+    m = _probe()
+    cases = json.loads((ROOT / "research" / "experiments" / "sd80"
+                        / "SD80_CASE_MATRIX_CASES_V1.json").read_text())["cases"]
+    rpp = [c for c in cases if c["domain"] == "PSYCHOLOGY_RPP"]
+    assert rpp
+    # Control first: the raw records must actually contain URLs, or the assertion below is vacuous.
+    raw_with_url = [c["case_id"] for c in rpp
+                    if m.URL_RE.search(json.dumps(c["tagger_visible_record"]))]
+    assert len(raw_with_url) == len(rpp), "control failed: raw records carry no URL to redact"
+    assert [c["case_id"] for c in rpp if m.URL_RE.search(m.build_prompt(c, "A0"))] == []
+    assert [c["case_id"] for c in rpp if m.URL_RE.search(m.build_prompt(c, "A1"))] == []
+
+
+def test_redaction_no_alarm_leaves_a_clean_record_untouched() -> None:
+    m = _probe()
+    clean = {"Study Title (O)": "x", "N (O)": "24"}
+    out, removed = m.redact(clean)
+    assert out == clean and removed == []
