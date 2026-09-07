@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "design_id": "FM80_SECTION_9_EXECUTION_AMENDMENT_V2",
+  "frozen_utc": "2026-09-07",
+  "class": "FROZEN_DESIGN_AMENDMENT__PRE_SCREENING__PRE_OUTCOME",
+  "authority": {
+    "grants_scientific_truth": false,
+    "grants_p_a_p_b_survival": false,
+    "grants_publication_readiness": false,
+    "alters_submission_authorized": false,
+    "novelty_or_breakthrough_claim": false
+  },
+  "markdown_twin": {
+    "path": "research/experiments/fm80-exec/FM80_SECTION_9_EXECUTION_AMENDMENT_V2.md",
+    "sha256": "25940e38c8548bd96dedf750d94e85d1e631a64baf565b87402dc71b245ab84e"
+  },
+  "amends": "research/experiments/FM80_NATURALISTIC_TRANSFER_DECISIVE_PROTOCOL_V1.md (sibling execution design; protocol text unamended)",
+  "adopts_by_reference": [
+    "research/experiments/fm80-exec/FM80_MODEL_PROXY_ADJUDICATION_DESIGN_V1.md",
+    "research/experiments/fm80-audit/FM80_PRE_OUTCOME_DESIGN_CORRECTION_V1.md",
+    "research/experiments/fm80-exec/FM80_EXEC_R11B_DONOR_KEY_ATTRIBUTION_RECEIPT_V1.md"
+  ],
+  "repair_branch": {
+    "selected": "BRANCH_1__RAISE_SAMPLE_FLOOR",
+    "sample_floor_per_domain": 61,
+    "sample_floor_total": 183,
+    "supersedes_registry_value": "UNSELECTED__BELONGS_TO_THE_EXECUTING_LANE",
+    "effect_bar_pp": 10.0,
+    "paired_test": "exact McNemar (unchanged)",
+    "multiplicity": "Holm across three domain-level primary tests (unchanged)",
+    "rejected_branches": {
+      "BRANCH_2__RAISE_EFFECT_BAR_TO_23_3_PP": "redefines the meaningful effect 2.3x larger to fit a sample; answers a different question than FM80 registered",
+      "BRANCH_3__CHANGE_THE_PAIRED_TEST": "cheapest, and forbidden by FM80 section 12 as relaxation of a frozen protocol chosen after seeing the reachability analysis"
+    }
+  },
+  "domains": {
+    "counting": [
+      "FORMAL_MATHEMATICS_1000PLUS",
+      "PSYCHOLOGY_RPP",
+      "EMPIRICAL_ASSET_PRICING_OSAP"
+    ],
+    "recorded_not_counted": {
+      "CANCER_BIOLOGY_RPCB": "checkable ceiling 50 < bar 61; required Stage A joint yield 1.220, i.e. more cases out than in; below bar under every Stage A outcome",
+      "MACHINE_LEARNING_MLRC": "checkable ceiling 0; all 36 cases fail eligibility items a_ and g_ (report text carries the verdict; no outcome-free evidence layer)"
+    },
+    "rejected_recut": {
+      "CANCER_BIOLOGY_RPCB_EFFECT_LEVEL": "the 26 failures LACK an effect-level witness, so a finer cut re-partitions the 50 that already pass rather than rescuing any; and exact paired tests across effects nested in 23 papers break the independence the test assumes (pseudo-replication)"
+    }
+  },
+  "third_domain": {
+    "id": "EMPIRICAL_ASSET_PRICING_OSAP",
+    "corpus": "Open Source Cross-Sectional Asset Pricing (Chen & Zimmermann) signal documentation",
+    "selection_order": "criteria C1-C6 written and frozen BEFORE any candidate was screened; no candidate was scored before selection",
+    "criteria": {
+      "C1": "empirical science materially different from PSYCHOLOGY_RPP in objects, measurement semantics and strongest parent methodology; not formal/mathematical (FM80 s2.3)",
+      "C2": "frozen, case-level, publicly documented replication/transfer witness produced by an independent party, not by this programme (FM80 s3f, s6)",
+      "C3": "evidence layer separable from the verdict at case level (FM80 s3a, s3g) -- the discriminating criterion; this is what removed MLRC",
+      "C4": "strongest known native parent method(s) nameable per case (FM80 s3b)",
+      "C5": ">= 80 candidate cases before screening (headroom over the 61 bar; screening can only reduce)",
+      "C6": "lawfully and publicly obtainable without authentication, machine-readable, snapshot-hashable (FM80 s11)"
+    },
+    "availability_probe_20260907": {
+      "http_status": 200,
+      "bytes": 181712,
+      "rows": 331,
+      "host": "billy-old"
+    },
+    "not_yet_claimed": "331 is a row count, not an eligible-case count. Whether >= 61 survive the registered s3 screen, and whether the witness is non-degenerate, are screening questions answered after this freeze; either may return a negative.",
+    "rejected_candidates": {
+      "ORGANIC_SYNTHESES": "C2 -- essentially only successfully checked preparations are published, so the witness has no adverse class and cannot expose a wrong transfer",
+      "FORRT_REPLICATION_DATABASE": "C1 -- predominantly psychology, same domain as PSYCHOLOGY_RPP",
+      "SSRP_21": "C5",
+      "EERP_18": "C5",
+      "MANY_LABS_2_28": "C5 and C1",
+      "DFT_DELTA_PROJECT_71": "C5, and a continuous agreement gauge rather than a transfer/block/reopen decision",
+      "GWAS_CATALOG_REPLICATION": "C2 -- a per-case verdict would have to be curated by this programme, making us our own witness"
+    }
+  },
+  "range_finding_probe": {
+    "rationale": "FG80 R3 (2026-09-06, same host, same channel) put all five arms at 80/80, exact p=1.0, terminal FG80_AT_CEILING_UNDER_A_CATEGORICAL_CONTRACT. FM80's endpoint is also categorical and s9.1 is also a percentage-point difference, so saturation would make the contrast unreachable by arithmetic no matter what else is built.",
+    "reserve": {
+      "FORMAL_MATHEMATICS_1000PLUS": 30,
+      "PSYCHOLOGY_RPP": 30
+    },
+    "draw": "deterministic seeded shuffle of case_id over research/experiments/sd80/SD80_CASE_MATRIX_CASES_V1.json",
+    "excluded_from_section_9_analysis": true,
+    "arms": [
+      "A0",
+      "A1"
+    ],
+    "arms_not_run": [
+      "A2",
+      "A3",
+      "A4"
+    ],
+    "why_freeze_safe": "the treatment arm never runs on this stratum, so no s9 contrast is observed; FM80 s8 already selects the comparison baseline by a pre-outcome rule based only on baseline identity, so baseline identity is explicitly not outcome information"
+  },
+  "routing_table": {
+    "evaluated": "per counting domain, in order; first matching row is the disposition",
+    "symbols": {
+      "acc0": "A0 accuracy",
+      "acc1": "A1 accuracy",
+      "best": "max(acc0, acc1)",
+      "maj": "accuracy of always answering the domain's majority witness class"
+    },
+    "rows": [
+      {
+        "n": 1,
+        "predicate": "best >= 0.90",
+        "disposition": "AT_CEILING__SECTION_9_1_UNREACHABLE_BY_ARITHMETIC",
+        "counts": false,
+        "derivation": "s9.1 requires A3 >= best + 0.10 and no accuracy exceeds 1.00, so best >= 0.90 makes the clause unreachable by arithmetic"
+      },
+      {
+        "n": 2,
+        "predicate": "best <= 0.10",
+        "disposition": "AT_FLOOR__NO_DYNAMIC_RANGE_FOR_THE_SECTION_9_CONTRAST",
+        "counts": false
+      },
+      {
+        "n": 3,
+        "predicate": "best <= maj",
+        "disposition": "BASELINE_DOES_NOT_BEAT_THE_MAJORITY_CLASS__INSTRUMENT_UNINFORMATIVE",
+        "counts": false
+      },
+      {
+        "n": 4,
+        "predicate": "0.80 <= best < 0.90",
+        "disposition": "NARROW_HEADROOM__A3_MUST_REACH_NEAR_PERFECT_TO_CLEAR_10_PP",
+        "counts": true,
+        "flagged": true
+      },
+      {
+        "n": 5,
+        "predicate": "otherwise",
+        "disposition": "DYNAMIC_RANGE_PRESENT__PROCEED",
+        "counts": true
+      }
+    ],
+    "witness_non_degeneracy": {
+      "predicate": "minority witness class >= 0.20 of the domain's screened cases",
+      "on_failure": "WITNESS_DEGENERATE__CANNOT_EXPOSE_A_WRONG_TRANSFER -- fails FM80 s3f; not counted; NOT read as a negative"
+    },
+    "programme_level": {
+      "predicate": "fewer than three counting domains reach DYNAMIC_RANGE_PRESENT__PROCEED (row 4 counts as reaching it)",
+      "terminal": "FM80_S9_INSTRUMENT_WITHOUT_DYNAMIC_RANGE__NO_VERDICT_REACHABLE",
+      "binding_reading": "an instrument terminal, recorded at that strength and NEVER as evidence that structural donor discovery or typed transfer adds nothing. A saturated or uninformative instrument is silent, not exculpatory."
+    }
+  },
+  "stage_a": {
+    "source": "FM80_MODEL_PROXY_ADJUDICATION_DESIGN_V1.md, adopted unchanged and extended to the third domain on identical terms",
+    "input_visible_to_proxy": "tagger-visible record only; never a hidden key",
+    "no_donor_proposed": "INELIGIBLE, never negative evidence",
+    "K": 20,
+    "label": "HUMAN_GATE_BYPASSED__MODEL_PROXY",
+    "label_discipline": "no proxy verdict is recorded as independent human adjudication, none is marked as externally obtained, and FM80 s9 survival is not reachable through the proxy route"
+  },
+  "channel": {
+    "host": "billy-old (tailscale); never the Mac; LUNARC not used and not required",
+    "client": "codex CLI 0.129.0-alpha.15 (permanent programme pin; not upgraded)",
+    "model": "gpt-5.5",
+    "probe_20260907": "CHANNEL_OK",
+    "deviation_from_sibling_run": "FG80 R3 (2026-09-06) used gpt-5.6-terra; on 2026-09-07 the same pinned client is refused for that model by the service (HTTP 400, 'requires a newer version of Codex') while gpt-5.5 answers normally. The pin is not moved to chase a model. FM80 s5 requires only that all arms share a model family/version.",
+    "served_model_id": "ASSERTED_AT_RUN__NOT_ASSUMED_FROM_THE_REQUEST"
+  },
+  "seed_commitment": {
+    "location": "billy-old:~/fm80-s9-v2/SEED.txt (off-repository)",
+    "sha256": "3f8e805c29bffd7e873af2836c2000c9be0916842b7ed9fd27c0e6a8278e2b41",
+    "bytes": 33,
+    "reveal": "post-run, in the outcome receipt"
+  },
+  "order_of_operations": [
+    "1. this amendment merged to main, sha256 registered",
+    "2. reserved stratum drawn from the committed seed; witness non-degeneracy screen",
+    "3. range-finding probe (A0, A1 on the 60 reserved cases); routing table evaluated",
+    "4. branch: no range in >= 2 counting domains -> instrument terminal, stop; range present -> third-domain intake and s3 screening, Stage A, Stage B, Stage C, s9 gate",
+    "5. outcome receipt with the seed revealed and the served model id asserted"
+  ],
+  "does_not": [
+    "relax any s9 threshold (10 pp bar, exact paired test, Holm, s9.3 non-compensatory fidelity, s9.4/s9.7 all stand)",
+    "amend the FM80 protocol text",
+    "grant P-A or P-B a standalone route or change either disposition",
+    "touch submission_authorized",
+    "substitute a machine surrogate for s4.4 remoteness adjudication",
+    "promise a verdict -- a registered instrument terminal or a stated failure to assemble the third domain honestly are both admissible outcomes"
+  ]
+}
