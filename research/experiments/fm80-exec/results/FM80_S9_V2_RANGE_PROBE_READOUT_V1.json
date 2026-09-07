@@ -1,0 +1,48 @@
+{
+  "per_domain": {
+    "FORMAL_MATHEMATICS_1000PLUS": {
+      "dispatched": 0,
+      "note": "no arm dispatched (domain excluded by the registered witness screen)",
+      "witness_screen": "WITNESS_DEGENERATE__CANNOT_EXPOSE_A_WRONG_TRANSFER"
+    },
+    "PSYCHOLOGY_RPP": {
+      "per_arm": {
+        "A0": {
+          "n_dispatched": 30,
+          "n_scored": 30,
+          "parse_rate": 1.0,
+          "parse_rate_below_floor": false,
+          "disposition_histogram": {
+            "INCONCLUSIVE_REOPEN": 30
+          },
+          "accuracy_reported": 0,
+          "accuracy_denominator": 30
+        },
+        "A1": {
+          "n_dispatched": 30,
+          "n_scored": 30,
+          "parse_rate": 1.0,
+          "parse_rate_below_floor": false,
+          "disposition_histogram": {
+            "REPLICATION_SATISFIES_CRITERION": 14,
+            "REPLICATION_FAILS_CRITERION": 15,
+            "INCONCLUSIVE_REOPEN": 1
+          },
+          "accuracy_reported": 27,
+          "accuracy_denominator": 30
+        }
+      },
+      "majority_class_rate": 0.6,
+      "routing": {
+        "row": 1,
+        "disposition": "AT_CEILING__SECTION_9_1_UNREACHABLE_BY_ARITHMETIC",
+        "best": 0.9,
+        "acc0": 0.0,
+        "acc1": 0.9,
+        "maj": 0.6,
+        "counts_toward_section_9": false
+      },
+      "readout_status": "READOUT_OK"
+    }
+  }
+}

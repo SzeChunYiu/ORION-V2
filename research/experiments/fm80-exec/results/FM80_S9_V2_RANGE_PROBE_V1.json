@@ -1,0 +1,749 @@
+{
+  "design": "FM80_SECTION_9_EXECUTION_AMENDMENT_V2",
+  "seed_sha256": "3f8e805c29bffd7e873af2836c2000c9be0916842b7ed9fd27c0e6a8278e2b41",
+  "model_requested": "gpt-5.5",
+  "host": "billy-old",
+  "domains": {
+    "FORMAL_MATHEMATICS_1000PLUS": {
+      "n_pool": 243,
+      "reserve": [
+        "FORMAL-Q1068085",
+        "FORMAL-Q1075398",
+        "FORMAL-Q3527217",
+        "FORMAL-Q537618",
+        "FORMAL-Q3527118",
+        "FORMAL-Q5638886",
+        "FORMAL-Q739403",
+        "FORMAL-Q5445112",
+        "FORMAL-Q869647",
+        "FORMAL-Q472883",
+        "FORMAL-Q1137014",
+        "FORMAL-Q180345",
+        "FORMAL-Q1457052",
+        "FORMAL-Q476776",
+        "FORMAL-Q190391",
+        "FORMAL-Q657482",
+        "FORMAL-Q18206266",
+        "FORMAL-Q422187",
+        "FORMAL-Q837506",
+        "FORMAL-Q737851",
+        "FORMAL-Q1038716",
+        "FORMAL-Q5504427",
+        "FORMAL-Q2267175",
+        "FORMAL-Q22952648",
+        "FORMAL-Q6757284",
+        "FORMAL-Q505798",
+        "FORMAL-Q2096184",
+        "FORMAL-Q1052678",
+        "FORMAL-Q2226786",
+        "FORMAL-Q3527215"
+      ],
+      "witness_screen_reserve": {
+        "status": "WITNESS_DEGENERATE__CANNOT_EXPOSE_A_WRONG_TRANSFER",
+        "n": 30,
+        "classes": {
+          "FORMALIZABLE_AS_STATED": 30
+        },
+        "minority_share": 0.0,
+        "threshold": 0.2,
+        "counts_toward_section_9": false
+      },
+      "witness_screen_full_pool": {
+        "status": "WITNESS_DEGENERATE__CANNOT_EXPOSE_A_WRONG_TRANSFER",
+        "n": 243,
+        "classes": {
+          "FORMALIZABLE_AS_STATED": 243
+        },
+        "minority_share": 0.0,
+        "threshold": 0.2,
+        "counts_toward_section_9": false
+      },
+      "n_witness_uncheckable_in_pool": 0,
+      "routing": {
+        "disposition": "WITNESS_DEGENERATE__CANNOT_EXPOSE_A_WRONG_TRANSFER",
+        "counts_toward_section_9": false
+      }
+    },
+    "PSYCHOLOGY_RPP": {
+      "n_pool": 100,
+      "reserve": [
+        "RPP-36",
+        "RPP-7",
+        "RPP-134",
+        "RPP-5",
+        "RPP-89",
+        "RPP-63",
+        "RPP-33",
+        "RPP-20",
+        "RPP-25",
+        "RPP-52",
+        "RPP-149",
+        "RPP-116",
+        "RPP-64",
+        "RPP-153",
+        "RPP-117",
+        "RPP-139",
+        "RPP-17",
+        "RPP-121",
+        "RPP-86",
+        "RPP-71",
+        "RPP-97",
+        "RPP-39",
+        "RPP-73",
+        "RPP-58",
+        "RPP-50",
+        "RPP-56",
+        "RPP-135",
+        "RPP-55",
+        "RPP-122",
+        "RPP-148"
+      ],
+      "witness_screen_reserve": {
+        "status": "NON_DEGENERATE",
+        "n": 30,
+        "classes": {
+          "REPLICATION_SATISFIES_CRITERION": 12,
+          "REPLICATION_FAILS_CRITERION": 18
+        },
+        "minority_share": 0.4,
+        "threshold": 0.2,
+        "counts_toward_section_9": true
+      },
+      "witness_screen_full_pool": {
+        "status": "NON_DEGENERATE",
+        "n": 100,
+        "classes": {
+          "REPLICATION_FAILS_CRITERION": 61,
+          "REPLICATION_SATISFIES_CRITERION": 39
+        },
+        "minority_share": 0.39,
+        "threshold": 0.2,
+        "counts_toward_section_9": true
+      },
+      "n_witness_uncheckable_in_pool": 0,
+      "A0_correct": 0,
+      "A0_scored": 30,
+      "A1_correct": 27,
+      "A1_scored": 30,
+      "majority_class_rate": 0.6,
+      "routing": {
+        "row": 1,
+        "disposition": "AT_CEILING__SECTION_9_1_UNREACHABLE_BY_ARITHMETIC",
+        "best": 0.9,
+        "acc0": 0.0,
+        "acc1": 0.9,
+        "maj": 0.6,
+        "counts_toward_section_9": false
+      }
+    }
+  },
+  "dispatches": 60,
+  "failed": 0,
+  "programme": {
+    "status": "NOT_EVALUATED_AT_PROBE_STAGE",
+    "why": "the programme terminal is a step-4 evaluation over three assembled counting domains; the probe assembles two",
+    "per_domain_routing_is_the_probe_output": true
+  },
+  "raw": [
+    {
+      "case_id": "RPP-36",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 45.7,
+      "raw_tail_sha256": "ec98699d5e1adb96",
+      "raw_tail": "The case record provides the original effect statistics and protocol details, but it does not provide the replication\u2019s reported summary statistics needed to apply the a-priori replication criterion. Without the replication test result, p-value/effect direction, or meta-analytic composite input, the criterion cannot be evaluated.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-7",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 56.2,
+      "raw_tail_sha256": "b1ca1e2ff546194a",
+      "raw_tail": "The case record gives the original statistic and protocol details, but it does not provide the replication\u2019s reported test statistic, effect size, confidence interval, p-value, or meta-analytic composite result. Without those replication summary statistics, the a-priori RP:P replication criterion cannot be applied.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-134",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 49.2,
+      "raw_tail_sha256": "1825117723c29246",
+      "raw_tail": "The case record gives the original effect and planned replication constraints, but not the replication\u2019s reported effect estimate, test statistic, confidence interval, or p-value. The a-priori criterion cannot be applied without those replication summary statistics.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-36",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_SATISFIES_CRITERION",
+      "ok": true,
+      "seconds": 110.8,
+      "raw_tail_sha256": "4da139b613ef83a3",
+      "raw_tail": "Most relevant published work surfaced:\n\n1. Pacton & Perruchet (2008), the original JEPLMC article, Study 4b: attention-based adjacent/nonadjacent dependency learning claim. PubMed lists DOI `10.1037/0278-7393.34.1.80`.  \n2. Open Science Collaboration (2015), *Science*, \u201cEstimating the reproducibility of psychological science,\u201d the RP:P parent report and criterion framework. DOI `10.1126/science.aac4716`.  \n3. Pacton, Sobaco & Perruchet (2015), *Acta Psychologica*, follow-up in the same citation neighbourhood on validity of the attention-based account.\n\nDecision: the RP:P data row for this case reports the original as `F(1,20)=20.79`, `p=.000190`, same target effect, and the replication as `F(1,20)=17.35`, `p=.00048`, same direction, `Replicate.R = yes`, with the meta-analytic result also significant. Under the a-priori criterion, this satisfies replication.\n\nDISPOSITION: REPLICATION_SATISFIES_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-7",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_FAILS_CRITERION",
+      "ok": true,
+      "seconds": 104.0,
+      "raw_tail_sha256": "a100c4723c49899e",
+      "raw_tail": "Most relevant published work surfaced:\n\nBeaman, Neath, & Surprenant (2008), the original JEPLMC word-length/immediate-memory effect report; Open Science Collaboration (2015), RP:P Science aac4716, which defines the ordinary replication-success indicators, especially same-direction statistical significance; van Aert & van Assen (2018), which tabulates this RP:P pair as original r = .715, N = 101, p < .001, replication r = .131, N = 16, p = .317; and Etz & Vandekerckhove (2016), a Bayesian reanalysis of RP:P.\n\nApplying the RP:P a-priori significance criterion, the replication does not pass: the replication effect is in the original direction but is not statistically significant, p = .317. The fixed-effect meta-analytic composite is significant, but that is not enough to make the replication itself satisfy the a-priori replication criterion.\n\nDISPOSITION: REPLICATION_FAILS_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-5",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 43.0,
+      "raw_tail_sha256": "da3465b0b10b728e",
+      "raw_tail": "The case record provides the original effect and planned replication constraints, but it does not provide the replication\u2019s reported test statistic, p-value, effect direction, confidence interval, or meta-analytic composite result. The a-priori replication criterion cannot be applied without those replication summary statistics.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-89",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 50.1,
+      "raw_tail_sha256": "90a77fb089ec0445",
+      "raw_tail": "The case record provides the original effect statistics but does not provide the replication\u2019s reported summary statistics for this effect. Without the replication estimate/test result, the a-priori replication criterion cannot be applied.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-5",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_SATISFIES_CRITERION",
+      "ok": true,
+      "seconds": 70.7,
+      "raw_tail_sha256": "d4a28d2a21e08afb",
+      "raw_tail": "Most relevant literature surfaced: Mitchell, Nash, & Hall (2008), the original JEPLMC perceptual-learning report; Open Science Collaboration (2015), RP:P in *Science*; and reanalyses tabulating the RP:P original/replication pair, especially van Aert & van Assen\u2019s hybrid/meta-analytic treatment.\n\nFor this case, the replication alone was weak/non-significant: reported replication effect `r = .135`, `N = 49`, `p = .358`. But the native RP:P meta-analytic composite for Mitchell, Nash, & Hall combines original and replication as `r = .272`, 95% CI `[.054, .465]`, `p = .015`, in the original direction. Under the stated parent criterion, that satisfies the a-priori replication criterion.\n\nDISPOSITION: REPLICATION_SATISFIES_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-63",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 39.3,
+      "raw_tail_sha256": "f9953f26015602b2",
+      "raw_tail": "The case record gives the original effect and planned replication constraints, but it does not provide the replication\u2019s reported summary statistics for this effect. Without the replication test statistic, p-value, effect direction, or meta-analytic composite result, the a-priori replication criterion cannot be applied.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-89",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_SATISFIES_CRITERION",
+      "ok": true,
+      "seconds": 56.5,
+      "raw_tail_sha256": "a2ee9f0f20f50d29",
+      "raw_tail": "iterature surfaced:\n\n- Eastwick & Finkel (2008), original JPSP study: target claim was no gender moderation of earning prospects predicting romantic interest. https://pubmed.ncbi.nlm.nih.gov/18211175/\n- Open Science Collaboration (2015), RP:P Science report: replication assessment framework for the 100-study project. https://www.science.org/doi/10.1126/science.aac4716\n- Selterman, Chagnon, & Mackinnon (2015), direct replication of Eastwick & Finkel: explicitly identifies the key RP:P result as the non-significant gender \u00d7 earning-prospects interaction. https://journals.sagepub.com/doi/10.1177/2158244015605160\n- Eastwick et al. (2014), mate-preference predictive-validity meta-analysis, same citation neighbourhood.\n\nDecision: The a-priori criterion is satisfied. For this case, the original effect was a null interaction, and the replication\u2019s relevant meta-analytic test also found no gender moderation for earning prospects, \u03c7\u00b2(1) = 0.66, p = .42. The replication report itself states that a significant gender difference would have been a failed replication; the reported statistic is non-significant and in line with the original null claim.\n\nDISPOSITION: REPLICATION_SATISFIES_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-134",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_SATISFIES_CRITERION",
+      "ok": true,
+      "seconds": 166.7,
+      "raw_tail_sha256": "7fd2a7f9c05c1634",
+      "raw_tail": "Most relevant published/native sources surfaced: Larsen & McKibban (2008), the original Psychological Science article; Open Science Collaboration (2015), RP:P Science report and dataset; Etz & Vandekerckhove (2016), Bayesian reanalysis of RP:P; Johnson et al. (2017), statistical reanalysis of RP:P; van Aert & van Assen (2017/2018), hybrid/meta-analytic method applied to RP:P.\n\nFor Study 134, the RP:P dataset reports the replication as a partial correlation in the same direction: original `pr = .21`, replication `pr = .497`, `N = 238`, `p = .001`, and `Replicate.R = yes`. The RP:P meta-analytic composite is also significant. Under the registered/a-priori replication criterion applied to the reported replication statistics, this satisfies the criterion.\n\nDISPOSITION: REPLICATION_SATISFIES_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-33",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 51.3,
+      "raw_tail_sha256": "2775913b1d39a5b5",
+      "raw_tail": "The case record gives the original effect and planned replication constraints, but it does not include the replication\u2019s reported summary statistics. Without the replication test statistic, effect estimate, confidence interval, or p-value, the a-priori replication criterion cannot be applied to this effect.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-33",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_SATISFIES_CRITERION",
+      "ok": true,
+      "seconds": 83.7,
+      "raw_tail_sha256": "f4bcd7e7559f5683",
+      "raw_tail": "Most relevant native literature surfaced:\n\nFarrell (2008), original JEPLMC article on timing/order in short-term memory.  \nOpen Science Collaboration (2012), RP:P protocol paper describing direct high-powered registered replications.  \nOpen Science Collaboration (2015), RP:P Science report and dataset, including the Study 33 replication record.\n\nDecision: the replication satisfies the a-priori criterion. The RPP record for Study 33 reports the same-direction replication result, `t(39) = 2.08`, `p = .044`, `N = 40`, with `Replicate.R = yes`; the converted RPP analysis record also marks the meta-analytic combined result significant. Under the ordinary RP:P criterion neighbourhood, this passes.\n\nDISPOSITION: REPLICATION_SATISFIES_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-20",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 45.8,
+      "raw_tail_sha256": "c4e09230fef83272",
+      "raw_tail": "The case record gives the original effect and protocol details, but not the replication\u2019s reported summary statistics needed to apply the a-priori replication criterion to this effect.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-63",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_FAILS_CRITERION",
+      "ok": true,
+      "seconds": 119.4,
+      "raw_tail_sha256": "b906a92b200b4250",
+      "raw_tail": "Most relevant nearby work surfaced:\n\n- Correll (2008), original JPSP Study 2: 1/f noise and effort on implicit bias, original contrast `F(1,68)=5.52`, reported `p<.02`.\n- Open Science Collaboration (2015), RP:P Science report: evaluates replications by criteria including same-direction statistical significance and meta-analytic combination.\n- Madurski & LeBel (2015), direct replication report: two high-powered close replications of Correll Study 2 failed to reproduce the planned contrast.\n- Amon & Holden (2016), conceptual replication discussion in the same 1/f-noise/implicit-bias neighborhood.\n\nFor the RP:P row for this exact case, the replication\u2019s planned contrast was `F(1,145)=0.794`, `N=148`, `p=.374`, same direction, `d=.16`, and `Replicate.R = no`. Because the a-priori criterion requires a statistically significant result in the original direction, the replication does not satisfy it.\n\nDISPOSITION: REPLICATION_FAILS_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-25",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 35.5,
+      "raw_tail_sha256": "2251149879169f94",
+      "raw_tail": "The case record provides the original effect statistics and planned replication sample, but it does not provide the replication\u2019s reported summary statistics. The a-priori criterion cannot be evaluated without those replication results.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-52",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 44.5,
+      "raw_tail_sha256": "be638d9855f5f119",
+      "raw_tail": "The case record provides the original effect and protocol details, but it does not provide the replication\u2019s reported test statistic, effect direction, p-value, confidence interval, or meta-analytic composite result. The a-priori RPP criterion cannot be applied from the supplied information.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-20",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_FAILS_CRITERION",
+      "ok": true,
+      "seconds": 96.1,
+      "raw_tail_sha256": "b1500c6f6b69427f",
+      "raw_tail": "Relevant published work surfaced:\n- Sahakyan, Delaney, & Waldum (2008), original JEPLMC article: intentional forgetting/spacing claim.\n- Open Science Collaboration (2015), *Science*, \u201cEstimating the reproducibility of psychological science,\u201d the RP:P source and replication criteria.\n- Dreber et al. (2015), prediction-market paper using RP:P outcomes and the same ordinary success definition: replication p < .05 in the same direction.\n- van Aert & van Assen (2017), reanalysis of RP:P original-plus-replication evidence.\n\nDecision: the RP:P record for this case reports the replication test as `F(1,106)=0.04`, `p=.84`, direction \u201csame,\u201d and `Replicate.R = no` in the RP:P dataset. The a-priori criterion is a statistically significant replication effect in the same direction as the original. Same direction is present, but significance is not; therefore the criterion is not satisfied.\n\nDISPOSITION: REPLICATION_FAILS_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-25",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_SATISFIES_CRITERION",
+      "ok": true,
+      "seconds": 89.9,
+      "raw_tail_sha256": "a679d5f7c1b77217",
+      "raw_tail": "Most relevant work surfaced:\n\nCouture, Lafond, & Tremblay (2008), the original JEPLMC Hebb repetition/error-learning paper, reports that a response\u2019s probability increases with prior recalls of that same response.\n\nOpen Science Collaboration (2015), RP:P, is the native replication source and reports the project-level criteria: same-direction statistically significant replication, effect-size comparison, subjective replication rating, and meta-analytic evidence.\n\nLeBel et al., \u201cA Brief Guide to Evaluate Replications,\u201d explicitly lists this case as Couture et al. Study 1 / Roebke & Penna RPP replication, with original `r = .35 \u00b1 .38`, replication `r = .27 \u00b1 .24`, classified as \u201csignal - consistent.\u201d\n\nDecision: The replication\u2019s reported statistic is `F(3, 59) = 5.681`, `p = .002`, with direction coded \u201csame\u201d and RP:P replicate coded \u201cyes.\u201d Under the replicator a-priori criterion, this is statistically significant in the original direction, so it satisfies the criterion.\n\nDISPOSITION: REPLICATION_SATISFIES_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-149",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 64.8,
+      "raw_tail_sha256": "b27649da837e25d9",
+      "raw_tail": "The case record includes the original effect and planned replication details, but it does not provide the replication\u2019s reported summary statistics or meta-analytic composite result needed to apply the RPP a-priori criterion.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-116",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 19.4,
+      "raw_tail_sha256": "18044b3f4d9616a6",
+      "raw_tail": "The case record gives the original effect and replication planning constraints, but it does not provide the replication\u2019s reported effect estimate, test statistic, confidence interval, or p-value. Without those summary statistics, the a-priori replication criterion cannot be applied to this effect.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-52",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_SATISFIES_CRITERION",
+      "ok": true,
+      "seconds": 135.1,
+      "raw_tail_sha256": "16eac639f63e1499",
+      "raw_tail": "Most relevant work surfaced: Centerbar et al. (2008), the original JPSP affective incoherence paper; Open Science Collaboration (2015), RP:P Science aac4716; and van Aert & van Assen (2018), which tabulates the RP:P original, replication, and fixed-effect meta-analytic results for this case.\n\nFor Centerbar/Schnall/Clore/Garvin Study 5, the replication alone was not significant: replication r = .094, N = 113, p = .323. But the specified native criterion here is the RP:P meta-analytic composite. The fixed-effect original-plus-replication composite is r = .155, 95% CI [.030, .275], p = .015, same direction and significant. Therefore it satisfies that criterion.\n\nDISPOSITION: REPLICATION_SATISFIES_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-64",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 48.7,
+      "raw_tail_sha256": "9759942bf8eb39dc",
+      "raw_tail": "The a-priori RPP replication criterion requires the replication\u2019s reported test result to show whether the effect was statistically significant in the predicted/original direction. The case record gives the original result and planned replication details, but not the replication\u2019s reported summary statistics, so the criterion cannot be evaluated.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-149",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_FAILS_CRITERION",
+      "ok": true,
+      "seconds": 155.9,
+      "raw_tail_sha256": "a849e20e0f2d25dc",
+      "raw_tail": "Most relevant literature surfaced:\n\nBressan & Stranieri (2008), original Psychological Science article: the target interaction, F(1,194)=7.16, p=.008.\n\nOpen Science Collaboration (2015), Science, \u201cEstimating the reproducibility of psychological science\u201d: RP:P replication indicators, including significant same-direction replication and original-plus-replication meta-analytic evidence.\n\nFrazier & Hasselman (2016), RP:P/OSF replication report for Bressan & Stranieri: the registered replication reported the critical interaction as nonsignificant, F < 1 in both lab and online replications.\n\nBressan (2019), Frontiers in Psychology, \u201cConfounds in \u2018Failed\u2019 Replications\u201d: later reanalysis arguing confounds, but this is post hoc relative to the registered criterion.\n\nDecision: using the registered RP:P criterion and the replication\u2019s reported statistics, the replication does not satisfy the a-priori criterion. The original critical interaction was significant, but the replication\u2019s corresponding reported interaction was nonsignificant, so the planned criterion is failed; later adjusted reanalyses do not change that registered assessment.\n\nDISPOSITION: REPLICATION_FAILS_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-116",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_SATISFIES_CRITERION",
+      "ok": true,
+      "seconds": 102.8,
+      "raw_tail_sha256": "42085774f6233b53",
+      "raw_tail": "Most relevant published work surfaced:\n\n- Vul & Pashler (2008), original Psychological Science article: \u201cMeasuring the crowd within\u201d [source](https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.2008.02136.x)\n- Steegen, Dewitte, Tuerlinckx & Vanpaemel (2014), preregistered replication: \u201cMeasuring the crowd within again\u201d [source](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2014.00786/full)\n- Open Science Collaboration (2015), RP:P Science report and dataset [source](https://github.com/CenterForOpenScience/rpp)\n- Nearby prior replications discussed by Steegen et al.: Herzog & Hertwig (2009), Hourihan & Benjamin (2010), Rauhut & Lorenz (2011)\n\nDecision: The replication satisfies the a-priori criterion. The registered analysis required positive t-statistics and p < .05 for the relevant paired comparisons. The RP:P dataset records Study 116 replication as `t(139)=4.02`, `N=140`, `p=.001`, direction \u201csame,\u201d and `Replicate.R = yes`; Steegen et al. also report the delayed-condition test as significant and in the expected direction.\n\nDISPOSITION: REPLICATION_SATISFIES_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-153",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 41.4,
+      "raw_tail_sha256": "399cd625978adb8a",
+      "raw_tail": "The case record provides the original effect and replication design constraints, but it does not include the replication\u2019s reported summary statistics for this effect. Without the replication estimate/test result, the a-priori replication criterion cannot be applied.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-117",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 40.0,
+      "raw_tail_sha256": "12bd779f98d91562",
+      "raw_tail": "The a-priori criterion requires the replication\u2019s reported test result for the target effect. The case record provides the original statistic and protocol details, but no replication summary statistic, p-value, effect estimate, or direction for this effect. The criterion cannot be evaluated from the supplied record.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-153",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 88.2,
+      "raw_tail_sha256": "a5a861ee8c8b9eb6",
+      "raw_tail": "Most relevant published work surfaced:\n\n- Palmer & Ghose (2008), \u201cExtremal edge: A powerful cue to depth perception and figure-ground organization,\u201d Psychological Science.\n- Open Science Collaboration (2015), \u201cEstimating the reproducibility of psychological science,\u201d Science, aac4716.\n- Ghose & Palmer (2010), \u201cExtremal edges versus other principles of figure-ground organization,\u201d Journal of Vision.\n- Open Science Collaboration (2012), project/methods description for RP:P.\n\nDecision: the case record gives the original effect and the replication plan, but it does not give the replication\u2019s reported test statistic, p-value, effect size, confidence interval, or meta-analytic composite result. The RP:P a-priori criterion cannot be applied from planned power alone; it requires the replication outcome statistics. Therefore this case cannot be classified as satisfying or failing the criterion on the provided record.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-64",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_FAILS_CRITERION",
+      "ok": true,
+      "seconds": 112.4,
+      "raw_tail_sha256": "d5bf095b9d70f369",
+      "raw_tail": "Most relevant published work surfaced:\n\nF\u00f6rster, Liberman & Kuschel (2008), JPSP: original GLOMO assimilation/contrast Study 1, reporting the focal processing style \u00d7 prime interaction, F(2,76)=21.57, p<.0001, \u03b7p\u00b2=.362.\n\nOpen Science Collaboration (2015), Science, \u201cEstimating the reproducibility of psychological science\u201d: RP:P framework and study-level a-priori replication coding/data for this case.\n\nIJzerman et al. (2020), AMPPS, \u201cMany Labs 5\u201d: later registered multi-lab replication of F\u00f6rster et al. Study 1, useful as nearby context but not the RP:P criterion case itself.\n\nDecision: the RP:P replication does not meet the a-priori replication criterion. The replication\u2019s focal test was in the same nominal direction but was not statistically significant: F(2,65)=0.865, N=71, p=.426, \u03b7p\u00b2=.0259. Under the ordinary RP:P a-priori criterion applied to the reported focal statistic, this is a failure to replicate the original interaction.\n\nDISPOSITION: REPLICATION_FAILS_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-139",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 12.6,
+      "raw_tail_sha256": "c4e01dc1db74136c",
+      "raw_tail": "The case record gives the original effect statistics and protocol details, but it does not provide the replication\u2019s reported summary statistics or meta-analytic composite result needed to apply the registered a-priori criterion. Therefore the criterion cannot be evaluated from the supplied record.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-17",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 52.0,
+      "raw_tail_sha256": "325497267a78751c",
+      "raw_tail": "The case record gives the original effect and protocol details, but it does not provide the replication\u2019s reported summary statistics for the target effect. Without the replication test statistic, p-value, effect direction, or meta-analytic composite result, the a-priori replication criterion cannot be applied.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-139",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_SATISFIES_CRITERION",
+      "ok": true,
+      "seconds": 142.8,
+      "raw_tail_sha256": "f0f2190fe0ef0145",
+      "raw_tail": "Most relevant literature surfaced:\n\n1. Demany, Trost, Serman & Semal (2008), *Psychological Science*: original auditory change-detection claim.\n2. Open Science Collaboration (2012), *Perspectives on Psychological Science*: RP:P protocol rationale and replication framework.\n3. Open Science Collaboration (2015), *Science*, aac4716: RP:P results and criteria/meta-analytic reporting.\n4. RP:P public data/artifacts for Demany et al.: OSF project `ta3j8`, report `wx74s`, script `dw4xu`.\n\nDecision: the replication does satisfy the a-priori criterion. The RP:P data row for Study 139 reports the replication as same direction, `F(3,12)=13.06`, recalculated `p = 0.000435464` / usable one-tailed `p = 0.000217732`, and `Replicate.R = yes`. This meets the ordinary RP:P a-priori rule of a statistically significant effect in the predicted/same direction.\n\nDISPOSITION: REPLICATION_SATISFIES_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-117",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_SATISFIES_CRITERION",
+      "ok": true,
+      "seconds": 170.3,
+      "raw_tail_sha256": "68a4c55b89ba13d2",
+      "raw_tail": "Most relevant native literature/citation-neighbourhood:\n\n1. Vul, Nieuwenstein, & Kanwisher (2008), original Psychological Science attentional-blink claim: temporal selection is suppressed, delayed, and diffused, with focal three-way interaction F(18, 660) = 16.31, p < .00001.\n2. Open Science Collaboration (2015), RP:P Science meta-analytic report and a-priori replication framework.\n3. RP:P public `rpp_data.csv` / analysis repository, which records Study 117 replication statistics.\n4. Goodbourn et al. (2016), later Psychological Science reanalysis in the same attentional-blink citation neighbourhood.\n5. Vul, Hanus, & Kanwisher (2008), follow-up on delay of selective attention during the attentional blink.\n\nDecision: the RP:P Study 117 row reports the replication with N_R = 660, replication effect r_R = .12 versus original r_O = .13, and replication p-value reported as .000. Under the RP:P a-priori criterion for the focal reported statistic, this is statistically significant in the predicted/same direction. The replication therefore satisfies the criterion.\n\nDISPOSITION: REPLICATION_SATISFIES_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-17",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_SATISFIES_CRITERION",
+      "ok": true,
+      "seconds": 86.1,
+      "raw_tail_sha256": "0110e186899a7a21",
+      "raw_tail": "Most relevant work surfaced:\n\n- Fiedler (2008), \u201cThe ultimate sampling dilemma in experience-based decision making,\u201d the original JEPLMC article. PubMed identifies it as the 2008 target paper. ([pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/18194062/?utm_source=openai))\n- Open Science Collaboration (2015), \u201cEstimating the reproducibility of psychological science,\u201d Science, the RP:P report. ([doi.org](https://doi.org/10.1126/science.aac4716?utm_source=openai))\n- The RP:P analysis/data repository, which states that its data and analyses underlie the Science publication and includes the converted RPP data. ([github.com](https://github.com/CenterForOpenScience/rpp))\n\nDecision: For Study 17, the RP:P data record reports the replication test as `F(1.58, 72.4) = 19.48`, `p = 3e-05`, direction `same`, and `Replicate.R = yes`; the recalculated p-value is also significant (`1.37e-06`). ([github.com](https://github.com/CenterForOpenScience/rpp/blob/master/data_allformats/RPPdataConverted.csv)) Under the RP:P a-priori criterion of a statistically significant effect in the original direction, this satisfies the criterion.\n\nDISPOSITION: REPLICATION_SATISFIES_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-121",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 40.0,
+      "raw_tail_sha256": "5a618febad9a1622",
+      "raw_tail": "The case record does not include the replication\u2019s reported summary statistics for the target effect, so the a-priori RPP replication criterion cannot be evaluated directly. Planned sample and power are not enough to determine whether the replication met the criterion.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-86",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 45.6,
+      "raw_tail_sha256": "4c0d50b20573c11f",
+      "raw_tail": "The a-priori RPP replication criterion requires the replication\u2019s reported result for the target effect, typically significance at the specified threshold in the original direction. The case record gives the original effect but does not provide the replication\u2019s summary statistic, p-value, direction, or effect estimate, so the criterion cannot be evaluated from the supplied record.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-121",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_SATISFIES_CRITERION",
+      "ok": true,
+      "seconds": 81.0,
+      "raw_tail_sha256": "9c2dbe065d1da12a",
+      "raw_tail": "Most relevant work surfaced in this citation neighborhood:\n\n- Tabibnia, Satpute, & Lieberman (2008), original Psychological Science claim: fairness/reward circuitry and unfair-offer acceptance/right VLPFC.\n- Open Science Collaboration (2012), RP:P design and protocol rationale.\n- Open Science Collaboration (2015), Science RP:P report and replication-success criteria.\n- Gabay et al. (2014), ultimatum-game neuroimaging meta-analysis noting VLPFC involvement in accepting unfair offers.\n\nDecision: The RP:P record for Study 121 reports the replication as same direction, `z = 5.43`, recalculated `p = 2.82e-08`, `d = 2.22`, with `Replicate.R = yes`. Under the RP:P a-priori criterion of a significant same-direction replication test, this satisfies the criterion.\n\nDISPOSITION: REPLICATION_SATISFIES_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-71",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 42.4,
+      "raw_tail_sha256": "2220dfcb65ab9c87",
+      "raw_tail": "The case record provides the original effect and planned replication constraints, but it does not provide the replication\u2019s reported test statistic, p-value, effect size, confidence interval, or direction. The a-priori RPP criterion cannot be evaluated from planned power/sample alone.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-97",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 24.7,
+      "raw_tail_sha256": "5143bd87e4019b1f",
+      "raw_tail": "The case record gives the original effect and replication plan, but not the replication\u2019s reported effect direction, test statistic, p-value, CI, or meta-analytic result. The a-priori criterion cannot be applied from the provided data alone.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-86",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_FAILS_CRITERION",
+      "ok": true,
+      "seconds": 113.9,
+      "raw_tail_sha256": "48d51c75137a69a2",
+      "raw_tail": "Most relevant work surfaced:\n\nFischer, Greitemeyer, & Frey (2008), the original JPSP self-regulation/selective-exposure article.   \nFischer, Schulz-Hardt, & Frey (2008), adjacent JPSP work on selective exposure and information quantity.   \nOpen Science Collaboration (2015), RP:P Science article and dataset/reporting framework. ([research.ed.ac.uk](https://www.research.ed.ac.uk/en/publications/estimating-the-reproducibility-of-psychological-science/))\n\nDecision: the replication does not satisfy the a-priori criterion. In the RP:P case row, the original effect was significant, F(2,82)=4.05, p=.02, eta-p-squared=.09; the replication was in the same direction but nonsignificant, F(2,137)=1.99, N=140, p=.14, eta-squared about .03, and the RP:P coded `Replicate.R` as `no`. ([github.com](https://github.com/CenterForOpenScience/rpp/blob/master/data_allformats/RPPdataConverted.csv))\n\nDISPOSITION: REPLICATION_FAILS_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-39",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 52.3,
+      "raw_tail_sha256": "4e986e10aadc4c2e",
+      "raw_tail": "The case record gives the original statistic and planned replication constraints, but it does not provide the replication\u2019s reported summary statistics. Without the replication effect estimate/test result, the a-priori replication criterion cannot be evaluated.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-71",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_FAILS_CRITERION",
+      "ok": true,
+      "seconds": 126.1,
+      "raw_tail_sha256": "93bc02a81d502227",
+      "raw_tail": "ss. https://pubmed.ncbi.nlm.nih.gov/18361678/\n- Open Science Collaboration (2015), RP:P Science report, which evaluates replication by significance/same direction, CI comparison, subjective replication, and meta-analysis. https://doi.org/10.1126/science.aac4716\n- RP:P public dataset, Row 71 for this exact effect. It reports original `t(373)=4.40`, `p<.001`, `d=0.493`; replication `t(175)=0.973`, `N=177`, `p=.332`, same direction, `d=0.15`, and `Replicate.R = no`. https://github.com/CenterForOpenScience/rpp/blob/master/data_allformats/RPPdataConverted.csv\n- Etz & Vandekerckhove (2016), a Bayesian reanalysis of RP:P, relevant citation-neighborhood context but not needed to override the registered RP:P coding. https://pmc.ncbi.nlm.nih.gov/articles/PMC4769355/\n\nDecision: under the RP:P a-priori replication-success rule, the replication needed a statistically significant effect in the original direction. Although the point estimate was in the same direction, `p=.332` is not significant, and the RP:P row codes the replication as \u201cno.\u201d The combined meta-analytic result being significant does not make the replication itself satisfy that criterion.\n\nDISPOSITION: REPLICATION_FAILS_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-73",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 57.6,
+      "raw_tail_sha256": "3b04307bcfd1df99",
+      "raw_tail": "The case record gives the original effect and planned replication constraints, but it does not provide the replication\u2019s reported test statistic, p-value, effect direction, or effect size. The a-priori replication criterion cannot be applied to the replication result without those reported statistics.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-97",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_FAILS_CRITERION",
+      "ok": true,
+      "seconds": 160.8,
+      "raw_tail_sha256": "69f264cdf60098f8",
+      "raw_tail": "Most relevant published work surfaced:\n\n- Purdie-Vaughns et al. (2008), original JPSP article on social identity contingencies: https://pubmed.ncbi.nlm.nih.gov/18361675/\n- Open Science Collaboration (2015), RP:P Science article and criterion/data context: https://doi.org/10.1126/science.aac4716\n- Center for Open Science RP:P data table, study Row 97: https://github.com/CenterForOpenScience/rpp/blob/master/data_allformats/RPPdataConverted.csv\n- van Aert & van Assen reanalysis context for combining original and replication evidence in RP:P: https://pmc.ncbi.nlm.nih.gov/articles/PMC6096648/\n\nFor Study 97, the RP:P table reports the replication test as `F(1,1486)=2.03`, `p=.154`, with direction coded `opposite`, replicate coded `No`, and the meta-analytic composite coded non-significant (`Meta.analysis.significant = 0`). Under the registered a-priori RP:P criterion, this does not reproduce the original interaction.\n\nDISPOSITION: REPLICATION_FAILS_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-58",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 64.1,
+      "raw_tail_sha256": "ed3ecf205a0cd558",
+      "raw_tail": "The case record does not include the replication\u2019s reported summary statistics, so the a-priori replication criterion cannot be applied to this effect from the provided information.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-73",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_SATISFIES_CRITERION",
+      "ok": true,
+      "seconds": 86.7,
+      "raw_tail_sha256": "a8cb4733984eee30",
+      "raw_tail": "Most relevant native literature surfaced:\n\n- Morrison & Miller (2008), original JPSP article, Study 3: descriptive-deviant bumper stickers displayed more than prescriptive-deviant stickers.\n- Open Science Collaboration (2012), RP:P protocol paper: direct, high-powered registered replications with author/material checks.\n- Open Science Collaboration (2015), Science RP:P meta-analytic report and released dataset.\n- RP:P dataset row 73: original `X^2(1, N=37)=3.85`, replication `X^2(1, N=120)=4.80`, `p=.028`, direction \u201csame,\u201d `Replicate.R = yes`.\n\nDecision: the registered RP:P-style a-priori criterion is met because the replication\u2019s confirmatory test is statistically significant at `p < .05` and in the same direction as the original effect. The reduced actual N/power does not change the reported criterion coding here; the reported replication statistics satisfy it.\n\nDISPOSITION: REPLICATION_SATISFIES_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-39",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_FAILS_CRITERION",
+      "ok": true,
+      "seconds": 145.2,
+      "raw_tail_sha256": "4667456573af11d5",
+      "raw_tail": "Most relevant published work surfaced:\n- Pleskac (2008), \u201cDecision making and learning while taking sequential risks,\u201d JEPLMC, the original ART/sequential-risk claim.\n- Open Science Collaboration (2015), \u201cEstimating the reproducibility of psychological science,\u201d Science, RP:P master replication framework.\n- Dreber et al. (2015), \u201cUsing prediction markets to estimate the reproducibility of scientific research,\u201d PNAS, which indexes this Pleskac hypothesis as ref. 46 and reports the RP:P replication outcome.\n\nApplying the RP:P a-priori criterion, a successful replication required a statistically significant result in the original direction. The published RP:P-linked individual-study table classifies the Pleskac ref. 46 replication as \u201cNo,\u201d so it does not meet that criterion.\n\nDISPOSITION: REPLICATION_FAILS_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-50",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 54.6,
+      "raw_tail_sha256": "1398e6bbd4276bd9",
+      "raw_tail": "The case record does not include the replication\u2019s reported test statistic, effect size, confidence interval, p-value, or direction. Without those summary statistics, the RPP a-priori replication criterion cannot be applied to this effect.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-58",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_FAILS_CRITERION",
+      "ok": true,
+      "seconds": 105.5,
+      "raw_tail_sha256": "bdb08698c1ffa8f7",
+      "raw_tail": "Most relevant work surfaced: Lemay & Clark\u2019s original JPSP article, \u201cWalking on eggshells\u201d (2008; DOI: 10.1037/0022-3514.95.2.420); the RPP design/protocol paper by Open Science Collaboration (2012; DOI: 10.1177/1745691612462588); the main RPP Science report (2015; DOI: 10.1126/science.aac4716); and RPP reanalyses such as van Aert & van Assen (2018; DOI: 10.3758/s13428-017-0967-6).\n\nFor Study 58, the RPP study-level record reports the replication as `F(1,278)=0.376`, `p=.54`, direction \u201csame,\u201d effect size `eta_p^2=.001`, and `Replicate.R = no`. The a-priori RPP criterion requires a statistically significant replication effect in the original direction. Same direction is not enough; `p=.54` fails the reported-statistics criterion. The meta-analytic composite field is also nonsignificant for this case.\n\nDISPOSITION: REPLICATION_FAILS_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-56",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 51.3,
+      "raw_tail_sha256": "a9698c90d7f72208",
+      "raw_tail": "The case record gives the original effect and planned replication details, but it does not provide the replication\u2019s reported effect direction, test statistic, confidence interval, p-value, or meta-analytic result. Without those summary statistics, the a-priori RPP replication criterion cannot be applied.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-50",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_FAILS_CRITERION",
+      "ok": true,
+      "seconds": 155.8,
+      "raw_tail_sha256": "f12c33d698161458",
+      "raw_tail": "Most relevant work surfaced:\n\n- Albarrac\u00edn et al. (2008), the original JPSP paper, Experiment 7: action/inaction goal priming and task fulfillment predicting thought-listing output.\n- Open Science Collaboration (2015), *Science*, RP:P: the governing replication project and its reported replication indicators.\n- Corker et al. (2020), Many Labs 5 registered replication of Albarrac\u00edn et al. Experiment 7, which discusses the RP:P attempt and its failure to find the focal interaction.\n- RP:P public data record for this exact case: Study/Row 50 reports original `F(2,92)=4.36`, `p=.02`, replication `F(2,99)=2.601`, `N=105`, `p=.085`, direction \u201csame,\u201d and `Replicate.R = no`.\n\nDecision: the a-priori criterion was the focal Prime x Task interaction in the anticipated pattern reaching the registered inferential threshold. The replication\u2019s focal test was not significant (`p=.085`, recalculated `p=.0791`) and the RP:P record codes it as not replicated. Same-direction movement is insufficient under the criterion.\n\nDISPOSITION: REPLICATION_FAILS_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-135",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 51.4,
+      "raw_tail_sha256": "3ac0b67752a54ac5",
+      "raw_tail": "The case record gives the original statistic, but it does not provide the replication\u2019s reported summary statistic for the tested effect. Without the replication effect direction and significance result, the a-priori RP:P replication criterion cannot be applied.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-56",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_FAILS_CRITERION",
+      "ok": true,
+      "seconds": 95.9,
+      "raw_tail_sha256": "e9b3b08d7e9b15e4",
+      "raw_tail": "er fewer chips to angry than happy recipients. https://pubmed.ncbi.nlm.nih.gov/18361674/\n2. Open Science Collaboration (2015), Science, RP:P: replication-success benchmark using significant effect in the original direction, with project-level data. https://pubmed.ncbi.nlm.nih.gov/26315443/\n3. Slowik & Voracek (2015), RP:P replication report for this target effect: direct replication of van Dijk et al. Experiment 3. https://osf.io/2idfu/\n4. Center for Open Science RP:P dataset: Row 56 reports replication `t(38) = -0.260`, `N = 83`, `p = .796`, direction `opposite`, and `Replicate.R = no`. https://github.com/CenterForOpenScience/rpp/blob/master/data_allformats/RPPdataConverted.csv\n5. Skorb et al. (2020), Many Labs 5 replication of van Dijk et al.: explicitly notes the RP:P attempt failed and the effect was opposite in direction. https://journals.sagepub.com/doi/10.1177/2515245920927643\n\nDecision: the a-priori RP:P replication criterion is not met. The replication was not statistically significant (`p = .796`) and was coded/reported in the opposite direction from the original effect, so it fails the \u201csignificant and same direction\u201d criterion.\n\nDISPOSITION: REPLICATION_FAILS_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-55",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 54.2,
+      "raw_tail_sha256": "e47dcb1ffa895965",
+      "raw_tail": "The case record does not provide the replication\u2019s reported test statistic, p-value, effect direction, confidence interval, or meta-analytic composite needed to apply the registered a-priori replication criterion. With only the original effect and planned replication constraints, the criterion cannot be evaluated.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-135",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_FAILS_CRITERION",
+      "ok": true,
+      "seconds": 102.9,
+      "raw_tail_sha256": "211ebe4965d50676",
+      "raw_tail": "Most relevant literature surfaced:\n\n- Ranganath & Nosek (2008), original Psychological Science report on immediate implicit attitude generalization.\n- Open Science Collaboration (2015), RP:P Science report, the native replication framework.\n- Open Science Collaboration (2012), RP:P protocol paper describing registered, high-powered direct replications.\n- Cohn (2015), RP:P replication report for Ranganath & Nosek.\n- Pawel et al. (2023), reanalysis of RP:P null-result replications, noting this case\u2019s original near-null effect and replication result.\n\nDecision: the original tested effect is essentially a null/difference-absence claim for interchangeability, with original `t(562) = -0.11`, `d = -0.004` and non-significance. The RP:P replication result for this case was not a matching null pattern: it detected a positive effect/inconsistency against the original near-zero estimate. Under the registered a-priori criterion for this reported effect, that does not satisfy replication.\n\nDISPOSITION: REPLICATION_FAILS_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-122",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 47.3,
+      "raw_tail_sha256": "548e11cd223003fc",
+      "raw_tail": "The case record does not provide the replication\u2019s reported summary statistics or outcome test needed to apply the registered a-priori replication criterion to this effect.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-55",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_FAILS_CRITERION",
+      "ok": true,
+      "seconds": 93.4,
+      "raw_tail_sha256": "52e35e588ae7bdd4",
+      "raw_tail": "Most relevant published/native neighborhood surfaced:\n\nOpen Science Collaboration (2015), \u201cEstimating the reproducibility of psychological science,\u201d Science, aac4716, and its RP:P data table.  \nHarmon-Jones et al. (2008), \u201cLeft frontal cortical activation and spreading of alternatives,\u201d JPSP, original Study 2.  \nHarmon-Jones & Harmon-Jones action-based model / cognitive dissonance follow-up literature cited around the 2008 effect.\n\nDecision: the RP:P record reports the original target effect as F(2,54)=3.19, p<.05, eta_p^2=.11. The replication reported F(2,68)=0.30, N=71, p=.74, same direction, eta_p^2=.01, and the RP:P table marks \u201cReplicate.R\u201d as \u201cno.\u201d Under the ordinary RP:P a-priori criterion of a statistically significant replication effect in the same direction, this does not satisfy the criterion.\n\nDISPOSITION: REPLICATION_FAILS_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-148",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A0",
+      "disposition": "INCONCLUSIVE_REOPEN",
+      "ok": true,
+      "seconds": 46.0,
+      "raw_tail_sha256": "c449d5738d757dc8",
+      "raw_tail": "The case record provides the original effect and replication planning details, but no replication reported summary statistic, p-value, effect estimate, confidence interval, or meta-analytic composite result. The a-priori replication criterion cannot be applied from the supplied record.\n\nDISPOSITION: INCONCLUSIVE_REOPEN\n"
+    },
+    {
+      "case_id": "RPP-148",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_FAILS_CRITERION",
+      "ok": true,
+      "seconds": 46.7,
+      "raw_tail_sha256": "ab36ddd4b4475c3b",
+      "raw_tail": "Most relevant surfaced work:\n\nBressan & Stranieri (2008), original Psychological Science claim: partnered women\u2019s preference for single vs. attached men depends on conception risk.\n\nOpen Science Collaboration (2015), RP:P Science report: evaluates replication success using preregistered tests, replication effect, and meta-analytic original-plus-replication evidence.\n\nFrazier & Hasselman RP:P replication report for Bressan & Stranieri, Study 3/replicated Study 2, OSF-linked in the RP:P record.\n\nBressan (2019), \u201cConfounds in \u2018Failed\u2019 Replications,\u201d a later critique/reanalysis within the same citation neighborhood.\n\nDecision: the RP:P reported replication effect was near zero and nonsignificant. A later reanalysis table reports Bressan & Stranieri as original r = .189, p = .008; replication r = .018, p = .746; original-plus-replication meta-analytic p = .058. Because the a-priori/meta-analytic composite criterion requires significant evidence in the original direction, p = .058 does not meet it.\n\nDISPOSITION: REPLICATION_FAILS_CRITERION\n"
+    },
+    {
+      "case_id": "RPP-122",
+      "domain": "PSYCHOLOGY_RPP",
+      "arm": "A1",
+      "disposition": "REPLICATION_SATISFIES_CRITERION",
+      "ok": true,
+      "seconds": 167.0,
+      "raw_tail_sha256": "2b8065a69dd327f5",
+      "raw_tail": "Most relevant literature surfaced: Alvarez & Oliva (2008) original effect on ensemble visual features outside focal attention; Ariely (2001), Chong & Treisman (2003/2005), and Alvarez & Oliva (2009) as the immediate ensemble-statistics citation neighborhood; Alvarez (2011) as the field review; Open Science Collaboration (2015, Science aac4716) as the RP:P parent analysis; and Etz\u2019s RP:P reanalysis table, which reports Study 122 replication `N_rep = 16`, `r_rep = .92`, `rep_pval = .000`.\n\nRP:P\u2019s ordinary a-priori replication criterion is a statistically significant result in the original direction. For Study 122, the replication is in the same positive direction and is significant well below `.05`; therefore it satisfies the criterion.\n\nDISPOSITION: REPLICATION_SATISFIES_CRITERION\n"
+    }
+  ]
+}
