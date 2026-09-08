@@ -46,13 +46,13 @@ The exact remaining closure frontier is maintained in:
 
 Overall closeout is still blocked on protected V1 parity.
 
-The parity preflight currently stops at:
+The Wave-06 closeout ledger’s preflight terminal is:
 
 ```text
-BLOCKED_EVALUATOR_CUSTODY
+BLOCKED_PARENT_BASELINE_BINDING
 ```
 
-Issue #37 owns the independent semantic reviewer binding required for PARITY-C absorption semantics and PARITY-D reconstruction/gluing. After that, the strongest parent-composed configurations/adapters must be frozen from parent-only fit tests before paired V1/V2 outcomes may be opened.
+Evaluator custody is a disclosed limitation (`NOT_OBTAINED__DISCLOSED_LIMITATION`; historical issue #37), not the current first machine blocker. Strongest parent-composed configurations/adapters must still be frozen from parent-only fit tests before paired V1/V2 outcomes may be opened.
 
 ## Machine Epistemics
 

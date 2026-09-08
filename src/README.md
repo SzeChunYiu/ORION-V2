@@ -1,5 +1,7 @@
 # Source
 
-**No ORION-V2 implementation before the formal V1 freeze handoff.**
+The V1 freeze handoff is bound. This tree is the candidate kernel, not an empty placeholder.
 
-The final source layout will be derived only after all-domain atom and workflow re-derivation. This file intentionally prevents an empty source directory from being mistaken for an implementation commitment.
+Public facade: `orion_v2.kernel` (`KERNEL_API_VERSION = "wave06-candidate-v2"`, `KERNEL_FROZEN = False`). Families K0–K6 live behind that module. Other files in this package are research/reference modules and are intentionally not re-exported from `__init__.py`.
+
+A local import or test pass does not grant scientific truth, novelty, or publication authority.
