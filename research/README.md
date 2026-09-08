@@ -2,14 +2,19 @@
 
 ORION-V2 research is organized by scientific obligations rather than inherited V1 modules.
 
-Initial lanes:
+## Live
 
-- `programme/` — provenance, constitution and research roadmap;
-- `all-domain-atlas/` — independent taxonomy coverage and donor cards;
-- `structural-space/` — context-relative relations and quantitative geometry;
-- `solver/` — end-to-end scientific problem solving and V1 capability parity;
-- `frontier-jump/` — witnessed multi-level search-space evolution;
-- `evaluation/` — saturation, hostile controls and protected benchmarks;
-- `domains/` — recursive native-domain programmes.
+- `wave6/` — current convergence wave
+- `closure/` — Wave-06 closeout ledger
+- `field/` · `framework/` — Machine Epistemics demarcation
+- `orion-machine/` — kernel theory and receipts
+- `machine-epistemics-theory/` · `llm-machine-epistemics/`
+- `evaluation/` · `experiments/`
+- `foundation-saturation/` · `programme/`
 
-Every lane must preserve native parent ownership and keep scientific authority external.
+## Archived
+
+Closed wave packets live under [`archive/waves/`](archive/waves/) (`wave1`–`wave5`). One-shot wave-3/4/5 GitHub Actions YAML is under `.github/archived-workflows/`.
+
+Initial atlas lanes (`all-domain-atlas/`, `structural-space/`, `solver/`, `frontier-jump/`, `domains/`) stay at their original paths; they are still cited by the convergence map.
+
